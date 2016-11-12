@@ -1,4 +1,4 @@
-package zhy2002.neutron;
+package zhy2002.neutron.node;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -28,9 +28,27 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         return childSequenceNumber;
     }
 
-    public void addChild(T child) {
-        children.add(child);
-        childSequenceNumber++;
+    public abstract Class<T> getItemClass();
+
+    public T addItem() {
+        return addItem(getItemClass());
+    }
+
+    public T addItem(Class<? extends T> itemClass) {
+        T item = createItem(itemClass);
+        itemAddToParent(item);
+        itemLoad(item);
+        return item;
+    }
+
+    protected abstract T createItem(Class<? extends T> itemClass);
+
+    protected void itemAddToParent(T item) {
+        item.addToParent();
+    }
+
+    protected void itemLoad(T item) {
+        item.load();
     }
 
     public int getChildCount() {

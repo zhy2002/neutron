@@ -1,15 +1,59 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Java template
+node_modules
+_temp
+bower_components
+jspm_packages
+typings
+**/packages
+build
+pubspec.lock
+.pub
+.packages
+*.map
+.DS_Store
+**/*.iml
+.idea
+**/js/latest/api
+**/ts/latest/api
+**/docs/**/_fragments
+_.*
+**/resources/zips
+public/docs/xref-*.*
+_zip-output
+www
+/npm-debug.log
+npm-debug.log.*
+*.plnkr.html
+plnkr.html
+*plnkr.no-link.html
+public/docs/*/latest/guide/cheatsheet.json
+protractor-results.txt
+link-checker-results.txt
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
 # Package Files #
 *.jar
 *.war
-*.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# gwt caches and compiled units #
+war/gwt_bree/
+gwt-unitCache/
 
+# boilerplate generated classes #
+.apt_generated/
+
+# more caches and things from deploy #
+war/WEB-INF/deploy/
+war/WEB-INF/classes/
+
+#compilation logs
+.gwt/
+
+#caching for already compiled files
+gwt-unitCache/
+
+#gwt junit compilation files
+www-test/
+
+#old GWT (1.5) created this dir
+.gwt-tmp/
+target/

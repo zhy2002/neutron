@@ -1,13 +1,13 @@
-package zhy2002.neutron.atomic;
+package zhy2002.neutron.node.atomic;
 
-import zhy2002.neutron.LeafUiNode;
-import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNodeContext;
+import zhy2002.neutron.node.LeafUiNode;
+import zhy2002.neutron.node.ParentUiNode;
 
 /**
  * String leaf node.
  */
-public class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
+public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
     protected StringUiNode(P parent, String name) {
         super(parent, name);
@@ -16,4 +16,5 @@ public class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Strin
     protected StringUiNode(UiNodeContext context) {
         super(context);
     }
+
 }

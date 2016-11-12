@@ -1,8 +1,11 @@
-package zhy2002.neutron.examples.register;
+package zhy2002.examples.register.rules;
 
+import zhy2002.examples.register.ErrorListNode;
+import zhy2002.examples.register.PasswordNode;
 import zhy2002.neutron.event.DefaultPhases;
 import zhy2002.neutron.event.StateChangeEvent;
 import zhy2002.neutron.event.TickPhase;
+import zhy2002.neutron.rules.UiNodeRule;
 
 /**
  * Created by ZHY on 6/11/2016.
@@ -11,12 +14,10 @@ public class PasswordMinLengthRule extends UiNodeRule {
 
     private final PasswordNode host;
     private final int minLength;
-    private final ErrorNodeFactory errorNodeFactory;
 
-    public PasswordMinLengthRule(PasswordNode host, int minLength, ErrorNodeFactory errorNodeFactory) {
+    public PasswordMinLengthRule(PasswordNode host, int minLength) {
         this.host = host;
         this.minLength = minLength;
-        this.errorNodeFactory = errorNodeFactory;
     }
 
     /**
@@ -69,10 +70,10 @@ public class PasswordMinLengthRule extends UiNodeRule {
 
     protected void activate() {
 
-        ErrorNode errorNode = errorNodeFactory.create(getErrorListNode(), String.valueOf(getErrorListNode().getChildSequenceNumber()));
-        errorNode.setOrigin(getPasswordNode());
-        errorNode.setMessage("Password too short.");
-        errorNode.setRule(this);
+        //rrorNode errorNode = errorNodeFactory.create(getErrorListNode(), String.valueOf(getErrorListNode().getChildSequenceNumber()));
+//        errorNode.setOrigin(getPasswordNode());
+//        errorNode.setMessage("Password too short.");
+//        errorNode.setRule(this);
     }
 
     protected void deactivate() {

@@ -1,4 +1,4 @@
-package zhy2002.neutron.examples.register;
+package zhy2002.neutron.rules;
 
 /**
  * Created by ZHY on 6/11/2016.

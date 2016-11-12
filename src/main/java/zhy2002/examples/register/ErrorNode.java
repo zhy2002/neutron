@@ -1,10 +1,12 @@
-package zhy2002.neutron.examples.register;
+package zhy2002.examples.register;
 
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.node.LeafUiNode;
+import zhy2002.neutron.node.UiNode;
+import zhy2002.neutron.rules.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
 
-public class ErrorNode extends UiNode<ErrorListNode> {
+public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
 
     private UiNode<?> origin;
     private String message;
@@ -12,6 +14,16 @@ public class ErrorNode extends UiNode<ErrorListNode> {
 
     protected ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
+    }
+
+    @Override
+    protected void doLoad() {
+
+    }
+
+    @Override
+    protected void doUnload() {
+
     }
 
     public UiNode<?> getOrigin() {

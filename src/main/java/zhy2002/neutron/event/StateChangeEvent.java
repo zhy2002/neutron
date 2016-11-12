@@ -1,6 +1,6 @@
 package zhy2002.neutron.event;
 
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.node.UiNode;
 
 /**
  * This event is fired when a state property of a node is set.

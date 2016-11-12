@@ -1,4 +1,6 @@
-package zhy2002.neutron;
+package zhy2002.neutron.node;
+
+import zhy2002.neutron.UiNodeContext;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,7 +35,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializab
     public T getValue(T defaultValue) {
         T result = getValue();
         return result == null ? defaultValue : result;
-
     }
 
     public void setValue(T value) {
