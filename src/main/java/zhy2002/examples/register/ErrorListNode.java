@@ -5,7 +5,6 @@ import zhy2002.neutron.node.ListUiNode;
 import zhy2002.neutron.node.NotImplementedException;
 
 import javax.validation.constraints.NotNull;
-import java.util.function.Predicate;
 
 
 public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
@@ -42,7 +41,5 @@ public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
         throw new NotImplementedException();
     }
 
-    public void remove(Predicate<ErrorNode> predicate) {
 
-    }
 }

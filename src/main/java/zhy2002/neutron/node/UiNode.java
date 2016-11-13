@@ -2,6 +2,7 @@ package zhy2002.neutron.node;
 
 import zhy2002.neutron.NodeLifeStateEnum;
 import zhy2002.neutron.UiNodeContext;
+import zhy2002.neutron.event.StateChangeEvent;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
@@ -36,6 +37,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * Life state of this node.
      */
     private NodeLifeStateEnum lifeState;
+
+    private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
 
     /**
      * The constructor for a child node.
@@ -75,6 +78,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return context;
     }
 
+    //region state methods
+
     protected <T> T getStateValueInternal(String key) {
         return (T) state.get(key);
     }
@@ -82,6 +87,55 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     protected void setStateValueInternal(String key, Object value) {
         state.put(key, value);
     }
+
+    public ChangeTrackModeEnum getChangeTrackMode() {
+        return changeTrackMode;
+    }
+
+    public void setChangeTrackMode(ChangeTrackModeEnum changeTrackMode) {
+        this.changeTrackMode = changeTrackMode;
+    }
+
+    protected <T> T getStateValue(String key) {
+        return getStateValueInternal(key);
+    }
+
+    protected <T> void setStateValue(String key, T value) {
+        T oldValue = getStateValueInternal(key);
+        boolean process = false;
+        switch (this.changeTrackMode) {
+            case Always:
+                process = true;
+                break;
+            case Reference:
+                process = oldValue != value;
+                break;
+            case Value:
+                if (oldValue == null) {
+                    process = value != null;
+                } else {
+                    process = !oldValue.equals(value);
+                }
+                break;
+            case None:
+                setStateValueInternal(key, value);
+        }
+        if (!process)
+            return;
+        StateChangeEvent<T> event = getStateChangeEvent(oldValue, value);
+        getContext().processEvent(event);
+
+    }
+
+    private <T> StateChangeEvent<T> getStateChangeEvent(T oldValue, T value) {
+        StateChangeEvent<T> event = new StateChangeEvent<>(this, DefaultUiNodeStateKeys.VALUE);
+        event.setOldValue(oldValue);
+        event.setNewValue(value);
+        return event;
+    }
+
+    //endregion
+
 
     //region identity methods
 
@@ -102,7 +156,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //endregion
 
-    //region life state methods
+    //region life cycle methods
 
     public NodeLifeStateEnum getLifeState() {
         return lifeState;

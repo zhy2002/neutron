@@ -30,8 +30,12 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return children.indexOf(child);
     }
 
-    public UiNode<?> getChild(String name) {
+    protected UiNode<?> getChild(String name) {
         return childrenMap.get(name);
+    }
+
+    protected UiNode<?> getChild(int index) {
+        return children.get(index);
     }
 
     public void addChild(UiNode<?> child) {
@@ -42,6 +46,10 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
         children.add(child);
         childrenMap.put(child.getName(), child);
+    }
+
+    public int getChildCount() {
+        return children.size();
     }
 
     @Override

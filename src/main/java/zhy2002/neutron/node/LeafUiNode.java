@@ -10,8 +10,6 @@ import java.io.Serializable;
  */
 public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializable/*todo Or json serializable */> extends UiNode<P> {
 
-    public static final String VALUE_KEY = "value";
-
     protected LeafUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
     }
@@ -21,15 +19,15 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializab
     }
 
     protected void setValueInternal(T value) {
-        super.setStateValueInternal(VALUE_KEY, value);
+        super.setStateValueInternal(DefaultUiNodeStateKeys.VALUE, value);
     }
 
     protected T getValueInternal() {
-        return super.getStateValueInternal(VALUE_KEY);
+        return super.getStateValueInternal(DefaultUiNodeStateKeys.VALUE);
     }
 
     public T getValue() {
-        return getValueInternal();
+        return getStateValue(DefaultUiNodeStateKeys.VALUE);
     }
 
     public T getValue(T defaultValue) {
@@ -38,6 +36,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializab
     }
 
     public void setValue(T value) {
-        setValueInternal(value);
+        setStateValue(DefaultUiNodeStateKeys.VALUE, value);
     }
+
 }

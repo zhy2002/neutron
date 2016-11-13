@@ -5,4 +5,6 @@ package zhy2002.neutron.event;
  */
 public interface TickPhase {
     ChangeMode getChangeMode();
+
+    boolean PostChanges();
 }

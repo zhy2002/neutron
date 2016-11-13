@@ -2,10 +2,10 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.register.rules.UsernameLengthRule;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 public class RegisterNodeContextTest {
 
@@ -48,20 +48,25 @@ public class RegisterNodeContextTest {
 
     @Test
     public void validateUsernameLength() {
-//        UsernameNode usernameNode = registerNode.getUsernameNode();
-//        RegisterErrors errors = registerNode.getErrors();
-//
-//        assertThat(errors.getChildCount(), equalTo(0));
-//
-//        usernameNode.setValue("abc");
-//        assertThat(errors.getChildCount(), equalTo(1));
-//        RegisterError error = errors.getChild(0);
-//        assertThat(error.getSourceNode(), sameInstance(usernameNode));
-//        assertThat(error.getMessage(), equalTo(UsernameLengthRule.ERROR_MESSAGE));
-//
-//        usernameNode.setValue("abcd");
-//        assertThat(errors.getChildCount(), equalTo(0));
 
+        //arrange
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        ErrorListNode errors = registerNode.getErrorListNode();
+
+        //assert
+        assertThat(errors.getChildCount(), equalTo(0));
+
+        //act
+        usernameNode.setValue("abc");
+
+        //assert
+        assertThat(errors.getChildCount(), equalTo(1));
+        ErrorNode error = errors.getItem(0);
+        assertThat(error.getSource(), sameInstance(usernameNode));
+        assertThat(error.getMessage(), equalTo(UsernameLengthRule.ERROR_MESSAGE));
+
+        usernameNode.setValue("test");
+        assertThat(errors.getChildCount(), equalTo(0));
     }
 
     @Test

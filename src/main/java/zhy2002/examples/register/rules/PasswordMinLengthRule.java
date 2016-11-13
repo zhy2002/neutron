@@ -10,13 +10,12 @@ import zhy2002.neutron.rules.UiNodeRule;
 /**
  * Created by ZHY on 6/11/2016.
  */
-public class PasswordMinLengthRule extends UiNodeRule {
+public class PasswordMinLengthRule extends UiNodeRule<PasswordNode> {
 
-    private final PasswordNode host;
     private final int minLength;
 
     public PasswordMinLengthRule(PasswordNode host, int minLength) {
-        this.host = host;
+        super(host, DefaultPhases.Validate);
         this.minLength = minLength;
     }
 
@@ -35,7 +34,7 @@ public class PasswordMinLengthRule extends UiNodeRule {
     }
 
     public PasswordNode getPasswordNode() {
-        return host;
+        return getHost();
     }
 
     /**
@@ -44,11 +43,12 @@ public class PasswordMinLengthRule extends UiNodeRule {
      * @return
      */
     public ErrorListNode getErrorListNode() {
-        return this.host.getParent().getErrorListNode();
+        return null;
+        //return this.host.getParent().getErrorListNode();
     }
 
     protected boolean canFire(StateChangeEvent event) {
-        return "value".equals(event.getPropertyName()) && event.getOrigin() == host;
+        return true; //"value".equals(event.getPropertyName()) && event.getOrigin() == getHost();
     }
 
     public final boolean fire(StateChangeEvent event) {
@@ -77,7 +77,7 @@ public class PasswordMinLengthRule extends UiNodeRule {
     }
 
     protected void deactivate() {
-        getErrorListNode().remove(errorNode -> errorNode.getRule() == this);
+        //getErrorListNode().remove(errorNode -> errorNode.getRule() == this);
     }
 
 
