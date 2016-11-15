@@ -1,6 +1,6 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rules.PasswordMinLengthRule;
+import zhy2002.examples.register.rules.ValidationRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
 import zhy2002.neutron.node.UiNodeRule;
@@ -19,7 +19,7 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         super(parent, name);
     }
 
-    public void addRule(PasswordMinLengthRule passwordMinLengthRule) {
+    public void addRule(ValidationRule passwordMinLengthRule) {
         selfRules.add(passwordMinLengthRule);
     }
 

@@ -1,5 +1,6 @@
 package zhy2002.examples.register;
 
+import zhy2002.examples.register.rules.UsernameInvalidCharRule;
 import zhy2002.examples.register.rules.UsernameLengthRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
@@ -17,6 +18,9 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     protected void doLoad() {
         UsernameLengthRule usernameLengthRule = new UsernameLengthRule(this);//todo use factory
         usernameLengthRule.load();
+
+        UsernameInvalidCharRule usernameInvalidCharRule = new UsernameInvalidCharRule(this);
+        usernameInvalidCharRule.load();
     }
 
     @Override

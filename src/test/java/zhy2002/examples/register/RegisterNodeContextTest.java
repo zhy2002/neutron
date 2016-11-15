@@ -71,19 +71,19 @@ public class RegisterNodeContextTest {
 
     @Test
     public void cannotTypeHashInUsername() {
-//        UsernameNode usernameNode = registerNode.getUsernameNode();
-//        usernameNode.setValue("test");
-//        assertThat(usernameNode.getValue(), equalTo("test"));
-//
-//        boolean exceptionThrown = false;
-//        try {
-//            usernameNode.setValue("test#");
-//        } catch (RuntimeException ex) {
-//            exceptionThrown = true;
-//        }
-//
-//        assertThat(exceptionThrown, equalTo(true));
-//        assertThat(usernameNode.getValue(), equalTo("test"));
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("test");
+        assertThat(usernameNode.getValue(), equalTo("test"));
+
+        boolean exceptionThrown = false;
+        try {
+            usernameNode.setValue("test#");
+        } catch (RuntimeException ex) {
+            exceptionThrown = true;
+        }
+
+        assertThat(exceptionThrown, equalTo(true));
+        assertThat(usernameNode.getValue(), equalTo("test"));
     }
 
 
