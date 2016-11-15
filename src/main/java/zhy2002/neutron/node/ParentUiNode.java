@@ -78,4 +78,8 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
     protected abstract void undoInitializeChildren();
 
+    public void removeChild(UiNode<?> child) {
+        childrenMap.remove(child.getName());
+        children.remove(child);
+    }
 }

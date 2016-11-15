@@ -3,7 +3,7 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.rules.PasswordMinLengthRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
-import zhy2002.neutron.rules.UiNodeRule;
+import zhy2002.neutron.node.UiNodeRule;
 
 import java.util.ArrayList;
 import java.util.List;

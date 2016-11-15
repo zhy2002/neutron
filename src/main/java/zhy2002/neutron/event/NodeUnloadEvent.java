@@ -17,4 +17,9 @@ public class NodeUnloadEvent extends UiNodeEvent {
     public Iterable<UiNodeRuleActivation> getActivations() {
         return null;
     }
+
+    @Override
+    public void apply() {
+
+    }
 }

@@ -19,4 +19,6 @@ public abstract class UiNodeEvent {
     }
 
     public abstract Iterable<UiNodeRuleActivation> getActivations();
+
+    public abstract void apply();
 }

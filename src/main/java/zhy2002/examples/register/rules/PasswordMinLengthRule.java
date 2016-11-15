@@ -1,11 +1,13 @@
 package zhy2002.examples.register.rules;
 
 import zhy2002.examples.register.ErrorListNode;
+import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.PasswordNode;
 import zhy2002.neutron.event.DefaultPhases;
 import zhy2002.neutron.event.StateChangeEvent;
 import zhy2002.neutron.event.TickPhase;
-import zhy2002.neutron.rules.UiNodeRule;
+import zhy2002.neutron.event.UiNodeEvent;
+import zhy2002.neutron.node.UiNodeRule;
 
 /**
  * Created by ZHY on 6/11/2016.
@@ -13,6 +15,7 @@ import zhy2002.neutron.rules.UiNodeRule;
 public class PasswordMinLengthRule extends UiNodeRule<PasswordNode> {
 
     private final int minLength;
+    private ErrorNode errorNode;
 
     public PasswordMinLengthRule(PasswordNode host, int minLength) {
         super(host, DefaultPhases.Validate);
@@ -27,6 +30,11 @@ public class PasswordMinLengthRule extends UiNodeRule<PasswordNode> {
      */
     public TickPhase getPhase() {
         return DefaultPhases.Validate;
+    }
+
+    @Override
+    public void fire(UiNodeEvent event) {
+       // fire(StateChangeEvent<Pass>)event);
     }
 
     public int getMinLength() {

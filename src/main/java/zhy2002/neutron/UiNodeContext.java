@@ -25,6 +25,7 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
     private int uniqueIdSequenceNumber = 0;
     private boolean inSession = false;
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
+    private final Deque<UiNodeEvent> pendingChangesQueue = new ArrayDeque<>();
     private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
     private TickPhase[] phases = {DefaultPhases.Pre, DefaultPhases.Post, DefaultPhases.Validate, DefaultPhases.CleanUp};
     private TickPhase currentPhase;
@@ -184,6 +185,7 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
         while (!eventDeque.isEmpty()) {
             UiNodeEvent event = eventDeque.poll();
             agenda.addActivations(event);
+            pendingChangesQueue.add(event);
         }
         boolean changesApplied = false;
         for (TickPhase phase : phases) {
@@ -194,6 +196,7 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
             }
             processPhase(phase);
         }
+        agenda.clear();
         currentPhase = null;
         if (!changesApplied) {
             applyChanges();
@@ -201,7 +204,9 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
     }
 
     private void applyChanges() {
-        //todo
+        while (!pendingChangesQueue.isEmpty()) {
+            pendingChangesQueue.poll().apply();
+        }
     }
 
     protected void processPhase(TickPhase phase) {
@@ -209,7 +214,6 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
             UiNodeRuleActivation activation = agenda.getNextActivation(phase);
             activation.fire();
         }
-        agenda.clear();
     }
 
     private void queueEvent(UiNodeEvent event) {

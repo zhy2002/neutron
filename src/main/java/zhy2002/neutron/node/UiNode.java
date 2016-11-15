@@ -5,7 +5,9 @@ import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.event.StateChangeEvent;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +41,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     private NodeLifeStateEnum lifeState;
 
     private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
+
+    private final List<UiNodeRule<?>> hostedRules = new ArrayList<>();
+    private final List<UiNodeRule<?>> attachedRules = new ArrayList<>();
 
     /**
      * The constructor for a child node.
@@ -84,7 +89,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return (T) state.get(key);
     }
 
-    protected void setStateValueInternal(String key, Object value) {
+    public void setStateValueInternal(String key, Object value) {
         state.put(key, value);
     }
 
@@ -204,6 +209,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * Undo what initialize() did.
      */
     protected abstract void doUnload();
+
+    public Iterable<UiNodeRule<?>> getAttachedRules() {
+        return attachedRules;
+    }
+
+    public <T extends UiNode<?>> void addRule(UiNodeRule<T> rule) {
+        hostedRules.add(rule);
+    }
+
+    public <T extends UiNode<?>> void removeRule(UiNodeRule<T> rule) {
+        hostedRules.remove(rule);
+    }
+
+    public <T extends UiNode<?>> void attachRule(UiNodeRule<T> rule) {
+        assert rule.getAnchor() == this;
+        this.attachedRules.add(rule);
+    }
+
+    public <T extends UiNode<?>> void detachRule(UiNodeRule<T> rule) {
+        assert rule.getAnchor() == this;
+        this.attachedRules.remove(rule);
+    }
 
     //endregion
 }
