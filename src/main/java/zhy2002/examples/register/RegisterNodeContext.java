@@ -4,7 +4,7 @@ import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.node.ChildNodeFactory;
 
 /**
- * Context and Root are a pair.
+ * Context and Root are a pair. This whole class is generated.
  */
 public class RegisterNodeContext extends UiNodeContext<RegisterNode> {
 
