@@ -64,7 +64,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     protected abstract void initializeSelf();
 
     /**
-     * Create and load children.
+     * Create and addToOwner children.
      */
     protected abstract void initializeChildren();
 

@@ -46,8 +46,8 @@ public class StateChangeEvent<T> extends UiNodeEvent {
         List<UiNodeRuleActivation> result = new ArrayList<>();
         UiNode<?> anchor = getTarget();
         do {
-            for (UiNodeRule<?> rule : anchor.getAttachedRules()) {
-                if(rule.listensTo(getTarget())) {
+            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules()) {
+                if(rule.isObservedUiNode(getTarget())) {
                     UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, this, anchor);
                     result.add(activation);
                 }

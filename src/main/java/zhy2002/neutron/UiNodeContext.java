@@ -15,7 +15,7 @@ import java.util.Map;
 public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     private R root;
-    private final Map<Class<?>, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
+    private final Map<Class<? >, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
     private final SequentialUniqueIdGenerator uniqueIdGenerator = new SequentialUniqueIdGenerator();
     private final UiNodeChangeEngine changeEngine = new UiNodeChangeEngine();
 
@@ -31,7 +31,7 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
     }
 
     /**
-     * Get the root node. If the root node has not been created this will create and load the root node.
+     * Get the root node. If the root node has not been created this will create and addToOwner the root node.
      *
      * @return the root node.
      */

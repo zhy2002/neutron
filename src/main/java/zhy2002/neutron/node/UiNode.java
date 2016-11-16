@@ -3,6 +3,7 @@ package zhy2002.neutron.node;
 import zhy2002.neutron.NodeLifeStateEnum;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.event.UiNodeEvent;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
 
-    private final List<UiNodeRule<?>> hostedRules = new ArrayList<>();
-    private final List<UiNodeRule<?>> attachedRules = new ArrayList<>();
+    private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
+    private final List<UiNodeRule<?, ?>> attachedRules = new ArrayList<>();
 
     /**
      * The constructor for a child node.
@@ -210,25 +211,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     protected abstract void doUnload();
 
-    public Iterable<UiNodeRule<?>> getAttachedRules() {
+    public Iterable<UiNodeRule<?, ?>> getAttachedRules() {
         return attachedRules;
     }
 
-    public <T extends UiNode<?>> void addRule(UiNodeRule<T> rule) {
+    public <T extends UiNode<?>, E extends UiNodeEvent> void addRule(UiNodeRule<E, T> rule) {
         hostedRules.add(rule);
     }
 
-    public <T extends UiNode<?>> void removeRule(UiNodeRule<T> rule) {
+    public <T extends UiNode<?>> void removeRule(UiNodeRule<?, T> rule) {
         hostedRules.remove(rule);
     }
 
-    public <T extends UiNode<?>> void attachRule(UiNodeRule<T> rule) {
-        assert rule.getAnchor() == this;
+    public <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
+        assert rule.getHost() == this;
         this.attachedRules.add(rule);
     }
 
-    public <T extends UiNode<?>> void detachRule(UiNodeRule<T> rule) {
-        assert rule.getAnchor() == this;
+    public <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
+        assert rule.getHost() == this;
         this.attachedRules.remove(rule);
     }
 

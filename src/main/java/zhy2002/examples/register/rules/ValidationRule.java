@@ -8,14 +8,15 @@ import zhy2002.neutron.node.UiNodeRule;
 /**
  * Base class for validation rules.
  */
-public abstract class ValidationRule<T extends UiNode<?>> extends UiNodeRule<T> {
+public abstract class ValidationRule<E extends UiNodeEvent, N extends UiNode<?>>
+        extends UiNodeRule<E, N> {
 
-    protected ValidationRule(T host) {
-        super(host, DefaultPhases.Validate);
+    protected ValidationRule(N owner) {
+        super(owner, DefaultPhases.Validate);
     }
 
     @Override
-    public void fire(UiNodeEvent event) {
+    public void execute(E event) {
         if (isActivated(event)) {
             activate(event);
         } else {
@@ -23,10 +24,10 @@ public abstract class ValidationRule<T extends UiNode<?>> extends UiNodeRule<T> 
         }
     }
 
-    protected abstract boolean isActivated(UiNodeEvent event);
+    protected abstract boolean isActivated(E event);
 
-    protected abstract void activate(UiNodeEvent event);
+    protected abstract void activate(E event);
 
-    protected abstract void deactivate(UiNodeEvent event);
+    protected abstract void deactivate(E event);
 
 }

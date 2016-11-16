@@ -17,10 +17,10 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     @Override
     protected void doLoad() {
         UsernameLengthRule usernameLengthRule = new UsernameLengthRule(this);//todo use factory
-        usernameLengthRule.load();
+        usernameLengthRule.addToOwner();
 
         UsernameInvalidCharRule usernameInvalidCharRule = new UsernameInvalidCharRule(this);
-        usernameInvalidCharRule.load();
+        usernameInvalidCharRule.addToOwner();
     }
 
     @Override

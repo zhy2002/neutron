@@ -4,8 +4,8 @@ import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.node.UiNode;
 
 /**
- * This event fires when a node is unload. All its children and its state will be destroyed by itself is kept to be loaded again.
- * Reset = unload + load.
+ * This event fires when a node is removeFromOwner. All its children and its state will be destroyed by itself is kept to be loaded again.
+ * Reset = removeFromOwner + addToOwner.
  */
 public class NodeUnloadEvent extends UiNodeEvent {
 

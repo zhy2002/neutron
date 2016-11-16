@@ -10,11 +10,11 @@ import zhy2002.neutron.node.UiNodeRule;
  */
 public class UiNodeRuleActivation {
 
-    private UiNodeRule<?> rule;
+    private UiNodeRule<?, ?> rule;
     private UiNodeEvent event;
     private UiNode<?> anchor;
 
-    public UiNodeRuleActivation(UiNodeRule<?> rule, UiNodeEvent event, UiNode<?> anchor) {
+    public UiNodeRuleActivation(UiNodeRule<?, ?> rule, UiNodeEvent event, UiNode<?> anchor) {
         this.rule = rule;
         this.event = event;
         this.anchor = anchor;
@@ -28,7 +28,7 @@ public class UiNodeRuleActivation {
         return rule.getPhase();
     }
 
-    public UiNodeRule<?> getRule() {
+    public UiNodeRule<?, ?> getRule() {
         return rule;
     }
 
