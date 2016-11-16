@@ -27,7 +27,7 @@ public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
     }
 
     @Override
-    protected ErrorNode createItem(Class<? extends ErrorNode> itemClass) {
+    protected ErrorNode createItemInternal(Class<? extends ErrorNode> itemClass) {
         ChildNodeFactory<ErrorNode, ErrorListNode> factory = getContext().getChildNodeFactory(itemClass);
         return factory.create(this, String.valueOf(getChildSequenceNumber()));
     }

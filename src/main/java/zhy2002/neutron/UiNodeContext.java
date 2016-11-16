@@ -75,4 +75,12 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
     public void processEvent(UiNodeEvent event) {
         changeEngine.processEvent(event);
     }
+
+    public void beginSession() {
+        changeEngine.beginSession();
+    }
+
+    public void rollbackSession() {
+        changeEngine.rollbackSession();
+    }
 }

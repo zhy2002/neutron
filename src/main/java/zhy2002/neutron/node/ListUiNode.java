@@ -1,13 +1,14 @@
 package zhy2002.neutron.node;
 
-import zhy2002.examples.register.ErrorNode;
+import zhy2002.neutron.event.NodeAddEvent;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * A ParentUiNode whose children are put in a list.
  */
-public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? extends ListUiNode<P, T>>> extends ParentUiNode<P> {
+public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? extends ListUiNode<P, T>>>
+        extends ParentUiNode<P> {
 
     private int childSequenceNumber = 0;
 
@@ -27,25 +28,48 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
 
     public abstract Class<T> getItemClass();
 
-    public T addItem() {
-        return addItem(getItemClass());
+    public T createItem() {
+        return createItem(getItemClass());
     }
 
-    public T addItem(Class<? extends T> itemClass) {
-        T item = createItem(itemClass);
-        itemAddToParent(item);
-        itemLoad(item);
+    public T createItem(Class<? extends T> itemClass) {
+        T item = createItemInternal(itemClass);
+        NodeAddEvent event = createNodeLoadEvent(item);
+        getContext().processEvent(event);
         return item;
     }
 
-    protected abstract T createItem(Class<? extends T> itemClass);
+    protected NodeAddEvent createNodeLoadEvent(T item) {
+        NodeAddEvent<T> event = new NodeAddEvent<>(item);
+        return event;
+    }
+
+    public void addItem(T item) {
+        itemAddToParent(item);
+        itemLoad(item);
+    }
+
+    public void removeItem(T item) {
+        itemUnload(item);
+        itemRemoveFromParent(item);
+    }
+
+    protected abstract T createItemInternal(Class<? extends T> itemClass);
 
     protected void itemAddToParent(T item) {
         item.addToParent();
     }
 
+    protected void itemRemoveFromParent(T item) {
+        item.removeFromParent();
+    }
+
     protected void itemLoad(T item) {
         item.load();
+    }
+
+    protected void itemUnload(T item) {
+        item.unload();
     }
 
     @SuppressWarnings("unchecked")
@@ -53,8 +77,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         return (T) getChild(index);
     }
 
-
-    public void removeItem(UiNode<?> child) {
-        super.removeChild(child);
+    @Override
+    public boolean supportRemoveChild() {
+        return true;
     }
 }

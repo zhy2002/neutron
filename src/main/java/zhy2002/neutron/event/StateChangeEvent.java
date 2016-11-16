@@ -67,4 +67,9 @@ public final class StateChangeEvent<T> extends UiNodeEvent {
     public void apply() {
         getTarget().setStateValueInternal(getStateKey(), getNewValue());
     }
+
+    @Override
+    public void revert() {
+        getTarget().setStateValueInternal(getStateKey(), getOldValue());
+    }
 }

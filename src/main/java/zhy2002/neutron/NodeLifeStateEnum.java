@@ -11,7 +11,7 @@ public enum NodeLifeStateEnum {
     /**
      * Node is added to the node tree but its content has not been loaded.
      */
-    Unloaed,
+    Unload,
     /**
      * Node is fully functional.
      */

@@ -82,4 +82,8 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         childrenMap.remove(child.getName());
         children.remove(child);
     }
+
+    public boolean supportRemoveChild() {
+        return false;
+    }
 }

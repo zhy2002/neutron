@@ -6,41 +6,42 @@ import zhy2002.neutron.event.UiNodeEvent;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 
 /**
  * Created by john.zhang on 16/11/2016.
  */
 public class UiNodeChangeEngine {
 
-    private SessionModeEnum sessionMode = SessionModeEnum.Auto;
+    //private SessionModeEnum sessionMode = SessionModeEnum.Auto;
     private CycleModeEnum cycleMode = CycleModeEnum.Auto;
 
     private boolean inSession = false;
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
-    private final Deque<UiNodeEvent> pendingChangesQueue = new ArrayDeque<>();
+    private final Deque<Cycle> cycleDeque = new ArrayDeque<>();//a queue of cycles in session.
     private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
     private TickPhase[] phases = {DefaultPhases.Pre, DefaultPhases.Post, DefaultPhases.Validate, DefaultPhases.CleanUp};
     private TickPhase currentPhase;
 
     //region change management
 
-    public SessionModeEnum getSessionMode() {
-        return sessionMode;
-    }
-
-    public void setCommitMode(SessionModeEnum commitMode) {
-        if (this.sessionMode != SessionModeEnum.Auto && commitMode == SessionModeEnum.Auto) {
-            commitSession();
-            this.sessionMode = commitMode;
-        }
-    }
+//    public SessionModeEnum getSessionMode() {
+//        return sessionMode;
+//    }
+//
+//    public void setCommitMode(SessionModeEnum commitMode) {
+//        if (this.sessionMode != SessionModeEnum.Auto && commitMode == SessionModeEnum.Auto) {
+//            commitSession();
+//            this.sessionMode = commitMode;
+//        }
+//    }
 
     public CycleModeEnum getCycleMode() {
         return cycleMode;
     }
 
     public void beginSession() {
-        if (sessionMode == SessionModeEnum.Auto)
+        if (inSession)
             return;
 
         beginSessionInternal();
@@ -51,23 +52,30 @@ public class UiNodeChangeEngine {
     }
 
     public void commitSession() {
-        if (sessionMode == SessionModeEnum.Auto)
+        if (!inSession)
             return;
 
         commitSessionInternal();
     }
 
     protected void commitSessionInternal() {
-
-        //todo clear temp data
+        cycleDeque.clear();
         inSession = false;
     }
 
     public void rollbackSession() {
-        if (sessionMode == SessionModeEnum.Auto)
+        if (!inSession)
             return;
 
-        //todo implement
+        rollbackSessionInternal();
+    }
+
+    protected void rollbackSessionInternal() {
+        if(!cycleDeque.isEmpty()) {
+            Cycle first = cycleDeque.poll();
+            first.revert();
+            cycleDeque.clear();
+        }
 
         inSession = false;
     }
@@ -77,20 +85,22 @@ public class UiNodeChangeEngine {
     }
 
     public void processEvent(UiNodeEvent event) {
+        boolean autoCommit = false;
         if (!isInSession()) {
             beginSessionInternal();
+            autoCommit = true;
         }
 
         try {
             processEventInternal(event);
         } catch (UiNodeEventException ex) {
-            if (getSessionMode() == SessionModeEnum.Auto) {
+            if (autoCommit) {
                 rollbackSession();
             }
             throw ex;
         }
 
-        if (getSessionMode() == SessionModeEnum.Auto) {
+        if (autoCommit) {
             commitSessionInternal();
         }
     }
@@ -114,26 +124,50 @@ public class UiNodeChangeEngine {
     //todo canUndo and canRedo methods
 
     public boolean undo() {
-        //todo undo the last cycle
+        Iterator<Cycle> iterator = cycleDeque.descendingIterator();
+        while (iterator.hasNext()) {
+            Cycle cycle = iterator.next();
+            if(cycle.isApplied()) {
+                cycle.revert();
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean redo() {
-        //todo redo the last undid cycle
+        Iterator<Cycle> iterator = cycleDeque.iterator();
+        while (iterator.hasNext()) {
+            Cycle cycle = iterator.next();
+            if(!cycle.isApplied()) {
+                cycle.apply();
+                return true;
+            }
+        }
         return false;
     }
 
+    private boolean inCycle;
+
     private void processCycle() {
-        while (!eventDeque.isEmpty()) {
-            processTick();
+        if(inCycle)
+            return;
+
+        inCycle = true;
+        if(!eventDeque.isEmpty()) {
+            cycleDeque.add(new Cycle());
         }
+        while (!eventDeque.isEmpty()) {
+            processTick(cycleDeque.peekLast());
+        }
+        inCycle = false;
     }
 
-    private void processTick() {
+    private void processTick(Cycle cycle) {
         while (!eventDeque.isEmpty()) {
             UiNodeEvent event = eventDeque.poll();
             agenda.addActivations(event);
-            pendingChangesQueue.add(event);
+            cycle.add(event);
         }
         boolean changesApplied = false;
         for (TickPhase phase : phases) {
@@ -152,8 +186,8 @@ public class UiNodeChangeEngine {
     }
 
     private void applyChanges() {
-        while (!pendingChangesQueue.isEmpty()) {
-            pendingChangesQueue.poll().apply();
+        if(!cycleDeque.isEmpty()) {
+            cycleDeque.peekLast().apply();
         }
     }
 

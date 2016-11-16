@@ -5,12 +5,12 @@ import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.node.UiNode;
 
 /**
- * This event is fired when a node is attached to a node tree (or context if it is a root node).
- * This event does not fire for the nodes' descendants.
+ * This event fires when a node is removeFromOwner. All its children and its state will be destroyed by itself is kept to be loaded again.
+ * Reset = removeFromOwner + addToOwner.
  */
-public final class NodeLoadEvent extends UiNodeEvent {
+public final class NodeRemoveEvent extends UiNodeEvent {
 
-    protected NodeLoadEvent(UiNode<?> target) {
+    protected NodeRemoveEvent(UiNode<?> target) {
         super(target);
     }
 
@@ -20,7 +20,7 @@ public final class NodeLoadEvent extends UiNodeEvent {
     }
 
     public final EventTypeEnum getEventType() {
-        return EventTypeEnum.Load;
+        return EventTypeEnum.Unload;
     }
 
     @Override
@@ -28,5 +28,10 @@ public final class NodeLoadEvent extends UiNodeEvent {
         throw new RuntimeException();
     }
 
+
+    @Override
+    public void revert() {
+        throw new RuntimeException();
+    }
 
 }

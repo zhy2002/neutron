@@ -179,14 +179,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         } else {
             this.parent.addChild(this);
         }
-        this.lifeState = NodeLifeStateEnum.Unloaed;
+        this.lifeState = NodeLifeStateEnum.Unload;
+    }
+
+    public void removeFromParent() {
+        if(this.lifeState != NodeLifeStateEnum.Unload)
+            return;
+
+        if(parent == null) {
+
+        } else {
+            if(!parent.supportRemoveChild()) //does not support
+                return;
+            this.parent.removeChild(this);
+        }
+        this.lifeState = NodeLifeStateEnum.Detached;
     }
 
     /**
      * Calling this method with transition from Unloaded to Loaded.
      */
     public void load() {
-        if (this.lifeState != NodeLifeStateEnum.Unloaed)
+        if (this.lifeState != NodeLifeStateEnum.Unload)
             return;
         doLoad();
         this.lifeState = NodeLifeStateEnum.Loaded;
@@ -204,7 +218,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         if (this.lifeState != NodeLifeStateEnum.Loaded)
             return;
         doUnload();
-        this.lifeState = NodeLifeStateEnum.Unloaed;
+        this.lifeState = NodeLifeStateEnum.Unload;
     }
 
     /**

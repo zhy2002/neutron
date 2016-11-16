@@ -8,13 +8,15 @@ import javax.validation.constraints.NotNull;
 
 public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
 
+    private final RegisterError errorInfo = new RegisterError();
+
     protected ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
     }
 
     @Override
     protected void doLoad() {
-        setValueInternal(new RegisterError());
+        setValueInternal(errorInfo);
     }
 
     @Override
@@ -23,26 +25,26 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
     }
 
     public UiNode<?> getSource() {
-        return getValueInternal().getOrigin();
+        return errorInfo.getOrigin();
     }
 
     public void setSource(UiNode<?> source) {
-        getValueInternal().setOrigin(source);
+        errorInfo.setOrigin(source);
     }
 
     public String getMessage() {
-        return getValueInternal().getMessage();
+        return errorInfo.getMessage();
     }
 
     public void setMessage(String message) {
-        getValueInternal().setMessage(message);
+        errorInfo.setMessage(message);
     }
 
     public UiNodeRule getRule() {
-        return getValueInternal().getRule();
+        return errorInfo.getRule();
     }
 
     public void setRule(UiNodeRule rule) {
-        getValueInternal().setRule(rule);
+        errorInfo.setRule(rule);
     }
 }

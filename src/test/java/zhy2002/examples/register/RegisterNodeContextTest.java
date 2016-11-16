@@ -88,5 +88,16 @@ public class RegisterNodeContextTest {
         assertThat(usernameNode.getValue(), equalTo("test"));
     }
 
+    @Test
+    public void canRollback() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("Hello");
+        context.beginSession();
+        usernameNode.setValue("abc");
+        context.rollbackSession();
+        assertThat(usernameNode.getValue(), equalTo("Hello"));
+        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+    }
+
 
 }
