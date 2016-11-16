@@ -1,5 +1,6 @@
 package zhy2002.examples.register;
 
+import zhy2002.neutron.FactoryRegistry;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.node.ChildNodeFactory;
 
@@ -8,7 +9,8 @@ import zhy2002.neutron.node.ChildNodeFactory;
  */
 public class RegisterNodeContext extends UiNodeContext<RegisterNode> {
 
-    RegisterNodeContext() {
+    public RegisterNodeContext(FactoryRegistry factoryRegistry) {
+        super(factoryRegistry);
         initializeFactoryMap();
     }
 
@@ -54,5 +56,6 @@ public class RegisterNodeContext extends UiNodeContext<RegisterNode> {
     protected RegisterNode createRootNode() {
         return new RegisterNode(this);
     }
+
 
 }

@@ -15,9 +15,14 @@ import java.util.Map;
 public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     private R root;
-    private final Map<Class<? >, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
+    private final FactoryRegistry factoryRegistry;
+    private final Map<Class<?>, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
     private final SequentialUniqueIdGenerator uniqueIdGenerator = new SequentialUniqueIdGenerator();
     private final UiNodeChangeEngine changeEngine = new UiNodeChangeEngine();
+
+    protected UiNodeContext(FactoryRegistry factoryRegistry) {
+        this.factoryRegistry = new ImmutableFactoryRegistry(factoryRegistry);
+    }
 
     //region node construction
 
@@ -59,6 +64,10 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     public <N extends UiNode<P>, P extends ParentUiNode<?>> void setChildNodeFactory(Class<N> nodeClass, ChildNodeFactory<N, P> factory) {
         childNodeFactoryMap.put(nodeClass, factory);
+    }
+
+    public <T> T getFactory(Class<T> factoryClass) {
+        return factoryRegistry.get(factoryClass);
     }
 
     //endregion

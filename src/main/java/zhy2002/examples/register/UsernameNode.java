@@ -16,10 +16,10 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
 
     @Override
     protected void doLoad() {
-        UsernameLengthRule usernameLengthRule = new UsernameLengthRule(this);//todo use factory
+        UsernameLengthRule usernameLengthRule = getContext().getFactory(UsernameLengthRule.Factory.class).create(this);
         usernameLengthRule.addToOwner();
 
-        UsernameInvalidCharRule usernameInvalidCharRule = new UsernameInvalidCharRule(this);
+        UsernameInvalidCharRule usernameInvalidCharRule = getContext().getFactory(UsernameInvalidCharRule.Factory.class).create(this);
         usernameInvalidCharRule.addToOwner();
     }
 

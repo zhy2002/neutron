@@ -1,5 +1,7 @@
 package zhy2002.neutron.node;
 
+import zhy2002.neutron.FactoryRegistry;
+import zhy2002.neutron.ImmutableFactoryRegistry;
 import zhy2002.neutron.UiNodeContext;
 
 /**
@@ -13,6 +15,10 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * the context super constructor parameter must not be null.
      */
     private final static class VoidUiNodeContext extends UiNodeContext<VoidUiNode> {
+        private VoidUiNodeContext(FactoryRegistry factoryRegistry) {
+            super(factoryRegistry);
+        }
+
         @Override
         protected VoidUiNode createRootNode() {
             return new VoidUiNode();
@@ -24,7 +30,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * IT SHOULD NEVER BE CALLED.
      */
     private VoidUiNode() {
-        super(new VoidUiNodeContext());
+        super(new VoidUiNodeContext(new ImmutableFactoryRegistry()));
     }
 
 
