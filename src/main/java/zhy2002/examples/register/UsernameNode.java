@@ -1,7 +1,7 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rules.UsernameInvalidCharRule;
-import zhy2002.examples.register.rules.UsernameLengthRule;
+import zhy2002.examples.register.rule.UsernameInvalidCharRule;
+import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
 

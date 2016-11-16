@@ -1,7 +1,7 @@
 package zhy2002.examples.register;
 
 import zhy2002.neutron.node.UiNode;
-import zhy2002.neutron.node.UiNodeRule;
+import zhy2002.neutron.rule.UiNodeRule;
 
 import java.io.Serializable;
 

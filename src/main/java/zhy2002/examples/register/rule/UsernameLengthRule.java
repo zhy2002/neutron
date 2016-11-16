@@ -1,14 +1,15 @@
-package zhy2002.examples.register.rules;
+package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.rule.ValidateStateChangeRule;
 
 /**
  * Created by ZHY on 13/11/2016.
  */
-public class UsernameLengthRule extends StateChangeValidationRule<String, UsernameNode> {
+public class UsernameLengthRule extends ValidateStateChangeRule<String, UsernameNode> {
 
     public static final String ERROR_MESSAGE = "";
     private ErrorNode errorNode;
@@ -35,7 +36,7 @@ public class UsernameLengthRule extends StateChangeValidationRule<String, Userna
 
     @Override
     protected void deactivate(StateChangeEvent<String> event) {
-        if(errorNode != null) {
+        if (errorNode != null) {
             getErrorListNode().removeItem(errorNode);
             errorNode = null;
         }

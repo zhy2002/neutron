@@ -1,5 +1,6 @@
 package zhy2002.neutron.event;
 
+import zhy2002.neutron.EventTypeEnum;
 import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.node.UiNode;
 
@@ -13,6 +14,8 @@ public abstract class UiNodeEvent {
     protected UiNodeEvent(UiNode<?> target) {
         this.target = target;
     }
+
+    public abstract EventTypeEnum getEventType();
 
     public UiNode<?> getTarget() {
         return target;

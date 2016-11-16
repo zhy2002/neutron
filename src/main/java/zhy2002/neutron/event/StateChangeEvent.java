@@ -1,8 +1,9 @@
 package zhy2002.neutron.event;
 
+import zhy2002.neutron.EventTypeEnum;
 import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.node.UiNode;
-import zhy2002.neutron.node.UiNodeRule;
+import zhy2002.neutron.rule.UiNodeRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * This event is fired when a state property of a node is set.
  */
-public class StateChangeEvent<T> extends UiNodeEvent {
+public final class StateChangeEvent<T> extends UiNodeEvent {
     private final String stateKey;
     private T oldValue;
     private T newValue;
@@ -41,13 +42,17 @@ public class StateChangeEvent<T> extends UiNodeEvent {
         this.newValue = newValue;
     }
 
+    public final EventTypeEnum getEventType() {
+        return EventTypeEnum.StateChange;
+    }
+
     @Override
     public Iterable<UiNodeRuleActivation> getActivations() {
         List<UiNodeRuleActivation> result = new ArrayList<>();
         UiNode<?> anchor = getTarget();
         do {
             for (UiNodeRule<?, ?> rule : anchor.getAttachedRules()) {
-                if(rule.isObservedUiNode(getTarget())) {
+                if (rule.isObservedUiNode(getTarget())) {
                     UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, this, anchor);
                     result.add(activation);
                 }

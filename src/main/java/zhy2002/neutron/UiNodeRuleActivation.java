@@ -3,7 +3,7 @@ package zhy2002.neutron;
 import zhy2002.neutron.event.TickPhase;
 import zhy2002.neutron.event.UiNodeEvent;
 import zhy2002.neutron.node.UiNode;
-import zhy2002.neutron.node.UiNodeRule;
+import zhy2002.neutron.rule.UiNodeRule;
 
 /**
  * Created by ZHY on 13/11/2016.

@@ -1,9 +1,8 @@
-package zhy2002.examples.register.rules;
+package zhy2002.neutron.rule;
 
 import zhy2002.neutron.event.DefaultPhases;
 import zhy2002.neutron.event.UiNodeEvent;
 import zhy2002.neutron.node.UiNode;
-import zhy2002.neutron.node.UiNodeRule;
 
 /**
  * Base class for validation rules.

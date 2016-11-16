@@ -2,7 +2,7 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.register.rules.UsernameLengthRule;
+import zhy2002.examples.register.rule.UsernameLengthRule;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

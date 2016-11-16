@@ -1,8 +1,9 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron.rule;
 
-import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.EventTypeEnum;
 import zhy2002.neutron.event.TickPhase;
 import zhy2002.neutron.event.UiNodeEvent;
+import zhy2002.neutron.node.UiNode;
 
 /**
  * Base class for a ui node rule.
@@ -26,7 +27,6 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     protected UiNodeRule(N owner, TickPhase phase) {
         this.owner = owner;
         this.phase = phase;
-        //Class<? extends StateChangeEvent<String>> test = StateChangeEvent.class;
     }
 
     public N getOwner() {
@@ -43,6 +43,7 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * Fired once when the rule is added to owner.
+     *
      * @return the host node which does not change during the life time of a rule instance.
      */
     protected UiNode<?> findHost() {
@@ -51,6 +52,7 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * Determines if UiNodeEvent originated form the node passed in should trigger this rule.
+     *
      * @param eventTarget a UiNode that has just changed.
      * @return true if the rule should fire.
      */
@@ -63,15 +65,17 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
      * event is an instance of E
      * the phase is phase
      * isTarget(event.getOriginator()) returns true
+     *
      * @param event the change event happened.
      */
     @SuppressWarnings("unchecked")
     public void fire(UiNodeEvent event) {
-
-        execute((E)event);
+        execute((E) event);
     }
 
     protected abstract void execute(E typedEvent);
+
+    public abstract EventTypeEnum getEventType();
 
     /**
      * The final step to add a rule to a node.

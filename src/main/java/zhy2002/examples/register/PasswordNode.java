@@ -1,9 +1,9 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rules.ValidationRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
-import zhy2002.neutron.node.UiNodeRule;
+import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.rule.ValidationRule;
 
 import java.util.ArrayList;
 import java.util.List;
