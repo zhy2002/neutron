@@ -44,11 +44,19 @@ public class RegisterNodeContext extends UiNodeContext<RegisterNode> {
         }
     }
 
+    private static class EmailNodeFactory extends ChildNodeFactory<EmailNode, RegisterNode> {
+        @Override
+        public EmailNode create(RegisterNode parent, String name) {
+            return new EmailNode(parent, name);
+        }
+    }
+
     private void initializeFactoryMap() {
         setChildNodeFactory(UsernameNode.class, new UsernameNodeFactory());
         setChildNodeFactory(PasswordNode.class, new PasswordNodeFactory());
         setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
         setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
+        setChildNodeFactory(EmailNode.class, new EmailNodeFactory());
     }
 
     //endregion

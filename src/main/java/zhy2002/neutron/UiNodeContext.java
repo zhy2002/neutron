@@ -83,4 +83,16 @@ public abstract class UiNodeContext<R extends UiNode<VoidUiNode>> {
     public void rollbackSession() {
         changeEngine.rollbackSession();
     }
+
+    public void commitSession() {
+        changeEngine.commitSession();
+    }
+
+    public boolean undo() {
+        return changeEngine.undo();
+    }
+
+    public boolean redo() {
+        return changeEngine.redo();
+    }
 }

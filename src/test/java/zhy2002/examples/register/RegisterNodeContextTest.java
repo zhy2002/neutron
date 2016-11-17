@@ -99,5 +99,26 @@ public class RegisterNodeContextTest {
         assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
     }
 
+    @Test
+    public void canUndoRedoStateChange() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        context.beginSession();
+        usernameNode.setValue("test");
+        assertThat(usernameNode.getValue(), equalTo("test"));
+
+        usernameNode.setValue("test1");
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+
+        assertThat(context.undo(), equalTo(true));
+        assertThat(usernameNode.getValue(), equalTo("test"));
+
+        assertThat(context.redo(), equalTo(true));
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+
+        context.commitSession();
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+
+    }
+
 
 }
