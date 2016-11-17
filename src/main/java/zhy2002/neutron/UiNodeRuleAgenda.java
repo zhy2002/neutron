@@ -17,8 +17,8 @@ public class UiNodeRuleAgenda {
         List<UiNodeRuleActivation> result = new ArrayList<>();
         UiNode<?> anchor = event.getTarget();
         do {
-            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules()) {
-                if (rule.getEventType() == event.getEventType() && rule.isObservedUiNode(event.getTarget())) {
+            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getEventType())) {
+                if (rule.isObservedUiNode(event.getTarget())) {
                     UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, event, anchor);
                     result.add(activation);
                 }

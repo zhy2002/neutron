@@ -1,5 +1,6 @@
 package zhy2002.neutron.node;
 
+import zhy2002.neutron.EventTypeEnum;
 import zhy2002.neutron.NodeLifeStateEnum;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.event.StateChangeEvent;
@@ -7,10 +8,7 @@ import zhy2002.neutron.event.UiNodeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Base class for all ui nodes.
@@ -45,7 +43,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
 
     private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
-    private final List<UiNodeRule<?, ?>> attachedRules = new ArrayList<>();
+    private final Map<EventTypeEnum, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
 
     /**
      * The constructor for a child node.
@@ -183,13 +181,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public void removeFromParent() {
-        if(this.lifeState != NodeLifeStateEnum.Unload)
+        if (this.lifeState != NodeLifeStateEnum.Unload)
             return;
 
-        if(parent == null) {
+        if (parent == null) {
 
         } else {
-            if(!parent.supportRemoveChild()) //does not support
+            if (!parent.supportRemoveChild()) //does not support
                 return;
             this.parent.removeChild(this);
         }
@@ -226,8 +224,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     protected abstract void doUnload();
 
-    public Iterable<UiNodeRule<?, ?>> getAttachedRules() {
-        return attachedRules;
+    public Iterable<UiNodeRule<?, ?>> getAttachedRules(EventTypeEnum eventType) {
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
+        return list == null ? Collections.emptyList() : list;
     }
 
     public <T extends UiNode<?>, E extends UiNodeEvent> void addRule(UiNodeRule<E, T> rule) {
@@ -240,12 +239,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
         assert rule.getHost() == this;
-        this.attachedRules.add(rule);
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.getEventType());
+        if (list == null) {
+            list = new ArrayList<>();
+            attachedRuleMap.put(rule.getEventType(), list);
+        }
+        list.add(rule);
     }
 
     public <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
         assert rule.getHost() == this;
-        this.attachedRules.remove(rule);
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.getEventType());
+        if (list != null) {
+            list.remove(rule);
+        }
     }
 
     //endregion
