@@ -47,23 +47,6 @@ public final class StateChangeEvent<T> extends UiNodeEvent {
     }
 
     @Override
-    public Iterable<UiNodeRuleActivation> getActivations() {
-        List<UiNodeRuleActivation> result = new ArrayList<>();
-        UiNode<?> anchor = getTarget();
-        do {
-            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules()) {
-                if (rule.isObservedUiNode(getTarget())) {
-                    UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, this, anchor);
-                    result.add(activation);
-                }
-            }
-            anchor = anchor.getParent();
-        } while (anchor != null);
-
-        return result;
-    }
-
-    @Override
     public void apply() {
         getTarget().setStateValueInternal(getStateKey(), getNewValue());
     }

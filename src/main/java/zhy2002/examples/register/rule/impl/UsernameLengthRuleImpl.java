@@ -24,18 +24,27 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
     private ErrorNode errorNode;
 
     @Override
+    protected void execute(StateChangeEvent<String> typedEvent) {
+        if(isActivated(typedEvent)) {
+            activate(typedEvent);
+        } else {
+            deactivate(typedEvent);
+        }
+    }
+
+
     protected boolean isActivated(StateChangeEvent<String> event) {
         return getOwner().getValue() != null && getOwner().getValue().length() < 4;
     }
 
-    @Override
+
     protected void activate(StateChangeEvent<String> event) {
         errorNode = getErrorListNode().createItem();
         errorNode.setSource(event.getTarget());
         errorNode.setMessage(ERROR_MESSAGE);
     }
 
-    @Override
+
     protected void deactivate(StateChangeEvent<String> event) {
         if (errorNode != null) {
             getErrorListNode().removeItem(errorNode);

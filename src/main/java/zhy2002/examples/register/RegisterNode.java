@@ -1,5 +1,7 @@
 package zhy2002.examples.register;
 
+import zhy2002.examples.register.rule.ClearHasErrorRule;
+import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.node.ChildNodeFactory;
 import zhy2002.neutron.node.DefaultUiNodeStateKeys;
@@ -19,8 +21,12 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         super(context);
     }
 
-    public boolean hasError() {
+    public boolean getHasError() {
         return getStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR);
+    }
+
+    public void setHasError(boolean value) {
+        setStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR, value);
     }
 
     public UsernameNode getUsernameNode() {
@@ -38,6 +44,12 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     @Override
     protected void initializeSelf() {
         setStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR, false);
+
+        SetHasErrorRule rule = new SetHasErrorRule(this);
+        rule.addToOwner();
+
+        ClearHasErrorRule rule2 = new ClearHasErrorRule(this);
+        rule2.addToOwner();
     }
 
     @Override

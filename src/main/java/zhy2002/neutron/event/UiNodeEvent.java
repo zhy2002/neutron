@@ -21,8 +21,6 @@ public abstract class UiNodeEvent {
         return target;
     }
 
-    public abstract Iterable<UiNodeRuleActivation> getActivations();
-
     public abstract void apply();
 
     public abstract void revert();

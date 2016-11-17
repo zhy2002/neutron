@@ -1,6 +1,8 @@
 package zhy2002.neutron.node;
 
+import zhy2002.examples.register.ErrorNode;
 import zhy2002.neutron.event.NodeAddEvent;
+import zhy2002.neutron.event.NodeRemoveEvent;
 
 import javax.validation.constraints.NotNull;
 
@@ -44,12 +46,12 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         return event;
     }
 
-    public void addItem(T item) {
+    public void addItemInternal(T item) {
         itemAddToParent(item);
         itemLoad(item);
     }
 
-    public void removeItem(T item) {
+    public void removeItemInternal(T item) {
         itemUnload(item);
         itemRemoveFromParent(item);
     }
@@ -80,5 +82,16 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
     @Override
     public boolean supportRemoveChild() {
         return true;
+    }
+
+    public void removeItem(T child) {
+        if (child.getParent() != this)
+            return;
+        NodeRemoveEvent<T> event = createNodeRemoveEvent(child);
+        getContext().processEvent(event);
+    }
+
+    private NodeRemoveEvent<T> createNodeRemoveEvent(T child) {
+        return new NodeRemoveEvent<>(child);
     }
 }

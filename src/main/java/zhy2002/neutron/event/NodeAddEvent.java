@@ -1,32 +1,23 @@
 package zhy2002.neutron.event;
 
 import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.node.ListUiNode;
-import zhy2002.neutron.node.ObjectUiNode;
 import zhy2002.neutron.node.ParentUiNode;
 import zhy2002.neutron.node.UiNode;
-
-import java.util.ArrayList;
 
 /**
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
  */
-public final class NodeAddEvent<T extends UiNode<? extends ListUiNode<?, T>>> extends UiNodeEvent {
+public final class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>> extends UiNodeEvent {
 
-    private final T target;
-    private final ListUiNode<?, T> parent;
+    private final N target;
+    private final ListUiNode<?, N> parent;
 
-    public NodeAddEvent(T target) {
+    public NodeAddEvent(N target) {
         super(target);
         this.target = target;
         this.parent = target.getParent();
-    }
-
-    @Override
-    public Iterable<UiNodeRuleActivation> getActivations() {
-        return new ArrayList<>();
     }
 
     public final EventTypeEnum getEventType() {
@@ -39,11 +30,11 @@ public final class NodeAddEvent<T extends UiNode<? extends ListUiNode<?, T>>> ex
 
     @Override
     public void apply() {
-        parent.addItem(target);
+        parent.addItemInternal(target);
     }
 
     @Override
     public void revert() {
-        parent.removeItem(target);
+        parent.removeItemInternal(target);
     }
 }

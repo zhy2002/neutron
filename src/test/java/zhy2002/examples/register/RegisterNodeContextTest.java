@@ -120,5 +120,15 @@ public class RegisterNodeContextTest {
 
     }
 
+    @Test
+    public void canCascadeChange() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("tes");
+        assertThat(registerNode.getHasError(), equalTo(true));
+
+        usernameNode.setValue("test");
+        assertThat(registerNode.getHasError(), equalTo(false));
+    }
+
 
 }
