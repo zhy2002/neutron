@@ -19,7 +19,7 @@ public class UiNodeChangeEngine {
     private boolean inSession = false;
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
     private final Deque<Cycle> cycleDeque = new ArrayDeque<>();//a queue of cycles in session.
-    private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
+    private final UiNodeRuleAgendaImpl agenda = new UiNodeRuleAgendaImpl();
     private TickPhase[] phases = {DefaultPhases.Pre, DefaultPhases.Post, DefaultPhases.Validate, DefaultPhases.CleanUp};
     private TickPhase currentPhase;
 

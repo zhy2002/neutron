@@ -2,22 +2,20 @@ package zhy2002.neutron;
 
 import zhy2002.neutron.event.TickPhase;
 import zhy2002.neutron.event.UiNodeEvent;
-import zhy2002.neutron.node.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
 /**
- * Created by ZHY on 13/11/2016.
+ * Immutable data class that encapsulates all the objects
+ * needed to fire a rule.
  */
 public class UiNodeRuleActivation {
 
-    private UiNodeRule<?, ?> rule;
-    private UiNodeEvent event;
-    private UiNode<?> anchor;
+    private final UiNodeRule<?, ?> rule;
+    private final UiNodeEvent event;
 
-    public UiNodeRuleActivation(UiNodeRule<?, ?> rule, UiNodeEvent event, UiNode<?> anchor) {
+    public UiNodeRuleActivation(UiNodeRule<?, ?> rule, UiNodeEvent event) {
         this.rule = rule;
         this.event = event;
-        this.anchor = anchor;
     }
 
     public void fire() {
@@ -36,7 +34,4 @@ public class UiNodeRuleActivation {
         return event;
     }
 
-    public UiNode<?> getAnchor() {
-        return anchor;
-    }
 }
