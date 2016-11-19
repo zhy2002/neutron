@@ -1,0 +1,25 @@
+{
+  "name": "neutron",
+  "version": "1.0.0",
+  "description": "todo \r -----------------\r * utilize phase config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhy2002/neutron.git"
+  },
+  "author": "zhy2002",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhy2002/neutron/issues"
+  },
+  "homepage": "https://github.com/zhy2002/neutron#readme",
+  "dependencies": {
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "webpack": "^1.13.3"
+  }
+}

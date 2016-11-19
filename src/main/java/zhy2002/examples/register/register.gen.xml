@@ -1,0 +1,33 @@
+<config>
+    <ui-node name="register">
+        <ui-node name="email" extends="String">
+            <state>
+                <property name="" default=""/>
+            </state>
+            <rules>
+
+            </rules>
+        </ui-node>
+        <ui-node name="username" extends="String">
+            <rules>
+
+            </rules>
+        </ui-node>
+        <ui-node name="password" extends="String">
+            <rules>
+
+            </rules>
+
+        </ui-node>
+
+        <ui-node name="errorList" extends="AbstractErrorList">
+
+        </ui-node>
+
+    </ui-node>
+
+    <ui-node name="abstractErrorList" abstract="true">
+
+    </ui-node>
+</config>
+
