@@ -1,5 +1,7 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
 import zhy2002.neutron.rule.UiNodeRule;
@@ -11,8 +13,10 @@ import java.util.List;
 /**
  * Used for single node test.
  */
+@JsType
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
+    @JsIgnore
     private List<UiNodeRule> selfRules = new ArrayList<>();
 
     protected PasswordNode(RegisterNode parent, String name) {

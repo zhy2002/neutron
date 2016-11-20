@@ -1,14 +1,14 @@
 package zhy2002.neutron.node;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.UiNodeContext;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  * A UiNode which cannot have children.
  */
-public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializable/*todo Or json serializable */> extends UiNode<P> {
+public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P> {
 
     protected LeafUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
@@ -26,6 +26,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializab
         return super.getStateValueInternal(DefaultUiNodeStateKeys.VALUE);
     }
 
+    @JsMethod
     public T getValue() {
         return getStateValue(DefaultUiNodeStateKeys.VALUE);
     }
@@ -35,6 +36,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T extends Serializab
         return result == null ? defaultValue : result;
     }
 
+    @JsMethod
     public void setValue(T value) {
         setStateValue(DefaultUiNodeStateKeys.VALUE, value);
     }

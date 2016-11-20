@@ -1,6 +1,6 @@
 package zhy2002.neutron.node;
 
-import zhy2002.examples.register.ErrorNode;
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.event.NodeAddEvent;
 import zhy2002.neutron.event.NodeRemoveEvent;
 
@@ -30,6 +30,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
 
     public abstract Class<T> getItemClass();
 
+    @JsMethod
     public T createItem() {
         return createItem(getItemClass());
     }
@@ -74,6 +75,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         item.unload();
     }
 
+    @JsMethod
     @SuppressWarnings("unchecked")
     public T getItem(int index) {
         return (T) getChild(index);

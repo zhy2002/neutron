@@ -1,11 +1,14 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
 import zhy2002.neutron.node.LeafUiNode;
 import zhy2002.neutron.node.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
 
+@JsType
 public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
 
     private final RegisterError errorInfo = new RegisterError();
@@ -40,10 +43,12 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
         errorInfo.setMessage(message);
     }
 
+    @JsIgnore
     public UiNodeRule getRule() {
         return errorInfo.getRule();
     }
 
+    @JsIgnore
     public void setRule(UiNodeRule rule) {
         errorInfo.setRule(rule);
     }

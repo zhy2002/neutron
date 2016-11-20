@@ -60,7 +60,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
+	window.startReact = function () {
+	    _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
+	};
 
 /***/ },
 /* 1 */
@@ -21508,6 +21510,10 @@
 
 	var _FormField2 = _interopRequireDefault(_FormField);
 
+	var _ErrorListComponent = __webpack_require__(181);
+
+	var _ErrorListComponent2 = _interopRequireDefault(_ErrorListComponent);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21517,20 +21523,14 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	function createRoot(component) {
-	    var rootState = {
-	        username: 'shuke',
-	        email: 'feixing yuan'
+	    var GWT = window["GWT"];
+	    var root = GWT.RegisterNodeFactory.create();
+	    window.root = root; //for debugging 
+	    window.doUpdate = function () {
+	        component.doUpdate();
 	    };
-	    return {
-	        name: "app test",
-	        getValue: function getValue(key) {
-	            return rootState[key];
-	        },
-	        setValue: function setValue(key, value) {
-	            rootState[key] = value;
-	            component.doUpdate();
-	        }
-	    };
+	    console.log(root);
+	    return root;
 	}
 
 	var RegisterComponent = function (_React$Component) {
@@ -21555,65 +21555,43 @@
 	    }, {
 	        key: "render",
 	        value: function render() {
-	            var _this2 = this;
-
 	            var model = this.model;
-
-	            function usernameOnChange(event) {
-	                var value = event.target.value;
-	                model.setValue('username', value);
-	                model.setValue('email', value + '@gmail.com');
-	            }
-
-	            function emailOnChange(event) {
-	                var value = event.target.value;
-	                model.setValue('email', value);
-	            }
-
-	            /*
-	             <div className="form-group">
-	             <label htmlFor="exampleUsername">Username</label>
-	             <input type="text" className="form-control" id="exampleUsername"
-	             value={model.getValue('username')} onChange={usernameOnChange}/>
-	             <p className="help-block">Example block-level help text here.</p>
-	             </div>
-	             */
 	            return _react2.default.createElement(
-	                "form",
+	                "div",
 	                null,
-	                _react2.default.createElement(_FormField2.default, { id: "exampleUsername", label: "Username", model: model, fieldName: "username",
-	                    changeHandler: usernameOnChange }),
-	                _react2.default.createElement(_FormField2.default, { id: "exampleEmail", label: "Email address", model: model, fieldName: "email",
-	                    changeHandler: emailOnChange }),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "form-group" },
+	                    "form",
+	                    null,
+	                    _react2.default.createElement(_FormField2.default, { id: "exampleUsername", label: "Username", model: model.getUsernameNode() }),
+	                    _react2.default.createElement(_FormField2.default, { id: "exampleEmail", label: "Email address", model: model.getEmailNode() }),
 	                    _react2.default.createElement(
-	                        "label",
-	                        { htmlFor: "examplePassword" },
-	                        "Password"
+	                        "div",
+	                        { className: "form-group" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            { htmlFor: "examplePassword" },
+	                            "Password"
+	                        ),
+	                        _react2.default.createElement("input", { type: "password", className: "form-control", id: "examplePassword",
+	                            placeholder: "Password" })
 	                    ),
-	                    _react2.default.createElement("input", { type: "password", className: "form-control", id: "examplePassword",
-	                        placeholder: "Password" })
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "checkbox" },
 	                    _react2.default.createElement(
-	                        "label",
-	                        null,
-	                        _react2.default.createElement("input", { type: "checkbox" }),
-	                        " Check me out"
+	                        "div",
+	                        { className: "checkbox" },
+	                        _react2.default.createElement(
+	                            "label",
+	                            null,
+	                            _react2.default.createElement("input", { type: "checkbox" }),
+	                            " Check me out"
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "button",
+	                        { type: "button", className: "btn btn-default" },
+	                        "Submit"
 	                    )
 	                ),
-	                _react2.default.createElement(
-	                    "button",
-	                    { type: "button", className: "btn btn-default", onClick: function onClick() {
-	                            _this2.setState({ message: 'never mind...' });
-	                            _this2.slogan = 'oh no';
-	                        } },
-	                    "Submit"
-	                )
+	                _react2.default.createElement(_ErrorListComponent2.default, { model: model.getErrorListNode() })
 	            );
 	        }
 	    }]);
@@ -21643,9 +21621,9 @@
 	function FormField(props) {
 	    var id = props["id"];
 	    var label = props["label"];
-	    var usernameOnChange = props["changeHandler"];
 	    var model = props["model"];
-	    var fieldName = props["fieldName"];
+
+	    console.log('hello field');
 
 	    return _react2.default.createElement(
 	        "div",
@@ -21656,7 +21634,10 @@
 	            label
 	        ),
 	        _react2.default.createElement("input", { type: "text", className: "form-control", id: id,
-	            value: model.getValue(fieldName), onChange: usernameOnChange }),
+	            value: model.getValue(), onChange: function onChange(event) {
+	                model.setValue(event.target.value);
+	                window.doUpdate();
+	            } }),
 	        _react2.default.createElement(
 	            "p",
 	            { className: "help-block" },
@@ -21664,6 +21645,78 @@
 	        )
 	    );
 	}
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ErrorListComponent = function (_React$Component) {
+	    _inherits(ErrorListComponent, _React$Component);
+
+	    function ErrorListComponent(props) {
+	        _classCallCheck(this, ErrorListComponent);
+
+	        var _this = _possibleConstructorReturn(this, (ErrorListComponent.__proto__ || Object.getPrototypeOf(ErrorListComponent)).call(this, props));
+
+	        _this.model = props['model'];
+	        console.log('error list node');
+	        console.log(_this.model);
+	        return _this;
+	    }
+
+	    _createClass(ErrorListComponent, [{
+	        key: 'render',
+	        value: function render() {
+	            var items = [];
+	            for (var i = 0; i < this.model.getChildCount(); i++) {
+	                var errorNode = this.model.getItem(i);
+	                items.push(_react2.default.createElement(
+	                    'li',
+	                    { key: errorNode.getName() },
+	                    errorNode.getMessage()
+	                ));
+	            }
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h4',
+	                    null,
+	                    'Errors'
+	                ),
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    items
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ErrorListComponent;
+	}(_react2.default.Component);
+
+	exports.default = ErrorListComponent;
 
 /***/ }
 /******/ ]);

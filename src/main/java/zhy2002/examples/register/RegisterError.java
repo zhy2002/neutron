@@ -1,18 +1,15 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
-import java.io.Serializable;
-
-/**
- * Created by ZHY on 12/11/2016.
- */
-public class RegisterError implements Serializable {
+public class RegisterError {
     private UiNode<?> origin;
     private String message;
     private UiNodeRule rule;
 
+    @JsMethod
     public UiNode<?> getOrigin() {
         return origin;
     }
@@ -21,6 +18,7 @@ public class RegisterError implements Serializable {
         this.origin = origin;
     }
 
+    @JsMethod
     public String getMessage() {
         return message;
     }

@@ -1,5 +1,6 @@
 package zhy2002.neutron.node;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.EventTypeEnum;
 import zhy2002.neutron.NodeLifeStateEnum;
 import zhy2002.neutron.UiNodeContext;
@@ -71,6 +72,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.lifeState = NodeLifeStateEnum.Detached;
     }
 
+    @JsMethod
     public
     @NotNull
     P getParent() {
@@ -101,10 +103,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.changeTrackMode = changeTrackMode;
     }
 
+    @JsMethod
     protected <T> T getStateValue(String key) {
         return getStateValueInternal(key);
     }
 
+    @JsMethod
     protected <T> void setStateValue(String key, T value) {
         T oldValue = getStateValueInternal(key);
         boolean process = false;
@@ -155,6 +159,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return -1;
     }
 
+    @JsMethod
     public String getName() {
         return name;
     }

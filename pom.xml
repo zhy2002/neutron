@@ -105,6 +105,7 @@
                         <module>zhy2002.test</module>
                     </modules>
                     <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+                    <generateJsInteropExports>true</generateJsInteropExports>
                 </configuration>
             </plugin>
         </plugins>

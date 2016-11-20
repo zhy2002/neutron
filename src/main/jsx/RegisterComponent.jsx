@@ -1,21 +1,17 @@
 import React from "react";
 import FormField from "./FormField.jsx";
+import ErrorListComponent from "./ErrorListComponent.jsx";
+
 
 function createRoot(component) {
-    var rootState = {
-        username: 'shuke',
-        email: 'feixing yuan'
+    var GWT = window["GWT"];
+    var root = GWT.RegisterNodeFactory.create();
+    window.root = root; //for debugging 
+    window.doUpdate = function () {
+        component.doUpdate();
     };
-    return {
-        name: "app test",
-        getValue(key) {
-            return rootState[key];
-        },
-        setValue(key, value) {
-            rootState[key] = value;
-            component.doUpdate();
-        }
-    };
+    console.log(root);
+    return root;
 }
 
 export default class RegisterComponent extends React.Component {
@@ -34,50 +30,27 @@ export default class RegisterComponent extends React.Component {
 
     render() {
         var model = this.model;
-
-        function usernameOnChange(event) {
-            var value = event.target.value;
-            model.setValue('username', value);
-            model.setValue('email', value + '@gmail.com');
-        }
-
-        function emailOnChange(event) {
-            var value = event.target.value;
-            model.setValue('email', value);
-        }
-
-        /*
-         <div className="form-group">
-         <label htmlFor="exampleUsername">Username</label>
-         <input type="text" className="form-control" id="exampleUsername"
-         value={model.getValue('username')} onChange={usernameOnChange}/>
-         <p className="help-block">Example block-level help text here.</p>
-         </div>
-         */
         return (
-            <form>
-                <FormField id="exampleUsername" label="Username" model={model} fieldName="username"
-                           changeHandler={usernameOnChange}/>
-                <FormField id="exampleEmail" label="Email address" model={model} fieldName="email"
-                           changeHandler={emailOnChange}/>
+            <div>
+                <form>
+                    <FormField id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
+                    <FormField id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
 
-
-                <div className="form-group">
-                    <label htmlFor="examplePassword">Password</label>
-                    <input type="password" className="form-control" id="examplePassword"
-                           placeholder="Password"/>
-                </div>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox"/> Check me out
-                    </label>
-                </div>
-                <button type="button" className="btn btn-default" onClick={()=> {
-                    this.setState({message: 'never mind...'});
-                    this.slogan = 'oh no';
-                }}>Submit
-                </button>
-            </form>
+                    <div className="form-group">
+                        <label htmlFor="examplePassword">Password</label>
+                        <input type="password" className="form-control" id="examplePassword"
+                               placeholder="Password"/>
+                    </div>
+                    <div className="checkbox">
+                        <label>
+                            <input type="checkbox"/> Check me out
+                        </label>
+                    </div>
+                    <button type="button" className="btn btn-default">Submit
+                    </button>
+                </form>
+                <ErrorListComponent model={model.getErrorListNode()}/>
+            </div>
         );
     }
 }

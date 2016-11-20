@@ -1,13 +1,12 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.UsernameInvalidCharRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.node.NotImplementedException;
 import zhy2002.neutron.node.atomic.StringUiNode;
 
-/**
- * Created by ZHY on 12/11/2016.
- */
+@JsType
 public class UsernameNode extends StringUiNode<RegisterNode> {
 
     protected UsernameNode(RegisterNode parent, String name) {

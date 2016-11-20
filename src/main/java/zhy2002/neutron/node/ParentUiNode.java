@@ -1,5 +1,6 @@
 package zhy2002.neutron.node;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.UiNodeContext;
 
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         super(context);
     }
 
+    @JsMethod
     public int indexOf(UiNode<?> child) {
         return children.indexOf(child);
     }
@@ -48,6 +50,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         childrenMap.put(child.getName(), child);
     }
 
+    @JsMethod
     public int getChildCount() {
         return children.size();
     }

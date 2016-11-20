@@ -6,7 +6,6 @@ import zhy2002.neutron.node.NotImplementedException;
 
 import javax.validation.constraints.NotNull;
 
-
 public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
 
     protected ErrorListNode(@NotNull RegisterNode parent, @NotNull String name) {

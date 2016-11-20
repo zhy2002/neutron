@@ -1,5 +1,6 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.ClearHasErrorRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.UiNodeContext;
@@ -10,6 +11,7 @@ import zhy2002.neutron.node.VoidUiNode;
 
 import javax.validation.constraints.NotNull;
 
+@JsType
 public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     private UsernameNode usernameNode;
@@ -35,6 +37,10 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     public PasswordNode getPasswordNode() {
         return passwordNode;
+    }
+
+    public EmailNode getEmailNode() {
+        return emailNode;
     }
 
     public ErrorListNode getErrorListNode() {
