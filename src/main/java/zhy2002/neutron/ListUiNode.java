@@ -1,8 +1,6 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.event.NodeAddEvent;
-import zhy2002.neutron.event.NodeRemoveEvent;
 
 import javax.validation.constraints.NotNull;
 
@@ -43,7 +41,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
     }
 
     protected NodeAddEvent createNodeLoadEvent(T item) {
-        NodeAddEvent<T> event = new NodeAddEvent<>(item);
+        NodeAddEvent<T> event = new NodeAddEvent<>(item, getContext().getCurrentActivation());
         return event;
     }
 
@@ -94,6 +92,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
     }
 
     private NodeRemoveEvent<T> createNodeRemoveEvent(T child) {
-        return new NodeRemoveEvent<>(child);
+        return new NodeRemoveEvent<>(child, getContext().getCurrentActivation());
     }
 }

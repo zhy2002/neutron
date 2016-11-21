@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.event.UiNodeEvent;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
@@ -21,7 +19,11 @@ public class Cycle {
     public void apply() {
         Iterator<UiNodeEvent> iterator = eventDeque.iterator();
         while (iterator.hasNext()) {
-            iterator.next().apply();
+            UiNodeEvent uiNodeEvent = iterator.next();
+            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+                ChangeUiNodeEvent changeUiNodeEvent = (ChangeUiNodeEvent) uiNodeEvent;
+                changeUiNodeEvent.apply();
+            }
         }
         applied = true;
     }
@@ -29,7 +31,11 @@ public class Cycle {
     public void revert() {
         Iterator<UiNodeEvent> iterator = eventDeque.descendingIterator();
         while (iterator.hasNext()) {
-            iterator.next().revert();
+            UiNodeEvent uiNodeEvent = iterator.next();
+            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+                ChangeUiNodeEvent changeUiNodeEvent = (ChangeUiNodeEvent) uiNodeEvent;
+                changeUiNodeEvent.revert();
+            }
         }
         applied = false;
     }

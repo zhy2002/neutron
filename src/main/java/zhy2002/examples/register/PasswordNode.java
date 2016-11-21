@@ -2,8 +2,8 @@ package zhy2002.examples.register;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.node.NotImplementedException;
-import zhy2002.neutron.node.atomic.StringUiNode;
+import zhy2002.neutron.NotImplementedException;
+import zhy2002.neutron.StringUiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.rule.ValidationRule;
 

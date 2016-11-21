@@ -1,10 +1,6 @@
-package zhy2002.neutron.node.atomic;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.node.DefaultUiNodeStateKeys;
-import zhy2002.neutron.node.LeafUiNode;
-import zhy2002.neutron.node.ParentUiNode;
 
 /**
  * String leaf node.
@@ -18,7 +14,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         init();
     }
 
-    protected StringUiNode(UiNodeContext context) {
+    protected StringUiNode(UiNodeContextImpl context) {
         super(context);
 
         init();

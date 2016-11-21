@@ -1,7 +1,6 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.UiNodeContext;
 
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +13,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         super(parent, name);
     }
 
-    protected LeafUiNode(@NotNull UiNodeContext context) {
+    protected LeafUiNode(@NotNull UiNodeContextImpl context) {
         super(context);
     }
 

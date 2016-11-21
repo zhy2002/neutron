@@ -1,4 +1,4 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 /**
  * The behaviour when a state value is updated.

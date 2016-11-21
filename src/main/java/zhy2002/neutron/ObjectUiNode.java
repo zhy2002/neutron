@@ -1,7 +1,6 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.UiNodeContext;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +14,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         super(parent, name);
     }
 
-    protected ObjectUiNode(@NotNull UiNodeContext<?> context) {
+    protected ObjectUiNode(@NotNull UiNodeContextImpl<?> context) {
         super(context);
     }
 

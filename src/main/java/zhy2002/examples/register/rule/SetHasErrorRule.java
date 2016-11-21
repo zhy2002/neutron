@@ -2,10 +2,10 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.RegisterNode;
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.event.DefaultPhases;
-import zhy2002.neutron.event.NodeAddEvent;
-import zhy2002.neutron.node.UiNode;
+import zhy2002.neutron.UiNodeEventTypeEnum;
+import zhy2002.neutron.DefaultPhases;
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
 public class SetHasErrorRule extends UiNodeRule<NodeAddEvent<ErrorNode>, RegisterNode> {
@@ -21,8 +21,8 @@ public class SetHasErrorRule extends UiNodeRule<NodeAddEvent<ErrorNode>, Registe
     }
 
     @Override
-    public EventTypeEnum getEventType() {
-        return EventTypeEnum.Load;
+    public UiNodeEventTypeEnum getEventType() {
+        return UiNodeEventTypeEnum.NodeAdd;
     }
 
     @Override

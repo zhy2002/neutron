@@ -1,4 +1,4 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 /**
  * Created by ZHY on 6/11/2016.

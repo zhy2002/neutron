@@ -1,4 +1,4 @@
-package zhy2002.neutron.event;
+package zhy2002.neutron;
 
 /**
  * These are the hard coded phases in order.

@@ -1,13 +1,13 @@
 package zhy2002.examples.register;
 
 import zhy2002.neutron.FactoryRegistry;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.node.ChildNodeFactory;
+import zhy2002.neutron.UiNodeContextImpl;
+import zhy2002.neutron.ChildNodeFactory;
 
 /**
  * Context and Root are a pair. This whole class is generated.
  */
-public class RegisterNodeContext extends UiNodeContext<RegisterNode> {
+public class RegisterNodeContext extends UiNodeContextImpl<RegisterNode> {
 
     public RegisterNodeContext(FactoryRegistry factoryRegistry) {
         super(factoryRegistry);

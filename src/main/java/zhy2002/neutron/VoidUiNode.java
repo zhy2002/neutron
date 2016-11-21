@@ -1,8 +1,4 @@
-package zhy2002.neutron.node;
-
-import zhy2002.neutron.FactoryRegistry;
-import zhy2002.neutron.ImmutableFactoryRegistry;
-import zhy2002.neutron.UiNodeContext;
+package zhy2002.neutron;
 
 /**
  * The parent UiNode type for a root UiNode.
@@ -14,7 +10,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * A placeholder class needed to fulfill the contact that
      * the context super constructor parameter must not be null.
      */
-    private final static class VoidUiNodeContext extends UiNodeContext<VoidUiNode> {
+    private final static class VoidUiNodeContext extends UiNodeContextImpl<VoidUiNode> {
         private VoidUiNodeContext(FactoryRegistry factoryRegistry) {
             super(factoryRegistry);
         }

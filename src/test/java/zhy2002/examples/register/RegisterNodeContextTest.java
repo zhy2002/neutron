@@ -117,7 +117,6 @@ public class RegisterNodeContextTest {
 
         context.commitSession();
         assertThat(usernameNode.getValue(), equalTo("test1"));
-
     }
 
     @Test
@@ -153,6 +152,11 @@ public class RegisterNodeContextTest {
 
         usernameNode.setValue("test");
         assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
+    }
+
+    @Test
+    public void shouldFireChangeNotification() {
+
     }
 
 

@@ -2,9 +2,9 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.UsernameNode;
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.event.DefaultPhases;
-import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.UiNodeEventTypeEnum;
+import zhy2002.neutron.DefaultPhases;
+import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 
 /**
@@ -28,7 +28,7 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<StateChangeEvent<Stri
     }
 
     @Override
-    public EventTypeEnum getEventType() {
-        return EventTypeEnum.StateChange;
+    public UiNodeEventTypeEnum getEventType() {
+        return UiNodeEventTypeEnum.StateChange;
     }
 }

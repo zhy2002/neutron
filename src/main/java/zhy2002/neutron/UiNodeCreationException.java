@@ -1,4 +1,4 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 /**
  * Thrown when error occurs in node creation.

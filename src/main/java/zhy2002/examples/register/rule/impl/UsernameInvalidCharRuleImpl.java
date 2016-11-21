@@ -2,7 +2,7 @@ package zhy2002.examples.register.rule.impl;
 
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.examples.register.rule.UsernameInvalidCharRule;
-import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.StateChangeEvent;
 
 /**
  * the implementation.

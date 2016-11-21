@@ -4,11 +4,11 @@ import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.ClearHasErrorRule;
 import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.node.ChildNodeFactory;
-import zhy2002.neutron.node.DefaultUiNodeStateKeys;
-import zhy2002.neutron.node.ObjectUiNode;
-import zhy2002.neutron.node.VoidUiNode;
+import zhy2002.neutron.UiNodeContextImpl;
+import zhy2002.neutron.ChildNodeFactory;
+import zhy2002.neutron.DefaultUiNodeStateKeys;
+import zhy2002.neutron.ObjectUiNode;
+import zhy2002.neutron.VoidUiNode;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +20,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private PasswordNode passwordNode;
     private ErrorListNode errorListNode;
 
-    RegisterNode(@NotNull UiNodeContext<?> context) {
+    RegisterNode(@NotNull UiNodeContextImpl<?> context) {
         super(context);
     }
 

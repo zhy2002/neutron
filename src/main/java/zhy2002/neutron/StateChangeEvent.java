@@ -1,26 +1,17 @@
-package zhy2002.neutron.event;
-
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.UiNodeRuleActivation;
-import zhy2002.neutron.node.UiNode;
-import zhy2002.neutron.rule.UiNodeRule;
-
-import java.util.ArrayList;
-import java.util.List;
+package zhy2002.neutron;
 
 /**
  * This event is fired when a state property of a node is set.
  */
-public final class StateChangeEvent<T> extends UiNodeEvent {
+public final class StateChangeEvent<T> extends ChangeUiNodeEvent {
     private final String stateKey;
     private T oldValue;
     private T newValue;
 
-    public StateChangeEvent(UiNode<?> target, String key) {
-        super(target);
+    public StateChangeEvent(UiNode<?> target, String key, UiNodeRuleActivation activation) {
+        super(target, activation);
         this.stateKey = key;
     }
-
 
     public String getStateKey() {
         return stateKey;
@@ -42,8 +33,8 @@ public final class StateChangeEvent<T> extends UiNodeEvent {
         this.newValue = newValue;
     }
 
-    public final EventTypeEnum getEventType() {
-        return EventTypeEnum.StateChange;
+    public final UiNodeEventTypeEnum getEventType() {
+        return UiNodeEventTypeEnum.StateChange;
     }
 
     @Override

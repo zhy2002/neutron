@@ -1,8 +1,8 @@
 package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.node.DefaultUiNodeStateKeys;
-import zhy2002.neutron.node.atomic.StringUiNode;
+import zhy2002.neutron.DefaultUiNodeStateKeys;
+import zhy2002.neutron.StringUiNode;
 
 @JsType
 public class EmailNode extends StringUiNode<RegisterNode> {

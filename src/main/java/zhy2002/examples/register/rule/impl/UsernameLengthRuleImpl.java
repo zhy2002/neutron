@@ -3,7 +3,7 @@ package zhy2002.examples.register.rule.impl;
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.examples.register.rule.UsernameLengthRule;
-import zhy2002.neutron.event.StateChangeEvent;
+import zhy2002.neutron.StateChangeEvent;
 
 /**
  * Implementation of the rule.

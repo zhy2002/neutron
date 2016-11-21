@@ -1,14 +1,11 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.event.TickPhase;
-import zhy2002.neutron.event.UiNodeEvent;
-import zhy2002.neutron.node.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
 import java.util.*;
 
 /**
- * Created by ZHY on 13/11/2016.
+ * The default implementation.
  */
 public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
     private final Map<TickPhase, Deque<UiNodeRuleActivation>> activationQueueMap = new HashMap<>(); //todo this is actually a priority queue.

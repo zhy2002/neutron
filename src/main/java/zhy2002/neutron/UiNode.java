@@ -1,11 +1,6 @@
-package zhy2002.neutron.node;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.NodeLifeStateEnum;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.event.StateChangeEvent;
-import zhy2002.neutron.event.UiNodeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
@@ -27,7 +22,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * The context instance shared by the whole UiNode tree.
      */
-    private final UiNodeContext<?> context;
+    private final UiNodeContextImpl<?> context;
     /**
      * A map used to store current values of state properties.
      */
@@ -44,7 +39,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
 
     private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
-    private final Map<EventTypeEnum, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
+    private final Map<UiNodeEventTypeEnum, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
 
     /**
      * The constructor for a child node.
@@ -61,11 +56,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      *
      * @param context the context instance.
      */
-    protected UiNode(@NotNull UiNodeContext<?> context) {
+    protected UiNode(@NotNull UiNodeContextImpl<?> context) {
         this(null, context, "");
     }
 
-    private UiNode(P parent, UiNodeContext<?> context, String name) {
+    private UiNode(P parent, UiNodeContextImpl<?> context, String name) {
         this.parent = parent;
         this.context = context;
         this.name = name;
@@ -81,7 +76,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public
     @NotNull
-    UiNodeContext<?> getContext() {
+    UiNodeContextImpl<?> getContext() {
         return context;
     }
 
@@ -91,7 +86,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return (T) state.get(key);
     }
 
-    public void setStateValueInternal(String key, Object value) {
+    protected void setStateValueInternal(String key, Object value) {
         state.put(key, value);
     }
 
@@ -137,7 +132,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     private <T> StateChangeEvent<T> getStateChangeEvent(T oldValue, T value) {
-        StateChangeEvent<T> event = new StateChangeEvent<>(this, DefaultUiNodeStateKeys.VALUE);
+        UiNodeRuleActivation activation = context.getCurrentActivation();
+        StateChangeEvent<T> event = new StateChangeEvent<>(this, DefaultUiNodeStateKeys.VALUE, activation);
         event.setOldValue(oldValue);
         event.setNewValue(value);
         return event;
@@ -229,7 +225,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     protected abstract void doUnload();
 
-    public Iterable<UiNodeRule<?, ?>> getAttachedRules(EventTypeEnum eventType) {
+    public Iterable<UiNodeRule<?, ?>> getAttachedRules(UiNodeEventTypeEnum eventType) {
         List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
         return list == null ? Collections.emptyList() : list;
     }

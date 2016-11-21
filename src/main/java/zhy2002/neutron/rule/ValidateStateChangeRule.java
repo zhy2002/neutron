@@ -1,8 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.event.StateChangeEvent;
-import zhy2002.neutron.node.UiNode;
+import zhy2002.neutron.UiNodeEventTypeEnum;
+import zhy2002.neutron.StateChangeEvent;
+import zhy2002.neutron.UiNode;
 
 /**
  * State change validation rule.
@@ -15,7 +15,7 @@ public abstract class ValidateStateChangeRule<T, N extends UiNode<?>>
     }
 
     @Override
-    public EventTypeEnum getEventType() {
-        return EventTypeEnum.StateChange;
+    public UiNodeEventTypeEnum getEventType() {
+        return UiNodeEventTypeEnum.StateChange;
     }
 }

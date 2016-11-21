@@ -1,9 +1,9 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.EventTypeEnum;
-import zhy2002.neutron.event.TickPhase;
-import zhy2002.neutron.event.UiNodeEvent;
-import zhy2002.neutron.node.UiNode;
+import zhy2002.neutron.UiNodeEventTypeEnum;
+import zhy2002.neutron.TickPhase;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.UiNode;
 
 /**
  * Created by ZHY on 16/11/2016.
@@ -21,7 +21,7 @@ public class PreStateChangeRule<E extends UiNodeEvent, N extends UiNode<?>>
     }
 
     @Override
-    public EventTypeEnum getEventType() {
-        return EventTypeEnum.StateChange;
+    public UiNodeEventTypeEnum getEventType() {
+        return UiNodeEventTypeEnum.StateChange;
     }
 }
