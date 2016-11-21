@@ -2,6 +2,7 @@ package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.ClearHasErrorRule;
+import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.node.ChildNodeFactory;
@@ -61,6 +62,8 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     @Override
     protected void addChildren() {
         usernameNode = createUsernameNode();
+        DefaultEmailByUsernameRule defaultEmailByUsernameRule = new DefaultEmailByUsernameRule(usernameNode);
+        defaultEmailByUsernameRule.addToOwner();
         addUsernameNode();
 
         emailNode = createEmailNode();

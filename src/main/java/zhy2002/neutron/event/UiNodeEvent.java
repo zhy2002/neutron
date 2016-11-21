@@ -10,6 +10,7 @@ import zhy2002.neutron.node.UiNode;
 public abstract class UiNodeEvent {
 
     private final UiNode<?> target; //the node whose value is changing
+    private UiNodeEvent cause; //todo the event caused this event
 
     protected UiNodeEvent(UiNode<?> target) {
         this.target = target;

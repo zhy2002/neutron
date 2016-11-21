@@ -130,5 +130,30 @@ public class RegisterNodeContextTest {
         assertThat(registerNode.getHasError(), equalTo(false));
     }
 
+    @Test
+    public void shouldNotProduceDuplicateErrors() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("a");
+        usernameNode.setValue("ab");
+        usernameNode.setValue("abc");
+
+        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(1));
+
+        usernameNode.setValue("abcd");
+        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+    }
+
+    @Test
+    public void shouldChangeEmailWhenUsernameChanges() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        EmailNode emailNode = registerNode.getEmailNode();
+
+        assertThat(usernameNode.getValue(), equalTo(""));
+        assertThat(emailNode.getValue(), equalTo(""));
+
+        usernameNode.setValue("test");
+        assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
+    }
+
 
 }

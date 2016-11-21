@@ -39,9 +39,11 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
 
 
     protected void activate(StateChangeEvent<String> event) {
-        errorNode = getErrorListNode().createItem();
-        errorNode.setSource(event.getTarget());
-        errorNode.setMessage(ERROR_MESSAGE);
+        if(errorNode == null) {
+            errorNode = getErrorListNode().createItem();
+            errorNode.setSource(event.getTarget());
+            errorNode.setMessage(ERROR_MESSAGE);
+        }
     }
 
 
