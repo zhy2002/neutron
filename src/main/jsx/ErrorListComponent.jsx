@@ -6,21 +6,40 @@ export default class ErrorListComponent extends React.Component {
         super(props);
 
         this.model = props['model'];
-        console.log('error list node');
-        console.log(this.model);
+        this.model.addChangeListener(this);
+        this.state = this.extractNewState();
+    }
+
+    extractNewState() {
+        var newState = {};
+        newState.items = this.model.getChildren();
+        return newState;
+    }
+
+    componentDidMount() {
+        console.log("ErrorList did mount");
+    }
+
+    onUiNodeChanged() {
+        var newState = this.extractNewState();
+        this.setState(newState);
     }
 
     render() {
-        var items = [];
-        for (var i = 0; i < this.model.getChildCount(); i++) {
-            var errorNode = this.model.getItem(i);
-            items.push(<li key={errorNode.getName()}>{errorNode.getMessage()}</li>);
+        var items = this.state.items;
+
+        var listItems = [];
+        console.log(items);
+        for(var i=0; i<items.length; i++) {
+            var errorNode = items[i];
+            console.log(errorNode);
+            listItems.push(<li key={errorNode.getName()}>{errorNode.getMessage()}</li>);
         }
         return (
             <div>
                 <h4>Errors</h4>
                 <ul>
-                    {items}
+                    {listItems}
                 </ul>
             </div>
         );

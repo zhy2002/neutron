@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Used for single node test.
  */
-@JsType
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
     @JsIgnore

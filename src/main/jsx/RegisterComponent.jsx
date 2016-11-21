@@ -6,10 +6,7 @@ import ErrorListComponent from "./ErrorListComponent.jsx";
 function createRoot(component) {
     var GWT = window["GWT"];
     var root = GWT.RegisterNodeFactory.create();
-    window.root = root; //for debugging 
-    window.doUpdate = function () {
-        component.doUpdate();
-    };
+    window.root = root; //for debugging
     console.log(root);
     return root;
 }
@@ -19,13 +16,7 @@ export default class RegisterComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.version = 0;
         this.model = createRoot(this);
-    }
-
-    doUpdate() {
-        this.version = (this.version + 1) % 10000;
-        this.setState({version: this.version});
     }
 
     render() {

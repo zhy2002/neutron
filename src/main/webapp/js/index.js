@@ -21525,10 +21525,7 @@
 	function createRoot(component) {
 	    var GWT = window["GWT"];
 	    var root = GWT.RegisterNodeFactory.create();
-	    window.root = root; //for debugging 
-	    window.doUpdate = function () {
-	        component.doUpdate();
-	    };
+	    window.root = root; //for debugging
 	    console.log(root);
 	    return root;
 	}
@@ -21541,18 +21538,11 @@
 
 	        var _this = _possibleConstructorReturn(this, (RegisterComponent.__proto__ || Object.getPrototypeOf(RegisterComponent)).call(this, props));
 
-	        _this.version = 0;
 	        _this.model = createRoot(_this);
 	        return _this;
 	    }
 
 	    _createClass(RegisterComponent, [{
-	        key: "doUpdate",
-	        value: function doUpdate() {
-	            this.version = (this.version + 1) % 10000;
-	            this.setState({ version: this.version });
-	        }
-	    }, {
 	        key: "render",
 	        value: function render() {
 	            var model = this.model;
@@ -21610,7 +21600,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = FormField;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
@@ -21618,39 +21609,84 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function FormField(props) {
-	    var id = props["id"];
-	    var label = props["label"];
-	    var model = props["model"];
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	    console.log('hello field');
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "form-group" },
-	        _react2.default.createElement(
-	            "label",
-	            { htmlFor: id },
-	            label
-	        ),
-	        _react2.default.createElement("input", { type: "text", className: "form-control", id: id,
-	            value: model.getValue(), onChange: function onChange(event) {
-	                model.setValue(event.target.value);
-	                window.doUpdate();
-	            } }),
-	        _react2.default.createElement(
-	            "p",
-	            { className: "help-block" },
-	            "Example block-level help text here."
-	        )
-	    );
-	}
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FormField = function (_React$Component) {
+	    _inherits(FormField, _React$Component);
+
+	    function FormField(props) {
+	        _classCallCheck(this, FormField);
+
+	        //const fields
+	        var _this = _possibleConstructorReturn(this, (FormField.__proto__ || Object.getPrototypeOf(FormField)).call(this, props));
+
+	        _this.id = props["id"];
+	        _this.label = props["label"];
+	        _this.model = props["model"];
+	        _this.model.addChangeListener(_this);
+	        _this.state = _this.extractNewState();
+	        return _this;
+	    }
+
+	    _createClass(FormField, [{
+	        key: "extractNewState",
+	        value: function extractNewState() {
+	            console.log('extract new state');
+	            var newState = {};
+	            newState.value = this.model.getValue();
+	            return newState;
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            console.log("form field did mount");
+	        }
+	    }, {
+	        key: "onUiNodeChanged",
+	        value: function onUiNodeChanged() {
+	            var newState = this.extractNewState();
+	            this.setState(newState);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var model = this.model;
+	            //only read from fields and state
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "form-group" },
+	                _react2.default.createElement(
+	                    "label",
+	                    { htmlFor: this.id },
+	                    this.label
+	                ),
+	                _react2.default.createElement("input", { type: "text", className: "form-control", id: this.id,
+	                    value: this.state.value, onChange: function onChange(event) {
+	                        model.setValue(event.target.value);
+	                    } }),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "help-block" },
+	                    "Example block-level help text here."
+	                )
+	            );
+	        }
+	    }]);
+
+	    return FormField;
+	}(_react2.default.Component);
+
+	exports.default = FormField;
 
 /***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -21679,35 +21715,57 @@
 	        var _this = _possibleConstructorReturn(this, (ErrorListComponent.__proto__ || Object.getPrototypeOf(ErrorListComponent)).call(this, props));
 
 	        _this.model = props['model'];
-	        console.log('error list node');
-	        console.log(_this.model);
+	        _this.model.addChangeListener(_this);
+	        _this.state = _this.extractNewState();
 	        return _this;
 	    }
 
 	    _createClass(ErrorListComponent, [{
-	        key: 'render',
+	        key: "extractNewState",
+	        value: function extractNewState() {
+	            var newState = {};
+	            newState.items = this.model.getChildren();
+	            return newState;
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            console.log("ErrorList did mount");
+	        }
+	    }, {
+	        key: "onUiNodeChanged",
+	        value: function onUiNodeChanged() {
+	            var newState = this.extractNewState();
+	            this.setState(newState);
+	        }
+	    }, {
+	        key: "render",
 	        value: function render() {
-	            var items = [];
-	            for (var i = 0; i < this.model.getChildCount(); i++) {
-	                var errorNode = this.model.getItem(i);
-	                items.push(_react2.default.createElement(
-	                    'li',
+	            var items = this.state.items;
+
+	            var listItems = [];
+	            console.log(items);
+	            for (var i = 0; i < items.length; i++) {
+	                var errorNode = items[i];
+	                console.log(errorNode);
+	                listItems.push(_react2.default.createElement(
+	                    "li",
 	                    { key: errorNode.getName() },
 	                    errorNode.getMessage()
 	                ));
 	            }
 	            return _react2.default.createElement(
-	                'div',
+	                "div",
 	                null,
 	                _react2.default.createElement(
-	                    'h4',
+	                    "h4",
 	                    null,
-	                    'Errors'
+	                    "Errors"
 	                ),
 	                _react2.default.createElement(
-	                    'ul',
+	                    "ul",
 	                    null,
-	                    items
+	                    listItems
 	                )
 	            );
 	        }

@@ -49,7 +49,9 @@ public class Cycle {
         List<UiNode<?>> changedNodes = new ArrayList<>();
         while (iterator.hasNext()) {
             UiNodeEvent uiNodeEvent = iterator.next();
-            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+            if(uiNodeEvent instanceof NodeAddEvent || uiNodeEvent instanceof NodeRemoveEvent) {
+              changedNodes.add(uiNodeEvent.getTarget().getParent());
+            } if (uiNodeEvent instanceof ChangeUiNodeEvent) {
                 changedNodes.add(uiNodeEvent.getTarget());
             }
         }

@@ -55,8 +55,10 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     }
 
     @JsMethod
-    public List<UiNode<?>> getChildren() {
-        return new ArrayList<>(this.children);
+    public UiNode<?>[] getChildren() {
+        UiNode<?>[] result = new UiNode[getChildCount()];
+        this.children.toArray(result);
+        return result;
     }
 
     @Override

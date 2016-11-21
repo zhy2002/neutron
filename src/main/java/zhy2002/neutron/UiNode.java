@@ -281,7 +281,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public void notifyChange() {
         for(UiNodeChangeListener listener : changeListeners) {
-            listener.onChanged();
+            listener.onUiNodeChanged();
         }
     }
 }

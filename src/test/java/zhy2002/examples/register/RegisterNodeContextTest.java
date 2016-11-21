@@ -171,7 +171,7 @@ public class RegisterNodeContextTest {
         private int count = 0;
 
         @Override
-        public void onChanged() {
+        public void onUiNodeChanged() {
             count++;
         }
 
@@ -193,8 +193,12 @@ public class RegisterNodeContextTest {
         usernameNode.setValue("test2");
         assertThat(listener.getCount(), equalTo(2));
 
+        listener  = new CountingChangeListener();
+        ErrorListNode errorListNode = registerNode.getErrorListNode();
+        errorListNode.addChangeListener(listener);
+        usernameNode.setValue("abc");
 
-
+        assertThat(listener.getCount(), equalTo(1));
     }
 
     @Test
