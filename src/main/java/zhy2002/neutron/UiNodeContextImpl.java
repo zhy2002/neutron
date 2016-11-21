@@ -103,4 +103,8 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
     public UiNodeRuleActivation getCurrentActivation() {
         return changeEngine.getCurrentActivation();
     }
+
+    public TickPhase getCurrentPhase() {
+        return changeEngine.getCurrentPhase();
+    }
 }

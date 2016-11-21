@@ -155,8 +155,21 @@ public class RegisterNodeContextTest {
     }
 
     @Test
-    public void shouldFireChangeNotification() {
+    public void canGetCauseOfEvent() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        EmailNode emailNode = registerNode.getEmailNode();
 
+        usernameNode.setValue("test");
+        assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
+        assertThat(emailNode.getStateValue("TriggeredBy"), equalTo("DefaultEmailByUsernameRule"));
+
+        emailNode.setValue("my@gmail.com");
+        assertThat(emailNode.getStateValue("TriggeredBy"), equalTo("user direct"));
+    }
+
+    @Test
+    public void shouldFireChangeNotification() {
+        //todo
     }
 
 

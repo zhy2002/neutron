@@ -5,6 +5,7 @@ import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.UiNodeEventTypeEnum;
 import zhy2002.neutron.DefaultPhases;
 import zhy2002.neutron.StateChangeEvent;
+import zhy2002.neutron.UiNodeRuleActivation;
 import zhy2002.neutron.rule.UiNodeRule;
 
 /**
@@ -16,7 +17,7 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<StateChangeEvent<Stri
         super(owner, DefaultPhases.Post);
     }
 
-    protected EmailNode getEmailNdde() {
+    protected EmailNode getEmailNode() {
         return getOwner().getParent().getEmailNode();
     }
 
@@ -24,7 +25,7 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<StateChangeEvent<Stri
     protected void execute(StateChangeEvent<String> typedEvent) {
         String value = getOwner().getValue();
         String email = value == null ? "" : value + "@gmail.com";
-        getEmailNdde().setValue(email);
+        getEmailNode().setValue(email);
     }
 
     @Override

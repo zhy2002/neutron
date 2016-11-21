@@ -1,10 +1,11 @@
 package zhy2002.neutron;
 
 /**
- * Created by john.zhang on 4/11/2016.
+ * Phase configuration.
  */
 public interface TickPhase {
-    ChangeMode getChangeMode();
+
+    ChangeModeEnum getChangeMode();
 
     boolean PostChanges();
 }

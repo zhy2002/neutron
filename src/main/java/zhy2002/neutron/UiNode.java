@@ -99,12 +99,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     @JsMethod
-    protected <T> T getStateValue(String key) {
+    public <T> T getStateValue(String key) {
         return getStateValueInternal(key);
     }
 
     @JsMethod
-    protected <T> void setStateValue(String key, T value) {
+    public <T> void setStateValue(String key, T value) {
+        TickPhase phase = getContext().getCurrentPhase();
+        if (phase != null) {
+            ChangeModeEnum changeMode = phase.getChangeMode();
+            if (changeMode == ChangeModeEnum.DIRECT) {
+                setStateValueInternal(key, value);
+                return;
+            } else if (changeMode == ChangeModeEnum.IGNORED) {
+                return;
+            } else if (changeMode == ChangeModeEnum.PROHIBITED) {
+                throw new UiNodeEventException(); //todo specialized exception type
+            }
+        }
+
         T oldValue = getStateValueInternal(key);
         boolean process = false;
         switch (this.changeTrackMode) {

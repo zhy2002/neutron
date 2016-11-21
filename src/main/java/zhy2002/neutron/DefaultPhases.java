@@ -7,25 +7,25 @@ package zhy2002.neutron;
  */
 public enum DefaultPhases implements TickPhase {
 
-    Pre(ChangeMode.PROHIBITED),
-    Post(ChangeMode.CASCADE, true),
-    Validate(ChangeMode.DIRECT),
-    CleanUp(ChangeMode.IGNORED);
+    Pre(ChangeModeEnum.PROHIBITED),
+    Post(ChangeModeEnum.CASCADE, true),
+    Validate(ChangeModeEnum.DIRECT),
+    CleanUp(ChangeModeEnum.IGNORED);
 
-    private final ChangeMode changeMode;
+    private final ChangeModeEnum changeMode;
     private final boolean postChanges;
 
-    DefaultPhases(ChangeMode changeMode) {
+    DefaultPhases(ChangeModeEnum changeMode) {
         this(changeMode, false);
     }
 
-    DefaultPhases(ChangeMode changeMode, boolean postChanges) {
+    DefaultPhases(ChangeModeEnum changeMode, boolean postChanges) {
         this.changeMode = changeMode;
         this.postChanges = postChanges;
     }
 
     @Override
-    public ChangeMode getChangeMode() {
+    public ChangeModeEnum getChangeMode() {
         return changeMode;
     }
 

@@ -1,6 +1,7 @@
 package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
+import zhy2002.examples.register.rule.EmailChangeReasonRule;
 import zhy2002.neutron.DefaultUiNodeStateKeys;
 import zhy2002.neutron.StringUiNode;
 
@@ -14,6 +15,9 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     @Override
     protected void doLoad() {
         setStateValueInternal(DefaultUiNodeStateKeys.DISABLED, false);
+
+        EmailChangeReasonRule emailChangeReasonRule = new EmailChangeReasonRule(this);
+        emailChangeReasonRule.addToOwner();
     }
 
     @Override

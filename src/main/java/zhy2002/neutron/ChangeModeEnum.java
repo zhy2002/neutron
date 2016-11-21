@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * Created by john.zhang on 4/11/2016.
  */
-public enum ChangeMode {
+public enum ChangeModeEnum {
     /**
      * All changes cause other changes (trigger rules).
      */
