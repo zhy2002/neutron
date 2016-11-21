@@ -21638,6 +21638,10 @@
 	            console.log('extract new state');
 	            var newState = {};
 	            newState.value = this.model.getValue();
+	            newState.fieldClass = "form-control";
+	            if (this.model.getStateValue("TriggeredBy") === "DefaultEmailByUsernameRule") {
+	                newState.fieldClass += " bg-danger";
+	            }
 	            return newState;
 	        }
 	    }, {
@@ -21664,7 +21668,7 @@
 	                    { htmlFor: this.id },
 	                    this.label
 	                ),
-	                _react2.default.createElement("input", { type: "text", className: "form-control", id: this.id,
+	                _react2.default.createElement("input", { type: "text", className: this.state.fieldClass, id: this.id,
 	                    value: this.state.value, onChange: function onChange(event) {
 	                        model.setValue(event.target.value);
 	                    } }),

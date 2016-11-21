@@ -17,6 +17,10 @@ export default class FormField extends React.Component {
         console.log('extract new state');
         var newState = {};
         newState.value = this.model.getValue();
+        newState.fieldClass = "form-control";
+        if(this.model.getStateValue("TriggeredBy") === "DefaultEmailByUsernameRule") {
+            newState.fieldClass += " bg-danger";
+        }
         return newState;
     }
 
@@ -35,7 +39,7 @@ export default class FormField extends React.Component {
         return (
             <div className="form-group">
                 <label htmlFor={this.id}>{this.label}</label>
-                <input type="text" className="form-control" id={this.id}
+                <input type="text" className={this.state.fieldClass} id={this.id}
                 value={this.state.value} onChange={(event)=> {
                  model.setValue(event.target.value);
                 }}/>

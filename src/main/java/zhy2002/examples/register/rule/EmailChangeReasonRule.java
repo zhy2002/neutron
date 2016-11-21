@@ -14,6 +14,13 @@ public class EmailChangeReasonRule extends UiNodeRule<StateChangeEvent<String>, 
     }
 
     @Override
+    public void addToOwner() {
+        super.addToOwner();
+
+        getOwner().setStateValue("TriggeredBy", "user direct");
+    }
+
+    @Override
     protected void execute(StateChangeEvent<String> typedEvent) {
 
         String triggeredBy = "user direct";

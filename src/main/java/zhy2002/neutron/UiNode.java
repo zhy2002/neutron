@@ -142,14 +142,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
         if (!process)
             return;
-        StateChangeEvent<T> event = getStateChangeEvent(oldValue, value);
+        StateChangeEvent<T> event = getStateChangeEvent(key, oldValue, value);
         getContext().processEvent(event);
 
     }
 
-    private <T> StateChangeEvent<T> getStateChangeEvent(T oldValue, T value) {
+    private <T> StateChangeEvent<T> getStateChangeEvent(String key, T oldValue, T value) {
         UiNodeRuleActivation activation = context.getCurrentActivation();
-        StateChangeEvent<T> event = new StateChangeEvent<>(this, DefaultUiNodeStateKeys.VALUE, activation);
+        StateChangeEvent<T> event = new StateChangeEvent<>(this, key, activation);
         event.setOldValue(oldValue);
         event.setNewValue(value);
         return event;

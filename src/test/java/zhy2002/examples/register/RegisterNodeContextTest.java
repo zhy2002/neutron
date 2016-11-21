@@ -202,6 +202,13 @@ public class RegisterNodeContextTest {
     }
 
     @Test
+    public void emailDefaultValueShouldBeEmpty() {
+        EmailNode emailNode = registerNode.getEmailNode();
+
+        assertThat(emailNode.getValue(), equalTo(""));
+    }
+
+    @Test
     public void shouldFireChangeNotification() {
         //todo
     }
