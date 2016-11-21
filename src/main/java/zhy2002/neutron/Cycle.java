@@ -1,8 +1,8 @@
 package zhy2002.neutron;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Iterator;
+import zhy2002.examples.register.UiNodeChangeListener;
+
+import java.util.*;
 
 /**
  * Contains all changes done in this cycle.
@@ -42,5 +42,19 @@ public class Cycle {
 
     public void add(UiNodeEvent event) {
         eventDeque.add(event);
+    }
+
+    public void notifyChanges() {
+        Iterator<UiNodeEvent> iterator = applied ? eventDeque.iterator() : eventDeque.descendingIterator();
+        List<UiNode<?>> changedNodes = new ArrayList<>();
+        while (iterator.hasNext()) {
+            UiNodeEvent uiNodeEvent = iterator.next();
+            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+                changedNodes.add(uiNodeEvent.getTarget());
+            }
+        }
+        for(UiNode<?> node : changedNodes) {
+            node.notifyChange();
+        }
     }
 }

@@ -1,9 +1,10 @@
 todo 
 -----------------
-* utilize phase config 
 * add sourcemap to webpack
-* add support to know if is root event
-* add support to know the current event
+* implement rule priority
+* implement rule group/flow
+* more control about the rule logic, e.g. abort cycle, abort tick, etc.
+* implement node change notification
 * state metadata (type and stuff)
 * support post event send event processing 
 - send = process everything immediately & post = current behaviour where changes are added to a queue first.

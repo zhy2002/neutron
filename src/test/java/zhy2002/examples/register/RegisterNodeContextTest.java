@@ -167,6 +167,36 @@ public class RegisterNodeContextTest {
         assertThat(emailNode.getStateValue("TriggeredBy"), equalTo("user direct"));
     }
 
+    private static class CountingChangeListener implements UiNodeChangeListener {
+        private int count = 0;
+
+        @Override
+        public void onChanged() {
+            count++;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
+
+    @Test
+    public void shouldCallChangeNotification() {
+        CountingChangeListener listener = new CountingChangeListener();
+        EmailNode emailNode = registerNode.getEmailNode();
+        emailNode.addChangeListener(listener);
+        emailNode.setValue("test1@gmail.com");
+
+        assertThat(listener.getCount(), equalTo(1));
+
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("test2");
+        assertThat(listener.getCount(), equalTo(2));
+
+
+
+    }
+
     @Test
     public void shouldFireChangeNotification() {
         //todo

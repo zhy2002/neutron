@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.examples.register.UiNodeChangeListener;
 import zhy2002.neutron.rule.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
@@ -40,6 +41,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
     private final Map<UiNodeEventTypeEnum, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
+
+    private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
     /**
      * The constructor for a child node.
@@ -270,4 +273,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     //endregion
+
+    @JsMethod
+    public void addChangeListener(UiNodeChangeListener listener) {
+        this.changeListeners.add(listener);
+    }
+
+    public void notifyChange() {
+        for(UiNodeChangeListener listener : changeListeners) {
+            listener.onChanged();
+        }
+    }
 }

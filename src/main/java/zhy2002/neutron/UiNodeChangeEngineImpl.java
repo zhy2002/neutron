@@ -148,13 +148,15 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             return;
 
         inCycle = true;
+        Cycle currentCycle = new Cycle();
         if(!eventDeque.isEmpty()) {
-            cycleDeque.add(new Cycle());
+            cycleDeque.add(currentCycle);
         }
         while (!eventDeque.isEmpty()) {
-            processTick(cycleDeque.peekLast());
+            processTick(currentCycle);
         }
         inCycle = false;
+        currentCycle.notifyChanges();
     }
 
     private void processTick(Cycle cycle) {
