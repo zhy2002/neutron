@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class RegisterNodeContext extends UiNodeContextImpl<RegisterNode> {
 
-    public RegisterNodeContext(FactoryRegistry factoryRegistry) {
+    public RegisterNodeContext(ClassRegistryImpl factoryRegistry) {
         super(factoryRegistry);
         initializeFactoryMap();
         initializeStateChangeEventFactory();
@@ -25,11 +25,6 @@ public class RegisterNodeContext extends UiNodeContextImpl<RegisterNode> {
         setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
         setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
         setChildNodeFactory(EmailNode.class, new EmailNodeFactory());
-    }
-
-    private static abstract class StateChangeEventFactory<T> {
-
-        public abstract StateChangeEvent<T> create(UiNode<?> target, String key, T oldValue, T newValue);
     }
 
     private Map<Class, StateChangeEventFactory> stateChangeEventFactoryMap = new HashMap<>();

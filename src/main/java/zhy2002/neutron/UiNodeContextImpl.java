@@ -9,13 +9,13 @@ import java.util.Map;
 public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
-    private final FactoryRegistry factoryRegistry;
+    private final ClassRegistry factoryRegistry;
     private final Map<Class<?>, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
     private final SequentialUniqueIdGenerator uniqueIdGenerator = new SequentialUniqueIdGenerator();
     private final UiNodeChangeEngineImpl changeEngine = new UiNodeChangeEngineImpl();
 
-    protected UiNodeContextImpl(FactoryRegistry factoryRegistry) {
-        this.factoryRegistry = new ImmutableFactoryRegistry(factoryRegistry);
+    protected UiNodeContextImpl(ClassRegistryImpl factoryRegistry) {
+        this.factoryRegistry = new ImmutableClassRegistry(factoryRegistry);
     }
 
     //region node construction
@@ -64,7 +64,7 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
 
     @Override
     public <T> T getFactory(Class<T> factoryClass) {
-        return factoryRegistry.get(factoryClass);
+        return factoryRegistry.getInstance(factoryClass);
     }
 
     //endregion

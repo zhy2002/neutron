@@ -3,7 +3,7 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.UsernameLengthRule;
-import zhy2002.neutron.FactoryRegistry;
+import zhy2002.neutron.ClassRegistryImpl;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -15,7 +15,7 @@ public class RegisterNodeContextTest {
 
     @Before
     public void setup() {
-        FactoryRegistry factoryRegistry = RegisterFactoryRegistry.create();
+        ClassRegistryImpl factoryRegistry = RegisterFactoryRegistry.create();
         context = new RegisterNodeContext(factoryRegistry);
         registerNode = context.getRootNode();
     }

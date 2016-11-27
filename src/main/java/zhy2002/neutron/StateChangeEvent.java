@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 /**
- * This event is fired when a state property of a node is set.
+ * This event is fired when a state property of a node is setInstance.
  */
 public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     private final String stateKey;

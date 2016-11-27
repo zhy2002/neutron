@@ -11,7 +11,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * the context super constructor parameter must not be null.
      */
     private final static class VoidUiNodeContext extends UiNodeContextImpl<VoidUiNode> {
-        private VoidUiNodeContext(FactoryRegistry factoryRegistry) {
+        private VoidUiNodeContext(ClassRegistryImpl factoryRegistry) {
             super(factoryRegistry);
         }
 
@@ -31,7 +31,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * IT SHOULD NEVER BE CALLED.
      */
     private VoidUiNode() {
-        super(new VoidUiNodeContext(new ImmutableFactoryRegistry()));
+        super(new VoidUiNodeContext(new ClassRegistryImpl()));
     }
 
 

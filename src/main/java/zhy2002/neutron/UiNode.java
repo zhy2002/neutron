@@ -29,7 +29,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final Map<String, ? super Object> state = new HashMap<>();
     /**
-     * The unique id of this node. This is set when this node is added to the node tree.
+     * The unique id of this node. This is setInstance when this node is added to the node tree.
      */
     private String uniqueId;
     /**
