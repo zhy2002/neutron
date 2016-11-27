@@ -15,7 +15,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
     private final Deque<Cycle> cycleDeque = new ArrayDeque<>();//a queue of cycles in session.
     private final UiNodeRuleAgendaImpl agenda = new UiNodeRuleAgendaImpl();
-    private final TickPhase[] phases = {DefaultPhases.Pre, DefaultPhases.Post, DefaultPhases.Validate, DefaultPhases.CleanUp};
+    private final TickPhase[] phases = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate, PredefinedPhases.CleanUp};
     private TickPhase currentPhase;
     private UiNodeRuleActivation currentActivation;
 

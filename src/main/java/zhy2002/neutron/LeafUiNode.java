@@ -18,26 +18,20 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     protected void setValueInternal(T value) {
-        super.setStateValueInternal(DefaultUiNodeStateKeys.VALUE, value);
+        super.setStateValueInternal(PredefinedUiNodeStateKeys.VALUE, value);
     }
 
     protected T getValueInternal() {
-        return super.getStateValueInternal(DefaultUiNodeStateKeys.VALUE);
+        return super.getStateValueInternal(PredefinedUiNodeStateKeys.VALUE);
     }
 
     @JsMethod
     public T getValue() {
-        return getStateValue(DefaultUiNodeStateKeys.VALUE);
+        return getStateValue(PredefinedUiNodeStateKeys.VALUE);
     }
 
-    public T getValue(T defaultValue) {
-        T result = getValue();
-        return result == null ? defaultValue : result;
-    }
-
-    @JsMethod
-    public void setValue(T value) {
-        setStateValue(DefaultUiNodeStateKeys.VALUE, value);
+    public void setValue(Class<T> valueClass, T value) {
+        setStateValue(PredefinedUiNodeStateKeys.VALUE, valueClass, value);
     }
 
 }

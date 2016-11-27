@@ -3,13 +3,13 @@ package zhy2002.neutron;
 /**
  * This event is fired when a state property of a node is set.
  */
-public final class StateChangeEvent<T> extends ChangeUiNodeEvent {
+public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     private final String stateKey;
     private T oldValue;
     private T newValue;
 
-    public StateChangeEvent(UiNode<?> target, String key, UiNodeRuleActivation activation) {
-        super(target, activation);
+    public StateChangeEvent(UiNode<?> target, String key) {
+        super(target);
         this.stateKey = key;
     }
 
@@ -31,10 +31,6 @@ public final class StateChangeEvent<T> extends ChangeUiNodeEvent {
 
     public void setNewValue(T newValue) {
         this.newValue = newValue;
-    }
-
-    public final UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.StateChange;
     }
 
     @Override

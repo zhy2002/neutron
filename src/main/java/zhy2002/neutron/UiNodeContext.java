@@ -6,6 +6,8 @@ package zhy2002.neutron;
  * @param <R> type of the root UiNode.
  */
 public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
+
+    <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key,  Class<? super T> valueClass, T oldValue, T newValue);
     
     String getUniqueId();
 

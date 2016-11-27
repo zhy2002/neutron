@@ -1,8 +1,8 @@
 package zhy2002.examples.register;
 
-import zhy2002.neutron.ChildNodeFactory;
-import zhy2002.neutron.ListUiNode;
-import zhy2002.neutron.NotImplementedException;
+import zhy2002.examples.register.event.ErrorNodeAddEvent;
+import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
+import zhy2002.neutron.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +17,11 @@ public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
     }
 
     @Override
+    protected NodeAddEvent<ErrorNode> createNodeAddEvent(ErrorNode item) {
+        return new ErrorNodeAddEvent(item);
+    }
+
+    @Override
     protected void initializeSelf() {
 
     }
@@ -27,8 +32,15 @@ public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
 
     @Override
     protected ErrorNode createItemInternal(Class<? extends ErrorNode> itemClass) {
+
+
         ChildNodeFactory<ErrorNode, ErrorListNode> factory = getContext().getChildNodeFactory(itemClass);
         return factory.create(this, String.valueOf(getChildSequenceNumber()));
+    }
+
+    @Override
+    protected NodeRemoveEvent<ErrorNode> createNodeRemoveEvent(ErrorNode child) {
+        return new ErrorNodeRemoveEvent(child);
     }
 
     @Override

@@ -3,28 +3,27 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.RegisterNode;
-import zhy2002.neutron.UiNodeEventTypeEnum;
-import zhy2002.neutron.DefaultPhases;
-import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
+import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 
-public class ClearHasErrorRule extends UiNodeRule<NodeRemoveEvent<ErrorNode>, RegisterNode> {
+public class ClearHasErrorRule extends UiNodeRule<ErrorNodeRemoveEvent, RegisterNode> {
 
     public ClearHasErrorRule(RegisterNode owner) {
-        super(owner, DefaultPhases.Post);
+        super(owner, PredefinedPhases.Post);
     }
 
     @Override
-    protected void execute(NodeRemoveEvent<ErrorNode> typedEvent) {
+    protected void execute(ErrorNodeRemoveEvent typedEvent) {
         if (typedEvent.getTarget().getParent().getChildCount() == 0) {
             getOwner().setHasError(false);
         }
     }
 
     @Override
-    public UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.NodeRemove;
+    public Class<ErrorNodeRemoveEvent> getEventType() {
+        return  ErrorNodeRemoveEvent.class;
     }
 
     @Override

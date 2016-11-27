@@ -4,13 +4,14 @@ package zhy2002.neutron;
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
  */
-public final class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>> extends ChangeUiNodeEvent {
+public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
+        extends ChangeUiNodeEvent {
 
     private final N target;
     private final ListUiNode<?, N> parent;
 
-    public NodeAddEvent(N target, UiNodeRuleActivation activation) {
-        super(target, activation);
+    public NodeAddEvent(N target) {
+        super(target);
 
         this.target = target;
         this.parent = target.getParent();
@@ -22,10 +23,6 @@ public final class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>> ex
     @Override
     public N getTarget() {
         return target;
-    }
-
-    public final UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.NodeAdd;
     }
 
     public ListUiNode<?, N> getParent() {

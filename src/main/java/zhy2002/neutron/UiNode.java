@@ -40,7 +40,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
 
     private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
-    private final Map<UiNodeEventTypeEnum, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
+    private final Map<Class<?>, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
 
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
@@ -106,8 +106,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getStateValueInternal(key);
     }
 
-    @JsMethod
-    public <T> void setStateValue(String key, T value) {
+    public <T> void setStateValue(String key, Class<? super T> valueClass, T value) {
         TickPhase phase = getContext().getCurrentPhase();
         if (phase != null) {
             ChangeModeEnum changeMode = phase.getChangeMode();
@@ -142,17 +141,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
         if (!process)
             return;
-        StateChangeEvent<T> event = getStateChangeEvent(key, oldValue, value);
+        StateChangeEvent<T> event = createStateChangeEvent(key, valueClass, oldValue, value);
         getContext().processEvent(event);
 
     }
 
-    private <T> StateChangeEvent<T> getStateChangeEvent(String key, T oldValue, T value) {
-        UiNodeRuleActivation activation = context.getCurrentActivation();
-        StateChangeEvent<T> event = new StateChangeEvent<>(this, key, activation);
-        event.setOldValue(oldValue);
-        event.setNewValue(value);
-        return event;
+    private <T> StateChangeEvent<T> createStateChangeEvent(String key, Class<? super T> valueClass, T oldValue, T value) {
+        return context.createStateChangeEvent(this, key, valueClass, oldValue, value);
     }
 
     //endregion
@@ -241,8 +236,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     protected abstract void doUnload();
 
-    public Iterable<UiNodeRule<?, ?>> getAttachedRules(UiNodeEventTypeEnum eventType) {
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
+    public Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(clazz);
         return list == null ? Collections.emptyList() : list;
     }
 
@@ -280,7 +275,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public void notifyChange() {
-        for(UiNodeChangeListener listener : changeListeners) {
+        for (UiNodeChangeListener listener : changeListeners) {
             listener.onUiNodeChanged();
         }
     }

@@ -4,14 +4,16 @@ package zhy2002.neutron;
  * This event fires when a node is passed to removeFromOwner method.
  * All its children and its state will be destroyed by itself is kept to be loaded again.
  * Reset = removeFromOwner + addToOwner.
+ * Must be inherited to fill in the type parameters.
  */
-public final class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N>>> extends ChangeUiNodeEvent {
+public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N>>>
+        extends ChangeUiNodeEvent {
 
     private final N target;
     private ListUiNode<?, N> parent;
 
-    public NodeRemoveEvent(N target, UiNodeRuleActivation activation) {
-        super(target, activation);
+    public NodeRemoveEvent(N target) {
+        super(target);
 
         this.target = target;
         this.parent = target.getParent();
@@ -23,10 +25,6 @@ public final class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     @Override
     public N getTarget() {
         return this.target;
-    }
-
-    public final UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.NodeRemove;
     }
 
     public ListUiNode<?, N> getParent() {

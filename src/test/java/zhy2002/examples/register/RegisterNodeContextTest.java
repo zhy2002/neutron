@@ -161,10 +161,10 @@ public class RegisterNodeContextTest {
 
         usernameNode.setValue("test");
         assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
-        assertThat(emailNode.getStateValue("TriggeredBy"), equalTo("DefaultEmailByUsernameRule"));
+        assertThat(emailNode.getTriggeredBy(), equalTo("DefaultEmailByUsernameRule"));
 
         emailNode.setValue("my@gmail.com");
-        assertThat(emailNode.getStateValue("TriggeredBy"), equalTo("user direct"));
+        assertThat(emailNode.getTriggeredBy(), equalTo("user direct"));
     }
 
     private static class CountingChangeListener implements UiNodeChangeListener {

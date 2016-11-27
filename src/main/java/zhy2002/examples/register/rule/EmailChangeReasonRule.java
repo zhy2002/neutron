@@ -2,38 +2,41 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.neutron.*;
+import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 
 /**
  * A rule that tracks why email is changed.
  */
-public class EmailChangeReasonRule extends UiNodeRule<StateChangeEvent<String>, EmailNode> {
+public class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, EmailNode> {
 
     public EmailChangeReasonRule(EmailNode owner) {
-        super(owner, DefaultPhases.Validate);
+        super(owner, PredefinedPhases.Validate);
     }
 
     @Override
     public void addToOwner() {
         super.addToOwner();
 
-        getOwner().setStateValue("TriggeredBy", "user direct");
+        getOwner().setChangeTrackMode(ChangeTrackModeEnum.None);
+        getOwner().setTriggeredBy("user direct");
+        getOwner().setChangeTrackMode(ChangeTrackModeEnum.Reference);
     }
 
     @Override
-    protected void execute(StateChangeEvent<String> typedEvent) {
+    protected void execute(StringStateChangeEvent typedEvent) {
 
         String triggeredBy = "user direct";
         UiNodeRuleActivation activation = typedEvent.getActivation();
         if (activation != null) {
             triggeredBy = activation.getRule().getClass().getSimpleName();
         }
-        getOwner().setStateValue("TriggeredBy", triggeredBy);
+        getOwner().setTriggeredBy(triggeredBy);
 
     }
 
     @Override
-    public UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.StateChange;
+    public Class<StringStateChangeEvent> getEventType() {
+        return StringStateChangeEvent.class;
     }
 }

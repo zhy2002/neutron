@@ -1,6 +1,6 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.DefaultPhases;
+import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNode;
 
@@ -11,7 +11,7 @@ public abstract class ValidationRule<E extends UiNodeEvent, N extends UiNode<?>>
         extends UiNodeRule<E, N> {
 
     protected ValidationRule(N owner) {
-        super(owner, DefaultPhases.Validate);
+        super(owner, PredefinedPhases.Validate);
     }
 
     @Override

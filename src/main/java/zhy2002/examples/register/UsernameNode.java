@@ -3,6 +3,7 @@ package zhy2002.examples.register;
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.UsernameInvalidCharRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
+import zhy2002.neutron.ChildNodeFactory;
 import zhy2002.neutron.NotImplementedException;
 import zhy2002.neutron.StringUiNode;
 
@@ -26,4 +27,6 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     protected void doUnload() {
         throw new NotImplementedException();
     }
+
+
 }

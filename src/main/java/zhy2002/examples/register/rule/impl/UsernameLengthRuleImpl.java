@@ -4,6 +4,7 @@ import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.StateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEvent;
 
 /**
  * Implementation of the rule.
@@ -24,7 +25,7 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
     private ErrorNode errorNode;
 
     @Override
-    protected void execute(StateChangeEvent<String> typedEvent) {
+    protected void execute(StringStateChangeEvent typedEvent) {
         if(isActivated(typedEvent)) {
             activate(typedEvent);
         } else {

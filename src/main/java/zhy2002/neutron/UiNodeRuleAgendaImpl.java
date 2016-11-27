@@ -14,7 +14,7 @@ public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
         List<UiNodeRuleActivation> result = new ArrayList<>();
         UiNode<?> anchor = event.getTarget();
         do {
-            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getEventType())) {
+            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getClass())) {//todo not right, event inheritance
                 if (rule.isObservedUiNode(event.getTarget())) {
                     UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, event);
                     result.add(activation);

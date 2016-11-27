@@ -1,9 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.UiNodeEventTypeEnum;
 import zhy2002.neutron.TickPhase;
-import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeEvent;
 
 /**
  * Base class for a ui node rule.
@@ -71,11 +70,12 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     @SuppressWarnings("unchecked")
     public void fire(UiNodeEvent event) {
         execute((E) event);
+
     }
 
     protected abstract void execute(E typedEvent);
 
-    public abstract UiNodeEventTypeEnum getEventType();
+    public abstract Class<E> getEventType();
 
     /**
      * The final step to add a rule to a node.

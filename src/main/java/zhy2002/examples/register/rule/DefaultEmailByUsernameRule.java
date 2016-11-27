@@ -2,19 +2,17 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.UsernameNode;
-import zhy2002.neutron.UiNodeEventTypeEnum;
-import zhy2002.neutron.DefaultPhases;
-import zhy2002.neutron.StateChangeEvent;
-import zhy2002.neutron.UiNodeRuleActivation;
+import zhy2002.neutron.PredefinedPhases;
+import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 
 /**
  * Email is always username + '@gmail.com'
  */
-public class DefaultEmailByUsernameRule extends UiNodeRule<StateChangeEvent<String>, UsernameNode> {
+public class DefaultEmailByUsernameRule extends UiNodeRule<StringStateChangeEvent, UsernameNode> {
 
     public DefaultEmailByUsernameRule(UsernameNode owner) {
-        super(owner, DefaultPhases.Post);
+        super(owner, PredefinedPhases.Post);
     }
 
     protected EmailNode getEmailNode() {
@@ -22,14 +20,15 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<StateChangeEvent<Stri
     }
 
     @Override
-    protected void execute(StateChangeEvent<String> typedEvent) {
+    protected void execute(StringStateChangeEvent typedEvent) {
         String value = getOwner().getValue();
         String email = value == null ? "" : value + "@gmail.com";
         getEmailNode().setValue(email);
     }
 
     @Override
-    public UiNodeEventTypeEnum getEventType() {
-        return UiNodeEventTypeEnum.StateChange;
+    public Class<StringStateChangeEvent> getEventType() {
+        return StringStateChangeEvent.class;
     }
+
 }

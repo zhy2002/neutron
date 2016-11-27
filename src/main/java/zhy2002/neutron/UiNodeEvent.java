@@ -2,21 +2,23 @@ package zhy2002.neutron;
 
 /**
  * The base class for all UiNode events.
+ * Subclasses are well-known, that is user should not inherit from this class.
  */
 public abstract class UiNodeEvent {
 
     private final UiNode<?> target;
     private final UiNodeRuleActivation activation;
+    private final String ruleGroup;
 
-    protected UiNodeEvent(UiNode<?> target, UiNodeRuleActivation activation) {
-        this.target = target;
-        this.activation = activation;
+    protected UiNodeEvent(UiNode<?> target) {
+        this(target, target.getContext().getCurrentActivation(), PredefinedRuleGroups.DEFAULT); //"" is the default ruleGroup
     }
 
-    /**
-     * @return a enum value that represents the type of a ui node event.
-     */
-    public abstract UiNodeEventTypeEnum getEventType();
+    protected UiNodeEvent(UiNode<?> target, UiNodeRuleActivation activation, String ruleGroup) {
+        this.target = target;
+        this.activation = activation;
+        this.ruleGroup = ruleGroup;
+    }
 
     /**
      * @return The ui node where the event (e.g. state change, add child or remove child) occurred.
@@ -31,5 +33,9 @@ public abstract class UiNodeEvent {
      */
     public UiNodeRuleActivation getActivation() {
         return activation;
+    }
+
+    public String getRuleGroup() {
+        return ruleGroup;
     }
 }

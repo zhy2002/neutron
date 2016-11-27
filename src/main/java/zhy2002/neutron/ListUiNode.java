@@ -35,15 +35,17 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
 
     public T createItem(Class<? extends T> itemClass) {
         T item = createItemInternal(itemClass);
-        NodeAddEvent event = createNodeLoadEvent(item);
+        NodeAddEvent event = createNodeAddEvent(item);
         getContext().processEvent(event);
         return item;
     }
 
-    protected NodeAddEvent createNodeLoadEvent(T item) {
-        NodeAddEvent<T> event = new NodeAddEvent<>(item, getContext().getCurrentActivation());
-        return event;
-    }
+    protected abstract NodeAddEvent<T> createNodeAddEvent(T item);
+
+//    {
+//        NodeAddEvent<T> event = new NodeAddEvent<>(item, getContext().getCurrentActivation());
+//        return event;
+//    }
 
     public void addItemInternal(T item) {
         itemAddToParent(item);
@@ -91,7 +93,5 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         getContext().processEvent(event);
     }
 
-    private NodeRemoveEvent<T> createNodeRemoveEvent(T child) {
-        return new NodeRemoveEvent<>(child, getContext().getCurrentActivation());
-    }
+    protected abstract NodeRemoveEvent<T> createNodeRemoveEvent(T child);
 }

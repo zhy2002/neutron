@@ -6,7 +6,7 @@ import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.UiNodeContextImpl;
 import zhy2002.neutron.ChildNodeFactory;
-import zhy2002.neutron.DefaultUiNodeStateKeys;
+import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.ObjectUiNode;
 import zhy2002.neutron.VoidUiNode;
 
@@ -25,11 +25,11 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
     public boolean getHasError() {
-        return getStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR);
+        return getStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR);
     }
 
     public void setHasError(boolean value) {
-        setStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR, value);
+        setStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR, value);
     }
 
     public UsernameNode getUsernameNode() {
@@ -50,7 +50,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     @Override
     protected void initializeSelf() {
-        setStateValueInternal(DefaultUiNodeStateKeys.HAS_ERROR, false);
+        setStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR, false);
 
         SetHasErrorRule rule = new SetHasErrorRule(this);
         rule.addToOwner();

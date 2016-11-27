@@ -4,9 +4,9 @@ package zhy2002.neutron;
 /**
  * An enum that provides strong typing for framework state keys.
  */
-public final class DefaultUiNodeStateKeys {
+public final class PredefinedUiNodeStateKeys {
 
-    private DefaultUiNodeStateKeys() {
+    private PredefinedUiNodeStateKeys() {
     }
 
     public static final String VALUE = "value";

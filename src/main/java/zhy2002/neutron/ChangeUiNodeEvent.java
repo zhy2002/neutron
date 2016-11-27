@@ -3,10 +3,10 @@ package zhy2002.neutron;
 /**
  * Change event.
  */
-public abstract class ChangeUiNodeEvent extends UiNodeEvent{
+public abstract class ChangeUiNodeEvent extends UiNodeEvent {
 
-    protected ChangeUiNodeEvent(UiNode<?> target, UiNodeRuleActivation activation) {
-        super(target, activation);
+    protected ChangeUiNodeEvent(UiNode<?> target) {
+        super(target);
     }
 
     /**
