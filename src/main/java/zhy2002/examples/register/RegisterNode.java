@@ -77,22 +77,22 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
     protected ErrorListNode createErrorListNode() {
-        ChildNodeFactory<ErrorListNode, RegisterNode> errorListNodeFactory = getContext().getChildNodeFactory(ErrorListNode.class);
+        ErrorListNodeFactory errorListNodeFactory = getContext().getInstance(ErrorListNodeFactory.class);
         return errorListNodeFactory.create(this, "errorListNode");
     }
 
     protected PasswordNode createPasswordNode() {
-        ChildNodeFactory<PasswordNode, RegisterNode> passwordNodeFactory = getContext().getChildNodeFactory(PasswordNode.class);
+        PasswordNodeFactory passwordNodeFactory = getContext().getInstance(PasswordNodeFactory.class);
         return passwordNodeFactory.create(this, "passwordNode");
     }
 
     protected UsernameNode createUsernameNode() {
-        ChildNodeFactory<UsernameNode, RegisterNode> usernameNodeFactory = getContext().getChildNodeFactory(UsernameNode.class);
+        UsernameNodeFactory usernameNodeFactory = getContext().getInstance(UsernameNodeFactory.class);
         return usernameNodeFactory.create(this, "usernameNode");
     }
 
     protected EmailNode createEmailNode() {
-        ChildNodeFactory<EmailNode, RegisterNode> emailNodeFactory = getContext().getChildNodeFactory(EmailNode.class);
+        EmailNodeFactory emailNodeFactory = getContext().getInstance(EmailNodeFactory.class);
         return emailNodeFactory.create(this, "emailNode");
     }
 

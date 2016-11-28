@@ -106,7 +106,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getStateValueInternal(key);
     }
 
-    public <T> void setStateValue(String key, Class<? super T> valueClass, T value) {
+    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
         TickPhase phase = getContext().getCurrentPhase();
         if (phase != null) {
             ChangeModeEnum changeMode = phase.getChangeMode();
@@ -146,7 +146,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     }
 
-    private <T> StateChangeEvent<T> createStateChangeEvent(String key, Class<? super T> valueClass, T oldValue, T value) {
+    private <T> StateChangeEvent<T> createStateChangeEvent(String key, Class<T> valueClass, T oldValue, T value) {
         return context.createStateChangeEvent(this, key, valueClass, oldValue, value);
     }
 

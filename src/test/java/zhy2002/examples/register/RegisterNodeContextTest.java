@@ -15,7 +15,7 @@ public class RegisterNodeContextTest {
 
     @Before
     public void setup() {
-        ClassRegistryImpl factoryRegistry = RegisterFactoryRegistry.create();
+        ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
         context = new RegisterNodeContext(factoryRegistry);
         registerNode = context.getRootNode();
     }

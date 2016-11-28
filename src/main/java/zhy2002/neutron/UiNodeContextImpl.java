@@ -9,13 +9,12 @@ import java.util.Map;
 public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
-    private final ClassRegistry factoryRegistry;
-    private final Map<Class<?>, ChildNodeFactory<?, ?>> childNodeFactoryMap = new HashMap<>();
+    private final ClassRegistry classRegistry;
     private final SequentialUniqueIdGenerator uniqueIdGenerator = new SequentialUniqueIdGenerator();
     private final UiNodeChangeEngineImpl changeEngine = new UiNodeChangeEngineImpl();
 
     protected UiNodeContextImpl(ClassRegistryImpl factoryRegistry) {
-        this.factoryRegistry = new ImmutableClassRegistry(factoryRegistry);
+        this.classRegistry = new ImmutableClassRegistry(factoryRegistry);
     }
 
     //region node construction
@@ -53,18 +52,15 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
      */
     protected abstract R createRootNode();
 
-    @SuppressWarnings("unchecked")
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<? extends N> nodeClass) {
-        return (ChildNodeFactory<N, P>) childNodeFactoryMap.get(nodeClass);
-    }
-
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> void setChildNodeFactory(Class<N> nodeClass, ChildNodeFactory<N, P> factory) {
-        childNodeFactoryMap.put(nodeClass, factory);
+    @Override
+    public <F> F getInstance(Class<F> clazz) {
+        return classRegistry.getInstance(clazz);
     }
 
     @Override
-    public <T> T getFactory(Class<T> factoryClass) {
-        return factoryRegistry.getInstance(factoryClass);
+    public <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
+       StateChangeEventFactory<T> factory = classRegistry.getStateChangeEventFactory(valueClass);
+       return factory.create(target, key, oldValue, newValue);
     }
 
     //endregion

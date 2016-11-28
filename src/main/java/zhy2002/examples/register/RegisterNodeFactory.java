@@ -7,8 +7,8 @@ import zhy2002.neutron.ClassRegistryImpl;
 public class RegisterNodeFactory {
 
     public static RegisterNode create() {
-        ClassRegistryImpl factoryRegistry = RegisterFactoryRegistry.create();
-        RegisterNodeContext context = new RegisterNodeContext(factoryRegistry);
+        RegisterClassRegistry registerClassRegistry = new RegisterClassRegistry();
+        RegisterNodeContext context = new RegisterNodeContext(registerClassRegistry);
         RegisterNode registerNode = context.getRootNode();
         return registerNode;
     }

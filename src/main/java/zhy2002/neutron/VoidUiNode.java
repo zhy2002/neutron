@@ -19,11 +19,6 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
         protected VoidUiNode createRootNode() {
             throw new NotImplementedException();
         }
-
-        @Override
-        public <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<? super T> valueClass, T oldValue, T newValue) {
-            throw new NotImplementedException();
-        }
     }
 
     /**

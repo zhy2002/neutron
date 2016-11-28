@@ -7,13 +7,13 @@ package zhy2002.neutron;
  */
 public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
 
-    <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key,  Class<? super T> valueClass, T oldValue, T newValue);
+    <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key,  Class<T> valueClass, T oldValue, T newValue);
     
     String getUniqueId();
 
     R getRootNode();
 
-    <T> T getFactory(Class<T> factoryClass);
+    <T> T getInstance(Class<T> factoryClass);
 
     void processEvent(UiNodeEvent event);
 

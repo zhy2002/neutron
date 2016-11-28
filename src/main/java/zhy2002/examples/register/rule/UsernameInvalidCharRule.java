@@ -14,10 +14,6 @@ public abstract class UsernameInvalidCharRule extends PreStateChangeRule<StringS
         super(owner, PredefinedPhases.Pre);
     }
 
-    public static abstract class Factory {
-        public abstract UsernameInvalidCharRule create(UsernameNode owner);
-    }
-
     @Override
     public Class<StringStateChangeEvent> getEventType() {
         return StringStateChangeEvent.class;

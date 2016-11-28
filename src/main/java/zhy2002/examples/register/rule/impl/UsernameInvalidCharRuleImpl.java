@@ -9,16 +9,9 @@ import zhy2002.neutron.event.StringStateChangeEvent;
  * the implementation.
  */
 public class UsernameInvalidCharRuleImpl extends UsernameInvalidCharRule {
-    private UsernameInvalidCharRuleImpl(UsernameNode owner) {
+
+    UsernameInvalidCharRuleImpl(UsernameNode owner) {
         super(owner);
-    }
-
-    public static class Factory extends UsernameInvalidCharRule.Factory {
-
-        @Override
-        public UsernameInvalidCharRule create(UsernameNode owner) {
-            return new UsernameInvalidCharRuleImpl(owner);
-        }
     }
 
     @Override

@@ -11,22 +11,15 @@ import zhy2002.neutron.event.StringStateChangeEvent;
  */
 public class UsernameLengthRuleImpl extends UsernameLengthRule {
 
-    private UsernameLengthRuleImpl(UsernameNode owner) {
+    UsernameLengthRuleImpl(UsernameNode owner) {
         super(owner);
-    }
-
-    public static class Factory extends UsernameLengthRule.Factory {
-        @Override
-        public UsernameLengthRule create(UsernameNode owner) {
-            return new UsernameLengthRuleImpl(owner);
-        }
     }
 
     private ErrorNode errorNode;
 
     @Override
     protected void execute(StringStateChangeEvent typedEvent) {
-        if(isActivated(typedEvent)) {
+        if (isActivated(typedEvent)) {
             activate(typedEvent);
         } else {
             deactivate(typedEvent);
@@ -40,7 +33,7 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
 
 
     protected void activate(StateChangeEvent<String> event) {
-        if(errorNode == null) {
+        if (errorNode == null) {
             errorNode = getErrorListNode().createItem();
             errorNode.setSource(event.getTarget());
             errorNode.setMessage(ERROR_MESSAGE);

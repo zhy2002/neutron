@@ -21,10 +21,6 @@ public abstract class UsernameLengthRule extends UiNodeRule<StringStateChangeEve
         return getOwner().getParent().getErrorListNode();
     }
 
-    public static abstract class Factory {
-        public abstract UsernameLengthRule create(UsernameNode owner);
-    }
-
     @Override
     public Class<StringStateChangeEvent> getEventType() {
         return StringStateChangeEvent.class;

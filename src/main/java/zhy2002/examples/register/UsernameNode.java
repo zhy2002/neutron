@@ -2,8 +2,9 @@ package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.UsernameInvalidCharRule;
+import zhy2002.examples.register.rule.UsernameInvalidCharRuleFactory;
 import zhy2002.examples.register.rule.UsernameLengthRule;
-import zhy2002.neutron.ChildNodeFactory;
+import zhy2002.examples.register.rule.UsernameLengthRuleFactory;
 import zhy2002.neutron.NotImplementedException;
 import zhy2002.neutron.StringUiNode;
 
@@ -16,10 +17,10 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
 
     @Override
     protected void doLoad() {
-        UsernameLengthRule usernameLengthRule = getContext().getFactory(UsernameLengthRule.Factory.class).create(this);
+        UsernameLengthRule usernameLengthRule = getContext().getInstance(UsernameLengthRuleFactory.class).create(this);
         usernameLengthRule.addToOwner();
 
-        UsernameInvalidCharRule usernameInvalidCharRule = getContext().getFactory(UsernameInvalidCharRule.Factory.class).create(this);
+        UsernameInvalidCharRule usernameInvalidCharRule = getContext().getInstance(UsernameInvalidCharRuleFactory.class).create(this);
         usernameInvalidCharRule.addToOwner();
     }
 
