@@ -192,7 +192,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.lifeState = NodeLifeStateEnum.Unload;
     }
 
-    public void removeFromParent() {
+    public void removeFromParent() { //todo not working
         if (this.lifeState != NodeLifeStateEnum.Unload)
             return;
 
@@ -239,6 +239,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
         List<UiNodeRule<?, ?>> list = attachedRuleMap.get(clazz);
         return list == null ? Collections.emptyList() : list;
+    }
+
+    @JsMethod
+    public void refresh() {
+        RefreshUiNodeEvent refreshUiNodeEvent = new RefreshUiNodeEvent(this);
+        getContext().processEvent(refreshUiNodeEvent);
     }
 
     public <T extends UiNode<?>, E extends UiNodeEvent> void addRule(UiNodeRule<E, T> rule) {

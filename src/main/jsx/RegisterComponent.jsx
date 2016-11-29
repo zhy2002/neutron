@@ -26,19 +26,17 @@ export default class RegisterComponent extends React.Component {
                 <form>
                     <FormField id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
                     <FormField id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
+                    <FormField id="examplePassword" label="Password" model={model.getPasswordNode()}/>
 
-                    <div className="form-group">
-                        <label htmlFor="examplePassword">Password</label>
-                        <input type="password" className="form-control" id="examplePassword"
-                               placeholder="Password"/>
-                    </div>
                     <div className="checkbox">
                         <label>
-                            <input type="checkbox"/> Check me out
+                            <input type="checkbox"/> Terms and Conditions
                         </label>
                     </div>
-                    <button type="button" className="btn btn-default">Submit
-                    </button>
+                    <button type="button" className="btn btn-default" onClick={()=>{
+                        console.log('clicked');
+                        model.refresh();
+                    }}>Refresh</button>
                 </form>
                 <ErrorListComponent model={model.getErrorListNode()}/>
             </div>

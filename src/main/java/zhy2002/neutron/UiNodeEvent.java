@@ -38,4 +38,6 @@ public abstract class UiNodeEvent {
     public String getRuleGroup() {
         return ruleGroup;
     }
+
+    public abstract Iterable<UiNodeRuleActivation> getActivations();
 }

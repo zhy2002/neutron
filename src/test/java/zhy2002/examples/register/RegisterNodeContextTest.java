@@ -2,6 +2,7 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.register.rule.UsernameIsRequiredRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.ClassRegistryImpl;
 
@@ -209,8 +210,22 @@ public class RegisterNodeContextTest {
     }
 
     @Test
-    public void shouldFireChangeNotification() {
-        //todo
+    public void shouldValidateRequiredFieldWhenRefresh() {
+
+        ErrorListNode errorListNode = registerNode.getErrorListNode();
+        assertThat(errorListNode.getChildCount(), equalTo(0));
+
+        registerNode.refresh();
+
+        assertThat(errorListNode.getChildCount(), equalTo(1));
+        ErrorNode errorNode = errorListNode.getItem(0);
+        assertThat(errorNode.getMessage(), equalTo(UsernameIsRequiredRule.ERROR_MESSAGE));
+
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("hello");
+        registerNode.refresh();
+        assertThat(errorListNode.getChildCount(), equalTo(0));
+
     }
 
 

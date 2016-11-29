@@ -18,7 +18,7 @@ export default class FormField extends React.Component {
         var newState = {};
         newState.value = this.model.getValue();
         newState.fieldClass = "form-control";
-        if(this.model.getStateValue("TriggeredBy") === "DefaultEmailByUsernameRule") {
+        if(this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
             newState.fieldClass += " bg-danger";
         }
         return newState;

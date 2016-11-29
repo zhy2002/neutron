@@ -10,25 +10,9 @@ import java.util.*;
 public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
     private final Map<TickPhase, Deque<UiNodeRuleActivation>> activationQueueMap = new HashMap<>(); //todo this is actually a priority queue.
 
-    protected Iterable<UiNodeRuleActivation> getActivations(UiNodeEvent event) {
-        List<UiNodeRuleActivation> result = new ArrayList<>();
-        UiNode<?> anchor = event.getTarget();
-        do {
-            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getClass())) {//todo not right, event inheritance
-                if (rule.isObservedUiNode(event.getTarget())) {
-                    UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, event);
-                    result.add(activation);
-                }
-            }
-            anchor = anchor.getParent();
-        } while (anchor != null);
-
-        return result;
-    }
-
     @Override
     public void addActivations(UiNodeEvent event) {
-        for (UiNodeRuleActivation activation : getActivations(event)) {
+        for (UiNodeRuleActivation activation : event.getActivations()) {
             Deque<UiNodeRuleActivation> activationDeque = activationQueueMap.get(activation.getPhase());
             if (activationDeque == null) {
                 activationDeque = new ArrayDeque<>();

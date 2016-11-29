@@ -21554,17 +21554,7 @@
 	                    null,
 	                    _react2.default.createElement(_FormField2.default, { id: "exampleUsername", label: "Username", model: model.getUsernameNode() }),
 	                    _react2.default.createElement(_FormField2.default, { id: "exampleEmail", label: "Email address", model: model.getEmailNode() }),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { htmlFor: "examplePassword" },
-	                            "Password"
-	                        ),
-	                        _react2.default.createElement("input", { type: "password", className: "form-control", id: "examplePassword",
-	                            placeholder: "Password" })
-	                    ),
+	                    _react2.default.createElement(_FormField2.default, { id: "examplePassword", label: "Password", model: model.getPasswordNode() }),
 	                    _react2.default.createElement(
 	                        "div",
 	                        { className: "checkbox" },
@@ -21572,13 +21562,16 @@
 	                            "label",
 	                            null,
 	                            _react2.default.createElement("input", { type: "checkbox" }),
-	                            " Check me out"
+	                            " Terms and Conditions"
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        "button",
-	                        { type: "button", className: "btn btn-default" },
-	                        "Submit"
+	                        { type: "button", className: "btn btn-default", onClick: function onClick() {
+	                                console.log('clicked');
+	                                model.refresh();
+	                            } },
+	                        "Refresh"
 	                    )
 	                ),
 	                _react2.default.createElement(_ErrorListComponent2.default, { model: model.getErrorListNode() })
@@ -21639,7 +21632,7 @@
 	            var newState = {};
 	            newState.value = this.model.getValue();
 	            newState.fieldClass = "form-control";
-	            if (this.model.getStateValue("TriggeredBy") === "DefaultEmailByUsernameRule") {
+	            if (this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
 	                newState.fieldClass += " bg-danger";
 	            }
 	            return newState;
