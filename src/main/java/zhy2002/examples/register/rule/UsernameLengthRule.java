@@ -5,6 +5,7 @@ import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
  * Generated skeleton code.
@@ -22,7 +23,7 @@ public abstract class UsernameLengthRule extends UiNodeRule<StringStateChangeEve
     }
 
     @Override
-    public Class<StringStateChangeEvent> getEventType() {
-        return StringStateChangeEvent.class;
+    public EnhancedLinkedList<Class<? extends StringStateChangeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(StringStateChangeEvent.class);
     }
 }

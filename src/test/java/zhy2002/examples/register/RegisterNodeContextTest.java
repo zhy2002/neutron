@@ -223,7 +223,7 @@ public class RegisterNodeContextTest {
 
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("hello");
-        registerNode.refresh();
+        //registerNode.refresh();
         assertThat(errorListNode.getChildCount(), equalTo(0));
 
     }

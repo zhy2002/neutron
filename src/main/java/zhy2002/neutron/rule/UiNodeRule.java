@@ -3,6 +3,8 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.util.EnhancedLinkedList;
+
 
 /**
  * Base class for a ui node rule.
@@ -51,7 +53,7 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * Determines if UiNodeEvent originated form the node passed in should trigger this rule.
-     *
+     * Not called for refresh events.
      * @param eventTarget a UiNode that has just changed.
      * @return true if the rule should fire.
      */
@@ -75,7 +77,9 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     protected abstract void execute(E typedEvent);
 
-    public abstract Class<E> getEventType();
+    public EnhancedLinkedList<Class<? extends E>> observedEventTypes() {
+        return new EnhancedLinkedList<>();
+    }
 
     /**
      * The final step to add a rule to a node.

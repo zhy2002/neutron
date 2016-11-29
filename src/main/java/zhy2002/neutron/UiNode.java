@@ -257,17 +257,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
         assert rule.getHost() == this;
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.getEventType());
-        if (list == null) {
-            list = new ArrayList<>();
-            attachedRuleMap.put(rule.getEventType(), list);
+        for(Class<?> eventType : rule.observedEventTypes()) {
+            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
+            if (list == null) {
+                list = new ArrayList<>();
+                attachedRuleMap.put(eventType, list);
+            }
+            list.add(rule);
         }
-        list.add(rule);
+
     }
 
     public <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
         assert rule.getHost() == this;
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.getEventType());
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.observedEventTypes());
         if (list != null) {
             list.remove(rule);
         }

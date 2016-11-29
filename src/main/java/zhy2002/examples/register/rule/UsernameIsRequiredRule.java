@@ -5,10 +5,13 @@ import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.RefreshUiNodeEvent;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 
-public class UsernameIsRequiredRule extends UiNodeRule<RefreshUiNodeEvent, UsernameNode> {
+public class UsernameIsRequiredRule extends UiNodeRule<UiNodeEvent, UsernameNode> {
 
     public static final String ERROR_MESSAGE = "Username is required";
     private ErrorNode errorNode;
@@ -22,7 +25,7 @@ public class UsernameIsRequiredRule extends UiNodeRule<RefreshUiNodeEvent, Usern
     }
 
     @Override
-    protected void execute(RefreshUiNodeEvent typedEvent) {
+    protected void execute(UiNodeEvent typedEvent) {
         if (getOwner().getValue() == null || getOwner().getValue().trim().length() == 0) {
             if (errorNode == null) {
                 errorNode = getErrorListNode().createItem();
@@ -32,7 +35,7 @@ public class UsernameIsRequiredRule extends UiNodeRule<RefreshUiNodeEvent, Usern
             }
 
         } else {
-            if(errorNode != null) {
+            if (errorNode != null) {
                 getErrorListNode().removeItem(errorNode);
                 errorNode = null;
             }
@@ -41,7 +44,7 @@ public class UsernameIsRequiredRule extends UiNodeRule<RefreshUiNodeEvent, Usern
     }
 
     @Override
-    public Class<RefreshUiNodeEvent> getEventType() {
-        return RefreshUiNodeEvent.class;
+    public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(RefreshUiNodeEvent.class).and(StringStateChangeEvent.class);
     }
 }

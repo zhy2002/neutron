@@ -7,6 +7,9 @@ import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
+
+import java.util.List;
 
 public class ClearHasErrorRule extends UiNodeRule<ErrorNodeRemoveEvent, RegisterNode> {
 
@@ -22,8 +25,8 @@ public class ClearHasErrorRule extends UiNodeRule<ErrorNodeRemoveEvent, Register
     }
 
     @Override
-    public Class<ErrorNodeRemoveEvent> getEventType() {
-        return  ErrorNodeRemoveEvent.class;
+    public EnhancedLinkedList<Class<? extends ErrorNodeRemoveEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(ErrorNodeRemoveEvent.class);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
 
 
     protected boolean isActivated(StateChangeEvent<String> event) {
-        return getOwner().getValue() != null && getOwner().getValue().length() < 4;
+        return getOwner().getValue() != null && getOwner().getValue().length() > 0 && getOwner().getValue().length() < 4;
     }
 
 

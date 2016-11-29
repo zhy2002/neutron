@@ -5,6 +5,9 @@ import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.PreStateChangeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
+
+import java.util.List;
 
 /**
  * A sample pre-change rule.
@@ -15,7 +18,7 @@ public abstract class UsernameInvalidCharRule extends PreStateChangeRule<StringS
     }
 
     @Override
-    public Class<StringStateChangeEvent> getEventType() {
-        return StringStateChangeEvent.class;
+    public EnhancedLinkedList<Class<? extends StringStateChangeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(StringStateChangeEvent.class);
     }
 }

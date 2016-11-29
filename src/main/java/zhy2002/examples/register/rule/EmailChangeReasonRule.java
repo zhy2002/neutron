@@ -4,6 +4,7 @@ import zhy2002.examples.register.EmailNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
  * A rule that tracks why email is changed.
@@ -36,7 +37,7 @@ public class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, Em
     }
 
     @Override
-    public Class<StringStateChangeEvent> getEventType() {
-        return StringStateChangeEvent.class;
+    public EnhancedLinkedList<Class<? extends StringStateChangeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(StringStateChangeEvent.class);
     }
 }

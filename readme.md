@@ -1,6 +1,5 @@
 todo 
 -----------------
-* trigger refresh event when change happens
 * preserve value when node is disabled -> conditional state
 * built in states
 * add sourcemap to webpack
