@@ -9,9 +9,14 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 /**
  * A rule that tracks why email is changed.
  */
-public class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, EmailNode> {
+public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, EmailNode> {
 
-    public EmailChangeReasonRule(EmailNode owner) {
+    @FunctionalInterface
+    public interface Factory {
+        EmailChangeReasonRule create(EmailNode owner);
+    }
+
+    protected EmailChangeReasonRule(EmailNode owner) {
         super(owner, PredefinedPhases.Validate);
     }
 

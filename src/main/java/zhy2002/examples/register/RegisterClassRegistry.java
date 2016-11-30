@@ -1,9 +1,7 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rule.UsernameInvalidCharRuleFactory;
-import zhy2002.examples.register.rule.UsernameLengthRuleFactory;
-import zhy2002.examples.register.rule.impl.UsernameInvalidCharRuleImplFactory;
-import zhy2002.examples.register.rule.impl.UsernameLengthRuleImplFactory;
+import zhy2002.examples.register.rule.*;
+import zhy2002.examples.register.rule.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
 
 /**
@@ -18,11 +16,13 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadChildNodeFactories() {
-        this.setInstance(UsernameNodeFactory.class, new UsernameNodeFactory());
-        this.setInstance(PasswordNodeFactory.class, new PasswordNodeFactory());
-        this.setInstance(ErrorListNodeFactory.class, new ErrorListNodeFactory());
-        this.setInstance(ErrorNodeFactory.class, new ErrorNodeFactory());
-        this.setInstance(EmailNodeFactory.class, new EmailNodeFactory());
+        setInstance(UsernameNodeFactory.class, new UsernameNodeFactory());
+        setInstance(PasswordNodeFactory.class, new PasswordNodeFactory());
+        setInstance(ErrorListNodeFactory.class, new ErrorListNodeFactory());
+        setInstance(ErrorNodeFactory.class, new ErrorNodeFactory());
+        setInstance(EmailNodeFactory.class, new EmailNodeFactory());
+        setInstance(RepeatPasswordNodeFactory.class, new RepeatPasswordNodeFactory());
+        setInstance(ReceiveOffersNodeFactory.class, new ReceiveOffersNodeFactory());
     }
 
     private void loadStateChangeEventFactories() {
@@ -30,7 +30,13 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadRuleFactories() {
-        this.setInstance(UsernameLengthRuleFactory.class, new UsernameLengthRuleImplFactory());
-        this.setInstance(UsernameInvalidCharRuleFactory.class, new UsernameInvalidCharRuleImplFactory());
+        setInstance(UsernameLengthRule.Factory.class, new UsernameLengthRuleImpl.Factory());
+        setInstance(UsernameInvalidCharRule.Factory.class, new UsernameInvalidCharRuleImpl.Factory());
+        setInstance(ClearHasErrorRule.Factory.class, new ClearHasErrorRuleImpl.Factory());
+        setInstance(SetHasErrorRule.Factory.class, new SetHasErrorRuleImpl.Factory());
+        setInstance(DefaultEmailByUsernameRule.Factory.class, new DefaultEmailByUsernameRuleImpl.Factory());
+        setInstance(EmailChangeReasonRule.Factory.class, new EmailChangeReasonRuleImpl.Factory());
+        setInstance(UsernameIsRequiredRule.Factory.class, new UsernameIsRequiredRuleImpl.Factory());
+
     }
 }

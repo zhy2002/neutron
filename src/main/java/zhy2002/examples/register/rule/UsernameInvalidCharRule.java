@@ -13,6 +13,12 @@ import java.util.List;
  * A sample pre-change rule.
  */
 public abstract class UsernameInvalidCharRule extends PreStateChangeRule<StringStateChangeEvent, UsernameNode> {
+
+    @FunctionalInterface
+    public interface Factory {
+        UsernameInvalidCharRule create(UsernameNode owner);
+    }
+
     protected UsernameInvalidCharRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Pre);
     }

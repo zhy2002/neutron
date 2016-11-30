@@ -107,6 +107,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public <T> void setStateValue(String key, Class<T> valueClass, T value) {
+        if(this.getLifeState() == NodeLifeStateEnum.Detached) {
+            setStateValueInternal(key, value);
+            return;
+        }
+
         TickPhase phase = getContext().getCurrentPhase();
         if (phase != null) {
             ChangeModeEnum changeMode = phase.getChangeMode();
@@ -189,11 +194,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         } else {
             this.parent.addChild(this);
         }
-        this.lifeState = NodeLifeStateEnum.Unload;
+        this.lifeState = NodeLifeStateEnum.Unloaded;
     }
 
     public void removeFromParent() { //todo not working
-        if (this.lifeState != NodeLifeStateEnum.Unload)
+        if (this.lifeState != NodeLifeStateEnum.Unloaded)
             return;
 
         if (parent == null) {
@@ -210,7 +215,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * Calling this method with transition from Unloaded to Loaded.
      */
     public void load() {
-        if (this.lifeState != NodeLifeStateEnum.Unload)
+        if (this.lifeState != NodeLifeStateEnum.Unloaded)
             return;
         doLoad();
         this.lifeState = NodeLifeStateEnum.Loaded;
@@ -219,7 +224,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * Life cycle method that make this node ready for interaction.
      */
-    protected abstract void doLoad();
+    protected void doLoad() {}
 
     /**
      * Calling this method will transition from Loaded to Unloaded.
@@ -228,13 +233,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         if (this.lifeState != NodeLifeStateEnum.Loaded)
             return;
         doUnload();
-        this.lifeState = NodeLifeStateEnum.Unload;
+        this.lifeState = NodeLifeStateEnum.Unloaded;
     }
 
     /**
      * Undo what initialize() did.
      */
-    protected abstract void doUnload();
+    protected void doUnload() {}
 
     public Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
         List<UiNodeRule<?, ?>> list = attachedRuleMap.get(clazz);

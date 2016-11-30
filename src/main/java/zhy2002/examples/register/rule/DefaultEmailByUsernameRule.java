@@ -10,9 +10,14 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 /**
  * Email is always username + '@gmail.com'
  */
-public class DefaultEmailByUsernameRule extends UiNodeRule<StringStateChangeEvent, UsernameNode> {
+public abstract class DefaultEmailByUsernameRule extends UiNodeRule<StringStateChangeEvent, UsernameNode> {
 
-    public DefaultEmailByUsernameRule(UsernameNode owner) {
+    @FunctionalInterface
+    public interface Factory {
+        DefaultEmailByUsernameRule create(UsernameNode owner);
+    }
+
+    protected DefaultEmailByUsernameRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

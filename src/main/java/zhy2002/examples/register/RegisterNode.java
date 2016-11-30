@@ -4,10 +4,9 @@ import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.ClearHasErrorRule;
 import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
-import zhy2002.neutron.UiNodeContextImpl;
-import zhy2002.neutron.ChildNodeFactory;
-import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.ObjectUiNode;
+import zhy2002.neutron.PredefinedUiNodeStateKeys;
+import zhy2002.neutron.UiNodeContextImpl;
 import zhy2002.neutron.VoidUiNode;
 
 import javax.validation.constraints.NotNull;
@@ -18,6 +17,8 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private UsernameNode usernameNode;
     private EmailNode emailNode;
     private PasswordNode passwordNode;
+    private RepeatPasswordNode repeatPasswordNode;
+    private ReceiveOffersNode receiveOffersNode;
     private ErrorListNode errorListNode;
 
     RegisterNode(@NotNull UiNodeContextImpl<?> context) {
@@ -40,6 +41,14 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return passwordNode;
     }
 
+    public RepeatPasswordNode getRepeatPasswordNode() {
+        return repeatPasswordNode;
+    }
+
+    public ReceiveOffersNode getReceiveOffersNode() {
+        return receiveOffersNode;
+    }
+
     public EmailNode getEmailNode() {
         return emailNode;
     }
@@ -50,27 +59,28 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     @Override
     protected void initializeSelf() {
-        setStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR, false);
-
-        SetHasErrorRule rule = new SetHasErrorRule(this);
-        rule.addToOwner();
-
-        ClearHasErrorRule rule2 = new ClearHasErrorRule(this);
-        rule2.addToOwner();
+        setHasError(false);
+        getContext().getInstance(SetHasErrorRule.Factory.class).create(this).addToOwner();
+        getContext().getInstance(ClearHasErrorRule.Factory.class).create(this).addToOwner();
     }
 
     @Override
     protected void addChildren() {
         usernameNode = createUsernameNode();
-        DefaultEmailByUsernameRule defaultEmailByUsernameRule = new DefaultEmailByUsernameRule(usernameNode);
-        defaultEmailByUsernameRule.addToOwner();
         addUsernameNode();
+        getContext().getInstance(DefaultEmailByUsernameRule.Factory.class).create(usernameNode).addToOwner();
 
         emailNode = createEmailNode();
         addEmailNode();
 
         passwordNode = createPasswordNode();
         addPasswordNode();
+
+        repeatPasswordNode = createRepeatPasswordNode();
+        addRepeatPasswordNode();
+
+        receiveOffersNode = createReceiveOffersNode();
+        addReceiveOffersNode();
 
         errorListNode = createErrorListNode();
         addErrorListNode();
@@ -84,6 +94,16 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     protected PasswordNode createPasswordNode() {
         PasswordNodeFactory passwordNodeFactory = getContext().getInstance(PasswordNodeFactory.class);
         return passwordNodeFactory.create(this, "passwordNode");
+    }
+
+    protected RepeatPasswordNode createRepeatPasswordNode() {
+        RepeatPasswordNodeFactory repeatPasswordNodeFactory = getContext().getInstance(RepeatPasswordNodeFactory.class);
+        return repeatPasswordNodeFactory.create(this, "repeatPasswordNode");
+    }
+
+    protected ReceiveOffersNode createReceiveOffersNode() {
+        ReceiveOffersNodeFactory receiveOffersNodeFactory = getContext().getInstance(ReceiveOffersNodeFactory.class);
+        return receiveOffersNodeFactory.create(this, "receiveOffersNode");
     }
 
     protected UsernameNode createUsernameNode() {
@@ -104,6 +124,14 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         passwordNode.addToParent();
     }
 
+    protected void addRepeatPasswordNode() {
+        repeatPasswordNode.addToParent();
+    }
+
+    protected void addReceiveOffersNode() {
+        receiveOffersNode.addToParent();
+    }
+
     protected void addErrorListNode() {
         errorListNode.addToParent();
     }
@@ -117,6 +145,8 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         loadUsernameNode();
         loadEmailNode();
         loadPasswordNode();
+        loadRepeatPasswordNode();
+        loadReceivesOffersNode();
         loadErrorListNode();
     }
 
@@ -136,5 +166,11 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         usernameNode.load();
     }
 
+    protected void loadRepeatPasswordNode() {
+        repeatPasswordNode.load();
+    }
 
+    protected void loadReceivesOffersNode() {
+        receiveOffersNode.load();
+    }
 }

@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import jsinterop.annotations.JsMethod;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,13 +23,14 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return super.getStateValueInternal(PredefinedUiNodeStateKeys.VALUE);
     }
 
-    @JsMethod
     public T getValue() {
         return getStateValue(PredefinedUiNodeStateKeys.VALUE);
     }
 
-    public void setValue(Class<T> valueClass, T value) {
+    protected void setValue(Class<T> valueClass, T value) {
         setStateValue(PredefinedUiNodeStateKeys.VALUE, valueClass, value);
     }
+
+    public abstract void setValue(T value);
 
 }

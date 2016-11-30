@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class FormField extends React.Component {
+export default class FormFieldComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,14 +18,17 @@ export default class FormField extends React.Component {
         var newState = {};
         newState.value = this.model.getValue();
         newState.fieldClass = "form-control";
-        if(this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
-            newState.fieldClass += " bg-danger";
+        if(this.model.getTriggeredBy) {
+            console.log("triggered by = " + this.model.getTriggeredBy());
+            if(this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
+                newState.fieldClass += " bg-danger";
+            }
         }
         return newState;
     }
 
     componentDidMount() {
-        console.log("form field did mount");
+        console.log(this.label + " did mount");
     }
 
     onUiNodeChanged() {

@@ -1,5 +1,6 @@
 import React from "react";
-import FormField from "./FormField.jsx";
+import FormFieldComponent from "./FormFieldComponent.jsx";
+import FormCheckboxComponent from "./FormCheckboxComponent.jsx";
 import ErrorListComponent from "./ErrorListComponent.jsx";
 
 
@@ -24,15 +25,12 @@ export default class RegisterComponent extends React.Component {
         return (
             <div>
                 <form>
-                    <FormField id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
-                    <FormField id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
-                    <FormField id="examplePassword" label="Password" model={model.getPasswordNode()}/>
+                    <FormFieldComponent id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
+                    <FormFieldComponent id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
+                    <FormFieldComponent id="examplePassword" label="Password" model={model.getPasswordNode()}/>
+                    <FormFieldComponent id="exampleRepeatPassword" label="Repeat Password" model={model.getRepeatPasswordNode()}/>
+                    <FormCheckboxComponent id="exampleReceiveOffers" label="Receive latest offers" model={model.getReceiveOffersNode()} />
 
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox"/> Terms and Conditions
-                        </label>
-                    </div>
                     <button type="button" className="btn btn-default" onClick={()=>{
                         console.log('clicked');
                         model.refresh();

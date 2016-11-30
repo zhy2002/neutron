@@ -8,32 +8,25 @@ import zhy2002.neutron.StringUiNode;
 @JsType
 public class EmailNode extends StringUiNode<RegisterNode> {
 
+    public static final String STATE_KEY_TRIGGERED_BY = "triggeredBy";
+
     protected EmailNode(RegisterNode parent, String name) {
         super(parent, name);
+
+        setValue("");
     }
 
     @Override
     protected void doLoad() {
-        setStateValueInternal(PredefinedUiNodeStateKeys.DISABLED, false);
-
-        EmailChangeReasonRule emailChangeReasonRule = new EmailChangeReasonRule(this);
-        emailChangeReasonRule.addToOwner();
-    }
-
-    @Override
-    protected void doUnload() {
-
+        getContext().getInstance(EmailChangeReasonRule.Factory.class).create(this).addToOwner();
     }
 
     public void setTriggeredBy(String triggeredBy) {
-        this.setStateValue("triggeredBy", String.class, triggeredBy);
-    }
-
-    public void setValue(String email) {
-        setValue(String.class, email);
+        this.setStateValue(STATE_KEY_TRIGGERED_BY, String.class, triggeredBy);
     }
 
     public String getTriggeredBy() {
-        return getStateValue("triggeredBy");
+        return getStateValue(STATE_KEY_TRIGGERED_BY);
     }
+
 }

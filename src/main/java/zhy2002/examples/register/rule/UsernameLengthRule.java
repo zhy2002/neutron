@@ -14,7 +14,12 @@ public abstract class UsernameLengthRule extends UiNodeRule<StringStateChangeEve
 
     public static final String ERROR_MESSAGE = "Length of name field must be greater than 3";
 
-    public UsernameLengthRule(UsernameNode owner) {
+    @FunctionalInterface
+    public interface Factory {
+        UsernameLengthRule create(UsernameNode owner);
+    }
+
+    protected UsernameLengthRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

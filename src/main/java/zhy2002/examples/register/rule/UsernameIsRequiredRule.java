@@ -11,12 +11,17 @@ import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 
-public class UsernameIsRequiredRule extends UiNodeRule<UiNodeEvent, UsernameNode> {
+public abstract class UsernameIsRequiredRule extends UiNodeRule<UiNodeEvent, UsernameNode> {
 
     public static final String ERROR_MESSAGE = "Username is required";
     private ErrorNode errorNode;
 
-    public UsernameIsRequiredRule(UsernameNode owner) {
+    @FunctionalInterface
+    public interface Factory {
+        UsernameIsRequiredRule create(UsernameNode owner);
+    }
+
+    protected UsernameIsRequiredRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

@@ -6,12 +6,17 @@ import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEvent;
 
-/**
- * Implementation of the rule.
- */
 public class UsernameLengthRuleImpl extends UsernameLengthRule {
 
-    UsernameLengthRuleImpl(UsernameNode owner) {
+    public static class Factory implements UsernameLengthRule.Factory {
+
+        @Override
+        public UsernameLengthRule create(UsernameNode owner) {
+            return new UsernameLengthRuleImpl(owner);
+        }
+    }
+
+    private UsernameLengthRuleImpl(UsernameNode owner) {
         super(owner);
     }
 

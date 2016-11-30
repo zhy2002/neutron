@@ -162,7 +162,7 @@ public class RegisterNodeContextTest {
 
         usernameNode.setValue("test");
         assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
-        assertThat(emailNode.getTriggeredBy(), equalTo("DefaultEmailByUsernameRule"));
+        assertThat(emailNode.getTriggeredBy(), equalTo("DefaultEmailByUsernameRuleImpl"));
 
         emailNode.setValue("my@gmail.com");
         assertThat(emailNode.getTriggeredBy(), equalTo("user direct"));

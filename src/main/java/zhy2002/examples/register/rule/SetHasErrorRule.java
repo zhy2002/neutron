@@ -8,10 +8,14 @@ import zhy2002.neutron.UiNode;
 import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
-public class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, RegisterNode> {
+public abstract class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, RegisterNode> {
 
+    @FunctionalInterface
+    public interface Factory {
+        SetHasErrorRule create(RegisterNode owner);
+    }
 
-    public SetHasErrorRule(RegisterNode owner ) {
+    protected SetHasErrorRule(RegisterNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

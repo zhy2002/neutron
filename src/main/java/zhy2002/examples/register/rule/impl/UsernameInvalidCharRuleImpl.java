@@ -5,12 +5,17 @@ import zhy2002.examples.register.rule.UsernameInvalidCharRule;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEvent;
 
-/**
- * the implementation.
- */
 public class UsernameInvalidCharRuleImpl extends UsernameInvalidCharRule {
 
-    UsernameInvalidCharRuleImpl(UsernameNode owner) {
+    public static class Factory implements UsernameInvalidCharRule.Factory {
+
+        @Override
+        public UsernameInvalidCharRule create(UsernameNode owner) {
+            return new UsernameInvalidCharRuleImpl(owner);
+        }
+    }
+
+    private UsernameInvalidCharRuleImpl(UsernameNode owner) {
         super(owner);
     }
 

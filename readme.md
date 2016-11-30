@@ -1,5 +1,7 @@
 todo 
 -----------------
+* hierachical di
+* factor inheritance to composition once things get clearer
 * preserve value when node is disabled -> conditional state
 * built in states
 * add sourcemap to webpack

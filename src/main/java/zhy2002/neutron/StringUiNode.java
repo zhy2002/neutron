@@ -21,10 +21,16 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     private void init() {
-        this.setStateValueInternal(PredefinedUiNodeStateKeys.VALUE, "");
+        this.setValue("");
     }
 
-    public void setValue( String value) {
+    @Override
+    public final String getValue() {
+        return super.getValue();
+    }
+
+    @Override
+    public final void setValue(String value) {
         super.setValue(String.class, value);
     }
 }

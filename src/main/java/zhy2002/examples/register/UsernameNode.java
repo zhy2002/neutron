@@ -14,19 +14,9 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
 
     @Override
     protected void doLoad() {
-        UsernameLengthRule usernameLengthRule = getContext().getInstance(UsernameLengthRuleFactory.class).create(this);
-        usernameLengthRule.addToOwner();
-
-        UsernameInvalidCharRule usernameInvalidCharRule = getContext().getInstance(UsernameInvalidCharRuleFactory.class).create(this);
-        usernameInvalidCharRule.addToOwner();
-
-        new UsernameIsRequiredRule(this).addToOwner();
+        getContext().getInstance(UsernameLengthRule.Factory.class).create(this).addToOwner();
+        getContext().getInstance(UsernameInvalidCharRule.Factory.class).create(this).addToOwner();
+        getContext().getInstance(UsernameIsRequiredRule.Factory.class).create(this).addToOwner();
     }
-
-    @Override
-    protected void doUnload() {
-        throw new NotImplementedException();
-    }
-
 
 }

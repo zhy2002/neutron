@@ -21506,11 +21506,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormField = __webpack_require__(180);
+	var _FormFieldComponent = __webpack_require__(180);
 
-	var _FormField2 = _interopRequireDefault(_FormField);
+	var _FormFieldComponent2 = _interopRequireDefault(_FormFieldComponent);
 
-	var _ErrorListComponent = __webpack_require__(181);
+	var _FormCheckboxComponent = __webpack_require__(181);
+
+	var _FormCheckboxComponent2 = _interopRequireDefault(_FormCheckboxComponent);
+
+	var _ErrorListComponent = __webpack_require__(182);
 
 	var _ErrorListComponent2 = _interopRequireDefault(_ErrorListComponent);
 
@@ -21552,19 +21556,11 @@
 	                _react2.default.createElement(
 	                    "form",
 	                    null,
-	                    _react2.default.createElement(_FormField2.default, { id: "exampleUsername", label: "Username", model: model.getUsernameNode() }),
-	                    _react2.default.createElement(_FormField2.default, { id: "exampleEmail", label: "Email address", model: model.getEmailNode() }),
-	                    _react2.default.createElement(_FormField2.default, { id: "examplePassword", label: "Password", model: model.getPasswordNode() }),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "checkbox" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            null,
-	                            _react2.default.createElement("input", { type: "checkbox" }),
-	                            " Terms and Conditions"
-	                        )
-	                    ),
+	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "exampleUsername", label: "Username", model: model.getUsernameNode() }),
+	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "exampleEmail", label: "Email address", model: model.getEmailNode() }),
+	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "examplePassword", label: "Password", model: model.getPasswordNode() }),
+	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "exampleRepeatPassword", label: "Repeat Password", model: model.getRepeatPasswordNode() }),
+	                    _react2.default.createElement(_FormCheckboxComponent2.default, { id: "exampleReceiveOffers", label: "Receive latest offers", model: model.getReceiveOffersNode() }),
 	                    _react2.default.createElement(
 	                        "button",
 	                        { type: "button", className: "btn btn-default", onClick: function onClick() {
@@ -21608,14 +21604,14 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var FormField = function (_React$Component) {
-	    _inherits(FormField, _React$Component);
+	var FormFieldComponent = function (_React$Component) {
+	    _inherits(FormFieldComponent, _React$Component);
 
-	    function FormField(props) {
-	        _classCallCheck(this, FormField);
+	    function FormFieldComponent(props) {
+	        _classCallCheck(this, FormFieldComponent);
 
 	        //const fields
-	        var _this = _possibleConstructorReturn(this, (FormField.__proto__ || Object.getPrototypeOf(FormField)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (FormFieldComponent.__proto__ || Object.getPrototypeOf(FormFieldComponent)).call(this, props));
 
 	        _this.id = props["id"];
 	        _this.label = props["label"];
@@ -21625,15 +21621,18 @@
 	        return _this;
 	    }
 
-	    _createClass(FormField, [{
+	    _createClass(FormFieldComponent, [{
 	        key: "extractNewState",
 	        value: function extractNewState() {
 	            console.log('extract new state');
 	            var newState = {};
 	            newState.value = this.model.getValue();
 	            newState.fieldClass = "form-control";
-	            if (this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
-	                newState.fieldClass += " bg-danger";
+	            if (this.model.getTriggeredBy) {
+	                console.log("triggered by = " + this.model.getTriggeredBy());
+	                if (this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
+	                    newState.fieldClass += " bg-danger";
+	                }
 	            }
 	            return newState;
 	        }
@@ -21674,13 +21673,96 @@
 	        }
 	    }]);
 
-	    return FormField;
+	    return FormFieldComponent;
 	}(_react2.default.Component);
 
-	exports.default = FormField;
+	exports.default = FormFieldComponent;
 
 /***/ },
 /* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var FormCheckboxComponent = function (_React$Component) {
+	    _inherits(FormCheckboxComponent, _React$Component);
+
+	    function FormCheckboxComponent(props) {
+	        _classCallCheck(this, FormCheckboxComponent);
+
+	        //const fields
+	        var _this = _possibleConstructorReturn(this, (FormCheckboxComponent.__proto__ || Object.getPrototypeOf(FormCheckboxComponent)).call(this, props));
+
+	        _this.id = props["id"];
+	        _this.label = props["label"];
+	        _this.model = props["model"];
+	        _this.model.addChangeListener(_this);
+	        _this.state = _this.extractNewState();
+	        return _this;
+	    }
+
+	    _createClass(FormCheckboxComponent, [{
+	        key: "extractNewState",
+	        value: function extractNewState() {
+	            console.log('extract new state');
+	            var newState = {};
+	            // newState.value = this.model.getValue();
+	            // newState.fieldClass = "form-control";
+	            // if(this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
+	            //     newState.fieldClass += " bg-danger";
+	            // }
+	            return newState;
+	        }
+	    }, {
+	        key: "onUiNodeChanged",
+	        value: function onUiNodeChanged() {
+	            var newState = this.extractNewState();
+	            this.setState(newState);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var model = this.model;
+	            //only read from fields and state
+	            return _react2.default.createElement(
+	                "div",
+	                { id: this.id, className: "checkbox", checked: "checked" },
+	                _react2.default.createElement(
+	                    "label",
+	                    { htmlFor: this.id },
+	                    _react2.default.createElement("input", { type: "checkbox" }),
+	                    " ",
+	                    this.label
+	                )
+	            );
+	        }
+	    }]);
+
+	    return FormCheckboxComponent;
+	}(_react2.default.Component);
+
+	exports.default = FormCheckboxComponent;
+
+/***/ },
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -15,16 +15,20 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
 
     protected ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
+
+        setValue(errorInfo);
     }
 
+    @JsMethod
     @Override
-    protected void doLoad() {
-        setValueInternal(errorInfo);
+    public final void setValue(RegisterError value) {
+        setValue(RegisterError.class, value);
     }
 
+    @JsMethod
     @Override
-    protected void doUnload() {
-
+    public final RegisterError getValue() {
+        return super.getValue();
     }
 
     @JsMethod
