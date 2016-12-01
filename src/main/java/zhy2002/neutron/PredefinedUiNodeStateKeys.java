@@ -20,4 +20,5 @@ public final class PredefinedUiNodeStateKeys {
 
 
     public static final String HAS_ERROR = "hasError";
+    public static final String MESSAGE = "message";
 }

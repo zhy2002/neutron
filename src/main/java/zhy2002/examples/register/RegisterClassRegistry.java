@@ -3,6 +3,8 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.rule.*;
 import zhy2002.examples.register.rule.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.event.BooleanStateChangeEventFactory;
+import zhy2002.neutron.event.StringStateChangeEventFactory;
 
 /**
  * The generated factory register with all the default implementation instances.
@@ -27,6 +29,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
 
     private void loadStateChangeEventFactories() {
         this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
+        this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
     }
 
     private void loadRuleFactories() {
@@ -37,6 +40,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setInstance(DefaultEmailByUsernameRule.Factory.class, new DefaultEmailByUsernameRuleImpl.Factory());
         setInstance(EmailChangeReasonRule.Factory.class, new EmailChangeReasonRuleImpl.Factory());
         setInstance(UsernameIsRequiredRule.Factory.class, new UsernameIsRequiredRuleImpl.Factory());
-
+        setInstance(PasswordIsStrongRule.Factory.class, new PasswordIsStrongRule.Factory());
+        setInstance(RepeatPasswordRule.Factory.class, new RepeatPasswordRule.Factory());
     }
 }

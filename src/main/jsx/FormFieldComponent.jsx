@@ -14,16 +14,21 @@ export default class FormFieldComponent extends React.Component {
     }
 
     extractNewState() {
-        console.log('extract new state');
         var newState = {};
         newState.value = this.model.getValue();
         newState.fieldClass = "form-control";
-        if(this.model.getTriggeredBy) {
+        if (this.model.getTriggeredBy) {
             console.log("triggered by = " + this.model.getTriggeredBy());
-            if(this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
+            if (this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
                 newState.fieldClass += " bg-danger";
             }
         }
+        if (this.model.getMessage) {
+            newState.message = this.model.getMessage();
+        } else {
+            newState.message = "";
+        }
+
         return newState;
     }
 
@@ -43,10 +48,10 @@ export default class FormFieldComponent extends React.Component {
             <div className="form-group">
                 <label htmlFor={this.id}>{this.label}</label>
                 <input type="text" className={this.state.fieldClass} id={this.id}
-                value={this.state.value} onChange={(event)=> {
-                 model.setValue(event.target.value);
+                       value={this.state.value} onChange={(event) => {
+                    model.setValue(event.target.value);
                 }}/>
-                <p className="help-block">Example block-level help text here.</p>
+                <p className="help-block">{this.state.message}</p>
             </div>
         );
     }

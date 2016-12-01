@@ -30,18 +30,24 @@ export default class ErrorListComponent extends React.Component {
 
         var listItems = [];
         console.log(items);
-        for(var i=0; i<items.length; i++) {
+        for (var i = 0; i < items.length; i++) {
             var errorNode = items[i];
             console.log(errorNode);
             listItems.push(<li key={errorNode.getName()}>{errorNode.getMessage()}</li>);
         }
-        return (
-            <div>
-                <h4>Errors</h4>
-                <ul>
-                    {listItems}
-                </ul>
-            </div>
-        );
+
+        if (listItems.length) {
+            return (
+                <div>
+                    <h4>Errors</h4>
+                    <ul>
+                        {listItems}
+                    </ul>
+                </div>
+            );
+        } else {
+            return (<div/>);
+        }
+
     }
 }

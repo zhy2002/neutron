@@ -18,12 +18,35 @@ export default class RegisterComponent extends React.Component {
         super(props);
 
         this.model = createRoot(this);
+        this.model.addChangeListener(this);
+        this.state = this.extractNewState();
+    }
+
+    onUiNodeChanged() {
+        var newState = this.extractNewState();
+        this.setState(newState);
+    }
+
+    extractNewState() {
+        console.log('extract new state');
+        var newState = {};
+        newState.hasError = this.model.getHasError();
+        return newState;
     }
 
     render() {
         var model = this.model;
+
+        var alert;
+        if(this.state.hasError) {
+            alert = <p><span className="glyphicon glyphicon-alert"></span></p>;
+        } else {
+           alert = <p/>;
+        }
+
         return (
             <div>
+                {alert}
                 <form>
                     <FormFieldComponent id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
                     <FormFieldComponent id="exampleEmail" label="Email address" model={model.getEmailNode()}/>

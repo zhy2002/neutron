@@ -23,14 +23,16 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     RegisterNode(@NotNull UiNodeContextImpl<?> context) {
         super(context);
+
+        setHasError(false);
     }
 
     public boolean getHasError() {
-        return getStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR);
+        return getStateValue(PredefinedUiNodeStateKeys.HAS_ERROR);
     }
 
     public void setHasError(boolean value) {
-        setStateValueInternal(PredefinedUiNodeStateKeys.HAS_ERROR, value);
+        setStateValue(PredefinedUiNodeStateKeys.HAS_ERROR, Boolean.class, value);
     }
 
     public UsernameNode getUsernameNode() {

@@ -2,9 +2,12 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.rule.UsernameIsRequiredRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.util.ClassUtil;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -194,12 +197,46 @@ public class RegisterNodeContextTest {
         usernameNode.setValue("test2");
         assertThat(listener.getCount(), equalTo(2));
 
-        listener  = new CountingChangeListener();
+        listener = new CountingChangeListener();
         ErrorListNode errorListNode = registerNode.getErrorListNode();
         errorListNode.addChangeListener(listener);
         usernameNode.setValue("abc");
 
         assertThat(listener.getCount(), equalTo(1));
+    }
+
+    @Test
+    public void shouldIndirectlyChangedNodeGetNotification() {
+        CountingChangeListener listener = new CountingChangeListener();
+        registerNode.addChangeListener(listener);
+        registerNode.refresh();
+        assertThat(listener.getCount(), equalTo(1));
+    }
+
+    @Test
+    public void passwordShouldBeStrong() {
+
+        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+        registerNode.refresh();
+
+        assertThat(hasError(PasswordIsStrongRule.class), equalTo(true));
+
+        registerNode.getPasswordNode().setValue("aA1234");
+        assertThat(hasError(PasswordIsStrongRule.class), equalTo(false));
+
+        registerNode.getPasswordNode().setValue("AA1234");
+        assertThat(hasError(PasswordIsStrongRule.class), equalTo(true));
+
+    }
+
+    private boolean hasError(Class<? extends UiNodeRule<?, ?>> ruleClass) {
+        for (int i = 0; i < registerNode.getErrorListNode().getChildCount(); i++) {
+            ErrorNode errorNode = registerNode.getErrorListNode().getItem(i);
+            if (ClassUtil.isInstanceOf(ruleClass, errorNode.getRule())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Test

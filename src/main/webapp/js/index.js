@@ -21543,16 +21543,45 @@
 	        var _this = _possibleConstructorReturn(this, (RegisterComponent.__proto__ || Object.getPrototypeOf(RegisterComponent)).call(this, props));
 
 	        _this.model = createRoot(_this);
+	        _this.model.addChangeListener(_this);
+	        _this.state = _this.extractNewState();
 	        return _this;
 	    }
 
 	    _createClass(RegisterComponent, [{
+	        key: "onUiNodeChanged",
+	        value: function onUiNodeChanged() {
+	            var newState = this.extractNewState();
+	            this.setState(newState);
+	        }
+	    }, {
+	        key: "extractNewState",
+	        value: function extractNewState() {
+	            console.log('extract new state');
+	            var newState = {};
+	            newState.hasError = this.model.getHasError();
+	            return newState;
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            var model = this.model;
+
+	            var alert;
+	            if (this.state.hasError) {
+	                alert = _react2.default.createElement(
+	                    "p",
+	                    null,
+	                    _react2.default.createElement("span", { className: "glyphicon glyphicon-alert" })
+	                );
+	            } else {
+	                alert = _react2.default.createElement("p", null);
+	            }
+
 	            return _react2.default.createElement(
 	                "div",
 	                null,
+	                alert,
 	                _react2.default.createElement(
 	                    "form",
 	                    null,
@@ -21624,7 +21653,6 @@
 	    _createClass(FormFieldComponent, [{
 	        key: "extractNewState",
 	        value: function extractNewState() {
-	            console.log('extract new state');
 	            var newState = {};
 	            newState.value = this.model.getValue();
 	            newState.fieldClass = "form-control";
@@ -21634,12 +21662,18 @@
 	                    newState.fieldClass += " bg-danger";
 	                }
 	            }
+	            if (this.model.getMessage) {
+	                newState.message = this.model.getMessage();
+	            } else {
+	                newState.message = "";
+	            }
+
 	            return newState;
 	        }
 	    }, {
 	        key: "componentDidMount",
 	        value: function componentDidMount() {
-	            console.log("form field did mount");
+	            console.log(this.label + " did mount");
 	        }
 	    }, {
 	        key: "onUiNodeChanged",
@@ -21667,7 +21701,7 @@
 	                _react2.default.createElement(
 	                    "p",
 	                    { className: "help-block" },
-	                    "Example block-level help text here."
+	                    this.state.message
 	                )
 	            );
 	        }
@@ -21833,20 +21867,25 @@
 	                    errorNode.getMessage()
 	                ));
 	            }
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(
-	                    "h4",
+
+	            if (listItems.length) {
+	                return _react2.default.createElement(
+	                    "div",
 	                    null,
-	                    "Errors"
-	                ),
-	                _react2.default.createElement(
-	                    "ul",
-	                    null,
-	                    listItems
-	                )
-	            );
+	                    _react2.default.createElement(
+	                        "h4",
+	                        null,
+	                        "Errors"
+	                    ),
+	                    _react2.default.createElement(
+	                        "ul",
+	                        null,
+	                        listItems
+	                    )
+	                );
+	            } else {
+	                return _react2.default.createElement("div", null);
+	            }
 	        }
 	    }]);
 
