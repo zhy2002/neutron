@@ -31,7 +31,7 @@ public class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<BooleanStat
     }
 
     @Override
-    protected void execute(BooleanStateChangeEvent typedEvent) {
+    protected void doFire(BooleanStateChangeEvent typedEvent) {
         Boolean value = getReceiveOffersNode().getValue();
         if(value != null && value) {
             getEmailNode().setRequired(true);

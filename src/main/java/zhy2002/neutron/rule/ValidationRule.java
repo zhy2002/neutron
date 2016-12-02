@@ -15,7 +15,7 @@ public abstract class ValidationRule<E extends UiNodeEvent, N extends UiNode<?>>
     }
 
     @Override
-    public void execute(E event) {
+    public void doFire(E event) {
         if (isActivated(event)) {
             activate(event);
         } else {

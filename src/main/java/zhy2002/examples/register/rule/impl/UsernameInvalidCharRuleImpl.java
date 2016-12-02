@@ -20,7 +20,7 @@ public class UsernameInvalidCharRuleImpl extends UsernameInvalidCharRule {
     }
 
     @Override
-    public void execute(StringStateChangeEvent event) {
+    public void doFire(StringStateChangeEvent event) {
 
         if (event.getNewValue() != null && event.getNewValue().contains("#")) {
             throw new RuntimeException("no");

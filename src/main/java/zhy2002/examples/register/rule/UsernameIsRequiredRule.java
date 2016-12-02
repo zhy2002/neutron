@@ -30,7 +30,7 @@ public abstract class UsernameIsRequiredRule extends UiNodeRule<UiNodeEvent, Use
     }
 
     @Override
-    protected void execute(UiNodeEvent typedEvent) {
+    protected void doFire(UiNodeEvent typedEvent) {
         if (getOwner().getValue() == null || getOwner().getValue().trim().length() == 0) {
             if (errorNode == null) {
                 errorNode = getErrorListNode().createItem();

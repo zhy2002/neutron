@@ -26,7 +26,7 @@ public abstract class DefaultEmailByUsernameRule extends UiNodeRule<StringStateC
     }
 
     @Override
-    protected void execute(StringStateChangeEvent typedEvent) {
+    protected void doFire(StringStateChangeEvent typedEvent) {
         String value = getOwner().getValue();
         String email = value == null ? "" : value + "@gmail.com";
         getEmailNode().setValue(email);

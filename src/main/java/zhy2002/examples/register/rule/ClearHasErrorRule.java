@@ -5,6 +5,7 @@ import zhy2002.examples.register.RegisterNode;
 import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
@@ -20,7 +21,7 @@ public abstract class ClearHasErrorRule extends UiNodeRule<ErrorNodeRemoveEvent,
     }
 
     @Override
-    protected void execute(ErrorNodeRemoveEvent typedEvent) {
+    protected void doFire(ErrorNodeRemoveEvent typedEvent) {
         if (typedEvent.getTarget().getParent().getChildCount() == 0) {
             getOwner().setHasError(false);
         }
@@ -32,7 +33,8 @@ public abstract class ClearHasErrorRule extends UiNodeRule<ErrorNodeRemoveEvent,
     }
 
     @Override
-    public boolean isObservedUiNode(UiNode<?> eventTarget) {
+    public boolean canFire(UiNodeEvent event) {
+        UiNode<?> eventTarget = event.getTarget();
         return eventTarget instanceof ErrorNode;
     }
 }

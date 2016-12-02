@@ -1,5 +1,7 @@
 todo 
 -----------------
+* tick-less mode - where new events are directly moved from queue to agenda
+* when deciding if a rule should be triggered, check the event type considering inheritance
 * rule should have a load event to init node properties
 * hierachical di
 * factor inheritance to composition once things get clearer

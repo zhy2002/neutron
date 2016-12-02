@@ -23,7 +23,7 @@ public class UsernameLengthRuleImpl extends UsernameLengthRule {
     private ErrorNode errorNode;
 
     @Override
-    protected void execute(StringStateChangeEvent typedEvent) {
+    protected void doFire(StringStateChangeEvent typedEvent) {
         if (isActivated(typedEvent)) {
             activate(typedEvent);
         } else {

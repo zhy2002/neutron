@@ -5,6 +5,7 @@ import zhy2002.examples.register.RegisterNode;
 import zhy2002.examples.register.event.ErrorNodeAddEvent;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
@@ -20,7 +21,7 @@ public abstract class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, Regi
     }
 
     @Override
-    protected void execute(ErrorNodeAddEvent typedEvent) {
+    protected void doFire(ErrorNodeAddEvent typedEvent) {
         getOwner().setHasError(true);
     }
 
@@ -30,7 +31,8 @@ public abstract class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, Regi
     }
 
     @Override
-    public boolean isObservedUiNode(UiNode<?> eventTarget) {
+    public boolean canFire(UiNodeEvent event) {
+        UiNode<?> eventTarget = event.getTarget();
         return eventTarget instanceof ErrorNode;
     }
 }

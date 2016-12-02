@@ -7,23 +7,26 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 
 
 /**
- * Base class for a ui node rule.
+ * A UI node rule a piece of logic that runs when an event happens.
+ * @param <E> the base event type this rule handles.
+ * @param <N> the type of owner node.
  */
 public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * The owner UiNode of this rule.
+     * The rule instance's life cycle is bound to its owner.
      */
     private final N owner;
+    /**
+     * Host is self or ancestor of owner.
+     * This rule has a chance to fire when an event passes through the host node.
+     */
+    private UiNode<?> host;
     /**
      * The phase when the rule should fire.
      */
     private final TickPhase phase;
-    /**
-     * Host is an ancestor of owner (can be owner itself).
-     * This rule is notified when an event is passed to the host node.
-     */
-    private UiNode<?> host;
 
     protected UiNodeRule(N owner, TickPhase phase) {
         this.owner = owner;
@@ -43,46 +46,33 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     }
 
     /**
-     * Fired once when the rule is added to owner.
-     *
-     * @return the host node which does not change during the life time of a rule instance.
+     * The types of events that can trigger this rule.
+     * This method is only called once when owner is being loaded.
+     * @return a list of event classes.
      */
-    protected UiNode<?> findHost() {
-        return owner; //host is defaulted to owner.
-    }
-
-    /**
-     * Determines if UiNodeEvent originated form the node passed in should trigger this rule.
-     * Not called for refresh events.
-     * @param eventTarget a UiNode that has just changed.
-     * @return true if the rule should fire.
-     */
-    public boolean isObservedUiNode(UiNode<?> eventTarget) {
-        return eventTarget == host;
-    }
-
-    /**
-     * The main logic of this rule. This method is called if:
-     * event is an instance of E
-     * the phase is phase
-     * isTarget(event.getOriginator()) returns true
-     *
-     * @param event the change event happened.
-     */
-    @SuppressWarnings("unchecked")
-    public void fire(UiNodeEvent event) {
-        execute((E) event);
-
-    }
-
-    protected abstract void execute(E typedEvent);
-
     public EnhancedLinkedList<Class<? extends E>> observedEventTypes() {
         return new EnhancedLinkedList<>();
     }
 
     /**
-     * The final step to add a rule to a node.
+     * This method is called once when the owner is being loaded.
+     * This means the host node does not change while the owner is in loaded state.
+     * The host node defaults to the owner node.
+     * @return the host node.
+     */
+    protected UiNode<?> findHost() {
+        return owner;
+    }
+
+    /**
+     * The second step of add a rule to the owner.
+     * In Neutron when we setup a bidirectional relationship,
+     * we use a two step approach:
+     * 1. Child is create knowing the parent
+     * 2. Child make itself known to the parent
+     * If step 2 is not done, there is no effect to the node tree
+     * where the parent belongs.
+     * The same convention applies to node parent child relationship as well.
      */
     public void addToOwner() {
         this.host = findHost();
@@ -92,12 +82,38 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * Removes this rule from the owner.
-     * This must be called when owner or its ancestor is unloaded.
      */
     public void removeFromOwner() {
         getHost().detachRule(this);
         getOwner().removeRule(this);
         this.host = null;
     }
+
+    /**
+     * When a event is passed to this rule, this method is called
+     * to determine if the rule should fire.
+     * @param event the event for which this rule is triggered.
+     * @return true if this rule should fire.
+     * The same event instance will be passed to the fire method.
+     */
+    public boolean canFire(UiNodeEvent event) {
+        return event.getTarget() == getHost();
+    }
+
+    /**
+     * Called when the rule fires.
+     * @param event the event instance.
+     */
+    @SuppressWarnings("unchecked")
+    public final void fire(UiNodeEvent event) {
+        doFire((E) event);
+
+    }
+
+    /**
+     * Contains the main logic of this rule.
+     * @param typedEvent strongly typed event instance.
+     */
+    protected abstract void doFire(E typedEvent);
 
 }

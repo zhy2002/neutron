@@ -51,7 +51,7 @@ public class PasswordIsStrongRule extends UiNodeRule<UiNodeEvent, PasswordNode> 
 
 
     @Override
-    protected void execute(UiNodeEvent typedEvent) {
+    protected void doFire(UiNodeEvent typedEvent) {
         String password = getPasswordNode().getValue();
         if (isValid(password)) {
             if (errorNode != null) {

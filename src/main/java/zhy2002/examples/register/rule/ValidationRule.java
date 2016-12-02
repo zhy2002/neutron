@@ -37,7 +37,7 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
     }
 
     @Override
-    protected void execute(UiNodeEvent typedEvent) {
+    protected void doFire(UiNodeEvent typedEvent) {
         if (isValid()) {
             if (errorNode != null) {
                 clearError();

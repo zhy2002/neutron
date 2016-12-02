@@ -31,7 +31,7 @@ public abstract class ChangeUiNodeEvent extends UiNodeEvent {
         UiNode<?> anchor = event.getTarget();
         do {
             for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getClass())) {//todo not right, event inheritance
-                if (rule.isObservedUiNode(event.getTarget())) {
+                if (rule.canFire(event)) {
                     UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, event);
                     result.add(activation);
                 }

@@ -66,7 +66,8 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     }
 
     @Override
-    public boolean isObservedUiNode(UiNode<?> eventTarget) {
+    public boolean canFire(UiNodeEvent event) {
+        UiNode<?> eventTarget = event.getTarget();
         return eventTarget == getPasswordNode() || eventTarget == getRepeatPasswordNode();
     }
 

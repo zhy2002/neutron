@@ -30,7 +30,7 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChange
     }
 
     @Override
-    protected void execute(StringStateChangeEvent typedEvent) {
+    protected void doFire(StringStateChangeEvent typedEvent) {
 
         String triggeredBy = "user direct";
         UiNodeRuleActivation activation = typedEvent.getActivation();

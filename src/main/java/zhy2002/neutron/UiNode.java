@@ -27,7 +27,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * A map used to store current values of state properties.
      */
-    private final Map<String, ? super Object> state = new HashMap<>();
+    private final Map<String, Object> state = new HashMap<>();
     /**
      * The unique id of this node. This is setInstance when this node is added to the node tree.
      */
@@ -234,6 +234,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         if (this.lifeState != NodeLifeStateEnum.Loaded)
             return;
         doUnload();
+
         this.lifeState = NodeLifeStateEnum.Unloaded;
     }
 
