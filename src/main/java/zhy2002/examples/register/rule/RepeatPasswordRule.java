@@ -1,9 +1,13 @@
 package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.ErrorListNode;
+import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.PasswordNode;
 import zhy2002.examples.register.RepeatPasswordNode;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
 
@@ -25,6 +29,13 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
 
     private RepeatPasswordNode getRepeatPasswordNode() {
         return getOwner();
+    }
+
+    @Override
+    protected ErrorNode createError(UiNodeEvent typedEvent) {
+        ErrorNode errorNode = super.createError(typedEvent);
+        errorNode.setSource(getRepeatPasswordNode());
+        return errorNode;
     }
 
     @Override
@@ -58,4 +69,5 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     public boolean isObservedUiNode(UiNode<?> eventTarget) {
         return eventTarget == getPasswordNode() || eventTarget == getRepeatPasswordNode();
     }
+
 }

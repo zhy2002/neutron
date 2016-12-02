@@ -1,6 +1,5 @@
 todo 
 -----------------
-* focus on field when click error
 * rule should have a load event to init node properties
 * hierachical di
 * factor inheritance to composition once things get clearer

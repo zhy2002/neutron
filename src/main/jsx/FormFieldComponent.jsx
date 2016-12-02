@@ -10,6 +10,7 @@ export default class FormFieldComponent extends React.Component {
         this.label = props["label"];
         this.model = props["model"];
         this.model.addChangeListener(this);
+        window.fieldMap[this.model.getUniqueId()] = this.id;
         this.state = this.extractNewState();
     }
 

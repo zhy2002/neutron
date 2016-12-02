@@ -5,6 +5,7 @@ import org.junit.Test;
 import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.rule.UsernameIsRequiredRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
+import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.rule.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
@@ -239,6 +240,7 @@ public class RegisterNodeContextTest {
 
         receiveOffersNode.setValue(Boolean.TRUE);
         assertThat(emailNode.getRequired(), equalTo(true));
+        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(true));
 
         receiveOffersNode.setValue(Boolean.FALSE);
         assertThat(emailNode.getRequired(), equalTo(false));
@@ -270,14 +272,14 @@ public class RegisterNodeContextTest {
 
         registerNode.refresh();
 
-        assertThat(errorListNode.getChildCount(), equalTo(1));
+        assertThat(hasError(UsernameIsRequiredRule.class), equalTo(true));
         ErrorNode errorNode = errorListNode.getItem(0);
         assertThat(errorNode.getMessage(), equalTo(UsernameIsRequiredRule.ERROR_MESSAGE));
 
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("hello");
-        //registerNode.refresh();
-        assertThat(errorListNode.getChildCount(), equalTo(0));
+
+        assertThat(hasError(UsernameIsRequiredRule.class), equalTo(false));
 
     }
 

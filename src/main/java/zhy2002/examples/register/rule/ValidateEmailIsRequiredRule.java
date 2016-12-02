@@ -2,6 +2,11 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.ErrorListNode;
+import zhy2002.examples.register.ErrorNode;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.event.BooleanStateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 
 public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
@@ -28,6 +33,13 @@ public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
     }
 
     @Override
+    protected ErrorNode createError(UiNodeEvent typedEvent) {
+        ErrorNode errorNode = super.createError(typedEvent);
+        errorNode.setSource(getEmailNode());
+        return errorNode;
+    }
+
+    @Override
     protected boolean isValid() {
         Boolean required = getEmailNode().getRequired();
         if (!Boolean.TRUE.equals(required)) {
@@ -41,5 +53,10 @@ public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
     @Override
     protected String getErrorMessage() {
         return ERROR_MESSAGE;
+    }
+
+    @Override
+    public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(BooleanStateChangeEvent.class);
     }
 }

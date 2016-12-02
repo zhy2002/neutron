@@ -160,6 +160,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region identity methods
 
+    @JsMethod
     public String getUniqueId() {
         return uniqueId;
     }

@@ -2,7 +2,6 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.ErrorNode;
-import zhy2002.examples.register.PasswordNode;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.RefreshUiNodeEvent;
 import zhy2002.neutron.UiNode;
@@ -29,11 +28,12 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
 
     protected abstract String getErrorMessage();
 
-    protected void createError(UiNodeEvent typedEvent) {
+    protected ErrorNode createError(UiNodeEvent typedEvent) {
         errorNode = getErrorListNode().createItem();
         errorNode.setSource(typedEvent.getTarget());
         errorNode.setMessage(getErrorMessage());
         errorNode.setRule(this);
+        return errorNode;
     }
 
     @Override
@@ -44,7 +44,7 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
             }
         } else {
             if (errorNode == null) {
-                createError(typedEvent);
+                errorNode = createError(typedEvent);
             }
         }
     }

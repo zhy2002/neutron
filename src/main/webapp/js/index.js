@@ -61,6 +61,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	window.startReact = function () {
+	    window.fieldMap = {};
 	    _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
 	};
 
@@ -21646,6 +21647,7 @@
 	        _this.label = props["label"];
 	        _this.model = props["model"];
 	        _this.model.addChangeListener(_this);
+	        window.fieldMap[_this.model.getUniqueId()] = _this.id;
 	        _this.state = _this.extractNewState();
 	        return _this;
 	    }
@@ -21859,6 +21861,22 @@
 	            this.setState(newState);
 	        }
 	    }, {
+	        key: "focusOnField",
+	        value: function focusOnField(node) {
+	            return function () {
+	                var source = node.getSource();
+	                if (source) {
+	                    var fieldId = window.fieldMap[source.getUniqueId()];
+	                    if (fieldId) {
+	                        var element = document.getElementById(fieldId);
+	                        if (element) {
+	                            element.focus();
+	                        }
+	                    }
+	                }
+	            };
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
 	            var items = this.state.items;
@@ -21871,7 +21889,12 @@
 	                listItems.push(_react2.default.createElement(
 	                    "li",
 	                    { key: errorNode.getName() },
-	                    errorNode.getMessage()
+	                    _react2.default.createElement(
+	                        "a",
+	                        { onClick: this.focusOnField(errorNode), href: "javascript:void(0)",
+	                            className: "bg-success" },
+	                        errorNode.getMessage()
+	                    )
 	                ));
 	            }
 
