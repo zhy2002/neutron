@@ -229,6 +229,22 @@ public class RegisterNodeContextTest {
 
     }
 
+    @Test
+    public void shouldSetRequiredFlagWhenReceivingOffers() {
+
+        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
+        EmailNode emailNode = registerNode.getEmailNode();
+
+        assertThat(emailNode.getRequired(), equalTo(false));
+
+        receiveOffersNode.setValue(Boolean.TRUE);
+        assertThat(emailNode.getRequired(), equalTo(true));
+
+        receiveOffersNode.setValue(Boolean.FALSE);
+        assertThat(emailNode.getRequired(), equalTo(false));
+
+    }
+
     private boolean hasError(Class<? extends UiNodeRule<?, ?>> ruleClass) {
         for (int i = 0; i < registerNode.getErrorListNode().getChildCount(); i++) {
             ErrorNode errorNode = registerNode.getErrorListNode().getItem(i);

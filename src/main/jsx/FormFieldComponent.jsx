@@ -29,6 +29,12 @@ export default class FormFieldComponent extends React.Component {
             newState.message = "";
         }
 
+        newState.label = this.label;
+        console.log(this.label + " is required: " + this.model.getRequired());
+        if (this.model.getRequired()) {
+            newState.label += " *";
+        }
+
         return newState;
     }
 
@@ -46,7 +52,7 @@ export default class FormFieldComponent extends React.Component {
         //only read from fields and state
         return (
             <div className="form-group">
-                <label htmlFor={this.id}>{this.label}</label>
+                <label htmlFor={this.id}>{this.state.label}</label>
                 <input type="text" className={this.state.fieldClass} id={this.id}
                        value={this.state.value} onChange={(event) => {
                     model.setValue(event.target.value);

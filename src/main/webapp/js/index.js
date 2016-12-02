@@ -21668,6 +21668,12 @@
 	                newState.message = "";
 	            }
 
+	            newState.label = this.label;
+	            console.log(this.label + " is required: " + this.model.getRequired());
+	            if (this.model.getRequired()) {
+	                newState.label += " *";
+	            }
+
 	            return newState;
 	        }
 	    }, {
@@ -21692,7 +21698,7 @@
 	                _react2.default.createElement(
 	                    "label",
 	                    { htmlFor: this.id },
-	                    this.label
+	                    this.state.label
 	                ),
 	                _react2.default.createElement("input", { type: "text", className: this.state.fieldClass, id: this.id,
 	                    value: this.state.value, onChange: function onChange(event) {
@@ -21758,11 +21764,7 @@
 	        value: function extractNewState() {
 	            console.log('extract new state');
 	            var newState = {};
-	            // newState.value = this.model.getValue();
-	            // newState.fieldClass = "form-control";
-	            // if(this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
-	            //     newState.fieldClass += " bg-danger";
-	            // }
+	            newState.value = this.model.getValue();
 	            return newState;
 	        }
 	    }, {
@@ -21782,7 +21784,12 @@
 	                _react2.default.createElement(
 	                    "label",
 	                    { htmlFor: this.id },
-	                    _react2.default.createElement("input", { type: "checkbox" }),
+	                    _react2.default.createElement("input", { type: "checkbox",
+	                        id: this.id,
+	                        checked: this.state.value,
+	                        onChange: function onChange(event) {
+	                            model.setValue(event.target.checked);
+	                        } }),
 	                    " ",
 	                    this.label
 	                )

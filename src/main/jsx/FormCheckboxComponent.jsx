@@ -16,11 +16,7 @@ export default class FormCheckboxComponent extends React.Component {
     extractNewState() {
         console.log('extract new state');
         var newState = {};
-        // newState.value = this.model.getValue();
-        // newState.fieldClass = "form-control";
-        // if(this.model.getStateValue("triggeredBy") === "DefaultEmailByUsernameRule") {
-        //     newState.fieldClass += " bg-danger";
-        // }
+        newState.value = this.model.getValue();
         return newState;
     }
 
@@ -33,11 +29,16 @@ export default class FormCheckboxComponent extends React.Component {
         var model = this.model;
         //only read from fields and state
         return (
-        <div id={this.id} className="checkbox" checked="checked">
-            <label htmlFor={this.id}>
-                <input type="checkbox"/> {this.label}
-            </label>
-        </div>
+            <div id={this.id} className="checkbox" checked="checked">
+                <label htmlFor={this.id}>
+                    <input type="checkbox"
+                           id={this.id}
+                           checked={this.state.value}
+                           onChange={(event) => {
+                               model.setValue(event.target.checked);
+                           }}/> {this.label}
+                </label>
+            </div>
         );
     }
 }

@@ -42,5 +42,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setInstance(UsernameIsRequiredRule.Factory.class, new UsernameIsRequiredRuleImpl.Factory());
         setInstance(PasswordIsStrongRule.Factory.class, new PasswordIsStrongRule.Factory());
         setInstance(RepeatPasswordRule.Factory.class, new RepeatPasswordRule.Factory());
+        setInstance(EmailIsRequiredWhenReceiveOffersRule.Factory.class, new EmailIsRequiredWhenReceiveOffersRule.Factory());
+        setInstance(ValidateEmailIsRequiredRule.Factory.class, new ValidateEmailIsRequiredRule.Factory());
     }
 }
