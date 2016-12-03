@@ -14,11 +14,6 @@ import java.util.List;
  */
 public abstract class UsernameInvalidCharRule extends PreStateChangeRule<StringStateChangeEvent, UsernameNode> {
 
-    @FunctionalInterface
-    public interface Factory {
-        UsernameInvalidCharRule create(UsernameNode owner);
-    }
-
     protected UsernameInvalidCharRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Pre);
     }

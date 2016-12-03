@@ -22,17 +22,17 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadRuleFactories() {
-        setInstance(UsernameLengthRule.Factory.class, new UsernameLengthRule.Factory());
-        setInstance(UsernameInvalidCharRule.Factory.class, new UsernameInvalidCharRuleImpl.Factory());
-        setInstance(ClearHasErrorRule.Factory.class, new ClearHasErrorRuleImpl.Factory());
-        setInstance(SetHasErrorRule.Factory.class, new SetHasErrorRuleImpl.Factory());
-        setInstance(DefaultEmailByUsernameRule.Factory.class, new DefaultEmailByUsernameRuleImpl.Factory());
-        setInstance(EmailChangeReasonRule.Factory.class, new EmailChangeReasonRuleImpl.Factory());
-        setInstance(UsernameIsRequiredRule.Factory.class, new UsernameIsRequiredRuleImpl.Factory());
-        setInstance(PasswordIsStrongRule.Factory.class, new PasswordIsStrongRule.Factory());
-        setInstance(RepeatPasswordRule.Factory.class, new RepeatPasswordRule.Factory());
-        setInstance(EmailIsRequiredWhenReceiveOffersRule.Factory.class, new EmailIsRequiredWhenReceiveOffersRule.Factory());
-        setInstance(ValidateEmailIsRequiredRule.Factory.class, new ValidateEmailIsRequiredRule.Factory());
+        setUiNodeRuleFactory(UsernameLengthRule.class, UsernameLengthRule::new);
+        setUiNodeRuleFactory(UsernameInvalidCharRule.class, UsernameInvalidCharRuleImpl::new);
+        setUiNodeRuleFactory(ClearHasErrorRule.class, ClearHasErrorRuleImpl::new);
+        setUiNodeRuleFactory(SetHasErrorRule.class, SetHasErrorRuleImpl::new);
+        setUiNodeRuleFactory(DefaultEmailByUsernameRule.class, DefaultEmailByUsernameRuleImpl::new);
+        setUiNodeRuleFactory(EmailChangeReasonRule.class, EmailChangeReasonRuleImpl::new);
+        setUiNodeRuleFactory(UsernameIsRequiredRule.class, UsernameIsRequiredRuleImpl::new);
+        setUiNodeRuleFactory(PasswordIsStrongRule.class, PasswordIsStrongRule::new);
+        setUiNodeRuleFactory(RepeatPasswordRule.class, RepeatPasswordRule::new);
+        setUiNodeRuleFactory(EmailIsRequiredWhenReceiveOffersRule.class, EmailIsRequiredWhenReceiveOffersRule::new);
+        setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
     }
 
     private void loadChildNodeFactories() {

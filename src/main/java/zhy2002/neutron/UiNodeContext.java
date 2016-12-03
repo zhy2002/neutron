@@ -45,15 +45,7 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     TickPhase getCurrentPhase();
 
-    /**
-     * Ge the registered instance for the given class object.
-     *
-     * @param clazz the class object (used as a key).
-     * @param <T>   the type of the desired instance.
-     * @return the registered instance. If the instance is not found
-     * an exception will be thrown.
-     */
-    <T> T getInstance(Class<T> clazz);
+    <R extends UiNodeRule<?, N>, N extends UiNode<?>> R createUiNodeRule(Class<R> ruleClass, N owner);
 
     <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue);
 

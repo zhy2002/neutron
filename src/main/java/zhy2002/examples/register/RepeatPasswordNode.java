@@ -2,6 +2,10 @@ package zhy2002.examples.register;
 
 import zhy2002.examples.register.rule.RepeatPasswordRule;
 import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.UiNodeRule;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
@@ -10,9 +14,9 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected void doLoad() {
-        super.doLoad();
-
-        getContext().getInstance(RepeatPasswordRule.Factory.class).create(this).addToOwner();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().createUiNodeRule(RepeatPasswordRule.class, this)
+        );
     }
 }

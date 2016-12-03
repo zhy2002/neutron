@@ -13,13 +13,7 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
 
     public static final String ERROR_MESSAGE = "Please repeat the same password.";
 
-    public static class Factory {
-        public RepeatPasswordRule create(RepeatPasswordNode owner) {
-            return new RepeatPasswordRule(owner);
-        }
-    }
-
-    protected RepeatPasswordRule(RepeatPasswordNode owner) {
+    public RepeatPasswordRule(RepeatPasswordNode owner) {
         super(owner);
     }
 

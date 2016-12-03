@@ -12,13 +12,7 @@ public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
 
     public static final String ERROR_MESSAGE = "Email is required";
 
-    public static class Factory {
-        public ValidateEmailIsRequiredRule create(EmailNode owner) {
-            return new ValidateEmailIsRequiredRule(owner);
-        }
-    }
-
-    protected ValidateEmailIsRequiredRule(EmailNode owner) {
+    public ValidateEmailIsRequiredRule(EmailNode owner) {
         super(owner);
     }
 

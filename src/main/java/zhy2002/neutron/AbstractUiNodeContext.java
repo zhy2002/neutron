@@ -53,8 +53,9 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     protected abstract R createRootNode();
 
     @Override
-    public <F> F getInstance(Class<F> clazz) {
-        return classRegistry.getInstance(clazz);
+    public <U extends UiNodeRule<?, N>, N extends UiNode<?>> U createUiNodeRule(Class<U> ruleClass, N owner) {
+        UiNodeRuleFactory<U, N> factory = classRegistry.getUiNodeRuleFactory(ruleClass);
+        return factory.create(owner);
     }
 
     @Override

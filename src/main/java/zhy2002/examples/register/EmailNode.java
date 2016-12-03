@@ -23,8 +23,8 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     @Override
     protected List<UiNodeRule<?, ?>> createOwnRules() {
         return Arrays.asList(
-                getContext().getInstance(EmailChangeReasonRule.Factory.class).create(this),
-                getContext().getInstance(ValidateEmailIsRequiredRule.Factory.class).create(this)
+                getContext().createUiNodeRule(EmailChangeReasonRule.class, this),
+                getContext().createUiNodeRule(ValidateEmailIsRequiredRule.class, this)
         );
     }
 

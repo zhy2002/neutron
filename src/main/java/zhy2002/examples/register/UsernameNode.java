@@ -19,10 +19,10 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     @Override
     protected List<UiNodeRule<?, ?>> createOwnRules() {
         return Arrays.asList(
-                getContext().getInstance(UsernameLengthRule.Factory.class).create(this),
-                getContext().getInstance(UsernameInvalidCharRule.Factory.class).create(this),
-                getContext().getInstance(UsernameIsRequiredRule.Factory.class).create(this),
-                getContext().getInstance(DefaultEmailByUsernameRule.Factory.class).create(this)
+                getContext().createUiNodeRule(UsernameLengthRule.class, this),
+                getContext().createUiNodeRule(UsernameInvalidCharRule.class, this),
+                getContext().createUiNodeRule(UsernameIsRequiredRule.class, this),
+                getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this)
         );
     }
 }

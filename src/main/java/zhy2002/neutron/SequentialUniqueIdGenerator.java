@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 /**
- * A stub unique id generator to getInstance thing running.
+ * A stub unique id generator to getUiNodeRuleFactory thing running.
  */
 public class SequentialUniqueIdGenerator {
 

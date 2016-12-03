@@ -4,6 +4,10 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.UiNodeRule;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Used for single node test.
@@ -15,10 +19,10 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected void doLoad() {
-        super.doLoad();
-
-        getContext().getInstance(PasswordIsStrongRule.Factory.class).create(this).addToOwner();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().createUiNodeRule(PasswordIsStrongRule.class, this)
+        );
     }
 
     @JsMethod

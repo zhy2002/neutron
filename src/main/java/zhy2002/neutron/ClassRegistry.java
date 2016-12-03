@@ -7,11 +7,10 @@ public interface ClassRegistry {
     /**
      * Get the registered instance of the given class.
      *
-     * @param clazz the clas of the instance.
-     * @param <F>   class of the instance.
-     * @return the same instance is returned for all calls.
+     * @param ruleClass the rule's class object.
+     * @return the factory instance that can create the rule.
      */
-    <F> F getInstance(Class<F> clazz);
+    <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass);
 
     /**
      * Get the factory instance of a given state change event type.

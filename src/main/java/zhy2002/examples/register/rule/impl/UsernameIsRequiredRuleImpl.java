@@ -5,15 +5,7 @@ import zhy2002.examples.register.rule.UsernameIsRequiredRule;
 
 public class UsernameIsRequiredRuleImpl extends UsernameIsRequiredRule {
 
-    public static class Factory implements UsernameIsRequiredRule.Factory {
-
-        @Override
-        public UsernameIsRequiredRule create(UsernameNode owner) {
-            return new UsernameIsRequiredRuleImpl(owner);
-        }
-    }
-
-    private UsernameIsRequiredRuleImpl(UsernameNode owner) {
+    public UsernameIsRequiredRuleImpl(UsernameNode owner) {
         super(owner);
     }
 }

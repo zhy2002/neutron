@@ -12,13 +12,7 @@ import zhy2002.neutron.util.EnhancedLinkedList;
  */
 public class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<BooleanStateChangeEvent, ReceiveOffersNode> {
 
-    public static class Factory {
-        public EmailIsRequiredWhenReceiveOffersRule create(ReceiveOffersNode owner) {
-            return new EmailIsRequiredWhenReceiveOffersRule(owner);
-        }
-    }
-
-    protected EmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode owner) {
+    public EmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

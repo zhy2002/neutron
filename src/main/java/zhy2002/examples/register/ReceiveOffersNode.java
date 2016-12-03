@@ -2,8 +2,11 @@ package zhy2002.examples.register;
 
 import zhy2002.examples.register.rule.EmailIsRequiredWhenReceiveOffersRule;
 import zhy2002.neutron.BooleanUiNode;
+import zhy2002.neutron.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.List;
 
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
@@ -12,9 +15,9 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
     }
 
     @Override
-    protected void doLoad() {
-        super.doLoad();
-
-        getContext().getInstance(EmailIsRequiredWhenReceiveOffersRule.Factory.class).create(this).addToOwner();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().createUiNodeRule(EmailIsRequiredWhenReceiveOffersRule.class, this)
+        );
     }
 }

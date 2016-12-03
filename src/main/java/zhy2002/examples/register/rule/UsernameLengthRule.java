@@ -16,13 +16,7 @@ public class UsernameLengthRule extends ValidationRule<UsernameNode> {
 
     public static final String ERROR_MESSAGE = "Length of name field must be greater than 3";
 
-    public static class Factory {
-        public UsernameLengthRule create(UsernameNode owner) {
-            return new UsernameLengthRule(owner);
-        }
-    }
-
-    protected UsernameLengthRule(UsernameNode owner) {
+    public UsernameLengthRule(UsernameNode owner) {
         super(owner);
     }
 

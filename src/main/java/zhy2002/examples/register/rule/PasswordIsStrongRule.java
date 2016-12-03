@@ -48,7 +48,6 @@ public class PasswordIsStrongRule extends UiNodeRule<UiNodeEvent, PasswordNode> 
         return hasUpper && hasLower && hasDigit;
     }
 
-
     @Override
     protected void doFire(UiNodeEvent typedEvent) {
         String password = getPasswordNode().getValue();
@@ -69,14 +68,7 @@ public class PasswordIsStrongRule extends UiNodeRule<UiNodeEvent, PasswordNode> 
         }
     }
 
-
-    public static class Factory {
-        public PasswordIsStrongRule create(PasswordNode owner) {
-            return new PasswordIsStrongRule(owner);
-        }
-    }
-
-    protected PasswordIsStrongRule(PasswordNode owner) {
+    public PasswordIsStrongRule(PasswordNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 

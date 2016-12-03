@@ -81,8 +81,8 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     @Override
     protected List<UiNodeRule<?, ?>> createOwnRules() {
         return Arrays.asList(
-                getContext().getInstance(SetHasErrorRule.Factory.class).create(this),
-                getContext().getInstance(ClearHasErrorRule.Factory.class).create(this)
+                getContext().createUiNodeRule(SetHasErrorRule.class, this),
+                getContext().createUiNodeRule(ClearHasErrorRule.class, this)
         );
     }
 }

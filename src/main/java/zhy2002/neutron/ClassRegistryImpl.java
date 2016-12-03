@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class ClassRegistryImpl implements ClassRegistry {
 
-    private final Map<Class<?>, Object> instances = new HashMap<>();
+    private final Map<Class<?>, Object> uiNodeRuleFactories = new HashMap<>();
     private final Map<Class<?>, Object> childNodeFactories = new HashMap<>();
     private final Map<Class<?>, Object> stateChangeEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeAddEventFactories = new HashMap<>();
@@ -19,7 +19,7 @@ public class ClassRegistryImpl implements ClassRegistry {
 
     protected ClassRegistryImpl(ClassRegistryImpl proto) {
         if (proto != null) {
-            instances.putAll(proto.instances);
+            uiNodeRuleFactories.putAll(proto.uiNodeRuleFactories);
             childNodeFactories.putAll(proto.childNodeFactories);
             stateChangeEventFactories.putAll(proto.stateChangeEventFactories);
             nodeAddEventFactories.putAll(proto.nodeAddEventFactories);
@@ -29,16 +29,16 @@ public class ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <F> F getInstance(Class<F> clazz) {
-        Object instance = instances.get(clazz);
+    public <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
+        Object instance = uiNodeRuleFactories.get(ruleClass);
         if (instance == null) {
-            throw new RuntimeException("Cannot find registered instance of " + clazz.getName());
+            throw new RuntimeException("Cannot find registered instance of " + ruleClass.getName());
         }
-        return (F) instance;
+        return (UiNodeRuleFactory<R, N>) instance;
     }
 
-    public final <F> void setInstance(Class<F> clazz, F instance) {
-        instances.put(clazz, instance);
+    public final <R extends UiNodeRule<?, N>, N extends UiNode<?>> void setUiNodeRuleFactory(Class<R> ruleClass, UiNodeRuleFactory<R, N> factory) {
+        uiNodeRuleFactories.put(ruleClass, factory);
     }
 
     @SuppressWarnings("unchecked")
