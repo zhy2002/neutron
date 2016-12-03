@@ -1,8 +1,6 @@
 package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
-import zhy2002.examples.register.rule.ClearHasErrorRule;
-import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
 
@@ -81,8 +79,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     @Override
     protected List<UiNodeRule<?, ?>> createOwnRules() {
         return Arrays.asList(
-                getContext().createUiNodeRule(SetHasErrorRule.class, this),
-                getContext().createUiNodeRule(ClearHasErrorRule.class, this)
+                getContext().createUiNodeRule(SetHasErrorRule.class, this)
         );
     }
 }

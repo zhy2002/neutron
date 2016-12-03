@@ -1,38 +1,46 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.ErrorNode;
+import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.RegisterNode;
 import zhy2002.examples.register.event.ErrorNodeAddEvent;
+import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
 import zhy2002.neutron.PredefinedPhases;
-import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
-public abstract class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, RegisterNode> {
+public class SetHasErrorRule extends UiNodeRule<UiNodeEvent, RegisterNode> {
 
-    @FunctionalInterface
-    public interface Factory {
-        SetHasErrorRule create(RegisterNode owner);
-    }
-
-    protected SetHasErrorRule(RegisterNode owner) {
+    public SetHasErrorRule(RegisterNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 
     @Override
-    protected void doFire(ErrorNodeAddEvent typedEvent) {
-        getOwner().setHasError(true);
-    }
-
-    @Override
-    public EnhancedLinkedList<Class<? extends ErrorNodeAddEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(ErrorNodeAddEvent.class);
+    public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
+        return super.observedEventTypes().and(ErrorNodeAddEvent.class).and(ErrorNodeRemoveEvent.class);
     }
 
     @Override
     public boolean canFire(UiNodeEvent event) {
-        UiNode<?> eventTarget = event.getTarget();
-        return eventTarget instanceof ErrorNode;
+        return true;
     }
+
+    private ErrorListNode getErrorListNode() {
+        return getOwner().getErrorListNode();
+    }
+
+    private RegisterNode getRegisterNode() {
+        return getOwner();
+    }
+
+    @Override
+    protected void doFire(UiNodeEvent typedEvent) {
+        if (typedEvent instanceof ErrorNodeAddEvent) {
+            getRegisterNode().setHasError(true);
+        } else if (getErrorListNode().getItemCount() == 0) {
+            getRegisterNode().setHasError(false);
+        }
+    }
+
+
 }
