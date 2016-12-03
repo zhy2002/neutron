@@ -14,7 +14,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         init();
     }
 
-    protected StringUiNode(UiNodeContextImpl context) {
+    protected StringUiNode(AbstractUiNodeContext context) {
         super(context);
 
         init();

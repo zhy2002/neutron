@@ -6,17 +6,15 @@ package zhy2002.neutron;
  * Reset = removeFromOwner + addToOwner.
  * Must be inherited to fill in the type parameters.
  */
-public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N>>>
+public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, ?, N>>>
         extends ChangeUiNodeEvent {
 
     private final N target;
-    private ListUiNode<?, N> parent;
 
     public NodeRemoveEvent(N target) {
         super(target);
 
         this.target = target;
-        this.parent = target.getParent();
     }
 
     /**
@@ -27,20 +25,16 @@ public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N
         return this.target;
     }
 
-    public ListUiNode<?, N> getParent() {
-        return parent;
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public void apply() {
-        parent.removeItemInternal(target);
+        target.detach();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void revert() {
-        parent.addItemInternal(target);
+        target.attach();
     }
 
 }

@@ -7,7 +7,7 @@ import zhy2002.neutron.RefreshUiNodeEvent;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
@@ -21,30 +21,34 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
 
     protected abstract boolean isValid();
 
-    protected void clearError() {
+    protected void clearErrorNode() {
         getErrorListNode().removeItem(errorNode);
         errorNode = null;
     }
 
-    protected abstract String getErrorMessage();
-
-    protected ErrorNode createError(UiNodeEvent typedEvent) {
-        errorNode = getErrorListNode().createItem();
-        errorNode.setSource(typedEvent.getTarget());
-        errorNode.setMessage(getErrorMessage());
+    protected ErrorNode createErrorNode(UiNode<?> source, String errorMessage) {
+        ErrorNode errorNode = getErrorListNode().createItem();
+        errorNode.setSource(source);
+        errorNode.setMessage(errorMessage);
         errorNode.setRule(this);
         return errorNode;
     }
+
+    protected ErrorNode createErrorNode(UiNodeEvent typedEvent) {
+        return createErrorNode(typedEvent.getTarget(), getErrorMessage(typedEvent));
+    }
+
+    public abstract String getErrorMessage(UiNodeEvent typedEvent);
 
     @Override
     protected void doFire(UiNodeEvent typedEvent) {
         if (isValid()) {
             if (errorNode != null) {
-                clearError();
+                clearErrorNode();
             }
         } else {
             if (errorNode == null) {
-                errorNode = createError(typedEvent);
+                errorNode = createErrorNode(typedEvent);
             }
         }
     }
@@ -55,6 +59,6 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
 
     @Override
     public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(RefreshUiNodeEvent.class).and(StringStateChangeEvent.class);
+        return super.observedEventTypes().and(RefreshUiNodeEvent.class);
     }
 }

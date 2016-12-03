@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.rule.UiNodeRule;
-
 /**
  * Immutable data class that encapsulates all the objects
  * needed to fire a rule.

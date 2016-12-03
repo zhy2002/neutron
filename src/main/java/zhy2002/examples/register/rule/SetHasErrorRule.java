@@ -6,7 +6,7 @@ import zhy2002.examples.register.event.ErrorNodeAddEvent;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 public abstract class SetHasErrorRule extends UiNodeRule<ErrorNodeAddEvent, RegisterNode> {

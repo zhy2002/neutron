@@ -7,7 +7,10 @@ import javax.validation.constraints.NotNull;
 /**
  * A ParentUiNode whose children are put in a list.
  */
-public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? extends ListUiNode<P, T>>>
+public abstract class ListUiNode<
+        P extends ObjectUiNode<?>,
+        S extends ListUiNode<P, S, N>,
+        N extends UiNode<S>>
         extends ParentUiNode<P> {
 
     private int childSequenceNumber = 0;
@@ -22,76 +25,84 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, T extends UiNode<? e
         super(parent, name);
     }
 
-    public int getChildSequenceNumber() {
-        return childSequenceNumber++;
-    }
-
-    public abstract Class<T> getItemClass();
-
-    @JsMethod
-    public T createItem() {
-        return createItem(getItemClass());
-    }
-
-    public T createItem(Class<? extends T> itemClass) {
-        T item = createItemInternal(itemClass);
-        NodeAddEvent event = createNodeAddEvent(item);
-        getContext().processEvent(event);
-        return item;
-    }
-
-    protected abstract NodeAddEvent<T> createNodeAddEvent(T item);
-
-//    {
-//        NodeAddEvent<T> event = new NodeAddEvent<>(item, getContext().getCurrentActivation());
-//        return event;
-//    }
-
-    public void addItemInternal(T item) {
-        itemAddToParent(item);
-        itemLoad(item);
-    }
-
-    public void removeItemInternal(T item) {
-        itemUnload(item);
-        itemRemoveFromParent(item);
-    }
-
-    protected abstract T createItemInternal(Class<? extends T> itemClass);
-
-    protected void itemAddToParent(T item) {
-        item.addToParent();
-    }
-
-    protected void itemRemoveFromParent(T item) {
-        item.removeFromParent();
-    }
-
-    protected void itemLoad(T item) {
-        item.load();
-    }
-
-    protected void itemUnload(T item) {
-        item.unload();
-    }
+    /**
+     * This is required due to Java generics limitation.
+     *
+     * @return the class object of item type.
+     */
+    public abstract Class<N> getItemClass();
 
     @JsMethod
     @SuppressWarnings("unchecked")
-    public T getItem(int index) {
-        return (T) getChild(index);
+    public N getItem(int index) {
+        return (N) getChild(index);
     }
 
-    @Override
-    public boolean supportRemoveChild() {
-        return true;
+    /**
+     * @return the number of items in this list.
+     */
+    @JsMethod
+    public int getItemCount() {
+        return super.getChildCount();
     }
 
-    public void removeItem(T child) {
-        if (child.getParent() != this)
+    /**
+     * Create an item of base item type N.
+     *
+     * @return the node add event so that caller can pass arguments to the new node.
+     */
+    @JsMethod
+    public N createItem() {
+        return createItem(getItemClass());
+    }
+
+    protected <M extends N> N createItem(Class<M> itemClass) {
+        NodeAddEvent<N> event = createItemAddEvent(itemClass);
+        getContext().processEvent(event);
+        return event.getTarget();
+    }
+
+    /**
+     * Call this if you want to manually process the event.
+     *
+     * @return the event, not yet processed.
+     */
+    public NodeAddEvent<N> createItemAddEvent() {
+        return createItemAddEvent(getItemClass());
+    }
+
+    /**
+     * Create an item of subtype of N.
+     * This method is not made public because it is only intended to be called
+     * by a wrapper method in subclass.
+     *
+     * @param itemClass a the class object of a subtype of N.
+     * @return the node add event. If this event is processed the item will be added.
+     */
+    @SuppressWarnings("unchecked")
+    protected <M extends N> NodeAddEvent<N> createItemAddEvent(Class<M> itemClass) {
+        UiNodeContext<?> context = getContext();
+        M item = context.createChildNode(itemClass, (S) this, String.valueOf(getChildSequenceNumber()));
+        return context.createNodeAddEvent(getItemClass(), item);
+    }
+
+    @JsMethod
+    public void removeItem(N item) {
+        if (item.getParent() != this)
             return;
-        NodeRemoveEvent<T> event = createNodeRemoveEvent(child);
+        NodeRemoveEvent<N> event = getContext().createNodeRemoveEvent(getItemClass(), item);
         getContext().processEvent(event);
     }
 
-    protected abstract NodeRemoveEvent<T> createNodeRemoveEvent(T child);
+    private int getChildSequenceNumber() {
+        return childSequenceNumber++;
+    }
+
+    @Override
+    protected void initializeChildren() {
+    }
+
+    @Override
+    protected void uninitializeChildren() {
+    }
 }

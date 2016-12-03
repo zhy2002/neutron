@@ -4,6 +4,10 @@ import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.*;
 import zhy2002.neutron.NotImplementedException;
 import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.UiNodeRule;
+
+import java.util.Arrays;
+import java.util.List;
 
 @JsType
 public class UsernameNode extends StringUiNode<RegisterNode> {
@@ -13,10 +17,12 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected void doLoad() {
-        getContext().getInstance(UsernameLengthRule.Factory.class).create(this).addToOwner();
-        getContext().getInstance(UsernameInvalidCharRule.Factory.class).create(this).addToOwner();
-        getContext().getInstance(UsernameIsRequiredRule.Factory.class).create(this).addToOwner();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().getInstance(UsernameLengthRule.Factory.class).create(this),
+                getContext().getInstance(UsernameInvalidCharRule.Factory.class).create(this),
+                getContext().getInstance(UsernameIsRequiredRule.Factory.class).create(this),
+                getContext().getInstance(DefaultEmailByUsernameRule.Factory.class).create(this)
+        );
     }
-
 }

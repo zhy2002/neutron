@@ -1,20 +1,19 @@
 package zhy2002.neutron;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * There is one context per node tree.
  */
-public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
+public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
     private final ClassRegistry classRegistry;
-    private final SequentialUniqueIdGenerator uniqueIdGenerator = new SequentialUniqueIdGenerator();
-    private final UiNodeChangeEngineImpl changeEngine = new UiNodeChangeEngineImpl();
+    private final SequentialUniqueIdGenerator uniqueIdGenerator;
+    private final UiNodeChangeEngineImpl changeEngine;
 
-    protected UiNodeContextImpl(ClassRegistryImpl factoryRegistry) {
-        this.classRegistry = new ImmutableClassRegistry(factoryRegistry);
+    protected AbstractUiNodeContext(ClassRegistryImpl factoryRegistry) {
+        classRegistry = new ImmutableClassRegistry(factoryRegistry);
+        changeEngine = new UiNodeChangeEngineImpl();
+        uniqueIdGenerator = new SequentialUniqueIdGenerator();
     }
 
     //region node construction
@@ -31,6 +30,7 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
 
     /**
      * Get the root node. If the root node has not been created this will create and addToOwner the root node.
+     * Use lazy loading so that when we create the root node this context instance is fully initialized.
      *
      * @return the root node.
      */
@@ -48,7 +48,7 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
      * Create the root node.
      * This function should not change the context in any way.
      *
-     * @return the root node.
+     * @return the root node to be added to this context instance.
      */
     protected abstract R createRootNode();
 
@@ -59,8 +59,26 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
 
     @Override
     public <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
-       StateChangeEventFactory<T> factory = classRegistry.getStateChangeEventFactory(valueClass);
-       return factory.create(target, key, oldValue, newValue);
+        StateChangeEventFactory<T> factory = classRegistry.getStateChangeEventFactory(valueClass);
+        return factory.create(target, key, oldValue, newValue);
+    }
+
+    @Override
+    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeAddEvent<N> createNodeAddEvent(Class<N> itemClass, N item) {
+        NodeAddEventFactory<N> factory = classRegistry.getNodeAddEventFactory(itemClass);
+        return factory.create(item);
+    }
+
+    @Override
+    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEvent<N> createNodeRemoveEvent(Class<N> itemClass, N item) {
+        NodeRemoveEventFactory<N> factory = classRegistry.getNodeRemoveEventFactory(itemClass);
+        return factory.create(item);
+    }
+
+    @Override
+    public <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name) {
+        ChildNodeFactory<N, P> factory = classRegistry.getChildNodeFactory(childNodeClass);
+        return factory.create(parent, name);
     }
 
     //endregion
@@ -100,6 +118,7 @@ public abstract class UiNodeContextImpl<R extends UiNode<VoidUiNode>> implements
         return changeEngine.getCurrentActivation();
     }
 
+    @Override
     public TickPhase getCurrentPhase() {
         return changeEngine.getCurrentPhase();
     }

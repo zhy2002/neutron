@@ -32,10 +32,8 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     }
 
     @Override
-    protected ErrorNode createError(UiNodeEvent typedEvent) {
-        ErrorNode errorNode = super.createError(typedEvent);
-        errorNode.setSource(getRepeatPasswordNode());
-        return errorNode;
+    protected ErrorNode createErrorNode(UiNodeEvent typedEvent) {
+        return createErrorNode(getRepeatPasswordNode(), getErrorMessage(typedEvent));
     }
 
     @Override
@@ -56,7 +54,7 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     }
 
     @Override
-    protected String getErrorMessage() {
+    public String getErrorMessage(UiNodeEvent event) {
         return ERROR_MESSAGE;
     }
 

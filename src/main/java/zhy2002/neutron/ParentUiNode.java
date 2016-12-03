@@ -11,23 +11,27 @@ import java.util.Map;
 /**
  * A UiNode that can have child UiNodes.
  * The two known subclasses are ObjectUiNode and ListUiNode.
- * todo Consider adding MapUiNode which maps one UiNode to another.
  */
 public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> {
 
+    /**
+     * Support find children by index.
+     */
     private final List<UiNode<?>> children = new ArrayList<>();
+    /**
+     * Support find children by name.
+     */
     private final Map<String, UiNode<?>> childrenMap = new HashMap<>();
 
     protected ParentUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
     }
 
-    protected ParentUiNode(@NotNull UiNodeContextImpl<?> context) {
+    protected ParentUiNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
     }
 
-    @JsMethod
-    public int indexOf(UiNode<?> child) {
+    int indexOf(UiNode<?> child) {
         return children.indexOf(child);
     }
 
@@ -39,7 +43,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return children.get(index);
     }
 
-    public void addChild(UiNode<?> child) {
+    void addChild(UiNode<?> child) {
         if (child.getParent() != this)
             throw new ParentMismatchException(this, child);
         if (childrenMap.get(child.getName()) != null)
@@ -49,9 +53,9 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         childrenMap.put(child.getName(), child);
     }
 
-    @JsMethod
-    public int getChildCount() {
-        return children.size();
+    void removeChild(UiNode<?> child) {
+        childrenMap.remove(child.getName());
+        children.remove(child);
     }
 
     @JsMethod
@@ -61,38 +65,30 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return result;
     }
 
+    protected int getChildCount() {
+        return children.size();
+    }
+
     @Override
     protected void doLoad() {
-        initializeSelf();
+        super.doLoad();
         initializeChildren();
     }
 
     /**
-     * Set default value, add rules and place hooks in ancestors.
-     */
-    protected abstract void initializeSelf();
-
-    /**
-     * Create and addToOwner children.
+     * Create and load children.
      */
     protected abstract void initializeChildren();
 
     @Override
     protected void doUnload() {
-        undoInitializeSelf();
-        undoInitializeChildren();
+        super.doUnload();
+        uninitializeChildren();
     }
 
-    protected abstract void undoInitializeSelf();
+    /**
+     * Undo children creation and loading.
+     */
+    protected abstract void uninitializeChildren();
 
-    protected abstract void undoInitializeChildren();
-
-    public void removeChild(UiNode<?> child) {
-        childrenMap.remove(child.getName());
-        children.remove(child);
-    }
-
-    public boolean supportRemoveChild() {
-        return false;
-    }
 }

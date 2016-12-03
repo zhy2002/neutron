@@ -3,8 +3,11 @@ package zhy2002.examples.register;
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.EmailChangeReasonRule;
 import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
-import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.UiNodeRule;
+
+import java.util.Arrays;
+import java.util.List;
 
 @JsType
 public class EmailNode extends StringUiNode<RegisterNode> {
@@ -18,9 +21,11 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected void doLoad() {
-        getContext().getInstance(EmailChangeReasonRule.Factory.class).create(this).addToOwner();
-        getContext().getInstance(ValidateEmailIsRequiredRule.Factory.class).create(this).addToOwner();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().getInstance(EmailChangeReasonRule.Factory.class).create(this),
+                getContext().getInstance(ValidateEmailIsRequiredRule.Factory.class).create(this)
+        );
     }
 
     public void setTriggeredBy(String triggeredBy) {

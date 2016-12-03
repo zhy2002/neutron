@@ -2,7 +2,7 @@ package zhy2002.examples.register;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.UiNode;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 
 public class RegisterError {
     private UiNode<?> origin;

@@ -2,7 +2,6 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.register.UiNodeChangeListener;
-import zhy2002.neutron.rule.UiNodeRule;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -11,6 +10,8 @@ import java.util.*;
  * Base class for all ui nodes.
  */
 public abstract class UiNode<P extends ParentUiNode<?>> {
+
+    private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
 
     /**
      * The parent ui node.
@@ -21,27 +22,42 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final String name;
     /**
+     * The unique id of this node. This is setInstance when this node is added to the node tree.
+     */
+    private String uniqueId;
+    /**
      * The context instance shared by the whole UiNode tree.
      */
-    private final UiNodeContextImpl<?> context;
+    private final AbstractUiNodeContext<?> context;
+    /**
+     * Life state of this node.
+     */
+    private NodeStatusEnum nodeStatus;
+    /**
+     * Determines what is perceived as 'change' for this node.
+     * This is the configured value.
+     */
+    private ChangeTrackingModeEnum changeTrackingMode = ChangeTrackingModeEnum.Inherited;
+    /**
+     * This is the computed value.
+     */
+    private ChangeTrackingModeEnum effectiveChangeTrackingMode;
     /**
      * A map used to store current values of state properties.
      */
     private final Map<String, Object> state = new HashMap<>();
     /**
-     * The unique id of this node. This is setInstance when this node is added to the node tree.
+     * Rules owned by this node.
      */
-    private String uniqueId;
+    private final List<UiNodeRule<?, ?>> ownRules = new ArrayList<>();
     /**
-     * Life state of this node.
+     * Rules attached to this (host) node. Keyed by event class name.
      */
-    private NodeLifeStateEnum lifeState;
-
-    private ChangeTrackModeEnum changeTrackMode = ChangeTrackModeEnum.Reference;
-
-    private final List<UiNodeRule<?, ?>> hostedRules = new ArrayList<>();
     private final Map<Class<?>, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
-
+    /**
+     * Listeners that to be notified when this node changes.
+     * At the moment node change means state change, add child or remove child.
+     */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
     /**
@@ -59,15 +75,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      *
      * @param context the context instance.
      */
-    protected UiNode(@NotNull UiNodeContextImpl<?> context) {
+    protected UiNode(@NotNull AbstractUiNodeContext<?> context) {
         this(null, context, "");
     }
 
-    private UiNode(P parent, UiNodeContextImpl<?> context, String name) {
+    private UiNode(P parent, AbstractUiNodeContext<?> context, String name) {
         this.parent = parent;
         this.context = context;
         this.name = name;
-        this.lifeState = NodeLifeStateEnum.Detached;
+        this.nodeStatus = NodeStatusEnum.Detached;
     }
 
     @JsMethod
@@ -79,35 +95,88 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public
     @NotNull
-    UiNodeContextImpl<?> getContext() {
+    AbstractUiNodeContext<?> getContext() {
         return context;
+    }
+
+    @JsMethod
+    @NotNull
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(@NotNull String id) {
+        if (nodeStatus != NodeStatusEnum.Detached)
+            throw new UiNodeException("Cannot set unique id if the node is not detached.");
+        this.uniqueId = id;
+    }
+
+    @JsMethod
+    public int getIndex() {
+        if (parent != null) {
+            return parent.indexOf(this);
+        }
+        return -1;
+    }
+
+    @JsMethod
+    @NotNull
+    public String getName() {
+        return name;
+    }
+
+    public
+    @NotNull
+    ChangeTrackingModeEnum getChangeTrackingMode() {
+        if (effectiveChangeTrackingMode == null) {
+            if (changeTrackingMode != ChangeTrackingModeEnum.Inherited) {
+                effectiveChangeTrackingMode = changeTrackingMode;
+            } else {
+                ParentUiNode<?> parent = getParent();
+                while (parent != null && parent.getChangeTrackingMode() == ChangeTrackingModeEnum.Inherited) {
+                    parent = parent.getParent();
+                }
+                if (parent == null) {
+                    effectiveChangeTrackingMode = DEFAULT_CHANGE_TRACKING_MODE;
+                } else {
+                    effectiveChangeTrackingMode = parent.getChangeTrackingMode();
+                }
+            }
+        }
+        return effectiveChangeTrackingMode;
+    }
+
+    public void setChangeTrackingMode(@NotNull ChangeTrackingModeEnum changeTrackingMode) {
+        if (this.changeTrackingMode != changeTrackingMode) {
+            this.changeTrackingMode = changeTrackingMode;
+            this.effectiveChangeTrackingMode = null;
+        }
     }
 
     //region state methods
 
+    @SuppressWarnings("unchecked")
     protected <T> T getStateValueInternal(String key) {
         return (T) state.get(key);
     }
 
+    /**
+     * Bypass event processing and set the value directly.
+     *
+     * @param key   state property key.
+     * @param value state property value.
+     */
     protected void setStateValueInternal(String key, Object value) {
         state.put(key, value);
     }
 
-    public ChangeTrackModeEnum getChangeTrackMode() {
-        return changeTrackMode;
-    }
-
-    public void setChangeTrackMode(ChangeTrackModeEnum changeTrackMode) {
-        this.changeTrackMode = changeTrackMode;
-    }
-
-    @JsMethod
-    public <T> T getStateValue(String key) {
+    protected <T> T getStateValue(String key) {
         return getStateValueInternal(key);
     }
 
-    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
-        if(this.getLifeState() == NodeLifeStateEnum.Detached) {
+    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
+
+        if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
             setStateValueInternal(key, value);
             return;
         }
@@ -115,19 +184,21 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         TickPhase phase = getContext().getCurrentPhase();
         if (phase != null) {
             ChangeModeEnum changeMode = phase.getChangeMode();
-            if (changeMode == ChangeModeEnum.DIRECT) {
-                setStateValueInternal(key, value);
-                return;
-            } else if (changeMode == ChangeModeEnum.IGNORED) {
-                return;
-            } else if (changeMode == ChangeModeEnum.PROHIBITED) {
-                throw new UiNodeEventException(); //todo specialized exception type
+            switch (changeMode) {
+                case DIRECT:
+                    setStateValueInternal(key, value);
+                    return;
+                case IGNORED:
+                    return;
+                case PROHIBITED:
+                    throw new UiNodeEventException(); //todo specialized exception type
             }
         }
 
+        //default logic
         T oldValue = getStateValueInternal(key);
         boolean process = false;
-        switch (this.changeTrackMode) {
+        switch (getChangeTrackingMode()) {
             case Always:
                 process = true;
                 break;
@@ -146,104 +217,131 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
         if (!process)
             return;
-        StateChangeEvent<T> event = createStateChangeEvent(key, valueClass, oldValue, value);
+        StateChangeEvent<T> event;
+        event = context.createStateChangeEvent(this, key, valueClass, oldValue, value);
         getContext().processEvent(event);
-
-    }
-
-    private <T> StateChangeEvent<T> createStateChangeEvent(String key, Class<T> valueClass, T oldValue, T value) {
-        return context.createStateChangeEvent(this, key, valueClass, oldValue, value);
-    }
-
-    //endregion
-
-
-    //region identity methods
-
-    @JsMethod
-    public String getUniqueId() {
-        return uniqueId;
-    }
-
-    public int getIndex() {
-        if (parent != null) {
-            return parent.indexOf(this);
-        }
-        return -1;
-    }
-
-    @JsMethod
-    public String getName() {
-        return name;
     }
 
     //endregion
 
     //region life cycle methods
 
-    public NodeLifeStateEnum getLifeState() {
-        return lifeState;
+    public
+    @NotNull
+    NodeStatusEnum getNodeStatus() {
+        return nodeStatus;
     }
 
-    public void addToParent() {
-        if (this.lifeState != NodeLifeStateEnum.Detached)
+    /**
+     * The second step of adding a node to its parent.
+     * When this is done the node still needs to be loaded (its own content, rules, children and initial values).
+     */
+    protected void addToParent() {
+        if (this.nodeStatus != NodeStatusEnum.Detached)
             return;
 
-        this.uniqueId = context.getUniqueId();
+        if (this.uniqueId == null) {
+            this.uniqueId = context.getUniqueId();
+        } else {
+            //todo if uniqueId is not unique, throw an exception
+        }
+
         if (parent == null) {
-            //todo root node establish relation with context
+            //do nothing for root
         } else {
             this.parent.addChild(this);
         }
-        this.lifeState = NodeLifeStateEnum.Unloaded;
+        this.nodeStatus = NodeStatusEnum.Unloaded;
     }
 
-    public void removeFromParent() { //todo not working
-        if (this.lifeState != NodeLifeStateEnum.Unloaded)
+    /**
+     * Return to step 1 status.
+     */
+    protected void removeFromParent() {
+        if (this.nodeStatus != NodeStatusEnum.Unloaded || parent == null)
             return;
 
-        if (parent == null) {
-
-        } else {
-            if (!parent.supportRemoveChild()) //does not support
-                return;
-            this.parent.removeChild(this);
-        }
-        this.lifeState = NodeLifeStateEnum.Detached;
+        this.parent.removeChild(this);
+        this.nodeStatus = NodeStatusEnum.Detached;
     }
 
     /**
      * Calling this method with transition from Unloaded to Loaded.
      */
-    public void load() {
-        if (this.lifeState != NodeLifeStateEnum.Unloaded)
+    public final void load() {
+        if (this.nodeStatus != NodeStatusEnum.Unloaded)
             return;
         doLoad();
-        this.lifeState = NodeLifeStateEnum.Loaded;
+        this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
-    /**
-     * Life cycle method that make this node ready for interaction.
-     */
-    protected void doLoad() {}
+    protected void doLoad() {
+        initializeState();
+        createOwnRules().forEach(UiNodeRule::addToOwner);
+    }
+
+    protected void initializeState() {
+    }
+
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return new ArrayList<>();
+    }
 
     /**
      * Calling this method will transition from Loaded to Unloaded.
      */
-    public void unload() {
-        if (this.lifeState != NodeLifeStateEnum.Loaded)
+    public final void unload() {
+        if (this.nodeStatus != NodeStatusEnum.Loaded)
             return;
         doUnload();
-
-        this.lifeState = NodeLifeStateEnum.Unloaded;
+        this.nodeStatus = NodeStatusEnum.Unloaded;
     }
 
-    /**
-     * Undo what initialize() did.
-     */
-    protected void doUnload() {}
+    protected void doUnload() {
+        List<UiNodeRule<?, ?>> ownRules = new ArrayList<>(this.ownRules);
+        ownRules.forEach(UiNodeRule::removeFromOwner);
+        this.state.clear();
+    }
 
-    public Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
+    public void attach() {
+        addToParent();
+        load();
+    }
+
+    public void detach() {
+        unload();
+        removeFromParent();
+    }
+
+    <T extends UiNode<?>, E extends UiNodeEvent> void addRule(@NotNull UiNodeRule<E, T> rule) {
+        assert this == rule.getOwner();
+        ownRules.add(rule);
+    }
+
+    <T extends UiNode<?>> void removeRule(@NotNull UiNodeRule<?, T> rule) {
+        assert this == rule.getOwner();
+        ownRules.remove(rule);
+    }
+
+    <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
+        assert rule.getHost() == this;
+        for (Class<?> eventType : rule.observedEventTypes()) {
+            List<UiNodeRule<?, ?>> list = attachedRuleMap.computeIfAbsent(eventType, k -> new ArrayList<>());
+            list.add(rule);
+        }
+    }
+
+    <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
+        assert rule.getHost() == this;
+        for (Class<?> eventType : rule.observedEventTypes()) {
+            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
+            if (list != null) {
+                list.remove(rule);
+            }
+        }
+    }
+
+    Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
         List<UiNodeRule<?, ?>> list = attachedRuleMap.get(clazz);
         return list == null ? Collections.emptyList() : list;
     }
@@ -254,45 +352,17 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         getContext().processEvent(refreshUiNodeEvent);
     }
 
-    public <T extends UiNode<?>, E extends UiNodeEvent> void addRule(UiNodeRule<E, T> rule) {
-        hostedRules.add(rule);
-    }
-
-    public <T extends UiNode<?>> void removeRule(UiNodeRule<?, T> rule) {
-        hostedRules.remove(rule);
-    }
-
-    public <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
-        assert rule.getHost() == this;
-        for(Class<?> eventType : rule.observedEventTypes()) {
-            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
-            if (list == null) {
-                list = new ArrayList<>();
-                attachedRuleMap.put(eventType, list);
-            }
-            list.add(rule);
-        }
-
-    }
-
-    public <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
-        assert rule.getHost() == this;
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(rule.observedEventTypes());
-        if (list != null) {
-            list.remove(rule);
-        }
-    }
-
-    //endregion
-
     @JsMethod
     public void addChangeListener(UiNodeChangeListener listener) {
         this.changeListeners.add(listener);
     }
 
-    public void notifyChange() {
+    void notifyChange() {
         for (UiNodeChangeListener listener : changeListeners) {
             listener.onUiNodeChanged();
         }
     }
+
+    //endregion
+
 }

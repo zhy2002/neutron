@@ -15,7 +15,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setRequired(false);
     }
 
-    protected LeafUiNode(@NotNull UiNodeContextImpl context) {
+    protected LeafUiNode(@NotNull AbstractUiNodeContext context) {
         super(context);
 
         setRequired(false);

@@ -10,8 +10,8 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * A placeholder class needed to fulfill the contact that
      * the context super constructor parameter must not be null.
      */
-    private final static class VoidUiNodeContext extends UiNodeContextImpl<VoidUiNode> {
-        private VoidUiNodeContext(ClassRegistryImpl factoryRegistry) {
+    private final static class VoidAbstractUiNodeContext extends AbstractUiNodeContext<VoidUiNode> {
+        private VoidAbstractUiNodeContext(ClassRegistryImpl factoryRegistry) {
             super(factoryRegistry);
         }
 
@@ -26,26 +26,14 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * IT SHOULD NEVER BE CALLED.
      */
     private VoidUiNode() {
-        super(new VoidUiNodeContext(new ClassRegistryImpl()));
-    }
-
-
-    @Override
-    protected void initializeSelf() {
+        super(new VoidAbstractUiNodeContext(new ClassRegistryImpl()));
     }
 
     @Override
     protected void initializeChildren() {
-
     }
 
     @Override
-    protected void undoInitializeSelf() {
-
-    }
-
-    @Override
-    protected void undoInitializeChildren() {
-
+    protected void uninitializeChildren() {
     }
 }

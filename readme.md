@@ -1,5 +1,6 @@
 todo 
 -----------------
+* upgrade example front end to react material
 * tick-less mode - where new events are directly moved from queue to agenda
 * when deciding if a rule should be triggered, check the event type considering inheritance
 * rule should have a load event to init node properties
@@ -41,6 +42,7 @@ todo
 * event notification strategy - self,children,parent; descendant,parent; self; ...
 * fire rules by group
 * warning rules and suppressed warning
+* Consider adding MapUiNode which maps one UiNode to another.
 
 = event trigger opportunity is up to the ui implementor
 = states should be independent, e.g. parent.disabled child.disabled should be independent. getValue v.s. getInheritedValue

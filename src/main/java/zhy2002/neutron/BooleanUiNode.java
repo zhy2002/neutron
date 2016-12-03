@@ -14,7 +14,7 @@ public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Bool
         init();
     }
 
-    protected BooleanUiNode(@NotNull UiNodeContextImpl context) {
+    protected BooleanUiNode(@NotNull AbstractUiNodeContext context) {
         super(context);
 
         init();

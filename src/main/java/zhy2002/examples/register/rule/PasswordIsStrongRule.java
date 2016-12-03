@@ -4,11 +4,10 @@ import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.PasswordNode;
 import zhy2002.neutron.PredefinedPhases;
-import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.RefreshUiNodeEvent;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 public class PasswordIsStrongRule extends UiNodeRule<UiNodeEvent, PasswordNode> {

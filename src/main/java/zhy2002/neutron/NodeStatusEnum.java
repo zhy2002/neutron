@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * The life cycle states of a node.
  */
-public enum NodeLifeStateEnum {
+public enum NodeStatusEnum {
     /**
      * Node is created but not added to the node tree.
      */

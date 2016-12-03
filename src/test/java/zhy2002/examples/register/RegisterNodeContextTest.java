@@ -7,7 +7,7 @@ import zhy2002.examples.register.rule.UsernameIsRequiredRule;
 import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
 import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,13 +15,13 @@ import static org.hamcrest.Matchers.*;
 
 public class RegisterNodeContextTest {
 
-    private RegisterNodeContext context;
+    private RegisterNodeContextAbstract context;
     private RegisterNode registerNode;
 
     @Before
     public void setup() {
         ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
-        context = new RegisterNodeContext(factoryRegistry);
+        context = new RegisterNodeContextAbstract(factoryRegistry);
         registerNode = context.getRootNode();
     }
 
@@ -61,19 +61,19 @@ public class RegisterNodeContextTest {
         ErrorListNode errors = registerNode.getErrorListNode();
 
         //assert
-        assertThat(errors.getChildCount(), equalTo(0));
+        assertThat(errors.getItemCount(), equalTo(0));
 
         //act
         usernameNode.setValue("abc");
 
         //assert
-        assertThat(errors.getChildCount(), equalTo(1));
+        assertThat(errors.getItemCount(), equalTo(1));
         ErrorNode error = errors.getItem(0);
         assertThat(error.getSource(), sameInstance(usernameNode));
         assertThat(error.getMessage(), equalTo(UsernameLengthRule.ERROR_MESSAGE));
 
         usernameNode.setValue("test");
-        assertThat(errors.getChildCount(), equalTo(0));
+        assertThat(errors.getItemCount(), equalTo(0));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class RegisterNodeContextTest {
         usernameNode.setValue("abc");
         context.rollbackSession();
         assertThat(usernameNode.getValue(), equalTo("Hello"));
-        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
     }
 
     @Test
@@ -141,10 +141,10 @@ public class RegisterNodeContextTest {
         usernameNode.setValue("ab");
         usernameNode.setValue("abc");
 
-        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(1));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
 
         usernameNode.setValue("abcd");
-        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
     }
 
     @Test
@@ -217,7 +217,7 @@ public class RegisterNodeContextTest {
     @Test
     public void passwordShouldBeStrong() {
 
-        assertThat(registerNode.getErrorListNode().getChildCount(), equalTo(0));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
         registerNode.refresh();
 
         assertThat(hasError(PasswordIsStrongRule.class), equalTo(true));
@@ -248,7 +248,7 @@ public class RegisterNodeContextTest {
     }
 
     private boolean hasError(Class<? extends UiNodeRule<?, ?>> ruleClass) {
-        for (int i = 0; i < registerNode.getErrorListNode().getChildCount(); i++) {
+        for (int i = 0; i < registerNode.getErrorListNode().getItemCount(); i++) {
             ErrorNode errorNode = registerNode.getErrorListNode().getItem(i);
             if (ClassUtil.isInstanceOf(ruleClass, errorNode.getRule())) {
                 return true;
@@ -268,7 +268,7 @@ public class RegisterNodeContextTest {
     public void shouldValidateRequiredFieldWhenRefresh() {
 
         ErrorListNode errorListNode = registerNode.getErrorListNode();
-        assertThat(errorListNode.getChildCount(), equalTo(0));
+        assertThat(errorListNode.getItemCount(), equalTo(0));
 
         registerNode.refresh();
 

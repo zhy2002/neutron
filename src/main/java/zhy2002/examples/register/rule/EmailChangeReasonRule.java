@@ -3,7 +3,7 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.EmailNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
@@ -24,9 +24,9 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChange
     public void addToOwner() {
         super.addToOwner();
 
-        getOwner().setChangeTrackMode(ChangeTrackModeEnum.None);
+        getOwner().setChangeTrackingMode(ChangeTrackingModeEnum.None);
         getOwner().setTriggeredBy("user direct");
-        getOwner().setChangeTrackMode(ChangeTrackModeEnum.Reference);
+        getOwner().setChangeTrackingMode(ChangeTrackingModeEnum.Reference);
     }
 
     @Override

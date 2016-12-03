@@ -4,7 +4,7 @@ import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.ReceiveOffersNode;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
-import zhy2002.neutron.rule.UiNodeRule;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**

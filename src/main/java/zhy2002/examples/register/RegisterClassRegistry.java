@@ -1,5 +1,7 @@
 package zhy2002.examples.register;
 
+import zhy2002.examples.register.event.ErrorNodeAddEvent;
+import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
 import zhy2002.examples.register.rule.*;
 import zhy2002.examples.register.rule.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
@@ -12,28 +14,15 @@ import zhy2002.neutron.event.StringStateChangeEventFactory;
 public class RegisterClassRegistry extends ClassRegistryImpl {
 
     public RegisterClassRegistry() {
-        loadChildNodeFactories();
         loadRuleFactories();
+        loadChildNodeFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadChildNodeFactories() {
-        setInstance(UsernameNodeFactory.class, new UsernameNodeFactory());
-        setInstance(PasswordNodeFactory.class, new PasswordNodeFactory());
-        setInstance(ErrorListNodeFactory.class, new ErrorListNodeFactory());
-        setInstance(ErrorNodeFactory.class, new ErrorNodeFactory());
-        setInstance(EmailNodeFactory.class, new EmailNodeFactory());
-        setInstance(RepeatPasswordNodeFactory.class, new RepeatPasswordNodeFactory());
-        setInstance(ReceiveOffersNodeFactory.class, new ReceiveOffersNodeFactory());
-    }
-
-    private void loadStateChangeEventFactories() {
-        this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
-        this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
+        loadNodeAddEventFactories();
+        loadNodeRemoveEventFactories();
     }
 
     private void loadRuleFactories() {
-        setInstance(UsernameLengthRule.Factory.class, new UsernameLengthRuleImpl.Factory());
+        setInstance(UsernameLengthRule.Factory.class, new UsernameLengthRule.Factory());
         setInstance(UsernameInvalidCharRule.Factory.class, new UsernameInvalidCharRuleImpl.Factory());
         setInstance(ClearHasErrorRule.Factory.class, new ClearHasErrorRuleImpl.Factory());
         setInstance(SetHasErrorRule.Factory.class, new SetHasErrorRuleImpl.Factory());
@@ -45,4 +34,29 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setInstance(EmailIsRequiredWhenReceiveOffersRule.Factory.class, new EmailIsRequiredWhenReceiveOffersRule.Factory());
         setInstance(ValidateEmailIsRequiredRule.Factory.class, new ValidateEmailIsRequiredRule.Factory());
     }
+
+    private void loadChildNodeFactories() {
+        setChildNodeFactory(UsernameNode.class, new UsernameNodeFactory());
+        setChildNodeFactory(PasswordNode.class, new PasswordNodeFactory());
+        setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
+        setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
+        setChildNodeFactory(EmailNode.class, new EmailNodeFactory());
+        setChildNodeFactory(RepeatPasswordNode.class, new RepeatPasswordNodeFactory());
+        setChildNodeFactory(ReceiveOffersNode.class, new ReceiveOffersNodeFactory());
+    }
+
+    private void loadStateChangeEventFactories() {
+        this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
+        this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
+    }
+
+    private void loadNodeAddEventFactories() {
+        this.setNodeAddEventFactory(ErrorNode.class, ErrorNodeAddEvent::new);
+    }
+
+    private void loadNodeRemoveEventFactories() {
+        this.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
+    }
+
+
 }

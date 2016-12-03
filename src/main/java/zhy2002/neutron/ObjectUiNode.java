@@ -1,41 +1,46 @@
 package zhy2002.neutron;
 
-import jsinterop.annotations.JsType;
+import jsinterop.annotations.JsMethod;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * A ParentUiNode whose children are exposed as properties.
  */
-@JsType
 public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNode<P> {
 
     protected ObjectUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
     }
 
-    protected ObjectUiNode(@NotNull UiNodeContextImpl<?> context) {
+    protected ObjectUiNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
     }
 
     @Override
     protected void initializeChildren() {
-        addChildren();
-        loadChildren();
-    }
-
-    protected abstract void addChildren();
-
-    protected abstract void loadChildren();
-
-    @Override
-    protected void undoInitializeSelf() {
-        throw new NotImplementedException();
+        List<UiNode<?>> children = createChildren();
+        children.forEach(UiNode::addToParent);
+        children.forEach(UiNode::load);
     }
 
     @Override
-    protected void undoInitializeChildren() {
-        throw new NotImplementedException();
+    protected void uninitializeChildren() {
+        UiNode<?>[] children = getChildren();
+        for(int i=children.length - 1; i >= 0; i--) {
+            children[i].unload();
+        }
+        for(int i=children.length - 1; i >= 0; i--) {
+            children[i].removeFromParent();
+        }
     }
 
+    protected abstract List<UiNode<?>> createChildren();
+
+    @JsMethod
+    @Override
+    public int getChildCount() {
+        return super.getChildCount();
+    }
 }

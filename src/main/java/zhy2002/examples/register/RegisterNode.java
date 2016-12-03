@@ -4,12 +4,11 @@ import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.ClearHasErrorRule;
 import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
-import zhy2002.neutron.ObjectUiNode;
-import zhy2002.neutron.PredefinedUiNodeStateKeys;
-import zhy2002.neutron.UiNodeContextImpl;
-import zhy2002.neutron.VoidUiNode;
+import zhy2002.neutron.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.List;
 
 @JsType
 public class RegisterNode extends ObjectUiNode<VoidUiNode> {
@@ -21,7 +20,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private ReceiveOffersNode receiveOffersNode;
     private ErrorListNode errorListNode;
 
-    RegisterNode(@NotNull UiNodeContextImpl<?> context) {
+    RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
 
         setHasError(false);
@@ -60,119 +59,30 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
     @Override
-    protected void initializeSelf() {
-        setHasError(false);
-        getContext().getInstance(SetHasErrorRule.Factory.class).create(this).addToOwner();
-        getContext().getInstance(ClearHasErrorRule.Factory.class).create(this).addToOwner();
+    protected List<UiNode<?>> createChildren() {
+        UiNodeContext<?> context = getContext();
+        usernameNode = context.createChildNode(UsernameNode.class, this, "usernameNode");
+        emailNode = context.createChildNode(EmailNode.class, this, "emailNode");
+        passwordNode = context.createChildNode(PasswordNode.class, this, "passwordNode");
+        repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
+        receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
+        errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
+
+        return Arrays.asList(
+                usernameNode,
+                emailNode,
+                passwordNode,
+                repeatPasswordNode,
+                receiveOffersNode,
+                errorListNode
+        );
     }
 
     @Override
-    protected void addChildren() {
-        usernameNode = createUsernameNode();
-        addUsernameNode();
-        getContext().getInstance(DefaultEmailByUsernameRule.Factory.class).create(usernameNode).addToOwner();
-
-        emailNode = createEmailNode();
-        addEmailNode();
-
-        passwordNode = createPasswordNode();
-        addPasswordNode();
-
-        repeatPasswordNode = createRepeatPasswordNode();
-        addRepeatPasswordNode();
-
-        receiveOffersNode = createReceiveOffersNode();
-        addReceiveOffersNode();
-
-        errorListNode = createErrorListNode();
-        addErrorListNode();
-    }
-
-    protected ErrorListNode createErrorListNode() {
-        ErrorListNodeFactory errorListNodeFactory = getContext().getInstance(ErrorListNodeFactory.class);
-        return errorListNodeFactory.create(this, "errorListNode");
-    }
-
-    protected PasswordNode createPasswordNode() {
-        PasswordNodeFactory passwordNodeFactory = getContext().getInstance(PasswordNodeFactory.class);
-        return passwordNodeFactory.create(this, "passwordNode");
-    }
-
-    protected RepeatPasswordNode createRepeatPasswordNode() {
-        RepeatPasswordNodeFactory repeatPasswordNodeFactory = getContext().getInstance(RepeatPasswordNodeFactory.class);
-        return repeatPasswordNodeFactory.create(this, "repeatPasswordNode");
-    }
-
-    protected ReceiveOffersNode createReceiveOffersNode() {
-        ReceiveOffersNodeFactory receiveOffersNodeFactory = getContext().getInstance(ReceiveOffersNodeFactory.class);
-        return receiveOffersNodeFactory.create(this, "receiveOffersNode");
-    }
-
-    protected UsernameNode createUsernameNode() {
-        UsernameNodeFactory usernameNodeFactory = getContext().getInstance(UsernameNodeFactory.class);
-        return usernameNodeFactory.create(this, "usernameNode");
-    }
-
-    protected EmailNode createEmailNode() {
-        EmailNodeFactory emailNodeFactory = getContext().getInstance(EmailNodeFactory.class);
-        return emailNodeFactory.create(this, "emailNode");
-    }
-
-    protected void addUsernameNode() {
-        usernameNode.addToParent();
-    }
-
-    protected void addPasswordNode() {
-        passwordNode.addToParent();
-    }
-
-    protected void addRepeatPasswordNode() {
-        repeatPasswordNode.addToParent();
-    }
-
-    protected void addReceiveOffersNode() {
-        receiveOffersNode.addToParent();
-    }
-
-    protected void addErrorListNode() {
-        errorListNode.addToParent();
-    }
-
-    protected void addEmailNode() {
-        emailNode.addToParent();
-    }
-
-    @Override
-    protected void loadChildren() {
-        loadUsernameNode();
-        loadEmailNode();
-        loadPasswordNode();
-        loadRepeatPasswordNode();
-        loadReceivesOffersNode();
-        loadErrorListNode();
-    }
-
-    private void loadEmailNode() {
-        emailNode.load();
-    }
-
-    protected void loadErrorListNode() {
-        errorListNode.load();
-    }
-
-    protected void loadPasswordNode() {
-        passwordNode.load();
-    }
-
-    protected void loadUsernameNode() {
-        usernameNode.load();
-    }
-
-    protected void loadRepeatPasswordNode() {
-        repeatPasswordNode.load();
-    }
-
-    protected void loadReceivesOffersNode() {
-        receiveOffersNode.load();
+    protected List<UiNodeRule<?, ?>> createOwnRules() {
+        return Arrays.asList(
+                getContext().getInstance(SetHasErrorRule.Factory.class).create(this),
+                getContext().getInstance(ClearHasErrorRule.Factory.class).create(this)
+        );
     }
 }

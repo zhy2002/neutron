@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.rule.UiNodeRule;
-
 import java.util.*;
 
 /**
@@ -13,11 +11,7 @@ public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
     @Override
     public void addActivations(UiNodeEvent event) {
         for (UiNodeRuleActivation activation : event.getActivations()) {
-            Deque<UiNodeRuleActivation> activationDeque = activationQueueMap.get(activation.getPhase());
-            if (activationDeque == null) {
-                activationDeque = new ArrayDeque<>();
-                activationQueueMap.put(activation.getPhase(), activationDeque);
-            }
+            Deque<UiNodeRuleActivation> activationDeque = activationQueueMap.computeIfAbsent(activation.getPhase(), k -> new ArrayDeque<>());
             activationDeque.add(activation);
         }
     }

@@ -3,6 +3,7 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeRule;
 
 /**
  * Base class for validation rules.

@@ -1,12 +1,10 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.event.ErrorNodeAddEvent;
-import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
-import zhy2002.neutron.*;
+import zhy2002.neutron.ListUiNode;
 
 import javax.validation.constraints.NotNull;
 
-public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
+public class ErrorListNode extends ListUiNode<RegisterNode, ErrorListNode, ErrorNode> {
 
     protected ErrorListNode(@NotNull RegisterNode parent, @NotNull String name) {
         super(parent, name);
@@ -16,41 +14,11 @@ public class ErrorListNode extends ListUiNode<RegisterNode, ErrorNode> {
         return ErrorNode.class;
     }
 
-    @Override
-    protected NodeAddEvent<ErrorNode> createNodeAddEvent(ErrorNode item) {
-        return new ErrorNodeAddEvent(item);
-    }
-
-    @Override
-    protected void initializeSelf() {
-
-    }
-
-    @Override
-    protected void initializeChildren() {
-    }
-
-    @Override
-    protected ErrorNode createItemInternal(Class<? extends ErrorNode> itemClass) {
 
 
-        ErrorNodeFactory factory = getContext().getInstance(ErrorNodeFactory.class);
-        return factory.create(this, String.valueOf(getChildSequenceNumber()));
-    }
 
-    @Override
-    protected NodeRemoveEvent<ErrorNode> createNodeRemoveEvent(ErrorNode child) {
-        return new ErrorNodeRemoveEvent(child);
-    }
 
-    @Override
-    protected void undoInitializeSelf() {
 
-    }
-
-    protected void undoInitializeChildren() {
-        throw new NotImplementedException();
-    }
 
 
 }
