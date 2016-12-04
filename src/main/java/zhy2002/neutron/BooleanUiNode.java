@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 @JsType
 public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
 
-
     protected BooleanUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
 

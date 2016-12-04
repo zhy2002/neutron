@@ -1,10 +1,10 @@
 package zhy2002.neutron;
 
 /**
- * Created by ZHY on 6/11/2016.
+ * The common factory base class for creating child nodes.
  */
-public abstract class ChildNodeFactory<N extends UiNode<? extends P>, P extends ParentUiNode<?>> {
+@FunctionalInterface
+public interface ChildNodeFactory<N extends UiNode<? extends P>, P extends ParentUiNode<?>> {
 
-    public abstract N create(P parent, String name);
-
+    N create(P parent, String name);
 }

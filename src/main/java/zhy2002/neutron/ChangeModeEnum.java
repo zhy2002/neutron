@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 /**
- * Created by john.zhang on 4/11/2016.
+ * Restrictions to changes in a phase.
  */
 public enum ChangeModeEnum {
     /**

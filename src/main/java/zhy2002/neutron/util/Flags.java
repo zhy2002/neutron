@@ -1,7 +1,7 @@
-package zhy2002.neutron;
+package zhy2002.neutron.util;
 
 /**
- * Created by john.zhang on 17/11/2016.
+ * A utility class to help define bit flags.
  */
 public abstract class Flags {
 

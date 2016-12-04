@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import org.junit.Test;
+import zhy2002.neutron.util.Flags;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
