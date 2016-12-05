@@ -11,13 +11,15 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
     private CycleModeEnum cycleMode = CycleModeEnum.Auto;
 
-    private boolean inSession = false;
+    private boolean inSession;
+    private boolean inCycle;
+    private TickPhase currentPhase;
+    private UiNodeRuleActivation currentActivation;
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
     private final Deque<Cycle> cycleDeque = new ArrayDeque<>();//a queue of cycles in session.
     private final UiNodeRuleAgendaImpl agenda = new UiNodeRuleAgendaImpl();
     private final TickPhase[] phases = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate, PredefinedPhases.CleanUp};
-    private TickPhase currentPhase;
-    private UiNodeRuleActivation currentActivation;
+
 
     //region change management
 
@@ -75,7 +77,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             cycleDeque.clear();
         }
 
-        inSession = false;
+        clearCycleState();
     }
 
     @Override
@@ -85,8 +87,17 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
     //todo canUndo and canRedo methods
 
+    private void clearCycleState() {
+        currentActivation = null;
+        currentPhase = null;
+        agenda.clear();
+        inCycle = false;
+        eventDeque.clear();
+    }
+
     @Override
     public boolean undo() {
+        clearCycleState();
         Iterator<Cycle> iterator = cycleDeque.descendingIterator();
         while (iterator.hasNext()) {
             Cycle cycle = iterator.next();
@@ -144,8 +155,6 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             }
         }
     }
-
-    private boolean inCycle;
 
     /**
      * Process all enqueued (root) events.

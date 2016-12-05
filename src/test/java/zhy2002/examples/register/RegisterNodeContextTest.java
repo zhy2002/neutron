@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.*;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.UiNodeContext;
+import zhy2002.neutron.UiNodeEventException;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
 
@@ -283,20 +285,41 @@ public class RegisterNodeContextTest {
     @Test
     public void canClearRepeatPasswordError() {
 
-        ErrorListNode errorListNode = registerNode.getErrorListNode();
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("test");
         PasswordNode passwordNode = registerNode.getPasswordNode();
         passwordNode.setValue("Aa1234");
 
-        //registerNode.refresh();
         assertThat(hasError(RepeatPasswordRule.class), equalTo(true));
 
         RepeatPasswordNode repeatPasswordNode = registerNode.getRepeatPasswordNode();
         repeatPasswordNode.setValue("Aa1234");
-        //registerNode.refresh();
+
         assertThat(hasError(RepeatPasswordRule.class), equalTo(false));
     }
 
+    @Test
+    public void shouldClearPhaseWhenRollback() {
+
+        UiNodeContext<?> context = registerNode.getContext();
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("test1");
+        assertThat(context.getCurrentPhase(), nullValue());
+
+        boolean thrown = false;
+        try {
+            usernameNode.setValue("test#");
+        } catch (RuntimeException ex) {
+            thrown = true;
+        }
+        assertThat(thrown, equalTo(true));
+
+        context.rollbackSession();
+        assertThat(context.getCurrentPhase(), nullValue());
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+
+        usernameNode.setValue("test11");
+        assertThat(usernameNode.getValue(), equalTo("test11"));
+    }
 
 }

@@ -21704,7 +21704,13 @@
 	                ),
 	                _react2.default.createElement("input", { type: "text", className: this.state.fieldClass, id: this.id,
 	                    value: this.state.value, onChange: function onChange(event) {
-	                        model.setValue(event.target.value);
+	                        try {
+	                            model.setValue(event.target.value);
+	                        } catch (e) {
+	                            console.log('Rolling back because:');
+	                            console.log(e);
+	                            model.getContext().rollbackSession();
+	                        }
 	                    } }),
 	                _react2.default.createElement(
 	                    "p",

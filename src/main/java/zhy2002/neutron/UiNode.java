@@ -28,7 +28,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * The context instance shared by the whole UiNode tree.
      */
-    private final AbstractUiNodeContext<?> context;
+    private final UiNodeContext<?> context;
     /**
      * Life state of this node.
      */
@@ -75,11 +75,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      *
      * @param context the context instance.
      */
-    protected UiNode(@NotNull AbstractUiNodeContext<?> context) {
+    protected UiNode(@NotNull UiNodeContext<?> context) {
         this(null, context, "");
     }
 
-    private UiNode(P parent, AbstractUiNodeContext<?> context, String name) {
+    private UiNode(P parent, UiNodeContext<?> context, String name) {
         this.parent = parent;
         this.context = context;
         this.name = name;
@@ -93,9 +93,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return parent;
     }
 
+    @JsMethod
     public
     @NotNull
-    AbstractUiNodeContext<?> getContext() {
+    UiNodeContext<?> getContext() {
         return context;
     }
 

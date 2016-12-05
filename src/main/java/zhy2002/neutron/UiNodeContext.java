@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsMethod;
+
 /**
  * This interface is a facade to all framework level services.
  *
@@ -28,14 +30,19 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
      */
     void processEvent(UiNodeEvent event);
 
+    @JsMethod
     void beginSession();
 
+    @JsMethod
     void rollbackSession();
 
+    @JsMethod
     void commitSession();
 
+    @JsMethod
     boolean undo();
 
+    @JsMethod
     boolean redo();
 
     /**

@@ -23,7 +23,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
 
     private void loadRuleFactories() {
         setUiNodeRuleFactory(UsernameLengthRule.class, UsernameLengthRule::new);
-        setUiNodeRuleFactory(UsernameInvalidCharRule.class, UsernameInvalidCharRuleImpl::new);
+        setUiNodeRuleFactory(UsernameInvalidCharRule.class, UsernameInvalidCharRule::new);
         setUiNodeRuleFactory(SetHasErrorRule.class, SetHasErrorRule::new);
         setUiNodeRuleFactory(DefaultEmailByUsernameRule.class, DefaultEmailByUsernameRuleImpl::new);
         setUiNodeRuleFactory(EmailChangeReasonRule.class, EmailChangeReasonRuleImpl::new);

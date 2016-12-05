@@ -1,35 +1,40 @@
 todo 
 -----------------
-* upgrade example front end to react material
+
+### Engine - find a use case before doing these improvements
 * tick-less mode - where new events are directly moved from queue to agenda
-* when deciding if a rule should be triggered, check the event type considering inheritance
-* rule should have a load event to init node properties
-* hierachical di
-* factor inheritance to composition once things get clearer
-* preserve value when node is disabled -> conditional state
-* built in states
-* add sourcemap to webpack
+* support post event send event processing
+* event notification strategy - self,children,parent; descendant,parent; self; ...
 * implement rule priority
 * implement rule group/flow
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
-* state metadata (type and stuff)
-* support post event send event processing
-* code gen xml overriding mechanism
-* improve dev process (webpack, live-reload, jasmine to test all the examples)
-* use type script
-* performance changes
 * more features of drools rules (rule metadata/configuration)
 * rule max change level detection
-* validation rule does not rely on the changes and can be fired for validation event
-    validation is independ of change though can be called after change (only called for changed nodes)
-    Design Ui node load/refresh/validate event
-* check for memory leak
+* when deciding if a rule should be triggered, check the event type considering inheritance
+
+### Frontend - needs a more comprehensive example first
+* upgrade example front end to react material
+* improve dev process (webpack, live-reload, jasmine to test all the examples)
+* use type script
 * react component scaffolding 
-* tracing and visualization of rule firing / logging
+* add sourcemap to webpack
 * parser/transformer coversion between gwt and react
+* build up a correspoding react component library
+
+### Misc
+* rule should have a load event to init node properties
+* preserve value when node is disabled -> conditional state
+* hierachical di
+* factor inheritance to composition once things get clearer
+* built in states
+* state metadata (type and stuff)
+* code gen xml overriding mechanism
+* performance changes
+* Design Ui node load/refresh/validate event
+* check for memory leak
+* tracing and visualization of rule firing / logging
 * state property namespace or distinction between system property and user property
 * allow user to customize ui, generate automatic fields
-* build up a correspoding react component library
 * node clone and take snapshot
 * calculate diff of two versions
 * async rules
@@ -39,15 +44,11 @@ todo
 * rule set, a set of rules activated or deactivated together (e.g. when a product is selected
 * api for getting old value, inherited value and stuff
 * init or fix value event
-* event notification strategy - self,children,parent; descendant,parent; self; ...
-* fire rules by group
 * warning rules and suppressed warning
 * Consider adding MapUiNode which maps one UiNode to another.
 
 = event trigger opportunity is up to the ui implementor
 = states should be independent, e.g. parent.disabled child.disabled should be independent. getValue v.s. getInheritedValue
-
-
 - send = process everything immediately & post = current behaviour where changes are added to a queue first.
 https://docs.google.com/document/d/10fmlEYIHcyead_4R1S5wKGs1t2I7Fnp_PaNaa7XTEk0/edit#
 
@@ -69,12 +70,19 @@ Problems
 Things Neutron can do
 ------------------
 A feild is required - check
+
 A field pattern validation - check
+
 A field value is validated again another field value - check
+
 A field value causes update of another field value - check
+
 Field value and display format are different - check
+
 One of two fields is mandatory - check
+
 Panel appear when a field has a certain value - check
+
 rules to apply depends on the value of a field - check
 
 

@@ -56,7 +56,13 @@ export default class FormFieldComponent extends React.Component {
                 <label htmlFor={this.id}>{this.state.label}</label>
                 <input type="text" className={this.state.fieldClass} id={this.id}
                        value={this.state.value} onChange={(event) => {
-                    model.setValue(event.target.value);
+                    try {
+                        model.setValue(event.target.value);
+                    } catch (e) {
+                        console.log('Rolling back because:');
+                        console.log(e);
+                    }
+
                 }}/>
                 <p className="help-block">{this.state.message}</p>
             </div>
