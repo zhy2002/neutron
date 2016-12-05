@@ -5,8 +5,11 @@ import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
 import zhy2002.examples.register.rule.*;
 import zhy2002.examples.register.rule.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
 import zhy2002.neutron.event.StringStateChangeEventFactory;
+
+import java.math.BigDecimal;
 
 /**
  * The generated factory register with all the default implementation instances.
@@ -42,11 +45,13 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(EmailNode.class, new EmailNodeFactory());
         setChildNodeFactory(RepeatPasswordNode.class, new RepeatPasswordNodeFactory());
         setChildNodeFactory(ReceiveOffersNode.class, new ReceiveOffersNodeFactory());
+        setChildNodeFactory(AgeNode.class, new AgeNodeFactory());
     }
 
     private void loadStateChangeEventFactories() {
         this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
         this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
+        this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
     }
 
     private void loadNodeAddEventFactories() {

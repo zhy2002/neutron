@@ -69,7 +69,7 @@ Problems
 
 Things Neutron can do
 ------------------
-A feild is required - check
+A field is required - check
 
 A field pattern validation - check
 
@@ -84,6 +84,8 @@ One of two fields is mandatory - check
 Panel appear when a field has a certain value - check
 
 rules to apply depends on the value of a field - check
+
+prevent certain chars from being typed in - check
 
 
 

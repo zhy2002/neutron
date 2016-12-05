@@ -15,7 +15,9 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private EmailNode emailNode;
     private PasswordNode passwordNode;
     private RepeatPasswordNode repeatPasswordNode;
+    private AgeNode ageNode;
     private ReceiveOffersNode receiveOffersNode;
+
     private ErrorListNode errorListNode;
 
     RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
@@ -52,6 +54,10 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return emailNode;
     }
 
+    public AgeNode getAgeNode() {
+        return ageNode;
+    }
+
     public ErrorListNode getErrorListNode() {
         return errorListNode;
     }
@@ -64,6 +70,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         passwordNode = context.createChildNode(PasswordNode.class, this, "passwordNode");
         repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
         receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
+        ageNode = context.createChildNode(AgeNode.class, this, "ageNode");
         errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
 
         return Arrays.asList(
@@ -72,6 +79,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
                 passwordNode,
                 repeatPasswordNode,
                 receiveOffersNode,
+                ageNode,
                 errorListNode
         );
     }

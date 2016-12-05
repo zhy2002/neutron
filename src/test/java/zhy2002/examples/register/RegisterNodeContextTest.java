@@ -9,6 +9,8 @@ import zhy2002.neutron.UiNodeEventException;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -337,6 +339,20 @@ public class RegisterNodeContextTest {
 
         emailNode.setValue("a");
         assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
+
+    }
+
+    @Test
+    public void numberNodeCanSyncBetweenTextAndValue() {
+
+        AgeNode ageNode = registerNode.getAgeNode();
+        ageNode.setText("12");
+        BigDecimal value = ageNode.getValue();
+
+        assertThat(value, equalTo(new BigDecimal("12")));
+
+        ageNode.setValue(new BigDecimal("98"));
+        assertThat(ageNode.getText(), equalTo("98"));
 
     }
 

@@ -10,6 +10,7 @@ public final class PredefinedUiNodeStateKeys {
     }
 
     public static final String VALUE = "value";
+    public static final String VALUE_TEXT = "value_text";
     public static final String DISABLED = "disabled";
     public static final String REQUIRED = "required";
     public static final String READONLY = "readonly";
