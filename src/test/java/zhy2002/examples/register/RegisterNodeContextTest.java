@@ -2,10 +2,7 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.register.rule.PasswordIsStrongRule;
-import zhy2002.examples.register.rule.UsernameIsRequiredRule;
-import zhy2002.examples.register.rule.UsernameLengthRule;
-import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
+import zhy2002.examples.register.rule.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
@@ -281,6 +278,24 @@ public class RegisterNodeContextTest {
 
         assertThat(hasError(UsernameIsRequiredRule.class), equalTo(false));
 
+    }
+
+    @Test
+    public void canClearRepeatPasswordError() {
+
+        ErrorListNode errorListNode = registerNode.getErrorListNode();
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("test");
+        PasswordNode passwordNode = registerNode.getPasswordNode();
+        passwordNode.setValue("Aa1234");
+
+        //registerNode.refresh();
+        assertThat(hasError(RepeatPasswordRule.class), equalTo(true));
+
+        RepeatPasswordNode repeatPasswordNode = registerNode.getRepeatPasswordNode();
+        repeatPasswordNode.setValue("Aa1234");
+        //registerNode.refresh();
+        assertThat(hasError(RepeatPasswordRule.class), equalTo(false));
     }
 
 
