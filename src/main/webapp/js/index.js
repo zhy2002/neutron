@@ -21709,7 +21709,6 @@
 	                        } catch (e) {
 	                            console.log('Rolling back because:');
 	                            console.log(e);
-	                            model.getContext().rollbackSession();
 	                        }
 	                    } }),
 	                _react2.default.createElement(

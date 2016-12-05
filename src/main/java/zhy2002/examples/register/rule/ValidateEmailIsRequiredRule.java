@@ -5,6 +5,7 @@ import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 
@@ -48,6 +49,6 @@ public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
 
     @Override
     public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(BooleanStateChangeEvent.class);
+        return super.observedEventTypes().and(BooleanStateChangeEvent.class).and(StringStateChangeEvent.class);
     }
 }

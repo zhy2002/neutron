@@ -322,4 +322,22 @@ public class RegisterNodeContextTest {
         assertThat(usernameNode.getValue(), equalTo("test11"));
     }
 
+    @Test
+    public void emailIsRequiredIfCleared() {
+
+        EmailNode emailNode = registerNode.getEmailNode();
+        emailNode.setValue("test@gmail.com");
+        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
+        receiveOffersNode.setValue(Boolean.TRUE);
+
+        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
+
+        emailNode.setValue("");
+        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(true));
+
+        emailNode.setValue("a");
+        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
+
+    }
+
 }
