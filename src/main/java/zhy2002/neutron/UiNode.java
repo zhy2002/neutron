@@ -174,11 +174,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getStateValueInternal(key);
     }
 
-    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
-
+    protected final boolean shouldChangeWithoutEvent() {
         if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
-            setStateValueInternal(key, value);
-            return;
+            return true;
         }
 
         TickPhase phase = getContext().getCurrentPhase();
@@ -186,13 +184,19 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             ChangeModeEnum changeMode = phase.getChangeMode();
             switch (changeMode) {
                 case DIRECT:
-                    setStateValueInternal(key, value);
-                    return;
-                case IGNORED:
-                    return;
+                    return true;
                 case PROHIBITED:
                     throw new UiNodeEventException(); //todo specialized exception type
             }
+        }
+        return false;
+    }
+
+    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
+
+        if (shouldChangeWithoutEvent()) {
+            setStateValueInternal(key, value);
+            return;
         }
 
         //default logic

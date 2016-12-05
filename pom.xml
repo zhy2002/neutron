@@ -111,4 +111,17 @@
         </plugins>
 
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>file-repo</id>
+            <layout>default</layout>
+            <url>file:///C:\zhy\mvn</url>
+        </repository>
+        <snapshotRepository>
+            <id>file-repo-snapshot</id>
+            <layout>default</layout>
+            <url>file:///C:\zhy\mvn</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

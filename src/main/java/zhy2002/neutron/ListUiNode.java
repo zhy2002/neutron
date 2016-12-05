@@ -58,7 +58,11 @@ public abstract class ListUiNode<
 
     protected <M extends N> N createItem(Class<M> itemClass) {
         NodeAddEvent<N> event = createItemAddEvent(itemClass);
-        getContext().processEvent(event);
+        if (shouldChangeWithoutEvent()) {
+            event.apply();
+        } else {
+            getContext().processEvent(event);
+        }
         return event.getTarget();
     }
 
