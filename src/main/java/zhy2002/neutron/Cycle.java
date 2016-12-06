@@ -7,43 +7,41 @@ import java.util.*;
  */
 public class Cycle {
 
-    private Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
-    private boolean applied;
+    private final Deque<UiNodeEvent> notAppliedDeque = new ArrayDeque<>();
+    private final Deque<UiNodeEvent> appliedDeque = new ArrayDeque<>();
 
     public boolean isApplied() {
-        return applied;
+        return notAppliedDeque.isEmpty();
     }
 
     public void apply() {
-        Iterator<UiNodeEvent> iterator = eventDeque.iterator();
-        while (iterator.hasNext()) {
-            UiNodeEvent uiNodeEvent = iterator.next();
+        while (!notAppliedDeque.isEmpty()) {
+            UiNodeEvent uiNodeEvent = notAppliedDeque.poll();
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
                 ChangeUiNodeEvent changeUiNodeEvent = (ChangeUiNodeEvent) uiNodeEvent;
                 changeUiNodeEvent.apply();
             }
+            appliedDeque.add(uiNodeEvent);
         }
-        applied = true;
     }
 
     public void revert() {
-        Iterator<UiNodeEvent> iterator = eventDeque.descendingIterator();
-        while (iterator.hasNext()) {
-            UiNodeEvent uiNodeEvent = iterator.next();
+        while (!appliedDeque.isEmpty()) {
+            UiNodeEvent uiNodeEvent = appliedDeque.pollLast();
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
                 ChangeUiNodeEvent changeUiNodeEvent = (ChangeUiNodeEvent) uiNodeEvent;
                 changeUiNodeEvent.revert();
             }
+            notAppliedDeque.addFirst(uiNodeEvent);
         }
-        applied = false;
     }
 
     public void add(UiNodeEvent event) {
-        eventDeque.add(event);
+        notAppliedDeque.add(event);
     }
 
     public void notifyChanges() {
-        Iterator<UiNodeEvent> iterator = applied ? eventDeque.iterator() : eventDeque.descendingIterator();
+        Iterator<UiNodeEvent> iterator = appliedDeque.iterator();
         List<UiNode<?>> changedNodes = new ArrayList<>();
         while (iterator.hasNext()) {
             UiNodeEvent uiNodeEvent = iterator.next();

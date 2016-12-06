@@ -71,12 +71,14 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     private void rollbackSessionInternal() {
-        if (!cycleDeque.isEmpty()) {
-            Cycle first = cycleDeque.poll();
-            first.revert();
-            cycleDeque.clear();
+        Iterator<Cycle> iterator = cycleDeque.descendingIterator();
+        while (iterator.hasNext()) {
+            Cycle cycle = iterator.next();
+            if (cycle.isApplied()) {
+                cycle.revert();
+            }
         }
-
+        cycleDeque.clear();
         clearCycleState();
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import FormFieldComponent from "./FormFieldComponent.jsx";
 import FormCheckboxComponent from "./FormCheckboxComponent.jsx";
 import ErrorListComponent from "./ErrorListComponent.jsx";
-
+import NumberFieldComponent from "./NumberFieldComponent.jsx";
 
 function createRoot(component) {
     var GWT = window["GWT"];
@@ -52,6 +52,7 @@ export default class RegisterComponent extends React.Component {
                     <FormFieldComponent id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
                     <FormFieldComponent id="examplePassword" label="Password" model={model.getPasswordNode()}/>
                     <FormFieldComponent id="exampleRepeatPassword" label="Repeat Password" model={model.getRepeatPasswordNode()}/>
+                    <NumberFieldComponent id="exampleAge" label="Age" model={model.getAgeNode()}/>
                     <FormCheckboxComponent id="exampleReceiveOffers" label="Receive latest offers" model={model.getReceiveOffersNode()} />
 
                     <button type="button" className="btn btn-default" onClick={()=>{

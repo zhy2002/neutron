@@ -354,6 +354,9 @@ public class RegisterNodeContextTest {
         ageNode.setValue(new BigDecimal("98"));
         assertThat(ageNode.getText(), equalTo("98"));
 
+        ageNode.setText("12a");
+        assertThat(ageNode.getText(), equalTo("12a"));
     }
+
 
 }

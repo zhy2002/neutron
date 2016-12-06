@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsMethod;
+
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -10,14 +12,10 @@ import java.util.Objects;
 public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, BigDecimal> {
 
     private static final ValueParser<BigDecimal> DEFAULT_PARSER = (t) -> {
-        if (t == null)
-            return null;
-
-        try {
+        if (t != null && t.matches("^\\d+(\\.\\d+)?$"))
             return new BigDecimal(t);
-        } catch (NumberFormatException ex) {
-            return null;
-        }
+        return null;
+
     };
     private static final ValueFormatter<BigDecimal> DEFAULT_FORMATTER = (v) -> v == null ? "" : v.toString();
 
@@ -56,6 +54,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         this.formatter = formatter;
     }
 
+    @JsMethod
     @Override
     public BigDecimal getValue() {
         return super.getValue();
@@ -63,16 +62,16 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     @Override
     public void setValue(BigDecimal value) {
-
         this.setValue(BigDecimal.class, value);
     }
 
+    @JsMethod
     public String getText() {
         return this.getStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT);
     }
 
+    @JsMethod
     public void setText(String text) {
-
         setStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT, String.class, text);
     }
 
@@ -84,7 +83,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
             if (!Objects.equals(val, getValue())) {
                 setValue(val);
             }
-        } else if (PredefinedUiNodeStateKeys.VALUE.equals(key)) {
+        } else if (PredefinedUiNodeStateKeys.VALUE.equals(key) && value != null) {
             String text = getFormatter().format((BigDecimal) value);
             if (!Objects.equals(text, getText())) {
                 setText(text);

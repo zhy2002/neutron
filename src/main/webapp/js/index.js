@@ -21519,6 +21519,10 @@
 
 	var _ErrorListComponent2 = _interopRequireDefault(_ErrorListComponent);
 
+	var _NumberFieldComponent = __webpack_require__(183);
+
+	var _NumberFieldComponent2 = _interopRequireDefault(_NumberFieldComponent);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21590,6 +21594,7 @@
 	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "exampleEmail", label: "Email address", model: model.getEmailNode() }),
 	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "examplePassword", label: "Password", model: model.getPasswordNode() }),
 	                    _react2.default.createElement(_FormFieldComponent2.default, { id: "exampleRepeatPassword", label: "Repeat Password", model: model.getRepeatPasswordNode() }),
+	                    _react2.default.createElement(_NumberFieldComponent2.default, { id: "exampleAge", label: "Age", model: model.getAgeNode() }),
 	                    _react2.default.createElement(_FormCheckboxComponent2.default, { id: "exampleReceiveOffers", label: "Receive latest offers", model: model.getReceiveOffersNode() }),
 	                    _react2.default.createElement(
 	                        "button",
@@ -21928,6 +21933,119 @@
 	}(_react2.default.Component);
 
 	exports.default = ErrorListComponent;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var NumberFieldComponent = function (_React$Component) {
+	    _inherits(NumberFieldComponent, _React$Component);
+
+	    function NumberFieldComponent(props) {
+	        _classCallCheck(this, NumberFieldComponent);
+
+	        //const fields
+	        var _this = _possibleConstructorReturn(this, (NumberFieldComponent.__proto__ || Object.getPrototypeOf(NumberFieldComponent)).call(this, props));
+
+	        _this.id = props["id"];
+	        _this.label = props["label"];
+	        _this.model = props["model"];
+	        _this.model.addChangeListener(_this);
+	        window.fieldMap[_this.model.getUniqueId()] = _this.id;
+	        _this.state = _this.extractNewState();
+	        return _this;
+	    }
+
+	    _createClass(NumberFieldComponent, [{
+	        key: "extractNewState",
+	        value: function extractNewState() {
+	            var newState = {};
+	            newState.value = this.model.getText();
+	            newState.fieldClass = "form-control";
+	            console.log(this.model.getText());
+	            console.log(this.model.getValue());
+	            if (this.model.getText() && !this.model.getValue()) {
+	                newState.fieldClass += " bg-danger";
+	            }
+	            if (this.model.getMessage) {
+	                newState.message = this.model.getMessage();
+	            } else {
+	                newState.message = "";
+	            }
+
+	            newState.label = this.label;
+	            if (this.model.getRequired()) {
+	                newState.label += " *";
+	            }
+
+	            return newState;
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            console.log(this.label + " did mount");
+	        }
+	    }, {
+	        key: "onUiNodeChanged",
+	        value: function onUiNodeChanged() {
+	            var newState = this.extractNewState();
+	            this.setState(newState);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var model = this.model;
+	            //only read from fields and state
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "form-group" },
+	                _react2.default.createElement(
+	                    "label",
+	                    { htmlFor: this.id },
+	                    this.state.label
+	                ),
+	                _react2.default.createElement("input", { type: "text", className: this.state.fieldClass, id: this.id,
+	                    value: this.state.value, onChange: function onChange(event) {
+	                        try {
+	                            model.setText(event.target.value);
+	                        } catch (e) {
+	                            console.log('Rolling back because:');
+	                            console.log(e);
+	                        }
+	                    } }),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "help-block" },
+	                    this.state.message
+	                )
+	            );
+	        }
+	    }]);
+
+	    return NumberFieldComponent;
+	}(_react2.default.Component);
+
+	exports.default = NumberFieldComponent;
 
 /***/ }
 /******/ ]);
