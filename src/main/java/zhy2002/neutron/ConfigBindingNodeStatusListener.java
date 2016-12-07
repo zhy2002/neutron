@@ -13,6 +13,11 @@ public class ConfigBindingNodeStatusListener<N extends UiNode<?>> implements UiN
 
     @Override
     public void onAddedToParent() {
-        config.initialize(node);
+        config.onAddedToParent(node);
+    }
+
+    @Override
+    public void onLoaded() {
+        config.onLoaded(node);
     }
 }

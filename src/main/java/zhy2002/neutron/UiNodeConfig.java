@@ -7,9 +7,13 @@ package zhy2002.neutron;
  * If Multiple children of a ParentUiNode has the same class,
  * each one can have a different config identified by child name.
  */
-public abstract class UiNodeConfig<N extends UiNode<?>>  {
+public interface UiNodeConfig<N extends UiNode<?>> {
 
-    public abstract String getName();
+    String getName();
 
-    public abstract void initialize(N node);
+    void onAddedToParent(N node);
+
+    void onLoaded(N node);
+
+
 }
