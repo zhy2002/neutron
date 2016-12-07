@@ -364,7 +364,42 @@ public class RegisterNodeContextTest {
         assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
 
         investmentProperty.load(); //will not cause error
+        investmentProperty.unload();
+        assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
     }
 
+    @Test
+    public void canLoadAndUnloadInvestmentPropertyNodeWhenOwnInvestmentPropertyValueChanges() {
+        OwnInvestmentPropertyNode ownInvestmentPropertyNode = registerNode.getOwnInvestmentPropertyNode();
+        ownInvestmentPropertyNode.setValue(Boolean.TRUE);
+        PropertyDetailsNode investmentPropertyNode = registerNode.getInvestmentPropertyNode();
+        assertThat(investmentPropertyNode.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
+
+        investmentPropertyNode.setTooltip("test1");
+        assertThat(investmentPropertyNode.getTooltip(), equalTo("test1"));
+
+        ownInvestmentPropertyNode.setValue(Boolean.FALSE);
+        investmentPropertyNode = registerNode.getInvestmentPropertyNode();
+        assertThat(investmentPropertyNode.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
+
+        assertThat(investmentPropertyNode.getTooltip(), nullValue());
+        assertThat(investmentPropertyNode.getLoadWithParent(), equalTo(false));
+    }
+
+    @Test
+    public void requiredValidationDoesNotHappenIfParentNodeIsUnloaded() {
+        registerNode.getUsernameNode().setValue("hello");
+        registerNode.getPasswordNode().setValue("AaBb123");
+        registerNode.getRepeatPasswordNode().setValue("AaBb123");
+        registerNode.getResidentialPropertyNode().getPropertyStateNode().setValue("NSW");
+
+        registerNode.refresh();
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+
+        registerNode.getOwnInvestmentPropertyNode().setValue(Boolean.TRUE);
+        registerNode.refresh();
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+
+    }
 
 }

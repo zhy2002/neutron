@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import org.apache.commons.collections.map.HashedMap;
 import zhy2002.examples.register.UiNodeChangeListener;
 
 import javax.validation.constraints.NotNull;
@@ -42,6 +43,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * This is the computed value.
      */
     private ChangeTrackingModeEnum effectiveChangeTrackingMode;
+
+    /**
+     * A copy of state before load happens.
+     */
+    private Map<String, Object> preState;
     /**
      * A map used to store current values of state properties.
      */
@@ -294,6 +300,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public final void load() {
         if (this.nodeStatus != NodeStatusEnum.Unloaded)
             return;
+        if (preState == null) {
+            preState = new HashMap<>(state);
+        }
         doLoad();
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
@@ -324,6 +333,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         List<UiNodeRule<?, ?>> ownRules = new ArrayList<>(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
         this.state.clear();
+        assert this.preState != null;
+        this.state.putAll(this.preState);
     }
 
     public void attach() {

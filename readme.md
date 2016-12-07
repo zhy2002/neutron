@@ -21,6 +21,14 @@ todo
 * parser/transformer coversion between gwt and react
 * build up a correspoding react component library
 
+### Node structure
+* Consider adding MapUiNode which maps one UiNode to another.
+* Node/UI state copy and paste
+* query/reference/proxy nodes
+* context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
+* node clone and take snapshot
+* calculate diff of two versions
+
 ### Misc
 * rule should have a load event to init node properties
 * preserve value when node is disabled -> conditional state
@@ -35,17 +43,13 @@ todo
 * tracing and visualization of rule firing / logging
 * state property namespace or distinction between system property and user property
 * allow user to customize ui, generate automatic fields
-* node clone and take snapshot
-* calculate diff of two versions
 * async rules
-* context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
-* query/reference/proxy nodes
 * event bus for each node.
 * rule set, a set of rules activated or deactivated together (e.g. when a product is selected
 * api for getting old value, inherited value and stuff
 * init or fix value event
 * warning rules and suppressed warning
-* Consider adding MapUiNode which maps one UiNode to another.
+
 
 = event trigger opportunity is up to the ui implementor
 = states should be independent, e.g. parent.disabled child.disabled should be independent. getValue v.s. getInheritedValue

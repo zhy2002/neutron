@@ -36,6 +36,8 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(RepeatPasswordRule.class, RepeatPasswordRule::new);
         setUiNodeRuleFactory(EmailIsRequiredWhenReceiveOffersRule.class, EmailIsRequiredWhenReceiveOffersRule::new);
         setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
+        setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
+        setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
     }
 
     private void loadChildNodeFactories() {

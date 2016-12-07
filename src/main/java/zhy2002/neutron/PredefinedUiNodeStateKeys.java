@@ -19,6 +19,7 @@ public final class PredefinedUiNodeStateKeys {
     public static final String HIDDEN = "hidden";
     public static final String IGNORED = "ignored";
     public static final String LOAD_WITH_PARENT = "load_with_parent";
+    public static final String TOOLTIP = "tooltip";
 
 
     public static final String HAS_ERROR = "hasError";

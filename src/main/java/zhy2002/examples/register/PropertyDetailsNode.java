@@ -1,6 +1,7 @@
 package zhy2002.examples.register;
 
 import zhy2002.neutron.ObjectUiNode;
+import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeContext;
 
@@ -23,6 +24,14 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
     public PropertyStateNode getPropertyStateNode() {
         return propertyStateNode;
+    }
+
+    public String getTooltip() {
+        return getStateValue(PredefinedUiNodeStateKeys.TOOLTIP);
+    }
+
+    public void setTooltip(String tooltip) {
+        setStateValue(PredefinedUiNodeStateKeys.TOOLTIP, String.class, tooltip);
     }
 
     @Override
