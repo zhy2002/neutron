@@ -17,7 +17,9 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private RepeatPasswordNode repeatPasswordNode;
     private AgeNode ageNode;
     private ReceiveOffersNode receiveOffersNode;
-
+    private OwnInvestmentPropertyNode ownInvestmentPropertyNode;
+    private PropertyDetailsNode residentialPropertyNode;
+    private PropertyDetailsNode investmentPropertyNode;
     private ErrorListNode errorListNode;
 
     RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
@@ -58,6 +60,19 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return ageNode;
     }
 
+    public OwnInvestmentPropertyNode getOwnInvestmentPropertyNode() {
+        return ownInvestmentPropertyNode;
+    }
+
+
+    public PropertyDetailsNode getResidentialPropertyNode() {
+        return residentialPropertyNode;
+    }
+
+    public PropertyDetailsNode getInvestmentPropertyNode() {
+        return investmentPropertyNode;
+    }
+
     public ErrorListNode getErrorListNode() {
         return errorListNode;
     }
@@ -71,6 +86,9 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
         receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
         ageNode = context.createChildNode(AgeNode.class, this, "ageNode");
+        ownInvestmentPropertyNode = context.createChildNode(OwnInvestmentPropertyNode.class, this, "ownInvestmentPropertyNode");
+        residentialPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "residentialPropertyNode");
+        investmentPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "investmentPropertyNode");
         errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
 
         return Arrays.asList(
@@ -80,6 +98,9 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
                 repeatPasswordNode,
                 receiveOffersNode,
                 ageNode,
+                ownInvestmentPropertyNode,
+                residentialPropertyNode,
+                investmentPropertyNode,
                 errorListNode
         );
     }

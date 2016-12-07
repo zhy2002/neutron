@@ -18,6 +18,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
      * Support find children by index.
      */
     private final List<UiNode<?>> children = new ArrayList<>();
+
     /**
      * Support find children by name.
      */

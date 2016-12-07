@@ -36,4 +36,8 @@ public class ImmutableClassRegistry implements ClassRegistry {
         return registry.getUiNodeRuleFactory(ruleClass);
     }
 
+    @Override
+    public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
+        return registry.getUiNodeConfig(nodeClass, name);
+    }
 }

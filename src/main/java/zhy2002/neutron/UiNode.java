@@ -60,6 +60,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
+    private UiNodeStatusListener statusListener;
+
     /**
      * The constructor for a child node.
      *
@@ -126,6 +128,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return name;
     }
 
+    void setStatusListener(UiNodeStatusListener listener) {
+        this.statusListener = listener;
+    }
+
     public
     @NotNull
     ChangeTrackingModeEnum getChangeTrackingMode() {
@@ -152,6 +158,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             this.changeTrackingMode = changeTrackingMode;
             this.effectiveChangeTrackingMode = null;
         }
+    }
+
+    public boolean getLoadWithParent() {
+        Object value = this.getStateValueInternal(PredefinedUiNodeStateKeys.LOAD_WITH_PARENT);
+        return !Boolean.FALSE.equals(value);
+    }
+
+    public void setLoadWithParent(boolean value) {
+        this.setStateValueInternal(PredefinedUiNodeStateKeys.LOAD_WITH_PARENT, value);
     }
 
     //region state methods
@@ -257,6 +272,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             this.parent.addChild(this);
         }
         this.nodeStatus = NodeStatusEnum.Unloaded;
+        if (statusListener != null) {
+            statusListener.onAddedToParent();
+        }
     }
 
     /**
@@ -369,5 +387,4 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     //endregion
-
 }

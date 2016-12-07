@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A simple mechanism to allow overriding implementation class.
@@ -13,6 +12,7 @@ public class ClassRegistryImpl implements ClassRegistry {
     private final Map<Class<?>, Object> stateChangeEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeAddEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeRemoveEventFactories = new HashMap<>();
+    private final Map<Class<?>, List<UiNodeConfig<?>>> nodeConfigMap = new HashMap<>();
 
     protected ClassRegistryImpl() {
     }
@@ -24,6 +24,7 @@ public class ClassRegistryImpl implements ClassRegistry {
             stateChangeEventFactories.putAll(proto.stateChangeEventFactories);
             nodeAddEventFactories.putAll(proto.nodeAddEventFactories);
             nodeRemoveEventFactories.putAll(proto.nodeRemoveEventFactories);
+            nodeConfigMap.putAll(proto.nodeConfigMap);
         }
     }
 
@@ -95,5 +96,25 @@ public class ClassRegistryImpl implements ClassRegistry {
 
     public final <N extends UiNode<P>, P extends ParentUiNode<?>> void setChildNodeFactory(Class<N> childNodeClass, ChildNodeFactory<N, P> factory) {
         childNodeFactories.put(childNodeClass, factory);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
+        List<UiNodeConfig<?>> configList = nodeConfigMap.get(nodeClass);
+        if (configList != null) {
+            for (UiNodeConfig<?> config : configList) {
+                if (Objects.equals(config.getName(), name))
+                    return (UiNodeConfig<N>) config;
+            }
+        }
+        return null;
+    }
+
+    public <N extends UiNode<?>> void setUiNodeConfig(Class<N> nodeClass, UiNodeConfig<N> config) {
+        if (!nodeConfigMap.containsKey(nodeClass)) {
+            nodeConfigMap.put(nodeClass, new LinkedList<>());
+        }
+        nodeConfigMap.get(nodeClass).add(config);
     }
 }

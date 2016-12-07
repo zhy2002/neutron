@@ -22,21 +22,27 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     protected void initializeChildren() {
         List<UiNode<?>> children = createChildren();
         children.forEach(UiNode::addToParent);
-        children.forEach(UiNode::load);
+        children.forEach(node -> {
+            if (node.getLoadWithParent()) {
+                node.load();
+            }
+        });
     }
 
     @Override
     protected void uninitializeChildren() {
         UiNode<?>[] children = getChildren();
-        for(int i=children.length - 1; i >= 0; i--) {
+        for (int i = children.length - 1; i >= 0; i--) {
             children[i].unload();
         }
-        for(int i=children.length - 1; i >= 0; i--) {
+        for (int i = children.length - 1; i >= 0; i--) {
             children[i].removeFromParent();
         }
     }
 
-    protected abstract List<UiNode<?>> createChildren();
+    protected
+    @NotNull
+    abstract List<UiNode<?>> createChildren();
 
     @JsMethod
     @Override

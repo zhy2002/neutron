@@ -79,7 +79,12 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     @Override
     public <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name) {
         ChildNodeFactory<N, P> factory = classRegistry.getChildNodeFactory(childNodeClass);
-        return factory.create(parent, name);
+        N node = factory.create(parent, name);
+        UiNodeConfig<N> config = classRegistry.getUiNodeConfig(childNodeClass, name);
+        if(config != null) {
+            node.setStatusListener(new ConfigBindingNodeStatusListener<>(node, config));
+        }
+        return node;
     }
 
     //endregion

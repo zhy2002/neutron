@@ -22,6 +22,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         loadStateChangeEventFactories();
         loadNodeAddEventFactories();
         loadNodeRemoveEventFactories();
+        loadNodeConfig();
     }
 
     private void loadRuleFactories() {
@@ -46,6 +47,10 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(RepeatPasswordNode.class, new RepeatPasswordNodeFactory());
         setChildNodeFactory(ReceiveOffersNode.class, new ReceiveOffersNodeFactory());
         setChildNodeFactory(AgeNode.class, new AgeNodeFactory());
+        setChildNodeFactory(OwnInvestmentPropertyNode.class, new OwnInvestmentPropertyNodeFactory());
+        setChildNodeFactory(PropertyDetailsNode.class, new PropertyDetailsNodeFactory());
+        setChildNodeFactory(PropertyAddressNode.class, new PropertyAddressNodeFactory());
+        setChildNodeFactory(PropertyStateNode.class, new PropertyStateNodeFactory());
     }
 
     private void loadStateChangeEventFactories() {
@@ -62,5 +67,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         this.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
     }
 
-
+    private void loadNodeConfig() {
+        this.setUiNodeConfig(PropertyDetailsNode.class, new PropertyDetailsInvestmentPropertyNodeConfig());
+    }
 }

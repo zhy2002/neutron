@@ -3,10 +3,7 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.UiNodeEventException;
-import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.*;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -356,6 +353,17 @@ public class RegisterNodeContextTest {
 
         ageNode.setText("12a");
         assertThat(ageNode.getText(), equalTo("12a"));
+    }
+
+    @Test
+    public void canLoadInvestmentPropertyNodeManually() {
+        PropertyDetailsNode investmentProperty = registerNode.getInvestmentPropertyNode();
+        assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
+
+        investmentProperty.load();
+        assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
+
+        investmentProperty.load(); //will not cause error
     }
 
 
