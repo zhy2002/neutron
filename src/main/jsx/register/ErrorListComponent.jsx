@@ -36,20 +36,22 @@ export default class ErrorListComponent extends NeutronComponent {
             let errorNode = items[i];
             console.log(errorNode);
             listItems.push(
-                <li key={errorNode.getName()}>
+                <li key={errorNode.getName()} className="list-group-item">
                     <a onClick={this.focusOnField(errorNode)} href="javascript:void(0)"
-                       className="bg-success">{errorNode.getMessage()}</a>
+                       className="text-warning">{errorNode.getMessage()}</a>
                 </li>
             );
         }
 
         if (listItems.length) {
             return (
-                <div>
-                    <h4>Errors</h4>
-                    <ul>
-                        {listItems}
-                    </ul>
+                <div className="row">
+                    <div className="col-md-offset-1 col-md-10">
+                        <h4>Errors</h4>
+                        <ul className="list-group">
+                            {listItems}
+                        </ul>
+                    </div>
                 </div>
             );
         } else {

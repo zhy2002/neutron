@@ -21,9 +21,10 @@ export default class AddressComponent extends NeutronComponent {
 
     render() {
         console.log("enabled = " + this.state.enabled);
-        return <div className="panel panel-success">
-            <h3>{this.label}</h3>
-            <div>
+        return <div className="panel panel-default">
+            <div className="panel-heading">{this.label}</div>
+            <div className="panel-body">
+                {this.state.enabled || <h3>This panel is disabled.</h3>}
                 {this.state.enabled && <h3>Message is: {this.state.message}!</h3>}
             </div>
         </div>;

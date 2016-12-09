@@ -17,10 +17,7 @@ function App(props) {
     let model = createRoot();
     return (
         <div className="container">
-            <div className="col-md-6 col-md-offset-3">
-                <h3>Example register form:</h3>
-                <RegisterComponent id="exampleRegister" model={model}/>
-            </div>
+            <RegisterComponent id="exampleRegister" model={model}/>
         </div>
     );
 }
