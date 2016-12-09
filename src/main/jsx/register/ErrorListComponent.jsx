@@ -1,37 +1,25 @@
 import React from "react";
+import NeutronComponent from "../NeutronComponent.jsx";
 
-export default class ErrorListComponent extends React.Component {
+export default class ErrorListComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);
-
-        this.model = props['model'];
-        this.model.addChangeListener(this);
-        this.state = this.extractNewState();
     }
 
     extractNewState() {
-        var newState = {};
+        let newState = super.extractNewState();
         newState.items = this.model.getChildren();
         return newState;
     }
 
-    componentDidMount() {
-        console.log("ErrorList did mount");
-    }
-
-    onUiNodeChanged() {
-        var newState = this.extractNewState();
-        this.setState(newState);
-    }
-
     focusOnField(node) {
         return function () {
-            var source = node.getSource();
+            let source = node.getSource();
             if (source) {
-                var fieldId = window.fieldMap[source.getUniqueId()];
+                let fieldId = window.fieldMap[source.getUniqueId()];
                 if (fieldId) {
-                    var element = document.getElementById(fieldId);
+                    let element = document.getElementById(fieldId);
                     if (element) {
                         element.focus();
                     }
@@ -41,13 +29,11 @@ export default class ErrorListComponent extends React.Component {
     }
 
     render() {
-        var items = this.state.items;
-
-
-        var listItems = [];
+        let items = this.state.items;
+        let listItems = [];
         console.log(items);
         for (var i = 0; i < items.length; i++) {
-            var errorNode = items[i];
+            let errorNode = items[i];
             console.log(errorNode);
             listItems.push(
                 <li key={errorNode.getName()}>

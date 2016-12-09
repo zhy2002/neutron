@@ -17,7 +17,6 @@ todo
 * improve dev process (webpack, live-reload, jasmine to test all the examples)
 * use type script
 * react component scaffolding 
-* add sourcemap to webpack
 * parser/transformer coversion between gwt and react
 * build up a correspoding react component library
 

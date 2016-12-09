@@ -1,21 +1,14 @@
 import React from "react";
+import FieldComponent from "./FieldComponent.jsx";
 
-export default class FormFieldComponent extends React.Component {
+export default class FormFieldComponent extends FieldComponent {
 
     constructor(props) {
         super(props);
-
-        //const fields
-        this.id = props["id"];
-        this.label = props["label"];
-        this.model = props["model"];
-        this.model.addChangeListener(this);
-        window.fieldMap[this.model.getUniqueId()] = this.id;
-        this.state = this.extractNewState();
     }
 
     extractNewState() {
-        var newState = {};
+        let newState = super.extractNewState();
         newState.value = this.model.getValue();
         newState.fieldClass = "form-control";
         if (this.model.getTriggeredBy) {
@@ -39,17 +32,8 @@ export default class FormFieldComponent extends React.Component {
         return newState;
     }
 
-    componentDidMount() {
-        console.log(this.label + " did mount");
-    }
-
-    onUiNodeChanged() {
-        var newState = this.extractNewState();
-        this.setState(newState);
-    }
-
     render() {
-        var model = this.model;
+        let model = this.model;
         //only read from fields and state
         return (
             <div className="form-group">

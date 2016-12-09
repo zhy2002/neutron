@@ -1,21 +1,14 @@
 import React from "react";
+import FieldComponent from "./FieldComponent.jsx";
 
-export default class NumberFieldComponent extends React.Component {
+export default class NumberFieldComponent extends FieldComponent {
 
     constructor(props) {
         super(props);
-
-        //const fields
-        this.id = props["id"];
-        this.label = props["label"];
-        this.model = props["model"];
-        this.model.addChangeListener(this);
-        window.fieldMap[this.model.getUniqueId()] = this.id;
-        this.state = this.extractNewState();
     }
 
     extractNewState() {
-        var newState = {};
+        let newState = super.extractNewState();
         newState.value = this.model.getText();
         newState.fieldClass = "form-control";
         console.log(this.model.getText());
@@ -29,6 +22,7 @@ export default class NumberFieldComponent extends React.Component {
             newState.message = "";
         }
 
+        console.log("label is " + this.label);
         newState.label = this.label;
         if (this.model.getRequired()) {
             newState.label += " *";
@@ -37,17 +31,10 @@ export default class NumberFieldComponent extends React.Component {
         return newState;
     }
 
-    componentDidMount() {
-        console.log(this.label + " did mount");
-    }
-
-    onUiNodeChanged() {
-        var newState = this.extractNewState();
-        this.setState(newState);
-    }
-
     render() {
-        var model = this.model;
+        console.log("rending state:");
+        console.log(this.state);
+        let model = this.model;
         //only read from fields and state
         return (
             <div className="form-group">
