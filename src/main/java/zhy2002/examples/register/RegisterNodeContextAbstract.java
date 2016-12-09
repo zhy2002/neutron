@@ -11,12 +11,14 @@ public class RegisterNodeContextAbstract extends AbstractUiNodeContext<RegisterN
         super(classRegistry);
     }
 
-    //endregion
+    @Override
+    protected Class<RegisterNode> getRootClass() {
+        return RegisterNode.class;
+    }
 
     protected RegisterNode createRootNode() {
         return new RegisterNode(this);
     }
-
 
 
 }

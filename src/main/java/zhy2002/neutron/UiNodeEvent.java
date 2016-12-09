@@ -7,17 +7,13 @@ package zhy2002.neutron;
 public abstract class UiNodeEvent {
 
     private final UiNode<?> target;
-    private final UiNodeRuleActivation activation;
-    private final String ruleGroup;
+    private UiNodeRuleActivation activation;
+    private String ruleGroup;
 
     protected UiNodeEvent(UiNode<?> target) {
-        this(target, target.getContext().getCurrentActivation(), PredefinedRuleGroups.DEFAULT); //"" is the default ruleGroup
-    }
-
-    protected UiNodeEvent(UiNode<?> target, UiNodeRuleActivation activation, String ruleGroup) {
         this.target = target;
-        this.activation = activation;
-        this.ruleGroup = ruleGroup;
+        this.activation = target.getContext().getCurrentActivation();
+        this.ruleGroup = PredefinedRuleGroups.DEFAULT;
     }
 
     /**
@@ -35,9 +31,22 @@ public abstract class UiNodeEvent {
         return activation;
     }
 
+    protected void setRuleGroup(String ruleGroup) {
+        this.ruleGroup = ruleGroup;
+    }
+
     public String getRuleGroup() {
         return ruleGroup;
     }
 
+    protected void setActivation(UiNodeRuleActivation activation) {
+        this.activation = activation;
+    }
+
+    /**
+     * Get all rule activations caused by this event.
+     *
+     * @return rule activations to be fired.
+     */
     public abstract Iterable<UiNodeRuleActivation> getActivations();
 }

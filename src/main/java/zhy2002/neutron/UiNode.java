@@ -252,6 +252,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region life cycle methods
 
+    @JsMethod
     public
     @NotNull
     NodeStatusEnum getNodeStatus() {

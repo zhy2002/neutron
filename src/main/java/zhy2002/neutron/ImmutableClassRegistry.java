@@ -12,6 +12,21 @@ public class ImmutableClassRegistry implements ClassRegistry {
     }
 
     @Override
+    public <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
+        return registry.getChildNodeFactory(childNodeClass);
+    }
+
+    @Override
+    public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
+        return registry.getUiNodeConfig(nodeClass, name);
+    }
+
+    @Override
+    public <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
+        return registry.getUiNodeRuleFactory(ruleClass);
+    }
+
+    @Override
     public <T> StateChangeEventFactory<T> getStateChangeEventFactory(Class<T> valueClass) {
         return registry.getStateChangeEventFactory(valueClass);
     }
@@ -26,18 +41,11 @@ public class ImmutableClassRegistry implements ClassRegistry {
         return registry.getNodeRemoveEventFactory(itemClass);
     }
 
-    @Override
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
-        return registry.getChildNodeFactory(childNodeClass);
+    public <N extends UiNode<?>> NodeLoadEventFactory<N> getNodeLoadEventFactory(Class<N> nodeClass) {
+        return registry.getNodeLoadEventFactory(nodeClass);
     }
 
-    @Override
-    public <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
-        return registry.getUiNodeRuleFactory(ruleClass);
-    }
-
-    @Override
-    public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
-        return registry.getUiNodeConfig(nodeClass, name);
+    public <N extends UiNode<?>> NodeUnloadEventFactory<N> getNodeUnloadEventFactory(Class<N> nodeClass) {
+        return registry.getNodeUnloadEventFactory(nodeClass);
     }
 }

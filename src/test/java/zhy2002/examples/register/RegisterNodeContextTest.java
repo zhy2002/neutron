@@ -402,4 +402,24 @@ public class RegisterNodeContextTest {
 
     }
 
+    @Test
+    public void canReceiveNotificationWhenNodeLoadOrUnload() {
+        CountingChangeListener listener = new CountingChangeListener();
+        PropertyDetailsNode node = registerNode.getInvestmentPropertyNode();
+        node.addChangeListener(listener);
+        OwnInvestmentPropertyNode ownInvestmentPropertyNode = registerNode.getOwnInvestmentPropertyNode();
+        ownInvestmentPropertyNode.setValue(Boolean.TRUE);
+
+        assertThat(listener.getCount(), equalTo(1));
+
+        ownInvestmentPropertyNode.setValue(Boolean.TRUE);
+        assertThat(listener.getCount(), equalTo(1));
+
+        ownInvestmentPropertyNode.setValue(Boolean.parseBoolean("true"));
+        assertThat(listener.getCount(), equalTo(1));
+
+        ownInvestmentPropertyNode.setValue(false);
+        assertThat(listener.getCount(), equalTo(2));
+    }
+
 }

@@ -1,7 +1,6 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.event.ErrorNodeAddEvent;
-import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
+import zhy2002.examples.register.event.*;
 import zhy2002.examples.register.rule.*;
 import zhy2002.examples.register.rule.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
@@ -17,27 +16,15 @@ import java.math.BigDecimal;
 public class RegisterClassRegistry extends ClassRegistryImpl {
 
     public RegisterClassRegistry() {
-        loadRuleFactories();
         loadChildNodeFactories();
+        loadNodeConfig();
+        loadRuleFactories();
         loadStateChangeEventFactories();
         loadNodeAddEventFactories();
         loadNodeRemoveEventFactories();
-        loadNodeConfig();
-    }
+        loadNodeLoadEventFactories();
+        loadNodeUnloadEventFactories();
 
-    private void loadRuleFactories() {
-        setUiNodeRuleFactory(UsernameLengthRule.class, UsernameLengthRule::new);
-        setUiNodeRuleFactory(UsernameInvalidCharRule.class, UsernameInvalidCharRule::new);
-        setUiNodeRuleFactory(SetHasErrorRule.class, SetHasErrorRule::new);
-        setUiNodeRuleFactory(DefaultEmailByUsernameRule.class, DefaultEmailByUsernameRuleImpl::new);
-        setUiNodeRuleFactory(EmailChangeReasonRule.class, EmailChangeReasonRuleImpl::new);
-        setUiNodeRuleFactory(UsernameIsRequiredRule.class, UsernameIsRequiredRuleImpl::new);
-        setUiNodeRuleFactory(PasswordIsStrongRule.class, PasswordIsStrongRule::new);
-        setUiNodeRuleFactory(RepeatPasswordRule.class, RepeatPasswordRule::new);
-        setUiNodeRuleFactory(EmailIsRequiredWhenReceiveOffersRule.class, EmailIsRequiredWhenReceiveOffersRule::new);
-        setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
-        setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
-        setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
     }
 
     private void loadChildNodeFactories() {
@@ -55,6 +42,25 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(PropertyStateNode.class, new PropertyStateNodeFactory());
     }
 
+    private void loadNodeConfig() {
+        this.setUiNodeConfig(PropertyDetailsNode.class, new PropertyDetailsInvestmentPropertyNodeConfig());
+    }
+
+    private void loadRuleFactories() {
+        setUiNodeRuleFactory(UsernameLengthRule.class, UsernameLengthRule::new);
+        setUiNodeRuleFactory(UsernameInvalidCharRule.class, UsernameInvalidCharRule::new);
+        setUiNodeRuleFactory(SetHasErrorRule.class, SetHasErrorRule::new);
+        setUiNodeRuleFactory(DefaultEmailByUsernameRule.class, DefaultEmailByUsernameRuleImpl::new);
+        setUiNodeRuleFactory(EmailChangeReasonRule.class, EmailChangeReasonRuleImpl::new);
+        setUiNodeRuleFactory(UsernameIsRequiredRule.class, UsernameIsRequiredRuleImpl::new);
+        setUiNodeRuleFactory(PasswordIsStrongRule.class, PasswordIsStrongRule::new);
+        setUiNodeRuleFactory(RepeatPasswordRule.class, RepeatPasswordRule::new);
+        setUiNodeRuleFactory(EmailIsRequiredWhenReceiveOffersRule.class, EmailIsRequiredWhenReceiveOffersRule::new);
+        setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
+        setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
+        setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
+    }
+
     private void loadStateChangeEventFactories() {
         this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
         this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
@@ -62,14 +68,20 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadNodeAddEventFactories() {
-        this.setNodeAddEventFactory(ErrorNode.class, ErrorNodeAddEvent::new);
+        super.setNodeAddEventFactory(ErrorNode.class, ErrorNodeAddEvent::new);
     }
 
     private void loadNodeRemoveEventFactories() {
-        this.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
+        super.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
     }
 
-    private void loadNodeConfig() {
-        this.setUiNodeConfig(PropertyDetailsNode.class, new PropertyDetailsInvestmentPropertyNodeConfig());
+    private void loadNodeLoadEventFactories() {
+        super.setNodeLoadEventFactory(PropertyDetailsNode.class, PropertyDetailsNodeLoadEvent::new);
+        super.setNodeLoadEventFactory(RegisterNode.class, RegisterNodeLoadEvent::new);
+    }
+
+    private void loadNodeUnloadEventFactories() {
+        super.setNodeUnloadEventFactory(PropertyDetailsNode.class, PropertyDetailsNodeUnloadEvent::new);
+        super.setNodeUnloadEventFactory(RegisterNode.class, RegisterNodeUnloadEvent::new);
     }
 }

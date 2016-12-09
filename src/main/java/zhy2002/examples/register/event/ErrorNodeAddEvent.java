@@ -2,7 +2,6 @@ package zhy2002.examples.register.event;
 
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.neutron.NodeAddEvent;
-import zhy2002.neutron.UiNodeRuleActivation;
 
 /**
  * Strong type event for adding ErrorNode.

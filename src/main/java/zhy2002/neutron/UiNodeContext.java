@@ -23,6 +23,10 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
      */
     R getRootNode();
 
+    <N extends UiNode<?>>  void loadNode(Class<N> nodeClass, N node);
+
+    <N extends UiNode<?>> void unLoadNode(Class<N> nodeClass, N node);
+
     /**
      * Process a event which in turn can trigger rules and cause changes.
      *
@@ -52,7 +56,9 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     TickPhase getCurrentPhase();
 
-    <R extends UiNodeRule<?, N>, N extends UiNode<?>> R createUiNodeRule(Class<R> ruleClass, N owner);
+    <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name);
+
+    <L extends UiNodeRule<?, N>, N extends UiNode<?>> L createUiNodeRule(Class<L> ruleClass, N owner);
 
     <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue);
 
@@ -60,6 +66,8 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
 
     <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEvent<N> createNodeRemoveEvent(Class<N> itemClass, N item);
 
-    <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name);
+    <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node);
+
+    <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node);
 
 }

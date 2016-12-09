@@ -3,13 +3,15 @@ package zhy2002.neutron;
 /**
  * Abstract factory class for state change events.
  */
-public abstract class StateChangeEventFactory<T> {
+@FunctionalInterface
+public interface StateChangeEventFactory<T> {
 
-    public abstract StateChangeEvent<T> create(UiNode<?> target, String key, T oldValue, T newValue);
-
-    protected StateChangeEvent<T> init(StateChangeEvent<T> event, T oldValue, T newValue) {
+    default StateChangeEvent<T> create(UiNode<?> target, String key, T oldValue, T newValue) {
+        StateChangeEvent<T> event = create(target, key);
         event.setOldValue(oldValue);
         event.setNewValue(newValue);
         return event;
     }
+
+    StateChangeEvent<T> create(UiNode<?> target, String key);
 }

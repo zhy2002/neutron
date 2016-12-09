@@ -1,5 +1,7 @@
-package zhy2002.examples.register;
+package zhy2002.examples.register.rule;
 
+import zhy2002.examples.register.OwnInvestmentPropertyNode;
+import zhy2002.examples.register.PropertyDetailsNode;
 import zhy2002.neutron.PredefinedPhases;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
@@ -7,7 +9,7 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 
 public class LoadInvestmentPropertyRule extends UiNodeRule<BooleanStateChangeEvent, OwnInvestmentPropertyNode> {
 
-    protected LoadInvestmentPropertyRule(OwnInvestmentPropertyNode owner) {
+    public LoadInvestmentPropertyRule(OwnInvestmentPropertyNode owner) {
         super(owner, PredefinedPhases.Post);
     }
 
@@ -15,7 +17,7 @@ public class LoadInvestmentPropertyRule extends UiNodeRule<BooleanStateChangeEve
         return getOwner();
     }
 
-    private PropertyDetailsNode getInvestmentPropertyNode() {
+    private PropertyDetailsNode getInvestmentPropertyDetailsNode() {
         return getOwner().getParent().getInvestmentPropertyNode();
     }
 
@@ -26,10 +28,11 @@ public class LoadInvestmentPropertyRule extends UiNodeRule<BooleanStateChangeEve
 
     @Override
     protected void doFire(BooleanStateChangeEvent typedEvent) {
+        PropertyDetailsNode propertyDetailsNode = getInvestmentPropertyDetailsNode();
         if (Boolean.TRUE.equals(getOwnInvestmentPropertyNode().getValue())) {
-            getInvestmentPropertyNode().load();
+            getContext().loadNode(PropertyDetailsNode.class, propertyDetailsNode);
         } else {
-            getInvestmentPropertyNode().unload();
+            getContext().unLoadNode(PropertyDetailsNode.class, propertyDetailsNode);
         }
     }
 }

@@ -42,6 +42,10 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
         return phase;
     }
 
+    protected UiNodeContext<?> getContext() {
+        return getOwner().getContext();
+    }
+
     /**
      * The types of events that can trigger this rule.
      * This method is only called once when owner is being loaded.

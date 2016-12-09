@@ -16,6 +16,11 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
         }
 
         @Override
+        protected Class<VoidUiNode> getRootClass() {
+            return VoidUiNode.class;
+        }
+
+        @Override
         protected VoidUiNode createRootNode() {
             throw new NotImplementedException();
         }
@@ -28,6 +33,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
     private VoidUiNode() {
         super(new VoidAbstractUiNodeContext(new ClassRegistryImpl()));
     }
+
 
     @Override
     protected void initializeChildren() {

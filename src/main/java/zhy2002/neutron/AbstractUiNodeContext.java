@@ -28,6 +28,8 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
         return uniqueIdGenerator.next();
     }
 
+    protected abstract Class<R> getRootClass();
+
     /**
      * Get the root node. If the root node has not been created this will create and addToOwner the root node.
      * Use lazy loading so that when we create the root node this context instance is fully initialized.
@@ -39,7 +41,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
         if (root == null) {
             root = createRootNode();
             root.addToParent();
-            root.load();
+            loadNode(getRootClass(), root);
         }
         return this.root;
     }
@@ -51,6 +53,17 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
      * @return the root node to be added to this context instance.
      */
     protected abstract R createRootNode();
+
+    @Override
+    public <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name) {
+        ChildNodeFactory<N, P> factory = classRegistry.getChildNodeFactory(childNodeClass);
+        N node = factory.create(parent, name);
+        UiNodeConfig<N> config = classRegistry.getUiNodeConfig(childNodeClass, name);
+        if (config != null) {
+            node.setStatusListener(new ConfigBindingNodeStatusListener<>(node, config));
+        }
+        return node;
+    }
 
     @Override
     public <U extends UiNodeRule<?, N>, N extends UiNode<?>> U createUiNodeRule(Class<U> ruleClass, N owner) {
@@ -77,14 +90,27 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name) {
-        ChildNodeFactory<N, P> factory = classRegistry.getChildNodeFactory(childNodeClass);
-        N node = factory.create(parent, name);
-        UiNodeConfig<N> config = classRegistry.getUiNodeConfig(childNodeClass, name);
-        if(config != null) {
-            node.setStatusListener(new ConfigBindingNodeStatusListener<>(node, config));
-        }
-        return node;
+    public <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node) {
+        NodeLoadEventFactory<N> factory = classRegistry.getNodeLoadEventFactory(nodeClass);
+        return factory.create(node);
+    }
+
+    @Override
+    public <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node) {
+        NodeUnloadEventFactory<N> factory = classRegistry.getNodeUnloadEventFactory(nodeClass);
+        return factory.create(node);
+    }
+
+    @Override
+    public <N extends UiNode<?>> void loadNode(Class<N> nodeClass, N node) {
+        NodeLoadEvent<N> event = createNodeLoadEvent(nodeClass, node);
+        processEvent(event);
+    }
+
+    @Override
+    public <N extends UiNode<?>> void unLoadNode(Class<N> nodeClass, N node) {
+        NodeUnloadEvent<N> event = createNodeUnloadEvent(nodeClass, node);
+        processEvent(event);
     }
 
     //endregion
