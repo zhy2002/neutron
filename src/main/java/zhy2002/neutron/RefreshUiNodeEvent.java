@@ -28,7 +28,7 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
                     queue.add(parentUiNode.getChild(i));
                 }
             }
-            for (UiNodeRule<?, ?> rule : target.getAttachedRules(this.getClass())) {//todo not right, event inheritance
+            for (UiNodeRule<?, ?> rule : target.getAttachedRules(this.getEventKey())) {//todo not right, event inheritance
                 UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, this);
                 result.add(activation);
             }

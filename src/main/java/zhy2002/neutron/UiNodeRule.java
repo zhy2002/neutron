@@ -5,6 +5,7 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
  * A UI node rule a piece of logic that runs when an event happens.
+ *
  * @param <E> the base event type this rule handles.
  * @param <N> the type of owner node.
  */
@@ -47,18 +48,10 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     }
 
     /**
-     * The types of events that can trigger this rule.
-     * This method is only called once when owner is being loaded.
-     * @return a list of event classes.
-     */
-    public EnhancedLinkedList<Class<? extends E>> observedEventTypes() {
-        return new EnhancedLinkedList<>();
-    }
-
-    /**
      * This method is called once when the owner is being loaded.
      * This means the host node does not change while the owner is in loaded state.
      * The host node defaults to the owner node.
+     *
      * @return the host node.
      */
     protected UiNode<?> findHost() {
@@ -91,8 +84,23 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     }
 
     /**
+     * The types of events that can trigger this rule.
+     * This method is only called once when owner is being loaded.
+     *
+     * @return a list of event classes.
+     */
+    public EnhancedLinkedList<Class<? extends E>> observedEventTypes() {
+        return new EnhancedLinkedList<>();
+    }
+
+    public String getRuleGroup() {
+        return PredefinedRuleGroups.DEFAULT;
+    }
+
+    /**
      * When a event is passed to this rule, this method is called
      * to determine if the rule should fire.
+     *
      * @param event the event for which this rule is triggered.
      * @return true if this rule should fire.
      * The same event instance will be passed to the fire method.
@@ -103,16 +111,17 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
 
     /**
      * Called when the rule fires.
+     *
      * @param event the event instance.
      */
     @SuppressWarnings("unchecked")
     public final void fire(UiNodeEvent event) {
         doFire((E) event);
-
     }
 
     /**
      * Contains the main logic of this rule.
+     *
      * @param typedEvent strongly typed event instance.
      */
     protected abstract void doFire(E typedEvent);

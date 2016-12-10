@@ -9,6 +9,7 @@ public abstract class UiNodeEvent {
     private final UiNode<?> target;
     private UiNodeRuleActivation activation;
     private String ruleGroup;
+    private UiNodeEventKey eventKey;
 
     protected UiNodeEvent(UiNode<?> target) {
         this.target = target;
@@ -49,4 +50,11 @@ public abstract class UiNodeEvent {
      * @return rule activations to be fired.
      */
     public abstract Iterable<UiNodeRuleActivation> getActivations();
+
+    public UiNodeEventKey getEventKey() {
+        if(eventKey == null) {
+            eventKey = new UiNodeEventKey(this.getClass(), this.ruleGroup);
+        }
+        return eventKey;
+    }
 }

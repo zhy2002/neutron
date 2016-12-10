@@ -59,7 +59,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * Rules attached to this (host) node. Keyed by event class name.
      */
-    private final Map<Class<?>, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
+    private final Map<UiNodeEventKey, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
     /**
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
@@ -359,26 +359,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         ownRules.remove(rule);
     }
 
-    <T extends UiNode<?>> void attachRule(UiNodeRule<?, T> rule) {
+    <T extends UiNode<?>> void attachRule(UiNodeRule<? extends UiNodeEvent, T> rule) {
         assert rule.getHost() == this;
-        for (Class<?> eventType : rule.observedEventTypes()) {
-            List<UiNodeRule<?, ?>> list = attachedRuleMap.computeIfAbsent(eventType, k -> new ArrayList<>());
+        for (Class<? extends UiNodeEvent> eventType : rule.observedEventTypes()) {
+            UiNodeEventKey eventKey = new UiNodeEventKey(eventType, rule.getRuleGroup());
+            List<UiNodeRule<?, ?>> list = attachedRuleMap.computeIfAbsent(eventKey, k -> new ArrayList<>());
             list.add(rule);
         }
     }
 
-    <T extends UiNode<?>> void detachRule(UiNodeRule<?, T> rule) {
+    <T extends UiNode<?>> void detachRule(UiNodeRule<? extends UiNodeEvent, T> rule) {
         assert rule.getHost() == this;
-        for (Class<?> eventType : rule.observedEventTypes()) {
-            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventType);
+        for (Class<? extends UiNodeEvent> eventType : rule.observedEventTypes()) {
+            UiNodeEventKey eventKey = new UiNodeEventKey(eventType, rule.getRuleGroup());
+            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventKey);
             if (list != null) {
                 list.remove(rule);
             }
         }
     }
 
-    Iterable<UiNodeRule<?, ?>> getAttachedRules(Class<?> clazz) {
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(clazz);
+    Iterable<UiNodeRule<?, ?>> getAttachedRules(UiNodeEventKey eventKey) {
+        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventKey);
         return list == null ? Collections.emptyList() : list;
     }
 
