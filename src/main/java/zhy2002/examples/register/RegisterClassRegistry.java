@@ -59,6 +59,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
         setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
         setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
+        setUiNodeRuleFactory(AgeValidRule.class, AgeValidRule::new);
     }
 
     private void loadStateChangeEventFactories() {

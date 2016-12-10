@@ -124,6 +124,10 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         return false;
     }
 
+    public boolean inCycle() {
+        return inCycle;
+    }
+
     @Override
     public void processEvent(UiNodeEvent event) {
         boolean autoCommit = false;

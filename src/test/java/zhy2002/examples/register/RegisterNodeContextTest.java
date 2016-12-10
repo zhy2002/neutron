@@ -3,7 +3,10 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.*;
+import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNodeContext;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -353,6 +356,38 @@ public class RegisterNodeContextTest {
 
         ageNode.setText("12a");
         assertThat(ageNode.getText(), equalTo("12a"));
+    }
+
+    @Test
+    public void canSetNumberValueToNull() {
+        AgeNode ageNode = registerNode.getAgeNode();
+
+        ageNode.setText("34");
+        assertThat(ageNode.getValue(), equalTo(new BigDecimal("34")));
+
+        ageNode.setValue(null);
+        assertThat(ageNode.getValue(), nullValue());
+        assertThat(ageNode.getText(), equalTo(""));
+    }
+
+    @Test
+    public void canSetAgeErrorCorrectly() {
+
+        assertThat(hasError(AgeValidRule.class), equalTo(false));
+
+        registerNode.refresh();
+        assertThat(hasError(AgeValidRule.class), equalTo(false));
+
+        AgeNode ageNode = registerNode.getAgeNode();
+        ageNode.setText("abc");
+        assertThat(hasError(AgeValidRule.class), equalTo(true));
+
+        ageNode.setValue(new BigDecimal("12"));
+        assertThat(hasError(AgeValidRule.class), equalTo(false));
+
+        ageNode.setText("13");
+        assertThat(hasError(AgeValidRule.class), equalTo(false));
+
     }
 
     @Test

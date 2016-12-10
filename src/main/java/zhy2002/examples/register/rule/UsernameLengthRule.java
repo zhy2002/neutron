@@ -29,7 +29,7 @@ public class UsernameLengthRule extends ValidationRule<UsernameNode> {
     }
 
     @Override
-    protected boolean isValid() {
+    protected boolean isValid(UiNodeEvent typedEvent) {
         return !(getOwner().getValue() != null && getOwner().getValue().length() > 0 && getOwner().getValue().length() < 4);
     }
 

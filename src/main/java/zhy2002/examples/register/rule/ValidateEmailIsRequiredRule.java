@@ -32,7 +32,7 @@ public class ValidateEmailIsRequiredRule extends ValidationRule<EmailNode> {
     }
 
     @Override
-    protected boolean isValid() {
+    protected boolean isValid(UiNodeEvent typedEvent) {
         Boolean required = getEmailNode().getRequired();
         if (!Boolean.TRUE.equals(required)) {
             return true;

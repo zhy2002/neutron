@@ -19,7 +19,7 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
 
     protected abstract ErrorListNode getErrorListNode();
 
-    protected abstract boolean isValid();
+    protected abstract boolean isValid(UiNodeEvent typedEvent);
 
     protected void clearErrorNode() {
         getErrorListNode().removeItem(errorNode);
@@ -42,7 +42,7 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<UiN
 
     @Override
     protected void doFire(UiNodeEvent typedEvent) {
-        if (isValid()) {
+        if (isValid(typedEvent)) {
             if (errorNode != null) {
                 clearErrorNode();
             }

@@ -20,7 +20,7 @@ public class PropertyStateRequiredRule extends ValidationRule<PropertyStateNode>
     }
 
     @Override
-    protected boolean isValid() {
+    protected boolean isValid(UiNodeEvent typedEvent) {
         String value = getPropertyStateNode().getValue();
         return value != null && value.length() > 0;
     }

@@ -48,5 +48,9 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return getStateValue(PredefinedUiNodeStateKeys.REQUIRED);
     }
 
+    public boolean hasValue() {
+        return getValue() != null;
+    }
+
 
 }

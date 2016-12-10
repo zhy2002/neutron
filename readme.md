@@ -21,6 +21,7 @@ todo
 * build up a correspoding react component library
 
 ### Node structure
+* Class level config
 * Consider adding MapUiNode which maps one UiNode to another.
 * Node/UI state copy and paste
 * query/reference/proxy nodes

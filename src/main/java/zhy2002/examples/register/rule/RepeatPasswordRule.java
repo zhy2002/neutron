@@ -36,7 +36,7 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     }
 
     @Override
-    protected boolean isValid() {
+    protected boolean isValid(UiNodeEvent typedEvent) {
         String errorMessage = getPasswordNode().getMessage();
         if (errorMessage != null && errorMessage.length() > 0)
             return true;

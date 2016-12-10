@@ -20,6 +20,8 @@ public interface UiNodeChangeEngine {
 
     boolean isInSession();
 
+    boolean inCycle();
+
     boolean undo();
 
     boolean redo();

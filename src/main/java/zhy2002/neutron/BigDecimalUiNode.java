@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     private ValueParser<BigDecimal> parser;
     private ValueFormatter<BigDecimal> formatter;
+    private boolean hasValue;
 
     protected BigDecimalUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
@@ -65,6 +67,23 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         this.setValue(BigDecimal.class, value);
     }
 
+    @Override
+    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
+        if (getContext().getCurrentPhase() == null) {
+            if (PredefinedUiNodeStateKeys.VALUE.equals(key)) {
+                hasValue = value != null;
+                if (!hasValue) {
+                    super.setStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT, String.class, "");
+                    return;
+                }
+            } else if (PredefinedUiNodeStateKeys.VALUE_TEXT.equals(key)) {
+                hasValue = !ValueUtil.isEmpty((String) value);
+            }
+        }
+
+        super.setStateValue(key, valueClass, value);
+    }
+
     @JsMethod
     public String getText() {
         return this.getStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT);
@@ -89,5 +108,10 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
                 setText(text);
             }
         }
+    }
+
+    @Override
+    public boolean hasValue() {
+        return hasValue;
     }
 }
