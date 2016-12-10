@@ -192,7 +192,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         state.put(key, value);
     }
 
-    protected <T> T getStateValue(String key) {
+    @JsMethod
+    public <T> T getStateValue(String key) {
         return getStateValueInternal(key);
     }
 

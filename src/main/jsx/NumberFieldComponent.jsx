@@ -9,23 +9,14 @@ export default class NumberFieldComponent extends FieldComponent {
 
     extractNewState() {
         let newState = super.extractNewState();
+
         newState.value = this.model.getText();
+
         newState.fieldClass = "form-control";
         console.log(this.model.getText());
         console.log(this.model.getValue());
         if (this.model.getText() && !this.model.getValue()) {
             newState.fieldClass += " bg-danger";
-        }
-        if (this.model.getMessage) {
-            newState.message = this.model.getMessage();
-        } else {
-            newState.message = "";
-        }
-
-        console.log("label is " + this.label);
-        newState.label = this.label;
-        if (this.model.getRequired()) {
-            newState.label += " *";
         }
 
         return newState;

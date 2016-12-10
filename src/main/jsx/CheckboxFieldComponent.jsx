@@ -9,7 +9,9 @@ export default class FormCheckboxComponent extends FieldComponent {
 
     extractNewState() {
         let newState = super.extractNewState();
+
         newState.value = this.model.getValue();
+
         return newState;
     }
 

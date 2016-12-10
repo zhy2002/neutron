@@ -9,24 +9,15 @@ export default class FormFieldComponent extends FieldComponent {
 
     extractNewState() {
         let newState = super.extractNewState();
+
         newState.value = this.model.getValue();
+
         newState.fieldClass = "form-control";
         if (this.model.getTriggeredBy) {
             console.log("triggered by = " + this.model.getTriggeredBy());
             if (this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
                 newState.fieldClass += " bg-danger";
             }
-        }
-        if (this.model.getMessage) {
-            newState.message = this.model.getMessage();
-        } else {
-            newState.message = "";
-        }
-
-        newState.label = this.label;
-        console.log(this.label + " is required: " + this.model.getRequired());
-        if (this.model.getRequired()) {
-            newState.label += " *";
         }
 
         return newState;

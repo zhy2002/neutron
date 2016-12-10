@@ -1,6 +1,7 @@
 import React from "react";
 import NeutronComponent from "../NeutronComponent.jsx";
-import FormFieldComponent from "../FormFieldComponent.jsx";
+import FormFieldComponent from "../TextFieldComponent.jsx";
+import SelectFieldComponent from "../SelectFieldComponent.jsx";
 
 export default class AddressComponent extends NeutronComponent {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class AddressComponent extends NeutronComponent {
                 {this.state.enabled || <h3>This panel is disabled.</h3>}
                 {this.state.enabled && <div>
                     <FormFieldComponent id={this.id + '-address'} label="Address" model={model.getPropertyAddressNode()} />
-                    <FormFieldComponent id={this.id + '-state'} label="State" model={model.getPropertyStateNode()} />
+                    <SelectFieldComponent id={this.id + '-state'} label="State" model={model.getPropertyStateNode()} listName="states" />
                 </div>}
             </div>
         </div>;

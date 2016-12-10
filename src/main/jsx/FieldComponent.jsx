@@ -13,6 +13,23 @@ export default class FieldComponent extends NeutronComponent {
         this.label = props["label"];
         window.fieldMap[this.model.getUniqueId()] = this.id;
     }
+
+    extractNewState() {
+        let newState = super.extractNewState();
+
+        if (this.model.getMessage) {
+            newState.message = this.model.getMessage();
+        } else {
+            newState.message = "";
+        }
+
+        newState.label = this.label;
+        if (this.model.getRequired()) {
+            newState.label += " *";
+        }
+
+        return newState;
+    }
 }
 
 FieldComponent.propTypes = {
