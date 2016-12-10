@@ -1,5 +1,6 @@
 package zhy2002.examples.register;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.ObjectUiNode;
 import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.UiNode;
@@ -18,14 +19,17 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         super(parent, name);
     }
 
+    @JsMethod
     public PropertyAddressNode getPropertyAddressNode() {
         return propertyAddressNode;
     }
 
+    @JsMethod
     public PropertyStateNode getPropertyStateNode() {
         return propertyStateNode;
     }
 
+    @JsMethod
     public String getTooltip() {
         return getStateValue(PredefinedUiNodeStateKeys.TOOLTIP);
     }

@@ -46,9 +46,9 @@ export default class RegisterComponent extends NeutronComponent {
                                                model={model.getReceiveOffersNode()}/>
                         <FormCheckboxComponent id="exampleOwnInvestmentProperty" label="Own investment property"
                                                model={model.getOwnInvestmentPropertyNode()}/>
-                        <AddressComponent id="exampleResidentialProperty" label="Residential Address"
+                        <AddressComponent id="exampleResidentialProperty" label="Residential Property"
                                           model={model.getResidentialPropertyNode()}/>
-                        <AddressComponent id="exampleInvestmentProperty" label="Investment Property Address"
+                        <AddressComponent id="exampleInvestmentProperty" label="Investment Property"
                                           model={model.getInvestmentPropertyNode()}/>
                     </form>
                 </div>
