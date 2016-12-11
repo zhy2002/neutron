@@ -2,7 +2,9 @@ package zhy2002.examples.register;
 
 import zhy2002.examples.register.event.*;
 import zhy2002.examples.register.rule.*;
-import zhy2002.examples.register.rule.impl.*;
+import zhy2002.examples.register.rule.impl.DefaultEmailByUsernameRuleImpl;
+import zhy2002.examples.register.rule.impl.EmailChangeReasonRuleImpl;
+import zhy2002.examples.register.rule.impl.UsernameIsRequiredRuleImpl;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
@@ -40,6 +42,10 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(PropertyDetailsNode.class, new PropertyDetailsNodeFactory());
         setChildNodeFactory(PropertyAddressNode.class, new PropertyAddressNodeFactory());
         setChildNodeFactory(PropertyStateNode.class, new PropertyStateNodeFactory());
+        setChildNodeFactory(CountryCodeNode.class, new CountryCodeFactory());
+        setChildNodeFactory(AreaCodeNode.class, new AreaNodeFactory());
+        setChildNodeFactory(PhoneNumberNode.class, new PhoneNumberNodeFactory());
+        setChildNodeFactory(PhoneInfoNode.class, PhoneInfoNode::new);
     }
 
     private void loadNodeConfig() {

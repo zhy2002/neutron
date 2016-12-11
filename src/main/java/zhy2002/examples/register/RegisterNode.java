@@ -20,6 +20,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private OwnInvestmentPropertyNode ownInvestmentPropertyNode;
     private PropertyDetailsNode residentialPropertyNode;
     private PropertyDetailsNode investmentPropertyNode;
+    private PhoneInfoNode homePhoneNode;
     private ErrorListNode errorListNode;
 
     RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
@@ -65,6 +66,10 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
 
+    public PhoneInfoNode getHomePhoneNode() {
+        return homePhoneNode;
+    }
+
     public PropertyDetailsNode getResidentialPropertyNode() {
         return residentialPropertyNode;
     }
@@ -72,6 +77,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     public PropertyDetailsNode getInvestmentPropertyNode() {
         return investmentPropertyNode;
     }
+
 
     public ErrorListNode getErrorListNode() {
         return errorListNode;
@@ -89,6 +95,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         ownInvestmentPropertyNode = context.createChildNode(OwnInvestmentPropertyNode.class, this, "ownInvestmentPropertyNode");
         residentialPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "residentialPropertyNode");
         investmentPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "investmentPropertyNode");
+        homePhoneNode = context.createChildNode(PhoneInfoNode.class, this, "homePhoneNode");
         errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
 
         return Arrays.asList(

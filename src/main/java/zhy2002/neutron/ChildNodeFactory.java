@@ -6,7 +6,8 @@ package zhy2002.neutron;
  * to avoid a GWT runtime ClassCastException.
  * I think this is a bug in GWT when 2 type parameters are used like this.
  */
-public abstract class ChildNodeFactory<N extends UiNode<? extends P>, P extends ParentUiNode<?>> {
+@FunctionalInterface
+public interface ChildNodeFactory<N extends UiNode<? extends P>, P extends ParentUiNode<?>> {
 
-    public abstract N create(P parent, String name);
+    N create(P parent, String name);
 }
