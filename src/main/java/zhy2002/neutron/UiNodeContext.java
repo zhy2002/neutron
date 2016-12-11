@@ -1,13 +1,11 @@
 package zhy2002.neutron;
 
-import jsinterop.annotations.JsMethod;
-
 /**
  * This interface is a facade to all framework level services.
  *
  * @param <R> type of the root UiNode.
  */
-public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
+public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus, UiNodeChangeEngineStatus {
 
     /**
      * Get an automatically generate unique id.
@@ -23,38 +21,9 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
      */
     R getRootNode();
 
-    <N extends UiNode<?>>  void loadNode(Class<N> nodeClass, N node);
+    <N extends UiNode<?>> void loadNode(Class<N> nodeClass, N node);
 
     <N extends UiNode<?>> void unLoadNode(Class<N> nodeClass, N node);
-
-    /**
-     * Process a event which in turn can trigger rules and cause changes.
-     *
-     * @param event any UiNodeEvent.
-     */
-    void processEvent(UiNodeEvent event);
-
-    @JsMethod
-    void beginSession();
-
-    @JsMethod
-    void rollbackSession();
-
-    @JsMethod
-    void commitSession();
-
-    @JsMethod
-    boolean undo();
-
-    @JsMethod
-    boolean redo();
-
-    /**
-     * @return the current rule activation.
-     */
-    UiNodeRuleActivation getCurrentActivation();
-
-    TickPhase getCurrentPhase();
 
     <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name);
 
@@ -69,5 +38,9 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> {
     <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node);
 
     <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node);
+
+    void processEvent(UiNodeEvent event);
+
+    void flush();
 
 }

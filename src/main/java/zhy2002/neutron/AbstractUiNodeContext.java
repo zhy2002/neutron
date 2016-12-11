@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * There is one context per node tree.
  */
-public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
+public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R>, UiNodeChangeEngine {
 
     private R root;
     private final ClassRegistry classRegistry;
@@ -115,9 +115,19 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
 
     //endregion
 
+    //region change engine facade
+
+    public void setCycleMode(CycleModeEnum mode) {
+        changeEngine.setCycleMode(mode);
+    }
+
     @Override
     public void processEvent(UiNodeEvent event) {
         changeEngine.processEvent(event);
+    }
+
+    public void flush() {
+        changeEngine.processCycle();
     }
 
     @Override
@@ -146,12 +156,57 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public UiNodeRuleActivation getCurrentActivation() {
-        return changeEngine.getCurrentActivation();
+    public boolean canUndo() {
+        return changeEngine.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return changeEngine.canRedo();
+    }
+
+    @Override
+    public boolean isInSession() {
+        return changeEngine.isInSession();
+    }
+
+    @Override
+    public boolean isInCycle() {
+        return changeEngine.isInCycle();
+    }
+
+    //endregion
+
+    //region cycle status
+
+    @Override
+    public CycleStatus getCurrentCycleStatus() {
+        return changeEngine.getCurrentCycleStatus();
     }
 
     @Override
     public TickPhase getCurrentPhase() {
-        return changeEngine.getCurrentPhase();
+        CycleStatus cycleStatus = getCurrentCycleStatus();
+        return cycleStatus == null ? null : cycleStatus.getCurrentPhase();
     }
+
+    @Override
+    public UiNodeRuleActivation getCurrentActivation() {
+        CycleStatus cycleStatus = getCurrentCycleStatus();
+        return cycleStatus == null ? null : cycleStatus.getCurrentActivation();
+    }
+
+    @Override
+    public CycleStatusEnum getCurrentStatus() {
+        CycleStatus cycleStatus = getCurrentCycleStatus();
+        return cycleStatus == null ? null : cycleStatus.getCurrentStatus();
+    }
+
+    @Override
+    public ChangeUiNodeEvent getCurrentChangeEvent() {
+        CycleStatus cycleStatus = getCurrentCycleStatus();
+        return cycleStatus == null ? null : cycleStatus.getCurrentChangeEvent();
+    }
+
+    //endregion
 }

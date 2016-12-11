@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
@@ -9,32 +10,36 @@ import java.util.Iterator;
  */
 public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
+    /**
+     * Whether cycle is automatically started or not.
+     */
     private CycleModeEnum cycleMode = CycleModeEnum.Auto;
-
+    /**
+     * True if a session has started by not rolled back or committed.
+     */
     private boolean inSession;
+    /**
+     * True if is processing a cycle.
+     */
     private boolean inCycle;
-    private TickPhase currentPhase;
-    private UiNodeRuleActivation currentActivation;
+    /**
+     * A queue of events not yet put into a Cycle.
+     */
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
-    private final Deque<Cycle> cycleDeque = new ArrayDeque<>();//a queue of cycles in session.
-    private final UiNodeRuleAgendaImpl agenda = new UiNodeRuleAgendaImpl();
-    private final TickPhase[] phases = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate, PredefinedPhases.CleanUp};
+    /**
+     * A queue of cycles in current session.
+     */
+    private final Deque<Cycle> cycleDeque = new ArrayDeque<>();
 
+    public UiNodeChangeEngineImpl() {
+    }
 
-    //region change management
-
-    @Override
     public CycleModeEnum getCycleMode() {
         return cycleMode;
     }
 
-    public UiNodeRuleActivation getCurrentActivation() {
-        return currentActivation;
-    }
-
-    @Override
-    public TickPhase getCurrentPhase() {
-        return currentPhase;
+    public void setCycleMode(@NotNull CycleModeEnum cycleMode) {
+        this.cycleMode = cycleMode;
     }
 
     @Override
@@ -58,6 +63,10 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     private void commitSessionInternal() {
+        if (isInCycle())
+            throw new UiNodeException("Cannot commit during a cycle.");
+
+        processCycle();
         cycleDeque.clear();
         inSession = false;
     }
@@ -71,15 +80,66 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     private void rollbackSessionInternal() {
+        if (isInCycle())
+            throw new UiNodeException("Cannot rollback during a cycle.");
+
         Iterator<Cycle> iterator = cycleDeque.descendingIterator();
         while (iterator.hasNext()) {
             Cycle cycle = iterator.next();
-            if (cycle.isApplied()) {
+            if (cycle.canRevert()) {
                 cycle.revert();
             }
         }
         cycleDeque.clear();
-        clearCycleState();
+        //    clearCycleState();
+    }
+
+    @Override
+    public boolean undo() {
+        if (isInCycle())
+            throw new UiNodeException("Cannot undo during a cycle.");
+
+        Cycle cycle = findLastRevertibleCycle();
+        if (cycle != null) {
+            cycle.revert();
+            return true;
+        }
+        return false;
+    }
+
+    private Cycle findLastRevertibleCycle() {
+        Iterator<Cycle> iterator = cycleDeque.descendingIterator();
+        while (iterator.hasNext()) {
+            Cycle cycle = iterator.next();
+            if (cycle.canRevert()) {
+                return cycle;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean redo() {
+        if (isInCycle())
+            throw new UiNodeException("Cannot redo during a cycle.");
+
+        Cycle cycle = findFirstApplicableCycle();
+        if (cycle != null) {
+            cycle.apply();
+            return true;
+        }
+        return false;
+    }
+
+    private Cycle findFirstApplicableCycle() {
+        Iterator<Cycle> iterator = cycleDeque.iterator();
+        while (iterator.hasNext()) {
+            Cycle cycle = iterator.next();
+            if (cycle.canApply()) {
+                return cycle;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -87,60 +147,40 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         return inSession;
     }
 
-    //todo canUndo and canRedo methods
-
-    private void clearCycleState() {
-        currentActivation = null;
-        currentPhase = null;
-        agenda.clear();
-        inCycle = false;
-        eventDeque.clear();
+    @Override
+    public boolean canUndo() {
+        return findLastRevertibleCycle() != null;
     }
 
     @Override
-    public boolean undo() {
-        clearCycleState();
-        Iterator<Cycle> iterator = cycleDeque.descendingIterator();
-        while (iterator.hasNext()) {
-            Cycle cycle = iterator.next();
-            if (cycle.isApplied()) {
-                cycle.revert();
-                return true;
-            }
-        }
-        return false;
+    public boolean canRedo() {
+        return findFirstApplicableCycle() != null;
     }
 
-    @Override
-    public boolean redo() {
-        Iterator<Cycle> iterator = cycleDeque.iterator();
-        while (iterator.hasNext()) {
-            Cycle cycle = iterator.next();
-            if (!cycle.isApplied()) {
-                cycle.apply();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean inCycle() {
+    /**
+     * @return true if currently processing a cycle.
+     */
+    public boolean isInCycle() {
         return inCycle;
     }
 
     @Override
+    public CycleStatus getCurrentCycleStatus() {
+        return isInCycle() ? cycleDeque.getLast() : null;
+    }
+
+    @Override
     public void processEvent(UiNodeEvent event) {
-        boolean autoCommit = false;
-        if (!isInSession()) {
+        boolean autoCommit = !isInSession();
+        if (autoCommit) {
             beginSessionInternal();
-            autoCommit = true;
         }
 
         try {
             processEventInternal(event);
         } catch (UiNodeEventException ex) {
             if (autoCommit) {
-                rollbackSession();
+                rollbackSessionInternal();
             }
             throw ex;
         }
@@ -151,13 +191,19 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     private void processEventInternal(UiNodeEvent event) {
-        queueEvent(event);
+        popUndoneCycles();
+        eventDeque.add(event);
         if (getCycleMode() == CycleModeEnum.Auto) {
-            try {
-                processCycle();
-            } catch (UiNodeEventException ex) {
-                undo();
-                throw ex;
+            processCycle();
+        }
+    }
+
+    private void popUndoneCycles() {
+        while (!cycleDeque.isEmpty()) {
+            if(cycleDeque.peekLast().canApply()) {
+                cycleDeque.pollLast();
+            } else {
+                break;
             }
         }
     }
@@ -166,70 +212,36 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      * Process all enqueued (root) events.
      * Root event is created by client via API calls
      * rather than the change engine.
+     * When this method exists eventDeque is empty.
      */
-    private void processCycle() {
+    public void processCycle() {
         if (inCycle) //leave to outer cycle to process
             return;
 
-        if (eventDeque.isEmpty())
+        if (eventDeque.isEmpty()) //nothing to process
             return;
 
-        inCycle = true;
+        //create a new cycle
         Cycle currentCycle = new Cycle();
         cycleDeque.add(currentCycle);
-        do {
-            processTick(currentCycle);
-        } while (!eventDeque.isEmpty());
-        inCycle = false;
+        inCycle = true;
+
+        try {
+            do { //process all ticks of the cycle
+                currentCycle.pollAll(eventDeque);
+                currentCycle.processTick();
+            } while (!eventDeque.isEmpty());
+            inCycle = false;
+        } catch (UiNodeException ex) {
+            //revert to the state when last cycle is complete
+            inCycle = false;
+            cycleDeque.peekLast().revert();
+            cycleDeque.pollLast();
+            eventDeque.clear();
+            throw ex;
+        }
+
         currentCycle.notifyChanges();
     }
 
-    /**
-     * Fire all rules activated by the events in the event queue
-     * when this method is called.
-     *
-     * @param cycle the current cycle object.
-     */
-    private void processTick(Cycle cycle) {
-        while (!eventDeque.isEmpty()) {
-            UiNodeEvent event = eventDeque.poll();
-            agenda.addActivations(event);
-            cycle.add(event);
-        }
-        boolean changesApplied = false;
-        for (TickPhase phase : phases) {
-            currentPhase = phase;
-            if (!changesApplied && phase.PostChanges()) {
-                applyChanges();
-                changesApplied = true;
-            }
-            processPhase(phase);
-        }
-        agenda.clear();
-        currentPhase = null;
-        if (!changesApplied) {
-            applyChanges();
-        }
-    }
-
-    private void applyChanges() {
-        if (!cycleDeque.isEmpty()) {
-            cycleDeque.peekLast().apply();
-        }
-    }
-
-    protected void processPhase(TickPhase phase) {
-        while (!agenda.isEmpty(phase)) {
-            UiNodeRuleActivation activation = agenda.getNextActivation(phase);
-            currentActivation = activation;
-            activation.fire();
-            currentActivation = null;
-        }
-    }
-
-    private void queueEvent(UiNodeEvent event) {
-        eventDeque.add(event);
-    }
-
-    //endregion
 }

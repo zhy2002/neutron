@@ -19,7 +19,7 @@ public class UiNodeRuleActivation {
     }
 
     public TickPhase getPhase() {
-        return rule.getPhase();
+        return rule == null ? null : rule.getPhase();
     }
 
     public UiNodeRule<?, ?> getRule() {

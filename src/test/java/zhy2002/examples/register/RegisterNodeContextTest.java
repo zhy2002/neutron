@@ -3,10 +3,7 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.NodeStatusEnum;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.*;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -303,7 +300,6 @@ public class RegisterNodeContextTest {
     @Test
     public void shouldClearPhaseWhenRollback() {
 
-        UiNodeContext<?> context = registerNode.getContext();
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("test1");
         assertThat(context.getCurrentPhase(), nullValue());
@@ -455,6 +451,51 @@ public class RegisterNodeContextTest {
 
         ownInvestmentPropertyNode.setValue(false);
         assertThat(listener.getCount(), equalTo(2));
+    }
+
+    @Test
+    public void canProcessEventsInBatch() {
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        AgeNode ageNode = registerNode.getAgeNode();
+        EmailNode emailNode = registerNode.getEmailNode();
+
+        context.beginSession();
+        context.setCycleMode(CycleModeEnum.Batched);
+
+        usernameNode.setValue("test1");
+        ageNode.setText("32");
+
+        assertThat(usernameNode.getValue(), equalTo(""));
+        assertThat(ageNode.getValue(), nullValue());
+
+        context.flush();
+
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+        assertThat(ageNode.getValue(), equalTo(new BigDecimal("32")));
+        assertThat(emailNode.getValue(), equalTo("test1@gmail.com"));
+
+        registerNode.getUsernameNode().setValue("test2");
+        emailNode.setValue("test2x@gmail.com");
+
+        context.flush();
+
+        assertThat(usernameNode.getValue(), equalTo("test2"));
+        assertThat(ageNode.getValue(), equalTo(new BigDecimal("32")));
+        assertThat(emailNode.getValue(), equalTo("test2@gmail.com"));
+
+        context.undo();
+
+        assertThat(usernameNode.getValue(), equalTo("test1"));
+        assertThat(ageNode.getValue(), equalTo(new BigDecimal("32")));
+        assertThat(emailNode.getValue(), equalTo("test1@gmail.com"));
+
+        assertThat(context.canRedo(), equalTo(true));
+
+        emailNode.setValue("test2x@gmail.com");
+
+        assertThat(context.canRedo(), equalTo(false)); //cannot redo after change
+
+        context.rollbackSession();
     }
 
 }

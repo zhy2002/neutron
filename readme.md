@@ -6,7 +6,6 @@ todo
 * support post event send event processing
 * event notification strategy - self,children,parent; descendant,parent; self; ...
 * implement rule priority
-* implement rule group/flow
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
 * more features of drools rules (rule metadata/configuration)
 * rule max change level detection

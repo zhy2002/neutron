@@ -1,16 +1,15 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsType;
+
 /**
  * Implementor of this interface is responsible for propagation changes in the form of a UiNodeEvent
  * through the UiNode tree.
  */
-public interface UiNodeChangeEngine {
-
-    CycleModeEnum getCycleMode();
+@JsType
+public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
 
     void processEvent(UiNodeEvent event);
-
-    TickPhase getCurrentPhase();
 
     void beginSession();
 
@@ -18,11 +17,11 @@ public interface UiNodeChangeEngine {
 
     void rollbackSession();
 
-    boolean isInSession();
-
-    boolean inCycle();
+    boolean canUndo();
 
     boolean undo();
+
+    boolean canRedo();
 
     boolean redo();
 }
