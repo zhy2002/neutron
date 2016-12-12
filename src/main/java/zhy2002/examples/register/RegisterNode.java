@@ -3,6 +3,7 @@ package zhy2002.examples.register;
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -108,14 +109,13 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
                 ownInvestmentPropertyNode,
                 residentialPropertyNode,
                 investmentPropertyNode,
+                homePhoneNode,
                 errorListNode
         );
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(
-                getContext().createUiNodeRule(SetHasErrorRule.class, this)
-        );
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(SetHasErrorRule.class, this));
     }
 }

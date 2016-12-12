@@ -5,6 +5,7 @@ import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.neutron.PredefinedUiNodeStateKeys;
 import zhy2002.neutron.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +20,8 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(
-                getContext().createUiNodeRule(PasswordIsStrongRule.class, this)
-        );
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(PasswordIsStrongRule.class, this));
     }
 
     @JsMethod

@@ -45,7 +45,8 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     @JsMethod
     public Boolean getRequired() {
-        return getStateValue(PredefinedUiNodeStateKeys.REQUIRED);
+        Boolean result = getStateValue(PredefinedUiNodeStateKeys.REQUIRED);
+        return result == null ? Boolean.FALSE : result;
     }
 
     public boolean hasValue() {

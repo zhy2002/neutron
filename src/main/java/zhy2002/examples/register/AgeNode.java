@@ -3,6 +3,7 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.rule.AgeValidRule;
 import zhy2002.neutron.BigDecimalUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(getContext().createUiNodeRule(AgeValidRule.class, this));
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(AgeValidRule.class, this));
     }
 }

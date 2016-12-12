@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import org.apache.commons.collections.map.HashedMap;
 import zhy2002.examples.register.UiNodeChangeListener;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -317,8 +318,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     protected void initializeState() {
     }
 
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return new ArrayList<>();
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return new EnhancedLinkedList<>();
     }
 
     /**

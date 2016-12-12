@@ -5,6 +5,7 @@ import zhy2002.examples.register.rule.EmailChangeReasonRule;
 import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
 import zhy2002.neutron.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,11 +22,10 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(
-                getContext().createUiNodeRule(EmailChangeReasonRule.class, this),
-                getContext().createUiNodeRule(ValidateEmailIsRequiredRule.class, this)
-        );
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this))
+                .and(getContext().createUiNodeRule(ValidateEmailIsRequiredRule.class, this));
     }
 
     public void setTriggeredBy(String triggeredBy) {

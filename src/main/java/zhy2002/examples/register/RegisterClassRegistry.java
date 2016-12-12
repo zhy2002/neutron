@@ -66,6 +66,8 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
         setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
         setUiNodeRuleFactory(AgeValidRule.class, AgeValidRule::new);
+        setUiNodeRuleFactory(PhoneInfoAllOrNothingRule.class, PhoneInfoAllOrNothingRule::new);
+        setUiNodeRuleFactory(PhoneFieldIsRequiredRule.class, PhoneFieldIsRequiredRule::new);
     }
 
     private void loadStateChangeEventFactories() {

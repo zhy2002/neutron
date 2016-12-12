@@ -3,10 +3,9 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.rule.LoadInvestmentPropertyRule;
 import zhy2002.neutron.BooleanUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.List;
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>{
 
@@ -15,7 +14,7 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>{
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(getContext().createUiNodeRule(LoadInvestmentPropertyRule.class, this));
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(LoadInvestmentPropertyRule.class, this));
     }
 }

@@ -1,13 +1,13 @@
 package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
-import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.NotImplementedException;
+import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
+import zhy2002.examples.register.rule.UsernameInvalidCharRule;
+import zhy2002.examples.register.rule.UsernameIsRequiredRule;
+import zhy2002.examples.register.rule.UsernameLengthRule;
 import zhy2002.neutron.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
-
-import java.util.Arrays;
-import java.util.List;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 @JsType
 public class UsernameNode extends StringUiNode<RegisterNode> {
@@ -17,12 +17,11 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(
-                getContext().createUiNodeRule(UsernameLengthRule.class, this),
-                getContext().createUiNodeRule(UsernameInvalidCharRule.class, this),
-                getContext().createUiNodeRule(UsernameIsRequiredRule.class, this),
-                getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this)
-        );
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(UsernameLengthRule.class, this))
+                .and(getContext().createUiNodeRule(UsernameInvalidCharRule.class, this))
+                .and(getContext().createUiNodeRule(UsernameIsRequiredRule.class, this))
+                .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this));
     }
 }

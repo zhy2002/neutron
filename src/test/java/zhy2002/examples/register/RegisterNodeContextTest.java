@@ -3,7 +3,10 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.*;
+import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.CycleModeEnum;
+import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -498,4 +501,47 @@ public class RegisterNodeContextTest {
         context.rollbackSession();
     }
 
+
+    @Test
+    public void requiredIsSetInPhoneInfoFields() {
+        PhoneInfoNode phoneInfoNode = registerNode.getHomePhoneNode();
+
+        assertThat(phoneInfoNode.getCountryCodeNode().getRequired(), equalTo(false));
+        assertThat(phoneInfoNode.getAreaCodeNode().getRequired(), equalTo(false));
+        assertThat(phoneInfoNode.getPhoneNumberNode().getRequired(), equalTo(false));
+
+        phoneInfoNode.getCountryCodeNode().setValue("+86");
+
+        assertThat(phoneInfoNode.getCountryCodeNode().getRequired(), equalTo(true));
+        assertThat(phoneInfoNode.getAreaCodeNode().getRequired(), equalTo(true));
+        assertThat(phoneInfoNode.getPhoneNumberNode().getRequired(), equalTo(true));
+
+        phoneInfoNode.getCountryCodeNode().setValue("");
+
+        assertThat(phoneInfoNode.getCountryCodeNode().getRequired(), equalTo(false));
+        assertThat(phoneInfoNode.getAreaCodeNode().getRequired(), equalTo(false));
+        assertThat(phoneInfoNode.getPhoneNumberNode().getRequired(), equalTo(false));
+    }
+
+    @Test
+    public void canValidateRequiredPhoneField() {
+        registerNode.getUsernameNode().setValue("test");
+        registerNode.getPasswordNode().setValue("aAaA12");
+        registerNode.getRepeatPasswordNode().setValue("aAaA12");
+        registerNode.getResidentialPropertyNode().getPropertyStateNode().setValue("NSW");
+        registerNode.refresh();
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+
+        registerNode.getHomePhoneNode().getAreaCodeNode().setValue("02");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
+
+        registerNode.getHomePhoneNode().getCountryCodeNode().setValue("+61");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+
+        registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("11112222");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+
+        registerNode.getHomePhoneNode().getAreaCodeNode().setValue("");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+    }
 }

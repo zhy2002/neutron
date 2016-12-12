@@ -3,6 +3,7 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.rule.PropertyStateRequiredRule;
 import zhy2002.neutron.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +33,7 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
     }
 
     @Override
-    protected List<UiNodeRule<?, ?>> createOwnRules() {
-        return Arrays.asList(
-                getContext().createUiNodeRule(PropertyStateRequiredRule.class, this)
-        );
+    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(PropertyStateRequiredRule.class, this));
     }
 }
