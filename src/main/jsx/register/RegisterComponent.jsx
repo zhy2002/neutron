@@ -1,11 +1,11 @@
 import React from "react";
 import NeutronComponent from "../NeutronComponent.jsx";
-import FormFieldComponent from "../TextFieldComponent.jsx";
+import TextFieldComponent from "../TextFieldComponent.jsx";
 import FormCheckboxComponent from "../CheckboxFieldComponent.jsx";
 import NumberFieldComponent from "../NumberFieldComponent.jsx";
 import AddressComponent from "./AddressComponent.jsx";
 import ErrorListComponent from "./ErrorListComponent.jsx";
-
+import PhoneComponent from "./PhoneComponent.jsx";
 
 export default class RegisterComponent extends NeutronComponent {
 
@@ -36,10 +36,10 @@ export default class RegisterComponent extends NeutronComponent {
                         <small>&nbsp;{alert}</small>
                     </h3>
                     <form>
-                        <FormFieldComponent id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
-                        <FormFieldComponent id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
-                        <FormFieldComponent id="examplePassword" label="Password" model={model.getPasswordNode()}/>
-                        <FormFieldComponent id="exampleRepeatPassword" label="Repeat Password"
+                        <TextFieldComponent id="exampleUsername" label="Username" model={model.getUsernameNode()}/>
+                        <TextFieldComponent id="exampleEmail" label="Email address" model={model.getEmailNode()}/>
+                        <TextFieldComponent id="examplePassword" label="Password" model={model.getPasswordNode()}/>
+                        <TextFieldComponent id="exampleRepeatPassword" label="Repeat Password"
                                             model={model.getRepeatPasswordNode()}/>
                         <NumberFieldComponent id="exampleAge" label="Age" model={model.getAgeNode()}/>
                         <FormCheckboxComponent id="exampleReceiveOffers" label="Receive latest offers"
@@ -50,6 +50,7 @@ export default class RegisterComponent extends NeutronComponent {
                                           model={model.getResidentialPropertyNode()}/>
                         <AddressComponent id="exampleInvestmentProperty" label="Investment Property"
                                           model={model.getInvestmentPropertyNode()}/>
+                        <PhoneComponent id="examplePhone" label="Home Phone" model={model.getHomePhoneNode()} />
                     </form>
                 </div>
                 <div className="col-md-6">

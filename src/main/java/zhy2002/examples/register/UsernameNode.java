@@ -23,5 +23,18 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
                 .and(getContext().createUiNodeRule(UsernameInvalidCharRule.class, this))
                 .and(getContext().createUiNodeRule(UsernameIsRequiredRule.class, this))
                 .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this));
+                //.and(getContext().createUiNodeRule(TestRule.class, this));
     }
+
+//    private static class TestRule extends UiNodeRule<UiNodeEvent, StringUiNode<?>> {
+//
+//        protected TestRule(StringUiNode<?> owner, TickPhase phase) {
+//            super(owner, phase);
+//        }
+//
+//        @Override
+//        protected void doFire(UiNodeEvent typedEvent) {
+//
+//        }
+//    }
 }

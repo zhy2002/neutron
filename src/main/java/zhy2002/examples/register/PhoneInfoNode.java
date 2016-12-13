@@ -33,6 +33,7 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         return areaCodeNode;
     }
 
+    @JsMethod
     public PhoneNumberNode getPhoneNumberNode() {
         return phoneNumberNode;
     }

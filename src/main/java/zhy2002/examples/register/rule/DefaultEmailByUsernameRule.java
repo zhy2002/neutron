@@ -12,11 +12,6 @@ import zhy2002.neutron.util.EnhancedLinkedList;
  */
 public abstract class DefaultEmailByUsernameRule extends UiNodeRule<StringStateChangeEvent, UsernameNode> {
 
-    @FunctionalInterface
-    public interface Factory {
-        DefaultEmailByUsernameRule create(UsernameNode owner);
-    }
-
     protected DefaultEmailByUsernameRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Post);
     }

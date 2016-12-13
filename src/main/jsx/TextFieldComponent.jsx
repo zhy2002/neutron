@@ -1,7 +1,7 @@
 import React from "react";
 import FieldComponent from "./FieldComponent.jsx";
 
-export default class FormFieldComponent extends FieldComponent {
+export default class TextFieldComponent extends FieldComponent {
 
     constructor(props) {
         super(props);

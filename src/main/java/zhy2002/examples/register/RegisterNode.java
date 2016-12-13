@@ -66,7 +66,6 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return ownInvestmentPropertyNode;
     }
 
-
     public PhoneInfoNode getHomePhoneNode() {
         return homePhoneNode;
     }
@@ -78,7 +77,6 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     public PropertyDetailsNode getInvestmentPropertyNode() {
         return investmentPropertyNode;
     }
-
 
     public ErrorListNode getErrorListNode() {
         return errorListNode;

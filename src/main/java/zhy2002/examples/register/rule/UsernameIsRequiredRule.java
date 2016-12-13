@@ -16,11 +16,6 @@ public abstract class UsernameIsRequiredRule extends UiNodeRule<UiNodeEvent, Use
     public static final String ERROR_MESSAGE = "Username is required";
     private ErrorNode errorNode;
 
-    @FunctionalInterface
-    public interface Factory {
-        UsernameIsRequiredRule create(UsernameNode owner);
-    }
-
     protected UsernameIsRequiredRule(UsernameNode owner) {
         super(owner, PredefinedPhases.Post);
     }
