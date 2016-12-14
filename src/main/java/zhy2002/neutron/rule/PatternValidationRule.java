@@ -33,9 +33,8 @@ public class PatternValidationRule extends ValidationRule<StringStateChangeEvent
     }
 
     @Override
-    public boolean canFire(UiNodeEvent event) {
-        StringStateChangeEvent typedEvent = (StringStateChangeEvent) event;
-        return typedEvent.getStateKey().equals(PredefinedUiNodeStateKeys.PATTERN) || typedEvent.getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
+    protected boolean doCanFire(StringStateChangeEvent event) {
+        return event.getStateKey().equals(PredefinedUiNodeStateKeys.PATTERN) || event.getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
     }
 
     @Override

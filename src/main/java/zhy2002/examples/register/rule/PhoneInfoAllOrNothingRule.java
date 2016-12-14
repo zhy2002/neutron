@@ -24,7 +24,7 @@ public class PhoneInfoAllOrNothingRule extends UiNodeRule<UiNodeEvent, PhoneInfo
     }
 
     @Override
-    public boolean canFire(UiNodeEvent event) {
+    protected boolean doCanFire(UiNodeEvent event) {
         return event.getTarget().getParent() == getOwner() || event instanceof RefreshUiNodeEvent;
     }
 

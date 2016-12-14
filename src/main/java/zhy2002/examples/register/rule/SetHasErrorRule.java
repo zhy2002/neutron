@@ -21,7 +21,7 @@ public class SetHasErrorRule extends UiNodeRule<UiNodeEvent, RegisterNode> {
     }
 
     @Override
-    public boolean canFire(UiNodeEvent event) {
+    protected boolean doCanFire(UiNodeEvent event) {
         return true;
     }
 

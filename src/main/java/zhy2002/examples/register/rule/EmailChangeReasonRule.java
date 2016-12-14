@@ -25,8 +25,8 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChange
     }
 
     @Override
-    public boolean canFire(UiNodeEvent event) {
-        return super.canFire(event) && ((StringStateChangeEvent) event).getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
+    protected boolean doCanFire(StringStateChangeEvent event) {
+        return super.doCanFire(event) && event.getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
     }
 
     @Override

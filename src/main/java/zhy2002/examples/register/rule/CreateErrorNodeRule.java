@@ -32,7 +32,7 @@ public class CreateErrorNodeRule extends UiNodeRule<ValidationErrorListStateChan
     }
 
     @Override
-    public boolean canFire(UiNodeEvent event) {
+    protected boolean doCanFire(ValidationErrorListStateChangeEvent event) {
         return true;
     }
 

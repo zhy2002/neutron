@@ -1,120 +1,65 @@
-<node-context type="RegisterNodeContextAbstract" package="zhy2002.examples.register" ruleImplSuffix="Impl">
-    <!-- create a node type with name 'RegisterNode' which is a root node. -->
-    <root type="RegisterNode">
-        <!-- state properties -->
-        <properties>
-            <property name="hasError" type="Boolean" default="false"/>
-        </properties>
-
-        <rules>
-            <!-- will create a rule class with name SetHasErrorRule -->
-            <rule name="SetHasError">
-                <!-- events that can trigger this rule -->
-                <events>
-                    <addEvent of="ErrorNode"/>
-                    <removeEvent of="ErrorNode"/>
-                </events>
-                <properties>
-                    <!-- path defaults to same as name -->
-                    <property name="errorListNode"/>
-                </properties>
-            </rule>
-        </rules>
-
-        <!-- object node can have child -->
+<?xml version="1.0" encoding="utf-8" ?>
+<context package="zhy2002.examples.register" ruleImplSuffix="Impl">
+    <Register>
         <children>
-
-            <!-- will create a leaf node type 'UsernameNode' that can hold a string value. -->
-            <leaf type="UsernameNode" valueType="String">
+            <Username baseType="String" required="true" minLength="4" disallowedChars="#">
+                <Rules>
+                    <SetDefaultEmail defaultEmailSffix="@gmail.com"/>
+                </Rules>
+            </Username>
+            <Email baseType="String" pattern="\w+@\w+.[\w.]+" trackChangeReason="true"/>
+            <Password baseType="String" required="true">
+                <Rules>
+                    <CheckValuePasswordStrength/>
+                </Rules>
+            </Password>
+            <RepeatPassword baseType="String">
+                <Rules>
+                    <CheckPasswordRepeat>
+                        <PasswordNode path="parent.passwordNode"/>
+                    </CheckPasswordRepeat>
+                </Rules>
+            </RepeatPassword>
+            <Age baseType="Integer" min="0" max="120"/>
+            <ReceiveOffers baseType="Boolean">
                 <rules>
-                    <rule name="UsernameLength" base="ValidationRule">
-                        <properties>
-                            <property name="errorListNode" path="parent.errorListNode"/>
-                        </properties>
-                    </rule>
-                    <rule name="UsernameInvalidChar" base="PreStateChangeRule">
-                        <events>
-                            <stateChangeEvent of="String"/>
-                        </events>
-                    </rule>
-                    <rule name="UsernameIsRequired">
-                        <events>
-                            <stateChangeEvent of="String"/>
-                            <refreshEvent/>
-                        </events>
-                        <properties>
-                            <property name="errorListNode" path="parent.errorListNode"/>
-                        </properties>
-                    </rule>
-                    <rule name="DefaultEmailByUsername">
-                        <events>
-                            <stateChangeEvent of="String"/>
-                        </events>
-                        <properties>
-                            <property name="emailNode" path="parent.emailNode"/>
-                        </properties>
-                    </rule>
+                    <SetEmailRequired/>
                 </rules>
-            </leaf>
+            </ReceiveOffers>
+            <OwnInvestmentProperty baseType="Boolean">
+                <rules>
+                    <LoadInvestmentProperty/>
+                </rules>
+            </OwnInvestmentProperty>
+            <ResidentialProperty baseType="PropertyDetails"/>
+            <InvestmentProperty baseType="PropertyDetails"/>
+            <HomePhoneNode baseType="PhoneInfo"/>
+            <ErrorList baseType="List">
 
-            <!--  -->
-            <leaf type="EmailNode" valueType="String">
-
-            </leaf>
-
-            <leaf type="PasswordNode" valueType="String">
-
-            </leaf>
-
-            <leaf type="RepeatPasswordNode" valueType="String">
-
-            </leaf>
-
-            <leaf type="AgeNode" valueType="BigDecimal">
-
-            </leaf>
-
-            <leaf type="ReceiveOffersNode" valueType="Boolean">
-
-            </leaf>
-
-            <leaf type="OwnInvestmentPropertyNode" valueType="Boolean">
-
-            </leaf>
-
-            <!-- will declare a child of type PropertyDetailsNode -->
-            <typeRef of="PropertyDetailsNode" name="residentialPropertyNode">
-
-            </typeRef>
-
-            <typeRef base="PropertyDetailsNode" name="investmentPropertyNode">
-
-            </typeRef>
-
-            <object type="PhoneInfoNode" name="homePhoneNode">
-
-            </object>
-
-            <!-- create a new list child type ErrorListNode -->
-            <list type="ErrorListNode">
-                <item>
-                    <leaf type="ErrorNode" valueType="ValidationError">
-
-                    </leaf>
-                </item>
-
-            </list>
-
-            <types>
-                <object name="PropertyDetailsNode">
-
-                </object>
-            </types>
+            </ErrorList>
         </children>
 
         <childTypes>
-
+            <PhoneInfo baseType="Object">
+                <children>
+                    <CountryCode/>
+                    <AreaCode/>
+                    <PhoneNumber/>
+                </children>
+                <rules>
+                    <PhoneInfoCompleteOrNothing/>
+                </rules>
+            </PhoneInfo>
+            <PropertyDetails baseType="Object">
+                <children>
+                    <PropertyAddress baseType="String"/>
+                    <PropertyState baseType="String" required="true"/>
+                </children>
+            </PropertyDetails>
         </childTypes>
-    </root>
-</node-context>
 
+        <rules>
+            <UpdateErrorNodeList/>
+        </rules>
+    </Register>
+</context>

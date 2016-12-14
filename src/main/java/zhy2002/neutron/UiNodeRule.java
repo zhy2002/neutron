@@ -105,8 +105,13 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
      * @return true if this rule should fire.
      * The same event instance will be passed to the fire method.
      */
-    public boolean canFire(UiNodeEvent event) {
-        return event.getTarget() == getHost();
+    @SuppressWarnings("unchecked")
+    public final boolean canFire(UiNodeEvent event) {
+        return doCanFire((E)event);
+    }
+
+    protected boolean doCanFire(E event) {
+            return event.getTarget() == getHost();
     }
 
     /**
