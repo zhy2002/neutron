@@ -1,6 +1,7 @@
 package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
+import zhy2002.examples.register.rule.CreateErrorNodeRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
 import zhy2002.neutron.util.EnhancedLinkedList;
@@ -114,6 +115,8 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(SetHasErrorRule.class, this));
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(SetHasErrorRule.class, this))
+                .and(getContext().createUiNodeRule(CreateErrorNodeRule.class, this));
     }
 }

@@ -9,7 +9,7 @@ public enum PredefinedPhases implements TickPhase {
 
     Pre(ChangeModeEnum.PROHIBITED),
     Post(ChangeModeEnum.CASCADE, true),
-    Validate(ChangeModeEnum.DIRECT),
+    Validate(ChangeModeEnum.CASCADE),
     CleanUp(ChangeModeEnum.IGNORED);
 
     private final ChangeModeEnum changeMode;

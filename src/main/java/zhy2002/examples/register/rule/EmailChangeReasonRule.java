@@ -3,18 +3,12 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.EmailNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 /**
  * A rule that tracks why email is changed.
  */
 public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, EmailNode> {
-
-    @FunctionalInterface
-    public interface Factory {
-        EmailChangeReasonRule create(EmailNode owner);
-    }
 
     protected EmailChangeReasonRule(EmailNode owner) {
         super(owner, PredefinedPhases.Validate);
@@ -24,9 +18,15 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChange
     public void addToOwner() {
         super.addToOwner();
 
+        ChangeTrackingModeEnum mode = getOwner().getChangeTrackingMode();
         getOwner().setChangeTrackingMode(ChangeTrackingModeEnum.None);
         getOwner().setTriggeredBy("user direct");
-        getOwner().setChangeTrackingMode(ChangeTrackingModeEnum.Reference);
+        getOwner().setChangeTrackingMode(mode);
+    }
+
+    @Override
+    public boolean canFire(UiNodeEvent event) {
+        return super.canFire(event) && ((StringStateChangeEvent) event).getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
     }
 
     @Override

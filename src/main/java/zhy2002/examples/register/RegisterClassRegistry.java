@@ -6,9 +6,14 @@ import zhy2002.examples.register.rule.impl.DefaultEmailByUsernameRuleImpl;
 import zhy2002.examples.register.rule.impl.EmailChangeReasonRuleImpl;
 import zhy2002.examples.register.rule.impl.UsernameIsRequiredRuleImpl;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.UiNodeRuleFactory;
 import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
 import zhy2002.neutron.event.StringStateChangeEventFactory;
+import zhy2002.neutron.event.ValidationErrorListStateChangeEventFactory;
+import zhy2002.neutron.rule.PatternValidationRule;
+import zhy2002.neutron.rule.ValidationErrorList;
 
 import java.math.BigDecimal;
 
@@ -68,12 +73,20 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(AgeValidRule.class, AgeValidRule::new);
         setUiNodeRuleFactory(PhoneInfoAllOrNothingRule.class, PhoneInfoAllOrNothingRule::new);
         setUiNodeRuleFactory(PhoneFieldIsRequiredRule.class, PhoneFieldIsRequiredRule::new);
+        setUiNodeRuleFactory(CreateErrorNodeRule.class, CreateErrorNodeRule::new);
+        setUiNodeRuleFactory(PatternValidationRule.class, new UiNodeRuleFactory<PatternValidationRule, StringUiNode<?>>() {
+            @Override //this anonymous class is required to work around a GWT compilation error.
+            public PatternValidationRule create(StringUiNode<?> owner) {
+                return new PatternValidationRule(owner);
+            }
+        });
     }
 
     private void loadStateChangeEventFactories() {
         this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
         this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
         this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
+        this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
     }
 
     private void loadNodeAddEventFactories() {

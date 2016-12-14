@@ -5,28 +5,30 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.rule.ValidationError;
 
 import javax.validation.constraints.NotNull;
 
-public class ErrorNode extends LeafUiNode<ErrorListNode, RegisterError> {
+public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
 
-    private final RegisterError errorInfo = new RegisterError();
+    private ValidationError errorInfo;
 
     protected ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
 
-        setValue(errorInfo);
+        setValue(new ValidationError());
     }
 
     @JsMethod
     @Override
-    public final void setValue(RegisterError value) {
-        setValue(RegisterError.class, value);
+    public final void setValue(ValidationError value) {
+        this.errorInfo = value;
+        setValue(ValidationError.class, value);
     }
 
     @JsMethod
     @Override
-    public final RegisterError getValue() {
+    public final ValidationError getValue() {
         return super.getValue();
     }
 

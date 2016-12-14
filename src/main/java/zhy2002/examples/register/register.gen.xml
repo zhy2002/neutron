@@ -98,7 +98,7 @@
             <!-- create a new list child type ErrorListNode -->
             <list type="ErrorListNode">
                 <item>
-                    <leaf type="ErrorNode" valueType="RegisterError">
+                    <leaf type="ErrorNode" valueType="ValidationError">
 
                     </leaf>
                 </item>

@@ -18,6 +18,7 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     protected EmailNode(RegisterNode parent, String name) {
         super(parent, name);
 
+        setPattern("\\w+@\\w+\\.[\\w.]+");
         setValue("");
     }
 

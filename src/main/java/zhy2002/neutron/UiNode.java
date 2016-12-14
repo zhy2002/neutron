@@ -1,8 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import org.apache.commons.collections.map.HashedMap;
 import zhy2002.examples.register.UiNodeChangeListener;
+import zhy2002.neutron.rule.ValidationErrorList;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Base class for all ui nodes.
  */
-public abstract class UiNode<P extends ParentUiNode<?>> {
+public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodeProperties {
 
     private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
 
@@ -195,7 +195,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public <T> T getStateValue(String key) {
-        return getStateValueInternal(key);
+        return getStateValue(key, null);
+    }
+
+    public <T> T getStateValue(String key, T defaultValue) {
+        T value = getStateValueInternal(key);
+        return value == null ? defaultValue : value;
     }
 
     protected final boolean shouldChangeWithoutEvent() {
@@ -403,4 +408,85 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     //endregion
+
+    //region ui node properties
+
+    @JsMethod
+    @Override
+    public String getVisibility() {
+        return getStateValue(PredefinedUiNodeStateKeys.VISIBILITY, "visible");
+    }
+
+    @JsMethod
+    @Override
+    public void setVisibility(String value) {
+        setStateValue(PredefinedUiNodeStateKeys.VISIBILITY, String.class, value);
+    }
+
+    /**
+     * @return true if this Node if disabled in the ui.
+     * This does not affect the node's ability to process
+     * events in anyway though rules might behave differently
+     * for different values.
+     */
+    @JsMethod
+    @Override
+    public boolean isDisabled() {
+        return getStateValue(PredefinedUiNodeStateKeys.DISABLED, Boolean.FALSE);
+    }
+
+    @JsMethod
+    @Override
+    public void setDisabled(boolean value) {
+        setStateValue(PredefinedUiNodeStateKeys.DISABLED, Boolean.class, value);
+    }
+
+    @JsMethod
+    @Override
+    public boolean isReadonly() {
+        return getStateValue(PredefinedUiNodeStateKeys.READONLY, Boolean.FALSE);
+    }
+
+    @JsMethod
+    @Override
+    public void setReadonly(boolean value) {
+        setStateValue(PredefinedUiNodeStateKeys.READONLY, Boolean.class, value);
+    }
+
+    /**
+     * @return true if the content of this node is KNOWN to be invalid.
+     */
+    @JsMethod
+    @Override
+    public boolean isInvalid() {
+        return getStateValue(PredefinedUiNodeStateKeys.INVALID, Boolean.FALSE);
+    }
+
+    @JsMethod
+    @Override
+    public void setInvalid(boolean value) {
+        setStateValue(PredefinedUiNodeStateKeys.INVALID, Boolean.class, value);
+    }
+
+    @JsMethod
+    @Override
+    public boolean isDirty() {
+        return getStateValue(PredefinedUiNodeStateKeys.DIRTY, Boolean.FALSE);
+    }
+
+    @JsMethod
+    @Override
+    public void setDirty(boolean value) {
+        setStateValue(PredefinedUiNodeStateKeys.DIRTY, Boolean.class, value);
+    }
+
+    //endregion
+
+    public ValidationErrorList getValidationErrors() {
+        return getStateValue(PredefinedUiNodeStateKeys.VALIDATION_ERRORS);
+    }
+
+    public void setValidationErrors(ValidationErrorList errors) {
+        setStateValue(PredefinedUiNodeStateKeys.VALIDATION_ERRORS, ValidationErrorList.class, errors);
+    }
 }

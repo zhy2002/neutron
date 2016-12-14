@@ -336,7 +336,7 @@ public class RegisterNodeContextTest {
         emailNode.setValue("");
         assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(true));
 
-        emailNode.setValue("a");
+        emailNode.setValue("a@a");
         assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
 
     }
@@ -422,10 +422,7 @@ public class RegisterNodeContextTest {
 
     @Test
     public void requiredValidationDoesNotHappenIfParentNodeIsUnloaded() {
-        registerNode.getUsernameNode().setValue("hello");
-        registerNode.getPasswordNode().setValue("AaBb123");
-        registerNode.getRepeatPasswordNode().setValue("AaBb123");
-        registerNode.getResidentialPropertyNode().getPropertyStateNode().setValue("NSW");
+        typeInValidData("hello", "AaBb123");
 
         registerNode.refresh();
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
@@ -525,10 +522,7 @@ public class RegisterNodeContextTest {
 
     @Test
     public void canValidateRequiredPhoneField() {
-        registerNode.getUsernameNode().setValue("test");
-        registerNode.getPasswordNode().setValue("aAaA12");
-        registerNode.getRepeatPasswordNode().setValue("aAaA12");
-        registerNode.getResidentialPropertyNode().getPropertyStateNode().setValue("NSW");
+        typeInValidData("test", "aAaA12");
         registerNode.refresh();
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
@@ -543,5 +537,24 @@ public class RegisterNodeContextTest {
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+    }
+
+    private void typeInValidData(String test, String aAaA12) {
+        registerNode.getUsernameNode().setValue(test);
+        registerNode.getPasswordNode().setValue(aAaA12);
+        registerNode.getRepeatPasswordNode().setValue(aAaA12);
+        registerNode.getResidentialPropertyNode().getPropertyStateNode().setValue("NSW");
+    }
+
+    @Test
+    public void canFirePatternEvents() {
+        typeInValidData("test", "aAaA12");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+        EmailNode emailNode = registerNode.getEmailNode();
+        emailNode.setValue("123");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+        emailNode.setValue("123@123.com");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+
     }
 }
