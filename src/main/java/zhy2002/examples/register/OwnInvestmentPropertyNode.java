@@ -14,7 +14,7 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>{
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules().and(getContext().createUiNodeRule(LoadInvestmentPropertyRule.class, this));
     }
 }

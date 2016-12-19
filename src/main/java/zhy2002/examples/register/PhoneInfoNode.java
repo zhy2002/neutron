@@ -53,7 +53,7 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules().and(getContext().createUiNodeRule(PhoneInfoAllOrNothingRule.class, this));
     }
 }

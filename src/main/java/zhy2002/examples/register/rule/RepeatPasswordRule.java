@@ -1,13 +1,14 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.ErrorListNode;
-import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.PasswordNode;
 import zhy2002.examples.register.RepeatPasswordNode;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.StringStateChangeEventBinding;
 import zhy2002.neutron.UiNode;
-import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.rule.ValidationRule;
+import zhy2002.neutron.util.CollectionUtil;
+
+import java.util.Collection;
 
 public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
 
@@ -25,32 +26,6 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
         return getOwner();
     }
 
-    @Override
-    protected ErrorNode createErrorNode(UiNodeEvent typedEvent) {
-        return createErrorNode(getRepeatPasswordNode(), getErrorMessage(typedEvent));
-    }
-
-    @Override
-    protected ErrorListNode getErrorListNode() {
-        return getOwner().getParent().getErrorListNode();
-    }
-
-    @Override
-    protected boolean isValid(UiNodeEvent typedEvent) {
-        String errorMessage = getPasswordNode().getMessage();
-        if (errorMessage != null && errorMessage.length() > 0)
-            return true;
-
-        String password = getPasswordNode().getValue();
-        String repeat = getRepeatPasswordNode().getValue();
-
-        return password.equals(repeat);
-    }
-
-    @Override
-    public String getErrorMessage(UiNodeEvent event) {
-        return ERROR_MESSAGE;
-    }
 
     @Override
     protected UiNode<?> findHost() {
@@ -58,14 +33,32 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
     }
 
     @Override
-    public EnhancedLinkedList<Class<? extends UiNodeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(StringStateChangeEvent.class);
+    protected Collection<EventBinding> createEventBindings() {
+
+        return CollectionUtil.combine(
+                super.createEventBindings(),
+                new StringStateChangeEventBinding(
+                        e -> {
+                            UiNode<?> eventTarget = e.getOrigin();
+                            return eventTarget == getPasswordNode() || eventTarget == getRepeatPasswordNode();
+                        },
+                        e -> validate()
+                )
+        );
     }
 
     @Override
-    protected boolean doCanFire(UiNodeEvent event) {
-        UiNode<?> eventTarget = event.getTarget();
-        return eventTarget == getPasswordNode() || eventTarget == getRepeatPasswordNode();
+    protected String getErrorMessage() {
+        return ERROR_MESSAGE;
+    }
+
+    @Override
+    protected boolean isActivated() {
+        String password = getPasswordNode().getValue();
+        String repeat = getRepeatPasswordNode().getValue();
+        if(password == null || repeat == null)
+            return false;
+        return !password.equals(repeat);
     }
 
 }

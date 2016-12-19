@@ -9,4 +9,7 @@ public final class ValueUtil {
         return value == null || value.length() == 0;
     }
 
+    public static <T> T ifNull(T value, T defaultValue) {
+        return value == null ? defaultValue : value;
+    }
 }

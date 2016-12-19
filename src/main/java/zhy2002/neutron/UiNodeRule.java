@@ -1,50 +1,46 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.EnhancedLinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 
 /**
- * A UI node rule a piece of logic that runs when an event happens.
+ * A UiNodeRule is a unit of business logic that is embedded into the node context
+ * and is executed when the events it is interested in occur.
  *
- * @param <E> the base event type this rule handles.
  * @param <N> the type of owner node.
  */
-public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
+public abstract class UiNodeRule<N extends UiNode<?>> {
 
-    /**
-     * The owner UiNode of this rule.
-     * The rule instance's life cycle is bound to its owner.
-     */
     private final N owner;
-    /**
-     * Host is self or ancestor of owner.
-     * This rule has a chance to fire when an event passes through the host node.
-     */
     private UiNode<?> host;
-    /**
-     * The phase when the rule should fire.
-     */
-    private final TickPhase phase;
+    private Collection<EventBinding> eventBindings;
+    private Collection<String> ruleGroups;
 
-    protected UiNodeRule(N owner, TickPhase phase) {
+
+    protected UiNodeRule(N owner) {
         this.owner = owner;
-        this.phase = phase;
     }
 
-    public N getOwner() {
+    /**
+     * @return The owner UiNode of this rule.
+     * The rule instance's life cycle is bound to its owner.
+     */
+    public final N getOwner() {
         return owner;
     }
 
-    public UiNode<?> getHost() {
-        return host;
-    }
-
-    public TickPhase getPhase() {
-        return phase;
-    }
-
-    protected UiNodeContext<?> getContext() {
+    protected final UiNodeContext<?> getContext() {
         return getOwner().getContext();
+    }
+
+    /**
+     * Host is the node this rule is attached to; usually is the owner or ancestor of owner.
+     * Events passing the host node will have a chance to activate the rules attached to the host node.
+     */
+    public final UiNode<?> getHost() {
+        return host;
     }
 
     /**
@@ -56,6 +52,47 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
      */
     protected UiNode<?> findHost() {
         return owner;
+    }
+
+    /**
+     * Event binding is the hook into the node context and receiver of events.
+     * Technically rules do not know when events occur. It is the job of AbstractEventBinding
+     * to let rules know an interesting event has occurred.
+     */
+    public final Collection<EventBinding> getEventBindings() {
+        return eventBindings;
+    }
+
+    /**
+     * Create all the event bindings of this node the first time it is added to owner.
+     *
+     * @return immutable collection of event bindings.
+     */
+    protected abstract Collection<EventBinding> createEventBindings();
+
+    /**
+     * Get the rule groups this node belongs to.
+     * A rule can only be activated if the event is
+     * in one of these groups.
+     * This collection is immutable.
+     */
+    public final Collection<String> getRuleGroups() {
+        if (ruleGroups == null) {
+            ruleGroups = Collections.unmodifiableCollection(getDefaultRuleGroups());
+        }
+        return ruleGroups;
+    }
+
+    public final void setRuleGroups(Collection<String> ruleGroups) {
+        if (ruleGroups == null) {
+            this.ruleGroups = null;
+        } else {
+            this.ruleGroups = Collections.unmodifiableCollection(new ArrayList<>(ruleGroups));
+        }
+    }
+
+    protected Collection<String> getDefaultRuleGroups() {
+        return Collections.singletonList(PredefinedRuleGroups.DEFAULT);
     }
 
     /**
@@ -71,6 +108,13 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
     public void addToOwner() {
         this.host = findHost();
         getOwner().addRule(this);
+        if (eventBindings == null) {
+            Collection<EventBinding> eventBindings = new ArrayList<>();
+            for (EventBinding eventBinding : createEventBindings()) {
+                eventBindings.add(new RuleEventBinding(this, eventBinding));
+            }
+            this.eventBindings = eventBindings;
+        }
         getHost().attachRule(this);
     }
 
@@ -83,52 +127,5 @@ public abstract class UiNodeRule<E extends UiNodeEvent, N extends UiNode<?>> {
         this.host = null;
     }
 
-    /**
-     * The types of events that can trigger this rule.
-     * This method is only called once when owner is being loaded.
-     *
-     * @return a list of event classes.
-     */
-    public EnhancedLinkedList<Class<? extends E>> observedEventTypes() {
-        return new EnhancedLinkedList<>();
-    }
-
-    public String getRuleGroup() {
-        return PredefinedRuleGroups.DEFAULT;
-    }
-
-    /**
-     * When a event is passed to this rule, this method is called
-     * to determine if the rule should fire.
-     *
-     * @param event the event for which this rule is triggered.
-     * @return true if this rule should fire.
-     * The same event instance will be passed to the fire method.
-     */
-    @SuppressWarnings("unchecked")
-    public final boolean canFire(UiNodeEvent event) {
-        return doCanFire((E)event);
-    }
-
-    protected boolean doCanFire(E event) {
-            return event.getTarget() == getHost();
-    }
-
-    /**
-     * Called when the rule fires.
-     *
-     * @param event the event instance.
-     */
-    @SuppressWarnings("unchecked")
-    public final void fire(UiNodeEvent event) {
-        doFire((E) event);
-    }
-
-    /**
-     * Contains the main logic of this rule.
-     *
-     * @param typedEvent strongly typed event instance.
-     */
-    protected abstract void doFire(E typedEvent);
-
 }
+

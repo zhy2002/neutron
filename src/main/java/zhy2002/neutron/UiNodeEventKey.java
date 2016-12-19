@@ -1,25 +1,26 @@
 package zhy2002.neutron;
 
+import javax.validation.constraints.NotNull;
+
 /**
- * A rule is linked to a set of event keys.
- * It can only fire if the event also matches the event key.
+ * An event can only activate the rules that handles its event key.
  */
-public final class UiNodeEventKey {
+public final class UiNodeEventKey<E extends UiNodeEvent> {
 
-    private final Class<? extends UiNodeEvent> eventClass;
-    private final String ruleGroup;
+    private final Class<E> eventClass;
+    private final String subject;
 
-    public UiNodeEventKey(Class<? extends UiNodeEvent> eventClass, String ruleGroup) {
+    public UiNodeEventKey(@NotNull Class<E> eventClass, @NotNull String subject) {
         this.eventClass = eventClass;
-        this.ruleGroup = ruleGroup;
+        this.subject = subject;
     }
 
-    public Class<? extends UiNodeEvent> getEventClass() {
+    public Class<E> getEventClass() {
         return eventClass;
     }
 
-    public String getRuleGroup() {
-        return ruleGroup;
+    public String getSubject() {
+        return subject;
     }
 
     @Override
@@ -27,16 +28,16 @@ public final class UiNodeEventKey {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UiNodeEventKey that = (UiNodeEventKey) o;
+        UiNodeEventKey<?> eventKey = (UiNodeEventKey<?>) o;
 
-        if (!eventClass.equals(that.eventClass)) return false;
-        return ruleGroup.equals(that.ruleGroup);
+        if (!eventClass.equals(eventKey.eventClass)) return false;
+        return subject.equals(eventKey.subject);
     }
 
     @Override
     public int hashCode() {
         int result = eventClass.hashCode();
-        result = 31 * result + ruleGroup.hashCode();
+        result = 31 * result + subject.hashCode();
         return result;
     }
 }

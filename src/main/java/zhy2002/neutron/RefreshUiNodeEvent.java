@@ -10,16 +10,20 @@ import java.util.Queue;
  */
 public class RefreshUiNodeEvent extends UiNodeEvent {
 
-    protected RefreshUiNodeEvent(UiNode<?> target) {
-        super(target);
+    protected RefreshUiNodeEvent(UiNode<?> origin) {
+        this(origin, null);
+    }
+
+    protected RefreshUiNodeEvent(UiNode<?> origin, String reason) {
+        super(origin, reason == null ? PredefinedEventSubjects.DEFAULT_REFRESH_REASON : reason);
     }
 
     @Override
-    public Iterable<UiNodeRuleActivation> getActivations() {
-        List<UiNodeRuleActivation> result = new ArrayList<>();
-        UiNode<?> target = getTarget();
+    public Iterable<BindingActivation> getActivations() {
+        List<BindingActivation> result = new ArrayList<>();
+        UiNode<?> target = getOrigin();
         Queue<UiNode<?>> queue = new ArrayDeque<>();
-        queue.add(target); //dfs
+        queue.add(target); //bfs
         while (!queue.isEmpty()) {
             target = queue.poll();
             if (target instanceof ParentUiNode) {
@@ -28,16 +32,12 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
                     queue.add(parentUiNode.getChild(i));
                 }
             }
-            for (UiNodeRule<?, ?> rule : target.getAttachedRules(this.getEventKey())) {//todo not right, event inheritance
-                UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, this);
+            for (EventBinding binding : target.getAttachedEventBindings(this.getEventKey())) {//todo not right, event inheritance
+                BindingActivation activation = new BindingActivation(binding, this);
                 result.add(activation);
             }
         }
         return result;
     }
-/*
-UiNodeEvent event
-
-*/
 
 }

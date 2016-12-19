@@ -12,7 +12,7 @@ public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, ?
     private final N target;
 
     public NodeRemoveEvent(N target) {
-        super(target);
+        super(target, target.getParent().getName());
 
         this.target = target;
     }
@@ -21,7 +21,7 @@ public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, ?
      * @return the node being removed.
      */
     @Override
-    public N getTarget() {
+    public N getOrigin() {
         return this.target;
     }
 

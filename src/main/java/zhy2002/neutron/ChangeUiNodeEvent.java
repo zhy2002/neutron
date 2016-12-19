@@ -8,8 +8,8 @@ import java.util.List;
  */
 public abstract class ChangeUiNodeEvent extends UiNodeEvent {
 
-    protected ChangeUiNodeEvent(UiNode<?> target) {
-        super(target);
+    protected ChangeUiNodeEvent(UiNode<?> target, String subject) {
+        super(target, subject);
     }
 
     /**
@@ -28,15 +28,15 @@ public abstract class ChangeUiNodeEvent extends UiNodeEvent {
      * @return the activations.
      */
     @Override
-    public Iterable<UiNodeRuleActivation> getActivations() {
+    public Iterable<BindingActivation> getActivations() {
         UiNodeEvent event = this;
-        List<UiNodeRuleActivation> result = new ArrayList<>();
-        UiNode<?> anchor = event.getTarget();
+        List<BindingActivation> result = new ArrayList<>();
+        UiNode<?> anchor = event.getOrigin();
         do {
             //at the moment rules have to declare the concrete event class they want to listen to.
-            for (UiNodeRule<?, ?> rule : anchor.getAttachedRules(event.getEventKey())) {
-                if (rule.canFire(event)) {
-                    UiNodeRuleActivation activation = new UiNodeRuleActivation(rule, event);
+            for (EventBinding binding : anchor.getAttachedEventBindings(event.getEventKey())) {
+                if (binding.canFire(event)) {
+                    BindingActivation activation = new BindingActivation(binding, event);
                     result.add(activation);
                 }
             }

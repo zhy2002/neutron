@@ -32,11 +32,11 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
     public boolean getHasError() {
-        return getStateValue(PredefinedUiNodeStateKeys.HAS_ERROR);
+        return getStateValue(PredefinedEventSubjects.HAS_ERROR);
     }
 
     public void setHasError(boolean value) {
-        setStateValue(PredefinedUiNodeStateKeys.HAS_ERROR, Boolean.class, value);
+        setStateValue(PredefinedEventSubjects.HAS_ERROR, Boolean.class, value);
     }
 
     public UsernameNode getUsernameNode() {
@@ -114,7 +114,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
                 .and(getContext().createUiNodeRule(SetHasErrorRule.class, this))
                 .and(getContext().createUiNodeRule(CreateErrorNodeRule.class, this));

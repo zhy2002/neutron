@@ -10,7 +10,7 @@ public interface UiNodeRuleAgenda {
 
     boolean isEmpty(TickPhase phase);
 
-    UiNodeRuleActivation getNextActivation(TickPhase phase);
+    BindingActivation getNextActivation(TickPhase phase);
 
     void clear();
 }

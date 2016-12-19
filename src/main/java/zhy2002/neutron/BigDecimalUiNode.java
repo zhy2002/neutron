@@ -40,6 +40,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         this.setText("");
     }
 
+
     public ValueParser<BigDecimal> getParser() {
         return parser == null ? DEFAULT_PARSER : parser;
     }
@@ -57,6 +58,24 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     }
 
     @JsMethod
+    public BigDecimal getMinValue() {
+        return super.getStateValue(PredefinedEventSubjects.MIN_VALUE);
+    }
+
+    public void setMinValue(BigDecimal value) {
+        super.setStateValue(PredefinedEventSubjects.MIN_VALUE, BigDecimal.class, value);
+    }
+
+    @JsMethod
+    public BigDecimal getMaxValue() {
+        return super.getStateValue(PredefinedEventSubjects.MAX_VALUE);
+    }
+
+    public void setMaxValue(BigDecimal value) {
+        super.setStateValue(PredefinedEventSubjects.MAX_VALUE, BigDecimal.class, value);
+    }
+
+    @JsMethod
     @Override
     public BigDecimal getValue() {
         return super.getValue();
@@ -70,13 +89,13 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     @Override
     protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
         if (!getContext().isInCycle()) {
-            if (PredefinedUiNodeStateKeys.VALUE.equals(key)) {
+            if (PredefinedEventSubjects.VALUE.equals(key)) {
                 hasValue = value != null;
                 if (!hasValue) {
-                    super.setStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT, String.class, "");
+                    super.setStateValue(PredefinedEventSubjects.VALUE_TEXT, String.class, "");
                     return;
                 }
-            } else if (PredefinedUiNodeStateKeys.VALUE_TEXT.equals(key)) {
+            } else if (PredefinedEventSubjects.VALUE_TEXT.equals(key)) {
                 hasValue = !ValueUtil.isEmpty((String) value);
             }
         }
@@ -86,23 +105,23 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     @JsMethod
     public String getText() {
-        return this.getStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT);
+        return this.getStateValue(PredefinedEventSubjects.VALUE_TEXT);
     }
 
     @JsMethod
     public void setText(String text) {
-        setStateValue(PredefinedUiNodeStateKeys.VALUE_TEXT, String.class, text);
+        setStateValue(PredefinedEventSubjects.VALUE_TEXT, String.class, text);
     }
 
     @Override
     protected void setStateValueInternal(String key, Object value) {
         super.setStateValueInternal(key, value);
-        if (PredefinedUiNodeStateKeys.VALUE_TEXT.equals(key)) {
+        if (PredefinedEventSubjects.VALUE_TEXT.equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
             if (!Objects.equals(val, getValue())) {
                 setValue(val);
             }
-        } else if (PredefinedUiNodeStateKeys.VALUE.equals(key) && value != null) {
+        } else if (PredefinedEventSubjects.VALUE.equals(key) && value != null) {
             String text = getFormatter().format((BigDecimal) value);
             if (!Objects.equals(text, getText())) {
                 setText(text);

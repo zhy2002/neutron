@@ -15,7 +15,8 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(RepeatPasswordRule.class, this));
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(RepeatPasswordRule.class, this));
     }
 }

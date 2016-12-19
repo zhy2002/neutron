@@ -8,16 +8,16 @@ public abstract class NodeUnloadEvent<N extends UiNode<?>>
         extends ChangeUiNodeEvent {
 
     protected NodeUnloadEvent(UiNode<?> target) {
-        super(target);
+        super(target, "");
     }
 
     @Override
     public void apply() {
-        getTarget().unload();
+        getOrigin().unload();
     }
 
     @Override
     public void revert() {
-        getTarget().load();
+        getOrigin().load();
     }
 }

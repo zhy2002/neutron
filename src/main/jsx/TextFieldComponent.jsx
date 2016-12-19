@@ -15,7 +15,8 @@ export default class TextFieldComponent extends FieldComponent {
         newState.fieldClass = "form-control";
         if (this.model.getTriggeredBy) {
             console.log("triggered by = " + this.model.getTriggeredBy());
-            if (this.model.getTriggeredBy() === "DefaultEmailByUsernameRuleImpl") {
+            let reason = this.model.getTriggeredBy();
+            if (reason && reason !== "user direct") {
                 newState.fieldClass += " bg-danger";
             }
         }

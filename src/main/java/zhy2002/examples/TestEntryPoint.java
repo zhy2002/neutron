@@ -10,7 +10,7 @@ public class TestEntryPoint implements EntryPoint {
     @Override
     public void onModuleLoad() {
         System.out.println("Running gwt.");
-        RootPanel.get().add(new Label("gwt label heres"));
+        RootPanel.get().add(new Label("gwt label here"));
         Window.startReact();
     }
 }

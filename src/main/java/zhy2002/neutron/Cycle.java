@@ -50,7 +50,7 @@ public class Cycle implements CycleStatus {
      * The executing rule activation. Code can access this field
      * to find out what is causing itself to execute.
      */
-    private UiNodeRuleActivation currentActivation;
+    private BindingActivation currentActivation;
 
     private int ruleActivationCount;
 
@@ -61,7 +61,7 @@ public class Cycle implements CycleStatus {
             UiNodeEvent uiNodeEvent = notAppliedDeque.poll();
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
                 currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
-                currentActivation = new UiNodeRuleActivation(null, currentChangeEvent);
+                currentActivation = new BindingActivation(null, currentChangeEvent);
                 currentChangeEvent.apply();
                 currentChangeEvent = null;
                 currentActivation = null;
@@ -77,7 +77,7 @@ public class Cycle implements CycleStatus {
             UiNodeEvent uiNodeEvent = appliedDeque.pollLast();
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
                 currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
-                currentActivation = new UiNodeRuleActivation(null, currentChangeEvent);
+                currentActivation = new BindingActivation(null, currentChangeEvent);
                 currentChangeEvent.revert();
                 currentChangeEvent = null;
                 currentActivation = null;
@@ -103,7 +103,7 @@ public class Cycle implements CycleStatus {
     }
 
     @Override
-    public UiNodeRuleActivation getCurrentActivation() {
+    public BindingActivation getCurrentActivation() {
         return currentActivation;
     }
 
@@ -113,10 +113,10 @@ public class Cycle implements CycleStatus {
         while (iterator.hasNext()) {
             UiNodeEvent uiNodeEvent = iterator.next();
             if (uiNodeEvent instanceof NodeAddEvent || uiNodeEvent instanceof NodeRemoveEvent) {
-                changedNodes.add(uiNodeEvent.getTarget().getParent());
+                changedNodes.add(uiNodeEvent.getOrigin().getParent());
             }
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
-                changedNodes.add(uiNodeEvent.getTarget());
+                changedNodes.add(uiNodeEvent.getOrigin());
             }
         }
         Set<UiNode<?>> notified = new HashSet<>();

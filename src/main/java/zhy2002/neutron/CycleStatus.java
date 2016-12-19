@@ -7,7 +7,7 @@ public interface CycleStatus {
 
     TickPhase getCurrentPhase();
 
-    UiNodeRuleActivation getCurrentActivation();
+    BindingActivation getCurrentActivation();
 
     CycleStatusEnum getCurrentStatus();
 

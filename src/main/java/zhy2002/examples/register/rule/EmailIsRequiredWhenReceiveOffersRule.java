@@ -2,18 +2,21 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.ReceiveOffersNode;
-import zhy2002.neutron.PredefinedPhases;
-import zhy2002.neutron.event.BooleanStateChangeEvent;
+import zhy2002.neutron.BooleanStateChangeEventBinding;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Mark email node as required if receives offer.
  */
-public class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<BooleanStateChangeEvent, ReceiveOffersNode> {
+public class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<ReceiveOffersNode> {
 
     public EmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode owner) {
-        super(owner, PredefinedPhases.Post);
+        super(owner);
     }
 
     private ReceiveOffersNode getReceiveOffersNode() {
@@ -25,17 +28,23 @@ public class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<BooleanStat
     }
 
     @Override
-    protected void doFire(BooleanStateChangeEvent typedEvent) {
+    protected Collection<EventBinding> createEventBindings() {
+        return Arrays.asList(
+                new BooleanStateChangeEventBinding(
+                        e -> updateEmailRequired()
+                ),
+                new RefreshEventBinding(
+                        e -> updateEmailRequired()
+                )
+        );
+    }
+
+    private void updateEmailRequired() {
         Boolean value = getReceiveOffersNode().getValue();
-        if(value != null && value) {
+        if (value != null && value) {
             getEmailNode().setRequired(true);
         } else {
             getEmailNode().setRequired(false);
         }
-    }
-
-    @Override
-    public EnhancedLinkedList<Class<? extends BooleanStateChangeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(BooleanStateChangeEvent.class);
     }
 }

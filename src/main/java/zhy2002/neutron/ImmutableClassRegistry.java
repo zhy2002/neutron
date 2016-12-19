@@ -22,7 +22,7 @@ public class ImmutableClassRegistry implements ClassRegistry {
     }
 
     @Override
-    public <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
+    public <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
         return registry.getUiNodeRuleFactory(ruleClass);
     }
 

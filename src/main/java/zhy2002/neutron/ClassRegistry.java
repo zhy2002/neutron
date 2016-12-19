@@ -15,7 +15,7 @@ public interface ClassRegistry {
      * @param ruleClass the rule's class object.
      * @return the factory instance that can create the rule.
      */
-    <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass);
+    <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass);
 
     /**
      * Get the factory instance of a given state change event type.

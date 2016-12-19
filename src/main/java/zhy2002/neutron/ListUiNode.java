@@ -63,7 +63,7 @@ public abstract class ListUiNode<
         } else {
             getContext().processEvent(event);
         }
-        return event.getTarget();
+        return event.getOrigin();
     }
 
     /**

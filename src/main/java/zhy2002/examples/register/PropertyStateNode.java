@@ -1,14 +1,14 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rule.PropertyStateRequiredRule;
+import zhy2002.neutron.PredefinedEventSubjects;
 import zhy2002.neutron.StringUiNode;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
+
+    public static final String REQUIRED_MESSAGE = "Property state is required.";
 
     private static List<AustralianState> STATES = Arrays.asList(
             new AustralianState("", ""),
@@ -28,12 +28,9 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
     protected void initializeState() {
         super.initializeState();
 
-        setValue("");
+        setRequiredMessage(REQUIRED_MESSAGE);
+        setRequired(true);
         setStateValueInternal("states", STATES.toArray());
     }
 
-    @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(PropertyStateRequiredRule.class, this));
-    }
 }

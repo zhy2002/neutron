@@ -71,11 +71,11 @@ public class ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <R extends UiNodeRule<?, N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
+    public <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
         return (UiNodeRuleFactory<R, N>) getObject(uiNodeRuleFactories, ruleClass, "UiNodeRuleFactory");
     }
 
-    public final <R extends UiNodeRule<?, N>, N extends UiNode<?>> void setUiNodeRuleFactory(Class<R> ruleClass, UiNodeRuleFactory<R, N> factory) {
+    public final <R extends UiNodeRule<N>, N extends UiNode<?>> void setUiNodeRuleFactory(Class<R> ruleClass, UiNodeRuleFactory<R, N> factory) {
         uiNodeRuleFactories.put(ruleClass, factory);
     }
 

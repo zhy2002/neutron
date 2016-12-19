@@ -27,7 +27,7 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
 
     <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name);
 
-    <L extends UiNodeRule<?, N>, N extends UiNode<?>> L createUiNodeRule(Class<L> ruleClass, N owner);
+    <L extends UiNodeRule<N>, N extends UiNode<?>> L createUiNodeRule(Class<L> ruleClass, N owner);
 
     <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue);
 

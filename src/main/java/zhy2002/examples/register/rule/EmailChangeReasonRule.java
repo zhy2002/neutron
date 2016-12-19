@@ -3,15 +3,17 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.EmailNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
-import zhy2002.neutron.util.EnhancedLinkedList;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * A rule that tracks why email is changed.
  */
-public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChangeEvent, EmailNode> {
+public class EmailChangeReasonRule extends UiNodeRule<EmailNode> {
 
-    protected EmailChangeReasonRule(EmailNode owner) {
-        super(owner, PredefinedPhases.Validate);
+    public EmailChangeReasonRule(EmailNode owner) {
+        super(owner);
     }
 
     @Override
@@ -25,24 +27,21 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<StringStateChange
     }
 
     @Override
-    protected boolean doCanFire(StringStateChangeEvent event) {
-        return super.doCanFire(event) && event.getStateKey().equals(PredefinedUiNodeStateKeys.VALUE);
+    protected Collection<EventBinding> createEventBindings() {
+        return Collections.singletonList(
+                new StringStateChangeEventBinding(
+                        this::setEmailChangeReason
+                )
+        );
     }
 
-    @Override
-    protected void doFire(StringStateChangeEvent typedEvent) {
+    private void setEmailChangeReason(StringStateChangeEvent typedEvent) {
 
         String triggeredBy = "user direct";
-        UiNodeRuleActivation activation = typedEvent.getActivation();
-        if (activation != null) {
+        BindingActivation activation = typedEvent.getActivation();
+        if (activation != null && activation.getRule() != null) {
             triggeredBy = activation.getRule().getClass().getSimpleName();
         }
         getOwner().setTriggeredBy(triggeredBy);
-
-    }
-
-    @Override
-    public EnhancedLinkedList<Class<? extends StringStateChangeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(StringStateChangeEvent.class);
     }
 }

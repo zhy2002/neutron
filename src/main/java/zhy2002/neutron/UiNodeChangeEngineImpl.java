@@ -91,7 +91,6 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             }
         }
         cycleDeque.clear();
-        //    clearCycleState();
     }
 
     @Override

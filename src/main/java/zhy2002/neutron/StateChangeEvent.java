@@ -9,7 +9,7 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     private T newValue;
 
     public StateChangeEvent(UiNode<?> target, String key) {
-        super(target);
+        super(target, key);
         this.stateKey = key;
     }
 
@@ -35,11 +35,11 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
 
     @Override
     public void apply() {
-        getTarget().setStateValueInternal(getStateKey(), getNewValue());
+        getOrigin().setStateValueInternal(getStateKey(), getNewValue());
     }
 
     @Override
     public void revert() {
-        getTarget().setStateValueInternal(getStateKey(), getOldValue());
+        getOrigin().setStateValueInternal(getStateKey(), getOldValue());
     }
 }

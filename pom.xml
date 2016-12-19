@@ -106,6 +106,7 @@
                     </modules>
                     <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
                     <generateJsInteropExports>true</generateJsInteropExports>
+                    <strict>true</strict>
                 </configuration>
             </plugin>
         </plugins>

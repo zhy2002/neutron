@@ -2,7 +2,6 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.register.UiNodeChangeListener;
-import zhy2002.neutron.rule.ValidationErrorList;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
@@ -56,11 +55,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     /**
      * Rules owned by this node.
      */
-    private final List<UiNodeRule<?, ?>> ownRules = new ArrayList<>();
+    private final List<UiNodeRule<?>> ownRules = new ArrayList<>();
     /**
      * Rules attached to this (host) node. Keyed by event class name.
      */
-    private final Map<UiNodeEventKey, List<UiNodeRule<?, ?>>> attachedRuleMap = new HashMap<>();
+    private final Map<UiNodeEventKey<?>, List<EventBinding>> attachedEventBindings = new HashMap<>();
     /**
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
@@ -168,12 +167,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     public boolean getLoadWithParent() {
-        Object value = this.getStateValueInternal(PredefinedUiNodeStateKeys.LOAD_WITH_PARENT);
+        Object value = this.getStateValueInternal(PredefinedEventSubjects.LOAD_WITH_PARENT);
         return !Boolean.FALSE.equals(value);
     }
 
     public void setLoadWithParent(boolean value) {
-        this.setStateValueInternal(PredefinedUiNodeStateKeys.LOAD_WITH_PARENT, value);
+        this.setStateValueInternal(PredefinedEventSubjects.LOAD_WITH_PARENT, value);
     }
 
     //region state methods
@@ -323,7 +322,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     protected void initializeState() {
     }
 
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return new EnhancedLinkedList<>();
     }
 
@@ -338,7 +337,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     protected void doUnload() {
-        List<UiNodeRule<?, ?>> ownRules = new ArrayList<>(this.ownRules);
+        List<UiNodeRule<?>> ownRules = new ArrayList<>(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
         this.state.clear();
         assert this.preState != null;
@@ -355,38 +354,43 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         removeFromParent();
     }
 
-    <T extends UiNode<?>, E extends UiNodeEvent> void addRule(@NotNull UiNodeRule<E, T> rule) {
+    <T extends UiNode<?>> void addRule(@NotNull UiNodeRule<T> rule) {
         assert this == rule.getOwner();
         ownRules.add(rule);
     }
 
-    <T extends UiNode<?>> void removeRule(@NotNull UiNodeRule<?, T> rule) {
+    <T extends UiNode<?>> void removeRule(@NotNull UiNodeRule<T> rule) {
         assert this == rule.getOwner();
         ownRules.remove(rule);
     }
 
-    <T extends UiNode<?>> void attachRule(UiNodeRule<? extends UiNodeEvent, T> rule) {
+    <T extends UiNode<?>> void attachRule(UiNodeRule<T> rule) {
         assert rule.getHost() == this;
-        for (Class<? extends UiNodeEvent> eventType : rule.observedEventTypes()) {
-            UiNodeEventKey eventKey = new UiNodeEventKey(eventType, rule.getRuleGroup());
-            List<UiNodeRule<?, ?>> list = attachedRuleMap.computeIfAbsent(eventKey, k -> new ArrayList<>());
-            list.add(rule);
-        }
-    }
 
-    <T extends UiNode<?>> void detachRule(UiNodeRule<? extends UiNodeEvent, T> rule) {
-        assert rule.getHost() == this;
-        for (Class<? extends UiNodeEvent> eventType : rule.observedEventTypes()) {
-            UiNodeEventKey eventKey = new UiNodeEventKey(eventType, rule.getRuleGroup());
-            List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventKey);
-            if (list != null) {
-                list.remove(rule);
+        for (EventBinding binding : rule.getEventBindings()) {
+            for (UiNodeEventKey<?> eventKey : binding.getEventKeys()) {
+                List<EventBinding> bindingList = attachedEventBindings.computeIfAbsent(eventKey, k -> new ArrayList<>());
+                bindingList.add(binding);
             }
         }
     }
 
-    Iterable<UiNodeRule<?, ?>> getAttachedRules(UiNodeEventKey eventKey) {
-        List<UiNodeRule<?, ?>> list = attachedRuleMap.get(eventKey);
+    <T extends UiNode<?>> void detachRule(UiNodeRule<T> rule) {
+        assert rule.getHost() == this;
+
+        for (EventBinding binding : rule.getEventBindings()) {
+            for (UiNodeEventKey<?> eventKey : binding.getEventKeys()) {
+                List<EventBinding> bindingList = attachedEventBindings.get(eventKey);
+                if (bindingList != null) {
+                    bindingList.remove(binding);
+                }
+            }
+
+        }
+    }
+
+    Iterable<EventBinding> getAttachedEventBindings(UiNodeEventKey<?> eventKey) {
+        List<EventBinding> list = attachedEventBindings.get(eventKey);
         return list == null ? Collections.emptyList() : list;
     }
 
@@ -414,13 +418,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public String getVisibility() {
-        return getStateValue(PredefinedUiNodeStateKeys.VISIBILITY, "visible");
+        return getStateValue(PredefinedEventSubjects.VISIBILITY, "visible");
     }
 
     @JsMethod
     @Override
     public void setVisibility(String value) {
-        setStateValue(PredefinedUiNodeStateKeys.VISIBILITY, String.class, value);
+        setStateValue(PredefinedEventSubjects.VISIBILITY, String.class, value);
     }
 
     /**
@@ -432,25 +436,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public boolean isDisabled() {
-        return getStateValue(PredefinedUiNodeStateKeys.DISABLED, Boolean.FALSE);
+        return getStateValue(PredefinedEventSubjects.DISABLED, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setDisabled(boolean value) {
-        setStateValue(PredefinedUiNodeStateKeys.DISABLED, Boolean.class, value);
+        setStateValue(PredefinedEventSubjects.DISABLED, Boolean.class, value);
     }
 
     @JsMethod
     @Override
     public boolean isReadonly() {
-        return getStateValue(PredefinedUiNodeStateKeys.READONLY, Boolean.FALSE);
+        return getStateValue(PredefinedEventSubjects.READONLY, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setReadonly(boolean value) {
-        setStateValue(PredefinedUiNodeStateKeys.READONLY, Boolean.class, value);
+        setStateValue(PredefinedEventSubjects.READONLY, Boolean.class, value);
     }
 
     /**
@@ -459,34 +463,35 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public boolean isInvalid() {
-        return getStateValue(PredefinedUiNodeStateKeys.INVALID, Boolean.FALSE);
+        return getStateValue(PredefinedEventSubjects.INVALID, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setInvalid(boolean value) {
-        setStateValue(PredefinedUiNodeStateKeys.INVALID, Boolean.class, value);
+        setStateValue(PredefinedEventSubjects.INVALID, Boolean.class, value);
     }
 
     @JsMethod
     @Override
     public boolean isDirty() {
-        return getStateValue(PredefinedUiNodeStateKeys.DIRTY, Boolean.FALSE);
+        return getStateValue(PredefinedEventSubjects.DIRTY, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setDirty(boolean value) {
-        setStateValue(PredefinedUiNodeStateKeys.DIRTY, Boolean.class, value);
+        setStateValue(PredefinedEventSubjects.DIRTY, Boolean.class, value);
     }
 
     //endregion
 
-    public ValidationErrorList getValidationErrors() {
-        return getStateValue(PredefinedUiNodeStateKeys.VALIDATION_ERRORS);
+    public ValidationErrorList getValidationErrorList() {
+        return getStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST);
     }
 
-    public void setValidationErrors(ValidationErrorList errors) {
-        setStateValue(PredefinedUiNodeStateKeys.VALIDATION_ERRORS, ValidationErrorList.class, errors);
+    public void setValidationErrorList(ValidationErrorList errors) {
+        setStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
     }
+
 }

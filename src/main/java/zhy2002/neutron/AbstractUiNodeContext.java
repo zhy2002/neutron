@@ -66,7 +66,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public <U extends UiNodeRule<?, N>, N extends UiNode<?>> U createUiNodeRule(Class<U> ruleClass, N owner) {
+    public <U extends UiNodeRule<N>, N extends UiNode<?>> U createUiNodeRule(Class<U> ruleClass, N owner) {
         UiNodeRuleFactory<U, N> factory = classRegistry.getUiNodeRuleFactory(ruleClass);
         return factory.create(owner);
     }
@@ -191,7 +191,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public UiNodeRuleActivation getCurrentActivation() {
+    public BindingActivation getCurrentActivation() {
         CycleStatus cycleStatus = getCurrentCycleStatus();
         return cycleStatus == null ? null : cycleStatus.getCurrentActivation();
     }

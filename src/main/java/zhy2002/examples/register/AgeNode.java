@@ -1,13 +1,13 @@
 package zhy2002.examples.register;
 
-import zhy2002.examples.register.rule.AgeValidRule;
+import zhy2002.neutron.PredefinedEventSubjects;
+import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.BigDecimalUiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigDecimal;
 
 public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
@@ -16,7 +16,17 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?, ?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(AgeValidRule.class, this));
+    protected void initializeState() {
+        super.initializeState();
+
+        setMinValue(new BigDecimal("0"));
+        setMaxValue(new BigDecimal("120"));
+        setStateValueInternal(PredefinedEventSubjects.RANGE_MESSAGE, "Age must be between 0 and 120.");
+
+    }
+
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(RangeValidationRule.class, this));
     }
 }

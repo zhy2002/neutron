@@ -7,17 +7,17 @@ package zhy2002.neutron;
 public abstract class NodeLoadEvent<N extends UiNode<?>>
         extends ChangeUiNodeEvent {
 
-    protected NodeLoadEvent(UiNode<?> target) {
-        super(target);
+    protected NodeLoadEvent(UiNode<?> origin) {
+        super(origin, "");
     }
 
     @Override
     public void apply() {
-        getTarget().load();
+        getOrigin().load();
     }
 
     @Override
     public void revert() {
-        getTarget().unload();
+        getOrigin().unload();
     }
 }

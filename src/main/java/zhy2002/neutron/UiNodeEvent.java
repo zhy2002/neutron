@@ -1,46 +1,82 @@
 package zhy2002.neutron;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * The base class for all UiNode events.
  * Subclasses are well-known, that is user should not inherit from this class.
  */
 public abstract class UiNodeEvent {
 
-    private final UiNode<?> target;
-    private UiNodeRuleActivation activation;
-    private String ruleGroup;
-    private UiNodeEventKey eventKey;
-
-    protected UiNodeEvent(UiNode<?> target) {
-        this.target = target;
-        this.activation = target.getContext().getCurrentActivation();
-        this.ruleGroup = PredefinedRuleGroups.DEFAULT;
-    }
-
     /**
-     * @return The ui node where the event (e.g. state change, add child or remove child) occurred.
+     * The node that raised this event.
+     * E.g. the node whose state is changed or
+     * the node being added to or removed from the context.
      */
-    public UiNode<?> getTarget() {
-        return target;
-    }
-
+    private final UiNode<?> origin;
     /**
-     * @return the activation object where this event is raised (meaning this event was created during executing the activation).
+     * A string tha describes what this event is about.
+     */
+    private final String subject;
+    /**
+     * Only activate rules in this rule group.
+     */
+    private String ruleGroup;
+    /**
+     * The activation object during the execution of which
+     * this event is raised (that is this event was created during executing the activation).
      * Null if this is a root (raised by external api) event.
      */
-    public UiNodeRuleActivation getActivation() {
-        return activation;
+    private BindingActivation activation;
+    /**
+     * Cache the event key.
+     */
+    private UiNodeEventKey<?> eventKey;
+
+    /**
+     * Data associated with this event.
+     * <p>
+     * private final Map<String, Object> tags = new HashMap<>();
+     */
+
+    protected UiNodeEvent(@NotNull UiNode<?> origin, @NotNull String subject) {
+        this.origin = origin;
+        this.subject = subject;
+        this.activation = origin.getContext().getCurrentActivation();
+        setRuleGroup(null);
     }
 
-    protected void setRuleGroup(String ruleGroup) {
-        this.ruleGroup = ruleGroup;
+    final UiNodeEventKey<?> getEventKey() {
+        if (eventKey == null) {
+            eventKey = new UiNodeEventKey<>(this.getClass(), this.getSubject());
+        }
+        return eventKey;
     }
 
-    public String getRuleGroup() {
+    public UiNode<?> getOrigin() {
+        return origin;
+    }
+
+    public final String getSubject() {
+        return subject;
+    }
+
+    public final String getRuleGroup() {
         return ruleGroup;
     }
 
-    protected void setActivation(UiNodeRuleActivation activation) {
+    public final void setRuleGroup(String ruleGroup) {
+        if (ruleGroup == null) {
+            ruleGroup = PredefinedRuleGroups.DEFAULT;
+        }
+        this.ruleGroup = ruleGroup;
+    }
+
+    public BindingActivation getActivation() {
+        return activation;
+    }
+
+    protected void setActivation(BindingActivation activation) {
         this.activation = activation;
     }
 
@@ -49,12 +85,10 @@ public abstract class UiNodeEvent {
      *
      * @return rule activations to be fired.
      */
-    public abstract Iterable<UiNodeRuleActivation> getActivations();
+    public abstract Iterable<BindingActivation> getActivations();
 
-    public UiNodeEventKey getEventKey() {
-        if(eventKey == null) {
-            eventKey = new UiNodeEventKey(this.getClass(), this.ruleGroup);
-        }
-        return eventKey;
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + ":" + getSubject();
     }
 }

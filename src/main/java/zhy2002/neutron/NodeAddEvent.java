@@ -1,9 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.ChangeUiNodeEvent;
-import zhy2002.neutron.ListUiNode;
-import zhy2002.neutron.UiNode;
-
 /**
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
@@ -14,7 +10,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, ?, N
     private final N target;
 
     public NodeAddEvent(N target) {
-        super(target);
+        super(target, target.getParent().getName());
 
         this.target = target;
     }
@@ -23,7 +19,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, ?, N
      * @return the node being added.
      */
     @Override
-    public N getTarget() {
+    public N getOrigin() {
         return target;
     }
 

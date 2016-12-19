@@ -3,23 +3,21 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.ErrorListNode;
 import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.RegisterNode;
-import zhy2002.neutron.PredefinedPhases;
-import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.*;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEvent;
-import zhy2002.neutron.rule.*;
-import zhy2002.neutron.util.EnhancedLinkedList;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * If the error list of a child is change check if we should create a new error node.
  */
-public class CreateErrorNodeRule extends UiNodeRule<ValidationErrorListStateChangeEvent, RegisterNode> {
+public class CreateErrorNodeRule extends UiNodeRule<RegisterNode> {
 
     public CreateErrorNodeRule(RegisterNode owner) {
-        super(owner, PredefinedPhases.Validate);
+        super(owner);
     }
 
     private ErrorListNode getErrorListNode() {
@@ -27,19 +25,18 @@ public class CreateErrorNodeRule extends UiNodeRule<ValidationErrorListStateChan
     }
 
     @Override
-    public EnhancedLinkedList<Class<? extends ValidationErrorListStateChangeEvent>> observedEventTypes() {
-        return super.observedEventTypes().and(ValidationErrorListStateChangeEvent.class);
+    protected Collection<EventBinding> createEventBindings() {
+        return Collections.singletonList(
+                new ValidationErrorListStateChangeEventBinding(
+                        e -> true,
+                        this::updateErrorNodeList
+                )
+        );
     }
 
-    @Override
-    protected boolean doCanFire(ValidationErrorListStateChangeEvent event) {
-        return true;
-    }
-
-    @Override
-    protected void doFire(ValidationErrorListStateChangeEvent typedEvent) {
+    private void updateErrorNodeList(ValidationErrorListStateChangeEvent typedEvent) {
         ErrorListNode errorListNode = getErrorListNode();
-        ValidationErrorList newValidationErrorList = typedEvent.getTarget().getValidationErrors();
+        ValidationErrorList newValidationErrorList = typedEvent.getOrigin().getValidationErrorList();
         Set<ValidationError> newValidationErrorSet = new HashSet<>();
         if (newValidationErrorList != null) {
             newValidationErrorSet.addAll(newValidationErrorList);
@@ -49,7 +46,7 @@ public class CreateErrorNodeRule extends UiNodeRule<ValidationErrorListStateChan
         HashSet<ErrorNode> notInNewValidationErrorSet = new HashSet<>();
         for (int i = 0; i < errorListNode.getItemCount(); i++) {
             ValidationError error = errorListNode.getItem(i).getValue();
-            if (error.getOrigin() == typedEvent.getTarget() && error.getRule() instanceof zhy2002.neutron.rule.ValidationRule) {
+            if (error.getOrigin() == typedEvent.getOrigin() ) {
                 if (newValidationErrorSet.contains(error)) {
                     existingValidationErrorSet.add(error);
                 } else {
