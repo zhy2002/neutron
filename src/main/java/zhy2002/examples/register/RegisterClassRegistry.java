@@ -7,6 +7,8 @@ import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
 import zhy2002.neutron.event.StringStateChangeEventFactory;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEventFactory;
+import zhy2002.neutron.node.BigDecimalUiNode;
+import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.rule.*;
 
 import java.math.BigDecimal;

@@ -5,6 +5,7 @@ import zhy2002.examples.register.ErrorNode;
 import zhy2002.examples.register.RegisterNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEvent;
+import zhy2002.neutron.event.ValidationErrorListStateChangeEventBinding;
 
 import java.util.Collection;
 import java.util.Collections;

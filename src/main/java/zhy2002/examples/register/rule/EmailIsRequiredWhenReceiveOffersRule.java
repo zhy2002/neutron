@@ -2,7 +2,7 @@ package zhy2002.examples.register.rule;
 
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.ReceiveOffersNode;
-import zhy2002.neutron.BooleanStateChangeEventBinding;
+import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeRule;

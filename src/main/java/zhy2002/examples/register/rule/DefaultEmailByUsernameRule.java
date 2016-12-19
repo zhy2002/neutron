@@ -3,7 +3,7 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.StringStateChangeEventBinding;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.UiNodeRule;
 
 import java.util.Collection;

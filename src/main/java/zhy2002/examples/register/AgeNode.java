@@ -2,7 +2,7 @@ package zhy2002.examples.register;
 
 import zhy2002.neutron.PredefinedEventSubjects;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.BigDecimalUiNode;
+import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 

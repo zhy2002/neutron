@@ -2,6 +2,8 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
+import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package zhy2002.neutron.rule;
+package zhy2002.neutron;
 
 import zhy2002.neutron.*;
 

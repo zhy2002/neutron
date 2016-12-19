@@ -3,9 +3,9 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.PasswordNode;
 import zhy2002.examples.register.RepeatPasswordNode;
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.StringStateChangeEventBinding;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.UiNode;
-import zhy2002.neutron.rule.ValidationRule;
+import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.util.CollectionUtil;
 
 import java.util.Collection;

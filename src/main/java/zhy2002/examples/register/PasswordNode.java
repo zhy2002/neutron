@@ -3,7 +3,7 @@ package zhy2002.examples.register;
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.neutron.PredefinedEventSubjects;
-import zhy2002.neutron.StringUiNode;
+import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
