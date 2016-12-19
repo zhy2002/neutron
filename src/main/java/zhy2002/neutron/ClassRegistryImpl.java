@@ -15,7 +15,7 @@ public class ClassRegistryImpl implements ClassRegistry {
     private final Map<Class<?>, Object> nodeLoadEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeUnloadEventFactories = new HashMap<>();
 
-    protected ClassRegistryImpl() {
+    public ClassRegistryImpl() {
     }
 
     protected ClassRegistryImpl(ClassRegistryImpl proto) {

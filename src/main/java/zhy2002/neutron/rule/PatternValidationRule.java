@@ -20,11 +20,6 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
         return getOwner().getStateValue(PredefinedEventSubjects.PATTERN);
     }
 
-    @Override
-    protected String getErrorMessage() {
-        return getOwner().getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
-    }
-
     private String getValue() {
         return getOwner().getValue();
     }
@@ -37,6 +32,11 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
                         e -> validate()
                 )
         );
+    }
+
+    @Override
+    protected String getErrorMessage() {
+        return getOwner().getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
     }
 
     @Override

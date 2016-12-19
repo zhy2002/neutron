@@ -4,10 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.rule.RepeatPasswordRule;
-import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.CycleModeEnum;
-import zhy2002.neutron.NodeStatusEnum;
-import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.util.ClassUtil;
@@ -19,13 +16,13 @@ import static org.hamcrest.Matchers.*;
 
 public class RegisterNodeContextTest {
 
-    private RegisterNodeContextAbstract context;
+    private RegisterNodeContext context;
     private RegisterNode registerNode;
 
     @Before
     public void setup() {
         ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
-        context = new RegisterNodeContextAbstract(factoryRegistry);
+        context = new RegisterNodeContext(factoryRegistry);
         registerNode = context.getRootNode();
     }
 

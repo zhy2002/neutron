@@ -1,4 +1,4 @@
-package zhy2002.examples.register;
+package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
 

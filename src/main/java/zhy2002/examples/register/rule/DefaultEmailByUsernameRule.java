@@ -3,8 +3,8 @@ package zhy2002.examples.register.rule;
 import zhy2002.examples.register.EmailNode;
 import zhy2002.examples.register.UsernameNode;
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -18,8 +18,7 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<UsernameNode> {
         super(owner);
     }
 
-
-    protected EmailNode getEmailNode() {
+    private EmailNode getEmailNode() {
         return getOwner().getParent().getEmailNode();
     }
 
@@ -27,7 +26,6 @@ public class DefaultEmailByUsernameRule extends UiNodeRule<UsernameNode> {
     protected Collection<EventBinding> createEventBindings() {
         return Collections.singletonList(
                 new StringStateChangeEventBinding(
-                        e -> true,
                         e -> setDefaultEmail()
                 )
         );

@@ -1,6 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.*;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.PredefinedEventSubjects;
+import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
@@ -22,10 +24,8 @@ public class StringValueRequiredValidationRule extends ValidationRule<StringUiNo
                 super.createEventBindings(),
                 new StringStateChangeEventBinding(e -> validate()),
                 new BooleanStateChangeEventBinding(
-                        null,
-                        e->validate(),
-                        Collections.singletonList(PredefinedEventSubjects.REQUIRED),
-                        null
+                        e -> validate(),
+                        Collections.singletonList(PredefinedEventSubjects.REQUIRED)
                 )
         );
     }

@@ -29,7 +29,6 @@ public class CreateErrorNodeRule extends UiNodeRule<RegisterNode> {
     protected Collection<EventBinding> createEventBindings() {
         return Collections.singletonList(
                 new ValidationErrorListStateChangeEventBinding(
-                        e -> true,
                         this::updateErrorNodeList
                 )
         );

@@ -5,9 +5,9 @@ import zhy2002.neutron.*;
 /**
  * Context and Root are a pair. This whole class is generated.
  */
-public class RegisterNodeContextAbstract extends AbstractUiNodeContext<RegisterNode> {
+public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
 
-    public RegisterNodeContextAbstract(ClassRegistryImpl classRegistry) {
+    public RegisterNodeContext(ClassRegistryImpl classRegistry) {
         super(classRegistry);
     }
 

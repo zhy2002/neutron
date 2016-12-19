@@ -29,10 +29,8 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
         return CollectionUtil.combine(
                 super.createEventBindings(),
                 new StringStateChangeEventBinding(
-                        null,
                         e -> validate(),
-                        Arrays.asList(PredefinedEventSubjects.VALUE, PredefinedEventSubjects.MIN_LENGTH, PredefinedEventSubjects.MAX_LENGTH),
-                        null
+                        Arrays.asList(PredefinedEventSubjects.VALUE, PredefinedEventSubjects.MIN_LENGTH, PredefinedEventSubjects.MAX_LENGTH)
                 )
         );
     }

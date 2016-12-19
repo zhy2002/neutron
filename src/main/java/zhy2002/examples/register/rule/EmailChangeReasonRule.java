@@ -21,10 +21,7 @@ public class EmailChangeReasonRule extends UiNodeRule<EmailNode> {
     public void addToOwner() {
         super.addToOwner();
 
-        ChangeTrackingModeEnum mode = getOwner().getChangeTrackingMode();
-        getOwner().setChangeTrackingMode(ChangeTrackingModeEnum.None);
         getOwner().setTriggeredBy("user direct");
-        getOwner().setChangeTrackingMode(mode);
     }
 
     @Override

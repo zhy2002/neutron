@@ -4,6 +4,7 @@ import jsinterop.annotations.JsType;
 import zhy2002.examples.register.rule.CreateErrorNodeRule;
 import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;

@@ -26,7 +26,6 @@ public class RepeatPasswordRule extends ValidationRule<RepeatPasswordNode> {
         return getOwner();
     }
 
-
     @Override
     protected UiNode<?> findHost() {
         return getOwner().getParent();

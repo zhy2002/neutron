@@ -23,9 +23,7 @@ public class InvalidCharPreChangeRule extends UiNodeRule<StringUiNode<?>> {
     protected Collection<EventBinding> createEventBindings() {
         return Collections.singletonList(
                 new StringStateChangeEventBinding(
-                        null,
                         this::checkInvalidChars,
-                        null,
                         PredefinedPhases.Pre
                 )
         );

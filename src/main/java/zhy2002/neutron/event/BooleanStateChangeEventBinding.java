@@ -4,7 +4,6 @@ import zhy2002.neutron.StateChangeEventBinding;
 import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
-import zhy2002.neutron.event.BooleanStateChangeEvent;
 
 import java.util.Collection;
 
@@ -17,6 +16,13 @@ public class BooleanStateChangeEventBinding extends StateChangeEventBinding<Bool
             TickPhase phase
     ) {
         super(filter, handler, BooleanStateChangeEvent.class, subjects, phase);
+    }
+
+    public BooleanStateChangeEventBinding(
+            UiNodeEventHandler<BooleanStateChangeEvent> handler,
+            Collection<String> subjects
+    ) {
+        this(null, handler, subjects, null);
     }
 
     public BooleanStateChangeEventBinding(
