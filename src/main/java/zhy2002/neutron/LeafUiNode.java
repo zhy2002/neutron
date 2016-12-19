@@ -49,6 +49,10 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return result == null ? Boolean.FALSE : result;
     }
 
+    public String getRequiredMessage() {
+        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE);
+    }
+
     public void setRequiredMessage(String message) {
         setStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, String.class, message);
     }
