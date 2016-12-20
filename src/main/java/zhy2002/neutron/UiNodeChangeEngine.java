@@ -24,4 +24,9 @@ public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
     boolean canRedo();
 
     boolean redo();
+
+    EngineEventMode getEventMode();
+
+    void setEventMode(EngineEventMode mode);
+
 }

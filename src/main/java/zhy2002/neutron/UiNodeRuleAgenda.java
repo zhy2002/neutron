@@ -8,9 +8,7 @@ public interface UiNodeRuleAgenda {
 
     void addActivations(UiNodeEvent event);
 
-    boolean isEmpty(TickPhase phase);
+    boolean hasActivation(TickPhase phase);
 
     BindingActivation getNextActivation(TickPhase phase);
-
-    void clear();
 }

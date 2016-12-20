@@ -1,15 +1,9 @@
 todo 
 -----------------
-* Date field type
-* count populated field
-
-
 
 ### Engine - find a use case before doing these improvements
-* tick-less mode - where new events are directly moved from queue to agenda
-* support post event send event processing
-* event notification strategy - self,children,parent; descendant,parent; self; ...
 * implement rule priority
+* event notification strategy - self,children,parent; descendant,parent; self; ...
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
 * more features of drools rules (rule metadata/configuration)
 * rule max change level detection
@@ -22,6 +16,7 @@ todo
 * react component scaffolding 
 * parser/transformer coversion between gwt and react
 * build up a correspoding react component library
+* Date field type
 
 ### Node structure
 * Class level config
@@ -34,8 +29,9 @@ todo
 
 ### Misc
 * rule should have a load event to init node properties
+* rule that count populated field count
 * preserve value when node is disabled -> conditional state
-* hierachical di
+* hierarchical di
 * factor inheritance to composition once things get clearer
 * built in states
 * state metadata (type and stuff)
@@ -76,23 +72,15 @@ Problems
 
 Things Neutron can do
 ------------------
-A field is required - check
-
-A field pattern validation - check
-
-A field value is validated again another field value - check
-
-A field value causes update of another field value - check
-
-Field value and display format are different - check
-
-One of two fields is mandatory - check
-
-Panel appear when a field has a certain value - check
-
-rules to apply depends on the value of a field - check
-
-prevent certain chars from being typed in - check
+- A field is required - check
+- A field pattern validation - check
+- A field value is validated again another field value - check
+- A field value causes update of another field value - check
+- Field value and display format are different - check
+- One of two fields is mandatory - check
+- Panel appear when a field has a certain value - check
+- rules to apply depends on the value of a field - check
+- prevent certain chars from being typed in - check
 
 
 

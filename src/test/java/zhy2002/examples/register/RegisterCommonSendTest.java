@@ -7,23 +7,32 @@ import zhy2002.examples.register.rule.RepeatPasswordRule;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
+import zhy2002.neutron.rule.StringValueRequiredValidationRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
+import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RegisterNodeContextTest {
+/**
+ * These tests run in both Send and Post mode.
+ */
+public class RegisterCommonSendTest {
 
     private RegisterNodeContext context;
     private RegisterNode registerNode;
 
     @Before
     public void setup() {
-        ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
-        context = new RegisterNodeContext(factoryRegistry);
+        context = createContext();
         registerNode = context.getRootNode();
+    }
+
+    protected RegisterNodeContext createContext() {
+        ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
+        return new RegisterNodeContext(factoryRegistry);
     }
 
     @Test
@@ -79,7 +88,6 @@ public class RegisterNodeContextTest {
 
         //assert
         assertThat(errors.getItemCount(), equalTo(0));
-
 
     }
 
@@ -240,27 +248,32 @@ public class RegisterNodeContextTest {
 
     @Test
     public void shouldSetRequiredFlagWhenReceivingOffers() {
-//
-//        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
-//        EmailNode emailNode = registerNode.getEmailNode();
-//
-//        assertThat(emailNode.getRequired(), equalTo(false));
-//
-//        receiveOffersNode.setValue(Boolean.TRUE);
-//        assertThat(emailNode.getRequired(), equalTo(true));
-//        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(true));
-//
-//        receiveOffersNode.setValue(Boolean.FALSE);
-//        assertThat(emailNode.getRequired(), equalTo(false));
+
+        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
+        EmailNode emailNode = registerNode.getEmailNode();
+
+        assertThat(emailNode.getRequired(), equalTo(false));
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+
+        receiveOffersNode.setValue(Boolean.TRUE);
+        assertThat(emailNode.getRequired(), equalTo(true));
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+
+        receiveOffersNode.setValue(Boolean.FALSE);
+        assertThat(emailNode.getRequired(), equalTo(false));
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
 
     }
 
-    private boolean hasError(Class<? extends UiNodeRule<?>> ruleClass) {
+    private boolean hasError(Class<? extends UiNodeRule<?>> clazz) {
+        return hasError(node -> ClassUtil.isInstanceOf(clazz, node.getRule()));
+    }
+
+    private boolean hasError(Predicate<ErrorNode> predicate) {
         for (int i = 0; i < registerNode.getErrorListNode().getItemCount(); i++) {
             ErrorNode errorNode = registerNode.getErrorListNode().getItem(i);
-            if (ClassUtil.isInstanceOf(ruleClass, errorNode.getRule())) {
+            if (predicate.test(errorNode))
                 return true;
-            }
         }
         return false;
     }
@@ -275,19 +288,22 @@ public class RegisterNodeContextTest {
     @Test
     public void shouldValidateRequiredFieldWhenRefresh() {
 
-//        ErrorListNode errorListNode = registerNode.getErrorListNode();
-//        assertThat(errorListNode.getItemCount(), equalTo(0));
-//
-//        registerNode.refresh();
-//
-//        assertThat(hasError(UsernameIsRequiredRule.class), equalTo(true));
-//        ErrorNode errorNode = errorListNode.getItem(0);
-//        assertThat(errorNode.getMessage(), equalTo(UsernameIsRequiredRule.ERROR_MESSAGE));
-//
-//        UsernameNode usernameNode = registerNode.getUsernameNode();
-//        usernameNode.setValue("hello");
-//
-//        assertThat(hasError(UsernameIsRequiredRule.class), equalTo(false));
+        ErrorListNode errorListNode = registerNode.getErrorListNode();
+        assertThat(errorListNode.getItemCount(), equalTo(0));
+
+        registerNode.refresh();
+
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+        ErrorNode errorNode = errorListNode.getItem(0);
+        assertThat(errorNode.getMessage(), equalTo(PasswordIsStrongRule.WEAK_PASSWORD));
+
+        UsernameNode usernameNode = registerNode.getUsernameNode();
+        usernameNode.setValue("hello");
+
+        assertThat(
+                hasError(node -> node.getRule() instanceof StringValueRequiredValidationRule && node.getSource() == usernameNode),
+                equalTo(false)
+        );
 
     }
 
@@ -333,18 +349,18 @@ public class RegisterNodeContextTest {
     @Test
     public void emailIsRequiredIfCleared() {
 
-//        EmailNode emailNode = registerNode.getEmailNode();
-//        emailNode.setValue("test@gmail.com");
-//        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
-//        receiveOffersNode.setValue(Boolean.TRUE);
-//
-//        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
-//
-//        emailNode.setValue("");
-//        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(true));
-//
-//        emailNode.setValue("a@a");
-//        assertThat(hasError(ValidateEmailIsRequiredRule.class), equalTo(false));
+        EmailNode emailNode = registerNode.getEmailNode();
+        emailNode.setValue("test@gmail.com");
+        ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
+        receiveOffersNode.setValue(Boolean.TRUE);
+
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+
+        emailNode.setValue("");
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+
+        emailNode.setValue("a@a");
+        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
 
     }
 

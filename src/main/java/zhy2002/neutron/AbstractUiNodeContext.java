@@ -177,6 +177,16 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
         return changeEngine.isInCycle();
     }
 
+    @Override
+    public EngineEventMode getEventMode() {
+        return changeEngine.getEventMode();
+    }
+
+    @Override
+    public void setEventMode(EngineEventMode mode) {
+        changeEngine.setEventMode(mode);
+    }
+
     //endregion
 
     //region cycle status

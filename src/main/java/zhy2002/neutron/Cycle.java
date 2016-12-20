@@ -54,6 +54,8 @@ public class Cycle implements CycleStatus {
 
     private int ruleActivationCount;
 
+    private boolean resetTick;
+
 
     public void apply() {
         status = CycleStatusEnum.Applying;
@@ -139,12 +141,11 @@ public class Cycle implements CycleStatus {
     /**
      * Fire all rules activated by the events in the event queue
      * when this method is called.
-     *
-     * @param cycle the current cycle object.
      */
     void processTick() {
         boolean changesApplied = false;
-        for (TickPhase phase : TICK_PHASES) {
+        for (int i = 0; i < TICK_PHASES.length; i++) {
+            TickPhase phase = TICK_PHASES[i];
             //apply changes if required
             if (!changesApplied && phase.PostChanges()) {
                 apply();
@@ -155,6 +156,12 @@ public class Cycle implements CycleStatus {
             currentPhase = phase;
             try {
                 processPhase();
+                if (resetTick) {
+                    i = -1;
+                    changesApplied = false;
+                    resetTick = false;
+                }
+
             } finally {
                 currentPhase = null;
             }
@@ -168,7 +175,7 @@ public class Cycle implements CycleStatus {
     private void processPhase() {
         try {
             status = CycleStatusEnum.Firing;
-            while (!agenda.isEmpty(currentPhase)) {
+            while (!resetTick && agenda.hasActivation(currentPhase)) {
                 currentActivation = agenda.getNextActivation(currentPhase);
                 increaseActivationCount();
                 currentActivation.fire();
@@ -190,6 +197,10 @@ public class Cycle implements CycleStatus {
 
     boolean canApply() {
         return !notAppliedDeque.isEmpty();
+    }
+
+    void resetTick() {
+        this.resetTick = true;
     }
 
 }

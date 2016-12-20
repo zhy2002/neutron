@@ -23,6 +23,10 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      */
     private boolean inCycle;
     /**
+     * Event mode.
+     */
+    private EngineEventMode eventMode = EngineEventMode.Send;
+    /**
      * A queue of events not yet put into a Cycle.
      */
     private final Deque<UiNodeEvent> eventDeque = new ArrayDeque<>();
@@ -39,6 +43,8 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     public void setCycleMode(@NotNull CycleModeEnum cycleMode) {
+        if(isInCycle() && cycleMode != this.cycleMode)
+            throw new UiNodeException("Cannot change cycle mode in a cycle.");
         this.cycleMode = cycleMode;
     }
 
@@ -159,8 +165,22 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     /**
      * @return true if currently processing a cycle.
      */
+    @Override
     public boolean isInCycle() {
         return inCycle;
+    }
+
+    @Override
+    public EngineEventMode getEventMode() {
+        return eventMode;
+    }
+
+    @Override
+    public void setEventMode(EngineEventMode mode) {
+        if (mode == null) {
+            mode = EngineEventMode.Send;
+        }
+        this.eventMode = mode;
     }
 
     @Override
@@ -190,7 +210,12 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     private void processEventInternal(UiNodeEvent event) {
-        popUndoneCycles();
+
+        //only pop undone cycles at the bottom of stack
+        if (!isInCycle()) {
+            popUndoneCycles();
+        }
+
         eventDeque.add(event);
         if (getCycleMode() == CycleModeEnum.Auto) {
             processCycle();
@@ -199,7 +224,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
     private void popUndoneCycles() {
         while (!cycleDeque.isEmpty()) {
-            if(cycleDeque.peekLast().canApply()) {
+            if (cycleDeque.peekLast().canApply()) {
                 cycleDeque.pollLast();
             } else {
                 break;
@@ -214,19 +239,27 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      * When this method exists eventDeque is empty.
      */
     public void processCycle() {
-        if (inCycle) //leave to outer cycle to process
-            return;
 
-        if (eventDeque.isEmpty()) //nothing to process
-            return;
+        if (eventDeque.isEmpty())
+            return; //nothing to process
 
-        //create a new cycle
+        if (inCycle) {
+            if (eventMode == EngineEventMode.Post)
+                return; //leave it to the outer processCycle
+
+            //parse event if in Send event mode
+            Cycle onGoingCycle = cycleDeque.peekLast();
+            onGoingCycle.pollAll(eventDeque);
+            onGoingCycle.resetTick();
+            return;
+        }
+
         Cycle currentCycle = new Cycle();
         cycleDeque.add(currentCycle);
         inCycle = true;
-
+        //process all ticks of the cycle
         try {
-            do { //process all ticks of the cycle
+            do {
                 currentCycle.pollAll(eventDeque);
                 currentCycle.processTick();
             } while (!eventDeque.isEmpty());
