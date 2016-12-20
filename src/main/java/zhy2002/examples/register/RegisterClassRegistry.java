@@ -3,6 +3,7 @@ package zhy2002.examples.register;
 import zhy2002.examples.register.event.*;
 import zhy2002.examples.register.rule.*;
 import zhy2002.neutron.*;
+import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
 import zhy2002.neutron.event.StringStateChangeEventFactory;

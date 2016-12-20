@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;

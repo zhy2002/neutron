@@ -3,7 +3,7 @@ package zhy2002.neutron.event;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.StateChangeEventFactory;
 import zhy2002.neutron.UiNode;
-import zhy2002.neutron.ValidationErrorList;
+import zhy2002.neutron.data.ValidationErrorList;
 
 public class ValidationErrorListStateChangeEventFactory implements StateChangeEventFactory<ValidationErrorList> {
     @Override

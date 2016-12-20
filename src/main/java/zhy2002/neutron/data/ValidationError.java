@@ -1,6 +1,8 @@
-package zhy2002.neutron;
+package zhy2002.neutron.data;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeRule;
 
 public class ValidationError {
     private UiNode<?> origin;

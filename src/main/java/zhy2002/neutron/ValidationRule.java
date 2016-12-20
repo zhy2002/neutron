@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.*;
+import zhy2002.neutron.data.ValidationError;
+import zhy2002.neutron.data.ValidationErrorList;
 
 import java.util.Collection;
 import java.util.Collections;
