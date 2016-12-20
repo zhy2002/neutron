@@ -12,7 +12,7 @@ import zhy2002.neutron.util.EnhancedLinkedList;
  */
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
-    protected PasswordNode(RegisterNode parent, String name) {
+    PasswordNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

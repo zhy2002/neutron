@@ -29,6 +29,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return super.getStateValueInternal(PredefinedEventSubjects.VALUE);
     }
 
+    @JsMethod
     public T getValue() {
         return getStateValue(PredefinedEventSubjects.VALUE);
     }

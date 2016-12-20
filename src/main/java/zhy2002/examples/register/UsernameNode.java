@@ -7,9 +7,6 @@ import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
-//import zhy2002.examples.register.rule.UsernameIsRequiredRule;
-//import zhy2002.examples.register.rule.UsernameLengthRule;
-
 @JsType
 public class UsernameNode extends StringUiNode<RegisterNode> {
 
@@ -35,9 +32,7 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
-//                .and(getContext().createUiNodeRule(UsernameIsRequiredRule.class, this))
                 .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this));
-        //.and(getContext().createUiNodeRule(TestRule.class, this));
     }
 
 }

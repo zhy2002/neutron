@@ -12,11 +12,11 @@ public class EmailNode extends StringUiNode<RegisterNode> {
 
     public static final String STATE_KEY_TRIGGERED_BY = "triggeredBy";
 
-    protected EmailNode(RegisterNode parent, String name) {
+    EmailNode(RegisterNode parent, String name) {
         super(parent, name);
 
         setPattern("\\w+@\\w+\\.[\\w.]+");
-        setValue("");
+        setRequiredMessage("Email is required.");
     }
 
     @Override

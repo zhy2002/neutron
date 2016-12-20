@@ -7,7 +7,7 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
-    protected RepeatPasswordNode(RegisterNode parent, String name) {
+    RepeatPasswordNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

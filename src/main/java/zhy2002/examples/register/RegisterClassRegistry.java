@@ -13,9 +13,6 @@ import zhy2002.neutron.rule.*;
 
 import java.math.BigDecimal;
 
-//import zhy2002.examples.register.rule.impl.EmailChangeReasonRuleImpl;
-//import zhy2002.examples.register.rule.impl.UsernameIsRequiredRuleImpl;
-
 /**
  * The generated factory register with all the default implementation instances.
  */
@@ -99,14 +96,9 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(PasswordIsStrongRule.class, PasswordIsStrongRule::new);
         setUiNodeRuleFactory(RepeatPasswordRule.class, RepeatPasswordRule::new);
         setUiNodeRuleFactory(EmailIsRequiredWhenReceiveOffersRule.class, EmailIsRequiredWhenReceiveOffersRule::new);
-//        setUiNodeRuleFactory(ValidateEmailIsRequiredRule.class, ValidateEmailIsRequiredRule::new);
-//        setUiNodeRuleFactory(PropertyStateRequiredRule.class, PropertyStateRequiredRule::new);
         setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
-
         setUiNodeRuleFactory(PhoneInfoAllOrNothingRule.class, PhoneInfoAllOrNothingRule::new);
-//        setUiNodeRuleFactory(PhoneFieldIsRequiredRule.class, PhoneFieldIsRequiredRule::new);
         setUiNodeRuleFactory(CreateErrorNodeRule.class, CreateErrorNodeRule::new);
-        //this anonymous class is required to work around a GWT compilation error.
 
     }
 

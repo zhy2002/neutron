@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
-    protected ReceiveOffersNode(@NotNull RegisterNode parent, @NotNull String name) {
+    ReceiveOffersNode(@NotNull RegisterNode parent, @NotNull String name) {
         super(parent, name);
     }
 

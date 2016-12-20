@@ -1,5 +1,9 @@
 todo 
 -----------------
+* Date field type
+* count populated field
+
+
 
 ### Engine - find a use case before doing these improvements
 * tick-less mode - where new events are directly moved from queue to agenda

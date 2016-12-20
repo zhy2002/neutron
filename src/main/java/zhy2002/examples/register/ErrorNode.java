@@ -13,7 +13,7 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
 
     private ValidationError errorInfo;
 
-    protected ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
+    ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
 
         setValue(new ValidationError());
@@ -24,12 +24,6 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
     public final void setValue(ValidationError value) {
         this.errorInfo = value;
         setValue(ValidationError.class, value);
-    }
-
-    @JsMethod
-    @Override
-    public final ValidationError getValue() {
-        return super.getValue();
     }
 
     @JsMethod

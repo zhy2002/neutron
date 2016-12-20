@@ -1,7 +1,8 @@
 package zhy2002.examples.register;
 
 public class CountryCodeNode extends PhoneInfoFieldNode {
-    protected CountryCodeNode(PhoneInfoNode parent, String name) {
+
+    CountryCodeNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
 

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
-    protected AgeNode(@NotNull RegisterNode parent, @NotNull String name) {
+    AgeNode(@NotNull RegisterNode parent, @NotNull String name) {
         super(parent, name);
     }
 
@@ -22,7 +22,6 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
         setMinValue(new BigDecimal("0"));
         setMaxValue(new BigDecimal("120"));
         setStateValueInternal(PredefinedEventSubjects.RANGE_MESSAGE, "Age must be between 0 and 120.");
-
     }
 
     @Override

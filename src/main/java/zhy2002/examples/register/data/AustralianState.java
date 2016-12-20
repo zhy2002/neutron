@@ -1,4 +1,4 @@
-package zhy2002.examples.register;
+package zhy2002.examples.register.data;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
@@ -10,7 +10,7 @@ public class AustralianState {
     private final String value;
 
     @JsIgnore
-    AustralianState(String text, String value) {
+    public AustralianState(String text, String value) {
         this.text = text;
         this.value = value;
     }
