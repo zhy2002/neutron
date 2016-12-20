@@ -2,7 +2,9 @@ package zhy2002.examples.register;
 
 import zhy2002.examples.register.event.*;
 import zhy2002.examples.register.rule.*;
-import zhy2002.neutron.*;
+import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.ObjectStateChangeEventFactory;
+import zhy2002.neutron.UiNodeRuleFactory;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.BigDecimalStateChangeEventFactory;
 import zhy2002.neutron.event.BooleanStateChangeEventFactory;
@@ -48,6 +50,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(AreaCodeNode.class, new AreaNodeFactory());
         setChildNodeFactory(PhoneNumberNode.class, new PhoneNumberNodeFactory());
         setChildNodeFactory(PhoneInfoNode.class, PhoneInfoNode::new);
+        setChildNodeFactory(PlanNode.class, new PlanNodeFactory());
     }
 
     private void loadNodeConfig() {
@@ -100,6 +103,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(LoadInvestmentPropertyRule.class, LoadInvestmentPropertyRule::new);
         setUiNodeRuleFactory(PhoneInfoAllOrNothingRule.class, PhoneInfoAllOrNothingRule::new);
         setUiNodeRuleFactory(CreateErrorNodeRule.class, CreateErrorNodeRule::new);
+        setUiNodeRuleFactory(UpdatePlanRule.class, UpdatePlanRule::new);
 
     }
 
@@ -108,6 +112,7 @@ public class RegisterClassRegistry extends ClassRegistryImpl {
         this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
         this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
         this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
+        this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
     }
 
     private void loadNodeAddEventFactories() {

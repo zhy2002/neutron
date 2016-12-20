@@ -4,6 +4,7 @@ import zhy2002.neutron.PredefinedEventSubjects;
 import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.rule.UpdatePlanRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,8 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(RangeValidationRule.class, this));
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(RangeValidationRule.class, this))
+                .and(getContext().createUiNodeRule(UpdatePlanRule.class, this));
     }
 }

@@ -6,6 +6,7 @@ import NumberFieldComponent from "../NumberFieldComponent.jsx";
 import AddressComponent from "./AddressComponent.jsx";
 import ErrorListComponent from "./ErrorListComponent.jsx";
 import PhoneComponent from "./PhoneComponent.jsx";
+import SelectFieldComponent from "../SelectFieldComponent.jsx";
 
 export default class RegisterComponent extends NeutronComponent {
 
@@ -42,6 +43,8 @@ export default class RegisterComponent extends NeutronComponent {
                         <TextFieldComponent id="exampleRepeatPassword" label="Repeat Password"
                                             model={model.getRepeatPasswordNode()}/>
                         <NumberFieldComponent id="exampleAge" label="Age" model={model.getAgeNode()}/>
+                        <SelectFieldComponent id="examplePlan" label="Plan" model={model.getPlanNode()}
+                                              listName="plans"/>
                         <FormCheckboxComponent id="exampleReceiveOffers" label="Receive latest offers"
                                                model={model.getReceiveOffersNode()}/>
                         <FormCheckboxComponent id="exampleOwnInvestmentProperty" label="Own investment property"
@@ -50,7 +53,7 @@ export default class RegisterComponent extends NeutronComponent {
                                           model={model.getResidentialPropertyNode()}/>
                         <AddressComponent id="exampleInvestmentProperty" label="Investment Property"
                                           model={model.getInvestmentPropertyNode()}/>
-                        <PhoneComponent id="examplePhone" label="Home Phone" model={model.getHomePhoneNode()} />
+                        <PhoneComponent id="examplePhone" label="Home Phone" model={model.getHomePhoneNode()}/>
                     </form>
                 </div>
                 <div className="col-md-6">

@@ -19,6 +19,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
     private PasswordNode passwordNode;
     private RepeatPasswordNode repeatPasswordNode;
     private AgeNode ageNode;
+    private PlanNode planNode;
     private ReceiveOffersNode receiveOffersNode;
     private OwnInvestmentPropertyNode ownInvestmentPropertyNode;
     private PropertyDetailsNode residentialPropertyNode;
@@ -64,6 +65,10 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return ageNode;
     }
 
+    public PlanNode getPlanNode() {
+        return planNode;
+    }
+
     public OwnInvestmentPropertyNode getOwnInvestmentPropertyNode() {
         return ownInvestmentPropertyNode;
     }
@@ -93,6 +98,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
         receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
         ageNode = context.createChildNode(AgeNode.class, this, "ageNode");
+        planNode = context.createChildNode(PlanNode.class, this, "planNode");
         ownInvestmentPropertyNode = context.createChildNode(OwnInvestmentPropertyNode.class, this, "ownInvestmentPropertyNode");
         residentialPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "residentialPropertyNode");
         investmentPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "investmentPropertyNode");
@@ -106,6 +112,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
                 repeatPasswordNode,
                 receiveOffersNode,
                 ageNode,
+                planNode,
                 ownInvestmentPropertyNode,
                 residentialPropertyNode,
                 investmentPropertyNode,

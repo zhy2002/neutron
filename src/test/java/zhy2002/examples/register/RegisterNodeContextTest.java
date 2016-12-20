@@ -566,6 +566,30 @@ public class RegisterNodeContextTest {
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
         emailNode.setValue("123@123.com");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+    }
+
+    @Test
+    public void canUpdateProductPlansBasedOnAge() {
+        typeInValidData("test", "aAaA12");
+
+        PlanNode planNode = registerNode.getPlanNode();
+        AgeNode ageNode = registerNode.getAgeNode();
+
+        planNode.setValue("A");
+        ageNode.setValue(new BigDecimal("11"));
+
+        assertThat(planNode.getValue(), equalTo("A"));
+
+        ageNode.setValue(new BigDecimal("18"));
+
+        assertThat(planNode.getValue(), equalTo(""));
+
+        planNode.setValue("C");
+        assertThat(planNode.getValue(), equalTo("C"));
+
+        ageNode.setText("1999");
+
+        assertThat(planNode.getValue(), equalTo(""));
 
     }
 }
