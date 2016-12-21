@@ -1,6 +1,6 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.EmailNode;
+import zhy2002.examples.register.gen.EmailNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;

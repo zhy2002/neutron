@@ -1,9 +1,9 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.ErrorListNode;
-import zhy2002.examples.register.RegisterNode;
-import zhy2002.examples.register.event.ErrorNodeAddEvent;
-import zhy2002.examples.register.event.ErrorNodeRemoveEvent;
+import zhy2002.examples.register.gen.ErrorListNode;
+import zhy2002.examples.register.gen.RegisterNode;
+import zhy2002.examples.register.gen.event.ErrorNodeAddEvent;
+import zhy2002.examples.register.gen.event.ErrorNodeRemoveEvent;
 import zhy2002.neutron.*;
 
 import java.util.Arrays;

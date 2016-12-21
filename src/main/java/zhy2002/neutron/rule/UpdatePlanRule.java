@@ -1,8 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.examples.register.AgeNode;
-import zhy2002.examples.register.PlanNode;
-import zhy2002.examples.register.data.ProductPlan;
+import zhy2002.examples.register.gen.AgeNode;
+import zhy2002.examples.register.gen.PlanNode;
+import zhy2002.examples.register.gen.data.ProductPlan;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;

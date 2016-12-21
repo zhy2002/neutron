@@ -1,6 +1,6 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.PasswordNode;
+import zhy2002.examples.register.gen.PasswordNode;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.ValidationRule;

@@ -1,6 +1,6 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.PhoneInfoNode;
+import zhy2002.examples.register.gen.PhoneInfoNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.ValueUtil;

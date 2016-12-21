@@ -2,6 +2,7 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.rule.RepeatPasswordRule;
 import zhy2002.neutron.*;

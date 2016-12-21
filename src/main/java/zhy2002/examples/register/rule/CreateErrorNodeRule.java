@@ -1,8 +1,8 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.ErrorListNode;
-import zhy2002.examples.register.ErrorNode;
-import zhy2002.examples.register.RegisterNode;
+import zhy2002.examples.register.gen.ErrorListNode;
+import zhy2002.examples.register.gen.ErrorNode;
+import zhy2002.examples.register.gen.RegisterNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;

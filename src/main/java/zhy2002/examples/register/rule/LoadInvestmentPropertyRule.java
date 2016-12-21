@@ -1,7 +1,7 @@
 package zhy2002.examples.register.rule;
 
-import zhy2002.examples.register.OwnInvestmentPropertyNode;
-import zhy2002.examples.register.PropertyDetailsNode;
+import zhy2002.examples.register.gen.OwnInvestmentPropertyNode;
+import zhy2002.examples.register.gen.PropertyDetailsNode;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
