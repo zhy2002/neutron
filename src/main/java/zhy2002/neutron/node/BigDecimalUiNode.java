@@ -134,4 +134,12 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     public boolean hasValue() {
         return hasValue;
     }
+
+    public String getRangeMessage() {
+        return getStateValue(PredefinedEventSubjects.RANGE_MESSAGE, "Value is out of range.");
+    }
+
+    public void setRangeMessage(String message) {
+        setStateValue(PredefinedEventSubjects.RANGE_MESSAGE, String.class, message);
+    }
 }

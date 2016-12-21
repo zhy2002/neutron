@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 
 public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
 
-    private ValidationError errorInfo;
-
     ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
         super(parent, name);
 
@@ -22,35 +20,34 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
     @JsMethod
     @Override
     public final void setValue(ValidationError value) {
-        this.errorInfo = value;
         setValue(ValidationError.class, value);
     }
 
     @JsMethod
     public UiNode<?> getSource() {
-        return errorInfo.getOrigin();
+        return getValue().getOrigin();
     }
 
     public void setSource(UiNode<?> source) {
-        errorInfo.setOrigin(source);
+        getValue().setOrigin(source);
     }
 
     @JsMethod
     public String getMessage() {
-        return errorInfo.getMessage();
+        return getValue().getMessage();
     }
 
     public void setMessage(String message) {
-        errorInfo.setMessage(message);
+        getValue().setMessage(message);
     }
 
     @JsIgnore
-    public UiNodeRule getRule() {
-        return errorInfo.getRule();
+    public UiNodeRule<?> getRule() {
+        return getValue().getRule();
     }
 
     @JsIgnore
-    public void setRule(UiNodeRule rule) {
-        errorInfo.setRule(rule);
+    public void setRule(UiNodeRule<?> rule) {
+        getValue().setRule(rule);
     }
 }

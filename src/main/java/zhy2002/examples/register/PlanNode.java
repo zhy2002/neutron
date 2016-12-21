@@ -17,13 +17,11 @@ public class PlanNode extends StringUiNode<RegisterNode> {
     protected void initializeState() {
         super.initializeState();
 
-        setOptions(new ArrayList<>());
+        setOptions(new ProductPlan[0]);
     }
 
-    public void setOptions(List<ProductPlan> options) {
-        ProductPlan[] plans = new ProductPlan[options.size()];
-        options.toArray(plans);
-        setStateValue("plans", Object.class, plans);
+    public void setOptions(Object options) {
+        setStateValue("plans", Object.class, options);
     }
 
 }

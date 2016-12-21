@@ -10,9 +10,6 @@ import zhy2002.neutron.util.EnhancedLinkedList;
 @JsType
 public class UsernameNode extends StringUiNode<RegisterNode> {
 
-    public static final String LENGTH_MESSAGE = "Username must have at least four characters.";
-    public static final String INVALID_CHARS_MESSAGE = "Username cannot contain '#'.";
-
     protected UsernameNode(RegisterNode parent, String name) {
         super(parent, name);
     }
@@ -21,12 +18,11 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     protected void initializeState() {
         super.initializeState();
 
-        setStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, String.class, LENGTH_MESSAGE);
         setMinLength(4);
+        setLengthMessage("Username must have at least four characters.");
 
-        setStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, String.class, INVALID_CHARS_MESSAGE);
         setInvalidChars("#");
-
+        setInvalidCharsMessage("Username cannot contain '#'.");
     }
 
     @Override

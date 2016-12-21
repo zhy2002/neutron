@@ -1,10 +1,9 @@
 package zhy2002.neutron.rule;
 
+import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 import zhy2002.neutron.node.BigDecimalUiNode;
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.PredefinedEventSubjects;
 import zhy2002.neutron.util.CollectionUtil;
 
 import java.math.BigDecimal;
@@ -26,7 +25,7 @@ public class RangeValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getStateValue(PredefinedEventSubjects.RANGE_MESSAGE, "Value is out of range.");
+        return getOwner().getRangeMessage();
     }
 
     @Override

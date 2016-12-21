@@ -29,12 +29,10 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
 
     RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
-
-        setHasError(false);
     }
 
     public boolean getHasError() {
-        return getStateValue(PredefinedEventSubjects.HAS_ERROR);
+        return getStateValue(PredefinedEventSubjects.HAS_ERROR, Boolean.FALSE);
     }
 
     public void setHasError(boolean value) {

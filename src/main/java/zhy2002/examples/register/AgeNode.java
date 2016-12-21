@@ -1,9 +1,8 @@
 package zhy2002.examples.register;
 
-import zhy2002.neutron.PredefinedEventSubjects;
-import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.node.BigDecimalUiNode;
+import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.rule.UpdatePlanRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
 
@@ -22,7 +21,7 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
         setMinValue(new BigDecimal("0"));
         setMaxValue(new BigDecimal("120"));
-        setStateValueInternal(PredefinedEventSubjects.RANGE_MESSAGE, "Age must be between 0 and 120.");
+        setRangeMessage("Age must be between 0 and 120.");
     }
 
     @Override

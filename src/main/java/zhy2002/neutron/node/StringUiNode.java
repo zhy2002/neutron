@@ -73,6 +73,31 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         super.setStateValue(PredefinedEventSubjects.INVALID_CHARS, String.class, invalidChars);
     }
 
+    public String getInvalidCharsMessage() {
+        return getStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, "Cannot contain invalid chars.");
+    }
+
+    public void setInvalidCharsMessage(String message) {
+        setStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, String.class, message);
+    }
+
+    public String getLengthMessage() {
+        return getStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, "Length is invalid.");
+    }
+
+    public void setLengthMessage(String message) {
+        setStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, String.class, message);
+    }
+
+    public String getPatternMessage() {
+        return getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
+    }
+
+    public void setPatternMessage(String message) {
+        setStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, String.class, message);
+    }
+
+
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()

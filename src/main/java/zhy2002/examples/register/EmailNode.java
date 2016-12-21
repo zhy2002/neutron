@@ -16,14 +16,8 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         super(parent, name);
 
         setPattern("\\w+@\\w+\\.[\\w.]+");
+        setPatternMessage("Email format is invalid.");
         setRequiredMessage("Email is required.");
-    }
-
-    @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-                .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this));
-              //  .and(getContext().createUiNodeRule(ValidateEmailIsRequiredRule.class, this));
     }
 
     public void setTriggeredBy(String triggeredBy) {
@@ -33,5 +27,13 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     public String getTriggeredBy() {
         return getStateValue(STATE_KEY_TRIGGERED_BY);
     }
+
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this));
+    }
+
+
 
 }

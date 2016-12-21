@@ -36,7 +36,7 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
+        return getOwner().getPatternMessage();
     }
 
     @Override

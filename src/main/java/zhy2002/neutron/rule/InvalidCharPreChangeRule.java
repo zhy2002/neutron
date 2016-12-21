@@ -16,7 +16,7 @@ public class InvalidCharPreChangeRule extends UiNodeRule<StringUiNode<?>> {
     }
 
     private String getErrorMessage() {
-        return getOwner().getStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, "Cannot contain invalid chars.");
+        return getOwner().getInvalidCharsMessage();
     }
 
     @Override

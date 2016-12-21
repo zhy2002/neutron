@@ -13,15 +13,13 @@ import java.util.Collection;
 
 public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
 
-    public static final String ERROR_MESSAGE = "Length is invalid.";
-
     public LengthValidationRule(StringUiNode<?> owner) {
         super(owner);
     }
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, ERROR_MESSAGE);
+        return getOwner().getLengthMessage();
     }
 
     @Override

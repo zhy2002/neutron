@@ -65,7 +65,7 @@ public class UpdatePlanRule extends UiNodeRule<AgeNode> {
             plans = CHILD_PLANS;
         }
 
-        getPlanNode().setOptions(plans);
+        getPlanNode().setOptions(plans.toArray());
         String value = getPlanNode().getValue();
         if (ValueUtil.isEmpty(value))
             return;

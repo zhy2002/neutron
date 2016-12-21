@@ -35,11 +35,11 @@ public class ValidationError {
         this.message = message;
     }
 
-    public UiNodeRule getRule() {
+    public UiNodeRule<?> getRule() {
         return rule;
     }
 
-    public void setRule(UiNodeRule rule) {
+    public void setRule(UiNodeRule<?> rule) {
         this.rule = rule;
     }
 

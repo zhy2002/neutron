@@ -81,7 +81,7 @@ public class RegisterCommonSendTest {
         ErrorNode error = errors.getItem(0);
         assertThat(error.getSource(), sameInstance(usernameNode));
         assertThat(error.getRule(), instanceOf(LengthValidationRule.class));
-        assertThat(error.getMessage(), equalTo(UsernameNode.LENGTH_MESSAGE));
+        assertThat(error.getMessage(), equalTo(usernameNode.getLengthMessage()));
 
         //act
         usernameNode.setValue("test");
@@ -101,7 +101,7 @@ public class RegisterCommonSendTest {
         try {
             usernameNode.setValue("test#");
         } catch (RuntimeException ex) {
-            assertThat(ex.getMessage(), equalTo(UsernameNode.INVALID_CHARS_MESSAGE));
+            assertThat(ex.getMessage(), equalTo(usernameNode.getInvalidCharsMessage()));
             exceptionThrown = true;
         }
 
