@@ -58,4 +58,4 @@ www-test/
 .gwt-tmp/
 origin/
 
-src/main/webapp/js/index.*
+examples/src/main/webapp/js/index.*
