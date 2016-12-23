@@ -1,5 +1,5 @@
 import React from "react";
-import NeutronComponent from "../neutron/NeutronComponent.jsx";
+import NeutronComponent from "../bootstrap3/NeutronComponent.jsx";
 
 export default class ErrorListComponent extends NeutronComponent {
 

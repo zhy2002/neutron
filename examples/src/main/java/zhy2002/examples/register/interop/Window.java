@@ -6,5 +6,5 @@ import static jsinterop.annotations.JsPackage.GLOBAL;
 
 @JsType(namespace = GLOBAL, name = "window", isNative = true)
 public class Window {
-    public static native void startReact();
+    public static native void startRegister();
 }
