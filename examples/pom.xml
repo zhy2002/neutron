@@ -104,9 +104,9 @@
                 <!-- Plugin configuration. There are many available options, see
                   gwt-maven-plugin documentation at codehaus.org -->
                 <configuration>
-                    <runTarget>bootstrap3.html</runTarget>
+                    <runTarget>materialui.html</runTarget>
                     <modules>
-                        <module>zhy2002.Bootstrap3</module>
+                        <module>zhy2002.MaterialUi</module>
                     </modules>
                     <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
                     <generateJsInteropExports>true</generateJsInteropExports>

@@ -1,5 +1,5 @@
 var config = {
-    entry: './src/main/jsx/register/main.jsx',
+    entry: './src/main/jsx/lodgement/main.jsx',
     output: {
         path: './src/main/webapp/js',
         filename: 'index.js'
