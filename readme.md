@@ -1,8 +1,11 @@
 todo 
 -----------------
+* build up a correspoding react component library
+* Date field type
+* implement rule priority
+
 
 ### Engine - find a use case before doing these improvements
-* implement rule priority
 * event notification strategy - self,children,parent; descendant,parent; self; ...
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
 * more features of drools rules (rule metadata/configuration)
@@ -12,11 +15,8 @@ todo
 ### Frontend - needs a more comprehensive example first
 * upgrade example front end to react material
 * improve dev process (webpack, live-reload, jasmine to test all the examples)
-* use type script
 * react component scaffolding 
 * parser/transformer coversion between gwt and react
-* build up a correspoding react component library
-* Date field type
 
 ### Node structure
 * Class level config
@@ -49,7 +49,6 @@ todo
 * init or fix value event
 * warning rules and suppressed warning
 
-
 = event trigger opportunity is up to the ui implementor
 = states should be independent, e.g. parent.disabled child.disabled should be independent. getValue v.s. getInheritedValue
 - send = process everything immediately & post = current behaviour where changes are added to a queue first.
@@ -64,11 +63,15 @@ Goals
 * Whole UI state can be serialized
 * Verify UI logic in unit tests and rendering result in screenshots
 * strong typing as much as possible
+* improve interop development experience
 
 Problems
 ------------------
 * Super dev mode debugging experience (GWT remains a black box in js)
 
+On Hold
+------------------
+* use type script: Use of js code is already minimized via usage of GWT.
 
 Things Neutron can do
 ------------------

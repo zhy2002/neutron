@@ -65,6 +65,28 @@
         </pluginManagement>
 
         <plugins>
+
+            <plugin>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>codegen</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/register/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/register/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- GWT Maven Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

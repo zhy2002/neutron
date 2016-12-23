@@ -2,9 +2,11 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;
 import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.rule.PasswordIsStrongRule;
-import zhy2002.examples.register.rule.RepeatPasswordRule;
+import zhy2002.examples.register.gen.rule.PasswordIsStrongRule;
+import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
+import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
@@ -32,7 +34,7 @@ public class RegisterCommonSendTest {
     }
 
     protected RegisterNodeContext createContext() {
-        ClassRegistryImpl factoryRegistry = new RegisterClassRegistry();
+        ClassRegistryImpl factoryRegistry = new RegisterNodeImplClassRegistry();
         return new RegisterNodeContext(factoryRegistry);
     }
 
@@ -183,7 +185,7 @@ public class RegisterCommonSendTest {
 
         usernameNode.setValue("test");
         assertThat(emailNode.getValue(), equalTo("test@gmail.com"));
-        assertThat(emailNode.getTriggeredBy(), equalTo("DefaultEmailByUsernameRule"));
+        assertThat(emailNode.getTriggeredBy(), equalTo("DefaultEmailByUsernameRuleImpl"));
 
         emailNode.setValue("my@gmail.com");
         assertThat(emailNode.getTriggeredBy(), equalTo("user direct"));
@@ -296,7 +298,7 @@ public class RegisterCommonSendTest {
 
         assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
         ErrorNode errorNode = errorListNode.getItem(0);
-        assertThat(errorNode.getMessage(), equalTo(PasswordIsStrongRule.WEAK_PASSWORD));
+        assertThat(errorNode.getMessage(), equalTo(PasswordIsStrongRuleImpl.WEAK_PASSWORD));
 
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("hello");

@@ -8,5 +8,4 @@ public class UsernameNodeFactory implements ChildNodeFactory<UsernameNode, Regis
     public UsernameNode create(RegisterNode parent, String name) {
         return new UsernameNode(parent, name);
     }
-
 }

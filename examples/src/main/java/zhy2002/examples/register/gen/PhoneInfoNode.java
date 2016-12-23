@@ -1,25 +1,23 @@
 package zhy2002.examples.register.gen;
 
-import jsinterop.annotations.JsMethod;
-import zhy2002.examples.register.rule.PhoneInfoAllOrNothingRule;
-import zhy2002.neutron.ObjectUiNode;
-import zhy2002.neutron.UiNode;
-import zhy2002.neutron.UiNodeContext;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
-
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-
-public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
-
+public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
+{
     private CountryCodeNode countryCodeNode;
     private AreaCodeNode areaCodeNode;
     private PhoneNumberNode phoneNumberNode;
 
-    protected PhoneInfoNode(@NotNull RegisterNode parent, @NotNull String name) {
+    PhoneInfoNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 
@@ -41,19 +39,22 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         UiNodeContext<?> context = getContext();
+
         countryCodeNode = context.createChildNode(CountryCodeNode.class, this, "countryCodeNode");
         areaCodeNode = context.createChildNode(AreaCodeNode.class, this, "areaCodeNode");
         phoneNumberNode = context.createChildNode(PhoneNumberNode.class, this, "phoneNumberNode");
 
         return Arrays.asList(
-                countryCodeNode,
-                areaCodeNode,
-                phoneNumberNode
+            countryCodeNode,
+            areaCodeNode,
+            phoneNumberNode
         );
     }
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(PhoneInfoAllOrNothingRule.class, this));
+        return super.createOwnRules()
+            .and(getContext().createUiNodeRule(PhoneInfoAllOrNothingRule.class, this))
+        ;
     }
 }

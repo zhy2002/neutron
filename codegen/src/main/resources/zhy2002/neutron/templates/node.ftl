@@ -1,17 +1,20 @@
-package ${targetPackage};
+package ${targetPackage}.gen;
 
-import jsinterop.annotations.*;
-import zhy2002.examples.register.rule.CreateErrorNodeRule;
-import zhy2002.examples.register.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
-import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.util.EnhancedLinkedList;
-
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.math.*;
+import ${targetPackage}.data.*;
+import ${targetPackage}.gen.rule.*;
 
-public class ${typeName} extends ${baseTypeName} <#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}><#else><#if parentTypeName??><${parentTypeName}></#if></#if><#if itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}></#if> {
-
+public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
+<#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>
+<#else><#if parentTypeName??><${parentTypeName}></#if>
+</#if>{
 <#if children??>
     <#list children as child>
     private ${child.typeName} ${child.name};
@@ -25,7 +28,6 @@ public class ${typeName} extends ${baseTypeName} <#if valueTypeName??><<#if pare
     ${typeName}(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
 </#if>
-
     }
 
 <#if itemTypeName??>
@@ -55,12 +57,14 @@ public class ${typeName} extends ${baseTypeName} <#if valueTypeName??><<#if pare
 </#if>
 <#if properties??>
     <#list properties as prop>
+    @JsMethod
     public ${prop.typeName} get${prop.name?cap_first}() {
-        return getStateValue(PredefinedEventSubjects.${prop.nameAllCaps}<#if prop.default??>, ${prop.default}</#if>);
+        return getStateValue(${contextName}Constants.${prop.nameAllCaps}<#if prop.default??>, ${prop.default}</#if>);
     }
 
+    @JsMethod
     public void set${prop.name?cap_first}(${prop.typeName} value) {
-        setStateValue(PredefinedEventSubjects.${prop.nameAllCaps}, ${prop.typeName}.class, value);
+        setStateValue(${contextName}Constants.${prop.nameAllCaps}, ${prop.typeName}.class, value);
     }
 
     </#list>
@@ -68,12 +72,12 @@ public class ${typeName} extends ${baseTypeName} <#if valueTypeName??><<#if pare
 <#if valueWrappers??>
     <#list valueWrappers as wrapper>
     ${wrapper.jsIgnore?then('@JsIgnore', '@JsMethod')}
-    public String get${wrapper.name?cap_first}() {
+    public ${wrapper.typeName} get${wrapper.name?cap_first}() {
         return getValue().get${wrapper.wrap?cap_first}();
     }
 
     ${wrapper.jsIgnore?then('@JsIgnore', '@JsMethod')}
-    public void set${wrapper.name?cap_first}(String value) {
+    public void set${wrapper.name?cap_first}(${wrapper.typeName} value) {
         getValue().set${wrapper.wrap?cap_first}(value);
     }
     </#list>
@@ -93,7 +97,7 @@ public class ${typeName} extends ${baseTypeName} <#if valueTypeName??><<#if pare
         UiNodeContext<?> context = getContext();
 
     <#list children as child>
-        ${child.typeName} = context.createChildNode(${child.typeName}.class, "${child.name}");
+        ${child.name} = context.createChildNode(${child.typeName}.class, this, "${child.name}");
     </#list>
 
         return Arrays.asList(

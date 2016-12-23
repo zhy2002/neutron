@@ -1,12 +1,13 @@
 import React from "react";
-import NeutronComponent from "../NeutronComponent.jsx";
-import TextFieldComponent from "../TextFieldComponent.jsx";
-import FormCheckboxComponent from "../CheckboxFieldComponent.jsx";
-import NumberFieldComponent from "../NumberFieldComponent.jsx";
+import NeutronComponent from "../neutron/NeutronComponent.jsx";
+import TextFieldComponent from "../neutron/TextFieldComponent.jsx";
+import FormCheckboxComponent from "../neutron/CheckboxFieldComponent.jsx";
+import NumberFieldComponent from "../neutron/NumberFieldComponent.jsx";
+import SelectFieldComponent from "../neutron/SelectFieldComponent.jsx";
 import AddressComponent from "./AddressComponent.jsx";
 import ErrorListComponent from "./ErrorListComponent.jsx";
 import PhoneComponent from "./PhoneComponent.jsx";
-import SelectFieldComponent from "../SelectFieldComponent.jsx";
+
 
 export default class RegisterComponent extends NeutronComponent {
 
@@ -44,7 +45,7 @@ export default class RegisterComponent extends NeutronComponent {
                                             model={model.getRepeatPasswordNode()}/>
                         <NumberFieldComponent id="exampleAge" label="Age" model={model.getAgeNode()}/>
                         <SelectFieldComponent id="examplePlan" label="Plan" model={model.getPlanNode()}
-                                              listName="plans"/>
+                                              listName="options"/>
                         <FormCheckboxComponent id="exampleReceiveOffers" label="Receive latest offers"
                                                model={model.getReceiveOffersNode()}/>
                         <FormCheckboxComponent id="exampleOwnInvestmentProperty" label="Own investment property"

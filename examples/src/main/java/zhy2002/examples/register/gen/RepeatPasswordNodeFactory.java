@@ -8,5 +8,4 @@ public class RepeatPasswordNodeFactory implements ChildNodeFactory<RepeatPasswor
     public RepeatPasswordNode create(RegisterNode parent, String name) {
         return new RepeatPasswordNode(parent, name);
     }
-
 }

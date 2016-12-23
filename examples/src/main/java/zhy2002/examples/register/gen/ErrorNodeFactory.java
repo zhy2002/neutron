@@ -8,5 +8,4 @@ public class ErrorNodeFactory implements ChildNodeFactory<ErrorNode, ErrorListNo
     public ErrorNode create(ErrorListNode parent, String name) {
         return new ErrorNode(parent, name);
     }
-
 }

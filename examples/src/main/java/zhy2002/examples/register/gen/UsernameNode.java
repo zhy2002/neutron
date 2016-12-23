@@ -1,15 +1,19 @@
 package zhy2002.examples.register.gen;
 
-import jsinterop.annotations.JsType;
-import zhy2002.examples.register.rule.DefaultEmailByUsernameRule;
-import zhy2002.neutron.node.StringUiNode;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-@JsType
-public class UsernameNode extends StringUiNode<RegisterNode> {
-
-    protected UsernameNode(RegisterNode parent, String name) {
+public  class UsernameNode extends StringUiNode<RegisterNode>
+{
+    UsernameNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 
@@ -18,16 +22,15 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
         super.initializeState();
 
         setMinLength(4);
-        setLengthMessage("Username must have at least four characters.");
-
         setInvalidChars("#");
+        setLengthMessage("Username must have at least four characters.");
         setInvalidCharsMessage("Username cannot contain '#'.");
     }
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
-                .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this));
+            .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this))
+        ;
     }
-
 }

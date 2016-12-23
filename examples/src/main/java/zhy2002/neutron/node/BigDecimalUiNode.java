@@ -2,6 +2,8 @@ package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
+import zhy2002.neutron.rule.RangeValidationRule;
+import zhy2002.neutron.util.EnhancedLinkedList;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -141,5 +143,11 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     public void setRangeMessage(String message) {
         setStateValue(PredefinedEventSubjects.RANGE_MESSAGE, String.class, message);
+    }
+
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+                .and(getContext().createUiNodeRule(RangeValidationRule.class, this));
     }
 }

@@ -7,8 +7,11 @@ public class ImmutableClassRegistry implements ClassRegistry {
 
     private final ClassRegistryImpl registry;
 
-    ImmutableClassRegistry(ClassRegistryImpl registry) {
-        this.registry = new ClassRegistryImpl(registry);
+    ImmutableClassRegistry(ClassRegistryImpl[] registries) {
+        this.registry = new ClassRegistryImpl();
+        for(ClassRegistryImpl registry : registries) {
+            this.registry.copyFrom(registry);
+        }
     }
 
     @Override

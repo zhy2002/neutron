@@ -1,5 +1,12 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.data.ValidationErrorList;
+import zhy2002.neutron.event.*;
+import zhy2002.neutron.node.BigDecimalUiNode;
+import zhy2002.neutron.node.StringUiNode;
+import zhy2002.neutron.rule.*;
+
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -16,19 +23,69 @@ public class ClassRegistryImpl implements ClassRegistry {
     private final Map<Class<?>, Object> nodeUnloadEventFactories = new HashMap<>();
 
     public ClassRegistryImpl() {
+        //system -> context -> custom
+        loadStateChangeEventFactories();
+        loadRuleFactories();
     }
 
-    protected ClassRegistryImpl(ClassRegistryImpl proto) {
-        if (proto != null) {
-            uiNodeRuleFactories.putAll(proto.uiNodeRuleFactories);
-            childNodeFactories.putAll(proto.childNodeFactories);
-            stateChangeEventFactories.putAll(proto.stateChangeEventFactories);
-            nodeAddEventFactories.putAll(proto.nodeAddEventFactories);
-            nodeRemoveEventFactories.putAll(proto.nodeRemoveEventFactories);
-            nodeConfigMap.putAll(proto.nodeConfigMap);
-            nodeLoadEventFactories.putAll(proto.nodeLoadEventFactories);
-            nodeUnloadEventFactories.putAll(proto.nodeUnloadEventFactories);
-        }
+    private void loadStateChangeEventFactories() {
+        this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
+        this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
+        this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
+        this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
+        this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
+    }
+
+    private void loadRuleFactories() {
+        setUiNodeRuleFactory(PatternValidationRule.class, new UiNodeRuleFactory<PatternValidationRule, StringUiNode<?>>() {
+            @Override
+            public PatternValidationRule create(StringUiNode<?> owner) {
+                return new PatternValidationRule(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(LengthValidationRule.class, new UiNodeRuleFactory<LengthValidationRule, StringUiNode<?>>() {
+            @Override
+            public LengthValidationRule create(StringUiNode<?> owner) {
+                return new LengthValidationRule(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(RangeValidationRule.class, new UiNodeRuleFactory<RangeValidationRule, BigDecimalUiNode<?>>() {
+            @Override
+            public RangeValidationRule create(BigDecimalUiNode<?> owner) {
+                return new RangeValidationRule(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(InvalidCharPreChangeRule.class, new UiNodeRuleFactory<InvalidCharPreChangeRule, StringUiNode<?>>() {
+            @Override
+            public InvalidCharPreChangeRule create(StringUiNode<?> owner) {
+                return new InvalidCharPreChangeRule(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(StringValueRequiredValidationRule.class, new UiNodeRuleFactory<StringValueRequiredValidationRule, StringUiNode<?>>() {
+            @Override
+            public StringValueRequiredValidationRule create(StringUiNode<?> owner) {
+                return new StringValueRequiredValidationRule(owner);
+            }
+        });
+    }
+
+    public void copyFrom(ClassRegistryImpl registry) {
+        if (registry == null)
+            return;
+
+        uiNodeRuleFactories.putAll(registry.uiNodeRuleFactories);
+        childNodeFactories.putAll(registry.childNodeFactories);
+        stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
+        nodeAddEventFactories.putAll(registry.nodeAddEventFactories);
+        nodeRemoveEventFactories.putAll(registry.nodeRemoveEventFactories);
+        nodeConfigMap.putAll(registry.nodeConfigMap);
+        nodeLoadEventFactories.putAll(registry.nodeLoadEventFactories);
+        nodeUnloadEventFactories.putAll(registry.nodeUnloadEventFactories);
+
     }
 
     private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {

@@ -1,17 +1,19 @@
 package zhy2002.examples.register.gen;
 
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.node.BigDecimalUiNode;
-import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.rule.UpdatePlanRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
-
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-public class AgeNode extends BigDecimalUiNode<RegisterNode> {
-
-    AgeNode(@NotNull RegisterNode parent, @NotNull String name) {
+public  class AgeNode extends BigDecimalUiNode<RegisterNode>
+{
+    AgeNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 
@@ -27,7 +29,7 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
-                .and(getContext().createUiNodeRule(RangeValidationRule.class, this))
-                .and(getContext().createUiNodeRule(UpdatePlanRule.class, this));
+            .and(getContext().createUiNodeRule(UpdatePlanRule.class, this))
+        ;
     }
 }

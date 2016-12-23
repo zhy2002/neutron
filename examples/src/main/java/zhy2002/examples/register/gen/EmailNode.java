@@ -1,39 +1,45 @@
 package zhy2002.examples.register.gen;
 
-import jsinterop.annotations.JsType;
-import zhy2002.examples.register.rule.EmailChangeReasonRule;
-//import zhy2002.examples.register.rule.ValidateEmailIsRequiredRule;
-import zhy2002.neutron.node.StringUiNode;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-@JsType
-public class EmailNode extends StringUiNode<RegisterNode> {
-
-    public static final String STATE_KEY_TRIGGERED_BY = "triggeredBy";
-
+public  class EmailNode extends StringUiNode<RegisterNode>
+{
     EmailNode(RegisterNode parent, String name) {
         super(parent, name);
+    }
+
+    @Override
+    protected void initializeState() {
+        super.initializeState();
 
         setPattern("\\w+@\\w+\\.[\\w.]+");
         setPatternMessage("Email format is invalid.");
         setRequiredMessage("Email is required.");
     }
 
-    public void setTriggeredBy(String triggeredBy) {
-        this.setStateValue(STATE_KEY_TRIGGERED_BY, String.class, triggeredBy);
+    @JsMethod
+    public String getTriggeredBy() {
+        return getStateValue(RegisterNodeConstants.TRIGGERED_BY);
     }
 
-    public String getTriggeredBy() {
-        return getStateValue(STATE_KEY_TRIGGERED_BY);
+    @JsMethod
+    public void setTriggeredBy(String value) {
+        setStateValue(RegisterNodeConstants.TRIGGERED_BY, String.class, value);
     }
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
-                .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this));
+            .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this))
+        ;
     }
-
-
-
 }

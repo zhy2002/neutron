@@ -1,11 +1,18 @@
 package zhy2002.examples.register.gen;
 
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-import zhy2002.examples.register.gen.data.ProductPlan;
-import zhy2002.neutron.node.StringUiNode;
-
-public class PlanNode extends StringUiNode<RegisterNode> {
-
+public  class PlanNode extends StringUiNode<RegisterNode>
+{
     PlanNode(RegisterNode parent, String name) {
         super(parent, name);
     }
@@ -17,8 +24,14 @@ public class PlanNode extends StringUiNode<RegisterNode> {
         setOptions(new ProductPlan[0]);
     }
 
-    public void setOptions(Object options) {
-        setStateValue("plans", Object.class, options);
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(RegisterNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
 
 }

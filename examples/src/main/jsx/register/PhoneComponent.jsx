@@ -1,6 +1,6 @@
 import React from "react";
-import NeutronComponent from "../NeutronComponent.jsx";
-import TextFieldComponent from "../TextFieldComponent.jsx";
+import NeutronComponent from "../neutron/NeutronComponent.jsx";
+import TextFieldComponent from "../neutron/TextFieldComponent.jsx";
 
 export default class AddressComponent extends NeutronComponent {
     constructor(props) {

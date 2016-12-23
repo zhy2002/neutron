@@ -1,26 +1,19 @@
 package zhy2002.examples.register.gen;
 
-import zhy2002.examples.register.gen.data.AustralianState;
-import zhy2002.neutron.node.StringUiNode;
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
-
-    public static final String REQUIRED_MESSAGE = "Property state is required.";
-
-    private static List<AustralianState> STATES = Arrays.asList(
-            new AustralianState("", ""),
-            new AustralianState("NSW", "NSW"),
-            new AustralianState("VIC", "VIC"),
-            new AustralianState("QLD", "QLD"),
-            new AustralianState("WA", "WA"),
-            new AustralianState("TAS", "TAS"),
-            new AustralianState("NT", "NT")
-    );
-
-    protected PropertyStateNode(PropertyDetailsNode parent, String name) {
+public  class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
+{
+    PropertyStateNode(PropertyDetailsNode parent, String name) {
         super(parent, name);
     }
 
@@ -28,9 +21,19 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
     protected void initializeState() {
         super.initializeState();
 
-        setRequiredMessage(REQUIRED_MESSAGE);
         setRequired(true);
-        setStateValueInternal("states", STATES.toArray());
+        setRequiredMessage("Property state is required.");
+        setOptions(RegisterNodeConstants.STATES.toArray());
+    }
+
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(RegisterNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
 
 }

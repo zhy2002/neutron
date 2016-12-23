@@ -12,8 +12,13 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     private final SequentialUniqueIdGenerator uniqueIdGenerator;
     private final UiNodeChangeEngineImpl changeEngine;
 
-    protected AbstractUiNodeContext(ClassRegistryImpl factoryRegistry) {
-        classRegistry = new ImmutableClassRegistry(factoryRegistry);
+    /**
+     * Construct the context.
+     * @param registries an array of ClassRegistry.
+     *                   The latter will override the former.
+     */
+    protected AbstractUiNodeContext(ClassRegistryImpl... registries) {
+        classRegistry = new ImmutableClassRegistry(registries);
         changeEngine = new UiNodeChangeEngineImpl();
         uniqueIdGenerator = new SequentialUniqueIdGenerator();
     }

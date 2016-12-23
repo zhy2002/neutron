@@ -1,20 +1,20 @@
 package zhy2002.examples.register.gen;
 
-import jsinterop.annotations.JsIgnore;
-import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.LeafUiNode;
-import zhy2002.neutron.UiNode;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.data.ValidationError;
-
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
-
-    ErrorNode(@NotNull ErrorListNode parent, @NotNull String name) {
+public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
+{
+    ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
-
-        setValue(new ValidationError());
     }
 
     @JsMethod
@@ -28,26 +28,26 @@ public class ErrorNode extends LeafUiNode<ErrorListNode, ValidationError> {
         return getValue().getOrigin();
     }
 
-    public void setSource(UiNode<?> source) {
-        getValue().setOrigin(source);
+    @JsMethod
+    public void setSource(UiNode<?> value) {
+        getValue().setOrigin(value);
     }
-
     @JsMethod
     public String getMessage() {
         return getValue().getMessage();
     }
 
-    public void setMessage(String message) {
-        getValue().setMessage(message);
+    @JsMethod
+    public void setMessage(String value) {
+        getValue().setMessage(value);
     }
-
     @JsIgnore
     public UiNodeRule<?> getRule() {
         return getValue().getRule();
     }
 
     @JsIgnore
-    public void setRule(UiNodeRule<?> rule) {
-        getValue().setRule(rule);
+    public void setRule(UiNodeRule<?> value) {
+        getValue().setRule(value);
     }
 }

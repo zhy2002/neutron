@@ -8,5 +8,4 @@ public class PasswordNodeFactory implements ChildNodeFactory<PasswordNode, Regis
     public PasswordNode create(RegisterNode parent, String name) {
         return new PasswordNode(parent, name);
     }
-
 }

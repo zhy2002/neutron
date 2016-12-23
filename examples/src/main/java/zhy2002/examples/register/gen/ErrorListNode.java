@@ -1,12 +1,19 @@
 package zhy2002.examples.register.gen;
 
-import zhy2002.neutron.ListUiNode;
-
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.neutron.data.*;
+import zhy2002.neutron.util.*;
+import jsinterop.annotations.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.math.*;
+import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
 
-public class ErrorListNode extends ListUiNode<RegisterNode, ErrorListNode, ErrorNode> {
-
-    ErrorListNode(@NotNull RegisterNode parent, @NotNull String name) {
+public  class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNode>
+{
+    ErrorListNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 
