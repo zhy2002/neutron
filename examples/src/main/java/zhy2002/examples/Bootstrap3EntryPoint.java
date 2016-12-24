@@ -5,7 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import zhy2002.examples.register.interop.Window;
+import zhy2002.examples.interop.Window;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

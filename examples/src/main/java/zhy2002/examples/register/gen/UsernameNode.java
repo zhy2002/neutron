@@ -11,6 +11,7 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
+
 public  class UsernameNode extends StringUiNode<RegisterNode>
 {
     UsernameNode(RegisterNode parent, String name) {

@@ -71,6 +71,7 @@
                 <artifactId>codegen</artifactId>
                 <executions>
                     <execution>
+                        <id>gen-register</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -81,6 +82,21 @@
                             </definitionFile>
                             <targetDirectory>
                                 ${project.build.sourceDirectory}/zhy2002/examples/register/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>lodgement</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/gen
                             </targetDirectory>
                         </configuration>
                     </execution>

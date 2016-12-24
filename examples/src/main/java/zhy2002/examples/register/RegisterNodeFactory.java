@@ -1,4 +1,4 @@
-package zhy2002.examples.register.interop;
+package zhy2002.examples.register;
 
 import jsinterop.annotations.JsType;
 import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;

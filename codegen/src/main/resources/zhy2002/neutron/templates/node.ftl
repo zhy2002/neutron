@@ -9,7 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import ${targetPackage}.data.*;
+<#if rules??>
 import ${targetPackage}.gen.rule.*;
+</#if>
+
 
 public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
 <#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>

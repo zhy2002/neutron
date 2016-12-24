@@ -11,6 +11,7 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
+
 public  class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
 {
     OwnInvestmentPropertyNode(RegisterNode parent, String name) {

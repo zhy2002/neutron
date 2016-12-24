@@ -52,6 +52,11 @@ public class DomainDescription {
         node.put(CONTEXT_NAME, contextName);
         node.putIfAbsent("isAbstract", false);
         node.putIfAbsent(CAN_LOAD, false);
+        if (node.get("baseTypeName") == null) {
+            if (node.get(TYPE_NAME).toString().endsWith("ListNode")) {
+                node.put("baseTypeName", "ListUiNode");
+            }
+        }
 
         List<Map<String, Object>> children = (List<Map<String, Object>>) node.get("children");
         if (children != null) {

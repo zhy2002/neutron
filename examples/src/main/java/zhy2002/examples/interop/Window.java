@@ -1,4 +1,4 @@
-package zhy2002.examples.register.interop;
+package zhy2002.examples.interop;
 
 import jsinterop.annotations.JsType;
 

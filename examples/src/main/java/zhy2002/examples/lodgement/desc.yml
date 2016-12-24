@@ -1,0 +1,59 @@
+targetPackage: zhy2002.examples.lodgement
+rootType:
+  typeName: ApplicationNode
+  baseTypeName: ObjectUiNode
+
+  children:
+  - {typeName: PersonListNode}
+  - {typeName: CompanyListNode}
+  - {typeName: FinancialPositionNode}
+  - {typeName: RealEstateListNode}
+  - {typeName: ProductsNode}
+  - {typeName: AdditionalNode}
+  - {typeName: SubmissionNode}
+
+  childTypes:
+  - typeName: PersonListNode
+    baseTypeName: ListUiNode
+    itemTypeName: PersonNode
+    childTypes:
+    - typeName: PersonNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+  - typeName: CompanyListNode
+    baseTypeName: ListUiNode
+    itemTypeName: CompanyNode
+    childTypes:
+    - typeName: CompanyNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+  - typeName: FinancialPositionNode
+    baseTypeName: ObjectUiNode
+    children: []
+
+  - typeName: RealEstateListNode
+    baseTypeName: ListUiNode
+    itemTypeName: RealEstateNode
+    childTypes:
+    - typeName: RealEstateNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+  - typeName: ProductsNode
+    baseTypeName: ObjectUiNode
+    children: []
+
+  - typeName: AdditionalNode
+    baseTypeName: ObjectUiNode
+    children: []
+
+
+  - typeName: SubmissionNode
+    baseTypeName: ObjectUiNode
+    children: []
+
+
+
+
