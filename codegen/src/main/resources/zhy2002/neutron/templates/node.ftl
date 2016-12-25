@@ -61,12 +61,12 @@ public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<
 <#if properties??>
     <#list properties as prop>
     @JsMethod
-    public ${prop.typeName} get${prop.name?cap_first}() {
+    public ${prop.externalTypeName} get${prop.name?cap_first}() {
         return getStateValue(${contextName}Constants.${prop.nameAllCaps}<#if prop.default??>, ${prop.default}</#if>);
     }
 
     @JsMethod
-    public void set${prop.name?cap_first}(${prop.typeName} value) {
+    public void set${prop.name?cap_first}(${prop.externalTypeName} value) {
         setStateValue(${contextName}Constants.${prop.nameAllCaps}, ${prop.typeName}.class, value);
     }
 

@@ -21,4 +21,14 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
         return PersonNode.class;
     }
 
+    @JsMethod
+    public int getSelectedIndex() {
+        return getStateValue(ApplicationNodeConstants.SELECTED_INDEX, 0);
+    }
+
+    @JsMethod
+    public void setSelectedIndex(int value) {
+        setStateValue(ApplicationNodeConstants.SELECTED_INDEX, Integer.class, value);
+    }
+
 }

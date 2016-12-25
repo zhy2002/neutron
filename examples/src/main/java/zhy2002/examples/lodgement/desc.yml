@@ -16,6 +16,8 @@ rootType:
   - typeName: PersonListNode
     baseTypeName: ListUiNode
     itemTypeName: PersonNode
+    properties:
+    - {name: selectedIndex, externalTypeName: int, default: 0}
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode

@@ -1,7 +1,9 @@
 import React from "react";
 import {Tabs, Tab} from "material-ui/Tabs";
+
 import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import PersonDataComponent from "./PersonDataComponent.jsx";
+import PersonListViewComponent from './PersonListViewComponent.jsx';
+
 
 let tabStyle = {
     whiteSpace: "initial"
@@ -24,7 +26,7 @@ export default class ApplicationDataComponent extends NeutronComponent {
                 <div className="medium-12">
                     <Tabs tabItemContainerStyle={tabStyle}>
                         <Tab label="Person">
-                            <PersonDataComponent model={model}/>
+                            <PersonListViewComponent model={model.getPersonListNode()} />
                         </Tab>
                         <Tab label="Company">test2</Tab>
                         <Tab label="Financial Position">test3</Tab>

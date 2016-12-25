@@ -34,6 +34,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
         this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
         this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
+        this.setStateChangeEventFactory(Integer.class, new IntegerStateChangeEventFactory());
     }
 
     private void loadRuleFactories() {

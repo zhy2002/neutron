@@ -19,6 +19,11 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
         console.log(newApplicant);
     }
 
+    selectApplicant(event, key) {
+        console.log("selection key is: " + key);
+        this.model.setSelectedIndex(key);
+    }
+
     extractNewState() {
         let newState = super.extractNewState();
 
@@ -30,6 +35,9 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
             applicantNames.push("No Applicant");
         }
         newState.applicantNames = applicantNames;
+
+        newState.selectedIndex = this.model.getSelectedIndex();
+        console.log("selection key is: " + newState.selectedIndex);
 
         return newState;
     }
@@ -43,7 +51,7 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
 
         return (
             <ToolbarGroup firstChild={true}>
-                <DropDownMenu value={0}>
+                <DropDownMenu value={this.state.selectedIndex} onChange={this.selectApplicant.bind(this)}>
                     {menuItems}
                 </DropDownMenu>
                 <FloatingActionButton mini={true} onMouseUp={this.createNewApplicant.bind(this)} >

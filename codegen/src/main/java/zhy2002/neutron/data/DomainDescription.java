@@ -81,6 +81,11 @@ public class DomainDescription {
         if (properties != null) {
             for (Map<String, Object> prop : properties) {
                 prop.put("nameAllCaps", allCaps((String) prop.get("name")));
+                if ("int".equals(prop.get("externalTypeName"))) {
+                    prop.put(TYPE_NAME, "Integer");
+                }
+
+                prop.computeIfAbsent("externalTypeName", k -> prop.get(TYPE_NAME));
             }
         }
 
