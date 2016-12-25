@@ -16,7 +16,7 @@ export default class LenderApplicationComponent extends NeutronComponent {
 
         return (
             <div>
-                <ApplicationToolbarComponent/>
+                <ApplicationToolbarComponent model={model} />
                 <ApplicationDataComponent model={model} />
             </div>
         );

@@ -3,6 +3,9 @@ import {Tabs, Tab} from "material-ui/Tabs";
 import NeutronComponent from "../../materialui/NeutronComponent.jsx";
 import PersonDataComponent from "./PersonDataComponent.jsx";
 
+let tabStyle = {
+    whiteSpace: "initial"
+};
 
 export default class ApplicationDataComponent extends NeutronComponent {
 
@@ -19,7 +22,7 @@ export default class ApplicationDataComponent extends NeutronComponent {
         return (
             <div className="expanded row">
                 <div className="medium-12">
-                    <Tabs>
+                    <Tabs tabItemContainerStyle={tabStyle}>
                         <Tab label="Person">
                             <PersonDataComponent model={model}/>
                         </Tab>

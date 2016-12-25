@@ -19,7 +19,60 @@ rootType:
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
-      children: []
+      children:
+      - {typeName: TitleNode}
+      - {typeName: FirstNameNode}
+      - {typeName: LastNameNode}
+      - {typeName: DateOfBirthNode}
+      - {typeName: PrimaryApplicantFlagNode}
+      - {typeName: DriversLicenseNode}
+      - {typeName: ApplicantTypeNode}
+      - {typeName: ApplicationTypeNode}
+      - {typeName: MaritalStatusNode}
+      - {typeName: PermanentResidentFlagNode}
+      - {typeName: SpouseNode}
+      - {typeName: FirstHomeBuyerFlagNode}
+      - {typeName: HousingStatusNode}
+
+      childTypes:
+      - typeName: TitleNode
+        baseTypeName: StringUiNode
+
+      - typeName: FirstNameNode
+        baseTypeName: StringUiNode
+
+      - typeName: LastNameNode
+        baseTypeName: StringUiNode
+
+      - typeName: DateOfBirthNode
+        baseTypeName: StringUiNode
+
+      - typeName: PrimaryApplicantFlagNode
+        baseTypeName: BooleanUiNode
+
+      - typeName: DriversLicenseNode
+        baseTypeName: StringUiNode
+
+      - typeName: ApplicantTypeNode
+        baseTypeName: StringUiNode
+
+      - typeName: ApplicationTypeNode
+        baseTypeName: StringUiNode
+
+      - typeName: MaritalStatusNode
+        baseTypeName: StringUiNode
+
+      - typeName: PermanentResidentFlagNode
+        baseTypeName: BooleanUiNode
+
+      - typeName: SpouseNode
+        baseTypeName: StringUiNode
+
+      - typeName: FirstHomeBuyerFlagNode
+        baseTypeName: BooleanUiNode
+
+      - typeName: HousingStatusNode
+        baseTypeName: StringUiNode
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

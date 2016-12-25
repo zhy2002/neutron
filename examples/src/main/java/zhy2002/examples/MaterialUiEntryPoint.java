@@ -24,17 +24,19 @@ public class MaterialUiEntryPoint implements EntryPoint {
 
     private void buildGwtUi() {
         FlowPanel panel = new FlowPanel();
-        //panel.setStyleName("alert alert-info");
+        panel.setStyleName("callout primary");
 
-        panel.add(new Button("Lodgement", (ClickHandler) clickEvent -> {
+        Button loadButton = new Button("Lodgement", (ClickHandler) clickEvent -> {
             if (exampleLoaded) {
                 com.google.gwt.user.client.Window.alert("Example is already loaded.");
                 return;
             }
             exampleLoaded = true;
             Window.startLodgement();
-        }));
+        });
+        loadButton.setStyleName("alert button");
 
+        panel.add(loadButton);
         RootPanel.get().add(panel);
     }
 

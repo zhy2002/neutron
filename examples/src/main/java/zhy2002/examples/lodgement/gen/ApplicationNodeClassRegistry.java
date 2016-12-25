@@ -21,6 +21,19 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadChildNodeFactories() {
+        setChildNodeFactory(TitleNode.class, new TitleNodeFactory());
+        setChildNodeFactory(FirstNameNode.class, new FirstNameNodeFactory());
+        setChildNodeFactory(LastNameNode.class, new LastNameNodeFactory());
+        setChildNodeFactory(DateOfBirthNode.class, new DateOfBirthNodeFactory());
+        setChildNodeFactory(PrimaryApplicantFlagNode.class, new PrimaryApplicantFlagNodeFactory());
+        setChildNodeFactory(DriversLicenseNode.class, new DriversLicenseNodeFactory());
+        setChildNodeFactory(ApplicantTypeNode.class, new ApplicantTypeNodeFactory());
+        setChildNodeFactory(ApplicationTypeNode.class, new ApplicationTypeNodeFactory());
+        setChildNodeFactory(MaritalStatusNode.class, new MaritalStatusNodeFactory());
+        setChildNodeFactory(PermanentResidentFlagNode.class, new PermanentResidentFlagNodeFactory());
+        setChildNodeFactory(SpouseNode.class, new SpouseNodeFactory());
+        setChildNodeFactory(FirstHomeBuyerFlagNode.class, new FirstHomeBuyerFlagNodeFactory());
+        setChildNodeFactory(HousingStatusNode.class, new HousingStatusNodeFactory());
         setChildNodeFactory(PersonNode.class, new PersonNodeFactory());
         setChildNodeFactory(PersonListNode.class, new PersonListNodeFactory());
         setChildNodeFactory(CompanyNode.class, new CompanyNodeFactory());
