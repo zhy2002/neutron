@@ -19,6 +19,10 @@ export default class NeutronComponent extends React.Component {
         return {};
     }
 
+    componentWillReceiveProps(nextProps) {
+        //todo might need to do somthing here...
+    }
+
     onUiNodeChanged() {
         let newState = this.extractNewState();
         this.setState(newState);

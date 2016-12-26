@@ -17,4 +17,21 @@ public  class ApplicantTypeNode extends StringUiNode<PersonNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setOptions(ApplicationNodeConstants.APPLICANT_TYPE.toArray());
+    }
+
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(ApplicationNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
+    }
+
 }

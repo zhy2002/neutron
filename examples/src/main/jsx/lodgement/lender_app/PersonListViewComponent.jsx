@@ -12,14 +12,21 @@ export default class PersonListViewComponent extends NeutronComponent {
 
     render() {
         let model = this.model;
-        if(model.getItemCount() == 0) {
-            return <div/>;
+        let selectedIndex = model.getSelectedIndex();
+        let personDataList = [];
+
+        for(let i=0; i<model.getItemCount(); i++) {
+            if(i == selectedIndex) {
+                let personData = model.getItem(selectedIndex);
+                personDataList.push(<PersonDataComponent key={personData.getUniqueId()} model={personData} />);
+            }
         }
 
-        let selectedIndex = model.getSelectedIndex();
-        console.log("showing item: " + selectedIndex);
-        let personData = model.getItem(selectedIndex);
-        return <PersonDataComponent model={personData} />;
+        return (
+            <div>
+                {personDataList}
+            </div>
+        );
     }
 
 }

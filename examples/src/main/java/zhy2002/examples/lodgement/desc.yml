@@ -57,12 +57,25 @@ rootType:
 
       - typeName: ApplicantTypeNode
         baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
 
       - typeName: ApplicationTypeNode
         baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
 
       - typeName: MaritalStatusNode
         baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
+        - {propertyName: required, value: 'true'}
 
       - typeName: PermanentResidentFlagNode
         baseTypeName: BooleanUiNode
@@ -75,6 +88,10 @@ rootType:
 
       - typeName: HousingStatusNode
         baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode
@@ -103,7 +120,6 @@ rootType:
   - typeName: AdditionalNode
     baseTypeName: ObjectUiNode
     children: []
-
 
   - typeName: SubmissionNode
     baseTypeName: ObjectUiNode

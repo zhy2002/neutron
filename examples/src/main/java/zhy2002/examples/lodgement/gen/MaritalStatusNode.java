@@ -17,4 +17,22 @@ public  class MaritalStatusNode extends StringUiNode<PersonNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setOptions(ApplicationNodeConstants.MARITAL_STATUS.toArray());
+        setRequired(true);
+    }
+
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(ApplicationNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
+    }
+
 }
