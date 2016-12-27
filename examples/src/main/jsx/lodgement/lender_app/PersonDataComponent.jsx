@@ -5,6 +5,7 @@ import TextInputComponent from "../../materialui/TextInputComponent.jsx";
 import CheckboxInputComponent from "../../materialui/CheckboxInputComponent.jsx";
 import DateInputComponent from "../../materialui/DateInputComponent.jsx";
 import SelectInputComponent from "../../materialui/SelectInputComponent.jsx";
+import RadioInputComponent from "../../materialui/RadioInputComponent.jsx";
 
 
 const paperMargin = {
@@ -24,25 +25,26 @@ export default class PersonDataComponent extends NeutronComponent {
             <div className="row expanded">
                 <div className="large-4 medium-6 columns">
                     <Paper style={paperMargin}>
-                        <TextInputComponent model={model.getTitleNode()}/>
+                        <SelectInputComponent model={model.getTitleNode()}/>
                         <TextInputComponent model={model.getFirstNameNode()}/>
                         <TextInputComponent model={model.getLastNameNode()}/>
+                        <RadioInputComponent model={model.getGenderNode()}/>
                         <DateInputComponent model={model.getDateOfBirthNode()}/>
-                        <CheckboxInputComponent model={model.getPrimaryApplicantFlagNode()}/>
                         <TextInputComponent label="Driver's License" model={model.getDriversLicenseNode()}/>
                     </Paper>
                 </div>
                 <div className="large-4 medium-6 columns">
                     <Paper style={paperMargin}>
-                        <SelectInputComponent model={model.getApplicantTypeNode()}/>
+                        <RadioInputComponent model={model.getApplicantTypeNode()}/>
+                        <CheckboxInputComponent model={model.getPrimaryApplicantFlagNode()}/>
                         <SelectInputComponent model={model.getApplicationTypeNode()}/>
                         <SelectInputComponent model={model.getMaritalStatusNode()}/>
-                        <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
                         <TextInputComponent model={model.getSpouseNode()}/>
                     </Paper>
                 </div>
                 <div className="large-4 medium-6 columns">
                     <Paper style={paperMargin}>
+                        <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
                         <CheckboxInputComponent model={model.getFirstHomeBuyerFlagNode()}/>
                         <SelectInputComponent model={model.getHousingStatusNode()}/>
                     </Paper>

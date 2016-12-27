@@ -11,9 +11,9 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
 
-public  class DateOfBirthNode extends StringUiNode<PersonNode>
+public  class GenderNode extends StringUiNode<PersonNode>
 {
-    DateOfBirthNode(PersonNode parent, String name) {
+    GenderNode(PersonNode parent, String name) {
         super(parent, name);
     }
 
@@ -21,7 +21,18 @@ public  class DateOfBirthNode extends StringUiNode<PersonNode>
     protected void initializeState() {
         super.initializeState();
 
+        setOptions(ApplicationNodeConstants.GENDER_TYPE.toArray());
         setRequired(true);
+    }
+
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(ApplicationNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
 }

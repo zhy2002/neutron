@@ -1,7 +1,20 @@
 import React from 'react';
 
 import NeutronComponent from './NeutronComponent.jsx';
+import {orange500, blue500} from 'material-ui/styles/colors';
 
+
+const styles = {
+    defaultStyle: {
+    },
+    errorStyle: {
+        color: orange500
+    },
+    requiredStyle: {
+        color: blue500,
+        fontWeight: "bold"
+    }
+};
 
 function nodeNameToLabel(nodeName) {
     if(nodeName.endsWith("Node")) {
@@ -34,6 +47,19 @@ export default class InputComponent extends NeutronComponent {
         if(!this.label) {
             this.label = nodeNameToLabel(this.model.getName());
         }
+    }
+
+    extractNewState() {
+        let newState = super.extractNewState();
+
+        newState.label = this.label;
+
+        newState.style = styles.defaultStyle;
+        if(this.model.getRequired() && !this.model.getValue()) {
+            newState.style = styles.requiredStyle;
+        }
+
+        return newState;
     }
 
 }

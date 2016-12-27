@@ -22,6 +22,7 @@ public  class ApplicantTypeNode extends StringUiNode<PersonNode>
         super.initializeState();
 
         setOptions(ApplicationNodeConstants.APPLICANT_TYPE.toArray());
+        setRequired(true);
     }
 
     @JsMethod

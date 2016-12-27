@@ -16,6 +16,7 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     private TitleNode titleNode;
     private FirstNameNode firstNameNode;
     private LastNameNode lastNameNode;
+    private GenderNode genderNode;
     private DateOfBirthNode dateOfBirthNode;
     private PrimaryApplicantFlagNode primaryApplicantFlagNode;
     private DriversLicenseNode driversLicenseNode;
@@ -44,6 +45,11 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     @JsMethod
     public LastNameNode getLastNameNode() {
         return lastNameNode;
+    }
+
+    @JsMethod
+    public GenderNode getGenderNode() {
+        return genderNode;
     }
 
     @JsMethod
@@ -103,6 +109,7 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
         titleNode = context.createChildNode(TitleNode.class, this, "titleNode");
         firstNameNode = context.createChildNode(FirstNameNode.class, this, "firstNameNode");
         lastNameNode = context.createChildNode(LastNameNode.class, this, "lastNameNode");
+        genderNode = context.createChildNode(GenderNode.class, this, "genderNode");
         dateOfBirthNode = context.createChildNode(DateOfBirthNode.class, this, "dateOfBirthNode");
         primaryApplicantFlagNode = context.createChildNode(PrimaryApplicantFlagNode.class, this, "primaryApplicantFlagNode");
         driversLicenseNode = context.createChildNode(DriversLicenseNode.class, this, "driversLicenseNode");
@@ -118,6 +125,7 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
             titleNode,
             firstNameNode,
             lastNameNode,
+            genderNode,
             dateOfBirthNode,
             primaryApplicantFlagNode,
             driversLicenseNode,

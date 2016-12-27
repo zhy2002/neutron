@@ -17,24 +17,24 @@ export default class CheckboxInputComponent extends InputComponent {
     extractNewState() {
         let newState = super.extractNewState();
 
-        newState.label = this.label;
         newState.value = this.model.getValue();
 
-        console.log("checkbox value:");
-        console.log(newState.value);
         return newState;
     }
 
     render() {
+        let model = this.model;
+
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <Checkbox
                         style={style}
                         label={this.state.label}
+                        labelStyle={this.state.style}
                         checked={this.state.value}
                         onCheck={(event, isChecked) => {
-                            this.model.setValue(isChecked);
+                            model.setValue(isChecked);
                         }}
                     />
                 </div>

@@ -22,7 +22,6 @@ export default class SelectInputComponent extends InputComponent {
     extractNewState() {
         let newState = super.extractNewState();
 
-        newState.label = this.label;
         newState.value = this.model.getValue();
 
         return newState;
@@ -45,6 +44,7 @@ export default class SelectInputComponent extends InputComponent {
                     <SelectField
                         fullWidth={true}
                         floatingLabelText={this.state.label}
+                        floatingLabelStyle={this.state.style}
                         value={this.state.value}
                         onChange={(event, index, value) => {
                             model.setValue(value)

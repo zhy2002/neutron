@@ -24,6 +24,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(TitleNode.class, new TitleNodeFactory());
         setChildNodeFactory(FirstNameNode.class, new FirstNameNodeFactory());
         setChildNodeFactory(LastNameNode.class, new LastNameNodeFactory());
+        setChildNodeFactory(GenderNode.class, new GenderNodeFactory());
         setChildNodeFactory(DateOfBirthNode.class, new DateOfBirthNodeFactory());
         setChildNodeFactory(PrimaryApplicantFlagNode.class, new PrimaryApplicantFlagNodeFactory());
         setChildNodeFactory(DriversLicenseNode.class, new DriversLicenseNodeFactory());

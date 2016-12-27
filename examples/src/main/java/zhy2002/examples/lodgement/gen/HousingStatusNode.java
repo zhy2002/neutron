@@ -22,6 +22,7 @@ public  class HousingStatusNode extends StringUiNode<PersonNode>
         super.initializeState();
 
         setOptions(ApplicationNodeConstants.HOUSING_STATUS.toArray());
+        setRequired(true);
     }
 
     @JsMethod

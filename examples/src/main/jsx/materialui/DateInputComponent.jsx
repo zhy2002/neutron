@@ -13,15 +13,12 @@ export default class DateInputComponent extends InputComponent {
     extractNewState() {
         let newState = super.extractNewState();
 
-        newState.label = this.label;
-
         let value = this.model.getValue();
         if(value) {
             newState.date = new Date(value);
         } else {
             newState.date = null;
         }
-
 
         return newState;
     }
@@ -33,6 +30,7 @@ export default class DateInputComponent extends InputComponent {
                     <DatePicker
                         fullWidth={true}
                         floatingLabelText={this.state.label}
+                        floatingLabelStyle={this.state.style}
                         value={this.state.date}
                         onChange={(event, date) => {
                             if(date) {

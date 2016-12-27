@@ -17,4 +17,11 @@ public  class FirstNameNode extends StringUiNode<PersonNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 }

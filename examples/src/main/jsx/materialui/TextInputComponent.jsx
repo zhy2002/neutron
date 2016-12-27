@@ -13,21 +13,26 @@ export default class TextInputComponent extends InputComponent {
     extractNewState() {
         let newState = super.extractNewState();
 
-        newState.label = this.label;
         newState.value = this.model.getValue();
+
+        console.log("new state is:");
+        console.log(newState);
 
         return newState;
     }
 
     render() {
+        let model = this.model;
+
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <TextField
                         fullWidth={true}
                         floatingLabelText={this.state.label}
+                        floatingLabelStyle={this.state.style}
                         value={this.state.value}
-                        onChange={(event) => {this.model.setValue(event.target.value);}}
+                        onChange={(event) => {model.setValue(event.target.value);}}
                     />
                 </div>
             </div>

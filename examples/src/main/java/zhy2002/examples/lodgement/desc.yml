@@ -25,6 +25,7 @@ rootType:
       - {typeName: TitleNode}
       - {typeName: FirstNameNode}
       - {typeName: LastNameNode}
+      - {typeName: GenderNode}
       - {typeName: DateOfBirthNode}
       - {typeName: PrimaryApplicantFlagNode}
       - {typeName: DriversLicenseNode}
@@ -39,15 +40,34 @@ rootType:
       childTypes:
       - typeName: TitleNode
         baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+        - {propertyName: required, value: 'true'}
 
       - typeName: FirstNameNode
         baseTypeName: StringUiNode
+        init:
+        - {propertyName: required, value: 'true'}
 
       - typeName: LastNameNode
         baseTypeName: StringUiNode
+        init:
+        - {propertyName: required, value: 'true'}
+
+      - typeName: GenderNode
+        baseTypeName: StringUiNode
+        properties:
+        - {name: options, typeName: Object}
+        init:
+        - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
+        - {propertyName: required, value: 'true'}
 
       - typeName: DateOfBirthNode
         baseTypeName: StringUiNode
+        init:
+        - {propertyName: required, value: 'true'}
 
       - typeName: PrimaryApplicantFlagNode
         baseTypeName: BooleanUiNode
@@ -61,6 +81,7 @@ rootType:
         - {name: options, typeName: Object}
         init:
         - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
+        - {propertyName: required, value: 'true'}
 
       - typeName: ApplicationTypeNode
         baseTypeName: StringUiNode
@@ -68,6 +89,7 @@ rootType:
         - {name: options, typeName: Object}
         init:
         - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
+        - {propertyName: required, value: 'true'}
 
       - typeName: MaritalStatusNode
         baseTypeName: StringUiNode
@@ -85,6 +107,8 @@ rootType:
 
       - typeName: FirstHomeBuyerFlagNode
         baseTypeName: BooleanUiNode
+        init:
+        - {propertyName: required, value: 'true'}
 
       - typeName: HousingStatusNode
         baseTypeName: StringUiNode
@@ -92,6 +116,7 @@ rootType:
         - {name: options, typeName: Object}
         init:
         - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
+        - {propertyName: required, value: 'true'}
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

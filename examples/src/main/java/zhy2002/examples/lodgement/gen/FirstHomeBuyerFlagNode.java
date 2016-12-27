@@ -17,4 +17,11 @@ public  class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 }

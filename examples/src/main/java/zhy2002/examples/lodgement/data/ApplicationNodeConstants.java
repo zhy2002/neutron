@@ -10,6 +10,24 @@ public class ApplicationNodeConstants {
     public static final String SELECTED_INDEX = "selectedIndex";
     public static final String OPTIONS = "options";
 
+    public static final List<SelectOption> TITLE_TYPE = Arrays.asList(
+            new SelectOption(""),
+            new SelectOption("Mr"),
+            new SelectOption("Mrs"),
+            new SelectOption("Miss"),
+            new SelectOption("Ms"),
+            new SelectOption("Dr"),
+            new SelectOption("Prof"),
+            new SelectOption("Rev"),
+            new SelectOption("Other")
+    );
+
+    public static final List<SelectOption> GENDER_TYPE = Arrays.asList(
+            new SelectOption(""),
+            new SelectOption("Male"),
+            new SelectOption("Female")
+    );
+
     public static final List<SelectOption> APPLICANT_TYPE = Arrays.asList(
             new SelectOption("", ""),
             new SelectOption("A", "Applicant"),
