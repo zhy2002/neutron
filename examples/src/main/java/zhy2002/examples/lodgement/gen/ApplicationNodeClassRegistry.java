@@ -45,18 +45,22 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(ProductsNode.class, new ProductsNodeFactory());
         setChildNodeFactory(AdditionalNode.class, new AdditionalNodeFactory());
         setChildNodeFactory(SubmissionNode.class, new SubmissionNodeFactory());
+        setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
+        setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
     }
 
     private void loadNodeAddEventFactories() {
         super.setNodeAddEventFactory(PersonNode.class, PersonNodeAddEvent::new);
         super.setNodeAddEventFactory(CompanyNode.class, CompanyNodeAddEvent::new);
         super.setNodeAddEventFactory(RealEstateNode.class, RealEstateNodeAddEvent::new);
+        super.setNodeAddEventFactory(ErrorNode.class, ErrorNodeAddEvent::new);
     }
 
     private void loadNodeRemoveEventFactories() {
         super.setNodeRemoveEventFactory(PersonNode.class, PersonNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(CompanyNode.class, CompanyNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(RealEstateNode.class, RealEstateNodeRemoveEvent::new);
+        super.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
     }
 
     private void loadNodeLoadEventFactories() {

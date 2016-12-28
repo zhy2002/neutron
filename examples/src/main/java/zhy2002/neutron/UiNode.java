@@ -486,6 +486,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     //endregion
 
+    @JsMethod
     public ValidationErrorList getValidationErrorList() {
         return getStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST);
     }

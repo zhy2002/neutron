@@ -33,6 +33,7 @@ export default class TextInputComponent extends InputComponent {
                         floatingLabelStyle={this.state.style}
                         value={this.state.value}
                         onChange={(event) => {model.setValue(event.target.value);}}
+                        errorText={this.state.errorMessage}
                     />
                 </div>
             </div>

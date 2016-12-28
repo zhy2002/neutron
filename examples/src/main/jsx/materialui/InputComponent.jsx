@@ -54,8 +54,17 @@ export default class InputComponent extends NeutronComponent {
 
         newState.label = this.label;
 
+        newState.errorMessage = "";
+        let errorList = this.model.getValidationErrorList();
+        if(errorList) {
+            for(let i=0; i<errorList.size(); i++) {
+                let item = errorList.get(i);
+                newState.errorMessage += item.getMessage() + "\r\n";
+            }
+        }
+
         newState.style = styles.defaultStyle;
-        if(this.model.getRequired() && !this.model.getValue()) {
+        if(!newState.errorMessage && this.model.getRequired() && !this.model.getValue()) {
             newState.style = styles.requiredStyle;
         }
 

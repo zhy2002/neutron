@@ -22,6 +22,7 @@ public  class FirstNameNode extends StringUiNode<PersonNode>
         super.initializeState();
 
         setRequired(true);
+        setPattern(ApplicationNodeConstants.NAME_PATTERN);
     }
 
 }

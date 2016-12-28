@@ -50,11 +50,13 @@ rootType:
         baseTypeName: StringUiNode
         init:
         - {propertyName: required, value: 'true'}
+        - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
 
       - typeName: LastNameNode
         baseTypeName: StringUiNode
         init:
         - {propertyName: required, value: 'true'}
+        - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
 
       - typeName: GenderNode
         baseTypeName: StringUiNode
@@ -150,6 +152,16 @@ rootType:
     baseTypeName: ObjectUiNode
     children: []
 
-
+  - typeName: ErrorListNode
+    baseTypeName: ListUiNode
+    itemTypeName: ErrorNode
+    childTypes:
+    - typeName: ErrorNode
+      baseTypeName: LeafUiNode
+      valueTypeName: ValidationError
+      valueWrappers:
+      - {name: source, typeName: 'UiNode<?>', wrap: origin}
+      - {name: message, typeName: String}
+      - {name: rule, typeName: 'UiNodeRule<?>', jsIgnore: true}
 
 

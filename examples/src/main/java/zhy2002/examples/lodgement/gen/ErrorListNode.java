@@ -11,18 +11,14 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
 
-public  class LastNameNode extends StringUiNode<PersonNode>
+public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,ErrorNode>
 {
-    LastNameNode(PersonNode parent, String name) {
+    ErrorListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
-        setPattern(ApplicationNodeConstants.NAME_PATTERN);
+    public Class<ErrorNode> getItemClass() {
+        return ErrorNode.class;
     }
 
 }
