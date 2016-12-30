@@ -28,7 +28,7 @@ export default class ValidationErrorsComponent extends NeutronComponent {
 
                         <div className="expanded row">
                             <div className="medium-8 medium-offset-2 columns">
-                                <div style={{textAlign: "center"}}>
+                                <div style={{textAlign: "center", paddingTop:"1em"}}>
                                     <h5>Validation Errors</h5>
                                 </div>
                             </div>

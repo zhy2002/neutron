@@ -7,14 +7,19 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 const styles = {
     defaultStyle: {
     },
-    errorStyle: {
-        color: orange500
-    },
     requiredStyle: {
         color: blue500,
         fontWeight: "bold"
     }
 };
+
+function deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+function isEmptyValue(val) {
+    return val === null || val === undefined || val === "";
+}
 
 function nodeNameToLabel(nodeName) {
     if(nodeName.endsWith("Node")) {
@@ -63,9 +68,9 @@ export default class InputComponent extends NeutronComponent {
             }
         }
 
-        newState.style = styles.defaultStyle;
-        if(!newState.errorMessage && this.model.getRequired() && !this.model.getValue()) {
-            newState.style = styles.requiredStyle;
+        newState.style = deepCopy(styles.defaultStyle);
+        if(!newState.errorMessage && this.model.getRequired() && isEmptyValue(this.model.getValue())) {
+            newState.style = deepCopy(styles.requiredStyle);
         }
 
         return newState;

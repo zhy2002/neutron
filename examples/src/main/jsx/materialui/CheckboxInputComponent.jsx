@@ -1,8 +1,9 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
+import {red500} from 'material-ui/styles/colors';
 
 import InputComponent from './InputComponent.jsx';
-
+import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
 
 let style = {
     marginTop: "30px"
@@ -19,6 +20,9 @@ export default class CheckboxInputComponent extends InputComponent {
 
         newState.value = this.model.getValue();
 
+        if(newState.errorMessage) {
+            newState.style.color = red500;
+        }
         return newState;
     }
 
@@ -37,6 +41,7 @@ export default class CheckboxInputComponent extends InputComponent {
                             model.setValue(isChecked);
                         }}
                     />
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
                 </div>
             </div>
         );

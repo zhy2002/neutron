@@ -1,8 +1,9 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
+import {red500} from 'material-ui/styles/colors';
 
 import InputComponent from './InputComponent.jsx';
-
+import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
 
 export default class DateInputComponent extends InputComponent {
 
@@ -20,6 +21,10 @@ export default class DateInputComponent extends InputComponent {
             newState.date = null;
         }
 
+        if(newState.errorMessage) {
+            newState.style.color = red500;
+        }
+
         return newState;
     }
 
@@ -28,6 +33,7 @@ export default class DateInputComponent extends InputComponent {
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <DatePicker
+                        autoOk={true}
                         fullWidth={true}
                         floatingLabelText={this.state.label}
                         floatingLabelStyle={this.state.style}
@@ -39,7 +45,9 @@ export default class DateInputComponent extends InputComponent {
                                 this.model.setValue("");
                             }
                         }}
+
                     />
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
                 </div>
             </div>
         );

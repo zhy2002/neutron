@@ -1,7 +1,9 @@
 import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import {red500} from 'material-ui/styles/colors';
 
 import InputComponent from './InputComponent.jsx';
+import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
 
 
 let buttonGroupStyle = {
@@ -34,6 +36,10 @@ export default class RadioInputComponent extends InputComponent {
 
         newState.value = this.model.getValue();
 
+        if(newState.errorMessage) {
+            newState.style.color = red500;
+        }
+
         return newState;
     }
 
@@ -44,8 +50,6 @@ export default class RadioInputComponent extends InputComponent {
         if (list) {
             for (let i = 0; i < list.length; i++) {
                 let item = list[i];
-                console.log("loading radio button item..");
-                console.log(item);
                 if(item.getValue()) {
                     options.push(
                         <RadioButton
@@ -71,28 +75,10 @@ export default class RadioInputComponent extends InputComponent {
                     >
                         {options}
                     </RadioButtonGroup>
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
                 </div>
             </div>
         );
     }
 
-}
-
-{/*<Checkbox*/
-}
-{/*style={style}*/
-}
-{/*label={this.state.label}*/
-}
-{/*labelStyle={this.state.style}*/
-}
-{/*checked={this.state.value}*/
-}
-{/*onCheck={(event, isChecked) => {*/
-}
-{/*this.model.setValue(isChecked);*/
-}
-{/*}}*/
-}
-{/*/>*/
 }
