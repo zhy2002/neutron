@@ -1,5 +1,6 @@
 import React from "react";
-import {Toolbar} from "material-ui/Toolbar";
+import {Toolbar, ToolbarGroup} from "material-ui/Toolbar";
+import RaisedButton from 'material-ui/RaisedButton';
 
 import NeutronComponent from "../../materialui/NeutronComponent.jsx";
 import ApplicantSelectionList from './ApplicantSelectionComponent.jsx';
@@ -21,6 +22,9 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         return (
             <Toolbar style={toolbarStyle}>
                 <ApplicantSelectionList model={model.getPersonListNode()}/>
+                <ToolbarGroup>
+                    <RaisedButton label="Validate" primary={true} onMouseUp={()=>{ model.refresh();}} />
+                </ToolbarGroup>
             </Toolbar>
         );
     }

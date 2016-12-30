@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.gen.ApplicationNode;
 import zhy2002.examples.lodgement.gen.PersonListNode;
+import zhy2002.examples.lodgement.gen.PersonNode;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -17,9 +19,32 @@ public class LodgementNodeTest {
     }
 
     @Test
-    public void test1() {
+    public void selectedPersonIndexDefaultsTo0() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
 
         assertThat(personListNode.getSelectedIndex(), equalTo(0));
+    }
+
+    @Test
+    public void shouldSetShowErrorListToTrueWhenRefresh() {
+        assertThat(applicationNode.getShowErrorList(), equalTo(false));
+
+        PersonNode personNode = applicationNode.getPersonListNode().createItem();
+        applicationNode.refresh();
+
+        assertThat(applicationNode.getShowErrorList(), equalTo(true));
+
+        applicationNode.setShowErrorList(Boolean.FALSE);
+
+        applicationNode.refresh();
+
+        assertThat(applicationNode.getShowErrorList(), equalTo(true));
+
+        applicationNode.getPersonListNode().removeItem(personNode);
+
+        applicationNode.refresh();
+
+        //todo fix this assertThat(applicationNode.getShowErrorList(), equalTo(false));
+
     }
 }

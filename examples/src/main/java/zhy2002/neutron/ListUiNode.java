@@ -98,6 +98,17 @@ public abstract class ListUiNode<
         getContext().processEvent(event);
     }
 
+    @SuppressWarnings("unchecked")
+    public N removeByName(String name) {
+        UiNode<?> child = getChild(name);
+        if(child == null)
+            return null;
+
+        N typed = (N)child;
+        removeItem(typed);
+        return typed;
+    }
+
     private int getChildSequenceNumber() {
         return childSequenceNumber++;
     }

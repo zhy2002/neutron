@@ -101,8 +101,9 @@ public class DomainDescription {
         if (rules != null) {
             for (Map<String, Object> rule : rules) {
                 rule.putIfAbsent("baseTypeName", "UiNodeRule");
-                rule.put("parentTypeName", node.get(TYPE_NAME));
+                rule.put("ownerTypeName", node.get(TYPE_NAME));
                 rule.put(TARGET_PACKAGE, targetPackage);
+
                 ruleList.add(rule);
             }
         }

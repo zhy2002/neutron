@@ -10,4 +10,8 @@ public abstract class EmailChangeReasonRule extends UiNodeRule<EmailNode> {
     public EmailChangeReasonRule(EmailNode owner) {
         super(owner);
     }
+
+    protected EmailNode getEmailNode() {
+        return getOwner();
+    }
 }

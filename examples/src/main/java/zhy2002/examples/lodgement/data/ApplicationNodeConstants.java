@@ -9,6 +9,7 @@ import java.util.List;
 public class ApplicationNodeConstants {
     public static final String SELECTED_INDEX = "selectedIndex";
     public static final String OPTIONS = "options";
+    public static final String SHOW_ERROR_LIST = "showErrorList";
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";
 
     public static final List<SelectOption> TITLE_TYPE = Arrays.asList(

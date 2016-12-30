@@ -15,10 +15,6 @@ public class PhoneInfoAllOrNothingRuleImpl extends PhoneInfoAllOrNothingRule {
         super(owner);
     }
 
-    private PhoneInfoNode getPhoneInfoNode() {
-        return getOwner();
-    }
-
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(

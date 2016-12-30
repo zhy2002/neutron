@@ -10,4 +10,8 @@ public abstract class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<Re
     public EmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode owner) {
         super(owner);
     }
+
+    protected ReceiveOffersNode getReceiveOffersNode() {
+        return getOwner();
+    }
 }

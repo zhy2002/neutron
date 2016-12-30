@@ -3,6 +3,9 @@ rootType:
   typeName: ApplicationNode
   baseTypeName: ObjectUiNode
 
+  properties:
+  - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
+
   children:
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
@@ -11,6 +14,11 @@ rootType:
   - {typeName: ProductsNode}
   - {typeName: AdditionalNode}
   - {typeName: SubmissionNode}
+  - {typeName: ErrorListNode}
+
+  rules:
+  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+  - {typeName: ShowErrorListRule}
 
   childTypes:
   - typeName: PersonListNode
@@ -18,6 +26,7 @@ rootType:
     itemTypeName: PersonNode
     properties:
     - {name: selectedIndex, externalTypeName: int, default: 0}
+
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
@@ -73,6 +82,8 @@ rootType:
 
       - typeName: PrimaryApplicantFlagNode
         baseTypeName: BooleanUiNode
+        rules:
+        - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
 
       - typeName: DriversLicenseNode
         baseTypeName: StringUiNode

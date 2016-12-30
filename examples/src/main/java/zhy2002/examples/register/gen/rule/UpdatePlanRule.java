@@ -10,4 +10,8 @@ public abstract class UpdatePlanRule extends UiNodeRule<AgeNode> {
     public UpdatePlanRule(AgeNode owner) {
         super(owner);
     }
+
+    protected AgeNode getAgeNode() {
+        return getOwner();
+    }
 }

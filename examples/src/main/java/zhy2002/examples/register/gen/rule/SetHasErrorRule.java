@@ -10,4 +10,8 @@ public abstract class SetHasErrorRule extends UiNodeRule<RegisterNode> {
     public SetHasErrorRule(RegisterNode owner) {
         super(owner);
     }
+
+    protected RegisterNode getRegisterNode() {
+        return getOwner();
+    }
 }

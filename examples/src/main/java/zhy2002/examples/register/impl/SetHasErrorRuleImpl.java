@@ -19,10 +19,6 @@ public class SetHasErrorRuleImpl extends SetHasErrorRule {
         return getOwner().getErrorListNode();
     }
 
-    private RegisterNode getRegisterNode() {
-        return getOwner();
-    }
-
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(

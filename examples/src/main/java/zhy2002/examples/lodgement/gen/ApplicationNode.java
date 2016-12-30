@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 
 public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
@@ -20,9 +21,20 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     private ProductsNode productsNode;
     private AdditionalNode additionalNode;
     private SubmissionNode submissionNode;
+    private ErrorListNode errorListNode;
 
     ApplicationNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
+    }
+
+    @JsMethod
+    public Boolean getShowErrorList() {
+        return getStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.FALSE);
+    }
+
+    @JsMethod
+    public void setShowErrorList(Boolean value) {
+        setStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.class, value);
     }
 
     @JsMethod
@@ -60,6 +72,11 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
         return submissionNode;
     }
 
+    @JsMethod
+    public ErrorListNode getErrorListNode() {
+        return errorListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         UiNodeContext<?> context = getContext();
@@ -71,6 +88,7 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
         productsNode = context.createChildNode(ProductsNode.class, this, "productsNode");
         additionalNode = context.createChildNode(AdditionalNode.class, this, "additionalNode");
         submissionNode = context.createChildNode(SubmissionNode.class, this, "submissionNode");
+        errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
 
         return Arrays.asList(
             personListNode,
@@ -79,8 +97,16 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
             realEstateListNode,
             productsNode,
             additionalNode,
-            submissionNode
+            submissionNode,
+            errorListNode
         );
     }
 
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+            .and(getContext().createUiNodeRule(CreateErrorNodeRule.class, this))
+            .and(getContext().createUiNodeRule(ShowErrorListRule.class, this))
+        ;
+    }
 }

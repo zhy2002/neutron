@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "buildl": "webpack --lodgement",
+    "buildr": "webpack --register"
   },
   "repository": {
     "type": "git",

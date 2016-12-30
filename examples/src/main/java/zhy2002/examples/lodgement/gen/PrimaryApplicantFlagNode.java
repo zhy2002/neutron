@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 
 public  class PrimaryApplicantFlagNode extends BooleanUiNode<PersonNode>
@@ -17,4 +18,10 @@ public  class PrimaryApplicantFlagNode extends BooleanUiNode<PersonNode>
         super(parent, name);
     }
 
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+            .and(getContext().createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this))
+        ;
+    }
 }

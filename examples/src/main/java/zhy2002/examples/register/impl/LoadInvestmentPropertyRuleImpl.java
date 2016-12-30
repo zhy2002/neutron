@@ -16,10 +16,6 @@ public class LoadInvestmentPropertyRuleImpl extends LoadInvestmentPropertyRule {
         super(owner);
     }
 
-    private OwnInvestmentPropertyNode getOwnInvestmentPropertyNode() {
-        return getOwner();
-    }
-
     private PropertyDetailsNode getInvestmentPropertyDetailsNode() {
         return getOwner().getParent().getInvestmentPropertyNode();
     }

@@ -10,4 +10,8 @@ public abstract class RepeatPasswordRule extends ValidationRule<RepeatPasswordNo
     public RepeatPasswordRule(RepeatPasswordNode owner) {
         super(owner);
     }
+
+    protected RepeatPasswordNode getRepeatPasswordNode() {
+        return getOwner();
+    }
 }

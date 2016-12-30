@@ -22,7 +22,7 @@ rootType:
 
   rules:
   - {typeName: SetHasErrorRule}
-  - {typeName: CreateErrorNodeRule}
+  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
 
   childTypes:
   - typeName: UsernameNode

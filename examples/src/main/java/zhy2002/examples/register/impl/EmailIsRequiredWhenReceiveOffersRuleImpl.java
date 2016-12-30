@@ -19,10 +19,6 @@ public class EmailIsRequiredWhenReceiveOffersRuleImpl extends EmailIsRequiredWhe
         super(owner);
     }
 
-    private ReceiveOffersNode getReceiveOffersNode() {
-        return getOwner();
-    }
-
     private EmailNode getEmailNode() {
         return getOwner().getParent().getEmailNode();
     }

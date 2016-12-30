@@ -10,4 +10,8 @@ public abstract class DefaultEmailByUsernameRule extends UiNodeRule<UsernameNode
     public DefaultEmailByUsernameRule(UsernameNode owner) {
         super(owner);
     }
+
+    protected UsernameNode getUsernameNode() {
+        return getOwner();
+    }
 }

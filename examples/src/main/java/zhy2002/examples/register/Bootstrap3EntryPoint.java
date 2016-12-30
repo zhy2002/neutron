@@ -1,4 +1,4 @@
-package zhy2002.examples;
+package zhy2002.examples.register;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickHandler;

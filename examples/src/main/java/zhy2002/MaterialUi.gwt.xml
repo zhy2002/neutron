@@ -15,10 +15,10 @@
     <!-- Other module inherits                                      -->
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='zhy2002.examples.MaterialUiEntryPoint'/>
+    <entry-point class='zhy2002.examples.lodgement.MaterialUiEntryPoint'/>
 
     <!-- Specify the paths for translatable code                    -->
     <source path='neutron'/>
-    <source path='examples'/>
-
+    <source path='examples/lodgement'/>
+    <source path='examples/interop'/>
 </module>

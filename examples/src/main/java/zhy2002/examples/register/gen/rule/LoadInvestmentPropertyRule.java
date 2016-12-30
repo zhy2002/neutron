@@ -10,4 +10,8 @@ public abstract class LoadInvestmentPropertyRule extends UiNodeRule<OwnInvestmen
     public LoadInvestmentPropertyRule(OwnInvestmentPropertyNode owner) {
         super(owner);
     }
+
+    protected OwnInvestmentPropertyNode getOwnInvestmentPropertyNode() {
+        return getOwner();
+    }
 }

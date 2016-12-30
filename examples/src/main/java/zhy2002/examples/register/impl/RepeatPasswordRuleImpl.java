@@ -22,10 +22,6 @@ public class RepeatPasswordRuleImpl extends RepeatPasswordRule {
         return getOwner().getParent().getPasswordNode();
     }
 
-    private RepeatPasswordNode getRepeatPasswordNode() {
-        return getOwner();
-    }
-
     @Override
     protected UiNode<?> findHost() {
         return getOwner().getParent();

@@ -17,10 +17,6 @@ public class PasswordIsStrongRuleImpl extends PasswordIsStrongRule {
         super(owner);
     }
 
-    private PasswordNode getPasswordNode() {
-        return getOwner();
-    }
-
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return CollectionUtil.combine(

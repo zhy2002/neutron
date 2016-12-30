@@ -4,6 +4,7 @@ import {Tabs, Tab} from "material-ui/Tabs";
 import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent.jsx';
 import ApplicationListComponent from './app_manager/ApplicationListComponent.jsx';
 import LenderApplicationComponent from './lender_app/LenderApplicationComponent.jsx';
+import ValidationErrorsComponent from './ValidationErrorsComponent.jsx';
 import NeutronComponent from '../materialui/NeutronComponent.jsx';
 
 export default class MainComponent extends NeutronComponent {
@@ -43,6 +44,7 @@ export default class MainComponent extends NeutronComponent {
                         <LenderApplicationComponent model={model} />
                     </Tab>
                 </Tabs>
+                <ValidationErrorsComponent model={model} />
             </div>
         );
     }

@@ -1,5 +1,7 @@
+var modelName = process.argv[2].substr(2);
+
 var config = {
-    entry: './src/main/jsx/lodgement/main.jsx',
+    entry: './src/main/jsx/' + modelName + '/main.jsx',
     output: {
         path: './src/main/webapp/js',
         filename: 'index.js'

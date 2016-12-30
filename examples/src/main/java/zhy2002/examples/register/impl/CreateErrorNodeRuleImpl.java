@@ -24,51 +24,8 @@ public class CreateErrorNodeRuleImpl extends CreateErrorNodeRule {
         super(owner);
     }
 
-    private ErrorListNode getErrorListNode() {
+    protected ErrorListNode getErrorListNode() {
         return getOwner().getErrorListNode();
     }
 
-    @Override
-    protected Collection<EventBinding> createEventBindings() {
-        return Collections.singletonList(
-                new ValidationErrorListStateChangeEventBinding(
-                        this::updateErrorNodeList
-                )
-        );
-    }
-
-    private void updateErrorNodeList(ValidationErrorListStateChangeEvent typedEvent) {
-        ErrorListNode errorListNode = getErrorListNode();
-        ValidationErrorList newValidationErrorList = typedEvent.getOrigin().getValidationErrorList();
-        Set<ValidationError> newValidationErrorSet = new HashSet<>();
-        if (newValidationErrorList != null) {
-            newValidationErrorSet.addAll(newValidationErrorList);
-        }
-
-        HashSet<ValidationError> existingValidationErrorSet = new HashSet<>();
-        HashSet<ErrorNode> notInNewValidationErrorSet = new HashSet<>();
-        for (int i = 0; i < errorListNode.getItemCount(); i++) {
-            ValidationError error = errorListNode.getItem(i).getValue();
-            if (error.getOrigin() == typedEvent.getOrigin()) {
-                if (newValidationErrorSet.contains(error)) {
-                    existingValidationErrorSet.add(error);
-                } else {
-                    notInNewValidationErrorSet.add(errorListNode.getItem(i));
-                }
-            }
-        }
-
-        //remove nodes not in list anymore
-        for (ErrorNode errorNode : notInNewValidationErrorSet) {
-            errorListNode.removeItem(errorNode);
-        }
-        //add new nodes
-        if (newValidationErrorList != null) {
-            for (ValidationError error : newValidationErrorList) {
-                if (!existingValidationErrorSet.contains(error)) {
-                    errorListNode.createItem().setValue(error);
-                }
-            }
-        }
-    }
 }

@@ -35,4 +35,10 @@ public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent
             UiNodeEventHandler<RefreshUiNodeEvent> handler) {
         this(null, handler, null, null);
     }
+
+    public RefreshEventBinding(
+            UiNodeEventHandler<RefreshUiNodeEvent> handler,
+            TickPhase phase) {
+        this(null, handler, null, phase);
+    }
 }

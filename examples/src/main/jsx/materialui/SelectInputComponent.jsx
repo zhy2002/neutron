@@ -49,6 +49,7 @@ export default class SelectInputComponent extends InputComponent {
                         onChange={(event, index, value) => {
                             model.setValue(value)
                         }}
+                        errorText={this.state.errorMessage}
                     >
                         {options}
                     </SelectField>

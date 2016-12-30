@@ -38,10 +38,6 @@ public class UpdatePlanRuleImpl extends UpdatePlanRule {
         return getOwner().getParent().getPlanNode();
     }
 
-    private AgeNode getAgeNode() {
-        return getOwner();
-    }
-
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(

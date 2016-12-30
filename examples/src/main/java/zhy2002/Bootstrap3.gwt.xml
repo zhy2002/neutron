@@ -15,10 +15,11 @@
     <!-- Other module inherits                                      -->
 
     <!-- Specify the app entry point class.                         -->
-    <entry-point class='zhy2002.examples.Bootstrap3EntryPoint'/>
+    <entry-point class='zhy2002.examples.register.Bootstrap3EntryPoint'/>
 
     <!-- Specify the paths for translatable code                    -->
     <source path='neutron'/>
-    <source path='examples'/>
+    <source path='examples/register'/>
+    <source path='examples/interop'/>
 
 </module>
