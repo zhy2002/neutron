@@ -8,6 +8,7 @@ public class ValidationError {
     private UiNode<?> origin;
     private String message;
     private UiNodeRule rule;
+    private UiNode<?> errorNode;
 
     public ValidationError() {}
 
@@ -41,6 +42,14 @@ public class ValidationError {
 
     public void setRule(UiNodeRule<?> rule) {
         this.rule = rule;
+    }
+
+    public UiNode<?> getErrorNode() {
+        return errorNode;
+    }
+
+    public void setErrorNode(UiNode<?> errorNode) {
+        this.errorNode = errorNode;
     }
 
     @Override

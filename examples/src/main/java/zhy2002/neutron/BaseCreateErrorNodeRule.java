@@ -1,6 +1,5 @@
 package zhy2002.neutron;
 
-
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEvent;
@@ -58,7 +57,9 @@ public abstract class BaseCreateErrorNodeRule<N extends UiNode<?>> extends UiNod
         if (newValidationErrorList != null) {
             for (ValidationError error : newValidationErrorList) {
                 if (!existingValidationErrorSet.contains(error)) {
-                    errorListNode.createItem().setValue(error);
+                    LeafUiNode<?, ValidationError> errorNode = errorListNode.createItem();
+                    errorNode.setValue(error);
+                    error.setErrorNode(errorNode);
                 }
             }
         }

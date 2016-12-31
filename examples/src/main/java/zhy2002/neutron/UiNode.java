@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.EnhancedLinkedList;
 import zhy2002.neutron.util.ValueUtil;
@@ -364,6 +365,22 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     protected void doUnload() {
         List<UiNodeRule<?>> ownRules = new ArrayList<>(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
+
+        ValidationErrorList validationErrors = this.getValidationErrorList();
+        if(validationErrors != null) {
+            for(ValidationError validationError : validationErrors) {
+                UiNode<?> errorNode = validationError.getErrorNode();
+                if(errorNode != null) {
+                    if(errorNode.getParent() instanceof ListUiNode<?,?,?>) {
+                        ListUiNode<?,?,?> parent = (ListUiNode<?,?,?>)errorNode.getParent();
+                        parent.removeByName(errorNode.getName());
+                    } else {
+                        errorNode.detach();
+                    }
+                }
+            }
+        }
+
         this.state.clear();
         assert this.preState != null;
         this.state.putAll(this.preState);

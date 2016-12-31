@@ -44,7 +44,7 @@ public class LodgementNodeTest {
 
         applicationNode.refresh();
 
-        //todo fix this assertThat(applicationNode.getShowErrorList(), equalTo(false));
+        assertThat(applicationNode.getShowErrorList(), equalTo(false));
 
     }
 
