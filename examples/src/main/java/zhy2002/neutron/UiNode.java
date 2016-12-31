@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -68,6 +69,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     private UiNodeStatusListener statusListener;
 
+    protected final String defaultNodeLabel;
+
     /**
      * The constructor for a child node.
      *
@@ -92,6 +95,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.context = context;
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
+
+        this.defaultNodeLabel = createDefaultNodeLabel();
+    }
+
+    private String createDefaultNodeLabel() {
+
+        Stack<String> nodeLabels = new Stack<>();
+
+        UiNode<?> node = this;
+        do {
+            nodeLabels.push(ValueUtil.nodeNameToLabel(node.getName()));
+            node = node.getParent();
+        } while (node != null);
+
+        StringBuilder result = new StringBuilder();
+        while (!nodeLabels.isEmpty()) {
+            if (result.length() > 0) {
+                result.append(" / ");
+            }
+            result.append(nodeLabels.pop());
+        }
+        return result.toString();
     }
 
     @JsMethod
@@ -344,12 +369,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.state.putAll(this.preState);
     }
 
-    public void attach() {
+    void attach() {
         addToParent();
         load();
     }
 
-    public void detach() {
+    void detach() {
         unload();
         removeFromParent();
     }
@@ -409,6 +434,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         for (UiNodeChangeListener listener : changeListeners) {
             listener.onUiNodeChanged();
         }
+    }
+
+    @JsMethod
+    public void removeChangeListener(UiNodeChangeListener listener) {
+        this.changeListeners.remove(listener);
     }
 
     //endregion

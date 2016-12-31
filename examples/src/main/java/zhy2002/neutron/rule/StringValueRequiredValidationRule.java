@@ -32,8 +32,7 @@ public class StringValueRequiredValidationRule extends ValidationRule<StringUiNo
 
     @Override
     protected String getErrorMessage() {
-        String errorMessage = ValueUtil.nodeNameToLabel(getOwner().getName()) + " - Value is required";
-        return ValueUtil.ifNull(getOwner().getRequiredMessage(), errorMessage);
+        return getOwner().getRequiredMessage();
     }
 
     @Override

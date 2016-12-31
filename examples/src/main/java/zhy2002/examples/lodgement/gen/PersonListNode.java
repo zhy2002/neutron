@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 
 public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,PersonNode>
@@ -31,4 +32,10 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
         setStateValue(ApplicationNodeConstants.SELECTED_INDEX, Integer.class, value);
     }
 
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules()
+            .and(getContext().createUiNodeRule(UpdateSelectedIndexRule.class, this))
+        ;
+    }
 }

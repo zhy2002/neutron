@@ -27,6 +27,10 @@ export default class NeutronComponent extends React.Component {
         let newState = this.extractNewState();
         this.setState(newState);
     }
+
+    componentWillUnmount() {
+        this.model.removeChangeListener(this);
+    }
 }
 
 NeutronComponent.propTypes = {

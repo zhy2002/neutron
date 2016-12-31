@@ -47,4 +47,26 @@ public class LodgementNodeTest {
         //todo fix this assertThat(applicationNode.getShowErrorList(), equalTo(false));
 
     }
+
+    @Test
+    public void shouldRectifySelectedIndexWhenPersonNodeIsRemoved() {
+
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        personListNode.createItem();
+        personListNode.createItem();
+        personListNode.setSelectedIndex(1);
+
+        personListNode.removeByIndex(1);
+
+        assertThat(personListNode.getSelectedIndex(), equalTo(0));
+
+        personListNode.createItem();
+        personListNode.removeByIndex(0);
+
+        assertThat(personListNode.getSelectedIndex(), equalTo(0));
+
+        personListNode.removeByIndex(0);
+        assertThat(personListNode.getSelectedIndex(), equalTo(0));
+
+    }
 }

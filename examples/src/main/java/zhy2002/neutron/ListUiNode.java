@@ -91,6 +91,13 @@ public abstract class ListUiNode<
     }
 
     @JsMethod
+    public N removeByIndex(int index) {
+        N item = getItem(index);
+        removeItem(item);
+        return item;
+    }
+
+    @JsMethod
     public void removeItem(N item) {
         if (item.getParent() != this)
             return;

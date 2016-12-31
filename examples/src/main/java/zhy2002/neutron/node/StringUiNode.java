@@ -74,7 +74,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     public String getInvalidCharsMessage() {
-        return getStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, "Cannot contain invalid chars.");
+        return getStateValue(PredefinedEventSubjects.INVALID_CHARS_MESSAGE, defaultNodeLabel + "Cannot contain invalid chars.");
     }
 
     public void setInvalidCharsMessage(String message) {
@@ -82,7 +82,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     public String getLengthMessage() {
-        return getStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, "Length is invalid.");
+        return getStateValue(PredefinedEventSubjects.LENGTH_MESSAGE, defaultNodeLabel + "Length is invalid.");
     }
 
     public void setLengthMessage(String message) {
@@ -90,7 +90,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     public String getPatternMessage() {
-        return getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
+        return getStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, defaultNodeLabel + "Pattern is invalid.");
     }
 
     public void setPatternMessage(String message) {

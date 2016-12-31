@@ -27,6 +27,9 @@ rootType:
     properties:
     - {name: selectedIndex, externalTypeName: int, default: 0}
 
+    rules:
+    - {typeName: UpdateSelectedIndexRule}
+
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode

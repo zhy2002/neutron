@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
 
@@ -51,7 +52,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     public String getRequiredMessage() {
-        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE);
+        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, defaultNodeLabel + " - Value is required");
     }
 
     public void setRequiredMessage(String message) {
