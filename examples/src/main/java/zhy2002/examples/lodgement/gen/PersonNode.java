@@ -17,7 +17,7 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     private ContactNode contactNode;
     private CurrentEmploymentNode currentEmploymentNode;
 
-    PersonNode(PersonListNode parent, String name) {
+    protected PersonNode(PersonListNode parent, String name) {
         super(parent, name);
     }
 

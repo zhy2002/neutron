@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ApplicantTypeNode extends StringUiNode<GeneralNode>
 {
-    ApplicantTypeNode(GeneralNode parent, String name) {
+    protected ApplicantTypeNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

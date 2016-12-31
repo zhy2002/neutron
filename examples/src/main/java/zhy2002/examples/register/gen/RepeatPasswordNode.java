@@ -14,7 +14,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class RepeatPasswordNode extends StringUiNode<RegisterNode>
 {
-    RepeatPasswordNode(RegisterNode parent, String name) {
+    protected RepeatPasswordNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

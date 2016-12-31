@@ -13,7 +13,7 @@ import zhy2002.examples.register.data.*;
 
 public  class AreaCodeNode extends PhoneInfoFieldNode
 {
-    AreaCodeNode(PhoneInfoNode parent, String name) {
+    protected AreaCodeNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
 

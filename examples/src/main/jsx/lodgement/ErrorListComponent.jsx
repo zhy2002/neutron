@@ -9,6 +9,10 @@ export default class ErrorListComponent extends NeutronComponent {
         super(props);
     }
 
+    focusOnField(errorNode) {
+        this.model.setFocus(errorNode.getName());
+    }
+
     render() {
 
         let errorList = this.model;
@@ -16,9 +20,11 @@ export default class ErrorListComponent extends NeutronComponent {
 
         for (let i = 0; i < errorList.getItemCount(); i++) {
             let item = errorList.getItem(i);
-            errorRows.push(<tr key={item.getUniqueId()}>
-                <td>{item.getMessage()}</td>
-            </tr>);
+            errorRows.push(
+                <tr key={item.getUniqueId()}>
+                    <td><a href="javascript:void(0)" onClick={()=>this.focusOnField(item)}>{item.getMessage()}</a></td>
+                </tr>
+            );
         }
 
         return (

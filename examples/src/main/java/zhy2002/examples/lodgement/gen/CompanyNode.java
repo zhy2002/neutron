@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class CompanyNode extends ObjectUiNode<CompanyListNode>
 {
 
-    CompanyNode(CompanyListNode parent, String name) {
+    protected CompanyNode(CompanyListNode parent, String name) {
         super(parent, name);
     }
 

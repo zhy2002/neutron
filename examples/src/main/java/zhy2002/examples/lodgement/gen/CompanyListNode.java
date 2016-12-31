@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CompanyListNode extends ListUiNode<ApplicationNode,CompanyListNode,CompanyNode>
 {
-    CompanyListNode(ApplicationNode parent, String name) {
+    protected CompanyListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

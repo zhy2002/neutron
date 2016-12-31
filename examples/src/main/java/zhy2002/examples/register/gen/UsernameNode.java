@@ -14,7 +14,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class UsernameNode extends StringUiNode<RegisterNode>
 {
-    UsernameNode(RegisterNode parent, String name) {
+    protected UsernameNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

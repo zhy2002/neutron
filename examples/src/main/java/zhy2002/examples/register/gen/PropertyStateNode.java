@@ -13,7 +13,7 @@ import zhy2002.examples.register.data.*;
 
 public  class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
 {
-    PropertyStateNode(PropertyDetailsNode parent, String name) {
+    protected PropertyStateNode(PropertyDetailsNode parent, String name) {
         super(parent, name);
     }
 

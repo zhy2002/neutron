@@ -13,7 +13,7 @@ import zhy2002.examples.register.data.*;
 
 public  class PlanNode extends StringUiNode<RegisterNode>
 {
-    PlanNode(RegisterNode parent, String name) {
+    protected PlanNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

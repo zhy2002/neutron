@@ -25,10 +25,10 @@ public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<
 
 </#if>
 <#if parent??>
-    ${typeName}(${parent.typeName} parent, String name) {
+    protected ${typeName}(${parent.typeName} parent, String name) {
         super(parent, name);
 <#else>
-    ${typeName}(@NotNull AbstractUiNodeContext<?> context) {
+    protected ${typeName}(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
 </#if>
     }

@@ -179,6 +179,8 @@ rootType:
   - typeName: ErrorListNode
     baseTypeName: ListUiNode
     itemTypeName: ErrorNode
+    properties:
+    - {name: focus, typeName: String}
     childTypes:
     - typeName: ErrorNode
       baseTypeName: LeafUiNode

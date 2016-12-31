@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
 {
 
-    FinancialPositionNode(ApplicationNode parent, String name) {
+    protected FinancialPositionNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

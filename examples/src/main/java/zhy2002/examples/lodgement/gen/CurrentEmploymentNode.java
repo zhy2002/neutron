@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class CurrentEmploymentNode extends ObjectUiNode<PersonNode>
 {
 
-    CurrentEmploymentNode(PersonNode parent, String name) {
+    protected CurrentEmploymentNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

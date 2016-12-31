@@ -16,7 +16,7 @@ public  class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
     private PropertyAddressNode propertyAddressNode;
     private PropertyStateNode propertyStateNode;
 
-    PropertyDetailsNode(RegisterNode parent, String name) {
+    protected PropertyDetailsNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

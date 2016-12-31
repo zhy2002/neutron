@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,PersonNode>
 {
-    PersonListNode(ApplicationNode parent, String name) {
+    protected PersonListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

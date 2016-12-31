@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class ContactNode extends ObjectUiNode<PersonNode>
 {
 
-    ContactNode(PersonNode parent, String name) {
+    protected ContactNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

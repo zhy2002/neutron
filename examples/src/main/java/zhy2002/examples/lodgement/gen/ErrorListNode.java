@@ -13,12 +13,22 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,ErrorNode>
 {
-    ErrorListNode(ApplicationNode parent, String name) {
+    protected ErrorListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 
     public Class<ErrorNode> getItemClass() {
         return ErrorNode.class;
+    }
+
+    @JsMethod
+    public String getFocus() {
+        return getStateValue(ApplicationNodeConstants.FOCUS);
+    }
+
+    @JsMethod
+    public void setFocus(String value) {
+        setStateValue(ApplicationNodeConstants.FOCUS, String.class, value);
     }
 
 }

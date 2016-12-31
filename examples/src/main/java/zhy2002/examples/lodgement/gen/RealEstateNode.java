@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
 {
 
-    RealEstateNode(RealEstateListNode parent, String name) {
+    protected RealEstateNode(RealEstateListNode parent, String name) {
         super(parent, name);
     }
 

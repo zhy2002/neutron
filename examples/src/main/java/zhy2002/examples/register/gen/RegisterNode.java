@@ -27,7 +27,7 @@ public  class RegisterNode extends ObjectUiNode<VoidUiNode>
     private PhoneInfoNode homePhoneNode;
     private ErrorListNode errorListNode;
 
-    RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
+    protected RegisterNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
     }
 

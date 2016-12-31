@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class TitleNode extends StringUiNode<GeneralNode>
 {
-    TitleNode(GeneralNode parent, String name) {
+    protected TitleNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

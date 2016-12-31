@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class DriversLicenseNode extends StringUiNode<GeneralNode>
 {
-    DriversLicenseNode(GeneralNode parent, String name) {
+    protected DriversLicenseNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
 {
-    PrimaryApplicantFlagNode(GeneralNode parent, String name) {
+    protected PrimaryApplicantFlagNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

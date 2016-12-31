@@ -13,7 +13,7 @@ import zhy2002.examples.register.data.*;
 
 public  class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNode>
 {
-    ErrorListNode(RegisterNode parent, String name) {
+    protected ErrorListNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

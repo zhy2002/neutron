@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class DateOfBirthNode extends StringUiNode<GeneralNode>
 {
-    DateOfBirthNode(GeneralNode parent, String name) {
+    protected DateOfBirthNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

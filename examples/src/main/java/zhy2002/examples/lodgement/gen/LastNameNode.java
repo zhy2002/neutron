@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class LastNameNode extends StringUiNode<GeneralNode>
 {
-    LastNameNode(GeneralNode parent, String name) {
+    protected LastNameNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

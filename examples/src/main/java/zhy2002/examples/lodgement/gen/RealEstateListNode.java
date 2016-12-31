@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateListNode,RealEstateNode>
 {
-    RealEstateListNode(ApplicationNode parent, String name) {
+    protected RealEstateListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

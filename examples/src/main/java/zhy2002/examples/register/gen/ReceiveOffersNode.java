@@ -14,7 +14,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
 {
-    ReceiveOffersNode(RegisterNode parent, String name) {
+    protected ReceiveOffersNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

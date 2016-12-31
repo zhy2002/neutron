@@ -10,6 +10,7 @@ public class ApplicationNodeConstants {
     public static final String SELECTED_INDEX = "selectedIndex";
     public static final String SELECTED_NAME = "selectedName";
     public static final String OPTIONS = "options";
+    public static final String FOCUS = "focus";
     public static final String SHOW_ERROR_LIST = "showErrorList";
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";
 
