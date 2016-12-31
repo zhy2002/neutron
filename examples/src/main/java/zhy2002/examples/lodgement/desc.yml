@@ -2,10 +2,11 @@ targetPackage: zhy2002.examples.lodgement
 rootType:
   typeName: ApplicationNode
   baseTypeName: ObjectUiNode
-
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
-
+  rules:
+  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+  - {typeName: ShowErrorListRule}
   children:
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
@@ -15,124 +16,133 @@ rootType:
   - {typeName: AdditionalNode}
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
-
-  rules:
-  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
-  - {typeName: ShowErrorListRule}
-
   childTypes:
   - typeName: PersonListNode
     baseTypeName: ListUiNode
     itemTypeName: PersonNode
     properties:
     - {name: selectedIndex, externalTypeName: int, default: 0}
-
     rules:
     - {typeName: UpdateSelectedIndexRule}
-
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
+      properties:
+      - {name: selectedName, typeName: String, default: '"generalNode"'}
       children:
-      - {typeName: TitleNode}
-      - {typeName: FirstNameNode}
-      - {typeName: LastNameNode}
-      - {typeName: GenderNode}
-      - {typeName: DateOfBirthNode}
-      - {typeName: PrimaryApplicantFlagNode}
-      - {typeName: DriversLicenseNode}
-      - {typeName: ApplicantTypeNode}
-      - {typeName: ApplicationTypeNode}
-      - {typeName: MaritalStatusNode}
-      - {typeName: PermanentResidentFlagNode}
-      - {typeName: SpouseNode}
-      - {typeName: FirstHomeBuyerFlagNode}
-      - {typeName: HousingStatusNode}
-
+      - {typeName: GeneralNode}
+      - {typeName: ContactNode}
+      - {typeName: CurrentEmploymentNode}
       childTypes:
-      - typeName: TitleNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
-        - {propertyName: required, value: 'true'}
+      - typeName: GeneralNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: TitleNode}
+        - {typeName: FirstNameNode}
+        - {typeName: LastNameNode}
+        - {typeName: GenderNode}
+        - {typeName: DateOfBirthNode}
+        - {typeName: PrimaryApplicantFlagNode}
+        - {typeName: DriversLicenseNode}
+        - {typeName: ApplicantTypeNode}
+        - {typeName: ApplicationTypeNode}
+        - {typeName: MaritalStatusNode}
+        - {typeName: PermanentResidentFlagNode}
+        - {typeName: SpouseNode}
+        - {typeName: FirstHomeBuyerFlagNode}
+        - {typeName: HousingStatusNode}
+        childTypes:
+        - typeName: TitleNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
-      - typeName: FirstNameNode
-        baseTypeName: StringUiNode
-        init:
-        - {propertyName: required, value: 'true'}
-        - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+        - typeName: FirstNameNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
 
-      - typeName: LastNameNode
-        baseTypeName: StringUiNode
-        init:
-        - {propertyName: required, value: 'true'}
-        - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+        - typeName: LastNameNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
 
-      - typeName: GenderNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
-        - {propertyName: required, value: 'true'}
+        - typeName: GenderNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
-      - typeName: DateOfBirthNode
-        baseTypeName: StringUiNode
-        init:
-        - {propertyName: required, value: 'true'}
+        - typeName: DateOfBirthNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
-      - typeName: PrimaryApplicantFlagNode
-        baseTypeName: BooleanUiNode
-        rules:
-        - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
+        - typeName: PrimaryApplicantFlagNode
+          baseTypeName: BooleanUiNode
+          rules:
+          - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
 
-      - typeName: DriversLicenseNode
-        baseTypeName: StringUiNode
+        - typeName: DriversLicenseNode
+          baseTypeName: StringUiNode
 
-      - typeName: ApplicantTypeNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
-        - {propertyName: required, value: 'true'}
+        - typeName: ApplicantTypeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
-      - typeName: ApplicationTypeNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
-        - {propertyName: required, value: 'true'}
+        - typeName: ApplicationTypeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
-      - typeName: MaritalStatusNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
-        - {propertyName: required, value: 'true'}
+        - typeName: MaritalStatusNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
+          - {propertyName: required, value: 'true'}
 
-      - typeName: PermanentResidentFlagNode
-        baseTypeName: BooleanUiNode
+        - typeName: PermanentResidentFlagNode
+          baseTypeName: BooleanUiNode
 
-      - typeName: SpouseNode
-        baseTypeName: StringUiNode
+        - typeName: SpouseNode
+          baseTypeName: StringUiNode
 
-      - typeName: FirstHomeBuyerFlagNode
-        baseTypeName: BooleanUiNode
-        init:
-        - {propertyName: required, value: 'true'}
+        - typeName: FirstHomeBuyerFlagNode
+          baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
-      - typeName: HousingStatusNode
-        baseTypeName: StringUiNode
-        properties:
-        - {name: options, typeName: Object}
-        init:
-        - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
-        - {propertyName: required, value: 'true'}
+        - typeName: HousingStatusNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
+          - {propertyName: required, value: 'true'}
+
+      - typeName: ContactNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CurrentEmploymentNode
+        baseTypeName: ObjectUiNode
+        children: []
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

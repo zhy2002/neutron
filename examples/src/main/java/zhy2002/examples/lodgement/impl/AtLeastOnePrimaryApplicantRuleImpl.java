@@ -37,10 +37,10 @@ public class AtLeastOnePrimaryApplicantRuleImpl extends AtLeastOnePrimaryApplica
     @Override
     protected boolean isActivated() {
         boolean hasPrimary = false;
-        PersonListNode personListNode = getPrimaryApplicantFlagNode().getParent().getParent();
+        PersonListNode personListNode = getPrimaryApplicantFlagNode().getParent().getParent().getParent();
         for (int i = 0; i < personListNode.getItemCount(); i++) {
             PersonNode personNode = personListNode.getItem(i);
-            if (Boolean.TRUE.equals(personNode.getPrimaryApplicantFlagNode().getValue())) {
+            if (Boolean.TRUE.equals(personNode.getGeneralNode().getPrimaryApplicantFlagNode().getValue())) {
                 hasPrimary = true;
                 break;
             }

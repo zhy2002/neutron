@@ -2,10 +2,10 @@ package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.ChildNodeFactory;
 
-public class ApplicationTypeNodeFactory implements ChildNodeFactory<ApplicationTypeNode, PersonNode> {
+public class ApplicationTypeNodeFactory implements ChildNodeFactory<ApplicationTypeNode, GeneralNode> {
 
     @Override
-    public ApplicationTypeNode create(PersonNode parent, String name) {
+    public ApplicationTypeNode create(GeneralNode parent, String name) {
         return new ApplicationTypeNode(parent, name);
     }
 }

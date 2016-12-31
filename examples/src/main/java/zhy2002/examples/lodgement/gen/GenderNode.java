@@ -11,9 +11,9 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
 
-public  class GenderNode extends StringUiNode<PersonNode>
+public  class GenderNode extends StringUiNode<GeneralNode>
 {
-    GenderNode(PersonNode parent, String name) {
+    GenderNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

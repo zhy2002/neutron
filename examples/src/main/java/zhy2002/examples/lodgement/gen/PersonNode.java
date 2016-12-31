@@ -13,129 +13,51 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonNode extends ObjectUiNode<PersonListNode>
 {
-    private TitleNode titleNode;
-    private FirstNameNode firstNameNode;
-    private LastNameNode lastNameNode;
-    private GenderNode genderNode;
-    private DateOfBirthNode dateOfBirthNode;
-    private PrimaryApplicantFlagNode primaryApplicantFlagNode;
-    private DriversLicenseNode driversLicenseNode;
-    private ApplicantTypeNode applicantTypeNode;
-    private ApplicationTypeNode applicationTypeNode;
-    private MaritalStatusNode maritalStatusNode;
-    private PermanentResidentFlagNode permanentResidentFlagNode;
-    private SpouseNode spouseNode;
-    private FirstHomeBuyerFlagNode firstHomeBuyerFlagNode;
-    private HousingStatusNode housingStatusNode;
+    private GeneralNode generalNode;
+    private ContactNode contactNode;
+    private CurrentEmploymentNode currentEmploymentNode;
 
     PersonNode(PersonListNode parent, String name) {
         super(parent, name);
     }
 
     @JsMethod
-    public TitleNode getTitleNode() {
-        return titleNode;
+    public String getSelectedName() {
+        return getStateValue(ApplicationNodeConstants.SELECTED_NAME, "generalNode");
     }
 
     @JsMethod
-    public FirstNameNode getFirstNameNode() {
-        return firstNameNode;
+    public void setSelectedName(String value) {
+        setStateValue(ApplicationNodeConstants.SELECTED_NAME, String.class, value);
     }
 
     @JsMethod
-    public LastNameNode getLastNameNode() {
-        return lastNameNode;
+    public GeneralNode getGeneralNode() {
+        return generalNode;
     }
 
     @JsMethod
-    public GenderNode getGenderNode() {
-        return genderNode;
+    public ContactNode getContactNode() {
+        return contactNode;
     }
 
     @JsMethod
-    public DateOfBirthNode getDateOfBirthNode() {
-        return dateOfBirthNode;
-    }
-
-    @JsMethod
-    public PrimaryApplicantFlagNode getPrimaryApplicantFlagNode() {
-        return primaryApplicantFlagNode;
-    }
-
-    @JsMethod
-    public DriversLicenseNode getDriversLicenseNode() {
-        return driversLicenseNode;
-    }
-
-    @JsMethod
-    public ApplicantTypeNode getApplicantTypeNode() {
-        return applicantTypeNode;
-    }
-
-    @JsMethod
-    public ApplicationTypeNode getApplicationTypeNode() {
-        return applicationTypeNode;
-    }
-
-    @JsMethod
-    public MaritalStatusNode getMaritalStatusNode() {
-        return maritalStatusNode;
-    }
-
-    @JsMethod
-    public PermanentResidentFlagNode getPermanentResidentFlagNode() {
-        return permanentResidentFlagNode;
-    }
-
-    @JsMethod
-    public SpouseNode getSpouseNode() {
-        return spouseNode;
-    }
-
-    @JsMethod
-    public FirstHomeBuyerFlagNode getFirstHomeBuyerFlagNode() {
-        return firstHomeBuyerFlagNode;
-    }
-
-    @JsMethod
-    public HousingStatusNode getHousingStatusNode() {
-        return housingStatusNode;
+    public CurrentEmploymentNode getCurrentEmploymentNode() {
+        return currentEmploymentNode;
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         UiNodeContext<?> context = getContext();
 
-        titleNode = context.createChildNode(TitleNode.class, this, "titleNode");
-        firstNameNode = context.createChildNode(FirstNameNode.class, this, "firstNameNode");
-        lastNameNode = context.createChildNode(LastNameNode.class, this, "lastNameNode");
-        genderNode = context.createChildNode(GenderNode.class, this, "genderNode");
-        dateOfBirthNode = context.createChildNode(DateOfBirthNode.class, this, "dateOfBirthNode");
-        primaryApplicantFlagNode = context.createChildNode(PrimaryApplicantFlagNode.class, this, "primaryApplicantFlagNode");
-        driversLicenseNode = context.createChildNode(DriversLicenseNode.class, this, "driversLicenseNode");
-        applicantTypeNode = context.createChildNode(ApplicantTypeNode.class, this, "applicantTypeNode");
-        applicationTypeNode = context.createChildNode(ApplicationTypeNode.class, this, "applicationTypeNode");
-        maritalStatusNode = context.createChildNode(MaritalStatusNode.class, this, "maritalStatusNode");
-        permanentResidentFlagNode = context.createChildNode(PermanentResidentFlagNode.class, this, "permanentResidentFlagNode");
-        spouseNode = context.createChildNode(SpouseNode.class, this, "spouseNode");
-        firstHomeBuyerFlagNode = context.createChildNode(FirstHomeBuyerFlagNode.class, this, "firstHomeBuyerFlagNode");
-        housingStatusNode = context.createChildNode(HousingStatusNode.class, this, "housingStatusNode");
+        generalNode = context.createChildNode(GeneralNode.class, this, "generalNode");
+        contactNode = context.createChildNode(ContactNode.class, this, "contactNode");
+        currentEmploymentNode = context.createChildNode(CurrentEmploymentNode.class, this, "currentEmploymentNode");
 
         return Arrays.asList(
-            titleNode,
-            firstNameNode,
-            lastNameNode,
-            genderNode,
-            dateOfBirthNode,
-            primaryApplicantFlagNode,
-            driversLicenseNode,
-            applicantTypeNode,
-            applicationTypeNode,
-            maritalStatusNode,
-            permanentResidentFlagNode,
-            spouseNode,
-            firstHomeBuyerFlagNode,
-            housingStatusNode
+            generalNode,
+            contactNode,
+            currentEmploymentNode
         );
     }
 

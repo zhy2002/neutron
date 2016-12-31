@@ -11,9 +11,9 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
 
-public  class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonNode>
+public  class FirstHomeBuyerFlagNode extends BooleanUiNode<GeneralNode>
 {
-    FirstHomeBuyerFlagNode(PersonNode parent, String name) {
+    FirstHomeBuyerFlagNode(GeneralNode parent, String name) {
         super(parent, name);
     }
 

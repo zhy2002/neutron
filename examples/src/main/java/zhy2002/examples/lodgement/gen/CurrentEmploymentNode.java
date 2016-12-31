@@ -11,17 +11,20 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
 
-public  class DateOfBirthNode extends StringUiNode<GeneralNode>
+public  class CurrentEmploymentNode extends ObjectUiNode<PersonNode>
 {
-    DateOfBirthNode(GeneralNode parent, String name) {
+
+    CurrentEmploymentNode(PersonNode parent, String name) {
         super(parent, name);
     }
 
     @Override
-    protected void initializeState() {
-        super.initializeState();
+    protected List<UiNode<?>> createChildren() {
+        UiNodeContext<?> context = getContext();
 
-        setRequired(true);
+
+        return Arrays.asList(
+        );
     }
 
 }
