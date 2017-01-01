@@ -116,6 +116,11 @@ public abstract class ListUiNode<
         return typed;
     }
 
+    @SuppressWarnings("unchecked")
+    public N getItemByName(String name) {
+        return (N)getChild(name);
+    }
+
     private int getChildSequenceNumber() {
         return childSequenceNumber++;
     }

@@ -72,6 +72,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     protected final String defaultNodeLabel;
 
+    private boolean forceChangeTracking;
+
     /**
      * The constructor for a child node.
      *
@@ -246,7 +248,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return false;
     }
 
-    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
+    @JsMethod
+    public void alwaysTrackChangeOnce() {
+        this.forceChangeTracking = true;
+    }
+
+    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
 
         if (shouldChangeWithoutEvent()) {
             setStateValueInternal(key, value);
@@ -256,7 +263,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         //default logic
         T oldValue = getStateValueInternal(key);
         boolean process = false;
-        switch (getChangeTrackingMode()) {
+        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode();
+        if(this.forceChangeTracking) {
+            nodeChangeTrackingMode = ChangeTrackingModeEnum.Always;
+            this.forceChangeTracking = false;
+        }
+        switch (nodeChangeTrackingMode) {
             case Always:
                 process = true;
                 break;

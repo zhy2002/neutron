@@ -66,7 +66,10 @@ export default class RadioInputComponent extends InputComponent {
 
         return (
             <div className="row material-field">
-                <div className="medium-12 columns">
+                <div className="medium-12 columns"
+                     id={model.getUniqueId()}
+                     tabIndex="0"
+                >
                     <RadioButtonGroup
                         style={buttonGroupStyle}
                         name={model.getUniqueId()}

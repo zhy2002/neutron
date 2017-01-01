@@ -8,6 +8,7 @@ export default class NeutronComponent extends React.Component {
         this.initialize(props);
         this.model.addChangeListener(this);
         this.state = this.extractNewState();
+        this.callbackQueue = [];
     }
 
     initialize(props) {
@@ -17,6 +18,12 @@ export default class NeutronComponent extends React.Component {
 
     extractNewState() {
         return {};
+    }
+
+    addCallback(func) {
+        if(func instanceof Function) {
+            this.callbackQueue.push(func);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -30,6 +37,13 @@ export default class NeutronComponent extends React.Component {
 
     componentWillUnmount() {
         this.model.removeChangeListener(this);
+    }
+
+    componentDidUpdate() {
+        while(this.callbackQueue.length > 0) {
+            let func = this.callbackQueue.shift();
+            setTimeout(func, 0);
+        }
     }
 }
 

@@ -19,7 +19,6 @@ export default class PersonDataComponent extends NeutronComponent {
     }
 
     selectTab(node) {
-
         this.model.setSelectedName(node.getName());
         console.log('switched tab to:' + node.getName());
         return false;

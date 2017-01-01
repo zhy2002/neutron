@@ -15,9 +15,6 @@ export default class TextInputComponent extends InputComponent {
 
         newState.value = this.model.getValue();
 
-        console.log("new state is:");
-        console.log(newState);
-
         return newState;
     }
 
@@ -28,6 +25,7 @@ export default class TextInputComponent extends InputComponent {
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <TextField
+                        id={model.getUniqueId()}
                         fullWidth={true}
                         floatingLabelText={this.state.label}
                         floatingLabelStyle={this.state.style}

@@ -42,6 +42,7 @@ export default class SelectInputComponent extends InputComponent {
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <SelectField
+                        id={model.getUniqueId()}
                         fullWidth={true}
                         floatingLabelText={this.state.label}
                         floatingLabelStyle={this.state.style}
@@ -56,6 +57,10 @@ export default class SelectInputComponent extends InputComponent {
                 </div>
             </div>
         );
+    }
+
+    componentDidMount() {
+        document.getElementById(this.model.getUniqueId()).tabIndex = 0;
     }
 
 }

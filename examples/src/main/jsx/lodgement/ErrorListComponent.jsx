@@ -10,7 +10,19 @@ export default class ErrorListComponent extends NeutronComponent {
     }
 
     focusOnField(errorNode) {
-        this.model.setFocus(errorNode.getName());
+        const errorNodeName = errorNode.getName();
+        this.model.alwaysTrackChangeOnce();
+        this.model.setFocus(errorNodeName);
+        const source = errorNode.getSource();
+        if(source) {
+            this.addCallback(function() {
+                console.log('Trying to set focus to element: ' + source.getUniqueId());
+                const dom = document.getElementById(source.getUniqueId());
+                if(dom) {
+                    dom.focus();
+                }
+            });
+        }
     }
 
     render() {

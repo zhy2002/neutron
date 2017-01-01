@@ -27,12 +27,13 @@ export default class CheckboxInputComponent extends InputComponent {
     }
 
     render() {
-        let model = this.model;
+        const model = this.model;
 
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <Checkbox
+                        id={model.getUniqueId()}
                         style={style}
                         label={this.state.label}
                         labelStyle={this.state.style}

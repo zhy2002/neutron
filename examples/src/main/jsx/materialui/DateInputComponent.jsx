@@ -29,10 +29,13 @@ export default class DateInputComponent extends InputComponent {
     }
 
     render() {
+        const model = this.model;
+
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <DatePicker
+                        id={model.getUniqueId()}
                         autoOk={true}
                         fullWidth={true}
                         floatingLabelText={this.state.label}
@@ -40,12 +43,11 @@ export default class DateInputComponent extends InputComponent {
                         value={this.state.date}
                         onChange={(event, date) => {
                             if(date) {
-                                this.model.setValue(date.toUTCString());
+                                model.setValue(date.toUTCString());
                             } else {
-                                this.model.setValue("");
+                                model.setValue("");
                             }
                         }}
-
                     />
                     <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
                 </div>

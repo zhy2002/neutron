@@ -21,6 +21,13 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setSelectedName("generalNode");
+    }
+
     @JsMethod
     public String getSelectedName() {
         return getStateValue(ApplicationNodeConstants.SELECTED_NAME, "generalNode");

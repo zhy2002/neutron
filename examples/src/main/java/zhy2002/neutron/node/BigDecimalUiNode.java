@@ -90,7 +90,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     }
 
     @Override
-    protected <T> void setStateValue(String key, Class<T> valueClass, T value) {
+    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
         if (!getContext().isInCycle()) {
             if (PredefinedEventSubjects.VALUE.equals(key)) {
                 hasValue = value != null;

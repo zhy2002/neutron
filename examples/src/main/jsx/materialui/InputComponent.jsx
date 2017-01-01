@@ -25,7 +25,7 @@ function nodeNameToLabel(nodeName) {
     if(nodeName.endsWith("Node")) {
         nodeName = nodeName.substr(0, nodeName.length - 4);
     }
-    var result = "";
+    let result = "";
     for(let i=0; i<nodeName.length; i++) {
         let ch = nodeName.charAt(i);
         if(ch == ch.toUpperCase()) {

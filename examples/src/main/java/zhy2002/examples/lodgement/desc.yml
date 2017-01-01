@@ -20,6 +20,8 @@ rootType:
   - typeName: PersonListNode
     baseTypeName: ListUiNode
     itemTypeName: PersonNode
+    init:
+    - {propertyName: selectedIndex, value: 0}
     properties:
     - {name: selectedIndex, externalTypeName: int, default: 0}
     rules:
@@ -27,6 +29,8 @@ rootType:
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
+      init:
+      - {propertyName: selectedName, value: '"generalNode"'}
       properties:
       - {name: selectedName, typeName: String, default: '"generalNode"'}
       children:
@@ -181,6 +185,8 @@ rootType:
     itemTypeName: ErrorNode
     properties:
     - {name: focus, typeName: String}
+    rules:
+    - {typeName: ChangeFocusErrorRule}
     childTypes:
     - typeName: ErrorNode
       baseTypeName: LeafUiNode

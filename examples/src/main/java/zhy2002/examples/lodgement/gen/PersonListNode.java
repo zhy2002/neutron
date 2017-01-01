@@ -22,6 +22,13 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
         return PersonNode.class;
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setSelectedIndex(0);
+    }
+
     @JsMethod
     public int getSelectedIndex() {
         return getStateValue(ApplicationNodeConstants.SELECTED_INDEX, 0);
