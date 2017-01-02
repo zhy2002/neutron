@@ -63,6 +63,8 @@ rootType:
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: TitleGenderMatchRule, baseTypeName: ValidationRule}
 
         - typeName: FirstNameNode
           baseTypeName: StringUiNode

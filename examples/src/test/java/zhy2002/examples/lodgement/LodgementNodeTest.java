@@ -2,9 +2,10 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.lodgement.gen.ApplicationNode;
-import zhy2002.examples.lodgement.gen.PersonListNode;
-import zhy2002.examples.lodgement.gen.PersonNode;
+import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
+
+import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -68,5 +69,41 @@ public class LodgementNodeTest {
         personListNode.removeByIndex(0);
         assertThat(personListNode.getSelectedIndex(), equalTo(0));
 
+    }
+
+    @Test
+    public void titleAndGenderShouldMatch() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        TitleNode titleNode = personNode.getGeneralNode().getTitleNode();
+        GenderNode genderNode = personNode.getGeneralNode().getGenderNode();
+
+        Predicate<ErrorNode> hasTitleGenderMismatch = errorNode -> errorNode.getRule() instanceof TitleGenderMatchRule;
+
+        assertThat(hasError(hasTitleGenderMismatch), equalTo(false));
+
+        titleNode.setValue("Mr");
+
+        assertThat(hasError(hasTitleGenderMismatch), equalTo(false));
+
+        genderNode.setValue("Female");
+
+        assertThat(hasError(hasTitleGenderMismatch), equalTo(true));
+
+        titleNode.setValue("Mrs");
+
+        assertThat(hasError(hasTitleGenderMismatch), equalTo(false));
+
+    }
+
+    private boolean hasError(Predicate<ErrorNode> predicate) {
+
+        ErrorListNode errorListNode = applicationNode.getErrorListNode();
+        for(int i=0; i<errorListNode.getItemCount(); i++) {
+            ErrorNode errorNode = errorListNode.getItem(i);
+            if(predicate.test(errorNode))
+                return true;
+        }
+        return false;
     }
 }

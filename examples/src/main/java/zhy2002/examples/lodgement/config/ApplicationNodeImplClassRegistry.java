@@ -22,5 +22,6 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(ShowErrorListRule.class, ShowErrorListRuleImpl::new);
         setUiNodeRuleFactory(UpdateSelectedIndexRule.class, UpdateSelectedIndexRuleImpl::new);
         setUiNodeRuleFactory(ChangeFocusErrorRule.class, ChangeFocusErrorRuleImpl::new);
+        setUiNodeRuleFactory(TitleGenderMatchRule.class, TitleGenderMatchRuleImpl::new);
     }
 }
