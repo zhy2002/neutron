@@ -1,6 +1,11 @@
 package zhy2002.neutron.util;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public final class ValueUtil {
+
+    private static Logger logger = Logger.getLogger(ValueUtil.class.getSimpleName());
 
     private ValueUtil() {
     }
@@ -16,6 +21,16 @@ public final class ValueUtil {
     public static String nodeNameToLabel(String name) {
         if(isEmpty(name))
             return name;
+
+        if(Character.isDigit(name.charAt(0))) {
+            try {
+              int newValue = Integer.parseInt(name) + 1;
+              return String.valueOf(newValue);
+            } catch (NumberFormatException ex) {
+                logger.log(Level.FINE, "Node name '" + name + "' cannot be converted to an integer.");
+                return name;
+            }
+        }
 
         StringBuilder stringBuilder = new StringBuilder();
         int end = name.length() - 1;

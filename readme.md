@@ -26,6 +26,7 @@ todo
 * context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
 * node clone and take snapshot
 * calculate diff of two versions
+* tags - objects stored in node
 
 ### Misc
 * rule should have a load event to init node properties

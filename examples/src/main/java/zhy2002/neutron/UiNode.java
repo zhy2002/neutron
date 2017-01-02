@@ -11,30 +11,16 @@ import java.util.*;
 
 /**
  * Base class for all ui nodes.
+ * You should only access a node property via its getter and setter.
  */
 public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodeProperties {
 
     private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
 
-    /**
-     * The parent ui node.
-     */
     private final P parent;
-    /**
-     * The name of this node. Name is immutable and it uniquely identify a node in parent.
-     */
     private final String name;
-    /**
-     * The unique id of this node. This is setInstance when this node is added to the node tree.
-     */
     private String uniqueId;
-    /**
-     * The context instance shared by the whole UiNode tree.
-     */
     private final UiNodeContext<?> context;
-    /**
-     * Life state of this node.
-     */
     private NodeStatusEnum nodeStatus;
     /**
      * Determines what is perceived as 'change' for this node.
@@ -70,8 +56,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     private UiNodeStatusListener statusListener;
 
-    protected final String defaultNodeLabel;
-
     private boolean forceChangeTracking;
 
     /**
@@ -98,30 +82,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.context = context;
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
-
-        this.defaultNodeLabel = createDefaultNodeLabel();
     }
 
-    private String createDefaultNodeLabel() {
-
-        Stack<String> nodeLabels = new Stack<>();
-
-        UiNode<?> node = this;
-        do {
-            nodeLabels.push(ValueUtil.nodeNameToLabel(node.getName()));
-            node = node.getParent();
-        } while (node != null);
-
-        StringBuilder result = new StringBuilder();
-        while (!nodeLabels.isEmpty()) {
-            if (result.length() > 0) {
-                result.append(" / ");
-            }
-            result.append(nodeLabels.pop());
-        }
-        return result.toString();
-    }
-
+    /**
+     * The parent ui node.
+     */
     @JsMethod
     public
     @NotNull
@@ -129,13 +94,18 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return parent;
     }
 
+    /**
+     * The name of this node. Name is immutable and it uniquely identify a node in parent.
+     */
     @JsMethod
-    public
     @NotNull
-    UiNodeContext<?> getContext() {
-        return context;
+    public String getName() {
+        return name;
     }
 
+    /**
+     * The unique id of this node. This is setInstance when this node is added to the node tree.
+     */
     @JsMethod
     @NotNull
     public String getUniqueId() {
@@ -145,8 +115,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     public void setUniqueId(@NotNull String id) {
         if (nodeStatus != NodeStatusEnum.Detached)
             throw new UiNodeException("Cannot set unique id if the node is not detached.");
+        //todo ensure id is not already used and will not be used by other nodes.
         this.uniqueId = id;
     }
+
+    /**
+     * The context instance shared by the whole UiNode tree.
+     */
+    @JsMethod
+    public
+    @NotNull
+    UiNodeContext<?> getContext() {
+        return context;
+    }
+
 
     @JsMethod
     public int getIndex() {
@@ -156,11 +138,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return -1;
     }
 
-    @JsMethod
-    @NotNull
-    public String getName() {
-        return name;
-    }
 
     void setStatusListener(UiNodeStatusListener listener) {
         this.statusListener = listener;
@@ -264,7 +241,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         T oldValue = getStateValueInternal(key);
         boolean process = false;
         ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode();
-        if(this.forceChangeTracking) {
+        if (this.forceChangeTracking) {
             nodeChangeTrackingMode = ChangeTrackingModeEnum.Always;
             this.forceChangeTracking = false;
         }
@@ -296,6 +273,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     //region life cycle methods
 
+    /**
+     * Life state of this node.
+     */
     @JsMethod
     public
     @NotNull
@@ -379,12 +359,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         ownRules.forEach(UiNodeRule::removeFromOwner);
 
         ValidationErrorList validationErrors = this.getValidationErrorList();
-        if(validationErrors != null) {
-            for(ValidationError validationError : validationErrors) {
+        if (validationErrors != null) {
+            for (ValidationError validationError : validationErrors) {
                 UiNode<?> errorNode = validationError.getErrorNode();
-                if(errorNode != null) {
-                    if(errorNode.getParent() instanceof ListUiNode<?,?,?>) {
-                        ListUiNode<?,?,?> parent = (ListUiNode<?,?,?>)errorNode.getParent();
+                if (errorNode != null) {
+                    if (errorNode.getParent() instanceof ListUiNode<?, ?, ?>) {
+                        ListUiNode<?, ?, ?> parent = (ListUiNode<?, ?, ?>) errorNode.getParent();
                         parent.removeByName(errorNode.getName());
                     } else {
                         errorNode.detach();
@@ -486,12 +466,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         setStateValue(PredefinedEventSubjects.VISIBILITY, String.class, value);
     }
 
-    /**
-     * @return true if this Node if disabled in the ui.
-     * This does not affect the node's ability to process
-     * events in anyway though rules might behave differently
-     * for different values.
-     */
     @JsMethod
     @Override
     public boolean isDisabled() {
@@ -516,21 +490,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         setStateValue(PredefinedEventSubjects.READONLY, Boolean.class, value);
     }
 
-    /**
-     * @return true if the content of this node is KNOWN to be invalid.
-     */
-    @JsMethod
-    @Override
-    public boolean isInvalid() {
-        return getStateValue(PredefinedEventSubjects.INVALID, Boolean.FALSE);
-    }
-
-    @JsMethod
-    @Override
-    public void setInvalid(boolean value) {
-        setStateValue(PredefinedEventSubjects.INVALID, Boolean.class, value);
-    }
-
     @JsMethod
     @Override
     public boolean isDirty() {
@@ -543,15 +502,68 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         setStateValue(PredefinedEventSubjects.DIRTY, Boolean.class, value);
     }
 
-    //endregion
-
     @JsMethod
-    public ValidationErrorList getValidationErrorList() {
-        return getStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST);
+    @Override
+    public String getNodeLabel() {
+        String label = getStateValue(PredefinedEventSubjects.NODE_LABEL);
+        if (label != null)
+            return label;
+
+        return ValueUtil.nodeNameToLabel(this.getName());
     }
 
+    @JsMethod
+    @Override
+    public void setNodeLabel(String value) {
+        setStateValue(PredefinedEventSubjects.NODE_LABEL, String.class, value);
+    }
+
+    @JsMethod
+    @Override
+    public String getPathLabel() {
+        String label = getStateValue(PredefinedEventSubjects.PATH_LABEL);
+        if (label != null)
+            return label;
+
+        return createDefaultNodeLabel();
+    }
+
+    private String createDefaultNodeLabel() {
+
+        Stack<String> nodeLabels = new Stack<>();
+
+        UiNode<?> node = this;
+        do {
+            nodeLabels.push(ValueUtil.nodeNameToLabel(node.getName()));
+            node = node.getParent();
+        } while (node != null);
+
+        StringBuilder result = new StringBuilder();
+        while (!nodeLabels.isEmpty()) {
+            if (result.length() > 0) {
+                result.append(" > ");
+            }
+            result.append(nodeLabels.pop());
+        }
+        return result.toString();
+    }
+
+    @JsMethod
+    @Override
+    public void setPathLabel(String value) {
+        setStateValue(PredefinedEventSubjects.PATH_LABEL, String.class, value);
+    }
+
+    @JsMethod
+    @Override
+    public ValidationErrorList getValidationErrorList() {
+        return getStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.EMPTY);
+    }
+
+    @Override
     public void setValidationErrorList(ValidationErrorList errors) {
         setStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
     }
 
+//endregion
 }

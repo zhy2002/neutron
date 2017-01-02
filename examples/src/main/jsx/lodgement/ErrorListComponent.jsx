@@ -34,6 +34,7 @@ export default class ErrorListComponent extends NeutronComponent {
             let item = errorList.getItem(i);
             errorRows.push(
                 <tr key={item.getUniqueId()}>
+                    <td>{item.getSource() ? item.getSource().getPathLabel() : ""}</td>
                     <td><a href="javascript:void(0)" onClick={()=>this.focusOnField(item)}>{item.getMessage()}</a></td>
                 </tr>
             );
@@ -43,6 +44,7 @@ export default class ErrorListComponent extends NeutronComponent {
             <table>
                 <thead>
                 <tr>
+                    <th width="20%">Source</th>
                     <th>Message</th>
                 </tr>
                 </thead>

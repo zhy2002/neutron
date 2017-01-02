@@ -52,7 +52,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     public String getRequiredMessage() {
-        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, defaultNodeLabel + " - Value is required");
+        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, "Value is required");
     }
 
     public void setRequiredMessage(String message) {

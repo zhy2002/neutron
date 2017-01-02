@@ -22,6 +22,7 @@ rootType:
     itemTypeName: PersonNode
     init:
     - {propertyName: selectedIndex, value: 0}
+    - {propertyName: nodeLabel, value: '"Person Applicant"'}
     properties:
     - {name: selectedIndex, externalTypeName: int, default: 0}
     rules:
@@ -145,6 +146,7 @@ rootType:
       - typeName: ContactNode
         baseTypeName: ObjectUiNode
         children: []
+
 
       - typeName: CurrentEmploymentNode
         baseTypeName: ObjectUiNode
