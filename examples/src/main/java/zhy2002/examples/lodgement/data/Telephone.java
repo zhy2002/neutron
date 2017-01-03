@@ -43,4 +43,25 @@ public class Telephone {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Telephone telephone = (Telephone) o;
+
+        if (countryCode != null ? !countryCode.equals(telephone.countryCode) : telephone.countryCode != null)
+            return false;
+        if (areaCode != null ? !areaCode.equals(telephone.areaCode) : telephone.areaCode != null) return false;
+        return phoneNumber != null ? phoneNumber.equals(telephone.phoneNumber) : telephone.phoneNumber == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = countryCode != null ? countryCode.hashCode() : 0;
+        result = 31 * result + (areaCode != null ? areaCode.hashCode() : 0);
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        return result;
+    }
 }

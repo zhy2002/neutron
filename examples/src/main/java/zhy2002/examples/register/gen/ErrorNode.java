@@ -57,4 +57,17 @@ public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
             return new ValidationError();
         return new ValidationError(value);
     }
+
+    private static ValidationError EMPTY_VALUE = new ValidationError();
+
+    @Override
+    public boolean hasValue() {
+        ValidationError value = getValue();
+        return value == null || value.equals(EMPTY_VALUE);
+    }
+
+    @Override
+    public Class<ValidationError> getValueClass() {
+    return ValidationError.class;
+    }
 }

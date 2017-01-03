@@ -1,28 +1,28 @@
-package zhy2002.neutron.rule;
+package zhy2002.neutron;
 
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.PredefinedEventSubjects;
-import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.node.StringUiNode;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Collection;
 import java.util.Collections;
 
-public class StringValueRequiredValidationRule extends ValidationRule<StringUiNode<?>> {
+public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?, ?>> {
 
-    public StringValueRequiredValidationRule(StringUiNode<?> owner) {
+    public LeafValueRequiredValidationRule(LeafUiNode<?, ?> owner) {
         super(owner);
     }
 
     @Override
     protected Collection<EventBinding> createEventBindings() {
+        StateChangeEvent<?> stateChangeEvent = getContext().createStateChangeEvent(getOwner(), "", getOwner().getValueClass(), null, null);
+
         return CollectionUtil.combine(
                 super.createEventBindings(),
-                new StringStateChangeEventBinding(e -> validate()),
+                new GenericStateChangeEventBinding<>(
+                        e -> validate(),
+                        stateChangeEvent.getClass()
+                ),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),
                         Collections.singletonList(PredefinedEventSubjects.REQUIRED)
@@ -38,6 +38,6 @@ public class StringValueRequiredValidationRule extends ValidationRule<StringUiNo
     @Override
     protected boolean isActivated() {
         Boolean required = getOwner().getRequired();
-        return Boolean.TRUE.equals(required) && ValueUtil.isEmpty(getOwner().getValue());
+        return Boolean.TRUE.equals(required) && !getOwner().hasValue();
     }
 }

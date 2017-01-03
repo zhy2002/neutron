@@ -65,16 +65,16 @@ public class ValidationError {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ValidationError error = (ValidationError) o;
+        ValidationError that = (ValidationError) o;
 
-        if (!origin.equals(error.origin)) return false;
-        return rule.equals(error.rule);
+        if (origin != null ? !origin.equals(that.origin) : that.origin != null) return false;
+        return rule != null ? rule.equals(that.rule) : that.rule == null;
     }
 
     @Override
     public int hashCode() {
-        int result = origin.hashCode();
-        result = 31 * result + rule.hashCode();
+        int result = origin != null ? origin.hashCode() : 0;
+        result = 31 * result + (rule != null ? rule.hashCode() : 0);
         return result;
     }
 }

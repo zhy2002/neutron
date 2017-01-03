@@ -137,6 +137,11 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         return hasValue;
     }
 
+    @Override
+    public Class<BigDecimal> getValueClass() {
+        return BigDecimal.class;
+    }
+
     public String getRangeMessage() {
         return getStateValue(PredefinedEventSubjects.RANGE_MESSAGE, "Value is out of range.");
     }

@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.*;
 import zhy2002.neutron.node.BigDecimalUiNode;
@@ -12,7 +13,7 @@ import java.util.*;
 /**
  * A simple mechanism to allow overriding implementation class.
  */
-public class ClassRegistryImpl implements ClassRegistry {
+public class  ClassRegistryImpl implements ClassRegistry {
     private final Map<Class<?>, Object> childNodeFactories = new HashMap<>();
     private final Map<Class<?>, Object> uiNodeRuleFactories = new HashMap<>();
     private final Map<Class<?>, List<UiNodeConfig<?>>> nodeConfigMap = new HashMap<>();
@@ -35,6 +36,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
         this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
         this.setStateChangeEventFactory(Integer.class, new IntegerStateChangeEventFactory());
+        this.setStateChangeEventFactory(ValidationError.class, ValidationErrorStateChangeEvent::new);
     }
 
     private void loadRuleFactories() {
@@ -66,10 +68,10 @@ public class ClassRegistryImpl implements ClassRegistry {
             }
         });
 
-        setUiNodeRuleFactory(StringValueRequiredValidationRule.class, new UiNodeRuleFactory<StringValueRequiredValidationRule, StringUiNode<?>>() {
+        setUiNodeRuleFactory(LeafValueRequiredValidationRule.class, new UiNodeRuleFactory<LeafValueRequiredValidationRule, LeafUiNode<?, ?>>() {
             @Override
-            public StringValueRequiredValidationRule create(StringUiNode<?> owner) {
-                return new StringValueRequiredValidationRule(owner);
+            public LeafValueRequiredValidationRule create(LeafUiNode<?, ?> owner) {
+                return new LeafValueRequiredValidationRule(owner);
             }
         });
     }

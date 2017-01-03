@@ -37,4 +37,17 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
             return new Telephone();
         return new Telephone(value);
     }
+
+    private static Telephone EMPTY_VALUE = new Telephone();
+
+    @Override
+    public boolean hasValue() {
+        Telephone value = getValue();
+        return value == null || value.equals(EMPTY_VALUE);
+    }
+
+    @Override
+    public Class<Telephone> getValueClass() {
+    return Telephone.class;
+    }
 }

@@ -129,5 +129,18 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
             return new ${valueTypeName}();
         return new ${valueTypeName}(value);
     }
+
+    private static ${valueTypeName} EMPTY_VALUE = new ${valueTypeName}();
+
+    @Override
+    public boolean hasValue() {
+        ${valueTypeName} value = getValue();
+        return value == null || value.equals(EMPTY_VALUE);
+    }
+
+    @Override
+    public Class<${valueTypeName}> getValueClass() {
+    return ${valueTypeName}.class;
+    }
 </#if>
 }

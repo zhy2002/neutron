@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.util.EnhancedLinkedList;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -39,11 +40,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setStateValue(PredefinedEventSubjects.VALUE, valueClass, value);
     }
 
-    @JsMethod
-    public T getCopyOfValue() {
-        throw new NotImplementedException();
-    }
-
     public abstract void setValue(T value);
 
     public void setRequired(Boolean required) {
@@ -64,9 +60,20 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, String.class, message);
     }
 
+    @JsMethod
     public boolean hasValue() {
         return getValue() != null;
     }
 
+    @JsMethod
+    public T getCopyOfValue() {
+        throw new NotImplementedException();
+    }
 
+    public abstract Class<T> getValueClass();
+
+    @Override
+    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
+        return super.createOwnRules().and(getContext().createUiNodeRule(LeafValueRequiredValidationRule.class, this));
+    }
 }

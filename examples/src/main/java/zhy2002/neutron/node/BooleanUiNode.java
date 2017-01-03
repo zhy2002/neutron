@@ -35,4 +35,9 @@ public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Bool
     public final void setValue(Boolean value) {
         setValue(Boolean.class, value);
     }
+
+    @Override
+    public Class<Boolean> getValueClass() {
+        return Boolean.class;
+    }
 }

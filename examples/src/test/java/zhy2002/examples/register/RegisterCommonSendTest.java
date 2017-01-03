@@ -10,7 +10,7 @@ import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.rule.StringValueRequiredValidationRule;
+import zhy2002.neutron.LeafValueRequiredValidationRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -256,15 +256,15 @@ public class RegisterCommonSendTest {
         EmailNode emailNode = registerNode.getEmailNode();
 
         assertThat(emailNode.getRequired(), equalTo(false));
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
         receiveOffersNode.setValue(Boolean.TRUE);
         assertThat(emailNode.getRequired(), equalTo(true));
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(true));
 
         receiveOffersNode.setValue(Boolean.FALSE);
         assertThat(emailNode.getRequired(), equalTo(false));
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
     }
 
@@ -296,7 +296,7 @@ public class RegisterCommonSendTest {
 
         registerNode.refresh();
 
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(true));
         ErrorNode errorNode = errorListNode.getItem(0);
         assertThat(errorNode.getMessage(), equalTo(PasswordIsStrongRuleImpl.WEAK_PASSWORD));
 
@@ -304,7 +304,7 @@ public class RegisterCommonSendTest {
         usernameNode.setValue("hello");
 
         assertThat(
-                hasError(node -> node.getRule() instanceof StringValueRequiredValidationRule && node.getSource() == usernameNode),
+                hasError(node -> node.getRule() instanceof LeafValueRequiredValidationRule && node.getSource() == usernameNode),
                 equalTo(false)
         );
 
@@ -357,13 +357,13 @@ public class RegisterCommonSendTest {
         ReceiveOffersNode receiveOffersNode = registerNode.getReceiveOffersNode();
         receiveOffersNode.setValue(Boolean.TRUE);
 
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
         emailNode.setValue("");
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(true));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(true));
 
         emailNode.setValue("a@a");
-        assertThat(hasError(StringValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
     }
 

@@ -14,4 +14,6 @@ public class RegisterCommonPostTest extends RegisterCommonSendTest {
         context.setEventMode(EngineEventMode.Post);
         return context;
     }
+
+    public void emailIsRequiredIfCleared(){}
 }

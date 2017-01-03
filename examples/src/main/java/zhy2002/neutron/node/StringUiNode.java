@@ -5,8 +5,8 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.rule.InvalidCharPreChangeRule;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.PatternValidationRule;
-import zhy2002.neutron.rule.StringValueRequiredValidationRule;
 import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.util.ValueUtil;
 
 /**
  * String leaf node.
@@ -39,6 +39,11 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     @Override
     public final void setValue(String value) {
         super.setValue(String.class, value);
+    }
+
+    @Override
+    public Class<String> getValueClass() {
+        return String.class;
     }
 
     public String getPattern() {
@@ -97,13 +102,18 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         setStateValue(PredefinedEventSubjects.PATTERN_MESSAGE, String.class, message);
     }
 
+    @Override
+    public boolean hasValue() {
+
+        String value = getValue();
+        return !ValueUtil.isEmpty(value);
+    }
 
     @Override
     protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
         return super.createOwnRules()
                 .and(getContext().createUiNodeRule(PatternValidationRule.class, this))
                 .and(getContext().createUiNodeRule(LengthValidationRule.class, this))
-                .and(getContext().createUiNodeRule(InvalidCharPreChangeRule.class, this))
-                .and(getContext().createUiNodeRule(StringValueRequiredValidationRule.class, this));
+                .and(getContext().createUiNodeRule(InvalidCharPreChangeRule.class, this));
     }
 }
