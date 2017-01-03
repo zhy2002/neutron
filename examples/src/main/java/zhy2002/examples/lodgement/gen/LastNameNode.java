@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class LastNameNode extends StringUiNode<GeneralNode>
 {
     protected LastNameNode(GeneralNode parent, String name) {
@@ -24,5 +23,6 @@ public  class LastNameNode extends StringUiNode<GeneralNode>
         setRequired(true);
         setPattern(ApplicationNodeConstants.NAME_PATTERN);
     }
+
 
 }

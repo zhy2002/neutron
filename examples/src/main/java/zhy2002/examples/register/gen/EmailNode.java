@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class EmailNode extends StringUiNode<RegisterNode>
 {
     protected EmailNode(RegisterNode parent, String name) {
@@ -43,4 +42,5 @@ public  class EmailNode extends StringUiNode<RegisterNode>
             .and(getContext().createUiNodeRule(EmailChangeReasonRule.class, this))
         ;
     }
+
 }

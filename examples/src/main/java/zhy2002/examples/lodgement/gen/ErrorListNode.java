@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,ErrorNode>
 {
     protected ErrorListNode(ApplicationNode parent, String name) {
@@ -38,4 +37,5 @@ public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Err
             .and(getContext().createUiNodeRule(ChangeFocusErrorRule.class, this))
         ;
     }
+
 }

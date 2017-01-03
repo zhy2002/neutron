@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class RepeatPasswordNode extends StringUiNode<RegisterNode>
 {
     protected RepeatPasswordNode(RegisterNode parent, String name) {
@@ -24,4 +23,5 @@ public  class RepeatPasswordNode extends StringUiNode<RegisterNode>
             .and(getContext().createUiNodeRule(RepeatPasswordRule.class, this))
         ;
     }
+
 }

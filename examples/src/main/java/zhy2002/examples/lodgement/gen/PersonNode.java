@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class PersonNode extends ObjectUiNode<PersonListNode>
 {
     private GeneralNode generalNode;
@@ -67,5 +66,6 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
             currentEmploymentNode
         );
     }
+
 
 }

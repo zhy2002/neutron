@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NeutronComponent from './NeutronComponent.jsx';
-import {orange500, blue500} from 'material-ui/styles/colors';
+import {blue500} from 'material-ui/styles/colors';
 
 
 const styles = {

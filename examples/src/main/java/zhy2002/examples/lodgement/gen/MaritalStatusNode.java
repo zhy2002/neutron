@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class MaritalStatusNode extends StringUiNode<GeneralNode>
 {
     protected MaritalStatusNode(GeneralNode parent, String name) {
@@ -34,5 +33,6 @@ public  class MaritalStatusNode extends StringUiNode<GeneralNode>
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
+
 
 }

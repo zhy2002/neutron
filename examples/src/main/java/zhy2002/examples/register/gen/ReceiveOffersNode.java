@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
 {
     protected ReceiveOffersNode(RegisterNode parent, String name) {
@@ -24,4 +23,5 @@ public  class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
             .and(getContext().createUiNodeRule(EmailIsRequiredWhenReceiveOffersRule.class, this))
         ;
     }
+
 }

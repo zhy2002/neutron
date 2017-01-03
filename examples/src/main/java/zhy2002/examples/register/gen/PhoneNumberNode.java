@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class PhoneNumberNode extends PhoneInfoFieldNode
 {
     protected PhoneNumberNode(PhoneInfoNode parent, String name) {
@@ -23,5 +22,6 @@ public  class PhoneNumberNode extends PhoneInfoFieldNode
 
         setRequiredMessage("Phone number is required.");
     }
+
 
 }

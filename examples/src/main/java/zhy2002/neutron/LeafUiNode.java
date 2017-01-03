@@ -39,6 +39,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setStateValue(PredefinedEventSubjects.VALUE, valueClass, value);
     }
 
+    @JsMethod
+    public T getCopyOfValue() {
+        throw new NotImplementedException();
+    }
+
     public abstract void setValue(T value);
 
     public void setRequired(Boolean required) {

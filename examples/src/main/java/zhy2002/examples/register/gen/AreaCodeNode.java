@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class AreaCodeNode extends PhoneInfoFieldNode
 {
     protected AreaCodeNode(PhoneInfoNode parent, String name) {
@@ -23,5 +22,6 @@ public  class AreaCodeNode extends PhoneInfoFieldNode
 
         setRequiredMessage("Area code is required.");
     }
+
 
 }

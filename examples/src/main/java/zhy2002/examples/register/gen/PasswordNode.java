@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class PasswordNode extends StringUiNode<RegisterNode>
 {
     protected PasswordNode(RegisterNode parent, String name) {
@@ -34,4 +33,5 @@ public  class PasswordNode extends StringUiNode<RegisterNode>
             .and(getContext().createUiNodeRule(PasswordIsStrongRule.class, this))
         ;
     }
+
 }

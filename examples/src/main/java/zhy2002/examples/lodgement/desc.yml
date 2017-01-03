@@ -145,8 +145,12 @@ rootType:
 
       - typeName: ContactNode
         baseTypeName: ObjectUiNode
-        children: []
-
+        children:
+        - {typeName: ContactTelephoneNode, name: HomePhoneNode}
+        - {typeName: ContactTelephoneNode, name: WorkPhoneNode}
+        childTypes:
+        - typeName: ContactTelephoneNode
+          baseTypeName: TelephoneNode
 
       - typeName: CurrentEmploymentNode
         baseTypeName: ObjectUiNode
@@ -200,4 +204,13 @@ rootType:
       - {name: message, typeName: String}
       - {name: rule, typeName: 'UiNodeRule<?>', jsIgnore: true}
 
-
+#nodes that do not know the concrete type of their parent
+commonTypes:
+- typeName: TelephoneNode
+  baseTypeName: LeafUiNode
+  valueTypeName: Telephone
+  generateEvent: true
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  rules:
+  - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}

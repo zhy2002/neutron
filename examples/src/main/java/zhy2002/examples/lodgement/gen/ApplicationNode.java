@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
 {
     private PersonListNode personListNode;
@@ -109,4 +108,5 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
             .and(getContext().createUiNodeRule(ShowErrorListRule.class, this))
         ;
     }
+
 }

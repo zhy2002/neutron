@@ -1,6 +1,6 @@
 package zhy2002.examples.register.gen;
 
-import zhy2002.neutron.ChildNodeFactory;
+import zhy2002.neutron.*;
 
 public class PhoneNumberNodeFactory implements ChildNodeFactory<PhoneNumberNode, PhoneInfoNode> {
 

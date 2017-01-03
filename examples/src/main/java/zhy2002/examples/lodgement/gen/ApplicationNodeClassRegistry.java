@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.gen;
 
 import zhy2002.examples.lodgement.gen.event.*;
+import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.event.*;
@@ -18,6 +19,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
+        loadStateChangeEventFactories();
     }
 
     private void loadChildNodeFactories() {
@@ -36,6 +38,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(FirstHomeBuyerFlagNode.class, new FirstHomeBuyerFlagNodeFactory());
         setChildNodeFactory(HousingStatusNode.class, new HousingStatusNodeFactory());
         setChildNodeFactory(GeneralNode.class, new GeneralNodeFactory());
+        setChildNodeFactory(ContactTelephoneNode.class, new ContactTelephoneNodeFactory());
         setChildNodeFactory(ContactNode.class, new ContactNodeFactory());
         setChildNodeFactory(CurrentEmploymentNode.class, new CurrentEmploymentNodeFactory());
         setChildNodeFactory(PersonNode.class, new PersonNodeFactory());
@@ -73,4 +76,8 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     private void loadNodeUnloadEventFactories() {
         super.setNodeUnloadEventFactory(ApplicationNode.class, ApplicationNodeUnloadEvent::new);
     }
+
+private void loadStateChangeEventFactories() {
+    super.setStateChangeEventFactory(Telephone.class, TelephoneStateChangeEvent::new);
+}
 }

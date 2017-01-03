@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class DateOfBirthNode extends StringUiNode<GeneralNode>
 {
     protected DateOfBirthNode(GeneralNode parent, String name) {
@@ -23,5 +22,6 @@ public  class DateOfBirthNode extends StringUiNode<GeneralNode>
 
         setRequired(true);
     }
+
 
 }

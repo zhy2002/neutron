@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.config;
 
+import zhy2002.examples.lodgement.gen.TelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.UiNodeRuleFactory;
 
 
 public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
@@ -23,5 +25,11 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(UpdateSelectedIndexRule.class, UpdateSelectedIndexRuleImpl::new);
         setUiNodeRuleFactory(ChangeFocusErrorRule.class, ChangeFocusErrorRuleImpl::new);
         setUiNodeRuleFactory(TitleGenderMatchRule.class, TitleGenderMatchRuleImpl::new);
+        setUiNodeRuleFactory(TelephoneCompleteRule.class, new UiNodeRuleFactory<TelephoneCompleteRule, TelephoneNode<?>>() {
+            @Override
+            public TelephoneCompleteRule create(TelephoneNode<?> owner) {
+                return new TelephoneCompleteRuleImpl(owner);
+            }
+        });
     }
 }

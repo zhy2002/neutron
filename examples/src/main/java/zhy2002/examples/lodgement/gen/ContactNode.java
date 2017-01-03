@@ -10,21 +10,37 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class ContactNode extends ObjectUiNode<PersonNode>
 {
+    private ContactTelephoneNode HomePhoneNode;
+    private ContactTelephoneNode WorkPhoneNode;
 
     protected ContactNode(PersonNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public ContactTelephoneNode getHomePhoneNode() {
+        return HomePhoneNode;
+    }
+
+    @JsMethod
+    public ContactTelephoneNode getWorkPhoneNode() {
+        return WorkPhoneNode;
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         UiNodeContext<?> context = getContext();
 
+        HomePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "HomePhoneNode");
+        WorkPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "WorkPhoneNode");
 
         return Arrays.asList(
+            HomePhoneNode,
+            WorkPhoneNode
         );
     }
+
 
 }

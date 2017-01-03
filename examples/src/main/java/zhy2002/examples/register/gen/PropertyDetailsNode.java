@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
 {
     private PropertyAddressNode propertyAddressNode;
@@ -52,5 +51,6 @@ public  class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
             propertyStateNode
         );
     }
+
 
 }

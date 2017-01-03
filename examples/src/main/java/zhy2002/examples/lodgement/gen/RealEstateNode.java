@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
 {
 
@@ -26,5 +25,6 @@ public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
         return Arrays.asList(
         );
     }
+
 
 }

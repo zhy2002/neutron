@@ -5,40 +5,32 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.yaml.snakeyaml.Yaml;
-import zhy2002.neutron.data.DomainDescription;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Used to generate a neutron node structure.
+ * Used to generateFile a neutron node structure.
  */
-public class CodeGenerator {
+class CodeGenerator {
 
     private Configuration configuration;
 
-    public CodeGenerator() {
+    CodeGenerator() {
         configuration = createTemplateConfiguration();
     }
 
-    public void generate(String defFile, String targetDirectory) {
+    void generateFile(String defFile, String targetDirectory) {
 
         try {
-            Object root = new Yaml().load(new FileInputStream(defFile));
-
-            Path directory = Paths.get(targetDirectory);
-            if (deleteDir(directory.toFile())) {
-                Files.createDirectories(directory);
-            } else {
-                throw new RuntimeException("Cannot delete generated directory: " + directory);
-            }
-
-            DomainDescription domainDescription = extractDomain(root);
+            DomainDescription domainDescription = extractDomain(defFile);
+            CodeGenUtil.clearDirectory(targetDirectory);
 
             Template nodeTemplate = configuration.getTemplate("node.ftl");
             Template nodeFactoryTemplate = configuration.getTemplate("node_factory.ftl");
@@ -46,73 +38,83 @@ public class CodeGenerator {
             Template nodeUnloadEventTemplate = configuration.getTemplate("unload_event.ftl");
             Template nodeAddEventTemplate = configuration.getTemplate("add_event.ftl");
             Template nodeRemoveEventTemplate = configuration.getTemplate("remove_event.ftl");
+            Template changeEventTemplate = configuration.getTemplate("change_event.ftl");
+            Template ruleTemplate = configuration.getTemplate("rule.ftl");
+            Template registryTemplate = configuration.getTemplate("registry.ftl");
             Template contextTemplate = configuration.getTemplate("context.ftl");
 
             List<Object> childNodes = new ArrayList<>();
             List<Object> addEventNodes = new ArrayList<>();
             List<Object> loadEventNodes = new ArrayList<>();
+            List<Object> changeEventNodes = new ArrayList<>();
 
             for (Map<String, Object> nodeDescription : domainDescription.getNodeList()) {
-                generate(targetDirectory, nodeDescription, nodeTemplate, "");
+                generateFile(targetDirectory, nodeDescription, nodeTemplate, "", "");
                 if (nodeDescription.get("parent") != null && Boolean.FALSE.equals(nodeDescription.get("isAbstract"))) {
-                    generate(targetDirectory, nodeDescription, nodeFactoryTemplate, "", "Factory");
+                    generateFile(targetDirectory, nodeDescription, nodeFactoryTemplate, "", "Factory");
                     childNodes.add(nodeDescription);
                 }
 
                 if (Boolean.TRUE.equals(nodeDescription.get("canLoad"))) {
-                    generate(targetDirectory, nodeDescription, nodeLoadEventTemplate, "event", "LoadEvent");
-                    generate(targetDirectory, nodeDescription, nodeUnloadEventTemplate, "event", "UnloadEvent");
+                    generateFile(targetDirectory, nodeDescription, nodeLoadEventTemplate, "event", "LoadEvent");
+                    generateFile(targetDirectory, nodeDescription, nodeUnloadEventTemplate, "event", "UnloadEvent");
                     loadEventNodes.add(nodeDescription);
                 }
 
                 if (nodeDescription.get("parent") != null && nodeDescription.get("typeName").equals(((Map<String, Object>) nodeDescription.get("parent")).get("itemTypeName"))) {
-                    generate(targetDirectory, nodeDescription, nodeAddEventTemplate, "event", "AddEvent");
-                    generate(targetDirectory, nodeDescription, nodeRemoveEventTemplate, "event", "RemoveEvent");
+                    generateFile(targetDirectory, nodeDescription, nodeAddEventTemplate, "event", "AddEvent");
+                    generateFile(targetDirectory, nodeDescription, nodeRemoveEventTemplate, "event", "RemoveEvent");
                     addEventNodes.add(nodeDescription);
                 }
 
-                if (nodeDescription.get("parent") == null) {
-                    generate(targetDirectory, nodeDescription, contextTemplate, "", "Context");
+                if(nodeDescription.get("valueTypeName") != null && Boolean.TRUE.equals(nodeDescription.get("generateEvent"))) {
+
+                    Map<String, Object> eventDescription = new HashMap<>();
+                    eventDescription.put("typeName", nodeDescription.get("valueTypeName"));
+                    eventDescription.put("targetPackage", nodeDescription.get("targetPackage"));
+                    generateFile(targetDirectory, eventDescription, changeEventTemplate, "event", "StateChangeEvent");
+                    changeEventNodes.add(nodeDescription);
                 }
+
+                if (nodeDescription.get("parent") == null) {
+                    generateFile(targetDirectory, nodeDescription, contextTemplate, "", "Context");
+                }
+
+
             }
 
-            domainDescription.addRegistryList("childNodes", childNodes);
-            domainDescription.addRegistryList("addEventNodes", addEventNodes);
-            domainDescription.addRegistryList("loadEventNodes", loadEventNodes);
-
-            Template registryTemplate = configuration.getTemplate("registry.ftl");
-            generate(targetDirectory, domainDescription.getRegistryDescription(), registryTemplate, "", "ClassRegistry");
-
-            Template ruleTemplate = configuration.getTemplate("rule.ftl");
             for (Map<String, Object> ruleDescription : domainDescription.getRuleList()) {
-                generate(targetDirectory, ruleDescription, ruleTemplate, "rule");
+                generateFile(targetDirectory, ruleDescription, ruleTemplate, "rule", "");
             }
+
+            Map<String, Object> registryDescription = domainDescription.getRegistryDescription();
+            registryDescription.put("childNodes", childNodes);
+            registryDescription.put("addEventNodes", addEventNodes);
+            registryDescription.put("loadEventNodes", loadEventNodes);
+            registryDescription.put("changeEventNodes", changeEventNodes);
+            generateFile(targetDirectory, registryDescription, registryTemplate, "", "ClassRegistry");
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private void generate(String targetDirectory, Map<String, Object> description, Template template, String relativePath)
-            throws IOException, TemplateException {
-        generate(targetDirectory, description, template, relativePath, "");
-    }
-
-    private void generate(String targetDirectory, Map<String, ?> nodeDescription, Template nodeTemplate, String relativePath, String typeSuffix)
+    private void generateFile(String targetDirectory, Map<String, ?> data, Template nodeTemplate, String relativePath, String typeSuffix)
             throws IOException, TemplateException {
         Path directory = Paths.get(targetDirectory, relativePath);
         Files.createDirectories(directory);
-        String fileName = nodeDescription.get("typeName") + typeSuffix + ".java";
+        String fileName = data.get("typeName") + typeSuffix + ".java";
         Path filePath = directory.resolve(fileName);
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath.toFile())) {
-            nodeTemplate.process(nodeDescription, new OutputStreamWriter(fileOutputStream));
+            nodeTemplate.process(data, new OutputStreamWriter(fileOutputStream));
         }
     }
 
     @SuppressWarnings("unchecked")
-    private DomainDescription extractDomain(Object data) {
+    private DomainDescription extractDomain(String defFile) throws IOException {
+        Object def = new Yaml().load(new FileInputStream(defFile));
         DomainDescription domainDescription = new DomainDescription();
-        domainDescription.load((Map<String, Object>) data);
+        domainDescription.load((Map<String, Object>) def);
         return domainDescription;
     }
 
@@ -133,17 +135,4 @@ public class CodeGenerator {
     }
 
 
-    private static boolean deleteDir(File file) {
-        if (!file.exists())
-            return true;
-
-        File[] contents = file.listFiles();
-        if (contents != null) {
-            for (File f : contents) {
-                if (!deleteDir(f))
-                    return false;
-            }
-        }
-        return file.delete();
-    }
 }

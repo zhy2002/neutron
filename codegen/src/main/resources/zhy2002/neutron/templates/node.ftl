@@ -13,8 +13,7 @@ import ${targetPackage}.data.*;
 import ${targetPackage}.gen.rule.*;
 </#if>
 
-
-public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
+public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName?? && isAbstract??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
 <#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>
 <#else><#if parentTypeName??><${parentTypeName}></#if>
 </#if>{
@@ -119,6 +118,16 @@ public <#if isAbstract>abstract</#if> class ${typeName} extends ${baseTypeName}<
             .and(getContext().createUiNodeRule(${rule.typeName}.class, this))
     </#list>
         ;
+    }
+</#if>
+
+<#if valueTypeName??>
+    @Override
+    public ${valueTypeName} getCopyOfValue() {
+        ${valueTypeName} value = getValue();
+        if(value == null)
+            return new ${valueTypeName}();
+        return new ${valueTypeName}(value);
     }
 </#if>
 }

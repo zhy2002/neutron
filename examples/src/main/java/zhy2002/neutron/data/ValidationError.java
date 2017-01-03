@@ -5,12 +5,20 @@ import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
 
 public class ValidationError {
+
     private UiNode<?> origin;
     private String message;
     private UiNodeRule rule;
     private UiNode<?> errorNode;
 
-    public ValidationError() {}
+    public ValidationError() {
+    }
+
+    public ValidationError(ValidationError error) {
+        this.origin = error.origin;
+        this.message = error.message;
+        this.rule = error.rule;
+    }
 
     public ValidationError(UiNode<?> origin, String message, UiNodeRule rule) {
         this.origin = origin;

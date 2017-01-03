@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,PersonNode>
 {
     protected PersonListNode(ApplicationNode parent, String name) {
@@ -27,6 +26,7 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
         super.initializeState();
 
         setSelectedIndex(0);
+        setNodeLabel("Person Applicant");
     }
 
     @JsMethod
@@ -45,4 +45,5 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
             .and(getContext().createUiNodeRule(UpdateSelectedIndexRule.class, this))
         ;
     }
+
 }

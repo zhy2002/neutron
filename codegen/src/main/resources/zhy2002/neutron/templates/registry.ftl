@@ -1,6 +1,7 @@
 package ${targetPackage}.gen;
 
 import ${targetPackage}.gen.event.*;
+import ${targetPackage}.data.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.event.*;
@@ -18,6 +19,7 @@ class ${contextName}ClassRegistry extends ClassRegistryImpl {
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
+        loadStateChangeEventFactories();
     }
 
     private void loadChildNodeFactories() {
@@ -49,4 +51,10 @@ class ${contextName}ClassRegistry extends ClassRegistryImpl {
         super.setNodeUnloadEventFactory(${node.typeName}.class, ${node.typeName}UnloadEvent::new);
 </#list>
     }
+
+private void loadStateChangeEventFactories() {
+<#list changeEventNodes as node>
+    super.setStateChangeEventFactory(${node.valueTypeName}.class, ${node.valueTypeName}StateChangeEvent::new);
+</#list>
+}
 }

@@ -10,11 +10,11 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class PropertyAddressNode extends StringUiNode<PropertyDetailsNode>
 {
     protected PropertyAddressNode(PropertyDetailsNode parent, String name) {
         super(parent, name);
     }
+
 
 }

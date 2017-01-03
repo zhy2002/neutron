@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class SubmissionNode extends ObjectUiNode<ApplicationNode>
 {
 
@@ -26,5 +25,6 @@ public  class SubmissionNode extends ObjectUiNode<ApplicationNode>
         return Arrays.asList(
         );
     }
+
 
 }

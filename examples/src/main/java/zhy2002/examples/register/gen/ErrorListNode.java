@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNode>
 {
     protected ErrorListNode(RegisterNode parent, String name) {
@@ -20,5 +19,6 @@ public  class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorN
     public Class<ErrorNode> getItemClass() {
         return ErrorNode.class;
     }
+
 
 }

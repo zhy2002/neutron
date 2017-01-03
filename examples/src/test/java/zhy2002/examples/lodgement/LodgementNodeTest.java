@@ -2,7 +2,9 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 
 import java.util.function.Predicate;
@@ -96,12 +98,39 @@ public class LodgementNodeTest {
 
     }
 
+    @Test
+    public void phoneInfoShouldBeComplete() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        TelephoneNode<?> phoneNumberNode = personNode.getContactNode().getHomePhoneNode();
+
+        Predicate<ErrorNode> hasTelephoneCompleteError = errorNode -> errorNode.getRule() instanceof TelephoneCompleteRule;
+
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(false));
+
+        phoneNumberNode.setValue(new Telephone());
+
+        Telephone newValue = phoneNumberNode.getCopyOfValue();
+        newValue.setCountryCode("61");
+        phoneNumberNode.setValue(newValue);
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(true));
+
+        newValue = phoneNumberNode.getCopyOfValue();
+        newValue.setAreaCode("2");
+        phoneNumberNode.setValue(newValue);
+
+        newValue = phoneNumberNode.getCopyOfValue();
+        newValue.setPhoneNumber("119");
+        phoneNumberNode.setValue(newValue);
+
+    }
+
     private boolean hasError(Predicate<ErrorNode> predicate) {
 
         ErrorListNode errorListNode = applicationNode.getErrorListNode();
-        for(int i=0; i<errorListNode.getItemCount(); i++) {
+        for (int i = 0; i < errorListNode.getItemCount(); i++) {
             ErrorNode errorNode = errorListNode.getItem(i);
-            if(predicate.test(errorNode))
+            if (predicate.test(errorNode))
                 return true;
         }
         return false;

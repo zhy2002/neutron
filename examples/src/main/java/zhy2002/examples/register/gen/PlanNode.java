@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class PlanNode extends StringUiNode<RegisterNode>
 {
     protected PlanNode(RegisterNode parent, String name) {
@@ -33,5 +32,6 @@ public  class PlanNode extends StringUiNode<RegisterNode>
     public void setOptions(Object value) {
         setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
+
 
 }

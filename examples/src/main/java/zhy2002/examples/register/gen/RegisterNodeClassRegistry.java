@@ -1,6 +1,7 @@
 package zhy2002.examples.register.gen;
 
 import zhy2002.examples.register.gen.event.*;
+import zhy2002.examples.register.data.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.event.*;
@@ -18,6 +19,7 @@ class RegisterNodeClassRegistry extends ClassRegistryImpl {
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
+        loadStateChangeEventFactories();
     }
 
     private void loadChildNodeFactories() {
@@ -57,4 +59,7 @@ class RegisterNodeClassRegistry extends ClassRegistryImpl {
         super.setNodeUnloadEventFactory(PropertyDetailsNode.class, PropertyDetailsNodeUnloadEvent::new);
         super.setNodeUnloadEventFactory(RegisterNode.class, RegisterNodeUnloadEvent::new);
     }
+
+private void loadStateChangeEventFactories() {
+}
 }

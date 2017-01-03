@@ -10,11 +10,11 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public abstract class PhoneInfoFieldNode extends StringUiNode<PhoneInfoNode>
 {
     protected PhoneInfoFieldNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
+
 
 }

@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class CountryCodeNode extends PhoneInfoFieldNode
 {
     protected CountryCodeNode(PhoneInfoNode parent, String name) {
@@ -23,5 +22,6 @@ public  class CountryCodeNode extends PhoneInfoFieldNode
 
         setRequiredMessage("Country code is required.");
     }
+
 
 }

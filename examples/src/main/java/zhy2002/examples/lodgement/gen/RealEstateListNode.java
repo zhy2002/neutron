@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateListNode,RealEstateNode>
 {
     protected RealEstateListNode(ApplicationNode parent, String name) {
@@ -20,5 +19,6 @@ public  class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLi
     public Class<RealEstateNode> getItemClass() {
         return RealEstateNode.class;
     }
+
 
 }

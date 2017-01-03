@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class RegisterNode extends ObjectUiNode<VoidUiNode>
 {
     private UsernameNode usernameNode;
@@ -141,4 +140,5 @@ public  class RegisterNode extends ObjectUiNode<VoidUiNode>
             .and(getContext().createUiNodeRule(CreateErrorNodeRule.class, this))
         ;
     }
+
 }

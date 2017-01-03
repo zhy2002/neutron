@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class FirstHomeBuyerFlagNode extends BooleanUiNode<GeneralNode>
 {
     protected FirstHomeBuyerFlagNode(GeneralNode parent, String name) {
@@ -23,5 +22,6 @@ public  class FirstHomeBuyerFlagNode extends BooleanUiNode<GeneralNode>
 
         setRequired(true);
     }
+
 
 }

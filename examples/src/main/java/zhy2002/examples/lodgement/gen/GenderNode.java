@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class GenderNode extends StringUiNode<GeneralNode>
 {
     protected GenderNode(GeneralNode parent, String name) {
@@ -34,5 +33,6 @@ public  class GenderNode extends StringUiNode<GeneralNode>
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
+
 
 }

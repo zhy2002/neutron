@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-
 public  class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
 {
     protected PropertyStateNode(PropertyDetailsNode parent, String name) {
@@ -35,5 +34,6 @@ public  class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
     public void setOptions(Object value) {
         setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
+
 
 }

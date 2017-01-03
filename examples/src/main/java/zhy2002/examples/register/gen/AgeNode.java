@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-
 public  class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
     protected AgeNode(RegisterNode parent, String name) {
@@ -33,4 +32,5 @@ public  class AgeNode extends BigDecimalUiNode<RegisterNode>
             .and(getContext().createUiNodeRule(UpdatePlanRule.class, this))
         ;
     }
+
 }

@@ -5,13 +5,13 @@ import java.util.*;
 import ${targetPackage}.gen.*;
 
 
-public abstract class ${typeName} extends ${baseTypeName}<${ownerTypeName}> {
+public abstract class ${typeName} extends ${baseTypeName}<${parentTypeName}> {
 
-    public ${typeName}(${ownerTypeName} owner) {
+    public ${typeName}(${parentTypeName} owner) {
         super(owner);
     }
 
-    protected ${ownerTypeName} get${ownerTypeName}() {
+    protected ${parentTypeName} get${ownerTypeName}() {
         return getOwner();
     }
 }

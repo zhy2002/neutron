@@ -11,7 +11,6 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
 {
     protected PrimaryApplicantFlagNode(GeneralNode parent, String name) {
@@ -24,4 +23,5 @@ public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
             .and(getContext().createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this))
         ;
     }
+
 }

@@ -10,7 +10,6 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-
 public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
     protected ErrorNode(ErrorListNode parent, String name) {
@@ -49,5 +48,13 @@ public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
     @JsIgnore
     public void setRule(UiNodeRule<?> value) {
         getValue().setRule(value);
+    }
+
+    @Override
+    public ValidationError getCopyOfValue() {
+        ValidationError value = getValue();
+        if(value == null)
+            return new ValidationError();
+        return new ValidationError(value);
     }
 }

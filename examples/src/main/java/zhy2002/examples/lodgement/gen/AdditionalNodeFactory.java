@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.gen;
 
-import zhy2002.neutron.ChildNodeFactory;
+import zhy2002.neutron.*;
 
 public class AdditionalNodeFactory implements ChildNodeFactory<AdditionalNode, ApplicationNode> {
 
