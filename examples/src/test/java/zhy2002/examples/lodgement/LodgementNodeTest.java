@@ -6,6 +6,7 @@ import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
+import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 
 import java.util.function.Predicate;
 
@@ -134,5 +135,23 @@ public class LodgementNodeTest {
                 return true;
         }
         return false;
+    }
+
+    @Test
+    public void oneOfHomePhoneOrWorkPhoneIsRequired() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        ContactNode contactNode = personNode.getContactNode();
+
+        assertThat(contactNode.getHomePhoneNode().getRequired(), equalTo(true));
+        assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(true));
+
+        Telephone telephone = new Telephone();
+        telephone.setPhoneNumber("123345");
+        contactNode.getHomePhoneNode().setValue(telephone);
+
+        assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(false));
+
+        assertThat(hasError(errorNode -> errorNode.getRule() instanceof LeafValueRequiredValidationRule), equalTo(false));
     }
 }

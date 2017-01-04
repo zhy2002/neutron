@@ -2,16 +2,18 @@ package zhy2002.examples.lodgement.data;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
+import zhy2002.neutron.util.ValueUtil;
 
 @JsType
 public class Telephone {
 
-    private String countryCode;
-    private String areaCode;
-    private String phoneNumber;
+    private String countryCode = "";
+    private String areaCode = "";
+    private String phoneNumber = "";
 
     @JsIgnore
-    public Telephone() {}
+    public Telephone() {
+    }
 
     @JsIgnore
     public Telephone(Telephone original) {
@@ -25,7 +27,7 @@ public class Telephone {
     }
 
     public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+        this.countryCode = ValueUtil.ifNull(countryCode, "");
     }
 
     public String getAreaCode() {
@@ -33,7 +35,7 @@ public class Telephone {
     }
 
     public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+        this.areaCode = ValueUtil.ifNull(areaCode, "");
     }
 
     public String getPhoneNumber() {
@@ -41,7 +43,7 @@ public class Telephone {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = ValueUtil.ifNull(phoneNumber, "");
     }
 
     @Override

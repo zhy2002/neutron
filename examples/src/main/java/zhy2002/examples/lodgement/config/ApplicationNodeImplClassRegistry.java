@@ -1,5 +1,6 @@
 package zhy2002.examples.lodgement.config;
 
+import zhy2002.examples.lodgement.gen.ContactNode;
 import zhy2002.examples.lodgement.gen.TelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.impl.*;
@@ -31,5 +32,6 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
                 return new TelephoneCompleteRuleImpl(owner);
             }
         });
+        setUiNodeRuleFactory(HomeOrWorkPhoneRequiredRule.class, HomeOrWorkPhoneRequiredRuleImpl::new);
     }
 }

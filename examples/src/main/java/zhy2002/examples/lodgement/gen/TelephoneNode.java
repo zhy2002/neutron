@@ -45,7 +45,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     @Override
     public boolean hasValue() {
         Telephone value = getValue();
-        return value == null || value.equals(EMPTY_VALUE);
+        return value != null && !value.equals(EMPTY_VALUE);
     }
 
     @Override

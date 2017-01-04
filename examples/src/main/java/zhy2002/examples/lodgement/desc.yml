@@ -145,6 +145,8 @@ rootType:
 
       - typeName: ContactNode
         baseTypeName: ObjectUiNode
+        rules:
+        - {typeName: HomeOrWorkPhoneRequiredRule}
         children:
         - {typeName: ContactTelephoneNode, name: HomePhoneNode}
         - {typeName: ContactTelephoneNode, name: WorkPhoneNode}

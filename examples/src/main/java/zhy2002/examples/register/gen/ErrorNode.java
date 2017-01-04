@@ -63,7 +63,7 @@ public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
     @Override
     public boolean hasValue() {
         ValidationError value = getValue();
-        return value == null || value.equals(EMPTY_VALUE);
+        return value != null && !value.equals(EMPTY_VALUE);
     }
 
     @Override

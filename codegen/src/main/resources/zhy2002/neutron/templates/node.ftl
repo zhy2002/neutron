@@ -137,7 +137,7 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     @Override
     public boolean hasValue() {
         ${valueTypeName} value = getValue();
-        return value == null || value.equals(EMPTY_VALUE);
+        return value != null && !value.equals(EMPTY_VALUE);
     }
 
     @Override

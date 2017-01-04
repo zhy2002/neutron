@@ -248,7 +248,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * @return true if changes should be applied directly (i.e. bypass event processing).
      */
     final boolean shouldChangeWithoutEvent() {
-        if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
+        if (this.getNodeStatus() != NodeStatusEnum.Loaded || this.getParent() != null && this.getParent().getNodeStatus() != NodeStatusEnum.Loaded) {
             return true;
         }
 
@@ -322,12 +322,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
 
         initializeState();
-        loadRules();
-        doLoad();
 
+        doLoad();
         if (statusListener != null) {
             statusListener.onLoaded();
         }
+
+        loadRules();
+
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
