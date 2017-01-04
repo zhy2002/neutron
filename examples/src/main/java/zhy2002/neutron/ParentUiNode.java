@@ -15,12 +15,12 @@ import java.util.Map;
 public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> {
 
     /**
-     * Support find children by index.
+     * Support finding children by index.
      */
     private final List<UiNode<?>> children = new ArrayList<>();
 
     /**
-     * Support find children by name.
+     * Support finding children by name.
      */
     private final Map<String, UiNode<?>> childrenMap = new HashMap<>();
 
@@ -32,19 +32,19 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         super(context);
     }
 
-    int indexOf(UiNode<?> child) {
+    final int indexOf(UiNode<?> child) {
         return children.indexOf(child);
     }
 
-    protected UiNode<?> getChild(String name) {
+    final UiNode<?> getChild(String name) {
         return childrenMap.get(name);
     }
 
-    protected UiNode<?> getChild(int index) {
+    final UiNode<?> getChild(int index) {
         return children.get(index);
     }
 
-    void addChild(UiNode<?> child) {
+    final void addChild(UiNode<?> child) {
         if (child.getParent() != this)
             throw new ParentMismatchException(this, child);
         if (childrenMap.get(child.getName()) != null)
@@ -54,13 +54,13 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         childrenMap.put(child.getName(), child);
     }
 
-    void removeChild(UiNode<?> child) {
+    final void removeChild(UiNode<?> child) {
         childrenMap.remove(child.getName());
         children.remove(child);
     }
 
     @JsMethod
-    public UiNode<?>[] getChildren() {
+    public final UiNode<?>[] getChildren() {
         UiNode<?>[] result = new UiNode[getChildCount()];
         this.children.toArray(result);
         return result;

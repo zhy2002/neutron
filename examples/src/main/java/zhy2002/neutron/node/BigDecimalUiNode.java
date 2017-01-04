@@ -20,8 +20,8 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         if (t != null && t.matches("^\\d+(\\.\\d+)?$"))
             return new BigDecimal(t);
         return null;
-
     };
+
     private static final ValueFormatter<BigDecimal> DEFAULT_FORMATTER = (v) -> v == null ? "" : v.toString();
 
     private ValueParser<BigDecimal> parser;
@@ -34,16 +34,9 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         init();
     }
 
-    protected BigDecimalUiNode(@NotNull AbstractUiNodeContext context) {
-        super(context);
-
-        init();
-    }
-
     private void init() {
         this.setText("");
     }
-
 
     public ValueParser<BigDecimal> getParser() {
         return parser == null ? DEFAULT_PARSER : parser;
@@ -59,24 +52,6 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     public void setFormatter(ValueFormatter<BigDecimal> formatter) {
         this.formatter = formatter;
-    }
-
-    @JsMethod
-    public BigDecimal getMinValue() {
-        return super.getStateValue(NeutronEventSubjects.MIN_VALUE);
-    }
-
-    public void setMinValue(BigDecimal value) {
-        super.setStateValue(NeutronEventSubjects.MIN_VALUE, BigDecimal.class, value);
-    }
-
-    @JsMethod
-    public BigDecimal getMaxValue() {
-        return super.getStateValue(NeutronEventSubjects.MAX_VALUE);
-    }
-
-    public void setMaxValue(BigDecimal value) {
-        super.setStateValue(NeutronEventSubjects.MAX_VALUE, BigDecimal.class, value);
     }
 
     @JsMethod
@@ -143,6 +118,14 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         return BigDecimal.class;
     }
 
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(RangeValidationRule.class, this));
+    }
+
     public String getRangeMessage() {
         return getStateValue(NeutronEventSubjects.RANGE_MESSAGE, "Value is out of range.");
     }
@@ -151,11 +134,19 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         setStateValue(NeutronEventSubjects.RANGE_MESSAGE, String.class, message);
     }
 
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
+    public BigDecimal getMinValue() {
+        return super.getStateValue(NeutronEventSubjects.MIN_VALUE);
+    }
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(RangeValidationRule.class, this));
+    public void setMinValue(BigDecimal value) {
+        super.setStateValue(NeutronEventSubjects.MIN_VALUE, BigDecimal.class, value);
+    }
+
+    public BigDecimal getMaxValue() {
+        return super.getStateValue(NeutronEventSubjects.MAX_VALUE);
+    }
+
+    public void setMaxValue(BigDecimal value) {
+        super.setStateValue(NeutronEventSubjects.MAX_VALUE, BigDecimal.class, value);
     }
 }

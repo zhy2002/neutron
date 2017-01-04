@@ -22,12 +22,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         init();
     }
 
-    protected StringUiNode(AbstractUiNodeContext context) {
-        super(context);
-
-        init();
-    }
-
     private void init() {
         setChangeTrackingMode(NeutronEventSubjects.VALUE, ChangeTrackingModeEnum.Value);
         this.setValue("");
@@ -44,8 +38,25 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     @Override
+    public boolean hasValue() {
+
+        String value = getValue();
+        return !ValueUtil.isEmpty(value);
+    }
+
+    @Override
     public Class<String> getValueClass() {
         return String.class;
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(PatternValidationRule.class, this));
+        createdRules.add(context.createUiNodeRule(LengthValidationRule.class, this));
+        createdRules.add(context.createUiNodeRule(InvalidCharPreChangeRule.class, this));
     }
 
     public String getPattern() {
@@ -54,6 +65,14 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     public void setPattern(String value) {
         super.setStateValue(NeutronEventSubjects.PATTERN, String.class, value);
+    }
+
+    public String getPatternMessage() {
+        return getStateValue(NeutronEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
+    }
+
+    public void setPatternMessage(String message) {
+        setStateValue(NeutronEventSubjects.PATTERN_MESSAGE, String.class, message);
     }
 
     public Integer getMinLength() {
@@ -72,6 +91,14 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         super.setStateValue(NeutronEventSubjects.MAX_LENGTH, Integer.class, length);
     }
 
+    public String getLengthMessage() {
+        return getStateValue(NeutronEventSubjects.LENGTH_MESSAGE, "Length is invalid.");
+    }
+
+    public void setLengthMessage(String message) {
+        setStateValue(NeutronEventSubjects.LENGTH_MESSAGE, String.class, message);
+    }
+
     public String getInvalidChars() {
         return super.getStateValue(NeutronEventSubjects.INVALID_CHARS);
     }
@@ -86,38 +113,5 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     public void setInvalidCharsMessage(String message) {
         setStateValue(NeutronEventSubjects.INVALID_CHARS_MESSAGE, String.class, message);
-    }
-
-    public String getLengthMessage() {
-        return getStateValue(NeutronEventSubjects.LENGTH_MESSAGE, "Length is invalid.");
-    }
-
-    public void setLengthMessage(String message) {
-        setStateValue(NeutronEventSubjects.LENGTH_MESSAGE, String.class, message);
-    }
-
-    public String getPatternMessage() {
-        return getStateValue(NeutronEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
-    }
-
-    public void setPatternMessage(String message) {
-        setStateValue(NeutronEventSubjects.PATTERN_MESSAGE, String.class, message);
-    }
-
-    @Override
-    public boolean hasValue() {
-
-        String value = getValue();
-        return !ValueUtil.isEmpty(value);
-    }
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(PatternValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(LengthValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(InvalidCharPreChangeRule.class, this));
     }
 }
