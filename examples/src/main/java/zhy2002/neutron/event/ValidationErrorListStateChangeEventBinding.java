@@ -1,7 +1,7 @@
 package zhy2002.neutron.event;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.event.ValidationErrorListStateChangeEvent;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Collection;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ValidationErrorListStateChangeEventBinding extends StateChangeEventBinding<ValidationErrorListStateChangeEvent> {
 
-    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(PredefinedEventSubjects.VALIDATION_ERROR_LIST);
+    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(NeutronEventSubjects.VALIDATION_ERROR_LIST);
 
     public ValidationErrorListStateChangeEventBinding(
             UiNodeEventFilter<ValidationErrorListStateChangeEvent> filter,

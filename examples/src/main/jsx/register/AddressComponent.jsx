@@ -16,7 +16,7 @@ export default class AddressComponent extends NeutronComponent {
     extractNewState() {
         let state = super.extractNewState();
         let GWT = window["GWT"];
-        state.enabled = this.model.getNodeStatus() === GWT.NodeStatus.Loaded;
+        state.enabled = this.model.getNodeStatus() === GWT.NodeStatusEnum.Loaded;
         return state;
     }
 

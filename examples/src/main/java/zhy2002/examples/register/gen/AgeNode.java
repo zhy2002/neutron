@@ -27,10 +27,12 @@ public  class AgeNode extends BigDecimalUiNode<RegisterNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(UpdatePlanRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(UpdatePlanRule.class, this));
     }
+
 
 }

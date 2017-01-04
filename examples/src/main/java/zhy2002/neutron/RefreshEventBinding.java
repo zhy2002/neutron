@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Collection;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent> {
 
-    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(PredefinedEventSubjects.DEFAULT_REFRESH_REASON);
+    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(NeutronEventSubjects.DEFAULT_REFRESH_REASON);
 
     public RefreshEventBinding(
             UiNodeEventFilter<RefreshUiNodeEvent> filter,

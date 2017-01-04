@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
                 ),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),
-                        Collections.singletonList(PredefinedEventSubjects.REQUIRED)
+                        Collections.singletonList(NeutronEventSubjects.REQUIRED)
                 )
         );
     }

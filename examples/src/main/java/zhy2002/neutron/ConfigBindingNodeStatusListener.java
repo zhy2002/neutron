@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import java.util.List;
 
 public class ConfigBindingNodeStatusListener<N extends UiNode<?>> implements UiNodeStatusListener {
 
@@ -9,6 +10,11 @@ public class ConfigBindingNodeStatusListener<N extends UiNode<?>> implements UiN
     public ConfigBindingNodeStatusListener(N node, UiNodeConfig<N> config) {
         this.node = node;
         this.config = config;
+    }
+
+    @Override
+    public void onCreatedRules(List<UiNodeRule<?>> createdRules) {
+        config.onCreatedRules(node, createdRules);
     }
 
     @Override

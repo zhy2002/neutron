@@ -1,7 +1,7 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.PredefinedEventSubjects;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
@@ -28,7 +28,7 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
                 super.createEventBindings(),
                 new StringStateChangeEventBinding(
                         e -> validate(),
-                        Arrays.asList(PredefinedEventSubjects.VALUE, PredefinedEventSubjects.MIN_LENGTH, PredefinedEventSubjects.MAX_LENGTH)
+                        Arrays.asList(NeutronEventSubjects.VALUE, NeutronEventSubjects.MIN_LENGTH, NeutronEventSubjects.MAX_LENGTH)
                 )
         );
     }

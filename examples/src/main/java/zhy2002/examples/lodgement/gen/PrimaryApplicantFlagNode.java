@@ -18,10 +18,12 @@ public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this));
     }
+
 
 }

@@ -1,10 +1,10 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.util.EnhancedLinkedList;
-import zhy2002.neutron.util.ValueUtil;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * A UiNode which cannot have children.
@@ -24,40 +24,40 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     protected void setValueInternal(T value) {
-        super.setStateValueInternal(PredefinedEventSubjects.VALUE, value);
+        super.setStateValueInternal(NeutronEventSubjects.VALUE, value);
     }
 
     protected T getValueInternal() {
-        return super.getStateValueInternal(PredefinedEventSubjects.VALUE);
+        return super.getStateValueInternal(NeutronEventSubjects.VALUE);
     }
 
     @JsMethod
     public T getValue() {
-        return getStateValue(PredefinedEventSubjects.VALUE);
+        return getStateValue(NeutronEventSubjects.VALUE);
     }
 
     protected void setValue(Class<T> valueClass, T value) {
-        setStateValue(PredefinedEventSubjects.VALUE, valueClass, value);
+        setStateValue(NeutronEventSubjects.VALUE, valueClass, value);
     }
 
     public abstract void setValue(T value);
 
     public void setRequired(Boolean required) {
-        this.setStateValue(PredefinedEventSubjects.REQUIRED, Boolean.class, required);
+        this.setStateValue(NeutronEventSubjects.REQUIRED, Boolean.class, required);
     }
 
     @JsMethod
     public Boolean getRequired() {
-        Boolean result = getStateValue(PredefinedEventSubjects.REQUIRED);
+        Boolean result = getStateValue(NeutronEventSubjects.REQUIRED);
         return result == null ? Boolean.FALSE : result;
     }
 
     public String getRequiredMessage() {
-        return getStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, "Value is required");
+        return getStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, "Value is required");
     }
 
     public void setRequiredMessage(String message) {
-        setStateValue(PredefinedEventSubjects.REQUIRED_MESSAGE, String.class, message);
+        setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
     }
 
     @JsMethod
@@ -73,7 +73,10 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     public abstract Class<T> getValueClass();
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules().and(getContext().createUiNodeRule(LeafValueRequiredValidationRule.class, this));
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(LeafValueRequiredValidationRule.class, this));
     }
 }

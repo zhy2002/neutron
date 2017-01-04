@@ -52,10 +52,12 @@ public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(PhoneInfoAllOrNothingRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(PhoneInfoAllOrNothingRule.class, this));
     }
+
 
 }

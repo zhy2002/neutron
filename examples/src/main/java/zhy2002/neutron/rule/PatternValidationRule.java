@@ -1,7 +1,7 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.PredefinedEventSubjects;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
@@ -17,7 +17,7 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
     }
 
     private String getPattern() {
-        return getOwner().getStateValue(PredefinedEventSubjects.PATTERN);
+        return getOwner().getStateValue(NeutronEventSubjects.PATTERN);
     }
 
     private String getValue() {

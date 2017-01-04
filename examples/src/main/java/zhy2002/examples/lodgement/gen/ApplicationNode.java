@@ -102,11 +102,13 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(CreateErrorNodeRule.class, this))
-            .and(getContext().createUiNodeRule(ShowErrorListRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(CreateErrorNodeRule.class, this));
+        createdRules.add(context.createUiNodeRule(ShowErrorListRule.class, this));
     }
+
 
 }

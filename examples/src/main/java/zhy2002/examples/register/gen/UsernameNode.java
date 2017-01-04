@@ -28,10 +28,12 @@ public  class UsernameNode extends StringUiNode<RegisterNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(DefaultEmailByUsernameRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(DefaultEmailByUsernameRule.class, this));
     }
+
 
 }

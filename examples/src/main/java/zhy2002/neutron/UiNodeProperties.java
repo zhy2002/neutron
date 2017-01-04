@@ -63,4 +63,11 @@ public interface UiNodeProperties {
     ValidationErrorList getValidationErrorList();
 
     void setValidationErrorList(ValidationErrorList errors);
+
+    /**
+     * @return true if should load this node when the parent loads.
+     */
+    boolean getLoadWithParent();
+
+    void setLoadWithParent(boolean value);
 }

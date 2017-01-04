@@ -24,11 +24,13 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(TelephoneCompleteRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(TelephoneCompleteRule.class, this));
     }
+
 
     @Override
     public Telephone getCopyOfValue() {

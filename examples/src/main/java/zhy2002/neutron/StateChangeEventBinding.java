@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.PredefinedPhases;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Collection;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public abstract class StateChangeEventBinding<E extends StateChangeEvent> extends AbstractEventBinding<E> {
 
-    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(PredefinedEventSubjects.VALUE);
+    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(NeutronEventSubjects.VALUE);
 
     protected StateChangeEventBinding(
             UiNodeEventFilter<E> filter,

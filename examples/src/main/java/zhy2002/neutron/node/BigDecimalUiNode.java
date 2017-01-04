@@ -3,11 +3,12 @@ package zhy2002.neutron.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -62,20 +63,20 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
     @JsMethod
     public BigDecimal getMinValue() {
-        return super.getStateValue(PredefinedEventSubjects.MIN_VALUE);
+        return super.getStateValue(NeutronEventSubjects.MIN_VALUE);
     }
 
     public void setMinValue(BigDecimal value) {
-        super.setStateValue(PredefinedEventSubjects.MIN_VALUE, BigDecimal.class, value);
+        super.setStateValue(NeutronEventSubjects.MIN_VALUE, BigDecimal.class, value);
     }
 
     @JsMethod
     public BigDecimal getMaxValue() {
-        return super.getStateValue(PredefinedEventSubjects.MAX_VALUE);
+        return super.getStateValue(NeutronEventSubjects.MAX_VALUE);
     }
 
     public void setMaxValue(BigDecimal value) {
-        super.setStateValue(PredefinedEventSubjects.MAX_VALUE, BigDecimal.class, value);
+        super.setStateValue(NeutronEventSubjects.MAX_VALUE, BigDecimal.class, value);
     }
 
     @JsMethod
@@ -90,41 +91,41 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     }
 
     @Override
-    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
+    public <T> void setStateValue(String key, Class<T> valueClass, T value, ChangeTrackingModeEnum mode) {
         if (!getContext().isInCycle()) {
-            if (PredefinedEventSubjects.VALUE.equals(key)) {
+            if (NeutronEventSubjects.VALUE.equals(key)) {
                 hasValue = value != null;
                 if (!hasValue) {
-                    super.setStateValue(PredefinedEventSubjects.VALUE_TEXT, String.class, "");
+                    super.setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, "", mode);
                     return;
                 }
-            } else if (PredefinedEventSubjects.VALUE_TEXT.equals(key)) {
+            } else if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
                 hasValue = !ValueUtil.isEmpty((String) value);
             }
         }
 
-        super.setStateValue(key, valueClass, value);
+        super.setStateValue(key, valueClass, value, mode);
     }
 
     @JsMethod
     public String getText() {
-        return this.getStateValue(PredefinedEventSubjects.VALUE_TEXT);
+        return this.getStateValue(NeutronEventSubjects.VALUE_TEXT);
     }
 
     @JsMethod
     public void setText(String text) {
-        setStateValue(PredefinedEventSubjects.VALUE_TEXT, String.class, text);
+        setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, text);
     }
 
     @Override
     protected void setStateValueInternal(String key, Object value) {
         super.setStateValueInternal(key, value);
-        if (PredefinedEventSubjects.VALUE_TEXT.equals(key)) {
+        if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
             if (!Objects.equals(val, getValue())) {
                 setValue(val);
             }
-        } else if (PredefinedEventSubjects.VALUE.equals(key) && value != null) {
+        } else if (NeutronEventSubjects.VALUE.equals(key) && value != null) {
             String text = getFormatter().format((BigDecimal) value);
             if (!Objects.equals(text, getText())) {
                 setText(text);
@@ -143,16 +144,18 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
     }
 
     public String getRangeMessage() {
-        return getStateValue(PredefinedEventSubjects.RANGE_MESSAGE, "Value is out of range.");
+        return getStateValue(NeutronEventSubjects.RANGE_MESSAGE, "Value is out of range.");
     }
 
     public void setRangeMessage(String message) {
-        setStateValue(PredefinedEventSubjects.RANGE_MESSAGE, String.class, message);
+        setStateValue(NeutronEventSubjects.RANGE_MESSAGE, String.class, message);
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-                .and(getContext().createUiNodeRule(RangeValidationRule.class, this));
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(RangeValidationRule.class, this));
     }
 }

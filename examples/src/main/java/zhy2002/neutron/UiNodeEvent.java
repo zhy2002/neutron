@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.PredefinedRuleGroups;
+
 import javax.validation.constraints.NotNull;
 
 /**

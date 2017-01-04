@@ -112,13 +112,15 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
 </#if>
 <#if rules??>
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
     <#list rules as rule>
-            .and(getContext().createUiNodeRule(${rule.typeName}.class, this))
+        createdRules.add(context.createUiNodeRule(${rule.typeName}.class, this));
     </#list>
-        ;
     }
+
 </#if>
 
 <#if valueTypeName??>

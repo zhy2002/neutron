@@ -32,10 +32,12 @@ public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Err
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(ChangeFocusErrorRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(ChangeFocusErrorRule.class, this));
     }
+
 
 }

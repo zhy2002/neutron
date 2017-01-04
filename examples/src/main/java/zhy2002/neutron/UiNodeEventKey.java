@@ -40,4 +40,9 @@ public final class UiNodeEventKey<E extends UiNodeEvent> {
         result = 31 * result + subject.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return subject + ":" + eventClass.getSimpleName();
+    }
 }

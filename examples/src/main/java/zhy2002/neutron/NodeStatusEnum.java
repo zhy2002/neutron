@@ -1,11 +1,12 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
+import zhy2002.neutron.util.NeutronConstants;
 
 /**
  * The life cycle states of a node.
  */
-@JsType(namespace = "GWT", name = "NodeStatus")
+@JsType(namespace = NeutronConstants.JS_NAMESPACE)
 public enum NodeStatusEnum {
     /**
      * Node is created but not added to the node tree.

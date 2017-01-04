@@ -18,10 +18,12 @@ public  class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
     }
 
     @Override
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return super.createOwnRules()
-            .and(getContext().createUiNodeRule(EmailIsRequiredWhenReceiveOffersRule.class, this))
-        ;
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(EmailIsRequiredWhenReceiveOffersRule.class, this));
     }
+
 
 }

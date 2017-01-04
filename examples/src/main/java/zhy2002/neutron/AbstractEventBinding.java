@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.PredefinedPhases;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -58,4 +59,8 @@ public abstract class AbstractEventBinding<E extends UiNodeEvent> implements Eve
         handler.handle((E) event);
     }
 
+    @Override
+    public String toString() {
+        return this.phase + " phase of " + getEventKeys().toString();
+    }
 }

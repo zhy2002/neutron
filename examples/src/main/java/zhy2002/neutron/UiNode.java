@@ -3,7 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
-import zhy2002.neutron.util.EnhancedLinkedList;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -23,23 +23,22 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     private final UiNodeContext<?> context;
     private NodeStatusEnum nodeStatus;
     /**
-     * Determines what is perceived as 'change' for this node.
-     * This is the configured value.
+     * Override property change tracking mode.
      */
-    private ChangeTrackingModeEnum changeTrackingMode = ChangeTrackingModeEnum.Inherited;
+    private final Map<String, ChangeTrackingModeEnum> propertyChangeTrackingMode = new HashMap<>();
     /**
-     * This is the computed value.
-     */
-    private ChangeTrackingModeEnum effectiveChangeTrackingMode;
-
-    /**
-     * A copy of state before load happens.
+     * A copy of state before loading.
      */
     private Map<String, Object> preState;
     /**
      * A map used to store current values of state properties.
      */
     private final Map<String, Object> state = new HashMap<>();
+    /**
+     * Rules added to this node before its loading time.
+     * These rules are cached here until this node is loaded.
+     */
+    private final List<UiNodeRule<?>> createdRules = new ArrayList<>();
     /**
      * Rules owned by this node.
      */
@@ -49,14 +48,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     private final Map<UiNodeEventKey<?>, List<EventBinding>> attachedEventBindings = new HashMap<>();
     /**
+     * Offers a chance to run custom code on life cycle events.
+     */
+    private UiNodeStatusListener statusListener;
+    /**
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
      */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
-    private UiNodeStatusListener statusListener;
-
-    private boolean forceChangeTracking;
 
     /**
      * The constructor for a child node.
@@ -88,9 +88,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * The parent ui node.
      */
     @JsMethod
-    public
     @NotNull
-    P getParent() {
+    public final P getParent() {
         return parent;
     }
 
@@ -99,7 +98,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     @JsMethod
     @NotNull
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -108,7 +107,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     @JsMethod
     @NotNull
-    public String getUniqueId() {
+    public final String getUniqueId() {
         return uniqueId;
     }
 
@@ -123,61 +122,49 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * The context instance shared by the whole UiNode tree.
      */
     @JsMethod
-    public
     @NotNull
-    UiNodeContext<?> getContext() {
+    public final UiNodeContext<?> getContext() {
         return context;
     }
 
-
+    /**
+     * Life state of this node.
+     */
     @JsMethod
-    public int getIndex() {
+    @NotNull
+    public final NodeStatusEnum getNodeStatus() {
+        return nodeStatus;
+    }
+
+    @NotNull
+    private ChangeTrackingModeEnum getChangeTrackingMode(String propertyName) {
+        ChangeTrackingModeEnum mode = propertyChangeTrackingMode.get(propertyName);
+        if (mode == null)
+            return DEFAULT_CHANGE_TRACKING_MODE;
+        return mode;
+    }
+
+    protected final void setChangeTrackingMode(String propertyName, ChangeTrackingModeEnum changeTrackingMode) {
+        this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
+    }
+
+    final void setStatusListener(UiNodeStatusListener listener) {
+        this.statusListener = listener;
+    }
+
+    final void addCreatedRule(UiNodeRule<?> createdRule) {
+        createdRules.add(createdRule);
+    }
+
+    /**
+     * @return the index in parent.
+     */
+    @JsMethod
+    public final int getIndex() {
         if (parent != null) {
             return parent.indexOf(this);
         }
         return -1;
-    }
-
-
-    void setStatusListener(UiNodeStatusListener listener) {
-        this.statusListener = listener;
-    }
-
-    public
-    @NotNull
-    ChangeTrackingModeEnum getChangeTrackingMode() {
-        if (effectiveChangeTrackingMode == null) {
-            if (changeTrackingMode != ChangeTrackingModeEnum.Inherited) {
-                effectiveChangeTrackingMode = changeTrackingMode;
-            } else {
-                ParentUiNode<?> parent = getParent();
-                while (parent != null && parent.getChangeTrackingMode() == ChangeTrackingModeEnum.Inherited) {
-                    parent = parent.getParent();
-                }
-                if (parent == null) {
-                    effectiveChangeTrackingMode = DEFAULT_CHANGE_TRACKING_MODE;
-                } else {
-                    effectiveChangeTrackingMode = parent.getChangeTrackingMode();
-                }
-            }
-        }
-        return effectiveChangeTrackingMode;
-    }
-
-    public void setChangeTrackingMode(@NotNull ChangeTrackingModeEnum changeTrackingMode) {
-        if (this.changeTrackingMode != changeTrackingMode) {
-            this.changeTrackingMode = changeTrackingMode;
-            this.effectiveChangeTrackingMode = null;
-        }
-    }
-
-    public boolean getLoadWithParent() {
-        Object value = this.getStateValueInternal(PredefinedEventSubjects.LOAD_WITH_PARENT);
-        return !Boolean.FALSE.equals(value);
-    }
-
-    public void setLoadWithParent(boolean value) {
-        this.setStateValueInternal(PredefinedEventSubjects.LOAD_WITH_PARENT, value);
     }
 
     //region state methods
@@ -197,54 +184,38 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         state.put(key, value);
     }
 
-    @JsMethod
-    public <T> T getStateValue(String key) {
-        return getStateValue(key, null);
-    }
-
     public <T> T getStateValue(String key, T defaultValue) {
         T value = getStateValueInternal(key);
         return value == null ? defaultValue : value;
     }
 
-    protected final boolean shouldChangeWithoutEvent() {
-        if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
-            return true;
-        }
-
-        TickPhase phase = getContext().getCurrentPhase();
-        if (phase != null) {
-            ChangeModeEnum changeMode = phase.getChangeMode();
-            switch (changeMode) {
-                case DIRECT:
-                    return true;
-                case PROHIBITED:
-                    throw new UiNodeEventException(); //todo specialized exception type
-            }
-        }
-        return false;
-    }
-
     @JsMethod
-    public void alwaysTrackChangeOnce() {
-        this.forceChangeTracking = true;
+    public final <T> T getStateValue(String key) {
+        return getStateValue(key, null);
     }
 
-    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
-
+    /**
+     * Trigger a state value change.
+     *
+     * @param key        identifier of the state value to change.
+     * @param valueClass the class of the state value. This decides what type of state change event to trigger.
+     * @param value      the new state value.
+     * @param mode       a one time override of ChangeTrackingMode.
+     * @param <T>        declared type of the value.
+     */
+    public <T> void setStateValue(String key, Class<T> valueClass, T value, ChangeTrackingModeEnum mode) {
         if (shouldChangeWithoutEvent()) {
             setStateValueInternal(key, value);
             return;
         }
 
-        //default logic
-        T oldValue = getStateValueInternal(key);
-        boolean process = false;
-        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode();
-        if (this.forceChangeTracking) {
-            nodeChangeTrackingMode = ChangeTrackingModeEnum.Always;
-            this.forceChangeTracking = false;
+        ChangeTrackingModeEnum nodeChangeTrackingMode = mode;
+        if (nodeChangeTrackingMode == null) {
+            nodeChangeTrackingMode = getChangeTrackingMode(key);
         }
+
+        boolean process = false;
+        T oldValue = getStateValueInternal(key);
         switch (nodeChangeTrackingMode) {
             case Always:
                 process = true;
@@ -269,32 +240,47 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         getContext().processEvent(event);
     }
 
+    public final <T> void setStateValue(String key, Class<T> valueClass, T value) {
+        setStateValue(key, valueClass, value, null);
+    }
+
+    /**
+     * @return true if changes should be applied directly (i.e. bypass event processing).
+     */
+    final boolean shouldChangeWithoutEvent() {
+        if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
+            return true;
+        }
+
+        TickPhase phase = getContext().getCurrentPhase();
+        if (phase != null) {
+            ChangeModeEnum changeMode = phase.getChangeMode();
+            switch (changeMode) {
+                case DIRECT:
+                    return true;
+                case PROHIBITED:
+                    throw new UiNodeEventException(); //todo specialized exception type
+            }
+        }
+        return false;
+    }
+
     //endregion
 
     //region life cycle methods
 
     /**
-     * Life state of this node.
-     */
-    @JsMethod
-    public
-    @NotNull
-    NodeStatusEnum getNodeStatus() {
-        return nodeStatus;
-    }
-
-    /**
      * The second step of adding a node to its parent.
      * When this is done the node still needs to be loaded (its own content, rules, children and initial values).
      */
-    protected void addToParent() {
+    final void addToParent() {
         if (this.nodeStatus != NodeStatusEnum.Detached)
             return;
 
         if (this.uniqueId == null) {
             this.uniqueId = context.getUniqueId();
         } else {
-            //todo if uniqueId is not unique, throw an exception
+            //todo check if pre-assigned id is truely unique.
         }
 
         if (parent == null) {
@@ -302,20 +288,26 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         } else {
             this.parent.addChild(this);
         }
-        this.nodeStatus = NodeStatusEnum.Unloaded;
+
         if (statusListener != null) {
             statusListener.onAddedToParent();
         }
+        this.nodeStatus = NodeStatusEnum.Unloaded;
     }
 
     /**
      * Return to step 1 status.
+     * This method cannot be overridden because we need to notify
+     * status listener at the end of this event.
      */
-    protected void removeFromParent() {
+    final void removeFromParent() {
         if (this.nodeStatus != NodeStatusEnum.Unloaded || parent == null)
             return;
 
         this.parent.removeChild(this);
+
+        //todo removed from parent status listener
+
         this.nodeStatus = NodeStatusEnum.Detached;
     }
 
@@ -328,20 +320,47 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         if (preState == null) {
             preState = new HashMap<>(state);
         }
+
+        initializeState();
+        loadRules();
         doLoad();
+
+        if (statusListener != null) {
+            statusListener.onLoaded();
+        }
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
-    protected void doLoad() {
-        initializeState();
-        createOwnRules().forEach(UiNodeRule::addToOwner);
-    }
-
+    /**
+     * Override this to run code before rules and children are loaded.
+     */
     protected void initializeState() {
     }
 
-    protected EnhancedLinkedList<UiNodeRule<?>> createOwnRules() {
-        return new EnhancedLinkedList<>();
+    private void loadRules() {
+        createRules(createdRules);
+        if (statusListener != null) {
+            statusListener.onCreatedRules(createdRules);
+        }
+
+        createdRules.forEach(UiNodeRule::addToOwner);
+        createdRules.clear();
+    }
+
+    /**
+     * Override this method to add rules to be loaded.
+     * The rules added to this list does not have to be owned by this node.
+     * You can add rules to any node and they will be added
+     *
+     * @param createdRules the list of rule that will be loaded.
+     */
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+    }
+
+    /**
+     * Override this method to run code at load time.
+     */
+    protected void doLoad() {
     }
 
     /**
@@ -349,15 +368,19 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     public final void unload() {
         if (this.nodeStatus != NodeStatusEnum.Loaded)
-            return;
+            return; //todo should return boolean to indicate this ro throw exception
         doUnload();
         this.nodeStatus = NodeStatusEnum.Unloaded;
     }
 
+    /**
+     * Override this method to do things before or after unload of this node.
+     */
     protected void doUnload() {
         List<UiNodeRule<?>> ownRules = new ArrayList<>(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
 
+        //also unload all nodes representing validation errors of this node.
         ValidationErrorList validationErrors = this.getValidationErrorList();
         if (validationErrors != null) {
             for (ValidationError validationError : validationErrors) {
@@ -378,27 +401,27 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.state.putAll(this.preState);
     }
 
-    void attach() {
+    final void attach() {
         addToParent();
         load();
     }
 
-    void detach() {
+    final void detach() {
         unload();
         removeFromParent();
     }
 
-    <T extends UiNode<?>> void addRule(@NotNull UiNodeRule<T> rule) {
+    final <T extends UiNode<?>> void addRule(@NotNull UiNodeRule<T> rule) {
         assert this == rule.getOwner();
         ownRules.add(rule);
     }
 
-    <T extends UiNode<?>> void removeRule(@NotNull UiNodeRule<T> rule) {
+    final <T extends UiNode<?>> void removeRule(@NotNull UiNodeRule<T> rule) {
         assert this == rule.getOwner();
         ownRules.remove(rule);
     }
 
-    <T extends UiNode<?>> void attachRule(UiNodeRule<T> rule) {
+    final <T extends UiNode<?>> void attachRule(UiNodeRule<T> rule) {
         assert rule.getHost() == this;
 
         for (EventBinding binding : rule.getEventBindings()) {
@@ -409,7 +432,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
     }
 
-    <T extends UiNode<?>> void detachRule(UiNodeRule<T> rule) {
+    final <T extends UiNode<?>> void detachRule(UiNodeRule<T> rule) {
         assert rule.getHost() == this;
 
         for (EventBinding binding : rule.getEventBindings()) {
@@ -423,31 +446,31 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
     }
 
-    Iterable<EventBinding> getAttachedEventBindings(UiNodeEventKey<?> eventKey) {
+    final Iterable<EventBinding> getAttachedEventBindings(UiNodeEventKey<?> eventKey) {
         List<EventBinding> list = attachedEventBindings.get(eventKey);
         return list == null ? Collections.emptyList() : list;
     }
 
     @JsMethod
-    public void refresh() {
+    public final void refresh() {
         RefreshUiNodeEvent refreshUiNodeEvent = new RefreshUiNodeEvent(this);
         getContext().processEvent(refreshUiNodeEvent);
     }
 
     @JsMethod
-    public void addChangeListener(UiNodeChangeListener listener) {
+    public final void addChangeListener(UiNodeChangeListener listener) {
         this.changeListeners.add(listener);
     }
 
-    void notifyChange() {
+    @JsMethod
+    public final void removeChangeListener(UiNodeChangeListener listener) {
+        this.changeListeners.remove(listener);
+    }
+
+    final void notifyChange() {
         for (UiNodeChangeListener listener : changeListeners) {
             listener.onUiNodeChanged();
         }
-    }
-
-    @JsMethod
-    public void removeChangeListener(UiNodeChangeListener listener) {
-        this.changeListeners.remove(listener);
     }
 
     //endregion
@@ -457,55 +480,55 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public String getVisibility() {
-        return getStateValue(PredefinedEventSubjects.VISIBILITY, "visible");
+        return getStateValue(NeutronEventSubjects.VISIBILITY, "visible");
     }
 
     @JsMethod
     @Override
     public void setVisibility(String value) {
-        setStateValue(PredefinedEventSubjects.VISIBILITY, String.class, value);
+        setStateValue(NeutronEventSubjects.VISIBILITY, String.class, value);
     }
 
     @JsMethod
     @Override
     public boolean isDisabled() {
-        return getStateValue(PredefinedEventSubjects.DISABLED, Boolean.FALSE);
+        return getStateValue(NeutronEventSubjects.DISABLED, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setDisabled(boolean value) {
-        setStateValue(PredefinedEventSubjects.DISABLED, Boolean.class, value);
+        setStateValue(NeutronEventSubjects.DISABLED, Boolean.class, value);
     }
 
     @JsMethod
     @Override
     public boolean isReadonly() {
-        return getStateValue(PredefinedEventSubjects.READONLY, Boolean.FALSE);
+        return getStateValue(NeutronEventSubjects.READONLY, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setReadonly(boolean value) {
-        setStateValue(PredefinedEventSubjects.READONLY, Boolean.class, value);
+        setStateValue(NeutronEventSubjects.READONLY, Boolean.class, value);
     }
 
     @JsMethod
     @Override
     public boolean isDirty() {
-        return getStateValue(PredefinedEventSubjects.DIRTY, Boolean.FALSE);
+        return getStateValue(NeutronEventSubjects.DIRTY, Boolean.FALSE);
     }
 
     @JsMethod
     @Override
     public void setDirty(boolean value) {
-        setStateValue(PredefinedEventSubjects.DIRTY, Boolean.class, value);
+        setStateValue(NeutronEventSubjects.DIRTY, Boolean.class, value);
     }
 
     @JsMethod
     @Override
     public String getNodeLabel() {
-        String label = getStateValue(PredefinedEventSubjects.NODE_LABEL);
+        String label = getStateValue(NeutronEventSubjects.NODE_LABEL);
         if (label != null)
             return label;
 
@@ -515,13 +538,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public void setNodeLabel(String value) {
-        setStateValue(PredefinedEventSubjects.NODE_LABEL, String.class, value);
+        setStateValue(NeutronEventSubjects.NODE_LABEL, String.class, value);
     }
 
     @JsMethod
     @Override
     public String getPathLabel() {
-        String label = getStateValue(PredefinedEventSubjects.PATH_LABEL);
+        String label = getStateValue(NeutronEventSubjects.PATH_LABEL);
         if (label != null)
             return label;
 
@@ -551,18 +574,30 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public void setPathLabel(String value) {
-        setStateValue(PredefinedEventSubjects.PATH_LABEL, String.class, value);
+        setStateValue(NeutronEventSubjects.PATH_LABEL, String.class, value);
     }
 
     @JsMethod
     @Override
     public ValidationErrorList getValidationErrorList() {
-        return getStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.EMPTY);
+        return getStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.EMPTY);
     }
 
     @Override
     public void setValidationErrorList(ValidationErrorList errors) {
-        setStateValue(PredefinedEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
+        setStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
+    }
+
+    @JsMethod
+    @Override
+    public boolean getLoadWithParent() {
+        Object value = this.getStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT);
+        return !Boolean.FALSE.equals(value);
+    }
+
+    @Override
+    public void setLoadWithParent(boolean value) {
+        this.setStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT, value);
     }
 
 //endregion

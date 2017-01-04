@@ -5,8 +5,9 @@ import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;
 import zhy2002.examples.register.gen.RegisterNode;
 import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.util.NeutronConstants;
 
-@JsType(namespace = "GWT")
+@JsType(namespace = NeutronConstants.JS_NAMESPACE)
 public class RegisterNodeFactory {
 
     public static RegisterNode create() {

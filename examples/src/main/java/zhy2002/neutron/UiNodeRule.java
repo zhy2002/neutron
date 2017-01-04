@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.PredefinedRuleGroups;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -106,6 +108,11 @@ public abstract class UiNodeRule<N extends UiNode<?>> {
      * The same convention applies to node parent child relationship as well.
      */
     public void addToOwner() {
+        if(getOwner().getNodeStatus() == NodeStatusEnum.Detached) {
+            getOwner().addCreatedRule(this);
+            return;
+        }
+
         this.host = findHost();
         getOwner().addRule(this);
         if (eventBindings == null) {

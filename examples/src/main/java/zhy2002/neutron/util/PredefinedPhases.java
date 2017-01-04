@@ -1,4 +1,7 @@
-package zhy2002.neutron;
+package zhy2002.neutron.util;
+
+import zhy2002.neutron.ChangeModeEnum;
+import zhy2002.neutron.TickPhase;
 
 /**
  * These are the hard coded phases in order.

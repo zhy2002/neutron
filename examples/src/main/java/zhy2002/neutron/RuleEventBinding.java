@@ -2,8 +2,15 @@ package zhy2002.neutron;
 
 import java.util.Collection;
 
+/**
+ * This class is created so that at runtime we cannot which rule created
+ * the target event binding.
+ */
 public class RuleEventBinding implements EventBinding {
 
+    /**
+     * The rule that owns this event binding.
+     */
     private final UiNodeRule<?> rule;
     private final EventBinding target;
 
@@ -34,5 +41,10 @@ public class RuleEventBinding implements EventBinding {
     @Override
     public void fire(UiNodeEvent event) {
         target.fire(event);
+    }
+
+    @Override
+    public String toString() {
+        return target + " by " + rule.getClass().getSimpleName();
     }
 }
