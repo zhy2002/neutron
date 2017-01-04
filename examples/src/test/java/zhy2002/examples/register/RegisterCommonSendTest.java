@@ -10,7 +10,7 @@ import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.LeafValueRequiredValidationRule;
+import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;

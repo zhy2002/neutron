@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * A simple mechanism to allow overriding implementation class.
  */
-public class  ClassRegistryImpl implements ClassRegistry {
+public class ClassRegistryImpl implements ClassRegistry {
     private final Map<Class<?>, Object> childNodeFactories = new HashMap<>();
     private final Map<Class<?>, Object> uiNodeRuleFactories = new HashMap<>();
     private final Map<Class<?>, List<UiNodeConfig<?>>> nodeConfigMap = new HashMap<>();
@@ -27,6 +27,28 @@ public class  ClassRegistryImpl implements ClassRegistry {
         //system -> context -> custom
         loadStateChangeEventFactories();
         loadRuleFactories();
+    }
+
+    final void copyFrom(ClassRegistryImpl registry) {
+        if (registry == null)
+            return;
+
+        uiNodeRuleFactories.putAll(registry.uiNodeRuleFactories);
+        childNodeFactories.putAll(registry.childNodeFactories);
+        stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
+        nodeAddEventFactories.putAll(registry.nodeAddEventFactories);
+        nodeRemoveEventFactories.putAll(registry.nodeRemoveEventFactories);
+        nodeConfigMap.putAll(registry.nodeConfigMap);
+        nodeLoadEventFactories.putAll(registry.nodeLoadEventFactories);
+        nodeUnloadEventFactories.putAll(registry.nodeUnloadEventFactories);
+    }
+
+    private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {
+        Object instance = map.get(key);
+        if (instance == null) {
+            throw new RuntimeException("Cannot find registered " + type + " instance for " + key.getName());
+        }
+        return instance;
     }
 
     private void loadStateChangeEventFactories() {
@@ -76,32 +98,9 @@ public class  ClassRegistryImpl implements ClassRegistry {
         });
     }
 
-    public void copyFrom(ClassRegistryImpl registry) {
-        if (registry == null)
-            return;
-
-        uiNodeRuleFactories.putAll(registry.uiNodeRuleFactories);
-        childNodeFactories.putAll(registry.childNodeFactories);
-        stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
-        nodeAddEventFactories.putAll(registry.nodeAddEventFactories);
-        nodeRemoveEventFactories.putAll(registry.nodeRemoveEventFactories);
-        nodeConfigMap.putAll(registry.nodeConfigMap);
-        nodeLoadEventFactories.putAll(registry.nodeLoadEventFactories);
-        nodeUnloadEventFactories.putAll(registry.nodeUnloadEventFactories);
-
-    }
-
-    private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {
-        Object instance = map.get(key);
-        if (instance == null) {
-            throw new RuntimeException("Cannot find registered " + type + " instance for " + key.getName());
-        }
-        return instance;
-    }
-
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
+    public final <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
         return (ChildNodeFactory<N, P>) getObject(childNodeFactories, childNodeClass, "ChildNodeFactory");
     }
 
@@ -111,7 +110,7 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
+    public final <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
         List<UiNodeConfig<?>> configList = nodeConfigMap.get(nodeClass);
         if (configList != null) {
             for (UiNodeConfig<?> config : configList) {
@@ -131,7 +130,7 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
+    public final <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
         return (UiNodeRuleFactory<R, N>) getObject(uiNodeRuleFactories, ruleClass, "UiNodeRuleFactory");
     }
 
@@ -141,7 +140,7 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> StateChangeEventFactory<T> getStateChangeEventFactory(Class<T> valueClass) {
+    public final <T> StateChangeEventFactory<T> getStateChangeEventFactory(Class<T> valueClass) {
         return (StateChangeEventFactory<T>) getObject(stateChangeEventFactories, valueClass, "StateChangeEventFactory");
     }
 
@@ -151,7 +150,7 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeAddEventFactory<N> getNodeAddEventFactory(Class<N> itemClass) {
+    public final <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeAddEventFactory<N> getNodeAddEventFactory(Class<N> itemClass) {
         return (NodeAddEventFactory<N>) getObject(nodeAddEventFactories, itemClass, "NodeAddEventFactory");
     }
 
@@ -161,7 +160,7 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEventFactory<N> getNodeRemoveEventFactory(Class<N> itemClass) {
+    public final <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEventFactory<N> getNodeRemoveEventFactory(Class<N> itemClass) {
         return (NodeRemoveEventFactory<N>) getObject(nodeRemoveEventFactories, itemClass, "NodeRemoveEventFactory");
     }
 
@@ -171,21 +170,21 @@ public class  ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<?>> NodeLoadEventFactory<N> getNodeLoadEventFactory(Class<N> nodeClass) {
+    public final <N extends UiNode<?>> NodeLoadEventFactory<N> getNodeLoadEventFactory(Class<N> nodeClass) {
         return (NodeLoadEventFactory<N>) getObject(nodeLoadEventFactories, nodeClass, "NodeLoadEventFactory");
     }
 
-    public <N extends UiNode<?>> void setNodeLoadEventFactory(Class<N> nodeClass, NodeLoadEventFactory<N> factory) {
+    public final <N extends UiNode<?>> void setNodeLoadEventFactory(Class<N> nodeClass, NodeLoadEventFactory<N> factory) {
         nodeLoadEventFactories.put(nodeClass, factory);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <N extends UiNode<?>> NodeUnloadEventFactory<N> getNodeUnloadEventFactory(Class<N> nodeClass) {
+    public final <N extends UiNode<?>> NodeUnloadEventFactory<N> getNodeUnloadEventFactory(Class<N> nodeClass) {
         return (NodeUnloadEventFactory<N>) getObject(nodeUnloadEventFactories, nodeClass, "NodeUnloadEventFactory");
     }
 
-    public <N extends UiNode<?>> void setNodeUnloadEventFactory(Class<N> nodeClass, NodeUnloadEventFactory<N> factory) {
+    public final <N extends UiNode<?>> void setNodeUnloadEventFactory(Class<N> nodeClass, NodeUnloadEventFactory<N> factory) {
         nodeUnloadEventFactories.put(nodeClass, factory);
     }
 

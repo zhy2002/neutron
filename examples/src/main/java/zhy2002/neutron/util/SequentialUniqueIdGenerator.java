@@ -1,4 +1,4 @@
-package zhy2002.neutron;
+package zhy2002.neutron.util;
 
 /**
  * A stub unique id generator to getUiNodeRuleFactory thing running.

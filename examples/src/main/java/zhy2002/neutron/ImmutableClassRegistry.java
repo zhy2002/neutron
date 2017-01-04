@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * An immutable ClassRegistry.
  */
-public class ImmutableClassRegistry implements ClassRegistry {
+public final class ImmutableClassRegistry implements ClassRegistry {
 
     private final ClassRegistryImpl registry;
 

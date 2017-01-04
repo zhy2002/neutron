@@ -25,7 +25,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     /**
      * Event mode.
      */
-    private EngineEventMode eventMode = EngineEventMode.Send;
+    private EngineEventModeEnum eventMode = EngineEventModeEnum.Send;
     /**
      * A queue of events not yet put into a Cycle.
      */
@@ -171,14 +171,14 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     }
 
     @Override
-    public EngineEventMode getEventMode() {
+    public EngineEventModeEnum getEventMode() {
         return eventMode;
     }
 
     @Override
-    public void setEventMode(EngineEventMode mode) {
+    public void setEventMode(EngineEventModeEnum mode) {
         if (mode == null) {
-            mode = EngineEventMode.Send;
+            mode = EngineEventModeEnum.Send;
         }
         this.eventMode = mode;
     }
@@ -244,7 +244,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             return; //nothing to process
 
         if (inCycle) {
-            if (eventMode == EngineEventMode.Post)
+            if (eventMode == EngineEventModeEnum.Post)
                 return; //leave it to the outer processCycle
 
             //parse event if in Send event mode

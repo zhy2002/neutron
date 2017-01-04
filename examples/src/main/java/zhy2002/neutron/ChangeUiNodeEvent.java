@@ -28,7 +28,7 @@ public abstract class ChangeUiNodeEvent extends UiNodeEvent {
      * @return the activations.
      */
     @Override
-    public Iterable<BindingActivation> getActivations() {
+    public final Iterable<BindingActivation> getActivations() {
         UiNodeEvent event = this;
         List<BindingActivation> result = new ArrayList<>();
         UiNode<?> anchor = event.getOrigin();

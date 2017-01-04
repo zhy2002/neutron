@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * Decides when then engine process event.
  */
-public enum EngineEventMode {
+public enum EngineEventModeEnum {
     /**
      * Event will be parsed and all activations will be added to the agenda.
      */
