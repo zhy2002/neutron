@@ -148,11 +148,23 @@ rootType:
         rules:
         - {typeName: HomeOrWorkPhoneRequiredRule}
         children:
-        - {typeName: ContactTelephoneNode, name: HomePhoneNode}
-        - {typeName: ContactTelephoneNode, name: WorkPhoneNode}
+        - {typeName: ContactTelephoneNode, name: homePhoneNode}
+        - {typeName: ContactTelephoneNode, name: workPhoneNode}
+        - {typeName: ContactAddressNode, name: currentAddressNode}
+        - {typeName: ContactAddressNode, name: postalAddressNode}
+        - {typeName: ContactMonthYearNode, name: movedToCurrentAddressNode}
+        - {typeName: ContactAddressNode, name: previousAddressNode}
+        - {typeName: ContactMonthYearNode, name: movedToPreviousAddressNode}
+        - {typeName: ContactMonthYearNode, name: movedFromPreviousAddressNode}
         childTypes:
         - typeName: ContactTelephoneNode
           baseTypeName: TelephoneNode
+
+        - typeName: ContactAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: ContactMonthYearNode
+          baseTypeName: MonthYearNode
 
       - typeName: CurrentEmploymentNode
         baseTypeName: ObjectUiNode
@@ -195,6 +207,8 @@ rootType:
     itemTypeName: ErrorNode
     properties:
     - {name: focus, typeName: String}
+    init:
+    - {propertyName: focus, mode: Always}
     rules:
     - {typeName: ChangeFocusErrorRule}
     childTypes:
@@ -216,3 +230,39 @@ commonTypes:
   parentBaseTypeName: ParentUiNode<?>
   rules:
   - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
+
+- typeName: AddressNode
+  baseTypeName: ObjectUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: AddressLineNode}
+  - {typeName: SuburbNode}
+  - {typeName: PostcodeNode}
+  - {typeName: CountryNode}
+  childTypes:
+  - typeName: AddressLineNode
+    baseTypeName: StringUiNode
+
+  - typeName: SuburbNode
+    baseTypeName: StringUiNode
+
+  - typeName: PostcodeNode
+    baseTypeName: StringUiNode
+
+  - typeName: CountryNode
+    baseTypeName: StringUiNode
+
+- typeName: MonthYearNode
+  baseTypeName: ObjectUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: MonthNode}
+  - {typeName: YearNode}
+  childTypes:
+  - typeName: MonthNode
+    baseTypeName: BigDecimalUiNode
+
+  - typeName: YearNode
+    baseTypeName: BigDecimalUiNode

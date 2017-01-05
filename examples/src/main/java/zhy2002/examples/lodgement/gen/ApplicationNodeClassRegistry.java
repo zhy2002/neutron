@@ -39,6 +39,8 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(HousingStatusNode.class, new HousingStatusNodeFactory());
         setChildNodeFactory(GeneralNode.class, new GeneralNodeFactory());
         setChildNodeFactory(ContactTelephoneNode.class, new ContactTelephoneNodeFactory());
+        setChildNodeFactory(ContactAddressNode.class, new ContactAddressNodeFactory());
+        setChildNodeFactory(ContactMonthYearNode.class, new ContactMonthYearNodeFactory());
         setChildNodeFactory(ContactNode.class, new ContactNodeFactory());
         setChildNodeFactory(CurrentEmploymentNode.class, new CurrentEmploymentNodeFactory());
         setChildNodeFactory(PersonNode.class, new PersonNodeFactory());
@@ -53,6 +55,12 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(SubmissionNode.class, new SubmissionNodeFactory());
         setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
         setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
+        setChildNodeFactory(AddressLineNode.class, new AddressLineNodeFactory());
+        setChildNodeFactory(SuburbNode.class, new SuburbNodeFactory());
+        setChildNodeFactory(PostcodeNode.class, new PostcodeNodeFactory());
+        setChildNodeFactory(CountryNode.class, new CountryNodeFactory());
+        setChildNodeFactory(MonthNode.class, new MonthNodeFactory());
+        setChildNodeFactory(YearNode.class, new YearNodeFactory());
     }
 
     private void loadNodeAddEventFactories() {

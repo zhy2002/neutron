@@ -11,7 +11,6 @@ export default class ErrorListComponent extends NeutronComponent {
 
     focusOnField(errorNode) {
         const errorNodeName = errorNode.getName();
-        this.model.alwaysTrackChangeOnce();
         this.model.setFocus(errorNodeName);
         const source = errorNode.getSource();
         if(source) {

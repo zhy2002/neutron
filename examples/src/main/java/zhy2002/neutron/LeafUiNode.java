@@ -37,7 +37,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract void setValue(T value);
 
-    @JsMethod
+    @Override
     public boolean hasValue() {
         return getValue() != null;
     }
@@ -56,25 +56,5 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         UiNodeContext<?> context = getContext();
         createdRules.add(context.createUiNodeRule(LeafValueRequiredValidationRule.class, this));
     }
-
-    @JsMethod
-    public Boolean getRequired() {
-        Boolean result = getStateValue(NeutronEventSubjects.REQUIRED);
-        return result == null ? Boolean.FALSE : result;
-    }
-
-    public void setRequired(Boolean required) {
-        this.setStateValue(NeutronEventSubjects.REQUIRED, Boolean.class, required);
-    }
-
-    @JsMethod
-    public String getRequiredMessage() {
-        return getStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, "Value is required");
-    }
-
-    public void setRequiredMessage(String message) {
-        setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
-    }
-
 
 }

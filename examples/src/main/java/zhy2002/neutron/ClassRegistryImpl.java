@@ -96,6 +96,13 @@ public class ClassRegistryImpl implements ClassRegistry {
                 return new LeafValueRequiredValidationRule(owner);
             }
         });
+
+        setUiNodeRuleFactory(ObjectValueRequiredValidationRule.class, new UiNodeRuleFactory<ObjectValueRequiredValidationRule, ObjectUiNode<?>>() {
+            @Override
+            public ObjectValueRequiredValidationRule create(ObjectUiNode<?> owner) {
+                return new ObjectValueRequiredValidationRule(owner);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

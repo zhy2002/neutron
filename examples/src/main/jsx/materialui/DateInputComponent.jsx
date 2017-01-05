@@ -1,6 +1,5 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
-import {red500} from 'material-ui/styles/colors';
 
 import InputComponent from './InputComponent.jsx';
 import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
@@ -19,10 +18,6 @@ export default class DateInputComponent extends InputComponent {
             newState.date = new Date(value);
         } else {
             newState.date = null;
-        }
-
-        if(newState.errorMessage) {
-            newState.style.color = red500;
         }
 
         return newState;

@@ -3,6 +3,7 @@ import Paper from "material-ui/Paper";
 
 import NeutronComponent from "../../materialui/NeutronComponent.jsx";
 import TelephoneComponent from "./TelephoneComponent.jsx";
+import AddressComponent from "./AddressComponent.jsx";
 
 
 const paperMargin = {
@@ -30,13 +31,14 @@ export default class PersonContactComponent extends NeutronComponent {
                 </div>
                 <div className="large-4 medium-6 columns">
                     <Paper style={paperMargin}>
-                        test222
-                    </Paper>
+                        <AddressComponent model={model.getCurrentAddressNode()} />
+                        <AddressComponent model={model.getPostalAddressNode()} />
 
+                    </Paper>
                 </div>
                 <div className="large-4 medium-6 columns">
                     <Paper style={paperMargin}>
-                        test333
+                        <AddressComponent model={model.getPreviousAddressNode()} />
                     </Paper>
 
                 </div>

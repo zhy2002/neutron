@@ -51,7 +51,7 @@ export default class TelephoneComponent extends InputComponent {
         console.log(this.state.style);
 
         return (
-            <div className="row expanded telephone" style={{marginBottom: "16px"}}>
+            <div id={model.getUniqueId()} tabIndex="0" className="row expanded telephone" style={{marginBottom: "16px"}}>
                 <div className="small-12 columns" >
                     <label style={this.state.style}>{this.state.label}</label>
                     <div className="row expanded">

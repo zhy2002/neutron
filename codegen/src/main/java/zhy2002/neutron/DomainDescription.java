@@ -138,6 +138,15 @@ class DomainDescription {
             }
         }
 
+        List<Map<String, Object>> init = (List<Map<String, Object>>)node.get("init");
+        if(init != null) {
+            for(Map<String, Object> item : init) {
+                if(item.containsKey("mode")) {
+                    item.put("nameAllCaps", CodeGenUtil.allCaps((String) item.get("propertyName")));
+                }
+            }
+        }
+
         nodeList.add(node);
     }
 

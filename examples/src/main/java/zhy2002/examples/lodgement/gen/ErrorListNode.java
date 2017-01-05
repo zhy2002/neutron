@@ -21,6 +21,13 @@ public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Err
         return ErrorNode.class;
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setChangeTrackingMode(ApplicationNodeConstants.FOCUS, ChangeTrackingModeEnum.Always);
+    }
+
     @JsMethod
     public String getFocus() {
         return getStateValue(ApplicationNodeConstants.FOCUS);

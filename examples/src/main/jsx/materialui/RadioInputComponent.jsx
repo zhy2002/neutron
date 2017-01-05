@@ -1,6 +1,5 @@
 import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import {red500} from 'material-ui/styles/colors';
 
 import InputComponent from './InputComponent.jsx';
 import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
@@ -35,10 +34,6 @@ export default class RadioInputComponent extends InputComponent {
         let newState = super.extractNewState();
 
         newState.value = this.model.getValue();
-
-        if(newState.errorMessage) {
-            newState.style.color = red500;
-        }
 
         return newState;
     }

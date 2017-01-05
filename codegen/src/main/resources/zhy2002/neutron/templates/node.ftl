@@ -52,7 +52,12 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
         super.initializeState();
 
     <#list init as prop>
+        <#if prop.value??>
         set${prop.propertyName?cap_first}(${prop.value});
+        </#if>
+        <#if prop.mode??>
+        setChangeTrackingMode(${contextName}Constants.${prop.nameAllCaps}, ChangeTrackingModeEnum.${prop.mode});
+        </#if>
     </#list>
     }
 

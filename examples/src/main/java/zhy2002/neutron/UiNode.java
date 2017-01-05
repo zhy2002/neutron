@@ -190,6 +190,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     @JsMethod
+    public abstract boolean hasValue();
+
+    @JsMethod
     public final <T> T getStateValue(String key) {
         return getStateValue(key, null);
     }
@@ -600,6 +603,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @Override
     public void setLoadWithParent(boolean value) {
         this.setStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT, value);
+    }
+
+    @JsMethod
+    public Boolean getRequired() {
+        Boolean result = getStateValue(NeutronEventSubjects.REQUIRED);
+        return result == null ? Boolean.FALSE : result;
+    }
+
+    public void setRequired(Boolean required) {
+        this.setStateValue(NeutronEventSubjects.REQUIRED, Boolean.class, required);
+    }
+
+    @JsMethod
+    public String getRequiredMessage() {
+        return getStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, "Value is required");
+    }
+
+    public void setRequiredMessage(String message) {
+        setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
     }
 
 //endregion

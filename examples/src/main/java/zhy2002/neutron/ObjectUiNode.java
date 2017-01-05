@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -48,5 +49,29 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     @Override
     public int getChildCount() {
         return super.getChildCount();
+    }
+
+    @Override
+    public boolean hasValue() {
+        int loadedChildCount = 0;
+
+        for(int i=0; i<getChildCount(); i++) {
+            UiNode<?> child = getChild(i);
+            if(child.getNodeStatus() == NodeStatusEnum.Loaded) {
+                loadedChildCount++;
+                if(child.hasValue())
+                    return true;
+            }
+        }
+
+        return loadedChildCount == 0;
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(ObjectValueRequiredValidationRule.class, this));
     }
 }

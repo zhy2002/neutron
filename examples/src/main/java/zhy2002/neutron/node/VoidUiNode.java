@@ -47,4 +47,9 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
     @Override
     protected void uninitializeChildren() {
     }
+
+    @Override
+    public boolean hasValue() {
+        return false;
+    }
 }

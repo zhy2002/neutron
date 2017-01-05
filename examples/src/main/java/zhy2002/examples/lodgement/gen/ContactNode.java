@@ -13,8 +13,14 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class ContactNode extends ObjectUiNode<PersonNode>
 {
-    private ContactTelephoneNode HomePhoneNode;
-    private ContactTelephoneNode WorkPhoneNode;
+    private ContactTelephoneNode homePhoneNode;
+    private ContactTelephoneNode workPhoneNode;
+    private ContactAddressNode currentAddressNode;
+    private ContactAddressNode postalAddressNode;
+    private ContactMonthYearNode movedToCurrentAddressNode;
+    private ContactAddressNode previousAddressNode;
+    private ContactMonthYearNode movedToPreviousAddressNode;
+    private ContactMonthYearNode movedFromPreviousAddressNode;
 
     protected ContactNode(PersonNode parent, String name) {
         super(parent, name);
@@ -22,24 +28,66 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 
     @JsMethod
     public ContactTelephoneNode getHomePhoneNode() {
-        return HomePhoneNode;
+        return homePhoneNode;
     }
 
     @JsMethod
     public ContactTelephoneNode getWorkPhoneNode() {
-        return WorkPhoneNode;
+        return workPhoneNode;
+    }
+
+    @JsMethod
+    public ContactAddressNode getCurrentAddressNode() {
+        return currentAddressNode;
+    }
+
+    @JsMethod
+    public ContactAddressNode getPostalAddressNode() {
+        return postalAddressNode;
+    }
+
+    @JsMethod
+    public ContactMonthYearNode getMovedToCurrentAddressNode() {
+        return movedToCurrentAddressNode;
+    }
+
+    @JsMethod
+    public ContactAddressNode getPreviousAddressNode() {
+        return previousAddressNode;
+    }
+
+    @JsMethod
+    public ContactMonthYearNode getMovedToPreviousAddressNode() {
+        return movedToPreviousAddressNode;
+    }
+
+    @JsMethod
+    public ContactMonthYearNode getMovedFromPreviousAddressNode() {
+        return movedFromPreviousAddressNode;
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         UiNodeContext<?> context = getContext();
 
-        HomePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "HomePhoneNode");
-        WorkPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "WorkPhoneNode");
+        homePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "homePhoneNode");
+        workPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "workPhoneNode");
+        currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
+        postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
+        movedToCurrentAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToCurrentAddressNode");
+        previousAddressNode = context.createChildNode(ContactAddressNode.class, this, "previousAddressNode");
+        movedToPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToPreviousAddressNode");
+        movedFromPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedFromPreviousAddressNode");
 
         return Arrays.asList(
-            HomePhoneNode,
-            WorkPhoneNode
+            homePhoneNode,
+            workPhoneNode,
+            currentAddressNode,
+            postalAddressNode,
+            movedToCurrentAddressNode,
+            previousAddressNode,
+            movedToPreviousAddressNode,
+            movedFromPreviousAddressNode
         );
     }
 

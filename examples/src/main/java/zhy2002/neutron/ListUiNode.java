@@ -132,4 +132,9 @@ public abstract class ListUiNode<
     @Override
     protected void uninitializeChildren() {
     }
+
+    @Override
+    public boolean hasValue() {
+        return getItemCount() > 0;
+    }
 }
