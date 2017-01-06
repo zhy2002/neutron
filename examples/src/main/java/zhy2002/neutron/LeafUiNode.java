@@ -42,6 +42,14 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return getValue() != null;
     }
 
+    @Override
+    protected void setStateValueInternal(String key, Object value) {
+        super.setStateValueInternal(key, value);
+        if(NeutronEventSubjects.VALUE.equals(key)) {
+            setHasValue(hasValue());
+        }
+    }
+
     @JsMethod
     public T getCopyOfValue() {
         throw new NotImplementedException();

@@ -23,7 +23,7 @@ export default class TextInputComponent extends InputComponent {
 
         return (
             <div className="row material-field">
-                <div className="medium-12 columns">
+                <div className="medium-12 columns" style={this.state.columnStyle}>
                     <TextField
                         id={model.getUniqueId()}
                         fullWidth={true}

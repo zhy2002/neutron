@@ -11,7 +11,7 @@ import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class LodgementNodeTest {
 
@@ -153,5 +153,25 @@ public class LodgementNodeTest {
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(false));
 
         assertThat(hasError(errorNode -> errorNode.getRule() instanceof LeafValueRequiredValidationRule), equalTo(false));
+    }
+
+    @Test
+    public void hasValueShouldWorkAsExpected() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        ContactNode contactNode = personNode.getContactNode();
+
+        assertThat(contactNode.hasValue(), equalTo(false));
+
+        Telephone telephone = new Telephone();
+        telephone.setPhoneNumber("119");
+        contactNode.getHomePhoneNode().setValue(telephone);
+
+        assertThat(contactNode.getHomePhoneNode().hasValue(), equalTo(true));
+        assertThat(contactNode.hasValue(), equalTo(true));
+
+        contactNode.getHomePhoneNode().setValue(new Telephone());
+        assertThat(contactNode.hasValue(), equalTo(false));
+
     }
 }

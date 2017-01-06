@@ -252,6 +252,10 @@ commonTypes:
 
   - typeName: CountryNode
     baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
 
 - typeName: MonthYearNode
   baseTypeName: ObjectUiNode

@@ -71,7 +71,7 @@ export default class NeutronComponent extends React.Component {
         }
 
         newState.style = deepCopy(styles.defaultStyle);
-        if (!newState.errorMessage && this.model.getRequired() && isEmptyValue(this.model.getValue())) {
+        if (!newState.errorMessage && this.model.getRequired() && !this.model.hasValue()) {
             newState.style = deepCopy(styles.requiredStyle);
         }
 

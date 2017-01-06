@@ -134,6 +134,20 @@ public abstract class ListUiNode<
     }
 
     @Override
+    protected void addChild(UiNode<?> child) {
+        super.addChild(child);
+
+        setHasValue(hasValue());
+    }
+
+    @Override
+    protected void removeChild(UiNode<?> child) {
+        super.removeChild(child);
+
+        setHasValue(hasValue());
+    }
+
+    @Override
     public boolean hasValue() {
         return getItemCount() > 0;
     }

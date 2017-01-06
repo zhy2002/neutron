@@ -2,6 +2,9 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
+import zhy2002.neutron.rule.UpdateObjectHasValueRule;
+import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -53,18 +56,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     @Override
     public boolean hasValue() {
-        int loadedChildCount = 0;
-
-        for(int i=0; i<getChildCount(); i++) {
-            UiNode<?> child = getChild(i);
-            if(child.getNodeStatus() == NodeStatusEnum.Loaded) {
-                loadedChildCount++;
-                if(child.hasValue())
-                    return true;
-            }
-        }
-
-        return loadedChildCount == 0;
+        return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
     }
 
     @Override
@@ -73,5 +65,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
         UiNodeContext<?> context = getContext();
         createdRules.add(context.createUiNodeRule(ObjectValueRequiredValidationRule.class, this));
+        createdRules.add(context.createUiNodeRule(UpdateObjectHasValueRule.class, this));
     }
 }

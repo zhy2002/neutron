@@ -16,5 +16,22 @@ public  class CountryNode extends StringUiNode<AddressNode<?>>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setOptions(ApplicationNodeConstants.COUNTRY_TYPE.toArray());
+    }
+
+    @JsMethod
+    public Object getOptions() {
+        return getStateValue(ApplicationNodeConstants.OPTIONS);
+    }
+
+    @JsMethod
+    public void setOptions(Object value) {
+        setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
+    }
+
 
 }

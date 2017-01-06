@@ -26,6 +26,14 @@ public class ApplicationNodeConstants {
             new SelectOption("Other")
     );
 
+    public static final List<SelectOption> COUNTRY_TYPE = Arrays.asList(
+            new SelectOption(""),
+            new SelectOption("Australia"),
+            new SelectOption("China"),
+            new SelectOption("India"),
+            new SelectOption("US")
+    );
+
     public static final List<SelectOption> GENDER_TYPE = Arrays.asList(
             new SelectOption(""),
             new SelectOption("Male"),

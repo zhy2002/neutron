@@ -62,6 +62,7 @@ public class ClassRegistryImpl implements ClassRegistry {
     }
 
     private void loadRuleFactories() {
+        //we need to have the explicit new XXXRuleFactory<> declaration to work around a GWT compilation issue.
         setUiNodeRuleFactory(PatternValidationRule.class, new UiNodeRuleFactory<PatternValidationRule, StringUiNode<?>>() {
             @Override
             public PatternValidationRule create(StringUiNode<?> owner) {
@@ -101,6 +102,13 @@ public class ClassRegistryImpl implements ClassRegistry {
             @Override
             public ObjectValueRequiredValidationRule create(ObjectUiNode<?> owner) {
                 return new ObjectValueRequiredValidationRule(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(UpdateObjectHasValueRule.class, new UiNodeRuleFactory<UpdateObjectHasValueRule, ObjectUiNode<?>>() {
+            @Override
+            public UpdateObjectHasValueRule create(ObjectUiNode<?> owner) {
+                return new UpdateObjectHasValueRule(owner);
             }
         });
     }

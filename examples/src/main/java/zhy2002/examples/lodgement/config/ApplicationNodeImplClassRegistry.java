@@ -1,5 +1,6 @@
 package zhy2002.examples.lodgement.config;
 
+import zhy2002.examples.lodgement.gen.ContactAddressNode;
 import zhy2002.examples.lodgement.gen.ContactNode;
 import zhy2002.examples.lodgement.gen.TelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -16,6 +17,8 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadNodeConfig() {
+
+        setUiNodeConfig(ContactAddressNode.class, new CurrentAddressConfig());
     }
 
     private void loadRuleFactories() {

@@ -82,6 +82,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.context = context;
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
+
+        setChangeTrackingMode(NeutronEventSubjects.HAS_VALUE, ChangeTrackingModeEnum.Value);
     }
 
     /**
@@ -191,6 +193,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     @JsMethod
     public abstract boolean hasValue();
+
+    protected void setHasValue(boolean value) {
+            setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
+    }
 
     @JsMethod
     public final <T> T getStateValue(String key) {

@@ -44,7 +44,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return children.get(index);
     }
 
-    final void addChild(UiNode<?> child) {
+    protected void addChild(UiNode<?> child) {
         if (child.getParent() != this)
             throw new ParentMismatchException(this, child);
         if (childrenMap.get(child.getName()) != null)
@@ -54,7 +54,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         childrenMap.put(child.getName(), child);
     }
 
-    final void removeChild(UiNode<?> child) {
+    protected void removeChild(UiNode<?> child) {
         childrenMap.remove(child.getName());
         children.remove(child);
     }
