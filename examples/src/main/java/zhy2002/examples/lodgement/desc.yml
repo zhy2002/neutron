@@ -4,6 +4,9 @@ rootType:
   baseTypeName: ObjectUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
+  - {name: selectedName, typeName: String}
+  init:
+  - {propertyName: selectedName, value: '"personListNode"'}
   rules:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}

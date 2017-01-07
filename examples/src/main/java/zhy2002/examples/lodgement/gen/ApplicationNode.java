@@ -26,6 +26,13 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
         super(context);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setSelectedName("personListNode");
+    }
+
     @JsMethod
     public Boolean getShowErrorList() {
         return getStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.FALSE);
@@ -34,6 +41,16 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     @JsMethod
     public void setShowErrorList(Boolean value) {
         setStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.class, value);
+    }
+
+    @JsMethod
+    public String getSelectedName() {
+        return getStateValue(ApplicationNodeConstants.SELECTED_NAME);
+    }
+
+    @JsMethod
+    public void setSelectedName(String value) {
+        setStateValue(ApplicationNodeConstants.SELECTED_NAME, String.class, value);
     }
 
     @JsMethod

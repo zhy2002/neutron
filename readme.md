@@ -1,7 +1,6 @@
 todo 
 -----------------
-* build up a correspoding react component library
-* Date field type
+* performance tuning
 * implement rule priority
 * implement router
 
