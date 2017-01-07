@@ -1,8 +1,8 @@
-import React from 'react';
-
-import ApplicationToolbarComponent from './ApplicationToolbarComponent.jsx';
-import ApplicationDataComponent from './ApplicationDataComponent.jsx';
-import NeutronComponent from '../../materialui/NeutronComponent.jsx';
+import React from "react";
+import ApplicationToolbarComponent from "./ApplicationToolbarComponent.jsx";
+import ApplicationDataComponent from "./ApplicationDataComponent.jsx";
+import NeutronComponent from "../../materialui/NeutronComponent.jsx";
+import ValidationErrorsComponent from "../ValidationErrorsComponent.jsx";
 
 
 export default class LenderApplicationComponent extends NeutronComponent {
@@ -16,8 +16,9 @@ export default class LenderApplicationComponent extends NeutronComponent {
 
         return (
             <div>
-                <ApplicationToolbarComponent model={model} />
-                <ApplicationDataComponent model={model} />
+                <ApplicationToolbarComponent model={model}/>
+                <ApplicationDataComponent model={model}/>
+                <ValidationErrorsComponent model={model}/>
             </div>
         );
     }

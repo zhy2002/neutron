@@ -25,6 +25,18 @@ export default class ApplicationListComponent extends React.Component {
                     <td>event more data</td>
                     <td>1111</td>
                 </tr>
+                <tr>
+                    <td>dummy data 2</td>
+                    <td>more data</td>
+                    <td>event more data</td>
+                    <td>1111</td>
+                </tr>
+                <tr>
+                    <td>dummy data 3</td>
+                    <td>more data</td>
+                    <td>event more data</td>
+                    <td>1111</td>
+                </tr>
                 </tbody>
             </table>
         );

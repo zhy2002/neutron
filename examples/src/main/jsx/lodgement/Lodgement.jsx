@@ -1,11 +1,9 @@
 import React from "react";
+import HeaderComponent from "./HeaderComponent.jsx";
+import MainComponent from "./MainComponent.jsx";
 
-import HeaderComponent from './HeaderComponent.jsx';
-import MainComponent from './MainComponent.jsx';
 
-import NeutronComponent from '../materialui/NeutronComponent.jsx';
-
-export default class LodgementComponent extends NeutronComponent {
+export default class LodgementComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,11 +11,10 @@ export default class LodgementComponent extends NeutronComponent {
 
     render() {
         console.log("Rendering LodgementComponent...");
-        let model = this.model;
         return (
             <div>
-                <HeaderComponent model={model} />
-                <MainComponent model={model} />
+                <HeaderComponent />
+                <MainComponent />
             </div>
         );
     }

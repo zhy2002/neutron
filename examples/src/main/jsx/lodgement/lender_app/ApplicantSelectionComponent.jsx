@@ -7,7 +7,6 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from "material-ui/svg-icons/content/remove";
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import NeutronComponent from "../../materialui/NeutronComponent.jsx";
 
@@ -21,6 +20,9 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
 
     createNewApplicant() {
         let newApplicant = this.model.createItem();
+        const newIndex = this.model.getItemCount() - 1;
+        console.log('New index is: ' + newIndex);
+        this.model.setSelectedIndex(newIndex);
     }
 
     removeCurrentApplicant() {

@@ -14,7 +14,7 @@ public class Cycle implements CycleStatus {
     /**
      * Maximum number of rules fired in one cycle.
      */
-    private static final int MAX_RULE_ACTIVATION_COUNT = 500;
+    private static final int MAX_RULE_ACTIVATION_COUNT = 100000;
     /**
      * The predefined phases of a tick.
      * Rule prioritization on happens in the same phase.
