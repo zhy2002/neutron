@@ -16,5 +16,23 @@ public  class AddressLineNode extends StringUiNode<AddressNode<?>>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
+
+
+
+    @Override
+    public Boolean getRequired() {
+        boolean parentHasValue = getParent().hasValue();
+        if(parentHasValue)
+            return super.getRequired();
+
+        return Boolean.FALSE;
+    }
 
 }

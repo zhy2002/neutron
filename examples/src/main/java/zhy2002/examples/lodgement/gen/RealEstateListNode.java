@@ -21,4 +21,5 @@ public  class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLi
     }
 
 
+
 }

@@ -48,6 +48,8 @@ export default class SelectInputComponent extends InputComponent {
                         floatingLabelStyle={this.state.style}
                         value={this.state.value}
                         onChange={(event, index, value) => {
+                            console.log('selected value is:');
+                            console.log(value);
                             model.setValue(value)
                         }}
                         errorText={this.state.errorMessage}

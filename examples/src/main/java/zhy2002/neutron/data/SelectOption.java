@@ -1,26 +1,19 @@
 package zhy2002.neutron.data;
 
-import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
 
-
 @JsType
-public class SelectOption {
+public abstract class SelectOption<T> {
 
-    private final String value;
+    private final T value;
     private final String text;
 
-    @JsIgnore
-    public SelectOption(String value) {
-        this(value, value);
-    }
-
-    public SelectOption(String value, String text) {
+    public SelectOption(T value, String text) {
         this.value = value;
         this.text = text;
     }
 
-    public String getValue() {
+    public T getValue() {
         return value;
     }
 

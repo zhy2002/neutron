@@ -15,6 +15,7 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 {
     private ContactTelephoneNode homePhoneNode;
     private ContactTelephoneNode workPhoneNode;
+    private ContactEmailNode contactEmailNode;
     private ContactAddressNode currentAddressNode;
     private ContactAddressNode postalAddressNode;
     private ContactMonthYearNode movedToCurrentAddressNode;
@@ -34,6 +35,11 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
     @JsMethod
     public ContactTelephoneNode getWorkPhoneNode() {
         return workPhoneNode;
+    }
+
+    @JsMethod
+    public ContactEmailNode getContactEmailNode() {
+        return contactEmailNode;
     }
 
     @JsMethod
@@ -72,6 +78,7 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 
         homePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "homePhoneNode");
         workPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "workPhoneNode");
+        contactEmailNode = context.createChildNode(ContactEmailNode.class, this, "contactEmailNode");
         currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
         postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
         movedToCurrentAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToCurrentAddressNode");
@@ -82,6 +89,7 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
         return Arrays.asList(
             homePhoneNode,
             workPhoneNode,
+            contactEmailNode,
             currentAddressNode,
             postalAddressNode,
             movedToCurrentAddressNode,
@@ -98,6 +106,7 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
         UiNodeContext<?> context = getContext();
         createdRules.add(context.createUiNodeRule(HomeOrWorkPhoneRequiredRule.class, this));
     }
+
 
 
 }

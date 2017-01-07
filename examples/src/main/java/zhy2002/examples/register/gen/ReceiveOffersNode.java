@@ -26,4 +26,5 @@ public  class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
     }
 
 
+
 }

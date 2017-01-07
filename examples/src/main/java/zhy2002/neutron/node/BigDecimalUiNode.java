@@ -60,6 +60,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         return super.getValue();
     }
 
+    @JsMethod
     @Override
     public void setValue(BigDecimal value) {
         this.setValue(BigDecimal.class, value);

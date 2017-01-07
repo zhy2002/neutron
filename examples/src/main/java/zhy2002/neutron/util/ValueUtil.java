@@ -1,5 +1,9 @@
 package zhy2002.neutron.util;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.i18n.shared.DateTimeFormat;
+
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,13 +23,13 @@ public final class ValueUtil {
     }
 
     public static String nodeNameToLabel(String name) {
-        if(isEmpty(name))
+        if (isEmpty(name))
             return name;
 
-        if(Character.isDigit(name.charAt(0))) {
+        if (Character.isDigit(name.charAt(0))) {
             try {
-              int newValue = Integer.parseInt(name) + 1;
-              return String.valueOf(newValue);
+                int newValue = Integer.parseInt(name) + 1;
+                return String.valueOf(newValue);
             } catch (NumberFormatException ex) {
                 logger.log(Level.FINE, "Node name '" + name + "' cannot be converted to an integer.");
                 return name;
@@ -34,20 +38,32 @@ public final class ValueUtil {
 
         StringBuilder stringBuilder = new StringBuilder();
         int end = name.length() - 1;
-        if(name.endsWith("Node")) {
+        if (name.endsWith("Node")) {
             end -= 4;
         }
 
-        for(int i=0; i<=end; i++) {
+        for (int i = 0; i <= end; i++) {
             char ch = name.charAt(i);
-            if(Character.isUpperCase(ch)) {
+            if (Character.isUpperCase(ch)) {
                 stringBuilder.append(' ');
             }
-            if(i == 0) {
+            if (i == 0) {
                 ch = Character.toUpperCase(ch);
             }
             stringBuilder.append(ch);
         }
         return stringBuilder.toString();
+    }
+
+    public static int getCurrentYear() {
+        return 2017;
+//        String year;
+//        if (GWT.isClient()) { //this check is required as DateTimeFormat cannot be used in unit test
+//            year = DateTimeFormat.getFormat("d-M-yyyy").format(new Date()).split("-")[2];
+//        } else {
+//            year = String.valueOf(new Date().getYear());
+//        }
+//
+//        return Integer.parseInt(year);
     }
 }

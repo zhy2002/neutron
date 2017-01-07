@@ -70,4 +70,6 @@ public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
     public Class<ValidationError> getValueClass() {
     return ValidationError.class;
     }
+
+
 }

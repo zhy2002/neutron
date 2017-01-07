@@ -150,6 +150,7 @@ rootType:
         children:
         - {typeName: ContactTelephoneNode, name: homePhoneNode}
         - {typeName: ContactTelephoneNode, name: workPhoneNode}
+        - {typeName: ContactEmailNode}
         - {typeName: ContactAddressNode, name: currentAddressNode}
         - {typeName: ContactAddressNode, name: postalAddressNode}
         - {typeName: ContactMonthYearNode, name: movedToCurrentAddressNode}
@@ -165,6 +166,11 @@ rootType:
 
         - typeName: ContactMonthYearNode
           baseTypeName: MonthYearNode
+
+        - typeName: ContactEmailNode
+          baseTypeName: EmailNode
+          init:
+          - {propertyName: required, value: 'true'}
 
       - typeName: CurrentEmploymentNode
         baseTypeName: ObjectUiNode
@@ -235,6 +241,7 @@ commonTypes:
   baseTypeName: ObjectUiNode
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
   children:
   - {typeName: AddressLineNode}
   - {typeName: SuburbNode}
@@ -243,12 +250,19 @@ commonTypes:
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
 
   - typeName: SuburbNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
 
   - typeName: PostcodeNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: pattern, value: '"\\d{4,4}"'}
 
   - typeName: CountryNode
     baseTypeName: StringUiNode
@@ -256,17 +270,36 @@ commonTypes:
     - {name: options, typeName: Object}
     init:
     - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
+    - {propertyName: required, value: 'true'}
 
 - typeName: MonthYearNode
   baseTypeName: ObjectUiNode
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}
   childTypes:
   - typeName: MonthNode
     baseTypeName: BigDecimalUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE.toArray()}
 
   - typeName: YearNode
     baseTypeName: BigDecimalUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
+
+- typeName: EmailNode
+  baseTypeName: StringUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}

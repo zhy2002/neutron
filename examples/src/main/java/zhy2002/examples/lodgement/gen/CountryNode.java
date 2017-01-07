@@ -21,6 +21,7 @@ public  class CountryNode extends StringUiNode<AddressNode<?>>
         super.initializeState();
 
         setOptions(ApplicationNodeConstants.COUNTRY_TYPE.toArray());
+        setRequired(true);
     }
 
     @JsMethod
@@ -33,5 +34,16 @@ public  class CountryNode extends StringUiNode<AddressNode<?>>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
+
+
+
+    @Override
+    public Boolean getRequired() {
+        boolean parentHasValue = getParent().hasValue();
+        if(parentHasValue)
+            return super.getRequired();
+
+        return Boolean.FALSE;
+    }
 
 }

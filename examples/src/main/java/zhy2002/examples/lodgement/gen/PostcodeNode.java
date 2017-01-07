@@ -16,5 +16,24 @@ public  class PostcodeNode extends StringUiNode<AddressNode<?>>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+        setPattern("\\d{4,4}");
+    }
+
+
+
+
+    @Override
+    public Boolean getRequired() {
+        boolean parentHasValue = getParent().hasValue();
+        if(parentHasValue)
+            return super.getRequired();
+
+        return Boolean.FALSE;
+    }
 
 }

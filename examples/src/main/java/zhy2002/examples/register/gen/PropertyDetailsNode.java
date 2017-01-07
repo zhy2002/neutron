@@ -53,4 +53,5 @@ public  class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
     }
 
 
+
 }

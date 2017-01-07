@@ -35,4 +35,5 @@ public  class ApplicationTypeNode extends StringUiNode<GeneralNode>
     }
 
 
+
 }

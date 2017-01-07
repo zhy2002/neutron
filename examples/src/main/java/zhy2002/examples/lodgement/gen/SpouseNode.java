@@ -17,4 +17,5 @@ public  class SpouseNode extends StringUiNode<GeneralNode>
     }
 
 
+
 }

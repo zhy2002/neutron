@@ -26,4 +26,5 @@ public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
     }
 
 
+
 }

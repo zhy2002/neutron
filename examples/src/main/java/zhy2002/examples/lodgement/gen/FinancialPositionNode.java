@@ -27,4 +27,5 @@ public  class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
     }
 
 
+
 }

@@ -26,4 +26,5 @@ public  class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
     }
 
 
+
 }

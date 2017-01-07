@@ -35,4 +35,5 @@ public  class ApplicantTypeNode extends StringUiNode<GeneralNode>
     }
 
 
+
 }

@@ -17,4 +17,5 @@ public  class PermanentResidentFlagNode extends BooleanUiNode<GeneralNode>
     }
 
 
+
 }

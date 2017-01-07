@@ -149,5 +149,21 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     public Class<${valueTypeName}> getValueClass() {
     return ${valueTypeName}.class;
     }
+
+</#if>
+
+<#if parent??>
+    <#if parent.localRequired??>
+
+    @Override
+    public Boolean getRequired() {
+        boolean parentHasValue = getParent().hasValue();
+        if(parentHasValue)
+            return super.getRequired();
+
+        return Boolean.FALSE;
+    }
+
+    </#if>
 </#if>
 }
