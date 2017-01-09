@@ -65,6 +65,8 @@ Goals
 * Verify UI logic in unit tests and rendering result in screenshots
 * strong typing as much as possible
 * improve interop development experience
+* effect of rule execution should not depend on order of state change.
+same state via same rules -> same result state
 
 Problems
 ------------------

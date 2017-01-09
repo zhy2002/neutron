@@ -40,6 +40,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         return new Telephone(value);
     }
 
+    @JsProperty
     private static Telephone EMPTY_VALUE = new Telephone();
 
     @Override

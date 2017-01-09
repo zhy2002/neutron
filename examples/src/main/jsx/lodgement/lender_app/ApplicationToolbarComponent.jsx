@@ -22,6 +22,19 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         window.alert(JSON.stringify(obj));
     }
 
+    loadJson() {
+        let model = this.model;
+        $.get(
+            "json/application/app1.json",
+            function(data) {
+                let context = model.getContext();
+                context.beginSession();
+                CommonUtil.setValue(model, data);
+                context.commitSession();
+            }
+        );
+    }
+
     render() {
         let model = this.model;
 
@@ -33,6 +46,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         model.refresh();
                     }}/>
                     <RaisedButton label="Show JSON" primary={true} onMouseUp={this.showJson.bind(this)}/>
+                    <RaisedButton label="Load JSON" primary={true} onMouseUp={this.loadJson.bind(this)}/>
                 </ToolbarGroup>
             </Toolbar>
         );
