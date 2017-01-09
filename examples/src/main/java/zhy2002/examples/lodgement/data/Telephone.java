@@ -1,14 +1,18 @@
 package zhy2002.examples.lodgement.data;
 
 import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsProperty;
 import jsinterop.annotations.JsType;
 import zhy2002.neutron.util.ValueUtil;
 
 @JsType
 public class Telephone {
 
+    @JsProperty
     private String countryCode = "";
+    @JsProperty
     private String areaCode = "";
+    @JsProperty
     private String phoneNumber = "";
 
     @JsIgnore
