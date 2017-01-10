@@ -7,6 +7,7 @@ import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
+import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 
 import java.util.function.Predicate;
 
@@ -173,5 +174,24 @@ public class LodgementNodeTest {
         contactNode.getHomePhoneNode().setValue(new Telephone());
         assertThat(contactNode.hasValue(), equalTo(false));
 
+    }
+
+    @Test
+    public void requiredAddressErrorCanBeRemoved() {
+
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        ContactNode contactNode = personNode.getContactNode();
+
+        contactNode.refresh();
+
+        Predicate<ErrorNode> addressRequiredError = errorNode ->
+                errorNode.getRule() instanceof ObjectValueRequiredValidationRule
+                        && errorNode.getSource() instanceof AddressNode;
+
+        assertThat(hasError(addressRequiredError), equalTo(true));
+
+        contactNode.getCurrentAddressNode().getAddressLineNode().setValue("4 Pioneer Road");
+        assertThat(hasError(addressRequiredError), equalTo(false));
     }
 }

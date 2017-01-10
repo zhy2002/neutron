@@ -1,7 +1,5 @@
 todo 
------------------
-* fix bug - address cannot be empty & at least one primary applicant error node not removed when deactivate. 
-- likely to be jsx error
+----------------- 
 * performance tuning
 * implement rule priority
 * implement router

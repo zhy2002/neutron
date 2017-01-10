@@ -5,6 +5,7 @@ import zhy2002.examples.lodgement.gen.PersonNode;
 import zhy2002.examples.lodgement.gen.PrimaryApplicantFlagNode;
 import zhy2002.examples.lodgement.gen.rule.AtLeastOnePrimaryApplicantRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 
@@ -23,10 +24,15 @@ public class AtLeastOnePrimaryApplicantRuleImpl extends AtLeastOnePrimaryApplica
         return CollectionUtil.combine(
                 super.createEventBindings(),
                 new BooleanStateChangeEventBinding(
-                        event -> getOwner().getParent().getIndex() == 0,
+                        event -> event.getOrigin() instanceof PrimaryApplicantFlagNode,
                         event -> validate()
                 )
         );
+    }
+
+    @Override
+    protected UiNode<?> findHost() {
+        return getPrimaryApplicantFlagNode().getParent().getParent().getParent();
     }
 
     @Override
@@ -36,10 +42,14 @@ public class AtLeastOnePrimaryApplicantRuleImpl extends AtLeastOnePrimaryApplica
 
     @Override
     protected boolean isActivated() {
+        PersonNode personNode = getPrimaryApplicantFlagNode().getParent().getParent();
+        if (personNode.getIndex() != 0)
+            return false;
+
         boolean hasPrimary = false;
-        PersonListNode personListNode = getPrimaryApplicantFlagNode().getParent().getParent().getParent();
+        PersonListNode personListNode = personNode.getParent();
         for (int i = 0; i < personListNode.getItemCount(); i++) {
-            PersonNode personNode = personListNode.getItem(i);
+            personNode = personListNode.getItem(i);
             if (Boolean.TRUE.equals(personNode.getGeneralNode().getPrimaryApplicantFlagNode().getValue())) {
                 hasPrimary = true;
                 break;
