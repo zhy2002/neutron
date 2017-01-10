@@ -1,18 +1,14 @@
-import React from "react";
-import {Tabs, Tab} from "material-ui/Tabs";
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import PersonListViewComponent from "./PersonListViewComponent.jsx";
+import React from 'react';
+import {Tabs, Tab} from 'material-ui/Tabs';
+import NeutronComponent from '../../materialui/NeutronComponent';
+import PersonListViewComponent from './PersonListViewComponent';
 
 
-let tabStyle = {
+const tabStyle = {
     whiteSpace: "initial"
 };
 
 export default class ApplicationDataComponent extends NeutronComponent {
-
-    constructor(props) {
-        super(props);
-    }
 
     selectTab(currentTab) {
         this.model.setSelectedName(currentTab);
@@ -27,7 +23,7 @@ export default class ApplicationDataComponent extends NeutronComponent {
     }
 
     render() {
-        let model = this.model;
+        const model = this.model;
 
         console.log("ApplicationDataComponent model: ");
         console.log(model);

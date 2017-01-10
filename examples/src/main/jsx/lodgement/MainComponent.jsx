@@ -1,8 +1,8 @@
 import React from "react";
 import {Tabs, Tab} from "material-ui/Tabs";
-import AppManagerToolbarComponent from "./app_manager/AppManagerToolbarComponent.jsx";
-import ApplicationListComponent from "./app_manager/ApplicationListComponent.jsx";
-import LenderApplicationComponent from "./lender_app/LenderApplicationComponent.jsx";
+import AppManagerToolbarComponent from "./app_manager/AppManagerToolbarComponent";
+import ApplicationListComponent from "./app_manager/ApplicationListComponent";
+import LenderApplicationComponent from "./lender_app/LenderApplicationComponent";
 
 function createRoot() {
     let GWT = window["GWT"];
@@ -12,7 +12,7 @@ function createRoot() {
     return root;
 }
 
-export default class MainComponent extends React.Component {
+export default class MainComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);

@@ -1,8 +1,7 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
-
-import InputComponent from './InputComponent.jsx';
-import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
+import InputComponent from './InputComponent';
+import FieldErrorMessageComponent from './FieldErrorMessageComponent';
 
 export default class DateInputComponent extends InputComponent {
 
@@ -11,14 +10,10 @@ export default class DateInputComponent extends InputComponent {
     }
 
     extractNewState() {
-        let newState = super.extractNewState();
+        const newState = super.extractNewState();
 
-        let value = this.model.getValue();
-        if(value) {
-            newState.date = new Date(value);
-        } else {
-            newState.date = null;
-        }
+        const value = this.model.getValue();
+        newState.date = value ? new Date(value) : null;
 
         return newState;
     }
@@ -30,21 +25,21 @@ export default class DateInputComponent extends InputComponent {
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <DatePicker
-                        id={model.getUniqueId()}
-                        autoOk={true}
-                        fullWidth={true}
-                        floatingLabelText={this.state.label}
+                        id={this.id}
+                        autoOk
+                        fullWidth
+                        floatingLabelText={this.label}
                         floatingLabelStyle={this.state.style}
                         value={this.state.date}
                         onChange={(event, date) => {
-                            if(date) {
+                            if (date) {
                                 model.setValue(date.toUTCString());
                             } else {
-                                model.setValue("");
+                                model.setValue('');
                             }
                         }}
                     />
-                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage}/>
                 </div>
             </div>
         );

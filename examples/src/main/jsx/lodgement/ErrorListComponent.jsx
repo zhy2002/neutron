@@ -1,23 +1,20 @@
 import React from 'react';
-
-import NeutronComponent from "../materialui/NeutronComponent.jsx";
+import NeutronComponent from '../materialui/NeutronComponent';
 
 
 export default class ErrorListComponent extends NeutronComponent {
 
-    constructor(props) {
-        super(props);
-    }
-
     focusOnField(errorNode) {
         const errorNodeName = errorNode.getName();
         this.model.setFocus(errorNodeName);
+
+        //set focus to the element after next render
         const source = errorNode.getSource();
-        if(source) {
-            this.addCallback(function() {
-                console.log('Trying to set focus to element: ' + source.getUniqueId());
+        if (source) {
+            this.addCallback(() => {
+                console.log(`Trying to set focus to element: ${source.getUniqueId()}`);
                 const dom = document.getElementById(source.getUniqueId());
-                if(dom) {
+                if (dom) {
                     dom.focus();
                 }
             });
@@ -25,16 +22,17 @@ export default class ErrorListComponent extends NeutronComponent {
     }
 
     render() {
-
-        let errorList = this.model;
-        let errorRows = [];
+        const errorList = this.model;
+        const errorRows = [];
 
         for (let i = 0; i < errorList.getItemCount(); i++) {
-            let item = errorList.getItem(i);
+            const item = errorList.getItem(i);
             errorRows.push(
                 <tr key={item.getUniqueId()}>
-                    <td>{item.getSource() ? item.getSource().getPathLabel() : ""}</td>
-                    <td><a href="javascript:void(0)" onClick={()=>this.focusOnField(item)}>{item.getMessage()}</a></td>
+                    <td>{item.getSource() ? item.getSource().getPathLabel() : ''}</td>
+                    <td>
+                        <a tabIndex="0" onClick={() => this.focusOnField(item)}>{item.getMessage()}</a>
+                    </td>
                 </tr>
             );
         }
@@ -47,12 +45,9 @@ export default class ErrorListComponent extends NeutronComponent {
                     <th>Message</th>
                 </tr>
                 </thead>
-                <tbody>
-                {errorRows}
-                </tbody>
+                <tbody>{errorRows}</tbody>
 
             </table>
         );
     }
-
 }

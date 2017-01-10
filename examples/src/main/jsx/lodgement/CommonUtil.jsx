@@ -5,9 +5,9 @@ function extractValue(node) {
     if (!node)
         return undefined;
 
-    if (node["getChildCount"]) {
+    if (node.getChildCount) {
         return extractObject(node);
-    } else if (node["getItemCount"]) {
+    } else if (node.getItemCount) {
         return extractList(node);
     } else {
         return extractLeaf(node);
@@ -18,9 +18,9 @@ function extractObject(node) {
     const result = {};
     const children = node.getChildren();
     children.forEach(child => {
-        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && child.getName() != "errorListNode") {
+        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && child.getName() !== 'errorListNode') {
             let fieldName = child.getName();
-            if (fieldName.endsWith("Node")) {
+            if (fieldName.endsWith('Node')) {
                 fieldName = fieldName.substr(0, fieldName.length - 4);
             }
             result[fieldName] = extractValue(child);
@@ -42,7 +42,7 @@ function extractList(node) {
 
 function extractLeaf(node) {
     let value = node.getValue();
-    if (node["getText"]) { //big decimal node
+    if (node.getText) { //big decimal node
         let text = node.getText();
         if (text) {
             value = parseFloat(text);
@@ -54,12 +54,12 @@ function extractLeaf(node) {
 }
 
 function setValue(node, data) {
-    if(!data)
+    if (!data)
         return;
 
-    if (node["getChildCount"]) {
+    if (node.getChildCount) {
         return setObject(node, data);
-    } else if (node["getItemCount"]) {
+    } else if (node.getItemCount) {
         return setList(node, data);
     } else {
         return setLeaf(node, data);
@@ -69,12 +69,12 @@ function setValue(node, data) {
 function setObject(node, data) {
     const children = node.getChildren();
     children.forEach(child => {
-        if (child.getName() != "errorListNode") {
+        if (child.getName() !== 'errorListNode') {
             let fieldName = child.getName();
-            if (fieldName.endsWith("Node")) {
+            if (fieldName.endsWith('Node')) {
                 fieldName = fieldName.substr(0, fieldName.length - 4);
             }
-            if(data[fieldName]) {
+            if (data[fieldName]) {
                 setValue(child, data[fieldName]);
             }
         }
@@ -82,37 +82,38 @@ function setObject(node, data) {
 }
 
 function setList(node, data) {
-    if(data && data.length > 0) {
-        for(let i=0; i<data.length; i++) {
+    if (data && data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
             let item = data[i];
             let child = node.getItemCount() === i ? child = node.createItem() : child = node.getItem(i);
-            if(item) {
+            if (item) {
                 setValue(child, item);
             }
         }
     }
 }
 
-function setLeaf(node, data) {
-    if (node["setText"]) { //big decimal node
-        if(data !== null) {
-            node.setText("" + data);
-        }
-    } else {
-        try {
-            let value = node.getCopyOfValue();
-            copyFields(value, data);
-            node.setValue(value);
-        } catch(e) {
-            node.setValue(data);
+function copyFields(target, source) {
+    //todo deep copy
+    for (const prop in source) {
+        if (source[prop]) {
+            target[prop] = source[prop];
         }
     }
 }
 
-function copyFields(target, source) {
-    for(let prop in source) {
-        if(source[prop]) {
-            target[prop] = source[prop];
+function setLeaf(node, data) {
+    if (node.setText) { //big decimal node
+        if (data !== null) {
+            node.setText(`${data}`);
+        }
+    } else {
+        try {
+            const value = node.getCopyOfValue();
+            copyFields(value, data);
+            node.setValue(value);
+        } catch (e) {
+            node.setValue(data);
         }
     }
 }

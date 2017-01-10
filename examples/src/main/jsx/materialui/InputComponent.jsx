@@ -1,29 +1,14 @@
 import React from 'react';
-
-import NeutronComponent from './NeutronComponent.jsx';
+import NeutronComponent from './NeutronComponent';
 
 
 export default class InputComponent extends NeutronComponent {
 
-    constructor(props) {
-        super(props);
+    receiveProps(props) {
+        super.receiveProps(props);
+
+        this.columnStyle = props.columnStyle || {};
     }
-
-    initialize(props) {
-        super.initialize(props);
-
-        this.columnStyle = props['columnStyle'] || {};
-    }
-
-    extractNewState() {
-        let newState = super.extractNewState();
-
-        newState.columnStyle = this.columnStyle;
-
-        return newState;
-    }
-
-
 }
 
 InputComponent.propTypes = {

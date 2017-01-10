@@ -1,14 +1,13 @@
 import React from 'react';
-import {ToolbarGroup, ToolbarSeparator} from "material-ui/Toolbar";
-import DropDownMenu from "material-ui/DropDownMenu";
-import MenuItem from "material-ui/MenuItem";
+import {ToolbarGroup, ToolbarSeparator} from 'material-ui/Toolbar';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ContentRemove from "material-ui/svg-icons/content/remove";
+import ContentRemove from 'material-ui/svg-icons/content/remove';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
+import NeutronComponent from '../../materialui/NeutronComponent';
 
 export default class ApplicantSelectionComponent extends NeutronComponent {
 
@@ -19,9 +18,8 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
     }
 
     createNewApplicant() {
-        let newApplicant = this.model.createItem();
+        const newApplicant = this.model.createItem();
         const newIndex = this.model.getItemCount() - 1;
-        console.log('New index is: ' + newIndex);
         this.model.setSelectedIndex(newIndex);
     }
 
@@ -30,12 +28,11 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
     }
 
     selectApplicant(event, key) {
-        console.log("selection key is: " + key);
         this.model.setSelectedIndex(key);
     }
 
     extractNewState() {
-        let newState = super.extractNewState();
+        const newState = super.extractNewState();
 
         let applicantNames = [];
         for(let i=1; i<=this.model.getItemCount(); i++) {
@@ -47,14 +44,13 @@ export default class ApplicantSelectionComponent extends NeutronComponent {
         newState.applicantNames = applicantNames;
 
         newState.selectedIndex = this.model.getSelectedIndex();
-        console.log("selection key is: " + newState.selectedIndex);
 
         return newState;
     }
 
     deleteApplicant() {
         this.setState({openDialog: false});
-        let selectedIndex = this.model.getSelectedIndex();
+        const selectedIndex = this.model.getSelectedIndex();
         this.model.removeByIndex(selectedIndex);
     }
 

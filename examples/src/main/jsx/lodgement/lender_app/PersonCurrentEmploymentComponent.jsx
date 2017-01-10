@@ -1,6 +1,5 @@
 import React from 'react';
-
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
+import NeutronComponent from '../../materialui/NeutronComponent';
 
 export default class PersonCurrentEmploymentComponent extends NeutronComponent {
 

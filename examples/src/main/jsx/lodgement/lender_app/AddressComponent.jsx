@@ -1,31 +1,27 @@
-import React from "react";
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import FieldErrorMessageComponent from "../../materialui/FieldErrorMessageComponent.jsx";
-import TextInputComponent from "../../materialui/TextInputComponent.jsx";
-import SelectInputComponent from "../../materialui/SelectInputComponent.jsx";
+import React from 'react';
+import NeutronComponent from '../../materialui/NeutronComponent';
+import FieldErrorMessageComponent from '../../materialui/FieldErrorMessageComponent';
+import TextInputComponent from '../../materialui/TextInputComponent';
+import SelectInputComponent from '../../materialui/SelectInputComponent';
 
 
 const inputColumnStyle = {
-    paddingLeft: "0"
+    paddingLeft: '0'
 };
 
 const columnStyle = {
-    padding: "0"
+    padding: '0'
 };
 
 export default class AddressComponent extends NeutronComponent {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const model = this.model;
 
         return (
-            <div id={model.getUniqueId()} tabIndex="0" className="row expanded address">
+            <div id={this.id} tabIndex="0" className="row expanded address">
                 <div className="small-12 columns">
-                    <label style={this.state.style}>{this.state.label}</label>
+                    <p style={this.state.style}>{this.label}</p>
                     <div className="row expanded">
                         <div className="small-12 columns" style={columnStyle}>
                             <TextInputComponent columnStyle={inputColumnStyle} model={model.getAddressLineNode()}/>

@@ -1,37 +1,33 @@
 import React from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import InputComponent from './InputComponent';
+import FieldErrorMessageComponent from './FieldErrorMessageComponent';
 
-import InputComponent from './InputComponent.jsx';
-import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
 
-
-let buttonGroupStyle = {
-    marginTop: "30px",
-    display: "flex"
+const buttonGroupStyle = {
+    marginTop: '30px',
+    display: 'flex'
 };
 
-let buttonStyle = {
-    width: "auto",
-    paddingRight: "1em"
+const buttonStyle = {
+    width: 'auto',
+    paddingRight: '1em'
 };
 
 export default class RadioInputComponent extends InputComponent {
 
-    constructor(props) {
-        super(props);
-    }
+    receiveProps(props) {
+        super.receiveProps(props);
 
-    initialize(props) {
-        super.initialize(props);
-
-        this.listName = props["listName"];
+        //todo make a common base class for both radio and select
+        this.listName = props.listName;
         if (!this.listName) {
-            this.listName = "options";
+            this.listName = 'options';
         }
     }
 
     extractNewState() {
-        let newState = super.extractNewState();
+        const newState = super.extractNewState();
 
         newState.value = this.model.getValue();
 
@@ -39,13 +35,13 @@ export default class RadioInputComponent extends InputComponent {
     }
 
     render() {
-        let model = this.model;
-        let options = [];
-        let list = model.getStateValue(this.listName);
+        const model = this.model;
+        const list = model.getStateValue(this.listName);
+
+        const options = [];
         if (list) {
-            for (let i = 0; i < list.length; i++) {
-                let item = list[i];
-                if(item.getValue()) {
+            list.forEach(item => {
+                if (item.getValue()) {
                     options.push(
                         <RadioButton
                             key={item.getValue()}
@@ -56,24 +52,30 @@ export default class RadioInputComponent extends InputComponent {
                         />
                     );
                 }
-            }
+            });
         }
 
+        //todo add a label
         return (
-            <div className="row material-field">
-                <div className="medium-12 columns"
-                     id={model.getUniqueId()}
-                     tabIndex="0"
+            <div
+                className="row material-field"
+            >
+                <div
+                    className="medium-12 columns"
+                    id={this.id}
+                    tabIndex="0"
                 >
                     <RadioButtonGroup
                         style={buttonGroupStyle}
-                        name={model.getUniqueId()}
+                        name={this.id}
                         valueSelected={this.state.value}
-                        onChange={(event, value) => {model.setValue(value);}}
+                        onChange={(event, value) => {
+                            model.setValue(value);
+                        }}
                     >
                         {options}
                     </RadioButtonGroup>
-                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage}/>
                 </div>
             </div>
         );

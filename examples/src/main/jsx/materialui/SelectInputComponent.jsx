@@ -1,26 +1,22 @@
-import React from "react";
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem";
-import InputComponent from "./InputComponent.jsx";
+import React from 'react';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import InputComponent from './InputComponent';
 
 
 export default class SelectInputComponent extends InputComponent {
 
-    constructor(props) {
-        super(props);
-    }
+    receiveProps(props) {
+        super.receiveProps(props);
 
-    initialize(props) {
-        super.initialize(props);
-
-        this.listName = props["listName"];
+        this.listName = props.listName;
         if (!this.listName) {
-            this.listName = "options";
+            this.listName = 'options';
         }
     }
 
     extractNewState() {
-        let newState = super.extractNewState();
+        const newState = super.extractNewState();
 
         newState.value = this.model.getValue();
 
@@ -28,29 +24,26 @@ export default class SelectInputComponent extends InputComponent {
     }
 
     render() {
-        let model = this.model;
-        let options = [];
-        let list = model.getStateValue(this.listName);
+        const model = this.model;
+        const list = model.getStateValue(this.listName);
+        const options = [];
         if (list) {
-            for (let i = 0; i < list.length; i++) {
-                let item = list[i];
+            list.forEach((item) => {
                 options.push(<MenuItem key={item.getValue()} value={item.getValue()} primaryText={item.getText()}/>);
-            }
+            });
         }
 
         return (
             <div className="row material-field">
-                <div className="medium-12 columns" style={this.state.columnStyle}>
+                <div className="medium-12 columns" style={this.columnStyle}>
                     <SelectField
-                        id={model.getUniqueId()}
-                        fullWidth={true}
-                        floatingLabelText={this.state.label}
+                        id={this.id}
+                        fullWidth
+                        floatingLabelText={this.label}
                         floatingLabelStyle={this.state.style}
                         value={this.state.value}
                         onChange={(event, index, value) => {
-                            console.log('selected value is:');
-                            console.log(value);
-                            model.setValue(value)
+                            model.setValue(value);
                         }}
                         errorText={this.state.errorMessage}
                     >
@@ -61,8 +54,8 @@ export default class SelectInputComponent extends InputComponent {
         );
     }
 
-    componentDidMount() {
-        document.getElementById(this.model.getUniqueId()).tabIndex = 0;
+    componentDidMount() { //hack to make the select focusable
+        document.getElementById(this.id).tabIndex = 0;
     }
 
 }

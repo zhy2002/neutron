@@ -1,11 +1,10 @@
 import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
+import InputComponent from './InputComponent';
+import FieldErrorMessageComponent from './FieldErrorMessageComponent';
 
-import InputComponent from './InputComponent.jsx';
-import FieldErrorMessageComponent from './FieldErrorMessageComponent.jsx';
-
-let style = {
-    marginTop: "30px"
+const style = {
+    marginTop: '30px'
 };
 
 export default class CheckboxInputComponent extends InputComponent {
@@ -14,8 +13,9 @@ export default class CheckboxInputComponent extends InputComponent {
         super(props);
     }
 
+    //todo make a common string input component
     extractNewState() {
-        let newState = super.extractNewState();
+        const newState = super.extractNewState();
 
         newState.value = this.model.getValue();
 
@@ -29,16 +29,16 @@ export default class CheckboxInputComponent extends InputComponent {
             <div className="row material-field">
                 <div className="medium-12 columns">
                     <Checkbox
-                        id={model.getUniqueId()}
+                        id={this.id}
                         style={style}
-                        label={this.state.label}
+                        label={this.label}
                         labelStyle={this.state.style}
                         checked={this.state.value}
                         onCheck={(event, isChecked) => {
                             model.setValue(isChecked);
                         }}
                     />
-                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage} />
+                    <FieldErrorMessageComponent errorMessage={this.state.errorMessage}/>
                 </div>
             </div>
         );

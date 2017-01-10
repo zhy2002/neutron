@@ -1,10 +1,9 @@
 import React from "react";
 import Paper from "material-ui/Paper";
-import NeutronComponent from "../materialui/NeutronComponent.jsx";
+import NeutronComponent from "../materialui/NeutronComponent";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentRemove from "material-ui/svg-icons/content/remove";
-
-import ErrorListComponent from './ErrorListComponent.jsx';
+import ErrorListComponent from "./ErrorListComponent";
 
 
 export default class ValidationErrorsComponent extends NeutronComponent {
@@ -14,8 +13,8 @@ export default class ValidationErrorsComponent extends NeutronComponent {
     }
 
     render() {
-        let model = this.model;
-        let style = {};
+        const model = this.model;
+        const style = {};
         if (!model.getShowErrorList()) {
             style.display = "none";
         }
@@ -28,7 +27,7 @@ export default class ValidationErrorsComponent extends NeutronComponent {
 
                         <div className="expanded row">
                             <div className="medium-8 medium-offset-2 columns">
-                                <div style={{textAlign: "center", paddingTop:"1em"}}>
+                                <div style={{textAlign: "center", paddingTop: "1em"}}>
                                     <h5>Validation Errors</h5>
                                 </div>
                             </div>
@@ -49,8 +48,6 @@ export default class ValidationErrorsComponent extends NeutronComponent {
                             </div>
                         </div>
                     </Paper>
-
-
                 </div>
             </div>
         );

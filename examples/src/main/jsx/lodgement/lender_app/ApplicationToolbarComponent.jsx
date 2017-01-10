@@ -22,6 +22,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         window.alert(JSON.stringify(obj));
     }
 
+
     loadJson() {
         let model = this.model;
         $.get(

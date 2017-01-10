@@ -1,16 +1,15 @@
-import React from "react";
-import Paper from "material-ui/Paper";
-
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import TextInputComponent from "../../materialui/TextInputComponent.jsx";
-import CheckboxInputComponent from "../../materialui/CheckboxInputComponent.jsx";
-import DateInputComponent from "../../materialui/DateInputComponent.jsx";
-import SelectInputComponent from "../../materialui/SelectInputComponent.jsx";
-import RadioInputComponent from "../../materialui/RadioInputComponent.jsx";
+import React from 'react';
+import Paper from 'material-ui/Paper';
+import NeutronComponent from '../../materialui/NeutronComponent';
+import TextInputComponent from '../../materialui/TextInputComponent';
+import CheckboxInputComponent from '../../materialui/CheckboxInputComponent';
+import DateInputComponent from '../../materialui/DateInputComponent';
+import SelectInputComponent from '../../materialui/SelectInputComponent';
+import RadioInputComponent from '../../materialui/RadioInputComponent';
 
 
 const paperMargin = {
-    margin: "10px 2px"
+    margin: '10px 2px'
 };
 
 export default class PersonGeneralComponent extends NeutronComponent {
