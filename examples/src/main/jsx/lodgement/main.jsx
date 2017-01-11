@@ -13,7 +13,7 @@ function createApp() {
     );
 }
 
-window.startLodgement = function () {
+window.startLodgement = function startLodgement() {
     injectTapEventPlugin();
     const app = createApp();
     ReactDOM.render(app, document.getElementById('app'));

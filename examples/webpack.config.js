@@ -13,13 +13,13 @@ var config = {
     },
     devtool: '#inline-source-map',
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.jsx?$/,
-        //         exclude: /node_modules/,
-        //         loader: 'eslint'
-        //     }
-        // ],
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'eslint'
+            }
+        ],
         loaders: [
             {
                 test: /\.jsx?$/,

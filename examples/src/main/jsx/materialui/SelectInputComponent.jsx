@@ -6,45 +6,43 @@ import InputComponent from './InputComponent';
 
 export default class SelectInputComponent extends InputComponent {
 
-    receiveProps(props) {
-        super.receiveProps(props);
+    constructor(props) {
+        super(props);
 
-        this.listName = props.listName;
-        if (!this.listName) {
-            this.listName = 'options';
-        }
+        this.updateValue = (event, index, value) => {
+            this.model.setValue(value);
+        };
     }
 
     extractNewState() {
         const newState = super.extractNewState();
-
-        newState.value = this.model.getValue();
-
+        newState.list = this.model.getStateValue(this.props.listName);
         return newState;
     }
 
-    render() {
-        const model = this.model;
-        const list = model.getStateValue(this.listName);
+    renderOptions() {
         const options = [];
-        if (list) {
-            list.forEach((item) => {
+        if (this.state.list) {
+            this.state.list.forEach((item) => {
                 options.push(<MenuItem key={item.getValue()} value={item.getValue()} primaryText={item.getText()}/>);
             });
         }
+        return options;
+    }
+
+    render() {
+        const options = this.renderOptions();
 
         return (
             <div className="row material-field">
-                <div className="medium-12 columns" style={this.columnStyle}>
+                <div className="medium-12 columns" style={this.props.columnStyle}>
                     <SelectField
                         id={this.id}
                         fullWidth
                         floatingLabelText={this.label}
                         floatingLabelStyle={this.state.style}
                         value={this.state.value}
-                        onChange={(event, index, value) => {
-                            model.setValue(value);
-                        }}
+                        onChange={this.updateValue}
                         errorText={this.state.errorMessage}
                     >
                         {options}
@@ -57,9 +55,4 @@ export default class SelectInputComponent extends InputComponent {
     componentDidMount() { //hack to make the select focusable
         document.getElementById(this.id).tabIndex = 0;
     }
-
 }
-
-InputComponent.propTypes = {
-    listName: React.PropTypes.string
-};

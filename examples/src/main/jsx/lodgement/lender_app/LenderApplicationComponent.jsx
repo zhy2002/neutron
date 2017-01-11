@@ -1,18 +1,14 @@
-import React from "react";
-import ApplicationToolbarComponent from "./ApplicationToolbarComponent.jsx";
-import ApplicationDataComponent from "./ApplicationDataComponent.jsx";
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import ValidationErrorsComponent from "../ValidationErrorsComponent.jsx";
+import React from 'react';
+import ApplicationToolbarComponent from './ApplicationToolbarComponent';
+import ApplicationDataComponent from './ApplicationDataComponent';
+import NeutronComponent from '../../materialui/NeutronComponent';
+import ValidationErrorsComponent from '../ValidationErrorsComponent';
 
 
 export default class LenderApplicationComponent extends NeutronComponent {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        let model = this.model;
+        const model = this.model;
 
         return (
             <div>

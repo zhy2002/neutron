@@ -3,10 +3,6 @@ import React from 'react';
 
 export default class ApplicationListComponent extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <table>

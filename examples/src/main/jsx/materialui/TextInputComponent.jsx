@@ -7,36 +7,23 @@ export default class TextInputComponent extends InputComponent {
 
     constructor(props) {
         super(props);
-    }
 
-    /**
-     * Extract all the state values needed for rendering
-     * from model.
-     * @returns {*} the complete state object.
-     */
-    extractNewState() {
-        const newState = super.extractNewState();
-
-        newState.value = this.model.getValue();
-
-        return newState;
+        this.updateValue = (event) => {
+            this.model.setValue(event.target.value);
+        };
     }
 
     render() {
-        const model = this.model;
-
         return (
             <div className="row material-field">
-                <div className="medium-12 columns" style={this.columnStyle}>
+                <div className="medium-12 columns" style={this.props.columnStyle}>
                     <TextField
                         id={this.id}
                         fullWidth
                         floatingLabelText={this.label}
                         floatingLabelStyle={this.state.style}
                         value={this.state.value}
-                        onChange={(event) => {
-                            model.setValue(event.target.value);
-                        }}
+                        onChange={this.updateValue}
                         errorText={this.state.errorMessage}
                     />
                 </div>

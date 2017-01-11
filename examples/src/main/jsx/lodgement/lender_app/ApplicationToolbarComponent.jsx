@@ -1,53 +1,55 @@
-import React from "react";
-import {Toolbar, ToolbarGroup} from "material-ui/Toolbar";
-import RaisedButton from "material-ui/RaisedButton";
-import NeutronComponent from "../../materialui/NeutronComponent.jsx";
-import ApplicantSelectionList from "./ApplicantSelectionComponent.jsx";
-import CommonUtil from "../CommonUtil.jsx";
+import React from 'react';
+import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import RaisedButton from 'material-ui/RaisedButton';
+import NeutronComponent from '../../materialui/NeutronComponent';
+import ApplicantSelectionList from './ApplicantSelectionComponent';
+import CommonUtil from '../CommonUtil';
 
 const toolbarStyle = {
-    backgroundColor: "#FFF"
+    backgroundColor: '#FFF'
 };
 
 export default class ApplicationToolbarComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);
+
+        this.validate = () => {
+            this.model.refresh();
+        };
+
+        this.showJson = () => {
+            const obj = CommonUtil.extractValue(this.model);
+            console.log('extracted object:');
+            console.log(obj);
+            window.alert(JSON.stringify(obj));
+        };
+
+        this.loadJson = () => {
+            const model = this.model;
+            $.get(
+                'json/application/app1.json',
+                (data) => {
+                    const context = model.getContext();
+                    context.beginSession();
+                    CommonUtil.setValue(model, data);
+                    context.commitSession();
+                }
+            );
+        };
     }
 
-    showJson() {
-        let obj = CommonUtil.extractValue(this.model);
-        console.log("extracted object:");
-        console.log(obj);
-        window.alert(JSON.stringify(obj));
-    }
-
-
-    loadJson() {
-        let model = this.model;
-        $.get(
-            "json/application/app1.json",
-            function(data) {
-                let context = model.getContext();
-                context.beginSession();
-                CommonUtil.setValue(model, data);
-                context.commitSession();
-            }
-        );
-    }
 
     render() {
-        let model = this.model;
+        const model = this.model;
 
         return (
             <Toolbar style={toolbarStyle}>
                 <ApplicantSelectionList model={model.getPersonListNode()}/>
                 <ToolbarGroup>
-                    <RaisedButton label="Validate" primary={true} onMouseUp={() => {
-                        model.refresh();
-                    }}/>
-                    <RaisedButton label="Show JSON" primary={true} onMouseUp={this.showJson.bind(this)}/>
-                    <RaisedButton label="Load JSON" primary={true} onMouseUp={this.loadJson.bind(this)}/>
+                    <RaisedButton label="Validate" primary onMouseUp={this.validate}/>
+                    <RaisedButton label="Show JSON" primary onMouseUp={this.showJson}/>
+                    <RaisedButton label="Load JSON" primary onMouseUp={this.loadJson}/>
                 </ToolbarGroup>
             </Toolbar>
         );

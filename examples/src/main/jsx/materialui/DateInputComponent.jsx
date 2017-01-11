@@ -7,20 +7,19 @@ export default class DateInputComponent extends InputComponent {
 
     constructor(props) {
         super(props);
+
+        this.updateValue = (event, date) => {
+            const value = date ? date.toUTCString() : '';
+            this.model.setValue(value);
+        };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-
+    getUiValue() {
         const value = this.model.getValue();
-        newState.date = value ? new Date(value) : null;
-
-        return newState;
+        return value ? new Date(value) : null;
     }
 
     render() {
-        const model = this.model;
-
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
@@ -30,14 +29,8 @@ export default class DateInputComponent extends InputComponent {
                         fullWidth
                         floatingLabelText={this.label}
                         floatingLabelStyle={this.state.style}
-                        value={this.state.date}
-                        onChange={(event, date) => {
-                            if (date) {
-                                model.setValue(date.toUTCString());
-                            } else {
-                                model.setValue('');
-                            }
-                        }}
+                        value={this.state.value}
+                        onChange={this.updateValue}
                     />
                     <FieldErrorMessageComponent errorMessage={this.state.errorMessage}/>
                 </div>

@@ -5,23 +5,25 @@ const styles = {
     defaultStyle: {},
     requiredStyle: {
         color: blue500,
-        fontWeight: "bold"
+        fontWeight: 'bold'
     }
 };
 
+//todo move to common util
 function deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
 function nodeNameToLabel(nodeName) {
-    if (nodeName.endsWith("Node")) {
-        nodeName = nodeName.substr(0, nodeName.length - 4);
+    let name = nodeName;
+    if (name.endsWith('Node')) {
+        name = nodeName.substr(0, name.length - 4);
     }
-    let result = "";
-    for (let i = 0; i < nodeName.length; i++) {
-        let ch = nodeName.charAt(i);
+    let result = '';
+    for (let i = 0; i < name.length; i++) {
+        let ch = name.charAt(i);
         if (ch === ch.toUpperCase()) {
-            result += " ";
+            result += ' ';
         }
         if (i === 0) {
             ch = ch.toUpperCase();
@@ -31,6 +33,9 @@ function nodeNameToLabel(nodeName) {
     return result;
 }
 
+/**
+ * Base class of all components that can bind to a model node.
+ */
 export default class NeutronComponent extends React.PureComponent {
 
     constructor(props) {
@@ -43,6 +48,27 @@ export default class NeutronComponent extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         this.receiveProps(nextProps);
+    }
+
+    componentDidUpdate() {
+        while (this.callbackQueue.length > 0) {
+            const func = this.callbackQueue.shift();
+            setTimeout(func, 0);
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.model) {
+            this.model.removeChangeListener(this);
+        }
+    }
+
+    /**
+     * This is called when the model has been updated.
+     */
+    onUiNodeChanged() {
+        const newState = this.extractNewState();
+        this.setState(newState);
     }
 
     /**
@@ -72,21 +98,19 @@ export default class NeutronComponent extends React.PureComponent {
         }
     }
 
-    componentWillUnmount() {
-        if (this.model) {
-            this.model.removeChangeListener(this);
-        }
-    }
-
+    /**
+     * Get all the state required for rendering.
+     * @returns {{}} the complete state object for rendering.
+     */
     extractNewState() {
         const newState = {};
 
-        newState.errorMessage = "";
-        let errorList = this.model.getValidationErrorList();
+        newState.errorMessage = '';
+        const errorList = this.model.getValidationErrorList();
         if (errorList) {
             for (let i = 0; i < errorList.size(); i++) {
-                let item = errorList.get(i);
-                newState.errorMessage += item.getMessage() + " ";
+                const item = errorList.get(i);
+                newState.errorMessage += `${item.getMessage()} `;
             }
         }
 
@@ -101,22 +125,12 @@ export default class NeutronComponent extends React.PureComponent {
         return newState;
     }
 
-    onUiNodeChanged() {
-        const newState = this.extractNewState();
-        this.setState(newState);
-    }
-
+    /**
+     * Add a function to be called when this component is rendered.
+     * @param {Function} func a function.
+     */
     addCallback(func) {
-        if (func instanceof Function) {
-            this.callbackQueue.push(func);
-        }
-    }
-
-    componentDidUpdate() {
-        while (this.callbackQueue.length > 0) {
-            let func = this.callbackQueue.shift();
-            setTimeout(func, 0);
-        }
+        this.callbackQueue.push(func);
     }
 }
 
@@ -126,3 +140,7 @@ NeutronComponent.propTypes = {
     model: React.PropTypes.object.isRequired
 };
 
+NeutronComponent.defaultProps = {
+    id: null,
+    label: null
+};

@@ -16,31 +16,24 @@ const buttonStyle = {
 
 export default class RadioInputComponent extends InputComponent {
 
-    receiveProps(props) {
-        super.receiveProps(props);
+    constructor(props) {
+        super(props);
 
-        //todo make a common base class for both radio and select
-        this.listName = props.listName;
-        if (!this.listName) {
-            this.listName = 'options';
-        }
+        this.updateValue = (event, value) => {
+            this.model.setValue(value);
+        };
     }
 
     extractNewState() {
         const newState = super.extractNewState();
-
-        newState.value = this.model.getValue();
-
+        newState.list = this.model.getStateValue(this.props.listName);
         return newState;
     }
 
-    render() {
-        const model = this.model;
-        const list = model.getStateValue(this.listName);
-
+    renderOptions() {
         const options = [];
-        if (list) {
-            list.forEach(item => {
+        if (this.state.list) {
+            this.state.list.forEach((item) => {
                 if (item.getValue()) {
                     options.push(
                         <RadioButton
@@ -54,24 +47,28 @@ export default class RadioInputComponent extends InputComponent {
                 }
             });
         }
+        return options;
+    }
+
+    render() {
+        const options = this.renderOptions();
+        console.log('Radio options');
 
         //todo add a label
         return (
-            <div
-                className="row material-field"
-            >
+            <div className="row material-field">
                 <div
                     className="medium-12 columns"
                     id={this.id}
                     tabIndex="0"
                 >
+                    <p style={this.state.style}>{this.label}</p>
                     <RadioButtonGroup
                         style={buttonGroupStyle}
                         name={this.id}
                         valueSelected={this.state.value}
-                        onChange={(event, value) => {
-                            model.setValue(value);
-                        }}
+                        onChange={this.updateValue}
+                        label="sss"
                     >
                         {options}
                     </RadioButtonGroup>
@@ -80,5 +77,4 @@ export default class RadioInputComponent extends InputComponent {
             </div>
         );
     }
-
 }

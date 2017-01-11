@@ -13,10 +13,6 @@ const paperMargin = {
 
 export default class PersonContactComponent extends NeutronComponent {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const model = this.model;
 

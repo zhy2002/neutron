@@ -6,7 +6,11 @@ module.exports = {
     "failOnError": false,
     "extends": "airbnb",
     "env": {
-        "browser": true
+        "browser": true,
+        "jquery": true
+    },
+    "globals": {
+        "GWT": true
     },
     "plugins": [
         "react",
@@ -19,35 +23,44 @@ module.exports = {
             "windows"
         ],
         "react/prefer-stateless-function": [
-            ERROR,
-            {"ignorePureComponents": true}
+            OFF
+        ],
+        "no-console":[
+            OFF
         ],
         "indent": [
             ERROR,
             4
         ],
-        "react/jsx-indent": [
-            WARN,
-            4
+        "no-alert": [
+            OFF
+        ],
+        "max-len": [
+            ERROR,
+            120
         ],
         "react/jsx-indent-props": [
             ERROR,
             4
         ],
-        "arrow-parens": [
-            WARN
-        ],
-        "no-useless-constructor": [
-            WARN
-        ],
-        "eol-last": [
-            WARN
+        "react/jsx-indent": [
+            OFF
         ],
         "no-param-reassign": [
-            WARN
+            ERROR,
+            {"props": false}
         ],
         "no-restricted-syntax": [
             WARN
+        ],
+        "react/no-unused-prop-types": [
+            OFF
+        ],
+        "curly": [
+            OFF
+        ],
+        "no-use-before-define": [
+            OFF
         ],
         "comma-dangle": [
             OFF
@@ -60,10 +73,6 @@ module.exports = {
         ],
         "react/jsx-tag-spacing": [
             OFF
-        ],
-        "max-len": [
-            ERROR,
-            120
         ],
         "object-curly-spacing": [
             OFF

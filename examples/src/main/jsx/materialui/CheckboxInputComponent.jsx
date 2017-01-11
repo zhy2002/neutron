@@ -11,20 +11,13 @@ export default class CheckboxInputComponent extends InputComponent {
 
     constructor(props) {
         super(props);
-    }
 
-    //todo make a common string input component
-    extractNewState() {
-        const newState = super.extractNewState();
-
-        newState.value = this.model.getValue();
-
-        return newState;
+        this.updateValue = (event, isChecked) => {
+            this.model.setValue(isChecked);
+        };
     }
 
     render() {
-        const model = this.model;
-
         return (
             <div className="row material-field">
                 <div className="medium-12 columns">
@@ -34,9 +27,7 @@ export default class CheckboxInputComponent extends InputComponent {
                         label={this.label}
                         labelStyle={this.state.style}
                         checked={this.state.value}
-                        onCheck={(event, isChecked) => {
-                            model.setValue(isChecked);
-                        }}
+                        onCheck={this.updateValue}
                     />
                     <FieldErrorMessageComponent errorMessage={this.state.errorMessage}/>
                 </div>

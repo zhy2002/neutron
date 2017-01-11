@@ -8,23 +8,21 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.onNewApp = props["onNewApp"];
-    }
-
-    test() {
-        console.log('Running test..');
-        this.setState({fixedValue: "fixed"});
+        this.test = () => {
+            console.log('Running test..');
+            this.setState({fixedValue: 'fixed'});
+        };
     }
 
     render() {
         console.log('rendering AppManagerToolbarComponent...');
         return (
             <Toolbar>
-                <ToolbarGroup firstChild={true}>
-                    <ToolbarTitle text="Application Manager" />
+                <ToolbarGroup firstChild>
+                    <ToolbarTitle text="Application Manager"/>
                     <ToolbarSeparator />
-                    <RaisedButton label="New App" primary={true} onMouseUp={this.onNewApp} />
-                    <RaisedButton label="Test" primary={true} onMouseUp={this.test.bind(this)} />
+                    <RaisedButton label="New App" primary onMouseUp={this.props.onNewApp}/>
+                    <RaisedButton label="Test" primary onMouseUp={this.test}/>
                 </ToolbarGroup>
             </Toolbar>
         );

@@ -9,14 +9,11 @@ import RadioInputComponent from '../../materialui/RadioInputComponent';
 
 
 const paperMargin = {
-    margin: '10px 2px'
+    margin: '10px 2px',
+    paddingTop: '0.5em'
 };
 
 export default class PersonGeneralComponent extends NeutronComponent {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const model = this.model;
@@ -52,5 +49,4 @@ export default class PersonGeneralComponent extends NeutronComponent {
             </div>
         );
     }
-
 }

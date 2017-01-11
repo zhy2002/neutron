@@ -1,6 +1,3 @@
-import React from "react";
-
-
 function extractValue(node) {
     if (!node)
         return undefined;
@@ -9,15 +6,15 @@ function extractValue(node) {
         return extractObject(node);
     } else if (node.getItemCount) {
         return extractList(node);
-    } else {
-        return extractLeaf(node);
     }
+
+    return extractLeaf(node);
 }
 
 function extractObject(node) {
     const result = {};
     const children = node.getChildren();
-    children.forEach(child => {
+    children.forEach((child) => {
         if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && child.getName() !== 'errorListNode') {
             let fieldName = child.getName();
             if (fieldName.endsWith('Node')) {
@@ -32,7 +29,7 @@ function extractObject(node) {
 function extractList(node) {
     const result = [];
     const children = node.getChildren();
-    children.forEach(child => {
+    children.forEach((child) => {
         if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded) {
             result.push(extractValue(child));
         }
@@ -43,12 +40,8 @@ function extractList(node) {
 function extractLeaf(node) {
     let value = node.getValue();
     if (node.getText) { //big decimal node
-        let text = node.getText();
-        if (text) {
-            value = parseFloat(text);
-        } else {
-            value = null;
-        }
+        const text = node.getText();
+        value = text ? parseFloat(text) : null;
     }
     return value;
 }
@@ -58,17 +51,17 @@ function setValue(node, data) {
         return;
 
     if (node.getChildCount) {
-        return setObject(node, data);
+        setObject(node, data);
     } else if (node.getItemCount) {
-        return setList(node, data);
-    } else {
-        return setLeaf(node, data);
+        setList(node, data);
+    } else if (node.setValue) {
+        setLeaf(node, data);
     }
 }
 
 function setObject(node, data) {
     const children = node.getChildren();
-    children.forEach(child => {
+    children.forEach((child) => {
         if (child.getName() !== 'errorListNode') {
             let fieldName = child.getName();
             if (fieldName.endsWith('Node')) {
@@ -84,7 +77,7 @@ function setObject(node, data) {
 function setList(node, data) {
     if (data && data.length > 0) {
         for (let i = 0; i < data.length; i++) {
-            let item = data[i];
+            const item = data[i];
             let child = node.getItemCount() === i ? child = node.createItem() : child = node.getItem(i);
             if (item) {
                 setValue(child, item);

@@ -5,13 +5,17 @@ import PersonListViewComponent from './PersonListViewComponent';
 
 
 const tabStyle = {
-    whiteSpace: "initial"
+    whiteSpace: 'initial'
 };
 
 export default class ApplicationDataComponent extends NeutronComponent {
 
-    selectTab(currentTab) {
-        this.model.setSelectedName(currentTab);
+    constructor(props) {
+        super(props);
+
+        this.selectTab = (currentTab) => {
+            this.model.setSelectedName(currentTab);
+        };
     }
 
     extractNewState() {
@@ -25,15 +29,17 @@ export default class ApplicationDataComponent extends NeutronComponent {
     render() {
         const model = this.model;
 
-        console.log("ApplicationDataComponent model: ");
+        console.log('ApplicationDataComponent model: ');
         console.log(model);
 
         return (
             <div className="expanded row">
                 <div className="medium-12">
-                    <Tabs value={this.state.currentTab}
-                          onChange={this.selectTab.bind(this)}
-                          tabItemContainerStyle={tabStyle}>
+                    <Tabs
+                        value={this.state.currentTab}
+                        onChange={this.selectTab}
+                        tabItemContainerStyle={tabStyle}
+                    >
                         <Tab label="Person" value="personListNode">
                             <PersonListViewComponent model={model.getPersonListNode()}/>
                         </Tab>
