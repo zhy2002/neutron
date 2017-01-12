@@ -10,15 +10,15 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateListNode,RealEstateNode>
+public  class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEmploymentListNode,PreviousEmploymentNode>
 {
-    protected RealEstateListNode(ApplicationNode parent, String name) {
+    protected PreviousEmploymentListNode(PersonNode parent, String name) {
         super(parent, name);
     }
 
     @Override
-    public Class<RealEstateNode> getItemClass() {
-        return RealEstateNode.class;
+    public Class<PreviousEmploymentNode> getItemClass() {
+        return PreviousEmploymentNode.class;
     }
 
 

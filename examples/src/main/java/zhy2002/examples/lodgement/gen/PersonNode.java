@@ -14,7 +14,8 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
 {
     private GeneralNode generalNode;
     private ContactNode contactNode;
-    private CurrentEmploymentNode currentEmploymentNode;
+    private CurrentEmploymentListNode currentEmploymentListNode;
+    private PreviousEmploymentListNode previousEmploymentListNode;
 
     protected PersonNode(PersonListNode parent, String name) {
         super(parent, name);
@@ -48,8 +49,13 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     }
 
     @JsMethod
-    public CurrentEmploymentNode getCurrentEmploymentNode() {
-        return currentEmploymentNode;
+    public CurrentEmploymentListNode getCurrentEmploymentListNode() {
+        return currentEmploymentListNode;
+    }
+
+    @JsMethod
+    public PreviousEmploymentListNode getPreviousEmploymentListNode() {
+        return previousEmploymentListNode;
     }
 
     @Override
@@ -58,12 +64,14 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
 
         generalNode = context.createChildNode(GeneralNode.class, this, "generalNode");
         contactNode = context.createChildNode(ContactNode.class, this, "contactNode");
-        currentEmploymentNode = context.createChildNode(CurrentEmploymentNode.class, this, "currentEmploymentNode");
+        currentEmploymentListNode = context.createChildNode(CurrentEmploymentListNode.class, this, "currentEmploymentListNode");
+        previousEmploymentListNode = context.createChildNode(PreviousEmploymentListNode.class, this, "previousEmploymentListNode");
 
         return Arrays.asList(
             generalNode,
             contactNode,
-            currentEmploymentNode
+            currentEmploymentListNode,
+            previousEmploymentListNode
         );
     }
 

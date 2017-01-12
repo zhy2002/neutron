@@ -16,6 +16,7 @@ public  class CompanyListNode extends ListUiNode<ApplicationNode,CompanyListNode
         super(parent, name);
     }
 
+    @Override
     public Class<CompanyNode> getItemClass() {
         return CompanyNode.class;
     }

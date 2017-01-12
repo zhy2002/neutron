@@ -3,6 +3,7 @@ import NeutronComponent from '../../materialui/NeutronComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
 import PersonCurrentEmploymentComponent from './PersonCurrentEmploymentComponent';
+import PersonPreviousEmploymentComponent from './PersonPreviousEmploymentComponent';
 
 export default class PersonDataComponent extends NeutronComponent {
 
@@ -23,7 +24,8 @@ export default class PersonDataComponent extends NeutronComponent {
         const model = this.model;
         const generalNode = model.getGeneralNode();
         const contactNode = model.getContactNode();
-        const currentEmploymentNode = model.getCurrentEmploymentNode();
+        const currentEmploymentNode = model.getCurrentEmploymentListNode();
+        const previousEmploymentListNode = model.getPreviousEmploymentListNode();
 
         return (
             <div className="expanded row collapse">
@@ -38,6 +40,11 @@ export default class PersonDataComponent extends NeutronComponent {
                         <li className={this.getTabClass('tabs-title', currentEmploymentNode)}>
                             <a tabIndex="0" onClick={() => this.selectTab(currentEmploymentNode)}>Current Employment</a>
                         </li>
+                        <li className={this.getTabClass('tabs-title', previousEmploymentListNode)}>
+                            <a tabIndex="0" onClick={() => this.selectTab(previousEmploymentListNode)}>
+                                Previous Employment
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div className="medium-10 columns">
@@ -50,6 +57,9 @@ export default class PersonDataComponent extends NeutronComponent {
                         </div>
                         <div className={this.getTabClass('hidden-panel', currentEmploymentNode)}>
                             <PersonCurrentEmploymentComponent model={currentEmploymentNode}/>
+                        </div>
+                        <div className={this.getTabClass('hidden-panel', previousEmploymentListNode)}>
+                            <PersonPreviousEmploymentComponent model={previousEmploymentListNode}/>
                         </div>
                     </div>
                 </div>

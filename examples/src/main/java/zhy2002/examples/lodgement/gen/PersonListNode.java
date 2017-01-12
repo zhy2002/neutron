@@ -17,6 +17,7 @@ public  class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,P
         super(parent, name);
     }
 
+    @Override
     public Class<PersonNode> getItemClass() {
         return PersonNode.class;
     }

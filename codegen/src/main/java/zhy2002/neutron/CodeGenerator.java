@@ -49,7 +49,13 @@ class CodeGenerator {
             List<Object> changeEventNodes = new ArrayList<>();
 
             for (Map<String, Object> nodeDescription : domainDescription.getNodeList()) {
-                generateFile(targetDirectory, nodeDescription, nodeTemplate, "", "");
+                try {
+                    generateFile(targetDirectory, nodeDescription, nodeTemplate, "", "");
+                }catch (RuntimeException ex) {
+                    String errorMessage = "Error occurred when generating " + nodeDescription.get("typeName");
+                    System.out.println(errorMessage);
+                    throw new RuntimeException(errorMessage, ex);
+                }
                 if (nodeDescription.get("parent") != null && Boolean.FALSE.equals(nodeDescription.get("isAbstract"))) {
                     generateFile(targetDirectory, nodeDescription, nodeFactoryTemplate, "", "Factory");
                     childNodes.add(nodeDescription);

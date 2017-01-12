@@ -33,6 +33,7 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 <#if itemTypeName??>
+    @Override
     public Class<${itemTypeName}> getItemClass() {
         return ${itemTypeName}.class;
     }

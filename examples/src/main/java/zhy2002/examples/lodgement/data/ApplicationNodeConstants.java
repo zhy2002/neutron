@@ -57,6 +57,13 @@ public class ApplicationNodeConstants {
             new StringOption("Spouse", "Joint with Spouse")
     );
 
+    public static final List<StringOption> EMPLOYMENT_TYPE = Arrays.asList(
+            new StringOption("payeEmployedNode"),
+            new StringOption("selfEmployedNode"),
+            new StringOption("unemployedNode"),
+            new StringOption("retiredEmploymentNode")
+    );
+
     public static final List<StringOption> MARITAL_STATUS = Arrays.asList(
             new StringOption("", ""),
             new StringOption("Single"),

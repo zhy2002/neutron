@@ -40,7 +40,8 @@ rootType:
       children:
       - {typeName: GeneralNode}
       - {typeName: ContactNode}
-      - {typeName: CurrentEmploymentNode}
+      - {typeName: CurrentEmploymentListNode}
+      - {typeName: PreviousEmploymentListNode}
       childTypes:
       - typeName: GeneralNode
         baseTypeName: ObjectUiNode
@@ -175,9 +176,19 @@ rootType:
           init:
           - {propertyName: required, value: 'true'}
 
-      - typeName: CurrentEmploymentNode
-        baseTypeName: ObjectUiNode
-        children: []
+      - typeName: CurrentEmploymentListNode
+        baseTypeName: ListUiNode
+        itemTypeName: CurrentEmploymentNode
+        childTypes:
+        - typeName: CurrentEmploymentNode
+          baseTypeName: EmploymentNode
+
+      - typeName: PreviousEmploymentListNode
+        baseTypeName: ListUiNode
+        itemTypeName: PreviousEmploymentNode
+        childTypes:
+        - typeName: PreviousEmploymentNode
+          baseTypeName: EmploymentNode
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode
@@ -306,3 +317,56 @@ commonTypes:
   parentBaseTypeName: ParentUiNode<?>
   init:
   - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
+
+- typeName: EmploymentNode
+  baseTypeName: ObjectUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
+  children:
+  - {typeName: EmploymentTypeNode}
+  - {typeName: EmployedNode, name: payeEmployedNode}
+  - {typeName: EmployedNode, name: selfEmployedNode}
+  - {typeName: UnemployedNode}
+  - {typeName: RetiredEmploymentNode}
+  childTypes:
+  - typeName: EmploymentTypeNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray()'}
+    - {propertyName: value, value: '"payeEmployedNode"'}
+
+  - typeName: EmployedNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: EmploymentStatusNode}
+    - {typeName: OccupationNode}
+    childTypes:
+    - typeName: EmploymentStatusNode
+      baseTypeName: StringUiNode
+
+    - typeName: OccupationNode
+      baseTypeName: BaseOccupationNode
+
+  - typeName: UnemployedNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: UnemployedSinceNode}
+    childTypes:
+    - typeName: UnemployedSinceNode
+      baseTypeName: MonthYearNode
+
+  - typeName: RetiredEmploymentNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: RetiredSinceNode}
+    childTypes:
+    - typeName: RetiredSinceNode
+      baseTypeName: MonthYearNode
+
+- typeName: BaseOccupationNode
+  baseTypeName: StringUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>

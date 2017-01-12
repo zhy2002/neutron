@@ -54,7 +54,6 @@ export default class RadioInputComponent extends InputComponent {
         const options = this.renderOptions();
         console.log('Radio options');
 
-        //todo add a label
         return (
             <div className="row material-field">
                 <div

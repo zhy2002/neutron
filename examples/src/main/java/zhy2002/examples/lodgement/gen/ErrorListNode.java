@@ -17,6 +17,7 @@ public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Err
         super(parent, name);
     }
 
+    @Override
     public Class<ErrorNode> getItemClass() {
         return ErrorNode.class;
     }
