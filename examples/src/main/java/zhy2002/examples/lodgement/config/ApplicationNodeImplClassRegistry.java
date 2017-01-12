@@ -28,7 +28,6 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(CreateErrorNodeRule.class, CreateErrorNodeRuleImpl::new);
         setUiNodeRuleFactory(AtLeastOnePrimaryApplicantRule.class, AtLeastOnePrimaryApplicantRuleImpl::new);
         setUiNodeRuleFactory(ShowErrorListRule.class, ShowErrorListRuleImpl::new);
-        setUiNodeRuleFactory(UpdateSelectedIndexRule.class, UpdateSelectedIndexRuleImpl::new);
         setUiNodeRuleFactory(ChangeFocusErrorRule.class, ChangeFocusErrorRuleImpl::new);
         setUiNodeRuleFactory(TitleGenderMatchRule.class, TitleGenderMatchRuleImpl::new);
         setUiNodeRuleFactory(TelephoneCompleteRule.class, new UiNodeRuleFactory<TelephoneCompleteRule, TelephoneNode<?>>() {

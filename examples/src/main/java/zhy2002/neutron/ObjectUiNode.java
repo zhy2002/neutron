@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.rule.UpdateObjectHasValueRule;
+import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.PredefinedPhases;
 
@@ -20,6 +21,16 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     protected ObjectUiNode(@NotNull AbstractUiNodeContext<?> context) {
         super(context);
+    }
+
+    @JsMethod
+    public String getSelectedName() {
+        return getStateValue(NeutronEventSubjects.SELECTED_NAME);
+    }
+
+    @JsMethod
+    public void setSelectedName(String value) {
+        setStateValue(NeutronEventSubjects.SELECTED_NAME, String.class, value);
     }
 
     @Override

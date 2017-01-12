@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.validation.constraints.NotNull;
 
@@ -125,6 +126,16 @@ public abstract class ListUiNode<
         return childSequenceNumber++;
     }
 
+    @JsMethod
+    public int getSelectedIndex() {
+        return getStateValue(NeutronEventSubjects.SELECTED_INDEX, 0);
+    }
+
+    @JsMethod
+    public void setSelectedIndex(int value) {
+        setStateValue(NeutronEventSubjects.SELECTED_INDEX, Integer.class, value);
+    }
+
     @Override
     protected void initializeChildren() {
     }
@@ -145,6 +156,11 @@ public abstract class ListUiNode<
         super.removeChild(child);
 
         setHasValue(hasValue());
+
+        Integer selectedIndex = getStateValue(NeutronEventSubjects.SELECTED_INDEX);
+        if(selectedIndex != null && selectedIndex >= getItemCount()) {
+            setSelectedIndex(Math.max(0, getItemCount() - 1));
+        }
     }
 
     @Override

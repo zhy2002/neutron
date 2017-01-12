@@ -29,16 +29,6 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     }
 
     @JsMethod
-    public String getSelectedName() {
-        return getStateValue(ApplicationNodeConstants.SELECTED_NAME, "generalNode");
-    }
-
-    @JsMethod
-    public void setSelectedName(String value) {
-        setStateValue(ApplicationNodeConstants.SELECTED_NAME, String.class, value);
-    }
-
-    @JsMethod
     public GeneralNode getGeneralNode() {
         return generalNode;
     }

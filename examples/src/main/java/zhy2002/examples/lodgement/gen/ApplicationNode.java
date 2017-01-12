@@ -44,16 +44,6 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     }
 
     @JsMethod
-    public String getSelectedName() {
-        return getStateValue(ApplicationNodeConstants.SELECTED_NAME);
-    }
-
-    @JsMethod
-    public void setSelectedName(String value) {
-        setStateValue(ApplicationNodeConstants.SELECTED_NAME, String.class, value);
-    }
-
-    @JsMethod
     public PersonListNode getPersonListNode() {
         return personListNode;
     }

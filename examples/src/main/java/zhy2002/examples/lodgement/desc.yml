@@ -4,7 +4,6 @@ rootType:
   baseTypeName: ObjectUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
-  - {name: selectedName, typeName: String}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
   rules:
@@ -26,17 +25,11 @@ rootType:
     init:
     - {propertyName: selectedIndex, value: 0}
     - {propertyName: nodeLabel, value: '"Person Applicant"'}
-    properties:
-    - {name: selectedIndex, externalTypeName: int, default: 0}
-    rules:
-    - {typeName: UpdateSelectedIndexRule}
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
       init:
       - {propertyName: selectedName, value: '"generalNode"'}
-      properties:
-      - {name: selectedName, typeName: String, default: '"generalNode"'}
       children:
       - {typeName: GeneralNode}
       - {typeName: ContactNode}
