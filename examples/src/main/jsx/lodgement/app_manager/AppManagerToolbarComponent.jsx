@@ -1,7 +1,4 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-
 
 export default class AppManagerToolbarComponent extends React.PureComponent {
 
@@ -17,14 +14,40 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
     render() {
         console.log('rendering AppManagerToolbarComponent...');
         return (
-            <Toolbar>
-                <ToolbarGroup firstChild>
-                    <ToolbarTitle text="Application Manager"/>
-                    <ToolbarSeparator />
-                    <RaisedButton label="New App" primary onMouseUp={this.props.onNewApp}/>
-                    <RaisedButton label="Test" primary onMouseUp={this.test}/>
-                </ToolbarGroup>
-            </Toolbar>
+            <div className="container-fluid application-toolbar">
+                <ul className="nav navbar-nav toolbar">
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-plus-sign"/>
+                            </div>
+                            <div>
+                                <small>Create</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-pencil"/>
+                            </div>
+                            <div>
+                                <small>Update</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-refresh"/>
+                            </div>
+                            <div>
+                                <small>Refresh</small>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         );
     }
 }

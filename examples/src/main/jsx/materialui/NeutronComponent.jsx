@@ -1,5 +1,7 @@
 import React from 'react';
-import {blue500, red500} from 'material-ui/styles/colors';
+
+const blue500 = 'blue';
+const red500 = 'red';
 
 const styles = {
     defaultStyle: {},

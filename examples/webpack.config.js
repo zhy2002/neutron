@@ -3,10 +3,10 @@
  * - https://shellmonger.com/2016/01/26/using-eslint-with-webpack/
  */
 
-var modelName = process.argv[2].substr(2);
+//var modelName = process.argv[2].substr(2);
 
 var config = {
-    entry: './src/main/jsx/' + modelName + '/main.jsx',
+    entry: './src/main/jsx/lodgement/main.jsx',
     output: {
         path: './src/main/webapp/js',
         filename: 'index.js'

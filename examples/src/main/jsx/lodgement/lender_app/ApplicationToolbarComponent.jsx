@@ -1,13 +1,7 @@
 import React from 'react';
-import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
-import RaisedButton from 'material-ui/RaisedButton';
 import NeutronComponent from '../../materialui/NeutronComponent';
-import ApplicantSelectionList from './ApplicantSelectionComponent';
 import CommonUtil from '../CommonUtil';
 
-const toolbarStyle = {
-    backgroundColor: '#FFF'
-};
 
 export default class ApplicationToolbarComponent extends NeutronComponent {
 
@@ -41,17 +35,41 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
 
 
     render() {
-        const model = this.model;
-
         return (
-            <Toolbar style={toolbarStyle}>
-                <ApplicantSelectionList model={model.getPersonListNode()}/>
-                <ToolbarGroup>
-                    <RaisedButton label="Validate" primary onMouseUp={this.validate}/>
-                    <RaisedButton label="Show JSON" primary onMouseUp={this.showJson}/>
-                    <RaisedButton label="Load JSON" primary onMouseUp={this.loadJson}/>
-                </ToolbarGroup>
-            </Toolbar>
+            <div className="container-fluid application-toolbar">
+                <ul className="nav navbar-nav toolbar">
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-plus-sign"/>
+                            </div>
+                            <div>
+                                <small>Create 1</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-pencil"/>
+                            </div>
+                            <div>
+                                <small>Update 1</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-refresh"/>
+                            </div>
+                            <div>
+                                <small>Refresh 1</small>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         );
     }
 }

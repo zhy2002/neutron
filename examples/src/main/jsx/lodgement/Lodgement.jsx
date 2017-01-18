@@ -7,7 +7,7 @@ export default class LodgementComponent extends React.PureComponent {
 
     render() {
         return (
-            <div>
+            <div className="app-container">
                 <HeaderComponent />
                 <MainComponent />
             </div>
