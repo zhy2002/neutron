@@ -1,7 +1,7 @@
 import React from 'react';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
-import AppToobarComponent from './AppToolbarComponent';
-
+import AppToolbarComponent from './AppToolbarComponent';
+import AppBodyComponent from './AppBodyComponent';
 //import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
 //import ApplicationListComponent from './app_manager/ApplicationListComponent';
 //import LenderApplicationComponent from './lender_app/LenderApplicationComponent';
@@ -78,8 +78,10 @@ export default class MainComponent extends React.PureComponent {
             getValidationErrorList: function getValidationErrorList() {
                 return {size: sizeFunc};
             },
-            addChangeListener: function addChangeListener() {},
-            removeChangeListener: function removeChangeListener() {},
+            addChangeListener: function addChangeListener() {
+            },
+            removeChangeListener: function removeChangeListener() {
+            },
             getRequired: () => false,
             hasValue: () => false
         };
@@ -101,9 +103,11 @@ export default class MainComponent extends React.PureComponent {
                         />
                     </div>
                     <div className="content-header">
-                        <AppToobarComponent model={selectedModel} onNewApp={this.onNewApp}/>
+                        <AppToolbarComponent model={selectedModel} onNewApp={this.onNewApp}/>
                     </div>
-                    <div className="content-body"/>
+                    <div className="content-body">
+                        <AppBodyComponent items={tabItems} selectedIndex={this.state.selectedIndex}/>
+                    </div>
                 </div>
             </div>
         );
