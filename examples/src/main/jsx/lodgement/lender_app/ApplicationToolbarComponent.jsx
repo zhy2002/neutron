@@ -36,7 +36,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
 
     render() {
         return (
-            <div className="container-fluid application-toolbar">
+            <div className="container-fluid application-toolbar-component">
                 <ul className="nav navbar-nav toolbar">
                     <li>
                         <a tabIndex="0">

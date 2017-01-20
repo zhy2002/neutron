@@ -5,8 +5,8 @@ export default class ApplicationListComponent extends React.PureComponent {
 
     render() {
         return (
-            <div className="application-list">
-                <table className="table app-list">
+            <div className="application-list-component">
+                <table className="table">
                     <thead>
                     <tr>
                         <th>Column 1</th>
@@ -22,7 +22,7 @@ export default class ApplicationListComponent extends React.PureComponent {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>data1</td>
+                        <td>start</td>
                         <td>data2</td>
                         <td>data3</td>
                         <td>data4</td>
@@ -132,7 +132,7 @@ export default class ApplicationListComponent extends React.PureComponent {
                         <td>data9</td>
                     </tr>
                     <tr>
-                        <td>data1</td>
+                        <td>end</td>
                         <td>data2</td>
                         <td>data3</td>
                         <td>data4</td>

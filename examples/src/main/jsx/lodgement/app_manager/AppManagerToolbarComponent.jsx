@@ -14,8 +14,8 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
     render() {
         console.log('rendering AppManagerToolbarComponent...');
         return (
-            <div className="container-fluid application-toolbar">
-                <ul className="nav navbar-nav toolbar">
+            <div className="container-fluid app-manager-toolbar-component">
+                <ul className="nav navbar-nav">
                     <li>
                         <a tabIndex="0">
                             <div>

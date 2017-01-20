@@ -1,83 +1,118 @@
 html, body {
   height: 100%;
-  margin: 0;
 }
 
-body {
-  overflow: hidden;
+.lodgement-component {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.app-container {
-  display: table;
-  height: 100%;
-  width: 100%;
-
-  .app-header {
-    display: table-row;
-
-    > .container-fluid {
-      background-color: #efefef;
-
-      .navbar-brand {
-        font-size: 1.5em;
-      }
-    }
-
-    .icon-wrapper {
-      padding-top: 9px;
-
-      .glyphicon {
-        font-size: 1.5em;
-      }
-    }
-  }
-
-  .app-content {
-    display: table-row; /* height is dynamic, and will expand... */
-    height: 100%; /* ...as content is added (won't scroll) */
-    padding-top: 10px;
-  }
+.app-body-container {
+  position: absolute;
+  top: 145px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
 }
 
-.content-container {
-  display: table;
-  height: 100%;
-  width: 100%;
+.main-content {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
 
-  .content-header {
-    display: table-row;
+.app-header-container > nav {
+  margin-bottom: 0;
+  border-bottom: none;
 
-    &:first-child {
-      background-color: #efefef;
-    }
+  > .container-fluid {
+    background-color: #efefef;
 
-    .nav-pills.small {
-      margin: 5px 0 1px 0;
-
-      .glyphicon {
-        margin-left: 1.5em;
-      }
-
-      li:not(:first-child) a {
-        padding-right: 1.75em;
-      }
-
-      > li > a {
-        cursor: pointer;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
+    .navbar-brand {
+      font-size: 1.5em;
     }
   }
 
-  .content-body {
-    display: table-row; /* height is dynamic, and will expand... */
-    height: 100%; /* ...as content is added (won't scroll) */
+  .icon-wrapper {
+    padding-top: 9px;
+
+    .glyphicon {
+      font-size: 1.5em;
+    }
   }
 }
 
-.active .close-icon {
+.main-component {
+}
+
+.app-tabs-container {
+  .nav-pills-component {
+    margin-top: 0;
+  }
+}
+
+.app-toolbar-container {
+  padding: 0;
+}
+
+.application-toolbar-component, .app-manager-toolbar-component {
+  background-color: #337ab7;
   color: white;
+  padding: 0;
+
+  > .nav {
+    margin: 5px 0 0 0;
+
+    > li > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      color: white;
+      background-color: transparent !important;
+      cursor: pointer;
+
+      &:hover {
+        color: orange;
+      }
+
+      &:active {
+        color: yellow;
+      }
+
+      > div {
+        text-align: center;
+      }
+    }
+
+    .glyphicon {
+      font-size: 1.75em;
+    }
+  }
+}
+
+.nav-pills-component {
+  margin: 1px 0;
+  background-color: #efefef;
+
+  .glyphicon {
+    margin-left: 1.5em;
+  }
+
+  li:not(:first-child) a {
+    padding-right: 1.75em;
+  }
+
+  > li > a {
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 }
 
 .close-icon {
@@ -90,57 +125,12 @@ body {
   right: 0.25em;
   font-size: 1.25em;
 
+  &.active {
+    color: white;
+  }
+
   .glyphicon {
     margin: 0 !important;
   }
 }
 
-.app-toolbar {
-  background-color: #337ab7;
-  color: white;
-  box-shadow: 0 8px 6px -6px #337ab7;
-  padding: 0;
-}
-
-.application-toolbar {
-  background-color: #337ab7;
-  color: white;
-  box-shadow: 0 8px 6px -6px #337ab7;
-  padding: 0;
-
-  > .nav {
-    margin: 5px 0;
-
-    .glyphicon {
-      font-size: 1.75em;
-    }
-  }
-}
-
-.toolbar > li > a {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: white;
-  background-color: transparent !important;
-
-  &:hover {
-    color: orange;
-  }
-
-  &:active {
-    color: yellow;
-  }
-
-  > div {
-    text-align: center;
-  }
-}
-
-.application-list {
-  overflow: auto;
-  position: fixed;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  height: 100%;
-}

@@ -34,7 +34,7 @@ export default class NavPillsComponent extends React.PureComponent {
         );
 
         return (
-            <ul className="nav nav-pills small">
+            <ul className="nav nav-pills small nav-pills-component">
                 {listItems}
             </ul>
         );
