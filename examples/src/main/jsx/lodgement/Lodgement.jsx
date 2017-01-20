@@ -6,39 +6,30 @@ import ApplicationComponent from './lender_app/ApplicationComponent';
 import ApplicationListComponent from './app_manager/ApplicationListComponent';
 import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
 
+const lenders = ['NAB', 'CBA', 'Westpac'];
+let nextLender = 0;
+
+function createApplicationNode() {
+    const node = window.GWT.ApplicationNodeFactory.create();
+    node.setNodeLabel(lenders[nextLender++]);
+    nextLender %= lenders.length;
+    return node;
+}
+
+function createLodgementNode() {
+    return window.GWT.LodgementNodeFactory.create();
+}
+
 function renderBody(model) {
-    if (model.getNodeLabel) {
+    if (model.getName() === 'appManagerNode') {
         return (
-            <ApplicationComponent model={model}/>
+            <ApplicationListComponent model={model}/>
         );
     }
 
     return (
-        <ApplicationListComponent model={model}/>
+        <ApplicationComponent model={model}/>
     );
-}
-
-function getDummyData() {
-    const dummyAppNode = {
-        getNodeLabel: function getNodeLabel() {
-        },
-        getUniqueId: () => 'n111',
-        getName: () => 'dummy',
-        getValidationErrorList: function getValidationErrorList() {
-            return {size: () => 0};
-        },
-        addChangeListener: function addChangeListener() {
-        },
-        removeChangeListener: function removeChangeListener() {
-        },
-        getRequired: () => false,
-        hasValue: () => false
-    };
-    return [
-        {name: 'Application Manager', model: {}},
-        {name: 'NAB', model: dummyAppNode},
-        {name: 'Suncorp', model: dummyAppNode}
-    ];
 }
 
 export default class LodgementComponent extends React.PureComponent {
@@ -47,6 +38,8 @@ export default class LodgementComponent extends React.PureComponent {
         super(props);
 
         this.state = {
+            lodgementNode: createLodgementNode(),
+            openApps: [],
             selectedIndex: 0
         };
 
@@ -54,26 +47,55 @@ export default class LodgementComponent extends React.PureComponent {
             this.setState({selectedIndex});
         };
 
-        this.closeTab = (selectedIndex) => {
-            window.alert(`hahaha ${selectedIndex}`);
+        this.closeTab = (tabIndex) => {
+            if (window.confirm('Are you sure you want to close the application?')) {
+                const openApps = this.state.openApps;
+                const newApps = [];
+                const appIndex = tabIndex - 1;
+                openApps.forEach((item, i) => {
+                    if (i === appIndex)
+                        return;
+                    newApps.push(item);
+                });
+                let selectedIndex = tabIndex;
+                if (selectedIndex > newApps.length) {
+                    selectedIndex = newApps.length;
+                }
+                this.setState({
+                    openApps: newApps,
+                    selectedIndex
+                });
+            }
         };
 
         this.onNewApp = () => {
-            window.alert('todo create new app');
+            const openApps = this.state.openApps;
+            if (openApps.length >= 5) {
+                window.alert('Cannot open more tabs!');
+                return;
+            }
+
+            const newApp = createApplicationNode();
+
+            const newApps = [...openApps, newApp];
+            this.setState({
+                openApps: newApps,
+                selectedIndex: newApps.length
+            });
         };
     }
 
     renderToolbar(model) {
-        if (model.getNodeLabel) {
-            return <ApplicationToolbarComponent model={model}/>;
+        if (model.getName() === 'appManagerNode') {
+            return <AppManagerToolbarComponent model={model} onNewApp={this.onNewApp}/>;
         }
 
-        return <AppManagerToolbarComponent model={model} onNewApp={this.onNewApp}/>;
+        return <ApplicationToolbarComponent model={model}/>;
     }
 
     render() {
-        const tabItems = getDummyData();
-        const selectedModel = tabItems[this.state.selectedIndex].model;
+        const tabItems = [this.state.lodgementNode.getAppManagerNode(), ...this.state.openApps];
+        const selectedModel = tabItems[this.state.selectedIndex];
         return (
             <div className="lodgement-component">
                 <div className="app-header-container">

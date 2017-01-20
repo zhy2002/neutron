@@ -6,7 +6,8 @@ export default class NavPillsComponent extends React.PureComponent {
     render() {
         const listItems = [];
         const selectedIndex = this.props.selectedIndex;
-
+        console.log('pill items!');
+        console.log(this.props.items);
         this.props.items.forEach(
             (item, index) => {
                 const itemClass = index === selectedIndex ? 'active' : '';
@@ -14,7 +15,7 @@ export default class NavPillsComponent extends React.PureComponent {
                 listItems.push(
                     <li key={key} className={itemClass}>
                         <a tabIndex="0" onClick={() => this.props.onSelect(index)}>
-                            {item.name}
+                            {item.getNodeLabel()}
                         </a>
                         {
                             index > 0 &&

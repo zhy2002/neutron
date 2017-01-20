@@ -20,5 +20,6 @@
     <!-- Specify the paths for translatable code                    -->
     <source path='neutron'/>
     <source path='examples/lodgement'/>
+    <source path='examples/app'/>
     <source path='examples/interop'/>
 </module>

@@ -1,9 +1,5 @@
 import React from 'react';
-import NavPillsComponent from '../../bootstrap3/NavPillsComponent';
-
-function sizeFunc() {
-    return 0;
-}
+import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 
 export default class ApplicationComponent extends React.Component {
 
@@ -21,39 +17,41 @@ export default class ApplicationComponent extends React.Component {
         this.closeTab = (selectedIndex) => {
             window.alert(`hahaha ${selectedIndex}`);
         };
+
+        this.navigate = () => {};
     }
 
     render() {
-        const dummyAppNode = {
-            getNodeLabel: function getNodeLabel() {
-            },
-            getUniqueId: () => 'n111',
-            getName: () => 'dummy',
-            getValidationErrorList: function getValidationErrorList() {
-                return {size: sizeFunc};
-            },
-            addChangeListener: function addChangeListener() {
-            },
-            removeChangeListener: function removeChangeListener() {
-            },
-            getRequired: () => false,
-            hasValue: () => false
-        };
-        const tabItems = [
-            {name: 'Application Manager', model: {}},
-            {name: 'NAB', model: dummyAppNode},
-            {name: 'Suncorp', model: dummyAppNode}
-        ];
-
         return (
             <div className="application-component">
                 <div className="tabs-container">
-                    <NavPillsComponent
-                        items={tabItems}
-                        selectedIndex={this.state.selectedIndex}
-                        onSelect={this.selectTab}
-                        onClose={this.closeTab}
-                    />
+                    <nav className="navbar navbar-default">
+                        <div className="container-fluid">
+                            <ul className="nav navbar-nav">
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Person
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Company
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Financial Position
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Real Estates
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Products
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Additional
+                                </NavDropdownComponent>
+                                <NavDropdownComponent onSelect={this.navigate}>
+                                    Submission
+                                </NavDropdownComponent>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
                 <div className="main-content">
                     <div>

@@ -100,6 +100,21 @@
                             </targetDirectory>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>app</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/app/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/app/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 

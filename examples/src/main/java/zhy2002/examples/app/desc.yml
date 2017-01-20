@@ -1,0 +1,10 @@
+targetPackage: zhy2002.examples.app
+rootType:
+  typeName: LodgementNode
+  baseTypeName: ObjectUiNode
+  children:
+  - {typeName: AppManagerNode}
+  childTypes:
+  - typeName: AppManagerNode
+    baseTypeName: ObjectUiNode
+    children: []

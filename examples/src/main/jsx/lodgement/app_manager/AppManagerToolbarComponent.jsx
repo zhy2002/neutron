@@ -2,22 +2,12 @@ import React from 'react';
 
 export default class AppManagerToolbarComponent extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-
-        this.test = () => {
-            console.log('Running test..');
-            this.setState({fixedValue: 'fixed'});
-        };
-    }
-
     render() {
-        console.log('rendering AppManagerToolbarComponent...');
         return (
             <div className="container-fluid app-manager-toolbar-component">
                 <ul className="nav navbar-nav">
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" onClick={this.props.onNewApp}>
                             <div>
                                 <span className="glyphicon glyphicon-plus-sign"/>
                             </div>
