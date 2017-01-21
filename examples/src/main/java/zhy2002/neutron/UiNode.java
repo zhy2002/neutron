@@ -630,5 +630,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
     }
 
+    @JsMethod
+    public String getSimpleClassName() {
+        return this.getClass().getSimpleName();
+    }
+
 //endregion
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
-import NavDropdownComponent from '../bootstrap3/NavDropdownComponent';
+import LodgementHeaderComponent from './LodgementHeaderComponent';
 import ApplicationToolbarComponent from './lender_app/ApplicationToolbarComponent';
 import ApplicationComponent from './lender_app/ApplicationComponent';
 import ApplicationListComponent from './app_manager/ApplicationListComponent';
@@ -99,21 +99,7 @@ export default class LodgementComponent extends React.PureComponent {
         return (
             <div className="lodgement-component">
                 <div className="app-header-container">
-                    <nav className="navbar navbar-default">
-                        <div className="container-fluid">
-                            <div className="navbar-header">
-                                <span className="navbar-brand">Brand Name</span>
-                            </div>
-                            <ul className="nav navbar-nav navbar-right">
-                                <NavDropdownComponent>
-                                    User Name
-                                </NavDropdownComponent>
-                                <NavDropdownComponent>
-                                    <span className="glyphicon glyphicon-user"/>
-                                </NavDropdownComponent>
-                            </ul>
-                        </div>
-                    </nav>
+                    <LodgementHeaderComponent />
                 </div>
                 <div className="app-tabs-container">
                     <NavPillsComponent

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class NavDropdownComponent extends React.Component {
+export default class NavDropdownComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -14,12 +14,60 @@ export default class NavDropdownComponent extends React.Component {
                 state => ({open: !state.open})
             );
         };
+
+        this.open = () => {
+            this.setState({open: true});
+        };
+
+        this.close = () => {
+            this.setState({open: false});
+        };
+
+        this.selectItem = (model) => {
+            if (this.state.open) {
+                this.close();
+            }
+
+            this.props.onSelect(model);
+        };
+
+        this.createNewItem = () => {
+            const newItem = this.props.model.createItem();
+            this.selectItem(newItem);
+        };
     }
 
-    render() {
+    isModelList() {
+        return !!this.props.model.getItemCount;
+    }
+
+    renderItems() {
+        const model = this.props.model;
+        if (!this.isModelList())
+            return null;
+
+        const items = [];
+        let key = 1;
+        for (let i = 0; i < model.getItemCount(); i++) {
+            const item = model.getItem(i);
+            items.push(
+                <li key={key}><a tabIndex="0" onClick={() => this.selectItem(item)}>{item.getNodeLabel()}</a></li>
+            );
+            key++;
+        }
+        items.push(<li key={key}><a tabIndex="0" onClick={this.createNewItem}>Create New</a></li>);
+
         return (
-            <li className={`dropdown${this.state.open ? ' open' : ''}`}>
-                <a tabIndex="0" className="dropdown-toggle" onClick={this.toggle} onBlur={this.toggle}>
+            <ul className="dropdown-menu">
+                {items}
+            </ul>
+        );
+    }
+
+    renderDummy() {
+        return (
+            <li className={`dropdown${this.state.open ? ' open' : ''}`} onMouseLeave={this.close}>
+                <a tabIndex="0" className="dropdown-toggle" onMouseEnter={this.open} onClick={this.toggle}>
                     {this.props.children} <span className="caret"/>
                 </a>
                 <ul className="dropdown-menu">
@@ -35,8 +83,34 @@ export default class NavDropdownComponent extends React.Component {
         );
     }
 
+    render() {
+        if (!this.props.model.getName)
+            return this.renderDummy();
+
+        return (
+            <li className={`dropdown${this.state.open ? ' open' : ''}`} onMouseLeave={this.close}>
+                <a
+                    tabIndex="0"
+                    className="dropdown-toggle"
+                    onMouseEnter={this.open}
+                    onClick={() => {
+                        this.selectItem(this.props.model);
+                    }}
+                >
+                    {this.props.children}
+                    {
+                        this.isModelList() &&
+                        <span className="caret"/>
+                    }
+                </a>
+                {this.renderItems()}
+            </li>
+        );
+    }
 }
 
 NavDropdownComponent.propTypes = {
+    model: React.PropTypes.object.isRequired,
+    onSelect: React.PropTypes.func.isRequired,
     children: React.PropTypes.any.isRequired
 };
