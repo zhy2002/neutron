@@ -22,10 +22,9 @@ export default class RadioInputComponent extends InputComponent {
         const options = [];
         if (this.state.list) {
             this.state.list.forEach((item, index) => {
-                const key = index + 1;
                 if (item.getValue()) {
                     options.push(
-                        <label key={key} className="radio-inline">
+                        <label key={item.getText()} className="radio-inline">
                             <input
                                 type="radio"
                                 name={model.getUniqueId()}

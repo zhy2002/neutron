@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import zhy2002.neutron.node.VoidUiNode;
+import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.SequentialUniqueIdGenerator;
 
 /**
@@ -10,7 +11,8 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
 
     private R root;
     private final ClassRegistry classRegistry;
-    private final SequentialUniqueIdGenerator uniqueIdGenerator;
+    private final String contextId;
+    private final UniqueIdGenerator nodeIdGenerator;
     private final UiNodeChangeEngineImpl changeEngine;
 
     /**
@@ -22,7 +24,8 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     protected AbstractUiNodeContext(ClassRegistryImpl... registries) {
         classRegistry = new ImmutableClassRegistry(registries);
         changeEngine = new UiNodeChangeEngineImpl();
-        uniqueIdGenerator = new SequentialUniqueIdGenerator();
+        contextId = RandomUniqueIdGenerator.Instance.next();
+        nodeIdGenerator = new SequentialUniqueIdGenerator();
     }
 
     /**
@@ -41,13 +44,13 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     //region node construction
 
     /**
-     * Returns a unique uniqueIdSequenceNumber in this context.
+     * Returns a unique id system wide (all nodes in all contexts ever created).
      *
      * @return a unique string value.
      */
     @Override
     public final String getUniqueId() {
-        return uniqueIdGenerator.next();
+        return 'n' + contextId + nodeIdGenerator.next();
     }
 
     /**

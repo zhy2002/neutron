@@ -17,6 +17,11 @@ public abstract class SelectOption<T> {
         return value;
     }
 
+    /**
+     * Used to display this option.
+     *
+     * @return Unique text within the containing collection.
+     */
     public String getText() {
         return text;
     }

@@ -22,9 +22,8 @@ export default class SelectInputComponent extends InputComponent {
         const options = [];
         if (this.state.list) {
             this.state.list.forEach((item, index) => {
-                const key = index + 1;
                 options.push(
-                    <option key={key} value={`${index}`}>
+                    <option key={item.getText()} value={`${index}`}>
                         {item.getText()}
                     </option>
                 );
