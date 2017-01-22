@@ -18,7 +18,7 @@ export default class NavPillsComponent extends React.PureComponent {
                             {item.getNodeLabel()}
                         </a>
                         {
-                            index > 0 &&
+                            item.getSimpleClassName() === 'ApplicationNode' &&
                             <button
                                 className="close-icon"
                                 onClick={() => {
@@ -46,5 +46,10 @@ NavPillsComponent.propTypes = {
     selectedIndex: React.PropTypes.number.isRequired,
     items: React.PropTypes.array.isRequired,
     onSelect: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func.isRequired
+    onClose: React.PropTypes.func
 };
+
+NavPillsComponent.defaultProps = {
+    onClose: () => {}
+};
+

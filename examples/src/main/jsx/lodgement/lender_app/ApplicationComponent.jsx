@@ -1,7 +1,7 @@
 import React from 'react';
 import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 import PersonListComponent from '../lender_app/PersonListComponent';
-
+import PersonComponent from '../lender_app/PersonComponent';
 
 export default class ApplicationComponent extends React.PureComponent {
 
@@ -54,23 +54,26 @@ export default class ApplicationComponent extends React.PureComponent {
 
     renderMainContent() {
         const model = this.state.currentModel;
-        const modelName = model.getName();
+        const className = model.getSimpleClassName();
 
-        if (modelName === 'personListNode')
+        if (className === 'PersonListNode')
             return <PersonListComponent model={model}/>;
 
+        if (className === 'PersonNode')
+            return <PersonComponent model={model}/>;
+
         return (
-            <div>View not defined for model: {model.getSimpleClassName()}</div>
+            <div>View not defined for model: {className}</div>
         );
     }
 
     render() {
         return (
             <div className="application-component">
-                <div className="menu">
+                <div className="application-menu">
                     {this.renderMenu()}
                 </div>
-                <div className="main-content">
+                <div className="application-main-content">
                     {this.renderMainContent()}
                 </div>
             </div>

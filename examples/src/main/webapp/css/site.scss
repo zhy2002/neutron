@@ -19,9 +19,18 @@ html, body {
   overflow: auto;
 }
 
-.main-content {
+.application-main-content {
   position: absolute;
-  top: 56px;
+  top: 52px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.person-main-content {
+  position: absolute;
+  top: 30px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -96,6 +105,11 @@ html, body {
   }
 }
 
+.navbar-nav > li > a {
+  cursor: pointer;
+
+}
+
 .nav-pills-component {
   margin: 1px 0;
   background-color: #efefef;
@@ -115,9 +129,10 @@ html, body {
   }
 }
 
-.navbar-nav > li > a {
-  cursor: pointer;
-
+.person-component {
+  > .nav-pills-component {
+    margin-top: 0;
+  }
 }
 
 .close-icon {
