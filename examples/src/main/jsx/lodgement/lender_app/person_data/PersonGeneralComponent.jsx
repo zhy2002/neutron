@@ -2,6 +2,8 @@ import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
+import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
+import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
 export default class PersonGeneralComponent extends NeutronComponent {
 
@@ -18,7 +20,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
                             <label htmlFor="exampleInputEmail1">Email address</label>
                             <input
                                 type="email"
-                                className="form-control input-sm"
+                                className="form-control"
                                 id="exampleInputEmail1"
                                 placeholder="Email"
                             />
@@ -34,8 +36,30 @@ export default class PersonGeneralComponent extends NeutronComponent {
                             <label htmlFor="exampleInputEmail2">Email address</label>
                             <input
                                 type="email"
-                                className="form-control input-sm"
+                                className="form-control"
                                 id="exampleInputEmail2"
+                                placeholder="Email"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-1 compact">
+                        <SelectInputComponent model={model.getTitleNode()}/>
+                    </div>
+                    <div className="col-md-1 compact">
+                        <TextInputComponent model={model.getFirstNameNode()}/>
+                    </div>
+                    <div className="col-md-1 compact">
+                        <TextInputComponent model={model.getLastNameNode()}/>
+                    </div>
+                    <div className="col-md-9">
+                        <div className="form-group form-group-sm">
+                            <label htmlFor="exampleInputEmail3">Email address</label>
+                            <input
+                                type="email"
+                                className="form-control input-sm"
+                                id="exampleInputEmail3"
                                 placeholder="Email"
                             />
                         </div>
