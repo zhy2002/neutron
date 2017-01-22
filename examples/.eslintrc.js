@@ -82,6 +82,9 @@ module.exports = {
         ],
         "no-plusplus": [
             OFF
+        ],
+        "jsx-a11y/label-has-for": [
+            OFF
         ]
     }
 };

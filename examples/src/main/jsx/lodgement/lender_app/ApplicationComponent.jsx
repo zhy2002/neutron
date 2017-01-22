@@ -1,7 +1,7 @@
 import React from 'react';
 import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 import PersonListComponent from '../lender_app/PersonListComponent';
-import PersonComponent from '../lender_app/PersonComponent';
+import PersonComponent from '../lender_app/person_data/PersonComponent';
 
 export default class ApplicationComponent extends React.PureComponent {
 
