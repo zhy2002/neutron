@@ -1,22 +1,35 @@
 import React from 'react';
 import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
+import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import PersonListComponent from '../lender_app/PersonListComponent';
 import PersonComponent from '../lender_app/person_data/PersonComponent';
+import ApplicationErrorsComponent from '../lender_app/ApplicationErrorsComponent';
 
-export default class ApplicationComponent extends React.PureComponent {
+
+export default class ApplicationComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);
 
-        this.state = {
-            currentModel: props.model.getPersonListNode()
-        };
+        this.state.currentModel = this.model.getPersonListNode();
 
         this.navigate = (currentModel) => {
             this.setState({
                 currentModel
             });
         };
+
+        this.hideErrorList = () => {
+            this.model.setShowErrorList(false);
+        };
+    }
+
+    extractNewState() {
+        const newState = super.extractNewState();
+
+        newState.showErrorList = this.model.getShowErrorList();
+
+        return newState;
     }
 
     renderMenu() {
@@ -67,6 +80,22 @@ export default class ApplicationComponent extends React.PureComponent {
         );
     }
 
+    renderErrors() {
+        if (this.state.showErrorList) {
+            return (
+                <div className="application-errors">
+                    <div className="title-bar">
+                        <a tabIndex="0" onClick={this.hideErrorList} alt="Close">
+                            <span className="glyphicon glyphicon-remove"/>
+                        </a>
+                    </div>
+                    <ApplicationErrorsComponent model={this.model.getErrorListNode()}/>
+                </div>
+            );
+        }
+        return null;
+    }
+
     render() {
         return (
             <div className="application-component">
@@ -76,6 +105,7 @@ export default class ApplicationComponent extends React.PureComponent {
                 <div className="application-main-content">
                     {this.renderMainContent()}
                 </div>
+                {this.renderErrors()}
             </div>
         );
     }

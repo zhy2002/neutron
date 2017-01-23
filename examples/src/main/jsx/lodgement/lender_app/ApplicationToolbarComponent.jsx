@@ -9,6 +9,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         super(props);
 
         this.validate = () => {
+            console.log('validating...');
             this.model.refresh();
         };
 
@@ -39,12 +40,12 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
             <div className="container-fluid application-toolbar-component">
                 <ul className="nav navbar-nav toolbar">
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" onClick={this.validate}>
                             <div>
-                                <span className="glyphicon glyphicon-plus-sign"/>
+                                <span className="glyphicon glyphicon-check"/>
                             </div>
                             <div>
-                                <small>Create 1</small>
+                                <small>Validate</small>
                             </div>
                         </a>
                     </li>

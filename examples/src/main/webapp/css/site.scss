@@ -8,6 +8,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
+  min-width: 768px;
 }
 
 .app-body-container {
@@ -23,9 +24,28 @@ html, body {
   position: absolute;
   top: 52px;
   left: 0;
-  right: 0;
+  width: 70%;
   bottom: 0;
   overflow: auto;
+
+  &:last-child {
+    width: 100%;
+  }
+}
+
+.application-errors {
+  position: absolute;
+  top: 52px;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+
+  .title-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: right;
+  }
 }
 
 .person-main-content {
@@ -171,11 +191,12 @@ html, body {
   }
 }
 
-.col-md-1, .col-md-2 {
-  &.compact {
-    padding-right: 0;
+@media (min-width: 992px) {
+  .col-md-1, .col-md-2 {
+    &.compact {
+      padding-right: 0;
+    }
   }
-
 }
 
 .form-group.form-group-sm {
@@ -185,3 +206,23 @@ html, body {
 .react-datepicker {
   font-size: 12px !important;
 }
+
+/*stop navbar from collapsing*/
+
+.navbar-collapse.collapse {
+  display: block !important;
+}
+
+.navbar-nav > li, .navbar-nav, .navbar-header {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+/*stop navbar from collapsing*/

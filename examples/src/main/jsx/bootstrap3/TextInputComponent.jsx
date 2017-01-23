@@ -15,7 +15,7 @@ export default class TextInputComponent extends InputComponent {
         const model = this.model;
 
         return (
-            <div className="form-group form-group-sm text-input-component">
+            <div className="form-group form-group-sm text-input-component" style={this.state.style}>
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
                 <input
                     type="text"

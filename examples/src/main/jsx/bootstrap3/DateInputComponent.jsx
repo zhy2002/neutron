@@ -23,7 +23,7 @@ export default class DateInputComponent extends InputComponent {
     render() {
         const model = this.props.model;
         return (
-            <div className="form-group form-group-sm date-input-component">
+            <div className="form-group form-group-sm date-input-component" style={this.state.style}>
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
                 <DatePicker
                     className="form-control"
