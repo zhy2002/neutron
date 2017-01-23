@@ -4,13 +4,14 @@ import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
+import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 
 export default class PersonGeneralComponent extends NeutronComponent {
 
     render() {
         const model = this.props.model;
         return (
-            <div className="container-fluid">
+            <div className="container-fluid small">
                 <div className="row">
                     <div className="col-md-3">
                         <RadioInputComponent model={model.getApplicantTypeNode()}/>
@@ -64,6 +65,21 @@ export default class PersonGeneralComponent extends NeutronComponent {
                             />
                         </div>
                     </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-2 compact">
+                        <DateInputComponent model={model.getDateOfBirthNode()}/>
+                    </div>
+                    <div className="col-md-2 compact">
+                        <RadioInputComponent model={model.getGenderNode()}/>
+                    </div>
+                    <div className="col-md-8"/>
+                </div>
+                <div className="row">
+                    <div className="col-md-3">
+                        <TextInputComponent model={model.getDriversLicenseNode()}/>
+                    </div>
+                    <div className="col-md-9"/>
                 </div>
             </div>
         );

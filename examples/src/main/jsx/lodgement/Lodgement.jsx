@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import ApplicationToolbarComponent from './lender_app/ApplicationToolbarComponent';
