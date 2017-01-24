@@ -1,6 +1,6 @@
 import React from 'react';
 import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
-import ApplicationToolbarComponent from './lender_app/ApplicationToolbarComponent';
+import ApplicationToolbarComponent from './app_data/ApplicationToolbarComponent';
 
 export default class LodgementToolbarComponent extends React.PureComponent {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationComponent from './lender_app/ApplicationComponent';
+import ApplicationComponent from './app_data/ApplicationComponent';
 import ApplicationListComponent from './app_manager/ApplicationListComponent';
 
 export default class LodgementContentComponent extends React.PureComponent {

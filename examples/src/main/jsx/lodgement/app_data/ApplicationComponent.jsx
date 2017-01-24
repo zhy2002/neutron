@@ -1,9 +1,9 @@
 import React from 'react';
 import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import PersonListComponent from '../lender_app/PersonListComponent';
-import PersonComponent from '../lender_app/person_data/PersonComponent';
-import ApplicationErrorsComponent from '../lender_app/ApplicationErrorsComponent';
+import PersonListComponent from '../app_data/PersonListComponent';
+import PersonComponent from '../app_data/person_data/PersonComponent';
+import ApplicationErrorsComponent from '../app_data/ApplicationErrorsComponent';
 
 
 export default class ApplicationComponent extends NeutronComponent {
