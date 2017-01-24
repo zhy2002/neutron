@@ -1,11 +1,9 @@
 import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import NavPillsComponent from '../bootstrap3/NavPillsComponent';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
-import ApplicationToolbarComponent from './lender_app/ApplicationToolbarComponent';
-import ApplicationComponent from './lender_app/ApplicationComponent';
-import ApplicationListComponent from './app_manager/ApplicationListComponent';
-import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
+import LodgementTabsComponent from './LodgementTabsComponent';
+import LodgementToolbarComponent from './LodgementToolbarComponent';
+import LodgementContentComponent from './LodgementContentComponent';
 
 const lenders = ['NAB', 'CBA', 'Westpac'];
 let nextLender = 0;
@@ -19,18 +17,6 @@ function createApplicationNode() {
 
 function createLodgementNode() {
     return window.GWT.LodgementNodeFactory.create();
-}
-
-function renderBody(model) {
-    if (model.getName() === 'appManagerNode') {
-        return (
-            <ApplicationListComponent model={model}/>
-        );
-    }
-
-    return (
-        <ApplicationComponent model={model}/>
-    );
 }
 
 export default class LodgementComponent extends React.PureComponent {
@@ -86,36 +72,20 @@ export default class LodgementComponent extends React.PureComponent {
         };
     }
 
-    renderToolbar(model) {
-        if (model.getName() === 'appManagerNode') {
-            return <AppManagerToolbarComponent model={model} onNewApp={this.onNewApp}/>;
-        }
-
-        return <ApplicationToolbarComponent model={model}/>;
-    }
-
     render() {
         const tabItems = [this.state.lodgementNode.getAppManagerNode(), ...this.state.openApps];
         const selectedModel = tabItems[this.state.selectedIndex];
         return (
             <div className="lodgement-component">
-                <div className="app-header-container">
-                    <LodgementHeaderComponent />
-                </div>
-                <div className="app-tabs-container">
-                    <NavPillsComponent
-                        items={tabItems}
-                        selectedIndex={this.state.selectedIndex}
-                        onSelect={this.selectTab}
-                        onClose={this.closeTab}
-                    />
-                </div>
-                <div className="app-toolbar-container">
-                    {this.renderToolbar(selectedModel)}
-                </div>
-                <div className="app-body-container">
-                    {renderBody(selectedModel)}
-                </div>
+                <LodgementHeaderComponent />
+                <LodgementTabsComponent
+                    tabItems={tabItems}
+                    selectedIndex={this.state.selectedIndex}
+                    selectTab={this.selectTab}
+                    closeTab={this.closeTab}
+                />
+                <LodgementToolbarComponent model={selectedModel} onNewApp={this.onNewApp}/>
+                <LodgementContentComponent model={selectedModel} />
             </div>
         );
     }

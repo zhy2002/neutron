@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LodgementComponent from './Lodgement';
+import LodgementComponent from './LodgementComponent';
 
 
 function createApp() {

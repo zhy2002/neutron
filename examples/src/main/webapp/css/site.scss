@@ -1,3 +1,5 @@
+//region Top Level Components
+
 html, body {
   height: 100%;
 }
@@ -11,14 +13,53 @@ html, body {
   min-width: 768px;
 }
 
-.app-body-container {
+.lodgement-header-component {
+  margin-bottom: 0;
+  border-bottom: none;
+
+  > .container-fluid {
+    background-color: #efefef;
+
+    .navbar-brand {
+      font-size: 1.5em;
+    }
+  }
+
+  .icon-wrapper {
+    padding-top: 9px;
+
+    .glyphicon {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.lodgement-tabs-component {
+  .nav-pills-component {
+    margin-top: 0;
+  }
+}
+
+.lodgement-content-component {
   position: absolute;
-  top: 145px;
+  top: 143px;
   left: 0;
   right: 0;
   bottom: 0;
   overflow: auto;
 }
+
+//endregion
+
+//region application components
+
+.application-list-component {
+  position: absolute;
+  left: 0;
+  right: 16px;
+}
+
+//endregion
 
 .application-main-content {
   position: absolute;
@@ -39,6 +80,7 @@ html, body {
   bottom: 0;
   right: 0;
   width: 30%;
+  overflow: auto;
 
   .title-bar {
     position: absolute;
@@ -56,27 +98,6 @@ html, body {
   bottom: 0;
   overflow: auto;
   padding-top: 1em;
-}
-
-.app-header-container > nav {
-  margin-bottom: 0;
-  border-bottom: none;
-
-  > .container-fluid {
-    background-color: #efefef;
-
-    .navbar-brand {
-      font-size: 1.5em;
-    }
-  }
-
-  .icon-wrapper {
-    padding-top: 9px;
-
-    .glyphicon {
-      font-size: 1.5em;
-    }
-  }
 }
 
 .radio-container {
@@ -131,30 +152,6 @@ html, body {
   }
 }
 
-.navbar-nav > li > a {
-  cursor: pointer;
-
-}
-
-.nav-pills-component {
-  margin: 1px 0;
-  background-color: #efefef;
-
-  .glyphicon {
-    margin-left: 1.5em;
-  }
-
-  li:not(:first-child) a {
-    padding-right: 1.75em;
-  }
-
-  > li > a {
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-}
-
 .person-component {
   > .nav-pills-component {
     margin-top: 0;
@@ -199,13 +196,15 @@ html, body {
   }
 }
 
-.form-group.form-group-sm {
-  margin-bottom: 10px;
-}
-
 .react-datepicker {
   font-size: 12px !important;
 }
+
+.application-errors-component {
+  margin-top: 1.5em;
+}
+
+//region Bootstrap Override
 
 /*stop navbar from collapsing*/
 
@@ -226,3 +225,32 @@ html, body {
 }
 
 /*stop navbar from collapsing*/
+
+.navbar-nav > li > a {
+  cursor: pointer;
+}
+
+.nav-pills-component {
+  margin: 1px 0;
+  background-color: #efefef;
+
+  .glyphicon {
+    margin-left: 1.5em;
+  }
+
+  li:not(:first-child) a {
+    padding-right: 1.75em;
+  }
+
+  > li > a {
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.form-group.form-group-sm {
+  margin-bottom: 10px;
+}
+
+//endregion

@@ -5,7 +5,7 @@ export default class LodgementHeaderComponent extends React.PureComponent {
 
     render() {
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar navbar-default lodgement-header-component">
                 <div className="container-fluid">
                     <div className="navbar-header">
                         <span className="navbar-brand">Brand Name</span>
