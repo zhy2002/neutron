@@ -73,6 +73,40 @@ html, body {
   }
 }
 
+.application-toolbar-component, .app-manager-toolbar-component {
+  background-color: #337ab7;
+  color: white;
+  padding: 0;
+
+  > .nav {
+    margin: 5px 0 0 0;
+
+    > li > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      color: white;
+      background-color: transparent !important;
+      cursor: pointer;
+
+      &:hover {
+        color: orange;
+      }
+
+      &:active {
+        color: yellow;
+      }
+
+      > div {
+        text-align: center;
+      }
+    }
+
+    .glyphicon {
+      font-size: 1.75em;
+    }
+  }
+}
+
 .application-nav-component {
   margin-bottom: 0;
   border-bottom: none;
@@ -202,53 +236,21 @@ html, body {
 
 .radio-container {
   padding-top: 5px;
-  padding-bottom: 8px;
-}
-
-.main-component {
-}
-
-.app-toolbar-container {
-  padding: 0;
-}
-
-.application-toolbar-component, .app-manager-toolbar-component {
-  background-color: #337ab7;
-  color: white;
-  padding: 0;
-
-  > .nav {
-    margin: 5px 0 0 0;
-
-    > li > a {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      color: white;
-      background-color: transparent !important;
-      cursor: pointer;
-
-      &:hover {
-        color: orange;
-      }
-
-      &:active {
-        color: yellow;
-      }
-
-      > div {
-        text-align: center;
-      }
-    }
-
-    .glyphicon {
-      font-size: 1.75em;
-    }
-  }
+  padding-bottom: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .person-component {
   > .nav-pills-component {
     margin-top: 0;
+  }
+}
+
+.missing-value {
+  input, select, .radio-container {
+    background-color: lightblue;
   }
 }
 
@@ -271,9 +273,28 @@ html, body {
   }
 }
 
+@media (min-width: 992px) {
+  .compact {
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
+      &:not(:last-child) {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.react-datepicker {
+  font-size: 12px !important;
+}
+
 .checkbox-input-component {
-  padding-top: 18px;
-  margin-bottom: 13px;
+  padding-top: 4px;
+  margin: 21px 0 6px 0;
+  border-radius: 3px;
+
+  label {
+    vertical-align: middle;
+  }
 }
 
 .date-input-component {
@@ -282,16 +303,23 @@ html, body {
   }
 }
 
-@media (min-width: 992px) {
-  .col-md-1, .col-md-2 {
-    &.compact {
-      padding-right: 0;
-    }
-  }
-}
+.nav-pills-component {
+  margin: 1px 0;
+  background-color: #efefef;
 
-.react-datepicker {
-  font-size: 12px !important;
+  .glyphicon {
+    margin-left: 1.5em;
+  }
+
+  li:not(:first-child) a {
+    padding-right: 1.75em;
+  }
+
+  > li > a {
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 }
 
 //region Bootstrap Override
@@ -320,31 +348,42 @@ html, body {
   cursor: pointer;
 }
 
-.nav-pills-component {
-  margin: 1px 0;
-  background-color: #efefef;
-
-  .glyphicon {
-    margin-left: 1.5em;
-  }
-
-  li:not(:first-child) a {
-    padding-right: 1.75em;
-  }
-
-  > li > a {
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-}
-
 .form-group.form-group-sm {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 a[tabindex] {
   cursor: pointer;
+}
+
+.form-group-sm {
+  .form-control {
+    padding: 2px 5px;
+    height: 24px !important;
+  }
+}
+
+.radio-inline {
+  input[type=radio] {
+    margin-top: 2px;
+  }
+}
+
+.checkbox {
+  input[type=checkbox] {
+    margin-top: 1px;
+  }
+
+  > label.missing-value {
+    background-color: lightblue;
+  }
+}
+
+.has-error {
+  input, select, .radio-container, &.checkbox {
+    background-color: #ef9a9a;
+  }
+
 }
 
 //endregion

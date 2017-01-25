@@ -15,7 +15,7 @@ export default class NavPillsComponent extends React.PureComponent {
                             {item.getNodeLabel()}
                         </a>
                         {
-                            item.getSimpleClassName() === 'ApplicationNode' &&
+                            item.getShowErrorList &&
                             <button
                                 className="close-icon"
                                 onClick={() => {

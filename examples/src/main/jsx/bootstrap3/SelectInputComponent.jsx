@@ -49,7 +49,7 @@ export default class SelectInputComponent extends InputComponent {
     render() {
         const model = this.props.model;
         return (
-            <div className="form-group form-group-sm select-input-component" style={this.state.style}>
+            <div className={`form-group form-group-sm select-input-component${this.state.componentClass}`}>
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
                 <select
                     id={model.getUniqueId()}

@@ -1,19 +1,5 @@
 import React from 'react';
 
-const blue500 = 'blue';
-const red500 = 'red';
-
-const styles = {
-    defaultStyle: {},
-    requiredStyle: {
-        color: blue500,
-        fontWeight: 'bold'
-    }
-};
-
-function deepCopy(obj) {
-    return JSON.parse(JSON.stringify(obj));
-}
 
 function nodeNameToLabel(nodeName) {
     let name = nodeName;
@@ -112,13 +98,13 @@ export default class NeutronComponent extends React.Component {
             }
         }
 
-        newState.style = deepCopy(styles.defaultStyle);
-        if (!newState.errorMessage && this.model.getRequired() && !this.model.hasValue()) {
-            newState.style = deepCopy(styles.requiredStyle);
-        }
+        let componentClass = '';
         if (newState.errorMessage) {
-            newState.style.color = red500;
+            componentClass = ' has-error';
+        } else if (this.model.getRequired() && !this.model.hasValue()) {
+            componentClass = ' missing-value';
         }
+        newState.componentClass = componentClass;
 
         return newState;
     }

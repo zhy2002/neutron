@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
+import PersonContactComponent from './PersonContactComponent';
 
 export default class PersonComponent extends NeutronComponent {
 
@@ -18,6 +19,9 @@ export default class PersonComponent extends NeutronComponent {
         const className = model.getSimpleClassName();
         if (className === 'GeneralNode') {
             return <PersonGeneralComponent model={model}/>;
+        }
+        if (className === 'ContactNode') {
+            return <PersonContactComponent model={model}/>;
         }
 
         return (

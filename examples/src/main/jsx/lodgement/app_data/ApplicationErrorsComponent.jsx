@@ -50,13 +50,13 @@ export default class ApplicationErrorsComponent extends NeutronComponent {
                             <span className="glyphicon glyphicon-remove"/>
                         </a>
                     </div>
-                    <div className="header">
+                    <div className="header small">
                         <div className="title clearfix">
                             <div className="col-p35">Source</div>
                             <div className="col-p65">Message</div>
                         </div>
                     </div>
-                    <div className="content">
+                    <div className="content small">
                         {this.renderErrors()}
                     </div>
                 </div>
