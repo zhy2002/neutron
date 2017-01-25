@@ -1,5 +1,6 @@
 todo 
 ----------------- 
+* pre-rule can stop update from happening
 * performance tuning
 * implement rule priority
 * implement router

@@ -38,10 +38,12 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     public UiNodeChangeEngineImpl() {
     }
 
+    @Override
     public CycleModeEnum getCycleMode() {
         return cycleMode;
     }
 
+    @Override
     public void setCycleMode(@NotNull CycleModeEnum cycleMode) {
         if(isInCycle() && cycleMode != this.cycleMode)
             throw new UiNodeException("Cannot change cycle mode in a cycle.");

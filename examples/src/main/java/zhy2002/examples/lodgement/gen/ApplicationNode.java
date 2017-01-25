@@ -31,6 +31,7 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
         super.initializeState();
 
         setSelectedName("personListNode");
+        setChangeTrackingMode(ApplicationNodeConstants.CONTENT_LEVEL, ChangeTrackingModeEnum.Value);
     }
 
     @JsMethod
@@ -41,6 +42,16 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     @JsMethod
     public void setShowErrorList(Boolean value) {
         setStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.class, value);
+    }
+
+    @JsMethod
+    public int getContentLevel() {
+        return getStateValue(ApplicationNodeConstants.CONTENT_LEVEL, 1);
+    }
+
+    @JsMethod
+    public void setContentLevel(int value) {
+        setStateValue(ApplicationNodeConstants.CONTENT_LEVEL, Integer.class, value);
     }
 
     @JsMethod

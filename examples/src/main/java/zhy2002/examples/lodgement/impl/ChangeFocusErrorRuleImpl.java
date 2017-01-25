@@ -2,8 +2,7 @@ package zhy2002.examples.lodgement.impl;
 
 
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
-import zhy2002.examples.lodgement.gen.ErrorListNode;
-import zhy2002.examples.lodgement.gen.ErrorNode;
+import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ParentUiNode;
@@ -50,7 +49,17 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
                     parent.setStateValue(NeutronEventSubjects.SELECTED_NAME, String.class, node.getName());
                 }
             }
+
+            if(parent instanceof ApplicationNode) {
+                if(node instanceof PersonListNode || node instanceof CompanyListNode || node instanceof RealEstateListNode) {
+                    ((ApplicationNode) parent).setContentLevel(2);
+                } else {
+                    ((ApplicationNode) parent).setContentLevel(1);
+                }
+            }
+
             node = parent;
         } //todo allow code gen nodes to implement interface
+
     }
 }

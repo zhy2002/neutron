@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.SequentialUniqueIdGenerator;
@@ -7,7 +8,7 @@ import zhy2002.neutron.util.SequentialUniqueIdGenerator;
 /**
  * There is one context per node tree.
  */
-public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R>, UiNodeChangeEngine {
+public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
     private final ClassRegistry classRegistry;
@@ -133,6 +134,13 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
 
     //region change engine facade
 
+    @JsMethod
+    @Override
+    public CycleModeEnum getCycleMode() {
+        return changeEngine.getCycleMode();
+    }
+
+    @JsMethod
     public final void setCycleMode(CycleModeEnum mode) {
         changeEngine.setCycleMode(mode);
     }

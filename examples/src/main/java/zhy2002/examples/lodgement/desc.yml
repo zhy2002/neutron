@@ -4,8 +4,10 @@ rootType:
   baseTypeName: ObjectUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
+  - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
+  - {propertyName: contentLevel, mode: Value}
   rules:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}

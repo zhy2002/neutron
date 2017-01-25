@@ -343,4 +343,8 @@ html, body {
   margin-bottom: 10px;
 }
 
+a[tabindex] {
+  cursor: pointer;
+}
+
 //endregion

@@ -11,23 +11,31 @@ export default class ApplicationComponent extends NeutronComponent {
     constructor(props) {
         super(props);
 
-        this.state.currentModel = this.model.getPersonListNode();
-
-        this.navigate = (currentModel) => {
-            this.setState({
-                currentModel
-            });
-        };
-
         this.hideErrorList = () => {
             this.model.setShowErrorList(false);
         };
+    }
+
+    getCurrentModel() {
+        let model = this.model;
+        let contentLevel = this.model.getContentLevel();
+        console.log(`content level is: ${contentLevel}`);
+        while (contentLevel--) {
+            if (model.getSelectedIndex) {
+                model = model.getItem(model.getSelectedIndex());
+            } else {
+                model = model.getChildByName(model.getSelectedName());
+            }
+        }
+        return model;
     }
 
     extractNewState() {
         const newState = super.extractNewState();
 
         newState.showErrorList = this.model.getShowErrorList();
+
+        newState.currentModel = this.getCurrentModel();
 
         return newState;
     }
@@ -36,11 +44,7 @@ export default class ApplicationComponent extends NeutronComponent {
         const errorClass = this.state.showErrorList ? 'show-error-list' : '';
         return (
             <div className={`application-component ${errorClass}`}>
-                <ApplicationNavComponent
-                    model={this.model}
-                    currentModel={this.state.currentModel}
-                    onSelect={this.navigate}
-                />
+                <ApplicationNavComponent model={this.model}/>
                 <ApplicationTabsComponent model={this.state.currentModel}/>
                 <ApplicationContentComponent model={this.state.currentModel}/>
                 <ApplicationErrorsComponent

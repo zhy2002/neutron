@@ -14,6 +14,7 @@ public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
     public static final String FOCUS = "focus";
     public static final String SHOW_ERROR_LIST = "showErrorList";
+    public static final String CONTENT_LEVEL = "contentLevel";
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";
 
     public static final List<StringOption> TITLE_TYPE = Arrays.asList(
