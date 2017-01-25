@@ -3,72 +3,51 @@ import NeutronComponent from '../../bootstrap3/NeutronComponent';
 
 export default class ApplicationErrorsComponent extends NeutronComponent {
 
-    renderRows() {
-        if (this.model) {
+    render() {
+        if (this.props.visible) {
             return (
-                <tr>
-                    <td>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                        sss<br/>
-                    </td>
-                    <td>ddd</td>
-                </tr>
+                <div className="application-errors-component">
+                    <div className="title-bar">
+                        <a tabIndex="0" onClick={this.props.onClose} alt="Close">
+                            <span className="glyphicon glyphicon-remove"/>
+                        </a>
+                    </div>
+                    <div className="header">
+                        <div className="title clearfix">
+                            <div className="col-p35">Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                    </div>
+                    <div className="content">
+                        <div className="clearfix alert alert-warning">
+                            <div className="col-p35">Source Source Source Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                        <div className="clearfix alert alert-warning">
+                            <div className="col-p35">Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                        <div className="clearfix alert alert-warning">
+                            <div className="col-p35">Source Source Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                        <div className="clearfix alert alert-warning">
+                            <div className="col-p35">Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                        <div className="clearfix alert alert-warning">
+                            <div className="col-p35">Source</div>
+                            <div className="col-p65">Message</div>
+                        </div>
+                    </div>
+                </div>
             );
         }
         return null;
     }
-
-    render() {
-        return (
-            <table className="table application-errors-component">
-                <thead>
-                <tr>
-                    <th width="30%">Source</th>
-                    <th>Message</th>
-                </tr>
-                </thead>
-                <tbody>{this.renderRows()}</tbody>
-            </table>
-        );
-    }
 }
+
+ApplicationErrorsComponent.propTypes = {
+    visible: React.PropTypes.bool.isRequired,
+    onClose: React.PropTypes.func.isRequired
+};

@@ -1,86 +1,74 @@
 import React from 'react';
-import NavPillsComponent from '../../../bootstrap3/NavPillsComponent';
+import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 
-function renderMainContent(model) {
-    const className = model.getSimpleClassName();
-    if (className === 'GeneralNode') {
-        return <PersonGeneralComponent model={model} />;
+export default class PersonComponent extends NeutronComponent {
+
+    extractNewState() {
+        const newState = super.extractNewState();
+
+        const selectedName = this.model.getSelectedName();
+        newState.selectedItem = this.model.getChildByName(selectedName);
+
+        return newState;
     }
 
-    return (
-        <div>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-            <p>unknown model type {className}</p>
-        </div>
-    );
-}
+    renderPersonContent() {
+        const model = this.state.selectedItem;
+        const className = model.getSimpleClassName();
+        if (className === 'GeneralNode') {
+            return <PersonGeneralComponent model={model}/>;
+        }
 
-export default class PersonComponent extends React.PureComponent {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedIndex: 0
-        };
-
-        this.selectTab = (selectedIndex) => {
-            this.setState({selectedIndex});
-        };
+        return (
+            <div>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+                <p>unknown model type {className}</p>
+            </div>
+        );
     }
 
     render() {
-        const tabItems = this.props.model.getChildren();
-        const currentChild = tabItems[this.state.selectedIndex];
-
         return (
             <div className="person-component">
-                <NavPillsComponent
-                    items={tabItems}
-                    selectedIndex={this.state.selectedIndex}
-                    onSelect={this.selectTab}
-                />
-                <div className="person-main-content">
-                    {renderMainContent(currentChild)}
-                </div>
+                {this.renderPersonContent()}
             </div>
         );
     }

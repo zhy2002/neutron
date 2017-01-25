@@ -3,18 +3,15 @@ import React from 'react';
 
 export default class NavPillsComponent extends React.PureComponent {
 
-    render() {
+    renderPills() {
         const listItems = [];
-        const selectedIndex = this.props.selectedIndex;
-        console.log('pill items!');
-        console.log(this.props.items);
+        const selectedItem = this.props.selectedItem;
         this.props.items.forEach(
-            (item, index) => {
-                const itemClass = index === selectedIndex ? 'active' : '';
-                const key = index + 1;
+            (item) => {
+                const itemClass = item === selectedItem ? 'active' : '';
                 listItems.push(
-                    <li key={key} className={itemClass}>
-                        <a tabIndex="0" onClick={() => this.props.onSelect(index)}>
+                    <li key={item.getUniqueId()} className={itemClass}>
+                        <a tabIndex="0" onClick={() => this.props.onSelect(item)}>
                             {item.getNodeLabel()}
                         </a>
                         {
@@ -22,7 +19,7 @@ export default class NavPillsComponent extends React.PureComponent {
                             <button
                                 className="close-icon"
                                 onClick={() => {
-                                    this.props.onClose(index);
+                                    this.props.onClose(item);
                                     return false;
                                 }}
                             >
@@ -33,23 +30,27 @@ export default class NavPillsComponent extends React.PureComponent {
                 );
             }
         );
+        return listItems;
+    }
 
+    render() {
         return (
             <ul className="nav nav-pills small nav-pills-component">
-                {listItems}
+                {this.renderPills()}
             </ul>
         );
     }
 }
 
 NavPillsComponent.propTypes = {
-    selectedIndex: React.PropTypes.number.isRequired,
+    selectedItem: React.PropTypes.object.isRequired,
     items: React.PropTypes.array.isRequired,
     onSelect: React.PropTypes.func.isRequired,
     onClose: React.PropTypes.func
 };
 
 NavPillsComponent.defaultProps = {
-    onClose: () => {}
+    onClose: () => {
+    }
 };
 

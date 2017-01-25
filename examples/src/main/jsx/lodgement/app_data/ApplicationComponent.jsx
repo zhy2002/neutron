@@ -1,8 +1,8 @@
 import React from 'react';
-import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import PersonListComponent from '../app_data/PersonListComponent';
-import PersonComponent from '../app_data/person_data/PersonComponent';
+import ApplicationNavComponent from './ApplicationNavComponent';
+import ApplicationTabsComponent from './ApplicationTabsComponent';
+import ApplicationContentComponent from './ApplicationContentComponent';
 import ApplicationErrorsComponent from '../app_data/ApplicationErrorsComponent';
 
 
@@ -32,80 +32,22 @@ export default class ApplicationComponent extends NeutronComponent {
         return newState;
     }
 
-    renderMenu() {
-        const model = this.props.model;
-        return (
-            <nav className="navbar navbar-default">
-                <div className="container-fluid">
-                    <ul className="nav navbar-nav">
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getPersonListNode()}>
-                            Person
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getCompanyListNode()}>
-                            Company
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getFinancialPositionNode()}>
-                            Financial Position
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getRealEstateListNode()}>
-                            Real Estates
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getProductsNode()}>
-                            Products
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getAdditionalNode()}>
-                            Additional
-                        </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.navigate} model={model.getSubmissionNode()}>
-                            Submission
-                        </NavDropdownComponent>
-                    </ul>
-                </div>
-            </nav>
-        );
-    }
-
-    renderMainContent() {
-        const model = this.state.currentModel;
-        const className = model.getSimpleClassName();
-
-        if (className === 'PersonListNode')
-            return <PersonListComponent model={model}/>;
-
-        if (className === 'PersonNode')
-            return <PersonComponent model={model}/>;
-
-        return (
-            <div>View not defined for model: {className}</div>
-        );
-    }
-
-    renderErrors() {
-        if (this.state.showErrorList) {
-            return (
-                <div className="application-errors">
-                    <div className="title-bar">
-                        <a tabIndex="0" onClick={this.hideErrorList} alt="Close">
-                            <span className="glyphicon glyphicon-remove"/>
-                        </a>
-                    </div>
-                    <ApplicationErrorsComponent model={this.model.getErrorListNode()}/>
-                </div>
-            );
-        }
-        return null;
-    }
-
     render() {
+        const errorClass = this.state.showErrorList ? 'show-error-list' : '';
         return (
-            <div className="application-component">
-                <div className="application-menu">
-                    {this.renderMenu()}
-                </div>
-                <div className="application-main-content">
-                    {this.renderMainContent()}
-                </div>
-                {this.renderErrors()}
+            <div className={`application-component ${errorClass}`}>
+                <ApplicationNavComponent
+                    model={this.model}
+                    currentModel={this.state.currentModel}
+                    onSelect={this.navigate}
+                />
+                <ApplicationTabsComponent model={this.state.currentModel}/>
+                <ApplicationContentComponent model={this.state.currentModel}/>
+                <ApplicationErrorsComponent
+                    visible={this.state.showErrorList}
+                    onClose={this.hideErrorList}
+                    model={this.model.getErrorListNode()}
+                />
             </div>
         );
     }

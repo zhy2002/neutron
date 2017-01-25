@@ -3,9 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.rule.UpdateObjectHasValueRule;
-import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.NeutronEventSubjects;
-import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -63,6 +61,11 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     @Override
     public int getChildCount() {
         return super.getChildCount();
+    }
+
+    @JsMethod
+    public UiNode<?> getChildByName(String name) {
+        return super.getChild(name);
     }
 
     @Override

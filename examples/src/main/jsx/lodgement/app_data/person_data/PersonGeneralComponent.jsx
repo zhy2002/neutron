@@ -11,7 +11,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
     render() {
         const model = this.props.model;
         return (
-            <div className="container-fluid small">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-3">
                         <RadioInputComponent model={model.getApplicantTypeNode()}/>
