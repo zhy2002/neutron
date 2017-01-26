@@ -15,10 +15,12 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 {
     private ContactTelephoneNode homePhoneNode;
     private ContactTelephoneNode workPhoneNode;
+    private ContactTelephoneNode faxNumberNode;
+    private MobileNumberNode mobileNumberNode;
     private ContactEmailNode contactEmailNode;
     private ContactAddressNode currentAddressNode;
-    private ContactAddressNode postalAddressNode;
     private ContactMonthYearNode movedToCurrentAddressNode;
+    private ContactAddressNode postalAddressNode;
     private ContactAddressNode previousAddressNode;
     private ContactMonthYearNode movedToPreviousAddressNode;
     private ContactMonthYearNode movedFromPreviousAddressNode;
@@ -38,6 +40,16 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
+    public ContactTelephoneNode getFaxNumberNode() {
+        return faxNumberNode;
+    }
+
+    @JsMethod
+    public MobileNumberNode getMobileNumberNode() {
+        return mobileNumberNode;
+    }
+
+    @JsMethod
     public ContactEmailNode getContactEmailNode() {
         return contactEmailNode;
     }
@@ -48,13 +60,13 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
-    public ContactAddressNode getPostalAddressNode() {
-        return postalAddressNode;
+    public ContactMonthYearNode getMovedToCurrentAddressNode() {
+        return movedToCurrentAddressNode;
     }
 
     @JsMethod
-    public ContactMonthYearNode getMovedToCurrentAddressNode() {
-        return movedToCurrentAddressNode;
+    public ContactAddressNode getPostalAddressNode() {
+        return postalAddressNode;
     }
 
     @JsMethod
@@ -78,10 +90,12 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 
         homePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "homePhoneNode");
         workPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "workPhoneNode");
+        faxNumberNode = context.createChildNode(ContactTelephoneNode.class, this, "faxNumberNode");
+        mobileNumberNode = context.createChildNode(MobileNumberNode.class, this, "mobileNumberNode");
         contactEmailNode = context.createChildNode(ContactEmailNode.class, this, "contactEmailNode");
         currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
-        postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
         movedToCurrentAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToCurrentAddressNode");
+        postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
         previousAddressNode = context.createChildNode(ContactAddressNode.class, this, "previousAddressNode");
         movedToPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToPreviousAddressNode");
         movedFromPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedFromPreviousAddressNode");
@@ -89,10 +103,12 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
         return Arrays.asList(
             homePhoneNode,
             workPhoneNode,
+            faxNumberNode,
+            mobileNumberNode,
             contactEmailNode,
             currentAddressNode,
-            postalAddressNode,
             movedToCurrentAddressNode,
+            postalAddressNode,
             previousAddressNode,
             movedToPreviousAddressNode,
             movedFromPreviousAddressNode

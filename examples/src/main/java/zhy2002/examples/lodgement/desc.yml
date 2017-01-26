@@ -149,16 +149,21 @@ rootType:
         children:
         - {typeName: ContactTelephoneNode, name: homePhoneNode}
         - {typeName: ContactTelephoneNode, name: workPhoneNode}
+        - {typeName: ContactTelephoneNode, name: faxNumberNode}
+        - {typeName: MobileNumberNode}
         - {typeName: ContactEmailNode}
         - {typeName: ContactAddressNode, name: currentAddressNode}
-        - {typeName: ContactAddressNode, name: postalAddressNode}
         - {typeName: ContactMonthYearNode, name: movedToCurrentAddressNode}
+        - {typeName: ContactAddressNode, name: postalAddressNode}
         - {typeName: ContactAddressNode, name: previousAddressNode}
         - {typeName: ContactMonthYearNode, name: movedToPreviousAddressNode}
         - {typeName: ContactMonthYearNode, name: movedFromPreviousAddressNode}
         childTypes:
         - typeName: ContactTelephoneNode
           baseTypeName: TelephoneNode
+
+        - typeName: MobileNumberNode
+          baseTypeName: StringUiNode
 
         - typeName: ContactAddressNode
           baseTypeName: AddressNode

@@ -20,6 +20,14 @@ export default class ApplicationErrorsComponent extends NeutronComponent {
         }
     }
 
+    extractNewState() {
+        const newState = super.extractNewState();
+
+        newState.count = this.model.getItemCount();
+
+        return newState;
+    }
+
     renderErrors() {
         const errors = [];
 
@@ -53,7 +61,10 @@ export default class ApplicationErrorsComponent extends NeutronComponent {
                     <div className="header small">
                         <div className="title clearfix">
                             <div className="col-p35">Source</div>
-                            <div className="col-p65">Message</div>
+                            <div className="col-p65">
+                                Message
+                                <span className="badge pull-right">{this.state.count}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="content small">

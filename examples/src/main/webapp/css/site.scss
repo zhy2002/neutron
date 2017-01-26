@@ -386,4 +386,22 @@ a[tabindex] {
 
 }
 
+.telephone-component {
+  .country-code {
+    width: 20%;
+    float: left;
+  }
+
+  .area-code {
+    width: 20%;
+    float: left;
+    margin: 0 1%;
+  }
+
+  .phone-number {
+    width: 58%;
+    float: left;
+  }
+}
+
 //endregion
