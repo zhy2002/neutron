@@ -345,6 +345,23 @@ html, body {
   }
 }
 
+.month-year-component {
+  .month {
+    width: 49%;
+    margin-right: 2%;
+    float: left;
+  }
+
+  .year {
+    width: 49%;
+    float: left;
+  }
+}
+
+.row.small-gap {
+  margin-top: 8px;
+}
+
 //region Bootstrap Override
 
 /*stop navbar from collapsing*/

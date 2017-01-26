@@ -2,6 +2,7 @@ import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
+import MonthYearComponent from '../common/MonthYearComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 // import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 // import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
@@ -43,6 +44,21 @@ export default class PersonContactComponent extends NeutronComponent {
                     </div>
                     <div className="col-md-4">
                         <AddressComponent model={model.getPreviousAddressNode()}/>
+                    </div>
+                </div>
+                <div className="row small-gap" >
+                    <div className="col-md-4">
+                        <MonthYearComponent model={model.getMovedToCurrentAddressNode()}/>
+                    </div>
+                    <div className="col-md-4"/>
+                    <div className="col-md-4">
+                        <MonthYearComponent model={model.getMovedToPreviousAddressNode()}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-8"/>
+                    <div className="col-md-4">
+                        <MonthYearComponent model={model.getMovedFromPreviousAddressNode()}/>
                     </div>
                 </div>
             </div>

@@ -22,9 +22,13 @@ export default class SelectInputComponent extends InputComponent {
         const options = [];
         if (this.state.list) {
             this.state.list.forEach((item, index) => {
+                let text = item.getText();
+                if (this.props.noLabel && index === 0 && !text && !item.getValue()) {
+                    text = this.label;
+                }
                 options.push(
-                    <option key={item.getText()} value={`${index}`}>
-                        {item.getText()}
+                    <option key={text} value={`${index}`}>
+                        {text}
                     </option>
                 );
             });
@@ -50,7 +54,9 @@ export default class SelectInputComponent extends InputComponent {
         const model = this.props.model;
         return (
             <div className={super.renderContainerClass('select-input-component')}>
+                {!this.props.noLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                }
                 <select
                     id={model.getUniqueId()}
                     className="form-control"
