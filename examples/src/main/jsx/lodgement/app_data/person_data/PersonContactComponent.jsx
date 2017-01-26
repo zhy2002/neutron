@@ -1,10 +1,11 @@
 import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
+import AddressComponent from '../common/AddressComponent';
+import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 // import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 // import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 // import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
-// import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 // import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 
 export default class PersonContactComponent extends NeutronComponent {
@@ -25,8 +26,23 @@ export default class PersonContactComponent extends NeutronComponent {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12">
-                        Remaining data...
+                    <div className="col-md-4">
+                        <TextInputComponent model={model.getMobileNumberNode()}/>
+                    </div>
+                    <div className="col-md-4">
+                        <TextInputComponent model={model.getContactEmailNode()}/>
+                    </div>
+                    <div className="col-md-4"/>
+                </div>
+                <div className="row">
+                    <div className="col-md-4">
+                        <AddressComponent model={model.getCurrentAddressNode()}/>
+                    </div>
+                    <div className="col-md-4">
+                        <AddressComponent model={model.getPostalAddressNode()}/>
+                    </div>
+                    <div className="col-md-4">
+                        <AddressComponent model={model.getPreviousAddressNode()}/>
                     </div>
                 </div>
             </div>

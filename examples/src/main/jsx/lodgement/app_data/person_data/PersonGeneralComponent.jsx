@@ -56,10 +56,10 @@ export default class PersonGeneralComponent extends NeutronComponent {
                 </div>
                 <div className="row">
                     <div className="col-md-3">
-                        <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
+                        <SelectInputComponent model={model.getHousingStatusNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <SelectInputComponent model={model.getHousingStatusNode()}/>
+                        <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
                     </div>
                     <div className="col-md-6"/>
                 </div>

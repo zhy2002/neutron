@@ -20,14 +20,28 @@ export default class InputComponent extends NeutronComponent {
     getValueOptions() {
         return this.model.getStateValue(this.props.listName);
     }
+
+    renderContainerClass(clazz) {
+        let containerClass = 'form-group form-group-sm';
+        if (this.state.componentClass) {
+            containerClass = `${containerClass} ${this.state.componentClass}`;
+        }
+        if (this.props.containerClass) {
+            containerClass = `${containerClass} ${this.props.containerClass}`;
+        }
+        if (clazz) {
+            containerClass = `${containerClass} ${clazz}`;
+        }
+        return containerClass;
+    }
 }
 
 InputComponent.propTypes = {
-    columnStyle: React.PropTypes.object,
+    containerClass: React.PropTypes.string,
     listName: React.PropTypes.string
 };
 
 InputComponent.defaultProps = {
-    columnStyle: {},
+    containerClass: '',
     listName: 'options'
 };

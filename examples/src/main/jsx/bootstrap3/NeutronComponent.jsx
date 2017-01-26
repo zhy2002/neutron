@@ -69,6 +69,8 @@ export default class NeutronComponent extends React.Component {
         }
 
         this.label = props.label;
+        console.log('label is:');
+        console.log(this.label);
         if (!this.label) {
             this.label = nodeNameToLabel(model.getName());
         }
@@ -119,18 +121,14 @@ export default class NeutronComponent extends React.Component {
 }
 
 NeutronComponent.propTypes = {
-    id: React.PropTypes.string.isRequired,
-    model: React.PropTypes.object.isRequired
-};
-
-
-NeutronComponent.propTypes = {
     id: React.PropTypes.string,
     label: React.PropTypes.string,
+    hideLabel: React.PropTypes.bool,
     model: React.PropTypes.object.isRequired
 };
 
 NeutronComponent.defaultProps = {
     id: null,
-    label: null
+    label: null,
+    hideLabel: false
 };

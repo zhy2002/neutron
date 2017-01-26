@@ -13,16 +13,22 @@ export default class TextInputComponent extends InputComponent {
 
     render() {
         const model = this.model;
-
+        const conditionalProps = {};
+        if (this.props.hideLabel) {
+            conditionalProps.placeholder = this.label;
+        }
         return (
-            <div className={`form-group form-group-sm text-input-component${this.state.componentClass}`}>
+            <div className={super.renderContainerClass('text-input-component')}>
+                {!this.props.hideLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                }
                 <input
                     type="text"
                     className="form-control"
                     id={model.getUniqueId()}
                     value={this.state.value}
                     onChange={this.updateValue}
+                    {...conditionalProps}
                 />
             </div>
         );

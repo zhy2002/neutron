@@ -235,8 +235,8 @@ html, body {
 }
 
 .radio-container {
-  padding-top: 5px;
-  padding-bottom: 3px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -273,6 +273,16 @@ html, body {
   }
 }
 
+.active .close-icon {
+  .glyphicon {
+    color: white;
+
+    &:hover {
+      color: orange;
+    }
+  }
+}
+
 @media (min-width: 992px) {
   .compact {
     .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
@@ -283,13 +293,26 @@ html, body {
   }
 }
 
+.grouper {
+  position: relative;
+  padding-left: 10px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-left: 5px solid orangered;
+    height: 93%;
+    left: 0;
+  }
+}
+
 .react-datepicker {
   font-size: 12px !important;
 }
 
 .checkbox-input-component {
   padding-top: 4px;
-  margin: 21px 0 6px 0;
+  margin-top: 20px;
   border-radius: 3px;
 
   label {
@@ -350,6 +373,10 @@ html, body {
 
 .form-group.form-group-sm {
   margin-bottom: 7px;
+
+  &.checkbox-input-component {
+    margin-bottom: 6px;
+  }
 }
 
 a[tabindex] {
@@ -365,7 +392,7 @@ a[tabindex] {
 
 .radio-inline {
   input[type=radio] {
-    margin-top: 2px;
+    margin-top: 1px;
   }
 }
 
@@ -401,6 +428,25 @@ a[tabindex] {
   .phone-number {
     width: 58%;
     float: left;
+  }
+}
+
+.address-component {
+  .clearfix {
+    > .form-group {
+      float: left;
+    }
+  }
+
+  .suburb {
+    width: 29%;
+  }
+  .postcode {
+    width: 29%;
+    margin: 0 1%;
+  }
+  .country {
+    width: 40%;
   }
 }
 

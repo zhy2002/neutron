@@ -13,7 +13,7 @@ export default class CheckboxInputComponent extends InputComponent {
 
     render() {
         return (
-            <div className={`checkbox checkbox-input-component${this.state.componentClass}`}>
+            <div className={super.renderContainerClass('checkbox checkbox-input-component')}>
                 <label>
                     <input id={this.id} type="checkbox" onClick={this.updateValue} checked={this.state.value}/>
                     {this.label}

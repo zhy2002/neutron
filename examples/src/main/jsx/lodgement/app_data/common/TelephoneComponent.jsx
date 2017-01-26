@@ -53,6 +53,7 @@ export default class TelephoneComponent extends InputComponent {
 
     render() {
         const model = this.model;
+        const countryInputId = `${model.getUniqueId()}-country`;
 
         return (
             <div
@@ -60,9 +61,10 @@ export default class TelephoneComponent extends InputComponent {
                 tabIndex="0"
                 className={`form-group form-group-sm telephone-component${this.state.componentClass}`}
             >
-                <label>{this.label}</label>
+                <label htmlFor={countryInputId}>{this.label}</label>
                 <div className="clearfix">
                     <input
+                        id={countryInputId}
                         type="text"
                         className="form-control country-code"
                         placeholder="Country Code"
