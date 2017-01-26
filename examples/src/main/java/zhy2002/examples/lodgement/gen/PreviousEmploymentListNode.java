@@ -21,6 +21,13 @@ public  class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousE
         return PreviousEmploymentNode.class;
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setNodeLabel("Previous Employment");
+    }
+
 
 
 }

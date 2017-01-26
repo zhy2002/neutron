@@ -21,6 +21,13 @@ public  class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmp
         return CurrentEmploymentNode.class;
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setNodeLabel("Current Employment");
+    }
+
 
 
 }

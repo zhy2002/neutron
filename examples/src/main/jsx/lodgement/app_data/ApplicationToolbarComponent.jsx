@@ -13,7 +13,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
             this.model.refresh();
         };
 
-        this.showJson = () => {
+        this.getJson = () => {
             const obj = CommonUtil.extractValue(this.model);
             console.log('extracted object:');
             console.log(obj);
@@ -50,12 +50,12 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" onClick={this.getJson}>
                             <div>
-                                <span className="glyphicon glyphicon-pencil"/>
+                                <span className="glyphicon glyphicon-share"/>
                             </div>
                             <div>
-                                <small>Update 1</small>
+                                <small>Get JSON</small>
                             </div>
                         </a>
                     </li>

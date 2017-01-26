@@ -16,6 +16,13 @@ public  class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentList
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setNodeLabel("Employment");
+    }
+
 
 
 }

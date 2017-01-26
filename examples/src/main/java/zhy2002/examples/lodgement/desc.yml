@@ -179,16 +179,24 @@ rootType:
       - typeName: CurrentEmploymentListNode
         baseTypeName: ListUiNode
         itemTypeName: CurrentEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Current Employment"'}
         childTypes:
         - typeName: CurrentEmploymentNode
           baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
 
       - typeName: PreviousEmploymentListNode
         baseTypeName: ListUiNode
         itemTypeName: PreviousEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Previous Employment"'}
         childTypes:
         - typeName: PreviousEmploymentNode
           baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

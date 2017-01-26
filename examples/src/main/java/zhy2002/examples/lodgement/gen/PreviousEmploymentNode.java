@@ -16,6 +16,13 @@ public  class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentLi
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setNodeLabel("Employment");
+    }
+
 
 
 }
