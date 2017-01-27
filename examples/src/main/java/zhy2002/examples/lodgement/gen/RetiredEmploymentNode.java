@@ -12,10 +12,16 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
 {
+    private RetiredOnBenefitFlagNode retiredOnBenefitFlagNode;
     private RetiredSinceNode retiredSinceNode;
 
     protected RetiredEmploymentNode(EmploymentNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public RetiredOnBenefitFlagNode getRetiredOnBenefitFlagNode() {
+        return retiredOnBenefitFlagNode;
     }
 
     @JsMethod
@@ -25,13 +31,13 @@ public  class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
+        retiredOnBenefitFlagNode = context.createChildNode(RetiredOnBenefitFlagNode.class, this, "retiredOnBenefitFlagNode");
+        children.add(retiredOnBenefitFlagNode);
         retiredSinceNode = context.createChildNode(RetiredSinceNode.class, this, "retiredSinceNode");
-
-        return Arrays.asList(
-            retiredSinceNode
-        );
+        children.add(retiredSinceNode);
+        return children;
     }
 
 

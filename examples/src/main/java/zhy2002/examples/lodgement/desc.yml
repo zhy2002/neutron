@@ -333,8 +333,8 @@ commonTypes:
   localRequired: true
   children:
   - {typeName: EmploymentTypeNode}
-  - {typeName: EmployedNode, name: payeEmployedNode}
-  - {typeName: EmployedNode, name: selfEmployedNode}
+  - {typeName: PayeEmployedNode}
+  - {typeName: SelfEmployedNode}
   - {typeName: UnemployedNode}
   - {typeName: RetiredEmploymentNode}
   childTypes:
@@ -345,36 +345,151 @@ commonTypes:
     init:
     - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray()'}
     - {propertyName: value, value: '"payeEmployedNode"'}
+    rules:
+    - {typeName: EmploymentTypeChangedRule}
+  - typeName: PayeEmployedNode
+    baseTypeName: EmployedNode
+    children:
+    - {typeName: GrossYearlySalaryNode}
+    childTypes:
+    - typeName: GrossYearlySalaryNode
+      baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+  - typeName: SelfEmployedNode
+    baseTypeName: EmployedNode
+    children:
+    - {typeName: BusinessTypeNode}
+    - {typeName: ProfitThisYearNode}
+    - {typeName: ProfitPreviousYearNode}
+    childTypes:
+    - typeName: BusinessTypeNode
+      baseTypeName: StringUiNode
+
+    - typeName: ProfitThisYearNode
+      baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: ProfitPreviousYearNode
+      baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: EmployedNode
     baseTypeName: ObjectUiNode
+    isAbstract: true
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}
+    - {typeName: EmployerNameNode}
+    - {typeName: EmployerAddressNode}
+    - {typeName: EmployerPhoneNode}
+    - {typeName: EmploymentStartedNode}
+    - {typeName: EmploymentEndedNode}
+
     childTypes:
     - typeName: EmploymentStatusNode
       baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray()'}
+      - {propertyName: required, value: 'true'}
 
     - typeName: OccupationNode
       baseTypeName: BaseOccupationNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerNameNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerAddressNode
+      baseTypeName: AddressNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerPhoneNode
+      baseTypeName: TelephoneNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmploymentStartedNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmploymentEndedNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: UnemployedNode
     baseTypeName: ObjectUiNode
     children:
+    - {typeName: UnemployedOnBenefitFlagNode}
+    - {typeName: StudentFlagNode}
+    - {typeName: StudentTypeNode}
+    - {typeName: HouseDutiesFlagNode}
     - {typeName: UnemployedSinceNode}
     childTypes:
+    - typeName: UnemployedOnBenefitFlagNode
+      baseTypeName: YesNoFlagNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: StudentFlagNode
+      baseTypeName: YesNoFlagNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: StudentTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE.toArray()'}
+
+    - typeName: HouseDutiesFlagNode
+      baseTypeName: YesNoFlagNode
+      init:
+      - {propertyName: required, value: 'true'}
+
     - typeName: UnemployedSinceNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: RetiredEmploymentNode
     baseTypeName: ObjectUiNode
     children:
+    - {typeName: RetiredOnBenefitFlagNode}
     - {typeName: RetiredSinceNode}
     childTypes:
+    - typeName: RetiredOnBenefitFlagNode
+      baseTypeName: YesNoFlagNode
+      init:
+      - {propertyName: required, value: 'true'}
+
     - typeName: RetiredSinceNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
 - typeName: BaseOccupationNode
   baseTypeName: StringUiNode
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
+
+- typeName: YesNoFlagNode
+  baseTypeName: StringUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE.toArray()'}

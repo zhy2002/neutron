@@ -111,6 +111,13 @@ public class ClassRegistryImpl implements ClassRegistry {
                 return new UpdateObjectHasValueRule(owner);
             }
         });
+
+        setUiNodeRuleFactory(ClearErrorsForDisabledNodeRule.class, new UiNodeRuleFactory<ClearErrorsForDisabledNodeRule, UiNode<?>>() {
+            @Override
+            public ClearErrorsForDisabledNodeRule create(UiNode<?> owner) {
+                return new ClearErrorsForDisabledNodeRule(owner);
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")

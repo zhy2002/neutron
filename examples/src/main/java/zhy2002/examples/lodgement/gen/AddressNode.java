@@ -43,19 +43,17 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         addressLineNode = context.createChildNode(AddressLineNode.class, this, "addressLineNode");
+        children.add(addressLineNode);
         suburbNode = context.createChildNode(SuburbNode.class, this, "suburbNode");
+        children.add(suburbNode);
         postcodeNode = context.createChildNode(PostcodeNode.class, this, "postcodeNode");
+        children.add(postcodeNode);
         countryNode = context.createChildNode(CountryNode.class, this, "countryNode");
-
-        return Arrays.asList(
-            addressLineNode,
-            suburbNode,
-            postcodeNode,
-            countryNode
-        );
+        children.add(countryNode);
+        return children;
     }
 
 

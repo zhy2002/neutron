@@ -16,6 +16,13 @@ public  class UnemployedSinceNode extends MonthYearNode<UnemployedNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 
 
 }

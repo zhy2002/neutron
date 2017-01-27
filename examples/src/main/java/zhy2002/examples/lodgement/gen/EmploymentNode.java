@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P>
 {
     private EmploymentTypeNode employmentTypeNode;
-    private EmployedNode payeEmployedNode;
-    private EmployedNode selfEmployedNode;
+    private PayeEmployedNode payeEmployedNode;
+    private SelfEmployedNode selfEmployedNode;
     private UnemployedNode unemployedNode;
     private RetiredEmploymentNode retiredEmploymentNode;
 
@@ -28,12 +28,12 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     }
 
     @JsMethod
-    public EmployedNode getPayeEmployedNode() {
+    public PayeEmployedNode getPayeEmployedNode() {
         return payeEmployedNode;
     }
 
     @JsMethod
-    public EmployedNode getSelfEmployedNode() {
+    public SelfEmployedNode getSelfEmployedNode() {
         return selfEmployedNode;
     }
 
@@ -49,21 +49,19 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         employmentTypeNode = context.createChildNode(EmploymentTypeNode.class, this, "employmentTypeNode");
-        payeEmployedNode = context.createChildNode(EmployedNode.class, this, "payeEmployedNode");
-        selfEmployedNode = context.createChildNode(EmployedNode.class, this, "selfEmployedNode");
+        children.add(employmentTypeNode);
+        payeEmployedNode = context.createChildNode(PayeEmployedNode.class, this, "payeEmployedNode");
+        children.add(payeEmployedNode);
+        selfEmployedNode = context.createChildNode(SelfEmployedNode.class, this, "selfEmployedNode");
+        children.add(selfEmployedNode);
         unemployedNode = context.createChildNode(UnemployedNode.class, this, "unemployedNode");
+        children.add(unemployedNode);
         retiredEmploymentNode = context.createChildNode(RetiredEmploymentNode.class, this, "retiredEmploymentNode");
-
-        return Arrays.asList(
-            employmentTypeNode,
-            payeEmployedNode,
-            selfEmployedNode,
-            unemployedNode,
-            retiredEmploymentNode
-        );
+        children.add(retiredEmploymentNode);
+        return children;
     }
 
 

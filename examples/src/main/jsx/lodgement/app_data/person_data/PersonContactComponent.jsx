@@ -14,7 +14,7 @@ export default class PersonContactComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <div className="container-fluid compact">
+            <div className="container-fluid compact person-contact-component">
                 <div className="row">
                     <div className="col-md-4">
                         <TelephoneComponent model={model.getHomePhoneNode()}/>

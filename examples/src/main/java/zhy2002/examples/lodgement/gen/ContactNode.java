@@ -86,33 +86,31 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         homePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "homePhoneNode");
+        children.add(homePhoneNode);
         workPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "workPhoneNode");
+        children.add(workPhoneNode);
         faxNumberNode = context.createChildNode(ContactTelephoneNode.class, this, "faxNumberNode");
+        children.add(faxNumberNode);
         mobileNumberNode = context.createChildNode(MobileNumberNode.class, this, "mobileNumberNode");
+        children.add(mobileNumberNode);
         contactEmailNode = context.createChildNode(ContactEmailNode.class, this, "contactEmailNode");
+        children.add(contactEmailNode);
         currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
+        children.add(currentAddressNode);
         movedToCurrentAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToCurrentAddressNode");
+        children.add(movedToCurrentAddressNode);
         postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
+        children.add(postalAddressNode);
         previousAddressNode = context.createChildNode(ContactAddressNode.class, this, "previousAddressNode");
+        children.add(previousAddressNode);
         movedToPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToPreviousAddressNode");
+        children.add(movedToPreviousAddressNode);
         movedFromPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedFromPreviousAddressNode");
-
-        return Arrays.asList(
-            homePhoneNode,
-            workPhoneNode,
-            faxNumberNode,
-            mobileNumberNode,
-            contactEmailNode,
-            currentAddressNode,
-            movedToCurrentAddressNode,
-            postalAddressNode,
-            previousAddressNode,
-            movedToPreviousAddressNode,
-            movedFromPreviousAddressNode
-        );
+        children.add(movedFromPreviousAddressNode);
+        return children;
     }
 
     @Override

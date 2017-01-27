@@ -12,10 +12,34 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
 {
+    private UnemployedOnBenefitFlagNode unemployedOnBenefitFlagNode;
+    private StudentFlagNode studentFlagNode;
+    private StudentTypeNode studentTypeNode;
+    private HouseDutiesFlagNode houseDutiesFlagNode;
     private UnemployedSinceNode unemployedSinceNode;
 
     protected UnemployedNode(EmploymentNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public UnemployedOnBenefitFlagNode getUnemployedOnBenefitFlagNode() {
+        return unemployedOnBenefitFlagNode;
+    }
+
+    @JsMethod
+    public StudentFlagNode getStudentFlagNode() {
+        return studentFlagNode;
+    }
+
+    @JsMethod
+    public StudentTypeNode getStudentTypeNode() {
+        return studentTypeNode;
+    }
+
+    @JsMethod
+    public HouseDutiesFlagNode getHouseDutiesFlagNode() {
+        return houseDutiesFlagNode;
     }
 
     @JsMethod
@@ -25,13 +49,19 @@ public  class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
+        unemployedOnBenefitFlagNode = context.createChildNode(UnemployedOnBenefitFlagNode.class, this, "unemployedOnBenefitFlagNode");
+        children.add(unemployedOnBenefitFlagNode);
+        studentFlagNode = context.createChildNode(StudentFlagNode.class, this, "studentFlagNode");
+        children.add(studentFlagNode);
+        studentTypeNode = context.createChildNode(StudentTypeNode.class, this, "studentTypeNode");
+        children.add(studentTypeNode);
+        houseDutiesFlagNode = context.createChildNode(HouseDutiesFlagNode.class, this, "houseDutiesFlagNode");
+        children.add(houseDutiesFlagNode);
         unemployedSinceNode = context.createChildNode(UnemployedSinceNode.class, this, "unemployedSinceNode");
-
-        return Arrays.asList(
-            unemployedSinceNode
-        );
+        children.add(unemployedSinceNode);
+        return children;
     }
 
 

@@ -16,6 +16,13 @@ public  class OccupationNode extends BaseOccupationNode<EmployedNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 
 
 }

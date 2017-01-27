@@ -67,11 +67,26 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(MonthNode.class, new MonthNodeFactory());
         setChildNodeFactory(YearNode.class, new YearNodeFactory());
         setChildNodeFactory(EmploymentTypeNode.class, new EmploymentTypeNodeFactory());
+        setChildNodeFactory(GrossYearlySalaryNode.class, new GrossYearlySalaryNodeFactory());
+        setChildNodeFactory(PayeEmployedNode.class, new PayeEmployedNodeFactory());
+        setChildNodeFactory(BusinessTypeNode.class, new BusinessTypeNodeFactory());
+        setChildNodeFactory(ProfitThisYearNode.class, new ProfitThisYearNodeFactory());
+        setChildNodeFactory(ProfitPreviousYearNode.class, new ProfitPreviousYearNodeFactory());
+        setChildNodeFactory(SelfEmployedNode.class, new SelfEmployedNodeFactory());
         setChildNodeFactory(EmploymentStatusNode.class, new EmploymentStatusNodeFactory());
         setChildNodeFactory(OccupationNode.class, new OccupationNodeFactory());
-        setChildNodeFactory(EmployedNode.class, new EmployedNodeFactory());
+        setChildNodeFactory(EmployerNameNode.class, new EmployerNameNodeFactory());
+        setChildNodeFactory(EmployerAddressNode.class, new EmployerAddressNodeFactory());
+        setChildNodeFactory(EmployerPhoneNode.class, new EmployerPhoneNodeFactory());
+        setChildNodeFactory(EmploymentStartedNode.class, new EmploymentStartedNodeFactory());
+        setChildNodeFactory(EmploymentEndedNode.class, new EmploymentEndedNodeFactory());
+        setChildNodeFactory(UnemployedOnBenefitFlagNode.class, new UnemployedOnBenefitFlagNodeFactory());
+        setChildNodeFactory(StudentFlagNode.class, new StudentFlagNodeFactory());
+        setChildNodeFactory(StudentTypeNode.class, new StudentTypeNodeFactory());
+        setChildNodeFactory(HouseDutiesFlagNode.class, new HouseDutiesFlagNodeFactory());
         setChildNodeFactory(UnemployedSinceNode.class, new UnemployedSinceNodeFactory());
         setChildNodeFactory(UnemployedNode.class, new UnemployedNodeFactory());
+        setChildNodeFactory(RetiredOnBenefitFlagNode.class, new RetiredOnBenefitFlagNodeFactory());
         setChildNodeFactory(RetiredSinceNode.class, new RetiredSinceNodeFactory());
         setChildNodeFactory(RetiredEmploymentNode.class, new RetiredEmploymentNodeFactory());
     }

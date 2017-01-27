@@ -4,6 +4,8 @@ todo
 * performance tuning
 * implement rule priority
 * implement router
+* deletable node flag
+* implement load defaults functionality (auto populate)
 
 
 ### Engine - find a use case before doing these improvements

@@ -84,6 +84,26 @@ public class ApplicationNodeConstants {
             new StringOption("Caravan")
     );
 
+    public static final List<StringOption> YES_NO_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Yes"),
+            new StringOption("No")
+    );
+
+    public static final List<StringOption> EMPLOYMENT_STATUS = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Full Time"),
+            new StringOption("Part Time"),
+            new StringOption("Contract"),
+            new StringOption("Casual")
+    );
+
+    public static final List<StringOption> STUDENT_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("University Student"),
+            new StringOption("School Student")
+    );
+
     public static final List<BigDecimalOption> MONTH_TYPE = Arrays.asList(
             new BigDecimalOption(null, ""),
             new BigDecimalOption(new BigDecimal("1"), "January"),

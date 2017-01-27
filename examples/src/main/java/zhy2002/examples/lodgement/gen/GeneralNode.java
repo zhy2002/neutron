@@ -103,39 +103,37 @@ public  class GeneralNode extends ObjectUiNode<PersonNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         titleNode = context.createChildNode(TitleNode.class, this, "titleNode");
+        children.add(titleNode);
         firstNameNode = context.createChildNode(FirstNameNode.class, this, "firstNameNode");
+        children.add(firstNameNode);
         lastNameNode = context.createChildNode(LastNameNode.class, this, "lastNameNode");
+        children.add(lastNameNode);
         genderNode = context.createChildNode(GenderNode.class, this, "genderNode");
+        children.add(genderNode);
         dateOfBirthNode = context.createChildNode(DateOfBirthNode.class, this, "dateOfBirthNode");
+        children.add(dateOfBirthNode);
         primaryApplicantFlagNode = context.createChildNode(PrimaryApplicantFlagNode.class, this, "primaryApplicantFlagNode");
+        children.add(primaryApplicantFlagNode);
         driversLicenseNode = context.createChildNode(DriversLicenseNode.class, this, "driversLicenseNode");
+        children.add(driversLicenseNode);
         applicantTypeNode = context.createChildNode(ApplicantTypeNode.class, this, "applicantTypeNode");
+        children.add(applicantTypeNode);
         applicationTypeNode = context.createChildNode(ApplicationTypeNode.class, this, "applicationTypeNode");
+        children.add(applicationTypeNode);
         maritalStatusNode = context.createChildNode(MaritalStatusNode.class, this, "maritalStatusNode");
+        children.add(maritalStatusNode);
         permanentResidentFlagNode = context.createChildNode(PermanentResidentFlagNode.class, this, "permanentResidentFlagNode");
+        children.add(permanentResidentFlagNode);
         spouseNode = context.createChildNode(SpouseNode.class, this, "spouseNode");
+        children.add(spouseNode);
         firstHomeBuyerFlagNode = context.createChildNode(FirstHomeBuyerFlagNode.class, this, "firstHomeBuyerFlagNode");
+        children.add(firstHomeBuyerFlagNode);
         housingStatusNode = context.createChildNode(HousingStatusNode.class, this, "housingStatusNode");
-
-        return Arrays.asList(
-            titleNode,
-            firstNameNode,
-            lastNameNode,
-            genderNode,
-            dateOfBirthNode,
-            primaryApplicantFlagNode,
-            driversLicenseNode,
-            applicantTypeNode,
-            applicationTypeNode,
-            maritalStatusNode,
-            permanentResidentFlagNode,
-            spouseNode,
-            firstHomeBuyerFlagNode,
-            housingStatusNode
-        );
+        children.add(housingStatusNode);
+        return children;
     }
 
 

@@ -33,6 +33,14 @@ public class BooleanStateChangeEventBinding extends StateChangeEventBinding<Bool
     }
 
     public BooleanStateChangeEventBinding(
+            UiNodeEventFilter<BooleanStateChangeEvent> filter,
+            UiNodeEventHandler<BooleanStateChangeEvent> handler,
+            Collection<String> subjects
+    ) {
+        this(filter, handler, subjects, null);
+    }
+
+    public BooleanStateChangeEventBinding(
             UiNodeEventHandler<BooleanStateChangeEvent> handler
     ) {
         this(null, handler, null, null);

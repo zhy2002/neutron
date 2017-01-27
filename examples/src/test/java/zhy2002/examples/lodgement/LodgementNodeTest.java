@@ -12,7 +12,7 @@ import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 public class LodgementNodeTest {
 
@@ -193,5 +193,29 @@ public class LodgementNodeTest {
 
         contactNode.getCurrentAddressNode().getAddressLineNode().setValue("4 Pioneer Road");
         assertThat(hasError(addressRequiredError), equalTo(false));
+    }
+
+    @Test
+    public void validationErrorsAreClearedWhenDisabled() {
+
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+
+        PersonNode personNode = personListNode.createItem();
+        personNode.refresh();
+        assertThat(applicationNode.getErrorListNode().getItemCount(), greaterThan(0));
+
+        personNode.setDisabled(true);
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+    }
+
+    @Test
+    public void employerAddressShouldLoadUpfront() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        CurrentEmploymentListNode currentEmploymentListNode = personNode.getCurrentEmploymentListNode();
+        CurrentEmploymentNode currentEmploymentNode = currentEmploymentListNode.createItem();
+        PayeEmployedNode payeEmployedNode = currentEmploymentNode.getPayeEmployedNode();
+        assertThat(payeEmployedNode.getEmployerAddressNode(), not(nullValue()));
     }
 }

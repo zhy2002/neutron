@@ -28,6 +28,8 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
         queue.add(target); //bfs
         while (!queue.isEmpty()) {
             target = queue.poll();
+            if(target.isDisabled())
+                continue;
             if (target instanceof ParentUiNode) {
                 ParentUiNode<?> parentUiNode = (ParentUiNode<?>) target;
                 for (int i = 0; i < parentUiNode.getChildCount(); i++) {

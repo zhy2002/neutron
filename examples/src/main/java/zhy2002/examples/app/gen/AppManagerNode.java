@@ -19,11 +19,9 @@ public  class AppManagerNode extends ObjectUiNode<LodgementNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
-
-        return Arrays.asList(
-        );
+        return children;
     }
 
 

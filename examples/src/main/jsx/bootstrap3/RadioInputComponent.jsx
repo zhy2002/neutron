@@ -29,7 +29,7 @@ export default class RadioInputComponent extends InputComponent {
                                 type="radio"
                                 name={model.getUniqueId()}
                                 value={index}
-                                onClick={() => {
+                                onChange={() => {
                                     this.updateValue(item.getValue());
                                 }}
                                 checked={item.getValue() === this.state.value}

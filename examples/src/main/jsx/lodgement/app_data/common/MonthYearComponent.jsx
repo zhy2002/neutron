@@ -6,6 +6,8 @@ export default class MonthYearComponent extends NeutronComponent {
 
     render() {
         const model = this.model;
+        if (model.getNodeStatus() !== GWT.NodeStatusEnum.Loaded)
+            return null;
 
         return (
             <div

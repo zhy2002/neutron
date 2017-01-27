@@ -2,8 +2,7 @@ import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
-import PersonCurrentEmploymentComponent from './PersonCurrentEmploymentComponent';
-import PersonPreviousEmploymentComponent from './PersonPreviousEmploymentComponent';
+import PersonEmploymentListComponent from './PersonEmploymentListComponent';
 
 export default class PersonComponent extends NeutronComponent {
 
@@ -26,10 +25,10 @@ export default class PersonComponent extends NeutronComponent {
             return <PersonContactComponent model={model}/>;
         }
         if (className === 'CurrentEmploymentListNode') {
-            return <PersonCurrentEmploymentComponent model={model}/>;
+            return <PersonEmploymentListComponent model={model}/>;
         }
         if (className === 'PreviousEmploymentListNode') {
-            return <PersonPreviousEmploymentComponent model={model}/>;
+            return <PersonEmploymentListComponent model={model}/>;
         }
 
         return (

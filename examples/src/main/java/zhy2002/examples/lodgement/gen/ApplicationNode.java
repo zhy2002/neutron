@@ -96,27 +96,25 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         personListNode = context.createChildNode(PersonListNode.class, this, "personListNode");
+        children.add(personListNode);
         companyListNode = context.createChildNode(CompanyListNode.class, this, "companyListNode");
+        children.add(companyListNode);
         financialPositionNode = context.createChildNode(FinancialPositionNode.class, this, "financialPositionNode");
+        children.add(financialPositionNode);
         realEstateListNode = context.createChildNode(RealEstateListNode.class, this, "realEstateListNode");
+        children.add(realEstateListNode);
         productsNode = context.createChildNode(ProductsNode.class, this, "productsNode");
+        children.add(productsNode);
         additionalNode = context.createChildNode(AdditionalNode.class, this, "additionalNode");
+        children.add(additionalNode);
         submissionNode = context.createChildNode(SubmissionNode.class, this, "submissionNode");
+        children.add(submissionNode);
         errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
-
-        return Arrays.asList(
-            personListNode,
-            companyListNode,
-            financialPositionNode,
-            realEstateListNode,
-            productsNode,
-            additionalNode,
-            submissionNode,
-            errorListNode
-        );
+        children.add(errorListNode);
+        return children;
     }
 
     @Override

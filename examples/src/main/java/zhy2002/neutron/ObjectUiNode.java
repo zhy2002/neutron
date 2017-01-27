@@ -6,6 +6,7 @@ import zhy2002.neutron.rule.UpdateObjectHasValueRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,7 +56,9 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     protected
     @NotNull
-    abstract List<UiNode<?>> createChildren();
+    List<UiNode<?>> createChildren() {
+        return new ArrayList<>();
+    }
 
     @JsMethod
     @Override

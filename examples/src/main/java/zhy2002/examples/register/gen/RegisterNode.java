@@ -102,35 +102,33 @@ public  class RegisterNode extends ObjectUiNode<VoidUiNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         usernameNode = context.createChildNode(UsernameNode.class, this, "usernameNode");
+        children.add(usernameNode);
         emailNode = context.createChildNode(EmailNode.class, this, "emailNode");
+        children.add(emailNode);
         passwordNode = context.createChildNode(PasswordNode.class, this, "passwordNode");
+        children.add(passwordNode);
         repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
+        children.add(repeatPasswordNode);
         ageNode = context.createChildNode(AgeNode.class, this, "ageNode");
+        children.add(ageNode);
         planNode = context.createChildNode(PlanNode.class, this, "planNode");
+        children.add(planNode);
         receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
+        children.add(receiveOffersNode);
         ownInvestmentPropertyNode = context.createChildNode(OwnInvestmentPropertyNode.class, this, "ownInvestmentPropertyNode");
+        children.add(ownInvestmentPropertyNode);
         residentialPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "residentialPropertyNode");
+        children.add(residentialPropertyNode);
         investmentPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "investmentPropertyNode");
+        children.add(investmentPropertyNode);
         homePhoneNode = context.createChildNode(PhoneInfoNode.class, this, "homePhoneNode");
+        children.add(homePhoneNode);
         errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
-
-        return Arrays.asList(
-            usernameNode,
-            emailNode,
-            passwordNode,
-            repeatPasswordNode,
-            ageNode,
-            planNode,
-            receiveOffersNode,
-            ownInvestmentPropertyNode,
-            residentialPropertyNode,
-            investmentPropertyNode,
-            homePhoneNode,
-            errorListNode
-        );
+        children.add(errorListNode);
+        return children;
     }
 
     @Override

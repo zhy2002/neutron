@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
 {
@@ -32,6 +33,14 @@ public  class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
     @JsMethod
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(EmploymentTypeChangedRule.class, this));
     }
 
 

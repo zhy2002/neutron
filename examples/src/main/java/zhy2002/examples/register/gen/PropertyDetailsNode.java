@@ -41,15 +41,13 @@ public  class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         propertyAddressNode = context.createChildNode(PropertyAddressNode.class, this, "propertyAddressNode");
+        children.add(propertyAddressNode);
         propertyStateNode = context.createChildNode(PropertyStateNode.class, this, "propertyStateNode");
-
-        return Arrays.asList(
-            propertyAddressNode,
-            propertyStateNode
-        );
+        children.add(propertyStateNode);
+        return children;
     }
 
 

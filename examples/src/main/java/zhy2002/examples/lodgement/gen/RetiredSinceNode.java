@@ -16,6 +16,13 @@ public  class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 
 
 }

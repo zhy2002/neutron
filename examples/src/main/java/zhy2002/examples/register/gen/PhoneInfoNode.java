@@ -38,17 +38,15 @@ public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         countryCodeNode = context.createChildNode(CountryCodeNode.class, this, "countryCodeNode");
+        children.add(countryCodeNode);
         areaCodeNode = context.createChildNode(AreaCodeNode.class, this, "areaCodeNode");
+        children.add(areaCodeNode);
         phoneNumberNode = context.createChildNode(PhoneNumberNode.class, this, "phoneNumberNode");
-
-        return Arrays.asList(
-            countryCodeNode,
-            areaCodeNode,
-            phoneNumberNode
-        );
+        children.add(phoneNumberNode);
+        return children;
     }
 
     @Override

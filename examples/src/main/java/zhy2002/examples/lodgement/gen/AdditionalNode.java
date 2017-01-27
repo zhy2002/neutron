@@ -19,11 +19,9 @@ public  class AdditionalNode extends ObjectUiNode<ApplicationNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
-
-        return Arrays.asList(
-        );
+        return children;
     }
 
 

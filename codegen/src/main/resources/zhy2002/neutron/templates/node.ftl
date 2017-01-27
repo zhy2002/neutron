@@ -102,17 +102,13 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
 <#if children??>
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
     <#list children as child>
         ${child.name} = context.createChildNode(${child.typeName}.class, this, "${child.name}");
+        children.add(${child.name});
     </#list>
-
-        return Arrays.asList(
-    <#list children as child>
-            ${child.name}<#if child?has_next>,</#if>
-    </#list>
-        );
+        return children;
     }
 
 </#if>

@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
+import zhy2002.neutron.rule.ClearErrorsForDisabledNodeRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -84,6 +85,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.nodeStatus = NodeStatusEnum.Detached;
 
         setChangeTrackingMode(NeutronEventSubjects.HAS_VALUE, ChangeTrackingModeEnum.Value);
+        setChangeTrackingMode(NeutronEventSubjects.REQUIRED, ChangeTrackingModeEnum.Value);
+        setChangeTrackingMode(NeutronEventSubjects.DISABLED, ChangeTrackingModeEnum.Value);
     }
 
     /**
@@ -195,7 +198,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     public abstract boolean hasValue();
 
     protected void setHasValue(boolean value) {
-            setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
+        setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
     }
 
     @JsMethod
@@ -366,6 +369,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * @param createdRules the list of rule that will be loaded.
      */
     protected void createRules(List<UiNodeRule<?>> createdRules) {
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(ClearErrorsForDisabledNodeRule.class, this));
     }
 
     /**
@@ -380,8 +386,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     public final void unload() {
         if (this.nodeStatus != NodeStatusEnum.Loaded)
             return; //todo should return boolean to indicate this ro throw exception
-        doUnload();
         this.nodeStatus = NodeStatusEnum.Unloaded;
+        doUnload();
     }
 
     /**
@@ -390,7 +396,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     protected void doUnload() {
         List<UiNodeRule<?>> ownRules = new ArrayList<>(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
+        clearValidationErrors();
+        this.state.clear();
+        assert this.preState != null;
+        this.state.putAll(this.preState);
+    }
 
+    public void clearValidationErrors() {
         //also unload all nodes representing validation errors of this node.
         ValidationErrorList validationErrors = this.getValidationErrorList();
         if (validationErrors != null) {
@@ -406,10 +418,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
                 }
             }
         }
-
-        this.state.clear();
-        assert this.preState != null;
-        this.state.putAll(this.preState);
+        this.setValidationErrorList(null);
     }
 
     final void attach() {

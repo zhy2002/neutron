@@ -25,13 +25,11 @@ public  class LodgementNode extends ObjectUiNode<VoidUiNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         appManagerNode = context.createChildNode(AppManagerNode.class, this, "appManagerNode");
-
-        return Arrays.asList(
-            appManagerNode
-        );
+        children.add(appManagerNode);
+        return children;
     }
 
 

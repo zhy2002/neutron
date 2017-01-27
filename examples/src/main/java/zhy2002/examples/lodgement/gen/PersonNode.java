@@ -50,19 +50,17 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         generalNode = context.createChildNode(GeneralNode.class, this, "generalNode");
+        children.add(generalNode);
         contactNode = context.createChildNode(ContactNode.class, this, "contactNode");
+        children.add(contactNode);
         currentEmploymentListNode = context.createChildNode(CurrentEmploymentListNode.class, this, "currentEmploymentListNode");
+        children.add(currentEmploymentListNode);
         previousEmploymentListNode = context.createChildNode(PreviousEmploymentListNode.class, this, "previousEmploymentListNode");
-
-        return Arrays.asList(
-            generalNode,
-            contactNode,
-            currentEmploymentListNode,
-            previousEmploymentListNode
-        );
+        children.add(previousEmploymentListNode);
+        return children;
     }
 
 

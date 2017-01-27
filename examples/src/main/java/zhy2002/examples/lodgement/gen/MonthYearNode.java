@@ -31,15 +31,13 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
 
     @Override
     protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-
         monthNode = context.createChildNode(MonthNode.class, this, "monthNode");
+        children.add(monthNode);
         yearNode = context.createChildNode(YearNode.class, this, "yearNode");
-
-        return Arrays.asList(
-            monthNode,
-            yearNode
-        );
+        children.add(yearNode);
+        return children;
     }
 
 
