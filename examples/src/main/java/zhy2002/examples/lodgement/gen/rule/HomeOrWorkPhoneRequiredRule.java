@@ -5,13 +5,13 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.*;
 
 
-public abstract class HomeOrWorkPhoneRequiredRule extends UiNodeRule<ContactNode> {
+public abstract class HomeOrWorkPhoneRequiredRule extends UiNodeRule<PersonContactNode> {
 
-    public HomeOrWorkPhoneRequiredRule(ContactNode owner) {
+    public HomeOrWorkPhoneRequiredRule(PersonContactNode owner) {
         super(owner);
     }
 
-    protected ContactNode getContactNode() {
+    protected PersonContactNode getPersonContactNode() {
         return getOwner();
     }
 }

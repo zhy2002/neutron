@@ -2,10 +2,10 @@ package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.*;
 
-public class GenderNodeFactory implements ChildNodeFactory<GenderNode, GeneralNode> {
+public class GenderNodeFactory implements ChildNodeFactory<GenderNode, PersonGeneralNode> {
 
     @Override
-    public GenderNode create(GeneralNode parent, String name) {
+    public GenderNode create(PersonGeneralNode parent, String name) {
         return new GenderNode(parent, name);
     }
 }

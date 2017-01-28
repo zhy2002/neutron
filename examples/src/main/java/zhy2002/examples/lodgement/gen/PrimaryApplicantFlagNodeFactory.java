@@ -2,10 +2,10 @@ package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.*;
 
-public class PrimaryApplicantFlagNodeFactory implements ChildNodeFactory<PrimaryApplicantFlagNode, GeneralNode> {
+public class PrimaryApplicantFlagNodeFactory implements ChildNodeFactory<PrimaryApplicantFlagNode, PersonGeneralNode> {
 
     @Override
-    public PrimaryApplicantFlagNode create(GeneralNode parent, String name) {
+    public PrimaryApplicantFlagNode create(PersonGeneralNode parent, String name) {
         return new PrimaryApplicantFlagNode(parent, name);
     }
 }

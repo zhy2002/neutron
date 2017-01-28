@@ -644,5 +644,16 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return this.getClass().getSimpleName();
     }
 
+    @JsMethod
+    public boolean inheritsFrom(String simpleName) {
+        Class<?> clazz = this.getClass();
+        do {
+            if(clazz.getSimpleName().equals(simpleName))
+                return true;
+            clazz = clazz.getSuperclass();
+        } while (clazz != null);
+
+        return false;
+    }
 //endregion
 }

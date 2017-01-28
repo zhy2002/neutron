@@ -11,7 +11,7 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class ContactNode extends ObjectUiNode<PersonNode>
+public  class PersonContactNode extends ObjectUiNode<PersonNode>
 {
     private ContactTelephoneNode homePhoneNode;
     private ContactTelephoneNode workPhoneNode;
@@ -25,7 +25,7 @@ public  class ContactNode extends ObjectUiNode<PersonNode>
     private ContactMonthYearNode movedToPreviousAddressNode;
     private ContactMonthYearNode movedFromPreviousAddressNode;
 
-    protected ContactNode(PersonNode parent, String name) {
+    protected PersonContactNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

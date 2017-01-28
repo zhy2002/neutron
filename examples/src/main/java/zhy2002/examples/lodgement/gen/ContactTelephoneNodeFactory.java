@@ -2,10 +2,10 @@ package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.*;
 
-public class ContactTelephoneNodeFactory implements ChildNodeFactory<ContactTelephoneNode, ContactNode> {
+public class ContactTelephoneNodeFactory implements ChildNodeFactory<ContactTelephoneNode, PersonContactNode> {
 
     @Override
-    public ContactTelephoneNode create(ContactNode parent, String name) {
+    public ContactTelephoneNode create(PersonContactNode parent, String name) {
         return new ContactTelephoneNode(parent, name);
     }
 }

@@ -79,8 +79,8 @@ public class LodgementNodeTest {
     public void titleAndGenderShouldMatch() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        TitleNode titleNode = personNode.getGeneralNode().getTitleNode();
-        GenderNode genderNode = personNode.getGeneralNode().getGenderNode();
+        TitleNode titleNode = personNode.getPersonGeneralNode().getTitleNode();
+        GenderNode genderNode = personNode.getPersonGeneralNode().getGenderNode();
 
         Predicate<ErrorNode> hasTitleGenderMismatch = errorNode -> errorNode.getRule() instanceof TitleGenderMatchRule;
 
@@ -104,7 +104,7 @@ public class LodgementNodeTest {
     public void phoneInfoShouldBeComplete() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        TelephoneNode<?> phoneNumberNode = personNode.getContactNode().getHomePhoneNode();
+        TelephoneNode<?> phoneNumberNode = personNode.getPersonContactNode().getHomePhoneNode();
 
         Predicate<ErrorNode> hasTelephoneCompleteError = errorNode -> errorNode.getRule() instanceof TelephoneCompleteRule;
 
@@ -142,7 +142,7 @@ public class LodgementNodeTest {
     public void oneOfHomePhoneOrWorkPhoneIsRequired() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        ContactNode contactNode = personNode.getContactNode();
+        PersonContactNode contactNode = personNode.getPersonContactNode();
 
         assertThat(contactNode.getHomePhoneNode().getRequired(), equalTo(true));
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(true));
@@ -160,7 +160,7 @@ public class LodgementNodeTest {
     public void hasValueShouldWorkAsExpected() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        ContactNode contactNode = personNode.getContactNode();
+        PersonContactNode contactNode = personNode.getPersonContactNode();
 
         assertThat(contactNode.hasValue(), equalTo(false));
 
@@ -181,7 +181,7 @@ public class LodgementNodeTest {
 
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        ContactNode contactNode = personNode.getContactNode();
+        PersonContactNode contactNode = personNode.getPersonContactNode();
 
         contactNode.refresh();
 

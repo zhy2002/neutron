@@ -31,14 +31,18 @@ rootType:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
       init:
-      - {propertyName: selectedName, value: '"generalNode"'}
+      - {propertyName: selectedName, value: '"personGeneralNode"'}
       children:
-      - {typeName: GeneralNode}
-      - {typeName: ContactNode}
+      - {typeName: PersonGeneralNode}
+      - {typeName: PersonContactNode}
       - {typeName: CurrentEmploymentListNode}
       - {typeName: PreviousEmploymentListNode}
+      - {typeName: PersonTrustNode}
+      - {typeName: PersonPrivacyNode}
+      - {typeName: PersonOtherIncomeListNode}
+      - {typeName: PersonResponsibleLendNode}
       childTypes:
-      - typeName: GeneralNode
+      - typeName: PersonGeneralNode
         baseTypeName: ObjectUiNode
         children:
         - {typeName: TitleNode}
@@ -142,7 +146,7 @@ rootType:
           - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
           - {propertyName: required, value: 'true'}
 
-      - typeName: ContactNode
+      - typeName: PersonContactNode
         baseTypeName: ObjectUiNode
         rules:
         - {typeName: HomeOrWorkPhoneRequiredRule}
@@ -197,6 +201,28 @@ rootType:
           baseTypeName: EmploymentNode
           init:
           - {propertyName: nodeLabel, value: '"Employment"'}
+
+      - typeName: PersonTrustNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: PersonPrivacyNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: PersonOtherIncomeListNode
+        baseTypeName: ListUiNode
+        itemTypeName: OtherIncomeNode
+        init:
+        - {propertyName: nodeLabel, value: '"Other Incomes"'}
+        childTypes:
+        - typeName: OtherIncomeNode
+          baseTypeName: ObjectUiNode
+          children: []
+
+      - typeName: PersonResponsibleLendNode
+        baseTypeName: ObjectUiNode
+        children: []
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

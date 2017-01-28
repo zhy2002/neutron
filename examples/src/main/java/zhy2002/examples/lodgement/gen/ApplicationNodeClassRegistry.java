@@ -37,17 +37,22 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(SpouseNode.class, new SpouseNodeFactory());
         setChildNodeFactory(FirstHomeBuyerFlagNode.class, new FirstHomeBuyerFlagNodeFactory());
         setChildNodeFactory(HousingStatusNode.class, new HousingStatusNodeFactory());
-        setChildNodeFactory(GeneralNode.class, new GeneralNodeFactory());
+        setChildNodeFactory(PersonGeneralNode.class, new PersonGeneralNodeFactory());
         setChildNodeFactory(ContactTelephoneNode.class, new ContactTelephoneNodeFactory());
         setChildNodeFactory(MobileNumberNode.class, new MobileNumberNodeFactory());
         setChildNodeFactory(ContactAddressNode.class, new ContactAddressNodeFactory());
         setChildNodeFactory(ContactMonthYearNode.class, new ContactMonthYearNodeFactory());
         setChildNodeFactory(ContactEmailNode.class, new ContactEmailNodeFactory());
-        setChildNodeFactory(ContactNode.class, new ContactNodeFactory());
+        setChildNodeFactory(PersonContactNode.class, new PersonContactNodeFactory());
         setChildNodeFactory(CurrentEmploymentNode.class, new CurrentEmploymentNodeFactory());
         setChildNodeFactory(CurrentEmploymentListNode.class, new CurrentEmploymentListNodeFactory());
         setChildNodeFactory(PreviousEmploymentNode.class, new PreviousEmploymentNodeFactory());
         setChildNodeFactory(PreviousEmploymentListNode.class, new PreviousEmploymentListNodeFactory());
+        setChildNodeFactory(PersonTrustNode.class, new PersonTrustNodeFactory());
+        setChildNodeFactory(PersonPrivacyNode.class, new PersonPrivacyNodeFactory());
+        setChildNodeFactory(OtherIncomeNode.class, new OtherIncomeNodeFactory());
+        setChildNodeFactory(PersonOtherIncomeListNode.class, new PersonOtherIncomeListNodeFactory());
+        setChildNodeFactory(PersonResponsibleLendNode.class, new PersonResponsibleLendNodeFactory());
         setChildNodeFactory(PersonNode.class, new PersonNodeFactory());
         setChildNodeFactory(PersonListNode.class, new PersonListNodeFactory());
         setChildNodeFactory(CompanyNode.class, new CompanyNodeFactory());
@@ -166,6 +171,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     private void loadNodeAddEventFactories() {
         super.setNodeAddEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeAddEvent::new);
         super.setNodeAddEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeAddEvent::new);
+        super.setNodeAddEventFactory(OtherIncomeNode.class, OtherIncomeNodeAddEvent::new);
         super.setNodeAddEventFactory(PersonNode.class, PersonNodeAddEvent::new);
         super.setNodeAddEventFactory(CompanyNode.class, CompanyNodeAddEvent::new);
         super.setNodeAddEventFactory(SavingsAccountNode.class, SavingsAccountNodeAddEvent::new);
@@ -182,6 +188,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     private void loadNodeRemoveEventFactories() {
         super.setNodeRemoveEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeRemoveEvent::new);
+        super.setNodeRemoveEventFactory(OtherIncomeNode.class, OtherIncomeNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PersonNode.class, PersonNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(CompanyNode.class, CompanyNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(SavingsAccountNode.class, SavingsAccountNodeRemoveEvent::new);

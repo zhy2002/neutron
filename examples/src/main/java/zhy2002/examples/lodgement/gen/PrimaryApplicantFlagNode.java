@@ -11,9 +11,9 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class PrimaryApplicantFlagNode extends BooleanUiNode<GeneralNode>
+public  class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
-    protected PrimaryApplicantFlagNode(GeneralNode parent, String name) {
+    protected PrimaryApplicantFlagNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 

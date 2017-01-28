@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PermanentResidentFlagNode extends BooleanUiNode<GeneralNode>
+public  class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
-    protected PermanentResidentFlagNode(GeneralNode parent, String name) {
+    protected PermanentResidentFlagNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 

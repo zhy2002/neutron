@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class MobileNumberNode extends StringUiNode<ContactNode>
+public  class MobileNumberNode extends StringUiNode<PersonContactNode>
 {
-    protected MobileNumberNode(ContactNode parent, String name) {
+    protected MobileNumberNode(PersonContactNode parent, String name) {
         super(parent, name);
     }
 

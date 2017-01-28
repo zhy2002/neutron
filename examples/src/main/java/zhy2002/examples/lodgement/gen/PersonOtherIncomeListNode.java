@@ -10,17 +10,22 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class DateOfBirthNode extends StringUiNode<PersonGeneralNode>
+public  class PersonOtherIncomeListNode extends ListUiNode<PersonNode,PersonOtherIncomeListNode,OtherIncomeNode>
 {
-    protected DateOfBirthNode(PersonGeneralNode parent, String name) {
+    protected PersonOtherIncomeListNode(PersonNode parent, String name) {
         super(parent, name);
+    }
+
+    @Override
+    public Class<OtherIncomeNode> getItemClass() {
+        return OtherIncomeNode.class;
     }
 
     @Override
     protected void initializeState() {
         super.initializeState();
 
-        setRequired(true);
+        setNodeLabel("Other Incomes");
     }
 
 

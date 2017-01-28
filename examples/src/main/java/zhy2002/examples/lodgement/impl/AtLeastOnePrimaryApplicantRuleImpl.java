@@ -50,7 +50,7 @@ public class AtLeastOnePrimaryApplicantRuleImpl extends AtLeastOnePrimaryApplica
         PersonListNode personListNode = personNode.getParent();
         for (int i = 0; i < personListNode.getItemCount(); i++) {
             personNode = personListNode.getItem(i);
-            if (Boolean.TRUE.equals(personNode.getGeneralNode().getPrimaryApplicantFlagNode().getValue())) {
+            if (Boolean.TRUE.equals(personNode.getPersonGeneralNode().getPrimaryApplicantFlagNode().getValue())) {
                 hasPrimary = true;
                 break;
             }

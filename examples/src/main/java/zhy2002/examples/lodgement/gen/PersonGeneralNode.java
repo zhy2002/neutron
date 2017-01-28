@@ -10,7 +10,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class GeneralNode extends ObjectUiNode<PersonNode>
+public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
 {
     private TitleNode titleNode;
     private FirstNameNode firstNameNode;
@@ -27,7 +27,7 @@ public  class GeneralNode extends ObjectUiNode<PersonNode>
     private FirstHomeBuyerFlagNode firstHomeBuyerFlagNode;
     private HousingStatusNode housingStatusNode;
 
-    protected GeneralNode(PersonNode parent, String name) {
+    protected PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

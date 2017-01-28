@@ -12,10 +12,14 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonNode extends ObjectUiNode<PersonListNode>
 {
-    private GeneralNode generalNode;
-    private ContactNode contactNode;
+    private PersonGeneralNode personGeneralNode;
+    private PersonContactNode personContactNode;
     private CurrentEmploymentListNode currentEmploymentListNode;
     private PreviousEmploymentListNode previousEmploymentListNode;
+    private PersonTrustNode personTrustNode;
+    private PersonPrivacyNode personPrivacyNode;
+    private PersonOtherIncomeListNode personOtherIncomeListNode;
+    private PersonResponsibleLendNode personResponsibleLendNode;
 
     protected PersonNode(PersonListNode parent, String name) {
         super(parent, name);
@@ -25,17 +29,17 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     protected void initializeState() {
         super.initializeState();
 
-        setSelectedName("generalNode");
+        setSelectedName("personGeneralNode");
     }
 
     @JsMethod
-    public GeneralNode getGeneralNode() {
-        return generalNode;
+    public PersonGeneralNode getPersonGeneralNode() {
+        return personGeneralNode;
     }
 
     @JsMethod
-    public ContactNode getContactNode() {
-        return contactNode;
+    public PersonContactNode getPersonContactNode() {
+        return personContactNode;
     }
 
     @JsMethod
@@ -48,18 +52,46 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
         return previousEmploymentListNode;
     }
 
+    @JsMethod
+    public PersonTrustNode getPersonTrustNode() {
+        return personTrustNode;
+    }
+
+    @JsMethod
+    public PersonPrivacyNode getPersonPrivacyNode() {
+        return personPrivacyNode;
+    }
+
+    @JsMethod
+    public PersonOtherIncomeListNode getPersonOtherIncomeListNode() {
+        return personOtherIncomeListNode;
+    }
+
+    @JsMethod
+    public PersonResponsibleLendNode getPersonResponsibleLendNode() {
+        return personResponsibleLendNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-        generalNode = context.createChildNode(GeneralNode.class, this, "generalNode");
-        children.add(generalNode);
-        contactNode = context.createChildNode(ContactNode.class, this, "contactNode");
-        children.add(contactNode);
+        personGeneralNode = context.createChildNode(PersonGeneralNode.class, this, "personGeneralNode");
+        children.add(personGeneralNode);
+        personContactNode = context.createChildNode(PersonContactNode.class, this, "personContactNode");
+        children.add(personContactNode);
         currentEmploymentListNode = context.createChildNode(CurrentEmploymentListNode.class, this, "currentEmploymentListNode");
         children.add(currentEmploymentListNode);
         previousEmploymentListNode = context.createChildNode(PreviousEmploymentListNode.class, this, "previousEmploymentListNode");
         children.add(previousEmploymentListNode);
+        personTrustNode = context.createChildNode(PersonTrustNode.class, this, "personTrustNode");
+        children.add(personTrustNode);
+        personPrivacyNode = context.createChildNode(PersonPrivacyNode.class, this, "personPrivacyNode");
+        children.add(personPrivacyNode);
+        personOtherIncomeListNode = context.createChildNode(PersonOtherIncomeListNode.class, this, "personOtherIncomeListNode");
+        children.add(personOtherIncomeListNode);
+        personResponsibleLendNode = context.createChildNode(PersonResponsibleLendNode.class, this, "personResponsibleLendNode");
+        children.add(personResponsibleLendNode);
         return children;
     }
 

@@ -3,6 +3,10 @@ import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
 import PersonEmploymentListComponent from './PersonEmploymentListComponent';
+import PersonTrustComponent from './PersonTrustComponent';
+import PersonPrivacyComponent from './PersonPrivacyComponent';
+import PersonOtherIncomeListComponent from './PersonOtherIncomeListComponent';
+import PersonResponsibleLendComponent from './PersonResponsibleLendComponent';
 
 export default class PersonComponent extends NeutronComponent {
 
@@ -18,10 +22,10 @@ export default class PersonComponent extends NeutronComponent {
     renderPersonContent() {
         const model = this.state.selectedItem;
         const className = model.getSimpleClassName();
-        if (className === 'GeneralNode') {
+        if (className === 'PersonGeneralNode') {
             return <PersonGeneralComponent model={model}/>;
         }
-        if (className === 'ContactNode') {
+        if (className === 'PersonContactNode') {
             return <PersonContactComponent model={model}/>;
         }
         if (className === 'CurrentEmploymentListNode') {
@@ -30,48 +34,26 @@ export default class PersonComponent extends NeutronComponent {
         if (className === 'PreviousEmploymentListNode') {
             return <PersonEmploymentListComponent model={model}/>;
         }
+        if (className === 'PersonTrustNode') {
+            return <PersonTrustComponent model={model}/>;
+        }
+        if (className === 'PersonPrivacyNode') {
+            return <PersonPrivacyComponent model={model}/>;
+        }
+        if (className === 'PersonOtherIncomeListNode') {
+            return <PersonOtherIncomeListComponent model={model}/>;
+        }
+        if (className === 'PersonResponsibleLendNode') {
+            return <PersonResponsibleLendComponent model={model}/>;
+        }
 
         return (
-            <div>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
-                <p>unknown model type {className}</p>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-12">
+                        <em>unknown model type {className}</em>
+                    </div>
+                </div>
             </div>
         );
     }

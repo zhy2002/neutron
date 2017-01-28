@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class FirstNameNode extends StringUiNode<GeneralNode>
+public  class FirstNameNode extends StringUiNode<PersonGeneralNode>
 {
-    protected FirstNameNode(GeneralNode parent, String name) {
+    protected FirstNameNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 

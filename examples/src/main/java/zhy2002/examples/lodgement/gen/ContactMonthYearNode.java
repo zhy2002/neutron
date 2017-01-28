@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class ContactMonthYearNode extends MonthYearNode<ContactNode>
+public  class ContactMonthYearNode extends MonthYearNode<PersonContactNode>
 {
-    protected ContactMonthYearNode(ContactNode parent, String name) {
+    protected ContactMonthYearNode(PersonContactNode parent, String name) {
         super(parent, name);
     }
 

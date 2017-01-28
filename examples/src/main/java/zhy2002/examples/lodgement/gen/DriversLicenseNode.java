@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class DriversLicenseNode extends StringUiNode<GeneralNode>
+public  class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
 {
-    protected DriversLicenseNode(GeneralNode parent, String name) {
+    protected DriversLicenseNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 
