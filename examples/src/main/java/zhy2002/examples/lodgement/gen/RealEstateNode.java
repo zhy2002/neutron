@@ -12,15 +12,39 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
 {
+    private UsageNode usageNode;
+    private PropertyNode propertyNode;
+    private AccessNode accessNode;
 
     protected RealEstateNode(RealEstateListNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public UsageNode getUsageNode() {
+        return usageNode;
+    }
+
+    @JsMethod
+    public PropertyNode getPropertyNode() {
+        return propertyNode;
+    }
+
+    @JsMethod
+    public AccessNode getAccessNode() {
+        return accessNode;
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
+        usageNode = context.createChildNode(UsageNode.class, this, "usageNode");
+        children.add(usageNode);
+        propertyNode = context.createChildNode(PropertyNode.class, this, "propertyNode");
+        children.add(propertyNode);
+        accessNode = context.createChildNode(AccessNode.class, this, "accessNode");
+        children.add(accessNode);
         return children;
     }
 

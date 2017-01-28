@@ -208,7 +208,208 @@ rootType:
 
   - typeName: FinancialPositionNode
     baseTypeName: ObjectUiNode
-    children: []
+    children:
+    - {typeName: AssetsNode}
+    - {typeName: LiabilitiesNode}
+    - {typeName: ExpensesNode}
+    childTypes:
+    - typeName: AssetsNode
+      baseTypeName: ObjectUiNode
+      children:
+      - {typeName: SavingsAccountListNode}
+      - {typeName: MotorVehicleListNode}
+      - {typeName: OtherAssetListNode}
+      childTypes:
+      - typeName: SavingsAccountListNode
+        baseTypeName: ListUiNode
+        itemTypeName: SavingsAccountNode
+        childTypes:
+        - typeName: SavingsAccountNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: SavingsTypeNode}
+          - {typeName: SavingsInstitutionNameNode}
+          - {typeName: SavingsBalanceNode}
+          - {typeName: SavingsBsbNoNode}
+          - {typeName: SavingsAccountNoNode}
+          - {typeName: SavingsAccountNameNode}
+          childTypes:
+          - typeName: SavingsTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsInstitutionNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsBalanceNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: SavingsBsbNoNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsAccountNoNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsAccountNameNode
+            baseTypeName: StringUiNode
+
+      - typeName: MotorVehicleListNode
+        baseTypeName: ListUiNode
+        itemTypeName: MotorVehicleNode
+        childTypes:
+        - typeName: MotorVehicleNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: VehicleModelNode}
+          - {typeName: VehicleYearNode}
+          - {typeName: VehicleMarketValueNode}
+          childTypes:
+          - typeName: VehicleModelNode
+            baseTypeName: StringUiNode
+
+          - typeName: VehicleYearNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: VehicleMarketValueNode
+            baseTypeName: BigDecimalUiNode
+
+      - typeName: OtherAssetListNode
+        baseTypeName: ListUiNode
+        itemTypeName: OtherAssetNode
+        childTypes:
+        - typeName: OtherAssetNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: OtherAssetTypeNode}
+          - {typeName: OtherAssetDescriptionNode}
+          - {typeName: OtherAssetMarketValueNode}
+          childTypes:
+          - typeName: OtherAssetTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherAssetDescriptionNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherAssetMarketValueNode
+            baseTypeName: StringUiNode
+
+    - typeName: LiabilitiesNode
+      baseTypeName: ObjectUiNode
+      children:
+      - {typeName: CreditCardListNode}
+      - {typeName: LoanListNode}
+      - {typeName: OtherLiabilityListNode}
+      childTypes:
+      - typeName: CreditCardListNode
+        baseTypeName: ListUiNode
+        itemTypeName: CreditCardNode
+        childTypes:
+        - typeName: CreditCardNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: CreditCardTypeNode}
+          - {typeName: CreditCardAmountOwingNode}
+          - {typeName: CreditCardLimitAmount}
+          - {typeName: CreditCardMonthlyRepayment}
+          - {typeName: CreditCardClearingFlagNode}
+          - {typeName: CreditCardBreakCostNode}
+          - {typeName: CreditCardLenderNameNode}
+          childTypes:
+          - typeName: CreditCardTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: CreditCardAmountOwingNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: CreditCardLimitAmount
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: CreditCardMonthlyRepayment
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: CreditCardClearingFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: CreditCardBreakCostNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: CreditCardLenderNameNode
+            baseTypeName: StringUiNode
+
+      - typeName: LoanListNode
+        baseTypeName: ListUiNode
+        itemTypeName: LoanNode
+        childTypes:
+        - typeName: LoanNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: LoanTypeNode}
+          - {typeName: LoanLenderNameNode}
+          - {typeName: LoanLimitAmountNode}
+          - {typeName: LoanOwingAmountNode}
+          - {typeName: LoanMonthlyRepaymentNode}
+          - {typeName: LoanClearingFlagNode}
+          - {typeName: LoanBreakCostNode}
+          childTypes:
+          - typeName: LoanTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: LoanOwingAmountNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: LoanLimitAmountNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: LoanMonthlyRepaymentNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: LoanClearingFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: LoanBreakCostNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: LoanLenderNameNode
+            baseTypeName: StringUiNode
+
+      - typeName: OtherLiabilityListNode
+        baseTypeName: ListUiNode
+        itemTypeName: OtherLiabilityNode
+        childTypes:
+        - typeName: OtherLiabilityNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: OtherLiabilityTypeNode}
+          - {typeName: OtherLiabilityDescriptionNode}
+          - {typeName: OtherLiabilityMarketValueNode}
+          childTypes:
+          - typeName: OtherLiabilityTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherLiabilityDescriptionNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherLiabilityMarketValueNode
+            baseTypeName: BigDecimalUiNode
+
+    - typeName: ExpensesNode
+      baseTypeName: ListUiNode
+      itemTypeName: ExpenseNode
+      childTypes:
+      - typeName: ExpenseNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ExpenseTypeNode}
+        - {typeName: ExpenseDescriptionNode}
+        - {typeName: ExpenseMonthlyRepaymentNode}
+        childTypes:
+        - typeName: ExpenseTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: ExpenseDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: ExpenseMonthlyRepaymentNode
+          baseTypeName: BigDecimalUiNode
 
   - typeName: RealEstateListNode
     baseTypeName: ListUiNode
@@ -216,7 +417,107 @@ rootType:
     childTypes:
     - typeName: RealEstateNode
       baseTypeName: ObjectUiNode
-      children: []
+      children:
+      - {typeName: UsageNode}
+      - {typeName: PropertyNode}
+      - {typeName: AccessNode}
+      childTypes:
+      - typeName:  UsageNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: UsedAsSecurityFlagNode}
+        - {typeName: BeingPurchasedFlagNode}
+        - {typeName: OwnedOutrightFlagNode}
+        - {typeName: PrimarySecurityFlagNode}
+        - {typeName: ApprovalInPrincipleFlagNode}
+        childTypes:
+        - typeName: UsedAsSecurityFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: BeingPurchasedFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: OwnedOutrightFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PrimarySecurityFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: ApprovalInPrincipleFlagNode
+          baseTypeName: BooleanUiNode
+
+      - typeName:  PropertyNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: RentedFlagNode}
+        - {typeName: PropertyWeeklyRentNode}
+        - {typeName: PropertyAddressNode}
+        - {typeName: EstimatedMarketValueNode}
+        - {typeName: ContractPriceNode}
+        - {typeName: DefenseServiceFlagNode}
+        - {typeName: PropertyTypeNode}
+        - {typeName: PropertySubTypeNode}
+        - {typeName: PropertyPurseNode}
+        childTypes:
+        - typeName: RentedFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PropertyWeeklyRentNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: PropertyAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: EstimatedMarketValueNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: ContractPriceNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: DefenseServiceFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PropertyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: PropertySubTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: PropertyPurseNode
+          baseTypeName: BooleanUiNode
+
+      - typeName:  AccessNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: AccessContactTypeNode}
+        - {typeName: AccessContactTitleNode}
+        - {typeName: AccessContactFirstNameNode}
+        - {typeName: AccessContactLastNameNode}
+        - {typeName: AccessCompanyNameNode}
+        - {typeName: AccessTelephoneNode}
+        - {typeName: AccessOtherDescriptionNode}
+
+        childTypes:
+        - typeName: AccessContactTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactTitleNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactLastNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessCompanyNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessTelephoneNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessOtherDescriptionNode
+          baseTypeName: StringUiNode
 
   - typeName: ProductsNode
     baseTypeName: ObjectUiNode
