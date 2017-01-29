@@ -10,9 +10,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public abstract class YesNoFlagNode<P extends ParentUiNode<?>> extends StringUiNode<P>
+public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
-    protected YesNoFlagNode(P parent, String name) {
+    protected YesNoOptionNode(P parent, String name) {
         super(parent, name);
     }
 

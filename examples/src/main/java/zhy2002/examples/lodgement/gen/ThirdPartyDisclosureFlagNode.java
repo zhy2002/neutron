@@ -10,17 +10,10 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
+public  class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
-    protected UnemployedOnBenefitFlagNode(UnemployedNode parent, String name) {
+    protected ThirdPartyDisclosureFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
 

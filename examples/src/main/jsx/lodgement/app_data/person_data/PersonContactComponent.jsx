@@ -46,7 +46,7 @@ export default class PersonContactComponent extends NeutronComponent {
                         <AddressComponent model={model.getPreviousAddressNode()}/>
                     </div>
                 </div>
-                <div className="row small-gap" >
+                <div className="row small-gap">
                     <div className="col-md-4">
                         <MonthYearComponent model={model.getMovedToCurrentAddressNode()}/>
                     </div>

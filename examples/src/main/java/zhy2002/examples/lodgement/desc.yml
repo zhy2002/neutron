@@ -204,11 +204,55 @@ rootType:
 
       - typeName: PersonTrustNode
         baseTypeName: ObjectUiNode
-        children: []
+        children:
+        - {typeName: PersonTrustTypeNode}
+        - {typeName: PersonTrustNameNode}
+        - {typeName: PersonTrustRegistrationDateNode}
+        - {typeName: PersonTrustCountryNode}
+        - {typeName: PersonTrustAddressNode}
+        - {typeName: PersonTrustSettlorNotRequiredReasonNode}
+        - {typeName: PersonTrustIndustryNode}
+        childTypes:
+        - typeName: PersonTrustTypeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
+
+        - typeName: PersonTrustNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: PersonTrustRegistrationDateNode
+          baseTypeName: StringUiNode
+
+        - typeName: PersonTrustCountryNode
+          baseTypeName: BaseCountryNode
+
+        - typeName: PersonTrustAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: PersonTrustSettlorNotRequiredReasonNode
+          baseTypeName: StringUiNode
+
+        - typeName: PersonTrustIndustryNode
+          baseTypeName: StringUiNode
 
       - typeName: PersonPrivacyNode
         baseTypeName: ObjectUiNode
-        children: []
+        children:
+        - {typeName: CreditCheckFlagNode}
+        - {typeName: ThirdPartyDisclosureFlagNode}
+        - {typeName: LegalActionNode}
+        childTypes:
+        - typeName: CreditCheckFlagNode
+          baseTypeName: BooleanUiNode
+        
+        - typeName: ThirdPartyDisclosureFlagNode
+          baseTypeName: BooleanUiNode
+          
+        - typeName: LegalActionNode
+          baseTypeName: YesNoOptionNode
 
       - typeName: PersonOtherIncomeListNode
         baseTypeName: ListUiNode
@@ -222,7 +266,31 @@ rootType:
 
       - typeName: PersonResponsibleLendNode
         baseTypeName: ObjectUiNode
-        children: []
+        children:
+        - {typeName: PersonSignificantChangeFlagNode}
+        - {typeName: PersonTypeOfChangeNode}
+        - {typeName: PersonMitigationMethodNode}
+        - {typeName: PersonRepaymentDifficultyNode}
+        childTypes:
+        - typeName: PersonSignificantChangeFlagNode
+          baseTypeName: YesNoOptionNode
+
+        - typeName: PersonTypeOfChangeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.PERSON_CHANGE_TYPE.toArray()}
+
+        - typeName: PersonMitigationMethodNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.PERSON_MITIGATION_TYPE.toArray()}
+
+        - typeName: PersonRepaymentDifficultyNode
+          baseTypeName: YesNoOptionNode
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode
@@ -614,11 +682,8 @@ commonTypes:
     - {propertyName: pattern, value: '"\\d{4,4}"'}
 
   - typeName: CountryNode
-    baseTypeName: StringUiNode
-    properties:
-    - {name: options, typeName: Object}
+    baseTypeName: BaseCountryNode
     init:
-    - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
     - {propertyName: required, value: 'true'}
 
 - typeName: MonthYearNode
@@ -765,12 +830,12 @@ commonTypes:
     - {typeName: UnemployedSinceNode}
     childTypes:
     - typeName: UnemployedOnBenefitFlagNode
-      baseTypeName: YesNoFlagNode
+      baseTypeName: YesNoOptionNode
       init:
       - {propertyName: required, value: 'true'}
 
     - typeName: StudentFlagNode
-      baseTypeName: YesNoFlagNode
+      baseTypeName: YesNoOptionNode
       init:
       - {propertyName: required, value: 'true'}
 
@@ -782,7 +847,7 @@ commonTypes:
       - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE.toArray()'}
 
     - typeName: HouseDutiesFlagNode
-      baseTypeName: YesNoFlagNode
+      baseTypeName: YesNoOptionNode
       init:
       - {propertyName: required, value: 'true'}
 
@@ -798,7 +863,7 @@ commonTypes:
     - {typeName: RetiredSinceNode}
     childTypes:
     - typeName: RetiredOnBenefitFlagNode
-      baseTypeName: YesNoFlagNode
+      baseTypeName: YesNoOptionNode
       init:
       - {propertyName: required, value: 'true'}
 
@@ -812,7 +877,7 @@ commonTypes:
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
 
-- typeName: YesNoFlagNode
+- typeName: YesNoOptionNode
   baseTypeName: StringUiNode
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
@@ -820,3 +885,12 @@ commonTypes:
   - {name: options, typeName: Object}
   init:
   - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE.toArray()'}
+
+- typeName: BaseCountryNode
+  baseTypeName: StringUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}

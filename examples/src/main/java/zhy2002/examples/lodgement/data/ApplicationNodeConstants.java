@@ -104,6 +104,30 @@ public class ApplicationNodeConstants {
             new StringOption("School Student")
     );
 
+    public static final List<StringOption> TRUST_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Unit Trust"),
+            new StringOption("Family Trust"),
+            new StringOption("Hybrid Trust"),
+            new StringOption("Simple Trust")
+    );
+
+    public static final List<StringOption> PERSON_CHANGE_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Large Expenditure"),
+            new StringOption("Permanent Decrease Income"),
+            new StringOption("Temporary Decrease Income")
+    );
+
+    public static final List<StringOption> PERSON_MITIGATION_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Secure Additional Income"),
+            new StringOption("Use Savings"),
+            new StringOption("Sale Assets"),
+            new StringOption("Reduce Expenditure"),
+            new StringOption("My Application Reflect These Changes")
+    );
+
     public static final List<BigDecimalOption> MONTH_TYPE = Arrays.asList(
             new BigDecimalOption(null, ""),
             new BigDecimalOption(new BigDecimal("1"), "January"),

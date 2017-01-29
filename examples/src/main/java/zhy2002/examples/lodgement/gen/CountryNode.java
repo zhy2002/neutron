@@ -10,7 +10,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class CountryNode extends StringUiNode<AddressNode<?>>
+public  class CountryNode extends BaseCountryNode<AddressNode<?>>
 {
     protected CountryNode(AddressNode parent, String name) {
         super(parent, name);
@@ -20,18 +20,7 @@ public  class CountryNode extends StringUiNode<AddressNode<?>>
     protected void initializeState() {
         super.initializeState();
 
-        setOptions(ApplicationNodeConstants.COUNTRY_TYPE.toArray());
         setRequired(true);
-    }
-
-    @JsMethod
-    public Object getOptions() {
-        return getStateValue(ApplicationNodeConstants.OPTIONS);
-    }
-
-    @JsMethod
-    public void setOptions(Object value) {
-        setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
 

@@ -6,7 +6,7 @@ todo
 * implement router
 * deletable node flag
 * implement load defaults functionality (auto populate)
-
+* implement layout components to reduce duplication
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...

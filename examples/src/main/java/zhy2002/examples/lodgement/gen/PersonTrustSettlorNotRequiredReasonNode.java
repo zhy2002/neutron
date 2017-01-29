@@ -10,17 +10,10 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
+public  class PersonTrustSettlorNotRequiredReasonNode extends StringUiNode<PersonTrustNode>
 {
-    protected UnemployedOnBenefitFlagNode(UnemployedNode parent, String name) {
+    protected PersonTrustSettlorNotRequiredReasonNode(PersonTrustNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
 

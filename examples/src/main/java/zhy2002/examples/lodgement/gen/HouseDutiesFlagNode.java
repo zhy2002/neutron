@@ -10,7 +10,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class HouseDutiesFlagNode extends YesNoFlagNode<UnemployedNode>
+public  class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode>
 {
     protected HouseDutiesFlagNode(UnemployedNode parent, String name) {
         super(parent, name);
