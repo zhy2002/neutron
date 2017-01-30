@@ -53,17 +53,18 @@ public class TitleGenderMatchRuleImpl extends TitleGenderMatchRule {
 
     @Override
     protected String getErrorMessage() {
-        return "Invalid title for the selected gender.";
+        if (isActivated())
+            return "Invalid title for the selected gender.";
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         TitleNode titleNode = getTitleNode();
         if (ValueUtil.isEmpty(titleNode.getValue()))
             return false;
 
         GenderNode genderNode = getGenderNode();
-        if(ValueUtil.isEmpty(genderNode.getValue()))
+        if (ValueUtil.isEmpty(genderNode.getValue()))
             return false;
 
         return !isCompatible(titleNode.getValue(), genderNode.getValue());
@@ -71,7 +72,7 @@ public class TitleGenderMatchRuleImpl extends TitleGenderMatchRule {
 
     private boolean isCompatible(String title, String gender) {
         String titleGender = TITLE_GENDER_MAP.get(title);
-        if(titleGender == null)
+        if (titleGender == null)
             return true;
 
         return titleGender.equals(gender);

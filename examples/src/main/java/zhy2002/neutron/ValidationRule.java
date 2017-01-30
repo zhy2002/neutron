@@ -24,18 +24,18 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<N> 
     }
 
     protected void validate() {
-        if (isActivated()) {
-            activate();
-        } else {
+        String errorMessage = getErrorMessage();
+
+        if (errorMessage == null) {
             deactivate();
+        } else {
+            activate(errorMessage);
         }
     }
 
     protected abstract String getErrorMessage();
 
-    protected abstract boolean isActivated();
-
-    private void activate() {
+    private void activate(String errorMessage) {
         ValidationErrorList errors = getOwner().getValidationErrorList();
         if (errors == null) {
             errors = new ValidationErrorList();
@@ -51,7 +51,7 @@ public abstract class ValidationRule<N extends UiNode<?>> extends UiNodeRule<N> 
 
         if (!found) {
             errors = new ValidationErrorList(errors);
-            errors.add(new ValidationError(getOwner(), getErrorMessage(), this));
+            errors.add(new ValidationError(getOwner(), errorMessage, this));
             getOwner().setValidationErrorList(errors);
         }
     }

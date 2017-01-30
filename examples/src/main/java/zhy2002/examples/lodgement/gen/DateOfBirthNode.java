@@ -10,7 +10,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class DateOfBirthNode extends StringUiNode<PersonGeneralNode>
+public  class DateOfBirthNode extends DobNode<PersonGeneralNode>
 {
     protected DateOfBirthNode(PersonGeneralNode parent, String name) {
         super(parent, name);

@@ -1,14 +1,18 @@
 package zhy2002.examples.lodgement;
 
+import com.google.gwt.i18n.shared.DateTimeFormat;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
+import zhy2002.neutron.util.SharedDateTimeFormat;
 
+import java.util.Date;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -217,6 +221,26 @@ public class LodgementNodeTest {
         CurrentEmploymentNode currentEmploymentNode = currentEmploymentListNode.createItem();
         PayeEmployedNode payeEmployedNode = currentEmploymentNode.getPayeEmployedNode();
         assertThat(payeEmployedNode.getEmployerAddressNode(), not(nullValue()));
+    }
+
+    @Test
+    public void canUseSharedDateTimeFormatInJUnit() {
+        DateTimeFormat format = new SharedDateTimeFormat();
+        Date date = format.parse("2027-01-04T00:00:00Z");
+        DateTimeFormat yearFormat = new SharedDateTimeFormat("yyyy");
+        assertThat(yearFormat.format(date), equalTo("2027"));
+    }
+
+    @Test
+    public void shouldValidateMinAndMaxAge() {
+        //todo mock current date as 2017-01-31
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        personNode.getPersonGeneralNode().getDateOfBirthNode().setValue("2017-4-14");
+        assertThat(hasError(errorNode -> errorNode.getRule() instanceof DobRangeValidationRule), equalTo(true));
+
+        personNode.getPersonGeneralNode().getDateOfBirthNode().setValue("1997-4-14");
+        assertThat(hasError(errorNode -> errorNode.getRule() instanceof DobRangeValidationRule), equalTo(false));
     }
 
 }

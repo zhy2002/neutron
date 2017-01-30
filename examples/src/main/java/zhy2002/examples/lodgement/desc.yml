@@ -91,7 +91,7 @@ rootType:
           - {propertyName: required, value: 'true'}
 
         - typeName: DateOfBirthNode
-          baseTypeName: StringUiNode
+          baseTypeName: DobNode
           init:
           - {propertyName: required, value: 'true'}
 
@@ -927,3 +927,16 @@ commonTypes:
   - {name: options, typeName: Object}
   init:
   - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
+
+- typeName: DobNode
+  baseTypeName: StringUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: minAge, typeName: Integer}
+  - {name: maxAge, typeName: Integer}
+  init:
+  - {propertyName: minAge, value: 18}
+  - {propertyName: maxAge, value: 100}
+  rules:
+  - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}

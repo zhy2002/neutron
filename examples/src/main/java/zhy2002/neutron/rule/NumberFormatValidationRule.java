@@ -32,11 +32,12 @@ public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<
 
     @Override
     protected String getErrorMessage() {
-        return "Not a valid number";
+        if (isActivated())
+            return "Not a valid number";
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         return !getOwner().isValueValid();
     }
 }

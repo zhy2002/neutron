@@ -14,6 +14,8 @@ public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
     public static final String CURRENCY_INFO = "currency_info";
     public static final String FOCUS = "focus";
+    public static final String MIN_AGE = "min_age";
+    public static final String MAX_AGE = "max_age";
     public static final String SHOW_ERROR_LIST = "showErrorList";
     public static final String CONTENT_LEVEL = "contentLevel";
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";

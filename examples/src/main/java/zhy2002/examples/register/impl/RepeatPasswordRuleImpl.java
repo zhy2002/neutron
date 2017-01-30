@@ -44,14 +44,15 @@ public class RepeatPasswordRuleImpl extends RepeatPasswordRule {
 
     @Override
     protected String getErrorMessage() {
-        return ERROR_MESSAGE;
+        if (isActivated())
+            return ERROR_MESSAGE;
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         String password = getPasswordNode().getValue();
         String repeat = getRepeatPasswordNode().getValue();
-        if(password == null || repeat == null)
+        if (password == null || repeat == null)
             return false;
         return !password.equals(repeat);
     }

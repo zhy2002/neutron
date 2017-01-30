@@ -27,11 +27,12 @@ public class PasswordIsStrongRuleImpl extends PasswordIsStrongRule {
 
     @Override
     protected String getErrorMessage() {
-        return WEAK_PASSWORD;
+        if (isActivated())
+            return WEAK_PASSWORD;
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         String password = getPasswordNode().getValue();
         if (password == null) {
             return false;

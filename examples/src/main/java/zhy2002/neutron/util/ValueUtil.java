@@ -1,6 +1,5 @@
 package zhy2002.neutron.util;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.shared.DateTimeFormat;
 
 import java.util.Date;
@@ -10,6 +9,7 @@ import java.util.logging.Logger;
 public final class ValueUtil {
 
     private static Logger logger = Logger.getLogger(ValueUtil.class.getSimpleName());
+    private static DateTimeFormat yearFormat = new SharedDateTimeFormat("yyyy");
 
     private ValueUtil() {
     }
@@ -56,14 +56,13 @@ public final class ValueUtil {
     }
 
     public static int getCurrentYear() {
-        return 2017;
-//        String year;
-//        if (GWT.isClient()) { //this check is required as DateTimeFormat cannot be used in unit test
-//            year = DateTimeFormat.getFormat("d-M-yyyy").format(new Date()).split("-")[2];
-//        } else {
-//            year = String.valueOf(new Date().getYear());
-//        }
-//
-//        return Integer.parseInt(year);
+        return Integer.parseInt(yearFormat.format(new Date()));
+    }
+
+    public static String beforeFirst(String src, String part) {
+        int index = src.indexOf(part);
+        if (index < 0)
+            return src;
+        return src.substring(0, index);
     }
 }

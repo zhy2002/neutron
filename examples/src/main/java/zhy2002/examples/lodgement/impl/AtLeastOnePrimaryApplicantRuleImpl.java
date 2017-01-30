@@ -37,11 +37,12 @@ public class AtLeastOnePrimaryApplicantRuleImpl extends AtLeastOnePrimaryApplica
 
     @Override
     protected String getErrorMessage() {
-        return "At least one primary applicant is required.";
+        if (isActivated())
+            return "At least one primary applicant is required.";
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         PersonNode personNode = getPrimaryApplicantFlagNode().getParent().getParent();
         if (personNode.getIndex() != 0)
             return false;

@@ -36,11 +36,12 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getPatternMessage();
+        if (isActivated())
+            return getOwner().getPatternMessage();
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         String pattern = getPattern();
         if (pattern == null)
             return false;

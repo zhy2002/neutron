@@ -17,10 +17,6 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
         super(owner);
     }
 
-    @Override
-    protected String getErrorMessage() {
-        return getOwner().getLengthMessage();
-    }
 
     @Override
     protected Collection<EventBinding> createEventBindings() {
@@ -34,7 +30,13 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
     }
 
     @Override
-    protected boolean isActivated() {
+    protected String getErrorMessage() {
+        if (isActivated())
+            return getOwner().getLengthMessage();
+        return null;
+    }
+
+    private boolean isActivated() {
         String value = getOwner().getValue();
         if (ValueUtil.isEmpty(value))
             return false;

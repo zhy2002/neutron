@@ -32,11 +32,12 @@ public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNo
 
     @Override
     protected String getErrorMessage() {
+        if(isActivated())
         return "Cannot be empty.";
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         Boolean required = getOwner().getRequired();
         return Boolean.TRUE.equals(required) && !getOwner().hasValue();
     }

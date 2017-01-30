@@ -1,9 +1,6 @@
 package zhy2002.examples.lodgement.config;
 
-import zhy2002.examples.lodgement.gen.ContactAddressNode;
-import zhy2002.examples.lodgement.gen.ContactMonthYearNode;
-import zhy2002.examples.lodgement.gen.EmploymentEndedNode;
-import zhy2002.examples.lodgement.gen.TelephoneNode;
+import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
@@ -30,13 +27,20 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
         setUiNodeRuleFactory(ShowErrorListRule.class, ShowErrorListRuleImpl::new);
         setUiNodeRuleFactory(ChangeFocusErrorRule.class, ChangeFocusErrorRuleImpl::new);
         setUiNodeRuleFactory(TitleGenderMatchRule.class, TitleGenderMatchRuleImpl::new);
+        setUiNodeRuleFactory(HomeOrWorkPhoneRequiredRule.class, HomeOrWorkPhoneRequiredRuleImpl::new);
+        setUiNodeRuleFactory(EmploymentTypeChangedRule.class, EmploymentTypeChangedRuleImpl::new);
+
         setUiNodeRuleFactory(TelephoneCompleteRule.class, new UiNodeRuleFactory<TelephoneCompleteRule, TelephoneNode<?>>() {
             @Override
             public TelephoneCompleteRule create(TelephoneNode<?> owner) {
                 return new TelephoneCompleteRuleImpl(owner);
             }
         });
-        setUiNodeRuleFactory(HomeOrWorkPhoneRequiredRule.class, HomeOrWorkPhoneRequiredRuleImpl::new);
-        setUiNodeRuleFactory(EmploymentTypeChangedRule.class, EmploymentTypeChangedRuleImpl::new);
+        setUiNodeRuleFactory(DobRangeValidationRule.class, new UiNodeRuleFactory<DobRangeValidationRule, DobNode<?>>() {
+            @Override
+            public DobRangeValidationRule create(DobNode<?> owner) {
+                return new DobRangeValidationRuleImpl(owner);
+            }
+        });
     }
 }

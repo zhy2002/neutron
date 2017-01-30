@@ -37,11 +37,12 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getRequiredMessage();
+        if (isActivated())
+            return getOwner().getRequiredMessage();
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         Boolean required = getOwner().getRequired();
         return Boolean.TRUE.equals(required) && !getOwner().hasValue();
     }

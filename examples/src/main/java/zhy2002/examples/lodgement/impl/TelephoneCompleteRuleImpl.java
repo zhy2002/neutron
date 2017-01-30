@@ -30,22 +30,23 @@ public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
 
     @Override
     protected String getErrorMessage() {
-        return "Telephone information is not complete.";
+        if (isActivated())
+            return "Telephone information is not complete.";
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         Telephone value = getTelephoneNode().getValue();
         if (value == null)
             return false;
 
-        return  !(
+        return !(
                 ValueUtil.isEmpty(value.getAreaCode())
-                && ValueUtil.isEmpty(value.getCountryCode())
-                && ValueUtil.isEmpty(value.getPhoneNumber())
-                || !ValueUtil.isEmpty(value.getAreaCode())
-                && !ValueUtil.isEmpty(value.getCountryCode())
-                && !ValueUtil.isEmpty(value.getPhoneNumber())
+                        && ValueUtil.isEmpty(value.getCountryCode())
+                        && ValueUtil.isEmpty(value.getPhoneNumber())
+                        || !ValueUtil.isEmpty(value.getAreaCode())
+                        && !ValueUtil.isEmpty(value.getCountryCode())
+                        && !ValueUtil.isEmpty(value.getPhoneNumber())
         );
     }
 }

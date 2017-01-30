@@ -25,11 +25,12 @@ public class RangeValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
 
     @Override
     protected String getErrorMessage() {
-        return getOwner().getRangeMessage();
+        if (isActivated())
+            return getOwner().getRangeMessage();
+        return null;
     }
 
-    @Override
-    protected boolean isActivated() {
+    private boolean isActivated() {
         BigDecimal value = getOwner().getValue();
         if (value == null)
             return false;
