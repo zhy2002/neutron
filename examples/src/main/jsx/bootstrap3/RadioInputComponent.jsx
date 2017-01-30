@@ -51,6 +51,9 @@ export default class RadioInputComponent extends InputComponent {
                 <div id={model.getUniqueId()} tabIndex="0" className="radio-container">
                     {this.renderOptions()}
                 </div>
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }

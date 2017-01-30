@@ -10,18 +10,10 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class OtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNode>
+public  class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode>
 {
-
-    protected OtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
+    protected PersonOtherIncomePreviousYearNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected List<UiNode<?>> createChildren() {
-        List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        return children;
     }
 
 

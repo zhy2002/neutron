@@ -18,6 +18,9 @@ export default class CheckboxInputComponent extends InputComponent {
                     <input id={this.id} type="checkbox" onClick={this.updateValue} checked={this.state.value}/>
                     {this.label}
                 </label>
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }

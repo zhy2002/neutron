@@ -84,6 +84,13 @@ public class ClassRegistryImpl implements ClassRegistry {
             }
         });
 
+        setUiNodeRuleFactory(NumberFormatValidationRule.class, new UiNodeRuleFactory<NumberFormatValidationRule, BigDecimalUiNode<?>>() {
+            @Override
+            public NumberFormatValidationRule create(BigDecimalUiNode<?> owner) {
+                return new NumberFormatValidationRule(owner);
+            }
+        });
+
         setUiNodeRuleFactory(InvalidCharPreChangeRule.class, new UiNodeRuleFactory<InvalidCharPreChangeRule, StringUiNode<?>>() {
             @Override
             public InvalidCharPreChangeRule create(StringUiNode<?> owner) {

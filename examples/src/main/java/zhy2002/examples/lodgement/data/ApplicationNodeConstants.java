@@ -12,10 +12,13 @@ import java.util.List;
 
 public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
+    public static final String CURRENCY_INFO = "currency_info";
     public static final String FOCUS = "focus";
     public static final String SHOW_ERROR_LIST = "showErrorList";
     public static final String CONTENT_LEVEL = "contentLevel";
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";
+
+    public static final CurrencyInfo AUD = new CurrencyInfo("AUD", "$");
 
     public static final List<StringOption> TITLE_TYPE = Arrays.asList(
             new StringOption(""),
@@ -117,6 +120,21 @@ public class ApplicationNodeConstants {
             new StringOption("Large Expenditure"),
             new StringOption("Permanent Decrease Income"),
             new StringOption("Temporary Decrease Income")
+    );
+
+    public static final List<StringOption> OTHER_INCOME_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Add Back"),
+            new StringOption("Bonus"),
+            new StringOption("Commission"),
+            new StringOption("Government Benefits"),
+            new StringOption("Investments"),
+            new StringOption("Other Income")
+    );
+
+    public static final List<StringOption> PERSON_ADD_BACK_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Depreciation")
     );
 
     public static final List<StringOption> PERSON_MITIGATION_TYPE = Arrays.asList(

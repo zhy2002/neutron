@@ -20,7 +20,7 @@ export default class PersonEmploymentComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <div className="person-current-employment-component">
+            <div className="person-employment-component">
                 <div className="container-fluid compact">
                     <div className="row">
                         <div className="col-md-2">

@@ -407,7 +407,7 @@ a[tabindex] {
 }
 
 .form-group-sm {
-  .form-control {
+  .form-control, .input-group-addon {
     padding: 2px 5px;
     height: 24px !important;
   }
@@ -471,6 +471,15 @@ a[tabindex] {
   .country {
     width: 40%;
   }
+}
+
+.compact {
+  .btn-sm.btn-primary.pull-right {
+    width: 45px;
+  }
+}
+
+.error-message {
 }
 
 //endregion

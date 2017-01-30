@@ -30,14 +30,16 @@ export default class PersonEmploymentListComponent extends NeutronComponent {
 
     render() {
         return (
-            <div className="person-current-employment-list-component">
+            <div className="person-employment-list-component">
                 {this.renderEmployments()}
-                <div className="container-fluid">
+                <div className="container-fluid compact">
                     <div className="row">
-                        <div className="col-md-1">
-                            <button className="btn btn-primary" onClick={this.createNewItem}>Add</button>
+                        <div className="col-md-2">
+                            <button className="btn btn-sm btn-primary pull-right" onClick={this.createNewItem}>
+                                Add
+                            </button>
                         </div>
-                        <div className="col-md-11"/>
+                        <div className="col-md-10"/>
                     </div>
                 </div>
             </div>

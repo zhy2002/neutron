@@ -10,17 +10,10 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode>
+public  class PersonOtherIncomeAmountNode extends BigDecimalUiNode<PersonOtherIncomeNode>
 {
-    protected GrossYearlySalaryNode(PayeEmployedNode parent, String name) {
+    protected PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
 

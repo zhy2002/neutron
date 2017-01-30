@@ -7,6 +7,9 @@ todo
 * deletable node flag
 * implement load defaults functionality (auto populate)
 * implement layout components to reduce duplication
+* use dagger2 for di
+* write a proper code gen tool with friendly logging and error messages
+
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...

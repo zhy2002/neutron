@@ -60,7 +60,11 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(ThirdPartyDisclosureFlagNode.class, new ThirdPartyDisclosureFlagNodeFactory());
         setChildNodeFactory(LegalActionNode.class, new LegalActionNodeFactory());
         setChildNodeFactory(PersonPrivacyNode.class, new PersonPrivacyNodeFactory());
-        setChildNodeFactory(OtherIncomeNode.class, new OtherIncomeNodeFactory());
+        setChildNodeFactory(PersonOtherIncomeTypeNode.class, new PersonOtherIncomeTypeNodeFactory());
+        setChildNodeFactory(PersonAddBackTypeNode.class, new PersonAddBackTypeNodeFactory());
+        setChildNodeFactory(PersonOtherIncomeAmountNode.class, new PersonOtherIncomeAmountNodeFactory());
+        setChildNodeFactory(PersonOtherIncomePreviousYearNode.class, new PersonOtherIncomePreviousYearNodeFactory());
+        setChildNodeFactory(PersonOtherIncomeNode.class, new PersonOtherIncomeNodeFactory());
         setChildNodeFactory(PersonOtherIncomeListNode.class, new PersonOtherIncomeListNodeFactory());
         setChildNodeFactory(PersonSignificantChangeFlagNode.class, new PersonSignificantChangeFlagNodeFactory());
         setChildNodeFactory(PersonTypeOfChangeNode.class, new PersonTypeOfChangeNodeFactory());
@@ -185,7 +189,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     private void loadNodeAddEventFactories() {
         super.setNodeAddEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeAddEvent::new);
         super.setNodeAddEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeAddEvent::new);
-        super.setNodeAddEventFactory(OtherIncomeNode.class, OtherIncomeNodeAddEvent::new);
+        super.setNodeAddEventFactory(PersonOtherIncomeNode.class, PersonOtherIncomeNodeAddEvent::new);
         super.setNodeAddEventFactory(PersonNode.class, PersonNodeAddEvent::new);
         super.setNodeAddEventFactory(CompanyNode.class, CompanyNodeAddEvent::new);
         super.setNodeAddEventFactory(SavingsAccountNode.class, SavingsAccountNodeAddEvent::new);
@@ -202,7 +206,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     private void loadNodeRemoveEventFactories() {
         super.setNodeRemoveEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeRemoveEvent::new);
-        super.setNodeRemoveEventFactory(OtherIncomeNode.class, OtherIncomeNodeRemoveEvent::new);
+        super.setNodeRemoveEventFactory(PersonOtherIncomeNode.class, PersonOtherIncomeNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PersonNode.class, PersonNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(CompanyNode.class, CompanyNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(SavingsAccountNode.class, SavingsAccountNodeRemoveEvent::new);

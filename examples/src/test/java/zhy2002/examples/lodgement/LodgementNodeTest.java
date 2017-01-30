@@ -218,4 +218,5 @@ public class LodgementNodeTest {
         PayeEmployedNode payeEmployedNode = currentEmploymentNode.getPayeEmployedNode();
         assertThat(payeEmployedNode.getEmployerAddressNode(), not(nullValue()));
     }
+
 }

@@ -256,13 +256,37 @@ rootType:
 
       - typeName: PersonOtherIncomeListNode
         baseTypeName: ListUiNode
-        itemTypeName: OtherIncomeNode
+        itemTypeName: PersonOtherIncomeNode
         init:
         - {propertyName: nodeLabel, value: '"Other Incomes"'}
         childTypes:
-        - typeName: OtherIncomeNode
+        - typeName: PersonOtherIncomeNode
           baseTypeName: ObjectUiNode
-          children: []
+          children:
+          - {typeName: PersonOtherIncomeTypeNode}
+          - {typeName: PersonAddBackTypeNode}
+          - {typeName: PersonOtherIncomeAmountNode}
+          - {typeName: PersonOtherIncomePreviousYearNode}
+          childTypes:
+          - typeName: PersonOtherIncomeTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
+
+          - typeName: PersonAddBackTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.PERSON_ADD_BACK_TYPE.toArray()}
+
+          - typeName: PersonOtherIncomeAmountNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: PersonOtherIncomePreviousYearNode
+            baseTypeName: BooleanUiNode
 
       - typeName: PersonResponsibleLendNode
         baseTypeName: ObjectUiNode
@@ -718,6 +742,15 @@ commonTypes:
   init:
   - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
 
+- typeName: BaseCurrencyNode
+  baseTypeName: BigDecimalUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0.01")}
+
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode
   isAbstract: true
@@ -745,7 +778,7 @@ commonTypes:
     - {typeName: GrossYearlySalaryNode}
     childTypes:
     - typeName: GrossYearlySalaryNode
-      baseTypeName: BigDecimalUiNode
+      baseTypeName: BaseCurrencyNode
       init:
       - {propertyName: required, value: 'true'}
 

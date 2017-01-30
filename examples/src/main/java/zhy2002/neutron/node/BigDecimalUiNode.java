@@ -2,6 +2,7 @@ package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
+import zhy2002.neutron.rule.NumberFormatValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
@@ -60,10 +61,19 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         return super.getValue();
     }
 
+    @NotNull
     @JsMethod
     @Override
     public void setValue(BigDecimal value) {
         this.setValue(BigDecimal.class, value);
+    }
+
+    public boolean isValueValid() {
+        return super.getStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.FALSE);
+    }
+
+    private void setValueValid(boolean value) {
+        super.setStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.class, value);
     }
 
     @Override
@@ -98,13 +108,25 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         super.setStateValueInternal(key, value);
         if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
+            if (val == null && !ValueUtil.isEmpty(value.toString())) {
+                setValueValid(false);
+            } else {
+                setValueValid(true);
+            }
             if (!Objects.equals(val, getValue())) {
                 setValue(val);
             }
-        } else if (NeutronEventSubjects.VALUE.equals(key) && value != null) {
-            String text = getFormatter().format((BigDecimal) value);
-            if (!Objects.equals(text, getText())) {
-                setText(text);
+        } else if (NeutronEventSubjects.VALUE.equals(key)) {
+            if (value == null) {
+                if (getParser().parse(getText()) != null) {
+                    setText("");
+                }
+            } else {
+                setValueValid(true);
+                String text = getFormatter().format((BigDecimal) value);
+                if (!Objects.equals(text, getText())) {
+                    setText(text);
+                }
             }
         }
     }
@@ -125,6 +147,7 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
 
         UiNodeContext<?> context = getContext();
         createdRules.add(context.createUiNodeRule(RangeValidationRule.class, this));
+        createdRules.add(context.createUiNodeRule(NumberFormatValidationRule.class, this));
     }
 
     public String getRangeMessage() {

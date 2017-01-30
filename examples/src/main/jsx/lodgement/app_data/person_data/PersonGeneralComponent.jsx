@@ -17,7 +17,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
                         <RadioInputComponent model={model.getApplicantTypeNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <SelectInputComponent model={model.getApplicantTypeNode()}/>
+                        <SelectInputComponent model={model.getApplicationTypeNode()}/>
                     </div>
                     <div className="col-md-3">
                         <CheckboxInputComponent model={model.getPrimaryApplicantFlagNode()}/>

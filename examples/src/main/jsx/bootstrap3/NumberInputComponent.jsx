@@ -15,25 +15,43 @@ export default class NumberInputComponent extends InputComponent {
         return this.model.getText();
     }
 
-    render() {
+    renderInput() {
         const model = this.model;
+
         const conditionalProps = {};
         if (this.props.hideLabel) {
             conditionalProps.placeholder = this.label;
         }
+
+        return (
+            <input
+                type="text"
+                className="form-control"
+                id={model.getUniqueId()}
+                value={this.state.value}
+                onChange={this.updateValue}
+                {...conditionalProps}
+            />
+        );
+    }
+
+    render() {
+        const model = this.model;
+
         return (
             <div className={super.renderContainerClass('number-input-component')}>
                 {!this.props.hideLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
                 }
-                <input
-                    type="text"
-                    className="form-control"
-                    id={model.getUniqueId()}
-                    value={this.state.value}
-                    onChange={this.updateValue}
-                    {...conditionalProps}
-                />
+                <div className="input-group">
+                    {model.getCurrencyInfo &&
+                    <div className="input-group-addon">{model.getCurrencyInfo().getSymbol()}</div>
+                    }
+                    {this.renderInput()}
+                </div>
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }

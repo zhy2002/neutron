@@ -30,6 +30,9 @@ export default class TextInputComponent extends InputComponent {
                     onChange={this.updateValue}
                     {...conditionalProps}
                 />
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }

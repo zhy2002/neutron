@@ -9,6 +9,7 @@ import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
 import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.LengthValidationRule;
+import zhy2002.neutron.rule.NumberFormatValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.util.ClassUtil;
@@ -610,5 +611,30 @@ public class RegisterCommonSendTest {
 
         assertThat(planNode.getValue(), equalTo(""));
 
+    }
+
+    @Test
+    public void bigDecimalNodeCanRaiseInvalidValueError() {
+        AgeNode ageNode = registerNode.getAgeNode();
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(false));
+
+        ageNode.refresh();
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(false));
+
+        ageNode.setText("aaa");
+        assertThat(ageNode.isValueValid(), equalTo(false));
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(true));
+
+        ageNode.setText("1.01");
+        assertThat(ageNode.isValueValid(), equalTo(true));
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(false));
+
+        ageNode.setValue(new BigDecimal("1.2"));
+        assertThat(ageNode.isValueValid(), equalTo(true));
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(false));
+
+        ageNode.setText("aaa");
+        assertThat(ageNode.isValueValid(), equalTo(false));
+        assertThat(hasError(NumberFormatValidationRule.class), equalTo(true));
     }
 }
