@@ -9,7 +9,8 @@ todo
 * implement layout components to reduce duplication
 * use dagger2 for di
 * write a proper code gen tool with friendly logging and error messages
-
+* deferred event execution - if the user types in many characters quickly
+  we should wait for a pause before we do an update. 
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...

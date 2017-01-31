@@ -15,6 +15,7 @@
 
     <properties>
         <gwtVersion>2.8.0</gwtVersion>
+        <daggerVersion>2.8</daggerVersion>
     </properties>
 
     <dependencyManagement>
@@ -48,6 +49,18 @@
         <dependency>
             <groupId>com.google.jsinterop</groupId>
             <artifactId>jsinterop-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.dagger</groupId>
+            <artifactId>dagger-gwt</artifactId>
+            <version>${daggerVersion}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava-gwt -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
+            <version>21.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -142,6 +155,25 @@
                     <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
                     <generateJsInteropExports>true</generateJsInteropExports>
                     <strict>true</strict>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.dagger</groupId>
+                            <artifactId>dagger-compiler</artifactId>
+                            <version>${daggerVersion}</version>
+                        </path>
+                        <path>
+                            <groupId>com.google.auto.factory</groupId>
+                            <artifactId>auto-factory</artifactId>
+                            <version>1.0-beta3</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
