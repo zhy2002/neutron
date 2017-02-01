@@ -13,6 +13,7 @@ import java.util.List;
 public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
     public static final String CURRENCY_INFO = "currency_info";
+    public static final String NO_EARLIER_THAN_SIBLING_NAME = "no_earlier_than_sibling_name";
     public static final String FOCUS = "focus";
     public static final String MIN_AGE = "min_age";
     public static final String MAX_AGE = "max_age";

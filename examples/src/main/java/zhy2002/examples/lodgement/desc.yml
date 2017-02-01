@@ -165,11 +165,11 @@ rootType:
         - {typeName: MobileNumberNode}
         - {typeName: ContactEmailNode}
         - {typeName: ContactAddressNode, name: currentAddressNode}
-        - {typeName: ContactMonthYearNode, name: movedToCurrentAddressNode}
+        - {typeName: MovedToCurrentAddressNode}
         - {typeName: ContactAddressNode, name: postalAddressNode}
         - {typeName: ContactAddressNode, name: previousAddressNode}
-        - {typeName: ContactMonthYearNode, name: movedToPreviousAddressNode}
-        - {typeName: ContactMonthYearNode, name: movedFromPreviousAddressNode}
+        - {typeName: MovedToPreviousAddressNode}
+        - {typeName: MovedFromPreviousAddressNode}
         childTypes:
         - typeName: ContactTelephoneNode
           baseTypeName: TelephoneNode
@@ -180,8 +180,21 @@ rootType:
         - typeName: ContactAddressNode
           baseTypeName: AddressNode
 
-        - typeName: ContactMonthYearNode
+        - typeName: MovedToCurrentAddressNode
           baseTypeName: MonthYearNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+          - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+        - typeName: MovedToPreviousAddressNode
+          baseTypeName: MonthYearNode
+
+        - typeName: MovedFromPreviousAddressNode
+          baseTypeName: MonthYearNode
+          rules:
+          - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
 
         - typeName: ContactEmailNode
           baseTypeName: EmailNode
@@ -742,6 +755,8 @@ commonTypes:
   isAbstract: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
+  rules:
+  - {typeName: MonthYearNotInFutureRule, baseTypeName: ValidationRule}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}

@@ -41,7 +41,9 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(ContactTelephoneNode.class, new ContactTelephoneNodeFactory());
         setChildNodeFactory(MobileNumberNode.class, new MobileNumberNodeFactory());
         setChildNodeFactory(ContactAddressNode.class, new ContactAddressNodeFactory());
-        setChildNodeFactory(ContactMonthYearNode.class, new ContactMonthYearNodeFactory());
+        setChildNodeFactory(MovedToCurrentAddressNode.class, new MovedToCurrentAddressNodeFactory());
+        setChildNodeFactory(MovedToPreviousAddressNode.class, new MovedToPreviousAddressNodeFactory());
+        setChildNodeFactory(MovedFromPreviousAddressNode.class, new MovedFromPreviousAddressNodeFactory());
         setChildNodeFactory(ContactEmailNode.class, new ContactEmailNodeFactory());
         setChildNodeFactory(PersonContactNode.class, new PersonContactNodeFactory());
         setChildNodeFactory(CurrentEmploymentNode.class, new CurrentEmploymentNodeFactory());

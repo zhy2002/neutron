@@ -19,11 +19,11 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     private MobileNumberNode mobileNumberNode;
     private ContactEmailNode contactEmailNode;
     private ContactAddressNode currentAddressNode;
-    private ContactMonthYearNode movedToCurrentAddressNode;
+    private MovedToCurrentAddressNode movedToCurrentAddressNode;
     private ContactAddressNode postalAddressNode;
     private ContactAddressNode previousAddressNode;
-    private ContactMonthYearNode movedToPreviousAddressNode;
-    private ContactMonthYearNode movedFromPreviousAddressNode;
+    private MovedToPreviousAddressNode movedToPreviousAddressNode;
+    private MovedFromPreviousAddressNode movedFromPreviousAddressNode;
 
     protected PersonContactNode(PersonNode parent, String name) {
         super(parent, name);
@@ -60,7 +60,7 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
-    public ContactMonthYearNode getMovedToCurrentAddressNode() {
+    public MovedToCurrentAddressNode getMovedToCurrentAddressNode() {
         return movedToCurrentAddressNode;
     }
 
@@ -75,12 +75,12 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
-    public ContactMonthYearNode getMovedToPreviousAddressNode() {
+    public MovedToPreviousAddressNode getMovedToPreviousAddressNode() {
         return movedToPreviousAddressNode;
     }
 
     @JsMethod
-    public ContactMonthYearNode getMovedFromPreviousAddressNode() {
+    public MovedFromPreviousAddressNode getMovedFromPreviousAddressNode() {
         return movedFromPreviousAddressNode;
     }
 
@@ -100,15 +100,15 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
         children.add(contactEmailNode);
         currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
         children.add(currentAddressNode);
-        movedToCurrentAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToCurrentAddressNode");
+        movedToCurrentAddressNode = context.createChildNode(MovedToCurrentAddressNode.class, this, "movedToCurrentAddressNode");
         children.add(movedToCurrentAddressNode);
         postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
         children.add(postalAddressNode);
         previousAddressNode = context.createChildNode(ContactAddressNode.class, this, "previousAddressNode");
         children.add(previousAddressNode);
-        movedToPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedToPreviousAddressNode");
+        movedToPreviousAddressNode = context.createChildNode(MovedToPreviousAddressNode.class, this, "movedToPreviousAddressNode");
         children.add(movedToPreviousAddressNode);
-        movedFromPreviousAddressNode = context.createChildNode(ContactMonthYearNode.class, this, "movedFromPreviousAddressNode");
+        movedFromPreviousAddressNode = context.createChildNode(MovedFromPreviousAddressNode.class, this, "movedFromPreviousAddressNode");
         children.add(movedFromPreviousAddressNode);
         return children;
     }

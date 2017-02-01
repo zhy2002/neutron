@@ -30,6 +30,9 @@ export default class MonthYearComponent extends NeutronComponent {
                         containerClass="year"
                     />
                 </div>
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }
