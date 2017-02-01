@@ -12,18 +12,13 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
 {
-    private PersonSignificantChangeFlagNode personSignificantChangeFlagNode;
     private PersonTypeOfChangeNode personTypeOfChangeNode;
     private PersonMitigationMethodNode personMitigationMethodNode;
+    private PersonSignificantChangeFlagNode personSignificantChangeFlagNode;
     private PersonRepaymentDifficultyNode personRepaymentDifficultyNode;
 
     protected PersonResponsibleLendNode(PersonNode parent, String name) {
         super(parent, name);
-    }
-
-    @JsMethod
-    public PersonSignificantChangeFlagNode getPersonSignificantChangeFlagNode() {
-        return personSignificantChangeFlagNode;
     }
 
     @JsMethod
@@ -37,6 +32,11 @@ public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
+    public PersonSignificantChangeFlagNode getPersonSignificantChangeFlagNode() {
+        return personSignificantChangeFlagNode;
+    }
+
+    @JsMethod
     public PersonRepaymentDifficultyNode getPersonRepaymentDifficultyNode() {
         return personRepaymentDifficultyNode;
     }
@@ -45,12 +45,12 @@ public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
-        personSignificantChangeFlagNode = context.createChildNode(PersonSignificantChangeFlagNode.class, this, "personSignificantChangeFlagNode");
-        children.add(personSignificantChangeFlagNode);
         personTypeOfChangeNode = context.createChildNode(PersonTypeOfChangeNode.class, this, "personTypeOfChangeNode");
         children.add(personTypeOfChangeNode);
         personMitigationMethodNode = context.createChildNode(PersonMitigationMethodNode.class, this, "personMitigationMethodNode");
         children.add(personMitigationMethodNode);
+        personSignificantChangeFlagNode = context.createChildNode(PersonSignificantChangeFlagNode.class, this, "personSignificantChangeFlagNode");
+        children.add(personSignificantChangeFlagNode);
         personRepaymentDifficultyNode = context.createChildNode(PersonRepaymentDifficultyNode.class, this, "personRepaymentDifficultyNode");
         children.add(personRepaymentDifficultyNode);
         return children;

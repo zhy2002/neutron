@@ -1,4 +1,5 @@
 import React from 'react';
+import NodeLabelComponent from './NodeLabelComponent';
 
 export default class NavDropdownComponent extends React.PureComponent {
 
@@ -51,7 +52,11 @@ export default class NavDropdownComponent extends React.PureComponent {
         for (let i = 0; i < model.getItemCount(); i++) {
             const item = model.getItem(i);
             items.push(
-                <li key={key}><a tabIndex="0" onClick={() => this.selectItem(item)}>{item.getNodeLabel()}</a></li>
+                <li key={key}>
+                    <a tabIndex="0" onClick={() => this.selectItem(item)}>
+                        <NodeLabelComponent model={item} />
+                    </a>
+                </li>
             );
             key++;
         }

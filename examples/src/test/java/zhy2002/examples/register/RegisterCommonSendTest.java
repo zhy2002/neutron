@@ -257,11 +257,11 @@ public class RegisterCommonSendTest {
         EmailNode emailNode = registerNode.getEmailNode();
 
         assertThat(emailNode.getRequired(), equalTo(false));
-        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));//email
 
         receiveOffersNode.setValue(Boolean.TRUE);
         assertThat(emailNode.getRequired(), equalTo(true));
-        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(true));
+        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
         receiveOffersNode.setValue(Boolean.FALSE);
         assertThat(emailNode.getRequired(), equalTo(false));
@@ -558,10 +558,10 @@ public class RegisterCommonSendTest {
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("02");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getCountryCodeNode().setValue("+61");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("11112222");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));

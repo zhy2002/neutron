@@ -6,6 +6,7 @@ export default class InputComponent extends NeutronComponent {
     extractNewState() {
         const newState = super.extractNewState();
         newState.value = this.getUiValue();
+        newState.disabled = this.model.isDisabled();
         return newState;
     }
 

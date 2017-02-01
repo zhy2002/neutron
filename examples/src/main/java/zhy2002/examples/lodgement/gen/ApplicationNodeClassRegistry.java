@@ -64,6 +64,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
         setChildNodeFactory(PersonAddBackTypeNode.class, new PersonAddBackTypeNodeFactory());
         setChildNodeFactory(PersonOtherIncomeAmountNode.class, new PersonOtherIncomeAmountNodeFactory());
         setChildNodeFactory(PersonOtherIncomePreviousYearNode.class, new PersonOtherIncomePreviousYearNodeFactory());
+        setChildNodeFactory(PersonOtherIncomeDescriptionNode.class, new PersonOtherIncomeDescriptionNodeFactory());
         setChildNodeFactory(PersonOtherIncomeNode.class, new PersonOtherIncomeNodeFactory());
         setChildNodeFactory(PersonOtherIncomeListNode.class, new PersonOtherIncomeListNodeFactory());
         setChildNodeFactory(PersonSignificantChangeFlagNode.class, new PersonSignificantChangeFlagNodeFactory());

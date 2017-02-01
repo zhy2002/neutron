@@ -24,11 +24,16 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
 
         setUiNodeRuleFactory(CreateErrorNodeRule.class, CreateErrorNodeRuleImpl::new);
         setUiNodeRuleFactory(AtLeastOnePrimaryApplicantRule.class, AtLeastOnePrimaryApplicantRuleImpl::new);
+        setUiNodeRuleFactory(AtMostOnePrimaryApplicantRule.class, AtMostOnePrimaryApplicantRuleImpl::new);
+        setUiNodeRuleFactory(ChangeApplicationTypeRule.class, ChangeApplicationTypeRuleImpl::new);
         setUiNodeRuleFactory(ShowErrorListRule.class, ShowErrorListRuleImpl::new);
         setUiNodeRuleFactory(ChangeFocusErrorRule.class, ChangeFocusErrorRuleImpl::new);
         setUiNodeRuleFactory(TitleGenderMatchRule.class, TitleGenderMatchRuleImpl::new);
+        setUiNodeRuleFactory(UpdatePersonNodeLabelRule.class, UpdatePersonNodeLabelRuleImpl::new);
         setUiNodeRuleFactory(HomeOrWorkPhoneRequiredRule.class, HomeOrWorkPhoneRequiredRuleImpl::new);
+        setUiNodeRuleFactory(PersonSignificantChangeRule.class, PersonSignificantChangeRuleImpl::new);
         setUiNodeRuleFactory(EmploymentTypeChangedRule.class, EmploymentTypeChangedRuleImpl::new);
+        setUiNodeRuleFactory(PersonOtherIncomeTypeChangeRule.class, PersonOtherIncomeTypeChangeRuleImpl::new);
 
         setUiNodeRuleFactory(TelephoneCompleteRule.class, new UiNodeRuleFactory<TelephoneCompleteRule, TelephoneNode<?>>() {
             @Override

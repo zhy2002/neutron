@@ -206,6 +206,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return getStateValue(key, null);
     }
 
+    @SuppressWarnings("unchecked")
+    protected final <T> T getPreStateValue(String key) {
+        return (T)preState.get(key);
+    }
+
     /**
      * Trigger a state value change.
      *
@@ -337,7 +342,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
         doLoad();
         if (statusListener != null) {
-            statusListener.onLoaded();
+            statusListener.onLoad();
         }
 
         loadRules();

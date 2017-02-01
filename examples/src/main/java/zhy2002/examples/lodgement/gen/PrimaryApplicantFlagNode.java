@@ -23,6 +23,7 @@ public  class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
 
         UiNodeContext<?> context = getContext();
         createdRules.add(context.createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this));
+        createdRules.add(context.createUiNodeRule(AtMostOnePrimaryApplicantRule.class, this));
     }
 
 

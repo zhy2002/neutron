@@ -16,6 +16,13 @@ public  class PersonRepaymentDifficultyNode extends YesNoOptionNode<PersonRespon
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 
 
 }

@@ -252,6 +252,18 @@ public class LodgementNodeTest {
         assertThat(testService.getDateTimeService(), notNullValue());
 
         System.out.println("This is working.");
+    }
+
+    @Test
+    public void shouldNotRaiseRequiredErrorOnDisabledNode() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        PersonOtherIncomeNode personOtherIncomeNode = personNode.getPersonOtherIncomeListNode().createItem();
+
+        assertThat(personOtherIncomeNode.getPersonOtherIncomeDescriptionNode().isDisabled(), equalTo(false));
+
+        personOtherIncomeNode.getPersonOtherIncomeTypeNode().setValue("");
+        assertThat(personOtherIncomeNode.getPersonOtherIncomeDescriptionNode().isDisabled(), equalTo(true));
 
     }
 

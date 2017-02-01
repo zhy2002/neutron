@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class PersonNode extends ObjectUiNode<PersonListNode>
 {
@@ -93,6 +94,14 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
         personResponsibleLendNode = context.createChildNode(PersonResponsibleLendNode.class, this, "personResponsibleLendNode");
         children.add(personResponsibleLendNode);
         return children;
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(UpdatePersonNodeLabelRule.class, this));
     }
 
 

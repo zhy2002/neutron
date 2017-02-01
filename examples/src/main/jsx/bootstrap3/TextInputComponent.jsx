@@ -28,6 +28,7 @@ export default class TextInputComponent extends InputComponent {
                     id={model.getUniqueId()}
                     value={this.state.value}
                     onChange={this.updateValue}
+                    disabled={this.state.disabled}
                     {...conditionalProps}
                 />
                 {this.state.errorMessage &&

@@ -3,6 +3,7 @@ import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
+import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
 export default class PersonOtherIncomeComponent extends NeutronComponent {
 
@@ -42,6 +43,13 @@ export default class PersonOtherIncomeComponent extends NeutronComponent {
                                     <div className="col-md-3">
                                         <CheckboxInputComponent model={model.getPersonOtherIncomePreviousYearNode()}/>
                                     </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <TextInputComponent model={model.getPersonOtherIncomeDescriptionNode()}/>
+                                    </div>
+                                    <div className="col-md-6"/>
                                 </div>
                             </div>
                         </div>

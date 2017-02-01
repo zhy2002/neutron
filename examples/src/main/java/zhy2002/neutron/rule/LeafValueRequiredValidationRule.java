@@ -27,11 +27,11 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
                         stateChangeEvent.getClass()
-                ),
-                new BooleanStateChangeEventBinding(
-                        e -> validate(),
-                        Collections.singletonList(NeutronEventSubjects.REQUIRED)
-                )
+                )//,
+//                new BooleanStateChangeEventBinding(
+//                        e -> validate(),
+//                        Collections.singletonList(NeutronEventSubjects.REQUIRED)
+//                )
         );
     }
 

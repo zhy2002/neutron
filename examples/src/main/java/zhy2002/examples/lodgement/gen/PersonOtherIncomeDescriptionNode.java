@@ -10,17 +10,10 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonOtherIncomeAmountNode extends BaseCurrencyNode<PersonOtherIncomeNode>
+public  class PersonOtherIncomeDescriptionNode extends StringUiNode<PersonOtherIncomeNode>
 {
-    protected PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
+    protected PersonOtherIncomeDescriptionNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
 

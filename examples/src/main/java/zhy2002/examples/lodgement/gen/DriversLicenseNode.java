@@ -16,6 +16,14 @@ public  class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setPattern("\\d{8,8}");
+        setPatternMessage("Must be 8 digits");
+    }
+
 
 
 }

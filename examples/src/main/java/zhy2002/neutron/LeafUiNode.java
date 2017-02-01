@@ -42,6 +42,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         return getValue() != null;
     }
 
+    public void resetValue() {
+        T initialValue = getPreStateValue(NeutronEventSubjects.VALUE);
+        setValue(initialValue);
+    }
+
     @Override
     protected void setStateValueInternal(String key, Object value) {
         super.setStateValueInternal(key, value);

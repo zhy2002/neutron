@@ -13,5 +13,5 @@ public interface UiNodeStatusListener {
 
     void onAddedToParent();
 
-    void onLoaded();
+    void onLoad();
 }

@@ -20,12 +20,12 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
     private PrimaryApplicantFlagNode primaryApplicantFlagNode;
     private DriversLicenseNode driversLicenseNode;
     private ApplicantTypeNode applicantTypeNode;
-    private ApplicationTypeNode applicationTypeNode;
     private MaritalStatusNode maritalStatusNode;
     private PermanentResidentFlagNode permanentResidentFlagNode;
     private SpouseNode spouseNode;
     private FirstHomeBuyerFlagNode firstHomeBuyerFlagNode;
     private HousingStatusNode housingStatusNode;
+    private ApplicationTypeNode applicationTypeNode;
 
     protected PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
@@ -72,11 +72,6 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
-    public ApplicationTypeNode getApplicationTypeNode() {
-        return applicationTypeNode;
-    }
-
-    @JsMethod
     public MaritalStatusNode getMaritalStatusNode() {
         return maritalStatusNode;
     }
@@ -101,6 +96,11 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
         return housingStatusNode;
     }
 
+    @JsMethod
+    public ApplicationTypeNode getApplicationTypeNode() {
+        return applicationTypeNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -121,8 +121,6 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
         children.add(driversLicenseNode);
         applicantTypeNode = context.createChildNode(ApplicantTypeNode.class, this, "applicantTypeNode");
         children.add(applicantTypeNode);
-        applicationTypeNode = context.createChildNode(ApplicationTypeNode.class, this, "applicationTypeNode");
-        children.add(applicationTypeNode);
         maritalStatusNode = context.createChildNode(MaritalStatusNode.class, this, "maritalStatusNode");
         children.add(maritalStatusNode);
         permanentResidentFlagNode = context.createChildNode(PermanentResidentFlagNode.class, this, "permanentResidentFlagNode");
@@ -133,6 +131,8 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
         children.add(firstHomeBuyerFlagNode);
         housingStatusNode = context.createChildNode(HousingStatusNode.class, this, "housingStatusNode");
         children.add(housingStatusNode);
+        applicationTypeNode = context.createChildNode(ApplicationTypeNode.class, this, "applicationTypeNode");
+        children.add(applicationTypeNode);
         return children;
     }
 

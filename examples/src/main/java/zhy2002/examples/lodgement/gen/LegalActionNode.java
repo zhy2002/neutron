@@ -16,6 +16,14 @@ public  class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setDisabled(true);
+        setValue("Yes");
+    }
+
 
 
 }

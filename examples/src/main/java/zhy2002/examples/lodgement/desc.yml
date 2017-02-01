@@ -30,6 +30,8 @@ rootType:
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
+      rules:
+      - {typeName: UpdatePersonNodeLabelRule}
       init:
       - {propertyName: selectedName, value: '"personGeneralNode"'}
       children:
@@ -53,12 +55,12 @@ rootType:
         - {typeName: PrimaryApplicantFlagNode}
         - {typeName: DriversLicenseNode}
         - {typeName: ApplicantTypeNode}
-        - {typeName: ApplicationTypeNode}
         - {typeName: MaritalStatusNode}
         - {typeName: PermanentResidentFlagNode}
         - {typeName: SpouseNode}
         - {typeName: FirstHomeBuyerFlagNode}
         - {typeName: HousingStatusNode}
+        - {typeName: ApplicationTypeNode}
         childTypes:
         - typeName: TitleNode
           baseTypeName: StringUiNode
@@ -99,9 +101,13 @@ rootType:
           baseTypeName: BooleanUiNode
           rules:
           - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
+          - {typeName: AtMostOnePrimaryApplicantRule, baseTypeName: ValidationRule}
 
         - typeName: DriversLicenseNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: pattern, value: '"\\d{8,8}"'}
+          - {propertyName: patternMessage, value: '"Must be 8 digits"'}
 
         - typeName: ApplicantTypeNode
           baseTypeName: StringUiNode
@@ -118,6 +124,8 @@ rootType:
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ChangeApplicationTypeRule}
 
         - typeName: MaritalStatusNode
           baseTypeName: StringUiNode
@@ -253,6 +261,9 @@ rootType:
           
         - typeName: LegalActionNode
           baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: disabled, value: 'true'}
+          - {propertyName: value, value: '"Yes"'}
 
       - typeName: PersonOtherIncomeListNode
         baseTypeName: ListUiNode
@@ -263,10 +274,11 @@ rootType:
         - typeName: PersonOtherIncomeNode
           baseTypeName: ObjectUiNode
           children:
-          - {typeName: PersonOtherIncomeTypeNode}
           - {typeName: PersonAddBackTypeNode}
           - {typeName: PersonOtherIncomeAmountNode}
+          - {typeName: PersonOtherIncomeDescriptionNode}
           - {typeName: PersonOtherIncomePreviousYearNode}
+          - {typeName: PersonOtherIncomeTypeNode}
           childTypes:
           - typeName: PersonOtherIncomeTypeNode
             baseTypeName: StringUiNode
@@ -274,6 +286,10 @@ rootType:
             - {name: options, typeName: Object}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
+            - {propertyName: required, value: 'true'}
+            - {propertyName: value, value: '"Other Income"'}
+            rules:
+            - {typeName: PersonOtherIncomeTypeChangeRule}
 
           - typeName: PersonAddBackTypeNode
             baseTypeName: StringUiNode
@@ -283,21 +299,30 @@ rootType:
             - {propertyName: options, value: ApplicationNodeConstants.PERSON_ADD_BACK_TYPE.toArray()}
 
           - typeName: PersonOtherIncomeAmountNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: PersonOtherIncomePreviousYearNode
             baseTypeName: BooleanUiNode
 
+          - typeName: PersonOtherIncomeDescriptionNode
+            baseTypeName: StringUiNode
+
       - typeName: PersonResponsibleLendNode
         baseTypeName: ObjectUiNode
         children:
-        - {typeName: PersonSignificantChangeFlagNode}
         - {typeName: PersonTypeOfChangeNode}
         - {typeName: PersonMitigationMethodNode}
+        - {typeName: PersonSignificantChangeFlagNode}
         - {typeName: PersonRepaymentDifficultyNode}
         childTypes:
         - typeName: PersonSignificantChangeFlagNode
           baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: PersonSignificantChangeRule}
 
         - typeName: PersonTypeOfChangeNode
           baseTypeName: StringUiNode
@@ -315,6 +340,8 @@ rootType:
 
         - typeName: PersonRepaymentDifficultyNode
           baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode

@@ -27,7 +27,7 @@ public class ConfigBindingNodeStatusListener<N extends UiNode<?>> implements UiN
     }
 
     @Override
-    public void onLoaded() {
+    public void onLoad() {
         config.onLoaded(node);
     }
 }
