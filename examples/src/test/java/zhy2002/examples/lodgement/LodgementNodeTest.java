@@ -14,7 +14,6 @@ import zhy2002.neutron.util.*;
 
 import javax.inject.Provider;
 import java.util.Date;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -243,15 +242,6 @@ public class LodgementNodeTest {
 
         personNode.getPersonGeneralNode().getDateOfBirthNode().setValue("1997-4-14");
         assertThat(hasError(errorNode -> errorNode.getRule() instanceof DobRangeValidationRule), equalTo(false));
-    }
-
-    @Test
-    public void daggerTest() {
-        Provider<DateTimeService> factory = GlobalModule_GetDateTimeServiceFactory.create();
-        TestService testService = TestService_Factory.create(factory).get();
-        assertThat(testService.getDateTimeService(), notNullValue());
-
-        System.out.println("This is working.");
     }
 
     @Test

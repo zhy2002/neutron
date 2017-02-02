@@ -12,6 +12,7 @@ rootType:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}
   children:
+  - {typeName: AddressListNode}
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
   - {typeName: FinancialPositionNode}
@@ -21,6 +22,16 @@ rootType:
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
   childTypes:
+  - typeName: AddressListNode
+    baseTypeName: ListUiNode
+    itemTypeName: AddressRefUiNode
+    childTypes:
+    - typeName: AddressRefUiNode
+      baseTypeName: ObjectUiNode
+      children: []
+      properties:
+      - {name: ref, typeName: AddressNode}
+
   - typeName: PersonListNode
     baseTypeName: ListUiNode
     itemTypeName: PersonNode
@@ -728,6 +739,8 @@ commonTypes:
   - {typeName: SuburbNode}
   - {typeName: PostcodeNode}
   - {typeName: CountryNode}
+  rules:
+  - {typeName: UpdateAddressRefListRule}
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode

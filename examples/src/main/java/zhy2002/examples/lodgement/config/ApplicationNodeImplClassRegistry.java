@@ -3,6 +3,7 @@ package zhy2002.examples.lodgement.config;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.impl.*;
+import zhy2002.neutron.ChildNodeFactory;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.UiNodeRuleFactory;
 
@@ -10,8 +11,13 @@ import zhy2002.neutron.UiNodeRuleFactory;
 public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
 
     public ApplicationNodeImplClassRegistry() {
+        loadNodes();
         loadNodeConfig();
         loadRuleFactories();
+    }
+
+    private void loadNodes() {
+        this.setChildNodeFactory(AddressListNode.class, AddressListNodeImpl::new);
     }
 
     private void loadNodeConfig() {
@@ -53,6 +59,13 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
             @Override
             public MonthYearNotInFutureRule create(MonthYearNode<?> owner) {
                 return new MonthYearNotInFutureRuleImpl(owner);
+            }
+        });
+
+        setUiNodeRuleFactory(UpdateAddressRefListRule.class, new UiNodeRuleFactory<UpdateAddressRefListRule, AddressNode<?>>() {
+            @Override
+            public UpdateAddressRefListRuleImpl create(AddressNode<?> owner) {
+                return new UpdateAddressRefListRuleImpl(owner);
             }
         });
 

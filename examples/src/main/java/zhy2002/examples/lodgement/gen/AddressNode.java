@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P>
 {
@@ -54,6 +55,14 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         countryNode = context.createChildNode(CountryNode.class, this, "countryNode");
         children.add(countryNode);
         return children;
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(UpdateAddressRefListRule.class, this));
     }
 
 

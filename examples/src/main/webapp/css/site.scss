@@ -482,4 +482,13 @@ a[tabindex] {
 .error-message {
 }
 
+.address-list-component {
+  position: absolute;
+  z-index: 100;
+  background-color: wheat;
+  border: 3px solid #333;
+  width: 300px;
+  height: 300px;
+  bottom: 0;
+}
 //endregion

@@ -13,6 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
 {
+    private AddressListNode addressListNode;
     private PersonListNode personListNode;
     private CompanyListNode companyListNode;
     private FinancialPositionNode financialPositionNode;
@@ -52,6 +53,11 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     @JsMethod
     public void setContentLevel(int value) {
         setStateValue(ApplicationNodeConstants.CONTENT_LEVEL, Integer.class, value);
+    }
+
+    @JsMethod
+    public AddressListNode getAddressListNode() {
+        return addressListNode;
     }
 
     @JsMethod
@@ -98,6 +104,8 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         UiNodeContext<?> context = getContext();
+        addressListNode = context.createChildNode(AddressListNode.class, this, "addressListNode");
+        children.add(addressListNode);
         personListNode = context.createChildNode(PersonListNode.class, this, "personListNode");
         children.add(personListNode);
         companyListNode = context.createChildNode(CompanyListNode.class, this, "companyListNode");

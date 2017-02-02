@@ -23,6 +23,8 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadChildNodeFactories() {
+        setChildNodeFactory(AddressRefUiNode.class, new AddressRefUiNodeFactory());
+        setChildNodeFactory(AddressListNode.class, new AddressListNodeFactory());
         setChildNodeFactory(TitleNode.class, new TitleNodeFactory());
         setChildNodeFactory(FirstNameNode.class, new FirstNameNodeFactory());
         setChildNodeFactory(LastNameNode.class, new LastNameNodeFactory());
@@ -190,6 +192,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadNodeAddEventFactories() {
+        super.setNodeAddEventFactory(AddressRefUiNode.class, AddressRefUiNodeAddEvent::new);
         super.setNodeAddEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeAddEvent::new);
         super.setNodeAddEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeAddEvent::new);
         super.setNodeAddEventFactory(PersonOtherIncomeNode.class, PersonOtherIncomeNodeAddEvent::new);
@@ -207,6 +210,7 @@ class ApplicationNodeClassRegistry extends ClassRegistryImpl {
     }
 
     private void loadNodeRemoveEventFactories() {
+        super.setNodeRemoveEventFactory(AddressRefUiNode.class, AddressRefUiNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(CurrentEmploymentNode.class, CurrentEmploymentNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PreviousEmploymentNode.class, PreviousEmploymentNodeRemoveEvent::new);
         super.setNodeRemoveEventFactory(PersonOtherIncomeNode.class, PersonOtherIncomeNodeRemoveEvent::new);
