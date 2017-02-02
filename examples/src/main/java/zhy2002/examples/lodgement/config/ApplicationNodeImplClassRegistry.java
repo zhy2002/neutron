@@ -7,9 +7,12 @@ import zhy2002.neutron.ChildNodeFactory;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.UiNodeRuleFactory;
 
+import javax.inject.Inject;
+
 
 public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
 
+    @Inject
     public ApplicationNodeImplClassRegistry() {
         loadNodes();
         loadNodeConfig();
