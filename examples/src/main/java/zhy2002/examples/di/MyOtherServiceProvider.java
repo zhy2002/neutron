@@ -1,7 +1,16 @@
 package zhy2002.examples.di;
 
-/**
- * Created by john.zhang on 2/02/2017.
- */
+
 public class MyOtherServiceProvider {
+
+    private final DbReader reader;
+
+    public MyOtherServiceProvider(DbReader reader) {
+
+        this.reader = reader;
+    }
+
+    public DbReader getReader() {
+        return reader;
+    }
 }

@@ -1,8 +1,11 @@
 package zhy2002.examples.di;
 
 import org.junit.Test;
+import zhy2002.examples.di.nodes.*;
 
 import javax.inject.Provider;
+
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -42,7 +45,7 @@ public class DaggerTest {
 
     @Test
     public void moduleCanOverrideDefaultInstantiation() {
-        MyOtherComponent component =  DaggerMyOtherComponent.create();
+        MyOtherComponent component = DaggerMyOtherComponent.create();
         MyServiceConsumer consumer = component.createMyServiceConsumer();
 
         assertThat(consumer.getDataReader().getValue(), equalTo("in MyOtherModule"));
@@ -71,5 +74,58 @@ public class DaggerTest {
         Provider<MyOtherServiceProvider> providerProvider = myOtherComponent.getOtherServiceProvider();
 
         assertThat(providerProvider.get(), sameInstance(providerProvider.get()));
+    }
+
+    @Test
+    public void canInjectParametrizedConstructorAutomatically() {
+        MyOtherComponent myOtherComponent = DaggerMyOtherComponent.create();
+        Provider<MyOtherServiceProvider> providerProvider = myOtherComponent.getOtherServiceProvider();
+
+        assertThat(providerProvider.get().getReader().getConnection(), notNullValue());
+    }
+
+    @Test
+    public void dummyTests() {
+        DummyContextComponent contextComponent = DaggerDummyContextComponent.create();
+
+        assertThat(contextComponent.provideDummyContext(), sameInstance(contextComponent.provideDummyContext()));
+        DummyContext context = contextComponent.provideDummyContext();
+        DummyRootNode rootNode = context.getRootNodeLazy().get();
+
+        assertThat(rootNode, equalTo(context.getRootNodeLazy().get()));
+        assertThat(context.getChangeEngine(), sameInstance(rootNode.getChangeEngine()));
+
+        Set<Object> children = rootNode.getChildren();
+        assertThat(children, hasSize(3));
+
+        assertThat(children.contains(rootNode.getDummyMiddleANodeLazy1().get()), equalTo(true));
+
+        assertThat(rootNode.getDummyMiddleBNodeLazy().get().getDummyMiddleA2Node(), sameInstance(rootNode.getDummyMiddleANodeLazy2().get()));
+
+        DummyMiddleBNode dummyMiddleBNode = rootNode.getDummyMiddleBNodeLazy().get();
+
+        DummyListANode listANode = dummyMiddleBNode.getDummyListANodeLazy().get();
+
+        DummyListAItemComponent.Builder builder1 = listANode.getItemComponentBuilderProvider().get();
+        DummyListAItemComponent.Builder builder2 = listANode.getItemComponentBuilderProvider().get();
+
+        assertThat(builder1, not(sameInstance(builder2)));
+
+        DummyListAItemComponent component1 = builder1.dummyListAItemModule(new DummyListAItemModule("1")).build();
+        DummyListAItemComponent component2 = builder2.dummyListAItemModule(new DummyListAItemModule("2")).build();
+
+        assertThat(component1, not(sameInstance(component2)));
+
+        DummyListAItemNode node1 = component1.provideDummyListAItemNode();
+
+        assertThat(node1, sameInstance(component1.provideDummyListAItemNode()));
+
+        assertThat(node1.getName(), equalTo("1"));
+
+        DummyListAItemNode node2 = component2.provideDummyListAItemNode();
+
+        assertThat(node2.getName(), equalTo("2"));
+
+        assertThat(node2.getRootNode(), sameInstance(rootNode));
     }
 }

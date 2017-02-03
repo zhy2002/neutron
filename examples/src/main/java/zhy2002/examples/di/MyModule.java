@@ -15,8 +15,8 @@ class MyModule {
 
     @Singleton
     @Provides
-    MyOtherServiceProvider provideMyOtherServiceProvider() {
-        return new MyOtherServiceProvider();
+    MyOtherServiceProvider provideMyOtherServiceProvider(DbReader reader) {
+        return new MyOtherServiceProvider(reader);
     }
 
 }
