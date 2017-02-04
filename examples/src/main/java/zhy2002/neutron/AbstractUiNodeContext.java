@@ -14,7 +14,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     private final ClassRegistry classRegistry;
     private final String contextId;
     private final UniqueIdGenerator nodeIdGenerator;
-    private final UiNodeChangeEngineImpl changeEngine;
+    private final UiNodeChangeEngine changeEngine;
 
     /**
      * Construct the context.
@@ -22,11 +22,16 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
      * @param registries an array of ClassRegistry.
      *                   The latter will override the former.
      */
-    protected AbstractUiNodeContext(ClassRegistryImpl... registries) {
-        classRegistry = new ImmutableClassRegistry(registries);
-        changeEngine = new UiNodeChangeEngineImpl();
-        contextId = RandomUniqueIdGenerator.Instance.next();
-        nodeIdGenerator = new SequentialUniqueIdGenerator();
+    protected AbstractUiNodeContext(
+            String contextId,
+            UiNodeChangeEngine changeEngine,
+            UniqueIdGenerator nodeIdGenerator,
+            ClassRegistryImpl... registries) {
+
+        this.contextId = contextId;
+        this.changeEngine = changeEngine;
+        this.nodeIdGenerator = nodeIdGenerator;
+        this.classRegistry = new ImmutableClassRegistry(registries);
     }
 
     /**
@@ -150,8 +155,9 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
         changeEngine.processEvent(event);
     }
 
+    @Override
     public final void flush() {
-        changeEngine.processCycle();
+        changeEngine.flush();
     }
 
     @Override

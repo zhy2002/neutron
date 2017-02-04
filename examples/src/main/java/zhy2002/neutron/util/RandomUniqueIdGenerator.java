@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomUniqueIdGenerator implements UniqueIdGenerator {
 
-    //This seed is not secure enough. Need to retrieve this from the server side.
+    //todo This seed is not secure enough. Need to retrieve this from the server side.
     public static final UniqueIdGenerator Instance = new RandomUniqueIdGenerator((int) System.currentTimeMillis());
     private Random random;
 

@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -35,6 +37,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      */
     private final Deque<Cycle> cycleDeque = new ArrayDeque<>();
 
+    @Inject
     public UiNodeChangeEngineImpl() {
     }
 
@@ -45,7 +48,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
     @Override
     public void setCycleMode(@NotNull CycleModeEnum cycleMode) {
-        if(isInCycle() && cycleMode != this.cycleMode)
+        if (isInCycle() && cycleMode != this.cycleMode)
             throw new UiNodeException("Cannot change cycle mode in a cycle.");
         this.cycleMode = cycleMode;
     }
@@ -85,6 +88,11 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             return;
 
         rollbackSessionInternal();
+    }
+
+    @Override
+    public void flush() {
+        processCycle();
     }
 
     private void rollbackSessionInternal() {

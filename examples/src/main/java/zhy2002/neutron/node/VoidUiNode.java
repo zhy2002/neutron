@@ -17,7 +17,12 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      */
     private final static class VoidAbstractUiNodeContext extends AbstractUiNodeContext<VoidUiNode> {
         private VoidAbstractUiNodeContext(ClassRegistryImpl factoryRegistry) {
-            super(factoryRegistry);
+            super(
+                    null,
+                    null,
+                    null,
+                    factoryRegistry
+            );
         }
 
         @Override

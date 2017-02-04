@@ -5,8 +5,19 @@ import javax.validation.constraints.NotNull;
 
 public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
 
-    public LodgementNodeContext(@NotNull ClassRegistryImpl implRegistry) {
-        super(new LodgementNodeClassRegistry(), implRegistry);
+    public LodgementNodeContext(
+        String contextId,
+        UiNodeChangeEngine changeEngine,
+        UniqueIdGenerator nodeIdGenerator,
+        @NotNull ClassRegistryImpl implRegistry
+    ) {
+        super(
+            contextId,
+            changeEngine,
+            nodeIdGenerator,
+            new LodgementNodeClassRegistry(),
+            implRegistry
+        );
     }
 
     @Override
@@ -14,7 +25,8 @@ public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
         return LodgementNode.class;
         }
 
-        protected LodgementNode createRootNode() {
+    @Override
+    protected LodgementNode createRootNode() {
         return new LodgementNode(this);
-        }
+    }
 }

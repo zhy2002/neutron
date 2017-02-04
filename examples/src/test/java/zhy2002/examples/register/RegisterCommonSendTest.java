@@ -2,16 +2,19 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;
+import zhy2002.examples.register.di.RegisterNodeFactory;
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
 import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
-import zhy2002.neutron.*;
+import zhy2002.neutron.CycleModeEnum;
+import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNodeChangeListener;
+import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.NumberFormatValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.util.ClassUtil;
 
 import java.math.BigDecimal;
@@ -35,8 +38,7 @@ public class RegisterCommonSendTest {
     }
 
     protected RegisterNodeContext createContext() {
-        ClassRegistryImpl factoryRegistry = new RegisterNodeImplClassRegistry();
-        return new RegisterNodeContext(factoryRegistry);
+        return (RegisterNodeContext) RegisterNodeFactory.create().getContext();
     }
 
     @Test

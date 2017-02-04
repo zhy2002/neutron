@@ -35,4 +35,6 @@ public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
 
     void setCycleMode(@NotNull CycleModeEnum cycleMode);
 
+    void flush();
+
 }

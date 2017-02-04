@@ -4,6 +4,7 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.data.Telephone;
+import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
@@ -12,7 +13,6 @@ import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.util.*;
 
-import javax.inject.Provider;
 import java.util.Date;
 import java.util.function.Predicate;
 

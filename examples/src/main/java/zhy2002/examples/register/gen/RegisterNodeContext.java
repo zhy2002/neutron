@@ -5,8 +5,19 @@ import javax.validation.constraints.NotNull;
 
 public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
 
-    public RegisterNodeContext(@NotNull ClassRegistryImpl implRegistry) {
-        super(new RegisterNodeClassRegistry(), implRegistry);
+    public RegisterNodeContext(
+        String contextId,
+        UiNodeChangeEngine changeEngine,
+        UniqueIdGenerator nodeIdGenerator,
+        @NotNull ClassRegistryImpl implRegistry
+    ) {
+        super(
+            contextId,
+            changeEngine,
+            nodeIdGenerator,
+            new RegisterNodeClassRegistry(),
+            implRegistry
+        );
     }
 
     @Override
@@ -14,7 +25,8 @@ public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
         return RegisterNode.class;
         }
 
-        protected RegisterNode createRootNode() {
+    @Override
+    protected RegisterNode createRootNode() {
         return new RegisterNode(this);
-        }
+    }
 }
