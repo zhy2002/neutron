@@ -14,7 +14,7 @@ public  class LodgementNode extends ObjectUiNode<VoidUiNode>
 {
     private AppManagerNode appManagerNode;
 
-    protected LodgementNode(@NotNull AbstractUiNodeContext<?> context) {
+    protected LodgementNode(@NotNull UiNodeContext<?> context) {
         super(context);
     }
 

@@ -27,7 +27,7 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     protected ${typeName}(${parent.typeName} parent, String name) {
         super(parent, name);
 <#else>
-    protected ${typeName}(@NotNull AbstractUiNodeContext<?> context) {
+    protected ${typeName}(@NotNull UiNodeContext<?> context) {
         super(context);
 </#if>
     }

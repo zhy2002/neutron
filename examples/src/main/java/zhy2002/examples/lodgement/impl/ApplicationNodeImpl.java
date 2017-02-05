@@ -1,17 +1,21 @@
 package zhy2002.examples.lodgement.impl;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.examples.lodgement.di.ApplicationNodeScope;
 import zhy2002.examples.lodgement.gen.ApplicationNode;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.neutron.*;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
 /**
  * Add additional methods for JSX.
  */
-class ApplicationNodeImpl extends ApplicationNode {
+public class ApplicationNodeImpl extends ApplicationNode {
 
-    ApplicationNodeImpl(@NotNull AbstractUiNodeContext<?> context) {
+    @Inject
+    ApplicationNodeImpl(@NotNull ApplicationNodeContext context) {
         super(context);
     }
 

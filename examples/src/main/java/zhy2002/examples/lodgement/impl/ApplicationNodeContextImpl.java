@@ -1,5 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
+import dagger.Lazy;
 import zhy2002.examples.lodgement.di.ApplicationNodeScope;
 import zhy2002.examples.lodgement.gen.ApplicationNode;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
@@ -18,6 +19,9 @@ import javax.validation.constraints.NotNull;
 public class ApplicationNodeContextImpl extends ApplicationNodeContext {
 
     @Inject
+    Lazy<ApplicationNode> applicationNodeLazy;
+
+    @Inject
     public ApplicationNodeContextImpl(
             UiNodeChangeEngine changeEngine,
             UniqueIdGenerator nodeIdGenerator,
@@ -33,6 +37,6 @@ public class ApplicationNodeContextImpl extends ApplicationNodeContext {
 
     @Override
     protected ApplicationNode createRootNode() {
-        return new ApplicationNodeImpl(this);
+        return applicationNodeLazy.get();
     }
 }

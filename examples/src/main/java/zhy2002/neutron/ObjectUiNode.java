@@ -18,7 +18,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         super(parent, name);
     }
 
-    protected ObjectUiNode(@NotNull AbstractUiNodeContext<?> context) {
+    protected ObjectUiNode(@NotNull UiNodeContext<?> context) {
         super(context);
     }
 
