@@ -12,10 +12,14 @@ public final class CodeGenUtil {
     private CodeGenUtil() {
     }
 
-    static void clearDirectory(String targetDirectory) throws IOException {
+    static void clearDirectory(String targetDirectory) {
         Path directory = Paths.get(targetDirectory);
         if (deleteDir(directory.toFile())) {
-            Files.createDirectories(directory);
+            try {
+                Files.createDirectories(directory);
+            } catch (IOException ex) {
+                throw new RuntimeException("Failed to recreate generated directory.", ex);
+            }
         } else {
             throw new RuntimeException("Cannot delete generated directory: " + directory);
         }
@@ -35,14 +39,14 @@ public final class CodeGenUtil {
         return file.delete();
     }
 
-    static String firstCharLower(String value) {
+    public static String firstCharLower(String value) {
         if (isEmpty(value))
             return value;
 
         return value.substring(0, 1).toLowerCase() + value.substring(1);
     }
 
-    static String allCaps(String value) {
+    public static String allCaps(String value) {
         if (isEmpty(value))
             return value;
 

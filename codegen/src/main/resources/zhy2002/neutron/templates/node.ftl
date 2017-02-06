@@ -150,7 +150,7 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
 </#if>
 
 <#if parent??>
-    <#if parent.localRequired??>
+    <#if parent.localRequired>
 
     @Override
     public Boolean getRequired() {

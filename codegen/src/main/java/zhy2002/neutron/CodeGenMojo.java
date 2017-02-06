@@ -23,7 +23,7 @@ public class CodeGenMojo extends AbstractMojo {
         System.out.println(definitionFile);
         System.out.println(targetDirectory);
 
-        CodeGenerator generator = new CodeGenerator();
-        generator.generateFile(definitionFile, targetDirectory);
+        new CodeGenerator().generate(definitionFile, targetDirectory);
     }
+
 }

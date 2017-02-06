@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.app.data.*;
+import zhy2002.examples.app.gen.rule.*;
 
 public  class LodgementNode extends ObjectUiNode<VoidUiNode>
 {
@@ -30,6 +31,14 @@ public  class LodgementNode extends ObjectUiNode<VoidUiNode>
         appManagerNode = context.createChildNode(AppManagerNode.class, this, "appManagerNode");
         children.add(appManagerNode);
         return children;
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        UiNodeContext<?> context = getContext();
+        createdRules.add(context.createUiNodeRule(DummyRule.class, this));
     }
 
 

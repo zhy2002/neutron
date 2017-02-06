@@ -2,6 +2,8 @@ targetPackage: zhy2002.examples.app
 rootType:
   typeName: LodgementNode
   baseTypeName: ObjectUiNode
+  rules:
+  - {typeName: DummyRule}
   children:
   - {typeName: AppManagerNode}
   childTypes:
