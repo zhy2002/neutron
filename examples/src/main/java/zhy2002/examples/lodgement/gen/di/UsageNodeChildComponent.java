@@ -13,4 +13,11 @@ public interface UsageNodeChildComponent {
     PrimarySecurityFlagNode providePrimarySecurityFlagNode(@Named("primarySecurityFlagNode") PrimarySecurityFlagNode impl);
     ApprovalInPrincipleFlagNode provideApprovalInPrincipleFlagNode(@Named("approvalInPrincipleFlagNode") ApprovalInPrincipleFlagNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setUsageNodeChildModule(UsageNodeChildModule module);
+
+        UsageNodeChildComponent build();
+    }
 }

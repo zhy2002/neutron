@@ -8,5 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 @AdditionalNodeChildScope
 public class AdditionalNodeChildModule {
 
+    private final AdditionalNode parent;
+
+    public AdditionalNodeChildModule(AdditionalNode parent) {
+        this.parent = parent;
+    }
+
 
 }

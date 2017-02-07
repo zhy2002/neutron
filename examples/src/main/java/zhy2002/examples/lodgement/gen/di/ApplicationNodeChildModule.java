@@ -4,16 +4,30 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    AddressListNodeItemComponent.class,
+    PersonListNodeItemComponent.class,
+    CompanyListNodeItemComponent.class,
+    FinancialPositionNodeChildComponent.class,
+    RealEstateListNodeItemComponent.class,
+    ProductsNodeChildComponent.class,
+    AdditionalNodeChildComponent.class,
+    SubmissionNodeChildComponent.class,
+    ErrorListNodeItemComponent.class
 })
 @ApplicationNodeChildScope
 public class ApplicationNodeChildModule {
+
+    private final ApplicationNode parent;
+
+    public ApplicationNodeChildModule(ApplicationNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @ApplicationNodeChildScope
     @Named("addressListNode")
     AddressListNode provideAddressListNode(
-        ApplicationNode parent,
         MembersInjector<AddressListNode> injector
     ) {
         AddressListNode node = new AddressListNode(parent, "addressListNode");
@@ -26,7 +40,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("personListNode")
     PersonListNode providePersonListNode(
-        ApplicationNode parent,
         MembersInjector<PersonListNode> injector
     ) {
         PersonListNode node = new PersonListNode(parent, "personListNode");
@@ -39,7 +52,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("companyListNode")
     CompanyListNode provideCompanyListNode(
-        ApplicationNode parent,
         MembersInjector<CompanyListNode> injector
     ) {
         CompanyListNode node = new CompanyListNode(parent, "companyListNode");
@@ -52,7 +64,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("financialPositionNode")
     FinancialPositionNode provideFinancialPositionNode(
-        ApplicationNode parent,
         MembersInjector<FinancialPositionNode> injector
     ) {
         FinancialPositionNode node = new FinancialPositionNode(parent, "financialPositionNode");
@@ -65,7 +76,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("realEstateListNode")
     RealEstateListNode provideRealEstateListNode(
-        ApplicationNode parent,
         MembersInjector<RealEstateListNode> injector
     ) {
         RealEstateListNode node = new RealEstateListNode(parent, "realEstateListNode");
@@ -78,7 +88,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("productsNode")
     ProductsNode provideProductsNode(
-        ApplicationNode parent,
         MembersInjector<ProductsNode> injector
     ) {
         ProductsNode node = new ProductsNode(parent, "productsNode");
@@ -91,7 +100,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("additionalNode")
     AdditionalNode provideAdditionalNode(
-        ApplicationNode parent,
         MembersInjector<AdditionalNode> injector
     ) {
         AdditionalNode node = new AdditionalNode(parent, "additionalNode");
@@ -104,7 +112,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("submissionNode")
     SubmissionNode provideSubmissionNode(
-        ApplicationNode parent,
         MembersInjector<SubmissionNode> injector
     ) {
         SubmissionNode node = new SubmissionNode(parent, "submissionNode");
@@ -117,7 +124,6 @@ public class ApplicationNodeChildModule {
     @ApplicationNodeChildScope
     @Named("errorListNode")
     ErrorListNode provideErrorListNode(
-        ApplicationNode parent,
         MembersInjector<ErrorListNode> injector
     ) {
         ErrorListNode node = new ErrorListNode(parent, "errorListNode");

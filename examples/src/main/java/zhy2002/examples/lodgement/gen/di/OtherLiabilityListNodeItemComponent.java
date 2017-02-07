@@ -9,4 +9,11 @@ public interface OtherLiabilityListNodeItemComponent {
 
     OtherLiabilityNode provideOtherLiabilityNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setOtherLiabilityListNodeItemModule(OtherLiabilityListNodeItemModule module);
+
+        OtherLiabilityListNodeItemComponent build();
+    }
 }

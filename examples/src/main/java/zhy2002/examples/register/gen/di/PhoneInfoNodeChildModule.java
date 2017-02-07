@@ -8,12 +8,17 @@ import zhy2002.examples.register.gen.*;
 @PhoneInfoNodeChildScope
 public class PhoneInfoNodeChildModule {
 
+    private final PhoneInfoNode parent;
+
+    public PhoneInfoNodeChildModule(PhoneInfoNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PhoneInfoNodeChildScope
     @Named("countryCodeNode")
     CountryCodeNode provideCountryCodeNode(
-        PhoneInfoNode parent,
         MembersInjector<CountryCodeNode> injector
     ) {
         CountryCodeNode node = new CountryCodeNode(parent, "countryCodeNode");
@@ -26,7 +31,6 @@ public class PhoneInfoNodeChildModule {
     @PhoneInfoNodeChildScope
     @Named("areaCodeNode")
     AreaCodeNode provideAreaCodeNode(
-        PhoneInfoNode parent,
         MembersInjector<AreaCodeNode> injector
     ) {
         AreaCodeNode node = new AreaCodeNode(parent, "areaCodeNode");
@@ -39,7 +43,6 @@ public class PhoneInfoNodeChildModule {
     @PhoneInfoNodeChildScope
     @Named("phoneNumberNode")
     PhoneNumberNode providePhoneNumberNode(
-        PhoneInfoNode parent,
         MembersInjector<PhoneNumberNode> injector
     ) {
         PhoneNumberNode node = new PhoneNumberNode(parent, "phoneNumberNode");

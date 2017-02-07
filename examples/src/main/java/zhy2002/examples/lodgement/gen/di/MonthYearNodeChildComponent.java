@@ -10,4 +10,11 @@ public interface MonthYearNodeChildComponent {
     MonthNode provideMonthNode(@Named("monthNode") MonthNode impl);
     YearNode provideYearNode(@Named("yearNode") YearNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setMonthYearNodeChildModule(MonthYearNodeChildModule module);
+
+        MonthYearNodeChildComponent build();
+    }
 }

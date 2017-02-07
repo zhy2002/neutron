@@ -71,6 +71,7 @@ public class DomainInfo {
                 p.setTypeName(parentBaseTypeName);
                 nodeInfo.setParent(p);
             }
+            nodeInfo.setIsAbstract(true);
             nodeInfo.setDomainInfo(this);
             nodeInfo.initialize();
         }

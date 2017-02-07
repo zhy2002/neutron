@@ -8,14 +8,19 @@ import zhy2002.examples.lodgement.gen.*;
 @CurrentEmploymentListNodeItemScope
 public class CurrentEmploymentListNodeItemModule {
 
+    private final CurrentEmploymentListNode parent;
+
+    public CurrentEmploymentListNodeItemModule(CurrentEmploymentListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @CurrentEmploymentListNodeItemScope
     CurrentEmploymentNode provideCurrentEmploymentNode(
-        CurrentEmploymentListNode parent,
         MembersInjector<CurrentEmploymentNode> injector
     ) {
         CurrentEmploymentNode node = new CurrentEmploymentNode(parent, getItemName());

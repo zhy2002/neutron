@@ -4,16 +4,26 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    PayeEmployedNodeChildComponent.class,
+    SelfEmployedNodeChildComponent.class,
+    EmployedNodeChildComponent.class,
+    UnemployedNodeChildComponent.class,
+    RetiredEmploymentNodeChildComponent.class
 })
 @EmploymentNodeChildScope
 public class EmploymentNodeChildModule {
+
+    private final EmploymentNode parent;
+
+    public EmploymentNodeChildModule(EmploymentNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @EmploymentNodeChildScope
     @Named("employmentTypeNode")
     EmploymentTypeNode provideEmploymentTypeNode(
-        EmploymentNode parent,
         MembersInjector<EmploymentTypeNode> injector
     ) {
         EmploymentTypeNode node = new EmploymentTypeNode(parent, "employmentTypeNode");
@@ -26,7 +36,6 @@ public class EmploymentNodeChildModule {
     @EmploymentNodeChildScope
     @Named("payeEmployedNode")
     PayeEmployedNode providePayeEmployedNode(
-        EmploymentNode parent,
         MembersInjector<PayeEmployedNode> injector
     ) {
         PayeEmployedNode node = new PayeEmployedNode(parent, "payeEmployedNode");
@@ -39,7 +48,6 @@ public class EmploymentNodeChildModule {
     @EmploymentNodeChildScope
     @Named("selfEmployedNode")
     SelfEmployedNode provideSelfEmployedNode(
-        EmploymentNode parent,
         MembersInjector<SelfEmployedNode> injector
     ) {
         SelfEmployedNode node = new SelfEmployedNode(parent, "selfEmployedNode");
@@ -52,7 +60,6 @@ public class EmploymentNodeChildModule {
     @EmploymentNodeChildScope
     @Named("unemployedNode")
     UnemployedNode provideUnemployedNode(
-        EmploymentNode parent,
         MembersInjector<UnemployedNode> injector
     ) {
         UnemployedNode node = new UnemployedNode(parent, "unemployedNode");
@@ -65,7 +72,6 @@ public class EmploymentNodeChildModule {
     @EmploymentNodeChildScope
     @Named("retiredEmploymentNode")
     RetiredEmploymentNode provideRetiredEmploymentNode(
-        EmploymentNode parent,
         MembersInjector<RetiredEmploymentNode> injector
     ) {
         RetiredEmploymentNode node = new RetiredEmploymentNode(parent, "retiredEmploymentNode");

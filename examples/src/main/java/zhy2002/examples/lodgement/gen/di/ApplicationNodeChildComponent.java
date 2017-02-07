@@ -17,4 +17,11 @@ public interface ApplicationNodeChildComponent {
     SubmissionNode provideSubmissionNode(@Named("submissionNode") SubmissionNode impl);
     ErrorListNode provideErrorListNode(@Named("errorListNode") ErrorListNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setApplicationNodeChildModule(ApplicationNodeChildModule module);
+
+        ApplicationNodeChildComponent build();
+    }
 }

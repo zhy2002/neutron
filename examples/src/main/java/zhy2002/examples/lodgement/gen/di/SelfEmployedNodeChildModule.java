@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @SelfEmployedNodeChildScope
 public class SelfEmployedNodeChildModule {
 
+    private final SelfEmployedNode parent;
+
+    public SelfEmployedNodeChildModule(SelfEmployedNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @SelfEmployedNodeChildScope
     @Named("businessTypeNode")
     BusinessTypeNode provideBusinessTypeNode(
-        SelfEmployedNode parent,
         MembersInjector<BusinessTypeNode> injector
     ) {
         BusinessTypeNode node = new BusinessTypeNode(parent, "businessTypeNode");
@@ -26,7 +31,6 @@ public class SelfEmployedNodeChildModule {
     @SelfEmployedNodeChildScope
     @Named("profitThisYearNode")
     ProfitThisYearNode provideProfitThisYearNode(
-        SelfEmployedNode parent,
         MembersInjector<ProfitThisYearNode> injector
     ) {
         ProfitThisYearNode node = new ProfitThisYearNode(parent, "profitThisYearNode");
@@ -39,7 +43,6 @@ public class SelfEmployedNodeChildModule {
     @SelfEmployedNodeChildScope
     @Named("profitPreviousYearNode")
     ProfitPreviousYearNode provideProfitPreviousYearNode(
-        SelfEmployedNode parent,
         MembersInjector<ProfitPreviousYearNode> injector
     ) {
         ProfitPreviousYearNode node = new ProfitPreviousYearNode(parent, "profitPreviousYearNode");

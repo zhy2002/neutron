@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @OtherAssetNodeChildScope
 public class OtherAssetNodeChildModule {
 
+    private final OtherAssetNode parent;
+
+    public OtherAssetNodeChildModule(OtherAssetNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @OtherAssetNodeChildScope
     @Named("otherAssetTypeNode")
     OtherAssetTypeNode provideOtherAssetTypeNode(
-        OtherAssetNode parent,
         MembersInjector<OtherAssetTypeNode> injector
     ) {
         OtherAssetTypeNode node = new OtherAssetTypeNode(parent, "otherAssetTypeNode");
@@ -26,7 +31,6 @@ public class OtherAssetNodeChildModule {
     @OtherAssetNodeChildScope
     @Named("otherAssetDescriptionNode")
     OtherAssetDescriptionNode provideOtherAssetDescriptionNode(
-        OtherAssetNode parent,
         MembersInjector<OtherAssetDescriptionNode> injector
     ) {
         OtherAssetDescriptionNode node = new OtherAssetDescriptionNode(parent, "otherAssetDescriptionNode");
@@ -39,7 +43,6 @@ public class OtherAssetNodeChildModule {
     @OtherAssetNodeChildScope
     @Named("otherAssetMarketValueNode")
     OtherAssetMarketValueNode provideOtherAssetMarketValueNode(
-        OtherAssetNode parent,
         MembersInjector<OtherAssetMarketValueNode> injector
     ) {
         OtherAssetMarketValueNode node = new OtherAssetMarketValueNode(parent, "otherAssetMarketValueNode");

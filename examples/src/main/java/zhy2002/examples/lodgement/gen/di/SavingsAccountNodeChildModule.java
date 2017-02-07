@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @SavingsAccountNodeChildScope
 public class SavingsAccountNodeChildModule {
 
+    private final SavingsAccountNode parent;
+
+    public SavingsAccountNodeChildModule(SavingsAccountNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @SavingsAccountNodeChildScope
     @Named("savingsTypeNode")
     SavingsTypeNode provideSavingsTypeNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsTypeNode> injector
     ) {
         SavingsTypeNode node = new SavingsTypeNode(parent, "savingsTypeNode");
@@ -26,7 +31,6 @@ public class SavingsAccountNodeChildModule {
     @SavingsAccountNodeChildScope
     @Named("savingsInstitutionNameNode")
     SavingsInstitutionNameNode provideSavingsInstitutionNameNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsInstitutionNameNode> injector
     ) {
         SavingsInstitutionNameNode node = new SavingsInstitutionNameNode(parent, "savingsInstitutionNameNode");
@@ -39,7 +43,6 @@ public class SavingsAccountNodeChildModule {
     @SavingsAccountNodeChildScope
     @Named("savingsBalanceNode")
     SavingsBalanceNode provideSavingsBalanceNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsBalanceNode> injector
     ) {
         SavingsBalanceNode node = new SavingsBalanceNode(parent, "savingsBalanceNode");
@@ -52,7 +55,6 @@ public class SavingsAccountNodeChildModule {
     @SavingsAccountNodeChildScope
     @Named("savingsBsbNoNode")
     SavingsBsbNoNode provideSavingsBsbNoNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsBsbNoNode> injector
     ) {
         SavingsBsbNoNode node = new SavingsBsbNoNode(parent, "savingsBsbNoNode");
@@ -65,7 +67,6 @@ public class SavingsAccountNodeChildModule {
     @SavingsAccountNodeChildScope
     @Named("savingsAccountNoNode")
     SavingsAccountNoNode provideSavingsAccountNoNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsAccountNoNode> injector
     ) {
         SavingsAccountNoNode node = new SavingsAccountNoNode(parent, "savingsAccountNoNode");
@@ -78,7 +79,6 @@ public class SavingsAccountNodeChildModule {
     @SavingsAccountNodeChildScope
     @Named("savingsAccountNameNode")
     SavingsAccountNameNode provideSavingsAccountNameNode(
-        SavingsAccountNode parent,
         MembersInjector<SavingsAccountNameNode> injector
     ) {
         SavingsAccountNameNode node = new SavingsAccountNameNode(parent, "savingsAccountNameNode");

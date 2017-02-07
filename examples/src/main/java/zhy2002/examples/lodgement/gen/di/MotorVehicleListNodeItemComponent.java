@@ -9,4 +9,11 @@ public interface MotorVehicleListNodeItemComponent {
 
     MotorVehicleNode provideMotorVehicleNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setMotorVehicleListNodeItemModule(MotorVehicleListNodeItemModule module);
+
+        MotorVehicleListNodeItemComponent build();
+    }
 }

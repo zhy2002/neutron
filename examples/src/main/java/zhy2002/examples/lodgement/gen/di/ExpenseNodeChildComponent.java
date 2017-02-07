@@ -11,4 +11,11 @@ public interface ExpenseNodeChildComponent {
     ExpenseDescriptionNode provideExpenseDescriptionNode(@Named("expenseDescriptionNode") ExpenseDescriptionNode impl);
     ExpenseMonthlyRepaymentNode provideExpenseMonthlyRepaymentNode(@Named("expenseMonthlyRepaymentNode") ExpenseMonthlyRepaymentNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setExpenseNodeChildModule(ExpenseNodeChildModule module);
+
+        ExpenseNodeChildComponent build();
+    }
 }

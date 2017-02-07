@@ -4,18 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    ExpenseNodeChildComponent.class
 })
 @ExpensesNodeItemScope
 public class ExpensesNodeItemModule {
 
+    private final ExpensesNode parent;
+
+    public ExpensesNodeItemModule(ExpensesNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @ExpensesNodeItemScope
     ExpenseNode provideExpenseNode(
-        ExpensesNode parent,
         MembersInjector<ExpenseNode> injector
     ) {
         ExpenseNode node = new ExpenseNode(parent, getItemName());

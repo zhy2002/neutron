@@ -11,4 +11,11 @@ public interface RealEstateNodeChildComponent {
     PropertyNode providePropertyNode(@Named("propertyNode") PropertyNode impl);
     AccessNode provideAccessNode(@Named("accessNode") AccessNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setRealEstateNodeChildModule(RealEstateNodeChildModule module);
+
+        RealEstateNodeChildComponent build();
+    }
 }

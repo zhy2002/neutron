@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @RetiredEmploymentNodeChildScope
 public class RetiredEmploymentNodeChildModule {
 
+    private final RetiredEmploymentNode parent;
+
+    public RetiredEmploymentNodeChildModule(RetiredEmploymentNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @RetiredEmploymentNodeChildScope
     @Named("retiredOnBenefitFlagNode")
     RetiredOnBenefitFlagNode provideRetiredOnBenefitFlagNode(
-        RetiredEmploymentNode parent,
         MembersInjector<RetiredOnBenefitFlagNode> injector
     ) {
         RetiredOnBenefitFlagNode node = new RetiredOnBenefitFlagNode(parent, "retiredOnBenefitFlagNode");
@@ -26,7 +31,6 @@ public class RetiredEmploymentNodeChildModule {
     @RetiredEmploymentNodeChildScope
     @Named("retiredSinceNode")
     RetiredSinceNode provideRetiredSinceNode(
-        RetiredEmploymentNode parent,
         MembersInjector<RetiredSinceNode> injector
     ) {
         RetiredSinceNode node = new RetiredSinceNode(parent, "retiredSinceNode");

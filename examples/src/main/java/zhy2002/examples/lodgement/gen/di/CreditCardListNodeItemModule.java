@@ -4,18 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    CreditCardNodeChildComponent.class
 })
 @CreditCardListNodeItemScope
 public class CreditCardListNodeItemModule {
 
+    private final CreditCardListNode parent;
+
+    public CreditCardListNodeItemModule(CreditCardListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @CreditCardListNodeItemScope
     CreditCardNode provideCreditCardNode(
-        CreditCardListNode parent,
         MembersInjector<CreditCardNode> injector
     ) {
         CreditCardNode node = new CreditCardNode(parent, getItemName());

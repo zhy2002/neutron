@@ -19,4 +19,11 @@ public interface PersonContactNodeChildComponent {
     MovedToPreviousAddressNode provideMovedToPreviousAddressNode(@Named("movedToPreviousAddressNode") MovedToPreviousAddressNode impl);
     MovedFromPreviousAddressNode provideMovedFromPreviousAddressNode(@Named("movedFromPreviousAddressNode") MovedFromPreviousAddressNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonContactNodeChildModule(PersonContactNodeChildModule module);
+
+        PersonContactNodeChildComponent build();
+    }
 }

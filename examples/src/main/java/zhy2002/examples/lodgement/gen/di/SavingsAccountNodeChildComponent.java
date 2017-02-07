@@ -14,4 +14,11 @@ public interface SavingsAccountNodeChildComponent {
     SavingsAccountNoNode provideSavingsAccountNoNode(@Named("savingsAccountNoNode") SavingsAccountNoNode impl);
     SavingsAccountNameNode provideSavingsAccountNameNode(@Named("savingsAccountNameNode") SavingsAccountNameNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setSavingsAccountNodeChildModule(SavingsAccountNodeChildModule module);
+
+        SavingsAccountNodeChildComponent build();
+    }
 }

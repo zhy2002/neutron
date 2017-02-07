@@ -9,4 +9,11 @@ public interface LodgementNodeChildComponent {
 
     AppManagerNode provideAppManagerNode(@Named("appManagerNode") AppManagerNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setLodgementNodeChildModule(LodgementNodeChildModule module);
+
+        LodgementNodeChildComponent build();
+    }
 }

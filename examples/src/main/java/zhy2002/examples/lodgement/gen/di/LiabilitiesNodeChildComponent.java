@@ -11,4 +11,11 @@ public interface LiabilitiesNodeChildComponent {
     LoanListNode provideLoanListNode(@Named("loanListNode") LoanListNode impl);
     OtherLiabilityListNode provideOtherLiabilityListNode(@Named("otherLiabilityListNode") OtherLiabilityListNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setLiabilitiesNodeChildModule(LiabilitiesNodeChildModule module);
+
+        LiabilitiesNodeChildComponent build();
+    }
 }

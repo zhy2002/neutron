@@ -13,4 +13,11 @@ public interface EmploymentNodeChildComponent {
     UnemployedNode provideUnemployedNode(@Named("unemployedNode") UnemployedNode impl);
     RetiredEmploymentNode provideRetiredEmploymentNode(@Named("retiredEmploymentNode") RetiredEmploymentNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setEmploymentNodeChildModule(EmploymentNodeChildModule module);
+
+        EmploymentNodeChildComponent build();
+    }
 }

@@ -4,16 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    UsageNodeChildComponent.class,
+    PropertyNodeChildComponent.class,
+    AccessNodeChildComponent.class
 })
 @RealEstateNodeChildScope
 public class RealEstateNodeChildModule {
+
+    private final RealEstateNode parent;
+
+    public RealEstateNodeChildModule(RealEstateNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @RealEstateNodeChildScope
     @Named("usageNode")
     UsageNode provideUsageNode(
-        RealEstateNode parent,
         MembersInjector<UsageNode> injector
     ) {
         UsageNode node = new UsageNode(parent, "usageNode");
@@ -26,7 +34,6 @@ public class RealEstateNodeChildModule {
     @RealEstateNodeChildScope
     @Named("propertyNode")
     PropertyNode providePropertyNode(
-        RealEstateNode parent,
         MembersInjector<PropertyNode> injector
     ) {
         PropertyNode node = new PropertyNode(parent, "propertyNode");
@@ -39,7 +46,6 @@ public class RealEstateNodeChildModule {
     @RealEstateNodeChildScope
     @Named("accessNode")
     AccessNode provideAccessNode(
-        RealEstateNode parent,
         MembersInjector<AccessNode> injector
     ) {
         AccessNode node = new AccessNode(parent, "accessNode");

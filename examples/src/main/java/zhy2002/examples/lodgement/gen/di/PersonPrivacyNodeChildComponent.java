@@ -11,4 +11,11 @@ public interface PersonPrivacyNodeChildComponent {
     ThirdPartyDisclosureFlagNode provideThirdPartyDisclosureFlagNode(@Named("thirdPartyDisclosureFlagNode") ThirdPartyDisclosureFlagNode impl);
     LegalActionNode provideLegalActionNode(@Named("legalActionNode") LegalActionNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonPrivacyNodeChildModule(PersonPrivacyNodeChildModule module);
+
+        PersonPrivacyNodeChildComponent build();
+    }
 }

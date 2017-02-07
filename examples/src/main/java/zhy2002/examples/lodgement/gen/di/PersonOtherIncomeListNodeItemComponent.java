@@ -9,4 +9,11 @@ public interface PersonOtherIncomeListNodeItemComponent {
 
     PersonOtherIncomeNode providePersonOtherIncomeNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonOtherIncomeListNodeItemModule(PersonOtherIncomeListNodeItemModule module);
+
+        PersonOtherIncomeListNodeItemComponent build();
+    }
 }

@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PayeEmployedNodeChildScope
 public class PayeEmployedNodeChildModule {
 
+    private final PayeEmployedNode parent;
+
+    public PayeEmployedNodeChildModule(PayeEmployedNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PayeEmployedNodeChildScope
     @Named("grossYearlySalaryNode")
     GrossYearlySalaryNode provideGrossYearlySalaryNode(
-        PayeEmployedNode parent,
         MembersInjector<GrossYearlySalaryNode> injector
     ) {
         GrossYearlySalaryNode node = new GrossYearlySalaryNode(parent, "grossYearlySalaryNode");

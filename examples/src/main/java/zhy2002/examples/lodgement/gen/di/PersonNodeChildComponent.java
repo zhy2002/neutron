@@ -16,4 +16,11 @@ public interface PersonNodeChildComponent {
     PersonOtherIncomeListNode providePersonOtherIncomeListNode(@Named("personOtherIncomeListNode") PersonOtherIncomeListNode impl);
     PersonResponsibleLendNode providePersonResponsibleLendNode(@Named("personResponsibleLendNode") PersonResponsibleLendNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonNodeChildModule(PersonNodeChildModule module);
+
+        PersonNodeChildComponent build();
+    }
 }

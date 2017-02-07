@@ -15,4 +15,11 @@ public interface AccessNodeChildComponent {
     AccessTelephoneNode provideAccessTelephoneNode(@Named("accessTelephoneNode") AccessTelephoneNode impl);
     AccessOtherDescriptionNode provideAccessOtherDescriptionNode(@Named("accessOtherDescriptionNode") AccessOtherDescriptionNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAccessNodeChildModule(AccessNodeChildModule module);
+
+        AccessNodeChildComponent build();
+    }
 }

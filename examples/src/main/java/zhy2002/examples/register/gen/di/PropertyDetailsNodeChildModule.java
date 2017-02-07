@@ -8,12 +8,17 @@ import zhy2002.examples.register.gen.*;
 @PropertyDetailsNodeChildScope
 public class PropertyDetailsNodeChildModule {
 
+    private final PropertyDetailsNode parent;
+
+    public PropertyDetailsNodeChildModule(PropertyDetailsNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PropertyDetailsNodeChildScope
     @Named("propertyAddressNode")
     PropertyAddressNode providePropertyAddressNode(
-        PropertyDetailsNode parent,
         MembersInjector<PropertyAddressNode> injector
     ) {
         PropertyAddressNode node = new PropertyAddressNode(parent, "propertyAddressNode");
@@ -26,7 +31,6 @@ public class PropertyDetailsNodeChildModule {
     @PropertyDetailsNodeChildScope
     @Named("propertyStateNode")
     PropertyStateNode providePropertyStateNode(
-        PropertyDetailsNode parent,
         MembersInjector<PropertyStateNode> injector
     ) {
         PropertyStateNode node = new PropertyStateNode(parent, "propertyStateNode");

@@ -9,4 +9,11 @@ public interface CreditCardListNodeItemComponent {
 
     CreditCardNode provideCreditCardNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCreditCardListNodeItemModule(CreditCardListNodeItemModule module);
+
+        CreditCardListNodeItemComponent build();
+    }
 }

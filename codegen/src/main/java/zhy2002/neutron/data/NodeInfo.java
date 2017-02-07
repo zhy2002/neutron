@@ -3,6 +3,7 @@ package zhy2002.neutron.data;
 
 import zhy2002.neutron.CodeGenUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NodeInfo extends CodeGenInfo {
@@ -20,6 +21,7 @@ public class NodeInfo extends CodeGenInfo {
     private List<InitInfo> init;
     private List<ChildInfo> children;
     private List<NodeInfo> childTypes;
+    private List<NodeInfo> moduleChildTypes = new ArrayList<>();
     private List<ValueWrapperInfo> valueWrappers;
 
     //additional
@@ -184,11 +186,11 @@ public class NodeInfo extends CodeGenInfo {
     public void initialize() {
         initializeSelf();
         initializeProperties();
+        initializeChildTypes();
         initializeChildren();
         initializeValueWrappers();
         initializeInit();
         initializeRules();
-        initializeChildTypes();
         initializeDomainInfo();
     }
 
@@ -209,11 +211,11 @@ public class NodeInfo extends CodeGenInfo {
             changeEventInfo.setTypeName(getValueTypeName());
             getDomainInfo().getRegistryInfo().getChangeEventNodes().add(this);
         }
-        if(definesModule()) {
+        if (definesModule()) {
             this.moduleInfo = new ModuleInfo();
             moduleInfo.setParent(this);
             moduleInfo.setDomainInfo(getDomainInfo());
-            if(getItemTypeName() != null) {
+            if (getItemTypeName() != null) {
                 moduleInfo.setTypeName(getTypeName() + "Item");
                 ChildInfo childInfo = new ChildInfo();
                 childInfo.setTypeName(getItemTypeName());
@@ -238,6 +240,9 @@ public class NodeInfo extends CodeGenInfo {
                     nodeInfo.setParentTypeName(typeName);
                 }
                 nodeInfo.initialize();
+                if (nodeInfo.getModuleInfo() != null) {
+                    getModuleChildTypes().add(nodeInfo);
+                }
             }
         }
     }
@@ -335,5 +340,9 @@ public class NodeInfo extends CodeGenInfo {
 
     public CodeGenInfo getModuleInfo() {
         return moduleInfo;
+    }
+
+    public List<NodeInfo> getModuleChildTypes() {
+        return moduleChildTypes;
     }
 }

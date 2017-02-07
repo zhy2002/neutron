@@ -15,4 +15,11 @@ public interface LoanNodeChildComponent {
     LoanClearingFlagNode provideLoanClearingFlagNode(@Named("loanClearingFlagNode") LoanClearingFlagNode impl);
     LoanBreakCostNode provideLoanBreakCostNode(@Named("loanBreakCostNode") LoanBreakCostNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setLoanNodeChildModule(LoanNodeChildModule module);
+
+        LoanNodeChildComponent build();
+    }
 }

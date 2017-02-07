@@ -8,14 +8,19 @@ import zhy2002.examples.register.gen.*;
 @ErrorListNodeItemScope
 public class ErrorListNodeItemModule {
 
+    private final ErrorListNode parent;
+
+    public ErrorListNodeItemModule(ErrorListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @ErrorListNodeItemScope
     ErrorNode provideErrorNode(
-        ErrorListNode parent,
         MembersInjector<ErrorNode> injector
     ) {
         ErrorNode node = new ErrorNode(parent, getItemName());

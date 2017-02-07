@@ -20,4 +20,11 @@ public interface RegisterNodeChildComponent {
     PhoneInfoNode provideHomePhoneNode(@Named("homePhoneNode") PhoneInfoNode impl);
     ErrorListNode provideErrorListNode(@Named("errorListNode") ErrorListNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setRegisterNodeChildModule(RegisterNodeChildModule module);
+
+        RegisterNodeChildComponent build();
+    }
 }

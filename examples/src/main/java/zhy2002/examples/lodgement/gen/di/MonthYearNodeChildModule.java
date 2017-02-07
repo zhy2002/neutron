@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @MonthYearNodeChildScope
 public class MonthYearNodeChildModule {
 
+    private final MonthYearNode parent;
+
+    public MonthYearNodeChildModule(MonthYearNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @MonthYearNodeChildScope
     @Named("monthNode")
     MonthNode provideMonthNode(
-        MonthYearNode parent,
         MembersInjector<MonthNode> injector
     ) {
         MonthNode node = new MonthNode(parent, "monthNode");
@@ -26,7 +31,6 @@ public class MonthYearNodeChildModule {
     @MonthYearNodeChildScope
     @Named("yearNode")
     YearNode provideYearNode(
-        MonthYearNode parent,
         MembersInjector<YearNode> injector
     ) {
         YearNode node = new YearNode(parent, "yearNode");

@@ -15,4 +15,11 @@ public interface ${typeName}Component {
     </#if>
 </#list>
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder set${typeName}Module(${typeName}Module module);
+
+        ${typeName}Component build();
+    }
 }

@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @UsageNodeChildScope
 public class UsageNodeChildModule {
 
+    private final UsageNode parent;
+
+    public UsageNodeChildModule(UsageNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @UsageNodeChildScope
     @Named("usedAsSecurityFlagNode")
     UsedAsSecurityFlagNode provideUsedAsSecurityFlagNode(
-        UsageNode parent,
         MembersInjector<UsedAsSecurityFlagNode> injector
     ) {
         UsedAsSecurityFlagNode node = new UsedAsSecurityFlagNode(parent, "usedAsSecurityFlagNode");
@@ -26,7 +31,6 @@ public class UsageNodeChildModule {
     @UsageNodeChildScope
     @Named("beingPurchasedFlagNode")
     BeingPurchasedFlagNode provideBeingPurchasedFlagNode(
-        UsageNode parent,
         MembersInjector<BeingPurchasedFlagNode> injector
     ) {
         BeingPurchasedFlagNode node = new BeingPurchasedFlagNode(parent, "beingPurchasedFlagNode");
@@ -39,7 +43,6 @@ public class UsageNodeChildModule {
     @UsageNodeChildScope
     @Named("ownedOutrightFlagNode")
     OwnedOutrightFlagNode provideOwnedOutrightFlagNode(
-        UsageNode parent,
         MembersInjector<OwnedOutrightFlagNode> injector
     ) {
         OwnedOutrightFlagNode node = new OwnedOutrightFlagNode(parent, "ownedOutrightFlagNode");
@@ -52,7 +55,6 @@ public class UsageNodeChildModule {
     @UsageNodeChildScope
     @Named("primarySecurityFlagNode")
     PrimarySecurityFlagNode providePrimarySecurityFlagNode(
-        UsageNode parent,
         MembersInjector<PrimarySecurityFlagNode> injector
     ) {
         PrimarySecurityFlagNode node = new PrimarySecurityFlagNode(parent, "primarySecurityFlagNode");
@@ -65,7 +67,6 @@ public class UsageNodeChildModule {
     @UsageNodeChildScope
     @Named("approvalInPrincipleFlagNode")
     ApprovalInPrincipleFlagNode provideApprovalInPrincipleFlagNode(
-        UsageNode parent,
         MembersInjector<ApprovalInPrincipleFlagNode> injector
     ) {
         ApprovalInPrincipleFlagNode node = new ApprovalInPrincipleFlagNode(parent, "approvalInPrincipleFlagNode");

@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonResponsibleLendNodeChildScope
 public class PersonResponsibleLendNodeChildModule {
 
+    private final PersonResponsibleLendNode parent;
+
+    public PersonResponsibleLendNodeChildModule(PersonResponsibleLendNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonResponsibleLendNodeChildScope
     @Named("personTypeOfChangeNode")
     PersonTypeOfChangeNode providePersonTypeOfChangeNode(
-        PersonResponsibleLendNode parent,
         MembersInjector<PersonTypeOfChangeNode> injector
     ) {
         PersonTypeOfChangeNode node = new PersonTypeOfChangeNode(parent, "personTypeOfChangeNode");
@@ -26,7 +31,6 @@ public class PersonResponsibleLendNodeChildModule {
     @PersonResponsibleLendNodeChildScope
     @Named("personMitigationMethodNode")
     PersonMitigationMethodNode providePersonMitigationMethodNode(
-        PersonResponsibleLendNode parent,
         MembersInjector<PersonMitigationMethodNode> injector
     ) {
         PersonMitigationMethodNode node = new PersonMitigationMethodNode(parent, "personMitigationMethodNode");
@@ -39,7 +43,6 @@ public class PersonResponsibleLendNodeChildModule {
     @PersonResponsibleLendNodeChildScope
     @Named("personSignificantChangeFlagNode")
     PersonSignificantChangeFlagNode providePersonSignificantChangeFlagNode(
-        PersonResponsibleLendNode parent,
         MembersInjector<PersonSignificantChangeFlagNode> injector
     ) {
         PersonSignificantChangeFlagNode node = new PersonSignificantChangeFlagNode(parent, "personSignificantChangeFlagNode");
@@ -52,7 +55,6 @@ public class PersonResponsibleLendNodeChildModule {
     @PersonResponsibleLendNodeChildScope
     @Named("personRepaymentDifficultyNode")
     PersonRepaymentDifficultyNode providePersonRepaymentDifficultyNode(
-        PersonResponsibleLendNode parent,
         MembersInjector<PersonRepaymentDifficultyNode> injector
     ) {
         PersonRepaymentDifficultyNode node = new PersonRepaymentDifficultyNode(parent, "personRepaymentDifficultyNode");

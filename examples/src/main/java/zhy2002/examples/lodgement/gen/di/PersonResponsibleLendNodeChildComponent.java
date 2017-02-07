@@ -12,4 +12,11 @@ public interface PersonResponsibleLendNodeChildComponent {
     PersonSignificantChangeFlagNode providePersonSignificantChangeFlagNode(@Named("personSignificantChangeFlagNode") PersonSignificantChangeFlagNode impl);
     PersonRepaymentDifficultyNode providePersonRepaymentDifficultyNode(@Named("personRepaymentDifficultyNode") PersonRepaymentDifficultyNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonResponsibleLendNodeChildModule(PersonResponsibleLendNodeChildModule module);
+
+        PersonResponsibleLendNodeChildComponent build();
+    }
 }

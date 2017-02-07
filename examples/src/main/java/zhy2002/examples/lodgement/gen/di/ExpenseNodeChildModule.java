@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @ExpenseNodeChildScope
 public class ExpenseNodeChildModule {
 
+    private final ExpenseNode parent;
+
+    public ExpenseNodeChildModule(ExpenseNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @ExpenseNodeChildScope
     @Named("expenseTypeNode")
     ExpenseTypeNode provideExpenseTypeNode(
-        ExpenseNode parent,
         MembersInjector<ExpenseTypeNode> injector
     ) {
         ExpenseTypeNode node = new ExpenseTypeNode(parent, "expenseTypeNode");
@@ -26,7 +31,6 @@ public class ExpenseNodeChildModule {
     @ExpenseNodeChildScope
     @Named("expenseDescriptionNode")
     ExpenseDescriptionNode provideExpenseDescriptionNode(
-        ExpenseNode parent,
         MembersInjector<ExpenseDescriptionNode> injector
     ) {
         ExpenseDescriptionNode node = new ExpenseDescriptionNode(parent, "expenseDescriptionNode");
@@ -39,7 +43,6 @@ public class ExpenseNodeChildModule {
     @ExpenseNodeChildScope
     @Named("expenseMonthlyRepaymentNode")
     ExpenseMonthlyRepaymentNode provideExpenseMonthlyRepaymentNode(
-        ExpenseNode parent,
         MembersInjector<ExpenseMonthlyRepaymentNode> injector
     ) {
         ExpenseMonthlyRepaymentNode node = new ExpenseMonthlyRepaymentNode(parent, "expenseMonthlyRepaymentNode");

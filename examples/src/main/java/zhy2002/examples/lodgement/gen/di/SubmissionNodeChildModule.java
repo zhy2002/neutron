@@ -8,5 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 @SubmissionNodeChildScope
 public class SubmissionNodeChildModule {
 
+    private final SubmissionNode parent;
+
+    public SubmissionNodeChildModule(SubmissionNode parent) {
+        this.parent = parent;
+    }
+
 
 }

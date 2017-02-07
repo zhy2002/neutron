@@ -11,4 +11,11 @@ public interface FinancialPositionNodeChildComponent {
     LiabilitiesNode provideLiabilitiesNode(@Named("liabilitiesNode") LiabilitiesNode impl);
     ExpensesNode provideExpensesNode(@Named("expensesNode") ExpensesNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setFinancialPositionNodeChildModule(FinancialPositionNodeChildModule module);
+
+        FinancialPositionNodeChildComponent build();
+    }
 }

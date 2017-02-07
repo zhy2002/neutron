@@ -12,4 +12,11 @@ public interface AddressNodeChildComponent {
     PostcodeNode providePostcodeNode(@Named("postcodeNode") PostcodeNode impl);
     CountryNode provideCountryNode(@Named("countryNode") CountryNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAddressNodeChildModule(AddressNodeChildModule module);
+
+        AddressNodeChildComponent build();
+    }
 }

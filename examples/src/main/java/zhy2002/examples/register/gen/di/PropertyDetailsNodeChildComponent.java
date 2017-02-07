@@ -10,4 +10,11 @@ public interface PropertyDetailsNodeChildComponent {
     PropertyAddressNode providePropertyAddressNode(@Named("propertyAddressNode") PropertyAddressNode impl);
     PropertyStateNode providePropertyStateNode(@Named("propertyStateNode") PropertyStateNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPropertyDetailsNodeChildModule(PropertyDetailsNodeChildModule module);
+
+        PropertyDetailsNodeChildComponent build();
+    }
 }

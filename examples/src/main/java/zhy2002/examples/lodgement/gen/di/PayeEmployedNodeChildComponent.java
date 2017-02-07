@@ -9,4 +9,11 @@ public interface PayeEmployedNodeChildComponent {
 
     GrossYearlySalaryNode provideGrossYearlySalaryNode(@Named("grossYearlySalaryNode") GrossYearlySalaryNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPayeEmployedNodeChildModule(PayeEmployedNodeChildModule module);
+
+        PayeEmployedNodeChildComponent build();
+    }
 }

@@ -15,4 +15,11 @@ public interface PersonTrustNodeChildComponent {
     PersonTrustSettlorNotRequiredReasonNode providePersonTrustSettlorNotRequiredReasonNode(@Named("personTrustSettlorNotRequiredReasonNode") PersonTrustSettlorNotRequiredReasonNode impl);
     PersonTrustIndustryNode providePersonTrustIndustryNode(@Named("personTrustIndustryNode") PersonTrustIndustryNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonTrustNodeChildModule(PersonTrustNodeChildModule module);
+
+        PersonTrustNodeChildComponent build();
+    }
 }

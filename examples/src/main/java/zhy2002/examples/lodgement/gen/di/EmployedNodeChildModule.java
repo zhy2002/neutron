@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @EmployedNodeChildScope
 public class EmployedNodeChildModule {
 
+    private final EmployedNode parent;
+
+    public EmployedNodeChildModule(EmployedNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @EmployedNodeChildScope
     @Named("employmentStatusNode")
     EmploymentStatusNode provideEmploymentStatusNode(
-        EmployedNode parent,
         MembersInjector<EmploymentStatusNode> injector
     ) {
         EmploymentStatusNode node = new EmploymentStatusNode(parent, "employmentStatusNode");
@@ -26,7 +31,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("occupationNode")
     OccupationNode provideOccupationNode(
-        EmployedNode parent,
         MembersInjector<OccupationNode> injector
     ) {
         OccupationNode node = new OccupationNode(parent, "occupationNode");
@@ -39,7 +43,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("employerNameNode")
     EmployerNameNode provideEmployerNameNode(
-        EmployedNode parent,
         MembersInjector<EmployerNameNode> injector
     ) {
         EmployerNameNode node = new EmployerNameNode(parent, "employerNameNode");
@@ -52,7 +55,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("employerAddressNode")
     EmployerAddressNode provideEmployerAddressNode(
-        EmployedNode parent,
         MembersInjector<EmployerAddressNode> injector
     ) {
         EmployerAddressNode node = new EmployerAddressNode(parent, "employerAddressNode");
@@ -65,7 +67,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("employerPhoneNode")
     EmployerPhoneNode provideEmployerPhoneNode(
-        EmployedNode parent,
         MembersInjector<EmployerPhoneNode> injector
     ) {
         EmployerPhoneNode node = new EmployerPhoneNode(parent, "employerPhoneNode");
@@ -78,7 +79,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("employmentStartedNode")
     EmploymentStartedNode provideEmploymentStartedNode(
-        EmployedNode parent,
         MembersInjector<EmploymentStartedNode> injector
     ) {
         EmploymentStartedNode node = new EmploymentStartedNode(parent, "employmentStartedNode");
@@ -91,7 +91,6 @@ public class EmployedNodeChildModule {
     @EmployedNodeChildScope
     @Named("employmentEndedNode")
     EmploymentEndedNode provideEmploymentEndedNode(
-        EmployedNode parent,
         MembersInjector<EmploymentEndedNode> injector
     ) {
         EmploymentEndedNode node = new EmploymentEndedNode(parent, "employmentEndedNode");

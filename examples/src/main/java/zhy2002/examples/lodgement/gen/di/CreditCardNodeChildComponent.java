@@ -15,4 +15,11 @@ public interface CreditCardNodeChildComponent {
     CreditCardBreakCostNode provideCreditCardBreakCostNode(@Named("creditCardBreakCostNode") CreditCardBreakCostNode impl);
     CreditCardLenderNameNode provideCreditCardLenderNameNode(@Named("creditCardLenderNameNode") CreditCardLenderNameNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCreditCardNodeChildModule(CreditCardNodeChildModule module);
+
+        CreditCardNodeChildComponent build();
+    }
 }

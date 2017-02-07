@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @CreditCardNodeChildScope
 public class CreditCardNodeChildModule {
 
+    private final CreditCardNode parent;
+
+    public CreditCardNodeChildModule(CreditCardNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @CreditCardNodeChildScope
     @Named("creditCardTypeNode")
     CreditCardTypeNode provideCreditCardTypeNode(
-        CreditCardNode parent,
         MembersInjector<CreditCardTypeNode> injector
     ) {
         CreditCardTypeNode node = new CreditCardTypeNode(parent, "creditCardTypeNode");
@@ -26,7 +31,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardAmountOwingNode")
     CreditCardAmountOwingNode provideCreditCardAmountOwingNode(
-        CreditCardNode parent,
         MembersInjector<CreditCardAmountOwingNode> injector
     ) {
         CreditCardAmountOwingNode node = new CreditCardAmountOwingNode(parent, "creditCardAmountOwingNode");
@@ -39,7 +43,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardLimitAmount")
     CreditCardLimitAmount provideCreditCardLimitAmount(
-        CreditCardNode parent,
         MembersInjector<CreditCardLimitAmount> injector
     ) {
         CreditCardLimitAmount node = new CreditCardLimitAmount(parent, "creditCardLimitAmount");
@@ -52,7 +55,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardMonthlyRepayment")
     CreditCardMonthlyRepayment provideCreditCardMonthlyRepayment(
-        CreditCardNode parent,
         MembersInjector<CreditCardMonthlyRepayment> injector
     ) {
         CreditCardMonthlyRepayment node = new CreditCardMonthlyRepayment(parent, "creditCardMonthlyRepayment");
@@ -65,7 +67,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardClearingFlagNode")
     CreditCardClearingFlagNode provideCreditCardClearingFlagNode(
-        CreditCardNode parent,
         MembersInjector<CreditCardClearingFlagNode> injector
     ) {
         CreditCardClearingFlagNode node = new CreditCardClearingFlagNode(parent, "creditCardClearingFlagNode");
@@ -78,7 +79,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardBreakCostNode")
     CreditCardBreakCostNode provideCreditCardBreakCostNode(
-        CreditCardNode parent,
         MembersInjector<CreditCardBreakCostNode> injector
     ) {
         CreditCardBreakCostNode node = new CreditCardBreakCostNode(parent, "creditCardBreakCostNode");
@@ -91,7 +91,6 @@ public class CreditCardNodeChildModule {
     @CreditCardNodeChildScope
     @Named("creditCardLenderNameNode")
     CreditCardLenderNameNode provideCreditCardLenderNameNode(
-        CreditCardNode parent,
         MembersInjector<CreditCardLenderNameNode> injector
     ) {
         CreditCardLenderNameNode node = new CreditCardLenderNameNode(parent, "creditCardLenderNameNode");

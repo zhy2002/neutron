@@ -11,4 +11,11 @@ public interface PhoneInfoNodeChildComponent {
     AreaCodeNode provideAreaCodeNode(@Named("areaCodeNode") AreaCodeNode impl);
     PhoneNumberNode providePhoneNumberNode(@Named("phoneNumberNode") PhoneNumberNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPhoneInfoNodeChildModule(PhoneInfoNodeChildModule module);
+
+        PhoneInfoNodeChildComponent build();
+    }
 }

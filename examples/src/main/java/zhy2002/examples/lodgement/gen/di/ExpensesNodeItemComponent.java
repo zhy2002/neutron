@@ -9,4 +9,11 @@ public interface ExpensesNodeItemComponent {
 
     ExpenseNode provideExpenseNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setExpensesNodeItemModule(ExpensesNodeItemModule module);
+
+        ExpensesNodeItemComponent build();
+    }
 }

@@ -13,4 +13,11 @@ public interface UnemployedNodeChildComponent {
     HouseDutiesFlagNode provideHouseDutiesFlagNode(@Named("houseDutiesFlagNode") HouseDutiesFlagNode impl);
     UnemployedSinceNode provideUnemployedSinceNode(@Named("unemployedSinceNode") UnemployedSinceNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setUnemployedNodeChildModule(UnemployedNodeChildModule module);
+
+        UnemployedNodeChildComponent build();
+    }
 }

@@ -9,4 +9,11 @@ public interface AddressListNodeItemComponent {
 
     AddressRefUiNode provideAddressRefUiNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAddressListNodeItemModule(AddressListNodeItemModule module);
+
+        AddressListNodeItemComponent build();
+    }
 }

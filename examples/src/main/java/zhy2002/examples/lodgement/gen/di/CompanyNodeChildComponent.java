@@ -8,4 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 public interface CompanyNodeChildComponent {
 
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCompanyNodeChildModule(CompanyNodeChildModule module);
+
+        CompanyNodeChildComponent build();
+    }
 }

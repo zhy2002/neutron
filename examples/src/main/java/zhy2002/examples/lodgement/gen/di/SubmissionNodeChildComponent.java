@@ -8,4 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 public interface SubmissionNodeChildComponent {
 
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setSubmissionNodeChildModule(SubmissionNodeChildModule module);
+
+        SubmissionNodeChildComponent build();
+    }
 }

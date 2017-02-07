@@ -4,18 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    AddressRefUiNodeChildComponent.class
 })
 @AddressListNodeItemScope
 public class AddressListNodeItemModule {
 
+    private final AddressListNode parent;
+
+    public AddressListNodeItemModule(AddressListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @AddressListNodeItemScope
     AddressRefUiNode provideAddressRefUiNode(
-        AddressListNode parent,
         MembersInjector<AddressRefUiNode> injector
     ) {
         AddressRefUiNode node = new AddressRefUiNode(parent, getItemName());

@@ -9,4 +9,11 @@ public interface RealEstateListNodeItemComponent {
 
     RealEstateNode provideRealEstateNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setRealEstateListNodeItemModule(RealEstateListNodeItemModule module);
+
+        RealEstateListNodeItemComponent build();
+    }
 }

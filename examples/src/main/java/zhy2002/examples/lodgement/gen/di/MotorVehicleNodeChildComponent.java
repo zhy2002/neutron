@@ -11,4 +11,11 @@ public interface MotorVehicleNodeChildComponent {
     VehicleYearNode provideVehicleYearNode(@Named("vehicleYearNode") VehicleYearNode impl);
     VehicleMarketValueNode provideVehicleMarketValueNode(@Named("vehicleMarketValueNode") VehicleMarketValueNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setMotorVehicleNodeChildModule(MotorVehicleNodeChildModule module);
+
+        MotorVehicleNodeChildComponent build();
+    }
 }

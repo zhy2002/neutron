@@ -4,16 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.register.gen.*;
 
 @Module(subcomponents = {
+    PropertyDetailsNodeChildComponent.class,
+    PhoneInfoNodeChildComponent.class,
+    ErrorListNodeItemComponent.class
 })
 @RegisterNodeChildScope
 public class RegisterNodeChildModule {
+
+    private final RegisterNode parent;
+
+    public RegisterNodeChildModule(RegisterNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @RegisterNodeChildScope
     @Named("usernameNode")
     UsernameNode provideUsernameNode(
-        RegisterNode parent,
         MembersInjector<UsernameNode> injector
     ) {
         UsernameNode node = new UsernameNode(parent, "usernameNode");
@@ -26,7 +34,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("emailNode")
     EmailNode provideEmailNode(
-        RegisterNode parent,
         MembersInjector<EmailNode> injector
     ) {
         EmailNode node = new EmailNode(parent, "emailNode");
@@ -39,7 +46,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("passwordNode")
     PasswordNode providePasswordNode(
-        RegisterNode parent,
         MembersInjector<PasswordNode> injector
     ) {
         PasswordNode node = new PasswordNode(parent, "passwordNode");
@@ -52,7 +58,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("repeatPasswordNode")
     RepeatPasswordNode provideRepeatPasswordNode(
-        RegisterNode parent,
         MembersInjector<RepeatPasswordNode> injector
     ) {
         RepeatPasswordNode node = new RepeatPasswordNode(parent, "repeatPasswordNode");
@@ -65,7 +70,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("ageNode")
     AgeNode provideAgeNode(
-        RegisterNode parent,
         MembersInjector<AgeNode> injector
     ) {
         AgeNode node = new AgeNode(parent, "ageNode");
@@ -78,7 +82,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("planNode")
     PlanNode providePlanNode(
-        RegisterNode parent,
         MembersInjector<PlanNode> injector
     ) {
         PlanNode node = new PlanNode(parent, "planNode");
@@ -91,7 +94,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("receiveOffersNode")
     ReceiveOffersNode provideReceiveOffersNode(
-        RegisterNode parent,
         MembersInjector<ReceiveOffersNode> injector
     ) {
         ReceiveOffersNode node = new ReceiveOffersNode(parent, "receiveOffersNode");
@@ -104,7 +106,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("ownInvestmentPropertyNode")
     OwnInvestmentPropertyNode provideOwnInvestmentPropertyNode(
-        RegisterNode parent,
         MembersInjector<OwnInvestmentPropertyNode> injector
     ) {
         OwnInvestmentPropertyNode node = new OwnInvestmentPropertyNode(parent, "ownInvestmentPropertyNode");
@@ -117,7 +118,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("residentialPropertyNode")
     PropertyDetailsNode provideResidentialPropertyNode(
-        RegisterNode parent,
         MembersInjector<PropertyDetailsNode> injector
     ) {
         PropertyDetailsNode node = new PropertyDetailsNode(parent, "residentialPropertyNode");
@@ -130,7 +130,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("investmentPropertyNode")
     PropertyDetailsNode provideInvestmentPropertyNode(
-        RegisterNode parent,
         MembersInjector<PropertyDetailsNode> injector
     ) {
         PropertyDetailsNode node = new PropertyDetailsNode(parent, "investmentPropertyNode");
@@ -143,7 +142,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("homePhoneNode")
     PhoneInfoNode provideHomePhoneNode(
-        RegisterNode parent,
         MembersInjector<PhoneInfoNode> injector
     ) {
         PhoneInfoNode node = new PhoneInfoNode(parent, "homePhoneNode");
@@ -156,7 +154,6 @@ public class RegisterNodeChildModule {
     @RegisterNodeChildScope
     @Named("errorListNode")
     ErrorListNode provideErrorListNode(
-        RegisterNode parent,
         MembersInjector<ErrorListNode> injector
     ) {
         ErrorListNode node = new ErrorListNode(parent, "errorListNode");

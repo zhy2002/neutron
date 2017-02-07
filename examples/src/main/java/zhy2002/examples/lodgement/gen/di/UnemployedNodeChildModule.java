@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @UnemployedNodeChildScope
 public class UnemployedNodeChildModule {
 
+    private final UnemployedNode parent;
+
+    public UnemployedNodeChildModule(UnemployedNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @UnemployedNodeChildScope
     @Named("unemployedOnBenefitFlagNode")
     UnemployedOnBenefitFlagNode provideUnemployedOnBenefitFlagNode(
-        UnemployedNode parent,
         MembersInjector<UnemployedOnBenefitFlagNode> injector
     ) {
         UnemployedOnBenefitFlagNode node = new UnemployedOnBenefitFlagNode(parent, "unemployedOnBenefitFlagNode");
@@ -26,7 +31,6 @@ public class UnemployedNodeChildModule {
     @UnemployedNodeChildScope
     @Named("studentFlagNode")
     StudentFlagNode provideStudentFlagNode(
-        UnemployedNode parent,
         MembersInjector<StudentFlagNode> injector
     ) {
         StudentFlagNode node = new StudentFlagNode(parent, "studentFlagNode");
@@ -39,7 +43,6 @@ public class UnemployedNodeChildModule {
     @UnemployedNodeChildScope
     @Named("studentTypeNode")
     StudentTypeNode provideStudentTypeNode(
-        UnemployedNode parent,
         MembersInjector<StudentTypeNode> injector
     ) {
         StudentTypeNode node = new StudentTypeNode(parent, "studentTypeNode");
@@ -52,7 +55,6 @@ public class UnemployedNodeChildModule {
     @UnemployedNodeChildScope
     @Named("houseDutiesFlagNode")
     HouseDutiesFlagNode provideHouseDutiesFlagNode(
-        UnemployedNode parent,
         MembersInjector<HouseDutiesFlagNode> injector
     ) {
         HouseDutiesFlagNode node = new HouseDutiesFlagNode(parent, "houseDutiesFlagNode");
@@ -65,7 +67,6 @@ public class UnemployedNodeChildModule {
     @UnemployedNodeChildScope
     @Named("unemployedSinceNode")
     UnemployedSinceNode provideUnemployedSinceNode(
-        UnemployedNode parent,
         MembersInjector<UnemployedSinceNode> injector
     ) {
         UnemployedSinceNode node = new UnemployedSinceNode(parent, "unemployedSinceNode");

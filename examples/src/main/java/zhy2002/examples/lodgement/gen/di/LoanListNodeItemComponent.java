@@ -9,4 +9,11 @@ public interface LoanListNodeItemComponent {
 
     LoanNode provideLoanNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setLoanListNodeItemModule(LoanListNodeItemModule module);
+
+        LoanListNodeItemComponent build();
+    }
 }

@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @AccessNodeChildScope
 public class AccessNodeChildModule {
 
+    private final AccessNode parent;
+
+    public AccessNodeChildModule(AccessNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @AccessNodeChildScope
     @Named("accessContactTypeNode")
     AccessContactTypeNode provideAccessContactTypeNode(
-        AccessNode parent,
         MembersInjector<AccessContactTypeNode> injector
     ) {
         AccessContactTypeNode node = new AccessContactTypeNode(parent, "accessContactTypeNode");
@@ -26,7 +31,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessContactTitleNode")
     AccessContactTitleNode provideAccessContactTitleNode(
-        AccessNode parent,
         MembersInjector<AccessContactTitleNode> injector
     ) {
         AccessContactTitleNode node = new AccessContactTitleNode(parent, "accessContactTitleNode");
@@ -39,7 +43,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessContactFirstNameNode")
     AccessContactFirstNameNode provideAccessContactFirstNameNode(
-        AccessNode parent,
         MembersInjector<AccessContactFirstNameNode> injector
     ) {
         AccessContactFirstNameNode node = new AccessContactFirstNameNode(parent, "accessContactFirstNameNode");
@@ -52,7 +55,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessContactLastNameNode")
     AccessContactLastNameNode provideAccessContactLastNameNode(
-        AccessNode parent,
         MembersInjector<AccessContactLastNameNode> injector
     ) {
         AccessContactLastNameNode node = new AccessContactLastNameNode(parent, "accessContactLastNameNode");
@@ -65,7 +67,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessCompanyNameNode")
     AccessCompanyNameNode provideAccessCompanyNameNode(
-        AccessNode parent,
         MembersInjector<AccessCompanyNameNode> injector
     ) {
         AccessCompanyNameNode node = new AccessCompanyNameNode(parent, "accessCompanyNameNode");
@@ -78,7 +79,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessTelephoneNode")
     AccessTelephoneNode provideAccessTelephoneNode(
-        AccessNode parent,
         MembersInjector<AccessTelephoneNode> injector
     ) {
         AccessTelephoneNode node = new AccessTelephoneNode(parent, "accessTelephoneNode");
@@ -91,7 +91,6 @@ public class AccessNodeChildModule {
     @AccessNodeChildScope
     @Named("accessOtherDescriptionNode")
     AccessOtherDescriptionNode provideAccessOtherDescriptionNode(
-        AccessNode parent,
         MembersInjector<AccessOtherDescriptionNode> injector
     ) {
         AccessOtherDescriptionNode node = new AccessOtherDescriptionNode(parent, "accessOtherDescriptionNode");

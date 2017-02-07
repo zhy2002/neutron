@@ -9,4 +9,11 @@ public interface OtherAssetListNodeItemComponent {
 
     OtherAssetNode provideOtherAssetNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setOtherAssetListNodeItemModule(OtherAssetListNodeItemModule module);
+
+        OtherAssetListNodeItemComponent build();
+    }
 }

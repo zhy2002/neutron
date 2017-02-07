@@ -17,4 +17,11 @@ public interface PropertyNodeChildComponent {
     PropertySubTypeNode providePropertySubTypeNode(@Named("propertySubTypeNode") PropertySubTypeNode impl);
     PropertyPurseNode providePropertyPurseNode(@Named("propertyPurseNode") PropertyPurseNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPropertyNodeChildModule(PropertyNodeChildModule module);
+
+        PropertyNodeChildComponent build();
+    }
 }

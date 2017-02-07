@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @LoanNodeChildScope
 public class LoanNodeChildModule {
 
+    private final LoanNode parent;
+
+    public LoanNodeChildModule(LoanNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @LoanNodeChildScope
     @Named("loanTypeNode")
     LoanTypeNode provideLoanTypeNode(
-        LoanNode parent,
         MembersInjector<LoanTypeNode> injector
     ) {
         LoanTypeNode node = new LoanTypeNode(parent, "loanTypeNode");
@@ -26,7 +31,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanLenderNameNode")
     LoanLenderNameNode provideLoanLenderNameNode(
-        LoanNode parent,
         MembersInjector<LoanLenderNameNode> injector
     ) {
         LoanLenderNameNode node = new LoanLenderNameNode(parent, "loanLenderNameNode");
@@ -39,7 +43,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanLimitAmountNode")
     LoanLimitAmountNode provideLoanLimitAmountNode(
-        LoanNode parent,
         MembersInjector<LoanLimitAmountNode> injector
     ) {
         LoanLimitAmountNode node = new LoanLimitAmountNode(parent, "loanLimitAmountNode");
@@ -52,7 +55,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanOwingAmountNode")
     LoanOwingAmountNode provideLoanOwingAmountNode(
-        LoanNode parent,
         MembersInjector<LoanOwingAmountNode> injector
     ) {
         LoanOwingAmountNode node = new LoanOwingAmountNode(parent, "loanOwingAmountNode");
@@ -65,7 +67,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanMonthlyRepaymentNode")
     LoanMonthlyRepaymentNode provideLoanMonthlyRepaymentNode(
-        LoanNode parent,
         MembersInjector<LoanMonthlyRepaymentNode> injector
     ) {
         LoanMonthlyRepaymentNode node = new LoanMonthlyRepaymentNode(parent, "loanMonthlyRepaymentNode");
@@ -78,7 +79,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanClearingFlagNode")
     LoanClearingFlagNode provideLoanClearingFlagNode(
-        LoanNode parent,
         MembersInjector<LoanClearingFlagNode> injector
     ) {
         LoanClearingFlagNode node = new LoanClearingFlagNode(parent, "loanClearingFlagNode");
@@ -91,7 +91,6 @@ public class LoanNodeChildModule {
     @LoanNodeChildScope
     @Named("loanBreakCostNode")
     LoanBreakCostNode provideLoanBreakCostNode(
-        LoanNode parent,
         MembersInjector<LoanBreakCostNode> injector
     ) {
         LoanBreakCostNode node = new LoanBreakCostNode(parent, "loanBreakCostNode");

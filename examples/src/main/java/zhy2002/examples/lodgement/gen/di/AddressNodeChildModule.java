@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @AddressNodeChildScope
 public class AddressNodeChildModule {
 
+    private final AddressNode parent;
+
+    public AddressNodeChildModule(AddressNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @AddressNodeChildScope
     @Named("addressLineNode")
     AddressLineNode provideAddressLineNode(
-        AddressNode parent,
         MembersInjector<AddressLineNode> injector
     ) {
         AddressLineNode node = new AddressLineNode(parent, "addressLineNode");
@@ -26,7 +31,6 @@ public class AddressNodeChildModule {
     @AddressNodeChildScope
     @Named("suburbNode")
     SuburbNode provideSuburbNode(
-        AddressNode parent,
         MembersInjector<SuburbNode> injector
     ) {
         SuburbNode node = new SuburbNode(parent, "suburbNode");
@@ -39,7 +43,6 @@ public class AddressNodeChildModule {
     @AddressNodeChildScope
     @Named("postcodeNode")
     PostcodeNode providePostcodeNode(
-        AddressNode parent,
         MembersInjector<PostcodeNode> injector
     ) {
         PostcodeNode node = new PostcodeNode(parent, "postcodeNode");
@@ -52,7 +55,6 @@ public class AddressNodeChildModule {
     @AddressNodeChildScope
     @Named("countryNode")
     CountryNode provideCountryNode(
-        AddressNode parent,
         MembersInjector<CountryNode> injector
     ) {
         CountryNode node = new CountryNode(parent, "countryNode");

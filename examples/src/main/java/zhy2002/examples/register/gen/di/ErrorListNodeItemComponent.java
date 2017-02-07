@@ -9,4 +9,11 @@ public interface ErrorListNodeItemComponent {
 
     ErrorNode provideErrorNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setErrorListNodeItemModule(ErrorListNodeItemModule module);
+
+        ErrorListNodeItemComponent build();
+    }
 }

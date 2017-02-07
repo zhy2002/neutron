@@ -8,4 +8,11 @@ import zhy2002.examples.app.gen.*;
 public interface AppManagerNodeChildComponent {
 
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAppManagerNodeChildModule(AppManagerNodeChildModule module);
+
+        AppManagerNodeChildComponent build();
+    }
 }

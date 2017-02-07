@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonContactNodeChildScope
 public class PersonContactNodeChildModule {
 
+    private final PersonContactNode parent;
+
+    public PersonContactNodeChildModule(PersonContactNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonContactNodeChildScope
     @Named("homePhoneNode")
     ContactTelephoneNode provideHomePhoneNode(
-        PersonContactNode parent,
         MembersInjector<ContactTelephoneNode> injector
     ) {
         ContactTelephoneNode node = new ContactTelephoneNode(parent, "homePhoneNode");
@@ -26,7 +31,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("workPhoneNode")
     ContactTelephoneNode provideWorkPhoneNode(
-        PersonContactNode parent,
         MembersInjector<ContactTelephoneNode> injector
     ) {
         ContactTelephoneNode node = new ContactTelephoneNode(parent, "workPhoneNode");
@@ -39,7 +43,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("faxNumberNode")
     ContactTelephoneNode provideFaxNumberNode(
-        PersonContactNode parent,
         MembersInjector<ContactTelephoneNode> injector
     ) {
         ContactTelephoneNode node = new ContactTelephoneNode(parent, "faxNumberNode");
@@ -52,7 +55,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("mobileNumberNode")
     MobileNumberNode provideMobileNumberNode(
-        PersonContactNode parent,
         MembersInjector<MobileNumberNode> injector
     ) {
         MobileNumberNode node = new MobileNumberNode(parent, "mobileNumberNode");
@@ -65,7 +67,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("contactEmailNode")
     ContactEmailNode provideContactEmailNode(
-        PersonContactNode parent,
         MembersInjector<ContactEmailNode> injector
     ) {
         ContactEmailNode node = new ContactEmailNode(parent, "contactEmailNode");
@@ -78,7 +79,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("currentAddressNode")
     ContactAddressNode provideCurrentAddressNode(
-        PersonContactNode parent,
         MembersInjector<ContactAddressNode> injector
     ) {
         ContactAddressNode node = new ContactAddressNode(parent, "currentAddressNode");
@@ -91,7 +91,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("movedToCurrentAddressNode")
     MovedToCurrentAddressNode provideMovedToCurrentAddressNode(
-        PersonContactNode parent,
         MembersInjector<MovedToCurrentAddressNode> injector
     ) {
         MovedToCurrentAddressNode node = new MovedToCurrentAddressNode(parent, "movedToCurrentAddressNode");
@@ -104,7 +103,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("postalAddressNode")
     ContactAddressNode providePostalAddressNode(
-        PersonContactNode parent,
         MembersInjector<ContactAddressNode> injector
     ) {
         ContactAddressNode node = new ContactAddressNode(parent, "postalAddressNode");
@@ -117,7 +115,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("previousAddressNode")
     ContactAddressNode providePreviousAddressNode(
-        PersonContactNode parent,
         MembersInjector<ContactAddressNode> injector
     ) {
         ContactAddressNode node = new ContactAddressNode(parent, "previousAddressNode");
@@ -130,7 +127,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("movedToPreviousAddressNode")
     MovedToPreviousAddressNode provideMovedToPreviousAddressNode(
-        PersonContactNode parent,
         MembersInjector<MovedToPreviousAddressNode> injector
     ) {
         MovedToPreviousAddressNode node = new MovedToPreviousAddressNode(parent, "movedToPreviousAddressNode");
@@ -143,7 +139,6 @@ public class PersonContactNodeChildModule {
     @PersonContactNodeChildScope
     @Named("movedFromPreviousAddressNode")
     MovedFromPreviousAddressNode provideMovedFromPreviousAddressNode(
-        PersonContactNode parent,
         MembersInjector<MovedFromPreviousAddressNode> injector
     ) {
         MovedFromPreviousAddressNode node = new MovedFromPreviousAddressNode(parent, "movedFromPreviousAddressNode");

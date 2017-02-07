@@ -8,5 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 @CompanyNodeChildScope
 public class CompanyNodeChildModule {
 
+    private final CompanyNode parent;
+
+    public CompanyNodeChildModule(CompanyNode parent) {
+        this.parent = parent;
+    }
+
 
 }

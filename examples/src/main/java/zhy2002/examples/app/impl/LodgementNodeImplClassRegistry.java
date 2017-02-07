@@ -1,13 +1,13 @@
 package zhy2002.examples.app.impl;
 
 
-import zhy2002.examples.app.di.LodgementNodeScope;
+import zhy2002.examples.app.di.LodgementContextScope;
 import zhy2002.examples.app.gen.rule.DummyRule;
 import zhy2002.neutron.ClassRegistryImpl;
 
 import javax.inject.Inject;
 
-@LodgementNodeScope
+@LodgementContextScope
 public class LodgementNodeImplClassRegistry extends ClassRegistryImpl {
 
     @Inject

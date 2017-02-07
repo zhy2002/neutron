@@ -9,4 +9,11 @@ public interface CurrentEmploymentListNodeItemComponent {
 
     CurrentEmploymentNode provideCurrentEmploymentNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCurrentEmploymentListNodeItemModule(CurrentEmploymentListNodeItemModule module);
+
+        CurrentEmploymentListNodeItemComponent build();
+    }
 }

@@ -8,5 +8,11 @@ import zhy2002.examples.app.gen.*;
 @AppManagerNodeChildScope
 public class AppManagerNodeChildModule {
 
+    private final AppManagerNode parent;
+
+    public AppManagerNodeChildModule(AppManagerNode parent) {
+        this.parent = parent;
+    }
+
 
 }

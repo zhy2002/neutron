@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonGeneralNodeChildScope
 public class PersonGeneralNodeChildModule {
 
+    private final PersonGeneralNode parent;
+
+    public PersonGeneralNodeChildModule(PersonGeneralNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonGeneralNodeChildScope
     @Named("titleNode")
     TitleNode provideTitleNode(
-        PersonGeneralNode parent,
         MembersInjector<TitleNode> injector
     ) {
         TitleNode node = new TitleNode(parent, "titleNode");
@@ -26,7 +31,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("firstNameNode")
     FirstNameNode provideFirstNameNode(
-        PersonGeneralNode parent,
         MembersInjector<FirstNameNode> injector
     ) {
         FirstNameNode node = new FirstNameNode(parent, "firstNameNode");
@@ -39,7 +43,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("lastNameNode")
     LastNameNode provideLastNameNode(
-        PersonGeneralNode parent,
         MembersInjector<LastNameNode> injector
     ) {
         LastNameNode node = new LastNameNode(parent, "lastNameNode");
@@ -52,7 +55,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("genderNode")
     GenderNode provideGenderNode(
-        PersonGeneralNode parent,
         MembersInjector<GenderNode> injector
     ) {
         GenderNode node = new GenderNode(parent, "genderNode");
@@ -65,7 +67,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("dateOfBirthNode")
     DateOfBirthNode provideDateOfBirthNode(
-        PersonGeneralNode parent,
         MembersInjector<DateOfBirthNode> injector
     ) {
         DateOfBirthNode node = new DateOfBirthNode(parent, "dateOfBirthNode");
@@ -78,7 +79,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("primaryApplicantFlagNode")
     PrimaryApplicantFlagNode providePrimaryApplicantFlagNode(
-        PersonGeneralNode parent,
         MembersInjector<PrimaryApplicantFlagNode> injector
     ) {
         PrimaryApplicantFlagNode node = new PrimaryApplicantFlagNode(parent, "primaryApplicantFlagNode");
@@ -91,7 +91,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("driversLicenseNode")
     DriversLicenseNode provideDriversLicenseNode(
-        PersonGeneralNode parent,
         MembersInjector<DriversLicenseNode> injector
     ) {
         DriversLicenseNode node = new DriversLicenseNode(parent, "driversLicenseNode");
@@ -104,7 +103,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("applicantTypeNode")
     ApplicantTypeNode provideApplicantTypeNode(
-        PersonGeneralNode parent,
         MembersInjector<ApplicantTypeNode> injector
     ) {
         ApplicantTypeNode node = new ApplicantTypeNode(parent, "applicantTypeNode");
@@ -117,7 +115,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("maritalStatusNode")
     MaritalStatusNode provideMaritalStatusNode(
-        PersonGeneralNode parent,
         MembersInjector<MaritalStatusNode> injector
     ) {
         MaritalStatusNode node = new MaritalStatusNode(parent, "maritalStatusNode");
@@ -130,7 +127,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("permanentResidentFlagNode")
     PermanentResidentFlagNode providePermanentResidentFlagNode(
-        PersonGeneralNode parent,
         MembersInjector<PermanentResidentFlagNode> injector
     ) {
         PermanentResidentFlagNode node = new PermanentResidentFlagNode(parent, "permanentResidentFlagNode");
@@ -143,7 +139,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("spouseNode")
     SpouseNode provideSpouseNode(
-        PersonGeneralNode parent,
         MembersInjector<SpouseNode> injector
     ) {
         SpouseNode node = new SpouseNode(parent, "spouseNode");
@@ -156,7 +151,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("firstHomeBuyerFlagNode")
     FirstHomeBuyerFlagNode provideFirstHomeBuyerFlagNode(
-        PersonGeneralNode parent,
         MembersInjector<FirstHomeBuyerFlagNode> injector
     ) {
         FirstHomeBuyerFlagNode node = new FirstHomeBuyerFlagNode(parent, "firstHomeBuyerFlagNode");
@@ -169,7 +163,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("housingStatusNode")
     HousingStatusNode provideHousingStatusNode(
-        PersonGeneralNode parent,
         MembersInjector<HousingStatusNode> injector
     ) {
         HousingStatusNode node = new HousingStatusNode(parent, "housingStatusNode");
@@ -182,7 +175,6 @@ public class PersonGeneralNodeChildModule {
     @PersonGeneralNodeChildScope
     @Named("applicationTypeNode")
     ApplicationTypeNode provideApplicationTypeNode(
-        PersonGeneralNode parent,
         MembersInjector<ApplicationTypeNode> injector
     ) {
         ApplicationTypeNode node = new ApplicationTypeNode(parent, "applicationTypeNode");

@@ -8,5 +8,5 @@ import java.lang.annotation.RetentionPolicy;
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface LodgementNodeScope {
+public @interface LodgementContextScope {
 }

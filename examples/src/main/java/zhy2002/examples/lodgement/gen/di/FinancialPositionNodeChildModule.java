@@ -4,16 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    AssetsNodeChildComponent.class,
+    LiabilitiesNodeChildComponent.class,
+    ExpensesNodeItemComponent.class
 })
 @FinancialPositionNodeChildScope
 public class FinancialPositionNodeChildModule {
+
+    private final FinancialPositionNode parent;
+
+    public FinancialPositionNodeChildModule(FinancialPositionNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @FinancialPositionNodeChildScope
     @Named("assetsNode")
     AssetsNode provideAssetsNode(
-        FinancialPositionNode parent,
         MembersInjector<AssetsNode> injector
     ) {
         AssetsNode node = new AssetsNode(parent, "assetsNode");
@@ -26,7 +34,6 @@ public class FinancialPositionNodeChildModule {
     @FinancialPositionNodeChildScope
     @Named("liabilitiesNode")
     LiabilitiesNode provideLiabilitiesNode(
-        FinancialPositionNode parent,
         MembersInjector<LiabilitiesNode> injector
     ) {
         LiabilitiesNode node = new LiabilitiesNode(parent, "liabilitiesNode");
@@ -39,7 +46,6 @@ public class FinancialPositionNodeChildModule {
     @FinancialPositionNodeChildScope
     @Named("expensesNode")
     ExpensesNode provideExpensesNode(
-        FinancialPositionNode parent,
         MembersInjector<ExpensesNode> injector
     ) {
         ExpensesNode node = new ExpensesNode(parent, "expensesNode");

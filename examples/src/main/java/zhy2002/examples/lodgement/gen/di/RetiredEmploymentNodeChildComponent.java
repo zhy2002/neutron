@@ -10,4 +10,11 @@ public interface RetiredEmploymentNodeChildComponent {
     RetiredOnBenefitFlagNode provideRetiredOnBenefitFlagNode(@Named("retiredOnBenefitFlagNode") RetiredOnBenefitFlagNode impl);
     RetiredSinceNode provideRetiredSinceNode(@Named("retiredSinceNode") RetiredSinceNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setRetiredEmploymentNodeChildModule(RetiredEmploymentNodeChildModule module);
+
+        RetiredEmploymentNodeChildComponent build();
+    }
 }

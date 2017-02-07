@@ -11,4 +11,11 @@ public interface OtherAssetNodeChildComponent {
     OtherAssetDescriptionNode provideOtherAssetDescriptionNode(@Named("otherAssetDescriptionNode") OtherAssetDescriptionNode impl);
     OtherAssetMarketValueNode provideOtherAssetMarketValueNode(@Named("otherAssetMarketValueNode") OtherAssetMarketValueNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setOtherAssetNodeChildModule(OtherAssetNodeChildModule module);
+
+        OtherAssetNodeChildComponent build();
+    }
 }

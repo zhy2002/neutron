@@ -4,18 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    PersonOtherIncomeNodeChildComponent.class
 })
 @PersonOtherIncomeListNodeItemScope
 public class PersonOtherIncomeListNodeItemModule {
 
+    private final PersonOtherIncomeListNode parent;
+
+    public PersonOtherIncomeListNodeItemModule(PersonOtherIncomeListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @PersonOtherIncomeListNodeItemScope
     PersonOtherIncomeNode providePersonOtherIncomeNode(
-        PersonOtherIncomeListNode parent,
         MembersInjector<PersonOtherIncomeNode> injector
     ) {
         PersonOtherIncomeNode node = new PersonOtherIncomeNode(parent, getItemName());

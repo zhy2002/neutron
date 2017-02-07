@@ -9,4 +9,11 @@ public interface CompanyListNodeItemComponent {
 
     CompanyNode provideCompanyNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCompanyListNodeItemModule(CompanyListNodeItemModule module);
+
+        CompanyListNodeItemComponent build();
+    }
 }

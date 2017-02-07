@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PropertyNodeChildScope
 public class PropertyNodeChildModule {
 
+    private final PropertyNode parent;
+
+    public PropertyNodeChildModule(PropertyNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PropertyNodeChildScope
     @Named("rentedFlagNode")
     RentedFlagNode provideRentedFlagNode(
-        PropertyNode parent,
         MembersInjector<RentedFlagNode> injector
     ) {
         RentedFlagNode node = new RentedFlagNode(parent, "rentedFlagNode");
@@ -26,7 +31,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("propertyWeeklyRentNode")
     PropertyWeeklyRentNode providePropertyWeeklyRentNode(
-        PropertyNode parent,
         MembersInjector<PropertyWeeklyRentNode> injector
     ) {
         PropertyWeeklyRentNode node = new PropertyWeeklyRentNode(parent, "propertyWeeklyRentNode");
@@ -39,7 +43,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("propertyAddressNode")
     PropertyAddressNode providePropertyAddressNode(
-        PropertyNode parent,
         MembersInjector<PropertyAddressNode> injector
     ) {
         PropertyAddressNode node = new PropertyAddressNode(parent, "propertyAddressNode");
@@ -52,7 +55,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("estimatedMarketValueNode")
     EstimatedMarketValueNode provideEstimatedMarketValueNode(
-        PropertyNode parent,
         MembersInjector<EstimatedMarketValueNode> injector
     ) {
         EstimatedMarketValueNode node = new EstimatedMarketValueNode(parent, "estimatedMarketValueNode");
@@ -65,7 +67,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("contractPriceNode")
     ContractPriceNode provideContractPriceNode(
-        PropertyNode parent,
         MembersInjector<ContractPriceNode> injector
     ) {
         ContractPriceNode node = new ContractPriceNode(parent, "contractPriceNode");
@@ -78,7 +79,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("defenseServiceFlagNode")
     DefenseServiceFlagNode provideDefenseServiceFlagNode(
-        PropertyNode parent,
         MembersInjector<DefenseServiceFlagNode> injector
     ) {
         DefenseServiceFlagNode node = new DefenseServiceFlagNode(parent, "defenseServiceFlagNode");
@@ -91,7 +91,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("propertyTypeNode")
     PropertyTypeNode providePropertyTypeNode(
-        PropertyNode parent,
         MembersInjector<PropertyTypeNode> injector
     ) {
         PropertyTypeNode node = new PropertyTypeNode(parent, "propertyTypeNode");
@@ -104,7 +103,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("propertySubTypeNode")
     PropertySubTypeNode providePropertySubTypeNode(
-        PropertyNode parent,
         MembersInjector<PropertySubTypeNode> injector
     ) {
         PropertySubTypeNode node = new PropertySubTypeNode(parent, "propertySubTypeNode");
@@ -117,7 +115,6 @@ public class PropertyNodeChildModule {
     @PropertyNodeChildScope
     @Named("propertyPurseNode")
     PropertyPurseNode providePropertyPurseNode(
-        PropertyNode parent,
         MembersInjector<PropertyPurseNode> injector
     ) {
         PropertyPurseNode node = new PropertyPurseNode(parent, "propertyPurseNode");

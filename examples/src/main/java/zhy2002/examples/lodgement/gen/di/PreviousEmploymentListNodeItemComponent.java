@@ -9,4 +9,11 @@ public interface PreviousEmploymentListNodeItemComponent {
 
     PreviousEmploymentNode providePreviousEmploymentNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPreviousEmploymentListNodeItemModule(PreviousEmploymentListNodeItemModule module);
+
+        PreviousEmploymentListNodeItemComponent build();
+    }
 }

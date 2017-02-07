@@ -4,18 +4,24 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    OtherAssetNodeChildComponent.class
 })
 @OtherAssetListNodeItemScope
 public class OtherAssetListNodeItemModule {
 
+    private final OtherAssetListNode parent;
+
+    public OtherAssetListNodeItemModule(OtherAssetListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @OtherAssetListNodeItemScope
     OtherAssetNode provideOtherAssetNode(
-        OtherAssetListNode parent,
         MembersInjector<OtherAssetNode> injector
     ) {
         OtherAssetNode node = new OtherAssetNode(parent, getItemName());

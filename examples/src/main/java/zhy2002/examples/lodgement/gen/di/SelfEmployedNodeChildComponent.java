@@ -11,4 +11,11 @@ public interface SelfEmployedNodeChildComponent {
     ProfitThisYearNode provideProfitThisYearNode(@Named("profitThisYearNode") ProfitThisYearNode impl);
     ProfitPreviousYearNode provideProfitPreviousYearNode(@Named("profitPreviousYearNode") ProfitPreviousYearNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setSelfEmployedNodeChildModule(SelfEmployedNodeChildModule module);
+
+        SelfEmployedNodeChildComponent build();
+    }
 }

@@ -9,4 +9,11 @@ public interface SavingsAccountListNodeItemComponent {
 
     SavingsAccountNode provideSavingsAccountNode();
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setSavingsAccountListNodeItemModule(SavingsAccountListNodeItemModule module);
+
+        SavingsAccountListNodeItemComponent build();
+    }
 }

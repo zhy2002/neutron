@@ -8,4 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 public interface AddressRefUiNodeChildComponent {
 
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAddressRefUiNodeChildModule(AddressRefUiNodeChildModule module);
+
+        AddressRefUiNodeChildComponent build();
+    }
 }

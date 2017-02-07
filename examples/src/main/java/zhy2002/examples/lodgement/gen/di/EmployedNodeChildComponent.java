@@ -15,4 +15,11 @@ public interface EmployedNodeChildComponent {
     EmploymentStartedNode provideEmploymentStartedNode(@Named("employmentStartedNode") EmploymentStartedNode impl);
     EmploymentEndedNode provideEmploymentEndedNode(@Named("employmentEndedNode") EmploymentEndedNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setEmployedNodeChildModule(EmployedNodeChildModule module);
+
+        EmployedNodeChildComponent build();
+    }
 }

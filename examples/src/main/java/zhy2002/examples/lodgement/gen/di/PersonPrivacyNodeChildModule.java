@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonPrivacyNodeChildScope
 public class PersonPrivacyNodeChildModule {
 
+    private final PersonPrivacyNode parent;
+
+    public PersonPrivacyNodeChildModule(PersonPrivacyNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonPrivacyNodeChildScope
     @Named("creditCheckFlagNode")
     CreditCheckFlagNode provideCreditCheckFlagNode(
-        PersonPrivacyNode parent,
         MembersInjector<CreditCheckFlagNode> injector
     ) {
         CreditCheckFlagNode node = new CreditCheckFlagNode(parent, "creditCheckFlagNode");
@@ -26,7 +31,6 @@ public class PersonPrivacyNodeChildModule {
     @PersonPrivacyNodeChildScope
     @Named("thirdPartyDisclosureFlagNode")
     ThirdPartyDisclosureFlagNode provideThirdPartyDisclosureFlagNode(
-        PersonPrivacyNode parent,
         MembersInjector<ThirdPartyDisclosureFlagNode> injector
     ) {
         ThirdPartyDisclosureFlagNode node = new ThirdPartyDisclosureFlagNode(parent, "thirdPartyDisclosureFlagNode");
@@ -39,7 +43,6 @@ public class PersonPrivacyNodeChildModule {
     @PersonPrivacyNodeChildScope
     @Named("legalActionNode")
     LegalActionNode provideLegalActionNode(
-        PersonPrivacyNode parent,
         MembersInjector<LegalActionNode> injector
     ) {
         LegalActionNode node = new LegalActionNode(parent, "legalActionNode");

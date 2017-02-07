@@ -8,5 +8,11 @@ import zhy2002.examples.lodgement.gen.*;
 @AddressRefUiNodeChildScope
 public class AddressRefUiNodeChildModule {
 
+    private final AddressRefUiNode parent;
+
+    public AddressRefUiNodeChildModule(AddressRefUiNode parent) {
+        this.parent = parent;
+    }
+
 
 }

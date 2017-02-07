@@ -22,4 +22,11 @@ public interface PersonGeneralNodeChildComponent {
     HousingStatusNode provideHousingStatusNode(@Named("housingStatusNode") HousingStatusNode impl);
     ApplicationTypeNode provideApplicationTypeNode(@Named("applicationTypeNode") ApplicationTypeNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setPersonGeneralNodeChildModule(PersonGeneralNodeChildModule module);
+
+        PersonGeneralNodeChildComponent build();
+    }
 }

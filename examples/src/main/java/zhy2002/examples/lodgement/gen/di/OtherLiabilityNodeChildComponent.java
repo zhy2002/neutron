@@ -11,4 +11,11 @@ public interface OtherLiabilityNodeChildComponent {
     OtherLiabilityDescriptionNode provideOtherLiabilityDescriptionNode(@Named("otherLiabilityDescriptionNode") OtherLiabilityDescriptionNode impl);
     OtherLiabilityMarketValueNode provideOtherLiabilityMarketValueNode(@Named("otherLiabilityMarketValueNode") OtherLiabilityMarketValueNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setOtherLiabilityNodeChildModule(OtherLiabilityNodeChildModule module);
+
+        OtherLiabilityNodeChildComponent build();
+    }
 }

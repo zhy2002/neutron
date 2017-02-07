@@ -4,16 +4,29 @@ import javax.inject.Named;
 import zhy2002.examples.lodgement.gen.*;
 
 @Module(subcomponents = {
+    PersonGeneralNodeChildComponent.class,
+    PersonContactNodeChildComponent.class,
+    CurrentEmploymentListNodeItemComponent.class,
+    PreviousEmploymentListNodeItemComponent.class,
+    PersonTrustNodeChildComponent.class,
+    PersonPrivacyNodeChildComponent.class,
+    PersonOtherIncomeListNodeItemComponent.class,
+    PersonResponsibleLendNodeChildComponent.class
 })
 @PersonNodeChildScope
 public class PersonNodeChildModule {
+
+    private final PersonNode parent;
+
+    public PersonNodeChildModule(PersonNode parent) {
+        this.parent = parent;
+    }
 
 
     @Provides
     @PersonNodeChildScope
     @Named("personGeneralNode")
     PersonGeneralNode providePersonGeneralNode(
-        PersonNode parent,
         MembersInjector<PersonGeneralNode> injector
     ) {
         PersonGeneralNode node = new PersonGeneralNode(parent, "personGeneralNode");
@@ -26,7 +39,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("personContactNode")
     PersonContactNode providePersonContactNode(
-        PersonNode parent,
         MembersInjector<PersonContactNode> injector
     ) {
         PersonContactNode node = new PersonContactNode(parent, "personContactNode");
@@ -39,7 +51,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("currentEmploymentListNode")
     CurrentEmploymentListNode provideCurrentEmploymentListNode(
-        PersonNode parent,
         MembersInjector<CurrentEmploymentListNode> injector
     ) {
         CurrentEmploymentListNode node = new CurrentEmploymentListNode(parent, "currentEmploymentListNode");
@@ -52,7 +63,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("previousEmploymentListNode")
     PreviousEmploymentListNode providePreviousEmploymentListNode(
-        PersonNode parent,
         MembersInjector<PreviousEmploymentListNode> injector
     ) {
         PreviousEmploymentListNode node = new PreviousEmploymentListNode(parent, "previousEmploymentListNode");
@@ -65,7 +75,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("personTrustNode")
     PersonTrustNode providePersonTrustNode(
-        PersonNode parent,
         MembersInjector<PersonTrustNode> injector
     ) {
         PersonTrustNode node = new PersonTrustNode(parent, "personTrustNode");
@@ -78,7 +87,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("personPrivacyNode")
     PersonPrivacyNode providePersonPrivacyNode(
-        PersonNode parent,
         MembersInjector<PersonPrivacyNode> injector
     ) {
         PersonPrivacyNode node = new PersonPrivacyNode(parent, "personPrivacyNode");
@@ -91,7 +99,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("personOtherIncomeListNode")
     PersonOtherIncomeListNode providePersonOtherIncomeListNode(
-        PersonNode parent,
         MembersInjector<PersonOtherIncomeListNode> injector
     ) {
         PersonOtherIncomeListNode node = new PersonOtherIncomeListNode(parent, "personOtherIncomeListNode");
@@ -104,7 +111,6 @@ public class PersonNodeChildModule {
     @PersonNodeChildScope
     @Named("personResponsibleLendNode")
     PersonResponsibleLendNode providePersonResponsibleLendNode(
-        PersonNode parent,
         MembersInjector<PersonResponsibleLendNode> injector
     ) {
         PersonResponsibleLendNode node = new PersonResponsibleLendNode(parent, "personResponsibleLendNode");

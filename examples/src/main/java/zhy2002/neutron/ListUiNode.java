@@ -122,7 +122,7 @@ public abstract class ListUiNode<
         return (N)getChild(name);
     }
 
-    private int getChildSequenceNumber() {
+    public int getChildSequenceNumber() {
         return childSequenceNumber++;
     }
 

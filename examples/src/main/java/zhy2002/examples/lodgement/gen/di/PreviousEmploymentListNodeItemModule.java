@@ -8,14 +8,19 @@ import zhy2002.examples.lodgement.gen.*;
 @PreviousEmploymentListNodeItemScope
 public class PreviousEmploymentListNodeItemModule {
 
+    private final PreviousEmploymentListNode parent;
+
+    public PreviousEmploymentListNodeItemModule(PreviousEmploymentListNode parent) {
+        this.parent = parent;
+    }
+
     String getItemName() {
-        return "";
+        return String.valueOf(parent.getChildSequenceNumber());
     }
 
     @Provides
     @PreviousEmploymentListNodeItemScope
     PreviousEmploymentNode providePreviousEmploymentNode(
-        PreviousEmploymentListNode parent,
         MembersInjector<PreviousEmploymentNode> injector
     ) {
         PreviousEmploymentNode node = new PreviousEmploymentNode(parent, getItemName());

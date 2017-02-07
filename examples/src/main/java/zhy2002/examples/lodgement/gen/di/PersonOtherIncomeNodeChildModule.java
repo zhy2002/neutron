@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonOtherIncomeNodeChildScope
 public class PersonOtherIncomeNodeChildModule {
 
+    private final PersonOtherIncomeNode parent;
+
+    public PersonOtherIncomeNodeChildModule(PersonOtherIncomeNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonOtherIncomeNodeChildScope
     @Named("personAddBackTypeNode")
     PersonAddBackTypeNode providePersonAddBackTypeNode(
-        PersonOtherIncomeNode parent,
         MembersInjector<PersonAddBackTypeNode> injector
     ) {
         PersonAddBackTypeNode node = new PersonAddBackTypeNode(parent, "personAddBackTypeNode");
@@ -26,7 +31,6 @@ public class PersonOtherIncomeNodeChildModule {
     @PersonOtherIncomeNodeChildScope
     @Named("personOtherIncomeAmountNode")
     PersonOtherIncomeAmountNode providePersonOtherIncomeAmountNode(
-        PersonOtherIncomeNode parent,
         MembersInjector<PersonOtherIncomeAmountNode> injector
     ) {
         PersonOtherIncomeAmountNode node = new PersonOtherIncomeAmountNode(parent, "personOtherIncomeAmountNode");
@@ -39,7 +43,6 @@ public class PersonOtherIncomeNodeChildModule {
     @PersonOtherIncomeNodeChildScope
     @Named("personOtherIncomeDescriptionNode")
     PersonOtherIncomeDescriptionNode providePersonOtherIncomeDescriptionNode(
-        PersonOtherIncomeNode parent,
         MembersInjector<PersonOtherIncomeDescriptionNode> injector
     ) {
         PersonOtherIncomeDescriptionNode node = new PersonOtherIncomeDescriptionNode(parent, "personOtherIncomeDescriptionNode");
@@ -52,7 +55,6 @@ public class PersonOtherIncomeNodeChildModule {
     @PersonOtherIncomeNodeChildScope
     @Named("personOtherIncomePreviousYearNode")
     PersonOtherIncomePreviousYearNode providePersonOtherIncomePreviousYearNode(
-        PersonOtherIncomeNode parent,
         MembersInjector<PersonOtherIncomePreviousYearNode> injector
     ) {
         PersonOtherIncomePreviousYearNode node = new PersonOtherIncomePreviousYearNode(parent, "personOtherIncomePreviousYearNode");
@@ -65,7 +67,6 @@ public class PersonOtherIncomeNodeChildModule {
     @PersonOtherIncomeNodeChildScope
     @Named("personOtherIncomeTypeNode")
     PersonOtherIncomeTypeNode providePersonOtherIncomeTypeNode(
-        PersonOtherIncomeNode parent,
         MembersInjector<PersonOtherIncomeTypeNode> injector
     ) {
         PersonOtherIncomeTypeNode node = new PersonOtherIncomeTypeNode(parent, "personOtherIncomeTypeNode");

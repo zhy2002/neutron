@@ -11,4 +11,11 @@ public interface AssetsNodeChildComponent {
     MotorVehicleListNode provideMotorVehicleListNode(@Named("motorVehicleListNode") MotorVehicleListNode impl);
     OtherAssetListNode provideOtherAssetListNode(@Named("otherAssetListNode") OtherAssetListNode impl);
 
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setAssetsNodeChildModule(AssetsNodeChildModule module);
+
+        AssetsNodeChildComponent build();
+    }
 }

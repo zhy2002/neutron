@@ -8,12 +8,17 @@ import zhy2002.examples.lodgement.gen.*;
 @PersonTrustNodeChildScope
 public class PersonTrustNodeChildModule {
 
+    private final PersonTrustNode parent;
+
+    public PersonTrustNodeChildModule(PersonTrustNode parent) {
+        this.parent = parent;
+    }
+
 
     @Provides
     @PersonTrustNodeChildScope
     @Named("personTrustTypeNode")
     PersonTrustTypeNode providePersonTrustTypeNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustTypeNode> injector
     ) {
         PersonTrustTypeNode node = new PersonTrustTypeNode(parent, "personTrustTypeNode");
@@ -26,7 +31,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustNameNode")
     PersonTrustNameNode providePersonTrustNameNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustNameNode> injector
     ) {
         PersonTrustNameNode node = new PersonTrustNameNode(parent, "personTrustNameNode");
@@ -39,7 +43,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustRegistrationDateNode")
     PersonTrustRegistrationDateNode providePersonTrustRegistrationDateNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustRegistrationDateNode> injector
     ) {
         PersonTrustRegistrationDateNode node = new PersonTrustRegistrationDateNode(parent, "personTrustRegistrationDateNode");
@@ -52,7 +55,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustCountryNode")
     PersonTrustCountryNode providePersonTrustCountryNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustCountryNode> injector
     ) {
         PersonTrustCountryNode node = new PersonTrustCountryNode(parent, "personTrustCountryNode");
@@ -65,7 +67,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustAddressNode")
     PersonTrustAddressNode providePersonTrustAddressNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustAddressNode> injector
     ) {
         PersonTrustAddressNode node = new PersonTrustAddressNode(parent, "personTrustAddressNode");
@@ -78,7 +79,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustSettlorNotRequiredReasonNode")
     PersonTrustSettlorNotRequiredReasonNode providePersonTrustSettlorNotRequiredReasonNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustSettlorNotRequiredReasonNode> injector
     ) {
         PersonTrustSettlorNotRequiredReasonNode node = new PersonTrustSettlorNotRequiredReasonNode(parent, "personTrustSettlorNotRequiredReasonNode");
@@ -91,7 +91,6 @@ public class PersonTrustNodeChildModule {
     @PersonTrustNodeChildScope
     @Named("personTrustIndustryNode")
     PersonTrustIndustryNode providePersonTrustIndustryNode(
-        PersonTrustNode parent,
         MembersInjector<PersonTrustIndustryNode> injector
     ) {
         PersonTrustIndustryNode node = new PersonTrustIndustryNode(parent, "personTrustIndustryNode");

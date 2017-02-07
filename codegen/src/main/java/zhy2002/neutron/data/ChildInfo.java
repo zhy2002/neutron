@@ -21,5 +21,4 @@ public class ChildInfo {
     public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
-
 }
