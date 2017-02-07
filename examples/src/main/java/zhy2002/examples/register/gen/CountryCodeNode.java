@@ -12,7 +12,7 @@ import zhy2002.examples.register.data.*;
 
 public  class CountryCodeNode extends PhoneInfoFieldNode
 {
-    protected CountryCodeNode(PhoneInfoNode parent, String name) {
+    public CountryCodeNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
 

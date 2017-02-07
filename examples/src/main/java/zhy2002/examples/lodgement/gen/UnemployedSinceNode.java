@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class UnemployedSinceNode extends MonthYearNode<UnemployedNode>
 {
-    protected UnemployedSinceNode(UnemployedNode parent, String name) {
+    public UnemployedSinceNode(UnemployedNode parent, String name) {
         super(parent, name);
     }
 

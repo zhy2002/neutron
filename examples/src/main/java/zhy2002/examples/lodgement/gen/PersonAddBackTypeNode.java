@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonAddBackTypeNode extends StringUiNode<PersonOtherIncomeNode>
 {
-    protected PersonAddBackTypeNode(PersonOtherIncomeNode parent, String name) {
+    public PersonAddBackTypeNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }
 

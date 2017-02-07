@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonRepaymentDifficultyNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
-    protected PersonRepaymentDifficultyNode(PersonResponsibleLendNode parent, String name) {
+    public PersonRepaymentDifficultyNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }
 

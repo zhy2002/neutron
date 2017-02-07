@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
-    protected MovedToPreviousAddressNode(PersonContactNode parent, String name) {
+    public MovedToPreviousAddressNode(PersonContactNode parent, String name) {
         super(parent, name);
     }
 

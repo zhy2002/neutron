@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode>
 {
-    protected ApprovalInPrincipleFlagNode(UsageNode parent, String name) {
+    public ApprovalInPrincipleFlagNode(UsageNode parent, String name) {
         super(parent, name);
     }
 

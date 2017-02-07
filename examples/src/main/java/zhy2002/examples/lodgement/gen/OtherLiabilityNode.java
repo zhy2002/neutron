@@ -16,7 +16,7 @@ public  class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
     private OtherLiabilityDescriptionNode otherLiabilityDescriptionNode;
     private OtherLiabilityMarketValueNode otherLiabilityMarketValueNode;
 
-    protected OtherLiabilityNode(OtherLiabilityListNode parent, String name) {
+    public OtherLiabilityNode(OtherLiabilityListNode parent, String name) {
         super(parent, name);
     }
 

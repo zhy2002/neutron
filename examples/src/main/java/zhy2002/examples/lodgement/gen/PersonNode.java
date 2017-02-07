@@ -22,7 +22,7 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     private PersonOtherIncomeListNode personOtherIncomeListNode;
     private PersonResponsibleLendNode personResponsibleLendNode;
 
-    protected PersonNode(PersonListNode parent, String name) {
+    public PersonNode(PersonListNode parent, String name) {
         super(parent, name);
     }
 

@@ -20,7 +20,7 @@ public  class CreditCardNode extends ObjectUiNode<CreditCardListNode>
     private CreditCardBreakCostNode creditCardBreakCostNode;
     private CreditCardLenderNameNode creditCardLenderNameNode;
 
-    protected CreditCardNode(CreditCardListNode parent, String name) {
+    public CreditCardNode(CreditCardListNode parent, String name) {
         super(parent, name);
     }
 

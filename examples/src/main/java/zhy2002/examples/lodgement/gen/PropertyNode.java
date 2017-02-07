@@ -22,7 +22,7 @@ public  class PropertyNode extends ObjectUiNode<RealEstateNode>
     private PropertySubTypeNode propertySubTypeNode;
     private PropertyPurseNode propertyPurseNode;
 
-    protected PropertyNode(RealEstateNode parent, String name) {
+    public PropertyNode(RealEstateNode parent, String name) {
         super(parent, name);
     }
 

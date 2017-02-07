@@ -24,10 +24,10 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
 
 </#if>
 <#if parent??>
-    protected ${typeName}(${parent.typeName} parent, String name) {
+    public ${typeName}(${parent.typeName} parent, String name) {
         super(parent, name);
 <#else>
-    protected ${typeName}(@NotNull UiNodeContext<?> context) {
+    public ${typeName}(@NotNull UiNodeContext<?> context) {
         super(context);
 </#if>
     }

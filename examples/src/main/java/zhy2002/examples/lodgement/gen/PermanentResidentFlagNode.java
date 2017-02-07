@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
-    protected PermanentResidentFlagNode(PersonGeneralNode parent, String name) {
+    public PermanentResidentFlagNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 

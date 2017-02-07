@@ -20,7 +20,7 @@ public  class LoanNode extends ObjectUiNode<LoanListNode>
     private LoanClearingFlagNode loanClearingFlagNode;
     private LoanBreakCostNode loanBreakCostNode;
 
-    protected LoanNode(LoanListNode parent, String name) {
+    public LoanNode(LoanListNode parent, String name) {
         super(parent, name);
     }
 

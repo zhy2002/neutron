@@ -18,7 +18,7 @@ public  class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNo
     private PersonOtherIncomePreviousYearNode personOtherIncomePreviousYearNode;
     private PersonOtherIncomeTypeNode personOtherIncomeTypeNode;
 
-    protected PersonOtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
+    public PersonOtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
         super(parent, name);
     }
 

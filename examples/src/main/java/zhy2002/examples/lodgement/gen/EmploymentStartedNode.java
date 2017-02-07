@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class EmploymentStartedNode extends MonthYearNode<EmployedNode>
 {
-    protected EmploymentStartedNode(EmployedNode parent, String name) {
+    public EmploymentStartedNode(EmployedNode parent, String name) {
         super(parent, name);
     }
 

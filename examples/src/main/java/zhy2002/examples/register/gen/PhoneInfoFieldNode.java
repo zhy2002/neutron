@@ -12,7 +12,7 @@ import zhy2002.examples.register.data.*;
 
 public abstract class PhoneInfoFieldNode extends StringUiNode<PhoneInfoNode>
 {
-    protected PhoneInfoFieldNode(PhoneInfoNode parent, String name) {
+    public PhoneInfoFieldNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
 

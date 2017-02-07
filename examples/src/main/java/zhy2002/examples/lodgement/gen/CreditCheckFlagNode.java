@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
-    protected CreditCheckFlagNode(PersonPrivacyNode parent, String name) {
+    public CreditCheckFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }
 

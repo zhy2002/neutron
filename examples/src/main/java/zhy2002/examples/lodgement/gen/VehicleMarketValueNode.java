@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class VehicleMarketValueNode extends BigDecimalUiNode<MotorVehicleNode>
 {
-    protected VehicleMarketValueNode(MotorVehicleNode parent, String name) {
+    public VehicleMarketValueNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }
 

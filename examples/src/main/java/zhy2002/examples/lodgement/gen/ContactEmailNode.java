@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ContactEmailNode extends EmailNode<PersonContactNode>
 {
-    protected ContactEmailNode(PersonContactNode parent, String name) {
+    public ContactEmailNode(PersonContactNode parent, String name) {
         super(parent, name);
     }
 

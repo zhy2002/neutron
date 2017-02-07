@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class VehicleModelNode extends StringUiNode<MotorVehicleNode>
 {
-    protected VehicleModelNode(MotorVehicleNode parent, String name) {
+    public VehicleModelNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }
 

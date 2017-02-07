@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class LoanLenderNameNode extends StringUiNode<LoanNode>
 {
-    protected LoanLenderNameNode(LoanNode parent, String name) {
+    public LoanLenderNameNode(LoanNode parent, String name) {
         super(parent, name);
     }
 

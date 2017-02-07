@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PropertySubTypeNode extends StringUiNode<PropertyNode>
 {
-    protected PropertySubTypeNode(PropertyNode parent, String name) {
+    public PropertySubTypeNode(PropertyNode parent, String name) {
         super(parent, name);
     }
 

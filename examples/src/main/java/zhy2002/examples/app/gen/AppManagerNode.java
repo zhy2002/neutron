@@ -13,7 +13,7 @@ import zhy2002.examples.app.data.*;
 public  class AppManagerNode extends ObjectUiNode<LodgementNode>
 {
 
-    protected AppManagerNode(LodgementNode parent, String name) {
+    public AppManagerNode(LodgementNode parent, String name) {
         super(parent, name);
     }
 

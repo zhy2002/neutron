@@ -19,6 +19,9 @@ class TemplateBundle {
     private final Template ruleTemplate;
     private final Template registryTemplate;
     private final Template contextTemplate;
+    private final Template moduleTemplate;
+    private final Template scopeTemplate;
+    private final Template componentTemplate;
 
     TemplateBundle() {
         Configuration configuration = createTemplateConfiguration();
@@ -33,6 +36,9 @@ class TemplateBundle {
             ruleTemplate = configuration.getTemplate("rule.ftl");
             registryTemplate = configuration.getTemplate("registry.ftl");
             contextTemplate = configuration.getTemplate("context.ftl");
+            moduleTemplate = configuration.getTemplate("module.ftl");
+            scopeTemplate = configuration.getTemplate("scope.ftl");
+            componentTemplate = configuration.getTemplate("component.ftl");
         } catch (IOException ex) {
             throw new RuntimeException("Failed to load template.", ex);
         }
@@ -89,5 +95,17 @@ class TemplateBundle {
 
     public Template getContextTemplate() {
         return contextTemplate;
+    }
+
+    public Template getModuleTemplate() {
+        return moduleTemplate;
+    }
+
+    public Template getScopeTemplate() {
+        return scopeTemplate;
+    }
+
+    public Template getComponentTemplate() {
+        return componentTemplate;
     }
 }

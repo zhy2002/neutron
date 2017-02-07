@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,ErrorNode>
 {
-    protected ErrorListNode(ApplicationNode parent, String name) {
+    public ErrorListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

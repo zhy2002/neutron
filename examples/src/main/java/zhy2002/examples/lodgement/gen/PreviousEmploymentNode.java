@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentListNode>
 {
-    protected PreviousEmploymentNode(PreviousEmploymentListNode parent, String name) {
+    public PreviousEmploymentNode(PreviousEmploymentListNode parent, String name) {
         super(parent, name);
     }
 

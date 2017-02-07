@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class PersonOtherIncomeTypeNode extends StringUiNode<PersonOtherIncomeNode>
 {
-    protected PersonOtherIncomeTypeNode(PersonOtherIncomeNode parent, String name) {
+    public PersonOtherIncomeTypeNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }
 

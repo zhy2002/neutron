@@ -20,7 +20,7 @@ public  class AccessNode extends ObjectUiNode<RealEstateNode>
     private AccessTelephoneNode accessTelephoneNode;
     private AccessOtherDescriptionNode accessOtherDescriptionNode;
 
-    protected AccessNode(RealEstateNode parent, String name) {
+    public AccessNode(RealEstateNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class OtherAssetTypeNode extends StringUiNode<OtherAssetNode>
 {
-    protected OtherAssetTypeNode(OtherAssetNode parent, String name) {
+    public OtherAssetTypeNode(OtherAssetNode parent, String name) {
         super(parent, name);
     }
 

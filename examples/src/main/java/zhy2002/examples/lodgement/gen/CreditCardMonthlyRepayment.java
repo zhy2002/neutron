@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CreditCardMonthlyRepayment extends BigDecimalUiNode<CreditCardNode>
 {
-    protected CreditCardMonthlyRepayment(CreditCardNode parent, String name) {
+    public CreditCardMonthlyRepayment(CreditCardNode parent, String name) {
         super(parent, name);
     }
 

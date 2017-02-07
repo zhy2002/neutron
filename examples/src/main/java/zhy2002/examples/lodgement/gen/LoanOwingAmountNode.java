@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class LoanOwingAmountNode extends BigDecimalUiNode<LoanNode>
 {
-    protected LoanOwingAmountNode(LoanNode parent, String name) {
+    public LoanOwingAmountNode(LoanNode parent, String name) {
         super(parent, name);
     }
 

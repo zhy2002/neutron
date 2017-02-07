@@ -18,7 +18,7 @@ public  class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
     private HouseDutiesFlagNode houseDutiesFlagNode;
     private UnemployedSinceNode unemployedSinceNode;
 
-    protected UnemployedNode(EmploymentNode parent, String name) {
+    public UnemployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

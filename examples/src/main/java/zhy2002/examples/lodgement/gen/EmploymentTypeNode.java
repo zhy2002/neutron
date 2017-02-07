@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
 {
-    protected EmploymentTypeNode(EmploymentNode parent, String name) {
+    public EmploymentTypeNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

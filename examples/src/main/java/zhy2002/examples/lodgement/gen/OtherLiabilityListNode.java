@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityListNode,OtherLiabilityNode>
 {
-    protected OtherLiabilityListNode(LiabilitiesNode parent, String name) {
+    public OtherLiabilityListNode(LiabilitiesNode parent, String name) {
         super(parent, name);
     }
 

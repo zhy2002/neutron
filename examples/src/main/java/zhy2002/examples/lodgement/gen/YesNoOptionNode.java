@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
-    protected YesNoOptionNode(P parent, String name) {
+    public YesNoOptionNode(P parent, String name) {
         super(parent, name);
     }
 

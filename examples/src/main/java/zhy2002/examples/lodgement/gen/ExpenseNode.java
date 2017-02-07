@@ -16,7 +16,7 @@ public  class ExpenseNode extends ObjectUiNode<ExpensesNode>
     private ExpenseDescriptionNode expenseDescriptionNode;
     private ExpenseMonthlyRepaymentNode expenseMonthlyRepaymentNode;
 
-    protected ExpenseNode(ExpensesNode parent, String name) {
+    public ExpenseNode(ExpensesNode parent, String name) {
         super(parent, name);
     }
 

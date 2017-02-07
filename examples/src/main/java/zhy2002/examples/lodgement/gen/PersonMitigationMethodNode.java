@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonMitigationMethodNode extends StringUiNode<PersonResponsibleLendNode>
 {
-    protected PersonMitigationMethodNode(PersonResponsibleLendNode parent, String name) {
+    public PersonMitigationMethodNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }
 

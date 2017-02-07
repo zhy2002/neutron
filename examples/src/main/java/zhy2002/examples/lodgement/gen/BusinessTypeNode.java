@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class BusinessTypeNode extends StringUiNode<SelfEmployedNode>
 {
-    protected BusinessTypeNode(SelfEmployedNode parent, String name) {
+    public BusinessTypeNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }
 

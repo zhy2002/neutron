@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
-    protected DobNode(P parent, String name) {
+    public DobNode(P parent, String name) {
         super(parent, name);
     }
 

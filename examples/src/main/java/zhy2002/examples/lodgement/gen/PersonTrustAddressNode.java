@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonTrustAddressNode extends AddressNode<PersonTrustNode>
 {
-    protected PersonTrustAddressNode(PersonTrustNode parent, String name) {
+    public PersonTrustAddressNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }
 

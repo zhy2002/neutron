@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class OtherLiabilityMarketValueNode extends BigDecimalUiNode<OtherLiabilityNode>
 {
-    protected OtherLiabilityMarketValueNode(OtherLiabilityNode parent, String name) {
+    public OtherLiabilityMarketValueNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }
 

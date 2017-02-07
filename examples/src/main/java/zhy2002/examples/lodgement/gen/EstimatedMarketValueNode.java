@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode>
 {
-    protected EstimatedMarketValueNode(PropertyNode parent, String name) {
+    public EstimatedMarketValueNode(PropertyNode parent, String name) {
         super(parent, name);
     }
 

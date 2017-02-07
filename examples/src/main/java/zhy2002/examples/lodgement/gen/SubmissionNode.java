@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class SubmissionNode extends ObjectUiNode<ApplicationNode>
 {
 
-    protected SubmissionNode(ApplicationNode parent, String name) {
+    public SubmissionNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

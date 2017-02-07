@@ -16,7 +16,7 @@ public  class SelfEmployedNode extends EmployedNode
     private ProfitThisYearNode profitThisYearNode;
     private ProfitPreviousYearNode profitPreviousYearNode;
 
-    protected SelfEmployedNode(EmploymentNode parent, String name) {
+    public SelfEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

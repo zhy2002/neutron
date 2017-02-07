@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
-    protected PersonSignificantChangeFlagNode(PersonResponsibleLendNode parent, String name) {
+    public PersonSignificantChangeFlagNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }
 

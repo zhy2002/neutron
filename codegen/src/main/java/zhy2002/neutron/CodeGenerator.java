@@ -56,7 +56,7 @@ class CodeGenerator {
             generateFile(targetDirectory, nodeInfo, templateBundle.getNodeRemoveEventTemplate(), "event", "RemoveEvent");
         }
 
-        if (nodeInfo.hasChangeEvent()) {
+        if (nodeInfo.getChangeEventInfo() != null) {
             generateFile(targetDirectory, nodeInfo.getChangeEventInfo(), templateBundle.getChangeEventTemplate(), "event", "StateChangeEvent");
         }
 
@@ -64,6 +64,12 @@ class CodeGenerator {
             for (RuleInfo ruleDescription : nodeInfo.getRules()) {
                 generateFile(targetDirectory, ruleDescription, templateBundle.getRuleTemplate(), "rule", "");
             }
+        }
+
+        if (nodeInfo.getModuleInfo() != null) {
+            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getModuleTemplate(), "di", "Module");
+            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getScopeTemplate(), "di", "Scope");
+            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getComponentTemplate(), "di", "Component");
         }
     }
 

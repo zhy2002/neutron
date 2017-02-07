@@ -18,7 +18,7 @@ public  class UsageNode extends ObjectUiNode<RealEstateNode>
     private PrimarySecurityFlagNode primarySecurityFlagNode;
     private ApprovalInPrincipleFlagNode approvalInPrincipleFlagNode;
 
-    protected UsageNode(RealEstateNode parent, String name) {
+    public UsageNode(RealEstateNode parent, String name) {
         super(parent, name);
     }
 

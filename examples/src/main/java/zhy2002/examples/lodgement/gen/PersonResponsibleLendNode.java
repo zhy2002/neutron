@@ -17,7 +17,7 @@ public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
     private PersonSignificantChangeFlagNode personSignificantChangeFlagNode;
     private PersonRepaymentDifficultyNode personRepaymentDifficultyNode;
 
-    protected PersonResponsibleLendNode(PersonNode parent, String name) {
+    public PersonResponsibleLendNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

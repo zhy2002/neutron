@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class AddressLineNode extends StringUiNode<AddressNode<?>>
 {
-    protected AddressLineNode(AddressNode parent, String name) {
+    public AddressLineNode(AddressNode parent, String name) {
         super(parent, name);
     }
 

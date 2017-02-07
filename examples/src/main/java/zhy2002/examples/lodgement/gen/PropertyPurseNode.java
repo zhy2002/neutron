@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PropertyPurseNode extends BooleanUiNode<PropertyNode>
 {
-    protected PropertyPurseNode(PropertyNode parent, String name) {
+    public PropertyPurseNode(PropertyNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
 {
-    protected UnemployedOnBenefitFlagNode(UnemployedNode parent, String name) {
+    public UnemployedOnBenefitFlagNode(UnemployedNode parent, String name) {
         super(parent, name);
     }
 

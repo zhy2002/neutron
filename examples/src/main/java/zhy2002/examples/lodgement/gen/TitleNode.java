@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class TitleNode extends StringUiNode<PersonGeneralNode>
 {
-    protected TitleNode(PersonGeneralNode parent, String name) {
+    public TitleNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }
 

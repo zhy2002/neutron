@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode>
 {
-    protected VehicleYearNode(MotorVehicleNode parent, String name) {
+    public VehicleYearNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }
 

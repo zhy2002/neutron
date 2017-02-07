@@ -14,7 +14,7 @@ public  class PayeEmployedNode extends EmployedNode
 {
     private GrossYearlySalaryNode grossYearlySalaryNode;
 
-    protected PayeEmployedNode(EmploymentNode parent, String name) {
+    public PayeEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

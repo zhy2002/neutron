@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
 {
-    protected LegalActionNode(PersonPrivacyNode parent, String name) {
+    public LegalActionNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.register.data.*;
 
 public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
-    protected ErrorNode(ErrorListNode parent, String name) {
+    public ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
     }
 

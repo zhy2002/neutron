@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CreditCardTypeNode extends StringUiNode<CreditCardNode>
 {
-    protected CreditCardTypeNode(CreditCardNode parent, String name) {
+    public CreditCardTypeNode(CreditCardNode parent, String name) {
         super(parent, name);
     }
 

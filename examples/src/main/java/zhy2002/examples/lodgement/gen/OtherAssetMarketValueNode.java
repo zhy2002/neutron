@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class OtherAssetMarketValueNode extends StringUiNode<OtherAssetNode>
 {
-    protected OtherAssetMarketValueNode(OtherAssetNode parent, String name) {
+    public OtherAssetMarketValueNode(OtherAssetNode parent, String name) {
         super(parent, name);
     }
 

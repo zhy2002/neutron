@@ -20,7 +20,7 @@ public  class PersonTrustNode extends ObjectUiNode<PersonNode>
     private PersonTrustSettlorNotRequiredReasonNode personTrustSettlorNotRequiredReasonNode;
     private PersonTrustIndustryNode personTrustIndustryNode;
 
-    protected PersonTrustNode(PersonNode parent, String name) {
+    public PersonTrustNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

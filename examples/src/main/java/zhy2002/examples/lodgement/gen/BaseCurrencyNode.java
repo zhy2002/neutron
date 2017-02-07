@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public abstract class BaseCurrencyNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P>
 {
-    protected BaseCurrencyNode(P parent, String name) {
+    public BaseCurrencyNode(P parent, String name) {
         super(parent, name);
     }
 

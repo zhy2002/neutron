@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 public  class AdditionalNode extends ObjectUiNode<ApplicationNode>
 {
 
-    protected AdditionalNode(ApplicationNode parent, String name) {
+    public AdditionalNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

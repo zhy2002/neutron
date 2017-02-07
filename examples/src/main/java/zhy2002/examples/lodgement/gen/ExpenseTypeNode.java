@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ExpenseTypeNode extends StringUiNode<ExpenseNode>
 {
-    protected ExpenseTypeNode(ExpenseNode parent, String name) {
+    public ExpenseTypeNode(ExpenseNode parent, String name) {
         super(parent, name);
     }
 

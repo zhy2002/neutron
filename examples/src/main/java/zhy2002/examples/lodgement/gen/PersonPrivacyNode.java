@@ -16,7 +16,7 @@ public  class PersonPrivacyNode extends ObjectUiNode<PersonNode>
     private ThirdPartyDisclosureFlagNode thirdPartyDisclosureFlagNode;
     private LegalActionNode legalActionNode;
 
-    protected PersonPrivacyNode(PersonNode parent, String name) {
+    public PersonPrivacyNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

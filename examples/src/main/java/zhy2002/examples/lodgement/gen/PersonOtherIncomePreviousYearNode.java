@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode>
 {
-    protected PersonOtherIncomePreviousYearNode(PersonOtherIncomeNode parent, String name) {
+    public PersonOtherIncomePreviousYearNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }
 

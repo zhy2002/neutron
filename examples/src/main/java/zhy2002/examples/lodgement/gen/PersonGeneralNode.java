@@ -27,7 +27,7 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
     private HousingStatusNode housingStatusNode;
     private ApplicationTypeNode applicationTypeNode;
 
-    protected PersonGeneralNode(PersonNode parent, String name) {
+    public PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

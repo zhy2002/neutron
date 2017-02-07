@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonTrustRegistrationDateNode extends StringUiNode<PersonTrustNode>
 {
-    protected PersonTrustRegistrationDateNode(PersonTrustNode parent, String name) {
+    public PersonTrustRegistrationDateNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.register.data.*;
 
 public  class PhoneNumberNode extends PhoneInfoFieldNode
 {
-    protected PhoneNumberNode(PhoneInfoNode parent, String name) {
+    public PhoneNumberNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }
 

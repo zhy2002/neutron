@@ -16,7 +16,7 @@ public  class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
     private OtherAssetDescriptionNode otherAssetDescriptionNode;
     private OtherAssetMarketValueNode otherAssetMarketValueNode;
 
-    protected OtherAssetNode(OtherAssetListNode parent, String name) {
+    public OtherAssetNode(OtherAssetListNode parent, String name) {
         super(parent, name);
     }
 

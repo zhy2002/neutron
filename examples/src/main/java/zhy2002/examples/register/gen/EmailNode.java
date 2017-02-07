@@ -13,7 +13,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class EmailNode extends StringUiNode<RegisterNode>
 {
-    protected EmailNode(RegisterNode parent, String name) {
+    public EmailNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

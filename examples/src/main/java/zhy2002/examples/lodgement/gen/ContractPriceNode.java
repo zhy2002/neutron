@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ContractPriceNode extends BigDecimalUiNode<PropertyNode>
 {
-    protected ContractPriceNode(PropertyNode parent, String name) {
+    public ContractPriceNode(PropertyNode parent, String name) {
         super(parent, name);
     }
 

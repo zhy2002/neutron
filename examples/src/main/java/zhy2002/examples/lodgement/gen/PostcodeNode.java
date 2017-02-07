@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PostcodeNode extends StringUiNode<AddressNode<?>>
 {
-    protected PostcodeNode(AddressNode parent, String name) {
+    public PostcodeNode(AddressNode parent, String name) {
         super(parent, name);
     }
 

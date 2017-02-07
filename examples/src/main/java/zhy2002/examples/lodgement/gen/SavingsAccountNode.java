@@ -19,7 +19,7 @@ public  class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
     private SavingsAccountNoNode savingsAccountNoNode;
     private SavingsAccountNameNode savingsAccountNameNode;
 
-    protected SavingsAccountNode(SavingsAccountListNode parent, String name) {
+    public SavingsAccountNode(SavingsAccountListNode parent, String name) {
         super(parent, name);
     }
 

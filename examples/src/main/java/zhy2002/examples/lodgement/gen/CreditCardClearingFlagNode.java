@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
 {
-    protected CreditCardClearingFlagNode(CreditCardNode parent, String name) {
+    public CreditCardClearingFlagNode(CreditCardNode parent, String name) {
         super(parent, name);
     }
 

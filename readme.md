@@ -12,6 +12,7 @@ todo
 * deferred event execution - if the user types in many characters quickly
   we should wait for a pause before we do an update. 
 * per-lender config override (white label)
+* bean validation of domain info
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...

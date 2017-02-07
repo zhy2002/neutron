@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonOtherIncomeAmountNode extends BaseCurrencyNode<PersonOtherIncomeNode>
 {
-    protected PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
+    public PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }
 

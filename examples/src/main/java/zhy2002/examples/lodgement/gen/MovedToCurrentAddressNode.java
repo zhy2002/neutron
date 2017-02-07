@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public  class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
 {
-    protected MovedToCurrentAddressNode(PersonContactNode parent, String name) {
+    public MovedToCurrentAddressNode(PersonContactNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class LoanClearingFlagNode extends BooleanUiNode<LoanNode>
 {
-    protected LoanClearingFlagNode(LoanNode parent, String name) {
+    public LoanClearingFlagNode(LoanNode parent, String name) {
         super(parent, name);
     }
 

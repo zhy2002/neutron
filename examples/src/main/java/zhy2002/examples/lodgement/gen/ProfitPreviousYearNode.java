@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ProfitPreviousYearNode extends BigDecimalUiNode<SelfEmployedNode>
 {
-    protected ProfitPreviousYearNode(SelfEmployedNode parent, String name) {
+    public ProfitPreviousYearNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }
 

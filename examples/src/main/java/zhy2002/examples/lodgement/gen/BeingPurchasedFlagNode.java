@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode>
 {
-    protected BeingPurchasedFlagNode(UsageNode parent, String name) {
+    public BeingPurchasedFlagNode(UsageNode parent, String name) {
         super(parent, name);
     }
 

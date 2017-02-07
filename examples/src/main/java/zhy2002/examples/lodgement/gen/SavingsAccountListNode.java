@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountListNode,SavingsAccountNode>
 {
-    protected SavingsAccountListNode(AssetsNode parent, String name) {
+    public SavingsAccountListNode(AssetsNode parent, String name) {
         super(parent, name);
     }
 

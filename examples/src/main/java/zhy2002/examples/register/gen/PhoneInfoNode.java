@@ -17,7 +17,7 @@ public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
     private AreaCodeNode areaCodeNode;
     private PhoneNumberNode phoneNumberNode;
 
-    protected PhoneInfoNode(RegisterNode parent, String name) {
+    public PhoneInfoNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

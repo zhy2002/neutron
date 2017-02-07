@@ -16,7 +16,7 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
     private MonthNode monthNode;
     private YearNode yearNode;
 
-    protected MonthYearNode(P parent, String name) {
+    public MonthYearNode(P parent, String name) {
         super(parent, name);
     }
 

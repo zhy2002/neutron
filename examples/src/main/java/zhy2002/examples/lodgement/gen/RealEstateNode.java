@@ -16,7 +16,7 @@ public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
     private PropertyNode propertyNode;
     private AccessNode accessNode;
 
-    protected RealEstateNode(RealEstateListNode parent, String name) {
+    public RealEstateNode(RealEstateListNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class AccessOtherDescriptionNode extends StringUiNode<AccessNode>
 {
-    protected AccessOtherDescriptionNode(AccessNode parent, String name) {
+    public AccessOtherDescriptionNode(AccessNode parent, String name) {
         super(parent, name);
     }
 

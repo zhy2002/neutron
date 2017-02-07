@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PropertyAddressNode extends AddressNode<PropertyNode>
 {
-    protected PropertyAddressNode(PropertyNode parent, String name) {
+    public PropertyAddressNode(PropertyNode parent, String name) {
         super(parent, name);
     }
 

@@ -25,7 +25,7 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     private MovedToPreviousAddressNode movedToPreviousAddressNode;
     private MovedFromPreviousAddressNode movedFromPreviousAddressNode;
 
-    protected PersonContactNode(PersonNode parent, String name) {
+    public PersonContactNode(PersonNode parent, String name) {
         super(parent, name);
     }
 

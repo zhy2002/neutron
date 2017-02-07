@@ -15,7 +15,7 @@ public  class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
     private RetiredOnBenefitFlagNode retiredOnBenefitFlagNode;
     private RetiredSinceNode retiredSinceNode;
 
-    protected RetiredEmploymentNode(EmploymentNode parent, String name) {
+    public RetiredEmploymentNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

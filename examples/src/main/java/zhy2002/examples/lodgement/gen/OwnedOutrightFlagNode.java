@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode>
 {
-    protected OwnedOutrightFlagNode(UsageNode parent, String name) {
+    public OwnedOutrightFlagNode(UsageNode parent, String name) {
         super(parent, name);
     }
 

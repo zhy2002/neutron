@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode>
 {
-    protected GrossYearlySalaryNode(PayeEmployedNode parent, String name) {
+    public GrossYearlySalaryNode(PayeEmployedNode parent, String name) {
         super(parent, name);
     }
 

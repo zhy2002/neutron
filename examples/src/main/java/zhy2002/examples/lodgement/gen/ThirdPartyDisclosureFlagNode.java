@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
-    protected ThirdPartyDisclosureFlagNode(PersonPrivacyNode parent, String name) {
+    public ThirdPartyDisclosureFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }
 

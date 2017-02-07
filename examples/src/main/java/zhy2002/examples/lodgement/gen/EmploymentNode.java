@@ -18,7 +18,7 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     private UnemployedNode unemployedNode;
     private RetiredEmploymentNode retiredEmploymentNode;
 
-    protected EmploymentNode(P parent, String name) {
+    public EmploymentNode(P parent, String name) {
         super(parent, name);
     }
 

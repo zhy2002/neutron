@@ -16,7 +16,7 @@ public  class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
     private VehicleYearNode vehicleYearNode;
     private VehicleMarketValueNode vehicleMarketValueNode;
 
-    protected MotorVehicleNode(MotorVehicleListNode parent, String name) {
+    public MotorVehicleNode(MotorVehicleListNode parent, String name) {
         super(parent, name);
     }
 

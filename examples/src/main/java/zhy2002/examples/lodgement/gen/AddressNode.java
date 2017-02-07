@@ -18,7 +18,7 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
     private PostcodeNode postcodeNode;
     private CountryNode countryNode;
 
-    protected AddressNode(P parent, String name) {
+    public AddressNode(P parent, String name) {
         super(parent, name);
     }
 

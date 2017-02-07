@@ -23,7 +23,7 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     private SubmissionNode submissionNode;
     private ErrorListNode errorListNode;
 
-    protected ApplicationNode(@NotNull UiNodeContext<?> context) {
+    public ApplicationNode(@NotNull UiNodeContext<?> context) {
         super(context);
     }
 

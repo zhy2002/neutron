@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardListNode,CreditCardNode>
 {
-    protected CreditCardListNode(LiabilitiesNode parent, String name) {
+    public CreditCardListNode(LiabilitiesNode parent, String name) {
         super(parent, name);
     }
 

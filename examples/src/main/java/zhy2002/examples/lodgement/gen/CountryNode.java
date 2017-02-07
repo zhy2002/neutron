@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class CountryNode extends BaseCountryNode<AddressNode<?>>
 {
-    protected CountryNode(AddressNode parent, String name) {
+    public CountryNode(AddressNode parent, String name) {
         super(parent, name);
     }
 

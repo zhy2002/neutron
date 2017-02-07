@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonOtherIncomeDescriptionNode extends StringUiNode<PersonOtherIncomeNode>
 {
-    protected PersonOtherIncomeDescriptionNode(PersonOtherIncomeNode parent, String name) {
+    public PersonOtherIncomeDescriptionNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }
 

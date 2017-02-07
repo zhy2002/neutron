@@ -16,7 +16,7 @@ public  class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
     private LiabilitiesNode liabilitiesNode;
     private ExpensesNode expensesNode;
 
-    protected FinancialPositionNode(ApplicationNode parent, String name) {
+    public FinancialPositionNode(ApplicationNode parent, String name) {
         super(parent, name);
     }
 

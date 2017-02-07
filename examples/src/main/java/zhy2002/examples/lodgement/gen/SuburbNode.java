@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class SuburbNode extends StringUiNode<AddressNode<?>>
 {
-    protected SuburbNode(AddressNode parent, String name) {
+    public SuburbNode(AddressNode parent, String name) {
         super(parent, name);
     }
 

@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNode>
 {
-    protected PersonTypeOfChangeNode(PersonResponsibleLendNode parent, String name) {
+    public PersonTypeOfChangeNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }
 

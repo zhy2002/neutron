@@ -27,6 +27,7 @@ public class NodeInfo extends CodeGenInfo {
     private DomainInfo domainInfo;
     private CodeGenInfo changeEventInfo;
     private String parentTypeName;
+    private ModuleInfo moduleInfo;
 
     public String getBaseTypeName() {
         return baseTypeName;
@@ -208,6 +209,20 @@ public class NodeInfo extends CodeGenInfo {
             changeEventInfo.setTypeName(getValueTypeName());
             getDomainInfo().getRegistryInfo().getChangeEventNodes().add(this);
         }
+        if(definesModule()) {
+            this.moduleInfo = new ModuleInfo();
+            moduleInfo.setParent(this);
+            moduleInfo.setDomainInfo(getDomainInfo());
+            if(getItemTypeName() != null) {
+                moduleInfo.setTypeName(getTypeName() + "Item");
+                ChildInfo childInfo = new ChildInfo();
+                childInfo.setTypeName(getItemTypeName());
+                moduleInfo.getExports().add(childInfo);
+            } else {
+                moduleInfo.setTypeName(getTypeName() + "Child");
+                moduleInfo.getExports().addAll(getChildren());
+            }
+        }
     }
 
     private void initializeChildTypes() {
@@ -312,5 +327,13 @@ public class NodeInfo extends CodeGenInfo {
         }
 
         return false;
+    }
+
+    public boolean definesModule() {
+        return getChildren() != null || getItemTypeName() != null;
+    }
+
+    public CodeGenInfo getModuleInfo() {
+        return moduleInfo;
     }
 }

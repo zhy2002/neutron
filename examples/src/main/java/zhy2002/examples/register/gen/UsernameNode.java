@@ -13,7 +13,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class UsernameNode extends StringUiNode<RegisterNode>
 {
-    protected UsernameNode(RegisterNode parent, String name) {
+    public UsernameNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

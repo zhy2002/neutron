@@ -13,7 +13,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
-    protected AgeNode(RegisterNode parent, String name) {
+    public AgeNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

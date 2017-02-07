@@ -13,7 +13,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public  class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
 {
-    protected OwnInvestmentPropertyNode(RegisterNode parent, String name) {
+    public OwnInvestmentPropertyNode(RegisterNode parent, String name) {
         super(parent, name);
     }
 

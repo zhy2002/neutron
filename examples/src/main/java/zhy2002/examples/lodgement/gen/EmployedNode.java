@@ -20,7 +20,7 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     private EmploymentStartedNode employmentStartedNode;
     private EmploymentEndedNode employmentEndedNode;
 
-    protected EmployedNode(EmploymentNode parent, String name) {
+    public EmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }
 

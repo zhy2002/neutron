@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public  class MonthNode extends BigDecimalUiNode<MonthYearNode<?>>
 {
-    protected MonthNode(MonthYearNode parent, String name) {
+    public MonthNode(MonthYearNode parent, String name) {
         super(parent, name);
     }
 

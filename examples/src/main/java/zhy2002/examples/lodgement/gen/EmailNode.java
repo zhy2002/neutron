@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.data.*;
 
 public abstract class EmailNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
-    protected EmailNode(P parent, String name) {
+    public EmailNode(P parent, String name) {
         super(parent, name);
     }
 
