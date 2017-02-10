@@ -5,6 +5,9 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+<#if children?? || itemTypeName?? || !isAbstract>
+import javax.inject.*;
+</#if>
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -13,7 +16,10 @@ import ${targetPackage}.data.*;
 import ${targetPackage}.gen.rule.*;
 </#if>
 
-public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName?? && isAbstract??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
+<#if parent?? == false>
+@Singleton
+</#if>
+public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName?? && isAbstract??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
 <#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>
 <#else><#if parentTypeName??><${parentTypeName}></#if>
 </#if>{
@@ -23,11 +29,31 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     </#list>
 
 </#if>
+<#if children?? || itemTypeName??>
+    private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
+
+    @Inject
+    void receiveProviders(${typeName}<#if itemTypeName??>Item<#else>Child</#if>Provider provider) {
+        <#if itemTypeName??>item<#else>child</#if>Factory = provider.createFactory(this);
+    }
+
+</#if>
+<#if !isAbstract>
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<${typeName}> config = classRegistry.getUiNodeConfig(${typeName}.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
+</#if>
 <#if parent??>
     public ${typeName}(${parent.typeName} parent, String name) {
         super(parent, name);
 <#else>
-    public ${typeName}(@NotNull UiNodeContext<?> context) {
+    @Inject
+    public ${typeName}(@NotNull ${typeName}Context context) {
         super(context);
 </#if>
     }
@@ -36,6 +62,11 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     @Override
     public Class<${itemTypeName}> getItemClass() {
         return ${itemTypeName}.class;
+    }
+
+    @Override
+    protected <M extends ${itemTypeName}> ${itemTypeName} createItemNode(Class<M> itemClass, String name) {
+        return itemFactory.create${itemTypeName}(name);
     }
 
 </#if>
@@ -103,9 +134,8 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
     <#list children as child>
-        ${child.name} = context.createChildNode(${child.typeName}.class, this, "${child.name}");
+        ${child.name} = childFactory.create${child.name?cap_first}();
         children.add(${child.name});
     </#list>
         return children;
@@ -144,7 +174,7 @@ public <#if isAbstract>abstract</#if> class ${typeName}<#if parentBaseTypeName??
 
     @Override
     public Class<${valueTypeName}> getValueClass() {
-    return ${valueTypeName}.class;
+        return ${valueTypeName}.class;
     }
 
 </#if>

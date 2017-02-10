@@ -5,8 +5,6 @@ package zhy2002.neutron;
  */
 public interface ClassRegistry {
 
-    <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass);
-
     <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name);
 
     /**

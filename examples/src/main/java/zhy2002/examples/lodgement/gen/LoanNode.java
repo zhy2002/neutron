@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class LoanNode extends ObjectUiNode<LoanListNode>
+public class LoanNode extends ObjectUiNode<LoanListNode>
 {
     private LoanTypeNode loanTypeNode;
     private LoanLenderNameNode loanLenderNameNode;
@@ -19,6 +20,21 @@ public  class LoanNode extends ObjectUiNode<LoanListNode>
     private LoanMonthlyRepaymentNode loanMonthlyRepaymentNode;
     private LoanClearingFlagNode loanClearingFlagNode;
     private LoanBreakCostNode loanBreakCostNode;
+
+    private LoanNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(LoanNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<LoanNode> config = classRegistry.getUiNodeConfig(LoanNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public LoanNode(LoanListNode parent, String name) {
         super(parent, name);
@@ -62,20 +78,19 @@ public  class LoanNode extends ObjectUiNode<LoanListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        loanTypeNode = context.createChildNode(LoanTypeNode.class, this, "loanTypeNode");
+        loanTypeNode = childFactory.createLoanTypeNode();
         children.add(loanTypeNode);
-        loanLenderNameNode = context.createChildNode(LoanLenderNameNode.class, this, "loanLenderNameNode");
+        loanLenderNameNode = childFactory.createLoanLenderNameNode();
         children.add(loanLenderNameNode);
-        loanLimitAmountNode = context.createChildNode(LoanLimitAmountNode.class, this, "loanLimitAmountNode");
+        loanLimitAmountNode = childFactory.createLoanLimitAmountNode();
         children.add(loanLimitAmountNode);
-        loanOwingAmountNode = context.createChildNode(LoanOwingAmountNode.class, this, "loanOwingAmountNode");
+        loanOwingAmountNode = childFactory.createLoanOwingAmountNode();
         children.add(loanOwingAmountNode);
-        loanMonthlyRepaymentNode = context.createChildNode(LoanMonthlyRepaymentNode.class, this, "loanMonthlyRepaymentNode");
+        loanMonthlyRepaymentNode = childFactory.createLoanMonthlyRepaymentNode();
         children.add(loanMonthlyRepaymentNode);
-        loanClearingFlagNode = context.createChildNode(LoanClearingFlagNode.class, this, "loanClearingFlagNode");
+        loanClearingFlagNode = childFactory.createLoanClearingFlagNode();
         children.add(loanClearingFlagNode);
-        loanBreakCostNode = context.createChildNode(LoanBreakCostNode.class, this, "loanBreakCostNode");
+        loanBreakCostNode = childFactory.createLoanBreakCostNode();
         children.add(loanBreakCostNode);
         return children;
     }

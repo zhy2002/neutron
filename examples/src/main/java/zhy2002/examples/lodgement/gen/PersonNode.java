@@ -5,13 +5,14 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class PersonNode extends ObjectUiNode<PersonListNode>
+public class PersonNode extends ObjectUiNode<PersonListNode>
 {
     private PersonGeneralNode personGeneralNode;
     private PersonContactNode personContactNode;
@@ -21,6 +22,21 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     private PersonPrivacyNode personPrivacyNode;
     private PersonOtherIncomeListNode personOtherIncomeListNode;
     private PersonResponsibleLendNode personResponsibleLendNode;
+
+    private PersonNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonNode> config = classRegistry.getUiNodeConfig(PersonNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonNode(PersonListNode parent, String name) {
         super(parent, name);
@@ -76,22 +92,21 @@ public  class PersonNode extends ObjectUiNode<PersonListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        personGeneralNode = context.createChildNode(PersonGeneralNode.class, this, "personGeneralNode");
+        personGeneralNode = childFactory.createPersonGeneralNode();
         children.add(personGeneralNode);
-        personContactNode = context.createChildNode(PersonContactNode.class, this, "personContactNode");
+        personContactNode = childFactory.createPersonContactNode();
         children.add(personContactNode);
-        currentEmploymentListNode = context.createChildNode(CurrentEmploymentListNode.class, this, "currentEmploymentListNode");
+        currentEmploymentListNode = childFactory.createCurrentEmploymentListNode();
         children.add(currentEmploymentListNode);
-        previousEmploymentListNode = context.createChildNode(PreviousEmploymentListNode.class, this, "previousEmploymentListNode");
+        previousEmploymentListNode = childFactory.createPreviousEmploymentListNode();
         children.add(previousEmploymentListNode);
-        personTrustNode = context.createChildNode(PersonTrustNode.class, this, "personTrustNode");
+        personTrustNode = childFactory.createPersonTrustNode();
         children.add(personTrustNode);
-        personPrivacyNode = context.createChildNode(PersonPrivacyNode.class, this, "personPrivacyNode");
+        personPrivacyNode = childFactory.createPersonPrivacyNode();
         children.add(personPrivacyNode);
-        personOtherIncomeListNode = context.createChildNode(PersonOtherIncomeListNode.class, this, "personOtherIncomeListNode");
+        personOtherIncomeListNode = childFactory.createPersonOtherIncomeListNode();
         children.add(personOtherIncomeListNode);
-        personResponsibleLendNode = context.createChildNode(PersonResponsibleLendNode.class, this, "personResponsibleLendNode");
+        personResponsibleLendNode = childFactory.createPersonResponsibleLendNode();
         children.add(personResponsibleLendNode);
         return children;
     }

@@ -5,17 +5,33 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
+public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
 {
     private PersonTypeOfChangeNode personTypeOfChangeNode;
     private PersonMitigationMethodNode personMitigationMethodNode;
     private PersonSignificantChangeFlagNode personSignificantChangeFlagNode;
     private PersonRepaymentDifficultyNode personRepaymentDifficultyNode;
+
+    private PersonResponsibleLendNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonResponsibleLendNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonResponsibleLendNode> config = classRegistry.getUiNodeConfig(PersonResponsibleLendNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonResponsibleLendNode(PersonNode parent, String name) {
         super(parent, name);
@@ -44,14 +60,13 @@ public  class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        personTypeOfChangeNode = context.createChildNode(PersonTypeOfChangeNode.class, this, "personTypeOfChangeNode");
+        personTypeOfChangeNode = childFactory.createPersonTypeOfChangeNode();
         children.add(personTypeOfChangeNode);
-        personMitigationMethodNode = context.createChildNode(PersonMitigationMethodNode.class, this, "personMitigationMethodNode");
+        personMitigationMethodNode = childFactory.createPersonMitigationMethodNode();
         children.add(personMitigationMethodNode);
-        personSignificantChangeFlagNode = context.createChildNode(PersonSignificantChangeFlagNode.class, this, "personSignificantChangeFlagNode");
+        personSignificantChangeFlagNode = childFactory.createPersonSignificantChangeFlagNode();
         children.add(personSignificantChangeFlagNode);
-        personRepaymentDifficultyNode = context.createChildNode(PersonRepaymentDifficultyNode.class, this, "personRepaymentDifficultyNode");
+        personRepaymentDifficultyNode = childFactory.createPersonRepaymentDifficultyNode();
         children.add(personRepaymentDifficultyNode);
         return children;
     }

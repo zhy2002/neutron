@@ -2,8 +2,6 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.util.RandomUniqueIdGenerator;
-import zhy2002.neutron.util.SequentialUniqueIdGenerator;
 
 /**
  * There is one context per node tree.
@@ -73,18 +71,6 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
             loadNode(getRootClass(), root);
         }
         return this.root;
-    }
-
-
-    @Override
-    public final <N extends UiNode<P>, P extends ParentUiNode<?>> N createChildNode(Class<N> childNodeClass, P parent, String name) {
-        ChildNodeFactory<N, P> factory = classRegistry.getChildNodeFactory(childNodeClass);
-        N node = factory.create(parent, name);
-        UiNodeConfig<N> config = classRegistry.getUiNodeConfig(childNodeClass, name);
-        if (config != null) {
-            node.setStatusListener(new ConfigBindingNodeStatusListener<>(node, config));
-        }
-        return node;
     }
 
     @Override

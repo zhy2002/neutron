@@ -5,17 +5,33 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
+public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
 {
     private CountryCodeNode countryCodeNode;
     private AreaCodeNode areaCodeNode;
     private PhoneNumberNode phoneNumberNode;
+
+    private PhoneInfoNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PhoneInfoNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PhoneInfoNode> config = classRegistry.getUiNodeConfig(PhoneInfoNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PhoneInfoNode(RegisterNode parent, String name) {
         super(parent, name);
@@ -39,12 +55,11 @@ public  class PhoneInfoNode extends ObjectUiNode<RegisterNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        countryCodeNode = context.createChildNode(CountryCodeNode.class, this, "countryCodeNode");
+        countryCodeNode = childFactory.createCountryCodeNode();
         children.add(countryCodeNode);
-        areaCodeNode = context.createChildNode(AreaCodeNode.class, this, "areaCodeNode");
+        areaCodeNode = childFactory.createAreaCodeNode();
         children.add(areaCodeNode);
-        phoneNumberNode = context.createChildNode(PhoneNumberNode.class, this, "phoneNumberNode");
+        phoneNumberNode = childFactory.createPhoneNumberNode();
         children.add(phoneNumberNode);
         return children;
     }

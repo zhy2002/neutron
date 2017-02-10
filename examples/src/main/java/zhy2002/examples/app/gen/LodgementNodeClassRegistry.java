@@ -14,16 +14,11 @@ import java.math.BigDecimal;
 class LodgementNodeClassRegistry extends ClassRegistryImpl {
 
     LodgementNodeClassRegistry() {
-        loadChildNodeFactories();
         loadNodeAddEventFactories();
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadChildNodeFactories() {
-        setChildNodeFactory(AppManagerNode.class, new AppManagerNodeFactory());
     }
 
     private void loadNodeAddEventFactories() {
@@ -40,6 +35,6 @@ class LodgementNodeClassRegistry extends ClassRegistryImpl {
         super.setNodeUnloadEventFactory(LodgementNode.class, LodgementNodeUnloadEvent::new);
     }
 
-private void loadStateChangeEventFactories() {
-}
+    private void loadStateChangeEventFactories() {
+    }
 }

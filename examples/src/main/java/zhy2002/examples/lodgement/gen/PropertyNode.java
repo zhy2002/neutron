@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PropertyNode extends ObjectUiNode<RealEstateNode>
+public class PropertyNode extends ObjectUiNode<RealEstateNode>
 {
     private RentedFlagNode rentedFlagNode;
     private PropertyWeeklyRentNode propertyWeeklyRentNode;
@@ -21,6 +22,21 @@ public  class PropertyNode extends ObjectUiNode<RealEstateNode>
     private PropertyTypeNode propertyTypeNode;
     private PropertySubTypeNode propertySubTypeNode;
     private PropertyPurseNode propertyPurseNode;
+
+    private PropertyNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PropertyNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PropertyNode> config = classRegistry.getUiNodeConfig(PropertyNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PropertyNode(RealEstateNode parent, String name) {
         super(parent, name);
@@ -74,24 +90,23 @@ public  class PropertyNode extends ObjectUiNode<RealEstateNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        rentedFlagNode = context.createChildNode(RentedFlagNode.class, this, "rentedFlagNode");
+        rentedFlagNode = childFactory.createRentedFlagNode();
         children.add(rentedFlagNode);
-        propertyWeeklyRentNode = context.createChildNode(PropertyWeeklyRentNode.class, this, "propertyWeeklyRentNode");
+        propertyWeeklyRentNode = childFactory.createPropertyWeeklyRentNode();
         children.add(propertyWeeklyRentNode);
-        propertyAddressNode = context.createChildNode(PropertyAddressNode.class, this, "propertyAddressNode");
+        propertyAddressNode = childFactory.createPropertyAddressNode();
         children.add(propertyAddressNode);
-        estimatedMarketValueNode = context.createChildNode(EstimatedMarketValueNode.class, this, "estimatedMarketValueNode");
+        estimatedMarketValueNode = childFactory.createEstimatedMarketValueNode();
         children.add(estimatedMarketValueNode);
-        contractPriceNode = context.createChildNode(ContractPriceNode.class, this, "contractPriceNode");
+        contractPriceNode = childFactory.createContractPriceNode();
         children.add(contractPriceNode);
-        defenseServiceFlagNode = context.createChildNode(DefenseServiceFlagNode.class, this, "defenseServiceFlagNode");
+        defenseServiceFlagNode = childFactory.createDefenseServiceFlagNode();
         children.add(defenseServiceFlagNode);
-        propertyTypeNode = context.createChildNode(PropertyTypeNode.class, this, "propertyTypeNode");
+        propertyTypeNode = childFactory.createPropertyTypeNode();
         children.add(propertyTypeNode);
-        propertySubTypeNode = context.createChildNode(PropertySubTypeNode.class, this, "propertySubTypeNode");
+        propertySubTypeNode = childFactory.createPropertySubTypeNode();
         children.add(propertySubTypeNode);
-        propertyPurseNode = context.createChildNode(PropertyPurseNode.class, this, "propertyPurseNode");
+        propertyPurseNode = childFactory.createPropertyPurseNode();
         children.add(propertyPurseNode);
         return children;
     }

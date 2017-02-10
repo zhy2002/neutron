@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class AccessNode extends ObjectUiNode<RealEstateNode>
+public class AccessNode extends ObjectUiNode<RealEstateNode>
 {
     private AccessContactTypeNode accessContactTypeNode;
     private AccessContactTitleNode accessContactTitleNode;
@@ -19,6 +20,21 @@ public  class AccessNode extends ObjectUiNode<RealEstateNode>
     private AccessCompanyNameNode accessCompanyNameNode;
     private AccessTelephoneNode accessTelephoneNode;
     private AccessOtherDescriptionNode accessOtherDescriptionNode;
+
+    private AccessNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(AccessNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<AccessNode> config = classRegistry.getUiNodeConfig(AccessNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public AccessNode(RealEstateNode parent, String name) {
         super(parent, name);
@@ -62,20 +78,19 @@ public  class AccessNode extends ObjectUiNode<RealEstateNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        accessContactTypeNode = context.createChildNode(AccessContactTypeNode.class, this, "accessContactTypeNode");
+        accessContactTypeNode = childFactory.createAccessContactTypeNode();
         children.add(accessContactTypeNode);
-        accessContactTitleNode = context.createChildNode(AccessContactTitleNode.class, this, "accessContactTitleNode");
+        accessContactTitleNode = childFactory.createAccessContactTitleNode();
         children.add(accessContactTitleNode);
-        accessContactFirstNameNode = context.createChildNode(AccessContactFirstNameNode.class, this, "accessContactFirstNameNode");
+        accessContactFirstNameNode = childFactory.createAccessContactFirstNameNode();
         children.add(accessContactFirstNameNode);
-        accessContactLastNameNode = context.createChildNode(AccessContactLastNameNode.class, this, "accessContactLastNameNode");
+        accessContactLastNameNode = childFactory.createAccessContactLastNameNode();
         children.add(accessContactLastNameNode);
-        accessCompanyNameNode = context.createChildNode(AccessCompanyNameNode.class, this, "accessCompanyNameNode");
+        accessCompanyNameNode = childFactory.createAccessCompanyNameNode();
         children.add(accessCompanyNameNode);
-        accessTelephoneNode = context.createChildNode(AccessTelephoneNode.class, this, "accessTelephoneNode");
+        accessTelephoneNode = childFactory.createAccessTelephoneNode();
         children.add(accessTelephoneNode);
-        accessOtherDescriptionNode = context.createChildNode(AccessOtherDescriptionNode.class, this, "accessOtherDescriptionNode");
+        accessOtherDescriptionNode = childFactory.createAccessOtherDescriptionNode();
         children.add(accessOtherDescriptionNode);
         return children;
     }

@@ -5,18 +5,34 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
+public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
 {
     private UnemployedOnBenefitFlagNode unemployedOnBenefitFlagNode;
     private StudentFlagNode studentFlagNode;
     private StudentTypeNode studentTypeNode;
     private HouseDutiesFlagNode houseDutiesFlagNode;
     private UnemployedSinceNode unemployedSinceNode;
+
+    private UnemployedNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(UnemployedNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<UnemployedNode> config = classRegistry.getUiNodeConfig(UnemployedNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public UnemployedNode(EmploymentNode parent, String name) {
         super(parent, name);
@@ -50,16 +66,15 @@ public  class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        unemployedOnBenefitFlagNode = context.createChildNode(UnemployedOnBenefitFlagNode.class, this, "unemployedOnBenefitFlagNode");
+        unemployedOnBenefitFlagNode = childFactory.createUnemployedOnBenefitFlagNode();
         children.add(unemployedOnBenefitFlagNode);
-        studentFlagNode = context.createChildNode(StudentFlagNode.class, this, "studentFlagNode");
+        studentFlagNode = childFactory.createStudentFlagNode();
         children.add(studentFlagNode);
-        studentTypeNode = context.createChildNode(StudentTypeNode.class, this, "studentTypeNode");
+        studentTypeNode = childFactory.createStudentTypeNode();
         children.add(studentTypeNode);
-        houseDutiesFlagNode = context.createChildNode(HouseDutiesFlagNode.class, this, "houseDutiesFlagNode");
+        houseDutiesFlagNode = childFactory.createHouseDutiesFlagNode();
         children.add(houseDutiesFlagNode);
-        unemployedSinceNode = context.createChildNode(UnemployedSinceNode.class, this, "unemployedSinceNode");
+        unemployedSinceNode = childFactory.createUnemployedSinceNode();
         children.add(unemployedSinceNode);
         return children;
     }

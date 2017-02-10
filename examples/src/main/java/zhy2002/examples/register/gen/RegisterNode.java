@@ -5,13 +5,15 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-public  class RegisterNode extends ObjectUiNode<VoidUiNode>
+@Singleton
+public class RegisterNode extends ObjectUiNode<VoidUiNode>
 {
     private UsernameNode usernameNode;
     private EmailNode emailNode;
@@ -26,7 +28,23 @@ public  class RegisterNode extends ObjectUiNode<VoidUiNode>
     private PhoneInfoNode homePhoneNode;
     private ErrorListNode errorListNode;
 
-    public RegisterNode(@NotNull UiNodeContext<?> context) {
+    private RegisterNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(RegisterNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<RegisterNode> config = classRegistry.getUiNodeConfig(RegisterNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
+    @Inject
+    public RegisterNode(@NotNull RegisterNodeContext context) {
         super(context);
     }
 
@@ -103,30 +121,29 @@ public  class RegisterNode extends ObjectUiNode<VoidUiNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        usernameNode = context.createChildNode(UsernameNode.class, this, "usernameNode");
+        usernameNode = childFactory.createUsernameNode();
         children.add(usernameNode);
-        emailNode = context.createChildNode(EmailNode.class, this, "emailNode");
+        emailNode = childFactory.createEmailNode();
         children.add(emailNode);
-        passwordNode = context.createChildNode(PasswordNode.class, this, "passwordNode");
+        passwordNode = childFactory.createPasswordNode();
         children.add(passwordNode);
-        repeatPasswordNode = context.createChildNode(RepeatPasswordNode.class, this, "repeatPasswordNode");
+        repeatPasswordNode = childFactory.createRepeatPasswordNode();
         children.add(repeatPasswordNode);
-        ageNode = context.createChildNode(AgeNode.class, this, "ageNode");
+        ageNode = childFactory.createAgeNode();
         children.add(ageNode);
-        planNode = context.createChildNode(PlanNode.class, this, "planNode");
+        planNode = childFactory.createPlanNode();
         children.add(planNode);
-        receiveOffersNode = context.createChildNode(ReceiveOffersNode.class, this, "receiveOffersNode");
+        receiveOffersNode = childFactory.createReceiveOffersNode();
         children.add(receiveOffersNode);
-        ownInvestmentPropertyNode = context.createChildNode(OwnInvestmentPropertyNode.class, this, "ownInvestmentPropertyNode");
+        ownInvestmentPropertyNode = childFactory.createOwnInvestmentPropertyNode();
         children.add(ownInvestmentPropertyNode);
-        residentialPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "residentialPropertyNode");
+        residentialPropertyNode = childFactory.createResidentialPropertyNode();
         children.add(residentialPropertyNode);
-        investmentPropertyNode = context.createChildNode(PropertyDetailsNode.class, this, "investmentPropertyNode");
+        investmentPropertyNode = childFactory.createInvestmentPropertyNode();
         children.add(investmentPropertyNode);
-        homePhoneNode = context.createChildNode(PhoneInfoNode.class, this, "homePhoneNode");
+        homePhoneNode = childFactory.createHomePhoneNode();
         children.add(homePhoneNode);
-        errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
+        errorListNode = childFactory.createErrorListNode();
         children.add(errorListNode);
         return children;
     }

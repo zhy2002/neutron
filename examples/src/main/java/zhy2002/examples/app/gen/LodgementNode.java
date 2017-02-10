@@ -5,17 +5,35 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.app.data.*;
 import zhy2002.examples.app.gen.rule.*;
 
-public  class LodgementNode extends ObjectUiNode<VoidUiNode>
+@Singleton
+public class LodgementNode extends ObjectUiNode<VoidUiNode>
 {
     private AppManagerNode appManagerNode;
 
-    public LodgementNode(@NotNull UiNodeContext<?> context) {
+    private LodgementNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(LodgementNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<LodgementNode> config = classRegistry.getUiNodeConfig(LodgementNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
+    @Inject
+    public LodgementNode(@NotNull LodgementNodeContext context) {
         super(context);
     }
 
@@ -27,8 +45,7 @@ public  class LodgementNode extends ObjectUiNode<VoidUiNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        appManagerNode = context.createChildNode(AppManagerNode.class, this, "appManagerNode");
+        appManagerNode = childFactory.createAppManagerNode();
         children.add(appManagerNode);
         return children;
     }

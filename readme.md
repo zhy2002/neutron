@@ -13,6 +13,7 @@ todo
   we should wait for a pause before we do an update. 
 * per-lender config override (white label)
 * bean validation of domain info
+* support multiple list item types (with one being default)
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...
@@ -98,8 +99,10 @@ Things Neutron can do
 - prevent certain chars from being typed in - check
 
 
-
-
+# Node types
+- Abstract generated
+- Concrete generated
+- Variant hand coded
 
 
 

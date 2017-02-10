@@ -50,7 +50,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
 
     @Override
     public Class<Telephone> getValueClass() {
-    return Telephone.class;
+        return Telephone.class;
     }
 
 

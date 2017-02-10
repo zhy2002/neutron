@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
+public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
 {
     private AssetsNode assetsNode;
     private LiabilitiesNode liabilitiesNode;
     private ExpensesNode expensesNode;
+
+    private FinancialPositionNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(FinancialPositionNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<FinancialPositionNode> config = classRegistry.getUiNodeConfig(FinancialPositionNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public FinancialPositionNode(ApplicationNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        assetsNode = context.createChildNode(AssetsNode.class, this, "assetsNode");
+        assetsNode = childFactory.createAssetsNode();
         children.add(assetsNode);
-        liabilitiesNode = context.createChildNode(LiabilitiesNode.class, this, "liabilitiesNode");
+        liabilitiesNode = childFactory.createLiabilitiesNode();
         children.add(liabilitiesNode);
-        expensesNode = context.createChildNode(ExpensesNode.class, this, "expensesNode");
+        expensesNode = childFactory.createExpensesNode();
         children.add(expensesNode);
         return children;
     }

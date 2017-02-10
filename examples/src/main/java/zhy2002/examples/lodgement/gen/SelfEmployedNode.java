@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class SelfEmployedNode extends EmployedNode
+public class SelfEmployedNode extends EmployedNode
 {
     private BusinessTypeNode businessTypeNode;
     private ProfitThisYearNode profitThisYearNode;
     private ProfitPreviousYearNode profitPreviousYearNode;
+
+    private SelfEmployedNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(SelfEmployedNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<SelfEmployedNode> config = classRegistry.getUiNodeConfig(SelfEmployedNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public SelfEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class SelfEmployedNode extends EmployedNode
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        businessTypeNode = context.createChildNode(BusinessTypeNode.class, this, "businessTypeNode");
+        businessTypeNode = childFactory.createBusinessTypeNode();
         children.add(businessTypeNode);
-        profitThisYearNode = context.createChildNode(ProfitThisYearNode.class, this, "profitThisYearNode");
+        profitThisYearNode = childFactory.createProfitThisYearNode();
         children.add(profitThisYearNode);
-        profitPreviousYearNode = context.createChildNode(ProfitPreviousYearNode.class, this, "profitPreviousYearNode");
+        profitPreviousYearNode = childFactory.createProfitPreviousYearNode();
         children.add(profitPreviousYearNode);
         return children;
     }

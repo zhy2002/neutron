@@ -3,7 +3,6 @@ package zhy2002.examples.lodgement.config;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.impl.*;
-import zhy2002.neutron.ChildNodeFactory;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.UiNodeRuleFactory;
 
@@ -14,13 +13,8 @@ public class ApplicationNodeImplClassRegistry extends ClassRegistryImpl {
 
     @Inject
     public ApplicationNodeImplClassRegistry() {
-        loadNodes();
         loadNodeConfig();
         loadRuleFactories();
-    }
-
-    private void loadNodes() {
-        this.setChildNodeFactory(AddressListNode.class, AddressListNodeImpl::new);
     }
 
     private void loadNodeConfig() {

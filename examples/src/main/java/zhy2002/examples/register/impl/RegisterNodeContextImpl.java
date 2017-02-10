@@ -14,4 +14,6 @@ public class RegisterNodeContextImpl extends RegisterNodeContext {
     public RegisterNodeContextImpl(UiNodeChangeEngine changeEngine, UniqueIdGenerator nodeIdGenerator, @NotNull ClassRegistryImpl implRegistry) {
         super(RandomUniqueIdGenerator.Instance.next(), changeEngine, nodeIdGenerator, implRegistry);
     }
+
+
 }

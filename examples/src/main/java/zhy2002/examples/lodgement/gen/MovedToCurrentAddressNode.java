@@ -5,14 +5,23 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
+public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<MovedToCurrentAddressNode> config = classRegistry.getUiNodeConfig(MovedToCurrentAddressNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public MovedToCurrentAddressNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

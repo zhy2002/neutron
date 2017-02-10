@@ -86,10 +86,11 @@ public abstract class ListUiNode<
      */
     @SuppressWarnings("unchecked")
     protected <M extends N> NodeAddEvent<N> createItemAddEvent(Class<M> itemClass) {
-        UiNodeContext<?> context = getContext();
-        M item = context.createChildNode(itemClass, (S) this, String.valueOf(getChildSequenceNumber()));
-        return context.createNodeAddEvent(getItemClass(), item);
+        N item = createItemNode(itemClass, String.valueOf(getChildSequenceNumber()));
+        return getContext().createNodeAddEvent(getItemClass(), item);
     }
+
+    protected  abstract <M extends N> N createItemNode(Class<M> itemClass, String name);
 
     @JsMethod
     public N removeByIndex(int index) {

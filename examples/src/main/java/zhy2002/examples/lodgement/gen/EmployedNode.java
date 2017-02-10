@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -19,6 +20,13 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     private EmployerPhoneNode employerPhoneNode;
     private EmploymentStartedNode employmentStartedNode;
     private EmploymentEndedNode employmentEndedNode;
+
+    private EmployedNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(EmployedNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     public EmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
@@ -62,20 +70,19 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        employmentStatusNode = context.createChildNode(EmploymentStatusNode.class, this, "employmentStatusNode");
+        employmentStatusNode = childFactory.createEmploymentStatusNode();
         children.add(employmentStatusNode);
-        occupationNode = context.createChildNode(OccupationNode.class, this, "occupationNode");
+        occupationNode = childFactory.createOccupationNode();
         children.add(occupationNode);
-        employerNameNode = context.createChildNode(EmployerNameNode.class, this, "employerNameNode");
+        employerNameNode = childFactory.createEmployerNameNode();
         children.add(employerNameNode);
-        employerAddressNode = context.createChildNode(EmployerAddressNode.class, this, "employerAddressNode");
+        employerAddressNode = childFactory.createEmployerAddressNode();
         children.add(employerAddressNode);
-        employerPhoneNode = context.createChildNode(EmployerPhoneNode.class, this, "employerPhoneNode");
+        employerPhoneNode = childFactory.createEmployerPhoneNode();
         children.add(employerPhoneNode);
-        employmentStartedNode = context.createChildNode(EmploymentStartedNode.class, this, "employmentStartedNode");
+        employmentStartedNode = childFactory.createEmploymentStartedNode();
         children.add(employmentStartedNode);
-        employmentEndedNode = context.createChildNode(EmploymentEndedNode.class, this, "employmentEndedNode");
+        employmentEndedNode = childFactory.createEmploymentEndedNode();
         children.add(employmentEndedNode);
         return children;
     }

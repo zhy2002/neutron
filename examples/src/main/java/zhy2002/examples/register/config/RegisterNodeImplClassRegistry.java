@@ -1,6 +1,5 @@
 package zhy2002.examples.register.config;
 
-import zhy2002.examples.register.di.RegisterNodeScope;
 import zhy2002.examples.register.gen.PropertyDetailsNode;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.impl.*;
@@ -8,7 +7,7 @@ import zhy2002.neutron.ClassRegistryImpl;
 
 import javax.inject.Inject;
 
-@RegisterNodeScope
+
 public class RegisterNodeImplClassRegistry extends ClassRegistryImpl {
 
     @Inject

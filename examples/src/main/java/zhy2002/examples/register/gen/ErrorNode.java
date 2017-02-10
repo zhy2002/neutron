@@ -5,13 +5,22 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
+public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<ErrorNode> config = classRegistry.getUiNodeConfig(ErrorNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
     }
@@ -68,7 +77,7 @@ public  class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 
     @Override
     public Class<ValidationError> getValueClass() {
-    return ValidationError.class;
+        return ValidationError.class;
     }
 
 

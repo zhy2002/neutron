@@ -25,26 +25,32 @@ class CodeGenerator {
         DomainInfo domainInfo = loadDomainInfo(definitionFile);
         TemplateBundle templateBundle = new TemplateBundle();
         CodeGenUtil.clearDirectory(targetDirectory);
-        generateFiles(domainInfo, templateBundle, targetDirectory);
+        generateAllFiles(domainInfo, templateBundle, targetDirectory);
     }
 
-    private static void generateFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {
+    private static DomainInfo loadDomainInfo(String defFile) {
+        try {
+            DomainInfo domainInfo = new Yaml().loadAs(new FileInputStream(defFile), DomainInfo.class);
+            domainInfo.initialize();
+            return domainInfo;
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static void generateAllFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {
 
         for (NodeInfo nodeInfo : domainInfo.getNodes()) {
-            generateFiles(nodeInfo, templateBundle, targetDirectory);
+            generateNodeFiles(nodeInfo, templateBundle, targetDirectory);
         }
 
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
         generateFile(targetDirectory, domainInfo.getRegistryInfo(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
     }
 
-    private static void generateFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {
+    private static void generateNodeFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {
 
         generateFile(targetDirectory, nodeInfo, templateBundle.getNodeTemplate(), "", "");
-
-        if (nodeInfo.hasFactory()) {
-            generateFile(targetDirectory, nodeInfo, templateBundle.getNodeFactoryTemplate(), "", "Factory");
-        }
 
         if (nodeInfo.isCanLoad()) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getNodeLoadEventTemplate(), "event", "LoadEvent");
@@ -61,15 +67,15 @@ class CodeGenerator {
         }
 
         if (nodeInfo.getRules() != null) {
-            for (RuleInfo ruleDescription : nodeInfo.getRules()) {
-                generateFile(targetDirectory, ruleDescription, templateBundle.getRuleTemplate(), "rule", "");
+            for (RuleInfo ruleInfo : nodeInfo.getRules()) {
+                generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
             }
         }
 
-        if (nodeInfo.getModuleInfo() != null) {
-            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getModuleTemplate(), "di", "Module");
-            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getScopeTemplate(), "di", "Scope");
-            generateFile(targetDirectory, nodeInfo.getModuleInfo(), templateBundle.getComponentTemplate(), "di", "Component");
+        if (nodeInfo.getItemTypeName() != null) {
+            generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
+        } else if(nodeInfo.getChildren() != null) {
+            generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
         }
     }
 
@@ -87,16 +93,6 @@ class CodeGenerator {
             }
         } catch (Exception ex) {
             throw new RuntimeException("Error generating " + data.getTypeName() + typeSuffix, ex);
-        }
-    }
-
-    private static DomainInfo loadDomainInfo(String defFile) {
-        try {
-            DomainInfo domainInfo = new Yaml().loadAs(new FileInputStream(defFile), DomainInfo.class);
-            domainInfo.initialize();
-            return domainInfo;
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
         }
     }
 }

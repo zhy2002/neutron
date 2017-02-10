@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class CreditCardNode extends ObjectUiNode<CreditCardListNode>
+public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
 {
     private CreditCardTypeNode creditCardTypeNode;
     private CreditCardAmountOwingNode creditCardAmountOwingNode;
@@ -19,6 +20,21 @@ public  class CreditCardNode extends ObjectUiNode<CreditCardListNode>
     private CreditCardClearingFlagNode creditCardClearingFlagNode;
     private CreditCardBreakCostNode creditCardBreakCostNode;
     private CreditCardLenderNameNode creditCardLenderNameNode;
+
+    private CreditCardNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(CreditCardNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<CreditCardNode> config = classRegistry.getUiNodeConfig(CreditCardNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public CreditCardNode(CreditCardListNode parent, String name) {
         super(parent, name);
@@ -62,20 +78,19 @@ public  class CreditCardNode extends ObjectUiNode<CreditCardListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        creditCardTypeNode = context.createChildNode(CreditCardTypeNode.class, this, "creditCardTypeNode");
+        creditCardTypeNode = childFactory.createCreditCardTypeNode();
         children.add(creditCardTypeNode);
-        creditCardAmountOwingNode = context.createChildNode(CreditCardAmountOwingNode.class, this, "creditCardAmountOwingNode");
+        creditCardAmountOwingNode = childFactory.createCreditCardAmountOwingNode();
         children.add(creditCardAmountOwingNode);
-        creditCardLimitAmount = context.createChildNode(CreditCardLimitAmount.class, this, "creditCardLimitAmount");
+        creditCardLimitAmount = childFactory.createCreditCardLimitAmount();
         children.add(creditCardLimitAmount);
-        creditCardMonthlyRepayment = context.createChildNode(CreditCardMonthlyRepayment.class, this, "creditCardMonthlyRepayment");
+        creditCardMonthlyRepayment = childFactory.createCreditCardMonthlyRepayment();
         children.add(creditCardMonthlyRepayment);
-        creditCardClearingFlagNode = context.createChildNode(CreditCardClearingFlagNode.class, this, "creditCardClearingFlagNode");
+        creditCardClearingFlagNode = childFactory.createCreditCardClearingFlagNode();
         children.add(creditCardClearingFlagNode);
-        creditCardBreakCostNode = context.createChildNode(CreditCardBreakCostNode.class, this, "creditCardBreakCostNode");
+        creditCardBreakCostNode = childFactory.createCreditCardBreakCostNode();
         children.add(creditCardBreakCostNode);
-        creditCardLenderNameNode = context.createChildNode(CreditCardLenderNameNode.class, this, "creditCardLenderNameNode");
+        creditCardLenderNameNode = childFactory.createCreditCardLenderNameNode();
         children.add(creditCardLenderNameNode);
         return children;
     }

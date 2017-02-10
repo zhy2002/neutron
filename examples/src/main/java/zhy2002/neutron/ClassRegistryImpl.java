@@ -129,16 +129,6 @@ public class ClassRegistryImpl implements ClassRegistry {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
-        return (ChildNodeFactory<N, P>) getObject(childNodeFactories, childNodeClass, "ChildNodeFactory");
-    }
-
-    public final <N extends UiNode<P>, P extends ParentUiNode<?>> void setChildNodeFactory(Class<N> childNodeClass, ChildNodeFactory<N, P> factory) {
-        childNodeFactories.put(childNodeClass, factory);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
     public final <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
         List<UiNodeConfig<?>> configList = nodeConfigMap.get(nodeClass);
         if (configList != null) {

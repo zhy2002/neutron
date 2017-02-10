@@ -5,13 +5,22 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class CreditCardLimitAmount extends BigDecimalUiNode<CreditCardNode>
+public class CreditCardLimitAmount extends BigDecimalUiNode<CreditCardNode>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<CreditCardLimitAmount> config = classRegistry.getUiNodeConfig(CreditCardLimitAmount.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public CreditCardLimitAmount(CreditCardNode parent, String name) {
         super(parent, name);
     }

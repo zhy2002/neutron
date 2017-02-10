@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
+public class PersonGeneralNode extends ObjectUiNode<PersonNode>
 {
     private TitleNode titleNode;
     private FirstNameNode firstNameNode;
@@ -26,6 +27,21 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
     private FirstHomeBuyerFlagNode firstHomeBuyerFlagNode;
     private HousingStatusNode housingStatusNode;
     private ApplicationTypeNode applicationTypeNode;
+
+    private PersonGeneralNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonGeneralNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonGeneralNode> config = classRegistry.getUiNodeConfig(PersonGeneralNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
@@ -104,34 +120,33 @@ public  class PersonGeneralNode extends ObjectUiNode<PersonNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        titleNode = context.createChildNode(TitleNode.class, this, "titleNode");
+        titleNode = childFactory.createTitleNode();
         children.add(titleNode);
-        firstNameNode = context.createChildNode(FirstNameNode.class, this, "firstNameNode");
+        firstNameNode = childFactory.createFirstNameNode();
         children.add(firstNameNode);
-        lastNameNode = context.createChildNode(LastNameNode.class, this, "lastNameNode");
+        lastNameNode = childFactory.createLastNameNode();
         children.add(lastNameNode);
-        genderNode = context.createChildNode(GenderNode.class, this, "genderNode");
+        genderNode = childFactory.createGenderNode();
         children.add(genderNode);
-        dateOfBirthNode = context.createChildNode(DateOfBirthNode.class, this, "dateOfBirthNode");
+        dateOfBirthNode = childFactory.createDateOfBirthNode();
         children.add(dateOfBirthNode);
-        primaryApplicantFlagNode = context.createChildNode(PrimaryApplicantFlagNode.class, this, "primaryApplicantFlagNode");
+        primaryApplicantFlagNode = childFactory.createPrimaryApplicantFlagNode();
         children.add(primaryApplicantFlagNode);
-        driversLicenseNode = context.createChildNode(DriversLicenseNode.class, this, "driversLicenseNode");
+        driversLicenseNode = childFactory.createDriversLicenseNode();
         children.add(driversLicenseNode);
-        applicantTypeNode = context.createChildNode(ApplicantTypeNode.class, this, "applicantTypeNode");
+        applicantTypeNode = childFactory.createApplicantTypeNode();
         children.add(applicantTypeNode);
-        maritalStatusNode = context.createChildNode(MaritalStatusNode.class, this, "maritalStatusNode");
+        maritalStatusNode = childFactory.createMaritalStatusNode();
         children.add(maritalStatusNode);
-        permanentResidentFlagNode = context.createChildNode(PermanentResidentFlagNode.class, this, "permanentResidentFlagNode");
+        permanentResidentFlagNode = childFactory.createPermanentResidentFlagNode();
         children.add(permanentResidentFlagNode);
-        spouseNode = context.createChildNode(SpouseNode.class, this, "spouseNode");
+        spouseNode = childFactory.createSpouseNode();
         children.add(spouseNode);
-        firstHomeBuyerFlagNode = context.createChildNode(FirstHomeBuyerFlagNode.class, this, "firstHomeBuyerFlagNode");
+        firstHomeBuyerFlagNode = childFactory.createFirstHomeBuyerFlagNode();
         children.add(firstHomeBuyerFlagNode);
-        housingStatusNode = context.createChildNode(HousingStatusNode.class, this, "housingStatusNode");
+        housingStatusNode = childFactory.createHousingStatusNode();
         children.add(housingStatusNode);
-        applicationTypeNode = context.createChildNode(ApplicationTypeNode.class, this, "applicationTypeNode");
+        applicationTypeNode = childFactory.createApplicationTypeNode();
         children.add(applicationTypeNode);
         return children;
     }

@@ -5,13 +5,29 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class AddressRefUiNode extends ObjectUiNode<AddressListNode>
+public class AddressRefUiNode extends ObjectUiNode<AddressListNode>
 {
+
+    private AddressRefUiNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(AddressRefUiNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<AddressRefUiNode> config = classRegistry.getUiNodeConfig(AddressRefUiNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public AddressRefUiNode(AddressListNode parent, String name) {
         super(parent, name);
@@ -30,7 +46,6 @@ public  class AddressRefUiNode extends ObjectUiNode<AddressListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
         return children;
     }
 

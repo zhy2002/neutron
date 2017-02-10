@@ -5,14 +5,23 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
+public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<EmploymentTypeNode> config = classRegistry.getUiNodeConfig(EmploymentTypeNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public EmploymentTypeNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

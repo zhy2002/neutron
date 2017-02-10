@@ -14,18 +14,11 @@ import java.math.BigDecimal;
 class ${contextName}ClassRegistry extends ClassRegistryImpl {
 
     ${contextName}ClassRegistry() {
-        loadChildNodeFactories();
         loadNodeAddEventFactories();
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadChildNodeFactories() {
-<#list childNodes as child>
-        setChildNodeFactory(${child.typeName}.class, new ${child.typeName}Factory());
-</#list>
     }
 
     private void loadNodeAddEventFactories() {
@@ -52,9 +45,9 @@ class ${contextName}ClassRegistry extends ClassRegistryImpl {
 </#list>
     }
 
-private void loadStateChangeEventFactories() {
+    private void loadStateChangeEventFactories() {
 <#list changeEventNodes as node>
     super.setStateChangeEventFactory(${node.valueTypeName}.class, ${node.valueTypeName}StateChangeEvent::new);
 </#list>
-}
+    }
 }

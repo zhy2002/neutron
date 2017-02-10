@@ -5,13 +5,29 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountListNode,SavingsAccountNode>
+public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountListNode,SavingsAccountNode>
 {
+    private SavingsAccountListNodeItemFactory itemFactory;
+
+    @Inject
+    void receiveProviders(SavingsAccountListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<SavingsAccountListNode> config = classRegistry.getUiNodeConfig(SavingsAccountListNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public SavingsAccountListNode(AssetsNode parent, String name) {
         super(parent, name);
     }
@@ -19,6 +35,11 @@ public  class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccoun
     @Override
     public Class<SavingsAccountNode> getItemClass() {
         return SavingsAccountNode.class;
+    }
+
+    @Override
+    protected <M extends SavingsAccountNode> SavingsAccountNode createItemNode(Class<M> itemClass, String name) {
+        return itemFactory.createSavingsAccountNode(name);
     }
 
 

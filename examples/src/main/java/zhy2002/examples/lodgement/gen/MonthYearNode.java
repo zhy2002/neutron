@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -15,6 +16,13 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
 {
     private MonthNode monthNode;
     private YearNode yearNode;
+
+    private MonthYearNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(MonthYearNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     public MonthYearNode(P parent, String name) {
         super(parent, name);
@@ -33,10 +41,9 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        monthNode = context.createChildNode(MonthNode.class, this, "monthNode");
+        monthNode = childFactory.createMonthNode();
         children.add(monthNode);
-        yearNode = context.createChildNode(YearNode.class, this, "yearNode");
+        yearNode = childFactory.createYearNode();
         children.add(yearNode);
         return children;
     }

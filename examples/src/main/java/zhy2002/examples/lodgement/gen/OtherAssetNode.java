@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
+public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
 {
     private OtherAssetTypeNode otherAssetTypeNode;
     private OtherAssetDescriptionNode otherAssetDescriptionNode;
     private OtherAssetMarketValueNode otherAssetMarketValueNode;
+
+    private OtherAssetNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(OtherAssetNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<OtherAssetNode> config = classRegistry.getUiNodeConfig(OtherAssetNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public OtherAssetNode(OtherAssetListNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        otherAssetTypeNode = context.createChildNode(OtherAssetTypeNode.class, this, "otherAssetTypeNode");
+        otherAssetTypeNode = childFactory.createOtherAssetTypeNode();
         children.add(otherAssetTypeNode);
-        otherAssetDescriptionNode = context.createChildNode(OtherAssetDescriptionNode.class, this, "otherAssetDescriptionNode");
+        otherAssetDescriptionNode = childFactory.createOtherAssetDescriptionNode();
         children.add(otherAssetDescriptionNode);
-        otherAssetMarketValueNode = context.createChildNode(OtherAssetMarketValueNode.class, this, "otherAssetMarketValueNode");
+        otherAssetMarketValueNode = childFactory.createOtherAssetMarketValueNode();
         children.add(otherAssetMarketValueNode);
         return children;
     }

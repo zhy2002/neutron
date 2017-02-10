@@ -5,13 +5,22 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PropertySubTypeNode extends StringUiNode<PropertyNode>
+public class PropertySubTypeNode extends StringUiNode<PropertyNode>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PropertySubTypeNode> config = classRegistry.getUiNodeConfig(PropertySubTypeNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public PropertySubTypeNode(PropertyNode parent, String name) {
         super(parent, name);
     }

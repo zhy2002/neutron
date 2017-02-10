@@ -15,11 +15,6 @@ public final class ImmutableClassRegistry implements ClassRegistry {
     }
 
     @Override
-    public <N extends UiNode<P>, P extends ParentUiNode<?>> ChildNodeFactory<N, P> getChildNodeFactory(Class<N> childNodeClass) {
-        return registry.getChildNodeFactory(childNodeClass);
-    }
-
-    @Override
     public <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name) {
         return registry.getUiNodeConfig(nodeClass, name);
     }

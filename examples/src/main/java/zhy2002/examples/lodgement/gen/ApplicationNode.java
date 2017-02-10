@@ -5,13 +5,15 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
+@Singleton
+public class ApplicationNode extends ObjectUiNode<VoidUiNode>
 {
     private AddressListNode addressListNode;
     private PersonListNode personListNode;
@@ -23,7 +25,23 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     private SubmissionNode submissionNode;
     private ErrorListNode errorListNode;
 
-    public ApplicationNode(@NotNull UiNodeContext<?> context) {
+    private ApplicationNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(ApplicationNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<ApplicationNode> config = classRegistry.getUiNodeConfig(ApplicationNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
+    @Inject
+    public ApplicationNode(@NotNull ApplicationNodeContext context) {
         super(context);
     }
 
@@ -103,24 +121,23 @@ public  class ApplicationNode extends ObjectUiNode<VoidUiNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        addressListNode = context.createChildNode(AddressListNode.class, this, "addressListNode");
+        addressListNode = childFactory.createAddressListNode();
         children.add(addressListNode);
-        personListNode = context.createChildNode(PersonListNode.class, this, "personListNode");
+        personListNode = childFactory.createPersonListNode();
         children.add(personListNode);
-        companyListNode = context.createChildNode(CompanyListNode.class, this, "companyListNode");
+        companyListNode = childFactory.createCompanyListNode();
         children.add(companyListNode);
-        financialPositionNode = context.createChildNode(FinancialPositionNode.class, this, "financialPositionNode");
+        financialPositionNode = childFactory.createFinancialPositionNode();
         children.add(financialPositionNode);
-        realEstateListNode = context.createChildNode(RealEstateListNode.class, this, "realEstateListNode");
+        realEstateListNode = childFactory.createRealEstateListNode();
         children.add(realEstateListNode);
-        productsNode = context.createChildNode(ProductsNode.class, this, "productsNode");
+        productsNode = childFactory.createProductsNode();
         children.add(productsNode);
-        additionalNode = context.createChildNode(AdditionalNode.class, this, "additionalNode");
+        additionalNode = childFactory.createAdditionalNode();
         children.add(additionalNode);
-        submissionNode = context.createChildNode(SubmissionNode.class, this, "submissionNode");
+        submissionNode = childFactory.createSubmissionNode();
         children.add(submissionNode);
-        errorListNode = context.createChildNode(ErrorListNode.class, this, "errorListNode");
+        errorListNode = childFactory.createErrorListNode();
         children.add(errorListNode);
         return children;
     }

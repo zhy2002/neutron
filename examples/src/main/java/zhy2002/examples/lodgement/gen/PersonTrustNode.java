@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonTrustNode extends ObjectUiNode<PersonNode>
+public class PersonTrustNode extends ObjectUiNode<PersonNode>
 {
     private PersonTrustTypeNode personTrustTypeNode;
     private PersonTrustNameNode personTrustNameNode;
@@ -19,6 +20,21 @@ public  class PersonTrustNode extends ObjectUiNode<PersonNode>
     private PersonTrustAddressNode personTrustAddressNode;
     private PersonTrustSettlorNotRequiredReasonNode personTrustSettlorNotRequiredReasonNode;
     private PersonTrustIndustryNode personTrustIndustryNode;
+
+    private PersonTrustNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonTrustNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonTrustNode> config = classRegistry.getUiNodeConfig(PersonTrustNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonTrustNode(PersonNode parent, String name) {
         super(parent, name);
@@ -62,20 +78,19 @@ public  class PersonTrustNode extends ObjectUiNode<PersonNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        personTrustTypeNode = context.createChildNode(PersonTrustTypeNode.class, this, "personTrustTypeNode");
+        personTrustTypeNode = childFactory.createPersonTrustTypeNode();
         children.add(personTrustTypeNode);
-        personTrustNameNode = context.createChildNode(PersonTrustNameNode.class, this, "personTrustNameNode");
+        personTrustNameNode = childFactory.createPersonTrustNameNode();
         children.add(personTrustNameNode);
-        personTrustRegistrationDateNode = context.createChildNode(PersonTrustRegistrationDateNode.class, this, "personTrustRegistrationDateNode");
+        personTrustRegistrationDateNode = childFactory.createPersonTrustRegistrationDateNode();
         children.add(personTrustRegistrationDateNode);
-        personTrustCountryNode = context.createChildNode(PersonTrustCountryNode.class, this, "personTrustCountryNode");
+        personTrustCountryNode = childFactory.createPersonTrustCountryNode();
         children.add(personTrustCountryNode);
-        personTrustAddressNode = context.createChildNode(PersonTrustAddressNode.class, this, "personTrustAddressNode");
+        personTrustAddressNode = childFactory.createPersonTrustAddressNode();
         children.add(personTrustAddressNode);
-        personTrustSettlorNotRequiredReasonNode = context.createChildNode(PersonTrustSettlorNotRequiredReasonNode.class, this, "personTrustSettlorNotRequiredReasonNode");
+        personTrustSettlorNotRequiredReasonNode = childFactory.createPersonTrustSettlorNotRequiredReasonNode();
         children.add(personTrustSettlorNotRequiredReasonNode);
-        personTrustIndustryNode = context.createChildNode(PersonTrustIndustryNode.class, this, "personTrustIndustryNode");
+        personTrustIndustryNode = childFactory.createPersonTrustIndustryNode();
         children.add(personTrustIndustryNode);
         return children;
     }

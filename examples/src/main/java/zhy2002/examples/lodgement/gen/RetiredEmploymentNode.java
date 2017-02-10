@@ -5,15 +5,31 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
+public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
 {
     private RetiredOnBenefitFlagNode retiredOnBenefitFlagNode;
     private RetiredSinceNode retiredSinceNode;
+
+    private RetiredEmploymentNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(RetiredEmploymentNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<RetiredEmploymentNode> config = classRegistry.getUiNodeConfig(RetiredEmploymentNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public RetiredEmploymentNode(EmploymentNode parent, String name) {
         super(parent, name);
@@ -32,10 +48,9 @@ public  class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        retiredOnBenefitFlagNode = context.createChildNode(RetiredOnBenefitFlagNode.class, this, "retiredOnBenefitFlagNode");
+        retiredOnBenefitFlagNode = childFactory.createRetiredOnBenefitFlagNode();
         children.add(retiredOnBenefitFlagNode);
-        retiredSinceNode = context.createChildNode(RetiredSinceNode.class, this, "retiredSinceNode");
+        retiredSinceNode = childFactory.createRetiredSinceNode();
         children.add(retiredSinceNode);
         return children;
     }

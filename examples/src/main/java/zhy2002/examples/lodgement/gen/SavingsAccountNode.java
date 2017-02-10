@@ -5,12 +5,13 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
+public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
 {
     private SavingsTypeNode savingsTypeNode;
     private SavingsInstitutionNameNode savingsInstitutionNameNode;
@@ -18,6 +19,21 @@ public  class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
     private SavingsBsbNoNode savingsBsbNoNode;
     private SavingsAccountNoNode savingsAccountNoNode;
     private SavingsAccountNameNode savingsAccountNameNode;
+
+    private SavingsAccountNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(SavingsAccountNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<SavingsAccountNode> config = classRegistry.getUiNodeConfig(SavingsAccountNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public SavingsAccountNode(SavingsAccountListNode parent, String name) {
         super(parent, name);
@@ -56,18 +72,17 @@ public  class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        savingsTypeNode = context.createChildNode(SavingsTypeNode.class, this, "savingsTypeNode");
+        savingsTypeNode = childFactory.createSavingsTypeNode();
         children.add(savingsTypeNode);
-        savingsInstitutionNameNode = context.createChildNode(SavingsInstitutionNameNode.class, this, "savingsInstitutionNameNode");
+        savingsInstitutionNameNode = childFactory.createSavingsInstitutionNameNode();
         children.add(savingsInstitutionNameNode);
-        savingsBalanceNode = context.createChildNode(SavingsBalanceNode.class, this, "savingsBalanceNode");
+        savingsBalanceNode = childFactory.createSavingsBalanceNode();
         children.add(savingsBalanceNode);
-        savingsBsbNoNode = context.createChildNode(SavingsBsbNoNode.class, this, "savingsBsbNoNode");
+        savingsBsbNoNode = childFactory.createSavingsBsbNoNode();
         children.add(savingsBsbNoNode);
-        savingsAccountNoNode = context.createChildNode(SavingsAccountNoNode.class, this, "savingsAccountNoNode");
+        savingsAccountNoNode = childFactory.createSavingsAccountNoNode();
         children.add(savingsAccountNoNode);
-        savingsAccountNameNode = context.createChildNode(SavingsAccountNameNode.class, this, "savingsAccountNameNode");
+        savingsAccountNameNode = childFactory.createSavingsAccountNameNode();
         children.add(savingsAccountNameNode);
         return children;
     }

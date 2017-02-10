@@ -4,7 +4,9 @@ package zhy2002.neutron.data;
 import zhy2002.neutron.CodeGenUtil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class NodeInfo extends CodeGenInfo {
 
@@ -21,15 +23,13 @@ public class NodeInfo extends CodeGenInfo {
     private List<InitInfo> init;
     private List<ChildInfo> children;
     private List<NodeInfo> childTypes;
-    private List<NodeInfo> moduleChildTypes = new ArrayList<>();
     private List<ValueWrapperInfo> valueWrappers;
 
     //additional
     private NodeInfo parent;
-    private DomainInfo domainInfo;
     private CodeGenInfo changeEventInfo;
     private String parentTypeName;
-    private ModuleInfo moduleInfo;
+    private List<String> distinctChildTypeNames = new ArrayList<>();
 
     public String getBaseTypeName() {
         return baseTypeName;
@@ -151,14 +151,6 @@ public class NodeInfo extends CodeGenInfo {
         this.parent = parent;
     }
 
-    public DomainInfo getDomainInfo() {
-        return domainInfo;
-    }
-
-    public void setDomainInfo(DomainInfo domainInfo) {
-        this.domainInfo = domainInfo;
-    }
-
     public boolean hasFactory() {
         return getParent() != null && !isIsAbstract();
     }
@@ -181,6 +173,10 @@ public class NodeInfo extends CodeGenInfo {
 
     public void setParentTypeName(String parentTypeName) {
         this.parentTypeName = parentTypeName;
+    }
+
+    public List<String> getDistinctChildTypeNames() {
+        return distinctChildTypeNames;
     }
 
     public void initialize() {
@@ -211,23 +207,10 @@ public class NodeInfo extends CodeGenInfo {
             changeEventInfo.setTypeName(getValueTypeName());
             getDomainInfo().getRegistryInfo().getChangeEventNodes().add(this);
         }
-        if (definesModule()) {
-            this.moduleInfo = new ModuleInfo();
-            moduleInfo.setParent(this);
-            moduleInfo.setDomainInfo(getDomainInfo());
-            if (getItemTypeName() != null) {
-                moduleInfo.setTypeName(getTypeName() + "Item");
-                ChildInfo childInfo = new ChildInfo();
-                childInfo.setTypeName(getItemTypeName());
-                moduleInfo.getExports().add(childInfo);
-            } else {
-                moduleInfo.setTypeName(getTypeName() + "Child");
-                moduleInfo.getExports().addAll(getChildren());
-            }
-        }
     }
 
     private void initializeChildTypes() {
+        Set<String> childTypeNames = new HashSet<>();
         if (getChildTypes() != null) {
             for (NodeInfo nodeInfo : getChildTypes()) {
                 nodeInfo.setParent(this);
@@ -240,8 +223,10 @@ public class NodeInfo extends CodeGenInfo {
                     nodeInfo.setParentTypeName(typeName);
                 }
                 nodeInfo.initialize();
-                if (nodeInfo.getModuleInfo() != null) {
-                    getModuleChildTypes().add(nodeInfo);
+
+                if(!childTypeNames.contains(nodeInfo.getTypeName())) {
+                    childTypeNames.add(nodeInfo.getTypeName());
+                    getDistinctChildTypeNames().add(nodeInfo.getTypeName());
                 }
             }
         }
@@ -334,15 +319,4 @@ public class NodeInfo extends CodeGenInfo {
         return false;
     }
 
-    public boolean definesModule() {
-        return getChildren() != null || getItemTypeName() != null;
-    }
-
-    public CodeGenInfo getModuleInfo() {
-        return moduleInfo;
-    }
-
-    public List<NodeInfo> getModuleChildTypes() {
-        return moduleChildTypes;
-    }
 }

@@ -5,18 +5,34 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNode>
+public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNode>
 {
     private PersonAddBackTypeNode personAddBackTypeNode;
     private PersonOtherIncomeAmountNode personOtherIncomeAmountNode;
     private PersonOtherIncomeDescriptionNode personOtherIncomeDescriptionNode;
     private PersonOtherIncomePreviousYearNode personOtherIncomePreviousYearNode;
     private PersonOtherIncomeTypeNode personOtherIncomeTypeNode;
+
+    private PersonOtherIncomeNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonOtherIncomeNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonOtherIncomeNode> config = classRegistry.getUiNodeConfig(PersonOtherIncomeNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonOtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
         super(parent, name);
@@ -50,16 +66,15 @@ public  class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNo
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        personAddBackTypeNode = context.createChildNode(PersonAddBackTypeNode.class, this, "personAddBackTypeNode");
+        personAddBackTypeNode = childFactory.createPersonAddBackTypeNode();
         children.add(personAddBackTypeNode);
-        personOtherIncomeAmountNode = context.createChildNode(PersonOtherIncomeAmountNode.class, this, "personOtherIncomeAmountNode");
+        personOtherIncomeAmountNode = childFactory.createPersonOtherIncomeAmountNode();
         children.add(personOtherIncomeAmountNode);
-        personOtherIncomeDescriptionNode = context.createChildNode(PersonOtherIncomeDescriptionNode.class, this, "personOtherIncomeDescriptionNode");
+        personOtherIncomeDescriptionNode = childFactory.createPersonOtherIncomeDescriptionNode();
         children.add(personOtherIncomeDescriptionNode);
-        personOtherIncomePreviousYearNode = context.createChildNode(PersonOtherIncomePreviousYearNode.class, this, "personOtherIncomePreviousYearNode");
+        personOtherIncomePreviousYearNode = childFactory.createPersonOtherIncomePreviousYearNode();
         children.add(personOtherIncomePreviousYearNode);
-        personOtherIncomeTypeNode = context.createChildNode(PersonOtherIncomeTypeNode.class, this, "personOtherIncomeTypeNode");
+        personOtherIncomeTypeNode = childFactory.createPersonOtherIncomeTypeNode();
         children.add(personOtherIncomeTypeNode);
         return children;
     }

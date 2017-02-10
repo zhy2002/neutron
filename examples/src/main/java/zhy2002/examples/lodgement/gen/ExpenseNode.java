@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class ExpenseNode extends ObjectUiNode<ExpensesNode>
+public class ExpenseNode extends ObjectUiNode<ExpensesNode>
 {
     private ExpenseTypeNode expenseTypeNode;
     private ExpenseDescriptionNode expenseDescriptionNode;
     private ExpenseMonthlyRepaymentNode expenseMonthlyRepaymentNode;
+
+    private ExpenseNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(ExpenseNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<ExpenseNode> config = classRegistry.getUiNodeConfig(ExpenseNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public ExpenseNode(ExpensesNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class ExpenseNode extends ObjectUiNode<ExpensesNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        expenseTypeNode = context.createChildNode(ExpenseTypeNode.class, this, "expenseTypeNode");
+        expenseTypeNode = childFactory.createExpenseTypeNode();
         children.add(expenseTypeNode);
-        expenseDescriptionNode = context.createChildNode(ExpenseDescriptionNode.class, this, "expenseDescriptionNode");
+        expenseDescriptionNode = childFactory.createExpenseDescriptionNode();
         children.add(expenseDescriptionNode);
-        expenseMonthlyRepaymentNode = context.createChildNode(ExpenseMonthlyRepaymentNode.class, this, "expenseMonthlyRepaymentNode");
+        expenseMonthlyRepaymentNode = childFactory.createExpenseMonthlyRepaymentNode();
         children.add(expenseMonthlyRepaymentNode);
         return children;
     }

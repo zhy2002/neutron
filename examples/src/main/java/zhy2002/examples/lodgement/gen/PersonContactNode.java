@@ -5,13 +5,14 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public  class PersonContactNode extends ObjectUiNode<PersonNode>
+public class PersonContactNode extends ObjectUiNode<PersonNode>
 {
     private ContactTelephoneNode homePhoneNode;
     private ContactTelephoneNode workPhoneNode;
@@ -24,6 +25,21 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     private ContactAddressNode previousAddressNode;
     private MovedToPreviousAddressNode movedToPreviousAddressNode;
     private MovedFromPreviousAddressNode movedFromPreviousAddressNode;
+
+    private PersonContactNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(PersonContactNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonContactNode> config = classRegistry.getUiNodeConfig(PersonContactNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public PersonContactNode(PersonNode parent, String name) {
         super(parent, name);
@@ -87,28 +103,27 @@ public  class PersonContactNode extends ObjectUiNode<PersonNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        homePhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "homePhoneNode");
+        homePhoneNode = childFactory.createHomePhoneNode();
         children.add(homePhoneNode);
-        workPhoneNode = context.createChildNode(ContactTelephoneNode.class, this, "workPhoneNode");
+        workPhoneNode = childFactory.createWorkPhoneNode();
         children.add(workPhoneNode);
-        faxNumberNode = context.createChildNode(ContactTelephoneNode.class, this, "faxNumberNode");
+        faxNumberNode = childFactory.createFaxNumberNode();
         children.add(faxNumberNode);
-        mobileNumberNode = context.createChildNode(MobileNumberNode.class, this, "mobileNumberNode");
+        mobileNumberNode = childFactory.createMobileNumberNode();
         children.add(mobileNumberNode);
-        contactEmailNode = context.createChildNode(ContactEmailNode.class, this, "contactEmailNode");
+        contactEmailNode = childFactory.createContactEmailNode();
         children.add(contactEmailNode);
-        currentAddressNode = context.createChildNode(ContactAddressNode.class, this, "currentAddressNode");
+        currentAddressNode = childFactory.createCurrentAddressNode();
         children.add(currentAddressNode);
-        movedToCurrentAddressNode = context.createChildNode(MovedToCurrentAddressNode.class, this, "movedToCurrentAddressNode");
+        movedToCurrentAddressNode = childFactory.createMovedToCurrentAddressNode();
         children.add(movedToCurrentAddressNode);
-        postalAddressNode = context.createChildNode(ContactAddressNode.class, this, "postalAddressNode");
+        postalAddressNode = childFactory.createPostalAddressNode();
         children.add(postalAddressNode);
-        previousAddressNode = context.createChildNode(ContactAddressNode.class, this, "previousAddressNode");
+        previousAddressNode = childFactory.createPreviousAddressNode();
         children.add(previousAddressNode);
-        movedToPreviousAddressNode = context.createChildNode(MovedToPreviousAddressNode.class, this, "movedToPreviousAddressNode");
+        movedToPreviousAddressNode = childFactory.createMovedToPreviousAddressNode();
         children.add(movedToPreviousAddressNode);
-        movedFromPreviousAddressNode = context.createChildNode(MovedFromPreviousAddressNode.class, this, "movedFromPreviousAddressNode");
+        movedFromPreviousAddressNode = childFactory.createMovedFromPreviousAddressNode();
         children.add(movedFromPreviousAddressNode);
         return children;
     }

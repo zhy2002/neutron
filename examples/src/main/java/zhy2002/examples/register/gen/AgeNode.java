@@ -5,14 +5,23 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-public  class AgeNode extends BigDecimalUiNode<RegisterNode>
+public class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<AgeNode> config = classRegistry.getUiNodeConfig(AgeNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public AgeNode(RegisterNode parent, String name) {
         super(parent, name);
     }

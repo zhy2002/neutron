@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -17,6 +18,13 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     private SelfEmployedNode selfEmployedNode;
     private UnemployedNode unemployedNode;
     private RetiredEmploymentNode retiredEmploymentNode;
+
+    private EmploymentNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(EmploymentNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     public EmploymentNode(P parent, String name) {
         super(parent, name);
@@ -50,16 +58,15 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        employmentTypeNode = context.createChildNode(EmploymentTypeNode.class, this, "employmentTypeNode");
+        employmentTypeNode = childFactory.createEmploymentTypeNode();
         children.add(employmentTypeNode);
-        payeEmployedNode = context.createChildNode(PayeEmployedNode.class, this, "payeEmployedNode");
+        payeEmployedNode = childFactory.createPayeEmployedNode();
         children.add(payeEmployedNode);
-        selfEmployedNode = context.createChildNode(SelfEmployedNode.class, this, "selfEmployedNode");
+        selfEmployedNode = childFactory.createSelfEmployedNode();
         children.add(selfEmployedNode);
-        unemployedNode = context.createChildNode(UnemployedNode.class, this, "unemployedNode");
+        unemployedNode = childFactory.createUnemployedNode();
         children.add(unemployedNode);
-        retiredEmploymentNode = context.createChildNode(RetiredEmploymentNode.class, this, "retiredEmploymentNode");
+        retiredEmploymentNode = childFactory.createRetiredEmploymentNode();
         children.add(retiredEmploymentNode);
         return children;
     }

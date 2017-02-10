@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -17,6 +18,13 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
     private SuburbNode suburbNode;
     private PostcodeNode postcodeNode;
     private CountryNode countryNode;
+
+    private AddressNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(AddressNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     public AddressNode(P parent, String name) {
         super(parent, name);
@@ -45,14 +53,13 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        addressLineNode = context.createChildNode(AddressLineNode.class, this, "addressLineNode");
+        addressLineNode = childFactory.createAddressLineNode();
         children.add(addressLineNode);
-        suburbNode = context.createChildNode(SuburbNode.class, this, "suburbNode");
+        suburbNode = childFactory.createSuburbNode();
         children.add(suburbNode);
-        postcodeNode = context.createChildNode(PostcodeNode.class, this, "postcodeNode");
+        postcodeNode = childFactory.createPostcodeNode();
         children.add(postcodeNode);
-        countryNode = context.createChildNode(CountryNode.class, this, "countryNode");
+        countryNode = childFactory.createCountryNode();
         children.add(countryNode);
         return children;
     }

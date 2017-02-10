@@ -2,8 +2,14 @@ package zhy2002.examples.app.gen;
 
 import zhy2002.neutron.*;
 import javax.validation.constraints.NotNull;
+import dagger.Lazy;
+import javax.inject.Inject;
+
 
 public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
+
+    @Inject
+    Lazy<LodgementNode> rootNodeLazy;
 
     public LodgementNodeContext(
         String contextId,
@@ -23,10 +29,10 @@ public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
     @Override
     protected Class<LodgementNode> getRootClass() {
         return LodgementNode.class;
-        }
+    }
 
     @Override
     protected LodgementNode createRootNode() {
-        return new LodgementNode(this);
+        return rootNodeLazy.get();
     }
 }

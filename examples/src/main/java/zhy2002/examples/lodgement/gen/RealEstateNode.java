@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
+public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
 {
     private UsageNode usageNode;
     private PropertyNode propertyNode;
     private AccessNode accessNode;
+
+    private RealEstateNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(RealEstateNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<RealEstateNode> config = classRegistry.getUiNodeConfig(RealEstateNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public RealEstateNode(RealEstateListNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class RealEstateNode extends ObjectUiNode<RealEstateListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        usageNode = context.createChildNode(UsageNode.class, this, "usageNode");
+        usageNode = childFactory.createUsageNode();
         children.add(usageNode);
-        propertyNode = context.createChildNode(PropertyNode.class, this, "propertyNode");
+        propertyNode = childFactory.createPropertyNode();
         children.add(propertyNode);
-        accessNode = context.createChildNode(AccessNode.class, this, "accessNode");
+        accessNode = childFactory.createAccessNode();
         children.add(accessNode);
         return children;
     }

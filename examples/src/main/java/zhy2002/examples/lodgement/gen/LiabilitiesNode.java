@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
+public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
 {
     private CreditCardListNode creditCardListNode;
     private LoanListNode loanListNode;
     private OtherLiabilityListNode otherLiabilityListNode;
+
+    private LiabilitiesNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(LiabilitiesNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<LiabilitiesNode> config = classRegistry.getUiNodeConfig(LiabilitiesNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public LiabilitiesNode(FinancialPositionNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        creditCardListNode = context.createChildNode(CreditCardListNode.class, this, "creditCardListNode");
+        creditCardListNode = childFactory.createCreditCardListNode();
         children.add(creditCardListNode);
-        loanListNode = context.createChildNode(LoanListNode.class, this, "loanListNode");
+        loanListNode = childFactory.createLoanListNode();
         children.add(loanListNode);
-        otherLiabilityListNode = context.createChildNode(OtherLiabilityListNode.class, this, "otherLiabilityListNode");
+        otherLiabilityListNode = childFactory.createOtherLiabilityListNode();
         children.add(otherLiabilityListNode);
         return children;
     }

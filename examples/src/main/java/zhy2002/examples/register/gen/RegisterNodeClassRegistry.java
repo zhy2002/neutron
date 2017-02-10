@@ -14,32 +14,11 @@ import java.math.BigDecimal;
 class RegisterNodeClassRegistry extends ClassRegistryImpl {
 
     RegisterNodeClassRegistry() {
-        loadChildNodeFactories();
         loadNodeAddEventFactories();
         loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadChildNodeFactories() {
-        setChildNodeFactory(UsernameNode.class, new UsernameNodeFactory());
-        setChildNodeFactory(EmailNode.class, new EmailNodeFactory());
-        setChildNodeFactory(PasswordNode.class, new PasswordNodeFactory());
-        setChildNodeFactory(RepeatPasswordNode.class, new RepeatPasswordNodeFactory());
-        setChildNodeFactory(AgeNode.class, new AgeNodeFactory());
-        setChildNodeFactory(PlanNode.class, new PlanNodeFactory());
-        setChildNodeFactory(ReceiveOffersNode.class, new ReceiveOffersNodeFactory());
-        setChildNodeFactory(OwnInvestmentPropertyNode.class, new OwnInvestmentPropertyNodeFactory());
-        setChildNodeFactory(PropertyAddressNode.class, new PropertyAddressNodeFactory());
-        setChildNodeFactory(PropertyStateNode.class, new PropertyStateNodeFactory());
-        setChildNodeFactory(PropertyDetailsNode.class, new PropertyDetailsNodeFactory());
-        setChildNodeFactory(CountryCodeNode.class, new CountryCodeNodeFactory());
-        setChildNodeFactory(AreaCodeNode.class, new AreaCodeNodeFactory());
-        setChildNodeFactory(PhoneNumberNode.class, new PhoneNumberNodeFactory());
-        setChildNodeFactory(PhoneInfoNode.class, new PhoneInfoNodeFactory());
-        setChildNodeFactory(ErrorNode.class, new ErrorNodeFactory());
-        setChildNodeFactory(ErrorListNode.class, new ErrorListNodeFactory());
     }
 
     private void loadNodeAddEventFactories() {
@@ -60,6 +39,6 @@ class RegisterNodeClassRegistry extends ClassRegistryImpl {
         super.setNodeUnloadEventFactory(RegisterNode.class, RegisterNodeUnloadEvent::new);
     }
 
-private void loadStateChangeEventFactories() {
-}
+    private void loadStateChangeEventFactories() {
+    }
 }

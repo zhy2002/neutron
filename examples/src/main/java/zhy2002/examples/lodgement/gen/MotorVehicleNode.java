@@ -5,16 +5,32 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
+public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
 {
     private VehicleModelNode vehicleModelNode;
     private VehicleYearNode vehicleYearNode;
     private VehicleMarketValueNode vehicleMarketValueNode;
+
+    private MotorVehicleNodeChildFactory childFactory;
+
+    @Inject
+    void receiveProviders(MotorVehicleNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<MotorVehicleNode> config = classRegistry.getUiNodeConfig(MotorVehicleNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
 
     public MotorVehicleNode(MotorVehicleListNode parent, String name) {
         super(parent, name);
@@ -38,12 +54,11 @@ public  class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        UiNodeContext<?> context = getContext();
-        vehicleModelNode = context.createChildNode(VehicleModelNode.class, this, "vehicleModelNode");
+        vehicleModelNode = childFactory.createVehicleModelNode();
         children.add(vehicleModelNode);
-        vehicleYearNode = context.createChildNode(VehicleYearNode.class, this, "vehicleYearNode");
+        vehicleYearNode = childFactory.createVehicleYearNode();
         children.add(vehicleYearNode);
-        vehicleMarketValueNode = context.createChildNode(VehicleMarketValueNode.class, this, "vehicleMarketValueNode");
+        vehicleMarketValueNode = childFactory.createVehicleMarketValueNode();
         children.add(vehicleMarketValueNode);
         return children;
     }

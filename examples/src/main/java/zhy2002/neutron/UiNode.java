@@ -153,7 +153,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
-    final void setStatusListener(UiNodeStatusListener listener) {
+    protected final void setStatusListener(UiNodeStatusListener listener) {
         this.statusListener = listener;
     }
 

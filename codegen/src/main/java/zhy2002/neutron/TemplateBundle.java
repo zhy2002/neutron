@@ -1,6 +1,5 @@
 package zhy2002.neutron;
 
-
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
@@ -10,7 +9,6 @@ import java.io.IOException;
 class TemplateBundle {
 
     private final Template nodeTemplate;
-    private final Template nodeFactoryTemplate;
     private final Template nodeLoadEventTemplate;
     private final Template nodeUnloadEventTemplate;
     private final Template nodeAddEventTemplate;
@@ -19,15 +17,13 @@ class TemplateBundle {
     private final Template ruleTemplate;
     private final Template registryTemplate;
     private final Template contextTemplate;
-    private final Template moduleTemplate;
-    private final Template scopeTemplate;
-    private final Template componentTemplate;
+    private final Template itemFactoryTemplate;
+    private final Template childFactoryTemplate;
 
     TemplateBundle() {
         Configuration configuration = createTemplateConfiguration();
         try {
             nodeTemplate = configuration.getTemplate("node.ftl");
-            nodeFactoryTemplate = configuration.getTemplate("node_factory.ftl");
             nodeLoadEventTemplate = configuration.getTemplate("load_event.ftl");
             nodeUnloadEventTemplate = configuration.getTemplate("unload_event.ftl");
             nodeAddEventTemplate = configuration.getTemplate("add_event.ftl");
@@ -36,9 +32,8 @@ class TemplateBundle {
             ruleTemplate = configuration.getTemplate("rule.ftl");
             registryTemplate = configuration.getTemplate("registry.ftl");
             contextTemplate = configuration.getTemplate("context.ftl");
-            moduleTemplate = configuration.getTemplate("module.ftl");
-            scopeTemplate = configuration.getTemplate("scope.ftl");
-            componentTemplate = configuration.getTemplate("component.ftl");
+            itemFactoryTemplate = configuration.getTemplate("item_factory.ftl");
+            childFactoryTemplate = configuration.getTemplate("child_factory.ftl");
         } catch (IOException ex) {
             throw new RuntimeException("Failed to load template.", ex);
         }
@@ -57,55 +52,47 @@ class TemplateBundle {
         }
     }
 
-    public Template getNodeTemplate() {
+    Template getNodeTemplate() {
         return nodeTemplate;
     }
 
-    public Template getNodeFactoryTemplate() {
-        return nodeFactoryTemplate;
-    }
-
-    public Template getNodeLoadEventTemplate() {
+    Template getNodeLoadEventTemplate() {
         return nodeLoadEventTemplate;
     }
 
-    public Template getNodeUnloadEventTemplate() {
+    Template getNodeUnloadEventTemplate() {
         return nodeUnloadEventTemplate;
     }
 
-    public Template getNodeAddEventTemplate() {
+    Template getNodeAddEventTemplate() {
         return nodeAddEventTemplate;
     }
 
-    public Template getNodeRemoveEventTemplate() {
+    Template getNodeRemoveEventTemplate() {
         return nodeRemoveEventTemplate;
     }
 
-    public Template getChangeEventTemplate() {
+    Template getChangeEventTemplate() {
         return changeEventTemplate;
     }
 
-    public Template getRuleTemplate() {
+    Template getRuleTemplate() {
         return ruleTemplate;
     }
 
-    public Template getRegistryTemplate() {
+    Template getRegistryTemplate() {
         return registryTemplate;
     }
 
-    public Template getContextTemplate() {
+    Template getContextTemplate() {
         return contextTemplate;
     }
 
-    public Template getModuleTemplate() {
-        return moduleTemplate;
+    Template getItemFactoryTemplate() {
+        return itemFactoryTemplate;
     }
 
-    public Template getScopeTemplate() {
-        return scopeTemplate;
-    }
-
-    public Template getComponentTemplate() {
-        return componentTemplate;
+    Template getChildFactoryTemplate() {
+        return childFactoryTemplate;
     }
 }

@@ -5,13 +5,22 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public  class PersonTrustAddressNode extends AddressNode<PersonTrustNode>
+public class PersonTrustAddressNode extends AddressNode<PersonTrustNode>
 {
+    @Inject
+    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
+        UiNodeConfig<PersonTrustAddressNode> config = classRegistry.getUiNodeConfig(PersonTrustAddressNode.class, getName());
+        if (config != null) {
+            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
+        }
+    }
+
     public PersonTrustAddressNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }
