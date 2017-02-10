@@ -16,7 +16,7 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
     private OtherLiabilityListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(OtherLiabilityListNodeItemProvider provider) {
+    void receiveNodeProvider(OtherLiabilityListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

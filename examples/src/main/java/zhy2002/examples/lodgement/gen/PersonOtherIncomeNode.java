@@ -22,7 +22,7 @@ public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNod
     private PersonOtherIncomeNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PersonOtherIncomeNodeChildProvider provider) {
+    void receiveNodeProvider(PersonOtherIncomeNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

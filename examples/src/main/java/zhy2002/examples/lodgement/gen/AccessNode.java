@@ -24,7 +24,7 @@ public class AccessNode extends ObjectUiNode<RealEstateNode>
     private AccessNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(AccessNodeChildProvider provider) {
+    void receiveNodeProvider(AccessNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

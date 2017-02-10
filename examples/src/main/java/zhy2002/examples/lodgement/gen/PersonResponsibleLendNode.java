@@ -21,7 +21,7 @@ public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
     private PersonResponsibleLendNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PersonResponsibleLendNodeChildProvider provider) {
+    void receiveNodeProvider(PersonResponsibleLendNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

@@ -16,7 +16,7 @@ public class ExpensesNode extends ListUiNode<FinancialPositionNode,ExpensesNode,
     private ExpensesNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(ExpensesNodeItemProvider provider) {
+    void receiveNodeProvider(ExpensesNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

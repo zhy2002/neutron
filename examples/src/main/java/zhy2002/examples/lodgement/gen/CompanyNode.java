@@ -17,7 +17,7 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode>
     private CompanyNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(CompanyNodeChildProvider provider) {
+    void receiveNodeProvider(CompanyNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

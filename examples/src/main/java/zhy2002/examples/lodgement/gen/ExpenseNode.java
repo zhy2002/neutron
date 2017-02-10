@@ -20,7 +20,7 @@ public class ExpenseNode extends ObjectUiNode<ExpensesNode>
     private ExpenseNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(ExpenseNodeChildProvider provider) {
+    void receiveNodeProvider(ExpenseNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

@@ -18,7 +18,7 @@ public class PayeEmployedNode extends EmployedNode
     private PayeEmployedNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PayeEmployedNodeChildProvider provider) {
+    void receiveNodeProvider(PayeEmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

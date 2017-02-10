@@ -26,7 +26,7 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode>
     private PropertyNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PropertyNodeChildProvider provider) {
+    void receiveNodeProvider(PropertyNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

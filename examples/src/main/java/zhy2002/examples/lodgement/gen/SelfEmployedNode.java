@@ -20,7 +20,7 @@ public class SelfEmployedNode extends EmployedNode
     private SelfEmployedNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(SelfEmployedNodeChildProvider provider) {
+    void receiveNodeProvider(SelfEmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

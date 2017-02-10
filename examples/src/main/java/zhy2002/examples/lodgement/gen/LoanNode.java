@@ -24,7 +24,7 @@ public class LoanNode extends ObjectUiNode<LoanListNode>
     private LoanNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(LoanNodeChildProvider provider) {
+    void receiveNodeProvider(LoanNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

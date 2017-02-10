@@ -17,7 +17,7 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode>
     private AppManagerNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(AppManagerNodeChildProvider provider) {
+    void receiveNodeProvider(AppManagerNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

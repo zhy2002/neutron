@@ -29,7 +29,7 @@ public class PersonContactNode extends ObjectUiNode<PersonNode>
     private PersonContactNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PersonContactNodeChildProvider provider) {
+    void receiveNodeProvider(PersonContactNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

@@ -16,7 +16,7 @@ public class AddressListNode extends ListUiNode<ApplicationNode,AddressListNode,
     private AddressListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(AddressListNodeItemProvider provider) {
+    void receiveNodeProvider(AddressListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

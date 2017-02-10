@@ -16,7 +16,7 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleList
     private MotorVehicleListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(MotorVehicleListNodeItemProvider provider) {
+    void receiveNodeProvider(MotorVehicleListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

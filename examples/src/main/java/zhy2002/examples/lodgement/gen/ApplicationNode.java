@@ -28,7 +28,7 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
     private ApplicationNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(ApplicationNodeChildProvider provider) {
+    void receiveNodeProvider(ApplicationNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

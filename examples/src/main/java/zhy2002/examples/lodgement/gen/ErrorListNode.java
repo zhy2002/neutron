@@ -17,7 +17,7 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Erro
     private ErrorListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(ErrorListNodeItemProvider provider) {
+    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

@@ -20,7 +20,7 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
     private MonthYearNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(MonthYearNodeChildProvider provider) {
+    void receiveNodeProvider(MonthYearNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

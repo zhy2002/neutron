@@ -20,7 +20,7 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
     private LodgementNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(LodgementNodeChildProvider provider) {
+    void receiveNodeProvider(LodgementNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

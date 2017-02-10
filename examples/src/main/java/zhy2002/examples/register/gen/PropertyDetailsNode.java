@@ -19,7 +19,7 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
     private PropertyDetailsNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PropertyDetailsNodeChildProvider provider) {
+    void receiveNodeProvider(PropertyDetailsNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

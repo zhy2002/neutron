@@ -19,7 +19,7 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
     private RetiredEmploymentNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(RetiredEmploymentNodeChildProvider provider) {
+    void receiveNodeProvider(RetiredEmploymentNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

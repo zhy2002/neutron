@@ -16,7 +16,7 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLis
     private RealEstateListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(RealEstateListNodeItemProvider provider) {
+    void receiveNodeProvider(RealEstateListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

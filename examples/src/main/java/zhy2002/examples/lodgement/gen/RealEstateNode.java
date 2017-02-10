@@ -20,7 +20,7 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
     private RealEstateNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(RealEstateNodeChildProvider provider) {
+    void receiveNodeProvider(RealEstateNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

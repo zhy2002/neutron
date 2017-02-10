@@ -22,7 +22,7 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
     private AddressNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(AddressNodeChildProvider provider) {
+    void receiveNodeProvider(AddressNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

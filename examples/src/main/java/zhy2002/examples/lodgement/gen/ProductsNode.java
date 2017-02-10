@@ -17,7 +17,7 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode>
     private ProductsNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(ProductsNodeChildProvider provider) {
+    void receiveNodeProvider(ProductsNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

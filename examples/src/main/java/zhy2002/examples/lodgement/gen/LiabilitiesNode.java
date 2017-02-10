@@ -20,7 +20,7 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
     private LiabilitiesNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(LiabilitiesNodeChildProvider provider) {
+    void receiveNodeProvider(LiabilitiesNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

@@ -17,7 +17,7 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode>
     private SubmissionNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(SubmissionNodeChildProvider provider) {
+    void receiveNodeProvider(SubmissionNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

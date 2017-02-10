@@ -24,7 +24,7 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     private EmployedNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(EmployedNodeChildProvider provider) {
+    void receiveNodeProvider(EmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

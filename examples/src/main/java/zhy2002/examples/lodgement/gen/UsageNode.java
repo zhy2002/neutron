@@ -22,7 +22,7 @@ public class UsageNode extends ObjectUiNode<RealEstateNode>
     private UsageNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(UsageNodeChildProvider provider) {
+    void receiveNodeProvider(UsageNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

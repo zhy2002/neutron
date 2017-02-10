@@ -21,7 +21,7 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
     private PhoneInfoNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PhoneInfoNodeChildProvider provider) {
+    void receiveNodeProvider(PhoneInfoNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

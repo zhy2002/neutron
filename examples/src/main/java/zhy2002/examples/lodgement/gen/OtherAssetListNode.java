@@ -16,7 +16,7 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetListNode
     private OtherAssetListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(OtherAssetListNodeItemProvider provider) {
+    void receiveNodeProvider(OtherAssetListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

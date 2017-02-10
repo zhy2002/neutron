@@ -16,7 +16,7 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     private SavingsAccountListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(SavingsAccountListNodeItemProvider provider) {
+    void receiveNodeProvider(SavingsAccountListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

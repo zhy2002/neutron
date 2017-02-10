@@ -22,7 +22,7 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
     private UnemployedNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(UnemployedNodeChildProvider provider) {
+    void receiveNodeProvider(UnemployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

@@ -17,7 +17,7 @@ public class AddressRefUiNode extends ObjectUiNode<AddressListNode>
     private AddressRefUiNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(AddressRefUiNodeChildProvider provider) {
+    void receiveNodeProvider(AddressRefUiNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

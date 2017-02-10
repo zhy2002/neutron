@@ -16,7 +16,7 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,Pe
     private PersonListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveProviders(PersonListNodeItemProvider provider) {
+    void receiveNodeProvider(PersonListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 

@@ -31,7 +31,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode>
     private RegisterNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(RegisterNodeChildProvider provider) {
+    void receiveNodeProvider(RegisterNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

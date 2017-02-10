@@ -24,7 +24,7 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
     private CreditCardNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(CreditCardNodeChildProvider provider) {
+    void receiveNodeProvider(CreditCardNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

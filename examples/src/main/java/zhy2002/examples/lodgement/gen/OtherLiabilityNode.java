@@ -20,7 +20,7 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
     private OtherLiabilityNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(OtherLiabilityNodeChildProvider provider) {
+    void receiveNodeProvider(OtherLiabilityNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

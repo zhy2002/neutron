@@ -20,7 +20,7 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
     private MotorVehicleNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(MotorVehicleNodeChildProvider provider) {
+    void receiveNodeProvider(MotorVehicleNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

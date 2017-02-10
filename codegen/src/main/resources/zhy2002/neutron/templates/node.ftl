@@ -33,7 +33,7 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
 
     @Inject
-    void receiveProviders(${typeName}<#if itemTypeName??>Item<#else>Child</#if>Provider provider) {
+    void receiveNodeProvider(${typeName}<#if itemTypeName??>Item<#else>Child</#if>Provider provider) {
         <#if itemTypeName??>item<#else>child</#if>Factory = provider.createFactory(this);
     }
 

@@ -20,7 +20,7 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
     private OtherAssetNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(OtherAssetNodeChildProvider provider) {
+    void receiveNodeProvider(OtherAssetNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

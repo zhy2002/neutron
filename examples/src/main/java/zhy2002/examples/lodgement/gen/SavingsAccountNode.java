@@ -23,7 +23,7 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
     private SavingsAccountNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(SavingsAccountNodeChildProvider provider) {
+    void receiveNodeProvider(SavingsAccountNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 

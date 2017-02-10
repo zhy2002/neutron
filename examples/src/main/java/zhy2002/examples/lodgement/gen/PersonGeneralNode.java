@@ -31,7 +31,7 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode>
     private PersonGeneralNodeChildFactory childFactory;
 
     @Inject
-    void receiveProviders(PersonGeneralNodeChildProvider provider) {
+    void receiveNodeProvider(PersonGeneralNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
 
