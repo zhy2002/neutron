@@ -2,11 +2,10 @@ package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
-import zhy2002.neutron.rule.NumberFormatValidationRule;
-import zhy2002.neutron.rule.RangeValidationRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
@@ -141,13 +140,14 @@ public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, B
         return BigDecimal.class;
     }
 
+    @Inject
+    BigDecimalUiNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(RangeValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(NumberFormatValidationRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public String getRangeMessage() {

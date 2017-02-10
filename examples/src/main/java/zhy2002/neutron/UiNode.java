@@ -7,6 +7,7 @@ import zhy2002.neutron.rule.ClearErrorsForDisabledNodeRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
@@ -366,6 +367,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         createdRules.clear();
     }
 
+    @Inject
+    UiNodeRuleProvider ruleProvider;
+
     /**
      * Override this method to add rules to be loaded.
      * The rules added to this list does not have to be owned by this node.
@@ -374,9 +378,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * @param createdRules the list of rule that will be loaded.
      */
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(ClearErrorsForDisabledNodeRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     /**

@@ -5,6 +5,10 @@ import javax.inject.Singleton;
 
 @Singleton
 public class MyDataReader {
+
+    @Inject
+    MySubClass mySubClass;
+
     public String getValue() {
         return value;
     }
@@ -18,5 +22,7 @@ public class MyDataReader {
     @Inject
     MyDataReader() {}
 
-
+    public MySubClass getMySubClass() {
+        return mySubClass;
+    }
 }

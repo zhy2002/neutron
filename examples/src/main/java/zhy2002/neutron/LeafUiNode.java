@@ -1,9 +1,9 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     @Override
     protected void setStateValueInternal(String key, Object value) {
         super.setStateValueInternal(key, value);
-        if(NeutronEventSubjects.VALUE.equals(key)) {
+        if (NeutronEventSubjects.VALUE.equals(key)) {
             setHasValue(hasValue());
         }
     }
@@ -62,12 +62,14 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
+    @Inject
+    LeafUiNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(LeafValueRequiredValidationRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

@@ -128,4 +128,11 @@ public class DaggerTest {
 
         assertThat(node2.getRootNode(), sameInstance(rootNode));
     }
+
+    @Test
+    public void scopeIsNotInherited() {
+        MyServiceConsumerComponent component = DaggerMyServiceConsumerComponent.create();
+
+        assertThat(component.createDataReader().getMySubClass(), not(sameInstance(component.createMyServiceConsumer().getMySubClass())));
+    }
 }

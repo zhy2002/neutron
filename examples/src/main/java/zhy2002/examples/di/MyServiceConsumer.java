@@ -13,6 +13,9 @@ public class MyServiceConsumer {
     MyDataReader dataReader;
 
     @Inject
+    MySubClass mySubClass;
+
+    @Inject
     public MyServiceConsumer(MyServiceProvider provider) {
         this.myServiceProvider = provider;
     }
@@ -27,5 +30,9 @@ public class MyServiceConsumer {
 
     public MyDataReader getDataReader() {
         return dataReader;
+    }
+
+    public MySubClass getMySubClass() {
+        return mySubClass;
     }
 }

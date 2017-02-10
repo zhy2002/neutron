@@ -8,6 +8,7 @@ import zhy2002.neutron.rule.PatternValidationRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -49,14 +50,14 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         return String.class;
     }
 
+    @Inject
+    StringUiNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(PatternValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(LengthValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(InvalidCharPreChangeRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public String getPattern() {

@@ -5,6 +5,7 @@ import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.rule.UpdateObjectHasValueRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,12 +77,13 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
     }
 
+    @Inject
+    ObjectUiNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(ObjectValueRequiredValidationRule.class, this));
-        createdRules.add(context.createUiNodeRule(UpdateObjectHasValueRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 }
