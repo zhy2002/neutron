@@ -42,6 +42,4 @@ public class PersonAddBackTypeNode extends StringUiNode<PersonOtherIncomeNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

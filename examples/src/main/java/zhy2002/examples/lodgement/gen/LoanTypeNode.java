@@ -25,6 +25,4 @@ public class LoanTypeNode extends StringUiNode<LoanNode>
         super(parent, name);
     }
 
-
-
 }

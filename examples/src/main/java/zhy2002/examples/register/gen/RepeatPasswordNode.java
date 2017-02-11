@@ -26,14 +26,14 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode>
         super(parent, name);
     }
 
+    @Inject
+    RepeatPasswordNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(RepeatPasswordRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

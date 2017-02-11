@@ -25,6 +25,4 @@ public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

@@ -64,8 +64,6 @@ public class SelfEmployedNode extends EmployedNode
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

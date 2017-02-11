@@ -32,6 +32,4 @@ public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentN
         setRequired(true);
     }
 
-
-
 }

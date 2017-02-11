@@ -25,6 +25,4 @@ public class UsedAsSecurityFlagNode extends BooleanUiNode<UsageNode>
         super(parent, name);
     }
 
-
-
 }

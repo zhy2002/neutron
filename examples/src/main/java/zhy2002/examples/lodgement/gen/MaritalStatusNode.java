@@ -43,6 +43,4 @@ public class MaritalStatusNode extends StringUiNode<PersonGeneralNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

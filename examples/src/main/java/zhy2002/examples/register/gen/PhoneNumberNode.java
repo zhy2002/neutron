@@ -32,6 +32,4 @@ public class PhoneNumberNode extends PhoneInfoFieldNode
         setRequiredMessage("Phone number is required.");
     }
 
-
-
 }

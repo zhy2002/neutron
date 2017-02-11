@@ -42,6 +42,4 @@ public class PlanNode extends StringUiNode<RegisterNode>
         setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class ContactTelephoneNode extends TelephoneNode<PersonContactNode>
         super(parent, name);
     }
 
-
-
 }

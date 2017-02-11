@@ -56,8 +56,6 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

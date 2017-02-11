@@ -58,7 +58,6 @@ public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
     public void setRule(UiNodeRule<?> value) {
         getValue().setRule(value);
     }
-
     @Override
     public ValidationError getCopyOfValue() {
         ValidationError value = getValue();
@@ -79,6 +78,5 @@ public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
     public Class<ValidationError> getValueClass() {
         return ValidationError.class;
     }
-
 
 }

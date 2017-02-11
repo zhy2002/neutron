@@ -65,6 +65,4 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
         return children;
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class PersonTrustIndustryNode extends StringUiNode<PersonTrustNode>
         super(parent, name);
     }
 
-
-
 }

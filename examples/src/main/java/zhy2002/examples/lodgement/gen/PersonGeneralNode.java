@@ -151,6 +151,4 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode>
         return children;
     }
 
-
-
 }

@@ -42,6 +42,4 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         return itemFactory.createOtherLiabilityNode(name);
     }
 
-
-
 }

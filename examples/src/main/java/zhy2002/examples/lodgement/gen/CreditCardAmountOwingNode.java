@@ -25,6 +25,4 @@ public class CreditCardAmountOwingNode extends BigDecimalUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

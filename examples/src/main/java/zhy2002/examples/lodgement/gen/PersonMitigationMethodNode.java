@@ -42,6 +42,4 @@ public class PersonMitigationMethodNode extends StringUiNode<PersonResponsibleLe
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

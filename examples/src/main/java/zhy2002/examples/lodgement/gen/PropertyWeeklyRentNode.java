@@ -25,6 +25,4 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

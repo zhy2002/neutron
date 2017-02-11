@@ -63,6 +63,4 @@ public class ExpenseNode extends ObjectUiNode<ExpensesNode>
         return children;
     }
 
-
-
 }

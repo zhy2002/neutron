@@ -32,6 +32,4 @@ public class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
         setRequired(true);
     }
 
-
-
 }

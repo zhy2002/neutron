@@ -32,6 +32,4 @@ public class ContactEmailNode extends EmailNode<PersonContactNode>
         setRequired(true);
     }
 
-
-
 }

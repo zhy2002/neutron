@@ -33,6 +33,4 @@ public abstract class BaseCurrencyNode<P extends ParentUiNode<?>> extends BigDec
         setStateValue(ApplicationNodeConstants.CURRENCY_INFO, CurrencyInfo.class, value);
     }
 
-
-
 }

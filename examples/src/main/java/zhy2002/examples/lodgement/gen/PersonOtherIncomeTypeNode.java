@@ -45,14 +45,14 @@ public class PersonOtherIncomeTypeNode extends StringUiNode<PersonOtherIncomeNod
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
+    @Inject
+    PersonOtherIncomeTypeNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(PersonOtherIncomeTypeChangeRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

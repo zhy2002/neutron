@@ -25,6 +25,4 @@ public class AccessContactTypeNode extends StringUiNode<AccessNode>
         super(parent, name);
     }
 
-
-
 }

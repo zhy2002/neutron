@@ -23,6 +23,4 @@ public abstract class EmailNode<P extends ParentUiNode<?>> extends StringUiNode<
         setPattern("\\w+@\\w+\\.[\\w.]+");
     }
 
-
-
 }

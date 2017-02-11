@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -23,14 +24,15 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         setValue(Telephone.class, value);
     }
 
+    @Inject
+    TelephoneNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(TelephoneCompleteRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
 
     @Override
     public Telephone getCopyOfValue() {
@@ -52,6 +54,5 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     public Class<Telephone> getValueClass() {
         return Telephone.class;
     }
-
 
 }

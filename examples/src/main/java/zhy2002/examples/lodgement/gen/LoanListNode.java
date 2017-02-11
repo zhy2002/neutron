@@ -42,6 +42,4 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanListNode,LoanNo
         return itemFactory.createLoanNode(name);
     }
 
-
-
 }

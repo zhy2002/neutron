@@ -79,6 +79,4 @@ public class UsageNode extends ObjectUiNode<RealEstateNode>
         return children;
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class CreditCardBreakCostNode extends BigDecimalUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

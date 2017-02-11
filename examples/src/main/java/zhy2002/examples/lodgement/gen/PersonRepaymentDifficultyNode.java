@@ -32,6 +32,4 @@ public class PersonRepaymentDifficultyNode extends YesNoOptionNode<PersonRespons
         setRequired(true);
     }
 
-
-
 }

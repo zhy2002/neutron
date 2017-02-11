@@ -25,6 +25,4 @@ public class PersonTrustNameNode extends StringUiNode<PersonTrustNode>
         super(parent, name);
     }
 
-
-
 }

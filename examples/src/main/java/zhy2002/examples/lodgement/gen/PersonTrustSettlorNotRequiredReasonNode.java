@@ -25,6 +25,4 @@ public class PersonTrustSettlorNotRequiredReasonNode extends StringUiNode<Person
         super(parent, name);
     }
 
-
-
 }

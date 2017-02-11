@@ -25,6 +25,4 @@ public class PropertyPurseNode extends BooleanUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

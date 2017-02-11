@@ -25,6 +25,4 @@ public class OtherAssetMarketValueNode extends StringUiNode<OtherAssetNode>
         super(parent, name);
     }
 
-
-
 }

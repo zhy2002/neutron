@@ -50,6 +50,4 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,Pe
         setNodeLabel("Person Applicant");
     }
 
-
-
 }

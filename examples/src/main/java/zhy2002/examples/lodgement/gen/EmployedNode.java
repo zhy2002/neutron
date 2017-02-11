@@ -88,8 +88,6 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

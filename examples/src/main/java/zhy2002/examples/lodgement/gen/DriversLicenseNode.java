@@ -33,6 +33,4 @@ public class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
         setPatternMessage("Must be 8 digits");
     }
 
-
-
 }

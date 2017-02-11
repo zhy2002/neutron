@@ -50,14 +50,14 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
         return children;
     }
 
+    @Inject
+    LodgementNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(DummyRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

@@ -5,6 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
+import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
@@ -45,14 +46,14 @@ public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
         setStateValue(ApplicationNodeConstants.MAX_AGE, Integer.class, value);
     }
 
+    @Inject
+    DobNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(DobRangeValidationRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

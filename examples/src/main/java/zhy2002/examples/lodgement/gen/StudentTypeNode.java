@@ -42,6 +42,4 @@ public class StudentTypeNode extends StringUiNode<UnemployedNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

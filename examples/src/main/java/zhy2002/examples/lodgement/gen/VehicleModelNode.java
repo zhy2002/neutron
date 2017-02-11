@@ -25,6 +25,4 @@ public class VehicleModelNode extends StringUiNode<MotorVehicleNode>
         super(parent, name);
     }
 
-
-
 }

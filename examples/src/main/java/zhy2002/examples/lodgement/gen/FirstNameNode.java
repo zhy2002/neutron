@@ -33,6 +33,4 @@ public class FirstNameNode extends StringUiNode<PersonGeneralNode>
         setPattern(ApplicationNodeConstants.NAME_PATTERN);
     }
 
-
-
 }

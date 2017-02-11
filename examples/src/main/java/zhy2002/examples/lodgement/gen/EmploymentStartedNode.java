@@ -32,6 +32,4 @@ public class EmploymentStartedNode extends MonthYearNode<EmployedNode>
         setRequired(true);
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class BusinessTypeNode extends StringUiNode<SelfEmployedNode>
         super(parent, name);
     }
 
-
-
 }

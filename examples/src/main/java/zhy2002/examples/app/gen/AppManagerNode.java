@@ -39,6 +39,4 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode>
         return children;
     }
 
-
-
 }

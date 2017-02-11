@@ -42,6 +42,4 @@ public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNo
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

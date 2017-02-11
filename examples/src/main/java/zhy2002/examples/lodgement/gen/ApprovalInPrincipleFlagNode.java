@@ -25,6 +25,4 @@ public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode>
         super(parent, name);
     }
 
-
-
 }

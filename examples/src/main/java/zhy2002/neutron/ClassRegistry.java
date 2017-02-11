@@ -8,14 +8,6 @@ public interface ClassRegistry {
     <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name);
 
     /**
-     * Get the registered instance of the given class.
-     *
-     * @param ruleClass the rule's class object.
-     * @return the factory instance that can create the rule.
-     */
-    <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass);
-
-    /**
      * Get the factory instance of a given state change event type.
      *
      * @param valueClass state value class.

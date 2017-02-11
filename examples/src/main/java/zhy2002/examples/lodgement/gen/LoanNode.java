@@ -95,6 +95,4 @@ public class LoanNode extends ObjectUiNode<LoanListNode>
         return children;
     }
 
-
-
 }

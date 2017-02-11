@@ -95,6 +95,4 @@ public class PersonTrustNode extends ObjectUiNode<PersonNode>
         return children;
     }
 
-
-
 }

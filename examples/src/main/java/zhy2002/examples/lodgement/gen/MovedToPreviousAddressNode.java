@@ -25,6 +25,4 @@ public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
         super(parent, name);
     }
 
-
-
 }

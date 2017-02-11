@@ -25,6 +25,4 @@ public class CreditCardMonthlyRepayment extends BigDecimalUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

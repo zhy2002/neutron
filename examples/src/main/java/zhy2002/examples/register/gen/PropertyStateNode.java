@@ -44,6 +44,4 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
         setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

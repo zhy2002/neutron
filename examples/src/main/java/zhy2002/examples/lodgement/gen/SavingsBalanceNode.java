@@ -25,6 +25,4 @@ public class SavingsBalanceNode extends BigDecimalUiNode<SavingsAccountNode>
         super(parent, name);
     }
 
-
-
 }

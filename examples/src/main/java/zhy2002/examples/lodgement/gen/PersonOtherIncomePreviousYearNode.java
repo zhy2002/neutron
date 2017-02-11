@@ -25,6 +25,4 @@ public class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOther
         super(parent, name);
     }
 
-
-
 }

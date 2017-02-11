@@ -63,6 +63,4 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
         return children;
     }
 
-
-
 }

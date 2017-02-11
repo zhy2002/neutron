@@ -49,6 +49,4 @@ public class PersonOtherIncomeListNode extends ListUiNode<PersonNode,PersonOther
         setNodeLabel("Other Incomes");
     }
 
-
-
 }

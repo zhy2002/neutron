@@ -43,6 +43,4 @@ public class GenderNode extends StringUiNode<PersonGeneralNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

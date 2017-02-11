@@ -25,6 +25,4 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode>
         super(parent, name);
     }
 
-
-
 }

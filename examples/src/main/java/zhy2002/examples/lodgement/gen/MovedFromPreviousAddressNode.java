@@ -26,14 +26,14 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNod
         super(parent, name);
     }
 
+    @Inject
+    MovedFromPreviousAddressNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(FromPreviousNoEarlierThanToPreviousRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

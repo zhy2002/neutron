@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
-<#if children?? || itemTypeName?? || !isAbstract>
+<#if children?? || itemTypeName?? || !isAbstract || rules?? && rules?size gt 0>
 import javax.inject.*;
 </#if>
 import javax.validation.constraints.NotNull;
@@ -142,19 +142,18 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
-<#if rules??>
+<#if rules?? && rules?size gt 0>
+    @Inject
+    ${typeName}RuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-    <#list rules as rule>
-        createdRules.add(context.createUiNodeRule(${rule.typeName}.class, this));
-    </#list>
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 </#if>
-
 <#if valueTypeName??>
     @Override
     public ${valueTypeName} getCopyOfValue() {
@@ -178,7 +177,6 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
-
 <#if parent??>
     <#if parent.localRequired>
 

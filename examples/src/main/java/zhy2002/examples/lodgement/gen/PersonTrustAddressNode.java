@@ -25,6 +25,4 @@ public class PersonTrustAddressNode extends AddressNode<PersonTrustNode>
         super(parent, name);
     }
 
-
-
 }

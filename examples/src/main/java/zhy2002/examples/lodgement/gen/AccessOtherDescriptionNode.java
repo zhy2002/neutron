@@ -25,6 +25,4 @@ public class AccessOtherDescriptionNode extends StringUiNode<AccessNode>
         super(parent, name);
     }
 
-
-
 }

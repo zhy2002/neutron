@@ -33,6 +33,4 @@ public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
         setValue("Yes");
     }
 
-
-
 }

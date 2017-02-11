@@ -32,6 +32,4 @@ public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode>
         setRequired(true);
     }
 
-
-
 }

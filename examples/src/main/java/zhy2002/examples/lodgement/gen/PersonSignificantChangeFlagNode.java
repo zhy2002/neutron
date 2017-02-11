@@ -33,14 +33,14 @@ public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonRespo
         setRequired(true);
     }
 
+    @Inject
+    PersonSignificantChangeFlagNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(PersonSignificantChangeRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

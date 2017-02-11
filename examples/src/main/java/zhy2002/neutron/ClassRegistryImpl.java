@@ -147,12 +147,6 @@ public class ClassRegistryImpl implements ClassRegistry {
         nodeConfigMap.get(nodeClass).add(config);
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public final <R extends UiNodeRule<N>, N extends UiNode<?>> UiNodeRuleFactory<R, N> getUiNodeRuleFactory(Class<R> ruleClass) {
-        return (UiNodeRuleFactory<R, N>) getObject(uiNodeRuleFactories, ruleClass, "UiNodeRuleFactory");
-    }
-
     public final <R extends UiNodeRule<N>, N extends UiNode<?>> void setUiNodeRuleFactory(Class<R> ruleClass, UiNodeRuleFactory<R, N> factory) {
         uiNodeRuleFactories.put(ruleClass, factory);
     }

@@ -25,6 +25,4 @@ public class LoanClearingFlagNode extends BooleanUiNode<LoanNode>
         super(parent, name);
     }
 
-
-
 }

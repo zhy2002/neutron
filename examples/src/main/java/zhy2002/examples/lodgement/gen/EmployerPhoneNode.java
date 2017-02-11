@@ -32,6 +32,4 @@ public class EmployerPhoneNode extends TelephoneNode<EmployedNode>
         setRequired(true);
     }
 
-
-
 }

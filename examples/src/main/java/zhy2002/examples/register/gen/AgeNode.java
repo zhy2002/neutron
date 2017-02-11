@@ -35,14 +35,14 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode>
         setRangeMessage("Age must be between 0 and 120.");
     }
 
+    @Inject
+    AgeNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(UpdatePlanRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

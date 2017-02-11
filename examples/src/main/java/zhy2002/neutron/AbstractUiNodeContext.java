@@ -74,12 +74,6 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public final <U extends UiNodeRule<N>, N extends UiNode<?>> U createUiNodeRule(Class<U> ruleClass, N owner) {
-        UiNodeRuleFactory<U, N> factory = classRegistry.getUiNodeRuleFactory(ruleClass);
-        return factory.create(owner);
-    }
-
-    @Override
     public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
         StateChangeEventFactory<T> factory = classRegistry.getStateChangeEventFactory(valueClass);
         return factory.create(target, key, oldValue, newValue);

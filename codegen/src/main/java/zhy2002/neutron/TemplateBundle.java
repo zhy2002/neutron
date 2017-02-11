@@ -15,6 +15,7 @@ class TemplateBundle {
     private final Template nodeRemoveEventTemplate;
     private final Template changeEventTemplate;
     private final Template ruleTemplate;
+    private final Template ruleProviderTemplate;
     private final Template registryTemplate;
     private final Template contextTemplate;
     private final Template itemFactoryTemplate;
@@ -30,6 +31,7 @@ class TemplateBundle {
             nodeRemoveEventTemplate = configuration.getTemplate("remove_event.ftl");
             changeEventTemplate = configuration.getTemplate("change_event.ftl");
             ruleTemplate = configuration.getTemplate("rule.ftl");
+            ruleProviderTemplate = configuration.getTemplate("rule_provider.ftl");
             registryTemplate = configuration.getTemplate("registry.ftl");
             contextTemplate = configuration.getTemplate("context.ftl");
             itemFactoryTemplate = configuration.getTemplate("item_factory.ftl");
@@ -78,6 +80,10 @@ class TemplateBundle {
 
     Template getRuleTemplate() {
         return ruleTemplate;
+    }
+
+    public Template getRuleProviderTemplate() {
+        return ruleProviderTemplate;
     }
 
     Template getRegistryTemplate() {

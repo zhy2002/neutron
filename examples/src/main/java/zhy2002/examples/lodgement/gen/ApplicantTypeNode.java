@@ -43,6 +43,4 @@ public class ApplicantTypeNode extends StringUiNode<PersonGeneralNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class CreditCardLimitAmount extends BigDecimalUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class PersonTrustRegistrationDateNode extends StringUiNode<PersonTrustNod
         super(parent, name);
     }
 
-
-
 }

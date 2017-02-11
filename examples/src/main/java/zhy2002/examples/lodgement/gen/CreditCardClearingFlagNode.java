@@ -25,6 +25,4 @@ public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

@@ -42,6 +42,4 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyListNode,
         return itemFactory.createCompanyNode(name);
     }
 
-
-
 }

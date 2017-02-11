@@ -32,6 +32,4 @@ public class EmployerNameNode extends StringUiNode<EmployedNode>
         setRequired(true);
     }
 
-
-
 }

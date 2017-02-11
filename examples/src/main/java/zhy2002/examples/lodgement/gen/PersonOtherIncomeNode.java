@@ -79,6 +79,4 @@ public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNod
         return children;
     }
 
-
-
 }

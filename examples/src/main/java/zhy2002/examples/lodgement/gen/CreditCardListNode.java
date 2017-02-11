@@ -42,6 +42,4 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardLis
         return itemFactory.createCreditCardNode(name);
     }
 
-
-
 }

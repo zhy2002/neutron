@@ -25,6 +25,4 @@ public class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode>
         super(parent, name);
     }
 
-
-
 }

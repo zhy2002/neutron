@@ -25,6 +25,4 @@ public class SpouseNode extends StringUiNode<PersonGeneralNode>
         super(parent, name);
     }
 
-
-
 }

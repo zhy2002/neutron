@@ -32,6 +32,4 @@ public class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentLis
         setNodeLabel("Employment");
     }
 
-
-
 }

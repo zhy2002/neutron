@@ -3,6 +3,7 @@ package zhy2002.examples.app.di;
 import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.app.gen.LodgementNodeContext;
+import zhy2002.examples.app.gen.rule.LodgementNodeRuleProvider;
 import zhy2002.examples.app.impl.LodgementNodeContextImpl;
 import zhy2002.examples.app.impl.LodgementNodeImplClassRegistry;
 import zhy2002.neutron.ClassRegistryImpl;
@@ -20,5 +21,9 @@ abstract class LodgementContextModule {
     @Binds
     @Singleton
     abstract ClassRegistryImpl provideClassRegistryImpl(LodgementNodeImplClassRegistry impl);
+
+    @Binds
+    @Singleton
+    abstract LodgementNodeRuleProvider providerLodgementNodeRuleProvider(LodgementNodeRuleProviderImpl LodgementNodeRuleProvider);
 
 }

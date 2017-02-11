@@ -42,6 +42,4 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleList
         return itemFactory.createMotorVehicleNode(name);
     }
 
-
-
 }

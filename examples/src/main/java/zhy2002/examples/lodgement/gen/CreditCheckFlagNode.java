@@ -25,6 +25,4 @@ public class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
         super(parent, name);
     }
 
-
-
 }

@@ -33,8 +33,6 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>>
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

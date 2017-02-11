@@ -71,6 +71,4 @@ public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
         return children;
     }
 
-
-
 }

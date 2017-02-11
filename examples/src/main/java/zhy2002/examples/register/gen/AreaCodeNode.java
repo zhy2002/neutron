@@ -32,6 +32,4 @@ public class AreaCodeNode extends PhoneInfoFieldNode
         setRequiredMessage("Area code is required.");
     }
 
-
-
 }

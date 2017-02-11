@@ -42,6 +42,4 @@ public class PersonTrustTypeNode extends StringUiNode<PersonTrustNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

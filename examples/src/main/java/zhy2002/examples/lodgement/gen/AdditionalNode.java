@@ -39,6 +39,4 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode>
         return children;
     }
 
-
-
 }

@@ -32,6 +32,4 @@ public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode>
         setRequired(true);
     }
 
-
-
 }

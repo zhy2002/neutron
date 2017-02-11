@@ -25,6 +25,4 @@ public class OtherLiabilityMarketValueNode extends BigDecimalUiNode<OtherLiabili
         super(parent, name);
     }
 
-
-
 }

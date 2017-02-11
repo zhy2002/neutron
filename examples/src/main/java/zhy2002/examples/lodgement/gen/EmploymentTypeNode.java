@@ -44,15 +44,15 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
+    @Inject
+    EmploymentTypeNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(EmploymentTypeChangedRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 
     @Override

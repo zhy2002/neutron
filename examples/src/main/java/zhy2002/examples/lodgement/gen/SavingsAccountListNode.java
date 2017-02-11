@@ -42,6 +42,4 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         return itemFactory.createSavingsAccountNode(name);
     }
 
-
-
 }

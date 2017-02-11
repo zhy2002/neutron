@@ -25,6 +25,4 @@ public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode>
         super(parent, name);
     }
 
-
-
 }

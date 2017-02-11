@@ -25,6 +25,4 @@ public class PropertyAddressNode extends AddressNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

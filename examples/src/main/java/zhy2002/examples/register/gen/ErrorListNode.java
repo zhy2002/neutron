@@ -42,6 +42,4 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNo
         return itemFactory.createErrorNode(name);
     }
 
-
-
 }

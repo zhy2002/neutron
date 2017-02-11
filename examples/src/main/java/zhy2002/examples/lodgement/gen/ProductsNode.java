@@ -39,6 +39,4 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode>
         return children;
     }
 
-
-
 }

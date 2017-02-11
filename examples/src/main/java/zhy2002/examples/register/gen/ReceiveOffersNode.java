@@ -26,14 +26,14 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
         super(parent, name);
     }
 
+    @Inject
+    ReceiveOffersNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(EmailIsRequiredWhenReceiveOffersRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

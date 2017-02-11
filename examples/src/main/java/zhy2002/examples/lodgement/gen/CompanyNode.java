@@ -39,6 +39,4 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode>
         return children;
     }
 
-
-
 }

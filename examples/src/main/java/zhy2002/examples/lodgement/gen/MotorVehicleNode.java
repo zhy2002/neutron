@@ -63,6 +63,4 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
         return children;
     }
 
-
-
 }

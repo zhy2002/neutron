@@ -42,6 +42,4 @@ public class ExpensesNode extends ListUiNode<FinancialPositionNode,ExpensesNode,
         return itemFactory.createExpenseNode(name);
     }
 
-
-
 }

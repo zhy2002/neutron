@@ -42,6 +42,4 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetListNode
         return itemFactory.createOtherAssetNode(name);
     }
 
-
-
 }

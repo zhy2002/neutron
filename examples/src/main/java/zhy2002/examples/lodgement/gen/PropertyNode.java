@@ -111,6 +111,4 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode>
         return children;
     }
 
-
-
 }

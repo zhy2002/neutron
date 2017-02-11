@@ -33,15 +33,14 @@ public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
         setRequired(true);
     }
 
+    @Inject
+    MovedToCurrentAddressNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(ToCurrentNoEarlierThanToPreviousRule.class, this));
-        createdRules.add(context.createUiNodeRule(ToCurrentNoEarlierThanFromPreviousRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

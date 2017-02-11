@@ -44,14 +44,14 @@ public class TitleNode extends StringUiNode<PersonGeneralNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
+    @Inject
+    TitleNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(TitleGenderMatchRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

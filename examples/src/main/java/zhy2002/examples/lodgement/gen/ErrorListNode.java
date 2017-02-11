@@ -60,14 +60,14 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Erro
         setStateValue(ApplicationNodeConstants.FOCUS, String.class, value);
     }
 
+    @Inject
+    ErrorListNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(ChangeFocusErrorRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

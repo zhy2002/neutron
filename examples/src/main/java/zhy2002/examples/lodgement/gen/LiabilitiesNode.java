@@ -63,6 +63,4 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
         return children;
     }
 
-
-
 }

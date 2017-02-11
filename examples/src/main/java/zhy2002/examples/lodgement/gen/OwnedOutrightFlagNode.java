@@ -25,6 +25,4 @@ public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode>
         super(parent, name);
     }
 
-
-
 }

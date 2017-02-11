@@ -25,6 +25,4 @@ public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode>
         super(parent, name);
     }
 
-
-
 }

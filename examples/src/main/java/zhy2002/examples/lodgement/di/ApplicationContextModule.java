@@ -5,6 +5,8 @@ import dagger.Module;
 import zhy2002.examples.lodgement.config.ApplicationNodeImplClassRegistry;
 import zhy2002.examples.lodgement.gen.ApplicationNode;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
+import zhy2002.examples.lodgement.gen.rule.ApplicationNodeRuleProvider;
+import zhy2002.examples.lodgement.gen.rule.PersonNodeRuleProvider;
 import zhy2002.examples.lodgement.impl.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.impl.ApplicationNodeImpl;
 import zhy2002.neutron.ClassRegistryImpl;
@@ -26,6 +28,14 @@ abstract class ApplicationContextModule {
     @Binds
     @Singleton
     abstract ApplicationNode provideApplicationNode(ApplicationNodeImpl impl);
+
+    @Binds
+    @Singleton
+    abstract ApplicationNodeRuleProvider provideApplicationNodeRuleProvider(ApplicationNodeRuleProviderImpl impl);
+
+    @Binds
+    @Singleton
+    abstract PersonNodeRuleProvider providerPersonNodeRuleProvider(PersonNodeRuleProviderImpl impl);
 
 }
 

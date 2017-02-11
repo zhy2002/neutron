@@ -63,6 +63,4 @@ public class PersonPrivacyNode extends ObjectUiNode<PersonNode>
         return children;
     }
 
-
-
 }

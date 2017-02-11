@@ -25,6 +25,4 @@ public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode>
         super(parent, name);
     }
 
-
-
 }

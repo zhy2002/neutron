@@ -32,6 +32,4 @@ public class PersonOtherIncomeAmountNode extends BaseCurrencyNode<PersonOtherInc
         setRequired(true);
     }
 
-
-
 }

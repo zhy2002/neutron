@@ -25,6 +25,4 @@ public class PersonOtherIncomeDescriptionNode extends StringUiNode<PersonOtherIn
         super(parent, name);
     }
 
-
-
 }

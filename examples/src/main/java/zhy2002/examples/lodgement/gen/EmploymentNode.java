@@ -71,6 +71,4 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
         return children;
     }
 
-
-
 }

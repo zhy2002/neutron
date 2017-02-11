@@ -33,6 +33,4 @@ public abstract class BaseCountryNode<P extends ParentUiNode<?>> extends StringU
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

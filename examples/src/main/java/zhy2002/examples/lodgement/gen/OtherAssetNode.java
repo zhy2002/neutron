@@ -63,6 +63,4 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
         return children;
     }
 
-
-
 }

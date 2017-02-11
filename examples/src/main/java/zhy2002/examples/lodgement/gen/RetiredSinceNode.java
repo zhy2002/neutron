@@ -32,6 +32,4 @@ public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode>
         setRequired(true);
     }
 
-
-
 }

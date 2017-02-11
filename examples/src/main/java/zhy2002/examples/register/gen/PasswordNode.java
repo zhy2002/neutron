@@ -36,14 +36,14 @@ public class PasswordNode extends StringUiNode<RegisterNode>
         setStateValue(RegisterNodeConstants.MESSAGE, String.class, value);
     }
 
+    @Inject
+    PasswordNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(PasswordIsStrongRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

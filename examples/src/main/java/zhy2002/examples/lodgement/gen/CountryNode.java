@@ -33,8 +33,6 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>>
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

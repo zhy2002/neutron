@@ -25,6 +25,4 @@ public class AccessCompanyNameNode extends StringUiNode<AccessNode>
         super(parent, name);
     }
 
-
-
 }

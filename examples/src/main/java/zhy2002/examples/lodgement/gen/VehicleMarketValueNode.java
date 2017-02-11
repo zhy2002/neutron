@@ -25,6 +25,4 @@ public class VehicleMarketValueNode extends BigDecimalUiNode<MotorVehicleNode>
         super(parent, name);
     }
 
-
-
 }

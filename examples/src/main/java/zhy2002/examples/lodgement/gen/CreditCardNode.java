@@ -95,6 +95,4 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
         return children;
     }
 
-
-
 }

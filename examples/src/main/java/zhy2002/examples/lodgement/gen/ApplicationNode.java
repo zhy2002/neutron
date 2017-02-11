@@ -142,15 +142,14 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
         return children;
     }
 
+    @Inject
+    ApplicationNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(CreateErrorNodeRule.class, this));
-        createdRules.add(context.createUiNodeRule(ShowErrorListRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

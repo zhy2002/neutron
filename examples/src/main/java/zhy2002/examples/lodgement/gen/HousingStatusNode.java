@@ -43,6 +43,4 @@ public class HousingStatusNode extends StringUiNode<PersonGeneralNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

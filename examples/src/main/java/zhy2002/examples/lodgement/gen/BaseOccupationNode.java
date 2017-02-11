@@ -16,6 +16,4 @@ public abstract class BaseOccupationNode<P extends ParentUiNode<?>> extends Stri
         super(parent, name);
     }
 
-
-
 }

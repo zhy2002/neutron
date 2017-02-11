@@ -48,14 +48,14 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
         return children;
     }
 
+    @Inject
+    MonthYearNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(MonthYearNotInFutureRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

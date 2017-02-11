@@ -32,6 +32,4 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode>
         setRequired(true);
     }
 
-
-
 }

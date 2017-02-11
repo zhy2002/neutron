@@ -87,6 +87,4 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
         return children;
     }
 
-
-
 }

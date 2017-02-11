@@ -42,6 +42,4 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLis
         return itemFactory.createRealEstateNode(name);
     }
 
-
-
 }

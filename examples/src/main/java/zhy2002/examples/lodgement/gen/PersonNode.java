@@ -111,14 +111,14 @@ public class PersonNode extends ObjectUiNode<PersonListNode>
         return children;
     }
 
+    @Inject
+    PersonNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(UpdatePersonNodeLabelRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

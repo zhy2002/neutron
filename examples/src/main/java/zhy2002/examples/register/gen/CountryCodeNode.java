@@ -32,6 +32,4 @@ public class CountryCodeNode extends PhoneInfoFieldNode
         setRequiredMessage("Country code is required.");
     }
 
-
-
 }

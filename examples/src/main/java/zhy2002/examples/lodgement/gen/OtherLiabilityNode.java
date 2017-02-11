@@ -63,6 +63,4 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
         return children;
     }
 
-
-
 }

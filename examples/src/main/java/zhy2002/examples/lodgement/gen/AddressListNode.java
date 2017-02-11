@@ -42,6 +42,4 @@ public class AddressListNode extends ListUiNode<ApplicationNode,AddressListNode,
         return itemFactory.createAddressRefUiNode(name);
     }
 
-
-
 }

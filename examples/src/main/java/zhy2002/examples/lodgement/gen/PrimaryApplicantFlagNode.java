@@ -26,15 +26,14 @@ public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
         super(parent, name);
     }
 
+    @Inject
+    PrimaryApplicantFlagNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(AtLeastOnePrimaryApplicantRule.class, this));
-        createdRules.add(context.createUiNodeRule(AtMostOnePrimaryApplicantRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

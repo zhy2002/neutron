@@ -95,6 +95,4 @@ public class AccessNode extends ObjectUiNode<RealEstateNode>
         return children;
     }
 
-
-
 }

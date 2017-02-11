@@ -45,14 +45,14 @@ public class EmailNode extends StringUiNode<RegisterNode>
         setStateValue(RegisterNodeConstants.TRIGGERED_BY, String.class, value);
     }
 
+    @Inject
+    EmailNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(EmailChangeReasonRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

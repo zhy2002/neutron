@@ -64,14 +64,14 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         return children;
     }
 
+    @Inject
+    AddressNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(UpdateAddressRefListRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

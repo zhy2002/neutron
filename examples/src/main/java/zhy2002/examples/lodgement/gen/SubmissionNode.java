@@ -39,6 +39,4 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode>
         return children;
     }
 
-
-
 }

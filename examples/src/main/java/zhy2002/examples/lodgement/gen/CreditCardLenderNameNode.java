@@ -25,6 +25,4 @@ public class CreditCardLenderNameNode extends StringUiNode<CreditCardNode>
         super(parent, name);
     }
 
-
-
 }

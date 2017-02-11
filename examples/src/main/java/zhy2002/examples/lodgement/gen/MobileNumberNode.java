@@ -25,6 +25,4 @@ public class MobileNumberNode extends StringUiNode<PersonContactNode>
         super(parent, name);
     }
 
-
-
 }

@@ -25,6 +25,4 @@ public class OtherLiabilityDescriptionNode extends StringUiNode<OtherLiabilityNo
         super(parent, name);
     }
 
-
-
 }

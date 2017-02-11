@@ -25,6 +25,4 @@ public class OtherAssetTypeNode extends StringUiNode<OtherAssetNode>
         super(parent, name);
     }
 
-
-
 }

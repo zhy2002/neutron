@@ -25,6 +25,4 @@ public class ContractPriceNode extends BigDecimalUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

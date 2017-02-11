@@ -25,6 +25,4 @@ public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

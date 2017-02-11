@@ -32,6 +32,4 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode>
         setRequired(true);
     }
 
-
-
 }

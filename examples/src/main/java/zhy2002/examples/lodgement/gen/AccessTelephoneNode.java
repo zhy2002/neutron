@@ -25,6 +25,4 @@ public class AccessTelephoneNode extends StringUiNode<AccessNode>
         super(parent, name);
     }
 
-
-
 }

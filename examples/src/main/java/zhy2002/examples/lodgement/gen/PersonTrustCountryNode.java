@@ -25,6 +25,4 @@ public class PersonTrustCountryNode extends BaseCountryNode<PersonTrustNode>
         super(parent, name);
     }
 
-
-
 }

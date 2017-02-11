@@ -44,8 +44,6 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>>
     }
 
 
-
-
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();

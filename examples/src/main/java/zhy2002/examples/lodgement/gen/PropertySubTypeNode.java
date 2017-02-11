@@ -25,6 +25,4 @@ public class PropertySubTypeNode extends StringUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

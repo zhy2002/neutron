@@ -66,15 +66,17 @@ class CodeGenerator {
             generateFile(targetDirectory, nodeInfo.getChangeEventInfo(), templateBundle.getChangeEventTemplate(), "event", "StateChangeEvent");
         }
 
-        if (nodeInfo.getRules() != null) {
+        if (nodeInfo.getRules() != null && nodeInfo.getRules().size() > 0) {
             for (RuleInfo ruleInfo : nodeInfo.getRules()) {
                 generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
+
             }
+            generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "rule", "RuleProvider");
         }
 
         if (nodeInfo.getItemTypeName() != null) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
-        } else if(nodeInfo.getChildren() != null) {
+        } else if (nodeInfo.getChildren() != null) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
         }
     }

@@ -25,6 +25,4 @@ public class RentedFlagNode extends BooleanUiNode<PropertyNode>
         super(parent, name);
     }
 
-
-
 }

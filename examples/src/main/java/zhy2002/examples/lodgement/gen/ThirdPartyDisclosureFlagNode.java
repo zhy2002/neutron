@@ -25,6 +25,4 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNod
         super(parent, name);
     }
 
-
-
 }

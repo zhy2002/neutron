@@ -148,15 +148,14 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode>
         return children;
     }
 
+    @Inject
+    RegisterNodeRuleProvider ruleProvider;
+
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UiNodeContext<?> context = getContext();
-        createdRules.add(context.createUiNodeRule(SetHasErrorRule.class, this));
-        createdRules.add(context.createUiNodeRule(CreateErrorNodeRule.class, this));
+        createdRules.addAll(ruleProvider.createRules(this));
     }
-
-
 
 }

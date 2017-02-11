@@ -43,6 +43,4 @@ public class EmploymentStatusNode extends StringUiNode<EmployedNode>
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

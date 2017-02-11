@@ -33,6 +33,4 @@ public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringU
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 
-
-
 }

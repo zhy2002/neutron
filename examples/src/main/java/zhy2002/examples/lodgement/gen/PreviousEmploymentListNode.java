@@ -49,6 +49,4 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         setNodeLabel("Previous Employment");
     }
 
-
-
 }

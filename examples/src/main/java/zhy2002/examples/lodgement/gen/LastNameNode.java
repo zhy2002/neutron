@@ -33,6 +33,4 @@ public class LastNameNode extends StringUiNode<PersonGeneralNode>
         setPattern(ApplicationNodeConstants.NAME_PATTERN);
     }
 
-
-
 }

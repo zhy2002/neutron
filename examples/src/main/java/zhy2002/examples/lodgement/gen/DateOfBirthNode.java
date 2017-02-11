@@ -32,6 +32,4 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode>
         setRequired(true);
     }
 
-
-
 }

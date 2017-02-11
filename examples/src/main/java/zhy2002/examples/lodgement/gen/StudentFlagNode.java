@@ -32,6 +32,4 @@ public class StudentFlagNode extends YesNoOptionNode<UnemployedNode>
         setRequired(true);
     }
 
-
-
 }

@@ -32,6 +32,4 @@ public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode>
         setRequired(true);
     }
 
-
-
 }

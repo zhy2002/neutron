@@ -25,6 +25,4 @@ public class LoanMonthlyRepaymentNode extends BigDecimalUiNode<LoanNode>
         super(parent, name);
     }
 
-
-
 }
