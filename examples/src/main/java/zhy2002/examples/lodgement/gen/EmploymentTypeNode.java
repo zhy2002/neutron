@@ -15,11 +15,13 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<EmploymentTypeNode> config = classRegistry.getUiNodeConfig(EmploymentTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    EmploymentTypeNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public EmploymentTypeNode(EmploymentNode parent, String name) {
@@ -42,16 +44,6 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
     @JsMethod
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
-    }
-
-    @Inject
-    EmploymentTypeNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 

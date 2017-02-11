@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<EstimatedMarketValueNode> config = classRegistry.getUiNodeConfig(EstimatedMarketValueNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public EstimatedMarketValueNode(PropertyNode parent, String name) {
         super(parent, name);
     }

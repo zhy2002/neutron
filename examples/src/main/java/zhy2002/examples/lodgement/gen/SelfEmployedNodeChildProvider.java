@@ -42,6 +42,9 @@ public class SelfEmployedNodeChildProvider {
         return new BusinessTypeNode(parent, name);
     }
 
+    protected void configureBusinessTypeNode(BusinessTypeNode node) {
+    }
+
     protected ProfitThisYearNode newProfitThisYearNode(
         SelfEmployedNode parent,
         String name
@@ -49,11 +52,17 @@ public class SelfEmployedNodeChildProvider {
         return new ProfitThisYearNode(parent, name);
     }
 
+    protected void configureProfitThisYearNode(ProfitThisYearNode node) {
+    }
+
     protected ProfitPreviousYearNode newProfitPreviousYearNode(
         SelfEmployedNode parent,
         String name
     ) {
         return new ProfitPreviousYearNode(parent, name);
+    }
+
+    protected void configureProfitPreviousYearNode(ProfitPreviousYearNode node) {
     }
 
     SelfEmployedNodeChildFactory createFactory(SelfEmployedNode parent) {
@@ -72,6 +81,7 @@ public class SelfEmployedNodeChildProvider {
         public BusinessTypeNode createBusinessTypeNode() {
             BusinessTypeNode node = newBusinessTypeNode(parent, "businessTypeNode");
             businessTypeNodeInjector.injectMembers(node);
+            configureBusinessTypeNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class SelfEmployedNodeChildProvider {
         public ProfitThisYearNode createProfitThisYearNode() {
             ProfitThisYearNode node = newProfitThisYearNode(parent, "profitThisYearNode");
             profitThisYearNodeInjector.injectMembers(node);
+            configureProfitThisYearNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class SelfEmployedNodeChildProvider {
         public ProfitPreviousYearNode createProfitPreviousYearNode() {
             ProfitPreviousYearNode node = newProfitPreviousYearNode(parent, "profitPreviousYearNode");
             profitPreviousYearNodeInjector.injectMembers(node);
+            configureProfitPreviousYearNode(node);
             return node;
         }
 

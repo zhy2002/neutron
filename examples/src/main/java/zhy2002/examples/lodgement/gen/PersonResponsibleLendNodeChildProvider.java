@@ -49,11 +49,17 @@ public class PersonResponsibleLendNodeChildProvider {
         return new PersonTypeOfChangeNode(parent, name);
     }
 
+    protected void configurePersonTypeOfChangeNode(PersonTypeOfChangeNode node) {
+    }
+
     protected PersonMitigationMethodNode newPersonMitigationMethodNode(
         PersonResponsibleLendNode parent,
         String name
     ) {
         return new PersonMitigationMethodNode(parent, name);
+    }
+
+    protected void configurePersonMitigationMethodNode(PersonMitigationMethodNode node) {
     }
 
     protected PersonSignificantChangeFlagNode newPersonSignificantChangeFlagNode(
@@ -63,11 +69,17 @@ public class PersonResponsibleLendNodeChildProvider {
         return new PersonSignificantChangeFlagNode(parent, name);
     }
 
+    protected void configurePersonSignificantChangeFlagNode(PersonSignificantChangeFlagNode node) {
+    }
+
     protected PersonRepaymentDifficultyNode newPersonRepaymentDifficultyNode(
         PersonResponsibleLendNode parent,
         String name
     ) {
         return new PersonRepaymentDifficultyNode(parent, name);
+    }
+
+    protected void configurePersonRepaymentDifficultyNode(PersonRepaymentDifficultyNode node) {
     }
 
     PersonResponsibleLendNodeChildFactory createFactory(PersonResponsibleLendNode parent) {
@@ -86,6 +98,7 @@ public class PersonResponsibleLendNodeChildProvider {
         public PersonTypeOfChangeNode createPersonTypeOfChangeNode() {
             PersonTypeOfChangeNode node = newPersonTypeOfChangeNode(parent, "personTypeOfChangeNode");
             personTypeOfChangeNodeInjector.injectMembers(node);
+            configurePersonTypeOfChangeNode(node);
             return node;
         }
 
@@ -93,6 +106,7 @@ public class PersonResponsibleLendNodeChildProvider {
         public PersonMitigationMethodNode createPersonMitigationMethodNode() {
             PersonMitigationMethodNode node = newPersonMitigationMethodNode(parent, "personMitigationMethodNode");
             personMitigationMethodNodeInjector.injectMembers(node);
+            configurePersonMitigationMethodNode(node);
             return node;
         }
 
@@ -100,6 +114,7 @@ public class PersonResponsibleLendNodeChildProvider {
         public PersonSignificantChangeFlagNode createPersonSignificantChangeFlagNode() {
             PersonSignificantChangeFlagNode node = newPersonSignificantChangeFlagNode(parent, "personSignificantChangeFlagNode");
             personSignificantChangeFlagNodeInjector.injectMembers(node);
+            configurePersonSignificantChangeFlagNode(node);
             return node;
         }
 
@@ -107,6 +122,7 @@ public class PersonResponsibleLendNodeChildProvider {
         public PersonRepaymentDifficultyNode createPersonRepaymentDifficultyNode() {
             PersonRepaymentDifficultyNode node = newPersonRepaymentDifficultyNode(parent, "personRepaymentDifficultyNode");
             personRepaymentDifficultyNodeInjector.injectMembers(node);
+            configurePersonRepaymentDifficultyNode(node);
             return node;
         }
 

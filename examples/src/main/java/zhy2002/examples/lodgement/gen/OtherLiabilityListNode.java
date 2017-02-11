@@ -20,14 +20,6 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<OtherLiabilityListNode> config = classRegistry.getUiNodeConfig(OtherLiabilityListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public OtherLiabilityListNode(LiabilitiesNode parent, String name) {
         super(parent, name);
     }

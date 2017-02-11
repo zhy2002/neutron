@@ -9,14 +9,29 @@ import java.util.List;
  * If Multiple children of a ParentUiNode has the same class,
  * each one can have a different config identified by child name.
  */
-public abstract class UiNodeConfig<N extends UiNode<?>> {
+public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeStatusListener {
 
-    public abstract String getName();
+    private final N owner;
 
-    public void onAddedToParent(N node) {}
+    public UiNodeConfig(N owner) {
+        this.owner = owner;
+        owner.setStatusListener(this);
+    }
 
-    public void onCreatedRules(N node, List<UiNodeRule<?>> createdRules) {}
+    public N getOwner() {
+        return owner;
+    }
 
-    public void onLoaded(N node) {}
+    @Override
+    public void postAddToParent() {
+    }
+
+    @Override
+    public void postCreateRules(List<UiNodeRule<?>> createdRules) {
+    }
+
+    @Override
+    public void postLoad() {
+    }
 
 }

@@ -15,18 +15,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<MovedFromPreviousAddressNode> config = classRegistry.getUiNodeConfig(MovedFromPreviousAddressNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
-    public MovedFromPreviousAddressNode(PersonContactNode parent, String name) {
-        super(parent, name);
-    }
-
-    @Inject
     MovedFromPreviousAddressNodeRuleProvider ruleProvider;
 
     @Override
@@ -34,6 +22,10 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNod
         super.createRules(createdRules);
 
         createdRules.addAll(ruleProvider.createRules(this));
+    }
+
+    public MovedFromPreviousAddressNode(PersonContactNode parent, String name) {
+        super(parent, name);
     }
 
 }

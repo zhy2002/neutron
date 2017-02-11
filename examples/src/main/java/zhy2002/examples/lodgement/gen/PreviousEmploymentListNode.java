@@ -20,14 +20,6 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PreviousEmploymentListNode> config = classRegistry.getUiNodeConfig(PreviousEmploymentListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PreviousEmploymentListNode(PersonNode parent, String name) {
         super(parent, name);
     }

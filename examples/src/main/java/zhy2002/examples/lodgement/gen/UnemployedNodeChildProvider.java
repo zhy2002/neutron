@@ -56,11 +56,17 @@ public class UnemployedNodeChildProvider {
         return new UnemployedOnBenefitFlagNode(parent, name);
     }
 
+    protected void configureUnemployedOnBenefitFlagNode(UnemployedOnBenefitFlagNode node) {
+    }
+
     protected StudentFlagNode newStudentFlagNode(
         UnemployedNode parent,
         String name
     ) {
         return new StudentFlagNode(parent, name);
+    }
+
+    protected void configureStudentFlagNode(StudentFlagNode node) {
     }
 
     protected StudentTypeNode newStudentTypeNode(
@@ -70,6 +76,9 @@ public class UnemployedNodeChildProvider {
         return new StudentTypeNode(parent, name);
     }
 
+    protected void configureStudentTypeNode(StudentTypeNode node) {
+    }
+
     protected HouseDutiesFlagNode newHouseDutiesFlagNode(
         UnemployedNode parent,
         String name
@@ -77,11 +86,17 @@ public class UnemployedNodeChildProvider {
         return new HouseDutiesFlagNode(parent, name);
     }
 
+    protected void configureHouseDutiesFlagNode(HouseDutiesFlagNode node) {
+    }
+
     protected UnemployedSinceNode newUnemployedSinceNode(
         UnemployedNode parent,
         String name
     ) {
         return new UnemployedSinceNode(parent, name);
+    }
+
+    protected void configureUnemployedSinceNode(UnemployedSinceNode node) {
     }
 
     UnemployedNodeChildFactory createFactory(UnemployedNode parent) {
@@ -100,6 +115,7 @@ public class UnemployedNodeChildProvider {
         public UnemployedOnBenefitFlagNode createUnemployedOnBenefitFlagNode() {
             UnemployedOnBenefitFlagNode node = newUnemployedOnBenefitFlagNode(parent, "unemployedOnBenefitFlagNode");
             unemployedOnBenefitFlagNodeInjector.injectMembers(node);
+            configureUnemployedOnBenefitFlagNode(node);
             return node;
         }
 
@@ -107,6 +123,7 @@ public class UnemployedNodeChildProvider {
         public StudentFlagNode createStudentFlagNode() {
             StudentFlagNode node = newStudentFlagNode(parent, "studentFlagNode");
             studentFlagNodeInjector.injectMembers(node);
+            configureStudentFlagNode(node);
             return node;
         }
 
@@ -114,6 +131,7 @@ public class UnemployedNodeChildProvider {
         public StudentTypeNode createStudentTypeNode() {
             StudentTypeNode node = newStudentTypeNode(parent, "studentTypeNode");
             studentTypeNodeInjector.injectMembers(node);
+            configureStudentTypeNode(node);
             return node;
         }
 
@@ -121,6 +139,7 @@ public class UnemployedNodeChildProvider {
         public HouseDutiesFlagNode createHouseDutiesFlagNode() {
             HouseDutiesFlagNode node = newHouseDutiesFlagNode(parent, "houseDutiesFlagNode");
             houseDutiesFlagNodeInjector.injectMembers(node);
+            configureHouseDutiesFlagNode(node);
             return node;
         }
 
@@ -128,6 +147,7 @@ public class UnemployedNodeChildProvider {
         public UnemployedSinceNode createUnemployedSinceNode() {
             UnemployedSinceNode node = newUnemployedSinceNode(parent, "unemployedSinceNode");
             unemployedSinceNodeInjector.injectMembers(node);
+            configureUnemployedSinceNode(node);
             return node;
         }
 

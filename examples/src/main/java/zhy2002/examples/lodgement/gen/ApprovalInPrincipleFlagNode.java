@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ApprovalInPrincipleFlagNode> config = classRegistry.getUiNodeConfig(ApprovalInPrincipleFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ApprovalInPrincipleFlagNode(UsageNode parent, String name) {
         super(parent, name);
     }

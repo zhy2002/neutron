@@ -154,7 +154,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
-    protected final void setStatusListener(UiNodeStatusListener listener) {
+    final void setStatusListener(UiNodeStatusListener listener) {
         this.statusListener = listener;
     }
 
@@ -308,7 +308,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
 
         if (statusListener != null) {
-            statusListener.onAddedToParent();
+            statusListener.postAddToParent();
         }
         this.nodeStatus = NodeStatusEnum.Unloaded;
     }
@@ -343,7 +343,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
         doLoad();
         if (statusListener != null) {
-            statusListener.onLoad();
+            statusListener.postLoad();
         }
 
         loadRules();
@@ -360,7 +360,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     private void loadRules() {
         createRules(createdRules);
         if (statusListener != null) {
-            statusListener.onCreatedRules(createdRules);
+            statusListener.postCreateRules(createdRules);
         }
 
         createdRules.forEach(UiNodeRule::addToOwner);

@@ -14,7 +14,7 @@ import zhy2002.neutron.di.NeutronModule;
 
 import javax.inject.Singleton;
 
-@Module(includes = {NeutronModule.class})
+@Module(includes = {NeutronModule.class, CustomModule.class})
 abstract class RegisterContextModule {
 
     @Binds

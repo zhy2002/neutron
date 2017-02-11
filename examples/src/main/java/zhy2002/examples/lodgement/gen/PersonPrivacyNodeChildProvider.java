@@ -42,6 +42,9 @@ public class PersonPrivacyNodeChildProvider {
         return new CreditCheckFlagNode(parent, name);
     }
 
+    protected void configureCreditCheckFlagNode(CreditCheckFlagNode node) {
+    }
+
     protected ThirdPartyDisclosureFlagNode newThirdPartyDisclosureFlagNode(
         PersonPrivacyNode parent,
         String name
@@ -49,11 +52,17 @@ public class PersonPrivacyNodeChildProvider {
         return new ThirdPartyDisclosureFlagNode(parent, name);
     }
 
+    protected void configureThirdPartyDisclosureFlagNode(ThirdPartyDisclosureFlagNode node) {
+    }
+
     protected LegalActionNode newLegalActionNode(
         PersonPrivacyNode parent,
         String name
     ) {
         return new LegalActionNode(parent, name);
+    }
+
+    protected void configureLegalActionNode(LegalActionNode node) {
     }
 
     PersonPrivacyNodeChildFactory createFactory(PersonPrivacyNode parent) {
@@ -72,6 +81,7 @@ public class PersonPrivacyNodeChildProvider {
         public CreditCheckFlagNode createCreditCheckFlagNode() {
             CreditCheckFlagNode node = newCreditCheckFlagNode(parent, "creditCheckFlagNode");
             creditCheckFlagNodeInjector.injectMembers(node);
+            configureCreditCheckFlagNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class PersonPrivacyNodeChildProvider {
         public ThirdPartyDisclosureFlagNode createThirdPartyDisclosureFlagNode() {
             ThirdPartyDisclosureFlagNode node = newThirdPartyDisclosureFlagNode(parent, "thirdPartyDisclosureFlagNode");
             thirdPartyDisclosureFlagNodeInjector.injectMembers(node);
+            configureThirdPartyDisclosureFlagNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class PersonPrivacyNodeChildProvider {
         public LegalActionNode createLegalActionNode() {
             LegalActionNode node = newLegalActionNode(parent, "legalActionNode");
             legalActionNodeInjector.injectMembers(node);
+            configureLegalActionNode(node);
             return node;
         }
 

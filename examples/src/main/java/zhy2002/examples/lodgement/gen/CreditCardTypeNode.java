@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardTypeNode extends StringUiNode<CreditCardNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCardTypeNode> config = classRegistry.getUiNodeConfig(CreditCardTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCardTypeNode(CreditCardNode parent, String name) {
         super(parent, name);
     }

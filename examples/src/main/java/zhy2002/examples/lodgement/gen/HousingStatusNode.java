@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class HousingStatusNode extends StringUiNode<PersonGeneralNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<HousingStatusNode> config = classRegistry.getUiNodeConfig(HousingStatusNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public HousingStatusNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

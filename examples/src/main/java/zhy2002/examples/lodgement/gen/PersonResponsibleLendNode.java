@@ -25,14 +25,6 @@ public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonResponsibleLendNode> config = classRegistry.getUiNodeConfig(PersonResponsibleLendNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonResponsibleLendNode(PersonNode parent, String name) {
         super(parent, name);
     }

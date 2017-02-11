@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<DriversLicenseNode> config = classRegistry.getUiNodeConfig(DriversLicenseNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public DriversLicenseNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

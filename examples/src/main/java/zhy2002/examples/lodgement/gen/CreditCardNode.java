@@ -28,14 +28,6 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCardNode> config = classRegistry.getUiNodeConfig(CreditCardNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCardNode(CreditCardListNode parent, String name) {
         super(parent, name);
     }

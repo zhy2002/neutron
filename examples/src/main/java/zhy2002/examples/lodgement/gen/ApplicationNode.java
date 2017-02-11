@@ -33,11 +33,13 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ApplicationNode> config = classRegistry.getUiNodeConfig(ApplicationNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    ApplicationNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     @Inject
@@ -140,16 +142,6 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
         errorListNode = childFactory.createErrorListNode();
         children.add(errorListNode);
         return children;
-    }
-
-    @Inject
-    ApplicationNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

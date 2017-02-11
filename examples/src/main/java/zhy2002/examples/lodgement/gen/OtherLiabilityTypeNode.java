@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<OtherLiabilityTypeNode> config = classRegistry.getUiNodeConfig(OtherLiabilityTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public OtherLiabilityTypeNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

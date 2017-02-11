@@ -28,6 +28,9 @@ public class CompanyListNodeItemProvider {
         return new CompanyNode(parent, name);
     }
 
+    protected void configureCompanyNode(CompanyNode node) {
+    }
+
     CompanyListNodeItemFactory createFactory(CompanyListNode parent) {
         return new CompanyListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class CompanyListNodeItemProvider {
         public CompanyNode createCompanyNode(String name) {
             CompanyNode node = newCompanyNode(parent, name);
             companyNodeInjector.injectMembers(node);
+            configureCompanyNode(node);
             return node;
         }
 

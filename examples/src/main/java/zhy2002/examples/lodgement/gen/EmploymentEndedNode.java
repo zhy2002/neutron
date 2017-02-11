@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class EmploymentEndedNode extends MonthYearNode<EmployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<EmploymentEndedNode> config = classRegistry.getUiNodeConfig(EmploymentEndedNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public EmploymentEndedNode(EmployedNode parent, String name) {
         super(parent, name);
     }

@@ -62,11 +62,17 @@ public class EmploymentNodeChildProvider {
         return new EmploymentTypeNode(parent, name);
     }
 
+    protected void configureEmploymentTypeNode(EmploymentTypeNode node) {
+    }
+
     protected PayeEmployedNode newPayeEmployedNode(
         EmploymentNode<?> parent,
         String name
     ) {
         return new PayeEmployedNode(parent, name);
+    }
+
+    protected void configurePayeEmployedNode(PayeEmployedNode node) {
     }
 
     protected SelfEmployedNode newSelfEmployedNode(
@@ -76,6 +82,9 @@ public class EmploymentNodeChildProvider {
         return new SelfEmployedNode(parent, name);
     }
 
+    protected void configureSelfEmployedNode(SelfEmployedNode node) {
+    }
+
     protected UnemployedNode newUnemployedNode(
         EmploymentNode<?> parent,
         String name
@@ -83,11 +92,17 @@ public class EmploymentNodeChildProvider {
         return new UnemployedNode(parent, name);
     }
 
+    protected void configureUnemployedNode(UnemployedNode node) {
+    }
+
     protected RetiredEmploymentNode newRetiredEmploymentNode(
         EmploymentNode<?> parent,
         String name
     ) {
         return new RetiredEmploymentNode(parent, name);
+    }
+
+    protected void configureRetiredEmploymentNode(RetiredEmploymentNode node) {
     }
 
     EmploymentNodeChildFactory createFactory(EmploymentNode<?> parent) {
@@ -106,6 +121,7 @@ public class EmploymentNodeChildProvider {
         public EmploymentTypeNode createEmploymentTypeNode() {
             EmploymentTypeNode node = newEmploymentTypeNode(parent, "employmentTypeNode");
             employmentTypeNodeInjector.injectMembers(node);
+            configureEmploymentTypeNode(node);
             return node;
         }
 
@@ -113,6 +129,7 @@ public class EmploymentNodeChildProvider {
         public PayeEmployedNode createPayeEmployedNode() {
             PayeEmployedNode node = newPayeEmployedNode(parent, "payeEmployedNode");
             payeEmployedNodeInjector.injectMembers(node);
+            configurePayeEmployedNode(node);
             return node;
         }
 
@@ -120,6 +137,7 @@ public class EmploymentNodeChildProvider {
         public SelfEmployedNode createSelfEmployedNode() {
             SelfEmployedNode node = newSelfEmployedNode(parent, "selfEmployedNode");
             selfEmployedNodeInjector.injectMembers(node);
+            configureSelfEmployedNode(node);
             return node;
         }
 
@@ -127,6 +145,7 @@ public class EmploymentNodeChildProvider {
         public UnemployedNode createUnemployedNode() {
             UnemployedNode node = newUnemployedNode(parent, "unemployedNode");
             unemployedNodeInjector.injectMembers(node);
+            configureUnemployedNode(node);
             return node;
         }
 
@@ -134,6 +153,7 @@ public class EmploymentNodeChildProvider {
         public RetiredEmploymentNode createRetiredEmploymentNode() {
             RetiredEmploymentNode node = newRetiredEmploymentNode(parent, "retiredEmploymentNode");
             retiredEmploymentNodeInjector.injectMembers(node);
+            configureRetiredEmploymentNode(node);
             return node;
         }
 

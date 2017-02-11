@@ -42,6 +42,9 @@ public class ExpenseNodeChildProvider {
         return new ExpenseTypeNode(parent, name);
     }
 
+    protected void configureExpenseTypeNode(ExpenseTypeNode node) {
+    }
+
     protected ExpenseDescriptionNode newExpenseDescriptionNode(
         ExpenseNode parent,
         String name
@@ -49,11 +52,17 @@ public class ExpenseNodeChildProvider {
         return new ExpenseDescriptionNode(parent, name);
     }
 
+    protected void configureExpenseDescriptionNode(ExpenseDescriptionNode node) {
+    }
+
     protected ExpenseMonthlyRepaymentNode newExpenseMonthlyRepaymentNode(
         ExpenseNode parent,
         String name
     ) {
         return new ExpenseMonthlyRepaymentNode(parent, name);
+    }
+
+    protected void configureExpenseMonthlyRepaymentNode(ExpenseMonthlyRepaymentNode node) {
     }
 
     ExpenseNodeChildFactory createFactory(ExpenseNode parent) {
@@ -72,6 +81,7 @@ public class ExpenseNodeChildProvider {
         public ExpenseTypeNode createExpenseTypeNode() {
             ExpenseTypeNode node = newExpenseTypeNode(parent, "expenseTypeNode");
             expenseTypeNodeInjector.injectMembers(node);
+            configureExpenseTypeNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class ExpenseNodeChildProvider {
         public ExpenseDescriptionNode createExpenseDescriptionNode() {
             ExpenseDescriptionNode node = newExpenseDescriptionNode(parent, "expenseDescriptionNode");
             expenseDescriptionNodeInjector.injectMembers(node);
+            configureExpenseDescriptionNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class ExpenseNodeChildProvider {
         public ExpenseMonthlyRepaymentNode createExpenseMonthlyRepaymentNode() {
             ExpenseMonthlyRepaymentNode node = newExpenseMonthlyRepaymentNode(parent, "expenseMonthlyRepaymentNode");
             expenseMonthlyRepaymentNodeInjector.injectMembers(node);
+            configureExpenseMonthlyRepaymentNode(node);
             return node;
         }
 

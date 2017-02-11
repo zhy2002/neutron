@@ -3,20 +3,45 @@ package zhy2002.examples.lodgement.di;
 import dagger.MembersInjector;
 import dagger.Module;
 import dagger.Provides;
-import zhy2002.examples.lodgement.gen.AddressListNode;
-import zhy2002.examples.lodgement.gen.ApplicationNode;
-import zhy2002.examples.lodgement.gen.ApplicationNodeChildProvider;
+import zhy2002.examples.lodgement.config.CurrentAddressConfig;
+import zhy2002.examples.lodgement.config.EmploymentEndedNodeConfig;
+import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.impl.AddressListNodeImpl;
+
+import javax.inject.Singleton;
 
 @Module
 class CustomModule {
 
     @Provides
+    @Singleton
     ApplicationNodeChildProvider provideApplicationNodeChildProvider(MembersInjector<ApplicationNodeChildProvider> injector) {
         return inject(injector, new ApplicationNodeChildProvider() {
             @Override
             protected AddressListNode newAddressListNode(ApplicationNode parent, String name) {
                 return new AddressListNodeImpl(parent, name);
+            }
+        });
+    }
+
+    @Provides
+    @Singleton
+    PersonContactNodeChildProvider providePersonContactNodeChildProvider(MembersInjector<PersonContactNodeChildProvider> injector) {
+        return inject(injector, new PersonContactNodeChildProvider() {
+            @Override
+            protected void configureCurrentAddressNode(ContactAddressNode node) {
+                new CurrentAddressConfig(node);
+            }
+        });
+    }
+
+    @Provides
+    @Singleton
+    EmployedNodeChildProvider provideEmployedNodeChildProvider(MembersInjector<EmployedNodeChildProvider> injector) {
+        return inject(injector, new EmployedNodeChildProvider() {
+            @Override
+            protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
+                new EmploymentEndedNodeConfig(node);
             }
         });
     }

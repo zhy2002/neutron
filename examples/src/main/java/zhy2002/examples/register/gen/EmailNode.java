@@ -15,11 +15,13 @@ import zhy2002.examples.register.gen.rule.*;
 public class EmailNode extends StringUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<EmailNode> config = classRegistry.getUiNodeConfig(EmailNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    EmailNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public EmailNode(RegisterNode parent, String name) {
@@ -43,16 +45,6 @@ public class EmailNode extends StringUiNode<RegisterNode>
     @JsMethod
     public void setTriggeredBy(String value) {
         setStateValue(RegisterNodeConstants.TRIGGERED_BY, String.class, value);
-    }
-
-    @Inject
-    EmailNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

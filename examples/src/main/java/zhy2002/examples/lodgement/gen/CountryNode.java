@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CountryNode extends BaseCountryNode<AddressNode<?>>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CountryNode> config = classRegistry.getUiNodeConfig(CountryNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CountryNode(AddressNode parent, String name) {
         super(parent, name);
     }

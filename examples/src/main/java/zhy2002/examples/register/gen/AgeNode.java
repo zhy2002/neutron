@@ -15,11 +15,13 @@ import zhy2002.examples.register.gen.rule.*;
 public class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AgeNode> config = classRegistry.getUiNodeConfig(AgeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    AgeNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public AgeNode(RegisterNode parent, String name) {
@@ -33,16 +35,6 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode>
         setMinValue(new BigDecimal("0"));
         setMaxValue(new BigDecimal("120"));
         setRangeMessage("Age must be between 0 and 120.");
-    }
-
-    @Inject
-    AgeNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

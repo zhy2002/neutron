@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonOtherIncomeAmountNode extends BaseCurrencyNode<PersonOtherIncomeNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonOtherIncomeAmountNode> config = classRegistry.getUiNodeConfig(PersonOtherIncomeAmountNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }

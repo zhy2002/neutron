@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<LegalActionNode> config = classRegistry.getUiNodeConfig(LegalActionNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public LegalActionNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }

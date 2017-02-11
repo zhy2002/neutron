@@ -26,11 +26,13 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PhoneInfoNode> config = classRegistry.getUiNodeConfig(PhoneInfoNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    PhoneInfoNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public PhoneInfoNode(RegisterNode parent, String name) {
@@ -62,16 +64,6 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
         phoneNumberNode = childFactory.createPhoneNumberNode();
         children.add(phoneNumberNode);
         return children;
-    }
-
-    @Inject
-    PhoneInfoNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

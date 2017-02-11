@@ -63,11 +63,17 @@ public class SavingsAccountNodeChildProvider {
         return new SavingsTypeNode(parent, name);
     }
 
+    protected void configureSavingsTypeNode(SavingsTypeNode node) {
+    }
+
     protected SavingsInstitutionNameNode newSavingsInstitutionNameNode(
         SavingsAccountNode parent,
         String name
     ) {
         return new SavingsInstitutionNameNode(parent, name);
+    }
+
+    protected void configureSavingsInstitutionNameNode(SavingsInstitutionNameNode node) {
     }
 
     protected SavingsBalanceNode newSavingsBalanceNode(
@@ -77,11 +83,17 @@ public class SavingsAccountNodeChildProvider {
         return new SavingsBalanceNode(parent, name);
     }
 
+    protected void configureSavingsBalanceNode(SavingsBalanceNode node) {
+    }
+
     protected SavingsBsbNoNode newSavingsBsbNoNode(
         SavingsAccountNode parent,
         String name
     ) {
         return new SavingsBsbNoNode(parent, name);
+    }
+
+    protected void configureSavingsBsbNoNode(SavingsBsbNoNode node) {
     }
 
     protected SavingsAccountNoNode newSavingsAccountNoNode(
@@ -91,11 +103,17 @@ public class SavingsAccountNodeChildProvider {
         return new SavingsAccountNoNode(parent, name);
     }
 
+    protected void configureSavingsAccountNoNode(SavingsAccountNoNode node) {
+    }
+
     protected SavingsAccountNameNode newSavingsAccountNameNode(
         SavingsAccountNode parent,
         String name
     ) {
         return new SavingsAccountNameNode(parent, name);
+    }
+
+    protected void configureSavingsAccountNameNode(SavingsAccountNameNode node) {
     }
 
     SavingsAccountNodeChildFactory createFactory(SavingsAccountNode parent) {
@@ -114,6 +132,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsTypeNode createSavingsTypeNode() {
             SavingsTypeNode node = newSavingsTypeNode(parent, "savingsTypeNode");
             savingsTypeNodeInjector.injectMembers(node);
+            configureSavingsTypeNode(node);
             return node;
         }
 
@@ -121,6 +140,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsInstitutionNameNode createSavingsInstitutionNameNode() {
             SavingsInstitutionNameNode node = newSavingsInstitutionNameNode(parent, "savingsInstitutionNameNode");
             savingsInstitutionNameNodeInjector.injectMembers(node);
+            configureSavingsInstitutionNameNode(node);
             return node;
         }
 
@@ -128,6 +148,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsBalanceNode createSavingsBalanceNode() {
             SavingsBalanceNode node = newSavingsBalanceNode(parent, "savingsBalanceNode");
             savingsBalanceNodeInjector.injectMembers(node);
+            configureSavingsBalanceNode(node);
             return node;
         }
 
@@ -135,6 +156,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsBsbNoNode createSavingsBsbNoNode() {
             SavingsBsbNoNode node = newSavingsBsbNoNode(parent, "savingsBsbNoNode");
             savingsBsbNoNodeInjector.injectMembers(node);
+            configureSavingsBsbNoNode(node);
             return node;
         }
 
@@ -142,6 +164,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsAccountNoNode createSavingsAccountNoNode() {
             SavingsAccountNoNode node = newSavingsAccountNoNode(parent, "savingsAccountNoNode");
             savingsAccountNoNodeInjector.injectMembers(node);
+            configureSavingsAccountNoNode(node);
             return node;
         }
 
@@ -149,6 +172,7 @@ public class SavingsAccountNodeChildProvider {
         public SavingsAccountNameNode createSavingsAccountNameNode() {
             SavingsAccountNameNode node = newSavingsAccountNameNode(parent, "savingsAccountNameNode");
             savingsAccountNameNodeInjector.injectMembers(node);
+            configureSavingsAccountNameNode(node);
             return node;
         }
 

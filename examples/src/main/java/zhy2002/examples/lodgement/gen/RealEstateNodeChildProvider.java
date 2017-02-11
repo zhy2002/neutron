@@ -42,6 +42,9 @@ public class RealEstateNodeChildProvider {
         return new UsageNode(parent, name);
     }
 
+    protected void configureUsageNode(UsageNode node) {
+    }
+
     protected PropertyNode newPropertyNode(
         RealEstateNode parent,
         String name
@@ -49,11 +52,17 @@ public class RealEstateNodeChildProvider {
         return new PropertyNode(parent, name);
     }
 
+    protected void configurePropertyNode(PropertyNode node) {
+    }
+
     protected AccessNode newAccessNode(
         RealEstateNode parent,
         String name
     ) {
         return new AccessNode(parent, name);
+    }
+
+    protected void configureAccessNode(AccessNode node) {
     }
 
     RealEstateNodeChildFactory createFactory(RealEstateNode parent) {
@@ -72,6 +81,7 @@ public class RealEstateNodeChildProvider {
         public UsageNode createUsageNode() {
             UsageNode node = newUsageNode(parent, "usageNode");
             usageNodeInjector.injectMembers(node);
+            configureUsageNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class RealEstateNodeChildProvider {
         public PropertyNode createPropertyNode() {
             PropertyNode node = newPropertyNode(parent, "propertyNode");
             propertyNodeInjector.injectMembers(node);
+            configurePropertyNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class RealEstateNodeChildProvider {
         public AccessNode createAccessNode() {
             AccessNode node = newAccessNode(parent, "accessNode");
             accessNodeInjector.injectMembers(node);
+            configureAccessNode(node);
             return node;
         }
 

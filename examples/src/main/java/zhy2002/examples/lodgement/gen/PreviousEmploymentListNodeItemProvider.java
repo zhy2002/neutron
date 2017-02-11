@@ -28,6 +28,9 @@ public class PreviousEmploymentListNodeItemProvider {
         return new PreviousEmploymentNode(parent, name);
     }
 
+    protected void configurePreviousEmploymentNode(PreviousEmploymentNode node) {
+    }
+
     PreviousEmploymentListNodeItemFactory createFactory(PreviousEmploymentListNode parent) {
         return new PreviousEmploymentListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class PreviousEmploymentListNodeItemProvider {
         public PreviousEmploymentNode createPreviousEmploymentNode(String name) {
             PreviousEmploymentNode node = newPreviousEmploymentNode(parent, name);
             previousEmploymentNodeInjector.injectMembers(node);
+            configurePreviousEmploymentNode(node);
             return node;
         }
 

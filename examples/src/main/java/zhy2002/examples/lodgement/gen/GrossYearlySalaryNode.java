@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<GrossYearlySalaryNode> config = classRegistry.getUiNodeConfig(GrossYearlySalaryNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public GrossYearlySalaryNode(PayeEmployedNode parent, String name) {
         super(parent, name);
     }

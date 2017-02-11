@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonOtherIncomePreviousYearNode> config = classRegistry.getUiNodeConfig(PersonOtherIncomePreviousYearNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonOtherIncomePreviousYearNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }

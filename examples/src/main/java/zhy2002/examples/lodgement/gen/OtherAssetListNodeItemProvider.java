@@ -28,6 +28,9 @@ public class OtherAssetListNodeItemProvider {
         return new OtherAssetNode(parent, name);
     }
 
+    protected void configureOtherAssetNode(OtherAssetNode node) {
+    }
+
     OtherAssetListNodeItemFactory createFactory(OtherAssetListNode parent) {
         return new OtherAssetListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class OtherAssetListNodeItemProvider {
         public OtherAssetNode createOtherAssetNode(String name) {
             OtherAssetNode node = newOtherAssetNode(parent, name);
             otherAssetNodeInjector.injectMembers(node);
+            configureOtherAssetNode(node);
             return node;
         }
 

@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<MovedToPreviousAddressNode> config = classRegistry.getUiNodeConfig(MovedToPreviousAddressNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public MovedToPreviousAddressNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

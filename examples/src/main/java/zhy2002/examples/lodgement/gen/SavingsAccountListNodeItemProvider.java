@@ -28,6 +28,9 @@ public class SavingsAccountListNodeItemProvider {
         return new SavingsAccountNode(parent, name);
     }
 
+    protected void configureSavingsAccountNode(SavingsAccountNode node) {
+    }
+
     SavingsAccountListNodeItemFactory createFactory(SavingsAccountListNode parent) {
         return new SavingsAccountListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class SavingsAccountListNodeItemProvider {
         public SavingsAccountNode createSavingsAccountNode(String name) {
             SavingsAccountNode node = newSavingsAccountNode(parent, name);
             savingsAccountNodeInjector.injectMembers(node);
+            configureSavingsAccountNode(node);
             return node;
         }
 

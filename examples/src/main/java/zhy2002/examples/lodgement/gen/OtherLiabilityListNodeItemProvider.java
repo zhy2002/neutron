@@ -28,6 +28,9 @@ public class OtherLiabilityListNodeItemProvider {
         return new OtherLiabilityNode(parent, name);
     }
 
+    protected void configureOtherLiabilityNode(OtherLiabilityNode node) {
+    }
+
     OtherLiabilityListNodeItemFactory createFactory(OtherLiabilityListNode parent) {
         return new OtherLiabilityListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class OtherLiabilityListNodeItemProvider {
         public OtherLiabilityNode createOtherLiabilityNode(String name) {
             OtherLiabilityNode node = newOtherLiabilityNode(parent, name);
             otherLiabilityNodeInjector.injectMembers(node);
+            configureOtherLiabilityNode(node);
             return node;
         }
 

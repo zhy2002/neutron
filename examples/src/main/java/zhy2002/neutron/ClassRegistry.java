@@ -5,8 +5,6 @@ package zhy2002.neutron;
  */
 public interface ClassRegistry {
 
-    <N extends UiNode<?>> UiNodeConfig<N> getUiNodeConfig(Class<N> nodeClass, String name);
-
     /**
      * Get the factory instance of a given state change event type.
      *

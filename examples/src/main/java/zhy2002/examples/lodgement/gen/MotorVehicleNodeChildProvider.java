@@ -42,6 +42,9 @@ public class MotorVehicleNodeChildProvider {
         return new VehicleModelNode(parent, name);
     }
 
+    protected void configureVehicleModelNode(VehicleModelNode node) {
+    }
+
     protected VehicleYearNode newVehicleYearNode(
         MotorVehicleNode parent,
         String name
@@ -49,11 +52,17 @@ public class MotorVehicleNodeChildProvider {
         return new VehicleYearNode(parent, name);
     }
 
+    protected void configureVehicleYearNode(VehicleYearNode node) {
+    }
+
     protected VehicleMarketValueNode newVehicleMarketValueNode(
         MotorVehicleNode parent,
         String name
     ) {
         return new VehicleMarketValueNode(parent, name);
+    }
+
+    protected void configureVehicleMarketValueNode(VehicleMarketValueNode node) {
     }
 
     MotorVehicleNodeChildFactory createFactory(MotorVehicleNode parent) {
@@ -72,6 +81,7 @@ public class MotorVehicleNodeChildProvider {
         public VehicleModelNode createVehicleModelNode() {
             VehicleModelNode node = newVehicleModelNode(parent, "vehicleModelNode");
             vehicleModelNodeInjector.injectMembers(node);
+            configureVehicleModelNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class MotorVehicleNodeChildProvider {
         public VehicleYearNode createVehicleYearNode() {
             VehicleYearNode node = newVehicleYearNode(parent, "vehicleYearNode");
             vehicleYearNodeInjector.injectMembers(node);
+            configureVehicleYearNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class MotorVehicleNodeChildProvider {
         public VehicleMarketValueNode createVehicleMarketValueNode() {
             VehicleMarketValueNode node = newVehicleMarketValueNode(parent, "vehicleMarketValueNode");
             vehicleMarketValueNodeInjector.injectMembers(node);
+            configureVehicleMarketValueNode(node);
             return node;
         }
 

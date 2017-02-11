@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LoanOwingAmountNode extends BigDecimalUiNode<LoanNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<LoanOwingAmountNode> config = classRegistry.getUiNodeConfig(LoanOwingAmountNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public LoanOwingAmountNode(LoanNode parent, String name) {
         super(parent, name);
     }

@@ -35,6 +35,9 @@ public class ${typeName}ChildProvider {
         return new ${child.typeName}(parent, name);
     }
 
+    protected void configure${child.name?cap_first}(${child.typeName} node) {
+    }
+
 </#list>
     ${typeName}ChildFactory createFactory(${typeName}<#if parentBaseTypeName?? && isAbstract??><?></#if> parent) {
         return new ${typeName}ChildFactoryImpl(parent);
@@ -53,6 +56,7 @@ public class ${typeName}ChildProvider {
         public ${child.typeName} create${child.name?cap_first}() {
             ${child.typeName} node = new${child.name?cap_first}(parent, "${child.name}");
             ${child.typeName?uncap_first}Injector.injectMembers(node);
+            configure${child.name?cap_first}(node);
             return node;
         }
 

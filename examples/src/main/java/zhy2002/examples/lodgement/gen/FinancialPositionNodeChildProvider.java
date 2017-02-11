@@ -42,6 +42,9 @@ public class FinancialPositionNodeChildProvider {
         return new AssetsNode(parent, name);
     }
 
+    protected void configureAssetsNode(AssetsNode node) {
+    }
+
     protected LiabilitiesNode newLiabilitiesNode(
         FinancialPositionNode parent,
         String name
@@ -49,11 +52,17 @@ public class FinancialPositionNodeChildProvider {
         return new LiabilitiesNode(parent, name);
     }
 
+    protected void configureLiabilitiesNode(LiabilitiesNode node) {
+    }
+
     protected ExpensesNode newExpensesNode(
         FinancialPositionNode parent,
         String name
     ) {
         return new ExpensesNode(parent, name);
+    }
+
+    protected void configureExpensesNode(ExpensesNode node) {
     }
 
     FinancialPositionNodeChildFactory createFactory(FinancialPositionNode parent) {
@@ -72,6 +81,7 @@ public class FinancialPositionNodeChildProvider {
         public AssetsNode createAssetsNode() {
             AssetsNode node = newAssetsNode(parent, "assetsNode");
             assetsNodeInjector.injectMembers(node);
+            configureAssetsNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class FinancialPositionNodeChildProvider {
         public LiabilitiesNode createLiabilitiesNode() {
             LiabilitiesNode node = newLiabilitiesNode(parent, "liabilitiesNode");
             liabilitiesNodeInjector.injectMembers(node);
+            configureLiabilitiesNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class FinancialPositionNodeChildProvider {
         public ExpensesNode createExpensesNode() {
             ExpensesNode node = newExpensesNode(parent, "expensesNode");
             expensesNodeInjector.injectMembers(node);
+            configureExpensesNode(node);
             return node;
         }
 

@@ -20,14 +20,6 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonListNode,Pe
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonListNode> config = classRegistry.getUiNodeConfig(PersonListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

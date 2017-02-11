@@ -84,11 +84,17 @@ public class ApplicationNodeChildProvider {
         return new AddressListNode(parent, name);
     }
 
+    protected void configureAddressListNode(AddressListNode node) {
+    }
+
     protected PersonListNode newPersonListNode(
         ApplicationNode parent,
         String name
     ) {
         return new PersonListNode(parent, name);
+    }
+
+    protected void configurePersonListNode(PersonListNode node) {
     }
 
     protected CompanyListNode newCompanyListNode(
@@ -98,11 +104,17 @@ public class ApplicationNodeChildProvider {
         return new CompanyListNode(parent, name);
     }
 
+    protected void configureCompanyListNode(CompanyListNode node) {
+    }
+
     protected FinancialPositionNode newFinancialPositionNode(
         ApplicationNode parent,
         String name
     ) {
         return new FinancialPositionNode(parent, name);
+    }
+
+    protected void configureFinancialPositionNode(FinancialPositionNode node) {
     }
 
     protected RealEstateListNode newRealEstateListNode(
@@ -112,11 +124,17 @@ public class ApplicationNodeChildProvider {
         return new RealEstateListNode(parent, name);
     }
 
+    protected void configureRealEstateListNode(RealEstateListNode node) {
+    }
+
     protected ProductsNode newProductsNode(
         ApplicationNode parent,
         String name
     ) {
         return new ProductsNode(parent, name);
+    }
+
+    protected void configureProductsNode(ProductsNode node) {
     }
 
     protected AdditionalNode newAdditionalNode(
@@ -126,6 +144,9 @@ public class ApplicationNodeChildProvider {
         return new AdditionalNode(parent, name);
     }
 
+    protected void configureAdditionalNode(AdditionalNode node) {
+    }
+
     protected SubmissionNode newSubmissionNode(
         ApplicationNode parent,
         String name
@@ -133,11 +154,17 @@ public class ApplicationNodeChildProvider {
         return new SubmissionNode(parent, name);
     }
 
+    protected void configureSubmissionNode(SubmissionNode node) {
+    }
+
     protected ErrorListNode newErrorListNode(
         ApplicationNode parent,
         String name
     ) {
         return new ErrorListNode(parent, name);
+    }
+
+    protected void configureErrorListNode(ErrorListNode node) {
     }
 
     ApplicationNodeChildFactory createFactory(ApplicationNode parent) {
@@ -156,6 +183,7 @@ public class ApplicationNodeChildProvider {
         public AddressListNode createAddressListNode() {
             AddressListNode node = newAddressListNode(parent, "addressListNode");
             addressListNodeInjector.injectMembers(node);
+            configureAddressListNode(node);
             return node;
         }
 
@@ -163,6 +191,7 @@ public class ApplicationNodeChildProvider {
         public PersonListNode createPersonListNode() {
             PersonListNode node = newPersonListNode(parent, "personListNode");
             personListNodeInjector.injectMembers(node);
+            configurePersonListNode(node);
             return node;
         }
 
@@ -170,6 +199,7 @@ public class ApplicationNodeChildProvider {
         public CompanyListNode createCompanyListNode() {
             CompanyListNode node = newCompanyListNode(parent, "companyListNode");
             companyListNodeInjector.injectMembers(node);
+            configureCompanyListNode(node);
             return node;
         }
 
@@ -177,6 +207,7 @@ public class ApplicationNodeChildProvider {
         public FinancialPositionNode createFinancialPositionNode() {
             FinancialPositionNode node = newFinancialPositionNode(parent, "financialPositionNode");
             financialPositionNodeInjector.injectMembers(node);
+            configureFinancialPositionNode(node);
             return node;
         }
 
@@ -184,6 +215,7 @@ public class ApplicationNodeChildProvider {
         public RealEstateListNode createRealEstateListNode() {
             RealEstateListNode node = newRealEstateListNode(parent, "realEstateListNode");
             realEstateListNodeInjector.injectMembers(node);
+            configureRealEstateListNode(node);
             return node;
         }
 
@@ -191,6 +223,7 @@ public class ApplicationNodeChildProvider {
         public ProductsNode createProductsNode() {
             ProductsNode node = newProductsNode(parent, "productsNode");
             productsNodeInjector.injectMembers(node);
+            configureProductsNode(node);
             return node;
         }
 
@@ -198,6 +231,7 @@ public class ApplicationNodeChildProvider {
         public AdditionalNode createAdditionalNode() {
             AdditionalNode node = newAdditionalNode(parent, "additionalNode");
             additionalNodeInjector.injectMembers(node);
+            configureAdditionalNode(node);
             return node;
         }
 
@@ -205,6 +239,7 @@ public class ApplicationNodeChildProvider {
         public SubmissionNode createSubmissionNode() {
             SubmissionNode node = newSubmissionNode(parent, "submissionNode");
             submissionNodeInjector.injectMembers(node);
+            configureSubmissionNode(node);
             return node;
         }
 
@@ -212,6 +247,7 @@ public class ApplicationNodeChildProvider {
         public ErrorListNode createErrorListNode() {
             ErrorListNode node = newErrorListNode(parent, "errorListNode");
             errorListNodeInjector.injectMembers(node);
+            configureErrorListNode(node);
             return node;
         }
 

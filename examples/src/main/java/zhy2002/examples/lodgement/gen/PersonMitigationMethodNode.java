@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonMitigationMethodNode extends StringUiNode<PersonResponsibleLendNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonMitigationMethodNode> config = classRegistry.getUiNodeConfig(PersonMitigationMethodNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonMitigationMethodNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }

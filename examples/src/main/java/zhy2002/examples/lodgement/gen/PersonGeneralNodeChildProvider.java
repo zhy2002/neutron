@@ -119,11 +119,17 @@ public class PersonGeneralNodeChildProvider {
         return new TitleNode(parent, name);
     }
 
+    protected void configureTitleNode(TitleNode node) {
+    }
+
     protected FirstNameNode newFirstNameNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new FirstNameNode(parent, name);
+    }
+
+    protected void configureFirstNameNode(FirstNameNode node) {
     }
 
     protected LastNameNode newLastNameNode(
@@ -133,11 +139,17 @@ public class PersonGeneralNodeChildProvider {
         return new LastNameNode(parent, name);
     }
 
+    protected void configureLastNameNode(LastNameNode node) {
+    }
+
     protected GenderNode newGenderNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new GenderNode(parent, name);
+    }
+
+    protected void configureGenderNode(GenderNode node) {
     }
 
     protected DateOfBirthNode newDateOfBirthNode(
@@ -147,11 +159,17 @@ public class PersonGeneralNodeChildProvider {
         return new DateOfBirthNode(parent, name);
     }
 
+    protected void configureDateOfBirthNode(DateOfBirthNode node) {
+    }
+
     protected PrimaryApplicantFlagNode newPrimaryApplicantFlagNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new PrimaryApplicantFlagNode(parent, name);
+    }
+
+    protected void configurePrimaryApplicantFlagNode(PrimaryApplicantFlagNode node) {
     }
 
     protected DriversLicenseNode newDriversLicenseNode(
@@ -161,11 +179,17 @@ public class PersonGeneralNodeChildProvider {
         return new DriversLicenseNode(parent, name);
     }
 
+    protected void configureDriversLicenseNode(DriversLicenseNode node) {
+    }
+
     protected ApplicantTypeNode newApplicantTypeNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new ApplicantTypeNode(parent, name);
+    }
+
+    protected void configureApplicantTypeNode(ApplicantTypeNode node) {
     }
 
     protected MaritalStatusNode newMaritalStatusNode(
@@ -175,11 +199,17 @@ public class PersonGeneralNodeChildProvider {
         return new MaritalStatusNode(parent, name);
     }
 
+    protected void configureMaritalStatusNode(MaritalStatusNode node) {
+    }
+
     protected PermanentResidentFlagNode newPermanentResidentFlagNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new PermanentResidentFlagNode(parent, name);
+    }
+
+    protected void configurePermanentResidentFlagNode(PermanentResidentFlagNode node) {
     }
 
     protected SpouseNode newSpouseNode(
@@ -189,11 +219,17 @@ public class PersonGeneralNodeChildProvider {
         return new SpouseNode(parent, name);
     }
 
+    protected void configureSpouseNode(SpouseNode node) {
+    }
+
     protected FirstHomeBuyerFlagNode newFirstHomeBuyerFlagNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new FirstHomeBuyerFlagNode(parent, name);
+    }
+
+    protected void configureFirstHomeBuyerFlagNode(FirstHomeBuyerFlagNode node) {
     }
 
     protected HousingStatusNode newHousingStatusNode(
@@ -203,11 +239,17 @@ public class PersonGeneralNodeChildProvider {
         return new HousingStatusNode(parent, name);
     }
 
+    protected void configureHousingStatusNode(HousingStatusNode node) {
+    }
+
     protected ApplicationTypeNode newApplicationTypeNode(
         PersonGeneralNode parent,
         String name
     ) {
         return new ApplicationTypeNode(parent, name);
+    }
+
+    protected void configureApplicationTypeNode(ApplicationTypeNode node) {
     }
 
     PersonGeneralNodeChildFactory createFactory(PersonGeneralNode parent) {
@@ -226,6 +268,7 @@ public class PersonGeneralNodeChildProvider {
         public TitleNode createTitleNode() {
             TitleNode node = newTitleNode(parent, "titleNode");
             titleNodeInjector.injectMembers(node);
+            configureTitleNode(node);
             return node;
         }
 
@@ -233,6 +276,7 @@ public class PersonGeneralNodeChildProvider {
         public FirstNameNode createFirstNameNode() {
             FirstNameNode node = newFirstNameNode(parent, "firstNameNode");
             firstNameNodeInjector.injectMembers(node);
+            configureFirstNameNode(node);
             return node;
         }
 
@@ -240,6 +284,7 @@ public class PersonGeneralNodeChildProvider {
         public LastNameNode createLastNameNode() {
             LastNameNode node = newLastNameNode(parent, "lastNameNode");
             lastNameNodeInjector.injectMembers(node);
+            configureLastNameNode(node);
             return node;
         }
 
@@ -247,6 +292,7 @@ public class PersonGeneralNodeChildProvider {
         public GenderNode createGenderNode() {
             GenderNode node = newGenderNode(parent, "genderNode");
             genderNodeInjector.injectMembers(node);
+            configureGenderNode(node);
             return node;
         }
 
@@ -254,6 +300,7 @@ public class PersonGeneralNodeChildProvider {
         public DateOfBirthNode createDateOfBirthNode() {
             DateOfBirthNode node = newDateOfBirthNode(parent, "dateOfBirthNode");
             dateOfBirthNodeInjector.injectMembers(node);
+            configureDateOfBirthNode(node);
             return node;
         }
 
@@ -261,6 +308,7 @@ public class PersonGeneralNodeChildProvider {
         public PrimaryApplicantFlagNode createPrimaryApplicantFlagNode() {
             PrimaryApplicantFlagNode node = newPrimaryApplicantFlagNode(parent, "primaryApplicantFlagNode");
             primaryApplicantFlagNodeInjector.injectMembers(node);
+            configurePrimaryApplicantFlagNode(node);
             return node;
         }
 
@@ -268,6 +316,7 @@ public class PersonGeneralNodeChildProvider {
         public DriversLicenseNode createDriversLicenseNode() {
             DriversLicenseNode node = newDriversLicenseNode(parent, "driversLicenseNode");
             driversLicenseNodeInjector.injectMembers(node);
+            configureDriversLicenseNode(node);
             return node;
         }
 
@@ -275,6 +324,7 @@ public class PersonGeneralNodeChildProvider {
         public ApplicantTypeNode createApplicantTypeNode() {
             ApplicantTypeNode node = newApplicantTypeNode(parent, "applicantTypeNode");
             applicantTypeNodeInjector.injectMembers(node);
+            configureApplicantTypeNode(node);
             return node;
         }
 
@@ -282,6 +332,7 @@ public class PersonGeneralNodeChildProvider {
         public MaritalStatusNode createMaritalStatusNode() {
             MaritalStatusNode node = newMaritalStatusNode(parent, "maritalStatusNode");
             maritalStatusNodeInjector.injectMembers(node);
+            configureMaritalStatusNode(node);
             return node;
         }
 
@@ -289,6 +340,7 @@ public class PersonGeneralNodeChildProvider {
         public PermanentResidentFlagNode createPermanentResidentFlagNode() {
             PermanentResidentFlagNode node = newPermanentResidentFlagNode(parent, "permanentResidentFlagNode");
             permanentResidentFlagNodeInjector.injectMembers(node);
+            configurePermanentResidentFlagNode(node);
             return node;
         }
 
@@ -296,6 +348,7 @@ public class PersonGeneralNodeChildProvider {
         public SpouseNode createSpouseNode() {
             SpouseNode node = newSpouseNode(parent, "spouseNode");
             spouseNodeInjector.injectMembers(node);
+            configureSpouseNode(node);
             return node;
         }
 
@@ -303,6 +356,7 @@ public class PersonGeneralNodeChildProvider {
         public FirstHomeBuyerFlagNode createFirstHomeBuyerFlagNode() {
             FirstHomeBuyerFlagNode node = newFirstHomeBuyerFlagNode(parent, "firstHomeBuyerFlagNode");
             firstHomeBuyerFlagNodeInjector.injectMembers(node);
+            configureFirstHomeBuyerFlagNode(node);
             return node;
         }
 
@@ -310,6 +364,7 @@ public class PersonGeneralNodeChildProvider {
         public HousingStatusNode createHousingStatusNode() {
             HousingStatusNode node = newHousingStatusNode(parent, "housingStatusNode");
             housingStatusNodeInjector.injectMembers(node);
+            configureHousingStatusNode(node);
             return node;
         }
 
@@ -317,6 +372,7 @@ public class PersonGeneralNodeChildProvider {
         public ApplicationTypeNode createApplicationTypeNode() {
             ApplicationTypeNode node = newApplicationTypeNode(parent, "applicationTypeNode");
             applicationTypeNodeInjector.injectMembers(node);
+            configureApplicationTypeNode(node);
             return node;
         }
 

@@ -5,17 +5,16 @@ import zhy2002.examples.lodgement.gen.EmploymentEndedNode;
 import zhy2002.neutron.UiNodeConfig;
 
 public class EmploymentEndedNodeConfig extends UiNodeConfig<EmploymentEndedNode> {
-    @Override
-    public String getName() {
-        return "employmentEndedNode";
+
+    public EmploymentEndedNodeConfig(EmploymentEndedNode owner) {
+        super(owner);
     }
 
     @Override
-    public void onAddedToParent(EmploymentEndedNode node) {
-        super.onAddedToParent(node);
+    public void postAddToParent() {
 
-        if(node.getParent().getParent() instanceof CurrentEmploymentNode) {
-            node.setLoadWithParent(false);
+        if (getOwner().getParent().getParent() instanceof CurrentEmploymentNode) {
+            getOwner().setLoadWithParent(false);
         }
     }
 }

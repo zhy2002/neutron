@@ -23,14 +23,6 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<RetiredEmploymentNode> config = classRegistry.getUiNodeConfig(RetiredEmploymentNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public RetiredEmploymentNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

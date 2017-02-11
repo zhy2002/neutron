@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCheckFlagNode> config = classRegistry.getUiNodeConfig(CreditCheckFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCheckFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }

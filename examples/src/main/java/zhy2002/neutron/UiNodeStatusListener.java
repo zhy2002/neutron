@@ -9,9 +9,9 @@ public interface UiNodeStatusListener {
      * You can still add rules to the list if required.
      * @param createdRules the created rules.
      */
-    void onCreatedRules(List<UiNodeRule<?>> createdRules);
+    void postCreateRules(List<UiNodeRule<?>> createdRules);
 
-    void onAddedToParent();
+    void postAddToParent();
 
-    void onLoad();
+    void postLoad();
 }

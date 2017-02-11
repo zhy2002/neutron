@@ -28,6 +28,9 @@ public class PersonOtherIncomeListNodeItemProvider {
         return new PersonOtherIncomeNode(parent, name);
     }
 
+    protected void configurePersonOtherIncomeNode(PersonOtherIncomeNode node) {
+    }
+
     PersonOtherIncomeListNodeItemFactory createFactory(PersonOtherIncomeListNode parent) {
         return new PersonOtherIncomeListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class PersonOtherIncomeListNodeItemProvider {
         public PersonOtherIncomeNode createPersonOtherIncomeNode(String name) {
             PersonOtherIncomeNode node = newPersonOtherIncomeNode(parent, name);
             personOtherIncomeNodeInjector.injectMembers(node);
+            configurePersonOtherIncomeNode(node);
             return node;
         }
 

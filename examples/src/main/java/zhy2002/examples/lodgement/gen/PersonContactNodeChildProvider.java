@@ -74,11 +74,17 @@ public class PersonContactNodeChildProvider {
         return new ContactTelephoneNode(parent, name);
     }
 
+    protected void configureHomePhoneNode(ContactTelephoneNode node) {
+    }
+
     protected ContactTelephoneNode newWorkPhoneNode(
         PersonContactNode parent,
         String name
     ) {
         return new ContactTelephoneNode(parent, name);
+    }
+
+    protected void configureWorkPhoneNode(ContactTelephoneNode node) {
     }
 
     protected ContactTelephoneNode newFaxNumberNode(
@@ -88,11 +94,17 @@ public class PersonContactNodeChildProvider {
         return new ContactTelephoneNode(parent, name);
     }
 
+    protected void configureFaxNumberNode(ContactTelephoneNode node) {
+    }
+
     protected MobileNumberNode newMobileNumberNode(
         PersonContactNode parent,
         String name
     ) {
         return new MobileNumberNode(parent, name);
+    }
+
+    protected void configureMobileNumberNode(MobileNumberNode node) {
     }
 
     protected ContactEmailNode newContactEmailNode(
@@ -102,11 +114,17 @@ public class PersonContactNodeChildProvider {
         return new ContactEmailNode(parent, name);
     }
 
+    protected void configureContactEmailNode(ContactEmailNode node) {
+    }
+
     protected ContactAddressNode newCurrentAddressNode(
         PersonContactNode parent,
         String name
     ) {
         return new ContactAddressNode(parent, name);
+    }
+
+    protected void configureCurrentAddressNode(ContactAddressNode node) {
     }
 
     protected MovedToCurrentAddressNode newMovedToCurrentAddressNode(
@@ -116,11 +134,17 @@ public class PersonContactNodeChildProvider {
         return new MovedToCurrentAddressNode(parent, name);
     }
 
+    protected void configureMovedToCurrentAddressNode(MovedToCurrentAddressNode node) {
+    }
+
     protected ContactAddressNode newPostalAddressNode(
         PersonContactNode parent,
         String name
     ) {
         return new ContactAddressNode(parent, name);
+    }
+
+    protected void configurePostalAddressNode(ContactAddressNode node) {
     }
 
     protected ContactAddressNode newPreviousAddressNode(
@@ -130,6 +154,9 @@ public class PersonContactNodeChildProvider {
         return new ContactAddressNode(parent, name);
     }
 
+    protected void configurePreviousAddressNode(ContactAddressNode node) {
+    }
+
     protected MovedToPreviousAddressNode newMovedToPreviousAddressNode(
         PersonContactNode parent,
         String name
@@ -137,11 +164,17 @@ public class PersonContactNodeChildProvider {
         return new MovedToPreviousAddressNode(parent, name);
     }
 
+    protected void configureMovedToPreviousAddressNode(MovedToPreviousAddressNode node) {
+    }
+
     protected MovedFromPreviousAddressNode newMovedFromPreviousAddressNode(
         PersonContactNode parent,
         String name
     ) {
         return new MovedFromPreviousAddressNode(parent, name);
+    }
+
+    protected void configureMovedFromPreviousAddressNode(MovedFromPreviousAddressNode node) {
     }
 
     PersonContactNodeChildFactory createFactory(PersonContactNode parent) {
@@ -160,6 +193,7 @@ public class PersonContactNodeChildProvider {
         public ContactTelephoneNode createHomePhoneNode() {
             ContactTelephoneNode node = newHomePhoneNode(parent, "homePhoneNode");
             contactTelephoneNodeInjector.injectMembers(node);
+            configureHomePhoneNode(node);
             return node;
         }
 
@@ -167,6 +201,7 @@ public class PersonContactNodeChildProvider {
         public ContactTelephoneNode createWorkPhoneNode() {
             ContactTelephoneNode node = newWorkPhoneNode(parent, "workPhoneNode");
             contactTelephoneNodeInjector.injectMembers(node);
+            configureWorkPhoneNode(node);
             return node;
         }
 
@@ -174,6 +209,7 @@ public class PersonContactNodeChildProvider {
         public ContactTelephoneNode createFaxNumberNode() {
             ContactTelephoneNode node = newFaxNumberNode(parent, "faxNumberNode");
             contactTelephoneNodeInjector.injectMembers(node);
+            configureFaxNumberNode(node);
             return node;
         }
 
@@ -181,6 +217,7 @@ public class PersonContactNodeChildProvider {
         public MobileNumberNode createMobileNumberNode() {
             MobileNumberNode node = newMobileNumberNode(parent, "mobileNumberNode");
             mobileNumberNodeInjector.injectMembers(node);
+            configureMobileNumberNode(node);
             return node;
         }
 
@@ -188,6 +225,7 @@ public class PersonContactNodeChildProvider {
         public ContactEmailNode createContactEmailNode() {
             ContactEmailNode node = newContactEmailNode(parent, "contactEmailNode");
             contactEmailNodeInjector.injectMembers(node);
+            configureContactEmailNode(node);
             return node;
         }
 
@@ -195,6 +233,7 @@ public class PersonContactNodeChildProvider {
         public ContactAddressNode createCurrentAddressNode() {
             ContactAddressNode node = newCurrentAddressNode(parent, "currentAddressNode");
             contactAddressNodeInjector.injectMembers(node);
+            configureCurrentAddressNode(node);
             return node;
         }
 
@@ -202,6 +241,7 @@ public class PersonContactNodeChildProvider {
         public MovedToCurrentAddressNode createMovedToCurrentAddressNode() {
             MovedToCurrentAddressNode node = newMovedToCurrentAddressNode(parent, "movedToCurrentAddressNode");
             movedToCurrentAddressNodeInjector.injectMembers(node);
+            configureMovedToCurrentAddressNode(node);
             return node;
         }
 
@@ -209,6 +249,7 @@ public class PersonContactNodeChildProvider {
         public ContactAddressNode createPostalAddressNode() {
             ContactAddressNode node = newPostalAddressNode(parent, "postalAddressNode");
             contactAddressNodeInjector.injectMembers(node);
+            configurePostalAddressNode(node);
             return node;
         }
 
@@ -216,6 +257,7 @@ public class PersonContactNodeChildProvider {
         public ContactAddressNode createPreviousAddressNode() {
             ContactAddressNode node = newPreviousAddressNode(parent, "previousAddressNode");
             contactAddressNodeInjector.injectMembers(node);
+            configurePreviousAddressNode(node);
             return node;
         }
 
@@ -223,6 +265,7 @@ public class PersonContactNodeChildProvider {
         public MovedToPreviousAddressNode createMovedToPreviousAddressNode() {
             MovedToPreviousAddressNode node = newMovedToPreviousAddressNode(parent, "movedToPreviousAddressNode");
             movedToPreviousAddressNodeInjector.injectMembers(node);
+            configureMovedToPreviousAddressNode(node);
             return node;
         }
 
@@ -230,6 +273,7 @@ public class PersonContactNodeChildProvider {
         public MovedFromPreviousAddressNode createMovedFromPreviousAddressNode() {
             MovedFromPreviousAddressNode node = newMovedFromPreviousAddressNode(parent, "movedFromPreviousAddressNode");
             movedFromPreviousAddressNodeInjector.injectMembers(node);
+            configureMovedFromPreviousAddressNode(node);
             return node;
         }
 

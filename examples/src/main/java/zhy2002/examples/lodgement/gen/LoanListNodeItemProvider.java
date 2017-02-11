@@ -28,6 +28,9 @@ public class LoanListNodeItemProvider {
         return new LoanNode(parent, name);
     }
 
+    protected void configureLoanNode(LoanNode node) {
+    }
+
     LoanListNodeItemFactory createFactory(LoanListNode parent) {
         return new LoanListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class LoanListNodeItemProvider {
         public LoanNode createLoanNode(String name) {
             LoanNode node = newLoanNode(parent, name);
             loanNodeInjector.injectMembers(node);
+            configureLoanNode(node);
             return node;
         }
 

@@ -26,14 +26,6 @@ public class UsageNode extends ObjectUiNode<RealEstateNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<UsageNode> config = classRegistry.getUiNodeConfig(UsageNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public UsageNode(RealEstateNode parent, String name) {
         super(parent, name);
     }

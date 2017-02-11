@@ -70,11 +70,17 @@ public class CreditCardNodeChildProvider {
         return new CreditCardTypeNode(parent, name);
     }
 
+    protected void configureCreditCardTypeNode(CreditCardTypeNode node) {
+    }
+
     protected CreditCardAmountOwingNode newCreditCardAmountOwingNode(
         CreditCardNode parent,
         String name
     ) {
         return new CreditCardAmountOwingNode(parent, name);
+    }
+
+    protected void configureCreditCardAmountOwingNode(CreditCardAmountOwingNode node) {
     }
 
     protected CreditCardLimitAmount newCreditCardLimitAmount(
@@ -84,11 +90,17 @@ public class CreditCardNodeChildProvider {
         return new CreditCardLimitAmount(parent, name);
     }
 
+    protected void configureCreditCardLimitAmount(CreditCardLimitAmount node) {
+    }
+
     protected CreditCardMonthlyRepayment newCreditCardMonthlyRepayment(
         CreditCardNode parent,
         String name
     ) {
         return new CreditCardMonthlyRepayment(parent, name);
+    }
+
+    protected void configureCreditCardMonthlyRepayment(CreditCardMonthlyRepayment node) {
     }
 
     protected CreditCardClearingFlagNode newCreditCardClearingFlagNode(
@@ -98,6 +110,9 @@ public class CreditCardNodeChildProvider {
         return new CreditCardClearingFlagNode(parent, name);
     }
 
+    protected void configureCreditCardClearingFlagNode(CreditCardClearingFlagNode node) {
+    }
+
     protected CreditCardBreakCostNode newCreditCardBreakCostNode(
         CreditCardNode parent,
         String name
@@ -105,11 +120,17 @@ public class CreditCardNodeChildProvider {
         return new CreditCardBreakCostNode(parent, name);
     }
 
+    protected void configureCreditCardBreakCostNode(CreditCardBreakCostNode node) {
+    }
+
     protected CreditCardLenderNameNode newCreditCardLenderNameNode(
         CreditCardNode parent,
         String name
     ) {
         return new CreditCardLenderNameNode(parent, name);
+    }
+
+    protected void configureCreditCardLenderNameNode(CreditCardLenderNameNode node) {
     }
 
     CreditCardNodeChildFactory createFactory(CreditCardNode parent) {
@@ -128,6 +149,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardTypeNode createCreditCardTypeNode() {
             CreditCardTypeNode node = newCreditCardTypeNode(parent, "creditCardTypeNode");
             creditCardTypeNodeInjector.injectMembers(node);
+            configureCreditCardTypeNode(node);
             return node;
         }
 
@@ -135,6 +157,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardAmountOwingNode createCreditCardAmountOwingNode() {
             CreditCardAmountOwingNode node = newCreditCardAmountOwingNode(parent, "creditCardAmountOwingNode");
             creditCardAmountOwingNodeInjector.injectMembers(node);
+            configureCreditCardAmountOwingNode(node);
             return node;
         }
 
@@ -142,6 +165,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardLimitAmount createCreditCardLimitAmount() {
             CreditCardLimitAmount node = newCreditCardLimitAmount(parent, "creditCardLimitAmount");
             creditCardLimitAmountInjector.injectMembers(node);
+            configureCreditCardLimitAmount(node);
             return node;
         }
 
@@ -149,6 +173,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardMonthlyRepayment createCreditCardMonthlyRepayment() {
             CreditCardMonthlyRepayment node = newCreditCardMonthlyRepayment(parent, "creditCardMonthlyRepayment");
             creditCardMonthlyRepaymentInjector.injectMembers(node);
+            configureCreditCardMonthlyRepayment(node);
             return node;
         }
 
@@ -156,6 +181,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardClearingFlagNode createCreditCardClearingFlagNode() {
             CreditCardClearingFlagNode node = newCreditCardClearingFlagNode(parent, "creditCardClearingFlagNode");
             creditCardClearingFlagNodeInjector.injectMembers(node);
+            configureCreditCardClearingFlagNode(node);
             return node;
         }
 
@@ -163,6 +189,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardBreakCostNode createCreditCardBreakCostNode() {
             CreditCardBreakCostNode node = newCreditCardBreakCostNode(parent, "creditCardBreakCostNode");
             creditCardBreakCostNodeInjector.injectMembers(node);
+            configureCreditCardBreakCostNode(node);
             return node;
         }
 
@@ -170,6 +197,7 @@ public class CreditCardNodeChildProvider {
         public CreditCardLenderNameNode createCreditCardLenderNameNode() {
             CreditCardLenderNameNode node = newCreditCardLenderNameNode(parent, "creditCardLenderNameNode");
             creditCardLenderNameNodeInjector.injectMembers(node);
+            configureCreditCardLenderNameNode(node);
             return node;
         }
 

@@ -14,6 +14,16 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
+    @Inject
+    DobNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
+    }
+
     public DobNode(P parent, String name) {
         super(parent, name);
     }
@@ -44,16 +54,6 @@ public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
     @JsMethod
     public void setMaxAge(Integer value) {
         setStateValue(ApplicationNodeConstants.MAX_AGE, Integer.class, value);
-    }
-
-    @Inject
-    DobNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

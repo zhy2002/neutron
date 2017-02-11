@@ -28,6 +28,9 @@ public class PersonListNodeItemProvider {
         return new PersonNode(parent, name);
     }
 
+    protected void configurePersonNode(PersonNode node) {
+    }
+
     PersonListNodeItemFactory createFactory(PersonListNode parent) {
         return new PersonListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class PersonListNodeItemProvider {
         public PersonNode createPersonNode(String name) {
             PersonNode node = newPersonNode(parent, name);
             personNodeInjector.injectMembers(node);
+            configurePersonNode(node);
             return node;
         }
 

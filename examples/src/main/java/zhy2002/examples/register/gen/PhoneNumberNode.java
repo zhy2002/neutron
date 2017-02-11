@@ -13,14 +13,6 @@ import zhy2002.examples.register.data.*;
 
 public class PhoneNumberNode extends PhoneInfoFieldNode
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PhoneNumberNode> config = classRegistry.getUiNodeConfig(PhoneNumberNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PhoneNumberNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }

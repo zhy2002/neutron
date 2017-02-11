@@ -28,6 +28,9 @@ public class ErrorListNodeItemProvider {
         return new ErrorNode(parent, name);
     }
 
+    protected void configureErrorNode(ErrorNode node) {
+    }
+
     ErrorListNodeItemFactory createFactory(ErrorListNode parent) {
         return new ErrorListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class ErrorListNodeItemProvider {
         public ErrorNode createErrorNode(String name) {
             ErrorNode node = newErrorNode(parent, name);
             errorNodeInjector.injectMembers(node);
+            configureErrorNode(node);
             return node;
         }
 

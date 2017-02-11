@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ErrorNode> config = classRegistry.getUiNodeConfig(ErrorNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
     }

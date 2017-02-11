@@ -26,6 +26,16 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         childFactory = provider.createFactory(this);
     }
 
+    @Inject
+    AddressNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
+    }
+
     public AddressNode(P parent, String name) {
         super(parent, name);
     }
@@ -62,16 +72,6 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         countryNode = childFactory.createCountryNode();
         children.add(countryNode);
         return children;
-    }
-
-    @Inject
-    AddressNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

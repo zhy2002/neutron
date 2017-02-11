@@ -35,6 +35,9 @@ public class ${typeName}ItemProvider {
         return new ${childType.typeName}(parent, name);
     }
 
+    protected void configure${childType.typeName}(${childType.typeName} node) {
+    }
+
 </#list>
     ${typeName}ItemFactory createFactory(${typeName}<#if parentBaseTypeName?? && isAbstract??><?></#if> parent) {
         return new ${typeName}ItemFactoryImpl(parent);
@@ -53,6 +56,7 @@ public class ${typeName}ItemProvider {
         public ${childType.typeName} create${childType.typeName}(String name) {
             ${childType.typeName} node = new${childType.typeName}(parent, name);
             ${childType.typeName?uncap_first}Injector.injectMembers(node);
+            configure${childType.typeName}(node);
             return node;
         }
 

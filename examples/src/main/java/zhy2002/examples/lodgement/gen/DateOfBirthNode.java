@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class DateOfBirthNode extends DobNode<PersonGeneralNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<DateOfBirthNode> config = classRegistry.getUiNodeConfig(DateOfBirthNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public DateOfBirthNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

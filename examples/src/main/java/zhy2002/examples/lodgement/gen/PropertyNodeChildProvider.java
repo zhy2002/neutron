@@ -84,11 +84,17 @@ public class PropertyNodeChildProvider {
         return new RentedFlagNode(parent, name);
     }
 
+    protected void configureRentedFlagNode(RentedFlagNode node) {
+    }
+
     protected PropertyWeeklyRentNode newPropertyWeeklyRentNode(
         PropertyNode parent,
         String name
     ) {
         return new PropertyWeeklyRentNode(parent, name);
+    }
+
+    protected void configurePropertyWeeklyRentNode(PropertyWeeklyRentNode node) {
     }
 
     protected PropertyAddressNode newPropertyAddressNode(
@@ -98,11 +104,17 @@ public class PropertyNodeChildProvider {
         return new PropertyAddressNode(parent, name);
     }
 
+    protected void configurePropertyAddressNode(PropertyAddressNode node) {
+    }
+
     protected EstimatedMarketValueNode newEstimatedMarketValueNode(
         PropertyNode parent,
         String name
     ) {
         return new EstimatedMarketValueNode(parent, name);
+    }
+
+    protected void configureEstimatedMarketValueNode(EstimatedMarketValueNode node) {
     }
 
     protected ContractPriceNode newContractPriceNode(
@@ -112,11 +124,17 @@ public class PropertyNodeChildProvider {
         return new ContractPriceNode(parent, name);
     }
 
+    protected void configureContractPriceNode(ContractPriceNode node) {
+    }
+
     protected DefenseServiceFlagNode newDefenseServiceFlagNode(
         PropertyNode parent,
         String name
     ) {
         return new DefenseServiceFlagNode(parent, name);
+    }
+
+    protected void configureDefenseServiceFlagNode(DefenseServiceFlagNode node) {
     }
 
     protected PropertyTypeNode newPropertyTypeNode(
@@ -126,6 +144,9 @@ public class PropertyNodeChildProvider {
         return new PropertyTypeNode(parent, name);
     }
 
+    protected void configurePropertyTypeNode(PropertyTypeNode node) {
+    }
+
     protected PropertySubTypeNode newPropertySubTypeNode(
         PropertyNode parent,
         String name
@@ -133,11 +154,17 @@ public class PropertyNodeChildProvider {
         return new PropertySubTypeNode(parent, name);
     }
 
+    protected void configurePropertySubTypeNode(PropertySubTypeNode node) {
+    }
+
     protected PropertyPurseNode newPropertyPurseNode(
         PropertyNode parent,
         String name
     ) {
         return new PropertyPurseNode(parent, name);
+    }
+
+    protected void configurePropertyPurseNode(PropertyPurseNode node) {
     }
 
     PropertyNodeChildFactory createFactory(PropertyNode parent) {
@@ -156,6 +183,7 @@ public class PropertyNodeChildProvider {
         public RentedFlagNode createRentedFlagNode() {
             RentedFlagNode node = newRentedFlagNode(parent, "rentedFlagNode");
             rentedFlagNodeInjector.injectMembers(node);
+            configureRentedFlagNode(node);
             return node;
         }
 
@@ -163,6 +191,7 @@ public class PropertyNodeChildProvider {
         public PropertyWeeklyRentNode createPropertyWeeklyRentNode() {
             PropertyWeeklyRentNode node = newPropertyWeeklyRentNode(parent, "propertyWeeklyRentNode");
             propertyWeeklyRentNodeInjector.injectMembers(node);
+            configurePropertyWeeklyRentNode(node);
             return node;
         }
 
@@ -170,6 +199,7 @@ public class PropertyNodeChildProvider {
         public PropertyAddressNode createPropertyAddressNode() {
             PropertyAddressNode node = newPropertyAddressNode(parent, "propertyAddressNode");
             propertyAddressNodeInjector.injectMembers(node);
+            configurePropertyAddressNode(node);
             return node;
         }
 
@@ -177,6 +207,7 @@ public class PropertyNodeChildProvider {
         public EstimatedMarketValueNode createEstimatedMarketValueNode() {
             EstimatedMarketValueNode node = newEstimatedMarketValueNode(parent, "estimatedMarketValueNode");
             estimatedMarketValueNodeInjector.injectMembers(node);
+            configureEstimatedMarketValueNode(node);
             return node;
         }
 
@@ -184,6 +215,7 @@ public class PropertyNodeChildProvider {
         public ContractPriceNode createContractPriceNode() {
             ContractPriceNode node = newContractPriceNode(parent, "contractPriceNode");
             contractPriceNodeInjector.injectMembers(node);
+            configureContractPriceNode(node);
             return node;
         }
 
@@ -191,6 +223,7 @@ public class PropertyNodeChildProvider {
         public DefenseServiceFlagNode createDefenseServiceFlagNode() {
             DefenseServiceFlagNode node = newDefenseServiceFlagNode(parent, "defenseServiceFlagNode");
             defenseServiceFlagNodeInjector.injectMembers(node);
+            configureDefenseServiceFlagNode(node);
             return node;
         }
 
@@ -198,6 +231,7 @@ public class PropertyNodeChildProvider {
         public PropertyTypeNode createPropertyTypeNode() {
             PropertyTypeNode node = newPropertyTypeNode(parent, "propertyTypeNode");
             propertyTypeNodeInjector.injectMembers(node);
+            configurePropertyTypeNode(node);
             return node;
         }
 
@@ -205,6 +239,7 @@ public class PropertyNodeChildProvider {
         public PropertySubTypeNode createPropertySubTypeNode() {
             PropertySubTypeNode node = newPropertySubTypeNode(parent, "propertySubTypeNode");
             propertySubTypeNodeInjector.injectMembers(node);
+            configurePropertySubTypeNode(node);
             return node;
         }
 
@@ -212,6 +247,7 @@ public class PropertyNodeChildProvider {
         public PropertyPurseNode createPropertyPurseNode() {
             PropertyPurseNode node = newPropertyPurseNode(parent, "propertyPurseNode");
             propertyPurseNodeInjector.injectMembers(node);
+            configurePropertyPurseNode(node);
             return node;
         }
 

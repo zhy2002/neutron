@@ -34,11 +34,13 @@ public class PersonContactNode extends ObjectUiNode<PersonNode>
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonContactNode> config = classRegistry.getUiNodeConfig(PersonContactNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    PersonContactNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public PersonContactNode(PersonNode parent, String name) {
@@ -126,16 +128,6 @@ public class PersonContactNode extends ObjectUiNode<PersonNode>
         movedFromPreviousAddressNode = childFactory.createMovedFromPreviousAddressNode();
         children.add(movedFromPreviousAddressNode);
         return children;
-    }
-
-    @Inject
-    PersonContactNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

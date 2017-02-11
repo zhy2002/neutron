@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ContactEmailNode extends EmailNode<PersonContactNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ContactEmailNode> config = classRegistry.getUiNodeConfig(ContactEmailNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ContactEmailNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

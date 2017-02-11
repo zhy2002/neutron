@@ -28,6 +28,9 @@ public class RealEstateListNodeItemProvider {
         return new RealEstateNode(parent, name);
     }
 
+    protected void configureRealEstateNode(RealEstateNode node) {
+    }
+
     RealEstateListNodeItemFactory createFactory(RealEstateListNode parent) {
         return new RealEstateListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class RealEstateListNodeItemProvider {
         public RealEstateNode createRealEstateNode(String name) {
             RealEstateNode node = newRealEstateNode(parent, name);
             realEstateNodeInjector.injectMembers(node);
+            configureRealEstateNode(node);
             return node;
         }
 

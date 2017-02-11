@@ -23,13 +23,13 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
 <#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>
 <#else><#if parentTypeName??><${parentTypeName}></#if>
 </#if>{
-<#if children??>
+<#if children?? && children?size gt 0>
     <#list children as child>
     private ${child.typeName} ${child.name};
     </#list>
 
 </#if>
-<#if children?? || itemTypeName??>
+<#if children?? && children?size gt 0 || itemTypeName??>
     private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
 
     @Inject
@@ -38,13 +38,15 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
-<#if !isAbstract>
+<#if rules?? && rules?size gt 0>
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<${typeName}> config = classRegistry.getUiNodeConfig(${typeName}.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    ${typeName}RuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 </#if>
@@ -121,7 +123,7 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
     </#list>
 </#if>
-<#if children??>
+<#if children?? && children?size gt 0>
     <#list children as child>
     @JsMethod
     public ${child.typeName} get${child.name?cap_first}() {
@@ -130,7 +132,7 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
 
     </#list>
 </#if>
-<#if children??>
+<#if children?? && children?size gt 0>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -139,18 +141,6 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
         children.add(${child.name});
     </#list>
         return children;
-    }
-
-</#if>
-<#if rules?? && rules?size gt 0>
-    @Inject
-    ${typeName}RuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 </#if>

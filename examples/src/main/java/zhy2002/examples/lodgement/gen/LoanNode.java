@@ -28,14 +28,6 @@ public class LoanNode extends ObjectUiNode<LoanListNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<LoanNode> config = classRegistry.getUiNodeConfig(LoanNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public LoanNode(LoanListNode parent, String name) {
         super(parent, name);
     }

@@ -70,11 +70,17 @@ public class AccessNodeChildProvider {
         return new AccessContactTypeNode(parent, name);
     }
 
+    protected void configureAccessContactTypeNode(AccessContactTypeNode node) {
+    }
+
     protected AccessContactTitleNode newAccessContactTitleNode(
         AccessNode parent,
         String name
     ) {
         return new AccessContactTitleNode(parent, name);
+    }
+
+    protected void configureAccessContactTitleNode(AccessContactTitleNode node) {
     }
 
     protected AccessContactFirstNameNode newAccessContactFirstNameNode(
@@ -84,11 +90,17 @@ public class AccessNodeChildProvider {
         return new AccessContactFirstNameNode(parent, name);
     }
 
+    protected void configureAccessContactFirstNameNode(AccessContactFirstNameNode node) {
+    }
+
     protected AccessContactLastNameNode newAccessContactLastNameNode(
         AccessNode parent,
         String name
     ) {
         return new AccessContactLastNameNode(parent, name);
+    }
+
+    protected void configureAccessContactLastNameNode(AccessContactLastNameNode node) {
     }
 
     protected AccessCompanyNameNode newAccessCompanyNameNode(
@@ -98,6 +110,9 @@ public class AccessNodeChildProvider {
         return new AccessCompanyNameNode(parent, name);
     }
 
+    protected void configureAccessCompanyNameNode(AccessCompanyNameNode node) {
+    }
+
     protected AccessTelephoneNode newAccessTelephoneNode(
         AccessNode parent,
         String name
@@ -105,11 +120,17 @@ public class AccessNodeChildProvider {
         return new AccessTelephoneNode(parent, name);
     }
 
+    protected void configureAccessTelephoneNode(AccessTelephoneNode node) {
+    }
+
     protected AccessOtherDescriptionNode newAccessOtherDescriptionNode(
         AccessNode parent,
         String name
     ) {
         return new AccessOtherDescriptionNode(parent, name);
+    }
+
+    protected void configureAccessOtherDescriptionNode(AccessOtherDescriptionNode node) {
     }
 
     AccessNodeChildFactory createFactory(AccessNode parent) {
@@ -128,6 +149,7 @@ public class AccessNodeChildProvider {
         public AccessContactTypeNode createAccessContactTypeNode() {
             AccessContactTypeNode node = newAccessContactTypeNode(parent, "accessContactTypeNode");
             accessContactTypeNodeInjector.injectMembers(node);
+            configureAccessContactTypeNode(node);
             return node;
         }
 
@@ -135,6 +157,7 @@ public class AccessNodeChildProvider {
         public AccessContactTitleNode createAccessContactTitleNode() {
             AccessContactTitleNode node = newAccessContactTitleNode(parent, "accessContactTitleNode");
             accessContactTitleNodeInjector.injectMembers(node);
+            configureAccessContactTitleNode(node);
             return node;
         }
 
@@ -142,6 +165,7 @@ public class AccessNodeChildProvider {
         public AccessContactFirstNameNode createAccessContactFirstNameNode() {
             AccessContactFirstNameNode node = newAccessContactFirstNameNode(parent, "accessContactFirstNameNode");
             accessContactFirstNameNodeInjector.injectMembers(node);
+            configureAccessContactFirstNameNode(node);
             return node;
         }
 
@@ -149,6 +173,7 @@ public class AccessNodeChildProvider {
         public AccessContactLastNameNode createAccessContactLastNameNode() {
             AccessContactLastNameNode node = newAccessContactLastNameNode(parent, "accessContactLastNameNode");
             accessContactLastNameNodeInjector.injectMembers(node);
+            configureAccessContactLastNameNode(node);
             return node;
         }
 
@@ -156,6 +181,7 @@ public class AccessNodeChildProvider {
         public AccessCompanyNameNode createAccessCompanyNameNode() {
             AccessCompanyNameNode node = newAccessCompanyNameNode(parent, "accessCompanyNameNode");
             accessCompanyNameNodeInjector.injectMembers(node);
+            configureAccessCompanyNameNode(node);
             return node;
         }
 
@@ -163,6 +189,7 @@ public class AccessNodeChildProvider {
         public AccessTelephoneNode createAccessTelephoneNode() {
             AccessTelephoneNode node = newAccessTelephoneNode(parent, "accessTelephoneNode");
             accessTelephoneNodeInjector.injectMembers(node);
+            configureAccessTelephoneNode(node);
             return node;
         }
 
@@ -170,6 +197,7 @@ public class AccessNodeChildProvider {
         public AccessOtherDescriptionNode createAccessOtherDescriptionNode() {
             AccessOtherDescriptionNode node = newAccessOtherDescriptionNode(parent, "accessOtherDescriptionNode");
             accessOtherDescriptionNodeInjector.injectMembers(node);
+            configureAccessOtherDescriptionNode(node);
             return node;
         }
 

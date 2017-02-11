@@ -25,11 +25,13 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<LodgementNode> config = classRegistry.getUiNodeConfig(LodgementNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    LodgementNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     @Inject
@@ -48,16 +50,6 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
         appManagerNode = childFactory.createAppManagerNode();
         children.add(appManagerNode);
         return children;
-    }
-
-    @Inject
-    LodgementNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

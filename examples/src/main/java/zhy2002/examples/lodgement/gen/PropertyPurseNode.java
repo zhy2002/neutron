@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PropertyPurseNode extends BooleanUiNode<PropertyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PropertyPurseNode> config = classRegistry.getUiNodeConfig(PropertyPurseNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PropertyPurseNode(PropertyNode parent, String name) {
         super(parent, name);
     }

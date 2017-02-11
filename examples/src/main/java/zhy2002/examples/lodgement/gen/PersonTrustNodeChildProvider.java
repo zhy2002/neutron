@@ -70,11 +70,17 @@ public class PersonTrustNodeChildProvider {
         return new PersonTrustTypeNode(parent, name);
     }
 
+    protected void configurePersonTrustTypeNode(PersonTrustTypeNode node) {
+    }
+
     protected PersonTrustNameNode newPersonTrustNameNode(
         PersonTrustNode parent,
         String name
     ) {
         return new PersonTrustNameNode(parent, name);
+    }
+
+    protected void configurePersonTrustNameNode(PersonTrustNameNode node) {
     }
 
     protected PersonTrustRegistrationDateNode newPersonTrustRegistrationDateNode(
@@ -84,11 +90,17 @@ public class PersonTrustNodeChildProvider {
         return new PersonTrustRegistrationDateNode(parent, name);
     }
 
+    protected void configurePersonTrustRegistrationDateNode(PersonTrustRegistrationDateNode node) {
+    }
+
     protected PersonTrustCountryNode newPersonTrustCountryNode(
         PersonTrustNode parent,
         String name
     ) {
         return new PersonTrustCountryNode(parent, name);
+    }
+
+    protected void configurePersonTrustCountryNode(PersonTrustCountryNode node) {
     }
 
     protected PersonTrustAddressNode newPersonTrustAddressNode(
@@ -98,6 +110,9 @@ public class PersonTrustNodeChildProvider {
         return new PersonTrustAddressNode(parent, name);
     }
 
+    protected void configurePersonTrustAddressNode(PersonTrustAddressNode node) {
+    }
+
     protected PersonTrustSettlorNotRequiredReasonNode newPersonTrustSettlorNotRequiredReasonNode(
         PersonTrustNode parent,
         String name
@@ -105,11 +120,17 @@ public class PersonTrustNodeChildProvider {
         return new PersonTrustSettlorNotRequiredReasonNode(parent, name);
     }
 
+    protected void configurePersonTrustSettlorNotRequiredReasonNode(PersonTrustSettlorNotRequiredReasonNode node) {
+    }
+
     protected PersonTrustIndustryNode newPersonTrustIndustryNode(
         PersonTrustNode parent,
         String name
     ) {
         return new PersonTrustIndustryNode(parent, name);
+    }
+
+    protected void configurePersonTrustIndustryNode(PersonTrustIndustryNode node) {
     }
 
     PersonTrustNodeChildFactory createFactory(PersonTrustNode parent) {
@@ -128,6 +149,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustTypeNode createPersonTrustTypeNode() {
             PersonTrustTypeNode node = newPersonTrustTypeNode(parent, "personTrustTypeNode");
             personTrustTypeNodeInjector.injectMembers(node);
+            configurePersonTrustTypeNode(node);
             return node;
         }
 
@@ -135,6 +157,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustNameNode createPersonTrustNameNode() {
             PersonTrustNameNode node = newPersonTrustNameNode(parent, "personTrustNameNode");
             personTrustNameNodeInjector.injectMembers(node);
+            configurePersonTrustNameNode(node);
             return node;
         }
 
@@ -142,6 +165,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustRegistrationDateNode createPersonTrustRegistrationDateNode() {
             PersonTrustRegistrationDateNode node = newPersonTrustRegistrationDateNode(parent, "personTrustRegistrationDateNode");
             personTrustRegistrationDateNodeInjector.injectMembers(node);
+            configurePersonTrustRegistrationDateNode(node);
             return node;
         }
 
@@ -149,6 +173,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustCountryNode createPersonTrustCountryNode() {
             PersonTrustCountryNode node = newPersonTrustCountryNode(parent, "personTrustCountryNode");
             personTrustCountryNodeInjector.injectMembers(node);
+            configurePersonTrustCountryNode(node);
             return node;
         }
 
@@ -156,6 +181,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustAddressNode createPersonTrustAddressNode() {
             PersonTrustAddressNode node = newPersonTrustAddressNode(parent, "personTrustAddressNode");
             personTrustAddressNodeInjector.injectMembers(node);
+            configurePersonTrustAddressNode(node);
             return node;
         }
 
@@ -163,6 +189,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustSettlorNotRequiredReasonNode createPersonTrustSettlorNotRequiredReasonNode() {
             PersonTrustSettlorNotRequiredReasonNode node = newPersonTrustSettlorNotRequiredReasonNode(parent, "personTrustSettlorNotRequiredReasonNode");
             personTrustSettlorNotRequiredReasonNodeInjector.injectMembers(node);
+            configurePersonTrustSettlorNotRequiredReasonNode(node);
             return node;
         }
 
@@ -170,6 +197,7 @@ public class PersonTrustNodeChildProvider {
         public PersonTrustIndustryNode createPersonTrustIndustryNode() {
             PersonTrustIndustryNode node = newPersonTrustIndustryNode(parent, "personTrustIndustryNode");
             personTrustIndustryNodeInjector.injectMembers(node);
+            configurePersonTrustIndustryNode(node);
             return node;
         }
 

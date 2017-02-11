@@ -28,6 +28,9 @@ public class ExpensesNodeItemProvider {
         return new ExpenseNode(parent, name);
     }
 
+    protected void configureExpenseNode(ExpenseNode node) {
+    }
+
     ExpensesNodeItemFactory createFactory(ExpensesNode parent) {
         return new ExpensesNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class ExpensesNodeItemProvider {
         public ExpenseNode createExpenseNode(String name) {
             ExpenseNode node = newExpenseNode(parent, name);
             expenseNodeInjector.injectMembers(node);
+            configureExpenseNode(node);
             return node;
         }
 

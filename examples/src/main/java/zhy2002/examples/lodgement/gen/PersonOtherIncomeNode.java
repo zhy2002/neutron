@@ -26,14 +26,6 @@ public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNod
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonOtherIncomeNode> config = classRegistry.getUiNodeConfig(PersonOtherIncomeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonOtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
         super(parent, name);
     }

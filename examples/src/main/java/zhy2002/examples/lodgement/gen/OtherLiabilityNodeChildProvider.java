@@ -42,6 +42,9 @@ public class OtherLiabilityNodeChildProvider {
         return new OtherLiabilityTypeNode(parent, name);
     }
 
+    protected void configureOtherLiabilityTypeNode(OtherLiabilityTypeNode node) {
+    }
+
     protected OtherLiabilityDescriptionNode newOtherLiabilityDescriptionNode(
         OtherLiabilityNode parent,
         String name
@@ -49,11 +52,17 @@ public class OtherLiabilityNodeChildProvider {
         return new OtherLiabilityDescriptionNode(parent, name);
     }
 
+    protected void configureOtherLiabilityDescriptionNode(OtherLiabilityDescriptionNode node) {
+    }
+
     protected OtherLiabilityMarketValueNode newOtherLiabilityMarketValueNode(
         OtherLiabilityNode parent,
         String name
     ) {
         return new OtherLiabilityMarketValueNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityMarketValueNode(OtherLiabilityMarketValueNode node) {
     }
 
     OtherLiabilityNodeChildFactory createFactory(OtherLiabilityNode parent) {
@@ -72,6 +81,7 @@ public class OtherLiabilityNodeChildProvider {
         public OtherLiabilityTypeNode createOtherLiabilityTypeNode() {
             OtherLiabilityTypeNode node = newOtherLiabilityTypeNode(parent, "otherLiabilityTypeNode");
             otherLiabilityTypeNodeInjector.injectMembers(node);
+            configureOtherLiabilityTypeNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class OtherLiabilityNodeChildProvider {
         public OtherLiabilityDescriptionNode createOtherLiabilityDescriptionNode() {
             OtherLiabilityDescriptionNode node = newOtherLiabilityDescriptionNode(parent, "otherLiabilityDescriptionNode");
             otherLiabilityDescriptionNodeInjector.injectMembers(node);
+            configureOtherLiabilityDescriptionNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class OtherLiabilityNodeChildProvider {
         public OtherLiabilityMarketValueNode createOtherLiabilityMarketValueNode() {
             OtherLiabilityMarketValueNode node = newOtherLiabilityMarketValueNode(parent, "otherLiabilityMarketValueNode");
             otherLiabilityMarketValueNodeInjector.injectMembers(node);
+            configureOtherLiabilityMarketValueNode(node);
             return node;
         }
 

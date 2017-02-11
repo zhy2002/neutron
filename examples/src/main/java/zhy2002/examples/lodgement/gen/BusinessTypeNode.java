@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class BusinessTypeNode extends StringUiNode<SelfEmployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<BusinessTypeNode> config = classRegistry.getUiNodeConfig(BusinessTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public BusinessTypeNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }

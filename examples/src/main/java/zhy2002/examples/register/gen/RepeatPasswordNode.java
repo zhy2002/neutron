@@ -15,18 +15,6 @@ import zhy2002.examples.register.gen.rule.*;
 public class RepeatPasswordNode extends StringUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<RepeatPasswordNode> config = classRegistry.getUiNodeConfig(RepeatPasswordNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
-    public RepeatPasswordNode(RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    @Inject
     RepeatPasswordNodeRuleProvider ruleProvider;
 
     @Override
@@ -34,6 +22,10 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode>
         super.createRules(createdRules);
 
         createdRules.addAll(ruleProvider.createRules(this));
+    }
+
+    public RepeatPasswordNode(RegisterNode parent, String name) {
+        super(parent, name);
     }
 
 }

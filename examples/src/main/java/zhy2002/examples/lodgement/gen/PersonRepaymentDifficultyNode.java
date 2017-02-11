@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonRepaymentDifficultyNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonRepaymentDifficultyNode> config = classRegistry.getUiNodeConfig(PersonRepaymentDifficultyNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonRepaymentDifficultyNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }

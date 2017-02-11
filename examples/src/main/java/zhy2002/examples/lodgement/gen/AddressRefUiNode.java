@@ -13,22 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AddressRefUiNode extends ObjectUiNode<AddressListNode>
 {
-
-    private AddressRefUiNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(AddressRefUiNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AddressRefUiNode> config = classRegistry.getUiNodeConfig(AddressRefUiNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public AddressRefUiNode(AddressListNode parent, String name) {
         super(parent, name);
     }
@@ -41,12 +25,6 @@ public class AddressRefUiNode extends ObjectUiNode<AddressListNode>
     @JsMethod
     public void setRef(AddressNode value) {
         setStateValue(ApplicationNodeConstants.REF, AddressNode.class, value);
-    }
-
-    @Override
-    protected List<UiNode<?>> createChildren() {
-        List<UiNode<?>> children = super.createChildren();
-        return children;
     }
 
 }

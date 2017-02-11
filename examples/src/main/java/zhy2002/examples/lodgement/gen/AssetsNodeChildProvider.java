@@ -42,6 +42,9 @@ public class AssetsNodeChildProvider {
         return new SavingsAccountListNode(parent, name);
     }
 
+    protected void configureSavingsAccountListNode(SavingsAccountListNode node) {
+    }
+
     protected MotorVehicleListNode newMotorVehicleListNode(
         AssetsNode parent,
         String name
@@ -49,11 +52,17 @@ public class AssetsNodeChildProvider {
         return new MotorVehicleListNode(parent, name);
     }
 
+    protected void configureMotorVehicleListNode(MotorVehicleListNode node) {
+    }
+
     protected OtherAssetListNode newOtherAssetListNode(
         AssetsNode parent,
         String name
     ) {
         return new OtherAssetListNode(parent, name);
+    }
+
+    protected void configureOtherAssetListNode(OtherAssetListNode node) {
     }
 
     AssetsNodeChildFactory createFactory(AssetsNode parent) {
@@ -72,6 +81,7 @@ public class AssetsNodeChildProvider {
         public SavingsAccountListNode createSavingsAccountListNode() {
             SavingsAccountListNode node = newSavingsAccountListNode(parent, "savingsAccountListNode");
             savingsAccountListNodeInjector.injectMembers(node);
+            configureSavingsAccountListNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class AssetsNodeChildProvider {
         public MotorVehicleListNode createMotorVehicleListNode() {
             MotorVehicleListNode node = newMotorVehicleListNode(parent, "motorVehicleListNode");
             motorVehicleListNodeInjector.injectMembers(node);
+            configureMotorVehicleListNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class AssetsNodeChildProvider {
         public OtherAssetListNode createOtherAssetListNode() {
             OtherAssetListNode node = newOtherAssetListNode(parent, "otherAssetListNode");
             otherAssetListNodeInjector.injectMembers(node);
+            configureOtherAssetListNode(node);
             return node;
         }
 

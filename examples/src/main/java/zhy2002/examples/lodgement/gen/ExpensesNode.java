@@ -20,14 +20,6 @@ public class ExpensesNode extends ListUiNode<FinancialPositionNode,ExpensesNode,
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ExpensesNode> config = classRegistry.getUiNodeConfig(ExpensesNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ExpensesNode(FinancialPositionNode parent, String name) {
         super(parent, name);
     }

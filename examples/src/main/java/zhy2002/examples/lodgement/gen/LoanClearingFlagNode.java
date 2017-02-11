@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LoanClearingFlagNode extends BooleanUiNode<LoanNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<LoanClearingFlagNode> config = classRegistry.getUiNodeConfig(LoanClearingFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public LoanClearingFlagNode(LoanNode parent, String name) {
         super(parent, name);
     }

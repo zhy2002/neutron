@@ -28,6 +28,9 @@ public class AddressListNodeItemProvider {
         return new AddressRefUiNode(parent, name);
     }
 
+    protected void configureAddressRefUiNode(AddressRefUiNode node) {
+    }
+
     AddressListNodeItemFactory createFactory(AddressListNode parent) {
         return new AddressListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class AddressListNodeItemProvider {
         public AddressRefUiNode createAddressRefUiNode(String name) {
             AddressRefUiNode node = newAddressRefUiNode(parent, name);
             addressRefUiNodeInjector.injectMembers(node);
+            configureAddressRefUiNode(node);
             return node;
         }
 

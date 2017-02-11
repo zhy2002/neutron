@@ -15,11 +15,13 @@ import zhy2002.examples.register.gen.rule.*;
 public class UsernameNode extends StringUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<UsernameNode> config = classRegistry.getUiNodeConfig(UsernameNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    UsernameNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public UsernameNode(RegisterNode parent, String name) {
@@ -34,16 +36,6 @@ public class UsernameNode extends StringUiNode<RegisterNode>
         setInvalidChars("#");
         setLengthMessage("Username must have at least four characters.");
         setInvalidCharsMessage("Username cannot contain '#'.");
-    }
-
-    @Inject
-    UsernameNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

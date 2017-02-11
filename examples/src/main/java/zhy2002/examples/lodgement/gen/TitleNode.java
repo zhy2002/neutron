@@ -15,11 +15,13 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public class TitleNode extends StringUiNode<PersonGeneralNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<TitleNode> config = classRegistry.getUiNodeConfig(TitleNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    TitleNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public TitleNode(PersonGeneralNode parent, String name) {
@@ -42,16 +44,6 @@ public class TitleNode extends StringUiNode<PersonGeneralNode>
     @JsMethod
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
-    }
-
-    @Inject
-    TitleNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AccessContactTypeNode extends StringUiNode<AccessNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AccessContactTypeNode> config = classRegistry.getUiNodeConfig(AccessContactTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public AccessContactTypeNode(AccessNode parent, String name) {
         super(parent, name);
     }

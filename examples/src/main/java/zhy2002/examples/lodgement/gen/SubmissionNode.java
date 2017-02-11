@@ -13,30 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SubmissionNode extends ObjectUiNode<ApplicationNode>
 {
-
-    private SubmissionNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SubmissionNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<SubmissionNode> config = classRegistry.getUiNodeConfig(SubmissionNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public SubmissionNode(ApplicationNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected List<UiNode<?>> createChildren() {
-        List<UiNode<?>> children = super.createChildren();
-        return children;
     }
 
 }

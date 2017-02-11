@@ -22,14 +22,6 @@ public class PayeEmployedNode extends EmployedNode
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PayeEmployedNode> config = classRegistry.getUiNodeConfig(PayeEmployedNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PayeEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

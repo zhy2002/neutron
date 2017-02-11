@@ -20,14 +20,6 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CurrentEmploymentListNode> config = classRegistry.getUiNodeConfig(CurrentEmploymentListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CurrentEmploymentListNode(PersonNode parent, String name) {
         super(parent, name);
     }

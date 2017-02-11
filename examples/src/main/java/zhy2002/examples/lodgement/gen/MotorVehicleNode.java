@@ -24,14 +24,6 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<MotorVehicleNode> config = classRegistry.getUiNodeConfig(MotorVehicleNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public MotorVehicleNode(MotorVehicleListNode parent, String name) {
         super(parent, name);
     }

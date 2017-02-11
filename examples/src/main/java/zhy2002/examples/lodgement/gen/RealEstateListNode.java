@@ -20,14 +20,6 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLis
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<RealEstateListNode> config = classRegistry.getUiNodeConfig(RealEstateListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public RealEstateListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AccessTelephoneNode extends StringUiNode<AccessNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AccessTelephoneNode> config = classRegistry.getUiNodeConfig(AccessTelephoneNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public AccessTelephoneNode(AccessNode parent, String name) {
         super(parent, name);
     }

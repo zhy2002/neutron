@@ -13,14 +13,6 @@ import zhy2002.examples.register.data.*;
 
 public class PlanNode extends StringUiNode<RegisterNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PlanNode> config = classRegistry.getUiNodeConfig(PlanNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PlanNode(RegisterNode parent, String name) {
         super(parent, name);
     }

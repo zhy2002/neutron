@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class StudentTypeNode extends StringUiNode<UnemployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<StudentTypeNode> config = classRegistry.getUiNodeConfig(StudentTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public StudentTypeNode(UnemployedNode parent, String name) {
         super(parent, name);
     }

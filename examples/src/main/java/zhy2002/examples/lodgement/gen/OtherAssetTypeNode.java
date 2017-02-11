@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherAssetTypeNode extends StringUiNode<OtherAssetNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<OtherAssetTypeNode> config = classRegistry.getUiNodeConfig(OtherAssetTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public OtherAssetTypeNode(OtherAssetNode parent, String name) {
         super(parent, name);
     }

@@ -70,11 +70,17 @@ public class EmployedNodeChildProvider {
         return new EmploymentStatusNode(parent, name);
     }
 
+    protected void configureEmploymentStatusNode(EmploymentStatusNode node) {
+    }
+
     protected OccupationNode newOccupationNode(
         EmployedNode parent,
         String name
     ) {
         return new OccupationNode(parent, name);
+    }
+
+    protected void configureOccupationNode(OccupationNode node) {
     }
 
     protected EmployerNameNode newEmployerNameNode(
@@ -84,11 +90,17 @@ public class EmployedNodeChildProvider {
         return new EmployerNameNode(parent, name);
     }
 
+    protected void configureEmployerNameNode(EmployerNameNode node) {
+    }
+
     protected EmployerAddressNode newEmployerAddressNode(
         EmployedNode parent,
         String name
     ) {
         return new EmployerAddressNode(parent, name);
+    }
+
+    protected void configureEmployerAddressNode(EmployerAddressNode node) {
     }
 
     protected EmployerPhoneNode newEmployerPhoneNode(
@@ -98,6 +110,9 @@ public class EmployedNodeChildProvider {
         return new EmployerPhoneNode(parent, name);
     }
 
+    protected void configureEmployerPhoneNode(EmployerPhoneNode node) {
+    }
+
     protected EmploymentStartedNode newEmploymentStartedNode(
         EmployedNode parent,
         String name
@@ -105,11 +120,17 @@ public class EmployedNodeChildProvider {
         return new EmploymentStartedNode(parent, name);
     }
 
+    protected void configureEmploymentStartedNode(EmploymentStartedNode node) {
+    }
+
     protected EmploymentEndedNode newEmploymentEndedNode(
         EmployedNode parent,
         String name
     ) {
         return new EmploymentEndedNode(parent, name);
+    }
+
+    protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
     }
 
     EmployedNodeChildFactory createFactory(EmployedNode parent) {
@@ -128,6 +149,7 @@ public class EmployedNodeChildProvider {
         public EmploymentStatusNode createEmploymentStatusNode() {
             EmploymentStatusNode node = newEmploymentStatusNode(parent, "employmentStatusNode");
             employmentStatusNodeInjector.injectMembers(node);
+            configureEmploymentStatusNode(node);
             return node;
         }
 
@@ -135,6 +157,7 @@ public class EmployedNodeChildProvider {
         public OccupationNode createOccupationNode() {
             OccupationNode node = newOccupationNode(parent, "occupationNode");
             occupationNodeInjector.injectMembers(node);
+            configureOccupationNode(node);
             return node;
         }
 
@@ -142,6 +165,7 @@ public class EmployedNodeChildProvider {
         public EmployerNameNode createEmployerNameNode() {
             EmployerNameNode node = newEmployerNameNode(parent, "employerNameNode");
             employerNameNodeInjector.injectMembers(node);
+            configureEmployerNameNode(node);
             return node;
         }
 
@@ -149,6 +173,7 @@ public class EmployedNodeChildProvider {
         public EmployerAddressNode createEmployerAddressNode() {
             EmployerAddressNode node = newEmployerAddressNode(parent, "employerAddressNode");
             employerAddressNodeInjector.injectMembers(node);
+            configureEmployerAddressNode(node);
             return node;
         }
 
@@ -156,6 +181,7 @@ public class EmployedNodeChildProvider {
         public EmployerPhoneNode createEmployerPhoneNode() {
             EmployerPhoneNode node = newEmployerPhoneNode(parent, "employerPhoneNode");
             employerPhoneNodeInjector.injectMembers(node);
+            configureEmployerPhoneNode(node);
             return node;
         }
 
@@ -163,6 +189,7 @@ public class EmployedNodeChildProvider {
         public EmploymentStartedNode createEmploymentStartedNode() {
             EmploymentStartedNode node = newEmploymentStartedNode(parent, "employmentStartedNode");
             employmentStartedNodeInjector.injectMembers(node);
+            configureEmploymentStartedNode(node);
             return node;
         }
 
@@ -170,6 +197,7 @@ public class EmployedNodeChildProvider {
         public EmploymentEndedNode createEmploymentEndedNode() {
             EmploymentEndedNode node = newEmploymentEndedNode(parent, "employmentEndedNode");
             employmentEndedNodeInjector.injectMembers(node);
+            configureEmploymentEndedNode(node);
             return node;
         }
 

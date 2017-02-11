@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardBreakCostNode extends BigDecimalUiNode<CreditCardNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCardBreakCostNode> config = classRegistry.getUiNodeConfig(CreditCardBreakCostNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCardBreakCostNode(CreditCardNode parent, String name) {
         super(parent, name);
     }

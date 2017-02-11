@@ -5,15 +5,12 @@ import zhy2002.neutron.UiNodeConfig;
 
 public class CurrentAddressConfig extends UiNodeConfig<ContactAddressNode> {
 
-    @Override
-    public String getName() {
-        return "currentAddressNode";
+    public CurrentAddressConfig(ContactAddressNode owner) {
+        super(owner);
     }
 
     @Override
-    public void onAddedToParent(ContactAddressNode node) {
-        super.onAddedToParent(node);
-
-        node.setRequired(Boolean.TRUE);
+    public void postAddToParent() {
+        getOwner().setRequired(Boolean.TRUE);
     }
 }

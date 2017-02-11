@@ -15,18 +15,6 @@ import zhy2002.examples.register.gen.rule.*;
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ReceiveOffersNode> config = classRegistry.getUiNodeConfig(ReceiveOffersNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
-    public ReceiveOffersNode(RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    @Inject
     ReceiveOffersNodeRuleProvider ruleProvider;
 
     @Override
@@ -34,6 +22,10 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
         super.createRules(createdRules);
 
         createdRules.addAll(ruleProvider.createRules(this));
+    }
+
+    public ReceiveOffersNode(RegisterNode parent, String name) {
+        super(parent, name);
     }
 
 }

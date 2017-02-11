@@ -35,11 +35,17 @@ public class MonthYearNodeChildProvider {
         return new MonthNode(parent, name);
     }
 
+    protected void configureMonthNode(MonthNode node) {
+    }
+
     protected YearNode newYearNode(
         MonthYearNode<?> parent,
         String name
     ) {
         return new YearNode(parent, name);
+    }
+
+    protected void configureYearNode(YearNode node) {
     }
 
     MonthYearNodeChildFactory createFactory(MonthYearNode<?> parent) {
@@ -58,6 +64,7 @@ public class MonthYearNodeChildProvider {
         public MonthNode createMonthNode() {
             MonthNode node = newMonthNode(parent, "monthNode");
             monthNodeInjector.injectMembers(node);
+            configureMonthNode(node);
             return node;
         }
 
@@ -65,6 +72,7 @@ public class MonthYearNodeChildProvider {
         public YearNode createYearNode() {
             YearNode node = newYearNode(parent, "yearNode");
             yearNodeInjector.injectMembers(node);
+            configureYearNode(node);
             return node;
         }
 

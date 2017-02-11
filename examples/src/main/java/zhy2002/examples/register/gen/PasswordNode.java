@@ -15,11 +15,13 @@ import zhy2002.examples.register.gen.rule.*;
 public class PasswordNode extends StringUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PasswordNode> config = classRegistry.getUiNodeConfig(PasswordNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    PasswordNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public PasswordNode(RegisterNode parent, String name) {
@@ -34,16 +36,6 @@ public class PasswordNode extends StringUiNode<RegisterNode>
     @JsMethod
     public void setMessage(String value) {
         setStateValue(RegisterNodeConstants.MESSAGE, String.class, value);
-    }
-
-    @Inject
-    PasswordNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

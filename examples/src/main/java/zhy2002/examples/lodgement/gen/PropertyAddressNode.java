@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PropertyAddressNode extends AddressNode<PropertyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PropertyAddressNode> config = classRegistry.getUiNodeConfig(PropertyAddressNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PropertyAddressNode(PropertyNode parent, String name) {
         super(parent, name);
     }

@@ -28,6 +28,9 @@ public class CreditCardListNodeItemProvider {
         return new CreditCardNode(parent, name);
     }
 
+    protected void configureCreditCardNode(CreditCardNode node) {
+    }
+
     CreditCardListNodeItemFactory createFactory(CreditCardListNode parent) {
         return new CreditCardListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class CreditCardListNodeItemProvider {
         public CreditCardNode createCreditCardNode(String name) {
             CreditCardNode node = newCreditCardNode(parent, name);
             creditCardNodeInjector.injectMembers(node);
+            configureCreditCardNode(node);
             return node;
         }
 

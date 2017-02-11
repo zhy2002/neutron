@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<FirstHomeBuyerFlagNode> config = classRegistry.getUiNodeConfig(FirstHomeBuyerFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public FirstHomeBuyerFlagNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

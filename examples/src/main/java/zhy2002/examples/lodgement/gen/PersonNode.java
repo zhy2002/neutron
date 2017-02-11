@@ -31,11 +31,13 @@ public class PersonNode extends ObjectUiNode<PersonListNode>
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonNode> config = classRegistry.getUiNodeConfig(PersonNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    PersonNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public PersonNode(PersonListNode parent, String name) {
@@ -109,16 +111,6 @@ public class PersonNode extends ObjectUiNode<PersonListNode>
         personResponsibleLendNode = childFactory.createPersonResponsibleLendNode();
         children.add(personResponsibleLendNode);
         return children;
-    }
-
-    @Inject
-    PersonNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

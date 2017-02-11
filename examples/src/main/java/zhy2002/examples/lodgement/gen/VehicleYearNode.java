@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<VehicleYearNode> config = classRegistry.getUiNodeConfig(VehicleYearNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public VehicleYearNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }

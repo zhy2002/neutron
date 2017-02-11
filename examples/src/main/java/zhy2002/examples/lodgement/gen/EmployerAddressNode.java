@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class EmployerAddressNode extends AddressNode<EmployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<EmployerAddressNode> config = classRegistry.getUiNodeConfig(EmployerAddressNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public EmployerAddressNode(EmployedNode parent, String name) {
         super(parent, name);
     }

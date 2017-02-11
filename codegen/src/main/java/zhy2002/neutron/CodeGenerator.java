@@ -76,7 +76,7 @@ class CodeGenerator {
 
         if (nodeInfo.getItemTypeName() != null) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
-        } else if (nodeInfo.getChildren() != null) {
+        } else if (nodeInfo.getChildren() != null && nodeInfo.getChildren().size() > 0) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
         }
     }

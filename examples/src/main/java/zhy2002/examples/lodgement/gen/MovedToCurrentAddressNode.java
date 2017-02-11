@@ -15,11 +15,13 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<MovedToCurrentAddressNode> config = classRegistry.getUiNodeConfig(MovedToCurrentAddressNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    MovedToCurrentAddressNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public MovedToCurrentAddressNode(PersonContactNode parent, String name) {
@@ -31,16 +33,6 @@ public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
         super.initializeState();
 
         setRequired(true);
-    }
-
-    @Inject
-    MovedToCurrentAddressNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

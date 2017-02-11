@@ -28,6 +28,9 @@ public class PayeEmployedNodeChildProvider {
         return new GrossYearlySalaryNode(parent, name);
     }
 
+    protected void configureGrossYearlySalaryNode(GrossYearlySalaryNode node) {
+    }
+
     PayeEmployedNodeChildFactory createFactory(PayeEmployedNode parent) {
         return new PayeEmployedNodeChildFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class PayeEmployedNodeChildProvider {
         public GrossYearlySalaryNode createGrossYearlySalaryNode() {
             GrossYearlySalaryNode node = newGrossYearlySalaryNode(parent, "grossYearlySalaryNode");
             grossYearlySalaryNodeInjector.injectMembers(node);
+            configureGrossYearlySalaryNode(node);
             return node;
         }
 

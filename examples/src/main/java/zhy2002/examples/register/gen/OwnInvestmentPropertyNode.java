@@ -15,18 +15,6 @@ import zhy2002.examples.register.gen.rule.*;
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<OwnInvestmentPropertyNode> config = classRegistry.getUiNodeConfig(OwnInvestmentPropertyNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
-    public OwnInvestmentPropertyNode(RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    @Inject
     OwnInvestmentPropertyNodeRuleProvider ruleProvider;
 
     @Override
@@ -34,6 +22,10 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
         super.createRules(createdRules);
 
         createdRules.addAll(ruleProvider.createRules(this));
+    }
+
+    public OwnInvestmentPropertyNode(RegisterNode parent, String name) {
+        super(parent, name);
     }
 
 }

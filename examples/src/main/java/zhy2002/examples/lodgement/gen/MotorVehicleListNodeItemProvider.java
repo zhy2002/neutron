@@ -28,6 +28,9 @@ public class MotorVehicleListNodeItemProvider {
         return new MotorVehicleNode(parent, name);
     }
 
+    protected void configureMotorVehicleNode(MotorVehicleNode node) {
+    }
+
     MotorVehicleListNodeItemFactory createFactory(MotorVehicleListNode parent) {
         return new MotorVehicleListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class MotorVehicleListNodeItemProvider {
         public MotorVehicleNode createMotorVehicleNode(String name) {
             MotorVehicleNode node = newMotorVehicleNode(parent, name);
             motorVehicleNodeInjector.injectMembers(node);
+            configureMotorVehicleNode(node);
             return node;
         }
 

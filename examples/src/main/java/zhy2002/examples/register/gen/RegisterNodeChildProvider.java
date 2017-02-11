@@ -99,11 +99,17 @@ public class RegisterNodeChildProvider {
         return new UsernameNode(parent, name);
     }
 
+    protected void configureUsernameNode(UsernameNode node) {
+    }
+
     protected EmailNode newEmailNode(
         RegisterNode parent,
         String name
     ) {
         return new EmailNode(parent, name);
+    }
+
+    protected void configureEmailNode(EmailNode node) {
     }
 
     protected PasswordNode newPasswordNode(
@@ -113,11 +119,17 @@ public class RegisterNodeChildProvider {
         return new PasswordNode(parent, name);
     }
 
+    protected void configurePasswordNode(PasswordNode node) {
+    }
+
     protected RepeatPasswordNode newRepeatPasswordNode(
         RegisterNode parent,
         String name
     ) {
         return new RepeatPasswordNode(parent, name);
+    }
+
+    protected void configureRepeatPasswordNode(RepeatPasswordNode node) {
     }
 
     protected AgeNode newAgeNode(
@@ -127,11 +139,17 @@ public class RegisterNodeChildProvider {
         return new AgeNode(parent, name);
     }
 
+    protected void configureAgeNode(AgeNode node) {
+    }
+
     protected PlanNode newPlanNode(
         RegisterNode parent,
         String name
     ) {
         return new PlanNode(parent, name);
+    }
+
+    protected void configurePlanNode(PlanNode node) {
     }
 
     protected ReceiveOffersNode newReceiveOffersNode(
@@ -141,11 +159,17 @@ public class RegisterNodeChildProvider {
         return new ReceiveOffersNode(parent, name);
     }
 
+    protected void configureReceiveOffersNode(ReceiveOffersNode node) {
+    }
+
     protected OwnInvestmentPropertyNode newOwnInvestmentPropertyNode(
         RegisterNode parent,
         String name
     ) {
         return new OwnInvestmentPropertyNode(parent, name);
+    }
+
+    protected void configureOwnInvestmentPropertyNode(OwnInvestmentPropertyNode node) {
     }
 
     protected PropertyDetailsNode newResidentialPropertyNode(
@@ -155,11 +179,17 @@ public class RegisterNodeChildProvider {
         return new PropertyDetailsNode(parent, name);
     }
 
+    protected void configureResidentialPropertyNode(PropertyDetailsNode node) {
+    }
+
     protected PropertyDetailsNode newInvestmentPropertyNode(
         RegisterNode parent,
         String name
     ) {
         return new PropertyDetailsNode(parent, name);
+    }
+
+    protected void configureInvestmentPropertyNode(PropertyDetailsNode node) {
     }
 
     protected PhoneInfoNode newHomePhoneNode(
@@ -169,11 +199,17 @@ public class RegisterNodeChildProvider {
         return new PhoneInfoNode(parent, name);
     }
 
+    protected void configureHomePhoneNode(PhoneInfoNode node) {
+    }
+
     protected ErrorListNode newErrorListNode(
         RegisterNode parent,
         String name
     ) {
         return new ErrorListNode(parent, name);
+    }
+
+    protected void configureErrorListNode(ErrorListNode node) {
     }
 
     RegisterNodeChildFactory createFactory(RegisterNode parent) {
@@ -192,6 +228,7 @@ public class RegisterNodeChildProvider {
         public UsernameNode createUsernameNode() {
             UsernameNode node = newUsernameNode(parent, "usernameNode");
             usernameNodeInjector.injectMembers(node);
+            configureUsernameNode(node);
             return node;
         }
 
@@ -199,6 +236,7 @@ public class RegisterNodeChildProvider {
         public EmailNode createEmailNode() {
             EmailNode node = newEmailNode(parent, "emailNode");
             emailNodeInjector.injectMembers(node);
+            configureEmailNode(node);
             return node;
         }
 
@@ -206,6 +244,7 @@ public class RegisterNodeChildProvider {
         public PasswordNode createPasswordNode() {
             PasswordNode node = newPasswordNode(parent, "passwordNode");
             passwordNodeInjector.injectMembers(node);
+            configurePasswordNode(node);
             return node;
         }
 
@@ -213,6 +252,7 @@ public class RegisterNodeChildProvider {
         public RepeatPasswordNode createRepeatPasswordNode() {
             RepeatPasswordNode node = newRepeatPasswordNode(parent, "repeatPasswordNode");
             repeatPasswordNodeInjector.injectMembers(node);
+            configureRepeatPasswordNode(node);
             return node;
         }
 
@@ -220,6 +260,7 @@ public class RegisterNodeChildProvider {
         public AgeNode createAgeNode() {
             AgeNode node = newAgeNode(parent, "ageNode");
             ageNodeInjector.injectMembers(node);
+            configureAgeNode(node);
             return node;
         }
 
@@ -227,6 +268,7 @@ public class RegisterNodeChildProvider {
         public PlanNode createPlanNode() {
             PlanNode node = newPlanNode(parent, "planNode");
             planNodeInjector.injectMembers(node);
+            configurePlanNode(node);
             return node;
         }
 
@@ -234,6 +276,7 @@ public class RegisterNodeChildProvider {
         public ReceiveOffersNode createReceiveOffersNode() {
             ReceiveOffersNode node = newReceiveOffersNode(parent, "receiveOffersNode");
             receiveOffersNodeInjector.injectMembers(node);
+            configureReceiveOffersNode(node);
             return node;
         }
 
@@ -241,6 +284,7 @@ public class RegisterNodeChildProvider {
         public OwnInvestmentPropertyNode createOwnInvestmentPropertyNode() {
             OwnInvestmentPropertyNode node = newOwnInvestmentPropertyNode(parent, "ownInvestmentPropertyNode");
             ownInvestmentPropertyNodeInjector.injectMembers(node);
+            configureOwnInvestmentPropertyNode(node);
             return node;
         }
 
@@ -248,6 +292,7 @@ public class RegisterNodeChildProvider {
         public PropertyDetailsNode createResidentialPropertyNode() {
             PropertyDetailsNode node = newResidentialPropertyNode(parent, "residentialPropertyNode");
             propertyDetailsNodeInjector.injectMembers(node);
+            configureResidentialPropertyNode(node);
             return node;
         }
 
@@ -255,6 +300,7 @@ public class RegisterNodeChildProvider {
         public PropertyDetailsNode createInvestmentPropertyNode() {
             PropertyDetailsNode node = newInvestmentPropertyNode(parent, "investmentPropertyNode");
             propertyDetailsNodeInjector.injectMembers(node);
+            configureInvestmentPropertyNode(node);
             return node;
         }
 
@@ -262,6 +308,7 @@ public class RegisterNodeChildProvider {
         public PhoneInfoNode createHomePhoneNode() {
             PhoneInfoNode node = newHomePhoneNode(parent, "homePhoneNode");
             phoneInfoNodeInjector.injectMembers(node);
+            configureHomePhoneNode(node);
             return node;
         }
 
@@ -269,6 +316,7 @@ public class RegisterNodeChildProvider {
         public ErrorListNode createErrorListNode() {
             ErrorListNode node = newErrorListNode(parent, "errorListNode");
             errorListNodeInjector.injectMembers(node);
+            configureErrorListNode(node);
             return node;
         }
 

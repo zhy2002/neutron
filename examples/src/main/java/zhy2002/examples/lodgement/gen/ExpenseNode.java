@@ -24,14 +24,6 @@ public class ExpenseNode extends ObjectUiNode<ExpensesNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ExpenseNode> config = classRegistry.getUiNodeConfig(ExpenseNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ExpenseNode(ExpensesNode parent, String name) {
         super(parent, name);
     }

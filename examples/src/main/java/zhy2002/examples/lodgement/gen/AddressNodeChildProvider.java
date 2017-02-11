@@ -49,11 +49,17 @@ public class AddressNodeChildProvider {
         return new AddressLineNode(parent, name);
     }
 
+    protected void configureAddressLineNode(AddressLineNode node) {
+    }
+
     protected SuburbNode newSuburbNode(
         AddressNode<?> parent,
         String name
     ) {
         return new SuburbNode(parent, name);
+    }
+
+    protected void configureSuburbNode(SuburbNode node) {
     }
 
     protected PostcodeNode newPostcodeNode(
@@ -63,11 +69,17 @@ public class AddressNodeChildProvider {
         return new PostcodeNode(parent, name);
     }
 
+    protected void configurePostcodeNode(PostcodeNode node) {
+    }
+
     protected CountryNode newCountryNode(
         AddressNode<?> parent,
         String name
     ) {
         return new CountryNode(parent, name);
+    }
+
+    protected void configureCountryNode(CountryNode node) {
     }
 
     AddressNodeChildFactory createFactory(AddressNode<?> parent) {
@@ -86,6 +98,7 @@ public class AddressNodeChildProvider {
         public AddressLineNode createAddressLineNode() {
             AddressLineNode node = newAddressLineNode(parent, "addressLineNode");
             addressLineNodeInjector.injectMembers(node);
+            configureAddressLineNode(node);
             return node;
         }
 
@@ -93,6 +106,7 @@ public class AddressNodeChildProvider {
         public SuburbNode createSuburbNode() {
             SuburbNode node = newSuburbNode(parent, "suburbNode");
             suburbNodeInjector.injectMembers(node);
+            configureSuburbNode(node);
             return node;
         }
 
@@ -100,6 +114,7 @@ public class AddressNodeChildProvider {
         public PostcodeNode createPostcodeNode() {
             PostcodeNode node = newPostcodeNode(parent, "postcodeNode");
             postcodeNodeInjector.injectMembers(node);
+            configurePostcodeNode(node);
             return node;
         }
 
@@ -107,6 +122,7 @@ public class AddressNodeChildProvider {
         public CountryNode createCountryNode() {
             CountryNode node = newCountryNode(parent, "countryNode");
             countryNodeInjector.injectMembers(node);
+            configureCountryNode(node);
             return node;
         }
 

@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardLimitAmount extends BigDecimalUiNode<CreditCardNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCardLimitAmount> config = classRegistry.getUiNodeConfig(CreditCardLimitAmount.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCardLimitAmount(CreditCardNode parent, String name) {
         super(parent, name);
     }

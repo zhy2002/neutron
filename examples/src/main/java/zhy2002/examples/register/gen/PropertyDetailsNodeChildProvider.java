@@ -35,11 +35,17 @@ public class PropertyDetailsNodeChildProvider {
         return new PropertyAddressNode(parent, name);
     }
 
+    protected void configurePropertyAddressNode(PropertyAddressNode node) {
+    }
+
     protected PropertyStateNode newPropertyStateNode(
         PropertyDetailsNode parent,
         String name
     ) {
         return new PropertyStateNode(parent, name);
+    }
+
+    protected void configurePropertyStateNode(PropertyStateNode node) {
     }
 
     PropertyDetailsNodeChildFactory createFactory(PropertyDetailsNode parent) {
@@ -58,6 +64,7 @@ public class PropertyDetailsNodeChildProvider {
         public PropertyAddressNode createPropertyAddressNode() {
             PropertyAddressNode node = newPropertyAddressNode(parent, "propertyAddressNode");
             propertyAddressNodeInjector.injectMembers(node);
+            configurePropertyAddressNode(node);
             return node;
         }
 
@@ -65,6 +72,7 @@ public class PropertyDetailsNodeChildProvider {
         public PropertyStateNode createPropertyStateNode() {
             PropertyStateNode node = newPropertyStateNode(parent, "propertyStateNode");
             propertyStateNodeInjector.injectMembers(node);
+            configurePropertyStateNode(node);
             return node;
         }
 

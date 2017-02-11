@@ -56,11 +56,17 @@ public class PersonOtherIncomeNodeChildProvider {
         return new PersonAddBackTypeNode(parent, name);
     }
 
+    protected void configurePersonAddBackTypeNode(PersonAddBackTypeNode node) {
+    }
+
     protected PersonOtherIncomeAmountNode newPersonOtherIncomeAmountNode(
         PersonOtherIncomeNode parent,
         String name
     ) {
         return new PersonOtherIncomeAmountNode(parent, name);
+    }
+
+    protected void configurePersonOtherIncomeAmountNode(PersonOtherIncomeAmountNode node) {
     }
 
     protected PersonOtherIncomeDescriptionNode newPersonOtherIncomeDescriptionNode(
@@ -70,6 +76,9 @@ public class PersonOtherIncomeNodeChildProvider {
         return new PersonOtherIncomeDescriptionNode(parent, name);
     }
 
+    protected void configurePersonOtherIncomeDescriptionNode(PersonOtherIncomeDescriptionNode node) {
+    }
+
     protected PersonOtherIncomePreviousYearNode newPersonOtherIncomePreviousYearNode(
         PersonOtherIncomeNode parent,
         String name
@@ -77,11 +86,17 @@ public class PersonOtherIncomeNodeChildProvider {
         return new PersonOtherIncomePreviousYearNode(parent, name);
     }
 
+    protected void configurePersonOtherIncomePreviousYearNode(PersonOtherIncomePreviousYearNode node) {
+    }
+
     protected PersonOtherIncomeTypeNode newPersonOtherIncomeTypeNode(
         PersonOtherIncomeNode parent,
         String name
     ) {
         return new PersonOtherIncomeTypeNode(parent, name);
+    }
+
+    protected void configurePersonOtherIncomeTypeNode(PersonOtherIncomeTypeNode node) {
     }
 
     PersonOtherIncomeNodeChildFactory createFactory(PersonOtherIncomeNode parent) {
@@ -100,6 +115,7 @@ public class PersonOtherIncomeNodeChildProvider {
         public PersonAddBackTypeNode createPersonAddBackTypeNode() {
             PersonAddBackTypeNode node = newPersonAddBackTypeNode(parent, "personAddBackTypeNode");
             personAddBackTypeNodeInjector.injectMembers(node);
+            configurePersonAddBackTypeNode(node);
             return node;
         }
 
@@ -107,6 +123,7 @@ public class PersonOtherIncomeNodeChildProvider {
         public PersonOtherIncomeAmountNode createPersonOtherIncomeAmountNode() {
             PersonOtherIncomeAmountNode node = newPersonOtherIncomeAmountNode(parent, "personOtherIncomeAmountNode");
             personOtherIncomeAmountNodeInjector.injectMembers(node);
+            configurePersonOtherIncomeAmountNode(node);
             return node;
         }
 
@@ -114,6 +131,7 @@ public class PersonOtherIncomeNodeChildProvider {
         public PersonOtherIncomeDescriptionNode createPersonOtherIncomeDescriptionNode() {
             PersonOtherIncomeDescriptionNode node = newPersonOtherIncomeDescriptionNode(parent, "personOtherIncomeDescriptionNode");
             personOtherIncomeDescriptionNodeInjector.injectMembers(node);
+            configurePersonOtherIncomeDescriptionNode(node);
             return node;
         }
 
@@ -121,6 +139,7 @@ public class PersonOtherIncomeNodeChildProvider {
         public PersonOtherIncomePreviousYearNode createPersonOtherIncomePreviousYearNode() {
             PersonOtherIncomePreviousYearNode node = newPersonOtherIncomePreviousYearNode(parent, "personOtherIncomePreviousYearNode");
             personOtherIncomePreviousYearNodeInjector.injectMembers(node);
+            configurePersonOtherIncomePreviousYearNode(node);
             return node;
         }
 
@@ -128,6 +147,7 @@ public class PersonOtherIncomeNodeChildProvider {
         public PersonOtherIncomeTypeNode createPersonOtherIncomeTypeNode() {
             PersonOtherIncomeTypeNode node = newPersonOtherIncomeTypeNode(parent, "personOtherIncomeTypeNode");
             personOtherIncomeTypeNodeInjector.injectMembers(node);
+            configurePersonOtherIncomeTypeNode(node);
             return node;
         }
 

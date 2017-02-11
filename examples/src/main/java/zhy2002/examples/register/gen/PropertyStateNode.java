@@ -13,14 +13,6 @@ import zhy2002.examples.register.data.*;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PropertyStateNode> config = classRegistry.getUiNodeConfig(PropertyStateNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PropertyStateNode(PropertyDetailsNode parent, String name) {
         super(parent, name);
     }

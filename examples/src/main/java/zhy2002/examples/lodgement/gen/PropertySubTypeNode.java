@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PropertySubTypeNode extends StringUiNode<PropertyNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PropertySubTypeNode> config = classRegistry.getUiNodeConfig(PropertySubTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PropertySubTypeNode(PropertyNode parent, String name) {
         super(parent, name);
     }

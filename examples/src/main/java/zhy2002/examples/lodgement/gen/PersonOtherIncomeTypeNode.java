@@ -15,11 +15,13 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public class PersonOtherIncomeTypeNode extends StringUiNode<PersonOtherIncomeNode>
 {
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonOtherIncomeTypeNode> config = classRegistry.getUiNodeConfig(PersonOtherIncomeTypeNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    PersonOtherIncomeTypeNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public PersonOtherIncomeTypeNode(PersonOtherIncomeNode parent, String name) {
@@ -43,16 +45,6 @@ public class PersonOtherIncomeTypeNode extends StringUiNode<PersonOtherIncomeNod
     @JsMethod
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
-    }
-
-    @Inject
-    PersonOtherIncomeTypeNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }

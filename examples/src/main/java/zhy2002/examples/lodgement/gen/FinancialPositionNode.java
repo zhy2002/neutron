@@ -24,14 +24,6 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<FinancialPositionNode> config = classRegistry.getUiNodeConfig(FinancialPositionNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public FinancialPositionNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

@@ -77,11 +77,17 @@ public class PersonNodeChildProvider {
         return new PersonGeneralNode(parent, name);
     }
 
+    protected void configurePersonGeneralNode(PersonGeneralNode node) {
+    }
+
     protected PersonContactNode newPersonContactNode(
         PersonNode parent,
         String name
     ) {
         return new PersonContactNode(parent, name);
+    }
+
+    protected void configurePersonContactNode(PersonContactNode node) {
     }
 
     protected CurrentEmploymentListNode newCurrentEmploymentListNode(
@@ -91,11 +97,17 @@ public class PersonNodeChildProvider {
         return new CurrentEmploymentListNode(parent, name);
     }
 
+    protected void configureCurrentEmploymentListNode(CurrentEmploymentListNode node) {
+    }
+
     protected PreviousEmploymentListNode newPreviousEmploymentListNode(
         PersonNode parent,
         String name
     ) {
         return new PreviousEmploymentListNode(parent, name);
+    }
+
+    protected void configurePreviousEmploymentListNode(PreviousEmploymentListNode node) {
     }
 
     protected PersonTrustNode newPersonTrustNode(
@@ -105,11 +117,17 @@ public class PersonNodeChildProvider {
         return new PersonTrustNode(parent, name);
     }
 
+    protected void configurePersonTrustNode(PersonTrustNode node) {
+    }
+
     protected PersonPrivacyNode newPersonPrivacyNode(
         PersonNode parent,
         String name
     ) {
         return new PersonPrivacyNode(parent, name);
+    }
+
+    protected void configurePersonPrivacyNode(PersonPrivacyNode node) {
     }
 
     protected PersonOtherIncomeListNode newPersonOtherIncomeListNode(
@@ -119,11 +137,17 @@ public class PersonNodeChildProvider {
         return new PersonOtherIncomeListNode(parent, name);
     }
 
+    protected void configurePersonOtherIncomeListNode(PersonOtherIncomeListNode node) {
+    }
+
     protected PersonResponsibleLendNode newPersonResponsibleLendNode(
         PersonNode parent,
         String name
     ) {
         return new PersonResponsibleLendNode(parent, name);
+    }
+
+    protected void configurePersonResponsibleLendNode(PersonResponsibleLendNode node) {
     }
 
     PersonNodeChildFactory createFactory(PersonNode parent) {
@@ -142,6 +166,7 @@ public class PersonNodeChildProvider {
         public PersonGeneralNode createPersonGeneralNode() {
             PersonGeneralNode node = newPersonGeneralNode(parent, "personGeneralNode");
             personGeneralNodeInjector.injectMembers(node);
+            configurePersonGeneralNode(node);
             return node;
         }
 
@@ -149,6 +174,7 @@ public class PersonNodeChildProvider {
         public PersonContactNode createPersonContactNode() {
             PersonContactNode node = newPersonContactNode(parent, "personContactNode");
             personContactNodeInjector.injectMembers(node);
+            configurePersonContactNode(node);
             return node;
         }
 
@@ -156,6 +182,7 @@ public class PersonNodeChildProvider {
         public CurrentEmploymentListNode createCurrentEmploymentListNode() {
             CurrentEmploymentListNode node = newCurrentEmploymentListNode(parent, "currentEmploymentListNode");
             currentEmploymentListNodeInjector.injectMembers(node);
+            configureCurrentEmploymentListNode(node);
             return node;
         }
 
@@ -163,6 +190,7 @@ public class PersonNodeChildProvider {
         public PreviousEmploymentListNode createPreviousEmploymentListNode() {
             PreviousEmploymentListNode node = newPreviousEmploymentListNode(parent, "previousEmploymentListNode");
             previousEmploymentListNodeInjector.injectMembers(node);
+            configurePreviousEmploymentListNode(node);
             return node;
         }
 
@@ -170,6 +198,7 @@ public class PersonNodeChildProvider {
         public PersonTrustNode createPersonTrustNode() {
             PersonTrustNode node = newPersonTrustNode(parent, "personTrustNode");
             personTrustNodeInjector.injectMembers(node);
+            configurePersonTrustNode(node);
             return node;
         }
 
@@ -177,6 +206,7 @@ public class PersonNodeChildProvider {
         public PersonPrivacyNode createPersonPrivacyNode() {
             PersonPrivacyNode node = newPersonPrivacyNode(parent, "personPrivacyNode");
             personPrivacyNodeInjector.injectMembers(node);
+            configurePersonPrivacyNode(node);
             return node;
         }
 
@@ -184,6 +214,7 @@ public class PersonNodeChildProvider {
         public PersonOtherIncomeListNode createPersonOtherIncomeListNode() {
             PersonOtherIncomeListNode node = newPersonOtherIncomeListNode(parent, "personOtherIncomeListNode");
             personOtherIncomeListNodeInjector.injectMembers(node);
+            configurePersonOtherIncomeListNode(node);
             return node;
         }
 
@@ -191,6 +222,7 @@ public class PersonNodeChildProvider {
         public PersonResponsibleLendNode createPersonResponsibleLendNode() {
             PersonResponsibleLendNode node = newPersonResponsibleLendNode(parent, "personResponsibleLendNode");
             personResponsibleLendNodeInjector.injectMembers(node);
+            configurePersonResponsibleLendNode(node);
             return node;
         }
 

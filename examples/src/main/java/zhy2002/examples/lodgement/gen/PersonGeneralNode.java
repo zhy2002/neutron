@@ -35,14 +35,6 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonGeneralNode> config = classRegistry.getUiNodeConfig(PersonGeneralNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
     }

@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustNameNode extends StringUiNode<PersonTrustNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<PersonTrustNameNode> config = classRegistry.getUiNodeConfig(PersonTrustNameNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public PersonTrustNameNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }

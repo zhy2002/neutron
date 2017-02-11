@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AddressLineNode extends StringUiNode<AddressNode<?>>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AddressLineNode> config = classRegistry.getUiNodeConfig(AddressLineNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public AddressLineNode(AddressNode parent, String name) {
         super(parent, name);
     }

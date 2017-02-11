@@ -28,14 +28,6 @@ public class AccessNode extends ObjectUiNode<RealEstateNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<AccessNode> config = classRegistry.getUiNodeConfig(AccessNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public AccessNode(RealEstateNode parent, String name) {
         super(parent, name);
     }

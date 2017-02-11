@@ -27,14 +27,6 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<SavingsAccountNode> config = classRegistry.getUiNodeConfig(SavingsAccountNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public SavingsAccountNode(SavingsAccountListNode parent, String name) {
         super(parent, name);
     }

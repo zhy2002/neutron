@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<SavingsBsbNoNode> config = classRegistry.getUiNodeConfig(SavingsBsbNoNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public SavingsBsbNoNode(SavingsAccountNode parent, String name) {
         super(parent, name);
     }

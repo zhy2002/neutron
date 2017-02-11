@@ -42,6 +42,9 @@ public class LiabilitiesNodeChildProvider {
         return new CreditCardListNode(parent, name);
     }
 
+    protected void configureCreditCardListNode(CreditCardListNode node) {
+    }
+
     protected LoanListNode newLoanListNode(
         LiabilitiesNode parent,
         String name
@@ -49,11 +52,17 @@ public class LiabilitiesNodeChildProvider {
         return new LoanListNode(parent, name);
     }
 
+    protected void configureLoanListNode(LoanListNode node) {
+    }
+
     protected OtherLiabilityListNode newOtherLiabilityListNode(
         LiabilitiesNode parent,
         String name
     ) {
         return new OtherLiabilityListNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityListNode(OtherLiabilityListNode node) {
     }
 
     LiabilitiesNodeChildFactory createFactory(LiabilitiesNode parent) {
@@ -72,6 +81,7 @@ public class LiabilitiesNodeChildProvider {
         public CreditCardListNode createCreditCardListNode() {
             CreditCardListNode node = newCreditCardListNode(parent, "creditCardListNode");
             creditCardListNodeInjector.injectMembers(node);
+            configureCreditCardListNode(node);
             return node;
         }
 
@@ -79,6 +89,7 @@ public class LiabilitiesNodeChildProvider {
         public LoanListNode createLoanListNode() {
             LoanListNode node = newLoanListNode(parent, "loanListNode");
             loanListNodeInjector.injectMembers(node);
+            configureLoanListNode(node);
             return node;
         }
 
@@ -86,6 +97,7 @@ public class LiabilitiesNodeChildProvider {
         public OtherLiabilityListNode createOtherLiabilityListNode() {
             OtherLiabilityListNode node = newOtherLiabilityListNode(parent, "otherLiabilityListNode");
             otherLiabilityListNodeInjector.injectMembers(node);
+            configureOtherLiabilityListNode(node);
             return node;
         }
 

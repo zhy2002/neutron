@@ -28,6 +28,9 @@ public class LodgementNodeChildProvider {
         return new AppManagerNode(parent, name);
     }
 
+    protected void configureAppManagerNode(AppManagerNode node) {
+    }
+
     LodgementNodeChildFactory createFactory(LodgementNode parent) {
         return new LodgementNodeChildFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class LodgementNodeChildProvider {
         public AppManagerNode createAppManagerNode() {
             AppManagerNode node = newAppManagerNode(parent, "appManagerNode");
             appManagerNodeInjector.injectMembers(node);
+            configureAppManagerNode(node);
             return node;
         }
 

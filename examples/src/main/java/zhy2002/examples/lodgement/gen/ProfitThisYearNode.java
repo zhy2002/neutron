@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ProfitThisYearNode> config = classRegistry.getUiNodeConfig(ProfitThisYearNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ProfitThisYearNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }

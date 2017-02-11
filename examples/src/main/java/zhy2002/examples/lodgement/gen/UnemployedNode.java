@@ -26,14 +26,6 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<UnemployedNode> config = classRegistry.getUiNodeConfig(UnemployedNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public UnemployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

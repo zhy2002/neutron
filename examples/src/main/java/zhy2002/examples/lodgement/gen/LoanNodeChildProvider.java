@@ -70,11 +70,17 @@ public class LoanNodeChildProvider {
         return new LoanTypeNode(parent, name);
     }
 
+    protected void configureLoanTypeNode(LoanTypeNode node) {
+    }
+
     protected LoanLenderNameNode newLoanLenderNameNode(
         LoanNode parent,
         String name
     ) {
         return new LoanLenderNameNode(parent, name);
+    }
+
+    protected void configureLoanLenderNameNode(LoanLenderNameNode node) {
     }
 
     protected LoanLimitAmountNode newLoanLimitAmountNode(
@@ -84,11 +90,17 @@ public class LoanNodeChildProvider {
         return new LoanLimitAmountNode(parent, name);
     }
 
+    protected void configureLoanLimitAmountNode(LoanLimitAmountNode node) {
+    }
+
     protected LoanOwingAmountNode newLoanOwingAmountNode(
         LoanNode parent,
         String name
     ) {
         return new LoanOwingAmountNode(parent, name);
+    }
+
+    protected void configureLoanOwingAmountNode(LoanOwingAmountNode node) {
     }
 
     protected LoanMonthlyRepaymentNode newLoanMonthlyRepaymentNode(
@@ -98,6 +110,9 @@ public class LoanNodeChildProvider {
         return new LoanMonthlyRepaymentNode(parent, name);
     }
 
+    protected void configureLoanMonthlyRepaymentNode(LoanMonthlyRepaymentNode node) {
+    }
+
     protected LoanClearingFlagNode newLoanClearingFlagNode(
         LoanNode parent,
         String name
@@ -105,11 +120,17 @@ public class LoanNodeChildProvider {
         return new LoanClearingFlagNode(parent, name);
     }
 
+    protected void configureLoanClearingFlagNode(LoanClearingFlagNode node) {
+    }
+
     protected LoanBreakCostNode newLoanBreakCostNode(
         LoanNode parent,
         String name
     ) {
         return new LoanBreakCostNode(parent, name);
+    }
+
+    protected void configureLoanBreakCostNode(LoanBreakCostNode node) {
     }
 
     LoanNodeChildFactory createFactory(LoanNode parent) {
@@ -128,6 +149,7 @@ public class LoanNodeChildProvider {
         public LoanTypeNode createLoanTypeNode() {
             LoanTypeNode node = newLoanTypeNode(parent, "loanTypeNode");
             loanTypeNodeInjector.injectMembers(node);
+            configureLoanTypeNode(node);
             return node;
         }
 
@@ -135,6 +157,7 @@ public class LoanNodeChildProvider {
         public LoanLenderNameNode createLoanLenderNameNode() {
             LoanLenderNameNode node = newLoanLenderNameNode(parent, "loanLenderNameNode");
             loanLenderNameNodeInjector.injectMembers(node);
+            configureLoanLenderNameNode(node);
             return node;
         }
 
@@ -142,6 +165,7 @@ public class LoanNodeChildProvider {
         public LoanLimitAmountNode createLoanLimitAmountNode() {
             LoanLimitAmountNode node = newLoanLimitAmountNode(parent, "loanLimitAmountNode");
             loanLimitAmountNodeInjector.injectMembers(node);
+            configureLoanLimitAmountNode(node);
             return node;
         }
 
@@ -149,6 +173,7 @@ public class LoanNodeChildProvider {
         public LoanOwingAmountNode createLoanOwingAmountNode() {
             LoanOwingAmountNode node = newLoanOwingAmountNode(parent, "loanOwingAmountNode");
             loanOwingAmountNodeInjector.injectMembers(node);
+            configureLoanOwingAmountNode(node);
             return node;
         }
 
@@ -156,6 +181,7 @@ public class LoanNodeChildProvider {
         public LoanMonthlyRepaymentNode createLoanMonthlyRepaymentNode() {
             LoanMonthlyRepaymentNode node = newLoanMonthlyRepaymentNode(parent, "loanMonthlyRepaymentNode");
             loanMonthlyRepaymentNodeInjector.injectMembers(node);
+            configureLoanMonthlyRepaymentNode(node);
             return node;
         }
 
@@ -163,6 +189,7 @@ public class LoanNodeChildProvider {
         public LoanClearingFlagNode createLoanClearingFlagNode() {
             LoanClearingFlagNode node = newLoanClearingFlagNode(parent, "loanClearingFlagNode");
             loanClearingFlagNodeInjector.injectMembers(node);
+            configureLoanClearingFlagNode(node);
             return node;
         }
 
@@ -170,6 +197,7 @@ public class LoanNodeChildProvider {
         public LoanBreakCostNode createLoanBreakCostNode() {
             LoanBreakCostNode node = newLoanBreakCostNode(parent, "loanBreakCostNode");
             loanBreakCostNodeInjector.injectMembers(node);
+            configureLoanBreakCostNode(node);
             return node;
         }
 

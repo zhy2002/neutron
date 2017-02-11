@@ -20,14 +20,6 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNo
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ErrorListNode> config = classRegistry.getUiNodeConfig(ErrorListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public ErrorListNode(RegisterNode parent, String name) {
         super(parent, name);
     }

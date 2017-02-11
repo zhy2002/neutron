@@ -24,14 +24,6 @@ public class SelfEmployedNode extends EmployedNode
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<SelfEmployedNode> config = classRegistry.getUiNodeConfig(SelfEmployedNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public SelfEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

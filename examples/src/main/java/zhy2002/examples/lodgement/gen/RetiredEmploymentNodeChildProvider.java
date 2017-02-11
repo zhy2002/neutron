@@ -35,11 +35,17 @@ public class RetiredEmploymentNodeChildProvider {
         return new RetiredOnBenefitFlagNode(parent, name);
     }
 
+    protected void configureRetiredOnBenefitFlagNode(RetiredOnBenefitFlagNode node) {
+    }
+
     protected RetiredSinceNode newRetiredSinceNode(
         RetiredEmploymentNode parent,
         String name
     ) {
         return new RetiredSinceNode(parent, name);
+    }
+
+    protected void configureRetiredSinceNode(RetiredSinceNode node) {
     }
 
     RetiredEmploymentNodeChildFactory createFactory(RetiredEmploymentNode parent) {
@@ -58,6 +64,7 @@ public class RetiredEmploymentNodeChildProvider {
         public RetiredOnBenefitFlagNode createRetiredOnBenefitFlagNode() {
             RetiredOnBenefitFlagNode node = newRetiredOnBenefitFlagNode(parent, "retiredOnBenefitFlagNode");
             retiredOnBenefitFlagNodeInjector.injectMembers(node);
+            configureRetiredOnBenefitFlagNode(node);
             return node;
         }
 
@@ -65,6 +72,7 @@ public class RetiredEmploymentNodeChildProvider {
         public RetiredSinceNode createRetiredSinceNode() {
             RetiredSinceNode node = newRetiredSinceNode(parent, "retiredSinceNode");
             retiredSinceNodeInjector.injectMembers(node);
+            configureRetiredSinceNode(node);
             return node;
         }
 

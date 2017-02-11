@@ -48,6 +48,9 @@ public class PhoneInfoNodeChildProvider {
         return new CountryCodeNode(parent, name);
     }
 
+    protected void configureCountryCodeNode(CountryCodeNode node) {
+    }
+
     protected AreaCodeNode newAreaCodeNode(
         PhoneInfoNode parent,
         String name
@@ -55,11 +58,17 @@ public class PhoneInfoNodeChildProvider {
         return new AreaCodeNode(parent, name);
     }
 
+    protected void configureAreaCodeNode(AreaCodeNode node) {
+    }
+
     protected PhoneNumberNode newPhoneNumberNode(
         PhoneInfoNode parent,
         String name
     ) {
         return new PhoneNumberNode(parent, name);
+    }
+
+    protected void configurePhoneNumberNode(PhoneNumberNode node) {
     }
 
     PhoneInfoNodeChildFactory createFactory(PhoneInfoNode parent) {
@@ -78,6 +87,7 @@ public class PhoneInfoNodeChildProvider {
         public CountryCodeNode createCountryCodeNode() {
             CountryCodeNode node = newCountryCodeNode(parent, "countryCodeNode");
             countryCodeNodeInjector.injectMembers(node);
+            configureCountryCodeNode(node);
             return node;
         }
 
@@ -85,6 +95,7 @@ public class PhoneInfoNodeChildProvider {
         public AreaCodeNode createAreaCodeNode() {
             AreaCodeNode node = newAreaCodeNode(parent, "areaCodeNode");
             areaCodeNodeInjector.injectMembers(node);
+            configureAreaCodeNode(node);
             return node;
         }
 
@@ -92,6 +103,7 @@ public class PhoneInfoNodeChildProvider {
         public PhoneNumberNode createPhoneNumberNode() {
             PhoneNumberNode node = newPhoneNumberNode(parent, "phoneNumberNode");
             phoneNumberNodeInjector.injectMembers(node);
+            configurePhoneNumberNode(node);
             return node;
         }
 

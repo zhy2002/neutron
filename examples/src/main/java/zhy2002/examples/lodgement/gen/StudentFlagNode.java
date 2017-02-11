@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class StudentFlagNode extends YesNoOptionNode<UnemployedNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<StudentFlagNode> config = classRegistry.getUiNodeConfig(StudentFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public StudentFlagNode(UnemployedNode parent, String name) {
         super(parent, name);
     }

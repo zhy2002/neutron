@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<CreditCardClearingFlagNode> config = classRegistry.getUiNodeConfig(CreditCardClearingFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public CreditCardClearingFlagNode(CreditCardNode parent, String name) {
         super(parent, name);
     }

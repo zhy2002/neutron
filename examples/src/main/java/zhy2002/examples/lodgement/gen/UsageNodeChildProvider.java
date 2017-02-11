@@ -56,11 +56,17 @@ public class UsageNodeChildProvider {
         return new UsedAsSecurityFlagNode(parent, name);
     }
 
+    protected void configureUsedAsSecurityFlagNode(UsedAsSecurityFlagNode node) {
+    }
+
     protected BeingPurchasedFlagNode newBeingPurchasedFlagNode(
         UsageNode parent,
         String name
     ) {
         return new BeingPurchasedFlagNode(parent, name);
+    }
+
+    protected void configureBeingPurchasedFlagNode(BeingPurchasedFlagNode node) {
     }
 
     protected OwnedOutrightFlagNode newOwnedOutrightFlagNode(
@@ -70,6 +76,9 @@ public class UsageNodeChildProvider {
         return new OwnedOutrightFlagNode(parent, name);
     }
 
+    protected void configureOwnedOutrightFlagNode(OwnedOutrightFlagNode node) {
+    }
+
     protected PrimarySecurityFlagNode newPrimarySecurityFlagNode(
         UsageNode parent,
         String name
@@ -77,11 +86,17 @@ public class UsageNodeChildProvider {
         return new PrimarySecurityFlagNode(parent, name);
     }
 
+    protected void configurePrimarySecurityFlagNode(PrimarySecurityFlagNode node) {
+    }
+
     protected ApprovalInPrincipleFlagNode newApprovalInPrincipleFlagNode(
         UsageNode parent,
         String name
     ) {
         return new ApprovalInPrincipleFlagNode(parent, name);
+    }
+
+    protected void configureApprovalInPrincipleFlagNode(ApprovalInPrincipleFlagNode node) {
     }
 
     UsageNodeChildFactory createFactory(UsageNode parent) {
@@ -100,6 +115,7 @@ public class UsageNodeChildProvider {
         public UsedAsSecurityFlagNode createUsedAsSecurityFlagNode() {
             UsedAsSecurityFlagNode node = newUsedAsSecurityFlagNode(parent, "usedAsSecurityFlagNode");
             usedAsSecurityFlagNodeInjector.injectMembers(node);
+            configureUsedAsSecurityFlagNode(node);
             return node;
         }
 
@@ -107,6 +123,7 @@ public class UsageNodeChildProvider {
         public BeingPurchasedFlagNode createBeingPurchasedFlagNode() {
             BeingPurchasedFlagNode node = newBeingPurchasedFlagNode(parent, "beingPurchasedFlagNode");
             beingPurchasedFlagNodeInjector.injectMembers(node);
+            configureBeingPurchasedFlagNode(node);
             return node;
         }
 
@@ -114,6 +131,7 @@ public class UsageNodeChildProvider {
         public OwnedOutrightFlagNode createOwnedOutrightFlagNode() {
             OwnedOutrightFlagNode node = newOwnedOutrightFlagNode(parent, "ownedOutrightFlagNode");
             ownedOutrightFlagNodeInjector.injectMembers(node);
+            configureOwnedOutrightFlagNode(node);
             return node;
         }
 
@@ -121,6 +139,7 @@ public class UsageNodeChildProvider {
         public PrimarySecurityFlagNode createPrimarySecurityFlagNode() {
             PrimarySecurityFlagNode node = newPrimarySecurityFlagNode(parent, "primarySecurityFlagNode");
             primarySecurityFlagNodeInjector.injectMembers(node);
+            configurePrimarySecurityFlagNode(node);
             return node;
         }
 
@@ -128,6 +147,7 @@ public class UsageNodeChildProvider {
         public ApprovalInPrincipleFlagNode createApprovalInPrincipleFlagNode() {
             ApprovalInPrincipleFlagNode node = newApprovalInPrincipleFlagNode(parent, "approvalInPrincipleFlagNode");
             approvalInPrincipleFlagNodeInjector.injectMembers(node);
+            configureApprovalInPrincipleFlagNode(node);
             return node;
         }
 

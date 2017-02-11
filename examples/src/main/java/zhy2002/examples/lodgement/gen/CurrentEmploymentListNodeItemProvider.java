@@ -28,6 +28,9 @@ public class CurrentEmploymentListNodeItemProvider {
         return new CurrentEmploymentNode(parent, name);
     }
 
+    protected void configureCurrentEmploymentNode(CurrentEmploymentNode node) {
+    }
+
     CurrentEmploymentListNodeItemFactory createFactory(CurrentEmploymentListNode parent) {
         return new CurrentEmploymentListNodeItemFactoryImpl(parent);
     }
@@ -44,6 +47,7 @@ public class CurrentEmploymentListNodeItemProvider {
         public CurrentEmploymentNode createCurrentEmploymentNode(String name) {
             CurrentEmploymentNode node = newCurrentEmploymentNode(parent, name);
             currentEmploymentNodeInjector.injectMembers(node);
+            configureCurrentEmploymentNode(node);
             return node;
         }
 

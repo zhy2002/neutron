@@ -13,14 +13,6 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode>
 {
-    @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<OwnedOutrightFlagNode> config = classRegistry.getUiNodeConfig(OwnedOutrightFlagNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
-    }
-
     public OwnedOutrightFlagNode(UsageNode parent, String name) {
         super(parent, name);
     }

@@ -22,11 +22,13 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Erro
     }
 
     @Inject
-    void receiveClassRegistry(ClassRegistryImpl classRegistry) {
-        UiNodeConfig<ErrorListNode> config = classRegistry.getUiNodeConfig(ErrorListNode.class, getName());
-        if (config != null) {
-            this.setStatusListener(new ConfigBindingNodeStatusListener<>(this, config));
-        }
+    ErrorListNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public ErrorListNode(ApplicationNode parent, String name) {
@@ -58,16 +60,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Erro
     @JsMethod
     public void setFocus(String value) {
         setStateValue(ApplicationNodeConstants.FOCUS, String.class, value);
-    }
-
-    @Inject
-    ErrorListNodeRuleProvider ruleProvider;
-
-    @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
     }
 
 }
