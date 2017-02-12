@@ -3,7 +3,6 @@ import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ApplicationNavComponent from './ApplicationNavComponent';
 import ApplicationTabsComponent from './ApplicationTabsComponent';
 import ApplicationContentComponent from './ApplicationContentComponent';
-import AddressListComponent from './AddressListComponent';
 import ApplicationErrorsComponent from '../app_data/ApplicationErrorsComponent';
 
 
@@ -48,7 +47,6 @@ export default class ApplicationComponent extends NeutronComponent {
                 <ApplicationNavComponent model={this.model}/>
                 <ApplicationTabsComponent model={this.state.currentModel}/>
                 <ApplicationContentComponent model={this.state.currentModel}/>
-                <AddressListComponent model={this.model.getAddressListNode()} />
                 <ApplicationErrorsComponent
                     visible={this.state.showErrorList}
                     onClose={this.hideErrorList}

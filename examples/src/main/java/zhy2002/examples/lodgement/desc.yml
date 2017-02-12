@@ -88,12 +88,14 @@ rootType:
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
 
         - typeName: LastNameNode
           baseTypeName: StringUiNode
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
 
         - typeName: GenderNode
           baseTypeName: StringUiNode

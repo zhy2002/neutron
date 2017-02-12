@@ -23,6 +23,7 @@ public class FirstNameNode extends StringUiNode<PersonGeneralNode>
 
         setRequired(true);
         setPattern(ApplicationNodeConstants.NAME_PATTERN);
+        setMaxLength(20);
     }
 
 }

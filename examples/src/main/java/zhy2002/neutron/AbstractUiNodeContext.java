@@ -63,6 +63,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
      *
      * @return the root node.
      */
+    @JsMethod
     @Override
     public final R getRootNode() {
         if (root == null) {
