@@ -12,7 +12,6 @@ public class EmploymentEndedNodeConfig extends UiNodeConfig<EmploymentEndedNode>
 
     @Override
     public void postAddToParent() {
-
         if (getOwner().getParent().getParent() instanceof CurrentEmploymentNode) {
             getOwner().setLoadWithParent(false);
         }

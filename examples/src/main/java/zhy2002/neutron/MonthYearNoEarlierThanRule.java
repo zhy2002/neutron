@@ -19,6 +19,10 @@ public abstract class MonthYearNoEarlierThanRule<N extends MonthYearNode<?>> ext
         return getOwner().getParent();
     }
 
+    /**
+     * Must be in the same parent as owner node.
+     * @return owner node ge this returned node.
+     */
     protected abstract MonthYearNode<?> getOtherMonthYearNode();
 
     @Override

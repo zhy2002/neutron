@@ -913,6 +913,8 @@ commonTypes:
       baseTypeName: MonthYearNode
       init:
       - {propertyName: required, value: 'true'}
+      rules:
+      - {typeName: EmploymentEndedNoEarlierThanEmploymentStartedRule, baseTypeName: MonthYearNoEarlierThanRule}
 
   - typeName: UnemployedNode
     baseTypeName: ObjectUiNode

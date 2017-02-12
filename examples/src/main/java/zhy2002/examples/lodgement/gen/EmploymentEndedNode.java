@@ -10,9 +10,20 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public class EmploymentEndedNode extends MonthYearNode<EmployedNode>
 {
+    @Inject
+    EmploymentEndedNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
+    }
+
     public EmploymentEndedNode(EmployedNode parent, String name) {
         super(parent, name);
     }
