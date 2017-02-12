@@ -281,10 +281,14 @@ rootType:
         childTypes:
         - typeName: CreditCheckFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: fixedValue, value: 'true'}
         
         - typeName: ThirdPartyDisclosureFlagNode
           baseTypeName: BooleanUiNode
-          
+          init:
+          - {propertyName: fixedValue, value: 'true'}
+
         - typeName: LegalActionNode
           baseTypeName: YesNoOptionNode
           init:

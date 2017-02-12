@@ -13,6 +13,7 @@ public final class NeutronEventSubjects {
     public static final String HAS_VALUE = "has_value";
     public static final String VALUE_TEXT = "value_text";
     public static final String VALUE_VALID = "value_valid";
+    public static final String FIXED_VALUE = "fixed_value";
     public static final String DISABLED = "disabled";
     public static final String REQUIRED = "required";
     public static final String REQUIRED_MESSAGE = "required_message";

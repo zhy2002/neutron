@@ -17,4 +17,11 @@ public class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setFixedValue(true);
+    }
+
 }

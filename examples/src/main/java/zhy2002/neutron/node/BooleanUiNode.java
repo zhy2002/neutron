@@ -3,8 +3,12 @@ package zhy2002.neutron.node;
 import jsinterop.annotations.JsType;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
+import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @JsType
 public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
@@ -29,8 +33,26 @@ public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Bool
         setValue(Boolean.class, value);
     }
 
+    public Boolean getFixedValue() {
+        return getStateValue(NeutronEventSubjects.FIXED_VALUE);
+    }
+
+    public void setFixedValue(Boolean fixedValue) {
+        setStateValue(NeutronEventSubjects.FIXED_VALUE, Boolean.class, fixedValue);
+    }
+
     @Override
     public Class<Boolean> getValueClass() {
         return Boolean.class;
+    }
+
+    @Inject
+    BooleanUiNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 }

@@ -17,4 +17,11 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNod
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setFixedValue(true);
+    }
+
 }
