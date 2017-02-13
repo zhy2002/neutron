@@ -1,7 +1,7 @@
 import React from 'react';
-import NeutronComponent from '../../bootstrap3/NeutronComponent';
+import ListNeutronComponent from '../../bootstrap3/ListNeutronComponent';
 
-export default class ApplicationErrorsComponent extends NeutronComponent {
+export default class ApplicationErrorsComponent extends ListNeutronComponent {
 
     focusOnField(errorNode) {
         const errorNodeName = errorNode.getName();

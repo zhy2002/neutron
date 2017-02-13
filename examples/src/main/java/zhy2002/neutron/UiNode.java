@@ -10,6 +10,7 @@ import zhy2002.neutron.util.ValueUtil;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Base class for all ui nodes.
@@ -17,6 +18,7 @@ import java.util.*;
  */
 public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodeProperties {
 
+    private static final Logger logger = Logger.getLogger("UiNode");
     private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
 
     private final P parent;
@@ -57,7 +59,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
      */
-    private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
+    protected final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
 
     /**
@@ -509,6 +511,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     final void notifyChange() {
+        logger.warning(this.getClass().getSimpleName() + " notifying change.");
         for (UiNodeChangeListener listener : changeListeners) {
             listener.onUiNodeChanged();
         }

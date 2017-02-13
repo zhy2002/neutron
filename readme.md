@@ -14,6 +14,7 @@ todo
 * per-lender config override (white label)
 * bean validation of domain info
 * support multiple list item types (with one being default)
+* simplify event binding api
 
 ### Engine - find a use case before doing these improvements
 * event notification strategy - self,children,parent; descendant,parent; self; ...

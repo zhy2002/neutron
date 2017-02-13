@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../materialui/NeutronComponent';
+import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import CommonUtil from '../CommonUtil';
 
 

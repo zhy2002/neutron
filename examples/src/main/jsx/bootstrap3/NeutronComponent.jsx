@@ -20,7 +20,7 @@ function nodeNameToLabel(nodeName) {
     return result;
 }
 
-export default class NeutronComponent extends React.Component {
+export default class NeutronComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -32,6 +32,7 @@ export default class NeutronComponent extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.receiveProps(nextProps);
+        this.onUiNodeChanged();
     }
 
     componentDidUpdate() {
@@ -69,8 +70,6 @@ export default class NeutronComponent extends React.Component {
         }
 
         this.label = props.label;
-        console.log('label is:');
-        console.log(this.label);
         if (!this.label) {
             this.label = nodeNameToLabel(model.getName());
         }

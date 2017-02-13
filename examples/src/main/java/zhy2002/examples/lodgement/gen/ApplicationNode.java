@@ -52,7 +52,7 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
         super.initializeState();
 
         setSelectedName("personListNode");
-        setChangeTrackingMode(ApplicationNodeConstants.CONTENT_LEVEL, ChangeTrackingModeEnum.Value);
+        setChangeTrackingMode(ApplicationNodeConstants.CONTENT_LEVEL, ChangeTrackingModeEnum.Always);
     }
 
     @JsMethod

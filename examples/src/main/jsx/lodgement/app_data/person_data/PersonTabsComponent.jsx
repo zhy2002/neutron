@@ -1,8 +1,8 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 import NavPillsComponent from '../../../bootstrap3/NavPillsComponent';
 
-export default class PersonTabsComponent extends NeutronComponent {
+export default class PersonTabsComponent extends ListNeutronComponent {
 
     constructor(props) {
         super(props);

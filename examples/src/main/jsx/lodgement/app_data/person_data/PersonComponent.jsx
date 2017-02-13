@@ -11,6 +11,8 @@ import PersonResponsibleLendComponent from './PersonResponsibleLendComponent';
 export default class PersonComponent extends NeutronComponent {
 
     extractNewState() {
+        console.log('PersonComponent extract state');
+        console.log(this.model);
         const newState = super.extractNewState();
 
         const selectedName = this.model.getSelectedName();
@@ -20,6 +22,7 @@ export default class PersonComponent extends NeutronComponent {
     }
 
     renderPersonContent() {
+        console.log('PersonComponent renderPersonContent');
         const model = this.state.selectedItem;
         const className = model.getSimpleClassName();
         if (className === 'PersonGeneralNode') {

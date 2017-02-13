@@ -19,7 +19,6 @@ export default class ApplicationComponent extends NeutronComponent {
     getCurrentModel() {
         let model = this.model;
         let contentLevel = this.model.getContentLevel();
-        console.log(`content level is: ${contentLevel}`);
         while (contentLevel--) {
             if (model.getSelectedIndex) {
                 model = model.getItem(model.getSelectedIndex());
@@ -41,6 +40,7 @@ export default class ApplicationComponent extends NeutronComponent {
     }
 
     render() {
+        console.log('ApplicationComponent render');
         const errorClass = this.state.showErrorList ? 'show-error-list' : '';
         return (
             <div className={`application-component ${errorClass}`}>

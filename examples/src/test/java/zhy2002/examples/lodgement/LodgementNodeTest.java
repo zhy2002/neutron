@@ -9,11 +9,15 @@ import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
+import zhy2002.examples.lodgement.impl.ApplicationNodeImpl;
+import zhy2002.neutron.UiNodeChangeListener;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.util.SharedDateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -268,6 +272,38 @@ public class LodgementNodeTest {
         personTrustNode.getPersonTrustTypeNode().setValue("Family Trust");
         assertThat(personTrustNode.getPersonTrustNameNode().isDisabled(), equalTo(false));
         assertThat(personTrustNode.getPersonTrustRegistrationDateNode().isDisabled(), equalTo(false));
+    }
+
+    @Test
+    public void shouldUpdateSelectedIndexWhenSetContentNode() {
+        final List<Integer> changeList = new ArrayList<>();
+        UiNodeChangeListener myListener = () -> changeList.add(0);
+        ApplicationNodeImpl applicationNodeImpl = (ApplicationNodeImpl) applicationNode;
+        applicationNodeImpl.addChangeListener(myListener);
+
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode1 = personListNode.createItem();
+        PersonNode personNode2 = personListNode.createItem();
+        PersonNode personNode3 = personListNode.createItem();
+
+        applicationNodeImpl.setContentNode(personNode1);
+        assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
+        assertThat(personListNode.getSelectedIndex(), equalTo(0));
+
+        applicationNodeImpl.setContentNode(personNode3);
+        assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
+        assertThat(personListNode.getSelectedIndex(), equalTo(2));
+
+        applicationNodeImpl.setContentNode(personListNode);
+        assertThat(applicationNodeImpl.getContentLevel(), equalTo(1));
+        assertThat(applicationNodeImpl.getSelectedName(), equalTo(personListNode.getName()));
+
+        applicationNodeImpl.setContentNode(personNode2);
+        assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
+        assertThat(personListNode.getSelectedIndex(), equalTo(1));
+
+        assertThat(changeList, hasSize(5));
+
     }
 
 

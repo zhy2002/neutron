@@ -7,11 +7,14 @@ import zhy2002.neutron.*;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.logging.Logger;
 
 /**
  * Add additional methods for JSX.
  */
 public class ApplicationNodeImpl extends ApplicationNode {
+
+    private static final Logger logger = Logger.getLogger("ApplicationNodeImpl");
 
     @Inject
     ApplicationNodeImpl(@NotNull ApplicationNodeContext context) {
@@ -20,6 +23,7 @@ public class ApplicationNodeImpl extends ApplicationNode {
 
     @JsMethod
     public void setContentNode(UiNode<?> descendant) {
+
         if (descendant == null)
             return;
 

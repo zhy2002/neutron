@@ -1,8 +1,8 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 import PersonEmploymentComponent from './PersonEmploymentComponent';
 
-export default class PersonEmploymentListComponent extends NeutronComponent {
+export default class PersonEmploymentListComponent extends ListNeutronComponent {
 
     constructor(props) {
         super(props);

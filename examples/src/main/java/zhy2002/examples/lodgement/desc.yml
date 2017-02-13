@@ -7,7 +7,7 @@ rootType:
   - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
-  - {propertyName: contentLevel, mode: Value}
+  - {propertyName: contentLevel, mode: Always}
   rules:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}
