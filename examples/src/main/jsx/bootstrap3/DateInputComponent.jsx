@@ -32,6 +32,7 @@ export default class DateInputComponent extends InputComponent {
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode="select"
+                    disabled={this.state.disabled}
                 />
             </div>
         );

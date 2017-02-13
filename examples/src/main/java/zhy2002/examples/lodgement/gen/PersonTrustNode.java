@@ -13,9 +13,9 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustNode extends ObjectUiNode<PersonNode>
 {
-    private PersonTrustTypeNode personTrustTypeNode;
     private PersonTrustNameNode personTrustNameNode;
     private PersonTrustRegistrationDateNode personTrustRegistrationDateNode;
+    private PersonTrustTypeNode personTrustTypeNode;
     private PersonTrustCountryNode personTrustCountryNode;
     private PersonTrustAddressNode personTrustAddressNode;
     private PersonTrustSettlorNotRequiredReasonNode personTrustSettlorNotRequiredReasonNode;
@@ -33,11 +33,6 @@ public class PersonTrustNode extends ObjectUiNode<PersonNode>
     }
 
     @JsMethod
-    public PersonTrustTypeNode getPersonTrustTypeNode() {
-        return personTrustTypeNode;
-    }
-
-    @JsMethod
     public PersonTrustNameNode getPersonTrustNameNode() {
         return personTrustNameNode;
     }
@@ -45,6 +40,11 @@ public class PersonTrustNode extends ObjectUiNode<PersonNode>
     @JsMethod
     public PersonTrustRegistrationDateNode getPersonTrustRegistrationDateNode() {
         return personTrustRegistrationDateNode;
+    }
+
+    @JsMethod
+    public PersonTrustTypeNode getPersonTrustTypeNode() {
+        return personTrustTypeNode;
     }
 
     @JsMethod
@@ -70,12 +70,12 @@ public class PersonTrustNode extends ObjectUiNode<PersonNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        personTrustTypeNode = childFactory.createPersonTrustTypeNode();
-        children.add(personTrustTypeNode);
         personTrustNameNode = childFactory.createPersonTrustNameNode();
         children.add(personTrustNameNode);
         personTrustRegistrationDateNode = childFactory.createPersonTrustRegistrationDateNode();
         children.add(personTrustRegistrationDateNode);
+        personTrustTypeNode = childFactory.createPersonTrustTypeNode();
+        children.add(personTrustTypeNode);
         personTrustCountryNode = childFactory.createPersonTrustCountryNode();
         children.add(personTrustCountryNode);
         personTrustAddressNode = childFactory.createPersonTrustAddressNode();

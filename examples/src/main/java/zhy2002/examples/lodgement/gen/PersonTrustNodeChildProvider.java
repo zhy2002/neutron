@@ -6,9 +6,9 @@ import javax.inject.Singleton;
 
 
 interface PersonTrustNodeChildFactory {
-    PersonTrustTypeNode createPersonTrustTypeNode();
     PersonTrustNameNode createPersonTrustNameNode();
     PersonTrustRegistrationDateNode createPersonTrustRegistrationDateNode();
+    PersonTrustTypeNode createPersonTrustTypeNode();
     PersonTrustCountryNode createPersonTrustCountryNode();
     PersonTrustAddressNode createPersonTrustAddressNode();
     PersonTrustSettlorNotRequiredReasonNode createPersonTrustSettlorNotRequiredReasonNode();
@@ -63,16 +63,6 @@ public class PersonTrustNodeChildProvider {
         return this.personTrustIndustryNodeInjector;
     }
 
-    protected PersonTrustTypeNode newPersonTrustTypeNode(
-        PersonTrustNode parent,
-        String name
-    ) {
-        return new PersonTrustTypeNode(parent, name);
-    }
-
-    protected void configurePersonTrustTypeNode(PersonTrustTypeNode node) {
-    }
-
     protected PersonTrustNameNode newPersonTrustNameNode(
         PersonTrustNode parent,
         String name
@@ -91,6 +81,16 @@ public class PersonTrustNodeChildProvider {
     }
 
     protected void configurePersonTrustRegistrationDateNode(PersonTrustRegistrationDateNode node) {
+    }
+
+    protected PersonTrustTypeNode newPersonTrustTypeNode(
+        PersonTrustNode parent,
+        String name
+    ) {
+        return new PersonTrustTypeNode(parent, name);
+    }
+
+    protected void configurePersonTrustTypeNode(PersonTrustTypeNode node) {
     }
 
     protected PersonTrustCountryNode newPersonTrustCountryNode(
@@ -146,14 +146,6 @@ public class PersonTrustNodeChildProvider {
         }
 
         @Override
-        public PersonTrustTypeNode createPersonTrustTypeNode() {
-            PersonTrustTypeNode node = newPersonTrustTypeNode(parent, "personTrustTypeNode");
-            personTrustTypeNodeInjector.injectMembers(node);
-            configurePersonTrustTypeNode(node);
-            return node;
-        }
-
-        @Override
         public PersonTrustNameNode createPersonTrustNameNode() {
             PersonTrustNameNode node = newPersonTrustNameNode(parent, "personTrustNameNode");
             personTrustNameNodeInjector.injectMembers(node);
@@ -166,6 +158,14 @@ public class PersonTrustNodeChildProvider {
             PersonTrustRegistrationDateNode node = newPersonTrustRegistrationDateNode(parent, "personTrustRegistrationDateNode");
             personTrustRegistrationDateNodeInjector.injectMembers(node);
             configurePersonTrustRegistrationDateNode(node);
+            return node;
+        }
+
+        @Override
+        public PersonTrustTypeNode createPersonTrustTypeNode() {
+            PersonTrustTypeNode node = newPersonTrustTypeNode(parent, "personTrustTypeNode");
+            personTrustTypeNodeInjector.injectMembers(node);
+            configurePersonTrustTypeNode(node);
             return node;
         }
 

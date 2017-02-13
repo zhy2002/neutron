@@ -11,7 +11,7 @@ import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
-import zhy2002.neutron.util.*;
+import zhy2002.neutron.util.SharedDateTimeFormat;
 
 import java.util.Date;
 import java.util.function.Predicate;
@@ -257,6 +257,18 @@ public class LodgementNodeTest {
 
     }
 
+    @Test
+    public void shouldFireRefreshEventWhenNodeLoads() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        PersonTrustNode personTrustNode = personNode.getPersonTrustNode();
+        assertThat(personTrustNode.getPersonTrustNameNode().isDisabled(), equalTo(true));
+        assertThat(personTrustNode.getPersonTrustRegistrationDateNode().isDisabled(), equalTo(true));
+
+        personTrustNode.getPersonTrustTypeNode().setValue("Family Trust");
+        assertThat(personTrustNode.getPersonTrustNameNode().isDisabled(), equalTo(false));
+        assertThat(personTrustNode.getPersonTrustRegistrationDateNode().isDisabled(), equalTo(false));
+    }
 
 
 }

@@ -31,6 +31,7 @@ public final class NeutronEventSubjects {
     public static final String HAS_ERROR = "hasError";
     public static final String MESSAGE = "message";
     public static final String DEFAULT_REFRESH_REASON = "";
+    public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";
     public static final String RANGE_MESSAGE = "range_message";
     public static final String MIN_VALUE = "min_value";
     public static final String MAX_VALUE = "max_value";

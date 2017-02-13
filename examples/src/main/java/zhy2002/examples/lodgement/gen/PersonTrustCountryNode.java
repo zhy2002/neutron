@@ -17,4 +17,11 @@ public class PersonTrustCountryNode extends BaseCountryNode<PersonTrustNode>
         super(parent, name);
     }
 
+    @Override
+    protected void initializeState() {
+        super.initializeState();
+
+        setRequired(true);
+    }
+
 }

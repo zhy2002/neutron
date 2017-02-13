@@ -239,9 +239,9 @@ rootType:
       - typeName: PersonTrustNode
         baseTypeName: ObjectUiNode
         children:
-        - {typeName: PersonTrustTypeNode}
         - {typeName: PersonTrustNameNode}
         - {typeName: PersonTrustRegistrationDateNode}
+        - {typeName: PersonTrustTypeNode}
         - {typeName: PersonTrustCountryNode}
         - {typeName: PersonTrustAddressNode}
         - {typeName: PersonTrustSettlorNotRequiredReasonNode}
@@ -253,6 +253,8 @@ rootType:
           - {name: options, typeName: Object}
           init:
           - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
+          rules:
+          - {typeName: TrustTypeChangedRule}
 
         - typeName: PersonTrustNameNode
           baseTypeName: StringUiNode
@@ -262,6 +264,8 @@ rootType:
 
         - typeName: PersonTrustCountryNode
           baseTypeName: BaseCountryNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: PersonTrustAddressNode
           baseTypeName: AddressNode

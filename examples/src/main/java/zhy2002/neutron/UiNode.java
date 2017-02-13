@@ -484,6 +484,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         getContext().processEvent(refreshUiNodeEvent);
     }
 
+    public final void refreshWithReason(String reason) {
+        RefreshUiNodeEvent refreshUiNodeEvent = new RefreshUiNodeEvent(this, reason);
+        EngineEventModeEnum currentMode = getContext().getEventMode();
+        getContext().setEventMode(EngineEventModeEnum.Post);
+        if(!currentMode.equals(EngineEventModeEnum.Post)) {
+            try {
+                getContext().processEvent(refreshUiNodeEvent);
+            }finally {
+                getContext().setEventMode(currentMode);
+            }
+        }
+
+    }
+
     @JsMethod
     public final void addChangeListener(UiNodeChangeListener listener) {
         this.changeListeners.add(listener);

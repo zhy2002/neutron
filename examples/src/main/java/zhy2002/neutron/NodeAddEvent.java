@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.util.NeutronEventSubjects;
+
 /**
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
@@ -27,6 +29,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, ?, N
     @Override
     public void apply() {
         target.attach();
+        target.refreshWithReason(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON);
     }
 
     @SuppressWarnings("unchecked")
