@@ -40,6 +40,7 @@ public final class NeutronEventSubjects {
     public static final String MIN_LENGTH = "min_length";
     public static final String INVALID_CHARS_MESSAGE = "invalid_chars_message";
     public static final String INVALID_CHARS = "invalid_chars";
+    public static final String INDEX = "index";
     public static final String NODE_LABEL = "node_label";
     public static final String PATH_LABEL = "path_label";
     public static final String SELECTED_INDEX = "selectedIndex";

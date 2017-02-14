@@ -5,10 +5,14 @@ import zhy2002.examples.lodgement.gen.LastNameNode;
 import zhy2002.examples.lodgement.gen.PersonNode;
 import zhy2002.examples.lodgement.gen.rule.UpdatePersonNodeLabelRule;
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.RefreshEventBinding;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -20,10 +24,18 @@ public class UpdatePersonNodeLabelRuleImpl extends UpdatePersonNodeLabelRule {
 
     @Override
     protected Collection<EventBinding> createEventBindings() {
-        return Collections.singletonList(
+        return Arrays.asList(
                 new StringStateChangeEventBinding(
                         this::filter,
                         this::updateLabel
+                ),
+                new IntegerStateChangeEventBinding(
+                        this::updateLabel,
+                        Collections.singletonList(NeutronEventSubjects.INDEX)
+                ),
+                new RefreshEventBinding(
+                        this::updateLabel,
+                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
                 )
         );
     }
@@ -36,20 +48,20 @@ public class UpdatePersonNodeLabelRuleImpl extends UpdatePersonNodeLabelRule {
         return getPersonNode().getPersonGeneralNode().getLastNameNode();
     }
 
-    private boolean filter(StringStateChangeEvent event) {
+    private boolean filter(UiNodeEvent event) {
         FirstNameNode firstNameNode = getFirstNameNode();
         LastNameNode lastNameNode = getLastNameNode();
         return event.getOrigin() == firstNameNode || event.getOrigin() == lastNameNode;
     }
 
-    private void updateLabel(StringStateChangeEvent event) {
+    private void updateLabel(UiNodeEvent event) {
         String firstName = getFirstNameNode().getValue();
         String lastName = getLastNameNode().getValue();
 
-        if(!ValueUtil.isEmpty(firstName) || !ValueUtil.isEmpty(lastName)) {
+        if (!ValueUtil.isEmpty(firstName) || !ValueUtil.isEmpty(lastName)) {
             getPersonNode().setNodeLabel(firstName + " " + lastName);
         } else {
-            getPersonNode().setNodeLabel(null);
+            getPersonNode().setNodeLabel("[Person " + (getPersonNode().getIndex() + 1) + "]");
         }
     }
 }

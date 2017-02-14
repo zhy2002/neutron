@@ -19,20 +19,30 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                     <li>
                         <a tabIndex="0">
                             <div>
-                                <span className="glyphicon glyphicon-pencil"/>
+                                <span className="glyphicon glyphicon-refresh"/>
                             </div>
                             <div>
-                                <small>Update</small>
+                                <small>Refresh</small>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a tabIndex="0">
                             <div>
-                                <span className="glyphicon glyphicon-refresh"/>
+                                <span className="glyphicon glyphicon-chevron-left"/>
                             </div>
                             <div>
-                                <small>Refresh</small>
+                                <small>Previous Page</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0">
+                            <div>
+                                <span className="glyphicon glyphicon-chevron-right"/>
+                            </div>
+                            <div>
+                                <small>Next Page</small>
                             </div>
                         </a>
                     </li>

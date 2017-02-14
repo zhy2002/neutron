@@ -306,5 +306,38 @@ public class LodgementNodeTest {
 
     }
 
+    @Test
+    public void listItemIndexIsSetCorrectly() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+
+        PersonNode personNode1 = personListNode.createItem();
+        assertThat(personNode1.getIndex(), equalTo(0));
+
+        PersonNode personNode2 = personListNode.createItem();
+        assertThat(personNode2.getIndex(), equalTo(1));
+
+        personListNode.removeItem(personNode1);
+        assertThat(personNode1.getIndex(), equalTo(-1));
+        assertThat(personNode2.getIndex(), equalTo(0));
+
+        personListNode.removeItem(personNode2);
+        assertThat(personNode2.getIndex(), equalTo(-1));
+    }
+
+    @Test
+    public void personNodeLabelIsCorrectlySet() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+
+        PersonNode personNode1 = personListNode.createItem();
+        assertThat(personNode1.getNodeLabel(), equalTo("[Person 1]"));
+
+        PersonNode personNode2 = personListNode.createItem();
+        assertThat(personNode2.getNodeLabel(), equalTo("[Person 2]"));
+
+        personNode1.getPersonGeneralNode().getFirstNameNode().setValue("John");
+        personNode1.getPersonGeneralNode().getLastNameNode().setValue("Rambo");
+        assertThat(personNode1.getNodeLabel(), equalTo("John Rambo"));
+    }
+
 
 }

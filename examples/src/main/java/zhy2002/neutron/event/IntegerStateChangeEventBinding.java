@@ -14,7 +14,15 @@ public class IntegerStateChangeEventBinding extends StateChangeEventBinding<Inte
             UiNodeEventFilter<IntegerStateChangeEvent> filter,
             UiNodeEventHandler<IntegerStateChangeEvent> handler,
             Collection<String> subjects,
-            TickPhase phase) {
+            TickPhase phase
+    ) {
         super(filter, handler, IntegerStateChangeEvent.class, subjects, phase);
+    }
+
+    public IntegerStateChangeEventBinding(
+            UiNodeEventHandler<IntegerStateChangeEvent> handler,
+            Collection<String> subjects
+    ) {
+        this(null, handler, subjects, null);
     }
 }

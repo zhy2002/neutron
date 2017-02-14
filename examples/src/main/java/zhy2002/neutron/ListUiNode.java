@@ -90,7 +90,7 @@ public abstract class ListUiNode<
         return getContext().createNodeAddEvent(getItemClass(), item);
     }
 
-    protected  abstract <M extends N> N createItemNode(Class<M> itemClass, String name);
+    protected abstract <M extends N> N createItemNode(Class<M> itemClass, String name);
 
     @JsMethod
     public N removeByIndex(int index) {
@@ -110,17 +110,17 @@ public abstract class ListUiNode<
     @SuppressWarnings("unchecked")
     public N removeByName(String name) {
         UiNode<?> child = getChild(name);
-        if(child == null)
+        if (child == null)
             return null;
 
-        N typed = (N)child;
+        N typed = (N) child;
         removeItem(typed);
         return typed;
     }
 
     @SuppressWarnings("unchecked")
     public N getItemByName(String name) {
-        return (N)getChild(name);
+        return (N) getChild(name);
     }
 
     public int getChildSequenceNumber() {
@@ -148,18 +148,23 @@ public abstract class ListUiNode<
     @Override
     protected void addChild(UiNode<?> child) {
         super.addChild(child);
-
+        child.setIndex(getItemCount() - 1);
         setHasValue(hasValue());
     }
 
     @Override
     protected void removeChild(UiNode<?> child) {
         super.removeChild(child);
+        int index = child.getIndex();
+        child.setIndex(null);
+        for (int i = index; i < getItemCount(); i++) {
+            getItem(i).setIndex(i);
+        }
 
         setHasValue(hasValue());
 
         Integer selectedIndex = getStateValue(NeutronEventSubjects.SELECTED_INDEX);
-        if(selectedIndex != null && selectedIndex >= getItemCount()) {
+        if (selectedIndex != null && selectedIndex >= getItemCount()) {
             setSelectedIndex(Math.max(0, getItemCount() - 1));
         }
     }

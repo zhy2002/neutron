@@ -28,6 +28,14 @@ public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent
 
     public RefreshEventBinding(
             UiNodeEventFilter<RefreshUiNodeEvent> filter,
+            UiNodeEventHandler<RefreshUiNodeEvent> handler,
+            Collection<String> subjects) {
+        this(filter, handler, subjects, null);
+    }
+
+
+    public RefreshEventBinding(
+            UiNodeEventFilter<RefreshUiNodeEvent> filter,
             UiNodeEventHandler<RefreshUiNodeEvent> handler) {
         this(filter, handler, null, null);
     }

@@ -37,6 +37,9 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     protected void initializeChildren() {
         List<UiNode<?>> children = createChildren();
         children.forEach(UiNode::addToParent);
+        for(int i=0; i<children.size(); i++) {
+            children.get(i).setIndex(i);
+        }
         children.forEach(node -> {
             if (node.getLoadWithParent()) {
                 node.load();

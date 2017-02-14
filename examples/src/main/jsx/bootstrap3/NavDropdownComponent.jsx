@@ -77,29 +77,7 @@ export default class NavDropdownComponent extends ListNeutronComponent {
         );
     }
 
-    renderDummy() {
-        return (
-            <li className={`dropdown${this.state.open ? ' open' : ''}`} onMouseLeave={this.close}>
-                <a tabIndex="0" className="dropdown-toggle" onMouseEnter={this.open} onClick={this.toggle}>
-                    {this.props.children} <span className="caret"/>
-                </a>
-                <ul className="dropdown-menu">
-                    <li><a tabIndex="0">Action</a></li>
-                    <li><a tabIndex="0">Another action</a></li>
-                    <li><a tabIndex="0">Something else here</a></li>
-                    <li role="separator" className="divider"/>
-                    <li><a tabIndex="0">Separated link</a></li>
-                    <li role="separator" className="divider"/>
-                    <li><a tabIndex="0">One more separated link</a></li>
-                </ul>
-            </li>
-        );
-    }
-
     render() {
-        if (!this.props.model.getName)
-            return this.renderDummy();
-
         return (
             <li className={`dropdown${this.state.open ? ' open' : ''}`} onMouseLeave={this.close}>
                 <a

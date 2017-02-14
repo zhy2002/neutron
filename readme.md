@@ -114,10 +114,9 @@ React material is not mature enough. Decided to go with Bootstrap 3.
 
 
 
+proper error handling and logging
 
-
-
-
+todo loading spinner
 
 todo create a dialog component:
 backdrop:

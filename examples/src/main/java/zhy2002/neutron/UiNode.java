@@ -3,7 +3,6 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
-import zhy2002.neutron.rule.ClearErrorsForDisabledNodeRule;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -169,10 +168,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     @JsMethod
     public final int getIndex() {
-        if (parent != null) {
-            return parent.indexOf(this);
-        }
-        return -1;
+        Integer index = getStateValue(NeutronEventSubjects.INDEX);
+        return index == null ? -1 : index;
+    }
+
+    //set by parent node
+    final void setIndex(Integer index) {
+        setStateValue(NeutronEventSubjects.INDEX, Integer.class, index);
     }
 
     //region state methods
@@ -211,7 +213,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     @SuppressWarnings("unchecked")
     protected final <T> T getPreStateValue(String key) {
-        return (T)preState.get(key);
+        return (T) preState.get(key);
     }
 
     /**
@@ -490,10 +492,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         RefreshUiNodeEvent refreshUiNodeEvent = new RefreshUiNodeEvent(this, reason);
         EngineEventModeEnum currentMode = getContext().getEventMode();
         getContext().setEventMode(EngineEventModeEnum.Post);
-        if(!currentMode.equals(EngineEventModeEnum.Post)) {
+        if (!currentMode.equals(EngineEventModeEnum.Post)) {
             try {
                 getContext().processEvent(refreshUiNodeEvent);
-            }finally {
+            } finally {
                 getContext().setEventMode(currentMode);
             }
         }
@@ -672,7 +674,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     public boolean inheritsFrom(String simpleName) {
         Class<?> clazz = this.getClass();
         do {
-            if(clazz.getSimpleName().equals(simpleName))
+            if (clazz.getSimpleName().equals(simpleName))
                 return true;
             clazz = clazz.getSuperclass();
         } while (clazz != null);
