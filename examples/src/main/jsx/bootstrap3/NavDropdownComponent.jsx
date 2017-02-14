@@ -1,7 +1,16 @@
 import React from 'react';
 import NodeLabelComponent from './NodeLabelComponent';
+import ListNeutronComponent from './ListNeutronComponent';
 
-export default class NavDropdownComponent extends React.PureComponent {
+function getClass(model, item) {
+    console.log('call getClass');
+    if (model.getSelectedIndex() === item.getIndex())
+        return 'active';
+
+    return '';
+}
+
+export default class NavDropdownComponent extends ListNeutronComponent {
 
     constructor(props) {
         super(props);
@@ -48,19 +57,18 @@ export default class NavDropdownComponent extends React.PureComponent {
             return null;
 
         const items = [];
-        let key = 1;
         for (let i = 0; i < model.getItemCount(); i++) {
             const item = model.getItem(i);
+            const key = item.getUniqueId();
             items.push(
-                <li key={key}>
+                <li key={key} className={getClass(model, item)}>
                     <a tabIndex="0" onClick={() => this.selectItem(item)}>
-                        <NodeLabelComponent model={item} />
+                        <NodeLabelComponent model={item}/>
                     </a>
                 </li>
             );
-            key++;
         }
-        items.push(<li key={key}><a tabIndex="0" onClick={this.createNewItem}>Create New</a></li>);
+        items.push(<li key="create"><a tabIndex="0" onClick={this.createNewItem}>Create New</a></li>);
 
         return (
             <ul className="dropdown-menu">
@@ -115,7 +123,6 @@ export default class NavDropdownComponent extends React.PureComponent {
 }
 
 NavDropdownComponent.propTypes = {
-    model: React.PropTypes.object.isRequired,
     onSelect: React.PropTypes.func.isRequired,
     children: React.PropTypes.any.isRequired
 };

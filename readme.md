@@ -1,13 +1,11 @@
 todo 
 ----------------- 
-* pre-rule can stop update from happening
+* Cancel (stop here or rollback) an event or a cycle from within a rule
 * performance tuning
 * implement rule priority
-* implement router
-* deletable node flag
+* implement router - navigate to view via url
 * implement load defaults functionality (auto populate)
 * implement layout components to reduce duplication
-* use dagger2 for di
 * write a proper code gen tool with friendly logging and error messages
 * deferred event execution - if the user types in many characters quickly
   we should wait for a pause before we do an update. 
@@ -15,16 +13,15 @@ todo
 * bean validation of domain info
 * support multiple list item types (with one being default)
 * simplify event binding api
+* integrate with font awesome
+
 
 ### Engine - find a use case before doing these improvements
-* event notification strategy - self,children,parent; descendant,parent; self; ...
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
 * more features of drools rules (rule metadata/configuration)
-* rule max change level detection
 * when deciding if a rule should be triggered, check the event type considering inheritance
 
 ### Frontend - needs a more comprehensive example first
-* upgrade example front end to react material
 * improve dev process (webpack, live-reload, jasmine to test all the examples)
 * react component scaffolding 
 * parser/transformer coversion between gwt and react
@@ -105,6 +102,15 @@ Things Neutron can do
 - Concrete generated
 - Variant hand coded
 
+# Finished
+* use dagger2 for di <br/>
+no scope hierarchy, one scope instance per node context
+* event notification strategy - self,children,parent; descendant,parent; self; ... <br/>
+It is decided each type of event has its fixed digestion order.
+* rule max change level detection <br/>
+Cycle has a rule activation limit.
+* upgrade example front end to react material
+React material is not mature enough. Decided to go with Bootstrap 3.
 
 
 
@@ -113,7 +119,15 @@ Things Neutron can do
 
 
 
-
-
+todo create a dialog component:
+backdrop:
+<div id="mydiv" style="
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+"></div>
 
 

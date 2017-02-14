@@ -8,7 +8,7 @@ export default class LodgementContentComponent extends React.PureComponent {
         const model = this.props.model;
         if (model.getName() === 'appManagerNode') {
             return (
-                <ApplicationListComponent model={model}/>
+                <ApplicationListComponent model={model} onLoadApp={this.props.onLoadApp}/>
             );
         }
         return (
@@ -27,5 +27,6 @@ export default class LodgementContentComponent extends React.PureComponent {
 }
 
 LodgementContentComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
+    model: React.PropTypes.object.isRequired,
+    onLoadApp: React.PropTypes.func.isRequired
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import NavDropdownComponent from '../bootstrap3/NavDropdownComponent';
+import DummyNavDropdownComponent from '../bootstrap3/DummyNavDropdownComponent';
 
 export default class LodgementHeaderComponent extends React.PureComponent {
 
@@ -11,12 +11,12 @@ export default class LodgementHeaderComponent extends React.PureComponent {
                         <span className="navbar-brand">Brand Name</span>
                     </div>
                     <ul className="nav navbar-nav navbar-right">
-                        <NavDropdownComponent model={{}} onSelect={() => {}}>
+                        <DummyNavDropdownComponent model={{}} onSelect={() => {}}>
                             User Name
-                        </NavDropdownComponent>
-                        <NavDropdownComponent model={{}} onSelect={() => {}}>
+                        </DummyNavDropdownComponent>
+                        <DummyNavDropdownComponent model={{}} onSelect={() => {}}>
                             <span className="glyphicon glyphicon-user"/>
-                        </NavDropdownComponent>
+                        </DummyNavDropdownComponent>
                     </ul>
                 </div>
             </nav>

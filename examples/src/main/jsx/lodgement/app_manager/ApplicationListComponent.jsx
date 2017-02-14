@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default class ApplicationListComponent extends React.PureComponent {
 
     render() {
@@ -9,138 +8,76 @@ export default class ApplicationListComponent extends React.PureComponent {
                 <table className="table">
                     <thead>
                     <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                        <th>Column 4</th>
-                        <th>Column 5</th>
-                        <th>Column 6</th>
-                        <th>Column 7</th>
-                        <th>Column 8</th>
-                        <th>Column 9</th>
+                        <th>Applicant Name</th>
+                        <th>Owner</th>
+                        <th>Loan Amount</th>
+                        <th>Loan Status</th>
+                        <th>Date Updated</th>
+                        <th>Date Lodged</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>start</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
+                        <td>
+                            <a tabIndex="0" onClick={() => this.props.onLoadApp(1)}>
+                                Test User<br/>
+                                Test Partner
+                            </a>
+                        </td>
+                        <td>Loan Admin</td>
+                        <td>$300,000</td>
+                        <td>Created</td>
+                        <td>2017-02-11 14:32:11</td>
+                        <td />
                     </tr>
                     <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
+                        <td>
+                            <a tabIndex="0" onClick={() => this.props.onLoadApp(2)}>
+                                John Rambo
+                            </a>
+                        </td>
+                        <td>Loan Admin</td>
+                        <td>$450,000</td>
+                        <td>Created</td>
+                        <td>2017-02-12 09:34:22</td>
+                        <td/>
                     </tr>
                     <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
+                        <td>
+                            <a tabIndex="0" onClick={() => this.props.onLoadApp(3)}>
+                                Michael Jackson
+                            </a>
+                        </td>
+                        <td>Loan Assistant</td>
+                        <td>$420,000</td>
+                        <td>Lodged</td>
+                        <td>2017-02-13 11:24:21</td>
+                        <td>2017-02-13 12:05:01</td>
                     </tr>
                     <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
+                        <td>
+                            <a tabIndex="0" onClick={() => this.props.onLoadApp(4)}>
+                                Terminator<br/>
+                                Robocop
+                            </a>
+                        </td>
+                        <td>Loan Assistant</td>
+                        <td>$250,200</td>
+                        <td>Approved</td>
+                        <td>2017-01-22 10:12:59</td>
+                        <td>2017-02-08 13:42:11</td>
                     </tr>
                     <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>data1</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
-                    </tr>
-                    <tr>
-                        <td>end</td>
-                        <td>data2</td>
-                        <td>data3</td>
-                        <td>data4</td>
-                        <td>data5</td>
-                        <td>data6</td>
-                        <td>data7</td>
-                        <td>data8</td>
-                        <td>data9</td>
+                        <td>
+                            <a tabIndex="0" onClick={() => this.props.onLoadApp(5)}>
+                                Will Smith
+                            </a>
+                        </td>
+                        <td>Loan Assistant</td>
+                        <td>$375,000</td>
+                        <td>Created</td>
+                        <td>2017-02-13 15:30:47</td>
+                        <td />
                     </tr>
                     </tbody>
                 </table>
@@ -151,5 +88,6 @@ export default class ApplicationListComponent extends React.PureComponent {
 }
 
 ApplicationListComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
+    model: React.PropTypes.object.isRequired,
+    onLoadApp: React.PropTypes.func.isRequired
 };

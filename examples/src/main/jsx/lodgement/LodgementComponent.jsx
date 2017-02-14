@@ -1,9 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
+import CommonUtil from './CommonUtil';
+
 
 const lenders = ['NAB', 'CBA', 'Westpac'];
 let nextLender = 0;
@@ -59,7 +62,7 @@ export default class LodgementComponent extends React.PureComponent {
             const openApps = this.state.openApps;
             if (openApps.length >= 5) {
                 window.alert('Cannot open more tabs!');
-                return;
+                return null;
             }
 
             const newApp = createApplicationNode();
@@ -69,6 +72,22 @@ export default class LodgementComponent extends React.PureComponent {
                 openApps: newApps,
                 selectedIndex: newApps.length
             });
+            return newApp;
+        };
+
+        this.onLoadApp = (id) => {
+            const url = `json/application/app${id}.json`;
+            axios.get(url).then(
+                (response) => {
+                    console.log('response is:');
+                    console.log(response);
+                    const model = this.onNewApp();
+                    const context = model.getContext();
+                    context.beginSession();
+                    CommonUtil.setValue(model, response.data);
+                    context.commitSession();
+                }
+            );
         };
     }
 
@@ -85,7 +104,7 @@ export default class LodgementComponent extends React.PureComponent {
                     closeTab={this.closeTab}
                 />
                 <LodgementToolbarComponent model={selectedModel} onNewApp={this.onNewApp}/>
-                <LodgementContentComponent model={selectedModel} />
+                <LodgementContentComponent model={selectedModel} onLoadApp={this.onLoadApp}/>
             </div>
         );
     }
