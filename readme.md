@@ -1,5 +1,23 @@
 todo 
 ----------------- 
+1. todo create a dialog component:
+backdrop:
+<div id="mydiv" style="
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.6;
+"></div>
+
+2. context menu
+3. todo loading spinner
+
+
+
+
+
 * Cancel (stop here or rollback) an event or a cycle from within a rule
 * performance tuning
 * implement rule priority
@@ -57,6 +75,7 @@ todo
 * api for getting old value, inherited value and stuff
 * init or fix value event
 * warning rules and suppressed warning
+* proper error handling and logging
 
 = event trigger opportunity is up to the ui implementor
 = states should be independent, e.g. parent.disabled child.disabled should be independent. getValue v.s. getInheritedValue
@@ -111,22 +130,5 @@ It is decided each type of event has its fixed digestion order.
 Cycle has a rule activation limit.
 * upgrade example front end to react material
 React material is not mature enough. Decided to go with Bootstrap 3.
-
-
-
-proper error handling and logging
-
-todo loading spinner
-
-todo create a dialog component:
-backdrop:
-<div id="mydiv" style="
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.6;
-"></div>
 
 

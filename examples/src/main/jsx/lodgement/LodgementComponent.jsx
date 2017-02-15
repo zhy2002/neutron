@@ -5,8 +5,7 @@ import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
-import CommonUtil from './CommonUtil';
-
+import CommonUtil from './services/CommonUtil';
 
 const lenders = ['NAB', 'CBA', 'Westpac'];
 let nextLender = 0;

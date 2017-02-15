@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import CommonUtil from '../CommonUtil';
+import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
+import CommonUtil from '../services/CommonUtil';
 
 
 export default class ApplicationToolbarComponent extends NeutronComponent {
@@ -9,17 +10,16 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
     constructor(props) {
         super(props);
 
+        this.state.modelJson = null;
+
         this.validate = () => {
             console.log('validating...');
             this.model.refresh();
         };
 
         this.getJson = () => {
-            const obj = CommonUtil.extractValue(this.model);
-            const json = JSON.stringify(obj);
-            console.log('extracted object:');
-            console.log(json);
-            window.alert(json);
+            const json = this.getModelValueJson();
+            this.setState({modelJson: json});
         };
 
         this.loadJson = () => {
@@ -35,6 +35,14 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                 }
             );
         };
+    }
+
+    getModelValueJson() {
+        const obj = CommonUtil.extractValue(this.model);
+        const json = JSON.stringify(obj);
+        console.log('extracted object:');
+        console.log(json);
+        return json;
     }
 
     render() {
@@ -92,6 +100,14 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                 </ul>
+                <ModalDialogComponent
+                    title="Application Value JSON"
+                    model={this.model}
+                    show={this.state.modelJson !== null}
+                    onClose={() => this.setState({modelJson: null})}
+                >
+                    <p className="force-wrap">{this.state.modelJson}</p>
+                </ModalDialogComponent>
             </div>
         );
     }

@@ -105,6 +105,14 @@ html, body {
       font-size: 1.75em;
     }
   }
+
+  .modal {
+    color: #333;
+  }
+}
+
+.force-wrap {
+  word-break: break-all;
 }
 
 .application-nav-component {
@@ -506,5 +514,11 @@ a[tabindex] {
 }
 
 .application-list-component tbody tr {
+}
+
+.modal-dialog-component {
+  .modal {
+    display: block;
+  }
 }
 //endregion
