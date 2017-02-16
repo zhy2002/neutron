@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class PersonTrustTypeNode extends StringUiNode<PersonTrustNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustTypeNode.class;
+    }
+
     @Inject
     PersonTrustTypeNodeRuleProvider ruleProvider;
 

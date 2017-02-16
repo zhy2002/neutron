@@ -24,6 +24,11 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ExpenseNode.class;
+    }
+
     public ExpenseNode(ExpenseListNode parent, String name) {
         super(parent, name);
     }

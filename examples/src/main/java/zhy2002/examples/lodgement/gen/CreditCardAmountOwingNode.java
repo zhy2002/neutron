@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardAmountOwingNode extends BaseCurrencyNode<CreditCardNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCardAmountOwingNode.class;
+    }
+
     public CreditCardAmountOwingNode(CreditCardNode parent, String name) {
         super(parent, name);
     }

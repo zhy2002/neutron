@@ -25,6 +25,11 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PhoneInfoNode.class;
+    }
+
     @Inject
     PhoneInfoNodeRuleProvider ruleProvider;
 

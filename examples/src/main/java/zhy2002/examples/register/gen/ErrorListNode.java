@@ -20,6 +20,11 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNo
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ErrorListNode.class;
+    }
+
     public ErrorListNode(RegisterNode parent, String name) {
         super(parent, name);
     }

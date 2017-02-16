@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PropertyPurseNode extends BooleanUiNode<PropertyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PropertyPurseNode.class;
+    }
+
     public PropertyPurseNode(PropertyNode parent, String name) {
         super(parent, name);
     }

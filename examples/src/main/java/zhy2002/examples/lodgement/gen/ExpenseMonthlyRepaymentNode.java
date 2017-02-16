@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ExpenseMonthlyRepaymentNode.class;
+    }
+
     public ExpenseMonthlyRepaymentNode(ExpenseNode parent, String name) {
         super(parent, name);
     }

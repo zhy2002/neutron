@@ -13,6 +13,11 @@ import zhy2002.examples.register.data.*;
 
 public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ErrorNode.class;
+    }
+
     public ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PropertySubTypeNode extends StringUiNode<PropertyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PropertySubTypeNode.class;
+    }
+
     public PropertySubTypeNode(PropertyNode parent, String name) {
         super(parent, name);
     }

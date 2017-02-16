@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class MobileNumberNode extends StringUiNode<PersonContactNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MobileNumberNode.class;
+    }
+
     public MobileNumberNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LoanLenderNameNode extends StringUiNode<LoanNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LoanLenderNameNode.class;
+    }
+
     public LoanLenderNameNode(LoanNode parent, String name) {
         super(parent, name);
     }

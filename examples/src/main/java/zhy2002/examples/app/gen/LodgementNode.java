@@ -24,6 +24,11 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LodgementNode.class;
+    }
+
     @Inject
     LodgementNodeRuleProvider ruleProvider;
 

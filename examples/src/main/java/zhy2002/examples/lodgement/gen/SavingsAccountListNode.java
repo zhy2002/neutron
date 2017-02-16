@@ -20,6 +20,11 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SavingsAccountListNode.class;
+    }
+
     public SavingsAccountListNode(AssetsNode parent, String name) {
         super(parent, name);
     }

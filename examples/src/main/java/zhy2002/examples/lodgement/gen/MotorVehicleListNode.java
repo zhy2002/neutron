@@ -20,6 +20,11 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleList
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MotorVehicleListNode.class;
+    }
+
     public MotorVehicleListNode(AssetsNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AddressRefUiNode extends ObjectUiNode<AddressListNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AddressRefUiNode.class;
+    }
+
     public AddressRefUiNode(AddressListNode parent, String name) {
         super(parent, name);
     }

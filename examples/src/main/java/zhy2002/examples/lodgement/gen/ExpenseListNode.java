@@ -20,6 +20,11 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseLis
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ExpenseListNode.class;
+    }
+
     public ExpenseListNode(FinancialPositionNode parent, String name) {
         super(parent, name);
     }

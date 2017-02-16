@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SubmissionNode extends ObjectUiNode<ApplicationNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SubmissionNode.class;
+    }
+
     public SubmissionNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

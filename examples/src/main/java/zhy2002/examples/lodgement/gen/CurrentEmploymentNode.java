@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CurrentEmploymentNode.class;
+    }
+
     public CurrentEmploymentNode(CurrentEmploymentListNode parent, String name) {
         super(parent, name);
     }

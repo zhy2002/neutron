@@ -14,7 +14,7 @@ import java.util.Objects;
 /**
  * A LeafUiNode that can contain a number as its value.
  */
-public class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, BigDecimal> {
+public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, BigDecimal> {
 
     private static final ValueParser<BigDecimal> DEFAULT_PARSER = (t) -> {
         if (t != null && t.matches("^\\d+(\\.\\d+)?$"))

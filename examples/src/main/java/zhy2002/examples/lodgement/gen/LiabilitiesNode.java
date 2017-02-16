@@ -24,6 +24,11 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LiabilitiesNode.class;
+    }
+
     public LiabilitiesNode(FinancialPositionNode parent, String name) {
         super(parent, name);
     }

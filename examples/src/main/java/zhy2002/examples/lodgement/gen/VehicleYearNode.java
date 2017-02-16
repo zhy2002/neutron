@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return VehicleYearNode.class;
+    }
+
     public VehicleYearNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }

@@ -32,6 +32,11 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ApplicationNode.class;
+    }
+
     @Inject
     ApplicationNodeRuleProvider ruleProvider;
 

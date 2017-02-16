@@ -45,5 +45,6 @@ public final class NeutronEventSubjects {
     public static final String PATH_LABEL = "path_label";
     public static final String SELECTED_INDEX = "selectedIndex";
     public static final String SELECTED_NAME = "selectedName";
+    public static final String NODE_REFERENCE = "node_reference";
 
 }

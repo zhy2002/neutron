@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCardTypeNode extends StringUiNode<CreditCardNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCardTypeNode.class;
+    }
+
     public CreditCardTypeNode(CreditCardNode parent, String name) {
         super(parent, name);
     }

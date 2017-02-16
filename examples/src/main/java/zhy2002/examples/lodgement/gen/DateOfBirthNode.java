@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class DateOfBirthNode extends DobNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return DateOfBirthNode.class;
+    }
+
     public DateOfBirthNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

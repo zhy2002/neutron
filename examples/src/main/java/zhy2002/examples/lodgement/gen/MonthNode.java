@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MonthNode.class;
+    }
+
     public MonthNode(MonthYearNode parent, String name) {
         super(parent, name);
     }

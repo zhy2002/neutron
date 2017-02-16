@@ -28,6 +28,11 @@ public class LoanNode extends ObjectUiNode<LoanListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LoanNode.class;
+    }
+
     public LoanNode(LoanListNode parent, String name) {
         super(parent, name);
     }

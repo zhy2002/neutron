@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PrimaryApplicantFlagNode.class;
+    }
+
     @Inject
     PrimaryApplicantFlagNodeRuleProvider ruleProvider;
 

@@ -13,6 +13,11 @@ import zhy2002.examples.app.data.*;
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AppManagerNode.class;
+    }
+
     public AppManagerNode(LodgementNode parent, String name) {
         super(parent, name);
     }

@@ -30,6 +30,11 @@ public class PersonNode extends ObjectUiNode<PersonListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonNode.class;
+    }
+
     @Inject
     PersonNodeRuleProvider ruleProvider;
 

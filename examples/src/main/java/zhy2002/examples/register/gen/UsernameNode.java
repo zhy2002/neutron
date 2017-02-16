@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class UsernameNode extends StringUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return UsernameNode.class;
+    }
+
     @Inject
     UsernameNodeRuleProvider ruleProvider;
 

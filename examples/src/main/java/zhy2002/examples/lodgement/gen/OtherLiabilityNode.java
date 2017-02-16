@@ -28,6 +28,11 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherLiabilityNode.class;
+    }
+
     public OtherLiabilityNode(OtherLiabilityListNode parent, String name) {
         super(parent, name);
     }

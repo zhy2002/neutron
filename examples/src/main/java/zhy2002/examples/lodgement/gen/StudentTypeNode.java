@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class StudentTypeNode extends StringUiNode<UnemployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return StudentTypeNode.class;
+    }
+
     public StudentTypeNode(UnemployedNode parent, String name) {
         super(parent, name);
     }

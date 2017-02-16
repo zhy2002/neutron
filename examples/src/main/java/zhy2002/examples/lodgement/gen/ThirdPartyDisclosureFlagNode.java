@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ThirdPartyDisclosureFlagNode.class;
+    }
+
     public ThirdPartyDisclosureFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }

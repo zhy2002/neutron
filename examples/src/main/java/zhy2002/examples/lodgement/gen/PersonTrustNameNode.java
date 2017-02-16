@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustNameNode extends StringUiNode<PersonTrustNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustNameNode.class;
+    }
+
     public PersonTrustNameNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }

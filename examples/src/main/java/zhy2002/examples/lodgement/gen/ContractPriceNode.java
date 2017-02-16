@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ContractPriceNode extends BigDecimalUiNode<PropertyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ContractPriceNode.class;
+    }
+
     public ContractPriceNode(PropertyNode parent, String name) {
         super(parent, name);
     }

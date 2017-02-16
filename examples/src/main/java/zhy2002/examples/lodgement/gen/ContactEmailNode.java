@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ContactEmailNode extends EmailNode<PersonContactNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ContactEmailNode.class;
+    }
+
     public ContactEmailNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

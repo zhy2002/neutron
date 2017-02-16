@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LegalActionNode.class;
+    }
+
     public LegalActionNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AccessContactLastNameNode extends StringUiNode<AccessNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AccessContactLastNameNode.class;
+    }
+
     public AccessContactLastNameNode(AccessNode parent, String name) {
         super(parent, name);
     }

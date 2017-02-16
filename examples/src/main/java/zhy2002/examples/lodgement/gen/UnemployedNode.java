@@ -26,6 +26,11 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return UnemployedNode.class;
+    }
+
     public UnemployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

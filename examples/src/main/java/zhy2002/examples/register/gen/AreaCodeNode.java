@@ -13,6 +13,11 @@ import zhy2002.examples.register.data.*;
 
 public class AreaCodeNode extends PhoneInfoFieldNode
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AreaCodeNode.class;
+    }
+
     public AreaCodeNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }

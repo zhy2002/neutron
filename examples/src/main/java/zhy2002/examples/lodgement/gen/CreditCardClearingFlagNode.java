@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCardClearingFlagNode.class;
+    }
+
     @Inject
     CreditCardClearingFlagNodeRuleProvider ruleProvider;
 

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ProductsNode extends ObjectUiNode<ApplicationNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ProductsNode.class;
+    }
+
     public ProductsNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

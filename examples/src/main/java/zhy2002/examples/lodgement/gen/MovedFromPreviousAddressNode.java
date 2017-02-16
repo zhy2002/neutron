@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MovedFromPreviousAddressNode.class;
+    }
+
     @Inject
     MovedFromPreviousAddressNodeRuleProvider ruleProvider;
 

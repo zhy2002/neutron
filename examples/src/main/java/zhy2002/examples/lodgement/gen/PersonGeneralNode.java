@@ -35,6 +35,11 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonGeneralNode.class;
+    }
+
     public PersonGeneralNode(PersonNode parent, String name) {
         super(parent, name);
     }

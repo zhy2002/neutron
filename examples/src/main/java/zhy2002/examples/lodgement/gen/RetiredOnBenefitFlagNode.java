@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RetiredOnBenefitFlagNode.class;
+    }
+
     public RetiredOnBenefitFlagNode(RetiredEmploymentNode parent, String name) {
         super(parent, name);
     }

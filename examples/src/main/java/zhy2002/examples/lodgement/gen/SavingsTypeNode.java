@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SavingsTypeNode extends StringUiNode<SavingsAccountNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SavingsTypeNode.class;
+    }
+
     public SavingsTypeNode(SavingsAccountNode parent, String name) {
         super(parent, name);
     }

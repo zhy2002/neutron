@@ -28,6 +28,11 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return FinancialPositionNode.class;
+    }
+
     @Inject
     FinancialPositionNodeRuleProvider ruleProvider;
 

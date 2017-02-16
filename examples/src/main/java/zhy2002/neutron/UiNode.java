@@ -202,6 +202,17 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     public abstract boolean hasValue();
 
+    @JsMethod
+    public String getConcreteClassName() {
+        return getConcreteClass().getName();
+    }
+
+    /**
+     * The implementation is generated in code.
+     * @return the concrete class (the first without the parent type parameter) of this node.
+     */
+    public abstract Class<?> getConcreteClass();
+
     protected void setHasValue(boolean value) {
         setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
     }

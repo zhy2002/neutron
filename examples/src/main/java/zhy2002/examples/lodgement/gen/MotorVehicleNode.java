@@ -24,6 +24,11 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MotorVehicleNode.class;
+    }
+
     public MotorVehicleNode(MotorVehicleListNode parent, String name) {
         super(parent, name);
     }

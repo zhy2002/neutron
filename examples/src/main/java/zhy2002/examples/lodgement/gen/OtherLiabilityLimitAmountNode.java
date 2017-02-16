@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabilityNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherLiabilityLimitAmountNode.class;
+    }
+
     public OtherLiabilityLimitAmountNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

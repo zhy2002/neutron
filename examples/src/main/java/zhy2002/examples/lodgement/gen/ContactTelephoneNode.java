@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ContactTelephoneNode extends TelephoneNode<PersonContactNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ContactTelephoneNode.class;
+    }
+
     public ContactTelephoneNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

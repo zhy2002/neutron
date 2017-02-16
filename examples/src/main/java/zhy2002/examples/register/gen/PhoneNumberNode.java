@@ -13,6 +13,11 @@ import zhy2002.examples.register.data.*;
 
 public class PhoneNumberNode extends PhoneInfoFieldNode
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PhoneNumberNode.class;
+    }
+
     public PhoneNumberNode(PhoneInfoNode parent, String name) {
         super(parent, name);
     }

@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class EmploymentEndedNode extends MonthYearNode<EmployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return EmploymentEndedNode.class;
+    }
+
     @Inject
     EmploymentEndedNodeRuleProvider ruleProvider;
 

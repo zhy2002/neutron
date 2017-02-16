@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ProfitPreviousYearNode extends BigDecimalUiNode<SelfEmployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ProfitPreviousYearNode.class;
+    }
+
     public ProfitPreviousYearNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }

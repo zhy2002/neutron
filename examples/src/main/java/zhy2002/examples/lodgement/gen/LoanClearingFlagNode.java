@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LoanClearingFlagNode extends BooleanUiNode<LoanNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LoanClearingFlagNode.class;
+    }
+
     public LoanClearingFlagNode(LoanNode parent, String name) {
         super(parent, name);
     }

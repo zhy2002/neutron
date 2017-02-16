@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return VehicleMarketValueNode.class;
+    }
+
     public VehicleMarketValueNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }

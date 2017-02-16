@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherLiabilityDescriptionNode extends StringUiNode<OtherLiabilityNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherLiabilityDescriptionNode.class;
+    }
+
     public OtherLiabilityDescriptionNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

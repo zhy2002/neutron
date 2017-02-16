@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class EmailNode extends StringUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return EmailNode.class;
+    }
+
     @Inject
     EmailNodeRuleProvider ruleProvider;
 

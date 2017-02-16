@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustCountryNode extends BaseCountryNode<PersonTrustNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustCountryNode.class;
+    }
+
     public PersonTrustCountryNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }

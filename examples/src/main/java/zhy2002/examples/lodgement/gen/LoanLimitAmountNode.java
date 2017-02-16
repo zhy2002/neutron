@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class LoanLimitAmountNode extends BaseCurrencyNode<LoanNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LoanLimitAmountNode.class;
+    }
+
     public LoanLimitAmountNode(LoanNode parent, String name) {
         super(parent, name);
     }

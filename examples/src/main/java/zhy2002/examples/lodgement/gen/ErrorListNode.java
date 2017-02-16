@@ -21,6 +21,11 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorListNode,Erro
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ErrorListNode.class;
+    }
+
     @Inject
     ErrorListNodeRuleProvider ruleProvider;
 

@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return EmploymentTypeNode.class;
+    }
+
     @Inject
     EmploymentTypeNodeRuleProvider ruleProvider;
 

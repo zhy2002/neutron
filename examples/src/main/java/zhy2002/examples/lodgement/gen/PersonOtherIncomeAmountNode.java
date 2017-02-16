@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonOtherIncomeAmountNode extends BaseCurrencyNode<PersonOtherIncomeNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonOtherIncomeAmountNode.class;
+    }
+
     public PersonOtherIncomeAmountNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }

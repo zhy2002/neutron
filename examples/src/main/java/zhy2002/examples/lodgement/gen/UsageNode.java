@@ -26,6 +26,11 @@ public class UsageNode extends ObjectUiNode<RealEstateNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return UsageNode.class;
+    }
+
     public UsageNode(RealEstateNode parent, String name) {
         super(parent, name);
     }

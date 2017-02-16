@@ -28,6 +28,11 @@ public class PersonTrustNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustNode.class;
+    }
+
     public PersonTrustNode(PersonNode parent, String name) {
         super(parent, name);
     }

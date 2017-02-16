@@ -20,6 +20,11 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyListNode,
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CompanyListNode.class;
+    }
+
     public CompanyListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

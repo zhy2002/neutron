@@ -20,6 +20,11 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateLis
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RealEstateListNode.class;
+    }
+
     public RealEstateListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

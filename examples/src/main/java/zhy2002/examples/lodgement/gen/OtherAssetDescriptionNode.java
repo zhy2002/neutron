@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherAssetDescriptionNode.class;
+    }
+
     public OtherAssetDescriptionNode(OtherAssetNode parent, String name) {
         super(parent, name);
     }

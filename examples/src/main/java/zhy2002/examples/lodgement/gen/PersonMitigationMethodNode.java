@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonMitigationMethodNode extends StringUiNode<PersonResponsibleLendNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonMitigationMethodNode.class;
+    }
+
     public PersonMitigationMethodNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }

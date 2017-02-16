@@ -26,6 +26,11 @@ public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNod
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonOtherIncomeNode.class;
+    }
+
     public PersonOtherIncomeNode(PersonOtherIncomeListNode parent, String name) {
         super(parent, name);
     }

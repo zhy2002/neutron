@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return DriversLicenseNode.class;
+    }
+
     public DriversLicenseNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

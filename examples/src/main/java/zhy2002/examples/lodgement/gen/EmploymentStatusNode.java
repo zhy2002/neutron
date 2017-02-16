@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class EmploymentStatusNode extends StringUiNode<EmployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return EmploymentStatusNode.class;
+    }
+
     public EmploymentStatusNode(EmployedNode parent, String name) {
         super(parent, name);
     }

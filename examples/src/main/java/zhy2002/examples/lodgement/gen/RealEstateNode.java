@@ -24,6 +24,11 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RealEstateNode.class;
+    }
+
     public RealEstateNode(RealEstateListNode parent, String name) {
         super(parent, name);
     }

@@ -38,6 +38,13 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
+<#if !isAbstract>
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ${typeName}.class;
+    }
+
+</#if>
 <#if rules?? && rules?size gt 0>
     @Inject
     ${typeName}RuleProvider ruleProvider;

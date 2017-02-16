@@ -23,6 +23,11 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RetiredEmploymentNode.class;
+    }
+
     public RetiredEmploymentNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

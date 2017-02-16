@@ -13,6 +13,11 @@ import zhy2002.examples.register.data.*;
 
 public class PlanNode extends StringUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PlanNode.class;
+    }
+
     public PlanNode(RegisterNode parent, String name) {
         super(parent, name);
     }

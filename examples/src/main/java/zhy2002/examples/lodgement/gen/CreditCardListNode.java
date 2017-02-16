@@ -20,6 +20,11 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardLis
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCardListNode.class;
+    }
+
     public CreditCardListNode(LiabilitiesNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SpouseNode extends StringUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SpouseNode.class;
+    }
+
     public SpouseNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

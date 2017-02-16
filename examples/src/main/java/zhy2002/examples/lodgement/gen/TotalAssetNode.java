@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class TotalAssetNode extends BaseCurrencyNode<FinancialPositionNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return TotalAssetNode.class;
+    }
+
     public TotalAssetNode(FinancialPositionNode parent, String name) {
         super(parent, name);
     }

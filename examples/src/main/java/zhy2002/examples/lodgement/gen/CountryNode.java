@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CountryNode extends BaseCountryNode<AddressNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CountryNode.class;
+    }
+
     public CountryNode(AddressNode parent, String name) {
         super(parent, name);
     }

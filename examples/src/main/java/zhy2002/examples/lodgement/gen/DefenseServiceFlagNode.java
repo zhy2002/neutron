@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return DefenseServiceFlagNode.class;
+    }
+
     public DefenseServiceFlagNode(PropertyNode parent, String name) {
         super(parent, name);
     }

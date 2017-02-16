@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return MovedToPreviousAddressNode.class;
+    }
+
     public MovedToPreviousAddressNode(PersonContactNode parent, String name) {
         super(parent, name);
     }

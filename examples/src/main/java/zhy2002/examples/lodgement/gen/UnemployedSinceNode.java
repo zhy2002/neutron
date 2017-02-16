@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class UnemployedSinceNode extends MonthYearNode<UnemployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return UnemployedSinceNode.class;
+    }
+
     public UnemployedSinceNode(UnemployedNode parent, String name) {
         super(parent, name);
     }

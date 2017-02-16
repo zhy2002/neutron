@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SavingsBalanceNode extends BaseCurrencyNode<SavingsAccountNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SavingsBalanceNode.class;
+    }
+
     public SavingsBalanceNode(SavingsAccountNode parent, String name) {
         super(parent, name);
     }

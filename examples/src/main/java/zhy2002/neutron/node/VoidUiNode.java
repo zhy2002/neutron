@@ -44,6 +44,10 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
         super(new VoidAbstractUiNodeContext(new ClassRegistryImpl()));
     }
 
+    @Override
+    public Class<?> getConcreteClass() {
+        return VoidUiNode.class;
+    }
 
     @Override
     protected void initializeChildren() {

@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class PasswordNode extends StringUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PasswordNode.class;
+    }
+
     @Inject
     PasswordNodeRuleProvider ruleProvider;
 

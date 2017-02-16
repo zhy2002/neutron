@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ReceiveOffersNode.class;
+    }
+
     @Inject
     ReceiveOffersNodeRuleProvider ruleProvider;
 

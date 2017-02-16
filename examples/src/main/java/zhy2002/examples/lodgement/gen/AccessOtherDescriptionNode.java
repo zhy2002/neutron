@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AccessOtherDescriptionNode extends StringUiNode<AccessNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AccessOtherDescriptionNode.class;
+    }
+
     public AccessOtherDescriptionNode(AccessNode parent, String name) {
         super(parent, name);
     }

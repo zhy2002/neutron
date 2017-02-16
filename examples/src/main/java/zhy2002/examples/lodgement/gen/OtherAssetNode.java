@@ -24,6 +24,11 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherAssetNode.class;
+    }
+
     public OtherAssetNode(OtherAssetListNode parent, String name) {
         super(parent, name);
     }

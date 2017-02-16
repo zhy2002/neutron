@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PermanentResidentFlagNode.class;
+    }
+
     public PermanentResidentFlagNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

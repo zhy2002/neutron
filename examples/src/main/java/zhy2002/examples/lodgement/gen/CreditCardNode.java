@@ -28,6 +28,11 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCardNode.class;
+    }
+
     public CreditCardNode(CreditCardListNode parent, String name) {
         super(parent, name);
     }

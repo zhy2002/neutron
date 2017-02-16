@@ -20,6 +20,11 @@ public class PersonOtherIncomeListNode extends ListUiNode<PersonNode,PersonOther
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonOtherIncomeListNode.class;
+    }
+
     public PersonOtherIncomeListNode(PersonNode parent, String name) {
         super(parent, name);
     }

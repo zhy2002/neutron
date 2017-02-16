@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class SuburbNode extends StringUiNode<AddressNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SuburbNode.class;
+    }
+
     public SuburbNode(AddressNode parent, String name) {
         super(parent, name);
     }

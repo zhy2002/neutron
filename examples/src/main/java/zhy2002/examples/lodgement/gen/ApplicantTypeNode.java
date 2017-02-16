@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ApplicantTypeNode extends StringUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ApplicantTypeNode.class;
+    }
+
     public ApplicantTypeNode(PersonGeneralNode parent, String name) {
         super(parent, name);
     }

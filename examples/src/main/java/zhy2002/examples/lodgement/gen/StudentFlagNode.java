@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class StudentFlagNode extends YesNoOptionNode<UnemployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return StudentFlagNode.class;
+    }
+
     public StudentFlagNode(UnemployedNode parent, String name) {
         super(parent, name);
     }

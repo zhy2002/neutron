@@ -27,6 +27,11 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SavingsAccountNode.class;
+    }
+
     public SavingsAccountNode(SavingsAccountListNode parent, String name) {
         super(parent, name);
     }

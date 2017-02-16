@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class VehicleModelNode extends StringUiNode<MotorVehicleNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return VehicleModelNode.class;
+    }
+
     public VehicleModelNode(MotorVehicleNode parent, String name) {
         super(parent, name);
     }

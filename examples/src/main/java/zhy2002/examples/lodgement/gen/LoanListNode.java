@@ -20,6 +20,11 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanListNode,LoanNo
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return LoanListNode.class;
+    }
+
     public LoanListNode(LiabilitiesNode parent, String name) {
         super(parent, name);
     }

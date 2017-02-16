@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CreditCheckFlagNode.class;
+    }
+
     public CreditCheckFlagNode(PersonPrivacyNode parent, String name) {
         super(parent, name);
     }

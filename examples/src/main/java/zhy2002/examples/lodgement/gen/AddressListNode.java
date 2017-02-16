@@ -20,6 +20,11 @@ public class AddressListNode extends ListUiNode<ApplicationNode,AddressListNode,
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AddressListNode.class;
+    }
+
     public AddressListNode(ApplicationNode parent, String name) {
         super(parent, name);
     }

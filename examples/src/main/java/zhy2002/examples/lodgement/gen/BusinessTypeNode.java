@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class BusinessTypeNode extends StringUiNode<SelfEmployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return BusinessTypeNode.class;
+    }
+
     public BusinessTypeNode(SelfEmployedNode parent, String name) {
         super(parent, name);
     }

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @JsType
-public class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
+public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
 
     protected BooleanUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);

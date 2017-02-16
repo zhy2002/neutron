@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class PersonOtherIncomeTypeNode extends StringUiNode<PersonOtherIncomeNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonOtherIncomeTypeNode.class;
+    }
+
     @Inject
     PersonOtherIncomeTypeNodeRuleProvider ruleProvider;
 

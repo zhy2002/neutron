@@ -28,6 +28,11 @@ public class AccessNode extends ObjectUiNode<RealEstateNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AccessNode.class;
+    }
+
     public AccessNode(RealEstateNode parent, String name) {
         super(parent, name);
     }

@@ -25,6 +25,11 @@ public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonResponsibleLendNode.class;
+    }
+
     public PersonResponsibleLendNode(PersonNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonOtherIncomePreviousYearNode.class;
+    }
+
     public PersonOtherIncomePreviousYearNode(PersonOtherIncomeNode parent, String name) {
         super(parent, name);
     }

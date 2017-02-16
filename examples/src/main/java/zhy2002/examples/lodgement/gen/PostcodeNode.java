@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PostcodeNode extends StringUiNode<AddressNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PostcodeNode.class;
+    }
+
     public PostcodeNode(AddressNode parent, String name) {
         super(parent, name);
     }

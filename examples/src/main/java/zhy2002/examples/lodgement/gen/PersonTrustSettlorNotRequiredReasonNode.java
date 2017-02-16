@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustSettlorNotRequiredReasonNode extends StringUiNode<PersonTrustNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustSettlorNotRequiredReasonNode.class;
+    }
+
     public PersonTrustSettlorNotRequiredReasonNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }

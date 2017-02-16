@@ -35,6 +35,11 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RegisterNode.class;
+    }
+
     @Inject
     RegisterNodeRuleProvider ruleProvider;
 

@@ -13,6 +13,11 @@ import zhy2002.examples.register.data.*;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PropertyStateNode.class;
+    }
+
     public PropertyStateNode(PropertyDetailsNode parent, String name) {
         super(parent, name);
     }

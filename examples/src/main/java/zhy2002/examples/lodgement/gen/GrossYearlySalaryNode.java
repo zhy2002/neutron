@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return GrossYearlySalaryNode.class;
+    }
+
     public GrossYearlySalaryNode(PayeEmployedNode parent, String name) {
         super(parent, name);
     }

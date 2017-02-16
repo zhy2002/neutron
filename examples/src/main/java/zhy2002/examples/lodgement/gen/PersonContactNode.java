@@ -33,6 +33,11 @@ public class PersonContactNode extends ObjectUiNode<PersonNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonContactNode.class;
+    }
+
     @Inject
     PersonContactNodeRuleProvider ruleProvider;
 

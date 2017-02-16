@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OwnInvestmentPropertyNode.class;
+    }
+
     @Inject
     OwnInvestmentPropertyNodeRuleProvider ruleProvider;
 

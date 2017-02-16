@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class AddressLineNode extends StringUiNode<AddressNode<?>>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AddressLineNode.class;
+    }
+
     public AddressLineNode(AddressNode parent, String name) {
         super(parent, name);
     }

@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonSignificantChangeFlagNode.class;
+    }
+
     @Inject
     PersonSignificantChangeFlagNodeRuleProvider ruleProvider;
 

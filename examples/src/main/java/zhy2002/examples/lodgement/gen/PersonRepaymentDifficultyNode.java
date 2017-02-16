@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonRepaymentDifficultyNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonRepaymentDifficultyNode.class;
+    }
+
     public PersonRepaymentDifficultyNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }

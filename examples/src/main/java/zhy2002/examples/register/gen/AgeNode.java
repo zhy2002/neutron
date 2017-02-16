@@ -14,6 +14,11 @@ import zhy2002.examples.register.gen.rule.*;
 
 public class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return AgeNode.class;
+    }
+
     @Inject
     AgeNodeRuleProvider ruleProvider;
 

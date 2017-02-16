@@ -22,6 +22,11 @@ public class PayeEmployedNode extends EmployedNode
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PayeEmployedNode.class;
+    }
+
     public PayeEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

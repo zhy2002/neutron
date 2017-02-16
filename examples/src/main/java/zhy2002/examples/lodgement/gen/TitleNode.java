@@ -14,6 +14,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public class TitleNode extends StringUiNode<PersonGeneralNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return TitleNode.class;
+    }
+
     @Inject
     TitleNodeRuleProvider ruleProvider;
 

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return OtherLiabilityClearingFlagNode.class;
+    }
+
     public OtherLiabilityClearingFlagNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

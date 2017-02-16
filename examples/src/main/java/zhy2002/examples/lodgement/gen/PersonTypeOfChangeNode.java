@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTypeOfChangeNode.class;
+    }
+
     public PersonTypeOfChangeNode(PersonResponsibleLendNode parent, String name) {
         super(parent, name);
     }

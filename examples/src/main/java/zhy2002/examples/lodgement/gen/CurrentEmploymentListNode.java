@@ -20,6 +20,11 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         itemFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return CurrentEmploymentListNode.class;
+    }
+
     public CurrentEmploymentListNode(PersonNode parent, String name) {
         super(parent, name);
     }

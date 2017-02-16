@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return RetiredSinceNode.class;
+    }
+
     public RetiredSinceNode(RetiredEmploymentNode parent, String name) {
         super(parent, name);
     }

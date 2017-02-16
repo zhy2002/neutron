@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class PersonTrustRegistrationDateNode extends StringUiNode<PersonTrustNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PersonTrustRegistrationDateNode.class;
+    }
+
     public PersonTrustRegistrationDateNode(PersonTrustNode parent, String name) {
         super(parent, name);
     }

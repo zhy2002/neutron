@@ -24,6 +24,11 @@ public class SelfEmployedNode extends EmployedNode
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return SelfEmployedNode.class;
+    }
+
     public SelfEmployedNode(EmploymentNode parent, String name) {
         super(parent, name);
     }

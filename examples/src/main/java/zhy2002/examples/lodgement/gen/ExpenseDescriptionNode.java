@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return ExpenseDescriptionNode.class;
+    }
+
     public ExpenseDescriptionNode(ExpenseNode parent, String name) {
         super(parent, name);
     }

@@ -13,6 +13,11 @@ import zhy2002.examples.lodgement.data.*;
 
 public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode>
 {
+    @Override
+    public final Class<?> getConcreteClass() {
+        return EstimatedMarketValueNode.class;
+    }
+
     public EstimatedMarketValueNode(PropertyNode parent, String name) {
         super(parent, name);
     }

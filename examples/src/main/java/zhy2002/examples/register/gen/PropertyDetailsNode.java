@@ -23,6 +23,11 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
         childFactory = provider.createFactory(this);
     }
 
+    @Override
+    public final Class<?> getConcreteClass() {
+        return PropertyDetailsNode.class;
+    }
+
     public PropertyDetailsNode(RegisterNode parent, String name) {
         super(parent, name);
     }
