@@ -49,6 +49,27 @@ public class ApplicationNodeConstants {
             new StringOption("Female")
     );
 
+    public static final List<StringOption> SAVINGS_ACCOUNT_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Savings Account"),
+            new StringOption("Term Deposit")
+    );
+
+    public static final List<StringOption> OTHER_LIABILITY_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Commercial Bill"),
+            new StringOption("Contingent Liability"),
+            new StringOption("HECS"),
+            new StringOption("Maintenance"),
+            new StringOption("Other")
+    );
+
+    public static final List<StringOption> CREDIT_CARD_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Credit Card"),
+            new StringOption("Store Card")
+    );
+
     public static final List<StringOption> APPLICANT_TYPE = Arrays.asList(
             new StringOption("", ""),
             new StringOption("A", "Applicant"),

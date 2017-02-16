@@ -521,4 +521,33 @@ a[tabindex] {
     display: block;
   }
 }
+
+.panel-component {
+  .panel-heading {
+    padding: 7px;
+
+    .panel-title {
+      font-size: 125%;
+    }
+
+    > * {
+      float: left;
+      margin-right: 10px;
+    }
+
+    .glyphicon {
+      font-size: 150%;
+    }
+  }
+
+}
+
+.well {
+  .close-link {
+    float: right;
+    font-size: 150%;
+    margin-top: -10px;
+    margin-right: -10px;
+  }
+}
 //endregion

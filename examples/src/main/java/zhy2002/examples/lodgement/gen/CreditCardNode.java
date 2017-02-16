@@ -15,8 +15,8 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
 {
     private CreditCardTypeNode creditCardTypeNode;
     private CreditCardAmountOwingNode creditCardAmountOwingNode;
-    private CreditCardLimitAmount creditCardLimitAmount;
-    private CreditCardMonthlyRepayment creditCardMonthlyRepayment;
+    private CreditCardLimitAmountNode creditCardLimitAmountNode;
+    private CreditCardMonthlyRepaymentNode creditCardMonthlyRepaymentNode;
     private CreditCardClearingFlagNode creditCardClearingFlagNode;
     private CreditCardBreakCostNode creditCardBreakCostNode;
     private CreditCardLenderNameNode creditCardLenderNameNode;
@@ -43,13 +43,13 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
     }
 
     @JsMethod
-    public CreditCardLimitAmount getCreditCardLimitAmount() {
-        return creditCardLimitAmount;
+    public CreditCardLimitAmountNode getCreditCardLimitAmountNode() {
+        return creditCardLimitAmountNode;
     }
 
     @JsMethod
-    public CreditCardMonthlyRepayment getCreditCardMonthlyRepayment() {
-        return creditCardMonthlyRepayment;
+    public CreditCardMonthlyRepaymentNode getCreditCardMonthlyRepaymentNode() {
+        return creditCardMonthlyRepaymentNode;
     }
 
     @JsMethod
@@ -74,10 +74,10 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
         children.add(creditCardTypeNode);
         creditCardAmountOwingNode = childFactory.createCreditCardAmountOwingNode();
         children.add(creditCardAmountOwingNode);
-        creditCardLimitAmount = childFactory.createCreditCardLimitAmount();
-        children.add(creditCardLimitAmount);
-        creditCardMonthlyRepayment = childFactory.createCreditCardMonthlyRepayment();
-        children.add(creditCardMonthlyRepayment);
+        creditCardLimitAmountNode = childFactory.createCreditCardLimitAmountNode();
+        children.add(creditCardLimitAmountNode);
+        creditCardMonthlyRepaymentNode = childFactory.createCreditCardMonthlyRepaymentNode();
+        children.add(creditCardMonthlyRepaymentNode);
         creditCardClearingFlagNode = childFactory.createCreditCardClearingFlagNode();
         children.add(creditCardClearingFlagNode);
         creditCardBreakCostNode = childFactory.createCreditCardBreakCostNode();

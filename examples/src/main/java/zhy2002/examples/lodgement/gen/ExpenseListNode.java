@@ -11,16 +11,16 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class ExpensesNode extends ListUiNode<FinancialPositionNode,ExpensesNode,ExpenseNode>
+public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseListNode,ExpenseNode>
 {
-    private ExpensesNodeItemFactory itemFactory;
+    private ExpenseListNodeItemFactory itemFactory;
 
     @Inject
-    void receiveNodeProvider(ExpensesNodeItemProvider provider) {
+    void receiveNodeProvider(ExpenseListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
 
-    public ExpensesNode(FinancialPositionNode parent, String name) {
+    public ExpenseListNode(FinancialPositionNode parent, String name) {
         super(parent, name);
     }
 

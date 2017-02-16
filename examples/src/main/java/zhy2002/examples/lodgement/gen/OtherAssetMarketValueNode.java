@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class OtherAssetMarketValueNode extends StringUiNode<OtherAssetNode>
+public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode>
 {
     public OtherAssetMarketValueNode(OtherAssetNode parent, String name) {
         super(parent, name);

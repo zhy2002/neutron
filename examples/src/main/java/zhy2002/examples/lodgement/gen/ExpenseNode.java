@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class ExpenseNode extends ObjectUiNode<ExpensesNode>
+public class ExpenseNode extends ObjectUiNode<ExpenseListNode>
 {
     private ExpenseTypeNode expenseTypeNode;
     private ExpenseDescriptionNode expenseDescriptionNode;
@@ -24,7 +24,7 @@ public class ExpenseNode extends ObjectUiNode<ExpensesNode>
         childFactory = provider.createFactory(this);
     }
 
-    public ExpenseNode(ExpensesNode parent, String name) {
+    public ExpenseNode(ExpenseListNode parent, String name) {
         super(parent, name);
     }
 

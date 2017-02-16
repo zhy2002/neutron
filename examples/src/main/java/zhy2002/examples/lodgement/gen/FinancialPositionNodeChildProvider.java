@@ -8,7 +8,10 @@ import javax.inject.Singleton;
 interface FinancialPositionNodeChildFactory {
     AssetsNode createAssetsNode();
     LiabilitiesNode createLiabilitiesNode();
-    ExpensesNode createExpensesNode();
+    ExpenseListNode createExpenseListNode();
+    TotalAssetNode createTotalAssetNode();
+    TotalLiabilityNode createTotalLiabilityNode();
+    TotalExpenseNode createTotalExpenseNode();
 }
 
 @Singleton
@@ -18,7 +21,13 @@ public class FinancialPositionNodeChildProvider {
     @Inject
     MembersInjector<LiabilitiesNode> liabilitiesNodeInjector;
     @Inject
-    MembersInjector<ExpensesNode> expensesNodeInjector;
+    MembersInjector<ExpenseListNode> expenseListNodeInjector;
+    @Inject
+    MembersInjector<TotalAssetNode> totalAssetNodeInjector;
+    @Inject
+    MembersInjector<TotalLiabilityNode> totalLiabilityNodeInjector;
+    @Inject
+    MembersInjector<TotalExpenseNode> totalExpenseNodeInjector;
 
     @Inject
     protected FinancialPositionNodeChildProvider () {}
@@ -31,8 +40,20 @@ public class FinancialPositionNodeChildProvider {
         return this.liabilitiesNodeInjector;
     }
 
-    protected MembersInjector<ExpensesNode> getExpensesNodeInjector() {
-        return this.expensesNodeInjector;
+    protected MembersInjector<ExpenseListNode> getExpenseListNodeInjector() {
+        return this.expenseListNodeInjector;
+    }
+
+    protected MembersInjector<TotalAssetNode> getTotalAssetNodeInjector() {
+        return this.totalAssetNodeInjector;
+    }
+
+    protected MembersInjector<TotalLiabilityNode> getTotalLiabilityNodeInjector() {
+        return this.totalLiabilityNodeInjector;
+    }
+
+    protected MembersInjector<TotalExpenseNode> getTotalExpenseNodeInjector() {
+        return this.totalExpenseNodeInjector;
     }
 
     protected AssetsNode newAssetsNode(
@@ -55,14 +76,44 @@ public class FinancialPositionNodeChildProvider {
     protected void configureLiabilitiesNode(LiabilitiesNode node) {
     }
 
-    protected ExpensesNode newExpensesNode(
+    protected ExpenseListNode newExpenseListNode(
         FinancialPositionNode parent,
         String name
     ) {
-        return new ExpensesNode(parent, name);
+        return new ExpenseListNode(parent, name);
     }
 
-    protected void configureExpensesNode(ExpensesNode node) {
+    protected void configureExpenseListNode(ExpenseListNode node) {
+    }
+
+    protected TotalAssetNode newTotalAssetNode(
+        FinancialPositionNode parent,
+        String name
+    ) {
+        return new TotalAssetNode(parent, name);
+    }
+
+    protected void configureTotalAssetNode(TotalAssetNode node) {
+    }
+
+    protected TotalLiabilityNode newTotalLiabilityNode(
+        FinancialPositionNode parent,
+        String name
+    ) {
+        return new TotalLiabilityNode(parent, name);
+    }
+
+    protected void configureTotalLiabilityNode(TotalLiabilityNode node) {
+    }
+
+    protected TotalExpenseNode newTotalExpenseNode(
+        FinancialPositionNode parent,
+        String name
+    ) {
+        return new TotalExpenseNode(parent, name);
+    }
+
+    protected void configureTotalExpenseNode(TotalExpenseNode node) {
     }
 
     FinancialPositionNodeChildFactory createFactory(FinancialPositionNode parent) {
@@ -94,10 +145,34 @@ public class FinancialPositionNodeChildProvider {
         }
 
         @Override
-        public ExpensesNode createExpensesNode() {
-            ExpensesNode node = newExpensesNode(parent, "expensesNode");
-            expensesNodeInjector.injectMembers(node);
-            configureExpensesNode(node);
+        public ExpenseListNode createExpenseListNode() {
+            ExpenseListNode node = newExpenseListNode(parent, "expenseListNode");
+            expenseListNodeInjector.injectMembers(node);
+            configureExpenseListNode(node);
+            return node;
+        }
+
+        @Override
+        public TotalAssetNode createTotalAssetNode() {
+            TotalAssetNode node = newTotalAssetNode(parent, "totalAssetNode");
+            totalAssetNodeInjector.injectMembers(node);
+            configureTotalAssetNode(node);
+            return node;
+        }
+
+        @Override
+        public TotalLiabilityNode createTotalLiabilityNode() {
+            TotalLiabilityNode node = newTotalLiabilityNode(parent, "totalLiabilityNode");
+            totalLiabilityNodeInjector.injectMembers(node);
+            configureTotalLiabilityNode(node);
+            return node;
+        }
+
+        @Override
+        public TotalExpenseNode createTotalExpenseNode() {
+            TotalExpenseNode node = newTotalExpenseNode(parent, "totalExpenseNode");
+            totalExpenseNodeInjector.injectMembers(node);
+            configureTotalExpenseNode(node);
             return node;
         }
 

@@ -15,7 +15,11 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
 {
     private OtherLiabilityTypeNode otherLiabilityTypeNode;
     private OtherLiabilityDescriptionNode otherLiabilityDescriptionNode;
-    private OtherLiabilityMarketValueNode otherLiabilityMarketValueNode;
+    private OtherLiabilityLimitAmountNode otherLiabilityLimitAmountNode;
+    private OtherLiabilityAmountOwningNode otherLiabilityAmountOwningNode;
+    private OtherLiabilityMonthlyRepaymentNode otherLiabilityMonthlyRepaymentNode;
+    private OtherLiabilityClearingFlagNode otherLiabilityClearingFlagNode;
+    private OtherLiabilityBreakCostNode otherLiabilityBreakCostNode;
 
     private OtherLiabilityNodeChildFactory childFactory;
 
@@ -39,8 +43,28 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
     }
 
     @JsMethod
-    public OtherLiabilityMarketValueNode getOtherLiabilityMarketValueNode() {
-        return otherLiabilityMarketValueNode;
+    public OtherLiabilityLimitAmountNode getOtherLiabilityLimitAmountNode() {
+        return otherLiabilityLimitAmountNode;
+    }
+
+    @JsMethod
+    public OtherLiabilityAmountOwningNode getOtherLiabilityAmountOwningNode() {
+        return otherLiabilityAmountOwningNode;
+    }
+
+    @JsMethod
+    public OtherLiabilityMonthlyRepaymentNode getOtherLiabilityMonthlyRepaymentNode() {
+        return otherLiabilityMonthlyRepaymentNode;
+    }
+
+    @JsMethod
+    public OtherLiabilityClearingFlagNode getOtherLiabilityClearingFlagNode() {
+        return otherLiabilityClearingFlagNode;
+    }
+
+    @JsMethod
+    public OtherLiabilityBreakCostNode getOtherLiabilityBreakCostNode() {
+        return otherLiabilityBreakCostNode;
     }
 
     @Override
@@ -50,8 +74,16 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode>
         children.add(otherLiabilityTypeNode);
         otherLiabilityDescriptionNode = childFactory.createOtherLiabilityDescriptionNode();
         children.add(otherLiabilityDescriptionNode);
-        otherLiabilityMarketValueNode = childFactory.createOtherLiabilityMarketValueNode();
-        children.add(otherLiabilityMarketValueNode);
+        otherLiabilityLimitAmountNode = childFactory.createOtherLiabilityLimitAmountNode();
+        children.add(otherLiabilityLimitAmountNode);
+        otherLiabilityAmountOwningNode = childFactory.createOtherLiabilityAmountOwningNode();
+        children.add(otherLiabilityAmountOwningNode);
+        otherLiabilityMonthlyRepaymentNode = childFactory.createOtherLiabilityMonthlyRepaymentNode();
+        children.add(otherLiabilityMonthlyRepaymentNode);
+        otherLiabilityClearingFlagNode = childFactory.createOtherLiabilityClearingFlagNode();
+        children.add(otherLiabilityClearingFlagNode);
+        otherLiabilityBreakCostNode = childFactory.createOtherLiabilityBreakCostNode();
+        children.add(otherLiabilityBreakCostNode);
         return children;
     }
 

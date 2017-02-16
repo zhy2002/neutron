@@ -5,24 +5,24 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
-interface ExpensesNodeItemFactory {
+interface ExpenseListNodeItemFactory {
     ExpenseNode createExpenseNode(String name);
 }
 
 @Singleton
-public class ExpensesNodeItemProvider {
+public class ExpenseListNodeItemProvider {
     @Inject
     MembersInjector<ExpenseNode> expenseNodeInjector;
 
     @Inject
-    protected ExpensesNodeItemProvider () {}
+    protected ExpenseListNodeItemProvider () {}
 
     protected MembersInjector<ExpenseNode> getExpenseNodeInjector() {
         return this.expenseNodeInjector;
     }
 
     protected ExpenseNode newExpenseNode (
-        ExpensesNode parent,
+        ExpenseListNode parent,
         String name
     ) {
         return new ExpenseNode(parent, name);
@@ -31,15 +31,15 @@ public class ExpensesNodeItemProvider {
     protected void configureExpenseNode(ExpenseNode node) {
     }
 
-    ExpensesNodeItemFactory createFactory(ExpensesNode parent) {
-        return new ExpensesNodeItemFactoryImpl(parent);
+    ExpenseListNodeItemFactory createFactory(ExpenseListNode parent) {
+        return new ExpenseListNodeItemFactoryImpl(parent);
     }
 
-    private class ExpensesNodeItemFactoryImpl implements ExpensesNodeItemFactory {
+    private class ExpenseListNodeItemFactoryImpl implements ExpenseListNodeItemFactory {
 
-        private final ExpensesNode parent;
+        private final ExpenseListNode parent;
         
-        private ExpensesNodeItemFactoryImpl(ExpensesNode parent) {
+        private ExpenseListNodeItemFactoryImpl(ExpenseListNode parent) {
             this.parent = parent;
         }
 

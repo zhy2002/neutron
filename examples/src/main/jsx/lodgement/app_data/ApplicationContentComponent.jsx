@@ -1,6 +1,7 @@
 import React from 'react';
-import PersonListComponent from '../app_data/PersonListComponent';
-import PersonComponent from '../app_data/person_data/PersonComponent';
+import PersonListComponent from './PersonListComponent';
+import PersonComponent from './person_data/PersonComponent';
+import FinancialPositionComponent from './financial_data/FinancialPositionComponent';
 
 export default class ApplicationContentComponent extends React.PureComponent {
 
@@ -15,6 +16,9 @@ export default class ApplicationContentComponent extends React.PureComponent {
 
         if (className === 'PersonNode')
             return <PersonComponent model={model} />;
+
+        if (className === 'FinancialPositionNode')
+            return <FinancialPositionComponent model={model} />;
 
         return (
             <div>View not defined for model: {className}</div>

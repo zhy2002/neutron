@@ -386,11 +386,16 @@ rootType:
       children: []
 
   - typeName: FinancialPositionNode
+    rules:
+    - {typeName: FinancialPositionChangedRule}
     baseTypeName: ObjectUiNode
     children:
     - {typeName: AssetsNode}
     - {typeName: LiabilitiesNode}
-    - {typeName: ExpensesNode}
+    - {typeName: ExpenseListNode}
+    - {typeName: TotalAssetNode}
+    - {typeName: TotalLiabilityNode}
+    - {typeName: TotalExpenseNode}
     childTypes:
     - typeName: AssetsNode
       baseTypeName: ObjectUiNode
@@ -415,12 +420,16 @@ rootType:
           childTypes:
           - typeName: SavingsTypeNode
             baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE.toArray()}
 
           - typeName: SavingsInstitutionNameNode
             baseTypeName: StringUiNode
 
           - typeName: SavingsBalanceNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: SavingsBsbNoNode
             baseTypeName: StringUiNode
@@ -449,7 +458,7 @@ rootType:
             baseTypeName: BigDecimalUiNode
 
           - typeName: VehicleMarketValueNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
       - typeName: OtherAssetListNode
         baseTypeName: ListUiNode
@@ -469,7 +478,7 @@ rootType:
             baseTypeName: StringUiNode
 
           - typeName: OtherAssetMarketValueNode
-            baseTypeName: StringUiNode
+            baseTypeName: BaseCurrencyNode
 
     - typeName: LiabilitiesNode
       baseTypeName: ObjectUiNode
@@ -487,29 +496,35 @@ rootType:
           children:
           - {typeName: CreditCardTypeNode}
           - {typeName: CreditCardAmountOwingNode}
-          - {typeName: CreditCardLimitAmount}
-          - {typeName: CreditCardMonthlyRepayment}
+          - {typeName: CreditCardLimitAmountNode}
+          - {typeName: CreditCardMonthlyRepaymentNode}
           - {typeName: CreditCardClearingFlagNode}
           - {typeName: CreditCardBreakCostNode}
           - {typeName: CreditCardLenderNameNode}
           childTypes:
           - typeName: CreditCardTypeNode
             baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE.toArray()}
 
           - typeName: CreditCardAmountOwingNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
-          - typeName: CreditCardLimitAmount
-            baseTypeName: BigDecimalUiNode
+          - typeName: CreditCardLimitAmountNode
+            baseTypeName: BaseCurrencyNode
 
-          - typeName: CreditCardMonthlyRepayment
-            baseTypeName: BigDecimalUiNode
+          - typeName: CreditCardMonthlyRepaymentNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: CreditCardClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - {typeName: CreditCardClearingFlagChangedRule}
 
           - typeName: CreditCardBreakCostNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: CreditCardLenderNameNode
             baseTypeName: StringUiNode
@@ -533,19 +548,19 @@ rootType:
             baseTypeName: StringUiNode
 
           - typeName: LoanOwingAmountNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: LoanLimitAmountNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: LoanMonthlyRepaymentNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: LoanClearingFlagNode
             baseTypeName: BooleanUiNode
 
           - typeName: LoanBreakCostNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: BaseCurrencyNode
 
           - typeName: LoanLenderNameNode
             baseTypeName: StringUiNode
@@ -559,18 +574,38 @@ rootType:
           children:
           - {typeName: OtherLiabilityTypeNode}
           - {typeName: OtherLiabilityDescriptionNode}
-          - {typeName: OtherLiabilityMarketValueNode}
+          - {typeName: OtherLiabilityLimitAmountNode}
+          - {typeName: OtherLiabilityAmountOwningNode}
+          - {typeName: OtherLiabilityMonthlyRepaymentNode}
+          - {typeName: OtherLiabilityClearingFlagNode}
+          - {typeName: OtherLiabilityBreakCostNode}
           childTypes:
           - typeName: OtherLiabilityTypeNode
             baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE.toArray()}
 
           - typeName: OtherLiabilityDescriptionNode
             baseTypeName: StringUiNode
 
-          - typeName: OtherLiabilityMarketValueNode
-            baseTypeName: BigDecimalUiNode
+          - typeName: OtherLiabilityLimitAmountNode
+            baseTypeName: BaseCurrencyNode
 
-    - typeName: ExpensesNode
+          - typeName: OtherLiabilityAmountOwningNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: OtherLiabilityMonthlyRepaymentNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: OtherLiabilityClearingFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: OtherLiabilityBreakCostNode
+            baseTypeName: BaseCurrencyNode
+
+    - typeName: ExpenseListNode
       baseTypeName: ListUiNode
       itemTypeName: ExpenseNode
       childTypes:
@@ -589,6 +624,21 @@ rootType:
 
         - typeName: ExpenseMonthlyRepaymentNode
           baseTypeName: BigDecimalUiNode
+
+    - typeName: TotalAssetNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
+
+    - typeName: TotalLiabilityNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
+
+    - typeName: TotalExpenseNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
 
   - typeName: RealEstateListNode
     baseTypeName: ListUiNode

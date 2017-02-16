@@ -8,7 +8,11 @@ import javax.inject.Singleton;
 interface OtherLiabilityNodeChildFactory {
     OtherLiabilityTypeNode createOtherLiabilityTypeNode();
     OtherLiabilityDescriptionNode createOtherLiabilityDescriptionNode();
-    OtherLiabilityMarketValueNode createOtherLiabilityMarketValueNode();
+    OtherLiabilityLimitAmountNode createOtherLiabilityLimitAmountNode();
+    OtherLiabilityAmountOwningNode createOtherLiabilityAmountOwningNode();
+    OtherLiabilityMonthlyRepaymentNode createOtherLiabilityMonthlyRepaymentNode();
+    OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode();
+    OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode();
 }
 
 @Singleton
@@ -18,7 +22,15 @@ public class OtherLiabilityNodeChildProvider {
     @Inject
     MembersInjector<OtherLiabilityDescriptionNode> otherLiabilityDescriptionNodeInjector;
     @Inject
-    MembersInjector<OtherLiabilityMarketValueNode> otherLiabilityMarketValueNodeInjector;
+    MembersInjector<OtherLiabilityLimitAmountNode> otherLiabilityLimitAmountNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityAmountOwningNode> otherLiabilityAmountOwningNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityMonthlyRepaymentNode> otherLiabilityMonthlyRepaymentNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityClearingFlagNode> otherLiabilityClearingFlagNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityBreakCostNode> otherLiabilityBreakCostNodeInjector;
 
     @Inject
     protected OtherLiabilityNodeChildProvider () {}
@@ -31,8 +43,24 @@ public class OtherLiabilityNodeChildProvider {
         return this.otherLiabilityDescriptionNodeInjector;
     }
 
-    protected MembersInjector<OtherLiabilityMarketValueNode> getOtherLiabilityMarketValueNodeInjector() {
-        return this.otherLiabilityMarketValueNodeInjector;
+    protected MembersInjector<OtherLiabilityLimitAmountNode> getOtherLiabilityLimitAmountNodeInjector() {
+        return this.otherLiabilityLimitAmountNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityAmountOwningNode> getOtherLiabilityAmountOwningNodeInjector() {
+        return this.otherLiabilityAmountOwningNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityMonthlyRepaymentNode> getOtherLiabilityMonthlyRepaymentNodeInjector() {
+        return this.otherLiabilityMonthlyRepaymentNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityClearingFlagNode> getOtherLiabilityClearingFlagNodeInjector() {
+        return this.otherLiabilityClearingFlagNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityBreakCostNode> getOtherLiabilityBreakCostNodeInjector() {
+        return this.otherLiabilityBreakCostNodeInjector;
     }
 
     protected OtherLiabilityTypeNode newOtherLiabilityTypeNode(
@@ -55,14 +83,54 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityDescriptionNode(OtherLiabilityDescriptionNode node) {
     }
 
-    protected OtherLiabilityMarketValueNode newOtherLiabilityMarketValueNode(
+    protected OtherLiabilityLimitAmountNode newOtherLiabilityLimitAmountNode(
         OtherLiabilityNode parent,
         String name
     ) {
-        return new OtherLiabilityMarketValueNode(parent, name);
+        return new OtherLiabilityLimitAmountNode(parent, name);
     }
 
-    protected void configureOtherLiabilityMarketValueNode(OtherLiabilityMarketValueNode node) {
+    protected void configureOtherLiabilityLimitAmountNode(OtherLiabilityLimitAmountNode node) {
+    }
+
+    protected OtherLiabilityAmountOwningNode newOtherLiabilityAmountOwningNode(
+        OtherLiabilityNode parent,
+        String name
+    ) {
+        return new OtherLiabilityAmountOwningNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityAmountOwningNode(OtherLiabilityAmountOwningNode node) {
+    }
+
+    protected OtherLiabilityMonthlyRepaymentNode newOtherLiabilityMonthlyRepaymentNode(
+        OtherLiabilityNode parent,
+        String name
+    ) {
+        return new OtherLiabilityMonthlyRepaymentNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityMonthlyRepaymentNode(OtherLiabilityMonthlyRepaymentNode node) {
+    }
+
+    protected OtherLiabilityClearingFlagNode newOtherLiabilityClearingFlagNode(
+        OtherLiabilityNode parent,
+        String name
+    ) {
+        return new OtherLiabilityClearingFlagNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityClearingFlagNode(OtherLiabilityClearingFlagNode node) {
+    }
+
+    protected OtherLiabilityBreakCostNode newOtherLiabilityBreakCostNode(
+        OtherLiabilityNode parent,
+        String name
+    ) {
+        return new OtherLiabilityBreakCostNode(parent, name);
+    }
+
+    protected void configureOtherLiabilityBreakCostNode(OtherLiabilityBreakCostNode node) {
     }
 
     OtherLiabilityNodeChildFactory createFactory(OtherLiabilityNode parent) {
@@ -94,10 +162,42 @@ public class OtherLiabilityNodeChildProvider {
         }
 
         @Override
-        public OtherLiabilityMarketValueNode createOtherLiabilityMarketValueNode() {
-            OtherLiabilityMarketValueNode node = newOtherLiabilityMarketValueNode(parent, "otherLiabilityMarketValueNode");
-            otherLiabilityMarketValueNodeInjector.injectMembers(node);
-            configureOtherLiabilityMarketValueNode(node);
+        public OtherLiabilityLimitAmountNode createOtherLiabilityLimitAmountNode() {
+            OtherLiabilityLimitAmountNode node = newOtherLiabilityLimitAmountNode(parent, "otherLiabilityLimitAmountNode");
+            otherLiabilityLimitAmountNodeInjector.injectMembers(node);
+            configureOtherLiabilityLimitAmountNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherLiabilityAmountOwningNode createOtherLiabilityAmountOwningNode() {
+            OtherLiabilityAmountOwningNode node = newOtherLiabilityAmountOwningNode(parent, "otherLiabilityAmountOwningNode");
+            otherLiabilityAmountOwningNodeInjector.injectMembers(node);
+            configureOtherLiabilityAmountOwningNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherLiabilityMonthlyRepaymentNode createOtherLiabilityMonthlyRepaymentNode() {
+            OtherLiabilityMonthlyRepaymentNode node = newOtherLiabilityMonthlyRepaymentNode(parent, "otherLiabilityMonthlyRepaymentNode");
+            otherLiabilityMonthlyRepaymentNodeInjector.injectMembers(node);
+            configureOtherLiabilityMonthlyRepaymentNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode() {
+            OtherLiabilityClearingFlagNode node = newOtherLiabilityClearingFlagNode(parent, "otherLiabilityClearingFlagNode");
+            otherLiabilityClearingFlagNodeInjector.injectMembers(node);
+            configureOtherLiabilityClearingFlagNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode() {
+            OtherLiabilityBreakCostNode node = newOtherLiabilityBreakCostNode(parent, "otherLiabilityBreakCostNode");
+            otherLiabilityBreakCostNodeInjector.injectMembers(node);
+            configureOtherLiabilityBreakCostNode(node);
             return node;
         }
 

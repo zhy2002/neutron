@@ -7,6 +7,7 @@ export default class CheckboxInputComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
+            console.log(event.target.checked);
             this.model.setValue(event.target.checked);
         };
     }
@@ -18,7 +19,7 @@ export default class CheckboxInputComponent extends InputComponent {
                     <input
                         id={this.id}
                         type="checkbox"
-                        onClick={this.updateValue}
+                        onChange={this.updateValue}
                         checked={this.state.value}
                         disabled={this.state.disabled}
                     />

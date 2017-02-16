@@ -11,9 +11,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class CreditCardMonthlyRepayment extends BigDecimalUiNode<CreditCardNode>
+public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiabilityNode>
 {
-    public CreditCardMonthlyRepayment(CreditCardNode parent, String name) {
+    public OtherLiabilityBreakCostNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }
 

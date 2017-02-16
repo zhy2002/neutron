@@ -11,9 +11,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class CreditCardLimitAmount extends BigDecimalUiNode<CreditCardNode>
+public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode>
 {
-    public CreditCardLimitAmount(CreditCardNode parent, String name) {
+    public OtherLiabilityClearingFlagNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }
 

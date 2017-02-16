@@ -10,18 +10,32 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
 {
     private AssetsNode assetsNode;
     private LiabilitiesNode liabilitiesNode;
-    private ExpensesNode expensesNode;
+    private ExpenseListNode expenseListNode;
+    private TotalAssetNode totalAssetNode;
+    private TotalLiabilityNode totalLiabilityNode;
+    private TotalExpenseNode totalExpenseNode;
 
     private FinancialPositionNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(FinancialPositionNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
+    }
+
+    @Inject
+    FinancialPositionNodeRuleProvider ruleProvider;
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.addAll(ruleProvider.createRules(this));
     }
 
     public FinancialPositionNode(ApplicationNode parent, String name) {
@@ -39,8 +53,23 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
     }
 
     @JsMethod
-    public ExpensesNode getExpensesNode() {
-        return expensesNode;
+    public ExpenseListNode getExpenseListNode() {
+        return expenseListNode;
+    }
+
+    @JsMethod
+    public TotalAssetNode getTotalAssetNode() {
+        return totalAssetNode;
+    }
+
+    @JsMethod
+    public TotalLiabilityNode getTotalLiabilityNode() {
+        return totalLiabilityNode;
+    }
+
+    @JsMethod
+    public TotalExpenseNode getTotalExpenseNode() {
+        return totalExpenseNode;
     }
 
     @Override
@@ -50,8 +79,14 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
         children.add(assetsNode);
         liabilitiesNode = childFactory.createLiabilitiesNode();
         children.add(liabilitiesNode);
-        expensesNode = childFactory.createExpensesNode();
-        children.add(expensesNode);
+        expenseListNode = childFactory.createExpenseListNode();
+        children.add(expenseListNode);
+        totalAssetNode = childFactory.createTotalAssetNode();
+        children.add(totalAssetNode);
+        totalLiabilityNode = childFactory.createTotalLiabilityNode();
+        children.add(totalLiabilityNode);
+        totalExpenseNode = childFactory.createTotalExpenseNode();
+        children.add(totalExpenseNode);
         return children;
     }
 

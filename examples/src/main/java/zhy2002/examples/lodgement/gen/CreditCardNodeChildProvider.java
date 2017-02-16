@@ -8,8 +8,8 @@ import javax.inject.Singleton;
 interface CreditCardNodeChildFactory {
     CreditCardTypeNode createCreditCardTypeNode();
     CreditCardAmountOwingNode createCreditCardAmountOwingNode();
-    CreditCardLimitAmount createCreditCardLimitAmount();
-    CreditCardMonthlyRepayment createCreditCardMonthlyRepayment();
+    CreditCardLimitAmountNode createCreditCardLimitAmountNode();
+    CreditCardMonthlyRepaymentNode createCreditCardMonthlyRepaymentNode();
     CreditCardClearingFlagNode createCreditCardClearingFlagNode();
     CreditCardBreakCostNode createCreditCardBreakCostNode();
     CreditCardLenderNameNode createCreditCardLenderNameNode();
@@ -22,9 +22,9 @@ public class CreditCardNodeChildProvider {
     @Inject
     MembersInjector<CreditCardAmountOwingNode> creditCardAmountOwingNodeInjector;
     @Inject
-    MembersInjector<CreditCardLimitAmount> creditCardLimitAmountInjector;
+    MembersInjector<CreditCardLimitAmountNode> creditCardLimitAmountNodeInjector;
     @Inject
-    MembersInjector<CreditCardMonthlyRepayment> creditCardMonthlyRepaymentInjector;
+    MembersInjector<CreditCardMonthlyRepaymentNode> creditCardMonthlyRepaymentNodeInjector;
     @Inject
     MembersInjector<CreditCardClearingFlagNode> creditCardClearingFlagNodeInjector;
     @Inject
@@ -43,12 +43,12 @@ public class CreditCardNodeChildProvider {
         return this.creditCardAmountOwingNodeInjector;
     }
 
-    protected MembersInjector<CreditCardLimitAmount> getCreditCardLimitAmountInjector() {
-        return this.creditCardLimitAmountInjector;
+    protected MembersInjector<CreditCardLimitAmountNode> getCreditCardLimitAmountNodeInjector() {
+        return this.creditCardLimitAmountNodeInjector;
     }
 
-    protected MembersInjector<CreditCardMonthlyRepayment> getCreditCardMonthlyRepaymentInjector() {
-        return this.creditCardMonthlyRepaymentInjector;
+    protected MembersInjector<CreditCardMonthlyRepaymentNode> getCreditCardMonthlyRepaymentNodeInjector() {
+        return this.creditCardMonthlyRepaymentNodeInjector;
     }
 
     protected MembersInjector<CreditCardClearingFlagNode> getCreditCardClearingFlagNodeInjector() {
@@ -83,24 +83,24 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardAmountOwingNode(CreditCardAmountOwingNode node) {
     }
 
-    protected CreditCardLimitAmount newCreditCardLimitAmount(
+    protected CreditCardLimitAmountNode newCreditCardLimitAmountNode(
         CreditCardNode parent,
         String name
     ) {
-        return new CreditCardLimitAmount(parent, name);
+        return new CreditCardLimitAmountNode(parent, name);
     }
 
-    protected void configureCreditCardLimitAmount(CreditCardLimitAmount node) {
+    protected void configureCreditCardLimitAmountNode(CreditCardLimitAmountNode node) {
     }
 
-    protected CreditCardMonthlyRepayment newCreditCardMonthlyRepayment(
+    protected CreditCardMonthlyRepaymentNode newCreditCardMonthlyRepaymentNode(
         CreditCardNode parent,
         String name
     ) {
-        return new CreditCardMonthlyRepayment(parent, name);
+        return new CreditCardMonthlyRepaymentNode(parent, name);
     }
 
-    protected void configureCreditCardMonthlyRepayment(CreditCardMonthlyRepayment node) {
+    protected void configureCreditCardMonthlyRepaymentNode(CreditCardMonthlyRepaymentNode node) {
     }
 
     protected CreditCardClearingFlagNode newCreditCardClearingFlagNode(
@@ -162,18 +162,18 @@ public class CreditCardNodeChildProvider {
         }
 
         @Override
-        public CreditCardLimitAmount createCreditCardLimitAmount() {
-            CreditCardLimitAmount node = newCreditCardLimitAmount(parent, "creditCardLimitAmount");
-            creditCardLimitAmountInjector.injectMembers(node);
-            configureCreditCardLimitAmount(node);
+        public CreditCardLimitAmountNode createCreditCardLimitAmountNode() {
+            CreditCardLimitAmountNode node = newCreditCardLimitAmountNode(parent, "creditCardLimitAmountNode");
+            creditCardLimitAmountNodeInjector.injectMembers(node);
+            configureCreditCardLimitAmountNode(node);
             return node;
         }
 
         @Override
-        public CreditCardMonthlyRepayment createCreditCardMonthlyRepayment() {
-            CreditCardMonthlyRepayment node = newCreditCardMonthlyRepayment(parent, "creditCardMonthlyRepayment");
-            creditCardMonthlyRepaymentInjector.injectMembers(node);
-            configureCreditCardMonthlyRepayment(node);
+        public CreditCardMonthlyRepaymentNode createCreditCardMonthlyRepaymentNode() {
+            CreditCardMonthlyRepaymentNode node = newCreditCardMonthlyRepaymentNode(parent, "creditCardMonthlyRepaymentNode");
+            creditCardMonthlyRepaymentNodeInjector.injectMembers(node);
+            configureCreditCardMonthlyRepaymentNode(node);
             return node;
         }
 

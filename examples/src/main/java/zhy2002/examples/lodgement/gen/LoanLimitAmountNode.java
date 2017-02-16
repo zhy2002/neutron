@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class LoanLimitAmountNode extends BigDecimalUiNode<LoanNode>
+public class LoanLimitAmountNode extends BaseCurrencyNode<LoanNode>
 {
     public LoanLimitAmountNode(LoanNode parent, String name) {
         super(parent, name);

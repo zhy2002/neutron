@@ -11,9 +11,9 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class LoanMonthlyRepaymentNode extends BaseCurrencyNode<LoanNode>
+public class OtherLiabilityAmountOwningNode extends BaseCurrencyNode<OtherLiabilityNode>
 {
-    public LoanMonthlyRepaymentNode(LoanNode parent, String name) {
+    public OtherLiabilityAmountOwningNode(OtherLiabilityNode parent, String name) {
         super(parent, name);
     }
 

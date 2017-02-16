@@ -29,6 +29,7 @@ export default class TextInputComponent extends InputComponent {
                     value={this.state.value}
                     onChange={this.updateValue}
                     disabled={this.state.disabled}
+                    readOnly={this.props.readonly}
                     {...conditionalProps}
                 />
                 {this.state.errorMessage &&
@@ -38,3 +39,12 @@ export default class TextInputComponent extends InputComponent {
         );
     }
 }
+
+TextInputComponent.propTypes = {
+    readonly: React.PropTypes.bool
+};
+
+TextInputComponent.defaultProps = {
+    readonly: false
+};
+
