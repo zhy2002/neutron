@@ -1,14 +1,14 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.data.NodeReference;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.*;
-import zhy2002.neutron.node.BigDecimalUiNode;
-import zhy2002.neutron.node.StringUiNode;
-import zhy2002.neutron.rule.*;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple mechanism to allow overriding implementation class.
@@ -57,6 +57,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
         this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
         this.setStateChangeEventFactory(Integer.class, new IntegerStateChangeEventFactory());
+        this.setStateChangeEventFactory(NodeReference.class, new NodeReferenceStateChangeEventFactory());
         this.setStateChangeEventFactory(ValidationError.class, ValidationErrorStateChangeEvent::new);
     }
 

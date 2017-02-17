@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.data.NodeReference;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.NeutronEventSubjects;
@@ -25,6 +26,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     private String uniqueId;
     private final UiNodeContext<?> context;
     private NodeStatusEnum nodeStatus;
+
     /**
      * Override property change tracking mode.
      */
@@ -59,7 +61,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * At the moment node change means state change, add child or remove child.
      */
     protected final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
-
+    /**
+     * Cache the node reference.
+     */
+    private NodeReference nodeReference;
 
     /**
      * The constructor for a child node.
@@ -209,9 +214,17 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     /**
      * The implementation is generated in code.
+     *
      * @return the concrete class (the first without the parent type parameter) of this node.
      */
     public abstract Class<?> getConcreteClass();
+
+    public NodeReference toNodeReference() {
+        if (nodeReference == null) {
+            nodeReference = new NodeReference(getConcreteClassName(), getName());
+        }
+        return nodeReference;
+    }
 
     protected void setHasValue(boolean value) {
         setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
@@ -326,6 +339,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             statusListener.postAddToParent();
         }
         this.nodeStatus = NodeStatusEnum.Unloaded;
+        getContext().getNodeFinder().registerNode(this);
     }
 
     /**
@@ -342,6 +356,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         //todo removed from parent status listener
 
         this.nodeStatus = NodeStatusEnum.Detached;
+        getContext().getNodeFinder().deregisterNode(this);
+        getContext().getNodeReferenceRegistry().postRemoveFromParent(this);
     }
 
     /**

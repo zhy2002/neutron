@@ -3,8 +3,10 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.VoidUiNode;
 
+import javax.inject.Inject;
+
 /**
- * There is one context per node tree.
+ * There is one context per node hierarchy.
  */
 public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
 
@@ -13,6 +15,10 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     private final String contextId;
     private final UniqueIdGenerator nodeIdGenerator;
     private final UiNodeChangeEngine changeEngine;
+    @Inject
+    NodeFinder nodeFinder;
+    @Inject
+    NodeReferenceRegistry nodeReferenceRegistry;
 
     /**
      * Construct the context.
@@ -230,4 +236,13 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     //endregion
+
+    @Override
+    public NodeFinder getNodeFinder() {
+        return nodeFinder;
+    }
+
+    public NodeReferenceRegistry getNodeReferenceRegistry() {
+        return nodeReferenceRegistry;
+    }
 }

@@ -1,6 +1,8 @@
 package zhy2002.neutron.data;
 
+import jsinterop.annotations.JsType;
 
+@JsType
 public class NodeReference {
 
     private final String concreteClassName;

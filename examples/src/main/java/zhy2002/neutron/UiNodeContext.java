@@ -41,4 +41,8 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
 
     void flush();
 
+    NodeFinder getNodeFinder();
+
+    NodeReferenceRegistry getNodeReferenceRegistry();
+
 }

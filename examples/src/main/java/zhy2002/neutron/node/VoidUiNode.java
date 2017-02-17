@@ -1,9 +1,6 @@
 package zhy2002.neutron.node;
 
-import zhy2002.neutron.AbstractUiNodeContext;
-import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.NotImplementedException;
-import zhy2002.neutron.ParentUiNode;
+import zhy2002.neutron.*;
 
 /**
  * The parent UiNode type for a root UiNode.
@@ -33,6 +30,12 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
         @Override
         protected VoidUiNode createRootNode() {
             throw new NotImplementedException();
+        }
+
+
+        @Override
+        public NodeReferenceRegistry getNodeReferenceRegistry() {
+            return null;
         }
     }
 
