@@ -14,17 +14,9 @@ import java.math.BigDecimal;
 class LodgementNodeClassRegistry extends ClassRegistryImpl {
 
     LodgementNodeClassRegistry() {
-        loadNodeAddEventFactories();
-        loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeAddEventFactories() {
-    }
-
-    private void loadNodeRemoveEventFactories() {
     }
 
     private void loadNodeLoadEventFactories() {

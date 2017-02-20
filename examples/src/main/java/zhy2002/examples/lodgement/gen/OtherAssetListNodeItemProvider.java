@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface OtherAssetListNodeItemFactory {
-    OtherAssetNode createOtherAssetNode(String name);
+    NodeAddEvent<OtherAssetNode> createItemAddEvent(String name);
+    NodeRemoveEvent<OtherAssetNode> createItemRemoveEvent(OtherAssetNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class OtherAssetListNodeItemProvider {
     protected void configureOtherAssetNode(OtherAssetNode node) {
     }
 
+    protected NodeAddEvent<OtherAssetNode> newItemAddEvent(OtherAssetNode item) {
+        return new OtherAssetNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<OtherAssetNode> newItemRemoveEvent(OtherAssetNode item) {
+        return new OtherAssetNodeRemoveEvent(item);
+    }
+
     OtherAssetListNodeItemFactory createFactory(OtherAssetListNode parent) {
         return new OtherAssetListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class OtherAssetListNodeItemProvider {
         }
 
         @Override
-        public OtherAssetNode createOtherAssetNode(String name) {
+        public final NodeAddEvent<OtherAssetNode> createItemAddEvent(String name) {
+            OtherAssetNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<OtherAssetNode> createItemRemoveEvent(OtherAssetNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private OtherAssetNode createItemNode(String name) {
             OtherAssetNode node = newOtherAssetNode(parent, name);
             otherAssetNodeInjector.injectMembers(node);
             configureOtherAssetNode(node);

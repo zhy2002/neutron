@@ -87,18 +87,6 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     @Override
-    public final <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeAddEvent<N> createNodeAddEvent(Class<N> itemClass, N item) {
-        NodeAddEventFactory<N> factory = classRegistry.getNodeAddEventFactory(itemClass);
-        return factory.create(item);
-    }
-
-    @Override
-    public final <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEvent<N> createNodeRemoveEvent(Class<N> itemClass, N item) {
-        NodeRemoveEventFactory<N> factory = classRegistry.getNodeRemoveEventFactory(itemClass);
-        return factory.create(item);
-    }
-
-    @Override
     public final <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node) {
         NodeLoadEventFactory<N> factory = classRegistry.getNodeLoadEventFactory(nodeClass);
         return factory.create(node);

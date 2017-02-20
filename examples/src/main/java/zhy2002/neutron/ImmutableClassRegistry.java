@@ -19,16 +19,6 @@ public final class ImmutableClassRegistry implements ClassRegistry {
         return registry.getStateChangeEventFactory(valueClass);
     }
 
-    @Override
-    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeAddEventFactory<N> getNodeAddEventFactory(Class<N> itemClass) {
-        return registry.getNodeAddEventFactory(itemClass);
-    }
-
-    @Override
-    public <N extends UiNode<S>, S extends ListUiNode<?, S, N>> NodeRemoveEventFactory<N> getNodeRemoveEventFactory(Class<N> itemClass) {
-        return registry.getNodeRemoveEventFactory(itemClass);
-    }
-
     public <N extends UiNode<?>> NodeLoadEventFactory<N> getNodeLoadEventFactory(Class<N> nodeClass) {
         return registry.getNodeLoadEventFactory(nodeClass);
     }

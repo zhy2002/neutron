@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface CompanyListNodeItemFactory {
-    CompanyNode createCompanyNode(String name);
+    NodeAddEvent<CompanyNode> createItemAddEvent(String name);
+    NodeRemoveEvent<CompanyNode> createItemRemoveEvent(CompanyNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class CompanyListNodeItemProvider {
     protected void configureCompanyNode(CompanyNode node) {
     }
 
+    protected NodeAddEvent<CompanyNode> newItemAddEvent(CompanyNode item) {
+        return new CompanyNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<CompanyNode> newItemRemoveEvent(CompanyNode item) {
+        return new CompanyNodeRemoveEvent(item);
+    }
+
     CompanyListNodeItemFactory createFactory(CompanyListNode parent) {
         return new CompanyListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class CompanyListNodeItemProvider {
         }
 
         @Override
-        public CompanyNode createCompanyNode(String name) {
+        public final NodeAddEvent<CompanyNode> createItemAddEvent(String name) {
+            CompanyNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<CompanyNode> createItemRemoveEvent(CompanyNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private CompanyNode createItemNode(String name) {
             CompanyNode node = newCompanyNode(parent, name);
             companyNodeInjector.injectMembers(node);
             configureCompanyNode(node);

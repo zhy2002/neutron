@@ -3,10 +3,13 @@ package zhy2002.examples.register.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.register.gen.event.*;
 
 interface ErrorListNodeItemFactory {
-    ErrorNode createErrorNode(String name);
+    NodeAddEvent<ErrorNode> createItemAddEvent(String name);
+    NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class ErrorListNodeItemProvider {
     protected void configureErrorNode(ErrorNode node) {
     }
 
+    protected NodeAddEvent<ErrorNode> newItemAddEvent(ErrorNode item) {
+        return new ErrorNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<ErrorNode> newItemRemoveEvent(ErrorNode item) {
+        return new ErrorNodeRemoveEvent(item);
+    }
+
     ErrorListNodeItemFactory createFactory(ErrorListNode parent) {
         return new ErrorListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class ErrorListNodeItemProvider {
         }
 
         @Override
-        public ErrorNode createErrorNode(String name) {
+        public final NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
+            ErrorNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private ErrorNode createItemNode(String name) {
             ErrorNode node = newErrorNode(parent, name);
             errorNodeInjector.injectMembers(node);
             configureErrorNode(node);

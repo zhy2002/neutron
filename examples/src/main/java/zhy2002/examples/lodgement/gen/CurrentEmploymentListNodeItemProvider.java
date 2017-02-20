@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface CurrentEmploymentListNodeItemFactory {
-    CurrentEmploymentNode createCurrentEmploymentNode(String name);
+    NodeAddEvent<CurrentEmploymentNode> createItemAddEvent(String name);
+    NodeRemoveEvent<CurrentEmploymentNode> createItemRemoveEvent(CurrentEmploymentNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class CurrentEmploymentListNodeItemProvider {
     protected void configureCurrentEmploymentNode(CurrentEmploymentNode node) {
     }
 
+    protected NodeAddEvent<CurrentEmploymentNode> newItemAddEvent(CurrentEmploymentNode item) {
+        return new CurrentEmploymentNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<CurrentEmploymentNode> newItemRemoveEvent(CurrentEmploymentNode item) {
+        return new CurrentEmploymentNodeRemoveEvent(item);
+    }
+
     CurrentEmploymentListNodeItemFactory createFactory(CurrentEmploymentListNode parent) {
         return new CurrentEmploymentListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class CurrentEmploymentListNodeItemProvider {
         }
 
         @Override
-        public CurrentEmploymentNode createCurrentEmploymentNode(String name) {
+        public final NodeAddEvent<CurrentEmploymentNode> createItemAddEvent(String name) {
+            CurrentEmploymentNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<CurrentEmploymentNode> createItemRemoveEvent(CurrentEmploymentNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private CurrentEmploymentNode createItemNode(String name) {
             CurrentEmploymentNode node = newCurrentEmploymentNode(parent, name);
             currentEmploymentNodeInjector.injectMembers(node);
             configureCurrentEmploymentNode(node);

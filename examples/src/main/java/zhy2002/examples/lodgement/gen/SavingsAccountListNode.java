@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountListNode,SavingsAccountNode>
+public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountNode>
 {
     private SavingsAccountListNodeItemFactory itemFactory;
 
@@ -34,9 +34,12 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         return SavingsAccountNode.class;
     }
 
-    @Override
-    protected <M extends SavingsAccountNode> SavingsAccountNode createItemNode(Class<M> itemClass, String name) {
-        return itemFactory.createSavingsAccountNode(name);
+    public NodeAddEvent<SavingsAccountNode> createItemAddEvent() {
+        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    }
+
+    public NodeRemoveEvent<SavingsAccountNode> createItemRemoveEvent(SavingsAccountNode item) {
+        return itemFactory.createItemRemoveEvent(item);
     }
 
 }

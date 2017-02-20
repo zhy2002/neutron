@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface PersonListNodeItemFactory {
-    PersonNode createPersonNode(String name);
+    NodeAddEvent<PersonNode> createItemAddEvent(String name);
+    NodeRemoveEvent<PersonNode> createItemRemoveEvent(PersonNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class PersonListNodeItemProvider {
     protected void configurePersonNode(PersonNode node) {
     }
 
+    protected NodeAddEvent<PersonNode> newItemAddEvent(PersonNode item) {
+        return new PersonNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<PersonNode> newItemRemoveEvent(PersonNode item) {
+        return new PersonNodeRemoveEvent(item);
+    }
+
     PersonListNodeItemFactory createFactory(PersonListNode parent) {
         return new PersonListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class PersonListNodeItemProvider {
         }
 
         @Override
-        public PersonNode createPersonNode(String name) {
+        public final NodeAddEvent<PersonNode> createItemAddEvent(String name) {
+            PersonNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<PersonNode> createItemRemoveEvent(PersonNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private PersonNode createItemNode(String name) {
             PersonNode node = newPersonNode(parent, name);
             personNodeInjector.injectMembers(node);
             configurePersonNode(node);

@@ -14,23 +14,9 @@ import java.math.BigDecimal;
 class ${contextName}ClassRegistry extends ClassRegistryImpl {
 
     ${contextName}ClassRegistry() {
-        loadNodeAddEventFactories();
-        loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeAddEventFactories() {
-<#list addEventNodes as node>
-        super.setNodeAddEventFactory(${node.typeName}.class, ${node.typeName}AddEvent::new);
-</#list>
-    }
-
-    private void loadNodeRemoveEventFactories() {
-<#list addEventNodes as node>
-        super.setNodeRemoveEventFactory(${node.typeName}.class, ${node.typeName}RemoveEvent::new);
-</#list>
     }
 
     private void loadNodeLoadEventFactories() {

@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface CreditCardListNodeItemFactory {
-    CreditCardNode createCreditCardNode(String name);
+    NodeAddEvent<CreditCardNode> createItemAddEvent(String name);
+    NodeRemoveEvent<CreditCardNode> createItemRemoveEvent(CreditCardNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class CreditCardListNodeItemProvider {
     protected void configureCreditCardNode(CreditCardNode node) {
     }
 
+    protected NodeAddEvent<CreditCardNode> newItemAddEvent(CreditCardNode item) {
+        return new CreditCardNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<CreditCardNode> newItemRemoveEvent(CreditCardNode item) {
+        return new CreditCardNodeRemoveEvent(item);
+    }
+
     CreditCardListNodeItemFactory createFactory(CreditCardListNode parent) {
         return new CreditCardListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class CreditCardListNodeItemProvider {
         }
 
         @Override
-        public CreditCardNode createCreditCardNode(String name) {
+        public final NodeAddEvent<CreditCardNode> createItemAddEvent(String name) {
+            CreditCardNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<CreditCardNode> createItemRemoveEvent(CreditCardNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private CreditCardNode createItemNode(String name) {
             CreditCardNode node = newCreditCardNode(parent, name);
             creditCardNodeInjector.injectMembers(node);
             configureCreditCardNode(node);

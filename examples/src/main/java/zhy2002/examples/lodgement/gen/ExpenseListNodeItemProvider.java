@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface ExpenseListNodeItemFactory {
-    ExpenseNode createExpenseNode(String name);
+    NodeAddEvent<ExpenseNode> createItemAddEvent(String name);
+    NodeRemoveEvent<ExpenseNode> createItemRemoveEvent(ExpenseNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class ExpenseListNodeItemProvider {
     protected void configureExpenseNode(ExpenseNode node) {
     }
 
+    protected NodeAddEvent<ExpenseNode> newItemAddEvent(ExpenseNode item) {
+        return new ExpenseNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<ExpenseNode> newItemRemoveEvent(ExpenseNode item) {
+        return new ExpenseNodeRemoveEvent(item);
+    }
+
     ExpenseListNodeItemFactory createFactory(ExpenseListNode parent) {
         return new ExpenseListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class ExpenseListNodeItemProvider {
         }
 
         @Override
-        public ExpenseNode createExpenseNode(String name) {
+        public final NodeAddEvent<ExpenseNode> createItemAddEvent(String name) {
+            ExpenseNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<ExpenseNode> createItemRemoveEvent(ExpenseNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private ExpenseNode createItemNode(String name) {
             ExpenseNode node = newExpenseNode(parent, name);
             expenseNodeInjector.injectMembers(node);
             configureExpenseNode(node);

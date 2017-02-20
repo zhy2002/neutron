@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardListNode,CreditCardNode>
+public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode>
 {
     private CreditCardListNodeItemFactory itemFactory;
 
@@ -34,9 +34,12 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardLis
         return CreditCardNode.class;
     }
 
-    @Override
-    protected <M extends CreditCardNode> CreditCardNode createItemNode(Class<M> itemClass, String name) {
-        return itemFactory.createCreditCardNode(name);
+    public NodeAddEvent<CreditCardNode> createItemAddEvent() {
+        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    }
+
+    public NodeRemoveEvent<CreditCardNode> createItemRemoveEvent(CreditCardNode item) {
+        return itemFactory.createItemRemoveEvent(item);
     }
 
 }

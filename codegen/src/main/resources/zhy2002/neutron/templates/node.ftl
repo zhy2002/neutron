@@ -20,7 +20,7 @@ import ${targetPackage}.gen.rule.*;
 @Singleton
 </#if>
 public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName?? && isAbstract??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
-<#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${typeName},${itemTypeName}>
+<#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${itemTypeName}>
 <#else><#if parentTypeName??><${parentTypeName}></#if>
 </#if>{
 <#if children?? && children?size gt 0>
@@ -73,9 +73,12 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
         return ${itemTypeName}.class;
     }
 
-    @Override
-    protected <M extends ${itemTypeName}> ${itemTypeName} createItemNode(Class<M> itemClass, String name) {
-        return itemFactory.create${itemTypeName}(name);
+    public NodeAddEvent<${itemTypeName}> createItemAddEvent() {
+        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    }
+
+    public NodeRemoveEvent<${itemTypeName}> createItemRemoveEvent(${itemTypeName} item) {
+        return itemFactory.createItemRemoveEvent(item);
     }
 
 </#if>

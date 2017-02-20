@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface PersonOtherIncomeListNodeItemFactory {
-    PersonOtherIncomeNode createPersonOtherIncomeNode(String name);
+    NodeAddEvent<PersonOtherIncomeNode> createItemAddEvent(String name);
+    NodeRemoveEvent<PersonOtherIncomeNode> createItemRemoveEvent(PersonOtherIncomeNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class PersonOtherIncomeListNodeItemProvider {
     protected void configurePersonOtherIncomeNode(PersonOtherIncomeNode node) {
     }
 
+    protected NodeAddEvent<PersonOtherIncomeNode> newItemAddEvent(PersonOtherIncomeNode item) {
+        return new PersonOtherIncomeNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<PersonOtherIncomeNode> newItemRemoveEvent(PersonOtherIncomeNode item) {
+        return new PersonOtherIncomeNodeRemoveEvent(item);
+    }
+
     PersonOtherIncomeListNodeItemFactory createFactory(PersonOtherIncomeListNode parent) {
         return new PersonOtherIncomeListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class PersonOtherIncomeListNodeItemProvider {
         }
 
         @Override
-        public PersonOtherIncomeNode createPersonOtherIncomeNode(String name) {
+        public final NodeAddEvent<PersonOtherIncomeNode> createItemAddEvent(String name) {
+            PersonOtherIncomeNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<PersonOtherIncomeNode> createItemRemoveEvent(PersonOtherIncomeNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private PersonOtherIncomeNode createItemNode(String name) {
             PersonOtherIncomeNode node = newPersonOtherIncomeNode(parent, name);
             personOtherIncomeNodeInjector.injectMembers(node);
             configurePersonOtherIncomeNode(node);

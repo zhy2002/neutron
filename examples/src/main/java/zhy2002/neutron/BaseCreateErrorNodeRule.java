@@ -26,10 +26,10 @@ public abstract class BaseCreateErrorNodeRule<N extends UiNode<?>> extends UiNod
         );
     }
 
-    protected abstract ListUiNode<?, ?, ? extends LeafUiNode<?, ValidationError>> getErrorListNode();
+    protected abstract ListUiNode<?, ? extends LeafUiNode<?, ValidationError>> getErrorListNode();
 
     private void updateErrorNodeList(ValidationErrorListStateChangeEvent typedEvent) {
-        ListUiNode<?, ?, ? extends LeafUiNode<?, ValidationError>> errorListNode = getErrorListNode();
+        ListUiNode<?, ? extends LeafUiNode<?, ValidationError>> errorListNode = getErrorListNode();
         ValidationErrorList newValidationErrorList = typedEvent.getOrigin().getValidationErrorList();
         Set<ValidationError> newValidationErrorSet = new HashSet<>();
         if (newValidationErrorList != null) {

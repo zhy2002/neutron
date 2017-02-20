@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface PreviousEmploymentListNodeItemFactory {
-    PreviousEmploymentNode createPreviousEmploymentNode(String name);
+    NodeAddEvent<PreviousEmploymentNode> createItemAddEvent(String name);
+    NodeRemoveEvent<PreviousEmploymentNode> createItemRemoveEvent(PreviousEmploymentNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class PreviousEmploymentListNodeItemProvider {
     protected void configurePreviousEmploymentNode(PreviousEmploymentNode node) {
     }
 
+    protected NodeAddEvent<PreviousEmploymentNode> newItemAddEvent(PreviousEmploymentNode item) {
+        return new PreviousEmploymentNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<PreviousEmploymentNode> newItemRemoveEvent(PreviousEmploymentNode item) {
+        return new PreviousEmploymentNodeRemoveEvent(item);
+    }
+
     PreviousEmploymentListNodeItemFactory createFactory(PreviousEmploymentListNode parent) {
         return new PreviousEmploymentListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class PreviousEmploymentListNodeItemProvider {
         }
 
         @Override
-        public PreviousEmploymentNode createPreviousEmploymentNode(String name) {
+        public final NodeAddEvent<PreviousEmploymentNode> createItemAddEvent(String name) {
+            PreviousEmploymentNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<PreviousEmploymentNode> createItemRemoveEvent(PreviousEmploymentNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private PreviousEmploymentNode createItemNode(String name) {
             PreviousEmploymentNode node = newPreviousEmploymentNode(parent, name);
             previousEmploymentNodeInjector.injectMembers(node);
             configurePreviousEmploymentNode(node);

@@ -14,19 +14,9 @@ import java.math.BigDecimal;
 class RegisterNodeClassRegistry extends ClassRegistryImpl {
 
     RegisterNodeClassRegistry() {
-        loadNodeAddEventFactories();
-        loadNodeRemoveEventFactories();
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeAddEventFactories() {
-        super.setNodeAddEventFactory(ErrorNode.class, ErrorNodeAddEvent::new);
-    }
-
-    private void loadNodeRemoveEventFactories() {
-        super.setNodeRemoveEventFactory(ErrorNode.class, ErrorNodeRemoveEvent::new);
     }
 
     private void loadNodeLoadEventFactories() {

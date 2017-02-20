@@ -3,10 +3,13 @@ package zhy2002.examples.lodgement.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import zhy2002.examples.lodgement.gen.event.*;
 
 interface MotorVehicleListNodeItemFactory {
-    MotorVehicleNode createMotorVehicleNode(String name);
+    NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name);
+    NodeRemoveEvent<MotorVehicleNode> createItemRemoveEvent(MotorVehicleNode item);
 }
 
 @Singleton
@@ -31,6 +34,14 @@ public class MotorVehicleListNodeItemProvider {
     protected void configureMotorVehicleNode(MotorVehicleNode node) {
     }
 
+    protected NodeAddEvent<MotorVehicleNode> newItemAddEvent(MotorVehicleNode item) {
+        return new MotorVehicleNodeAddEvent(item);
+    }
+
+    protected NodeRemoveEvent<MotorVehicleNode> newItemRemoveEvent(MotorVehicleNode item) {
+        return new MotorVehicleNodeRemoveEvent(item);
+    }
+
     MotorVehicleListNodeItemFactory createFactory(MotorVehicleListNode parent) {
         return new MotorVehicleListNodeItemFactoryImpl(parent);
     }
@@ -44,7 +55,17 @@ public class MotorVehicleListNodeItemProvider {
         }
 
         @Override
-        public MotorVehicleNode createMotorVehicleNode(String name) {
+        public final NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name) {
+            MotorVehicleNode item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<MotorVehicleNode> createItemRemoveEvent(MotorVehicleNode item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private MotorVehicleNode createItemNode(String name) {
             MotorVehicleNode node = newMotorVehicleNode(parent, name);
             motorVehicleNodeInjector.injectMembers(node);
             configureMotorVehicleNode(node);

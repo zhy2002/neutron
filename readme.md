@@ -1,22 +1,8 @@
 todo 
 ----------------- 
-1. todo create a dialog component:
-backdrop:
-<div id="mydiv" style="
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.6;
-"></div>
-
+1. node reference should use path (name1/name2/name3/.../nameN) instead of class, name pair.
 2. context menu
 3. todo loading spinner
-
-
-
-
 
 * Cancel (stop here or rollback) an event or a cycle from within a rule
 * performance tuning
@@ -29,7 +15,6 @@ backdrop:
   we should wait for a pause before we do an update. 
 * per-lender config override (white label)
 * bean validation of domain info
-* support multiple list item types (with one being default)
 * simplify event binding api
 * integrate with font awesome
 
@@ -82,6 +67,9 @@ backdrop:
 - send = process everything immediately & post = current behaviour where changes are added to a queue first.
 https://docs.google.com/document/d/10fmlEYIHcyead_4R1S5wKGs1t2I7Fnp_PaNaa7XTEk0/edit#
 
+
+<hr/>
+
 Goals
 ------------------
 * Decouple UI logic (GWT) from UI rendering (React & css)
@@ -97,13 +85,13 @@ same state via same rules -> same result state
 
 Problems
 ------------------
-* Super dev mode debugging experience (GWT remains a black box in js)
+1. Super dev mode debugging experience (GWT remains a black box in js)
+  * Should allow either debug the application in GWT (as already implemented) or 
+  debug as a JSX application with browser sync and all the goodies (to be implemented).
+  * Should verify Java code behaviour in unit tests first to reduce the need for debugging 
+  in super dev mode.
 
-On Hold
-------------------
-* use type script: Use of js code is already minimized via usage of GWT.
-
-Things Neutron can do
+Functionality Check List
 ------------------
 - A field is required - check
 - A field pattern validation - check
@@ -115,20 +103,92 @@ Things Neutron can do
 - rules to apply depends on the value of a field - check
 - prevent certain chars from being typed in - check
 
-
-# Node types
-- Abstract generated
-- Concrete generated
-- Variant hand coded
-
 # Finished
-* use dagger2 for di <br/>
-no scope hierarchy, one scope instance per node context
-* event notification strategy - self,children,parent; descendant,parent; self; ... <br/>
-It is decided each type of event has its fixed digestion order.
-* rule max change level detection <br/>
-Cycle has a rule activation limit.
-* upgrade example front end to react material
-React material is not mature enough. Decided to go with Bootstrap 3.
+1. Use dagger2 for DI
+  * There is one scope instance per node context. 
+  * There is no scope hierarchy (Dagger2 sub-components). Ideally the children of
+  an object node should be in their own scope because they share the same life cycle.
+  But as the node hierarchy becomes more and more complex the Dagger2 generated code will
+  eventually give 'file path too long' error when javac writes class files to disk.
 
+2. Custom event activation logic, i.e. allow the client to change
+   getActivations method. E.g. self,children,parent; descendant,parent; self; ...
+  * It is decided each type of event should have a fixed activation logic. 
+    If necessary we can parameterize this logic to achieve some degree of customisation.  
 
+3. Rule max change level detection
+  * This is required to 1) avoid infinitive loop; 2) raise error when node hierarchy takes to much time 
+  (avoid UI stop responding).
+  * Currently this is achieved by cycle having a rule activation count limit. 
+
+4. Upgrade example front end to react material
+  * React material is not mature/flexible enough for building enterprise application. 
+  I have decided to go with Bootstrap 3 with this demo project.
+
+5 Support multiple list item types (with one being default)
+  * This idea is abandoned. The main reason for having multiple 
+  concrete item node types is to show a list of slightly different 
+  UI sections, such as list of member and non-members. 
+  This design forces the client to check the real type of item nodes.
+  Therefore when we add or remove item types client code has to change as well.
+  * I've decided to achieved this requirement by enabling/disabling sub-sections of an item node.
+  
+6. Create a dialog component:
+  * Created a React component wrapping up the Bootstrap dialog. 
+  * Does not support popping up multiple dialogs at the same time.
+ 
+7. Use type script with JSX
+  * This idea is abandoned because it will make JSX code more verbose.
+  * Will use JSX tool set to enforce some compile time check.
+  * JSX code should be as simple as possible (rendering and event notification only). 
+  All verifiable logic should be implemented in the node hierarchy.
+  
+8. Explore alternatives to GWT, e.g. TypeScript, Scala.js, Kotlin, etc.
+  * After having a quick look at other alternatives GWT remains the best choice for writing JS 
+  in a strongly typed language.
+  * Code needs to be run on both client side and server side, difficult to do this in TypeScript.
+  * Kotlin and Scala.js are not mature enough (e.g. no tree shaking when compile).
+  * Even though Java is a bit verbose it is still the preferred source language because of its popularity.
+  
+# Node Roles
+In the node hierarchy a node can have one of three roles:
+
+1. Abstract Node
+  * An abstract node must be an abstract class. 
+  * All concrete nodes inherit and only inherit from an abstract node.
+  * The foundational abstract nodes come with the Neutron framework.
+  * Additional abstract nodes are code generated or hand coded.
+  
+2. Concrete Node
+  * A concrete node is the first instantiatable node in an inheritance path.
+  * Concrete nodes can be referenced in the node hierarchy.
+  * Concrete nodes are all code generated.
+  * Concrete node simple class name is unique with in a node hierarchy.
+  * Concrete node does not have parent node generic type.
+  
+3. Variant Node
+  * Variant nodes inherit from a concrete node and are instantiable.
+  There for in any inheritance path the top half are abstract and bottom half are non-abstract.
+  * They are created manually. 
+  * They can provide extra methods for JsInterop or override concrete node behaviour.
+  * The node hierarchy cannot reference variant nodes. They are only injected into the node hierarchy
+  in place of its concrete node via Dagger2.
+
+# Node Types
+In the node hierarchy there are four types of nodes:
+
+1. Object Node
+  * Root node is an Object Node whose parent is Void Node.
+  * An object node has predefined named children.
+  * The life cycle of child nodes is from load to unload of parent node.
+  * An abstract object node has concrete children.
+
+2. List Node
+  * A list node declares the base type of its item, which is always concrete.
+  Specifically an abstract list node's item node is concrete.
+  
+3. Leaf Node
+  * A leaf node declares the type of its value.
+  
+4. Void Node
+  * A placeholder class that serve as the parent class of a root node.

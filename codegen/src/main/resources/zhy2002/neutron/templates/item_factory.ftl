@@ -3,11 +3,14 @@ package ${targetPackage}.gen;
 import dagger.MembersInjector;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
+import zhy2002.neutron.NodeAddEvent;
+import zhy2002.neutron.NodeRemoveEvent;
+import ${targetPackage}.gen.event.*;
 
 interface ${typeName}ItemFactory {
 <#list childTypes as childType>
-    ${childType.typeName} create${childType.typeName}(String name);
+    NodeAddEvent<${childType.typeName}> createItemAddEvent(String name);
+    NodeRemoveEvent<${childType.typeName}> createItemRemoveEvent(${childType.typeName} item);
 </#list>
 }
 
@@ -38,6 +41,14 @@ public class ${typeName}ItemProvider {
     protected void configure${childType.typeName}(${childType.typeName} node) {
     }
 
+    protected NodeAddEvent<${childType.typeName}> newItemAddEvent(${childType.typeName} item) {
+        return new ${childType.typeName}AddEvent(item);
+    }
+
+    protected NodeRemoveEvent<${childType.typeName}> newItemRemoveEvent(${childType.typeName} item) {
+        return new ${childType.typeName}RemoveEvent(item);
+    }
+
 </#list>
     ${typeName}ItemFactory createFactory(${typeName}<#if parentBaseTypeName?? && isAbstract??><?></#if> parent) {
         return new ${typeName}ItemFactoryImpl(parent);
@@ -53,7 +64,17 @@ public class ${typeName}ItemProvider {
 
 <#list childTypes as childType>
         @Override
-        public ${childType.typeName} create${childType.typeName}(String name) {
+        public final NodeAddEvent<${childType.typeName}> createItemAddEvent(String name) {
+            ${childType.typeName} item = createItemNode(name);
+            return newItemAddEvent(item);
+        }
+
+        @Override
+        public final NodeRemoveEvent<${childType.typeName}> createItemRemoveEvent(${childType.typeName} item) {
+            return newItemRemoveEvent(item);
+        }
+
+        private ${childType.typeName} createItemNode(String name) {
             ${childType.typeName} node = new${childType.typeName}(parent, name);
             ${childType.typeName?uncap_first}Injector.injectMembers(node);
             configure${childType.typeName}(node);

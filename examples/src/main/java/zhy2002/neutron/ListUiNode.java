@@ -6,14 +6,17 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.validation.constraints.NotNull;
 
 /**
- * A ParentUiNode whose children are put in a list.
+ * Represents a list of UiNode.
+ *
+ * @param <P> concrete class of parent.
+ * @param <N> concrete class of item.
  */
-public abstract class ListUiNode<
-        P extends ObjectUiNode<?>,
-        S extends ListUiNode<P, S, N>,
-        N extends UiNode<S>>
+public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
         extends ParentUiNode<P> {
 
+    /**
+     * Used to name items.
+     */
     private int childSequenceNumber = 0;
 
     /**
@@ -39,6 +42,12 @@ public abstract class ListUiNode<
         return (N) getChild(index);
     }
 
+    @JsMethod
+    @SuppressWarnings("unchecked")
+    public N getItemByName(String name) {
+        return (N) getChild(name);
+    }
+
     /**
      * @return the number of items in this list.
      */
@@ -48,17 +57,13 @@ public abstract class ListUiNode<
     }
 
     /**
-     * Create an item of base item type N.
+     * Create an instance of item node.
      *
-     * @return the node add event so that caller can pass arguments to the new node.
+     * @return the node newly created.
      */
     @JsMethod
     public N createItem() {
-        return createItem(getItemClass());
-    }
-
-    protected <M extends N> N createItem(Class<M> itemClass) {
-        NodeAddEvent<N> event = createItemAddEvent(itemClass);
+        NodeAddEvent<N> event = createItemAddEvent();
         if (shouldChangeWithoutEvent()) {
             event.apply();
         } else {
@@ -67,44 +72,11 @@ public abstract class ListUiNode<
         return event.getOrigin();
     }
 
-    /**
-     * Call this if you want to manually process the event.
-     *
-     * @return the event, not yet processed.
-     */
-    public NodeAddEvent<N> createItemAddEvent() {
-        return createItemAddEvent(getItemClass());
-    }
-
-    /**
-     * Create an item of subtype of N.
-     * This method is not made public because it is only intended to be called
-     * by a wrapper method in subclass.
-     *
-     * @param itemClass a the class object of a subtype of N.
-     * @return the node add event. If this event is processed the item will be added.
-     */
-    @SuppressWarnings("unchecked")
-    protected <M extends N> NodeAddEvent<N> createItemAddEvent(Class<M> itemClass) {
-        N item = createItemNode(itemClass, String.valueOf(getChildSequenceNumber()));
-        return getContext().createNodeAddEvent(getItemClass(), item);
-    }
-
-    protected abstract <M extends N> N createItemNode(Class<M> itemClass, String name);
-
     @JsMethod
     public N removeByIndex(int index) {
         N item = getItem(index);
         removeItem(item);
         return item;
-    }
-
-    @JsMethod
-    public void removeItem(N item) {
-        if (item.getParent() != this)
-            return;
-        NodeRemoveEvent<N> event = getContext().createNodeRemoveEvent(getItemClass(), item);
-        getContext().processEvent(event);
     }
 
     @SuppressWarnings("unchecked")
@@ -118,12 +90,19 @@ public abstract class ListUiNode<
         return typed;
     }
 
-    @SuppressWarnings("unchecked")
-    public N getItemByName(String name) {
-        return (N) getChild(name);
+    @JsMethod
+    public void removeItem(N item) {
+        if (item.getParent() != this)
+            return;
+        NodeRemoveEvent<N> event = createItemRemoveEvent(item);
+        getContext().processEvent(event);
     }
 
-    public int getChildSequenceNumber() {
+    public abstract NodeAddEvent<N> createItemAddEvent();
+
+    public abstract NodeRemoveEvent<N> createItemRemoveEvent(N item);
+
+    protected final int getChildSequenceNumber() {
         return childSequenceNumber++;
     }
 

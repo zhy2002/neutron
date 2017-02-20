@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 
-public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityListNode,OtherLiabilityNode>
+public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityNode>
 {
     private OtherLiabilityListNodeItemFactory itemFactory;
 
@@ -34,9 +34,12 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         return OtherLiabilityNode.class;
     }
 
-    @Override
-    protected <M extends OtherLiabilityNode> OtherLiabilityNode createItemNode(Class<M> itemClass, String name) {
-        return itemFactory.createOtherLiabilityNode(name);
+    public NodeAddEvent<OtherLiabilityNode> createItemAddEvent() {
+        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    }
+
+    public NodeRemoveEvent<OtherLiabilityNode> createItemRemoveEvent(OtherLiabilityNode item) {
+        return itemFactory.createItemRemoveEvent(item);
     }
 
 }

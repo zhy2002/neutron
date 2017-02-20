@@ -64,7 +64,7 @@ public class NodeReferenceRegistry {
         for (ReferenceUiNode<?> referenceUiNode : referenceSet) {
             ParentUiNode<?> parentUiNode = referenceUiNode.getParent();
             if (parentUiNode instanceof ListUiNode) {
-                ((ListUiNode<?, ?, ReferenceUiNode<?>>) parentUiNode).removeItem(referenceUiNode);
+                ((ListUiNode<?, ? extends ReferenceUiNode<?>>) parentUiNode).removeByIndex(referenceUiNode.getIndex());
             } else {
                 referenceUiNode.setValue(null);
             }

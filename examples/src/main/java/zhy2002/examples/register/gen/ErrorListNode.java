@@ -11,7 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 
-public class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNode>
+public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode>
 {
     private ErrorListNodeItemFactory itemFactory;
 
@@ -34,9 +34,12 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorListNode,ErrorNo
         return ErrorNode.class;
     }
 
-    @Override
-    protected <M extends ErrorNode> ErrorNode createItemNode(Class<M> itemClass, String name) {
-        return itemFactory.createErrorNode(name);
+    public NodeAddEvent<ErrorNode> createItemAddEvent() {
+        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    }
+
+    public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
+        return itemFactory.createItemRemoveEvent(item);
     }
 
 }

@@ -447,8 +447,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             for (ValidationError validationError : validationErrors) {
                 UiNode<?> errorNode = validationError.getErrorNode();
                 if (errorNode != null) {
-                    if (errorNode.getParent() instanceof ListUiNode<?, ?, ?>) {
-                        ListUiNode<?, ?, ?> parent = (ListUiNode<?, ?, ?>) errorNode.getParent();
+                    if (errorNode.getParent() instanceof ListUiNode<?, ?>) {
+                        ListUiNode<?, ?> parent = (ListUiNode<?, ?>) errorNode.getParent();
                         parent.removeByName(errorNode.getName());
                     } else {
                         errorNode.detach();

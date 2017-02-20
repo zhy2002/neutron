@@ -52,7 +52,7 @@ public class ApplicationNodeImpl extends ApplicationNode {
         while (descendant != this) {
             level++;
             UiNode<?> parent = descendant.getParent();
-            if (parent instanceof ListUiNode<?, ?, ?>) {
+            if (parent instanceof ListUiNode<?, ?>) {
                 ((ListUiNode) parent).setSelectedIndex(descendant.getIndex());
             } else if (parent instanceof ObjectUiNode<?>) {
                 ((ObjectUiNode) parent).setSelectedName(descendant.getName());
