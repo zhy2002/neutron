@@ -15,7 +15,7 @@
 
     <properties>
         <gwtVersion>2.8.0</gwtVersion>
-        <daggerVersion>2.8</daggerVersion>
+        <daggerVersion>2.9</daggerVersion>
     </properties>
 
     <dependencyManagement>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is required to use dagger2.9. Without it there will be package name related compilation errors.-->
+<module>
+    <inherits name="javax.inject.Inject"/>
+
+    <source path="">
+        <exclude name="super/*"/>
+    </source>
+
+    <super-source path="super"/>
+
+</module>
