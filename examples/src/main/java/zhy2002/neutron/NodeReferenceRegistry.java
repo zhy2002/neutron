@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.data.NodeReference;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.HashMap;
@@ -19,13 +17,13 @@ import java.util.Set;
 @Singleton
 public class NodeReferenceRegistry {
 
-    private final Map<NodeReference, Set<ReferenceUiNode<?>>> referenceListMap = new HashMap<>();
+    private final Map<String, Set<ReferenceUiNode<?>>> reverseReferenceMap = new HashMap<>();
 
     @Inject
     public NodeReferenceRegistry() {
     }
 
-    public void update(ReferenceUiNode<?> owner, NodeReference oldValue, NodeReference newValue) {
+    public void update(ReferenceUiNode<?> owner, String oldValue, String newValue) {
         if (oldValue != null) {
             removeEntry(oldValue, owner);
         }
@@ -35,39 +33,29 @@ public class NodeReferenceRegistry {
         }
     }
 
-    private void addEntry(NodeReference newValue, ReferenceUiNode<?> owner) {
-        Set<ReferenceUiNode<?>> referenceSet = referenceListMap.get(newValue);
-        if (referenceSet == null) {
-            referenceSet = new HashSet<>();
-            referenceListMap.put(newValue, referenceSet);
-        }
+    private void addEntry(String newValue, ReferenceUiNode<?> owner) {
+        Set<ReferenceUiNode<?>> referenceSet = reverseReferenceMap.computeIfAbsent(newValue, k -> new HashSet<>());
         referenceSet.add(owner);
     }
 
-    private void removeEntry(NodeReference oldValue, ReferenceUiNode<?> owner) {
-        Set<ReferenceUiNode<?>> referenceSet = referenceListMap.get(oldValue);
+    private void removeEntry(String oldValue, ReferenceUiNode<?> owner) {
+        Set<ReferenceUiNode<?>> referenceSet = reverseReferenceMap.get(oldValue);
         if (referenceSet != null) {
             referenceSet.remove(owner);
             if (referenceSet.size() == 0) {
-                referenceListMap.remove(oldValue);
+                reverseReferenceMap.remove(oldValue);
             }
         }
     }
 
     @SuppressWarnings("unchecked")
     void postRemoveFromParent(UiNode<?> node) {
-        NodeReference reference = node.toNodeReference();
-        Set<ReferenceUiNode<?>> referenceSet = referenceListMap.get(reference);
+        Set<ReferenceUiNode<?>> referenceSet = reverseReferenceMap.get(node.getPath());
         if (referenceSet == null)
             return;
 
         for (ReferenceUiNode<?> referenceUiNode : referenceSet) {
-            ParentUiNode<?> parentUiNode = referenceUiNode.getParent();
-            if (parentUiNode instanceof ListUiNode) {
-                ((ListUiNode<?, ? extends ReferenceUiNode<?>>) parentUiNode).removeByIndex(referenceUiNode.getIndex());
-            } else {
-                referenceUiNode.setValue(null);
-            }
+            referenceUiNode.setValue(null);
         }
     }
 

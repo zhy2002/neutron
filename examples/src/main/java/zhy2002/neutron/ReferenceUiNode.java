@@ -1,32 +1,35 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.data.NodeReference;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, NodeReference> {
+public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
     protected ReferenceUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
     }
 
     @JsMethod
-    public NodeReference getNodeReference() {
-        return getStateValue(NeutronEventSubjects.NODE_REFERENCE);
-    }
-
-    @JsMethod
-    public void setNodeReference(NodeReference nodeReference) {
-        setStateValue(NeutronEventSubjects.NODE_REFERENCE, NodeReference.class, nodeReference);
-    }
-
-    @JsMethod
     public UiNode<?> getReferencedNode() {
-        return getContext().getNodeFinder().findNodeByReference(getNodeReference());
+        return getContext().getNodeFinder().findNodeByPath(getValue());
+    }
+
+    @Override
+    public Class<String> getValueClass() {
+        return String.class;
+    }
+
+    @Override
+    public final String getValue() {
+        return super.getValue();
+    }
+
+    @Override
+    public final void setValue(String value) {
+        super.setValue(String.class, value);
     }
 
     @Inject

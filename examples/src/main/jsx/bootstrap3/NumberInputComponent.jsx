@@ -36,20 +36,33 @@ export default class NumberInputComponent extends InputComponent {
         );
     }
 
+    renderInputGroup() {
+        const model = this.model;
+        if (!model.getCurrencyInfo && !model.getSuffixSymbol) {
+            return this.renderInput();
+        }
+
+        return (
+            <div className="input-group">
+                {model.getCurrencyInfo &&
+                <div className="input-group-addon">{model.getCurrencyInfo().getSymbol()}</div>
+                }
+                {this.renderInput()}
+                {model.getSuffixSymbol &&
+                <div className="input-group-addon">{model.getSuffixSymbol().getSymbol()}</div>
+                }
+            </div>
+        );
+    }
+
     render() {
         const model = this.model;
-
         return (
             <div className={super.renderContainerClass('number-input-component')}>
                 {!this.props.hideLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.label}</label>
                 }
-                <div className="input-group">
-                    {model.getCurrencyInfo &&
-                    <div className="input-group-addon">{model.getCurrencyInfo().getSymbol()}</div>
-                    }
-                    {this.renderInput()}
-                </div>
+                {this.renderInputGroup()}
                 {this.state.errorMessage &&
                 <div className="error-message text-warning">{this.state.errorMessage}</div>
                 }

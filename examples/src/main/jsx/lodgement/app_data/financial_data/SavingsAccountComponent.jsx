@@ -3,6 +3,7 @@ import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
+import OwnershipListComponent from '../common/OwnershipListComponent';
 
 export default class SavingsAccountComponent extends NeutronComponent {
 
@@ -46,10 +47,10 @@ export default class SavingsAccountComponent extends NeutronComponent {
                         </div>
                     </div>
                     <div className="col-md-5">
-                        Ownership (todo) close button (todo)
                         <a tabIndex="0" className="close-link" onClick={this.delete}>
                             <span className="glyphicon glyphicon-remove-circle"/>
                         </a>
+                        <OwnershipListComponent model={model.getSavingsOwnershipListNode()}/>
                     </div>
                 </div>
             </div>

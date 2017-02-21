@@ -417,6 +417,7 @@ rootType:
           - {typeName: SavingsBsbNoNode}
           - {typeName: SavingsAccountNoNode}
           - {typeName: SavingsAccountNameNode}
+          - {typeName: SavingsOwnershipListNode}
           childTypes:
           - typeName: SavingsTypeNode
             baseTypeName: StringUiNode
@@ -439,6 +440,9 @@ rootType:
 
           - typeName: SavingsAccountNameNode
             baseTypeName: StringUiNode
+
+          - typeName: SavingsOwnershipListNode
+            baseTypeName: OwnershipListNode
 
       - typeName: MotorVehicleListNode
         baseTypeName: ListUiNode
@@ -866,6 +870,16 @@ commonTypes:
   init:
   - {propertyName: minValue, value: new BigDecimal("0.01")}
 
+- typeName: BasePercentageNode
+  baseTypeName: BigDecimalUiNode
+  isAbstract: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0")}
+  - {propertyName: maxValue, value: new BigDecimal("100")}
+  properties:
+  - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.PERCENTAGE}
+
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode
   isAbstract: true
@@ -1057,3 +1071,36 @@ commonTypes:
   - {propertyName: maxAge, value: 100}
   rules:
   - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}
+
+- typeName: OwnershipListNode
+  baseTypeName: ListUiNode
+  isAbstract: true
+  parentBaseTypeName: ObjectUiNode<?>
+  properties:
+  - {name: totalOwnership, typeName: BigDecimalUiNode}
+  rules:
+  - {typeName: AddExistingApplicantsRule}
+  - {typeName: AddNewPersonApplicantRule}
+  - {typeName: AddNewCompanyApplicantRule}
+  itemTypeName: OwnershipNode
+  childTypes:
+  - typeName: OwnershipNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: ApplicantReferenceNode}
+    - {typeName: OwnershipPercentageNode}
+    - {typeName: AverageFlagNode}
+    childTypes:
+    - typeName: ApplicantReferenceNode
+      baseTypeName: ReferenceUiNode
+      rules:
+      - {typeName: RemoveOwnershipNodeRule}
+
+    - typeName: OwnershipPercentageNode
+      baseTypeName: BasePercentageNode
+      init:
+      - {propertyName: value, value: 'new BigDecimal("0")'}
+
+    - typeName: AverageFlagNode
+      baseTypeName: BooleanUiNode
+

@@ -339,5 +339,31 @@ public class LodgementNodeTest {
         assertThat(personNode1.getNodeLabel(), equalTo("John Rambo"));
     }
 
+    @Test
+    public void ownershipCanAddExistingPersonApplicants() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+
+        PersonNode personNode1 = personListNode.createItem();
+        PersonNode personNode2 = personListNode.createItem();
+
+        FinancialPositionNode financialPositionNode = applicationNode.getFinancialPositionNode();
+        AssetsNode assetsNode = financialPositionNode.getAssetsNode();
+        SavingsAccountListNode savingsAccountListNode = assetsNode.getSavingsAccountListNode();
+        SavingsAccountNode savingsAccountNode = savingsAccountListNode.createItem();
+        OwnershipListNode<?> ownershipListNode = savingsAccountNode.getSavingsOwnershipListNode();
+
+        assertThat(ownershipListNode.getItemCount(), equalTo(2));
+        assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getValue(), equalTo(personNode1.getPath()));
+        assertThat(ownershipListNode.getItem(1).getApplicantReferenceNode().getValue(), equalTo(personNode2.getPath()));
+
+        personListNode.removeItem(personNode1);
+        assertThat(ownershipListNode.getItemCount(), equalTo(1));
+        assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getValue(), equalTo(personNode2.getPath()));
+
+        PersonNode personNode3 = personListNode.createItem();
+        assertThat(ownershipListNode.getItemCount(), equalTo(2));
+        assertThat(ownershipListNode.getItem(1).getApplicantReferenceNode().getValue(), equalTo(personNode3.getPath()));
+    }
+
 
 }

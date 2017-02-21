@@ -550,4 +550,14 @@ a[tabindex] {
     margin-right: -10px;
   }
 }
+
+.ownership-list-component {
+  .form-group {
+    margin: 0;
+  }
+  .ownership-percentage-wrapper {
+    width: 95px;
+    margin-right: 10px;
+  }
+}
 //endregion

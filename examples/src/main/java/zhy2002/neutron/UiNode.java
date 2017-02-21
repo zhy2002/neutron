@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.data.NodeReference;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.NeutronEventSubjects;
@@ -36,6 +35,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     private Map<String, Object> preState;
     /**
+     * Cache the node path.
+     */
+    private String path;
+    /**
      * A map used to store current values of state properties.
      */
     private final Map<String, Object> state = new HashMap<>();
@@ -61,10 +64,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * At the moment node change means state change, add child or remove child.
      */
     protected final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
-    /**
-     * Cache the node reference.
-     */
-    private NodeReference nodeReference;
 
     /**
      * The constructor for a child node.
@@ -160,7 +159,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
-    final void setStatusListener(UiNodeStatusListener listener) {
+    public final void setStatusListener(UiNodeStatusListener listener) {
         this.statusListener = listener;
     }
 
@@ -219,11 +218,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     public abstract Class<?> getConcreteClass();
 
-    public NodeReference toNodeReference() {
-        if (nodeReference == null) {
-            nodeReference = new NodeReference(getConcreteClassName(), getName());
+    @JsMethod
+    public String getPath() {
+        if(getNodeStatus() == NodeStatusEnum.Detached)
+            return null;
+
+        if (path == null) {
+            Stack<String> stack = new Stack<>();
+            UiNode<?> node = this;
+            do {
+                stack.push(node.getName());
+                node = node.getParent();
+            }while (node != null);
+            StringBuilder stringBuilder = new StringBuilder();
+            while (!stack.isEmpty()) {
+                stringBuilder.append(stack.pop());
+                if(!stack.isEmpty()) {
+                    stringBuilder.append("/"); //node name cannot contain /
+                }
+            }
+            path = stringBuilder.toString();
         }
-        return nodeReference;
+        return path;
     }
 
     protected void setHasValue(boolean value) {
@@ -355,9 +371,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
         //todo removed from parent status listener
 
-        this.nodeStatus = NodeStatusEnum.Detached;
         getContext().getNodeFinder().deregisterNode(this);
         getContext().getNodeReferenceRegistry().postRemoveFromParent(this);
+        this.nodeStatus = NodeStatusEnum.Detached;
     }
 
     /**

@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.rule.ReferenceUiNodeRule;
+import dagger.MembersInjector;
+import zhy2002.neutron.rule.NodeReferenceChangeRule;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -14,10 +15,15 @@ public class ReferenceUiNodeRuleProvider implements RuleProvider<ReferenceUiNode
     public ReferenceUiNodeRuleProvider() {
     }
 
+    @Inject
+    MembersInjector<NodeReferenceChangeRule> injector;
+
     @Override
     public List<UiNodeRule<ReferenceUiNode<?>>> createRules(ReferenceUiNode<?> node) {
+        NodeReferenceChangeRule rule = new NodeReferenceChangeRule(node);
+        injector.injectMembers(rule);
         return Collections.singletonList(
-                new ReferenceUiNodeRule(node)
+                rule
         );
     }
 }

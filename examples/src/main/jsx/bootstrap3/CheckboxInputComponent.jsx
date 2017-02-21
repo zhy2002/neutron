@@ -23,7 +23,9 @@ export default class CheckboxInputComponent extends InputComponent {
                         checked={this.state.value}
                         disabled={this.state.disabled}
                     />
-                    {this.label}
+                    {!this.props.hideLabel &&
+                        this.label
+                    }
                 </label>
                 {this.state.errorMessage &&
                 <div className="error-message text-warning">{this.state.errorMessage}</div>

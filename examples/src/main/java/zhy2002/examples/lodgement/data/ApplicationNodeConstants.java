@@ -13,7 +13,9 @@ import java.util.List;
 public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
     public static final String REF = "ref";
+    public static final String TOTAL_OWNERSHIP = "total_ownership";
     public static final String CURRENCY_INFO = "currency_info";
+    public static final String SUFFIX_SYMBOL = "suffix_symbol";
     public static final String FOCUS = "focus";
     public static final String MIN_AGE = "min_age";
     public static final String MAX_AGE = "max_age";
@@ -22,6 +24,8 @@ public class ApplicationNodeConstants {
     public static final String NAME_PATTERN = "^[a-zA-Z]+$";
 
     public static final CurrencyInfo AUD = new CurrencyInfo("AUD", "$");
+
+    public static final UnitSymbol PERCENTAGE = new UnitSymbol("Percentage", "%");
 
     public static final List<StringOption> TITLE_TYPE = Arrays.asList(
             new StringOption(""),

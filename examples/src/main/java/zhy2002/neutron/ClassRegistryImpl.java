@@ -1,6 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.data.NodeReference;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.event.*;
@@ -57,7 +56,6 @@ public class ClassRegistryImpl implements ClassRegistry {
         this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
         this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
         this.setStateChangeEventFactory(Integer.class, new IntegerStateChangeEventFactory());
-        this.setStateChangeEventFactory(NodeReference.class, new NodeReferenceStateChangeEventFactory());
         this.setStateChangeEventFactory(ValidationError.class, ValidationErrorStateChangeEvent::new);
     }
 

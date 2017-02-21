@@ -12,6 +12,7 @@ interface SavingsAccountNodeChildFactory {
     SavingsBsbNoNode createSavingsBsbNoNode();
     SavingsAccountNoNode createSavingsAccountNoNode();
     SavingsAccountNameNode createSavingsAccountNameNode();
+    SavingsOwnershipListNode createSavingsOwnershipListNode();
 }
 
 @Singleton
@@ -28,6 +29,8 @@ public class SavingsAccountNodeChildProvider {
     MembersInjector<SavingsAccountNoNode> savingsAccountNoNodeInjector;
     @Inject
     MembersInjector<SavingsAccountNameNode> savingsAccountNameNodeInjector;
+    @Inject
+    MembersInjector<SavingsOwnershipListNode> savingsOwnershipListNodeInjector;
 
     @Inject
     protected SavingsAccountNodeChildProvider () {}
@@ -54,6 +57,10 @@ public class SavingsAccountNodeChildProvider {
 
     protected MembersInjector<SavingsAccountNameNode> getSavingsAccountNameNodeInjector() {
         return this.savingsAccountNameNodeInjector;
+    }
+
+    protected MembersInjector<SavingsOwnershipListNode> getSavingsOwnershipListNodeInjector() {
+        return this.savingsOwnershipListNodeInjector;
     }
 
     protected SavingsTypeNode newSavingsTypeNode(
@@ -116,6 +123,16 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsAccountNameNode(SavingsAccountNameNode node) {
     }
 
+    protected SavingsOwnershipListNode newSavingsOwnershipListNode(
+        SavingsAccountNode parent,
+        String name
+    ) {
+        return new SavingsOwnershipListNode(parent, name);
+    }
+
+    protected void configureSavingsOwnershipListNode(SavingsOwnershipListNode node) {
+    }
+
     SavingsAccountNodeChildFactory createFactory(SavingsAccountNode parent) {
         return new SavingsAccountNodeChildFactoryImpl(parent);
     }
@@ -173,6 +190,14 @@ public class SavingsAccountNodeChildProvider {
             SavingsAccountNameNode node = newSavingsAccountNameNode(parent, "savingsAccountNameNode");
             savingsAccountNameNodeInjector.injectMembers(node);
             configureSavingsAccountNameNode(node);
+            return node;
+        }
+
+        @Override
+        public SavingsOwnershipListNode createSavingsOwnershipListNode() {
+            SavingsOwnershipListNode node = newSavingsOwnershipListNode(parent, "savingsOwnershipListNode");
+            savingsOwnershipListNodeInjector.injectMembers(node);
+            configureSavingsOwnershipListNode(node);
             return node;
         }
 
