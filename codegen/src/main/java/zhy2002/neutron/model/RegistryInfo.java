@@ -1,4 +1,4 @@
-package zhy2002.neutron.data;
+package zhy2002.neutron.model;
 
 import java.util.ArrayList;
 import java.util.List;

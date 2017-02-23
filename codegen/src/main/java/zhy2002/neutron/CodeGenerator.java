@@ -2,10 +2,10 @@ package zhy2002.neutron;
 
 import freemarker.template.Template;
 import org.yaml.snakeyaml.Yaml;
-import zhy2002.neutron.data.CodeGenInfo;
-import zhy2002.neutron.data.DomainInfo;
-import zhy2002.neutron.data.NodeInfo;
-import zhy2002.neutron.data.RuleInfo;
+import zhy2002.neutron.model.CodeGenInfo;
+import zhy2002.neutron.model.DomainInfo;
+import zhy2002.neutron.model.NodeInfo;
+import zhy2002.neutron.model.RuleInfo;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Used to generateFile a neutron node structure.
+ * The Neutron code generator. One instance is used per execution.
  */
 class CodeGenerator {
 

@@ -6,6 +6,9 @@ import freemarker.template.TemplateExceptionHandler;
 
 import java.io.IOException;
 
+/**
+ * Load all the ftl templates used in code gen.
+ */
 class TemplateBundle {
 
     private final Template nodeTemplate;
@@ -46,7 +49,7 @@ class TemplateBundle {
             manifestModuleTemplate = configuration.getTemplate("manifest_module.ftl");
 
         } catch (IOException ex) {
-            throw new RuntimeException("Failed to load template.", ex);
+            throw new RuntimeException("Failed to load one or more templates.", ex);
         }
     }
 
@@ -91,7 +94,7 @@ class TemplateBundle {
         return ruleTemplate;
     }
 
-    public Template getRuleProviderTemplate() {
+    Template getRuleProviderTemplate() {
         return ruleProviderTemplate;
     }
 
@@ -111,19 +114,19 @@ class TemplateBundle {
         return childFactoryTemplate;
     }
 
-    public Template getScopeTemplate() {
+    Template getScopeTemplate() {
         return scopeTemplate;
     }
 
-    public Template getModuleTemplate() {
+    Template getModuleTemplate() {
         return moduleTemplate;
     }
 
-    public Template getComponentTemplate() {
+    Template getComponentTemplate() {
         return componentTemplate;
     }
 
-    public Template getManifestModuleTemplate() {
+    Template getManifestModuleTemplate() {
         return manifestModuleTemplate;
     }
 }

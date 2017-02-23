@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * Provide static util methods for this module.
+ */
 public final class CodeGenUtil {
 
     private CodeGenUtil() {
