@@ -6,10 +6,10 @@ import java.util.*;
 import ${targetPackage}.gen.di.*;
 import javax.inject.*;
 
-<#if !isAbstract>@${typeName}Scope</#if>
-public <#if isAbstract>abstract </#if>class ${typeName}RuleProvider extends ${baseTypeName}RuleProvider {
+<#if !abstractNode>@${typeName}Scope</#if>
+public <#if abstractNode>abstract </#if>class ${typeName}RuleProvider extends ${baseTypeName}RuleProvider {
 
-<#if !isAbstract>
+<#if !abstractNode>
     @Inject
     public ${typeName}RuleProvider() {}
 </#if>

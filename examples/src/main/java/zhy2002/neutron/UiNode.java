@@ -416,6 +416,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     /**
      * This method is implemented by the concrete node.
+     * NOTE: Direct base node type of a concrete node type must create its own
+     * UiNodeRuleProvider class.
      * @return the rule provider.
      */
     protected abstract UiNodeRuleProvider getRuleProvider();

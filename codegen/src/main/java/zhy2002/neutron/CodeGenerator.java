@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 
 /**
  * The Neutron code generator. One instance is used per execution.
+ * Code gen = model + template.
  */
 class CodeGenerator {
 
@@ -53,7 +54,7 @@ class CodeGenerator {
 
         generateFile(targetDirectory, nodeInfo, templateBundle.getNodeTemplate(), "", "");
 
-        if (nodeInfo.isCanLoad()) {
+        if (nodeInfo.isUnloadable()) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getNodeLoadEventTemplate(), "event", "LoadEvent");
             generateFile(targetDirectory, nodeInfo, templateBundle.getNodeUnloadEventTemplate(), "event", "UnloadEvent");
         }
@@ -80,7 +81,7 @@ class CodeGenerator {
             generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
         }
 
-        if (!nodeInfo.isIsAbstract()) {
+        if (!nodeInfo.isAbstractNode()) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getScopeTemplate(), "di", "Scope");
             generateFile(targetDirectory, nodeInfo, templateBundle.getModuleTemplate(), "di", "Module");
             generateFile(targetDirectory, nodeInfo, templateBundle.getComponentTemplate(), "di", "Component");

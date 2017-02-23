@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
+public class ErrorNode extends ValidationErrorUiNode<ErrorListNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
@@ -34,60 +34,6 @@ public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 
     public ErrorNode(ErrorListNode parent, String name) {
         super(parent, name);
-    }
-
-    @JsMethod
-    @Override
-    public final void setValue(ValidationError value) {
-        setValue(ValidationError.class, value);
-    }
-
-    @JsMethod
-    public UiNode<?> getSource() {
-        return getValue().getOrigin();
-    }
-
-    @JsMethod
-    public void setSource(UiNode<?> value) {
-        getValue().setOrigin(value);
-    }
-    @JsMethod
-    public String getMessage() {
-        return getValue().getMessage();
-    }
-
-    @JsMethod
-    public void setMessage(String value) {
-        getValue().setMessage(value);
-    }
-    @JsIgnore
-    public UiNodeRule<?> getRule() {
-        return getValue().getRule();
-    }
-
-    @JsIgnore
-    public void setRule(UiNodeRule<?> value) {
-        getValue().setRule(value);
-    }
-    @Override
-    public ValidationError getCopyOfValue() {
-        ValidationError value = getValue();
-        if(value == null)
-            return new ValidationError();
-        return new ValidationError(value);
-    }
-
-    private static ValidationError EMPTY_VALUE = new ValidationError();
-
-    @Override
-    public boolean hasValue() {
-        ValidationError value = getValue();
-        return value != null && !value.equals(EMPTY_VALUE);
-    }
-
-    @Override
-    public Class<ValidationError> getValueClass() {
-        return ValidationError.class;
     }
 
 }

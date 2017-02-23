@@ -423,7 +423,7 @@ public class RegisterCommonSendTest {
     }
 
     @Test
-    public void canLoadInvestmentPropertyNodeManually() {
+    public void unloadableInvestmentPropertyNodeManually() {
         PropertyDetailsNode investmentProperty = registerNode.getInvestmentPropertyNode();
         assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
 
@@ -436,7 +436,7 @@ public class RegisterCommonSendTest {
     }
 
     @Test
-    public void canLoadAndUnloadInvestmentPropertyNodeWhenOwnInvestmentPropertyValueChanges() {
+    public void unloadableAndUnloadInvestmentPropertyNodeWhenOwnInvestmentPropertyValueChanges() {
         OwnInvestmentPropertyNode ownInvestmentPropertyNode = registerNode.getOwnInvestmentPropertyNode();
         ownInvestmentPropertyNode.setValue(Boolean.TRUE);
         PropertyDetailsNode investmentPropertyNode = registerNode.getInvestmentPropertyNode();

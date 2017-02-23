@@ -19,6 +19,10 @@ public class ErrorNodeModule {
         return owner;
     }
 
+    @Provides @ErrorNodeScope @Owner ValidationErrorUiNode<?> provideValidationErrorUiNode() {
+        return owner;
+    }
+
     @Provides @ErrorNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }

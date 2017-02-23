@@ -5,14 +5,18 @@ import java.util.List;
 
 public class RegistryInfo extends CodeGenInfo {
 
-    private List<NodeInfo> childNodes = new ArrayList<>();
-    private List<NodeInfo> concreteNodes = new ArrayList<>();
-    private List<NodeInfo> addEventNodes = new ArrayList<>();
-    private List<NodeInfo> loadEventNodes = new ArrayList<>();
-    private List<NodeInfo> changeEventNodes = new ArrayList<>();
+    private final List<NodeInfo> allNodes = new ArrayList<>();
+    private final List<NodeInfo> concreteNodes = new ArrayList<>();
+    private final List<NodeInfo> addEventNodes = new ArrayList<>();
+    private final List<NodeInfo> loadEventNodes = new ArrayList<>();
+    private final List<NodeInfo> changeEventNodes = new ArrayList<>();
 
-    public List<NodeInfo> getChildNodes() {
-        return childNodes;
+    @Override
+    void initialize() {
+    }
+
+    public List<NodeInfo> getAllNodes() {
+        return allNodes;
     }
 
     public List<NodeInfo> getAddEventNodes() {
@@ -30,4 +34,8 @@ public class RegistryInfo extends CodeGenInfo {
     public List<NodeInfo> getConcreteNodes() {
         return concreteNodes;
     }
+
+
+
+
 }

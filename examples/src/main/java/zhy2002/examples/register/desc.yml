@@ -86,7 +86,7 @@ rootType:
 
   - typeName: PropertyDetailsNode
     baseTypeName: ObjectUiNode
-    canLoad: true
+    unloadable: true
     properties:
     - {name: tooltip, typeName: String}
     children:
@@ -116,7 +116,7 @@ rootType:
     childTypes:
     - typeName: PhoneInfoFieldNode
       baseTypeName: StringUiNode
-      isAbstract: true
+      abstractNode: true
 
     - typeName: CountryCodeNode
       baseTypeName: PhoneInfoFieldNode
@@ -138,10 +138,6 @@ rootType:
     itemTypeName: ErrorNode
     childTypes:
     - typeName: ErrorNode
-      baseTypeName: LeafUiNode
-      valueTypeName: ValidationError
-      valueWrappers:
-      - {name: source, typeName: 'UiNode<?>', wrap: origin}
-      - {name: message, typeName: String}
-      - {name: rule, typeName: 'UiNodeRule<?>', jsIgnore: true}
+      baseTypeName: ValidationErrorUiNode
+
 

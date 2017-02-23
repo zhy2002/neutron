@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.data.*;
 import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
-<#if children?? || itemTypeName?? || !isAbstract || rules?? && rules?size gt 0>
+<#if children?? || itemTypeName?? || !abstractNode || rules?? && rules?size gt 0>
 import javax.inject.*;
 </#if>
 import javax.validation.constraints.NotNull;
@@ -13,14 +13,14 @@ import java.util.*;
 import java.math.*;
 import ${targetPackage}.data.*;
 import ${targetPackage}.gen.rule.*;
-<#if !isAbstract>
+<#if !abstractNode>
 import ${targetPackage}.gen.di.*;
 </#if>
 
 <#if parent?? == false>
 @Singleton
 </#if>
-public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName?? && isAbstract??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
+public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName?? && abstractNode??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
 <#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${itemTypeName}>
 <#else><#if parentTypeName??><${parentTypeName}></#if>
 </#if>{
@@ -39,14 +39,14 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
-<#if !isAbstract>
+<#if !abstractNode>
     @Override
     public final Class<?> getConcreteClass() {
         return ${typeName}.class;
     }
 
 </#if>
-<#if isAbstract>
+<#if abstractNode>
     @Override
     protected abstract ${typeName}RuleProvider getRuleProvider();
 <#else>

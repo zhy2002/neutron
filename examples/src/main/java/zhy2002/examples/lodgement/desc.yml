@@ -775,27 +775,21 @@ rootType:
     - {typeName: ChangeFocusErrorRule}
     childTypes:
     - typeName: ErrorNode
-      baseTypeName: LeafUiNode
-      valueTypeName: ValidationError
-      valueWrappers:
-      - {name: source, typeName: 'UiNode<?>', wrap: origin}
-      - {name: message, typeName: String}
-      - {name: rule, typeName: 'UiNodeRule<?>', jsIgnore: true}
+      baseTypeName: ValidationErrorUiNode
 
 #nodes that do not know the concrete type of their parent
 commonTypes:
 - typeName: TelephoneNode
   baseTypeName: LeafUiNode
   valueTypeName: Telephone
-  generateEvent: true
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   rules:
   - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
 
 - typeName: AddressNode
   baseTypeName: ObjectUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   children:
@@ -829,7 +823,7 @@ commonTypes:
 
 - typeName: MonthYearNode
   baseTypeName: ObjectUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   rules:
@@ -856,14 +850,14 @@ commonTypes:
 
 - typeName: EmailNode
   baseTypeName: StringUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   init:
   - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
 
 - typeName: BaseCurrencyNode
   baseTypeName: BigDecimalUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
@@ -872,7 +866,7 @@ commonTypes:
 
 - typeName: BasePercentageNode
   baseTypeName: BigDecimalUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   init:
   - {propertyName: minValue, value: new BigDecimal("0")}
@@ -882,7 +876,7 @@ commonTypes:
 
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   children:
@@ -933,7 +927,7 @@ commonTypes:
 
   - typeName: EmployedNode
     baseTypeName: ObjectUiNode
-    isAbstract: true
+    abstractNode: true
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}
@@ -1038,12 +1032,12 @@ commonTypes:
 
 - typeName: BaseOccupationNode
   baseTypeName: StringUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: YesNoOptionNode
   baseTypeName: StringUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: options, typeName: Object}
@@ -1052,7 +1046,7 @@ commonTypes:
 
 - typeName: BaseCountryNode
   baseTypeName: StringUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: options, typeName: Object}
@@ -1061,7 +1055,7 @@ commonTypes:
 
 - typeName: DobNode
   baseTypeName: StringUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: minAge, typeName: Integer}
@@ -1074,7 +1068,7 @@ commonTypes:
 
 - typeName: OwnershipListNode
   baseTypeName: ListUiNode
-  isAbstract: true
+  abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   properties:
   - {name: totalOwnership, typeName: BigDecimalUiNode}

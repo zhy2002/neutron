@@ -7,7 +7,7 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 
 @ErrorNodeScope
-public class ErrorNodeRuleProvider extends LeafUiNodeRuleProvider {
+public class ErrorNodeRuleProvider extends ValidationErrorUiNodeRuleProvider {
 
     @Inject
     public ErrorNodeRuleProvider() {}

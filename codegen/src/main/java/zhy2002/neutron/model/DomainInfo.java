@@ -1,20 +1,31 @@
 package zhy2002.neutron.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+
+/**
+ * The root model for code gen.
+ */
 public class DomainInfo extends CodeGenInfo {
 
+    private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+
+    //region mapped data
+
+    @NotNull
     private String targetPackage;
+    @NotNull
     private NodeInfo rootType;
     private List<NodeInfo> commonTypes = new ArrayList<>();
-    private RegistryInfo registryInfo = new RegistryInfo();
-    private List<NodeInfo> allNodes = new ArrayList<>();
 
     public DomainInfo() {
         setTypeName("");
+        setDomainInfo(this);
     }
 
     public String getTargetPackage() {
@@ -41,23 +52,20 @@ public class DomainInfo extends CodeGenInfo {
         this.commonTypes = commonTypes;
     }
 
-    public RegistryInfo getRegistryInfo() {
-        return registryInfo;
-    }
+    //endregion
 
-    public List<NodeInfo> getNodes() {
-        return allNodes;
-    }
+    ////////////////////////////////////////////////////////
 
-    public String getContextName() {
-        return getRootType().getTypeName();
-    }
+    private final RegistryInfo registryInfo = new RegistryInfo();
 
     public void initialize() {
+
+        validateMappedData();
+
         registryInfo.setTypeName(getContextName());
         registryInfo.setDomainInfo(this);
         getRootType().setParentTypeName("VoidUiNode");
-        getRootType().setCanLoad(true);
+        getRootType().setUnloadable(true);
         getRootType().setDomainInfo(this);
 
         getRootType().initialize();
@@ -67,7 +75,7 @@ public class DomainInfo extends CodeGenInfo {
 
         for (NodeInfo nodeInfo : commonTypes) {
             String parentBaseTypeName = nodeInfo.getParentBaseTypeName();
-            if (nodeInfo.isIsAbstract()) {
+            if (nodeInfo.isAbstractNode()) {
                 nodeInfo.setParentTypeName("P");
                 nodeInfo.setParent(genericParentType);
             } else {
@@ -76,7 +84,7 @@ public class DomainInfo extends CodeGenInfo {
                 p.setTypeName(parentBaseTypeName);
                 nodeInfo.setParent(p);
             }
-            nodeInfo.setIsAbstract(true);
+            nodeInfo.setAbstractNode(true);
             nodeInfo.setDomainInfo(this);
             nodeInfo.initialize();
         }
@@ -85,6 +93,7 @@ public class DomainInfo extends CodeGenInfo {
     }
 
     private void resolveBaseTypes() {
+        List<NodeInfo> allNodes = getNodes();
         Map<String, NodeInfo> map = new HashMap<>();
         allNodes.forEach(node -> map.put(node.getTypeName(), node));
         allNodes.forEach(node -> {
@@ -92,6 +101,33 @@ public class DomainInfo extends CodeGenInfo {
             node.setBaseType(baseType);
         });
         allNodes.forEach(NodeInfo::initializeBaseTypes);
+    }
+
+    private void validateMappedData() {
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<DomainInfo>> violations = validator.validate(this);
+        if (violations.size() > 0) {
+            StringBuilder messageBuilder = new StringBuilder();
+            for (ConstraintViolation<DomainInfo> violation : violations) {
+                messageBuilder.append(violation.getPropertyPath());
+                messageBuilder.append(":");
+                messageBuilder.append(violation.getMessage());
+                messageBuilder.append(System.lineSeparator());
+            }
+            throw new RuntimeException(messageBuilder.toString());
+        }
+    }
+
+    public RegistryInfo getRegistryInfo() {
+        return registryInfo;
+    }
+
+    public List<NodeInfo> getNodes() {
+        return getRegistryInfo().getAllNodes();
+    }
+
+    public String getContextName() {
+        return getRootType().getTypeName();
     }
 
 }

@@ -4,8 +4,6 @@ public class RuleInfo extends CodeGenInfo {
 
     private String typeName;
     private String baseTypeName;
-    private String parentTypeName;
-    private String ownerTypeName;
 
     public String getTypeName() {
         return typeName;
@@ -23,6 +21,15 @@ public class RuleInfo extends CodeGenInfo {
         this.baseTypeName = baseTypeName;
     }
 
+    ////////////////////////////////////////////////////////
+
+    private String parentTypeName;
+    private String ownerTypeName;
+
+    @Override
+    void initialize() {
+    }
+
     public String getParentTypeName() {
         return parentTypeName;
     }
@@ -38,4 +45,6 @@ public class RuleInfo extends CodeGenInfo {
     public void setOwnerTypeName(String ownerTypeName) {
         this.ownerTypeName = ownerTypeName;
     }
+
+
 }
