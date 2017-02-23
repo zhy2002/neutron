@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PersonTrustTypeNodeRuleProvider implements RuleProvider<PersonTrustTypeNode> {
+@PersonTrustTypeNodeScope
+public class PersonTrustTypeNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public PersonTrustTypeNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<TrustTypeChangedRule> trustTypeChangedRuleInjector;
+    Provider<TrustTypeChangedRule> trustTypeChangedRuleProvider;
 
     @Override
-    public List<UiNodeRule<PersonTrustTypeNode>> createRules(PersonTrustTypeNode node) {
-        List<UiNodeRule<PersonTrustTypeNode>> rules = new ArrayList<>();
-        rules.add(createTrustTypeChangedRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(trustTypeChangedRuleProvider.get());
     }
 
-    private TrustTypeChangedRule createTrustTypeChangedRule(PersonTrustTypeNode node) {
-        TrustTypeChangedRule rule = newTrustTypeChangedRule(node);
-        trustTypeChangedRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected TrustTypeChangedRule newTrustTypeChangedRule(PersonTrustTypeNode node) {
-        return new TrustTypeChangedRuleImpl(node);
-    }
 }

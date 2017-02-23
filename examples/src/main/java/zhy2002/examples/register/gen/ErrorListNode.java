@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode>
 {
@@ -23,6 +25,18 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode>
     @Override
     public final Class<?> getConcreteClass() {
         return ErrorListNode.class;
+    }
+
+    private ErrorListNodeComponent component;
+
+    @Inject
+    void createComponent(ErrorListNodeComponent.Builder builder) {
+        this.component = builder.setErrorListNodeModule(new ErrorListNodeModule(this)).build();
+    }
+
+    @Override
+    protected ErrorListNodeRuleProvider getRuleProvider() {
+        return component.getErrorListNodeRuleProvider();
     }
 
     public ErrorListNode(RegisterNode parent, String name) {

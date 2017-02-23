@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
 {
@@ -27,6 +28,9 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
     void receiveNodeProvider(EmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    @Override
+    protected abstract EmployedNodeRuleProvider getRuleProvider();
 
     public EmployedNode(EmploymentNode parent, String name) {
         super(parent, name);

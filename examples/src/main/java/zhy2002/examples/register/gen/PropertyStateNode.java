@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyStateNode.class;
+    }
+
+    private PropertyStateNodeComponent component;
+
+    @Inject
+    void createComponent(PropertyStateNodeComponent.Builder builder) {
+        this.component = builder.setPropertyStateNodeModule(new PropertyStateNodeModule(this)).build();
+    }
+
+    @Override
+    protected PropertyStateNodeRuleProvider getRuleProvider() {
+        return component.getPropertyStateNodeRuleProvider();
     }
 
     public PropertyStateNode(PropertyDetailsNode parent, String name) {

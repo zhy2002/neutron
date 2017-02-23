@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class FinancialPositionNodeRuleProvider implements RuleProvider<FinancialPositionNode> {
+@FinancialPositionNodeScope
+public class FinancialPositionNodeRuleProvider extends ObjectUiNodeRuleProvider {
 
     @Inject
     public FinancialPositionNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<FinancialPositionChangedRule> financialPositionChangedRuleInjector;
+    Provider<FinancialPositionChangedRule> financialPositionChangedRuleProvider;
 
     @Override
-    public List<UiNodeRule<FinancialPositionNode>> createRules(FinancialPositionNode node) {
-        List<UiNodeRule<FinancialPositionNode>> rules = new ArrayList<>();
-        rules.add(createFinancialPositionChangedRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(financialPositionChangedRuleProvider.get());
     }
 
-    private FinancialPositionChangedRule createFinancialPositionChangedRule(FinancialPositionNode node) {
-        FinancialPositionChangedRule rule = newFinancialPositionChangedRule(node);
-        financialPositionChangedRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected FinancialPositionChangedRule newFinancialPositionChangedRule(FinancialPositionNode node) {
-        return new FinancialPositionChangedRuleImpl(node);
-    }
 }

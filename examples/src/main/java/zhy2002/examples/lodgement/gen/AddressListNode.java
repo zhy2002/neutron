@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class AddressListNode extends ListUiNode<ApplicationNode,AddressRefUiNode>
 {
@@ -23,6 +25,18 @@ public class AddressListNode extends ListUiNode<ApplicationNode,AddressRefUiNode
     @Override
     public final Class<?> getConcreteClass() {
         return AddressListNode.class;
+    }
+
+    private AddressListNodeComponent component;
+
+    @Inject
+    void createComponent(AddressListNodeComponent.Builder builder) {
+        this.component = builder.setAddressListNodeModule(new AddressListNodeModule(this)).build();
+    }
+
+    @Override
+    protected AddressListNodeRuleProvider getRuleProvider() {
+        return component.getAddressListNodeRuleProvider();
     }
 
     public AddressListNode(ApplicationNode parent, String name) {

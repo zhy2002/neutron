@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNode>
 {
@@ -23,6 +25,18 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
     @Override
     public final Class<?> getConcreteClass() {
         return ExpenseListNode.class;
+    }
+
+    private ExpenseListNodeComponent component;
+
+    @Inject
+    void createComponent(ExpenseListNodeComponent.Builder builder) {
+        this.component = builder.setExpenseListNodeModule(new ExpenseListNodeModule(this)).build();
+    }
+
+    @Override
+    protected ExpenseListNodeRuleProvider getRuleProvider() {
+        return component.getExpenseListNodeRuleProvider();
     }
 
     public ExpenseListNode(FinancialPositionNode parent, String name) {

@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ContactAddressNode extends AddressNode<PersonContactNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return ContactAddressNode.class;
+    }
+
+    private ContactAddressNodeComponent component;
+
+    @Inject
+    void createComponent(ContactAddressNodeComponent.Builder builder) {
+        this.component = builder.setContactAddressNodeModule(new ContactAddressNodeModule(this)).build();
+    }
+
+    @Override
+    protected ContactAddressNodeRuleProvider getRuleProvider() {
+        return component.getContactAddressNodeRuleProvider();
     }
 
     public ContactAddressNode(PersonContactNode parent, String name) {

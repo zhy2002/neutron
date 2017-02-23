@@ -1,48 +1,28 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<MovedToCurrentAddressNode> {
+@MovedToCurrentAddressNodeScope
+public class MovedToCurrentAddressNodeRuleProvider extends MonthYearNodeRuleProvider {
 
     @Inject
     public MovedToCurrentAddressNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<ToCurrentNoEarlierThanToPreviousRule> toCurrentNoEarlierThanToPreviousRuleInjector;
+    Provider<ToCurrentNoEarlierThanToPreviousRule> toCurrentNoEarlierThanToPreviousRuleProvider;
     @Inject
-    MembersInjector<ToCurrentNoEarlierThanFromPreviousRule> toCurrentNoEarlierThanFromPreviousRuleInjector;
+    Provider<ToCurrentNoEarlierThanFromPreviousRule> toCurrentNoEarlierThanFromPreviousRuleProvider;
 
     @Override
-    public List<UiNodeRule<MovedToCurrentAddressNode>> createRules(MovedToCurrentAddressNode node) {
-        List<UiNodeRule<MovedToCurrentAddressNode>> rules = new ArrayList<>();
-        rules.add(createToCurrentNoEarlierThanToPreviousRule(node));
-        rules.add(createToCurrentNoEarlierThanFromPreviousRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(toCurrentNoEarlierThanToPreviousRuleProvider.get());
+            createdRules.add(toCurrentNoEarlierThanFromPreviousRuleProvider.get());
     }
 
-    private ToCurrentNoEarlierThanToPreviousRule createToCurrentNoEarlierThanToPreviousRule(MovedToCurrentAddressNode node) {
-        ToCurrentNoEarlierThanToPreviousRule rule = newToCurrentNoEarlierThanToPreviousRule(node);
-        toCurrentNoEarlierThanToPreviousRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-    private ToCurrentNoEarlierThanFromPreviousRule createToCurrentNoEarlierThanFromPreviousRule(MovedToCurrentAddressNode node) {
-        ToCurrentNoEarlierThanFromPreviousRule rule = newToCurrentNoEarlierThanFromPreviousRule(node);
-        toCurrentNoEarlierThanFromPreviousRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected ToCurrentNoEarlierThanToPreviousRule newToCurrentNoEarlierThanToPreviousRule(MovedToCurrentAddressNode node) {
-        return new ToCurrentNoEarlierThanToPreviousRuleImpl(node);
-    }
-    protected ToCurrentNoEarlierThanFromPreviousRule newToCurrentNoEarlierThanFromPreviousRule(MovedToCurrentAddressNode node) {
-        return new ToCurrentNoEarlierThanFromPreviousRuleImpl(node);
-    }
 }

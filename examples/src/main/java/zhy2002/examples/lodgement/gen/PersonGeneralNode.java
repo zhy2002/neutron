@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PersonGeneralNode extends ObjectUiNode<PersonNode>
 {
@@ -38,6 +40,18 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode>
     @Override
     public final Class<?> getConcreteClass() {
         return PersonGeneralNode.class;
+    }
+
+    private PersonGeneralNodeComponent component;
+
+    @Inject
+    void createComponent(PersonGeneralNodeComponent.Builder builder) {
+        this.component = builder.setPersonGeneralNodeModule(new PersonGeneralNodeModule(this)).build();
+    }
+
+    @Override
+    protected PersonGeneralNodeRuleProvider getRuleProvider() {
+        return component.getPersonGeneralNodeRuleProvider();
     }
 
     public PersonGeneralNode(PersonNode parent, String name) {

@@ -5,15 +5,18 @@ import zhy2002.examples.lodgement.gen.PersonTrustTypeNode;
 import zhy2002.examples.lodgement.gen.rule.TrustTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
 public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
-    public TrustTypeChangedRuleImpl(PersonTrustTypeNode owner) {
+    @Inject
+    public TrustTypeChangedRuleImpl(@Owner PersonTrustTypeNode owner) {
         super(owner);
     }
 

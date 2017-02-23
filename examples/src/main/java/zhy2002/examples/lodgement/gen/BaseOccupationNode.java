@@ -9,9 +9,13 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseOccupationNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
+    @Override
+    protected abstract BaseOccupationNodeRuleProvider getRuleProvider();
+
     public BaseOccupationNode(P parent, String name) {
         super(parent, name);
     }

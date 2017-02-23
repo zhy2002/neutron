@@ -80,13 +80,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
     }
 
-    @Inject
-    ObjectUiNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract ObjectUiNodeRuleProvider getRuleProvider();
 }

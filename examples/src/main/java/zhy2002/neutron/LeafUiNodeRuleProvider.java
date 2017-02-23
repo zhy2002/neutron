@@ -1,24 +1,19 @@
 package zhy2002.neutron;
 
-
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.Collections;
+import javax.inject.Provider;
 import java.util.List;
 
-@Singleton
-public class LeafUiNodeRuleProvider implements RuleProvider<LeafUiNode<?, ?>> {
+public abstract class LeafUiNodeRuleProvider extends UiNodeRuleProvider {
 
     @Inject
-    public LeafUiNodeRuleProvider() {
-    }
+    Provider<LeafValueRequiredValidationRule> leafValueRequiredValidationRuleProvider;
 
     @Override
-    public List<UiNodeRule<LeafUiNode<?, ?>>> createRules(LeafUiNode<?, ?> node) {
-        return Collections.singletonList(
-                new LeafValueRequiredValidationRule(node)
-        );
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+        createdRules.add(leafValueRequiredValidationRuleProvider.get());
     }
 }

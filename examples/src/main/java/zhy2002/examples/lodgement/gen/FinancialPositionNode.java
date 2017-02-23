@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
 {
@@ -33,14 +34,16 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode>
         return FinancialPositionNode.class;
     }
 
+    private FinancialPositionNodeComponent component;
+
     @Inject
-    FinancialPositionNodeRuleProvider ruleProvider;
+    void createComponent(FinancialPositionNodeComponent.Builder builder) {
+        this.component = builder.setFinancialPositionNodeModule(new FinancialPositionNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected FinancialPositionNodeRuleProvider getRuleProvider() {
+        return component.getFinancialPositionNodeRuleProvider();
     }
 
     public FinancialPositionNode(ApplicationNode parent, String name) {

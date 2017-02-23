@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
         return OwnInvestmentPropertyNode.class;
     }
 
+    private OwnInvestmentPropertyNodeComponent component;
+
     @Inject
-    OwnInvestmentPropertyNodeRuleProvider ruleProvider;
+    void createComponent(OwnInvestmentPropertyNodeComponent.Builder builder) {
+        this.component = builder.setOwnInvestmentPropertyNodeModule(new OwnInvestmentPropertyNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected OwnInvestmentPropertyNodeRuleProvider getRuleProvider() {
+        return component.getOwnInvestmentPropertyNodeRuleProvider();
     }
 
     public OwnInvestmentPropertyNode(RegisterNode parent, String name) {

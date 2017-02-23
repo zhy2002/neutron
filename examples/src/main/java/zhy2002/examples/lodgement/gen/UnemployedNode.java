@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
 {
@@ -29,6 +31,18 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
     @Override
     public final Class<?> getConcreteClass() {
         return UnemployedNode.class;
+    }
+
+    private UnemployedNodeComponent component;
+
+    @Inject
+    void createComponent(UnemployedNodeComponent.Builder builder) {
+        this.component = builder.setUnemployedNodeModule(new UnemployedNodeModule(this)).build();
+    }
+
+    @Override
+    protected UnemployedNodeRuleProvider getRuleProvider() {
+        return component.getUnemployedNodeRuleProvider();
     }
 
     public UnemployedNode(EmploymentNode parent, String name) {

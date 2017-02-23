@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class PasswordNode extends StringUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class PasswordNode extends StringUiNode<RegisterNode>
         return PasswordNode.class;
     }
 
+    private PasswordNodeComponent component;
+
     @Inject
-    PasswordNodeRuleProvider ruleProvider;
+    void createComponent(PasswordNodeComponent.Builder builder) {
+        this.component = builder.setPasswordNodeModule(new PasswordNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected PasswordNodeRuleProvider getRuleProvider() {
+        return component.getPasswordNodeRuleProvider();
     }
 
     public PasswordNode(RegisterNode parent, String name) {

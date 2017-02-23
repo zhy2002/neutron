@@ -5,9 +5,11 @@ import zhy2002.examples.lodgement.gen.rule.FinancialPositionChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,7 +17,8 @@ import java.util.Collections;
 
 public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRule {
 
-    public FinancialPositionChangedRuleImpl(FinancialPositionNode owner) {
+    @Inject
+    public FinancialPositionChangedRuleImpl(@Owner FinancialPositionNode owner) {
         super(owner);
     }
 

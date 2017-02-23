@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
 {
@@ -26,6 +28,18 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode>
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyDetailsNode.class;
+    }
+
+    private PropertyDetailsNodeComponent component;
+
+    @Inject
+    void createComponent(PropertyDetailsNodeComponent.Builder builder) {
+        this.component = builder.setPropertyDetailsNodeModule(new PropertyDetailsNodeModule(this)).build();
+    }
+
+    @Override
+    protected PropertyDetailsNodeRuleProvider getRuleProvider() {
+        return component.getPropertyDetailsNodeRuleProvider();
     }
 
     public PropertyDetailsNode(RegisterNode parent, String name) {

@@ -18,12 +18,14 @@ public class NodeInfo extends CodeGenInfo {
     private boolean isAbstract;
     private boolean generateEvent;
     private boolean localRequired;
+    private NodeInfo baseType;
     private List<PropertyInfo> properties;
     private List<RuleInfo> rules;
     private List<InitInfo> init;
     private List<ChildInfo> children;
     private List<NodeInfo> childTypes;
     private List<ValueWrapperInfo> valueWrappers;
+    private List<BaseTypeInfo> baseTypes;
 
     //additional
     private NodeInfo parent;
@@ -190,8 +192,60 @@ public class NodeInfo extends CodeGenInfo {
         initializeDomainInfo();
     }
 
+    public void initializeBaseTypes() {
+        if (isIsAbstract())
+            return;
+
+        baseTypes = new ArrayList<>();
+        NodeInfo nodeInfo = this;
+        do {
+            if (nodeInfo.isIsAbstract() && nodeInfo.getParentBaseTypeName() != null) {
+                baseTypes.add(new BaseTypeInfo(nodeInfo.getTypeName() + "<?>", nodeInfo.getTypeName()));
+            } else {
+                baseTypes.add(new BaseTypeInfo(nodeInfo.getTypeName(), nodeInfo.getTypeName()));
+            }
+
+            if (nodeInfo.getBaseType() == null) {
+                populateFrameworkTypes(baseTypes, nodeInfo.getBaseTypeName());
+                break;
+            } else {
+                nodeInfo = nodeInfo.getBaseType();
+            }
+        } while (true);
+    }
+
+    private void populateFrameworkTypes(List<BaseTypeInfo> baseTypes, String baseTypeName) {
+        //todo do this in a more reliable way
+        if (baseTypeName.equals("ListUiNode")) {
+            baseTypes.add(new BaseTypeInfo("ListUiNode<?,?>", "ListUiNode"));
+        } else if (baseTypeName.equals("ObjectUiNode")) {
+            baseTypes.add(new BaseTypeInfo("ObjectUiNode<?>", "ObjectUiNode"));
+        } else if (baseTypeName.equals("LeafUiNode")) {
+            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
+        } else if (baseTypeName.equals("StringUiNode")) {
+            baseTypes.add(new BaseTypeInfo("StringUiNode<?>", "StringUiNode"));
+            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
+        } else if (baseTypeName.equals("BooleanUiNode")) {
+            baseTypes.add(new BaseTypeInfo("BooleanUiNode<?>", "BooleanUiNode"));
+            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
+        } else if (baseTypeName.equals("BigDecimalUiNode")) {
+            baseTypes.add(new BaseTypeInfo("BigDecimalUiNode<?>", "BigDecimalUiNode"));
+            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
+        } else if (baseTypeName.equals("ReferenceUiNode")) {
+            baseTypes.add(new BaseTypeInfo("ReferenceUiNode<?>", "ReferenceUiNode"));
+            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
+        } else {
+            throw new RuntimeException("Unknown baseType:" + baseTypeName);
+        }
+
+        baseTypes.add(new BaseTypeInfo("UiNode<?>", "UiNode"));
+    }
+
     private void initializeDomainInfo() {
         getDomainInfo().getNodes().add(this);
+        if (!isIsAbstract()) {
+            getDomainInfo().getRegistryInfo().getConcreteNodes().add(this);
+        }
         if (hasFactory()) {
             getDomainInfo().getRegistryInfo().getChildNodes().add(this);
         }
@@ -224,7 +278,7 @@ public class NodeInfo extends CodeGenInfo {
                 }
                 nodeInfo.initialize();
 
-                if(!childTypeNames.contains(nodeInfo.getTypeName())) {
+                if (!childTypeNames.contains(nodeInfo.getTypeName())) {
                     childTypeNames.add(nodeInfo.getTypeName());
                     getDistinctChildTypeNames().add(nodeInfo.getTypeName());
                 }
@@ -319,4 +373,15 @@ public class NodeInfo extends CodeGenInfo {
         return false;
     }
 
+    public List<BaseTypeInfo> getBaseTypes() {
+        return baseTypes;
+    }
+
+    public void setBaseType(NodeInfo baseType) {
+        this.baseType = baseType;
+    }
+
+    public NodeInfo getBaseType() {
+        return baseType;
+    }
 }

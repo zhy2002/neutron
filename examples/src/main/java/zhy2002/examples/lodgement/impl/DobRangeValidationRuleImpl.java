@@ -4,11 +4,13 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import zhy2002.examples.lodgement.gen.DobNode;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.SharedDateTimeFormat;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Date;
 
@@ -17,7 +19,8 @@ public class DobRangeValidationRuleImpl extends DobRangeValidationRule {
 
     private DateTimeFormat dateFormat = new SharedDateTimeFormat("yyyy-MM-dd");
 
-    public DobRangeValidationRuleImpl(DobNode<?> owner) {
+    @Inject
+    public DobRangeValidationRuleImpl(@Owner DobNode<?> owner) {
         super(owner);
     }
 

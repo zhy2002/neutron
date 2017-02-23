@@ -6,8 +6,10 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEvent;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.RefreshUiNodeEvent;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -18,7 +20,8 @@ public class AddExistingApplicantsRuleImpl extends AddExistingApplicantsRule {
 
     ApplicationNode applicationNode;
 
-    public AddExistingApplicantsRuleImpl(OwnershipListNode<?> owner) {
+    @Inject
+    public AddExistingApplicantsRuleImpl(@Owner OwnershipListNode<?> owner) {
         super(owner);
 
         applicationNode = (ApplicationNode) owner.getContext().getRootNode();

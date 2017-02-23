@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class DriversLicenseNode extends StringUiNode<PersonGeneralNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return DriversLicenseNode.class;
+    }
+
+    private DriversLicenseNodeComponent component;
+
+    @Inject
+    void createComponent(DriversLicenseNodeComponent.Builder builder) {
+        this.component = builder.setDriversLicenseNodeModule(new DriversLicenseNodeModule(this)).build();
+    }
+
+    @Override
+    protected DriversLicenseNodeRuleProvider getRuleProvider() {
+        return component.getDriversLicenseNodeRuleProvider();
     }
 
     public DriversLicenseNode(PersonGeneralNode parent, String name) {

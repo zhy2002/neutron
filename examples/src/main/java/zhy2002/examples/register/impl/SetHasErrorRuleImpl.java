@@ -5,13 +5,16 @@ import zhy2002.examples.register.gen.event.ErrorNodeAddEvent;
 import zhy2002.examples.register.gen.event.ErrorNodeRemoveEvent;
 import zhy2002.examples.register.gen.rule.SetHasErrorRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 
 public class SetHasErrorRuleImpl extends SetHasErrorRule {
 
-    public SetHasErrorRuleImpl(RegisterNode owner) {
+    @Inject
+    public SetHasErrorRuleImpl(@Owner RegisterNode owner) {
         super(owner);
     }
 

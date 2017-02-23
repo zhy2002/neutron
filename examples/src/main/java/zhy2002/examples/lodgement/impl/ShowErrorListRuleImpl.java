@@ -5,15 +5,17 @@ import zhy2002.examples.lodgement.gen.ApplicationNode;
 import zhy2002.examples.lodgement.gen.event.ErrorNodeRemoveEvent;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.PredefinedPhases;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 
 public class ShowErrorListRuleImpl extends ShowErrorListRule {
 
-
-    public ShowErrorListRuleImpl(ApplicationNode owner) {
+    @Inject
+    public ShowErrorListRuleImpl(@Owner ApplicationNode owner) {
         super(owner);
     }
 

@@ -4,10 +4,12 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.*;
 
 /**
@@ -15,7 +17,8 @@ import java.util.*;
  */
 public class ClearErrorsForDisabledNodeRule extends UiNodeRule<UiNode<?>> {
 
-    public ClearErrorsForDisabledNodeRule(UiNode<?> owner) {
+    @Inject
+    public ClearErrorsForDisabledNodeRule(@Owner UiNode<?> owner) {
         super(owner);
     }
 

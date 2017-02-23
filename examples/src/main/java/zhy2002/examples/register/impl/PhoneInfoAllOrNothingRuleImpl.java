@@ -3,15 +3,18 @@ package zhy2002.examples.register.impl;
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.rule.PhoneInfoAllOrNothingRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 
 public class PhoneInfoAllOrNothingRuleImpl extends PhoneInfoAllOrNothingRule {
 
-    public PhoneInfoAllOrNothingRuleImpl(PhoneInfoNode owner) {
+    @Inject
+    public PhoneInfoAllOrNothingRuleImpl(@Owner PhoneInfoNode owner) {
         super(owner);
     }
 

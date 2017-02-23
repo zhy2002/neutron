@@ -5,8 +5,10 @@ import zhy2002.examples.register.gen.ReceiveOffersNode;
 import zhy2002.examples.register.gen.rule.EmailIsRequiredWhenReceiveOffersRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -15,7 +17,8 @@ import java.util.Collection;
  */
 public class EmailIsRequiredWhenReceiveOffersRuleImpl extends EmailIsRequiredWhenReceiveOffersRule {
 
-    public EmailIsRequiredWhenReceiveOffersRuleImpl(ReceiveOffersNode owner) {
+    @Inject
+    public EmailIsRequiredWhenReceiveOffersRuleImpl(@Owner ReceiveOffersNode owner) {
         super(owner);
     }
 

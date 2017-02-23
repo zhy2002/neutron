@@ -152,4 +152,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     public boolean hasValue() {
         return getItemCount() > 0;
     }
+
+    @Override
+    protected abstract ListUiNodeRuleProvider getRuleProvider();
 }

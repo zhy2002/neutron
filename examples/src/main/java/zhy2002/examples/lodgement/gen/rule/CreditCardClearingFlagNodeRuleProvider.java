@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class CreditCardClearingFlagNodeRuleProvider implements RuleProvider<CreditCardClearingFlagNode> {
+@CreditCardClearingFlagNodeScope
+public class CreditCardClearingFlagNodeRuleProvider extends BooleanUiNodeRuleProvider {
 
     @Inject
     public CreditCardClearingFlagNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<CreditCardClearingFlagChangedRule> creditCardClearingFlagChangedRuleInjector;
+    Provider<CreditCardClearingFlagChangedRule> creditCardClearingFlagChangedRuleProvider;
 
     @Override
-    public List<UiNodeRule<CreditCardClearingFlagNode>> createRules(CreditCardClearingFlagNode node) {
-        List<UiNodeRule<CreditCardClearingFlagNode>> rules = new ArrayList<>();
-        rules.add(createCreditCardClearingFlagChangedRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(creditCardClearingFlagChangedRuleProvider.get());
     }
 
-    private CreditCardClearingFlagChangedRule createCreditCardClearingFlagChangedRule(CreditCardClearingFlagNode node) {
-        CreditCardClearingFlagChangedRule rule = newCreditCardClearingFlagChangedRule(node);
-        creditCardClearingFlagChangedRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected CreditCardClearingFlagChangedRule newCreditCardClearingFlagChangedRule(CreditCardClearingFlagNode node) {
-        return new CreditCardClearingFlagChangedRuleImpl(node);
-    }
 }

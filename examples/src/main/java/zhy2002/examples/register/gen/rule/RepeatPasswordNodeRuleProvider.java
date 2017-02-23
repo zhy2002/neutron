@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class RepeatPasswordNodeRuleProvider implements RuleProvider<RepeatPasswordNode> {
+@RepeatPasswordNodeScope
+public class RepeatPasswordNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public RepeatPasswordNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<RepeatPasswordRule> repeatPasswordRuleInjector;
+    Provider<RepeatPasswordRule> repeatPasswordRuleProvider;
 
     @Override
-    public List<UiNodeRule<RepeatPasswordNode>> createRules(RepeatPasswordNode node) {
-        List<UiNodeRule<RepeatPasswordNode>> rules = new ArrayList<>();
-        rules.add(createRepeatPasswordRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(repeatPasswordRuleProvider.get());
     }
 
-    private RepeatPasswordRule createRepeatPasswordRule(RepeatPasswordNode node) {
-        RepeatPasswordRule rule = newRepeatPasswordRule(node);
-        repeatPasswordRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected RepeatPasswordRule newRepeatPasswordRule(RepeatPasswordNode node) {
-        return new RepeatPasswordRuleImpl(node);
-    }
 }

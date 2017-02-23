@@ -1,18 +1,21 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.util.PredefinedPhases;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class InvalidCharPreChangeRule extends UiNodeRule<StringUiNode<?>> {
 
-    public InvalidCharPreChangeRule(StringUiNode<?> owner) {
+    @Inject
+    public InvalidCharPreChangeRule(@Owner StringUiNode<?> owner) {
         super(owner);
     }
 

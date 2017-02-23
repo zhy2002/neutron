@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode>
         return ReceiveOffersNode.class;
     }
 
+    private ReceiveOffersNodeComponent component;
+
     @Inject
-    ReceiveOffersNodeRuleProvider ruleProvider;
+    void createComponent(ReceiveOffersNodeComponent.Builder builder) {
+        this.component = builder.setReceiveOffersNodeModule(new ReceiveOffersNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected ReceiveOffersNodeRuleProvider getRuleProvider() {
+        return component.getReceiveOffersNodeRuleProvider();
     }
 
     public ReceiveOffersNode(RegisterNode parent, String name) {

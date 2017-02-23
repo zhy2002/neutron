@@ -3,11 +3,13 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ObjectUiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.PredefinedPhases;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,7 +20,8 @@ public class UpdateObjectHasValueRule extends UiNodeRule<ObjectUiNode<?>> {
 
     private final Set<String> noneEmptyChildNames = new HashSet<>();
 
-    public UpdateObjectHasValueRule(ObjectUiNode<?> owner) {
+    @Inject
+    public UpdateObjectHasValueRule(@Owner ObjectUiNode<?> owner) {
         super(owner);
     }
 

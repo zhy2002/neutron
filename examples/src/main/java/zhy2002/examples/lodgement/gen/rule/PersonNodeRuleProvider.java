@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PersonNodeRuleProvider implements RuleProvider<PersonNode> {
+@PersonNodeScope
+public class PersonNodeRuleProvider extends ObjectUiNodeRuleProvider {
 
     @Inject
     public PersonNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<UpdatePersonNodeLabelRule> updatePersonNodeLabelRuleInjector;
+    Provider<UpdatePersonNodeLabelRule> updatePersonNodeLabelRuleProvider;
 
     @Override
-    public List<UiNodeRule<PersonNode>> createRules(PersonNode node) {
-        List<UiNodeRule<PersonNode>> rules = new ArrayList<>();
-        rules.add(createUpdatePersonNodeLabelRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(updatePersonNodeLabelRuleProvider.get());
     }
 
-    private UpdatePersonNodeLabelRule createUpdatePersonNodeLabelRule(PersonNode node) {
-        UpdatePersonNodeLabelRule rule = newUpdatePersonNodeLabelRule(node);
-        updatePersonNodeLabelRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected UpdatePersonNodeLabelRule newUpdatePersonNodeLabelRule(PersonNode node) {
-        return new UpdatePersonNodeLabelRuleImpl(node);
-    }
 }

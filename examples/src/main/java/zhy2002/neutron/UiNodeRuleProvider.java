@@ -3,20 +3,16 @@ package zhy2002.neutron;
 import zhy2002.neutron.rule.ClearErrorsForDisabledNodeRule;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.Collections;
+import javax.inject.Provider;
 import java.util.List;
 
-@Singleton
-public class UiNodeRuleProvider implements RuleProvider<UiNode<?>> {
+public abstract class UiNodeRuleProvider implements RuleProvider {
 
     @Inject
-    public UiNodeRuleProvider() {}
+    Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;
 
     @Override
-    public List<UiNodeRule<UiNode<?>>> createRules(UiNode<?> node) {
-        return Collections.singletonList(
-                new ClearErrorsForDisabledNodeRule(node)
-        );
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        createdRules.add(clearErrorsForDisabledNodeRuleProvider.get());
     }
 }

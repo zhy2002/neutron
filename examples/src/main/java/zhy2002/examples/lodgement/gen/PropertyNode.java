@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PropertyNode extends ObjectUiNode<RealEstateNode>
 {
@@ -33,6 +35,18 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode>
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyNode.class;
+    }
+
+    private PropertyNodeComponent component;
+
+    @Inject
+    void createComponent(PropertyNodeComponent.Builder builder) {
+        this.component = builder.setPropertyNodeModule(new PropertyNodeModule(this)).build();
+    }
+
+    @Override
+    protected PropertyNodeRuleProvider getRuleProvider() {
+        return component.getPropertyNodeRuleProvider();
     }
 
     public PropertyNode(RealEstateNode parent, String name) {

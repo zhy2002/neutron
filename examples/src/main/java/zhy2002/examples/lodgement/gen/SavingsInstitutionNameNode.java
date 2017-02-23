@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class SavingsInstitutionNameNode extends StringUiNode<SavingsAccountNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return SavingsInstitutionNameNode.class;
+    }
+
+    private SavingsInstitutionNameNodeComponent component;
+
+    @Inject
+    void createComponent(SavingsInstitutionNameNodeComponent.Builder builder) {
+        this.component = builder.setSavingsInstitutionNameNodeModule(new SavingsInstitutionNameNodeModule(this)).build();
+    }
+
+    @Override
+    protected SavingsInstitutionNameNodeRuleProvider getRuleProvider() {
+        return component.getSavingsInstitutionNameNodeRuleProvider();
     }
 
     public SavingsInstitutionNameNode(SavingsAccountNode parent, String name) {

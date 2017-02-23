@@ -3,17 +3,20 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ObjectUiNode;
 import zhy2002.neutron.ValidationRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 
 public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNode<?>> {
 
-    public ObjectValueRequiredValidationRule(ObjectUiNode<?> owner) {
+    @Inject
+    public ObjectValueRequiredValidationRule(@Owner ObjectUiNode<?> owner) {
         super(owner);
     }
 

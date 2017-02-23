@@ -1,16 +1,21 @@
 package zhy2002.neutron.data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class DomainInfo {
+public class DomainInfo extends CodeGenInfo {
 
     private String targetPackage;
     private NodeInfo rootType;
     private List<NodeInfo> commonTypes = new ArrayList<>();
     private RegistryInfo registryInfo = new RegistryInfo();
     private List<NodeInfo> allNodes = new ArrayList<>();
-    ;
+
+    public DomainInfo() {
+        setTypeName("");
+    }
 
     public String getTargetPackage() {
         return targetPackage;
@@ -75,6 +80,18 @@ public class DomainInfo {
             nodeInfo.setDomainInfo(this);
             nodeInfo.initialize();
         }
+
+        resolveBaseTypes();
+    }
+
+    private void resolveBaseTypes() {
+        Map<String, NodeInfo> map = new HashMap<>();
+        allNodes.forEach(node -> map.put(node.getTypeName(), node));
+        allNodes.forEach(node -> {
+            NodeInfo baseType = map.get(node.getBaseTypeName());
+            node.setBaseType(baseType);
+        });
+        allNodes.forEach(NodeInfo::initializeBaseTypes);
     }
 
 }

@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class StudentFlagNode extends YesNoOptionNode<UnemployedNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return StudentFlagNode.class;
+    }
+
+    private StudentFlagNodeComponent component;
+
+    @Inject
+    void createComponent(StudentFlagNodeComponent.Builder builder) {
+        this.component = builder.setStudentFlagNodeModule(new StudentFlagNodeModule(this)).build();
+    }
+
+    @Override
+    protected StudentFlagNodeRuleProvider getRuleProvider() {
+        return component.getStudentFlagNodeRuleProvider();
     }
 
     public StudentFlagNode(UnemployedNode parent, String name) {

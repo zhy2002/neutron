@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class TitleNode extends StringUiNode<PersonGeneralNode>
 {
@@ -19,14 +20,16 @@ public class TitleNode extends StringUiNode<PersonGeneralNode>
         return TitleNode.class;
     }
 
+    private TitleNodeComponent component;
+
     @Inject
-    TitleNodeRuleProvider ruleProvider;
+    void createComponent(TitleNodeComponent.Builder builder) {
+        this.component = builder.setTitleNodeModule(new TitleNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected TitleNodeRuleProvider getRuleProvider() {
+        return component.getTitleNodeRuleProvider();
     }
 
     public TitleNode(PersonGeneralNode parent, String name) {

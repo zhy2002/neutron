@@ -7,9 +7,11 @@ import zhy2002.examples.register.gen.rule.CreateErrorNodeRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEvent;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,7 +22,8 @@ import java.util.Set;
  */
 public class CreateErrorNodeRuleImpl extends CreateErrorNodeRule {
 
-    public CreateErrorNodeRuleImpl(RegisterNode owner) {
+    @Inject
+    public CreateErrorNodeRuleImpl(@Owner RegisterNode owner) {
         super(owner);
     }
 

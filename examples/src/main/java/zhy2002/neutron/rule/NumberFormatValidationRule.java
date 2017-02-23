@@ -2,11 +2,13 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ValidationRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -15,7 +17,8 @@ import java.util.Collections;
  */
 public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
 
-    public NumberFormatValidationRule(BigDecimalUiNode<?> owner) {
+    @Inject
+    public NumberFormatValidationRule(@Owner BigDecimalUiNode<?> owner) {
         super(owner);
     }
 

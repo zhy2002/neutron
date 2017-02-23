@@ -2,17 +2,20 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ValidationRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.node.BooleanUiNode;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNode<?>> {
 
-    public BooleanFixedValueValidationRule(BooleanUiNode<?> owner) {
+    @Inject
+    public BooleanFixedValueValidationRule(@Owner BooleanUiNode<?> owner) {
         super(owner);
     }
 

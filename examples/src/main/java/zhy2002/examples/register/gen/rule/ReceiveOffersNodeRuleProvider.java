@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class ReceiveOffersNodeRuleProvider implements RuleProvider<ReceiveOffersNode> {
+@ReceiveOffersNodeScope
+public class ReceiveOffersNodeRuleProvider extends BooleanUiNodeRuleProvider {
 
     @Inject
     public ReceiveOffersNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<EmailIsRequiredWhenReceiveOffersRule> emailIsRequiredWhenReceiveOffersRuleInjector;
+    Provider<EmailIsRequiredWhenReceiveOffersRule> emailIsRequiredWhenReceiveOffersRuleProvider;
 
     @Override
-    public List<UiNodeRule<ReceiveOffersNode>> createRules(ReceiveOffersNode node) {
-        List<UiNodeRule<ReceiveOffersNode>> rules = new ArrayList<>();
-        rules.add(createEmailIsRequiredWhenReceiveOffersRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(emailIsRequiredWhenReceiveOffersRuleProvider.get());
     }
 
-    private EmailIsRequiredWhenReceiveOffersRule createEmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode node) {
-        EmailIsRequiredWhenReceiveOffersRule rule = newEmailIsRequiredWhenReceiveOffersRule(node);
-        emailIsRequiredWhenReceiveOffersRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected EmailIsRequiredWhenReceiveOffersRule newEmailIsRequiredWhenReceiveOffersRule(ReceiveOffersNode node) {
-        return new EmailIsRequiredWhenReceiveOffersRuleImpl(node);
-    }
 }

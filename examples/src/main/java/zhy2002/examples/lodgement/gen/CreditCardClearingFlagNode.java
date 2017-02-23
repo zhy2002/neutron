@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
 {
@@ -19,14 +20,16 @@ public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode>
         return CreditCardClearingFlagNode.class;
     }
 
+    private CreditCardClearingFlagNodeComponent component;
+
     @Inject
-    CreditCardClearingFlagNodeRuleProvider ruleProvider;
+    void createComponent(CreditCardClearingFlagNodeComponent.Builder builder) {
+        this.component = builder.setCreditCardClearingFlagNodeModule(new CreditCardClearingFlagNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected CreditCardClearingFlagNodeRuleProvider getRuleProvider() {
+        return component.getCreditCardClearingFlagNodeRuleProvider();
     }
 
     public CreditCardClearingFlagNode(CreditCardNode parent, String name) {

@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
+@PasswordNodeScope
+public class PasswordNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public PasswordNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<PasswordIsStrongRule> passwordIsStrongRuleInjector;
+    Provider<PasswordIsStrongRule> passwordIsStrongRuleProvider;
 
     @Override
-    public List<UiNodeRule<PasswordNode>> createRules(PasswordNode node) {
-        List<UiNodeRule<PasswordNode>> rules = new ArrayList<>();
-        rules.add(createPasswordIsStrongRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(passwordIsStrongRuleProvider.get());
     }
 
-    private PasswordIsStrongRule createPasswordIsStrongRule(PasswordNode node) {
-        PasswordIsStrongRule rule = newPasswordIsStrongRule(node);
-        passwordIsStrongRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected PasswordIsStrongRule newPasswordIsStrongRule(PasswordNode node) {
-        return new PasswordIsStrongRuleImpl(node);
-    }
 }

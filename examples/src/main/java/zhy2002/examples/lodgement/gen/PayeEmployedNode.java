@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PayeEmployedNode extends EmployedNode
 {
@@ -25,6 +27,18 @@ public class PayeEmployedNode extends EmployedNode
     @Override
     public final Class<?> getConcreteClass() {
         return PayeEmployedNode.class;
+    }
+
+    private PayeEmployedNodeComponent component;
+
+    @Inject
+    void createComponent(PayeEmployedNodeComponent.Builder builder) {
+        this.component = builder.setPayeEmployedNodeModule(new PayeEmployedNodeModule(this)).build();
+    }
+
+    @Override
+    protected PayeEmployedNodeRuleProvider getRuleProvider() {
+        return component.getPayeEmployedNodeRuleProvider();
     }
 
     public PayeEmployedNode(EmploymentNode parent, String name) {

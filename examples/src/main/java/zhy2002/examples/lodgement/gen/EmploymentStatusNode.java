@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class EmploymentStatusNode extends StringUiNode<EmployedNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return EmploymentStatusNode.class;
+    }
+
+    private EmploymentStatusNodeComponent component;
+
+    @Inject
+    void createComponent(EmploymentStatusNodeComponent.Builder builder) {
+        this.component = builder.setEmploymentStatusNodeModule(new EmploymentStatusNodeModule(this)).build();
+    }
+
+    @Override
+    protected EmploymentStatusNodeRuleProvider getRuleProvider() {
+        return component.getEmploymentStatusNodeRuleProvider();
     }
 
     public EmploymentStatusNode(EmployedNode parent, String name) {

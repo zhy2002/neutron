@@ -152,7 +152,7 @@
                     <modules>
                         <module>zhy2002.Lodgement</module>
                     </modules>
-                    <extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
+                    <extraJvmArgs>-Xmx1024M -Xss2048k</extraJvmArgs>
                     <generateJsInteropExports>true</generateJsInteropExports>
                     <strict>true</strict>
                 </configuration>

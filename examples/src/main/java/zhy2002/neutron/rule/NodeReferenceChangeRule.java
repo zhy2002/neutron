@@ -1,8 +1,10 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
+import zhy2002.neutron.node.ReferenceUiNode;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
@@ -16,7 +18,8 @@ public class NodeReferenceChangeRule extends UiNodeRule<ReferenceUiNode<?>> {
     @Inject
     NodeReferenceRegistry nodeReferenceRegistry;
 
-    public NodeReferenceChangeRule(ReferenceUiNode<?> owner) {
+    @Inject
+    public NodeReferenceChangeRule(@Owner ReferenceUiNode<?> owner) {
         super(owner);
     }
 

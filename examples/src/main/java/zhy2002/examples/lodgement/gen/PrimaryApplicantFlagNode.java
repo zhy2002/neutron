@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
 {
@@ -19,14 +20,16 @@ public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode>
         return PrimaryApplicantFlagNode.class;
     }
 
+    private PrimaryApplicantFlagNodeComponent component;
+
     @Inject
-    PrimaryApplicantFlagNodeRuleProvider ruleProvider;
+    void createComponent(PrimaryApplicantFlagNodeComponent.Builder builder) {
+        this.component = builder.setPrimaryApplicantFlagNodeModule(new PrimaryApplicantFlagNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected PrimaryApplicantFlagNodeRuleProvider getRuleProvider() {
+        return component.getPrimaryApplicantFlagNodeRuleProvider();
     }
 
     public PrimaryApplicantFlagNode(PersonGeneralNode parent, String name) {

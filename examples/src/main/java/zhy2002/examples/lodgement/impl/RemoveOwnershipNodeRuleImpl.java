@@ -5,9 +5,11 @@ import zhy2002.examples.lodgement.gen.OwnershipListNode;
 import zhy2002.examples.lodgement.gen.OwnershipNode;
 import zhy2002.examples.lodgement.gen.rule.RemoveOwnershipNodeRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -16,7 +18,8 @@ import java.util.Collections;
  */
 public class RemoveOwnershipNodeRuleImpl extends RemoveOwnershipNodeRule {
 
-    public RemoveOwnershipNodeRuleImpl(ApplicantReferenceNode owner) {
+    @Inject
+    public RemoveOwnershipNodeRuleImpl(@Owner ApplicantReferenceNode owner) {
         super(owner);
     }
 

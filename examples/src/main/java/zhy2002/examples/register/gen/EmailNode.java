@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class EmailNode extends StringUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class EmailNode extends StringUiNode<RegisterNode>
         return EmailNode.class;
     }
 
+    private EmailNodeComponent component;
+
     @Inject
-    EmailNodeRuleProvider ruleProvider;
+    void createComponent(EmailNodeComponent.Builder builder) {
+        this.component = builder.setEmailNodeModule(new EmailNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected EmailNodeRuleProvider getRuleProvider() {
+        return component.getEmailNodeRuleProvider();
     }
 
     public EmailNode(RegisterNode parent, String name) {

@@ -1,36 +1,23 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class DobNodeRuleProvider implements RuleProvider<DobNode<?>> {
 
-    @Inject
-    public DobNodeRuleProvider() {}
+public abstract class DobNodeRuleProvider extends StringUiNodeRuleProvider {
+
 
     @Inject
-    MembersInjector<DobRangeValidationRule> dobRangeValidationRuleInjector;
+    Provider<DobRangeValidationRule> dobRangeValidationRuleProvider;
 
     @Override
-    public List<UiNodeRule<DobNode<?>>> createRules(DobNode<?> node) {
-        List<UiNodeRule<DobNode<?>>> rules = new ArrayList<>();
-        rules.add(createDobRangeValidationRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(dobRangeValidationRuleProvider.get());
     }
 
-    private DobRangeValidationRule createDobRangeValidationRule(DobNode<?> node) {
-        DobRangeValidationRule rule = newDobRangeValidationRule(node);
-        dobRangeValidationRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected DobRangeValidationRule newDobRangeValidationRule(DobNode<?> node) {
-        return new DobRangeValidationRuleImpl(node);
-    }
 }

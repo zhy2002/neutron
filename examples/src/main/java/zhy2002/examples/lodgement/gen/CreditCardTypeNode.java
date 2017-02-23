@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class CreditCardTypeNode extends StringUiNode<CreditCardNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardTypeNode.class;
+    }
+
+    private CreditCardTypeNodeComponent component;
+
+    @Inject
+    void createComponent(CreditCardTypeNodeComponent.Builder builder) {
+        this.component = builder.setCreditCardTypeNodeModule(new CreditCardTypeNodeModule(this)).build();
+    }
+
+    @Override
+    protected CreditCardTypeNodeRuleProvider getRuleProvider() {
+        return component.getCreditCardTypeNodeRuleProvider();
     }
 
     public CreditCardTypeNode(CreditCardNode parent, String name) {

@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
 {
@@ -26,6 +28,18 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>>
     @Override
     public final Class<?> getConcreteClass() {
         return RetiredEmploymentNode.class;
+    }
+
+    private RetiredEmploymentNodeComponent component;
+
+    @Inject
+    void createComponent(RetiredEmploymentNodeComponent.Builder builder) {
+        this.component = builder.setRetiredEmploymentNodeModule(new RetiredEmploymentNodeModule(this)).build();
+    }
+
+    @Override
+    protected RetiredEmploymentNodeRuleProvider getRuleProvider() {
+        return component.getRetiredEmploymentNodeRuleProvider();
     }
 
     public RetiredEmploymentNode(EmploymentNode parent, String name) {

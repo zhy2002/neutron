@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PersonOtherIncomeTypeNodeRuleProvider implements RuleProvider<PersonOtherIncomeTypeNode> {
+@PersonOtherIncomeTypeNodeScope
+public class PersonOtherIncomeTypeNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public PersonOtherIncomeTypeNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<PersonOtherIncomeTypeChangeRule> personOtherIncomeTypeChangeRuleInjector;
+    Provider<PersonOtherIncomeTypeChangeRule> personOtherIncomeTypeChangeRuleProvider;
 
     @Override
-    public List<UiNodeRule<PersonOtherIncomeTypeNode>> createRules(PersonOtherIncomeTypeNode node) {
-        List<UiNodeRule<PersonOtherIncomeTypeNode>> rules = new ArrayList<>();
-        rules.add(createPersonOtherIncomeTypeChangeRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(personOtherIncomeTypeChangeRuleProvider.get());
     }
 
-    private PersonOtherIncomeTypeChangeRule createPersonOtherIncomeTypeChangeRule(PersonOtherIncomeTypeNode node) {
-        PersonOtherIncomeTypeChangeRule rule = newPersonOtherIncomeTypeChangeRule(node);
-        personOtherIncomeTypeChangeRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected PersonOtherIncomeTypeChangeRule newPersonOtherIncomeTypeChangeRule(PersonOtherIncomeTypeNode node) {
-        return new PersonOtherIncomeTypeChangeRuleImpl(node);
-    }
 }

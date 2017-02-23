@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode>
 {
@@ -23,6 +25,18 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardListNode.class;
+    }
+
+    private CreditCardListNodeComponent component;
+
+    @Inject
+    void createComponent(CreditCardListNodeComponent.Builder builder) {
+        this.component = builder.setCreditCardListNodeModule(new CreditCardListNodeModule(this)).build();
+    }
+
+    @Override
+    protected CreditCardListNodeRuleProvider getRuleProvider() {
+        return component.getCreditCardListNodeRuleProvider();
     }
 
     public CreditCardListNode(LiabilitiesNode parent, String name) {

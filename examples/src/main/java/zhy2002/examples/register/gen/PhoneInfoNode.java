@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
 {
@@ -30,14 +31,16 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
         return PhoneInfoNode.class;
     }
 
+    private PhoneInfoNodeComponent component;
+
     @Inject
-    PhoneInfoNodeRuleProvider ruleProvider;
+    void createComponent(PhoneInfoNodeComponent.Builder builder) {
+        this.component = builder.setPhoneInfoNodeModule(new PhoneInfoNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected PhoneInfoNodeRuleProvider getRuleProvider() {
+        return component.getPhoneInfoNodeRuleProvider();
     }
 
     public PhoneInfoNode(RegisterNode parent, String name) {

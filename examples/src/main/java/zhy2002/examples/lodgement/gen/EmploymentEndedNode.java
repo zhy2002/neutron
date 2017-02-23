@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class EmploymentEndedNode extends MonthYearNode<EmployedNode>
 {
@@ -19,14 +20,16 @@ public class EmploymentEndedNode extends MonthYearNode<EmployedNode>
         return EmploymentEndedNode.class;
     }
 
+    private EmploymentEndedNodeComponent component;
+
     @Inject
-    EmploymentEndedNodeRuleProvider ruleProvider;
+    void createComponent(EmploymentEndedNodeComponent.Builder builder) {
+        this.component = builder.setEmploymentEndedNodeModule(new EmploymentEndedNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected EmploymentEndedNodeRuleProvider getRuleProvider() {
+        return component.getEmploymentEndedNodeRuleProvider();
     }
 
     public EmploymentEndedNode(EmployedNode parent, String name) {

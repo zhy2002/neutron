@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class YearNode extends BigDecimalUiNode<MonthYearNode<?>>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return YearNode.class;
+    }
+
+    private YearNodeComponent component;
+
+    @Inject
+    void createComponent(YearNodeComponent.Builder builder) {
+        this.component = builder.setYearNodeModule(new YearNodeModule(this)).build();
+    }
+
+    @Override
+    protected YearNodeRuleProvider getRuleProvider() {
+        return component.getYearNodeRuleProvider();
     }
 
     public YearNode(MonthYearNode parent, String name) {

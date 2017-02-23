@@ -1,0 +1,20 @@
+package zhy2002.examples.lodgement.gen.di;
+import dagger.Subcomponent;
+import javax.inject.Named;
+import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+
+@SelfEmployedNodeScope
+@Subcomponent(modules = {SelfEmployedNodeModule.class})
+public interface SelfEmployedNodeComponent {
+
+    SelfEmployedNodeRuleProvider getSelfEmployedNodeRuleProvider();
+
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setSelfEmployedNodeModule(SelfEmployedNodeModule module);
+
+        SelfEmployedNodeComponent build();
+    }
+}

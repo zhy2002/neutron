@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
 {
@@ -27,6 +29,18 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
     @Override
     public final Class<?> getConcreteClass() {
         return MotorVehicleNode.class;
+    }
+
+    private MotorVehicleNodeComponent component;
+
+    @Inject
+    void createComponent(MotorVehicleNodeComponent.Builder builder) {
+        this.component = builder.setMotorVehicleNodeModule(new MotorVehicleNodeModule(this)).build();
+    }
+
+    @Override
+    protected MotorVehicleNodeRuleProvider getRuleProvider() {
+        return component.getMotorVehicleNodeRuleProvider();
     }
 
     public MotorVehicleNode(MotorVehicleListNode parent, String name) {

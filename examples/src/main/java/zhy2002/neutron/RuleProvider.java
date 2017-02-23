@@ -1,10 +1,12 @@
 package zhy2002.neutron;
 
-
 import java.util.List;
 
-public interface RuleProvider<N extends UiNode<?>> {
+/**
+ * Implement this interface to provide rules to a node.
+ */
+public interface RuleProvider {
 
-    List<UiNodeRule<N>> createRules(N node);
+    void createRules(List<UiNodeRule<?>> createdRules);
 
 }

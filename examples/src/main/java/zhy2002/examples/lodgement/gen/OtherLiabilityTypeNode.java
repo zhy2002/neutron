@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return OtherLiabilityTypeNode.class;
+    }
+
+    private OtherLiabilityTypeNodeComponent component;
+
+    @Inject
+    void createComponent(OtherLiabilityTypeNodeComponent.Builder builder) {
+        this.component = builder.setOtherLiabilityTypeNodeModule(new OtherLiabilityTypeNodeModule(this)).build();
+    }
+
+    @Override
+    protected OtherLiabilityTypeNodeRuleProvider getRuleProvider() {
+        return component.getOtherLiabilityTypeNodeRuleProvider();
     }
 
     public OtherLiabilityTypeNode(OtherLiabilityNode parent, String name) {

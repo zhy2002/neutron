@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class UsernameNode extends StringUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class UsernameNode extends StringUiNode<RegisterNode>
         return UsernameNode.class;
     }
 
+    private UsernameNodeComponent component;
+
     @Inject
-    UsernameNodeRuleProvider ruleProvider;
+    void createComponent(UsernameNodeComponent.Builder builder) {
+        this.component = builder.setUsernameNodeModule(new UsernameNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected UsernameNodeRuleProvider getRuleProvider() {
+        return component.getUsernameNodeRuleProvider();
     }
 
     public UsernameNode(RegisterNode parent, String name) {

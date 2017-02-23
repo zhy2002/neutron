@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode>
 {
@@ -19,14 +20,16 @@ public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode>
         return ApplicantReferenceNode.class;
     }
 
+    private ApplicantReferenceNodeComponent component;
+
     @Inject
-    ApplicantReferenceNodeRuleProvider ruleProvider;
+    void createComponent(ApplicantReferenceNodeComponent.Builder builder) {
+        this.component = builder.setApplicantReferenceNodeModule(new ApplicantReferenceNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected ApplicantReferenceNodeRuleProvider getRuleProvider() {
+        return component.getApplicantReferenceNodeRuleProvider();
     }
 
     public ApplicantReferenceNode(OwnershipNode parent, String name) {

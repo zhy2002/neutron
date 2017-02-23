@@ -4,8 +4,10 @@ import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.rule.DefaultEmailByUsernameRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -14,7 +16,8 @@ import java.util.Collections;
  */
 public class DefaultEmailByUsernameRuleImpl extends DefaultEmailByUsernameRule {
 
-    public DefaultEmailByUsernameRuleImpl(UsernameNode owner) {
+    @Inject
+    public DefaultEmailByUsernameRuleImpl(@Owner UsernameNode owner) {
         super(owner);
     }
 

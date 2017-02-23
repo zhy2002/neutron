@@ -46,13 +46,6 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
         return Boolean.class;
     }
 
-    @Inject
-    BooleanUiNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract BooleanUiNodeRuleProvider getRuleProvider();
 }

@@ -21,15 +21,8 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         itemFactory = provider.createFactory(this);
     }
 
-    @Inject
-    OwnershipListNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract OwnershipListNodeRuleProvider getRuleProvider();
 
     public OwnershipListNode(P parent, String name) {
         super(parent, name);

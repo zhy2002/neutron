@@ -2,17 +2,20 @@ package zhy2002.examples.register.impl;
 
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.rule.LoadInvestmentPropertyRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeRule;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 
 public class LoadInvestmentPropertyRuleImpl extends LoadInvestmentPropertyRule {
 
-    public LoadInvestmentPropertyRuleImpl(OwnInvestmentPropertyNode owner) {
+    @Inject
+    public LoadInvestmentPropertyRuleImpl(@Owner OwnInvestmentPropertyNode owner) {
         super(owner);
     }
 

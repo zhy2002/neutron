@@ -5,15 +5,18 @@ import zhy2002.examples.lodgement.gen.TelephoneNode;
 import zhy2002.examples.lodgement.gen.event.TelephoneStateChangeEvent;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Collection;
 
 public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
 
-    public TelephoneCompleteRuleImpl(TelephoneNode<?> owner) {
+    @Inject
+    public TelephoneCompleteRuleImpl(@Owner TelephoneNode<?> owner) {
         super(owner);
     }
 

@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ApplicantTypeNode extends StringUiNode<PersonGeneralNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return ApplicantTypeNode.class;
+    }
+
+    private ApplicantTypeNodeComponent component;
+
+    @Inject
+    void createComponent(ApplicantTypeNodeComponent.Builder builder) {
+        this.component = builder.setApplicantTypeNodeModule(new ApplicantTypeNodeModule(this)).build();
+    }
+
+    @Override
+    protected ApplicantTypeNodeRuleProvider getRuleProvider() {
+        return component.getApplicantTypeNodeRuleProvider();
     }
 
     public ApplicantTypeNode(PersonGeneralNode parent, String name) {

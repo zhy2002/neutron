@@ -62,14 +62,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
-    @Inject
-    LeafUiNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract LeafUiNodeRuleProvider getRuleProvider();
 
 }

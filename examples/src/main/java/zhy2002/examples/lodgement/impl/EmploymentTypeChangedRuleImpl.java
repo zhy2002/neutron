@@ -5,15 +5,18 @@ import zhy2002.examples.lodgement.gen.EmploymentTypeNode;
 import zhy2002.examples.lodgement.gen.rule.EmploymentTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class EmploymentTypeChangedRuleImpl extends EmploymentTypeChangedRule {
 
-    public EmploymentTypeChangedRuleImpl(EmploymentTypeNode owner) {
+    @Inject
+    public EmploymentTypeChangedRuleImpl(@Owner EmploymentTypeNode owner) {
         super(owner);
     }
 

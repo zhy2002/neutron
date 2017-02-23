@@ -24,15 +24,8 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
         childFactory = provider.createFactory(this);
     }
 
-    @Inject
-    MonthYearNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract MonthYearNodeRuleProvider getRuleProvider();
 
     public MonthYearNode(P parent, String name) {
         super(parent, name);

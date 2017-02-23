@@ -4,17 +4,15 @@ import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;
 import zhy2002.examples.register.gen.RegisterNodeContext;
-import zhy2002.examples.register.gen.rule.EmailNodeRuleProvider;
-import zhy2002.examples.register.gen.rule.PasswordNodeRuleProvider;
-import zhy2002.examples.register.gen.rule.RegisterNodeRuleProvider;
-import zhy2002.examples.register.gen.rule.UsernameNodeRuleProvider;
-import zhy2002.examples.register.impl.RegisterNodeContextImpl;
+import zhy2002.examples.register.gen.di.ManifestModule;
+import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.impl.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.di.NeutronModule;
 
 import javax.inject.Singleton;
 
-@Module(includes = {NeutronModule.class, CustomModule.class})
+@Module(includes = {NeutronModule.class, ManifestModule.class, CustomModule.class})
 abstract class RegisterContextModule {
 
     @Binds
@@ -26,20 +24,32 @@ abstract class RegisterContextModule {
     abstract ClassRegistryImpl provideClassRegistryImpl(RegisterNodeImplClassRegistry impl);
 
     @Binds
-    @Singleton
-    abstract RegisterNodeRuleProvider provideRegisterNodeRuleProvider(RegisterNodeRuleProviderImpl impl);
+    abstract DefaultEmailByUsernameRule provideDefaultEmailByUsernameRule(DefaultEmailByUsernameRuleImpl impl);
 
     @Binds
-    @Singleton
-    abstract UsernameNodeRuleProvider provideUsernameNodeRuleProvider(UsernameNodeRuleProviderImpl impl);
+    abstract CreateErrorNodeRule provideCreateErrorNodeRule(CreateErrorNodeRuleImpl impl);
 
     @Binds
-    @Singleton
-    abstract EmailNodeRuleProvider provideEmailNodeRuleProvider(EmailNodeRuleProviderImpl impl);
+    abstract PasswordIsStrongRule providePasswordIsStrongRule(PasswordIsStrongRuleImpl impl);
 
     @Binds
-    @Singleton
-    abstract PasswordNodeRuleProvider providePasswordNodeRuleProvider(PasswordNodeRuleProviderImpl impl);
+    abstract EmailChangeReasonRule provideEmailChangeReasonRule(EmailChangeReasonRuleImpl impl);
 
+    @Binds
+    abstract EmailIsRequiredWhenReceiveOffersRule provideEmailIsRequiredWhenReceiveOffersRuleImpl(EmailIsRequiredWhenReceiveOffersRuleImpl impl);
 
+    @Binds
+    abstract LoadInvestmentPropertyRule provideLoadInvestmentPropertyRule(LoadInvestmentPropertyRuleImpl impl);
+
+    @Binds
+    abstract PhoneInfoAllOrNothingRule providePhoneInfoAllOrNothingRule(PhoneInfoAllOrNothingRuleImpl impl);
+
+    @Binds
+    abstract RepeatPasswordRule provideRepeatPasswordRule(RepeatPasswordRuleImpl impl);
+
+    @Binds
+    abstract SetHasErrorRule provideSetHasErrorRuleImpl(SetHasErrorRuleImpl impl);
+
+    @Binds
+    abstract UpdatePlanRule provideUpdatePlanRule(UpdatePlanRuleImpl impl);
 }

@@ -9,7 +9,9 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEventBinding;
 import zhy2002.neutron.NopUiNodeStatusListener;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -20,7 +22,8 @@ public class AddNewPersonApplicantRuleImpl extends AddNewPersonApplicantRule {
 
     private ApplicationNode applicationNode;
 
-    public AddNewPersonApplicantRuleImpl(OwnershipListNode<?> owner) {
+    @Inject
+    public AddNewPersonApplicantRuleImpl(@Owner OwnershipListNode<?> owner) {
         super(owner);
         applicationNode = (ApplicationNode) owner.getContext().getRootNode();
     }

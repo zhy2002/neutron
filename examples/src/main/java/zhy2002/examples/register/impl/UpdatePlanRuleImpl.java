@@ -4,10 +4,12 @@ import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.data.ProductPlan;
 import zhy2002.examples.register.gen.rule.UpdatePlanRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 import zhy2002.neutron.event.ValidationErrorListStateChangeEventBinding;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,7 +32,8 @@ public class UpdatePlanRuleImpl extends UpdatePlanRule {
             new ProductPlan("Plan B", "B")
     );
 
-    public UpdatePlanRuleImpl(AgeNode owner) {
+    @Inject
+    public UpdatePlanRuleImpl(@Owner AgeNode owner) {
         super(owner);
     }
 

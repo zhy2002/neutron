@@ -12,8 +12,9 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import ${targetPackage}.data.*;
-<#if rules??>
 import ${targetPackage}.gen.rule.*;
+<#if !isAbstract>
+import ${targetPackage}.gen.di.*;
 </#if>
 
 <#if parent?? == false>
@@ -45,18 +46,23 @@ public<#if isAbstract> abstract</#if> class ${typeName}<#if parentBaseTypeName??
     }
 
 </#if>
-<#if rules?? && rules?size gt 0>
-    @Inject
-    ${typeName}RuleProvider ruleProvider;
-
+<#if isAbstract>
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
+    protected abstract ${typeName}RuleProvider getRuleProvider();
+<#else>
+    private ${typeName}Component component;
 
-        createdRules.addAll(ruleProvider.createRules(this));
+    @Inject
+    void createComponent(${typeName}Component.Builder builder) {
+        this.component = builder.set${typeName}Module(new ${typeName}Module(this)).build();
     }
 
+    @Override
+    protected ${typeName}RuleProvider getRuleProvider() {
+        return component.get${typeName}RuleProvider();
+    }
 </#if>
+
 <#if parent??>
     public ${typeName}(${parent.typeName} parent, String name) {
         super(parent, name);

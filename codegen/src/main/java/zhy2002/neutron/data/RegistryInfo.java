@@ -6,6 +6,7 @@ import java.util.List;
 public class RegistryInfo extends CodeGenInfo {
 
     private List<NodeInfo> childNodes = new ArrayList<>();
+    private List<NodeInfo> concreteNodes = new ArrayList<>();
     private List<NodeInfo> addEventNodes = new ArrayList<>();
     private List<NodeInfo> loadEventNodes = new ArrayList<>();
     private List<NodeInfo> changeEventNodes = new ArrayList<>();
@@ -24,5 +25,9 @@ public class RegistryInfo extends CodeGenInfo {
 
     public List<NodeInfo> getChangeEventNodes() {
         return changeEventNodes;
+    }
+
+    public List<NodeInfo> getConcreteNodes() {
+        return concreteNodes;
     }
 }

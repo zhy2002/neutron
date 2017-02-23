@@ -50,15 +50,8 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         return String.class;
     }
 
-    @Inject
-    StringUiNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract StringUiNodeRuleProvider getRuleProvider();
 
     public String getPattern() {
         return super.getStateValue(NeutronEventSubjects.PATTERN);

@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class PlanNode extends StringUiNode<RegisterNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return PlanNode.class;
+    }
+
+    private PlanNodeComponent component;
+
+    @Inject
+    void createComponent(PlanNodeComponent.Builder builder) {
+        this.component = builder.setPlanNodeModule(new PlanNodeModule(this)).build();
+    }
+
+    @Override
+    protected PlanNodeRuleProvider getRuleProvider() {
+        return component.getPlanNodeRuleProvider();
     }
 
     public PlanNode(RegisterNode parent, String name) {

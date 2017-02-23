@@ -4,14 +4,17 @@ import zhy2002.examples.lodgement.gen.PersonResponsibleLendNode;
 import zhy2002.examples.lodgement.gen.PersonSignificantChangeFlagNode;
 import zhy2002.examples.lodgement.gen.rule.PersonSignificantChangeRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class PersonSignificantChangeRuleImpl extends PersonSignificantChangeRule {
 
-    public PersonSignificantChangeRuleImpl(PersonSignificantChangeFlagNode owner) {
+    @Inject
+    public PersonSignificantChangeRuleImpl(@Owner PersonSignificantChangeFlagNode owner) {
         super(owner);
     }
 

@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PersonSignificantChangeFlagNodeRuleProvider implements RuleProvider<PersonSignificantChangeFlagNode> {
+@PersonSignificantChangeFlagNodeScope
+public class PersonSignificantChangeFlagNodeRuleProvider extends YesNoOptionNodeRuleProvider {
 
     @Inject
     public PersonSignificantChangeFlagNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<PersonSignificantChangeRule> personSignificantChangeRuleInjector;
+    Provider<PersonSignificantChangeRule> personSignificantChangeRuleProvider;
 
     @Override
-    public List<UiNodeRule<PersonSignificantChangeFlagNode>> createRules(PersonSignificantChangeFlagNode node) {
-        List<UiNodeRule<PersonSignificantChangeFlagNode>> rules = new ArrayList<>();
-        rules.add(createPersonSignificantChangeRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(personSignificantChangeRuleProvider.get());
     }
 
-    private PersonSignificantChangeRule createPersonSignificantChangeRule(PersonSignificantChangeFlagNode node) {
-        PersonSignificantChangeRule rule = newPersonSignificantChangeRule(node);
-        personSignificantChangeRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected PersonSignificantChangeRule newPersonSignificantChangeRule(PersonSignificantChangeFlagNode node) {
-        return new PersonSignificantChangeRuleImpl(node);
-    }
 }

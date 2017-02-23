@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class ApplicantReferenceNodeRuleProvider implements RuleProvider<ApplicantReferenceNode> {
+@ApplicantReferenceNodeScope
+public class ApplicantReferenceNodeRuleProvider extends ReferenceUiNodeRuleProvider {
 
     @Inject
     public ApplicantReferenceNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<RemoveOwnershipNodeRule> removeOwnershipNodeRuleInjector;
+    Provider<RemoveOwnershipNodeRule> removeOwnershipNodeRuleProvider;
 
     @Override
-    public List<UiNodeRule<ApplicantReferenceNode>> createRules(ApplicantReferenceNode node) {
-        List<UiNodeRule<ApplicantReferenceNode>> rules = new ArrayList<>();
-        rules.add(createRemoveOwnershipNodeRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(removeOwnershipNodeRuleProvider.get());
     }
 
-    private RemoveOwnershipNodeRule createRemoveOwnershipNodeRule(ApplicantReferenceNode node) {
-        RemoveOwnershipNodeRule rule = newRemoveOwnershipNodeRule(node);
-        removeOwnershipNodeRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected RemoveOwnershipNodeRule newRemoveOwnershipNodeRule(ApplicantReferenceNode node) {
-        return new RemoveOwnershipNodeRuleImpl(node);
-    }
 }

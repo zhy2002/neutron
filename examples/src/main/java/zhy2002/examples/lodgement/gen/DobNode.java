@@ -14,15 +14,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
-    @Inject
-    DobNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract DobNodeRuleProvider getRuleProvider();
 
     public DobNode(P parent, String name) {
         super(parent, name);

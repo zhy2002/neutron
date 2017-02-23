@@ -4,14 +4,17 @@ import zhy2002.examples.lodgement.gen.ApplicationTypeNode;
 import zhy2002.examples.lodgement.gen.SpouseNode;
 import zhy2002.examples.lodgement.gen.rule.ChangeApplicationTypeRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class ChangeApplicationTypeRuleImpl extends ChangeApplicationTypeRule {
 
-    public ChangeApplicationTypeRuleImpl(ApplicationTypeNode owner) {
+    @Inject
+    public ChangeApplicationTypeRuleImpl(@Owner ApplicationTypeNode owner) {
         super(owner);
     }
 

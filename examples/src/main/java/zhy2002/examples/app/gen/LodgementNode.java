@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.app.data.*;
 import zhy2002.examples.app.gen.rule.*;
+import zhy2002.examples.app.gen.di.*;
 
 @Singleton
 public class LodgementNode extends ObjectUiNode<VoidUiNode>
@@ -29,14 +30,16 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode>
         return LodgementNode.class;
     }
 
+    private LodgementNodeComponent component;
+
     @Inject
-    LodgementNodeRuleProvider ruleProvider;
+    void createComponent(LodgementNodeComponent.Builder builder) {
+        this.component = builder.setLodgementNodeModule(new LodgementNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected LodgementNodeRuleProvider getRuleProvider() {
+        return component.getLodgementNodeRuleProvider();
     }
 
     @Inject

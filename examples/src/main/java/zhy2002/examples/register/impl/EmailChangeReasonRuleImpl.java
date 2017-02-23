@@ -3,9 +3,11 @@ package zhy2002.examples.register.impl;
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.rule.EmailChangeReasonRule;
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -14,7 +16,8 @@ import java.util.Collections;
  */
 public class EmailChangeReasonRuleImpl extends EmailChangeReasonRule {
 
-    public EmailChangeReasonRuleImpl(EmailNode owner) {
+    @Inject
+    public EmailChangeReasonRuleImpl(@Owner EmailNode owner) {
         super(owner);
     }
 

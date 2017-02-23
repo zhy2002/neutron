@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>>
 {
@@ -27,6 +29,18 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>>
     @Override
     public final Class<?> getConcreteClass() {
         return OwnershipNode.class;
+    }
+
+    private OwnershipNodeComponent component;
+
+    @Inject
+    void createComponent(OwnershipNodeComponent.Builder builder) {
+        this.component = builder.setOwnershipNodeModule(new OwnershipNodeModule(this)).build();
+    }
+
+    @Override
+    protected OwnershipNodeRuleProvider getRuleProvider() {
+        return component.getOwnershipNodeRuleProvider();
     }
 
     public OwnershipNode(OwnershipListNode parent, String name) {

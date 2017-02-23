@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class AddressLineNode extends StringUiNode<AddressNode<?>>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return AddressLineNode.class;
+    }
+
+    private AddressLineNodeComponent component;
+
+    @Inject
+    void createComponent(AddressLineNodeComponent.Builder builder) {
+        this.component = builder.setAddressLineNodeModule(new AddressLineNodeModule(this)).build();
+    }
+
+    @Override
+    protected AddressLineNodeRuleProvider getRuleProvider() {
+        return component.getAddressLineNodeRuleProvider();
     }
 
     public AddressLineNode(AddressNode parent, String name) {

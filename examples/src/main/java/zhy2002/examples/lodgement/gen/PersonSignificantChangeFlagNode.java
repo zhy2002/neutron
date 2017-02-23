@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonResponsibleLendNode>
 {
@@ -19,14 +20,16 @@ public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonRespo
         return PersonSignificantChangeFlagNode.class;
     }
 
+    private PersonSignificantChangeFlagNodeComponent component;
+
     @Inject
-    PersonSignificantChangeFlagNodeRuleProvider ruleProvider;
+    void createComponent(PersonSignificantChangeFlagNodeComponent.Builder builder) {
+        this.component = builder.setPersonSignificantChangeFlagNodeModule(new PersonSignificantChangeFlagNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected PersonSignificantChangeFlagNodeRuleProvider getRuleProvider() {
+        return component.getPersonSignificantChangeFlagNodeRuleProvider();
     }
 
     public PersonSignificantChangeFlagNode(PersonResponsibleLendNode parent, String name) {

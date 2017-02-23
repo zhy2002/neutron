@@ -9,9 +9,13 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 {
+    @Override
+    protected abstract YesNoOptionNodeRuleProvider getRuleProvider();
+
     public YesNoOptionNode(P parent, String name) {
         super(parent, name);
     }

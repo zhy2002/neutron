@@ -7,16 +7,19 @@ import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
 
-    public ChangeFocusErrorRuleImpl(ErrorListNode owner) {
+    @Inject
+    public ChangeFocusErrorRuleImpl(@Owner ErrorListNode owner) {
         super(owner);
     }
 

@@ -14,15 +14,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone>
 {
-    @Inject
-    TelephoneNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract TelephoneNodeRuleProvider getRuleProvider();
 
     public TelephoneNode(P parent, String name) {
         super(parent, name);

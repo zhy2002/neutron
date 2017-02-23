@@ -1,48 +1,28 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class PrimaryApplicantFlagNodeRuleProvider implements RuleProvider<PrimaryApplicantFlagNode> {
+@PrimaryApplicantFlagNodeScope
+public class PrimaryApplicantFlagNodeRuleProvider extends BooleanUiNodeRuleProvider {
 
     @Inject
     public PrimaryApplicantFlagNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<AtLeastOnePrimaryApplicantRule> atLeastOnePrimaryApplicantRuleInjector;
+    Provider<AtLeastOnePrimaryApplicantRule> atLeastOnePrimaryApplicantRuleProvider;
     @Inject
-    MembersInjector<AtMostOnePrimaryApplicantRule> atMostOnePrimaryApplicantRuleInjector;
+    Provider<AtMostOnePrimaryApplicantRule> atMostOnePrimaryApplicantRuleProvider;
 
     @Override
-    public List<UiNodeRule<PrimaryApplicantFlagNode>> createRules(PrimaryApplicantFlagNode node) {
-        List<UiNodeRule<PrimaryApplicantFlagNode>> rules = new ArrayList<>();
-        rules.add(createAtLeastOnePrimaryApplicantRule(node));
-        rules.add(createAtMostOnePrimaryApplicantRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(atLeastOnePrimaryApplicantRuleProvider.get());
+            createdRules.add(atMostOnePrimaryApplicantRuleProvider.get());
     }
 
-    private AtLeastOnePrimaryApplicantRule createAtLeastOnePrimaryApplicantRule(PrimaryApplicantFlagNode node) {
-        AtLeastOnePrimaryApplicantRule rule = newAtLeastOnePrimaryApplicantRule(node);
-        atLeastOnePrimaryApplicantRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-    private AtMostOnePrimaryApplicantRule createAtMostOnePrimaryApplicantRule(PrimaryApplicantFlagNode node) {
-        AtMostOnePrimaryApplicantRule rule = newAtMostOnePrimaryApplicantRule(node);
-        atMostOnePrimaryApplicantRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected AtLeastOnePrimaryApplicantRule newAtLeastOnePrimaryApplicantRule(PrimaryApplicantFlagNode node) {
-        return new AtLeastOnePrimaryApplicantRuleImpl(node);
-    }
-    protected AtMostOnePrimaryApplicantRule newAtMostOnePrimaryApplicantRule(PrimaryApplicantFlagNode node) {
-        return new AtMostOnePrimaryApplicantRuleImpl(node);
-    }
 }

@@ -4,17 +4,20 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.ValidationRule;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?, ?>> {
 
-    public LeafValueRequiredValidationRule(LeafUiNode<?, ?> owner) {
+    @Inject
+    public LeafValueRequiredValidationRule(@Owner LeafUiNode<?, ?> owner) {
         super(owner);
     }
 

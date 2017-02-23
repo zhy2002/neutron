@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class MovedFromPreviousAddressNodeRuleProvider implements RuleProvider<MovedFromPreviousAddressNode> {
+@MovedFromPreviousAddressNodeScope
+public class MovedFromPreviousAddressNodeRuleProvider extends MonthYearNodeRuleProvider {
 
     @Inject
     public MovedFromPreviousAddressNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<FromPreviousNoEarlierThanToPreviousRule> fromPreviousNoEarlierThanToPreviousRuleInjector;
+    Provider<FromPreviousNoEarlierThanToPreviousRule> fromPreviousNoEarlierThanToPreviousRuleProvider;
 
     @Override
-    public List<UiNodeRule<MovedFromPreviousAddressNode>> createRules(MovedFromPreviousAddressNode node) {
-        List<UiNodeRule<MovedFromPreviousAddressNode>> rules = new ArrayList<>();
-        rules.add(createFromPreviousNoEarlierThanToPreviousRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(fromPreviousNoEarlierThanToPreviousRuleProvider.get());
     }
 
-    private FromPreviousNoEarlierThanToPreviousRule createFromPreviousNoEarlierThanToPreviousRule(MovedFromPreviousAddressNode node) {
-        FromPreviousNoEarlierThanToPreviousRule rule = newFromPreviousNoEarlierThanToPreviousRule(node);
-        fromPreviousNoEarlierThanToPreviousRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected FromPreviousNoEarlierThanToPreviousRule newFromPreviousNoEarlierThanToPreviousRule(MovedFromPreviousAddressNode node) {
-        return new FromPreviousNoEarlierThanToPreviousRuleImpl(node);
-    }
 }

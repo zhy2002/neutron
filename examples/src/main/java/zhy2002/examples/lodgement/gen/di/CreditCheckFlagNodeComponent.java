@@ -1,0 +1,20 @@
+package zhy2002.examples.lodgement.gen.di;
+import dagger.Subcomponent;
+import javax.inject.Named;
+import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+
+@CreditCheckFlagNodeScope
+@Subcomponent(modules = {CreditCheckFlagNodeModule.class})
+public interface CreditCheckFlagNodeComponent {
+
+    CreditCheckFlagNodeRuleProvider getCreditCheckFlagNodeRuleProvider();
+
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setCreditCheckFlagNodeModule(CreditCheckFlagNodeModule module);
+
+        CreditCheckFlagNodeComponent build();
+    }
+}

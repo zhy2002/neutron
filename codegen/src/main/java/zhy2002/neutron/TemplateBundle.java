@@ -20,6 +20,10 @@ class TemplateBundle {
     private final Template contextTemplate;
     private final Template itemFactoryTemplate;
     private final Template childFactoryTemplate;
+    private final Template scopeTemplate;
+    private final Template moduleTemplate;
+    private final Template componentTemplate;
+    private final Template manifestModuleTemplate;
 
     TemplateBundle() {
         Configuration configuration = createTemplateConfiguration();
@@ -36,6 +40,11 @@ class TemplateBundle {
             contextTemplate = configuration.getTemplate("context.ftl");
             itemFactoryTemplate = configuration.getTemplate("item_factory.ftl");
             childFactoryTemplate = configuration.getTemplate("child_factory.ftl");
+            scopeTemplate = configuration.getTemplate("scope.ftl");
+            moduleTemplate = configuration.getTemplate("module.ftl");
+            componentTemplate = configuration.getTemplate("component.ftl");
+            manifestModuleTemplate = configuration.getTemplate("manifest_module.ftl");
+
         } catch (IOException ex) {
             throw new RuntimeException("Failed to load template.", ex);
         }
@@ -100,5 +109,21 @@ class TemplateBundle {
 
     Template getChildFactoryTemplate() {
         return childFactoryTemplate;
+    }
+
+    public Template getScopeTemplate() {
+        return scopeTemplate;
+    }
+
+    public Template getModuleTemplate() {
+        return moduleTemplate;
+    }
+
+    public Template getComponentTemplate() {
+        return componentTemplate;
+    }
+
+    public Template getManifestModuleTemplate() {
+        return manifestModuleTemplate;
     }
 }

@@ -3,15 +3,18 @@ package zhy2002.examples.app.di;
 import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.app.gen.LodgementNodeContext;
+import zhy2002.examples.app.gen.rule.DummyRule;
 import zhy2002.examples.app.gen.rule.LodgementNodeRuleProvider;
+import zhy2002.examples.app.impl.DummyRuleImpl;
 import zhy2002.examples.app.impl.LodgementNodeContextImpl;
 import zhy2002.examples.app.impl.LodgementNodeImplClassRegistry;
+import zhy2002.examples.app.gen.di.ManifestModule;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.di.NeutronModule;
 
 import javax.inject.Singleton;
 
-@Module(includes = {NeutronModule.class})
+@Module(includes = {NeutronModule.class, ManifestModule.class})
 abstract class LodgementContextModule {
 
     @Binds
@@ -23,7 +26,6 @@ abstract class LodgementContextModule {
     abstract ClassRegistryImpl provideClassRegistryImpl(LodgementNodeImplClassRegistry impl);
 
     @Binds
-    @Singleton
-    abstract LodgementNodeRuleProvider providerLodgementNodeRuleProvider(LodgementNodeRuleProviderImpl LodgementNodeRuleProvider);
+    abstract DummyRule provideDummyRule(DummyRuleImpl impl);
 
 }

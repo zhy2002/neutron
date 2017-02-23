@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEmploymentNode>
 {
@@ -23,6 +25,18 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
     @Override
     public final Class<?> getConcreteClass() {
         return PreviousEmploymentListNode.class;
+    }
+
+    private PreviousEmploymentListNodeComponent component;
+
+    @Inject
+    void createComponent(PreviousEmploymentListNodeComponent.Builder builder) {
+        this.component = builder.setPreviousEmploymentListNodeModule(new PreviousEmploymentListNodeModule(this)).build();
+    }
+
+    @Override
+    protected PreviousEmploymentListNodeRuleProvider getRuleProvider() {
+        return component.getPreviousEmploymentListNodeRuleProvider();
     }
 
     public PreviousEmploymentListNode(PersonNode parent, String name) {

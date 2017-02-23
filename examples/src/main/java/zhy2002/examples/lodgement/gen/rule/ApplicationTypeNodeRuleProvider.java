@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class ApplicationTypeNodeRuleProvider implements RuleProvider<ApplicationTypeNode> {
+@ApplicationTypeNodeScope
+public class ApplicationTypeNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public ApplicationTypeNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<ChangeApplicationTypeRule> changeApplicationTypeRuleInjector;
+    Provider<ChangeApplicationTypeRule> changeApplicationTypeRuleProvider;
 
     @Override
-    public List<UiNodeRule<ApplicationTypeNode>> createRules(ApplicationTypeNode node) {
-        List<UiNodeRule<ApplicationTypeNode>> rules = new ArrayList<>();
-        rules.add(createChangeApplicationTypeRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(changeApplicationTypeRuleProvider.get());
     }
 
-    private ChangeApplicationTypeRule createChangeApplicationTypeRule(ApplicationTypeNode node) {
-        ChangeApplicationTypeRule rule = newChangeApplicationTypeRule(node);
-        changeApplicationTypeRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected ChangeApplicationTypeRule newChangeApplicationTypeRule(ApplicationTypeNode node) {
-        return new ChangeApplicationTypeRuleImpl(node);
-    }
 }

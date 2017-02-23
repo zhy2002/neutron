@@ -414,8 +414,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         createdRules.clear();
     }
 
-    @Inject
-    UiNodeRuleProvider ruleProvider;
+    /**
+     * This method is implemented by the concrete node.
+     * @return the rule provider.
+     */
+    protected abstract UiNodeRuleProvider getRuleProvider();
 
     /**
      * Override this method to add rules to be loaded.
@@ -424,8 +427,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      *
      * @param createdRules the list of rule that will be loaded.
      */
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        createdRules.addAll(ruleProvider.createRules(this));
+    private void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
     /**

@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode>
 {
@@ -19,14 +20,16 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNod
         return MovedFromPreviousAddressNode.class;
     }
 
+    private MovedFromPreviousAddressNodeComponent component;
+
     @Inject
-    MovedFromPreviousAddressNodeRuleProvider ruleProvider;
+    void createComponent(MovedFromPreviousAddressNodeComponent.Builder builder) {
+        this.component = builder.setMovedFromPreviousAddressNodeModule(new MovedFromPreviousAddressNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected MovedFromPreviousAddressNodeRuleProvider getRuleProvider() {
+        return component.getMovedFromPreviousAddressNodeRuleProvider();
     }
 
     public MovedFromPreviousAddressNode(PersonContactNode parent, String name) {

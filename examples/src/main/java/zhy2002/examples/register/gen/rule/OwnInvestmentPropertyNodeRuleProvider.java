@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class OwnInvestmentPropertyNodeRuleProvider implements RuleProvider<OwnInvestmentPropertyNode> {
+@OwnInvestmentPropertyNodeScope
+public class OwnInvestmentPropertyNodeRuleProvider extends BooleanUiNodeRuleProvider {
 
     @Inject
     public OwnInvestmentPropertyNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<LoadInvestmentPropertyRule> loadInvestmentPropertyRuleInjector;
+    Provider<LoadInvestmentPropertyRule> loadInvestmentPropertyRuleProvider;
 
     @Override
-    public List<UiNodeRule<OwnInvestmentPropertyNode>> createRules(OwnInvestmentPropertyNode node) {
-        List<UiNodeRule<OwnInvestmentPropertyNode>> rules = new ArrayList<>();
-        rules.add(createLoadInvestmentPropertyRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(loadInvestmentPropertyRuleProvider.get());
     }
 
-    private LoadInvestmentPropertyRule createLoadInvestmentPropertyRule(OwnInvestmentPropertyNode node) {
-        LoadInvestmentPropertyRule rule = newLoadInvestmentPropertyRule(node);
-        loadInvestmentPropertyRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected LoadInvestmentPropertyRule newLoadInvestmentPropertyRule(OwnInvestmentPropertyNode node) {
-        return new LoadInvestmentPropertyRuleImpl(node);
-    }
 }

@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class AgeNodeRuleProvider implements RuleProvider<AgeNode> {
+@AgeNodeScope
+public class AgeNodeRuleProvider extends BigDecimalUiNodeRuleProvider {
 
     @Inject
     public AgeNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<UpdatePlanRule> updatePlanRuleInjector;
+    Provider<UpdatePlanRule> updatePlanRuleProvider;
 
     @Override
-    public List<UiNodeRule<AgeNode>> createRules(AgeNode node) {
-        List<UiNodeRule<AgeNode>> rules = new ArrayList<>();
-        rules.add(createUpdatePlanRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(updatePlanRuleProvider.get());
     }
 
-    private UpdatePlanRule createUpdatePlanRule(AgeNode node) {
-        UpdatePlanRule rule = newUpdatePlanRule(node);
-        updatePlanRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected UpdatePlanRule newUpdatePlanRule(AgeNode node) {
-        return new UpdatePlanRuleImpl(node);
-    }
 }

@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class CountryNode extends BaseCountryNode<AddressNode<?>>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return CountryNode.class;
+    }
+
+    private CountryNodeComponent component;
+
+    @Inject
+    void createComponent(CountryNodeComponent.Builder builder) {
+        this.component = builder.setCountryNodeModule(new CountryNodeModule(this)).build();
+    }
+
+    @Override
+    protected CountryNodeRuleProvider getRuleProvider() {
+        return component.getCountryNodeRuleProvider();
     }
 
     public CountryNode(AddressNode parent, String name) {

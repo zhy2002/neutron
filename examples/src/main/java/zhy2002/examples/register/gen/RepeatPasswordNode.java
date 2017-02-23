@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class RepeatPasswordNode extends StringUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode>
         return RepeatPasswordNode.class;
     }
 
+    private RepeatPasswordNodeComponent component;
+
     @Inject
-    RepeatPasswordNodeRuleProvider ruleProvider;
+    void createComponent(RepeatPasswordNodeComponent.Builder builder) {
+        this.component = builder.setRepeatPasswordNodeModule(new RepeatPasswordNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected RepeatPasswordNodeRuleProvider getRuleProvider() {
+        return component.getRepeatPasswordNodeRuleProvider();
     }
 
     public RepeatPasswordNode(RegisterNode parent, String name) {

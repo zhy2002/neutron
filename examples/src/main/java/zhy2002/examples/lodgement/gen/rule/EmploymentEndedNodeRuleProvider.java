@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class EmploymentEndedNodeRuleProvider implements RuleProvider<EmploymentEndedNode> {
+@EmploymentEndedNodeScope
+public class EmploymentEndedNodeRuleProvider extends MonthYearNodeRuleProvider {
 
     @Inject
     public EmploymentEndedNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<EmploymentEndedNoEarlierThanEmploymentStartedRule> employmentEndedNoEarlierThanEmploymentStartedRuleInjector;
+    Provider<EmploymentEndedNoEarlierThanEmploymentStartedRule> employmentEndedNoEarlierThanEmploymentStartedRuleProvider;
 
     @Override
-    public List<UiNodeRule<EmploymentEndedNode>> createRules(EmploymentEndedNode node) {
-        List<UiNodeRule<EmploymentEndedNode>> rules = new ArrayList<>();
-        rules.add(createEmploymentEndedNoEarlierThanEmploymentStartedRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get());
     }
 
-    private EmploymentEndedNoEarlierThanEmploymentStartedRule createEmploymentEndedNoEarlierThanEmploymentStartedRule(EmploymentEndedNode node) {
-        EmploymentEndedNoEarlierThanEmploymentStartedRule rule = newEmploymentEndedNoEarlierThanEmploymentStartedRule(node);
-        employmentEndedNoEarlierThanEmploymentStartedRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected EmploymentEndedNoEarlierThanEmploymentStartedRule newEmploymentEndedNoEarlierThanEmploymentStartedRule(EmploymentEndedNode node) {
-        return new EmploymentEndedNoEarlierThanEmploymentStartedRuleImpl(node);
-    }
 }

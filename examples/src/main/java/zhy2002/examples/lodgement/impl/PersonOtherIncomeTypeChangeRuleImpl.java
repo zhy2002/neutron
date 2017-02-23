@@ -5,14 +5,17 @@ import zhy2002.examples.lodgement.gen.PersonOtherIncomeNode;
 import zhy2002.examples.lodgement.gen.PersonOtherIncomeTypeNode;
 import zhy2002.examples.lodgement.gen.rule.PersonOtherIncomeTypeChangeRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class PersonOtherIncomeTypeChangeRuleImpl extends PersonOtherIncomeTypeChangeRule {
 
-    public PersonOtherIncomeTypeChangeRuleImpl(PersonOtherIncomeTypeNode owner) {
+    @Inject
+    public PersonOtherIncomeTypeChangeRuleImpl(@Owner PersonOtherIncomeTypeNode owner) {
         super(owner);
     }
 

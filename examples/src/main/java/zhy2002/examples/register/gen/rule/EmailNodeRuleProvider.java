@@ -1,36 +1,25 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.register.gen.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class EmailNodeRuleProvider implements RuleProvider<EmailNode> {
+@EmailNodeScope
+public class EmailNodeRuleProvider extends StringUiNodeRuleProvider {
 
     @Inject
     public EmailNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<EmailChangeReasonRule> emailChangeReasonRuleInjector;
+    Provider<EmailChangeReasonRule> emailChangeReasonRuleProvider;
 
     @Override
-    public List<UiNodeRule<EmailNode>> createRules(EmailNode node) {
-        List<UiNodeRule<EmailNode>> rules = new ArrayList<>();
-        rules.add(createEmailChangeReasonRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(emailChangeReasonRuleProvider.get());
     }
 
-    private EmailChangeReasonRule createEmailChangeReasonRule(EmailNode node) {
-        EmailChangeReasonRule rule = newEmailChangeReasonRule(node);
-        emailChangeReasonRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected EmailChangeReasonRule newEmailChangeReasonRule(EmailNode node) {
-        return new EmailChangeReasonRuleImpl(node);
-    }
 }

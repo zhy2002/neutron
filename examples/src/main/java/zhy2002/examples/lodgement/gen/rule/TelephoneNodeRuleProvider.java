@@ -1,36 +1,23 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class TelephoneNodeRuleProvider implements RuleProvider<TelephoneNode<?>> {
 
-    @Inject
-    public TelephoneNodeRuleProvider() {}
+public abstract class TelephoneNodeRuleProvider extends LeafUiNodeRuleProvider {
+
 
     @Inject
-    MembersInjector<TelephoneCompleteRule> telephoneCompleteRuleInjector;
+    Provider<TelephoneCompleteRule> telephoneCompleteRuleProvider;
 
     @Override
-    public List<UiNodeRule<TelephoneNode<?>>> createRules(TelephoneNode<?> node) {
-        List<UiNodeRule<TelephoneNode<?>>> rules = new ArrayList<>();
-        rules.add(createTelephoneCompleteRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(telephoneCompleteRuleProvider.get());
     }
 
-    private TelephoneCompleteRule createTelephoneCompleteRule(TelephoneNode<?> node) {
-        TelephoneCompleteRule rule = newTelephoneCompleteRule(node);
-        telephoneCompleteRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected TelephoneCompleteRule newTelephoneCompleteRule(TelephoneNode<?> node) {
-        return new TelephoneCompleteRuleImpl(node);
-    }
 }

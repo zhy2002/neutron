@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 public class AgeNode extends BigDecimalUiNode<RegisterNode>
 {
@@ -19,14 +20,16 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode>
         return AgeNode.class;
     }
 
+    private AgeNodeComponent component;
+
     @Inject
-    AgeNodeRuleProvider ruleProvider;
+    void createComponent(AgeNodeComponent.Builder builder) {
+        this.component = builder.setAgeNodeModule(new AgeNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected AgeNodeRuleProvider getRuleProvider() {
+        return component.getAgeNodeRuleProvider();
     }
 
     public AgeNode(RegisterNode parent, String name) {

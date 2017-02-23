@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountNode>
 {
@@ -23,6 +25,18 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     @Override
     public final Class<?> getConcreteClass() {
         return SavingsAccountListNode.class;
+    }
+
+    private SavingsAccountListNodeComponent component;
+
+    @Inject
+    void createComponent(SavingsAccountListNodeComponent.Builder builder) {
+        this.component = builder.setSavingsAccountListNodeModule(new SavingsAccountListNodeModule(this)).build();
+    }
+
+    @Override
+    protected SavingsAccountListNodeRuleProvider getRuleProvider() {
+        return component.getSavingsAccountListNodeRuleProvider();
     }
 
     public SavingsAccountListNode(AssetsNode parent, String name) {

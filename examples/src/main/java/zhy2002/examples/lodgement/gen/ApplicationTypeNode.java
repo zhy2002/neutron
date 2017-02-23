@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode>
 {
@@ -19,14 +20,16 @@ public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode>
         return ApplicationTypeNode.class;
     }
 
+    private ApplicationTypeNodeComponent component;
+
     @Inject
-    ApplicationTypeNodeRuleProvider ruleProvider;
+    void createComponent(ApplicationTypeNodeComponent.Builder builder) {
+        this.component = builder.setApplicationTypeNodeModule(new ApplicationTypeNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected ApplicationTypeNodeRuleProvider getRuleProvider() {
+        return component.getApplicationTypeNodeRuleProvider();
     }
 
     public ApplicationTypeNode(PersonGeneralNode parent, String name) {

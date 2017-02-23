@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class SuburbNode extends StringUiNode<AddressNode<?>>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return SuburbNode.class;
+    }
+
+    private SuburbNodeComponent component;
+
+    @Inject
+    void createComponent(SuburbNodeComponent.Builder builder) {
+        this.component = builder.setSuburbNodeModule(new SuburbNodeModule(this)).build();
+    }
+
+    @Override
+    protected SuburbNodeRuleProvider getRuleProvider() {
+        return component.getSuburbNodeRuleProvider();
     }
 
     public SuburbNode(AddressNode parent, String name) {

@@ -1,26 +1,23 @@
 package zhy2002.neutron.node;
 
-
-import zhy2002.neutron.RuleProvider;
+import zhy2002.neutron.LeafUiNodeRuleProvider;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.BooleanFixedValueValidationRule;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.Collections;
+import javax.inject.Provider;
 import java.util.List;
 
-@Singleton
-public class BooleanUiNodeRuleProvider implements RuleProvider<BooleanUiNode<?>> {
+
+public abstract class BooleanUiNodeRuleProvider extends LeafUiNodeRuleProvider {
 
     @Inject
-    public BooleanUiNodeRuleProvider() {
-    }
+    Provider<BooleanFixedValueValidationRule> booleanFixedValueValidationRuleProvider;
 
     @Override
-    public List<UiNodeRule<BooleanUiNode<?>>> createRules(BooleanUiNode<?> node) {
-        return Collections.singletonList(
-                new BooleanFixedValueValidationRule(node)
-        );
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.add(booleanFixedValueValidationRuleProvider.get());
     }
 }

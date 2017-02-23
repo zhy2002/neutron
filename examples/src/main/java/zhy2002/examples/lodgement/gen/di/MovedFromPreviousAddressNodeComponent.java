@@ -1,0 +1,20 @@
+package zhy2002.examples.lodgement.gen.di;
+import dagger.Subcomponent;
+import javax.inject.Named;
+import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+
+@MovedFromPreviousAddressNodeScope
+@Subcomponent(modules = {MovedFromPreviousAddressNodeModule.class})
+public interface MovedFromPreviousAddressNodeComponent {
+
+    MovedFromPreviousAddressNodeRuleProvider getMovedFromPreviousAddressNodeRuleProvider();
+
+    @Subcomponent.Builder
+    interface Builder {
+
+        Builder setMovedFromPreviousAddressNodeModule(MovedFromPreviousAddressNodeModule module);
+
+        MovedFromPreviousAddressNodeComponent build();
+    }
+}

@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.gen.di.*;
 
 @Singleton
 public class RegisterNode extends ObjectUiNode<VoidUiNode>
@@ -40,14 +41,16 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode>
         return RegisterNode.class;
     }
 
+    private RegisterNodeComponent component;
+
     @Inject
-    RegisterNodeRuleProvider ruleProvider;
+    void createComponent(RegisterNodeComponent.Builder builder) {
+        this.component = builder.setRegisterNodeModule(new RegisterNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected RegisterNodeRuleProvider getRuleProvider() {
+        return component.getRegisterNodeRuleProvider();
     }
 
     @Inject

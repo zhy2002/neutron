@@ -7,6 +7,7 @@ import zhy2002.examples.lodgement.gen.rule.AddNewCompanyApplicantRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEventBinding;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -17,7 +18,8 @@ public class AddNewCompanyApplicantRuleImpl extends AddNewCompanyApplicantRule {
 
     private ApplicationNode applicationNode;
 
-    public AddNewCompanyApplicantRuleImpl(OwnershipListNode<?> owner) {
+    @Inject
+    public AddNewCompanyApplicantRuleImpl(@Owner OwnershipListNode<?> owner) {
         super(owner);
 
         applicationNode = (ApplicationNode)owner.getContext().getRootNode();

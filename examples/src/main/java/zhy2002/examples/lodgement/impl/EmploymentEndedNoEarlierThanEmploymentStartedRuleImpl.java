@@ -3,10 +3,14 @@ package zhy2002.examples.lodgement.impl;
 import zhy2002.examples.lodgement.gen.EmploymentEndedNode;
 import zhy2002.examples.lodgement.gen.MonthYearNode;
 import zhy2002.examples.lodgement.gen.rule.EmploymentEndedNoEarlierThanEmploymentStartedRule;
+import zhy2002.neutron.di.Owner;
+
+import javax.inject.Inject;
 
 public class EmploymentEndedNoEarlierThanEmploymentStartedRuleImpl extends EmploymentEndedNoEarlierThanEmploymentStartedRule {
 
-    public EmploymentEndedNoEarlierThanEmploymentStartedRuleImpl(EmploymentEndedNode owner) {
+    @Inject
+    public EmploymentEndedNoEarlierThanEmploymentStartedRuleImpl(@Owner EmploymentEndedNode owner) {
         super(owner);
     }
 

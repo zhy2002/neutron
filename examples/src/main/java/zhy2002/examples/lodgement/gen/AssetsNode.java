@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class AssetsNode extends ObjectUiNode<FinancialPositionNode>
 {
@@ -27,6 +29,18 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode>
     @Override
     public final Class<?> getConcreteClass() {
         return AssetsNode.class;
+    }
+
+    private AssetsNodeComponent component;
+
+    @Inject
+    void createComponent(AssetsNodeComponent.Builder builder) {
+        this.component = builder.setAssetsNodeModule(new AssetsNodeModule(this)).build();
+    }
+
+    @Override
+    protected AssetsNodeRuleProvider getRuleProvider() {
+        return component.getAssetsNodeRuleProvider();
     }
 
     public AssetsNode(FinancialPositionNode parent, String name) {

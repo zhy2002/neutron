@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class ErrorNode extends LeafUiNode<ErrorListNode,ValidationError>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return ErrorNode.class;
+    }
+
+    private ErrorNodeComponent component;
+
+    @Inject
+    void createComponent(ErrorNodeComponent.Builder builder) {
+        this.component = builder.setErrorNodeModule(new ErrorNodeModule(this)).build();
+    }
+
+    @Override
+    protected ErrorNodeRuleProvider getRuleProvider() {
+        return component.getErrorNodeRuleProvider();
     }
 
     public ErrorNode(ErrorListNode parent, String name) {

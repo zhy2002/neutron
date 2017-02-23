@@ -6,13 +6,16 @@ import zhy2002.examples.lodgement.gen.PrimaryApplicantFlagNode;
 import zhy2002.examples.lodgement.gen.rule.AtMostOnePrimaryApplicantRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 
+import javax.inject.Inject;
 import java.util.Collection;
 
 public class AtMostOnePrimaryApplicantRuleImpl extends AtMostOnePrimaryApplicantRule {
-    public AtMostOnePrimaryApplicantRuleImpl(PrimaryApplicantFlagNode owner) {
+    @Inject
+    public AtMostOnePrimaryApplicantRuleImpl(@Owner PrimaryApplicantFlagNode owner) {
         super(owner);
     }
 

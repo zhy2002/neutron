@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class GenderNode extends StringUiNode<PersonGeneralNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return GenderNode.class;
+    }
+
+    private GenderNodeComponent component;
+
+    @Inject
+    void createComponent(GenderNodeComponent.Builder builder) {
+        this.component = builder.setGenderNodeModule(new GenderNodeModule(this)).build();
+    }
+
+    @Override
+    protected GenderNodeRuleProvider getRuleProvider() {
+        return component.getGenderNodeRuleProvider();
     }
 
     public GenderNode(PersonGeneralNode parent, String name) {

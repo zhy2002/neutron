@@ -11,6 +11,7 @@ import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class PersonTrustTypeNode extends StringUiNode<PersonTrustNode>
 {
@@ -19,14 +20,16 @@ public class PersonTrustTypeNode extends StringUiNode<PersonTrustNode>
         return PersonTrustTypeNode.class;
     }
 
+    private PersonTrustTypeNodeComponent component;
+
     @Inject
-    PersonTrustTypeNodeRuleProvider ruleProvider;
+    void createComponent(PersonTrustTypeNodeComponent.Builder builder) {
+        this.component = builder.setPersonTrustTypeNodeModule(new PersonTrustTypeNodeModule(this)).build();
+    }
 
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
+    protected PersonTrustTypeNodeRuleProvider getRuleProvider() {
+        return component.getPersonTrustTypeNodeRuleProvider();
     }
 
     public PersonTrustTypeNode(PersonTrustNode parent, String name) {

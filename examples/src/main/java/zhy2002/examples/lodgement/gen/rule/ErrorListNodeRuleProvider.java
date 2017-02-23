@@ -1,36 +1,25 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
+@ErrorListNodeScope
+public class ErrorListNodeRuleProvider extends ListUiNodeRuleProvider {
 
     @Inject
     public ErrorListNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<ChangeFocusErrorRule> changeFocusErrorRuleInjector;
+    Provider<ChangeFocusErrorRule> changeFocusErrorRuleProvider;
 
     @Override
-    public List<UiNodeRule<ErrorListNode>> createRules(ErrorListNode node) {
-        List<UiNodeRule<ErrorListNode>> rules = new ArrayList<>();
-        rules.add(createChangeFocusErrorRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(changeFocusErrorRuleProvider.get());
     }
 
-    private ChangeFocusErrorRule createChangeFocusErrorRule(ErrorListNode node) {
-        ChangeFocusErrorRule rule = newChangeFocusErrorRule(node);
-        changeFocusErrorRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected ChangeFocusErrorRule newChangeFocusErrorRule(ErrorListNode node) {
-        return new ChangeFocusErrorRuleImpl(node);
-    }
 }

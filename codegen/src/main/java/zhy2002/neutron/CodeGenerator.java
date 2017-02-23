@@ -46,6 +46,7 @@ class CodeGenerator {
 
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
         generateFile(targetDirectory, domainInfo.getRegistryInfo(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
+        generateFile(targetDirectory, domainInfo, templateBundle.getManifestModuleTemplate(), "di", "ManifestModule");
     }
 
     private static void generateNodeFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {
@@ -66,18 +67,23 @@ class CodeGenerator {
             generateFile(targetDirectory, nodeInfo.getChangeEventInfo(), templateBundle.getChangeEventTemplate(), "event", "StateChangeEvent");
         }
 
-        if (nodeInfo.getRules() != null && nodeInfo.getRules().size() > 0) {
+        if (nodeInfo.getRules() != null) {
             for (RuleInfo ruleInfo : nodeInfo.getRules()) {
                 generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
-
             }
-            generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "rule", "RuleProvider");
         }
+        generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "rule", "RuleProvider");
 
         if (nodeInfo.getItemTypeName() != null) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
         } else if (nodeInfo.getChildren() != null && nodeInfo.getChildren().size() > 0) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
+        }
+
+        if (!nodeInfo.isIsAbstract()) {
+            generateFile(targetDirectory, nodeInfo, templateBundle.getScopeTemplate(), "di", "Scope");
+            generateFile(targetDirectory, nodeInfo, templateBundle.getModuleTemplate(), "di", "Module");
+            generateFile(targetDirectory, nodeInfo, templateBundle.getComponentTemplate(), "di", "Component");
         }
     }
 

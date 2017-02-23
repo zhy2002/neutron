@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class SelfEmployedNode extends EmployedNode
 {
@@ -27,6 +29,18 @@ public class SelfEmployedNode extends EmployedNode
     @Override
     public final Class<?> getConcreteClass() {
         return SelfEmployedNode.class;
+    }
+
+    private SelfEmployedNodeComponent component;
+
+    @Inject
+    void createComponent(SelfEmployedNodeComponent.Builder builder) {
+        this.component = builder.setSelfEmployedNodeModule(new SelfEmployedNodeModule(this)).build();
+    }
+
+    @Override
+    protected SelfEmployedNodeRuleProvider getRuleProvider() {
+        return component.getSelfEmployedNodeRuleProvider();
     }
 
     public SelfEmployedNode(EmploymentNode parent, String name) {

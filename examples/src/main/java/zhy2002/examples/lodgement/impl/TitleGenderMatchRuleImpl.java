@@ -5,9 +5,11 @@ import zhy2002.examples.lodgement.gen.TitleNode;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +30,8 @@ public class TitleGenderMatchRuleImpl extends TitleGenderMatchRule {
         TITLE_GENDER_MAP.put("Mrs", female);
     }
 
-    public TitleGenderMatchRuleImpl(TitleNode owner) {
+    @Inject
+    public TitleGenderMatchRuleImpl(@Owner TitleNode owner) {
         super(owner);
     }
 

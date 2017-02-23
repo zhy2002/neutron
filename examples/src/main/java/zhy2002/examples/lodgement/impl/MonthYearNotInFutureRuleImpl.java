@@ -5,10 +5,12 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import zhy2002.examples.lodgement.gen.MonthYearNode;
 import zhy2002.examples.lodgement.gen.rule.MonthYearNotInFutureRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.SharedDateTimeFormat;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
@@ -17,7 +19,8 @@ public class MonthYearNotInFutureRuleImpl extends MonthYearNotInFutureRule {
 
     private DateTimeFormat dateTimeFormat = new SharedDateTimeFormat("yyyy-MM");
 
-    public MonthYearNotInFutureRuleImpl(MonthYearNode<?> owner) {
+    @Inject
+    public MonthYearNotInFutureRuleImpl(@Owner MonthYearNode<?> owner) {
         super(owner);
     }
 

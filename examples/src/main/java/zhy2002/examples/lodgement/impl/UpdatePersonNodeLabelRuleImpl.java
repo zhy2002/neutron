@@ -3,22 +3,27 @@ package zhy2002.examples.lodgement.impl;
 import zhy2002.examples.lodgement.gen.FirstNameNode;
 import zhy2002.examples.lodgement.gen.LastNameNode;
 import zhy2002.examples.lodgement.gen.PersonNode;
+import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
 import zhy2002.examples.lodgement.gen.rule.UpdatePersonNodeLabelRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+@PersonNodeScope
 public class UpdatePersonNodeLabelRuleImpl extends UpdatePersonNodeLabelRule {
 
-    public UpdatePersonNodeLabelRuleImpl(PersonNode owner) {
+    @Inject
+    public UpdatePersonNodeLabelRuleImpl(@Owner PersonNode owner) {
         super(owner);
     }
 

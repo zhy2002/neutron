@@ -1,36 +1,23 @@
 package zhy2002.examples.lodgement.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.impl.*;
+import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class MonthYearNodeRuleProvider implements RuleProvider<MonthYearNode<?>> {
 
-    @Inject
-    public MonthYearNodeRuleProvider() {}
+public abstract class MonthYearNodeRuleProvider extends ObjectUiNodeRuleProvider {
+
 
     @Inject
-    MembersInjector<MonthYearNotInFutureRule> monthYearNotInFutureRuleInjector;
+    Provider<MonthYearNotInFutureRule> monthYearNotInFutureRuleProvider;
 
     @Override
-    public List<UiNodeRule<MonthYearNode<?>>> createRules(MonthYearNode<?> node) {
-        List<UiNodeRule<MonthYearNode<?>>> rules = new ArrayList<>();
-        rules.add(createMonthYearNotInFutureRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(monthYearNotInFutureRuleProvider.get());
     }
 
-    private MonthYearNotInFutureRule createMonthYearNotInFutureRule(MonthYearNode<?> node) {
-        MonthYearNotInFutureRule rule = newMonthYearNotInFutureRule(node);
-        monthYearNotInFutureRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected MonthYearNotInFutureRule newMonthYearNotInFutureRule(MonthYearNode<?> node) {
-        return new MonthYearNotInFutureRuleImpl(node);
-    }
 }

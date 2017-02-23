@@ -10,12 +10,26 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class CreditCheckFlagNode extends BooleanUiNode<PersonPrivacyNode>
 {
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCheckFlagNode.class;
+    }
+
+    private CreditCheckFlagNodeComponent component;
+
+    @Inject
+    void createComponent(CreditCheckFlagNodeComponent.Builder builder) {
+        this.component = builder.setCreditCheckFlagNodeModule(new CreditCheckFlagNodeModule(this)).build();
+    }
+
+    @Override
+    protected CreditCheckFlagNodeRuleProvider getRuleProvider() {
+        return component.getCreditCheckFlagNodeRuleProvider();
     }
 
     public CreditCheckFlagNode(PersonPrivacyNode parent, String name) {

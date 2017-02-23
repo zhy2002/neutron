@@ -5,13 +5,16 @@ import zhy2002.examples.lodgement.gen.AddressNode;
 import zhy2002.examples.lodgement.gen.ApplicationNode;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.di.Owner;
 
+import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
 public class UpdateAddressRefListRuleImpl extends UpdateAddressRefListRule {
 
-    public UpdateAddressRefListRuleImpl(AddressNode<?> owner) {
+    @Inject
+    public UpdateAddressRefListRuleImpl(@Owner AddressNode<?> owner) {
         super(owner);
     }
 

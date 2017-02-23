@@ -1,36 +1,25 @@
 package zhy2002.examples.app.gen.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
 import java.util.*;
-import zhy2002.examples.app.gen.*;
-import zhy2002.examples.app.impl.*;
+import zhy2002.examples.app.gen.di.*;
 import javax.inject.*;
-import dagger.MembersInjector;
 
-@Singleton
-public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {
+@LodgementNodeScope
+public class LodgementNodeRuleProvider extends ObjectUiNodeRuleProvider {
 
     @Inject
     public LodgementNodeRuleProvider() {}
 
     @Inject
-    MembersInjector<DummyRule> dummyRuleInjector;
+    Provider<DummyRule> dummyRuleProvider;
 
     @Override
-    public List<UiNodeRule<LodgementNode>> createRules(LodgementNode node) {
-        List<UiNodeRule<LodgementNode>> rules = new ArrayList<>();
-        rules.add(createDummyRule(node));
-        return rules;
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+            createdRules.add(dummyRuleProvider.get());
     }
 
-    private DummyRule createDummyRule(LodgementNode node) {
-        DummyRule rule = newDummyRule(node);
-        dummyRuleInjector.injectMembers(rule);
-        return rule;
-    }
-
-
-    protected DummyRule newDummyRule(LodgementNode node) {
-        return new DummyRuleImpl(node);
-    }
 }

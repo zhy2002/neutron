@@ -5,10 +5,8 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -140,15 +138,8 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         return BigDecimal.class;
     }
 
-    @Inject
-    BigDecimalUiNodeRuleProvider ruleProvider;
-
     @Override
-    protected void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
-
-        createdRules.addAll(ruleProvider.createRules(this));
-    }
+    protected abstract BigDecimalUiNodeRuleProvider getRuleProvider();
 
     public String getRangeMessage() {
         return getStateValue(NeutronEventSubjects.RANGE_MESSAGE, "Value is out of range.");

@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
 {
@@ -27,6 +29,18 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode>
     @Override
     public final Class<?> getConcreteClass() {
         return RealEstateNode.class;
+    }
+
+    private RealEstateNodeComponent component;
+
+    @Inject
+    void createComponent(RealEstateNodeComponent.Builder builder) {
+        this.component = builder.setRealEstateNodeModule(new RealEstateNodeModule(this)).build();
+    }
+
+    @Override
+    protected RealEstateNodeRuleProvider getRuleProvider() {
+        return component.getRealEstateNodeRuleProvider();
     }
 
     public RealEstateNode(RealEstateListNode parent, String name) {
