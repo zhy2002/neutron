@@ -153,6 +153,10 @@ public class NodeInfo extends CodeGenInfo {
 
     ////////////////////////////////////////////////////////
 
+    /**
+     * typeName with wildcard and no further restriction.
+     */
+    private String refName;
     private NodeInfo parent;
     private NodeInfo baseType;
     /**

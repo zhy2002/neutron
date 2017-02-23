@@ -2,7 +2,6 @@ package zhy2002.neutron.model;
 
 public class PropertyInfo {
     private String name;
-    private String nameAllCaps;
     private String typeName;
     private String externalTypeName;
     private String defaultValue;
@@ -38,6 +37,10 @@ public class PropertyInfo {
     public void setExternalTypeName(String externalTypeName) {
         this.externalTypeName = externalTypeName;
     }
+
+    ////////////////////////////////////////////////////////
+
+    private String nameAllCaps;
 
     public String getNameAllCaps() {
         return nameAllCaps;

@@ -2,16 +2,7 @@ package zhy2002.neutron.model;
 
 public class RuleInfo extends CodeGenInfo {
 
-    private String typeName;
     private String baseTypeName;
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
 
     public String getBaseTypeName() {
         return baseTypeName;

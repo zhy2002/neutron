@@ -1,8 +1,12 @@
 package zhy2002.neutron.model;
 
+import javax.validation.constraints.NotNull;
+
 public class ValueWrapperInfo {
 
+    @NotNull
     private String name;
+    @NotNull
     private String typeName;
     private String wrap;
     private boolean jsIgnore;

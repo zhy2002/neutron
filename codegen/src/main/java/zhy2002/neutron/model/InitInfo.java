@@ -1,11 +1,13 @@
 package zhy2002.neutron.model;
 
+import javax.validation.constraints.NotNull;
+
 public class InitInfo {
 
+    @NotNull
     private String propertyName;
     private String mode;
     private String value;
-    private String nameAllCaps;
 
     public String getPropertyName() {
         return propertyName;
@@ -30,6 +32,10 @@ public class InitInfo {
     public void setMode(String mode) {
         this.mode = mode;
     }
+
+    ////////////////////////////////////////////////////////
+
+    private String nameAllCaps;
 
     public String getNameAllCaps() {
         return nameAllCaps;
