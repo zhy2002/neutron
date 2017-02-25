@@ -22,49 +22,49 @@ interface PersonContactNodeChildFactory {
 @Singleton
 public class PersonContactNodeChildProvider {
     @Inject
-    MembersInjector<ContactTelephoneNode> contactTelephoneNodeInjector;
-    @Inject
-    MembersInjector<MobileNumberNode> mobileNumberNodeInjector;
+    MembersInjector<MovedFromPreviousAddressNode> movedFromPreviousAddressNodeInjector;
     @Inject
     MembersInjector<ContactAddressNode> contactAddressNodeInjector;
     @Inject
-    MembersInjector<MovedToCurrentAddressNode> movedToCurrentAddressNodeInjector;
+    MembersInjector<ContactTelephoneNode> contactTelephoneNodeInjector;
+    @Inject
+    MembersInjector<ContactEmailNode> contactEmailNodeInjector;
     @Inject
     MembersInjector<MovedToPreviousAddressNode> movedToPreviousAddressNodeInjector;
     @Inject
-    MembersInjector<MovedFromPreviousAddressNode> movedFromPreviousAddressNodeInjector;
+    MembersInjector<MobileNumberNode> mobileNumberNodeInjector;
     @Inject
-    MembersInjector<ContactEmailNode> contactEmailNodeInjector;
+    MembersInjector<MovedToCurrentAddressNode> movedToCurrentAddressNodeInjector;
 
     @Inject
     protected PersonContactNodeChildProvider () {}
 
-    protected MembersInjector<ContactTelephoneNode> getContactTelephoneNodeInjector() {
-        return this.contactTelephoneNodeInjector;
-    }
-
-    protected MembersInjector<MobileNumberNode> getMobileNumberNodeInjector() {
-        return this.mobileNumberNodeInjector;
+    protected MembersInjector<MovedFromPreviousAddressNode> getMovedFromPreviousAddressNodeInjector() {
+        return this.movedFromPreviousAddressNodeInjector;
     }
 
     protected MembersInjector<ContactAddressNode> getContactAddressNodeInjector() {
         return this.contactAddressNodeInjector;
     }
 
-    protected MembersInjector<MovedToCurrentAddressNode> getMovedToCurrentAddressNodeInjector() {
-        return this.movedToCurrentAddressNodeInjector;
+    protected MembersInjector<ContactTelephoneNode> getContactTelephoneNodeInjector() {
+        return this.contactTelephoneNodeInjector;
+    }
+
+    protected MembersInjector<ContactEmailNode> getContactEmailNodeInjector() {
+        return this.contactEmailNodeInjector;
     }
 
     protected MembersInjector<MovedToPreviousAddressNode> getMovedToPreviousAddressNodeInjector() {
         return this.movedToPreviousAddressNodeInjector;
     }
 
-    protected MembersInjector<MovedFromPreviousAddressNode> getMovedFromPreviousAddressNodeInjector() {
-        return this.movedFromPreviousAddressNodeInjector;
+    protected MembersInjector<MobileNumberNode> getMobileNumberNodeInjector() {
+        return this.mobileNumberNodeInjector;
     }
 
-    protected MembersInjector<ContactEmailNode> getContactEmailNodeInjector() {
-        return this.contactEmailNodeInjector;
+    protected MembersInjector<MovedToCurrentAddressNode> getMovedToCurrentAddressNodeInjector() {
+        return this.movedToCurrentAddressNodeInjector;
     }
 
     protected ContactTelephoneNode newHomePhoneNode(

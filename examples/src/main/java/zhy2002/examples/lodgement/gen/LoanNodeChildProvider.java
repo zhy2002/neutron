@@ -18,11 +18,11 @@ interface LoanNodeChildFactory {
 @Singleton
 public class LoanNodeChildProvider {
     @Inject
-    MembersInjector<LoanTypeNode> loanTypeNodeInjector;
+    MembersInjector<LoanLimitAmountNode> loanLimitAmountNodeInjector;
     @Inject
     MembersInjector<LoanOwingAmountNode> loanOwingAmountNodeInjector;
     @Inject
-    MembersInjector<LoanLimitAmountNode> loanLimitAmountNodeInjector;
+    MembersInjector<LoanTypeNode> loanTypeNodeInjector;
     @Inject
     MembersInjector<LoanMonthlyRepaymentNode> loanMonthlyRepaymentNodeInjector;
     @Inject
@@ -35,16 +35,16 @@ public class LoanNodeChildProvider {
     @Inject
     protected LoanNodeChildProvider () {}
 
-    protected MembersInjector<LoanTypeNode> getLoanTypeNodeInjector() {
-        return this.loanTypeNodeInjector;
+    protected MembersInjector<LoanLimitAmountNode> getLoanLimitAmountNodeInjector() {
+        return this.loanLimitAmountNodeInjector;
     }
 
     protected MembersInjector<LoanOwingAmountNode> getLoanOwingAmountNodeInjector() {
         return this.loanOwingAmountNodeInjector;
     }
 
-    protected MembersInjector<LoanLimitAmountNode> getLoanLimitAmountNodeInjector() {
-        return this.loanLimitAmountNodeInjector;
+    protected MembersInjector<LoanTypeNode> getLoanTypeNodeInjector() {
+        return this.loanTypeNodeInjector;
     }
 
     protected MembersInjector<LoanMonthlyRepaymentNode> getLoanMonthlyRepaymentNodeInjector() {

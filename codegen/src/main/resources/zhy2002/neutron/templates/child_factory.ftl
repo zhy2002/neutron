@@ -29,7 +29,7 @@ public class ${typeName}ChildProvider {
 </#list>
 <#list children as child>
     protected ${child.typeName} new${child.name?cap_first}(
-        ${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent,
+        ${genericTypeName} parent,
         String name
     ) {
         return new ${child.typeName}(parent, name);
@@ -39,15 +39,15 @@ public class ${typeName}ChildProvider {
     }
 
 </#list>
-    ${typeName}ChildFactory createFactory(${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent) {
+    ${typeName}ChildFactory createFactory(${genericTypeName} parent) {
         return new ${typeName}ChildFactoryImpl(parent);
     }
 
     private class ${typeName}ChildFactoryImpl implements ${typeName}ChildFactory {
 
-        private final ${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent;
+        private final ${genericTypeName} parent;
         
-        private ${typeName}ChildFactoryImpl(${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent) {
+        private ${typeName}ChildFactoryImpl(${genericTypeName} parent) {
             this.parent = parent;
         }
 

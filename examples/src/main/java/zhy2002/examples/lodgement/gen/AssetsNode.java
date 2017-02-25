@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class AssetsNode extends ObjectUiNode<FinancialPositionNode>
-{
+public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
+
     private SavingsAccountListNode savingsAccountListNode;
     private MotorVehicleListNode motorVehicleListNode;
     private OtherAssetListNode otherAssetListNode;

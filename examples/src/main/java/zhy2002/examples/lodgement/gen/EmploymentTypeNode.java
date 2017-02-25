@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
-{
+public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return EmploymentTypeNode.class;
@@ -53,7 +53,6 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>>
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
-
 
     @Override
     public Boolean getRequired() {

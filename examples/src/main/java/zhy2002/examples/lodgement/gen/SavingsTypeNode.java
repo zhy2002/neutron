@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SavingsTypeNode extends StringUiNode<SavingsAccountNode>
-{
+public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return SavingsTypeNode.class;

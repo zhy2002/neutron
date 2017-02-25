@@ -6,7 +6,7 @@ import zhy2002.neutron.UiNode;
 
 public class RegisterNodeLoadEvent extends NodeLoadEvent<RegisterNode> {
 
-    public RegisterNodeLoadEvent(UiNode<?> target) {
+    public RegisterNodeLoadEvent(RegisterNode target) {
         super(target);
     }
 }

@@ -9,7 +9,7 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 public abstract class NodeLoadEvent<N extends UiNode<?>>
         extends ChangeUiNodeEvent {
 
-    protected NodeLoadEvent(UiNode<?> origin) {
+    protected NodeLoadEvent(N origin) {
         super(origin, "");
     }
 

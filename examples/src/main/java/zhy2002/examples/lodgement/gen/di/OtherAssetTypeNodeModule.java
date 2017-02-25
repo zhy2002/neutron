@@ -31,6 +31,4 @@ public class OtherAssetTypeNodeModule {
         return owner;
     }
 
-
-
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class EmployerPhoneNode extends TelephoneNode<EmployedNode>
-{
+public class EmployerPhoneNode extends TelephoneNode<EmployedNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return EmployerPhoneNode.class;

@@ -27,10 +27,12 @@ public class UnemployedSinceNodeModule {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @UnemployedSinceNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @UnemployedSinceNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

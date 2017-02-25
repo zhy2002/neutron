@@ -1,7 +1,5 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
-import javax.inject.Named;
-import zhy2002.examples.register.gen.*;
 
 @Module(subcomponents = {
     UsernameNodeComponent.class,

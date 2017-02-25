@@ -31,6 +31,4 @@ public class VehicleYearNodeModule {
         return owner;
     }
 
-
-
 }

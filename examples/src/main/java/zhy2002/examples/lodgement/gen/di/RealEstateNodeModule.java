@@ -23,10 +23,12 @@ public class RealEstateNodeModule {
         return owner;
     }
 
-    @Provides @RealEstateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @RealEstateNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @RealEstateNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

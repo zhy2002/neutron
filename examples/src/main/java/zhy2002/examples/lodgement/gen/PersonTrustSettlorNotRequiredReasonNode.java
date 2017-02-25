@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonTrustSettlorNotRequiredReasonNode extends StringUiNode<PersonTrustNode>
-{
+public class PersonTrustSettlorNotRequiredReasonNode extends StringUiNode<PersonTrustNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonTrustSettlorNotRequiredReasonNode.class;

@@ -23,10 +23,12 @@ public class ExpenseListNodeModule {
         return owner;
     }
 
-    @Provides @ExpenseListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ExpenseListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @ExpenseListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

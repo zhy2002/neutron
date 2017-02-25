@@ -12,8 +12,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P>
-{
+public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
+
     private EmploymentTypeNode employmentTypeNode;
     private PayeEmployedNode payeEmployedNode;
     private SelfEmployedNode selfEmployedNode;

@@ -31,6 +31,4 @@ public class PermanentResidentFlagNodeModule {
         return owner;
     }
 
-
-
 }

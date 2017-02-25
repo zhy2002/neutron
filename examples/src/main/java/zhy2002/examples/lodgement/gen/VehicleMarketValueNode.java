@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode>
-{
+public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return VehicleMarketValueNode.class;

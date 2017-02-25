@@ -3,11 +3,10 @@ package zhy2002.neutron.model;
 
 import zhy2002.neutron.CodeGenUtil;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Contains information needed to generate a node.
@@ -15,8 +14,72 @@ import java.util.Set;
  */
 public class NodeInfo extends CodeGenInfo {
 
+    private static Logger logger = Logger.getLogger("NodeInfo");
+    /**
+     * This needs to be kept in sync with the Neutron framework.
+     * todo construct this map using DI and reflection.
+     */
+    static Map<String, NodeInfo> FRAMEWORK_NODE_MAP = new HashMap<>();
+
+    static {
+        NodeInfo uiNode = new NodeInfo();
+        uiNode.setTypeName("UiNode");
+        uiNode.setGenericTypeName("UiNode<?>");
+        uiNode.setParentBaseTypeName("ParentUiNode<?>");
+        uiNode.setAbstractNode(true);
+        uiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(uiNode.getTypeName(), uiNode);
+
+        NodeInfo parentUiNode = new NodeInfo();
+        parentUiNode.setTypeName("ParentUiNode");
+        parentUiNode.setGenericTypeName("ParentUiNode<?>");
+        parentUiNode.setParentBaseTypeName("ParentUiNode<?>");
+        parentUiNode.setBaseType(uiNode);
+        parentUiNode.setAbstractNode(true);
+        parentUiNode.getBaseTypes().add(parentUiNode);
+        parentUiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(parentUiNode.getTypeName(), parentUiNode);
+
+        NodeInfo listUiNode = new NodeInfo();
+        listUiNode.setTypeName("ListUiNode");
+        listUiNode.setGenericTypeName("ListUiNode<?,?>");
+        listUiNode.setParentBaseTypeName("ObjectUiNode<?>");
+        listUiNode.setBaseType(parentUiNode);
+        listUiNode.setAbstractNode(true);
+        listUiNode.getBaseTypes().add(listUiNode);
+        listUiNode.getBaseTypes().add(parentUiNode);
+        listUiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(listUiNode.getTypeName(), listUiNode);
+
+        NodeInfo objectUiNode = new NodeInfo();
+        objectUiNode.setTypeName("ObjectUiNode");
+        objectUiNode.setGenericTypeName("ObjectUiNode<?>");
+        objectUiNode.setParentBaseTypeName("ParentUiNode<?>");
+        objectUiNode.setBaseType(parentUiNode);
+        objectUiNode.setAbstractNode(true);
+        objectUiNode.getBaseTypes().add(objectUiNode);
+        objectUiNode.getBaseTypes().add(parentUiNode);
+        objectUiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(objectUiNode.getTypeName(), objectUiNode);
+
+        NodeInfo leafUiNode = new NodeInfo();
+        leafUiNode.setTypeName("LeafUiNode");
+        leafUiNode.setGenericTypeName("LeafUiNode<?,?>");
+        leafUiNode.setParentBaseTypeName("ParentUiNode<?>");
+        leafUiNode.setBaseType(uiNode);
+        leafUiNode.setAbstractNode(true);
+        leafUiNode.getBaseTypes().add(leafUiNode);
+        leafUiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(leafUiNode.getTypeName(), leafUiNode);
+    }
+
     //region mapped data
 
+    /**
+     * The type name where this node is extended from.
+     * This can be null if the node is no data mapped, i.e.
+     * framework node or generic parameter node.
+     */
     @NotNull
     private String baseTypeName;
     private boolean abstractNode;
@@ -25,7 +88,9 @@ public class NodeInfo extends CodeGenInfo {
      * this is set to the base type of the parent type (P extends ...).
      */
     private String parentBaseTypeName;
+    @Valid
     private List<ChildInfo> children;
+    @Valid
     private List<NodeInfo> childTypes;
     private String itemTypeName;
     private String valueTypeName;
@@ -40,9 +105,13 @@ public class NodeInfo extends CodeGenInfo {
      * always returns false.
      */
     private boolean localRequired;
+    @Valid
     private List<PropertyInfo> properties;
+    @Valid
     private List<InitInfo> init;
+    @Valid
     private List<ValueWrapperInfo> valueWrappers;
+    @Valid
     private List<RuleInfo> rules;
 
     public String getBaseTypeName() {
@@ -154,18 +223,26 @@ public class NodeInfo extends CodeGenInfo {
     ////////////////////////////////////////////////////////
 
     /**
-     * typeName with wildcard and no further restriction.
+     * typeName with wildcards (each type parameter is filled in with '?').
+     * e.g. UiNode&lt;?&gt;
      */
-    private String refName;
-    private NodeInfo parent;
-    private NodeInfo baseType;
+    private String genericTypeName;
     /**
-     * parent.typeName plus wildcard for its type parameters if any.
+     * This should be null for the root type.
+     */
+    private NodeInfo parentType;
+    /**
+     * This is used to fill in the parent type parameter of baseType,
+     * e.g. extends baseTypeName&lt;${parentTypeName}&gt;
      */
     private String parentTypeName;
-    private List<BaseTypeInfo> baseTypes;
+    /**
+     * The direct base type NodeInfo.
+     */
+    private NodeInfo baseType;
     private CodeGenInfo changeEventInfo;
-    private List<String> distinctChildTypeNames = new ArrayList<>();
+    private final List<NodeInfo> baseTypes = new ArrayList<>();
+    private final Set<String> distinctChildTypeNames = new HashSet<>();
 
     @Override
     void initialize() {
@@ -176,127 +253,107 @@ public class NodeInfo extends CodeGenInfo {
         initializeValueWrappers();
         initializeInit();
         initializeRules();
-        initializeDomainInfo();
+
+        updateDomainInfo();
     }
 
-    public NodeInfo getParent() {
-        return parent;
-    }
+    private void initializeSelf() {
 
-    public void setParent(NodeInfo parent) {
-        this.parent = parent;
-    }
-
-    public boolean isListItem() {
-        return getParent() != null && getTypeName().equals(getParent().getItemTypeName());
-    }
-
-    public CodeGenInfo getChangeEventInfo() {
-        return changeEventInfo;
-    }
-
-    public String getParentTypeName() {
-        return parentTypeName;
-    }
-
-    public void setParentTypeName(String parentTypeName) {
-        this.parentTypeName = parentTypeName;
-    }
-
-    public List<String> getDistinctChildTypeNames() {
-        return distinctChildTypeNames;
-    }
-
-    public void initializeBaseTypes() {
-        if (isAbstractNode())
-            return;
-
-        baseTypes = new ArrayList<>();
-        NodeInfo nodeInfo = this;
-        do {
-            if (nodeInfo.isAbstractNode() && nodeInfo.getParentBaseTypeName() != null) {
-                baseTypes.add(new BaseTypeInfo(nodeInfo.getTypeName() + "<?>", nodeInfo.getTypeName()));
-            } else {
-                baseTypes.add(new BaseTypeInfo(nodeInfo.getTypeName(), nodeInfo.getTypeName()));
-            }
-
-            if (nodeInfo.getBaseType() == null) {
-                populateFrameworkTypes(baseTypes, nodeInfo.getBaseTypeName());
-                break;
-            } else {
-                nodeInfo = nodeInfo.getBaseType();
-            }
-        } while (true);
-    }
-
-    private void populateFrameworkTypes(List<BaseTypeInfo> baseTypes, String baseTypeName) {
-        //todo do this in a more reliable way
-        if (baseTypeName.equals("ListUiNode")) {
-            baseTypes.add(new BaseTypeInfo("ListUiNode<?,?>", "ListUiNode"));
-        } else if (baseTypeName.equals("ObjectUiNode")) {
-            baseTypes.add(new BaseTypeInfo("ObjectUiNode<?>", "ObjectUiNode"));
-        } else if (baseTypeName.equals("LeafUiNode")) {
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else if (baseTypeName.equals("StringUiNode")) {
-            baseTypes.add(new BaseTypeInfo("StringUiNode<?>", "StringUiNode"));
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else if (baseTypeName.equals("ValidationErrorUiNode")) {
-            baseTypes.add(new BaseTypeInfo("ValidationErrorUiNode<?>", "ValidationErrorUiNode"));
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else if (baseTypeName.equals("BooleanUiNode")) {
-            baseTypes.add(new BaseTypeInfo("BooleanUiNode<?>", "BooleanUiNode"));
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else if (baseTypeName.equals("BigDecimalUiNode")) {
-            baseTypes.add(new BaseTypeInfo("BigDecimalUiNode<?>", "BigDecimalUiNode"));
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else if (baseTypeName.equals("ReferenceUiNode")) {
-            baseTypes.add(new BaseTypeInfo("ReferenceUiNode<?>", "ReferenceUiNode"));
-            baseTypes.add(new BaseTypeInfo("LeafUiNode<?,?>", "LeafUiNode"));
-        } else {
-            throw new RuntimeException("Unknown baseType:" + baseTypeName);
+        int count = 0;
+        if (getItemTypeName() != null) {
+            count++;
         }
-
-        baseTypes.add(new BaseTypeInfo("UiNode<?>", "UiNode"));
-    }
-
-    private void initializeDomainInfo() {
-        getDomainInfo().getNodes().add(this);
-        if (!isAbstractNode()) {
-            getDomainInfo().getRegistryInfo().getConcreteNodes().add(this);
-        }
-        if (isUnloadable()) {
-            getDomainInfo().getRegistryInfo().getLoadEventNodes().add(this);
-        }
-        if (isListItem()) {
-            getDomainInfo().getRegistryInfo().getAddEventNodes().add(this);
+        if (getChildren() != null) {
+            count++;
         }
         if (getValueTypeName() != null) {
-            this.changeEventInfo = new EventInfo();
-            changeEventInfo.setDomainInfo(getDomainInfo());
-            changeEventInfo.setTypeName(getValueTypeName());
-            getDomainInfo().getRegistryInfo().getChangeEventNodes().add(this);
+            count++;
+        }
+        if (count > 1) {
+            addErrorMessage("Can only set one of itemTypeName, children and valueItemName.");
+        }
+
+        if (getParentBaseTypeName() != null) {
+            setAbstractNode(true);
+        }
+
+        if (getParentBaseTypeName() != null) {
+            setGenericTypeName(getTypeName() + "<?>");
+            if (this.isUnloadable()) {
+                addErrorMessage("Only concrete nodes can be unloadable.");
+            }
+        } else {
+            setGenericTypeName(getTypeName());
+        }
+    }
+
+    private void initializeProperties() {
+        if (getProperties() == null)
+            return;
+
+        for (PropertyInfo prop : getProperties()) {
+            prop.setNameAllCaps(CodeGenUtil.allCaps(prop.getName()));
+            if ("int".equals(prop.getExternalTypeName())) {
+                prop.setTypeName("Integer");
+            }
+            if (prop.getExternalTypeName() == null) {
+                prop.setExternalTypeName(prop.getTypeName());
+            }
+            if (prop.getTypeName() == null) {
+                addErrorMessage("typeName is not set for property: " + prop.getName());
+            }
         }
     }
 
     private void initializeChildTypes() {
-        Set<String> childTypeNames = new HashSet<>();
-        if (getChildTypes() != null) {
-            for (NodeInfo nodeInfo : getChildTypes()) {
-                nodeInfo.setParent(this);
-                nodeInfo.setDomainInfo(getDomainInfo());
-                if (!definesChildType(nodeInfo.getBaseTypeName())) {
-                    String typeName = getTypeName();
-                    if (isAbstractNode() && getParentBaseTypeName() != null) {
-                        typeName += "<?>";
-                    }
-                    nodeInfo.setParentTypeName(typeName);
-                }
-                nodeInfo.initialize();
+        if (getChildTypes() == null)
+            return;
 
-                if (!childTypeNames.contains(nodeInfo.getTypeName())) {
-                    childTypeNames.add(nodeInfo.getTypeName());
-                    getDistinctChildTypeNames().add(nodeInfo.getTypeName());
-                }
+        for (NodeInfo nodeInfo : getChildTypes()) {
+            nodeInfo.setDomainInfo(getDomainInfo());
+            nodeInfo.setParentType(this);
+            nodeInfo.initialize();
+
+            getDistinctChildTypeNames().add(nodeInfo.getTypeName());
+        }
+    }
+
+    private void initializeChildren() {
+        if (getChildren() == null)
+            return;
+
+        for (ChildInfo child : getChildren()) {
+            if (child.getName() == null) {
+                child.setName(CodeGenUtil.firstCharLower(child.getTypeName()));
+            }
+            if (!distinctChildTypeNames.contains(child.getTypeName())) {
+                addErrorMessage("No childType found with typeName:" + child.getTypeName());
+            }
+        }
+    }
+
+    private void initializeValueWrappers() {
+        if (getValueWrappers() == null)
+            return;
+
+        for (ValueWrapperInfo wrapper : getValueWrappers()) {
+            if (wrapper.getWrap() == null) {
+                wrapper.setWrap(wrapper.getName());
+            }
+        }
+    }
+
+    private void initializeInit() {
+        if (getInit() == null)
+            return;
+
+        for (InitInfo item : init) {
+            if (item.getMode() != null) {
+                item.setNameAllCaps(CodeGenUtil.allCaps(item.getPropertyName()));
+            }
+
+            if (item.getMode() == null && item.getValue() == null) {
+                addErrorMessage("Must set at least one of mode or value for property init:" + item.getPropertyName());
             }
         }
     }
@@ -306,97 +363,116 @@ public class NodeInfo extends CodeGenInfo {
             return;
 
         for (RuleInfo rule : getRules()) {
-            if (rule.getBaseTypeName() == null) {
-                rule.setBaseTypeName("UiNodeRule");
-            }
-
-            String typeName = getTypeName();
-            if (isAbstractNode() && getBaseTypeName() != null) {
-                typeName += "<?>";
-            }
-            rule.setParentTypeName(typeName);
-            rule.setOwnerTypeName(getTypeName());
             rule.setDomainInfo(getDomainInfo());
+            rule.setOwnerType(this);
+
+            rule.initialize();
         }
     }
 
-    private void initializeInit() {
-        if (getInit() != null) {
-            for (InitInfo item : init) {
-                if (item.getMode() != null) {
-                    item.setNameAllCaps(CodeGenUtil.allCaps(item.getPropertyName()));
-                }
-            }
-        }
+    private void addErrorMessage(String message) {
+        getDomainInfo().addErrorMessageLine("[" + getTypeName() + "] " + message);
     }
 
-    private void initializeValueWrappers() {
-        if (getValueWrappers() != null) {
-            for (ValueWrapperInfo wrapper : getValueWrappers()) {
-                if (wrapper.getWrap() == null) {
-                    wrapper.setWrap(wrapper.getName());
-                }
-            }
-        }
+    public String getParentTypeName() {
+        return parentTypeName;
     }
 
-    private void initializeProperties() {
-        if (getProperties() != null) {
-            for (PropertyInfo prop : getProperties()) {
-                prop.setNameAllCaps(CodeGenUtil.allCaps(prop.getName()));
-                if ("int".equals(prop.getExternalTypeName())) {
-                    prop.setTypeName("Integer");
-                }
-                if (prop.getExternalTypeName() == null) {
-                    prop.setExternalTypeName(prop.getTypeName());
-                }
-            }
-        }
+    void setParentTypeName(String parentTypeName) {
+        this.parentTypeName = parentTypeName;
     }
 
-    private void initializeChildren() {
-        if (getChildren() != null) {
-            for (ChildInfo child : getChildren()) {
-                if (child.getName() == null) {
-                    child.setName(CodeGenUtil.firstCharLower(child.getTypeName()));
-                }
-            }
-        }
+    public String getGenericTypeName() {
+        return genericTypeName;
     }
 
-    private void initializeSelf() {
-        if (getBaseTypeName() == null) {
-            if (getItemTypeName() != null) {
-                setBaseTypeName("ListUiNode");
-            } else if (getChildren() != null) {
-                setBaseTypeName("ObjectUiNode");
-            } else if (getValueTypeName() != null) {
-                setBaseTypeName("LeafUiNode");
-            }
-        }
+    void setGenericTypeName(String genericTypeName) {
+        this.genericTypeName = genericTypeName;
     }
 
-    private boolean definesChildType(String baseTypeName) {
-        if (getChildTypes() == null || getChildTypes().size() == 0)
-            return false;
-
-        for (NodeInfo childType : getChildTypes()) {
-            if (baseTypeName.equals(childType.getTypeName()))
-                return true;
-        }
-
-        return false;
+    public NodeInfo getParentType() {
+        return parentType;
     }
 
-    public List<BaseTypeInfo> getBaseTypes() {
+    void setParentType(NodeInfo parent) {
+        this.parentType = parent;
+    }
+
+    public boolean isListItem() {
+        return getParentType() != null && getTypeName().equals(getParentType().getItemTypeName());
+    }
+
+    public CodeGenInfo getChangeEventInfo() {
+        return changeEventInfo;
+    }
+
+    private void setChangeEventInfo(CodeGenInfo changeEventInfo) {
+        this.changeEventInfo = changeEventInfo;
+    }
+
+    public Set<String> getDistinctChildTypeNames() {
+        return distinctChildTypeNames;
+    }
+
+    public List<NodeInfo> getBaseTypes() {
         return baseTypes;
     }
 
-    public void setBaseType(NodeInfo baseType) {
+    void setBaseType(NodeInfo baseType) {
         this.baseType = baseType;
     }
 
     public NodeInfo getBaseType() {
         return baseType;
+    }
+
+    void resolveBaseTypes() {
+        if (getBaseType().getParentBaseTypeName() != null) {
+            setParentTypeName(getParentType().getGenericTypeName());
+        }
+
+        if (isAbstractNode()) //only resolve for concrete nodes
+            return;
+
+        NodeInfo nodeInfo = this;
+        do {
+            getBaseTypes().add(nodeInfo);
+            nodeInfo = nodeInfo.getBaseType();
+        } while (nodeInfo != null);
+    }
+
+    void populateFrameworkTypes() {
+        String baseTypeName = getBaseTypeName();
+        NodeInfo frameworkNodeInfo = FRAMEWORK_NODE_MAP.get(baseTypeName);
+        if (frameworkNodeInfo == null) {
+            frameworkNodeInfo = new NodeInfo();
+            frameworkNodeInfo.setTypeName(baseTypeName);
+            frameworkNodeInfo.setGenericTypeName(baseTypeName + "<?>");
+            frameworkNodeInfo.setParentBaseTypeName("ParentUiNode<?>");
+            frameworkNodeInfo.setAbstractNode(true);
+            NodeInfo leafUiNode = FRAMEWORK_NODE_MAP.get("LeafUiNode");
+            frameworkNodeInfo.setBaseType(leafUiNode);
+        }
+        setBaseType(frameworkNodeInfo);
+    }
+
+    private void updateDomainInfo() {
+        getDomainInfo().getAllNodes().add(this);
+        if (!isAbstractNode()) {
+            getDomainInfo().getConcreteNodes().add(this);
+        }
+        if (isUnloadable()) {
+            getDomainInfo().getLoadEventNodes().add(this);
+        }
+        if (isListItem()) {
+            getDomainInfo().getAddEventNodes().add(this);
+        }
+        if (getValueTypeName() != null) {
+            ChangeEventInfo changeEventInfo = new ChangeEventInfo();
+            changeEventInfo.setDomainInfo(getDomainInfo());
+            changeEventInfo.setTypeName(getValueTypeName());
+            setChangeEventInfo(changeEventInfo);
+            getDomainInfo().getChangeEventNodes().add(this);
+        }
     }
 }

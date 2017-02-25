@@ -27,10 +27,12 @@ public class PreviousEmploymentNodeModule {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PreviousEmploymentNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PreviousEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

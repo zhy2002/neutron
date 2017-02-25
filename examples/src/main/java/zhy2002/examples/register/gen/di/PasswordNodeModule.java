@@ -31,6 +31,4 @@ public class PasswordNodeModule {
         return owner;
     }
 
-
-
 }

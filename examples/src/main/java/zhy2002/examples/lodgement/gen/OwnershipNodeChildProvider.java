@@ -16,9 +16,9 @@ public class OwnershipNodeChildProvider {
     @Inject
     MembersInjector<ApplicantReferenceNode> applicantReferenceNodeInjector;
     @Inject
-    MembersInjector<OwnershipPercentageNode> ownershipPercentageNodeInjector;
-    @Inject
     MembersInjector<AverageFlagNode> averageFlagNodeInjector;
+    @Inject
+    MembersInjector<OwnershipPercentageNode> ownershipPercentageNodeInjector;
 
     @Inject
     protected OwnershipNodeChildProvider () {}
@@ -27,12 +27,12 @@ public class OwnershipNodeChildProvider {
         return this.applicantReferenceNodeInjector;
     }
 
-    protected MembersInjector<OwnershipPercentageNode> getOwnershipPercentageNodeInjector() {
-        return this.ownershipPercentageNodeInjector;
-    }
-
     protected MembersInjector<AverageFlagNode> getAverageFlagNodeInjector() {
         return this.averageFlagNodeInjector;
+    }
+
+    protected MembersInjector<OwnershipPercentageNode> getOwnershipPercentageNodeInjector() {
+        return this.ownershipPercentageNodeInjector;
     }
 
     protected ApplicantReferenceNode newApplicantReferenceNode(

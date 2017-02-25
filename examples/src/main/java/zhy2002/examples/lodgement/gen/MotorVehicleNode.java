@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode>
-{
+public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
+
     private VehicleModelNode vehicleModelNode;
     private VehicleYearNode vehicleYearNode;
     private VehicleMarketValueNode vehicleMarketValueNode;

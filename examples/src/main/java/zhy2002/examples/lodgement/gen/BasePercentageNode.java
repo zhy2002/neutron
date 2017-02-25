@@ -11,8 +11,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class BasePercentageNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P>
-{
+public abstract class BasePercentageNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P> {
+
     @Override
     protected abstract BasePercentageNodeRuleProvider getRuleProvider();
 

@@ -14,21 +14,21 @@ interface RealEstateNodeChildFactory {
 @Singleton
 public class RealEstateNodeChildProvider {
     @Inject
-    MembersInjector<UsageNode> usageNodeInjector;
-    @Inject
     MembersInjector<PropertyNode> propertyNodeInjector;
+    @Inject
+    MembersInjector<UsageNode> usageNodeInjector;
     @Inject
     MembersInjector<AccessNode> accessNodeInjector;
 
     @Inject
     protected RealEstateNodeChildProvider () {}
 
-    protected MembersInjector<UsageNode> getUsageNodeInjector() {
-        return this.usageNodeInjector;
-    }
-
     protected MembersInjector<PropertyNode> getPropertyNodeInjector() {
         return this.propertyNodeInjector;
+    }
+
+    protected MembersInjector<UsageNode> getUsageNodeInjector() {
+        return this.usageNodeInjector;
     }
 
     protected MembersInjector<AccessNode> getAccessNodeInjector() {

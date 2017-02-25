@@ -23,10 +23,12 @@ public class LoanNodeModule {
         return owner;
     }
 
-    @Provides @LoanNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @LoanNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @LoanNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

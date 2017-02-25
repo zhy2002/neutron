@@ -31,6 +31,4 @@ public class MobileNumberNodeModule {
         return owner;
     }
 
-
-
 }

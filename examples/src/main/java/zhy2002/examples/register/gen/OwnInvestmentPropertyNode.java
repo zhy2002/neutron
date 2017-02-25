@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode>
-{
+public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return OwnInvestmentPropertyNode.class;

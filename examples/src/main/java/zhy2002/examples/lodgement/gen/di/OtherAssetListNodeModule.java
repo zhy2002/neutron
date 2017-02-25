@@ -23,10 +23,12 @@ public class OtherAssetListNodeModule {
         return owner;
     }
 
-    @Provides @OtherAssetListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @OtherAssetListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @OtherAssetListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

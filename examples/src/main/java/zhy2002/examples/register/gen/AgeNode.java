@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class AgeNode extends BigDecimalUiNode<RegisterNode>
-{
+public class AgeNode extends BigDecimalUiNode<RegisterNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AgeNode.class;

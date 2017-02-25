@@ -12,8 +12,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
-{
+public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
+
     private EmploymentStatusNode employmentStatusNode;
     private OccupationNode occupationNode;
     private EmployerNameNode employerNameNode;
@@ -90,7 +90,6 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>>
         children.add(employmentEndedNode);
         return children;
     }
-
 
     @Override
     public Boolean getRequired() {

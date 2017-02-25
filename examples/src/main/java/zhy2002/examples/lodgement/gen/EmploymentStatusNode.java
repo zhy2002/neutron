@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class EmploymentStatusNode extends StringUiNode<EmployedNode>
-{
+public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return EmploymentStatusNode.class;

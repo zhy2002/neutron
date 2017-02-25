@@ -14,25 +14,25 @@ interface AssetsNodeChildFactory {
 @Singleton
 public class AssetsNodeChildProvider {
     @Inject
-    MembersInjector<SavingsAccountListNode> savingsAccountListNodeInjector;
+    MembersInjector<OtherAssetListNode> otherAssetListNodeInjector;
     @Inject
     MembersInjector<MotorVehicleListNode> motorVehicleListNodeInjector;
     @Inject
-    MembersInjector<OtherAssetListNode> otherAssetListNodeInjector;
+    MembersInjector<SavingsAccountListNode> savingsAccountListNodeInjector;
 
     @Inject
     protected AssetsNodeChildProvider () {}
 
-    protected MembersInjector<SavingsAccountListNode> getSavingsAccountListNodeInjector() {
-        return this.savingsAccountListNodeInjector;
+    protected MembersInjector<OtherAssetListNode> getOtherAssetListNodeInjector() {
+        return this.otherAssetListNodeInjector;
     }
 
     protected MembersInjector<MotorVehicleListNode> getMotorVehicleListNodeInjector() {
         return this.motorVehicleListNodeInjector;
     }
 
-    protected MembersInjector<OtherAssetListNode> getOtherAssetListNodeInjector() {
-        return this.otherAssetListNodeInjector;
+    protected MembersInjector<SavingsAccountListNode> getSavingsAccountListNodeInjector() {
+        return this.savingsAccountListNodeInjector;
     }
 
     protected SavingsAccountListNode newSavingsAccountListNode(

@@ -23,10 +23,12 @@ public class CompanyListNodeModule {
         return owner;
     }
 
-    @Provides @CompanyListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @CompanyListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @CompanyListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

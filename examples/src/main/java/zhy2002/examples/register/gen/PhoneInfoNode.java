@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class PhoneInfoNode extends ObjectUiNode<RegisterNode>
-{
+public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
+
     private CountryCodeNode countryCodeNode;
     private AreaCodeNode areaCodeNode;
     private PhoneNumberNode phoneNumberNode;

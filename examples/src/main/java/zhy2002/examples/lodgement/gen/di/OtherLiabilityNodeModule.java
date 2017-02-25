@@ -23,10 +23,12 @@ public class OtherLiabilityNodeModule {
         return owner;
     }
 
-    @Provides @OtherLiabilityNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @OtherLiabilityNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @OtherLiabilityNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

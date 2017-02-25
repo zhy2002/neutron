@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class CreditCardNode extends ObjectUiNode<CreditCardListNode>
-{
+public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
+
     private CreditCardTypeNode creditCardTypeNode;
     private CreditCardAmountOwingNode creditCardAmountOwingNode;
     private CreditCardLimitAmountNode creditCardLimitAmountNode;

@@ -35,6 +35,4 @@ public class HouseDutiesFlagNodeModule {
         return owner;
     }
 
-
-
 }

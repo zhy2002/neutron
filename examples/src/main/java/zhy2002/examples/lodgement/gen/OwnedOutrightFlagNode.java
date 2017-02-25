@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode>
-{
+public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return OwnedOutrightFlagNode.class;

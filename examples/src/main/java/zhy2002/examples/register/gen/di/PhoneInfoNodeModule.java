@@ -23,10 +23,12 @@ public class PhoneInfoNodeModule {
         return owner;
     }
 
-    @Provides @PhoneInfoNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PhoneInfoNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PhoneInfoNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

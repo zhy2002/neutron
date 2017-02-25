@@ -23,10 +23,12 @@ public class AppManagerNodeModule {
         return owner;
     }
 
-    @Provides @AppManagerNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @AppManagerNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @AppManagerNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

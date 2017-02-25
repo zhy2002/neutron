@@ -23,10 +23,12 @@ public class PropertyDetailsNodeModule {
         return owner;
     }
 
-    @Provides @PropertyDetailsNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PropertyDetailsNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PropertyDetailsNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

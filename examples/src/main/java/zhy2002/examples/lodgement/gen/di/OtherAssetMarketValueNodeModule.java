@@ -35,6 +35,4 @@ public class OtherAssetMarketValueNodeModule {
         return owner;
     }
 
-
-
 }

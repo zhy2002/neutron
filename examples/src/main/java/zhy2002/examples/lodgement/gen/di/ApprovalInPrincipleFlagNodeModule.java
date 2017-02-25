@@ -31,6 +31,4 @@ public class ApprovalInPrincipleFlagNodeModule {
         return owner;
     }
 
-
-
 }

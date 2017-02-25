@@ -18,37 +18,33 @@ interface OtherLiabilityNodeChildFactory {
 @Singleton
 public class OtherLiabilityNodeChildProvider {
     @Inject
-    MembersInjector<OtherLiabilityTypeNode> otherLiabilityTypeNodeInjector;
+    MembersInjector<OtherLiabilityAmountOwningNode> otherLiabilityAmountOwningNodeInjector;
     @Inject
-    MembersInjector<OtherLiabilityDescriptionNode> otherLiabilityDescriptionNodeInjector;
+    MembersInjector<OtherLiabilityBreakCostNode> otherLiabilityBreakCostNodeInjector;
     @Inject
     MembersInjector<OtherLiabilityLimitAmountNode> otherLiabilityLimitAmountNodeInjector;
-    @Inject
-    MembersInjector<OtherLiabilityAmountOwningNode> otherLiabilityAmountOwningNodeInjector;
     @Inject
     MembersInjector<OtherLiabilityMonthlyRepaymentNode> otherLiabilityMonthlyRepaymentNodeInjector;
     @Inject
     MembersInjector<OtherLiabilityClearingFlagNode> otherLiabilityClearingFlagNodeInjector;
     @Inject
-    MembersInjector<OtherLiabilityBreakCostNode> otherLiabilityBreakCostNodeInjector;
+    MembersInjector<OtherLiabilityDescriptionNode> otherLiabilityDescriptionNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityTypeNode> otherLiabilityTypeNodeInjector;
 
     @Inject
     protected OtherLiabilityNodeChildProvider () {}
 
-    protected MembersInjector<OtherLiabilityTypeNode> getOtherLiabilityTypeNodeInjector() {
-        return this.otherLiabilityTypeNodeInjector;
+    protected MembersInjector<OtherLiabilityAmountOwningNode> getOtherLiabilityAmountOwningNodeInjector() {
+        return this.otherLiabilityAmountOwningNodeInjector;
     }
 
-    protected MembersInjector<OtherLiabilityDescriptionNode> getOtherLiabilityDescriptionNodeInjector() {
-        return this.otherLiabilityDescriptionNodeInjector;
+    protected MembersInjector<OtherLiabilityBreakCostNode> getOtherLiabilityBreakCostNodeInjector() {
+        return this.otherLiabilityBreakCostNodeInjector;
     }
 
     protected MembersInjector<OtherLiabilityLimitAmountNode> getOtherLiabilityLimitAmountNodeInjector() {
         return this.otherLiabilityLimitAmountNodeInjector;
-    }
-
-    protected MembersInjector<OtherLiabilityAmountOwningNode> getOtherLiabilityAmountOwningNodeInjector() {
-        return this.otherLiabilityAmountOwningNodeInjector;
     }
 
     protected MembersInjector<OtherLiabilityMonthlyRepaymentNode> getOtherLiabilityMonthlyRepaymentNodeInjector() {
@@ -59,8 +55,12 @@ public class OtherLiabilityNodeChildProvider {
         return this.otherLiabilityClearingFlagNodeInjector;
     }
 
-    protected MembersInjector<OtherLiabilityBreakCostNode> getOtherLiabilityBreakCostNodeInjector() {
-        return this.otherLiabilityBreakCostNodeInjector;
+    protected MembersInjector<OtherLiabilityDescriptionNode> getOtherLiabilityDescriptionNodeInjector() {
+        return this.otherLiabilityDescriptionNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityTypeNode> getOtherLiabilityTypeNodeInjector() {
+        return this.otherLiabilityTypeNodeInjector;
     }
 
     protected OtherLiabilityTypeNode newOtherLiabilityTypeNode(

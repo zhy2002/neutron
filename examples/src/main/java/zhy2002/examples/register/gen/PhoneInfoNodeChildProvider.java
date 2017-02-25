@@ -14,16 +14,20 @@ interface PhoneInfoNodeChildFactory {
 @Singleton
 public class PhoneInfoNodeChildProvider {
     @Inject
+    MembersInjector<PhoneNumberNode> phoneNumberNodeInjector;
+    @Inject
     MembersInjector<PhoneInfoFieldNode> phoneInfoFieldNodeInjector;
     @Inject
     MembersInjector<CountryCodeNode> countryCodeNodeInjector;
     @Inject
     MembersInjector<AreaCodeNode> areaCodeNodeInjector;
-    @Inject
-    MembersInjector<PhoneNumberNode> phoneNumberNodeInjector;
 
     @Inject
     protected PhoneInfoNodeChildProvider () {}
+
+    protected MembersInjector<PhoneNumberNode> getPhoneNumberNodeInjector() {
+        return this.phoneNumberNodeInjector;
+    }
 
     protected MembersInjector<PhoneInfoFieldNode> getPhoneInfoFieldNodeInjector() {
         return this.phoneInfoFieldNodeInjector;
@@ -35,10 +39,6 @@ public class PhoneInfoNodeChildProvider {
 
     protected MembersInjector<AreaCodeNode> getAreaCodeNodeInjector() {
         return this.areaCodeNodeInjector;
-    }
-
-    protected MembersInjector<PhoneNumberNode> getPhoneNumberNodeInjector() {
-        return this.phoneNumberNodeInjector;
     }
 
     protected CountryCodeNode newCountryCodeNode(

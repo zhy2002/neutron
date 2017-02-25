@@ -23,10 +23,12 @@ public class PersonNodeModule {
         return owner;
     }
 
-    @Provides @PersonNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PersonNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PersonNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode>
-{
+public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return CurrentEmploymentNode.class;

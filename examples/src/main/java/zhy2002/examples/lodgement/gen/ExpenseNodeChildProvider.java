@@ -14,21 +14,21 @@ interface ExpenseNodeChildFactory {
 @Singleton
 public class ExpenseNodeChildProvider {
     @Inject
-    MembersInjector<ExpenseTypeNode> expenseTypeNodeInjector;
-    @Inject
     MembersInjector<ExpenseDescriptionNode> expenseDescriptionNodeInjector;
+    @Inject
+    MembersInjector<ExpenseTypeNode> expenseTypeNodeInjector;
     @Inject
     MembersInjector<ExpenseMonthlyRepaymentNode> expenseMonthlyRepaymentNodeInjector;
 
     @Inject
     protected ExpenseNodeChildProvider () {}
 
-    protected MembersInjector<ExpenseTypeNode> getExpenseTypeNodeInjector() {
-        return this.expenseTypeNodeInjector;
-    }
-
     protected MembersInjector<ExpenseDescriptionNode> getExpenseDescriptionNodeInjector() {
         return this.expenseDescriptionNodeInjector;
+    }
+
+    protected MembersInjector<ExpenseTypeNode> getExpenseTypeNodeInjector() {
+        return this.expenseTypeNodeInjector;
     }
 
     protected MembersInjector<ExpenseMonthlyRepaymentNode> getExpenseMonthlyRepaymentNodeInjector() {

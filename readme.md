@@ -1,5 +1,7 @@
 todo 
 ----------------- 
+ui bug fix.
+
 1. node reference should use path (name1/name2/name3/.../nameN) instead of class, name pair.
 2. context menu
 3. todo loading spinner

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonPrivacyNode extends ObjectUiNode<PersonNode>
-{
+public class PersonPrivacyNode extends ObjectUiNode<PersonNode> {
+
     private CreditCheckFlagNode creditCheckFlagNode;
     private ThirdPartyDisclosureFlagNode thirdPartyDisclosureFlagNode;
     private LegalActionNode legalActionNode;

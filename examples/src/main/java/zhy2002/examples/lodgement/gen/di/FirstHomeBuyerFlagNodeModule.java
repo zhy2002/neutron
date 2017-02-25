@@ -31,6 +31,4 @@ public class FirstHomeBuyerFlagNodeModule {
         return owner;
     }
 
-
-
 }

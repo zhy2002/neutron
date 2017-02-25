@@ -31,6 +31,4 @@ public class BusinessTypeNodeModule {
         return owner;
     }
 
-
-
 }

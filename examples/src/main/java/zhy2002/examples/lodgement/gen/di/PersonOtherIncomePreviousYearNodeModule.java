@@ -31,6 +31,4 @@ public class PersonOtherIncomePreviousYearNodeModule {
         return owner;
     }
 
-
-
 }

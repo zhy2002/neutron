@@ -20,11 +20,11 @@ public class UnemployedNodeChildProvider {
     @Inject
     MembersInjector<StudentFlagNode> studentFlagNodeInjector;
     @Inject
+    MembersInjector<UnemployedSinceNode> unemployedSinceNodeInjector;
+    @Inject
     MembersInjector<StudentTypeNode> studentTypeNodeInjector;
     @Inject
     MembersInjector<HouseDutiesFlagNode> houseDutiesFlagNodeInjector;
-    @Inject
-    MembersInjector<UnemployedSinceNode> unemployedSinceNodeInjector;
 
     @Inject
     protected UnemployedNodeChildProvider () {}
@@ -37,16 +37,16 @@ public class UnemployedNodeChildProvider {
         return this.studentFlagNodeInjector;
     }
 
+    protected MembersInjector<UnemployedSinceNode> getUnemployedSinceNodeInjector() {
+        return this.unemployedSinceNodeInjector;
+    }
+
     protected MembersInjector<StudentTypeNode> getStudentTypeNodeInjector() {
         return this.studentTypeNodeInjector;
     }
 
     protected MembersInjector<HouseDutiesFlagNode> getHouseDutiesFlagNodeInjector() {
         return this.houseDutiesFlagNodeInjector;
-    }
-
-    protected MembersInjector<UnemployedSinceNode> getUnemployedSinceNodeInjector() {
-        return this.unemployedSinceNodeInjector;
     }
 
     protected UnemployedOnBenefitFlagNode newUnemployedOnBenefitFlagNode(

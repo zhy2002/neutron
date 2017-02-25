@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class LoanClearingFlagNode extends BooleanUiNode<LoanNode>
-{
+public class LoanClearingFlagNode extends BooleanUiNode<LoanNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return LoanClearingFlagNode.class;

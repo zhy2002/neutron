@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SubmissionNode extends ObjectUiNode<ApplicationNode>
-{
+public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return SubmissionNode.class;

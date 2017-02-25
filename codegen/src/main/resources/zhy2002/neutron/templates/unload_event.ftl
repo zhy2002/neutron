@@ -4,9 +4,9 @@ import ${targetPackage}.gen.${typeName};
 import zhy2002.neutron.NodeUnloadEvent;
 import zhy2002.neutron.UiNode;
 
-public class ${typeName}UnloadEvent extends NodeUnloadEvent<${typeName}> {
+public class ${typeName}UnloadEvent extends NodeUnloadEvent<${genericTypeName}> {
 
-    public ${typeName}UnloadEvent(UiNode<?> target) {
+    public ${typeName}UnloadEvent(${genericTypeName} target) {
         super(target);
     }
 }

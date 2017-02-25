@@ -1,17 +1,16 @@
 package ${targetPackage}.gen.rule;
 
 import zhy2002.neutron.*;
-import java.util.*;
 import ${targetPackage}.gen.*;
 
 
-public abstract class ${typeName} extends ${baseTypeName}<${parentTypeName}> {
+public abstract class ${typeName} extends ${baseTypeName}<${ownerType.genericTypeName}> {
 
-    public ${typeName}(${parentTypeName} owner) {
+    public ${typeName}(${ownerType.genericTypeName} owner) {
         super(owner);
     }
 
-    protected ${parentTypeName} get${ownerTypeName}() {
+    protected ${ownerType.genericTypeName} get${ownerType.typeName}() {
         return getOwner();
     }
 }

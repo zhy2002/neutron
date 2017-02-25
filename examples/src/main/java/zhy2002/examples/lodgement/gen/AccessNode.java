@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class AccessNode extends ObjectUiNode<RealEstateNode>
-{
+public class AccessNode extends ObjectUiNode<RealEstateNode> {
+
     private AccessContactTypeNode accessContactTypeNode;
     private AccessContactTitleNode accessContactTitleNode;
     private AccessContactFirstNameNode accessContactFirstNameNode;

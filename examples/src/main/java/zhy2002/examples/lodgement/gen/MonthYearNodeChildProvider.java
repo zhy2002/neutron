@@ -13,19 +13,19 @@ interface MonthYearNodeChildFactory {
 @Singleton
 public class MonthYearNodeChildProvider {
     @Inject
-    MembersInjector<MonthNode> monthNodeInjector;
-    @Inject
     MembersInjector<YearNode> yearNodeInjector;
+    @Inject
+    MembersInjector<MonthNode> monthNodeInjector;
 
     @Inject
     protected MonthYearNodeChildProvider () {}
 
-    protected MembersInjector<MonthNode> getMonthNodeInjector() {
-        return this.monthNodeInjector;
-    }
-
     protected MembersInjector<YearNode> getYearNodeInjector() {
         return this.yearNodeInjector;
+    }
+
+    protected MembersInjector<MonthNode> getMonthNodeInjector() {
+        return this.monthNodeInjector;
     }
 
     protected MonthNode newMonthNode(

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SpouseNode extends StringUiNode<PersonGeneralNode>
-{
+public class SpouseNode extends StringUiNode<PersonGeneralNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return SpouseNode.class;

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode>
-{
+public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return OtherAssetMarketValueNode.class;

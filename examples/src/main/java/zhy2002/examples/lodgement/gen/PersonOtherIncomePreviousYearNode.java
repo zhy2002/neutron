@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode>
-{
+public class PersonOtherIncomePreviousYearNode extends BooleanUiNode<PersonOtherIncomeNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonOtherIncomePreviousYearNode.class;

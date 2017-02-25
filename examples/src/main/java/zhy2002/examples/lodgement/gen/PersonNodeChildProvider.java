@@ -21,19 +21,19 @@ public class PersonNodeChildProvider {
     @Inject
     MembersInjector<PersonGeneralNode> personGeneralNodeInjector;
     @Inject
-    MembersInjector<PersonContactNode> personContactNodeInjector;
+    MembersInjector<PersonOtherIncomeListNode> personOtherIncomeListNodeInjector;
+    @Inject
+    MembersInjector<PersonResponsibleLendNode> personResponsibleLendNodeInjector;
     @Inject
     MembersInjector<CurrentEmploymentListNode> currentEmploymentListNodeInjector;
+    @Inject
+    MembersInjector<PersonPrivacyNode> personPrivacyNodeInjector;
+    @Inject
+    MembersInjector<PersonContactNode> personContactNodeInjector;
     @Inject
     MembersInjector<PreviousEmploymentListNode> previousEmploymentListNodeInjector;
     @Inject
     MembersInjector<PersonTrustNode> personTrustNodeInjector;
-    @Inject
-    MembersInjector<PersonPrivacyNode> personPrivacyNodeInjector;
-    @Inject
-    MembersInjector<PersonOtherIncomeListNode> personOtherIncomeListNodeInjector;
-    @Inject
-    MembersInjector<PersonResponsibleLendNode> personResponsibleLendNodeInjector;
 
     @Inject
     protected PersonNodeChildProvider () {}
@@ -42,12 +42,24 @@ public class PersonNodeChildProvider {
         return this.personGeneralNodeInjector;
     }
 
-    protected MembersInjector<PersonContactNode> getPersonContactNodeInjector() {
-        return this.personContactNodeInjector;
+    protected MembersInjector<PersonOtherIncomeListNode> getPersonOtherIncomeListNodeInjector() {
+        return this.personOtherIncomeListNodeInjector;
+    }
+
+    protected MembersInjector<PersonResponsibleLendNode> getPersonResponsibleLendNodeInjector() {
+        return this.personResponsibleLendNodeInjector;
     }
 
     protected MembersInjector<CurrentEmploymentListNode> getCurrentEmploymentListNodeInjector() {
         return this.currentEmploymentListNodeInjector;
+    }
+
+    protected MembersInjector<PersonPrivacyNode> getPersonPrivacyNodeInjector() {
+        return this.personPrivacyNodeInjector;
+    }
+
+    protected MembersInjector<PersonContactNode> getPersonContactNodeInjector() {
+        return this.personContactNodeInjector;
     }
 
     protected MembersInjector<PreviousEmploymentListNode> getPreviousEmploymentListNodeInjector() {
@@ -56,18 +68,6 @@ public class PersonNodeChildProvider {
 
     protected MembersInjector<PersonTrustNode> getPersonTrustNodeInjector() {
         return this.personTrustNodeInjector;
-    }
-
-    protected MembersInjector<PersonPrivacyNode> getPersonPrivacyNodeInjector() {
-        return this.personPrivacyNodeInjector;
-    }
-
-    protected MembersInjector<PersonOtherIncomeListNode> getPersonOtherIncomeListNodeInjector() {
-        return this.personOtherIncomeListNodeInjector;
-    }
-
-    protected MembersInjector<PersonResponsibleLendNode> getPersonResponsibleLendNodeInjector() {
-        return this.personResponsibleLendNodeInjector;
     }
 
     protected PersonGeneralNode newPersonGeneralNode(

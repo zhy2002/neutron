@@ -23,10 +23,12 @@ public class RegisterNodeModule {
         return owner;
     }
 
-    @Provides @RegisterNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @RegisterNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @RegisterNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

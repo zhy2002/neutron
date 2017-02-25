@@ -31,6 +31,4 @@ public class TitleNodeModule {
         return owner;
     }
 
-
-
 }

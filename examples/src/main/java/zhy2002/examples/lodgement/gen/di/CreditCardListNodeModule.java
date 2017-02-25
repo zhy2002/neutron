@@ -23,10 +23,12 @@ public class CreditCardListNodeModule {
         return owner;
     }
 
-    @Provides @CreditCardListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @CreditCardListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @CreditCardListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

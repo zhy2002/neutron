@@ -27,10 +27,12 @@ public class ContactAddressNodeModule {
         return owner;
     }
 
-    @Provides @ContactAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ContactAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @ContactAddressNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -31,6 +31,4 @@ public class PersonTrustRegistrationDateNodeModule {
         return owner;
     }
 
-
-
 }

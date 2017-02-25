@@ -31,6 +31,4 @@ public class DefenseServiceFlagNodeModule {
         return owner;
     }
 
-
-
 }

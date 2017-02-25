@@ -35,6 +35,4 @@ public class LoanLimitAmountNodeModule {
         return owner;
     }
 
-
-
 }

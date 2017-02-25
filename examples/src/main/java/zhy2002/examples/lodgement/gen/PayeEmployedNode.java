@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PayeEmployedNode extends EmployedNode
-{
+public class PayeEmployedNode extends EmployedNode {
+
     private GrossYearlySalaryNode grossYearlySalaryNode;
 
     private PayeEmployedNodeChildFactory childFactory;
@@ -57,7 +57,6 @@ public class PayeEmployedNode extends EmployedNode
         children.add(grossYearlySalaryNode);
         return children;
     }
-
 
     @Override
     public Boolean getRequired() {

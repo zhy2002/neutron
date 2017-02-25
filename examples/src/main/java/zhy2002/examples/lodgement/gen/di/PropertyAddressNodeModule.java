@@ -27,10 +27,12 @@ public class PropertyAddressNodeModule {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PropertyAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PropertyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

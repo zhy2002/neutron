@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 @Singleton
-public class ApplicationNode extends ObjectUiNode<VoidUiNode>
-{
+public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
+
     private AddressListNode addressListNode;
     private PersonListNode personListNode;
     private CompanyListNode companyListNode;

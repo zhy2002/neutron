@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SelfEmployedNode extends EmployedNode
-{
+public class SelfEmployedNode extends EmployedNode {
+
     private BusinessTypeNode businessTypeNode;
     private ProfitThisYearNode profitThisYearNode;
     private ProfitPreviousYearNode profitPreviousYearNode;
@@ -73,7 +73,6 @@ public class SelfEmployedNode extends EmployedNode
         children.add(profitPreviousYearNode);
         return children;
     }
-
 
     @Override
     public Boolean getRequired() {

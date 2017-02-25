@@ -6,7 +6,7 @@ import zhy2002.neutron.UiNode;
 
 public class LodgementNodeUnloadEvent extends NodeUnloadEvent<LodgementNode> {
 
-    public LodgementNodeUnloadEvent(UiNode<?> target) {
+    public LodgementNodeUnloadEvent(LodgementNode target) {
         super(target);
     }
 }

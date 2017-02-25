@@ -17,9 +17,9 @@ public class AddressNodeChildProvider {
     @Inject
     MembersInjector<AddressLineNode> addressLineNodeInjector;
     @Inject
-    MembersInjector<SuburbNode> suburbNodeInjector;
-    @Inject
     MembersInjector<PostcodeNode> postcodeNodeInjector;
+    @Inject
+    MembersInjector<SuburbNode> suburbNodeInjector;
     @Inject
     MembersInjector<CountryNode> countryNodeInjector;
 
@@ -30,12 +30,12 @@ public class AddressNodeChildProvider {
         return this.addressLineNodeInjector;
     }
 
-    protected MembersInjector<SuburbNode> getSuburbNodeInjector() {
-        return this.suburbNodeInjector;
-    }
-
     protected MembersInjector<PostcodeNode> getPostcodeNodeInjector() {
         return this.postcodeNodeInjector;
+    }
+
+    protected MembersInjector<SuburbNode> getSuburbNodeInjector() {
+        return this.suburbNodeInjector;
     }
 
     protected MembersInjector<CountryNode> getCountryNodeInjector() {

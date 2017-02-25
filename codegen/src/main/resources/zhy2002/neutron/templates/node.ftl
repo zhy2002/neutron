@@ -17,13 +17,19 @@ import ${targetPackage}.gen.rule.*;
 import ${targetPackage}.gen.di.*;
 </#if>
 
-<#if parent?? == false>
+<#if parentType.typeName == 'VoidUiNode'>
 @Singleton
 </#if>
-public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName?? && abstractNode??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#if valueTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
-<#elseif itemTypeName??><<#if parentTypeName??>${parentTypeName},</#if>${itemTypeName}>
-<#else><#if parentTypeName??><${parentTypeName}></#if>
-</#if>{
+public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#compress>
+<#if valueTypeName??>
+    <<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
+<#elseif itemTypeName??>
+    <<#if parentTypeName??>${parentTypeName},</#if>${itemTypeName}>
+<#else>
+    <#if parentTypeName??><${parentTypeName}></#if>
+</#if>
+</#compress> {
+
 <#if children?? && children?size gt 0>
     <#list children as child>
     private ${child.typeName} ${child.name};
@@ -63,13 +69,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 </#if>
 
-<#if parent??>
-    public ${typeName}(${parent.typeName} parent, String name) {
-        super(parent, name);
-<#else>
+<#if parentType.typeName == "VoidUiNode">
     @Inject
     public ${typeName}(@NotNull ${typeName}Context context) {
         super(context);
+<#else>
+    public ${typeName}(${parentType.typeName} parent, String name) {
+        super(parent, name);
 </#if>
     }
 
@@ -183,9 +189,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
 </#if>
-<#if parent??>
-    <#if parent.localRequired>
-
+<#if parentType.localRequired>
     @Override
     public Boolean getRequired() {
         boolean parentHasValue = getParent().hasValue();
@@ -195,6 +199,5 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         return Boolean.FALSE;
     }
 
-    </#if>
 </#if>
 }

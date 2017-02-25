@@ -31,6 +31,4 @@ public class ProfitThisYearNodeModule {
         return owner;
     }
 
-
-
 }

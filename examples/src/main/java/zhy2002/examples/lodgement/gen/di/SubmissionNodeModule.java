@@ -23,10 +23,12 @@ public class SubmissionNodeModule {
         return owner;
     }
 
-    @Provides @SubmissionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @SubmissionNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @SubmissionNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

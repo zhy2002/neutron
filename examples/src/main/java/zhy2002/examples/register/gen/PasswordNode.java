@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class PasswordNode extends StringUiNode<RegisterNode>
-{
+public class PasswordNode extends StringUiNode<RegisterNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PasswordNode.class;

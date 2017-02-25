@@ -31,6 +31,4 @@ public class PrimarySecurityFlagNodeModule {
         return owner;
     }
 
-
-
 }

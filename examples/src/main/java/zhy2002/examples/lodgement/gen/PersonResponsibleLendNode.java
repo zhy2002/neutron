@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode>
-{
+public class PersonResponsibleLendNode extends ObjectUiNode<PersonNode> {
+
     private PersonTypeOfChangeNode personTypeOfChangeNode;
     private PersonMitigationMethodNode personMitigationMethodNode;
     private PersonSignificantChangeFlagNode personSignificantChangeFlagNode;

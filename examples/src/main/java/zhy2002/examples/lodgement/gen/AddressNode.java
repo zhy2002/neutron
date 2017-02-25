@@ -12,8 +12,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P>
-{
+public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
+
     private AddressLineNode addressLineNode;
     private SuburbNode suburbNode;
     private PostcodeNode postcodeNode;

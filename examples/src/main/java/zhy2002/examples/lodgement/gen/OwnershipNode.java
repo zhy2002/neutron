@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>>
-{
+public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
+
     private ApplicantReferenceNode applicantReferenceNode;
     private OwnershipPercentageNode ownershipPercentageNode;
     private AverageFlagNode averageFlagNode;

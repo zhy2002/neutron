@@ -16,36 +16,20 @@ interface EmploymentNodeChildFactory {
 @Singleton
 public class EmploymentNodeChildProvider {
     @Inject
-    MembersInjector<EmploymentTypeNode> employmentTypeNodeInjector;
-    @Inject
-    MembersInjector<PayeEmployedNode> payeEmployedNodeInjector;
-    @Inject
-    MembersInjector<SelfEmployedNode> selfEmployedNodeInjector;
-    @Inject
-    MembersInjector<EmployedNode> employedNodeInjector;
-    @Inject
     MembersInjector<UnemployedNode> unemployedNodeInjector;
     @Inject
     MembersInjector<RetiredEmploymentNode> retiredEmploymentNodeInjector;
+    @Inject
+    MembersInjector<PayeEmployedNode> payeEmployedNodeInjector;
+    @Inject
+    MembersInjector<EmployedNode> employedNodeInjector;
+    @Inject
+    MembersInjector<SelfEmployedNode> selfEmployedNodeInjector;
+    @Inject
+    MembersInjector<EmploymentTypeNode> employmentTypeNodeInjector;
 
     @Inject
     protected EmploymentNodeChildProvider () {}
-
-    protected MembersInjector<EmploymentTypeNode> getEmploymentTypeNodeInjector() {
-        return this.employmentTypeNodeInjector;
-    }
-
-    protected MembersInjector<PayeEmployedNode> getPayeEmployedNodeInjector() {
-        return this.payeEmployedNodeInjector;
-    }
-
-    protected MembersInjector<SelfEmployedNode> getSelfEmployedNodeInjector() {
-        return this.selfEmployedNodeInjector;
-    }
-
-    protected MembersInjector<EmployedNode> getEmployedNodeInjector() {
-        return this.employedNodeInjector;
-    }
 
     protected MembersInjector<UnemployedNode> getUnemployedNodeInjector() {
         return this.unemployedNodeInjector;
@@ -53,6 +37,22 @@ public class EmploymentNodeChildProvider {
 
     protected MembersInjector<RetiredEmploymentNode> getRetiredEmploymentNodeInjector() {
         return this.retiredEmploymentNodeInjector;
+    }
+
+    protected MembersInjector<PayeEmployedNode> getPayeEmployedNodeInjector() {
+        return this.payeEmployedNodeInjector;
+    }
+
+    protected MembersInjector<EmployedNode> getEmployedNodeInjector() {
+        return this.employedNodeInjector;
+    }
+
+    protected MembersInjector<SelfEmployedNode> getSelfEmployedNodeInjector() {
+        return this.selfEmployedNodeInjector;
+    }
+
+    protected MembersInjector<EmploymentTypeNode> getEmploymentTypeNodeInjector() {
+        return this.employmentTypeNodeInjector;
     }
 
     protected EmploymentTypeNode newEmploymentTypeNode(

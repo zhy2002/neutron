@@ -23,10 +23,12 @@ public class RetiredEmploymentNodeModule {
         return owner;
     }
 
-    @Provides @RetiredEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @RetiredEmploymentNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @RetiredEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

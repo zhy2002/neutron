@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNode>
-{
+public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNode> {
+
     private RealEstateListNodeItemFactory itemFactory;
 
     @Inject

@@ -31,6 +31,4 @@ public class EmailNodeModule {
         return owner;
     }
 
-
-
 }

@@ -35,6 +35,4 @@ public class GrossYearlySalaryNodeModule {
         return owner;
     }
 
-
-
 }

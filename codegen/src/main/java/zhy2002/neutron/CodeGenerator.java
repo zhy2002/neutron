@@ -41,12 +41,12 @@ class CodeGenerator {
 
     private static void generateAllFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {
 
-        for (NodeInfo nodeInfo : domainInfo.getNodes()) {
+        for (NodeInfo nodeInfo : domainInfo.getAllNodes()) {
             generateNodeFiles(nodeInfo, templateBundle, targetDirectory);
         }
 
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
-        generateFile(targetDirectory, domainInfo.getRegistryInfo(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
+        generateFile(targetDirectory, domainInfo, templateBundle.getRegistryTemplate(), "", domainInfo.getContextName() + "ClassRegistry");
         generateFile(targetDirectory, domainInfo, templateBundle.getManifestModuleTemplate(), "di", "ManifestModule");
     }
 

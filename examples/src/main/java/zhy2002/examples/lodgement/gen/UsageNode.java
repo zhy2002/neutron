@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class UsageNode extends ObjectUiNode<RealEstateNode>
-{
+public class UsageNode extends ObjectUiNode<RealEstateNode> {
+
     private UsedAsSecurityFlagNode usedAsSecurityFlagNode;
     private BeingPurchasedFlagNode beingPurchasedFlagNode;
     private OwnedOutrightFlagNode ownedOutrightFlagNode;

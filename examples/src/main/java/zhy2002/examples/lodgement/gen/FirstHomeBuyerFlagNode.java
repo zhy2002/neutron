@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode>
-{
+public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return FirstHomeBuyerFlagNode.class;

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
-{
+public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
+
     private UnemployedOnBenefitFlagNode unemployedOnBenefitFlagNode;
     private StudentFlagNode studentFlagNode;
     private StudentTypeNode studentTypeNode;
@@ -89,7 +89,6 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>>
         children.add(unemployedSinceNode);
         return children;
     }
-
 
     @Override
     public Boolean getRequired() {

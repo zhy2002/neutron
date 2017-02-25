@@ -35,6 +35,4 @@ public class TotalAssetNodeModule {
         return owner;
     }
 
-
-
 }

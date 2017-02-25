@@ -31,6 +31,4 @@ public class PropertyStateNodeModule {
         return owner;
     }
 
-
-
 }

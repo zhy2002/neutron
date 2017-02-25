@@ -4,9 +4,9 @@ import ${targetPackage}.gen.${typeName};
 import zhy2002.neutron.NodeAddEvent;
 
 
-public class ${typeName}AddEvent extends NodeAddEvent<${typeName}> {
+public class ${typeName}AddEvent extends NodeAddEvent<${genericTypeName}> {
 
-    public ${typeName}AddEvent(${typeName} target) {
+    public ${typeName}AddEvent(${genericTypeName} target) {
         super(target);
     }
 }

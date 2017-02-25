@@ -1,6 +1,5 @@
 package zhy2002.examples.app.gen.di;
 import dagger.Subcomponent;
-import javax.inject.Named;
 import zhy2002.examples.app.gen.*;
 import zhy2002.examples.app.gen.rule.*;
 

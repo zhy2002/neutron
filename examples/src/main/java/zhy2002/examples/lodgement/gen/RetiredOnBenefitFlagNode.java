@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentNode>
-{
+public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return RetiredOnBenefitFlagNode.class;

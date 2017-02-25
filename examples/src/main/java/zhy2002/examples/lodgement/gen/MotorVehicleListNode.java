@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode>
-{
+public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode> {
+
     private MotorVehicleListNodeItemFactory itemFactory;
 
     @Inject

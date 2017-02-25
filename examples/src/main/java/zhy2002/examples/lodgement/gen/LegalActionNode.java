@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode>
-{
+public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return LegalActionNode.class;

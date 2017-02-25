@@ -31,6 +31,4 @@ public class CreditCardClearingFlagNodeModule {
         return owner;
     }
 
-
-
 }

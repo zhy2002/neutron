@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class CreditCardMonthlyRepaymentNode extends BaseCurrencyNode<CreditCardNode>
-{
+public class CreditCardMonthlyRepaymentNode extends BaseCurrencyNode<CreditCardNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardMonthlyRepaymentNode.class;

@@ -3,14 +3,7 @@ package ${targetPackage}.gen;
 import ${targetPackage}.gen.event.*;
 import ${targetPackage}.data.*;
 import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.data.*;
-import zhy2002.neutron.event.*;
 
-import java.math.BigDecimal;
-
-/**
-* The generated factory register with all the default implementation instances.
-*/
 class ${contextName}ClassRegistry extends ClassRegistryImpl {
 
     ${contextName}ClassRegistry() {

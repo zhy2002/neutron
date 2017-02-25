@@ -18,25 +18,29 @@ interface CreditCardNodeChildFactory {
 @Singleton
 public class CreditCardNodeChildProvider {
     @Inject
-    MembersInjector<CreditCardTypeNode> creditCardTypeNodeInjector;
+    MembersInjector<CreditCardLenderNameNode> creditCardLenderNameNodeInjector;
+    @Inject
+    MembersInjector<CreditCardMonthlyRepaymentNode> creditCardMonthlyRepaymentNodeInjector;
     @Inject
     MembersInjector<CreditCardAmountOwingNode> creditCardAmountOwingNodeInjector;
     @Inject
     MembersInjector<CreditCardLimitAmountNode> creditCardLimitAmountNodeInjector;
     @Inject
-    MembersInjector<CreditCardMonthlyRepaymentNode> creditCardMonthlyRepaymentNodeInjector;
+    MembersInjector<CreditCardTypeNode> creditCardTypeNodeInjector;
     @Inject
     MembersInjector<CreditCardClearingFlagNode> creditCardClearingFlagNodeInjector;
     @Inject
     MembersInjector<CreditCardBreakCostNode> creditCardBreakCostNodeInjector;
-    @Inject
-    MembersInjector<CreditCardLenderNameNode> creditCardLenderNameNodeInjector;
 
     @Inject
     protected CreditCardNodeChildProvider () {}
 
-    protected MembersInjector<CreditCardTypeNode> getCreditCardTypeNodeInjector() {
-        return this.creditCardTypeNodeInjector;
+    protected MembersInjector<CreditCardLenderNameNode> getCreditCardLenderNameNodeInjector() {
+        return this.creditCardLenderNameNodeInjector;
+    }
+
+    protected MembersInjector<CreditCardMonthlyRepaymentNode> getCreditCardMonthlyRepaymentNodeInjector() {
+        return this.creditCardMonthlyRepaymentNodeInjector;
     }
 
     protected MembersInjector<CreditCardAmountOwingNode> getCreditCardAmountOwingNodeInjector() {
@@ -47,8 +51,8 @@ public class CreditCardNodeChildProvider {
         return this.creditCardLimitAmountNodeInjector;
     }
 
-    protected MembersInjector<CreditCardMonthlyRepaymentNode> getCreditCardMonthlyRepaymentNodeInjector() {
-        return this.creditCardMonthlyRepaymentNodeInjector;
+    protected MembersInjector<CreditCardTypeNode> getCreditCardTypeNodeInjector() {
+        return this.creditCardTypeNodeInjector;
     }
 
     protected MembersInjector<CreditCardClearingFlagNode> getCreditCardClearingFlagNodeInjector() {
@@ -57,10 +61,6 @@ public class CreditCardNodeChildProvider {
 
     protected MembersInjector<CreditCardBreakCostNode> getCreditCardBreakCostNodeInjector() {
         return this.creditCardBreakCostNodeInjector;
-    }
-
-    protected MembersInjector<CreditCardLenderNameNode> getCreditCardLenderNameNodeInjector() {
-        return this.creditCardLenderNameNodeInjector;
     }
 
     protected CreditCardTypeNode newCreditCardTypeNode(

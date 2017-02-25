@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabilityNode>
-{
+public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabilityNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return OtherLiabilityLimitAmountNode.class;

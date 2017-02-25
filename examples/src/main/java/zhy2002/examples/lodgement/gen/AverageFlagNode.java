@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class AverageFlagNode extends BooleanUiNode<OwnershipNode>
-{
+public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AverageFlagNode.class;

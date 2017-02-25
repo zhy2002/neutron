@@ -6,7 +6,7 @@ import zhy2002.neutron.UiNode;
 
 public class PropertyDetailsNodeLoadEvent extends NodeLoadEvent<PropertyDetailsNode> {
 
-    public PropertyDetailsNodeLoadEvent(UiNode<?> target) {
+    public PropertyDetailsNodeLoadEvent(PropertyDetailsNode target) {
         super(target);
     }
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class LoanLenderNameNode extends StringUiNode<LoanNode>
-{
+public class LoanLenderNameNode extends StringUiNode<LoanNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return LoanLenderNameNode.class;

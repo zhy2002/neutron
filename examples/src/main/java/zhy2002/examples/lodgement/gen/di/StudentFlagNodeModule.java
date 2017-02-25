@@ -35,6 +35,4 @@ public class StudentFlagNodeModule {
         return owner;
     }
 
-
-
 }

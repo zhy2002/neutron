@@ -17,43 +17,43 @@ interface FinancialPositionNodeChildFactory {
 @Singleton
 public class FinancialPositionNodeChildProvider {
     @Inject
-    MembersInjector<AssetsNode> assetsNodeInjector;
-    @Inject
-    MembersInjector<LiabilitiesNode> liabilitiesNodeInjector;
-    @Inject
-    MembersInjector<ExpenseListNode> expenseListNodeInjector;
+    MembersInjector<TotalLiabilityNode> totalLiabilityNodeInjector;
     @Inject
     MembersInjector<TotalAssetNode> totalAssetNodeInjector;
     @Inject
-    MembersInjector<TotalLiabilityNode> totalLiabilityNodeInjector;
-    @Inject
     MembersInjector<TotalExpenseNode> totalExpenseNodeInjector;
+    @Inject
+    MembersInjector<ExpenseListNode> expenseListNodeInjector;
+    @Inject
+    MembersInjector<LiabilitiesNode> liabilitiesNodeInjector;
+    @Inject
+    MembersInjector<AssetsNode> assetsNodeInjector;
 
     @Inject
     protected FinancialPositionNodeChildProvider () {}
 
-    protected MembersInjector<AssetsNode> getAssetsNodeInjector() {
-        return this.assetsNodeInjector;
-    }
-
-    protected MembersInjector<LiabilitiesNode> getLiabilitiesNodeInjector() {
-        return this.liabilitiesNodeInjector;
-    }
-
-    protected MembersInjector<ExpenseListNode> getExpenseListNodeInjector() {
-        return this.expenseListNodeInjector;
+    protected MembersInjector<TotalLiabilityNode> getTotalLiabilityNodeInjector() {
+        return this.totalLiabilityNodeInjector;
     }
 
     protected MembersInjector<TotalAssetNode> getTotalAssetNodeInjector() {
         return this.totalAssetNodeInjector;
     }
 
-    protected MembersInjector<TotalLiabilityNode> getTotalLiabilityNodeInjector() {
-        return this.totalLiabilityNodeInjector;
-    }
-
     protected MembersInjector<TotalExpenseNode> getTotalExpenseNodeInjector() {
         return this.totalExpenseNodeInjector;
+    }
+
+    protected MembersInjector<ExpenseListNode> getExpenseListNodeInjector() {
+        return this.expenseListNodeInjector;
+    }
+
+    protected MembersInjector<LiabilitiesNode> getLiabilitiesNodeInjector() {
+        return this.liabilitiesNodeInjector;
+    }
+
+    protected MembersInjector<AssetsNode> getAssetsNodeInjector() {
+        return this.assetsNodeInjector;
     }
 
     protected AssetsNode newAssetsNode(

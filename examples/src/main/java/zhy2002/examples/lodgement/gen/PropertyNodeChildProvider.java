@@ -20,29 +20,33 @@ interface PropertyNodeChildFactory {
 @Singleton
 public class PropertyNodeChildProvider {
     @Inject
-    MembersInjector<RentedFlagNode> rentedFlagNodeInjector;
+    MembersInjector<PropertyPurseNode> propertyPurseNodeInjector;
+    @Inject
+    MembersInjector<EstimatedMarketValueNode> estimatedMarketValueNodeInjector;
     @Inject
     MembersInjector<PropertyWeeklyRentNode> propertyWeeklyRentNodeInjector;
     @Inject
     MembersInjector<PropertyAddressNode> propertyAddressNodeInjector;
     @Inject
-    MembersInjector<EstimatedMarketValueNode> estimatedMarketValueNodeInjector;
-    @Inject
-    MembersInjector<ContractPriceNode> contractPriceNodeInjector;
+    MembersInjector<RentedFlagNode> rentedFlagNodeInjector;
     @Inject
     MembersInjector<DefenseServiceFlagNode> defenseServiceFlagNodeInjector;
     @Inject
     MembersInjector<PropertyTypeNode> propertyTypeNodeInjector;
     @Inject
-    MembersInjector<PropertySubTypeNode> propertySubTypeNodeInjector;
+    MembersInjector<ContractPriceNode> contractPriceNodeInjector;
     @Inject
-    MembersInjector<PropertyPurseNode> propertyPurseNodeInjector;
+    MembersInjector<PropertySubTypeNode> propertySubTypeNodeInjector;
 
     @Inject
     protected PropertyNodeChildProvider () {}
 
-    protected MembersInjector<RentedFlagNode> getRentedFlagNodeInjector() {
-        return this.rentedFlagNodeInjector;
+    protected MembersInjector<PropertyPurseNode> getPropertyPurseNodeInjector() {
+        return this.propertyPurseNodeInjector;
+    }
+
+    protected MembersInjector<EstimatedMarketValueNode> getEstimatedMarketValueNodeInjector() {
+        return this.estimatedMarketValueNodeInjector;
     }
 
     protected MembersInjector<PropertyWeeklyRentNode> getPropertyWeeklyRentNodeInjector() {
@@ -53,12 +57,8 @@ public class PropertyNodeChildProvider {
         return this.propertyAddressNodeInjector;
     }
 
-    protected MembersInjector<EstimatedMarketValueNode> getEstimatedMarketValueNodeInjector() {
-        return this.estimatedMarketValueNodeInjector;
-    }
-
-    protected MembersInjector<ContractPriceNode> getContractPriceNodeInjector() {
-        return this.contractPriceNodeInjector;
+    protected MembersInjector<RentedFlagNode> getRentedFlagNodeInjector() {
+        return this.rentedFlagNodeInjector;
     }
 
     protected MembersInjector<DefenseServiceFlagNode> getDefenseServiceFlagNodeInjector() {
@@ -69,12 +69,12 @@ public class PropertyNodeChildProvider {
         return this.propertyTypeNodeInjector;
     }
 
-    protected MembersInjector<PropertySubTypeNode> getPropertySubTypeNodeInjector() {
-        return this.propertySubTypeNodeInjector;
+    protected MembersInjector<ContractPriceNode> getContractPriceNodeInjector() {
+        return this.contractPriceNodeInjector;
     }
 
-    protected MembersInjector<PropertyPurseNode> getPropertyPurseNodeInjector() {
-        return this.propertyPurseNodeInjector;
+    protected MembersInjector<PropertySubTypeNode> getPropertySubTypeNodeInjector() {
+        return this.propertySubTypeNodeInjector;
     }
 
     protected RentedFlagNode newRentedFlagNode(

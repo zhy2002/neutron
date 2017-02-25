@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode>
-{
+public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return VehicleYearNode.class;

@@ -23,10 +23,12 @@ public class PersonOtherIncomeNodeModule {
         return owner;
     }
 
-    @Provides @PersonOtherIncomeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PersonOtherIncomeNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PersonOtherIncomeNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

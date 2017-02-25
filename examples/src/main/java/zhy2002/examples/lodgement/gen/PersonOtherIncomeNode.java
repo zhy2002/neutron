@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNode>
-{
+public class PersonOtherIncomeNode extends ObjectUiNode<PersonOtherIncomeListNode> {
+
     private PersonAddBackTypeNode personAddBackTypeNode;
     private PersonOtherIncomeAmountNode personOtherIncomeAmountNode;
     private PersonOtherIncomeDescriptionNode personOtherIncomeDescriptionNode;

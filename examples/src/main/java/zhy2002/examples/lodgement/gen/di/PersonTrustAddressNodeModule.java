@@ -27,10 +27,12 @@ public class PersonTrustAddressNodeModule {
         return owner;
     }
 
-    @Provides @PersonTrustAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @PersonTrustAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @PersonTrustAddressNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

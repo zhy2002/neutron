@@ -27,10 +27,12 @@ public class SelfEmployedNodeModule {
         return owner;
     }
 
-    @Provides @SelfEmployedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @SelfEmployedNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @SelfEmployedNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class AreaCodeNode extends PhoneInfoFieldNode
-{
+public class AreaCodeNode extends PhoneInfoFieldNode {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AreaCodeNode.class;

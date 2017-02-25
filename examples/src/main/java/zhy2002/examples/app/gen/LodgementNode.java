@@ -14,8 +14,8 @@ import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 
 @Singleton
-public class LodgementNode extends ObjectUiNode<VoidUiNode>
-{
+public class LodgementNode extends ObjectUiNode<VoidUiNode> {
+
     private AppManagerNode appManagerNode;
 
     private LodgementNodeChildFactory childFactory;

@@ -18,13 +18,13 @@ public class PersonOtherIncomeNodeChildProvider {
     @Inject
     MembersInjector<PersonOtherIncomeTypeNode> personOtherIncomeTypeNodeInjector;
     @Inject
-    MembersInjector<PersonAddBackTypeNode> personAddBackTypeNodeInjector;
-    @Inject
-    MembersInjector<PersonOtherIncomeAmountNode> personOtherIncomeAmountNodeInjector;
+    MembersInjector<PersonOtherIncomeDescriptionNode> personOtherIncomeDescriptionNodeInjector;
     @Inject
     MembersInjector<PersonOtherIncomePreviousYearNode> personOtherIncomePreviousYearNodeInjector;
     @Inject
-    MembersInjector<PersonOtherIncomeDescriptionNode> personOtherIncomeDescriptionNodeInjector;
+    MembersInjector<PersonAddBackTypeNode> personAddBackTypeNodeInjector;
+    @Inject
+    MembersInjector<PersonOtherIncomeAmountNode> personOtherIncomeAmountNodeInjector;
 
     @Inject
     protected PersonOtherIncomeNodeChildProvider () {}
@@ -33,20 +33,20 @@ public class PersonOtherIncomeNodeChildProvider {
         return this.personOtherIncomeTypeNodeInjector;
     }
 
-    protected MembersInjector<PersonAddBackTypeNode> getPersonAddBackTypeNodeInjector() {
-        return this.personAddBackTypeNodeInjector;
-    }
-
-    protected MembersInjector<PersonOtherIncomeAmountNode> getPersonOtherIncomeAmountNodeInjector() {
-        return this.personOtherIncomeAmountNodeInjector;
+    protected MembersInjector<PersonOtherIncomeDescriptionNode> getPersonOtherIncomeDescriptionNodeInjector() {
+        return this.personOtherIncomeDescriptionNodeInjector;
     }
 
     protected MembersInjector<PersonOtherIncomePreviousYearNode> getPersonOtherIncomePreviousYearNodeInjector() {
         return this.personOtherIncomePreviousYearNodeInjector;
     }
 
-    protected MembersInjector<PersonOtherIncomeDescriptionNode> getPersonOtherIncomeDescriptionNodeInjector() {
-        return this.personOtherIncomeDescriptionNodeInjector;
+    protected MembersInjector<PersonAddBackTypeNode> getPersonAddBackTypeNodeInjector() {
+        return this.personAddBackTypeNodeInjector;
+    }
+
+    protected MembersInjector<PersonOtherIncomeAmountNode> getPersonOtherIncomeAmountNodeInjector() {
+        return this.personOtherIncomeAmountNodeInjector;
     }
 
     protected PersonAddBackTypeNode newPersonAddBackTypeNode(

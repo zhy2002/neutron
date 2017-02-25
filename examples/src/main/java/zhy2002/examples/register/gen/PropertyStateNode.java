@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class PropertyStateNode extends StringUiNode<PropertyDetailsNode>
-{
+public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyStateNode.class;

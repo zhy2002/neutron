@@ -27,10 +27,12 @@ public class EmployerAddressNodeModule {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @EmployerAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @EmployerAddressNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

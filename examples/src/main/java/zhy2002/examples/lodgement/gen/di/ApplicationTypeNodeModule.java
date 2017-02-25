@@ -31,6 +31,4 @@ public class ApplicationTypeNodeModule {
         return owner;
     }
 
-
-
 }

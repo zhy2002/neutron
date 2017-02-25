@@ -14,14 +14,18 @@ interface SelfEmployedNodeChildFactory {
 @Singleton
 public class SelfEmployedNodeChildProvider {
     @Inject
+    MembersInjector<ProfitPreviousYearNode> profitPreviousYearNodeInjector;
+    @Inject
     MembersInjector<BusinessTypeNode> businessTypeNodeInjector;
     @Inject
     MembersInjector<ProfitThisYearNode> profitThisYearNodeInjector;
-    @Inject
-    MembersInjector<ProfitPreviousYearNode> profitPreviousYearNodeInjector;
 
     @Inject
     protected SelfEmployedNodeChildProvider () {}
+
+    protected MembersInjector<ProfitPreviousYearNode> getProfitPreviousYearNodeInjector() {
+        return this.profitPreviousYearNodeInjector;
+    }
 
     protected MembersInjector<BusinessTypeNode> getBusinessTypeNodeInjector() {
         return this.businessTypeNodeInjector;
@@ -29,10 +33,6 @@ public class SelfEmployedNodeChildProvider {
 
     protected MembersInjector<ProfitThisYearNode> getProfitThisYearNodeInjector() {
         return this.profitThisYearNodeInjector;
-    }
-
-    protected MembersInjector<ProfitPreviousYearNode> getProfitPreviousYearNodeInjector() {
-        return this.profitPreviousYearNodeInjector;
     }
 
     protected BusinessTypeNode newBusinessTypeNode(

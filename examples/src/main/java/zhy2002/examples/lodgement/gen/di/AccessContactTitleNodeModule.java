@@ -31,6 +31,4 @@ public class AccessContactTitleNodeModule {
         return owner;
     }
 
-
-
 }

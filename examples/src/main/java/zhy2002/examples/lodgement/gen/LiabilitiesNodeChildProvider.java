@@ -16,9 +16,9 @@ public class LiabilitiesNodeChildProvider {
     @Inject
     MembersInjector<CreditCardListNode> creditCardListNodeInjector;
     @Inject
-    MembersInjector<LoanListNode> loanListNodeInjector;
-    @Inject
     MembersInjector<OtherLiabilityListNode> otherLiabilityListNodeInjector;
+    @Inject
+    MembersInjector<LoanListNode> loanListNodeInjector;
 
     @Inject
     protected LiabilitiesNodeChildProvider () {}
@@ -27,12 +27,12 @@ public class LiabilitiesNodeChildProvider {
         return this.creditCardListNodeInjector;
     }
 
-    protected MembersInjector<LoanListNode> getLoanListNodeInjector() {
-        return this.loanListNodeInjector;
-    }
-
     protected MembersInjector<OtherLiabilityListNode> getOtherLiabilityListNodeInjector() {
         return this.otherLiabilityListNodeInjector;
+    }
+
+    protected MembersInjector<LoanListNode> getLoanListNodeInjector() {
+        return this.loanListNodeInjector;
     }
 
     protected CreditCardListNode newCreditCardListNode(

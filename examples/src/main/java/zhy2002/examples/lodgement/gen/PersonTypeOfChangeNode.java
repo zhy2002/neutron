@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNode>
-{
+public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonTypeOfChangeNode.class;

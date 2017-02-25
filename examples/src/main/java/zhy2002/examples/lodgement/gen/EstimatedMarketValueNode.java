@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode>
-{
+public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return EstimatedMarketValueNode.class;

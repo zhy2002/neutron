@@ -12,8 +12,11 @@ import zhy2002.neutron.event.StringStateChangeEventBinding;
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 public class EmploymentTypeChangedRuleImpl extends EmploymentTypeChangedRule {
+
+    private static Logger logger = Logger.getLogger("EmploymentTypeChangedRuleImpl");
 
     @Inject
     public EmploymentTypeChangedRuleImpl(@Owner EmploymentTypeNode owner) {
@@ -48,6 +51,7 @@ public class EmploymentTypeChangedRuleImpl extends EmploymentTypeChangedRule {
     }
 
     private void changeEmploymentType(String newType) {
+        logger.info("Changing employment type to: " + newType);
         for (UiNode<?> node : getEmploymentNode().getChildren()) {
             if (node.getName().equals(newType)) {
                 node.setDisabled(false);

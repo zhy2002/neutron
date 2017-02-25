@@ -35,6 +35,4 @@ public class TotalLiabilityNodeModule {
         return owner;
     }
 
-
-
 }

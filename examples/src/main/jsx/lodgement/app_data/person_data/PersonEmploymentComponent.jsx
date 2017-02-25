@@ -17,6 +17,12 @@ export default class PersonEmploymentComponent extends NeutronComponent {
         };
     }
 
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.selectedName = this.model.getSelectedName();
+        return newState;
+    }
+
     render() {
         const model = this.model;
         return (
@@ -40,10 +46,18 @@ export default class PersonEmploymentComponent extends NeutronComponent {
                     </div>
                     <div className="row">
                         <div className="col-md-offset-2 col-md-10">
+                            {this.state.selectedName === 'payeEmployedNode' &&
                             <PersonEmployedComponent model={model.getPayeEmployedNode()}/>
+                            }
+                            {this.state.selectedName === 'selfEmployedNode' &&
                             <PersonEmployedComponent model={model.getSelfEmployedNode()}/>
+                            }
+                            {this.state.selectedName === 'retiredEmploymentNode' &&
                             <PersonRetiredComponent model={model.getRetiredEmploymentNode()}/>
+                            }
+                            {this.state.selectedName === 'unemployedNode' &&
                             <PersonUnemployedComponent model={model.getUnemployedNode()}/>
+                            }
                         </div>
                     </div>
                 </div>

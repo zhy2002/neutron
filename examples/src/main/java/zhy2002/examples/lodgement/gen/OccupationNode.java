@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class OccupationNode extends BaseOccupationNode<EmployedNode>
-{
+public class OccupationNode extends BaseOccupationNode<EmployedNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return OccupationNode.class;

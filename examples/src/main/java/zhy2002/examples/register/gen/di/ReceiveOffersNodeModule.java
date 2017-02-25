@@ -31,6 +31,4 @@ public class ReceiveOffersNodeModule {
         return owner;
     }
 
-
-
 }

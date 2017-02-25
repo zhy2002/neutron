@@ -31,6 +31,4 @@ public class EstimatedMarketValueNodeModule {
         return owner;
     }
 
-
-
 }

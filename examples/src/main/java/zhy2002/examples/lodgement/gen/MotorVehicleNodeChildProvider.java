@@ -14,21 +14,21 @@ interface MotorVehicleNodeChildFactory {
 @Singleton
 public class MotorVehicleNodeChildProvider {
     @Inject
-    MembersInjector<VehicleModelNode> vehicleModelNodeInjector;
-    @Inject
     MembersInjector<VehicleYearNode> vehicleYearNodeInjector;
+    @Inject
+    MembersInjector<VehicleModelNode> vehicleModelNodeInjector;
     @Inject
     MembersInjector<VehicleMarketValueNode> vehicleMarketValueNodeInjector;
 
     @Inject
     protected MotorVehicleNodeChildProvider () {}
 
-    protected MembersInjector<VehicleModelNode> getVehicleModelNodeInjector() {
-        return this.vehicleModelNodeInjector;
-    }
-
     protected MembersInjector<VehicleYearNode> getVehicleYearNodeInjector() {
         return this.vehicleYearNodeInjector;
+    }
+
+    protected MembersInjector<VehicleModelNode> getVehicleModelNodeInjector() {
+        return this.vehicleModelNodeInjector;
     }
 
     protected MembersInjector<VehicleMarketValueNode> getVehicleMarketValueNodeInjector() {

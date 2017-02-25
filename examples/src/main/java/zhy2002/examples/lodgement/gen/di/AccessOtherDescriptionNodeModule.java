@@ -31,6 +31,4 @@ public class AccessOtherDescriptionNodeModule {
         return owner;
     }
 
-
-
 }

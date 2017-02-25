@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode>
-{
+public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return ApplicantReferenceNode.class;

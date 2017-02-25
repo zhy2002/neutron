@@ -31,6 +31,4 @@ public class ContactTelephoneNodeModule {
         return owner;
     }
 
-
-
 }

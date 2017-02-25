@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SuburbNode extends StringUiNode<AddressNode<?>>
-{
+public class SuburbNode extends StringUiNode<AddressNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return SuburbNode.class;
@@ -42,7 +42,6 @@ public class SuburbNode extends StringUiNode<AddressNode<?>>
 
         setRequired(true);
     }
-
 
     @Override
     public Boolean getRequired() {

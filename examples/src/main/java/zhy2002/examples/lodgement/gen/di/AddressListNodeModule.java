@@ -23,10 +23,12 @@ public class AddressListNodeModule {
         return owner;
     }
 
-    @Provides @AddressListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @AddressListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @AddressListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

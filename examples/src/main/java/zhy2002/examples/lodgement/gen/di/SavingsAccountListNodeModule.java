@@ -23,10 +23,12 @@ public class SavingsAccountListNodeModule {
         return owner;
     }
 
-    @Provides @SavingsAccountListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @SavingsAccountListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @SavingsAccountListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

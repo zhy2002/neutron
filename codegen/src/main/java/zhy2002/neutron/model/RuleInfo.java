@@ -14,28 +14,20 @@ public class RuleInfo extends CodeGenInfo {
 
     ////////////////////////////////////////////////////////
 
-    private String parentTypeName;
-    private String ownerTypeName;
+    private NodeInfo ownerType;
 
     @Override
     void initialize() {
+        if (getBaseTypeName() == null) {
+            setBaseTypeName("UiNodeRule");
+        }
     }
 
-    public String getParentTypeName() {
-        return parentTypeName;
+    public NodeInfo getOwnerType() {
+        return ownerType;
     }
 
-    public void setParentTypeName(String parentTypeName) {
-        this.parentTypeName = parentTypeName;
+    void setOwnerType(NodeInfo ownerType) {
+        this.ownerType = ownerType;
     }
-
-    public String getOwnerTypeName() {
-        return ownerTypeName;
-    }
-
-    public void setOwnerTypeName(String ownerTypeName) {
-        this.ownerTypeName = ownerTypeName;
-    }
-
-
 }

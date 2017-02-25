@@ -27,10 +27,12 @@ public class SavingsOwnershipListNodeModule {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @SavingsOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @SavingsOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

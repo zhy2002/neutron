@@ -20,17 +20,17 @@ public class PersonTrustNodeChildProvider {
     @Inject
     MembersInjector<PersonTrustTypeNode> personTrustTypeNodeInjector;
     @Inject
+    MembersInjector<PersonTrustSettlorNotRequiredReasonNode> personTrustSettlorNotRequiredReasonNodeInjector;
+    @Inject
+    MembersInjector<PersonTrustIndustryNode> personTrustIndustryNodeInjector;
+    @Inject
     MembersInjector<PersonTrustNameNode> personTrustNameNodeInjector;
+    @Inject
+    MembersInjector<PersonTrustAddressNode> personTrustAddressNodeInjector;
     @Inject
     MembersInjector<PersonTrustRegistrationDateNode> personTrustRegistrationDateNodeInjector;
     @Inject
     MembersInjector<PersonTrustCountryNode> personTrustCountryNodeInjector;
-    @Inject
-    MembersInjector<PersonTrustAddressNode> personTrustAddressNodeInjector;
-    @Inject
-    MembersInjector<PersonTrustSettlorNotRequiredReasonNode> personTrustSettlorNotRequiredReasonNodeInjector;
-    @Inject
-    MembersInjector<PersonTrustIndustryNode> personTrustIndustryNodeInjector;
 
     @Inject
     protected PersonTrustNodeChildProvider () {}
@@ -39,8 +39,20 @@ public class PersonTrustNodeChildProvider {
         return this.personTrustTypeNodeInjector;
     }
 
+    protected MembersInjector<PersonTrustSettlorNotRequiredReasonNode> getPersonTrustSettlorNotRequiredReasonNodeInjector() {
+        return this.personTrustSettlorNotRequiredReasonNodeInjector;
+    }
+
+    protected MembersInjector<PersonTrustIndustryNode> getPersonTrustIndustryNodeInjector() {
+        return this.personTrustIndustryNodeInjector;
+    }
+
     protected MembersInjector<PersonTrustNameNode> getPersonTrustNameNodeInjector() {
         return this.personTrustNameNodeInjector;
+    }
+
+    protected MembersInjector<PersonTrustAddressNode> getPersonTrustAddressNodeInjector() {
+        return this.personTrustAddressNodeInjector;
     }
 
     protected MembersInjector<PersonTrustRegistrationDateNode> getPersonTrustRegistrationDateNodeInjector() {
@@ -49,18 +61,6 @@ public class PersonTrustNodeChildProvider {
 
     protected MembersInjector<PersonTrustCountryNode> getPersonTrustCountryNodeInjector() {
         return this.personTrustCountryNodeInjector;
-    }
-
-    protected MembersInjector<PersonTrustAddressNode> getPersonTrustAddressNodeInjector() {
-        return this.personTrustAddressNodeInjector;
-    }
-
-    protected MembersInjector<PersonTrustSettlorNotRequiredReasonNode> getPersonTrustSettlorNotRequiredReasonNodeInjector() {
-        return this.personTrustSettlorNotRequiredReasonNodeInjector;
-    }
-
-    protected MembersInjector<PersonTrustIndustryNode> getPersonTrustIndustryNodeInjector() {
-        return this.personTrustIndustryNodeInjector;
     }
 
     protected PersonTrustNameNode newPersonTrustNameNode(

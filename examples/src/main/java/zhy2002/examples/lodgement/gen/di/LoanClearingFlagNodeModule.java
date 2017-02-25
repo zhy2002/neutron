@@ -31,6 +31,4 @@ public class LoanClearingFlagNodeModule {
         return owner;
     }
 
-
-
 }

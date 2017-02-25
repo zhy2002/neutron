@@ -23,10 +23,12 @@ public class FinancialPositionNodeModule {
         return owner;
     }
 
-    @Provides @FinancialPositionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @FinancialPositionNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @FinancialPositionNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class ExpenseNode extends ObjectUiNode<ExpenseListNode>
-{
+public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
+
     private ExpenseTypeNode expenseTypeNode;
     private ExpenseDescriptionNode expenseDescriptionNode;
     private ExpenseMonthlyRepaymentNode expenseMonthlyRepaymentNode;

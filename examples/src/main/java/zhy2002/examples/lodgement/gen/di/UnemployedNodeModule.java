@@ -23,10 +23,12 @@ public class UnemployedNodeModule {
         return owner;
     }
 
-    @Provides @UnemployedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @UnemployedNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @UnemployedNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

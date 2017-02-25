@@ -24,11 +24,11 @@ public class SavingsAccountNodeChildProvider {
     @Inject
     MembersInjector<SavingsBalanceNode> savingsBalanceNodeInjector;
     @Inject
-    MembersInjector<SavingsBsbNoNode> savingsBsbNoNodeInjector;
-    @Inject
     MembersInjector<SavingsAccountNoNode> savingsAccountNoNodeInjector;
     @Inject
     MembersInjector<SavingsAccountNameNode> savingsAccountNameNodeInjector;
+    @Inject
+    MembersInjector<SavingsBsbNoNode> savingsBsbNoNodeInjector;
     @Inject
     MembersInjector<SavingsOwnershipListNode> savingsOwnershipListNodeInjector;
 
@@ -47,16 +47,16 @@ public class SavingsAccountNodeChildProvider {
         return this.savingsBalanceNodeInjector;
     }
 
-    protected MembersInjector<SavingsBsbNoNode> getSavingsBsbNoNodeInjector() {
-        return this.savingsBsbNoNodeInjector;
-    }
-
     protected MembersInjector<SavingsAccountNoNode> getSavingsAccountNoNodeInjector() {
         return this.savingsAccountNoNodeInjector;
     }
 
     protected MembersInjector<SavingsAccountNameNode> getSavingsAccountNameNodeInjector() {
         return this.savingsAccountNameNodeInjector;
+    }
+
+    protected MembersInjector<SavingsBsbNoNode> getSavingsBsbNoNodeInjector() {
+        return this.savingsBsbNoNodeInjector;
     }
 
     protected MembersInjector<SavingsOwnershipListNode> getSavingsOwnershipListNodeInjector() {

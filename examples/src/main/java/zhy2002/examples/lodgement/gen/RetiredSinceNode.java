@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode>
-{
+public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return RetiredSinceNode.class;

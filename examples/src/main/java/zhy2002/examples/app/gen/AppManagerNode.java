@@ -13,8 +13,8 @@ import zhy2002.examples.app.data.*;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 
-public class AppManagerNode extends ObjectUiNode<LodgementNode>
-{
+public class AppManagerNode extends ObjectUiNode<LodgementNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AppManagerNode.class;

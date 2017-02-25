@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode>
-{
+public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return MovedToCurrentAddressNode.class;

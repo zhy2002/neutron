@@ -35,6 +35,4 @@ public class RetiredOnBenefitFlagNodeModule {
         return owner;
     }
 
-
-
 }

@@ -16,37 +16,37 @@ interface UsageNodeChildFactory {
 @Singleton
 public class UsageNodeChildProvider {
     @Inject
-    MembersInjector<UsedAsSecurityFlagNode> usedAsSecurityFlagNodeInjector;
-    @Inject
-    MembersInjector<BeingPurchasedFlagNode> beingPurchasedFlagNodeInjector;
-    @Inject
     MembersInjector<OwnedOutrightFlagNode> ownedOutrightFlagNodeInjector;
+    @Inject
+    MembersInjector<ApprovalInPrincipleFlagNode> approvalInPrincipleFlagNodeInjector;
     @Inject
     MembersInjector<PrimarySecurityFlagNode> primarySecurityFlagNodeInjector;
     @Inject
-    MembersInjector<ApprovalInPrincipleFlagNode> approvalInPrincipleFlagNodeInjector;
+    MembersInjector<BeingPurchasedFlagNode> beingPurchasedFlagNodeInjector;
+    @Inject
+    MembersInjector<UsedAsSecurityFlagNode> usedAsSecurityFlagNodeInjector;
 
     @Inject
     protected UsageNodeChildProvider () {}
 
-    protected MembersInjector<UsedAsSecurityFlagNode> getUsedAsSecurityFlagNodeInjector() {
-        return this.usedAsSecurityFlagNodeInjector;
-    }
-
-    protected MembersInjector<BeingPurchasedFlagNode> getBeingPurchasedFlagNodeInjector() {
-        return this.beingPurchasedFlagNodeInjector;
-    }
-
     protected MembersInjector<OwnedOutrightFlagNode> getOwnedOutrightFlagNodeInjector() {
         return this.ownedOutrightFlagNodeInjector;
+    }
+
+    protected MembersInjector<ApprovalInPrincipleFlagNode> getApprovalInPrincipleFlagNodeInjector() {
+        return this.approvalInPrincipleFlagNodeInjector;
     }
 
     protected MembersInjector<PrimarySecurityFlagNode> getPrimarySecurityFlagNodeInjector() {
         return this.primarySecurityFlagNodeInjector;
     }
 
-    protected MembersInjector<ApprovalInPrincipleFlagNode> getApprovalInPrincipleFlagNodeInjector() {
-        return this.approvalInPrincipleFlagNodeInjector;
+    protected MembersInjector<BeingPurchasedFlagNode> getBeingPurchasedFlagNodeInjector() {
+        return this.beingPurchasedFlagNodeInjector;
+    }
+
+    protected MembersInjector<UsedAsSecurityFlagNode> getUsedAsSecurityFlagNodeInjector() {
+        return this.usedAsSecurityFlagNodeInjector;
     }
 
     protected UsedAsSecurityFlagNode newUsedAsSecurityFlagNode(

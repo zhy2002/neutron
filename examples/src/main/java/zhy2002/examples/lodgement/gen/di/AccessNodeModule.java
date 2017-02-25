@@ -23,10 +23,12 @@ public class AccessNodeModule {
         return owner;
     }
 
-    @Provides @AccessNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @AccessNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @AccessNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

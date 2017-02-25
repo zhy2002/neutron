@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>>
-{
+public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return MonthNode.class;
@@ -53,7 +53,6 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>>
     public void setOptions(Object value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
-
 
     @Override
     public Boolean getRequired() {

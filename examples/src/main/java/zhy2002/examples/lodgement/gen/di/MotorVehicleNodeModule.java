@@ -23,10 +23,12 @@ public class MotorVehicleNodeModule {
         return owner;
     }
 
-    @Provides @MotorVehicleNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @MotorVehicleNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @MotorVehicleNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

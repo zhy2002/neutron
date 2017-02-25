@@ -1,6 +1,9 @@
 package zhy2002.neutron.model;
 
+import javax.validation.constraints.NotNull;
+
 public class PropertyInfo {
+    @NotNull
     private String name;
     private String typeName;
     private String externalTypeName;

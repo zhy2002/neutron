@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class ErrorNode extends ValidationErrorUiNode<ErrorListNode>
-{
+public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return ErrorNode.class;

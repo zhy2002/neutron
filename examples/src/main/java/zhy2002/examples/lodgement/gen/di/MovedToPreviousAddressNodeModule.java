@@ -27,10 +27,12 @@ public class MovedToPreviousAddressNodeModule {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @MovedToPreviousAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @MovedToPreviousAddressNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -14,21 +14,21 @@ interface OtherAssetNodeChildFactory {
 @Singleton
 public class OtherAssetNodeChildProvider {
     @Inject
-    MembersInjector<OtherAssetTypeNode> otherAssetTypeNodeInjector;
-    @Inject
     MembersInjector<OtherAssetDescriptionNode> otherAssetDescriptionNodeInjector;
+    @Inject
+    MembersInjector<OtherAssetTypeNode> otherAssetTypeNodeInjector;
     @Inject
     MembersInjector<OtherAssetMarketValueNode> otherAssetMarketValueNodeInjector;
 
     @Inject
     protected OtherAssetNodeChildProvider () {}
 
-    protected MembersInjector<OtherAssetTypeNode> getOtherAssetTypeNodeInjector() {
-        return this.otherAssetTypeNodeInjector;
-    }
-
     protected MembersInjector<OtherAssetDescriptionNode> getOtherAssetDescriptionNodeInjector() {
         return this.otherAssetDescriptionNodeInjector;
+    }
+
+    protected MembersInjector<OtherAssetTypeNode> getOtherAssetTypeNodeInjector() {
+        return this.otherAssetTypeNodeInjector;
     }
 
     protected MembersInjector<OtherAssetMarketValueNode> getOtherAssetMarketValueNodeInjector() {

@@ -15,24 +15,16 @@ interface PersonResponsibleLendNodeChildFactory {
 @Singleton
 public class PersonResponsibleLendNodeChildProvider {
     @Inject
-    MembersInjector<PersonSignificantChangeFlagNode> personSignificantChangeFlagNodeInjector;
-    @Inject
-    MembersInjector<PersonTypeOfChangeNode> personTypeOfChangeNodeInjector;
-    @Inject
     MembersInjector<PersonMitigationMethodNode> personMitigationMethodNodeInjector;
     @Inject
     MembersInjector<PersonRepaymentDifficultyNode> personRepaymentDifficultyNodeInjector;
+    @Inject
+    MembersInjector<PersonSignificantChangeFlagNode> personSignificantChangeFlagNodeInjector;
+    @Inject
+    MembersInjector<PersonTypeOfChangeNode> personTypeOfChangeNodeInjector;
 
     @Inject
     protected PersonResponsibleLendNodeChildProvider () {}
-
-    protected MembersInjector<PersonSignificantChangeFlagNode> getPersonSignificantChangeFlagNodeInjector() {
-        return this.personSignificantChangeFlagNodeInjector;
-    }
-
-    protected MembersInjector<PersonTypeOfChangeNode> getPersonTypeOfChangeNodeInjector() {
-        return this.personTypeOfChangeNodeInjector;
-    }
 
     protected MembersInjector<PersonMitigationMethodNode> getPersonMitigationMethodNodeInjector() {
         return this.personMitigationMethodNodeInjector;
@@ -40,6 +32,14 @@ public class PersonResponsibleLendNodeChildProvider {
 
     protected MembersInjector<PersonRepaymentDifficultyNode> getPersonRepaymentDifficultyNodeInjector() {
         return this.personRepaymentDifficultyNodeInjector;
+    }
+
+    protected MembersInjector<PersonSignificantChangeFlagNode> getPersonSignificantChangeFlagNodeInjector() {
+        return this.personSignificantChangeFlagNodeInjector;
+    }
+
+    protected MembersInjector<PersonTypeOfChangeNode> getPersonTypeOfChangeNodeInjector() {
+        return this.personTypeOfChangeNodeInjector;
     }
 
     protected PersonTypeOfChangeNode newPersonTypeOfChangeNode(

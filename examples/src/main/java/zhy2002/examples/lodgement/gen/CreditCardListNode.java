@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode>
-{
+public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
+
     private CreditCardListNodeItemFactory itemFactory;
 
     @Inject

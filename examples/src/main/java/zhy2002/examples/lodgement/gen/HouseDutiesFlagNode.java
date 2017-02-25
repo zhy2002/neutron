@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode>
-{
+public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return HouseDutiesFlagNode.class;

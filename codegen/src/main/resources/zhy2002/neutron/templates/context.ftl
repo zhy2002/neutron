@@ -21,7 +21,7 @@ public class ${typeName}Context extends AbstractUiNodeContext<${typeName}> {
             contextId,
             changeEngine,
             nodeIdGenerator,
-            new ${typeName}ClassRegistry(),
+            new ${contextName}ClassRegistry(),
             implRegistry
         );
     }

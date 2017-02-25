@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class AccessContactTypeNode extends StringUiNode<AccessNode>
-{
+public class AccessContactTypeNode extends StringUiNode<AccessNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AccessContactTypeNode.class;

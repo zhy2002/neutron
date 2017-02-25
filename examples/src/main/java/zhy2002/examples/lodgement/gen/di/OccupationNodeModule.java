@@ -35,6 +35,4 @@ public class OccupationNodeModule {
         return owner;
     }
 
-
-
 }

@@ -31,6 +31,4 @@ public class SpouseNodeModule {
         return owner;
     }
 
-
-
 }

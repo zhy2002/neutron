@@ -31,6 +31,4 @@ public class PersonMitigationMethodNodeModule {
         return owner;
     }
 
-
-
 }

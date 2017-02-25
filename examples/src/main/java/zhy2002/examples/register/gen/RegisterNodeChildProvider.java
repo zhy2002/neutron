@@ -23,50 +23,30 @@ interface RegisterNodeChildFactory {
 @Singleton
 public class RegisterNodeChildProvider {
     @Inject
-    MembersInjector<UsernameNode> usernameNodeInjector;
-    @Inject
-    MembersInjector<EmailNode> emailNodeInjector;
-    @Inject
-    MembersInjector<PasswordNode> passwordNodeInjector;
-    @Inject
-    MembersInjector<RepeatPasswordNode> repeatPasswordNodeInjector;
-    @Inject
-    MembersInjector<AgeNode> ageNodeInjector;
-    @Inject
     MembersInjector<PlanNode> planNodeInjector;
     @Inject
     MembersInjector<ReceiveOffersNode> receiveOffersNodeInjector;
     @Inject
-    MembersInjector<OwnInvestmentPropertyNode> ownInvestmentPropertyNodeInjector;
+    MembersInjector<UsernameNode> usernameNodeInjector;
+    @Inject
+    MembersInjector<RepeatPasswordNode> repeatPasswordNodeInjector;
     @Inject
     MembersInjector<PropertyDetailsNode> propertyDetailsNodeInjector;
     @Inject
     MembersInjector<PhoneInfoNode> phoneInfoNodeInjector;
     @Inject
+    MembersInjector<PasswordNode> passwordNodeInjector;
+    @Inject
+    MembersInjector<OwnInvestmentPropertyNode> ownInvestmentPropertyNodeInjector;
+    @Inject
     MembersInjector<ErrorListNode> errorListNodeInjector;
+    @Inject
+    MembersInjector<EmailNode> emailNodeInjector;
+    @Inject
+    MembersInjector<AgeNode> ageNodeInjector;
 
     @Inject
     protected RegisterNodeChildProvider () {}
-
-    protected MembersInjector<UsernameNode> getUsernameNodeInjector() {
-        return this.usernameNodeInjector;
-    }
-
-    protected MembersInjector<EmailNode> getEmailNodeInjector() {
-        return this.emailNodeInjector;
-    }
-
-    protected MembersInjector<PasswordNode> getPasswordNodeInjector() {
-        return this.passwordNodeInjector;
-    }
-
-    protected MembersInjector<RepeatPasswordNode> getRepeatPasswordNodeInjector() {
-        return this.repeatPasswordNodeInjector;
-    }
-
-    protected MembersInjector<AgeNode> getAgeNodeInjector() {
-        return this.ageNodeInjector;
-    }
 
     protected MembersInjector<PlanNode> getPlanNodeInjector() {
         return this.planNodeInjector;
@@ -76,8 +56,12 @@ public class RegisterNodeChildProvider {
         return this.receiveOffersNodeInjector;
     }
 
-    protected MembersInjector<OwnInvestmentPropertyNode> getOwnInvestmentPropertyNodeInjector() {
-        return this.ownInvestmentPropertyNodeInjector;
+    protected MembersInjector<UsernameNode> getUsernameNodeInjector() {
+        return this.usernameNodeInjector;
+    }
+
+    protected MembersInjector<RepeatPasswordNode> getRepeatPasswordNodeInjector() {
+        return this.repeatPasswordNodeInjector;
     }
 
     protected MembersInjector<PropertyDetailsNode> getPropertyDetailsNodeInjector() {
@@ -88,8 +72,24 @@ public class RegisterNodeChildProvider {
         return this.phoneInfoNodeInjector;
     }
 
+    protected MembersInjector<PasswordNode> getPasswordNodeInjector() {
+        return this.passwordNodeInjector;
+    }
+
+    protected MembersInjector<OwnInvestmentPropertyNode> getOwnInvestmentPropertyNodeInjector() {
+        return this.ownInvestmentPropertyNodeInjector;
+    }
+
     protected MembersInjector<ErrorListNode> getErrorListNodeInjector() {
         return this.errorListNodeInjector;
+    }
+
+    protected MembersInjector<EmailNode> getEmailNodeInjector() {
+        return this.emailNodeInjector;
+    }
+
+    protected MembersInjector<AgeNode> getAgeNodeInjector() {
+        return this.ageNodeInjector;
     }
 
     protected UsernameNode newUsernameNode(

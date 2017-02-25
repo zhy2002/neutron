@@ -25,13 +25,11 @@ interface PersonGeneralNodeChildFactory {
 @Singleton
 public class PersonGeneralNodeChildProvider {
     @Inject
-    MembersInjector<TitleNode> titleNodeInjector;
+    MembersInjector<ApplicationTypeNode> applicationTypeNodeInjector;
+    @Inject
+    MembersInjector<MaritalStatusNode> maritalStatusNodeInjector;
     @Inject
     MembersInjector<FirstNameNode> firstNameNodeInjector;
-    @Inject
-    MembersInjector<LastNameNode> lastNameNodeInjector;
-    @Inject
-    MembersInjector<GenderNode> genderNodeInjector;
     @Inject
     MembersInjector<DateOfBirthNode> dateOfBirthNodeInjector;
     @Inject
@@ -41,35 +39,33 @@ public class PersonGeneralNodeChildProvider {
     @Inject
     MembersInjector<ApplicantTypeNode> applicantTypeNodeInjector;
     @Inject
-    MembersInjector<ApplicationTypeNode> applicationTypeNodeInjector;
+    MembersInjector<HousingStatusNode> housingStatusNodeInjector;
     @Inject
-    MembersInjector<MaritalStatusNode> maritalStatusNodeInjector;
-    @Inject
-    MembersInjector<PermanentResidentFlagNode> permanentResidentFlagNodeInjector;
-    @Inject
-    MembersInjector<SpouseNode> spouseNodeInjector;
+    MembersInjector<GenderNode> genderNodeInjector;
     @Inject
     MembersInjector<FirstHomeBuyerFlagNode> firstHomeBuyerFlagNodeInjector;
     @Inject
-    MembersInjector<HousingStatusNode> housingStatusNodeInjector;
+    MembersInjector<LastNameNode> lastNameNodeInjector;
+    @Inject
+    MembersInjector<PermanentResidentFlagNode> permanentResidentFlagNodeInjector;
+    @Inject
+    MembersInjector<TitleNode> titleNodeInjector;
+    @Inject
+    MembersInjector<SpouseNode> spouseNodeInjector;
 
     @Inject
     protected PersonGeneralNodeChildProvider () {}
 
-    protected MembersInjector<TitleNode> getTitleNodeInjector() {
-        return this.titleNodeInjector;
+    protected MembersInjector<ApplicationTypeNode> getApplicationTypeNodeInjector() {
+        return this.applicationTypeNodeInjector;
+    }
+
+    protected MembersInjector<MaritalStatusNode> getMaritalStatusNodeInjector() {
+        return this.maritalStatusNodeInjector;
     }
 
     protected MembersInjector<FirstNameNode> getFirstNameNodeInjector() {
         return this.firstNameNodeInjector;
-    }
-
-    protected MembersInjector<LastNameNode> getLastNameNodeInjector() {
-        return this.lastNameNodeInjector;
-    }
-
-    protected MembersInjector<GenderNode> getGenderNodeInjector() {
-        return this.genderNodeInjector;
     }
 
     protected MembersInjector<DateOfBirthNode> getDateOfBirthNodeInjector() {
@@ -88,28 +84,32 @@ public class PersonGeneralNodeChildProvider {
         return this.applicantTypeNodeInjector;
     }
 
-    protected MembersInjector<ApplicationTypeNode> getApplicationTypeNodeInjector() {
-        return this.applicationTypeNodeInjector;
+    protected MembersInjector<HousingStatusNode> getHousingStatusNodeInjector() {
+        return this.housingStatusNodeInjector;
     }
 
-    protected MembersInjector<MaritalStatusNode> getMaritalStatusNodeInjector() {
-        return this.maritalStatusNodeInjector;
-    }
-
-    protected MembersInjector<PermanentResidentFlagNode> getPermanentResidentFlagNodeInjector() {
-        return this.permanentResidentFlagNodeInjector;
-    }
-
-    protected MembersInjector<SpouseNode> getSpouseNodeInjector() {
-        return this.spouseNodeInjector;
+    protected MembersInjector<GenderNode> getGenderNodeInjector() {
+        return this.genderNodeInjector;
     }
 
     protected MembersInjector<FirstHomeBuyerFlagNode> getFirstHomeBuyerFlagNodeInjector() {
         return this.firstHomeBuyerFlagNodeInjector;
     }
 
-    protected MembersInjector<HousingStatusNode> getHousingStatusNodeInjector() {
-        return this.housingStatusNodeInjector;
+    protected MembersInjector<LastNameNode> getLastNameNodeInjector() {
+        return this.lastNameNodeInjector;
+    }
+
+    protected MembersInjector<PermanentResidentFlagNode> getPermanentResidentFlagNodeInjector() {
+        return this.permanentResidentFlagNodeInjector;
+    }
+
+    protected MembersInjector<TitleNode> getTitleNodeInjector() {
+        return this.titleNodeInjector;
+    }
+
+    protected MembersInjector<SpouseNode> getSpouseNodeInjector() {
+        return this.spouseNodeInjector;
     }
 
     protected TitleNode newTitleNode(

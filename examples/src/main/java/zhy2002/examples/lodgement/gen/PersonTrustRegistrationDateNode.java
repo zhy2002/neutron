@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonTrustRegistrationDateNode extends StringUiNode<PersonTrustNode>
-{
+public class PersonTrustRegistrationDateNode extends StringUiNode<PersonTrustNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonTrustRegistrationDateNode.class;

@@ -18,15 +18,15 @@ interface EmployedNodeChildFactory {
 @Singleton
 public class EmployedNodeChildProvider {
     @Inject
-    MembersInjector<EmploymentStatusNode> employmentStatusNodeInjector;
-    @Inject
-    MembersInjector<OccupationNode> occupationNodeInjector;
-    @Inject
     MembersInjector<EmployerNameNode> employerNameNodeInjector;
     @Inject
     MembersInjector<EmployerAddressNode> employerAddressNodeInjector;
     @Inject
+    MembersInjector<OccupationNode> occupationNodeInjector;
+    @Inject
     MembersInjector<EmployerPhoneNode> employerPhoneNodeInjector;
+    @Inject
+    MembersInjector<EmploymentStatusNode> employmentStatusNodeInjector;
     @Inject
     MembersInjector<EmploymentStartedNode> employmentStartedNodeInjector;
     @Inject
@@ -34,14 +34,6 @@ public class EmployedNodeChildProvider {
 
     @Inject
     protected EmployedNodeChildProvider () {}
-
-    protected MembersInjector<EmploymentStatusNode> getEmploymentStatusNodeInjector() {
-        return this.employmentStatusNodeInjector;
-    }
-
-    protected MembersInjector<OccupationNode> getOccupationNodeInjector() {
-        return this.occupationNodeInjector;
-    }
 
     protected MembersInjector<EmployerNameNode> getEmployerNameNodeInjector() {
         return this.employerNameNodeInjector;
@@ -51,8 +43,16 @@ public class EmployedNodeChildProvider {
         return this.employerAddressNodeInjector;
     }
 
+    protected MembersInjector<OccupationNode> getOccupationNodeInjector() {
+        return this.occupationNodeInjector;
+    }
+
     protected MembersInjector<EmployerPhoneNode> getEmployerPhoneNodeInjector() {
         return this.employerPhoneNodeInjector;
+    }
+
+    protected MembersInjector<EmploymentStatusNode> getEmploymentStatusNodeInjector() {
+        return this.employmentStatusNodeInjector;
     }
 
     protected MembersInjector<EmploymentStartedNode> getEmploymentStartedNodeInjector() {

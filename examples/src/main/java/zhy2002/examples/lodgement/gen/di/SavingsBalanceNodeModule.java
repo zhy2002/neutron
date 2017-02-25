@@ -35,6 +35,4 @@ public class SavingsBalanceNodeModule {
         return owner;
     }
 
-
-
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class PhoneNumberNode extends PhoneInfoFieldNode
-{
+public class PhoneNumberNode extends PhoneInfoFieldNode {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PhoneNumberNode.class;

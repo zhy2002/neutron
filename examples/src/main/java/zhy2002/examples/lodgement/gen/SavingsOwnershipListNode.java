@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class SavingsOwnershipListNode extends OwnershipListNode<SavingsAccountNode>
-{
+public class SavingsOwnershipListNode extends OwnershipListNode<SavingsAccountNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return SavingsOwnershipListNode.class;

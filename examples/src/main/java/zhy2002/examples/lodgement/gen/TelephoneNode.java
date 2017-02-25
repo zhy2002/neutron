@@ -12,8 +12,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone>
-{
+public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone> {
+
     @Override
     protected abstract TelephoneNodeRuleProvider getRuleProvider();
 

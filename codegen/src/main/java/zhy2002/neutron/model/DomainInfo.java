@@ -1,31 +1,42 @@
 package zhy2002.neutron.model;
 
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+import javax.validation.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * The root model for code gen.
  */
 public class DomainInfo extends CodeGenInfo {
 
+    private static final Logger logger = Logger.getLogger("DomainInfo");
     private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    private static final NodeInfo GENERIC_NODE_INFO;
+    private static final NodeInfo VOID_NODE_INFO;
+
+    static {
+        GENERIC_NODE_INFO = new NodeInfo();
+        GENERIC_NODE_INFO.setTypeName("P");
+        GENERIC_NODE_INFO.setGenericTypeName("P");
+
+        VOID_NODE_INFO = new NodeInfo();
+        VOID_NODE_INFO.setTypeName("VoidUiNode");
+        VOID_NODE_INFO.setGenericTypeName("VoidUiNode");
+    }
 
     //region mapped data
 
     @NotNull
     private String targetPackage;
     @NotNull
+    @Valid
     private NodeInfo rootType;
+    @Valid
     private List<NodeInfo> commonTypes = new ArrayList<>();
 
     public DomainInfo() {
         setTypeName("");
-        setDomainInfo(this);
     }
 
     public String getTargetPackage() {
@@ -56,51 +67,70 @@ public class DomainInfo extends CodeGenInfo {
 
     ////////////////////////////////////////////////////////
 
-    private final RegistryInfo registryInfo = new RegistryInfo();
+    /**
+     * All generated nodes.
+     */
+    private final List<NodeInfo> allNodes = new ArrayList<>();
+    private final List<NodeInfo> concreteNodes = new ArrayList<>();
+    private final List<NodeInfo> addEventNodes = new ArrayList<>();
+    private final List<NodeInfo> loadEventNodes = new ArrayList<>();
+    private final List<NodeInfo> changeEventNodes = new ArrayList<>();
+    private final StringBuilder errorMessageBuilder = new StringBuilder();
 
+    @Override
     public void initialize() {
-
         validateMappedData();
 
-        registryInfo.setTypeName(getContextName());
-        registryInfo.setDomainInfo(this);
-        getRootType().setParentTypeName("VoidUiNode");
-        getRootType().setUnloadable(true);
-        getRootType().setDomainInfo(this);
+        setDomainInfo(this);
+        initializeCommonTypes();
+        initializeRootType();
+        resolveBaseTypes();
 
-        getRootType().initialize();
+        raiseErrorIfNecessary();
+    }
 
-        NodeInfo genericParentType = new NodeInfo();
-        genericParentType.setTypeName("P");
-
-        for (NodeInfo nodeInfo : commonTypes) {
-            String parentBaseTypeName = nodeInfo.getParentBaseTypeName();
-            if (nodeInfo.isAbstractNode()) {
-                nodeInfo.setParentTypeName("P");
-                nodeInfo.setParent(genericParentType);
-            } else {
-                nodeInfo.setParentTypeName(parentBaseTypeName);
-                NodeInfo p = new NodeInfo();
-                p.setTypeName(parentBaseTypeName);
-                nodeInfo.setParent(p);
-            }
-            nodeInfo.setAbstractNode(true);
+    private void initializeCommonTypes() {
+        for (NodeInfo nodeInfo : getCommonTypes()) {
             nodeInfo.setDomainInfo(this);
+            nodeInfo.setParentType(GENERIC_NODE_INFO);
+            nodeInfo.setAbstractNode(true);
             nodeInfo.initialize();
         }
+    }
 
-        resolveBaseTypes();
+    private void initializeRootType() {
+        getRootType().setDomainInfo(this);
+        getRootType().setParentType(VOID_NODE_INFO);
+        getRootType().setUnloadable(true);
+        if (getRootType().isAbstractNode()) {
+            logger.warning("Root node must be concrete, setting isAbstract to false");
+            getRootType().setAbstractNode(false);
+        }
+
+        getRootType().initialize();
+    }
+
+    private void raiseErrorIfNecessary() {
+        String errorMessage = errorMessageBuilder.toString();
+        if (errorMessage.length() > 0) {
+            throw new RuntimeException(errorMessage);
+        }
     }
 
     private void resolveBaseTypes() {
-        List<NodeInfo> allNodes = getNodes();
         Map<String, NodeInfo> map = new HashMap<>();
-        allNodes.forEach(node -> map.put(node.getTypeName(), node));
-        allNodes.forEach(node -> {
+        getAllNodes().forEach(node -> map.put(node.getTypeName(), node));
+
+        getAllNodes().forEach(node -> {
             NodeInfo baseType = map.get(node.getBaseTypeName());
-            node.setBaseType(baseType);
+            if(baseType == null) {
+               node.populateFrameworkTypes();
+            } else {
+                node.setBaseType(baseType);
+            }
         });
-        allNodes.forEach(NodeInfo::initializeBaseTypes);
+
+        getAllNodes().forEach(NodeInfo::resolveBaseTypes);
     }
 
     private void validateMappedData() {
@@ -118,16 +148,32 @@ public class DomainInfo extends CodeGenInfo {
         }
     }
 
-    public RegistryInfo getRegistryInfo() {
-        return registryInfo;
-    }
-
-    public List<NodeInfo> getNodes() {
-        return getRegistryInfo().getAllNodes();
+    void addErrorMessageLine(String line) {
+        errorMessageBuilder.append(line);
+        errorMessageBuilder.append(System.lineSeparator());
     }
 
     public String getContextName() {
         return getRootType().getTypeName();
     }
 
+    public List<NodeInfo> getAllNodes() {
+        return allNodes;
+    }
+
+    public List<NodeInfo> getConcreteNodes() {
+        return concreteNodes;
+    }
+
+    public List<NodeInfo> getAddEventNodes() {
+        return addEventNodes;
+    }
+
+    public List<NodeInfo> getLoadEventNodes() {
+        return loadEventNodes;
+    }
+
+    public List<NodeInfo> getChangeEventNodes() {
+        return changeEventNodes;
+    }
 }

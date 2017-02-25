@@ -31,6 +31,4 @@ public class AccessContactLastNameNodeModule {
         return owner;
     }
 
-
-
 }

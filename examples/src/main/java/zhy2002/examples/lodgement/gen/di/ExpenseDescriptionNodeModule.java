@@ -31,6 +31,4 @@ public class ExpenseDescriptionNodeModule {
         return owner;
     }
 
-
-
 }

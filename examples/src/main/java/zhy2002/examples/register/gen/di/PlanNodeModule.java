@@ -31,6 +31,4 @@ public class PlanNodeModule {
         return owner;
     }
 
-
-
 }

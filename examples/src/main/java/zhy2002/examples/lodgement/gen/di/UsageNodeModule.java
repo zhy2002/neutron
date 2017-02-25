@@ -23,10 +23,12 @@ public class UsageNodeModule {
         return owner;
     }
 
-    @Provides @UsageNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @UsageNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @UsageNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

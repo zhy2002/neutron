@@ -13,8 +13,8 @@ import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 
-public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode>
-{
+public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
+
     private ErrorListNodeItemFactory itemFactory;
 
     @Inject

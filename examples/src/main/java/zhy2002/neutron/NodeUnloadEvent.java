@@ -7,7 +7,7 @@ package zhy2002.neutron;
 public abstract class NodeUnloadEvent<N extends UiNode<?>>
         extends ChangeUiNodeEvent {
 
-    protected NodeUnloadEvent(UiNode<?> target) {
+    protected NodeUnloadEvent(N target) {
         super(target, "");
     }
 

@@ -11,8 +11,8 @@ import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 
-public abstract class PhoneInfoFieldNode extends StringUiNode<PhoneInfoNode>
-{
+public abstract class PhoneInfoFieldNode extends StringUiNode<PhoneInfoNode> {
+
     @Override
     protected abstract PhoneInfoFieldNodeRuleProvider getRuleProvider();
 

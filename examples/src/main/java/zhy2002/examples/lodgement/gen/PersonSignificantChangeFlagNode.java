@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonResponsibleLendNode>
-{
+public class PersonSignificantChangeFlagNode extends YesNoOptionNode<PersonResponsibleLendNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonSignificantChangeFlagNode.class;

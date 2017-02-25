@@ -27,10 +27,12 @@ public class RetiredSinceNodeModule {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @RetiredSinceNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @RetiredSinceNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

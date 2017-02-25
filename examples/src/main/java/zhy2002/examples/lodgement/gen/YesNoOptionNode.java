@@ -11,8 +11,8 @@ import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P>
-{
+public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
+
     @Override
     protected abstract YesNoOptionNodeRuleProvider getRuleProvider();
 

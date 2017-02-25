@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PostcodeNode extends StringUiNode<AddressNode<?>>
-{
+public class PostcodeNode extends StringUiNode<AddressNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PostcodeNode.class;
@@ -43,7 +43,6 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>>
         setRequired(true);
         setPattern("\\d{4,4}");
     }
-
 
     @Override
     public Boolean getRequired() {

@@ -31,6 +31,4 @@ public class CreditCardLenderNameNodeModule {
         return owner;
     }
 
-
-
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonTrustCountryNode extends BaseCountryNode<PersonTrustNode>
-{
+public class PersonTrustCountryNode extends BaseCountryNode<PersonTrustNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return PersonTrustCountryNode.class;

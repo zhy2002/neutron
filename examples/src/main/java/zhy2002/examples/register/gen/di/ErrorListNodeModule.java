@@ -23,10 +23,12 @@ public class ErrorListNodeModule {
         return owner;
     }
 
-    @Provides @ErrorListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ErrorListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @ErrorListNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -6,7 +6,7 @@ import zhy2002.neutron.UiNode;
 
 public class ApplicationNodeLoadEvent extends NodeLoadEvent<ApplicationNode> {
 
-    public ApplicationNodeLoadEvent(UiNode<?> target) {
+    public ApplicationNodeLoadEvent(ApplicationNode target) {
         super(target);
     }
 }

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNode>
-{
+public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<PersonPrivacyNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return ThirdPartyDisclosureFlagNode.class;

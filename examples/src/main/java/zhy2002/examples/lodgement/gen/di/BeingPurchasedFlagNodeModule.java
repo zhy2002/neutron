@@ -31,6 +31,4 @@ public class BeingPurchasedFlagNodeModule {
         return owner;
     }
 
-
-
 }

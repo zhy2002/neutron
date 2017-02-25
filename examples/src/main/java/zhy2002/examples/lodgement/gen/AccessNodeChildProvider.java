@@ -18,22 +18,34 @@ interface AccessNodeChildFactory {
 @Singleton
 public class AccessNodeChildProvider {
     @Inject
+    MembersInjector<AccessContactLastNameNode> accessContactLastNameNodeInjector;
+    @Inject
+    MembersInjector<AccessOtherDescriptionNode> accessOtherDescriptionNodeInjector;
+    @Inject
+    MembersInjector<AccessContactFirstNameNode> accessContactFirstNameNodeInjector;
+    @Inject
     MembersInjector<AccessContactTypeNode> accessContactTypeNodeInjector;
     @Inject
     MembersInjector<AccessContactTitleNode> accessContactTitleNodeInjector;
     @Inject
-    MembersInjector<AccessContactFirstNameNode> accessContactFirstNameNodeInjector;
-    @Inject
-    MembersInjector<AccessContactLastNameNode> accessContactLastNameNodeInjector;
-    @Inject
-    MembersInjector<AccessCompanyNameNode> accessCompanyNameNodeInjector;
-    @Inject
     MembersInjector<AccessTelephoneNode> accessTelephoneNodeInjector;
     @Inject
-    MembersInjector<AccessOtherDescriptionNode> accessOtherDescriptionNodeInjector;
+    MembersInjector<AccessCompanyNameNode> accessCompanyNameNodeInjector;
 
     @Inject
     protected AccessNodeChildProvider () {}
+
+    protected MembersInjector<AccessContactLastNameNode> getAccessContactLastNameNodeInjector() {
+        return this.accessContactLastNameNodeInjector;
+    }
+
+    protected MembersInjector<AccessOtherDescriptionNode> getAccessOtherDescriptionNodeInjector() {
+        return this.accessOtherDescriptionNodeInjector;
+    }
+
+    protected MembersInjector<AccessContactFirstNameNode> getAccessContactFirstNameNodeInjector() {
+        return this.accessContactFirstNameNodeInjector;
+    }
 
     protected MembersInjector<AccessContactTypeNode> getAccessContactTypeNodeInjector() {
         return this.accessContactTypeNodeInjector;
@@ -43,24 +55,12 @@ public class AccessNodeChildProvider {
         return this.accessContactTitleNodeInjector;
     }
 
-    protected MembersInjector<AccessContactFirstNameNode> getAccessContactFirstNameNodeInjector() {
-        return this.accessContactFirstNameNodeInjector;
-    }
-
-    protected MembersInjector<AccessContactLastNameNode> getAccessContactLastNameNodeInjector() {
-        return this.accessContactLastNameNodeInjector;
-    }
-
-    protected MembersInjector<AccessCompanyNameNode> getAccessCompanyNameNodeInjector() {
-        return this.accessCompanyNameNodeInjector;
-    }
-
     protected MembersInjector<AccessTelephoneNode> getAccessTelephoneNodeInjector() {
         return this.accessTelephoneNodeInjector;
     }
 
-    protected MembersInjector<AccessOtherDescriptionNode> getAccessOtherDescriptionNodeInjector() {
-        return this.accessOtherDescriptionNodeInjector;
+    protected MembersInjector<AccessCompanyNameNode> getAccessCompanyNameNodeInjector() {
+        return this.accessCompanyNameNodeInjector;
     }
 
     protected AccessContactTypeNode newAccessContactTypeNode(

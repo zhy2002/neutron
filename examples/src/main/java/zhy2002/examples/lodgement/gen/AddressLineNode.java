@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class AddressLineNode extends StringUiNode<AddressNode<?>>
-{
+public class AddressLineNode extends StringUiNode<AddressNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return AddressLineNode.class;
@@ -42,7 +42,6 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>>
 
         setRequired(true);
     }
-
 
     @Override
     public Boolean getRequired() {

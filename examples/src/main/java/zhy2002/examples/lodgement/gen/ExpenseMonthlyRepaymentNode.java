@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode>
-{
+public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return ExpenseMonthlyRepaymentNode.class;

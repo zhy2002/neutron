@@ -31,6 +31,4 @@ public class AverageFlagNodeModule {
         return owner;
     }
 
-
-
 }

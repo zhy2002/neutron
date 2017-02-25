@@ -32,7 +32,7 @@ public class ${typeName}ItemProvider {
 </#list>
 <#list childTypes as childType>
     protected ${childType.typeName} new${childType.typeName} (
-        ${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent,
+        ${genericTypeName} parent,
         String name
     ) {
         return new ${childType.typeName}(parent, name);
@@ -50,15 +50,15 @@ public class ${typeName}ItemProvider {
     }
 
 </#list>
-    ${typeName}ItemFactory createFactory(${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent) {
+    ${typeName}ItemFactory createFactory(${genericTypeName} parent) {
         return new ${typeName}ItemFactoryImpl(parent);
     }
 
     private class ${typeName}ItemFactoryImpl implements ${typeName}ItemFactory {
 
-        private final ${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent;
+        private final ${genericTypeName} parent;
         
-        private ${typeName}ItemFactoryImpl(${typeName}<#if parentBaseTypeName?? && abstractNode??><?></#if> parent) {
+        private ${typeName}ItemFactoryImpl(${genericTypeName} parent) {
             this.parent = parent;
         }
 

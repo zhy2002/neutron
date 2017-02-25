@@ -14,18 +14,14 @@ interface PersonPrivacyNodeChildFactory {
 @Singleton
 public class PersonPrivacyNodeChildProvider {
     @Inject
-    MembersInjector<CreditCheckFlagNode> creditCheckFlagNodeInjector;
-    @Inject
     MembersInjector<ThirdPartyDisclosureFlagNode> thirdPartyDisclosureFlagNodeInjector;
     @Inject
     MembersInjector<LegalActionNode> legalActionNodeInjector;
+    @Inject
+    MembersInjector<CreditCheckFlagNode> creditCheckFlagNodeInjector;
 
     @Inject
     protected PersonPrivacyNodeChildProvider () {}
-
-    protected MembersInjector<CreditCheckFlagNode> getCreditCheckFlagNodeInjector() {
-        return this.creditCheckFlagNodeInjector;
-    }
 
     protected MembersInjector<ThirdPartyDisclosureFlagNode> getThirdPartyDisclosureFlagNodeInjector() {
         return this.thirdPartyDisclosureFlagNodeInjector;
@@ -33,6 +29,10 @@ public class PersonPrivacyNodeChildProvider {
 
     protected MembersInjector<LegalActionNode> getLegalActionNodeInjector() {
         return this.legalActionNodeInjector;
+    }
+
+    protected MembersInjector<CreditCheckFlagNode> getCreditCheckFlagNodeInjector() {
+        return this.creditCheckFlagNodeInjector;
     }
 
     protected CreditCheckFlagNode newCreditCheckFlagNode(

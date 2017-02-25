@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class CountryNode extends BaseCountryNode<AddressNode<?>>
-{
+public class CountryNode extends BaseCountryNode<AddressNode<?>> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return CountryNode.class;
@@ -42,7 +42,6 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>>
 
         setRequired(true);
     }
-
 
     @Override
     public Boolean getRequired() {

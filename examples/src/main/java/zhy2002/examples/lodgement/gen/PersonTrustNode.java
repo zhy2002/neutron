@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class PersonTrustNode extends ObjectUiNode<PersonNode>
-{
+public class PersonTrustNode extends ObjectUiNode<PersonNode> {
+
     private PersonTrustNameNode personTrustNameNode;
     private PersonTrustRegistrationDateNode personTrustRegistrationDateNode;
     private PersonTrustTypeNode personTrustTypeNode;

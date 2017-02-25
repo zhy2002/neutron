@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
-public class LoanMonthlyRepaymentNode extends BaseCurrencyNode<LoanNode>
-{
+public class LoanMonthlyRepaymentNode extends BaseCurrencyNode<LoanNode> {
+
     @Override
     public final Class<?> getConcreteClass() {
         return LoanMonthlyRepaymentNode.class;

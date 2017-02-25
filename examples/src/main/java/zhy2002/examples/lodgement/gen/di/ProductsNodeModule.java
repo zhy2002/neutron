@@ -23,10 +23,12 @@ public class ProductsNodeModule {
         return owner;
     }
 
-    @Provides @ProductsNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ProductsNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-
+    @Provides @ProductsNodeScope @Owner UiNode<?> provideUiNode() {
+        return owner;
+    }
 
 }

@@ -24,19 +24,19 @@ public class ApplicationNodeChildProvider {
     @Inject
     MembersInjector<PersonListNode> personListNodeInjector;
     @Inject
-    MembersInjector<CompanyListNode> companyListNodeInjector;
-    @Inject
     MembersInjector<FinancialPositionNode> financialPositionNodeInjector;
-    @Inject
-    MembersInjector<RealEstateListNode> realEstateListNodeInjector;
-    @Inject
-    MembersInjector<ProductsNode> productsNodeInjector;
-    @Inject
-    MembersInjector<AdditionalNode> additionalNodeInjector;
     @Inject
     MembersInjector<SubmissionNode> submissionNodeInjector;
     @Inject
+    MembersInjector<RealEstateListNode> realEstateListNodeInjector;
+    @Inject
+    MembersInjector<CompanyListNode> companyListNodeInjector;
+    @Inject
+    MembersInjector<ProductsNode> productsNodeInjector;
+    @Inject
     MembersInjector<ErrorListNode> errorListNodeInjector;
+    @Inject
+    MembersInjector<AdditionalNode> additionalNodeInjector;
 
     @Inject
     protected ApplicationNodeChildProvider () {}
@@ -49,32 +49,32 @@ public class ApplicationNodeChildProvider {
         return this.personListNodeInjector;
     }
 
-    protected MembersInjector<CompanyListNode> getCompanyListNodeInjector() {
-        return this.companyListNodeInjector;
-    }
-
     protected MembersInjector<FinancialPositionNode> getFinancialPositionNodeInjector() {
         return this.financialPositionNodeInjector;
-    }
-
-    protected MembersInjector<RealEstateListNode> getRealEstateListNodeInjector() {
-        return this.realEstateListNodeInjector;
-    }
-
-    protected MembersInjector<ProductsNode> getProductsNodeInjector() {
-        return this.productsNodeInjector;
-    }
-
-    protected MembersInjector<AdditionalNode> getAdditionalNodeInjector() {
-        return this.additionalNodeInjector;
     }
 
     protected MembersInjector<SubmissionNode> getSubmissionNodeInjector() {
         return this.submissionNodeInjector;
     }
 
+    protected MembersInjector<RealEstateListNode> getRealEstateListNodeInjector() {
+        return this.realEstateListNodeInjector;
+    }
+
+    protected MembersInjector<CompanyListNode> getCompanyListNodeInjector() {
+        return this.companyListNodeInjector;
+    }
+
+    protected MembersInjector<ProductsNode> getProductsNodeInjector() {
+        return this.productsNodeInjector;
+    }
+
     protected MembersInjector<ErrorListNode> getErrorListNodeInjector() {
         return this.errorListNodeInjector;
+    }
+
+    protected MembersInjector<AdditionalNode> getAdditionalNodeInjector() {
+        return this.additionalNodeInjector;
     }
 
     protected AddressListNode newAddressListNode(

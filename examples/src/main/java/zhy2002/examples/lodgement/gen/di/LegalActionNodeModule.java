@@ -35,6 +35,4 @@ public class LegalActionNodeModule {
         return owner;
     }
 
-
-
 }

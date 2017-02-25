@@ -35,6 +35,4 @@ public class PersonSignificantChangeFlagNodeModule {
         return owner;
     }
 
-
-
 }
