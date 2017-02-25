@@ -2,16 +2,22 @@ package ${targetPackage}.gen;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import zhy2002.neutron.data.*;
-import zhy2002.neutron.util.*;
+<#if valueTypeName?? || properties?? || valueWrappers?? || children??>
 import jsinterop.annotations.*;
+</#if>
 <#if children?? || itemTypeName?? || !abstractNode || rules?? && rules?size gt 0>
 import javax.inject.*;
 </#if>
 import javax.validation.constraints.NotNull;
+<#if children?? && children?size gt 0>
 import java.util.*;
+</#if>
+<#if init??>
 import java.math.*;
+</#if>
+<#if valueTypeName?? || init?? || properties??>
 import ${targetPackage}.data.*;
+</#if>
 import ${targetPackage}.gen.rule.*;
 <#if !abstractNode>
 import ${targetPackage}.gen.di.*;
@@ -74,7 +80,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     public ${typeName}(@NotNull ${typeName}Context context) {
         super(context);
 <#else>
-    public ${typeName}(${parentType.typeName} parent, String name) {
+    public ${typeName}(@NotNull ${parentType.typeName} parent, String name) {
         super(parent, name);
 </#if>
     }

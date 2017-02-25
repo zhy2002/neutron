@@ -3,9 +3,17 @@ import ListNeutronComponent from '../../bootstrap3/ListNeutronComponent';
 
 export default class ApplicationErrorsComponent extends ListNeutronComponent {
 
+    constructor(props) {
+        super(props);
+
+        this.updated = true;
+    }
+
+
     focusOnField(errorNode) {
         const errorNodeName = errorNode.getName();
         this.model.setFocus(errorNodeName);
+        this.updated = false;
 
         //set focus to the element after next render
         const source = errorNode.getSource();
@@ -24,6 +32,10 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
         const newState = super.extractNewState();
 
         newState.count = this.model.getItemCount();
+        if (!this.updated) {
+            newState.forceRefresh = [];
+            this.updated = true;
+        }
 
         return newState;
     }

@@ -2,8 +2,6 @@ package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import zhy2002.neutron.data.*;
-import zhy2002.neutron.util.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
@@ -48,7 +46,7 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
         return component.getPersonNodeRuleProvider();
     }
 
-    public PersonNode(PersonListNode parent, String name) {
+    public PersonNode(@NotNull PersonListNode parent, String name) {
         super(parent, name);
     }
 
