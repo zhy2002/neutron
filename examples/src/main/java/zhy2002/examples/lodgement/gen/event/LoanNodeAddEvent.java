@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.gen.event;
 
-import zhy2002.examples.lodgement.gen.LoanNode;
+import zhy2002.examples.lodgement.gen.node.LoanNode;
 import zhy2002.neutron.NodeAddEvent;
 
 

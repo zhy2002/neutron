@@ -1,7 +1,7 @@
 package zhy2002.examples.lodgement.impl;
 
 import com.google.gwt.i18n.shared.DateTimeFormat;
-import zhy2002.examples.lodgement.gen.DobNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

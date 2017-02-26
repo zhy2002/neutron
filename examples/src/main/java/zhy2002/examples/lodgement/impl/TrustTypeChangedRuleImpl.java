@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.PersonTrustNode;
-import zhy2002.examples.lodgement.gen.PersonTrustTypeNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.TrustTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;

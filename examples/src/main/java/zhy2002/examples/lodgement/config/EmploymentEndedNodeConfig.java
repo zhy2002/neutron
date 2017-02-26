@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.config;
 
-import zhy2002.examples.lodgement.gen.CurrentEmploymentNode;
-import zhy2002.examples.lodgement.gen.EmploymentEndedNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.UiNodeConfig;
 
 public class EmploymentEndedNodeConfig extends UiNodeConfig<EmploymentEndedNode> {

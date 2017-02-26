@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.EmploymentEndedNode;
-import zhy2002.examples.lodgement.gen.MonthYearNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.EmploymentEndedNoEarlierThanEmploymentStartedRule;
 import zhy2002.neutron.di.Owner;
 

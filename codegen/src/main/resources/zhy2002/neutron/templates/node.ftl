@@ -1,4 +1,4 @@
-package ${targetPackage}.gen;
+package ${targetPackage}.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
@@ -22,6 +22,10 @@ import ${targetPackage}.gen.rule.*;
 <#if !abstractNode>
 import ${targetPackage}.gen.di.*;
 </#if>
+<#if parentType.typeName == "VoidUiNode">
+import ${targetPackage}.gen.*;
+</#if>
+
 
 <#if parentType.typeName == 'VoidUiNode'>
 @Singleton

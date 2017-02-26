@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.gen.event;
 
-import zhy2002.examples.lodgement.gen.RealEstateNode;
+import zhy2002.examples.lodgement.gen.node.RealEstateNode;
 import zhy2002.neutron.NodeRemoveEvent;
 
 

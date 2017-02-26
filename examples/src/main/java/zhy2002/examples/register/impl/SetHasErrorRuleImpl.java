@@ -1,6 +1,6 @@
 package zhy2002.examples.register.impl;
 
-import zhy2002.examples.register.gen.*;
+import zhy2002.examples.register.gen.node.*;
 import zhy2002.examples.register.gen.event.ErrorNodeAddEvent;
 import zhy2002.examples.register.gen.event.ErrorNodeRemoveEvent;
 import zhy2002.examples.register.gen.rule.SetHasErrorRule;

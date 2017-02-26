@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.examples.lodgement.gen.MonthYearNode;
+import zhy2002.examples.lodgement.gen.node.MonthYearNode;
 import zhy2002.neutron.event.BigDecimalStateChangeEvent;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 

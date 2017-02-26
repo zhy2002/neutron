@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.gen.event;
 
-import zhy2002.examples.lodgement.gen.MotorVehicleNode;
+import zhy2002.examples.lodgement.gen.node.MotorVehicleNode;
 import zhy2002.neutron.NodeRemoveEvent;
 
 

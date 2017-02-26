@@ -3,12 +3,11 @@ package zhy2002.examples.lodgement;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
-import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.impl.AddressListNodeImpl;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
 
 public class PersonContactNodeTest {
 
@@ -39,7 +38,7 @@ public class PersonContactNodeTest {
 
     @Test
     public void addressRefListShouldReportNonEmptyNonDuplicateAddresses() {
-        AddressListNodeImpl addressListNode = (AddressListNodeImpl)applicationNode.getAddressListNode();
+        AddressListNodeImpl addressListNode = (AddressListNodeImpl) applicationNode.getAddressListNode();
         assertThat(addressListNode.getUniqueAddressNodes().length, equalTo(0));
 
         personContactNode.getCurrentAddressNode().getAddressLineNode().setValue("1 John St.");

@@ -1,8 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.ApplicantReferenceNode;
-import zhy2002.examples.lodgement.gen.OwnershipListNode;
-import zhy2002.examples.lodgement.gen.OwnershipNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.RemoveOwnershipNodeRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

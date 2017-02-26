@@ -3,7 +3,7 @@ package zhy2002.examples.lodgement.di;
 import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.lodgement.config.ApplicationNodeImplClassRegistry;
-import zhy2002.examples.lodgement.gen.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.di.ManifestModule;
 import zhy2002.examples.lodgement.gen.rule.*;

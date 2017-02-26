@@ -2,7 +2,7 @@ package zhy2002.examples.lodgement.impl;
 
 
 import com.google.gwt.i18n.shared.DateTimeFormat;
-import zhy2002.examples.lodgement.gen.MonthYearNode;
+import zhy2002.examples.lodgement.gen.node.MonthYearNode;
 import zhy2002.examples.lodgement.gen.rule.MonthYearNotInFutureRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

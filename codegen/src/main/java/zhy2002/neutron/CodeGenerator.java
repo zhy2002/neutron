@@ -46,13 +46,13 @@ class CodeGenerator {
         }
 
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
-        generateFile(targetDirectory, domainInfo, templateBundle.getRegistryTemplate(), "", domainInfo.getContextName() + "ClassRegistry");
+        generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
         generateFile(targetDirectory, domainInfo, templateBundle.getManifestModuleTemplate(), "di", "ManifestModule");
     }
 
     private static void generateNodeFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {
 
-        generateFile(targetDirectory, nodeInfo, templateBundle.getNodeTemplate(), "", "");
+        generateFile(targetDirectory, nodeInfo, templateBundle.getNodeTemplate(), "node", "");
 
         if (nodeInfo.isUnloadable()) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getNodeLoadEventTemplate(), "event", "LoadEvent");
@@ -76,9 +76,9 @@ class CodeGenerator {
         generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "rule", "RuleProvider");
 
         if (nodeInfo.getItemTypeName() != null) {
-            generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
+            generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "node", "ItemProvider");
         } else if (nodeInfo.getChildren() != null && nodeInfo.getChildren().size() > 0) {
-            generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
+            generateFile(targetDirectory, nodeInfo, templateBundle.getChildFactoryTemplate(), "node", "ChildProvider");
         }
 
         if (!nodeInfo.isAbstractNode()) {

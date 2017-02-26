@@ -1,7 +1,7 @@
 package zhy2002.examples.register.di;
 
 import jsinterop.annotations.JsType;
-import zhy2002.examples.register.gen.RegisterNode;
+import zhy2002.examples.register.gen.node.RegisterNode;
 import zhy2002.neutron.util.NeutronConstants;
 
 @JsType(namespace = NeutronConstants.JS_NAMESPACE)

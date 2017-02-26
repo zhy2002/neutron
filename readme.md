@@ -1,10 +1,7 @@
 todo 
 ----------------- 
-ui bug fix.
-
-1. node reference should use path (name1/name2/name3/.../nameN) instead of class, name pair.
-2. context menu
-3. todo loading spinner
+1. context menu
+2. todo loading spinner
 
 * Cancel (stop here or rollback) an event or a cycle from within a rule
 * performance tuning
@@ -19,6 +16,7 @@ ui bug fix.
 * bean validation of domain info
 * simplify event binding api
 * integrate with font awesome
+* i18n
 
 
 ### Engine - find a use case before doing these improvements
@@ -194,3 +192,17 @@ In the node hierarchy there are four types of nodes:
   
 4. Void Node
   * A placeholder class that serve as the parent class of a root node.
+  
+# File Structure
+To create a new domain and profiles, we need to do the following in the domain's root folder.
+1. desc.yml
+  * THis is how the file is currently used:
+    - Map to the DomainInfo data structure -> Bean Validation -> Initialization and error checking
+    - It describes all the nodes and their behaviour in the node hierarchy
+  * todo: implement profiles 
+    - same node structure different behaviour. 
+    - A node has its inherent default property values and rules. On top of this you can define profiles
+    which can give each node additional configuration (property values + rules).
+3. gen directory
+  * All the generated classes are placed here. Do not modify code in this directory.
+4. 

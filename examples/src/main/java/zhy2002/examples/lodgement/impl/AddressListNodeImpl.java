@@ -2,9 +2,7 @@ package zhy2002.examples.lodgement.impl;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.data.Address;
-import zhy2002.examples.lodgement.gen.AddressListNode;
-import zhy2002.examples.lodgement.gen.AddressNode;
-import zhy2002.examples.lodgement.gen.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;

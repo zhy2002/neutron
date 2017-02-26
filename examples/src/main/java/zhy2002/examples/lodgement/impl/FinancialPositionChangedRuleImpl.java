@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.FinancialPositionChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;

@@ -1,6 +1,6 @@
 package zhy2002.examples.register.gen.event;
 
-import zhy2002.examples.register.gen.ErrorNode;
+import zhy2002.examples.register.gen.node.ErrorNode;
 import zhy2002.neutron.NodeAddEvent;
 
 

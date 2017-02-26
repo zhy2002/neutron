@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.EmploymentNode;
-import zhy2002.examples.lodgement.gen.EmploymentTypeNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.EmploymentTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;

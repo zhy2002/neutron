@@ -1,7 +1,7 @@
 package ${targetPackage}.gen.di;
 import dagger.*;
 import javax.inject.Named;
-import ${targetPackage}.gen.*;
+import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;

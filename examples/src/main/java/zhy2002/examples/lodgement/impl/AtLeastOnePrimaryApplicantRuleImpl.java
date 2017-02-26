@@ -1,8 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.PersonListNode;
-import zhy2002.examples.lodgement.gen.PersonNode;
-import zhy2002.examples.lodgement.gen.PrimaryApplicantFlagNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.AtLeastOnePrimaryApplicantRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;

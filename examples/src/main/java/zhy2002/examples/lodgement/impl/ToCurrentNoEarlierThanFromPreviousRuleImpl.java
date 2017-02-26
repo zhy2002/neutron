@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.MonthYearNode;
-import zhy2002.examples.lodgement.gen.MovedToCurrentAddressNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.ToCurrentNoEarlierThanFromPreviousRule;
 import zhy2002.neutron.di.Owner;
 

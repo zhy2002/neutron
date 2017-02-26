@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.config;
 
-import zhy2002.examples.lodgement.gen.ContactAddressNode;
+import zhy2002.examples.lodgement.gen.node.ContactAddressNode;
 import zhy2002.neutron.UiNodeConfig;
 
 public class CurrentAddressConfig extends UiNodeConfig<ContactAddressNode> {

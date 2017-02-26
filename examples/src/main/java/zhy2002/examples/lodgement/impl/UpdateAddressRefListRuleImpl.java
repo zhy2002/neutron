@@ -1,8 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.AddressListNode;
-import zhy2002.examples.lodgement.gen.AddressNode;
-import zhy2002.examples.lodgement.gen.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

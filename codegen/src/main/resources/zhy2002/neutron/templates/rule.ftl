@@ -1,7 +1,7 @@
 package ${targetPackage}.gen.rule;
 
 import zhy2002.neutron.*;
-import ${targetPackage}.gen.*;
+import ${targetPackage}.gen.node.*;
 
 
 public abstract class ${typeName} extends ${baseTypeName}<${ownerType.genericTypeName}> {

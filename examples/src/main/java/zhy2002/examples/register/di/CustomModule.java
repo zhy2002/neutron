@@ -4,9 +4,7 @@ import dagger.MembersInjector;
 import dagger.Module;
 import dagger.Provides;
 import zhy2002.examples.register.config.PropertyDetailsInvestmentPropertyNodeConfig;
-import zhy2002.examples.register.gen.PropertyDetailsNode;
-import zhy2002.examples.register.gen.RegisterNodeChildProvider;
-
+import zhy2002.examples.register.gen.node.*;
 import javax.inject.Singleton;
 
 @Module

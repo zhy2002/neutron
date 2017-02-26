@@ -1,8 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-
-import zhy2002.examples.lodgement.gen.PersonOtherIncomeNode;
-import zhy2002.examples.lodgement.gen.PersonOtherIncomeTypeNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.PersonOtherIncomeTypeChangeRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

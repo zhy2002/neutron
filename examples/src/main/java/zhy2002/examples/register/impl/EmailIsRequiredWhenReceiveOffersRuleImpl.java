@@ -1,7 +1,6 @@
 package zhy2002.examples.register.impl;
 
-import zhy2002.examples.register.gen.EmailNode;
-import zhy2002.examples.register.gen.ReceiveOffersNode;
+import zhy2002.examples.register.gen.node.*;
 import zhy2002.examples.register.gen.rule.EmailIsRequiredWhenReceiveOffersRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;

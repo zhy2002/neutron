@@ -1,7 +1,7 @@
 package zhy2002.examples.app.impl;
 
 
-import zhy2002.examples.app.gen.LodgementNode;
+import zhy2002.examples.app.gen.node.LodgementNode;
 import zhy2002.examples.app.gen.di.LodgementNodeScope;
 import zhy2002.examples.app.gen.rule.DummyRule;
 import zhy2002.neutron.EventBinding;

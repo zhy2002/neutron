@@ -1,4 +1,4 @@
-package ${targetPackage}.gen;
+package ${targetPackage}.gen.node;
 
 import dagger.MembersInjector;
 import javax.inject.Inject;

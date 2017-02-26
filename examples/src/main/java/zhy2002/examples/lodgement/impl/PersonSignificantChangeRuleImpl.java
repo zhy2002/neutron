@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.PersonResponsibleLendNode;
-import zhy2002.examples.lodgement.gen.PersonSignificantChangeFlagNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.PersonSignificantChangeRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;

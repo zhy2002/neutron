@@ -1,6 +1,6 @@
 package ${targetPackage}.gen.event;
 
-import ${targetPackage}.gen.${typeName};
+import ${targetPackage}.gen.node.${typeName};
 import zhy2002.neutron.NodeRemoveEvent;
 
 

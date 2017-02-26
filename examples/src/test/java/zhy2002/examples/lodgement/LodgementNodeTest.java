@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
-import zhy2002.examples.lodgement.gen.*;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;

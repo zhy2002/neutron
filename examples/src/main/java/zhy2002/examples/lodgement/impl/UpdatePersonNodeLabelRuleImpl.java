@@ -1,8 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.FirstNameNode;
-import zhy2002.examples.lodgement.gen.LastNameNode;
-import zhy2002.examples.lodgement.gen.PersonNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
 import zhy2002.examples.lodgement.gen.rule.UpdatePersonNodeLabelRule;
 import zhy2002.neutron.EventBinding;

@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.impl;
 
-import zhy2002.examples.lodgement.gen.CreditCardBreakCostNode;
-import zhy2002.examples.lodgement.gen.CreditCardClearingFlagNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.CreditCardClearingFlagChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;

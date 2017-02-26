@@ -4,6 +4,7 @@ import zhy2002.neutron.*;
 import javax.validation.constraints.NotNull;
 import dagger.Lazy;
 import javax.inject.Inject;
+import ${targetPackage}.gen.node.*;
 
 
 public class ${typeName}Context extends AbstractUiNodeContext<${typeName}> {

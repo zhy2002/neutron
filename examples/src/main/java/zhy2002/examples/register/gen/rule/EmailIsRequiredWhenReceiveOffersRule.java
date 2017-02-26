@@ -1,7 +1,7 @@
 package zhy2002.examples.register.gen.rule;
 
 import zhy2002.neutron.*;
-import zhy2002.examples.register.gen.*;
+import zhy2002.examples.register.gen.node.*;
 
 
 public abstract class EmailIsRequiredWhenReceiveOffersRule extends UiNodeRule<ReceiveOffersNode> {
