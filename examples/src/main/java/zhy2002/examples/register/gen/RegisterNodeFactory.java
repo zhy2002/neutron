@@ -1,6 +1,7 @@
-package zhy2002.examples.register.di;
+package zhy2002.examples.register.gen;
 
 import jsinterop.annotations.JsType;
+import zhy2002.examples.register.gen.di.DaggerDefaultProfileComponent;
 import zhy2002.examples.register.gen.node.RegisterNode;
 import zhy2002.neutron.util.NeutronConstants;
 
@@ -8,6 +9,11 @@ import zhy2002.neutron.util.NeutronConstants;
 public class RegisterNodeFactory {
 
     public static RegisterNode create() {
-        return DaggerRegisterContextComponent.create().provideRegisterNodeContext().getRootNode();
+        return DaggerDefaultProfileComponent.create().provideRegisterNodeContext().getRootNode();
     }
+
+    //todo factory methods for other profiles
 }
+
+
+

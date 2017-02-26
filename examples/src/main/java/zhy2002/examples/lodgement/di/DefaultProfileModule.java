@@ -13,12 +13,8 @@ import zhy2002.neutron.di.NeutronModule;
 
 import javax.inject.Singleton;
 
-@Module(includes = {NeutronModule.class, ManifestModule.class, CustomModule.class})
-abstract class ApplicationContextModule {
-
-    @Binds
-    @Singleton
-    abstract ClassRegistryImpl provideClassRegistryImpl(ApplicationNodeClassRegistry impl);
+@Module(includes = {ManifestModule.class, CustomModule.class})
+public abstract class DefaultProfileModule {
 
     @Binds
     @Singleton

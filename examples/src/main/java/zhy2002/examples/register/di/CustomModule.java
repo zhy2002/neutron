@@ -8,7 +8,7 @@ import zhy2002.examples.register.gen.node.*;
 import javax.inject.Singleton;
 
 @Module
-class CustomModule {
+public class CustomModule {
 
     @Provides
     @Singleton

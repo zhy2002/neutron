@@ -1,7 +1,13 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
+import zhy2002.examples.register.gen.*;
+import zhy2002.neutron.ClassRegistryImpl;
+import javax.inject.Singleton;
+import zhy2002.neutron.di.NeutronModule;
 
-@Module(subcomponents = {
+
+@Module(includes = {NeutronModule.class},
+subcomponents = {
     UsernameNodeComponent.class,
     EmailNodeComponent.class,
     PasswordNodeComponent.class,
@@ -21,5 +27,10 @@ import dagger.*;
     ErrorListNodeComponent.class,
     RegisterNodeComponent.class
 })
-public class ManifestModule {
+public abstract class ManifestModule {
+
+    @Binds
+    @Singleton
+    abstract ClassRegistryImpl provideClassRegistryImpl(RegisterNodeClassRegistry impl);
+
 }

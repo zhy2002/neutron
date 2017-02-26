@@ -2,7 +2,7 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
+import zhy2002.examples.lodgement.gen.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressListNodeImpl;
 

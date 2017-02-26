@@ -203,6 +203,14 @@ To create a new domain and profiles, we need to do the following in the domain's
     - same node structure different behaviour. 
     - A node has its inherent default property values and rules. On top of this you can define profiles
     which can give each node additional configuration (property values + rules).
-3. gen directory
+2. gen directory
   * All the generated classes are placed here. Do not modify code in this directory.
-4. 
+  * The folders in the domain root directory mirrors the folders in the gen directory (except for the gen directory itself of course).
+  * XxxNodeFactory: This is the generated entry point for the client to use the node hierarchy.
+3. di directory
+  * This is where you manually encapsulate the generated code and provide and Factory class to the client.
+    - XxxProfileModule: Manually created abstract module that matches required classes with implementation classes.
+    It must include the ManifestModule of the domain.
+    - CustomModule: Optional module that contains instantiation logic (non-abstract module). If present it should be 
+    included in XxxProfileModule.
+    

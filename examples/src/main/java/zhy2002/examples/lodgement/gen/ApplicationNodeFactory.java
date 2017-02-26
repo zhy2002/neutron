@@ -1,7 +1,7 @@
-package zhy2002.examples.lodgement.di;
-
+package zhy2002.examples.lodgement.gen;
 
 import jsinterop.annotations.JsType;
+import zhy2002.examples.lodgement.gen.di.DaggerDefaultProfileComponent;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.neutron.util.NeutronConstants;
 
@@ -9,6 +9,11 @@ import zhy2002.neutron.util.NeutronConstants;
 public class ApplicationNodeFactory {
 
     public static ApplicationNode create() {
-        return DaggerApplicationContextComponent.create().provideApplicationNodeContext().getRootNode();
+        return DaggerDefaultProfileComponent.create().provideApplicationNodeContext().getRootNode();
     }
+
+    //todo factory methods for other profiles
 }
+
+
+

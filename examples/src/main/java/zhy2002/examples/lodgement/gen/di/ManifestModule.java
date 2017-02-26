@@ -1,7 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import zhy2002.examples.lodgement.gen.*;
+import zhy2002.neutron.ClassRegistryImpl;
+import javax.inject.Singleton;
+import zhy2002.neutron.di.NeutronModule;
 
-@Module(subcomponents = {
+
+@Module(includes = {NeutronModule.class},
+subcomponents = {
     AddressLineNodeComponent.class,
     SuburbNodeComponent.class,
     PostcodeNodeComponent.class,
@@ -182,5 +188,10 @@ import dagger.*;
     ErrorListNodeComponent.class,
     ApplicationNodeComponent.class
 })
-public class ManifestModule {
+public abstract class ManifestModule {
+
+    @Binds
+    @Singleton
+    abstract ClassRegistryImpl provideClassRegistryImpl(ApplicationNodeClassRegistry impl);
+
 }
