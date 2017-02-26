@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.impl.AddressListNodeImpl;
+import zhy2002.examples.lodgement.node.AddressListNodeImpl;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

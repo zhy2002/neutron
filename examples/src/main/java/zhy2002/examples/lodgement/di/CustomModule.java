@@ -6,7 +6,7 @@ import dagger.Provides;
 import zhy2002.examples.lodgement.config.CurrentAddressConfig;
 import zhy2002.examples.lodgement.config.EmploymentEndedNodeConfig;
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.impl.AddressListNodeImpl;
+import zhy2002.examples.lodgement.node.AddressListNodeImpl;
 
 import javax.inject.Singleton;
 

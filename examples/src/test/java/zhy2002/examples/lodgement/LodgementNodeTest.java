@@ -9,7 +9,7 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
-import zhy2002.examples.lodgement.impl.ApplicationNodeImpl;
+import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.neutron.UiNodeChangeListener;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;

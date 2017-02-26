@@ -2,11 +2,12 @@ package zhy2002.examples.register.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.register.config.RegisterNodeImplClassRegistry;
+import zhy2002.examples.register.RegisterNodeContextImpl;
+import zhy2002.examples.register.gen.RegisterNodeClassRegistry;
 import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.gen.di.ManifestModule;
 import zhy2002.examples.register.gen.rule.*;
-import zhy2002.examples.register.impl.*;
+import zhy2002.examples.register.rule.*;
 import zhy2002.neutron.ClassRegistryImpl;
 import zhy2002.neutron.di.NeutronModule;
 
@@ -21,7 +22,7 @@ abstract class RegisterContextModule {
 
     @Binds
     @Singleton
-    abstract ClassRegistryImpl provideClassRegistryImpl(RegisterNodeImplClassRegistry impl);
+    abstract ClassRegistryImpl provideClassRegistryImpl(RegisterNodeClassRegistry impl);
 
     @Binds
     abstract DefaultEmailByUsernameRule provideDefaultEmailByUsernameRule(DefaultEmailByUsernameRuleImpl impl);

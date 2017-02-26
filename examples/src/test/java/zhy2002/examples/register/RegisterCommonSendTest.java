@@ -7,7 +7,7 @@ import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.examples.register.gen.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
-import zhy2002.examples.register.impl.PasswordIsStrongRuleImpl;
+import zhy2002.examples.register.rule.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.NodeStatusEnum;
 import zhy2002.neutron.UiNodeChangeListener;

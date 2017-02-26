@@ -4,9 +4,12 @@ import ${targetPackage}.gen.event.*;
 import ${targetPackage}.gen.node.*;
 import ${targetPackage}.data.*;
 import zhy2002.neutron.ClassRegistryImpl;
+import javax.inject.*;
 
-class ${typeName}ClassRegistry extends ClassRegistryImpl {
+@Singleton
+public class ${typeName}ClassRegistry extends ClassRegistryImpl {
 
+    @Inject
     ${typeName}ClassRegistry() {
         loadNodeLoadEventFactories();
         loadNodeUnloadEventFactories();
