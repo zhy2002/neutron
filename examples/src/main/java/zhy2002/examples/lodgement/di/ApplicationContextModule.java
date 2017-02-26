@@ -2,11 +2,9 @@ package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.gen.ApplicationNodeClassRegistry;
-import zhy2002.examples.lodgement.gen.node.ApplicationNode;
-import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.di.ManifestModule;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
@@ -17,10 +15,6 @@ import javax.inject.Singleton;
 
 @Module(includes = {NeutronModule.class, ManifestModule.class, CustomModule.class})
 abstract class ApplicationContextModule {
-
-    @Binds
-    @Singleton
-    abstract ApplicationNodeContext provideApplicationNodeContext(ApplicationNodeContextImpl impl);
 
     @Binds
     @Singleton

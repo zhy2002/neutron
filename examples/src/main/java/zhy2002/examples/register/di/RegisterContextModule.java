@@ -2,7 +2,6 @@ package zhy2002.examples.register.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.register.RegisterNodeContextImpl;
 import zhy2002.examples.register.gen.RegisterNodeClassRegistry;
 import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.gen.di.ManifestModule;
@@ -15,10 +14,6 @@ import javax.inject.Singleton;
 
 @Module(includes = {NeutronModule.class, ManifestModule.class, CustomModule.class})
 abstract class RegisterContextModule {
-
-    @Binds
-    @Singleton
-    abstract RegisterNodeContext provideApplicationNodeContext(RegisterNodeContextImpl impl);
 
     @Binds
     @Singleton

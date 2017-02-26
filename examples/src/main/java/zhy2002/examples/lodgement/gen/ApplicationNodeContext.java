@@ -1,25 +1,27 @@
 package zhy2002.examples.lodgement.gen;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import javax.validation.constraints.NotNull;
 import dagger.Lazy;
-import javax.inject.Inject;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 
 
+@Singleton
 public class ApplicationNodeContext extends AbstractUiNodeContext<ApplicationNode> {
 
     @Inject
     Lazy<ApplicationNode> rootNodeLazy;
 
+    @Inject
     public ApplicationNodeContext(
-        String contextId,
         UiNodeChangeEngine changeEngine,
         UniqueIdGenerator nodeIdGenerator,
         @NotNull ClassRegistryImpl implRegistry
     ) {
         super(
-            contextId,
+            RandomUniqueIdGenerator.Instance.next(),
             changeEngine,
             nodeIdGenerator,
             new ApplicationNodeClassRegistry(),
