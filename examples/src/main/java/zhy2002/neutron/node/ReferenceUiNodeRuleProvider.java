@@ -9,7 +9,7 @@ import javax.inject.Provider;
 import java.util.List;
 
 
-public abstract class ReferenceUiNodeRuleProvider extends LeafUiNodeRuleProvider {
+public abstract class ReferenceUiNodeRuleProvider<N extends ReferenceUiNode<?>> extends LeafUiNodeRuleProvider<N> {
 
     @Inject
     Provider<NodeReferenceChangeRule> nodeReferenceChangeRuleProvider;

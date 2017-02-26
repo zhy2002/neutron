@@ -25,7 +25,7 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     }
 
     @Override
-    protected abstract EmploymentNodeRuleProvider getRuleProvider();
+    protected abstract EmploymentNodeRuleProvider<?> getRuleProvider();
 
     public EmploymentNode(@NotNull P parent, String name) {
         super(parent, name);

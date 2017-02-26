@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.AddressNode;
 
 
-public abstract class AddressNodeRuleProvider extends ObjectUiNodeRuleProvider {
+
+public abstract class AddressNodeRuleProvider<N extends AddressNode<?>>
+    extends ObjectUiNodeRuleProvider <N> {
 
 
     @Inject

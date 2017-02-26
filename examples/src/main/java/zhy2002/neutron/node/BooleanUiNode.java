@@ -47,5 +47,5 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
     }
 
     @Override
-    protected abstract BooleanUiNodeRuleProvider getRuleProvider();
+    protected abstract BooleanUiNodeRuleProvider<?> getRuleProvider();
 }

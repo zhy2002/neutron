@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.BasePercentageNode;
 
 
-public abstract class BasePercentageNodeRuleProvider extends BigDecimalUiNodeRuleProvider {
+
+public abstract class BasePercentageNodeRuleProvider<N extends BasePercentageNode<?>>
+    extends BigDecimalUiNodeRuleProvider <N> {
 
 
 

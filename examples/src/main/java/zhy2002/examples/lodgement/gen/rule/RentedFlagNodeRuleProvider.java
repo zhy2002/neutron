@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.RentedFlagNode;
+
 
 @RentedFlagNodeScope
-public class RentedFlagNodeRuleProvider extends BooleanUiNodeRuleProvider {
+public class RentedFlagNodeRuleProvider
+    extends BooleanUiNodeRuleProvider<RentedFlagNode> {
 
     @Inject
     public RentedFlagNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(RentedFlagNode node) {
+    }
+
 
 
     @Override

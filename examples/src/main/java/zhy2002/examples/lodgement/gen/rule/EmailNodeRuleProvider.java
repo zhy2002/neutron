@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.EmailNode;
 
 
-public abstract class EmailNodeRuleProvider extends StringUiNodeRuleProvider {
+
+public abstract class EmailNodeRuleProvider<N extends EmailNode<?>>
+    extends StringUiNodeRuleProvider <N> {
 
 
 

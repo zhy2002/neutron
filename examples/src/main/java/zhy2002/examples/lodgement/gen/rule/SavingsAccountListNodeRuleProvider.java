@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.SavingsAccountListNode;
+
 
 @SavingsAccountListNodeScope
-public class SavingsAccountListNodeRuleProvider extends ListUiNodeRuleProvider {
+public class SavingsAccountListNodeRuleProvider
+    extends ListUiNodeRuleProvider<SavingsAccountListNode> {
 
     @Inject
     public SavingsAccountListNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(SavingsAccountListNode node) {
+    }
+
 
 
     @Override

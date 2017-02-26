@@ -64,7 +64,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 <#if abstractNode>
     @Override
-    protected abstract ${typeName}RuleProvider getRuleProvider();
+    protected abstract ${typeName}RuleProvider<?> getRuleProvider();
 <#else>
     private ${typeName}Component component;
 

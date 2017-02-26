@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PersonTrustAddressNode;
+
 
 @PersonTrustAddressNodeScope
-public class PersonTrustAddressNodeRuleProvider extends AddressNodeRuleProvider {
+public class PersonTrustAddressNodeRuleProvider
+    extends AddressNodeRuleProvider<PersonTrustAddressNode> {
 
     @Inject
     public PersonTrustAddressNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PersonTrustAddressNode node) {
+    }
+
 
 
     @Override

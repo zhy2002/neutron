@@ -24,7 +24,7 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
     }
 
     @Override
-    protected abstract AddressNodeRuleProvider getRuleProvider();
+    protected abstract AddressNodeRuleProvider<?> getRuleProvider();
 
     public AddressNode(@NotNull P parent, String name) {
         super(parent, name);

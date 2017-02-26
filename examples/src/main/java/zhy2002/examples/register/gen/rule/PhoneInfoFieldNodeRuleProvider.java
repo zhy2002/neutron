@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.register.gen.node.PhoneInfoFieldNode;
 
 
-public abstract class PhoneInfoFieldNodeRuleProvider extends StringUiNodeRuleProvider {
+
+public abstract class PhoneInfoFieldNodeRuleProvider<N extends PhoneInfoFieldNode>
+    extends StringUiNodeRuleProvider <N> {
 
 
 

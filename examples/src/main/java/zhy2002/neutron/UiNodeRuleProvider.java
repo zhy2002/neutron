@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class UiNodeRuleProvider implements RuleProvider {
+public abstract class UiNodeRuleProvider<N extends UiNode<?>> implements RuleProvider<N> {
 
     @Inject
     Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;

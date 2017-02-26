@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.MotorVehicleListNode;
+
 
 @MotorVehicleListNodeScope
-public class MotorVehicleListNodeRuleProvider extends ListUiNodeRuleProvider {
+public class MotorVehicleListNodeRuleProvider
+    extends ListUiNodeRuleProvider<MotorVehicleListNode> {
 
     @Inject
     public MotorVehicleListNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(MotorVehicleListNode node) {
+    }
+
 
 
     @Override

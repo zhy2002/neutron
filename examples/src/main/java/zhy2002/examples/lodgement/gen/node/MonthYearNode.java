@@ -22,7 +22,7 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
     }
 
     @Override
-    protected abstract MonthYearNodeRuleProvider getRuleProvider();
+    protected abstract MonthYearNodeRuleProvider<?> getRuleProvider();
 
     public MonthYearNode(@NotNull P parent, String name) {
         super(parent, name);

@@ -154,5 +154,5 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     }
 
     @Override
-    protected abstract ListUiNodeRuleProvider getRuleProvider();
+    protected abstract ListUiNodeRuleProvider<?> getRuleProvider();
 }

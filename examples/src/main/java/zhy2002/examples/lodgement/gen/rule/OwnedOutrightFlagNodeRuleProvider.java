@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.OwnedOutrightFlagNode;
+
 
 @OwnedOutrightFlagNodeScope
-public class OwnedOutrightFlagNodeRuleProvider extends BooleanUiNodeRuleProvider {
+public class OwnedOutrightFlagNodeRuleProvider
+    extends BooleanUiNodeRuleProvider<OwnedOutrightFlagNode> {
 
     @Inject
     public OwnedOutrightFlagNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(OwnedOutrightFlagNode node) {
+    }
+
 
 
     @Override

@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.BaseCountryNode;
 
 
-public abstract class BaseCountryNodeRuleProvider extends StringUiNodeRuleProvider {
+
+public abstract class BaseCountryNodeRuleProvider<N extends BaseCountryNode<?>>
+    extends StringUiNodeRuleProvider <N> {
 
 
 

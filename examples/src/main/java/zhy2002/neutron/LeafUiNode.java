@@ -63,6 +63,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     public abstract Class<T> getValueClass();
 
     @Override
-    protected abstract LeafUiNodeRuleProvider getRuleProvider();
+    protected abstract LeafUiNodeRuleProvider<?> getRuleProvider();
 
 }

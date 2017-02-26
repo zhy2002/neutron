@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.LoanMonthlyRepaymentNode;
+
 
 @LoanMonthlyRepaymentNodeScope
-public class LoanMonthlyRepaymentNodeRuleProvider extends BaseCurrencyNodeRuleProvider {
+public class LoanMonthlyRepaymentNodeRuleProvider
+    extends BaseCurrencyNodeRuleProvider<LoanMonthlyRepaymentNode> {
 
     @Inject
     public LoanMonthlyRepaymentNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(LoanMonthlyRepaymentNode node) {
+    }
+
 
 
     @Override

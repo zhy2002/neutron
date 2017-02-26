@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.ApplicationTypeNode;
+
 
 @ApplicationTypeNodeScope
-public class ApplicationTypeNodeRuleProvider extends StringUiNodeRuleProvider {
+public class ApplicationTypeNodeRuleProvider
+    extends StringUiNodeRuleProvider<ApplicationTypeNode> {
 
     @Inject
     public ApplicationTypeNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(ApplicationTypeNode node) {
+    }
+
 
     @Inject
     Provider<ChangeApplicationTypeRule> changeApplicationTypeRuleProvider;

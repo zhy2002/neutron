@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.SavingsOwnershipListNode;
+
 
 @SavingsOwnershipListNodeScope
-public class SavingsOwnershipListNodeRuleProvider extends OwnershipListNodeRuleProvider {
+public class SavingsOwnershipListNodeRuleProvider
+    extends OwnershipListNodeRuleProvider<SavingsOwnershipListNode> {
 
     @Inject
     public SavingsOwnershipListNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(SavingsOwnershipListNode node) {
+    }
+
 
 
     @Override

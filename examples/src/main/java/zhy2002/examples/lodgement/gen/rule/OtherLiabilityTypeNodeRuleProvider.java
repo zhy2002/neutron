@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.OtherLiabilityTypeNode;
+
 
 @OtherLiabilityTypeNodeScope
-public class OtherLiabilityTypeNodeRuleProvider extends StringUiNodeRuleProvider {
+public class OtherLiabilityTypeNodeRuleProvider
+    extends StringUiNodeRuleProvider<OtherLiabilityTypeNode> {
 
     @Inject
     public OtherLiabilityTypeNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(OtherLiabilityTypeNode node) {
+    }
+
 
 
     @Override

@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PersonNode;
+
 
 @PersonNodeScope
-public class PersonNodeRuleProvider extends ObjectUiNodeRuleProvider {
+public class PersonNodeRuleProvider
+    extends ObjectUiNodeRuleProvider<PersonNode> {
 
     @Inject
     public PersonNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PersonNode node) {
+    }
+
 
     @Inject
     Provider<UpdatePersonNodeLabelRule> updatePersonNodeLabelRuleProvider;

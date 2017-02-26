@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.CreditCardTypeNode;
+
 
 @CreditCardTypeNodeScope
-public class CreditCardTypeNodeRuleProvider extends StringUiNodeRuleProvider {
+public class CreditCardTypeNodeRuleProvider
+    extends StringUiNodeRuleProvider<CreditCardTypeNode> {
 
     @Inject
     public CreditCardTypeNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(CreditCardTypeNode node) {
+    }
+
 
 
     @Override

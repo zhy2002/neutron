@@ -11,7 +11,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public abstract class EmailNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
     @Override
-    protected abstract EmailNodeRuleProvider getRuleProvider();
+    protected abstract EmailNodeRuleProvider<?> getRuleProvider();
 
     public EmailNode(@NotNull P parent, String name) {
         super(parent, name);

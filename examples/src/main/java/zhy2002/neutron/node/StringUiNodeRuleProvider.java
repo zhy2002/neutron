@@ -11,7 +11,7 @@ import javax.inject.Provider;
 import java.util.List;
 
 
-public abstract class StringUiNodeRuleProvider extends LeafUiNodeRuleProvider {
+public abstract class StringUiNodeRuleProvider<N extends StringUiNode<?>> extends LeafUiNodeRuleProvider<N> {
 
     @Inject
     Provider<PatternValidationRule> patternValidationRuleProvider;

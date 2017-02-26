@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.AccessContactTitleNode;
+
 
 @AccessContactTitleNodeScope
-public class AccessContactTitleNodeRuleProvider extends StringUiNodeRuleProvider {
+public class AccessContactTitleNodeRuleProvider
+    extends StringUiNodeRuleProvider<AccessContactTitleNode> {
 
     @Inject
     public AccessContactTitleNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(AccessContactTitleNode node) {
+    }
+
 
 
     @Override

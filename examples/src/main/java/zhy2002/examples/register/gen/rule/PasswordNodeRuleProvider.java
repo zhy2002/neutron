@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.register.gen.node.PasswordNode;
+
 
 @PasswordNodeScope
-public class PasswordNodeRuleProvider extends StringUiNodeRuleProvider {
+public class PasswordNodeRuleProvider
+    extends StringUiNodeRuleProvider<PasswordNode> {
 
     @Inject
     public PasswordNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PasswordNode node) {
+    }
+
 
     @Inject
     Provider<PasswordIsStrongRule> passwordIsStrongRuleProvider;

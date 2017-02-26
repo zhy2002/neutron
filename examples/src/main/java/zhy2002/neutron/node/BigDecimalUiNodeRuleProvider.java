@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class BigDecimalUiNodeRuleProvider extends LeafUiNodeRuleProvider {
+public abstract class BigDecimalUiNodeRuleProvider<N extends BigDecimalUiNode<?>> extends LeafUiNodeRuleProvider<N> {
 
     @Inject
     Provider<RangeValidationRule> rangeValidationRuleProvider;

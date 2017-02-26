@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+
 
 @ApplicationNodeScope
-public class ApplicationNodeRuleProvider extends ObjectUiNodeRuleProvider {
+public class ApplicationNodeRuleProvider
+    extends ObjectUiNodeRuleProvider<ApplicationNode> {
 
     @Inject
     public ApplicationNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(ApplicationNode node) {
+    }
+
 
     @Inject
     Provider<CreateErrorNodeRule> createErrorNodeRuleProvider;

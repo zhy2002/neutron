@@ -12,7 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
     @Override
-    protected abstract YesNoOptionNodeRuleProvider getRuleProvider();
+    protected abstract YesNoOptionNodeRuleProvider<?> getRuleProvider();
 
     public YesNoOptionNode(@NotNull P parent, String name) {
         super(parent, name);

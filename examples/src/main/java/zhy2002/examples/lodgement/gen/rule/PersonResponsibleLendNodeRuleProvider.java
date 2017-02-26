@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PersonResponsibleLendNode;
+
 
 @PersonResponsibleLendNodeScope
-public class PersonResponsibleLendNodeRuleProvider extends ObjectUiNodeRuleProvider {
+public class PersonResponsibleLendNodeRuleProvider
+    extends ObjectUiNodeRuleProvider<PersonResponsibleLendNode> {
 
     @Inject
     public PersonResponsibleLendNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PersonResponsibleLendNode node) {
+    }
+
 
 
     @Override

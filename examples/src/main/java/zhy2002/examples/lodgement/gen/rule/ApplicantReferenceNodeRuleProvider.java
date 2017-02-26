@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.ApplicantReferenceNode;
+
 
 @ApplicantReferenceNodeScope
-public class ApplicantReferenceNodeRuleProvider extends ReferenceUiNodeRuleProvider {
+public class ApplicantReferenceNodeRuleProvider
+    extends ReferenceUiNodeRuleProvider<ApplicantReferenceNode> {
 
     @Inject
     public ApplicantReferenceNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(ApplicantReferenceNode node) {
+    }
+
 
     @Inject
     Provider<RemoveOwnershipNodeRule> removeOwnershipNodeRuleProvider;

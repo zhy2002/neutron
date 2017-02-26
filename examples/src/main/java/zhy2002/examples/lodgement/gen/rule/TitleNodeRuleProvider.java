@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.TitleNode;
+
 
 @TitleNodeScope
-public class TitleNodeRuleProvider extends StringUiNodeRuleProvider {
+public class TitleNodeRuleProvider
+    extends StringUiNodeRuleProvider<TitleNode> {
 
     @Inject
     public TitleNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(TitleNode node) {
+    }
+
 
     @Inject
     Provider<TitleGenderMatchRule> titleGenderMatchRuleProvider;

@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.OwnershipPercentageNode;
+
 
 @OwnershipPercentageNodeScope
-public class OwnershipPercentageNodeRuleProvider extends BasePercentageNodeRuleProvider {
+public class OwnershipPercentageNodeRuleProvider
+    extends BasePercentageNodeRuleProvider<OwnershipPercentageNode> {
 
     @Inject
     public OwnershipPercentageNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(OwnershipPercentageNode node) {
+    }
+
 
 
     @Override

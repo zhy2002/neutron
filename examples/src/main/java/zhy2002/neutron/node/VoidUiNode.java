@@ -53,7 +53,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
     }
 
     @Override
-    protected UiNodeRuleProvider getRuleProvider() {
+    protected UiNodeRuleProvider<?> getRuleProvider() {
         return null;
     }
 

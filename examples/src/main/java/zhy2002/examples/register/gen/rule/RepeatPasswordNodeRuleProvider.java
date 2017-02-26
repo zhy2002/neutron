@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.register.gen.node.RepeatPasswordNode;
+
 
 @RepeatPasswordNodeScope
-public class RepeatPasswordNodeRuleProvider extends StringUiNodeRuleProvider {
+public class RepeatPasswordNodeRuleProvider
+    extends StringUiNodeRuleProvider<RepeatPasswordNode> {
 
     @Inject
     public RepeatPasswordNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(RepeatPasswordNode node) {
+    }
+
 
     @Inject
     Provider<RepeatPasswordRule> repeatPasswordRuleProvider;

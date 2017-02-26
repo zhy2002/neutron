@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.YearNode;
+
 
 @YearNodeScope
-public class YearNodeRuleProvider extends BigDecimalUiNodeRuleProvider {
+public class YearNodeRuleProvider
+    extends BigDecimalUiNodeRuleProvider<YearNode> {
 
     @Inject
     public YearNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(YearNode node) {
+    }
+
 
 
     @Override

@@ -5,7 +5,9 @@ import java.util.List;
 /**
  * Implement this interface to provide rules to a node.
  */
-public interface RuleProvider {
+public interface RuleProvider<N extends UiNode<?>> {
+
+    void initializeState(N node);
 
     void createRules(List<UiNodeRule<?>> createdRules);
 

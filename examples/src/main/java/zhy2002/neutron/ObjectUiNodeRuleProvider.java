@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class ObjectUiNodeRuleProvider extends UiNodeRuleProvider {
+public abstract class ObjectUiNodeRuleProvider<N extends ObjectUiNode<?>> extends UiNodeRuleProvider<N> {
 
     @Inject
     Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;

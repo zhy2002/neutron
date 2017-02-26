@@ -81,5 +81,5 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     }
 
     @Override
-    protected abstract ObjectUiNodeRuleProvider getRuleProvider();
+    protected abstract ObjectUiNodeRuleProvider<?> getRuleProvider();
 }

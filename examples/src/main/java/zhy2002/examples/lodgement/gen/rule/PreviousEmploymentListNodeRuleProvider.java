@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PreviousEmploymentListNode;
+
 
 @PreviousEmploymentListNodeScope
-public class PreviousEmploymentListNodeRuleProvider extends ListUiNodeRuleProvider {
+public class PreviousEmploymentListNodeRuleProvider
+    extends ListUiNodeRuleProvider<PreviousEmploymentListNode> {
 
     @Inject
     public PreviousEmploymentListNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PreviousEmploymentListNode node) {
+    }
+
 
 
     @Override

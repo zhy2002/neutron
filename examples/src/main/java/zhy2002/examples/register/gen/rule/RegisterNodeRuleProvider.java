@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.register.gen.node.RegisterNode;
+
 
 @RegisterNodeScope
-public class RegisterNodeRuleProvider extends ObjectUiNodeRuleProvider {
+public class RegisterNodeRuleProvider
+    extends ObjectUiNodeRuleProvider<RegisterNode> {
 
     @Inject
     public RegisterNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(RegisterNode node) {
+    }
+
 
     @Inject
     Provider<SetHasErrorRule> setHasErrorRuleProvider;

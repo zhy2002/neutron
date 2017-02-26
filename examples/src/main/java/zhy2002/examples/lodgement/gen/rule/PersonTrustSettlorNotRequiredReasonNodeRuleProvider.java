@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PersonTrustSettlorNotRequiredReasonNode;
+
 
 @PersonTrustSettlorNotRequiredReasonNodeScope
-public class PersonTrustSettlorNotRequiredReasonNodeRuleProvider extends StringUiNodeRuleProvider {
+public class PersonTrustSettlorNotRequiredReasonNodeRuleProvider
+    extends StringUiNodeRuleProvider<PersonTrustSettlorNotRequiredReasonNode> {
 
     @Inject
     public PersonTrustSettlorNotRequiredReasonNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PersonTrustSettlorNotRequiredReasonNode node) {
+    }
+
 
 
     @Override

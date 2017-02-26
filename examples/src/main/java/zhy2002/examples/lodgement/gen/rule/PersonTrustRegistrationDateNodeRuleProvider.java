@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PersonTrustRegistrationDateNode;
+
 
 @PersonTrustRegistrationDateNodeScope
-public class PersonTrustRegistrationDateNodeRuleProvider extends StringUiNodeRuleProvider {
+public class PersonTrustRegistrationDateNodeRuleProvider
+    extends StringUiNodeRuleProvider<PersonTrustRegistrationDateNode> {
 
     @Inject
     public PersonTrustRegistrationDateNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PersonTrustRegistrationDateNode node) {
+    }
+
 
 
     @Override

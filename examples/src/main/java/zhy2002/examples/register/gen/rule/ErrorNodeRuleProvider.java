@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.register.gen.node.ErrorNode;
+
 
 @ErrorNodeScope
-public class ErrorNodeRuleProvider extends ValidationErrorUiNodeRuleProvider {
+public class ErrorNodeRuleProvider
+    extends ValidationErrorUiNodeRuleProvider<ErrorNode> {
 
     @Inject
     public ErrorNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(ErrorNode node) {
+    }
+
 
 
     @Override

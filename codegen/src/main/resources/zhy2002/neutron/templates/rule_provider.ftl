@@ -5,13 +5,21 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import ${targetPackage}.gen.di.*;
 import javax.inject.*;
+import ${targetPackage}.gen.node.${typeName};
+
 
 <#if !abstractNode>@${typeName}Scope</#if>
-public <#if abstractNode>abstract </#if>class ${typeName}RuleProvider extends ${baseTypeName}RuleProvider {
+public <#if abstractNode>abstract </#if>class ${typeName}RuleProvider<#if abstractNode><N extends ${genericTypeName}></#if>
+    extends ${baseTypeName}RuleProvider<#if abstractNode> <N><#else><${genericTypeName}></#if> {
 
 <#if !abstractNode>
     @Inject
     public ${typeName}RuleProvider() {}
+
+    @Override
+    public void initializeState(${genericTypeName} node) {
+    }
+
 </#if>
 
 <#if rules??>

@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.HouseDutiesFlagNode;
+
 
 @HouseDutiesFlagNodeScope
-public class HouseDutiesFlagNodeRuleProvider extends YesNoOptionNodeRuleProvider {
+public class HouseDutiesFlagNodeRuleProvider
+    extends YesNoOptionNodeRuleProvider<HouseDutiesFlagNode> {
 
     @Inject
     public HouseDutiesFlagNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(HouseDutiesFlagNode node) {
+    }
+
 
 
     @Override

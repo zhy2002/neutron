@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.OtherAssetNode;
+
 
 @OtherAssetNodeScope
-public class OtherAssetNodeRuleProvider extends ObjectUiNodeRuleProvider {
+public class OtherAssetNodeRuleProvider
+    extends ObjectUiNodeRuleProvider<OtherAssetNode> {
 
     @Inject
     public OtherAssetNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(OtherAssetNode node) {
+    }
+
 
 
     @Override

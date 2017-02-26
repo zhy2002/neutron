@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.TelephoneNode;
 
 
-public abstract class TelephoneNodeRuleProvider extends LeafUiNodeRuleProvider {
+
+public abstract class TelephoneNodeRuleProvider<N extends TelephoneNode<?>>
+    extends LeafUiNodeRuleProvider <N> {
 
 
     @Inject

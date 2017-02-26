@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.MovedToCurrentAddressNode;
+
 
 @MovedToCurrentAddressNodeScope
-public class MovedToCurrentAddressNodeRuleProvider extends MonthYearNodeRuleProvider {
+public class MovedToCurrentAddressNodeRuleProvider
+    extends MonthYearNodeRuleProvider<MovedToCurrentAddressNode> {
 
     @Inject
     public MovedToCurrentAddressNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(MovedToCurrentAddressNode node) {
+    }
+
 
     @Inject
     Provider<ToCurrentNoEarlierThanToPreviousRule> toCurrentNoEarlierThanToPreviousRuleProvider;

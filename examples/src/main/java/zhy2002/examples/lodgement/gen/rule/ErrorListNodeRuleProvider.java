@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.ErrorListNode;
+
 
 @ErrorListNodeScope
-public class ErrorListNodeRuleProvider extends ListUiNodeRuleProvider {
+public class ErrorListNodeRuleProvider
+    extends ListUiNodeRuleProvider<ErrorListNode> {
 
     @Inject
     public ErrorListNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(ErrorListNode node) {
+    }
+
 
     @Inject
     Provider<ChangeFocusErrorRule> changeFocusErrorRuleProvider;

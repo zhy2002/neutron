@@ -37,6 +37,6 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     @Override
-    protected abstract ReferenceUiNodeRuleProvider getRuleProvider();
+    protected abstract ReferenceUiNodeRuleProvider<?> getRuleProvider();
 
 }

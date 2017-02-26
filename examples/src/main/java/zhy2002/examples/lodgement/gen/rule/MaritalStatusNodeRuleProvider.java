@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.MaritalStatusNode;
+
 
 @MaritalStatusNodeScope
-public class MaritalStatusNodeRuleProvider extends StringUiNodeRuleProvider {
+public class MaritalStatusNodeRuleProvider
+    extends StringUiNodeRuleProvider<MaritalStatusNode> {
 
     @Inject
     public MaritalStatusNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(MaritalStatusNode node) {
+    }
+
 
 
     @Override

@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.PayeEmployedNode;
+
 
 @PayeEmployedNodeScope
-public class PayeEmployedNodeRuleProvider extends EmployedNodeRuleProvider {
+public class PayeEmployedNodeRuleProvider
+    extends EmployedNodeRuleProvider<PayeEmployedNode> {
 
     @Inject
     public PayeEmployedNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(PayeEmployedNode node) {
+    }
+
 
 
     @Override

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class LeafUiNodeRuleProvider extends UiNodeRuleProvider {
+public abstract class LeafUiNodeRuleProvider<N extends LeafUiNode<?, ?>> extends UiNodeRuleProvider<N> {
 
     @Inject
     Provider<LeafValueRequiredValidationRule> leafValueRequiredValidationRuleProvider;

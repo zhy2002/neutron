@@ -5,9 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.YesNoOptionNode;
 
 
-public abstract class YesNoOptionNodeRuleProvider extends StringUiNodeRuleProvider {
+
+public abstract class YesNoOptionNodeRuleProvider<N extends YesNoOptionNode<?>>
+    extends StringUiNodeRuleProvider <N> {
 
 
 

@@ -5,12 +5,20 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
+import zhy2002.examples.lodgement.gen.node.AverageFlagNode;
+
 
 @AverageFlagNodeScope
-public class AverageFlagNodeRuleProvider extends BooleanUiNodeRuleProvider {
+public class AverageFlagNodeRuleProvider
+    extends BooleanUiNodeRuleProvider<AverageFlagNode> {
 
     @Inject
     public AverageFlagNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(AverageFlagNode node) {
+    }
+
 
 
     @Override

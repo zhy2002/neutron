@@ -9,7 +9,7 @@ import javax.inject.Provider;
 import java.util.List;
 
 
-public abstract class BooleanUiNodeRuleProvider extends LeafUiNodeRuleProvider {
+public abstract class BooleanUiNodeRuleProvider<N extends BooleanUiNode<?>> extends LeafUiNodeRuleProvider<N> {
 
     @Inject
     Provider<BooleanFixedValueValidationRule> booleanFixedValueValidationRuleProvider;
