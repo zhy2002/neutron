@@ -143,7 +143,7 @@ public class ApplicationNodeConstants {
             new StringOption("Simple Trust")
     );
 
-    public static final List<StringOption> PERSON_CHANGE_TYPE = Arrays.asList(
+    public static final List<StringOption> RESPONSIBLE_CHANGE_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Large Expenditure"),
             new StringOption("Permanent Decrease Income"),
@@ -165,7 +165,7 @@ public class ApplicationNodeConstants {
             new StringOption("Depreciation")
     );
 
-    public static final List<StringOption> PERSON_MITIGATION_TYPE = Arrays.asList(
+    public static final List<StringOption> RESPONSIBLE_MITIGATION_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Secure Additional Income"),
             new StringOption("Use Savings"),

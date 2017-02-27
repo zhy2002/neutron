@@ -11,26 +11,26 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNode> {
+public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibleLendNode<?>> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PersonTypeOfChangeNode.class;
+        return ResponsibleMitigationMethodNode.class;
     }
 
-    private PersonTypeOfChangeNodeComponent component;
+    private ResponsibleMitigationMethodNodeComponent component;
 
     @Inject
-    void createComponent(PersonTypeOfChangeNodeComponent.Builder builder) {
-        this.component = builder.setPersonTypeOfChangeNodeModule(new PersonTypeOfChangeNodeModule(this)).build();
+    void createComponent(ResponsibleMitigationMethodNodeComponent.Builder builder) {
+        this.component = builder.setResponsibleMitigationMethodNodeModule(new ResponsibleMitigationMethodNodeModule(this)).build();
     }
 
     @Override
-    protected PersonTypeOfChangeNodeRuleProvider getRuleProvider() {
-        return component.getPersonTypeOfChangeNodeRuleProvider();
+    protected ResponsibleMitigationMethodNodeRuleProvider getRuleProvider() {
+        return component.getResponsibleMitigationMethodNodeRuleProvider();
     }
 
-    public PersonTypeOfChangeNode(@NotNull PersonResponsibleLendNode parent, String name) {
+    public ResponsibleMitigationMethodNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
     }
 
@@ -38,7 +38,7 @@ public class PersonTypeOfChangeNode extends StringUiNode<PersonResponsibleLendNo
     protected void initializeState() {
         super.initializeState();
 
-        setOptions(ApplicationNodeConstants.PERSON_CHANGE_TYPE.toArray());
+        setOptions(ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray());
     }
 
     @JsMethod

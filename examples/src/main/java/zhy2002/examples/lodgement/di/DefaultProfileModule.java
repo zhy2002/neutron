@@ -2,14 +2,11 @@ package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.gen.ApplicationNodeClassRegistry;
 import zhy2002.examples.lodgement.gen.di.ManifestModule;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
-import zhy2002.neutron.ClassRegistryImpl;
-import zhy2002.neutron.di.NeutronModule;
 
 import javax.inject.Singleton;
 
@@ -87,7 +84,7 @@ public abstract class DefaultProfileModule {
     abstract MonthYearNotInFutureRule provideMonthYearNotInFutureRule(MonthYearNotInFutureRuleImpl impl);
 
     @Binds
-    abstract PersonSignificantChangeRule providePersonSignificantChangeRule(PersonSignificantChangeRuleImpl impl);
+    abstract ResponsibleSignificantChangeRule provideResponsibleSignificantChangeRule(ResponsibleSignificantChangeRuleImpl impl);
 
     @Binds
     abstract RemoveOwnershipNodeRule provideRemoveOwnershipNodeRule(RemoveOwnershipNodeRuleImpl impl);

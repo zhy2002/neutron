@@ -20,19 +20,19 @@ export default class PersonResponsibleLendComponent extends NeutronComponent {
                     <div className="col-md-4">
                         <RadioInputComponent
                             label={significantChangeLabel}
-                            model={model.getPersonSignificantChangeFlagNode()}
+                            model={model.getResponsibleSignificantChangeFlagNode()}
                         />
                     </div>
                     <div className="col-md-4">
                         <SelectInputComponent
                             label={changeTypeLabel}
-                            model={model.getPersonTypeOfChangeNode()}
+                            model={model.getResponsibleTypeOfChangeNode()}
                         />
                     </div>
                     <div className="col-md-4">
                         <SelectInputComponent
                             label={mitigationLabel}
-                            model={model.getPersonMitigationMethodNode()}
+                            model={model.getResponsibleMitigationMethodNode()}
                         />
                     </div>
                 </div>
@@ -40,7 +40,7 @@ export default class PersonResponsibleLendComponent extends NeutronComponent {
                     <div className="col-md-4">
                         <RadioInputComponent
                             label={repaymentDifficultLabel}
-                            model={model.getPersonRepaymentDifficultyNode()}
+                            model={model.getResponsibleRepaymentDifficultyNode()}
                         />
                     </div>
                     <div className="col-md-8"/>

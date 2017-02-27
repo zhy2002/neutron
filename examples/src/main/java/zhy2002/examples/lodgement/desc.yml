@@ -344,38 +344,7 @@ rootType:
             baseTypeName: StringUiNode
 
       - typeName: PersonResponsibleLendNode
-        baseTypeName: ObjectUiNode
-        children:
-        - {typeName: PersonTypeOfChangeNode}
-        - {typeName: PersonMitigationMethodNode}
-        - {typeName: PersonSignificantChangeFlagNode}
-        - {typeName: PersonRepaymentDifficultyNode}
-        childTypes:
-        - typeName: PersonSignificantChangeFlagNode
-          baseTypeName: YesNoOptionNode
-          init:
-          - {propertyName: required, value: 'true'}
-          rules:
-          - {typeName: PersonSignificantChangeRule}
-
-        - typeName: PersonTypeOfChangeNode
-          baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object}
-          init:
-          - {propertyName: options, value: ApplicationNodeConstants.PERSON_CHANGE_TYPE.toArray()}
-
-        - typeName: PersonMitigationMethodNode
-          baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object}
-          init:
-          - {propertyName: options, value: ApplicationNodeConstants.PERSON_MITIGATION_TYPE.toArray()}
-
-        - typeName: PersonRepaymentDifficultyNode
-          baseTypeName: YesNoOptionNode
-          init:
-          - {propertyName: required, value: 'true'}
+        baseTypeName: BaseResponsibleLendNode
 
   - typeName: CompanyListNode
     baseTypeName: ListUiNode
@@ -412,8 +381,7 @@ rootType:
         children: []
 
       - typeName: CompanyResponsibleLendNode
-        baseTypeName: ObjectUiNode
-        children: []
+        baseTypeName: BaseResponsibleLendNode
 
   - typeName: FinancialPositionNode
     rules:
@@ -1439,3 +1407,38 @@ commonTypes:
     - typeName: AverageFlagNode
       baseTypeName: BooleanUiNode
 
+- typeName: BaseResponsibleLendNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: ResponsibleTypeOfChangeNode}
+  - {typeName: ResponsibleMitigationMethodNode}
+  - {typeName: ResponsibleSignificantChangeFlagNode}
+  - {typeName: ResponsibleRepaymentDifficultyNode}
+  childTypes:
+        - typeName: ResponsibleSignificantChangeFlagNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ResponsibleSignificantChangeRule}
+
+        - typeName: ResponsibleTypeOfChangeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE.toArray()}
+
+        - typeName: ResponsibleMitigationMethodNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray()}
+
+        - typeName: ResponsibleRepaymentDifficultyNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}

@@ -19,6 +19,10 @@ public class CompanyResponsibleLendNodeModule {
         return owner;
     }
 
+    @Provides @CompanyResponsibleLendNodeScope @Owner BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner;
+    }
+
     @Provides @CompanyResponsibleLendNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

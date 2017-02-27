@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.PersonResponsibleLendNode;
 
 @PersonResponsibleLendNodeScope
 public class PersonResponsibleLendNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<PersonResponsibleLendNode> {
+    extends BaseResponsibleLendNodeRuleProvider<PersonResponsibleLendNode> {
 
     @Inject
     public PersonResponsibleLendNodeRuleProvider() {}

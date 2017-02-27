@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.PersonTypeOfChangeNode;
+import zhy2002.examples.lodgement.gen.node.ResponsibleTypeOfChangeNode;
 
 
-@PersonTypeOfChangeNodeScope
-public class PersonTypeOfChangeNodeRuleProvider
-    extends StringUiNodeRuleProvider<PersonTypeOfChangeNode> {
+@ResponsibleTypeOfChangeNodeScope
+public class ResponsibleTypeOfChangeNodeRuleProvider
+    extends StringUiNodeRuleProvider<ResponsibleTypeOfChangeNode> {
 
     @Inject
-    public PersonTypeOfChangeNodeRuleProvider() {}
+    public ResponsibleTypeOfChangeNodeRuleProvider() {}
 
     @Override
-    public void initializeState(PersonTypeOfChangeNode node) {
+    public void initializeState(ResponsibleTypeOfChangeNode node) {
     }
 
 

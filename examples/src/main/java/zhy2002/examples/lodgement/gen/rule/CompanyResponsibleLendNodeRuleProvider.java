@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.CompanyResponsibleLendNode;
 
 @CompanyResponsibleLendNodeScope
 public class CompanyResponsibleLendNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<CompanyResponsibleLendNode> {
+    extends BaseResponsibleLendNodeRuleProvider<CompanyResponsibleLendNode> {
 
     @Inject
     public CompanyResponsibleLendNodeRuleProvider() {}

@@ -3,25 +3,22 @@ todo
 1. context menu
 2. todo loading spinner
 3. integrate with font awesome
-4. Per-lender config override (white label)
+4. Per-lender config override
+  * implement load defaults functionality (auto populate)
   * Use 'profile' dagger component/module to provide root node configured for a lender
-5 implement router - navigate to view via url
-
-* Cancel (stop here or rollback) an event or a cycle from within a rule
-* performance tuning
-* implement rule priority
-* implement load defaults functionality (auto populate)
-* implement layout components to reduce duplication
-* deferred event execution - if the user types in many characters quickly
+  * Need to create an example
+5. implement router - navigate to view via url
+6. deferred event execution - if the user types in many characters quickly
   we should wait for a pause before we do an update. 
-
-* 
-* simplify event binding api
-* i18n
-
+7. simplify event binding api 
+8. node query and injection in rules 
+  - context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
+9. implement rule priority
+10. i18n
 
 ### Engine - find a use case before doing these improvements
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
+  - Cancel (stop here or rollback) an event or a cycle from within a rule
 * more features of drools rules (rule metadata/configuration)
 * when deciding if a rule should be triggered, check the event type considering inheritance
 
@@ -29,18 +26,19 @@ todo
 * improve dev process (webpack, live-reload, jasmine to test all the examples)
 * react component scaffolding 
 * parser/transformer coversion between gwt and react
+* implement layout components to reduce duplication
 
 ### Node structure
 * Class level config
 * Consider adding MapUiNode which maps one UiNode to another.
 * Node/UI state copy and paste
 * query/reference/proxy nodes
-* context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
 * node clone and take snapshot
 * calculate diff of two versions
 * tags - objects stored in node
 
 ### Misc
+* performance tuning
 * rule should have a load event to init node properties
 * rule that count populated field count
 * preserve value when node is disabled -> conditional state
@@ -76,13 +74,25 @@ Goals
 * Decouple UI logic (GWT) from UI rendering (React & css)
 * Reuse UI logic such as validation on the server side
 * strong typing as much as possible
-* Small file and single responsibility so as to minimize merge conflict
-* Separation and well defined interface between generated code and customization (mismatch is caught by compiler)
-* Whole UI state can be serialized
 * Verify UI logic in unit tests and rendering result in screenshots
-* improve interop development experience
-* effect of rule execution should not depend on order of state change.
-same state via same rules -> same result state
+* Whole UI state can be serialized
+* Easy code navigation
+
+* Small file and single responsibility so as to minimize merge conflict
+* effect of rule execution should not depend on order of state change. same state via same rules -> same result state
+* Separation and well defined interface between generated code and customization (mismatch is caught by compiler)
+
+Functionality Check List
+------------------
+- A field is required - check
+- A field pattern validation - check
+- A field value is validated again another field value - check
+- A field value causes update of another field value - check
+- Field value and display format are different - check
+- One of two fields is mandatory - check
+- Panel appear when a field has a certain value - check
+- rules to apply depends on the value of a field - check
+- prevent certain chars from being typed in - check
 
 Problems
 ------------------
@@ -97,17 +107,8 @@ Problems
   on-the-fly error checking. 
   * Error message can be difficult to understand as they come from different sources (Yml, Bean Validation, custom error and FTL).
 
-Functionality Check List
-------------------
-- A field is required - check
-- A field pattern validation - check
-- A field value is validated again another field value - check
-- A field value causes update of another field value - check
-- Field value and display format are different - check
-- One of two fields is mandatory - check
-- Panel appear when a field has a certain value - check
-- rules to apply depends on the value of a field - check
-- prevent certain chars from being typed in - check
+3. Difficulty when configure the descendants of a abstract node
+  * 
 
 # Finished
 1. Use dagger2 for DI
@@ -205,7 +206,7 @@ In the node hierarchy there are four types of nodes:
 4. Void Node
   * A placeholder class that serve as the parent class of a root node.
   
-# File Structure
+# Directory Structure
 To create a new domain and profiles, we need to do the following in the domain's root folder.
 1. desc.yml
   * THis is how the file is currently used:

@@ -19,6 +19,10 @@ public class PersonResponsibleLendNodeModule {
         return owner;
     }
 
+    @Provides @PersonResponsibleLendNodeScope @Owner BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner;
+    }
+
     @Provides @PersonResponsibleLendNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

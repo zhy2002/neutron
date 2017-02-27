@@ -7,4 +7,4 @@ import java.lang.annotation.RetentionPolicy;
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface PersonMitigationMethodNodeScope {}
+public @interface ResponsibleTypeOfChangeNodeScope {}

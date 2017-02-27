@@ -7,4 +7,4 @@ import java.lang.annotation.RetentionPolicy;
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface PersonRepaymentDifficultyNodeScope {}
+public @interface ResponsibleMitigationMethodNodeScope {}
