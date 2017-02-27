@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
-interface PersonContactNodeChildFactory {
+interface BaseContactNodeChildFactory {
     ContactTelephoneNode createHomePhoneNode();
     ContactTelephoneNode createWorkPhoneNode();
     ContactTelephoneNode createFaxNumberNode();
@@ -20,7 +20,7 @@ interface PersonContactNodeChildFactory {
 }
 
 @Singleton
-public class PersonContactNodeChildProvider {
+public class BaseContactNodeChildProvider {
     @Inject
     MembersInjector<MovedFromPreviousAddressNode> movedFromPreviousAddressNodeInjector;
     @Inject
@@ -37,7 +37,7 @@ public class PersonContactNodeChildProvider {
     MembersInjector<MovedToCurrentAddressNode> movedToCurrentAddressNodeInjector;
 
     @Inject
-    protected PersonContactNodeChildProvider () {}
+    protected BaseContactNodeChildProvider () {}
 
     protected MembersInjector<MovedFromPreviousAddressNode> getMovedFromPreviousAddressNodeInjector() {
         return this.movedFromPreviousAddressNodeInjector;
@@ -68,7 +68,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactTelephoneNode newHomePhoneNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactTelephoneNode(parent, name);
@@ -78,7 +78,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactTelephoneNode newWorkPhoneNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactTelephoneNode(parent, name);
@@ -88,7 +88,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactTelephoneNode newFaxNumberNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactTelephoneNode(parent, name);
@@ -98,7 +98,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected MobileNumberNode newMobileNumberNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new MobileNumberNode(parent, name);
@@ -108,7 +108,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactEmailNode newContactEmailNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactEmailNode(parent, name);
@@ -118,7 +118,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactAddressNode newCurrentAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactAddressNode(parent, name);
@@ -128,7 +128,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected MovedToCurrentAddressNode newMovedToCurrentAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new MovedToCurrentAddressNode(parent, name);
@@ -138,7 +138,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactAddressNode newPostalAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactAddressNode(parent, name);
@@ -148,7 +148,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected ContactAddressNode newPreviousAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new ContactAddressNode(parent, name);
@@ -158,7 +158,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected MovedToPreviousAddressNode newMovedToPreviousAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new MovedToPreviousAddressNode(parent, name);
@@ -168,7 +168,7 @@ public class PersonContactNodeChildProvider {
     }
 
     protected MovedFromPreviousAddressNode newMovedFromPreviousAddressNode(
-        PersonContactNode parent,
+        BaseContactNode<?> parent,
         String name
     ) {
         return new MovedFromPreviousAddressNode(parent, name);
@@ -177,15 +177,15 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedFromPreviousAddressNode(MovedFromPreviousAddressNode node) {
     }
 
-    PersonContactNodeChildFactory createFactory(PersonContactNode parent) {
-        return new PersonContactNodeChildFactoryImpl(parent);
+    BaseContactNodeChildFactory createFactory(BaseContactNode<?> parent) {
+        return new BaseContactNodeChildFactoryImpl(parent);
     }
 
-    private class PersonContactNodeChildFactoryImpl implements PersonContactNodeChildFactory {
+    private class BaseContactNodeChildFactoryImpl implements BaseContactNodeChildFactory {
 
-        private final PersonContactNode parent;
+        private final BaseContactNode<?> parent;
         
-        private PersonContactNodeChildFactoryImpl(PersonContactNode parent) {
+        private BaseContactNodeChildFactoryImpl(BaseContactNode<?> parent) {
             this.parent = parent;
         }
 

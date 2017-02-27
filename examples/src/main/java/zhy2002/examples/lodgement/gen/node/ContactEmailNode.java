@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class ContactEmailNode extends EmailNode<PersonContactNode> {
+public class ContactEmailNode extends EmailNode<BaseContactNode<?>> {
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -29,7 +29,7 @@ public class ContactEmailNode extends EmailNode<PersonContactNode> {
         return component.getContactEmailNodeRuleProvider();
     }
 
-    public ContactEmailNode(@NotNull PersonContactNode parent, String name) {
+    public ContactEmailNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }
 

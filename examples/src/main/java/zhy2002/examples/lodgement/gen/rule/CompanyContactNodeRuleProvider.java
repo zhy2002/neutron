@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.CompanyContactNode;
 
 @CompanyContactNodeScope
 public class CompanyContactNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<CompanyContactNode> {
+    extends BaseContactNodeRuleProvider<CompanyContactNode> {
 
     @Inject
     public CompanyContactNodeRuleProvider() {}

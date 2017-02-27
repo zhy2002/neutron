@@ -8,7 +8,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class ContactAddressNode extends AddressNode<PersonContactNode> {
+public class ContactAddressNode extends AddressNode<BaseContactNode<?>> {
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -27,7 +27,7 @@ public class ContactAddressNode extends AddressNode<PersonContactNode> {
         return component.getContactAddressNodeRuleProvider();
     }
 
-    public ContactAddressNode(@NotNull PersonContactNode parent, String name) {
+    public ContactAddressNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }
 

@@ -16,7 +16,7 @@ todo
 9. implement rule priority
 10. i18n
 11. Generate per-profile constants and assets
-12. Visualization of node hierarchy
+12. Visualization of node hierarchy (convert desc.yml to html)
 
 ### Engine - find a use case before doing these improvements
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.

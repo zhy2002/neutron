@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.PersonContactNode;
 
 @PersonContactNodeScope
 public class PersonContactNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<PersonContactNode> {
+    extends BaseContactNodeRuleProvider<PersonContactNode> {
 
     @Inject
     public PersonContactNodeRuleProvider() {}
@@ -20,14 +20,11 @@ public class PersonContactNodeRuleProvider
     }
 
 
-    @Inject
-    Provider<HomeOrWorkPhoneRequiredRule> homeOrWorkPhoneRequiredRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-            createdRules.add(homeOrWorkPhoneRequiredRuleProvider.get());
     }
 
 }

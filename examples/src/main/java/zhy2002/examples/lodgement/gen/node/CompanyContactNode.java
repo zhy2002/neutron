@@ -2,14 +2,13 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
+public class CompanyContactNode extends BaseContactNode<CompanyNode> {
 
     @Override
     public final Class<?> getConcreteClass() {

@@ -26,8 +26,8 @@ public class CustomModule {
 
     @Provides
     @Singleton
-    PersonContactNodeChildProvider providePersonContactNodeChildProvider(MembersInjector<PersonContactNodeChildProvider> injector) {
-        return inject(injector, new PersonContactNodeChildProvider() {
+    BaseContactNodeChildProvider provideBaseContactNodeChildProvider(MembersInjector<BaseContactNodeChildProvider> injector) {
+        return inject(injector, new BaseContactNodeChildProvider() {
             @Override
             protected void configureCurrentAddressNode(ContactAddressNode node) {
                 new CurrentAddressConfig(node);

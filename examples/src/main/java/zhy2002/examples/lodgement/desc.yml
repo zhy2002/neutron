@@ -167,51 +167,7 @@ rootType:
           - {propertyName: required, value: 'true'}
 
       - typeName: PersonContactNode
-        baseTypeName: ObjectUiNode
-        rules:
-        - {typeName: HomeOrWorkPhoneRequiredRule}
-        children:
-        - {typeName: ContactTelephoneNode, name: homePhoneNode}
-        - {typeName: ContactTelephoneNode, name: workPhoneNode}
-        - {typeName: ContactTelephoneNode, name: faxNumberNode}
-        - {typeName: MobileNumberNode}
-        - {typeName: ContactEmailNode}
-        - {typeName: ContactAddressNode, name: currentAddressNode}
-        - {typeName: MovedToCurrentAddressNode}
-        - {typeName: ContactAddressNode, name: postalAddressNode}
-        - {typeName: ContactAddressNode, name: previousAddressNode}
-        - {typeName: MovedToPreviousAddressNode}
-        - {typeName: MovedFromPreviousAddressNode}
-        childTypes:
-        - typeName: ContactTelephoneNode
-          baseTypeName: TelephoneNode
-
-        - typeName: MobileNumberNode
-          baseTypeName: StringUiNode
-
-        - typeName: ContactAddressNode
-          baseTypeName: AddressNode
-
-        - typeName: MovedToCurrentAddressNode
-          baseTypeName: MonthYearNode
-          init:
-          - {propertyName: required, value: 'true'}
-          rules:
-          - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-          - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-
-        - typeName: MovedToPreviousAddressNode
-          baseTypeName: MonthYearNode
-
-        - typeName: MovedFromPreviousAddressNode
-          baseTypeName: MonthYearNode
-          rules:
-          - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-
-        - typeName: ContactEmailNode
-          baseTypeName: EmailNode
-          init:
-          - {propertyName: required, value: 'true'}
+        baseTypeName: BaseContactNode
 
       - typeName: CurrentEmploymentListNode
         baseTypeName: ListUiNode
@@ -266,8 +222,7 @@ rootType:
         children: []
 
       - typeName: CompanyContactNode
-        baseTypeName: ObjectUiNode
-        children: []
+        baseTypeName: BaseContactNode
 
       - typeName: CompanyTrustNode
         baseTypeName: BaseTrustNode
@@ -1483,3 +1438,52 @@ commonTypes:
     childTypes:
     - typeName: TrustBeneficiaryClassNode
       baseTypeName: StringUiNode
+
+- typeName: BaseContactNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  rules:
+  - {typeName: HomeOrWorkPhoneRequiredRule}
+  children:
+  - {typeName: ContactTelephoneNode, name: homePhoneNode}
+  - {typeName: ContactTelephoneNode, name: workPhoneNode}
+  - {typeName: ContactTelephoneNode, name: faxNumberNode}
+  - {typeName: MobileNumberNode}
+  - {typeName: ContactEmailNode}
+  - {typeName: ContactAddressNode, name: currentAddressNode}
+  - {typeName: MovedToCurrentAddressNode}
+  - {typeName: ContactAddressNode, name: postalAddressNode}
+  - {typeName: ContactAddressNode, name: previousAddressNode}
+  - {typeName: MovedToPreviousAddressNode}
+  - {typeName: MovedFromPreviousAddressNode}
+  childTypes:
+  - typeName: ContactTelephoneNode
+    baseTypeName: TelephoneNode
+
+  - typeName: MobileNumberNode
+    baseTypeName: StringUiNode
+
+  - typeName: ContactAddressNode
+    baseTypeName: AddressNode
+
+  - typeName: MovedToCurrentAddressNode
+    baseTypeName: MonthYearNode
+    init:
+    - {propertyName: required, value: 'true'}
+    rules:
+    - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+    - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+  - typeName: MovedToPreviousAddressNode
+    baseTypeName: MonthYearNode
+
+  - typeName: MovedFromPreviousAddressNode
+    baseTypeName: MonthYearNode
+    rules:
+    - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+  - typeName: ContactEmailNode
+    baseTypeName: EmailNode
+    init:
+    - {propertyName: required, value: 'true'}

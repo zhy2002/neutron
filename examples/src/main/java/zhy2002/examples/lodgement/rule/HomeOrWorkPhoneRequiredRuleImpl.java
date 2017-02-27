@@ -1,7 +1,8 @@
 package zhy2002.examples.lodgement.rule;
 
-import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.event.TelephoneStateChangeEvent;
+import zhy2002.examples.lodgement.gen.node.BaseContactNode;
+import zhy2002.examples.lodgement.gen.node.ContactTelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.HomeOrWorkPhoneRequiredRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;
@@ -14,16 +15,16 @@ import java.util.Collections;
 public class HomeOrWorkPhoneRequiredRuleImpl extends HomeOrWorkPhoneRequiredRule {
 
     @Inject
-    public HomeOrWorkPhoneRequiredRuleImpl(@Owner PersonContactNode owner) {
+    public HomeOrWorkPhoneRequiredRuleImpl(@Owner BaseContactNode<?> owner) {
         super(owner);
     }
 
     private ContactTelephoneNode getHomePhoneNode() {
-        return getPersonContactNode().getHomePhoneNode();
+        return getBaseContactNode().getHomePhoneNode();
     }
 
     private ContactTelephoneNode getWorkPhoneNode() {
-        return getPersonContactNode().getWorkPhoneNode();
+        return getBaseContactNode().getWorkPhoneNode();
     }
 
     @Override
