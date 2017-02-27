@@ -32,22 +32,22 @@ export default class PersonOtherIncomeComponent extends NeutronComponent {
                             <div className="container-fluid">
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <SelectInputComponent model={model.getPersonOtherIncomeTypeNode()}/>
+                                        <SelectInputComponent model={model.getOtherIncomeTypeNode()}/>
                                     </div>
                                     <div className="col-md-3">
-                                        <SelectInputComponent model={model.getPersonAddBackTypeNode()}/>
+                                        <SelectInputComponent model={model.getOtherIncomeAddBackTypeNode()}/>
                                     </div>
                                     <div className="col-md-3">
-                                        <NumberInputComponent model={model.getPersonOtherIncomeAmountNode()}/>
+                                        <NumberInputComponent model={model.getOtherIncomeAmountNode()}/>
                                     </div>
                                     <div className="col-md-3">
-                                        <CheckboxInputComponent model={model.getPersonOtherIncomePreviousYearNode()}/>
+                                        <CheckboxInputComponent model={model.getOtherIncomePreviousYearNode()}/>
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <TextInputComponent model={model.getPersonOtherIncomeDescriptionNode()}/>
+                                        <TextInputComponent model={model.getOtherIncomeDescriptionNode()}/>
                                     </div>
                                     <div className="col-md-6"/>
                                 </div>

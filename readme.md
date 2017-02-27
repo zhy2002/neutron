@@ -75,6 +75,7 @@ Goals
 * Reuse UI logic such as validation on the server side
 * strong typing as much as possible
 * Verify UI logic in unit tests and rendering result in screenshots
+* Minimum code in view (JSX)
 * Whole UI state can be serialized
 * Easy code navigation
 

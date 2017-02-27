@@ -19,6 +19,10 @@ public class PersonOtherIncomeListNodeModule {
         return owner;
     }
 
+    @Provides @PersonOtherIncomeListNodeScope @Owner BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
+        return owner;
+    }
+
     @Provides @PersonOtherIncomeListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }

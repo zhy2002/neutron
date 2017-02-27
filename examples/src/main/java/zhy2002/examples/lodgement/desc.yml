@@ -300,48 +300,7 @@ rootType:
           - {propertyName: value, value: '"Yes"'}
 
       - typeName: PersonOtherIncomeListNode
-        baseTypeName: ListUiNode
-        itemTypeName: PersonOtherIncomeNode
-        init:
-        - {propertyName: nodeLabel, value: '"Other Incomes"'}
-        childTypes:
-        - typeName: PersonOtherIncomeNode
-          baseTypeName: ObjectUiNode
-          children:
-          - {typeName: PersonAddBackTypeNode}
-          - {typeName: PersonOtherIncomeAmountNode}
-          - {typeName: PersonOtherIncomeDescriptionNode}
-          - {typeName: PersonOtherIncomePreviousYearNode}
-          - {typeName: PersonOtherIncomeTypeNode}
-          childTypes:
-          - typeName: PersonOtherIncomeTypeNode
-            baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object}
-            init:
-            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
-            - {propertyName: required, value: 'true'}
-            - {propertyName: value, value: '"Other Income"'}
-            rules:
-            - {typeName: PersonOtherIncomeTypeChangeRule}
-
-          - typeName: PersonAddBackTypeNode
-            baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object}
-            init:
-            - {propertyName: options, value: ApplicationNodeConstants.PERSON_ADD_BACK_TYPE.toArray()}
-
-          - typeName: PersonOtherIncomeAmountNode
-            baseTypeName: BaseCurrencyNode
-            init:
-            - {propertyName: required, value: 'true'}
-
-          - typeName: PersonOtherIncomePreviousYearNode
-            baseTypeName: BooleanUiNode
-
-          - typeName: PersonOtherIncomeDescriptionNode
-            baseTypeName: StringUiNode
+        baseTypeName: BaseOtherIncomeListNode
 
       - typeName: PersonResponsibleLendNode
         baseTypeName: BaseResponsibleLendNode
@@ -377,8 +336,7 @@ rootType:
         children: []
 
       - typeName: CompanyOtherIncomeListNode
-        baseTypeName: ObjectUiNode
-        children: []
+        baseTypeName: BaseOtherIncomeListNode
 
       - typeName: CompanyResponsibleLendNode
         baseTypeName: BaseResponsibleLendNode
@@ -1442,3 +1400,49 @@ commonTypes:
           baseTypeName: YesNoOptionNode
           init:
           - {propertyName: required, value: 'true'}
+
+- typeName: BaseOtherIncomeListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: OtherIncomeNode
+  init:
+  - {propertyName: nodeLabel, value: '"Other Incomes"'}
+  childTypes:
+        - typeName: OtherIncomeNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: OtherIncomeAddBackTypeNode}
+          - {typeName: OtherIncomeAmountNode}
+          - {typeName: OtherIncomeDescriptionNode}
+          - {typeName: OtherIncomePreviousYearNode}
+          - {typeName: OtherIncomeTypeNode}
+          childTypes:
+          - typeName: OtherIncomeTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
+            - {propertyName: required, value: 'true'}
+            - {propertyName: value, value: '"Other Income"'}
+            rules:
+            - {typeName: OtherIncomeTypeChangeRule}
+
+          - typeName: OtherIncomeAddBackTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
+
+          - typeName: OtherIncomeAmountNode
+            baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
+
+          - typeName: OtherIncomePreviousYearNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: OtherIncomeDescriptionNode
+            baseTypeName: StringUiNode

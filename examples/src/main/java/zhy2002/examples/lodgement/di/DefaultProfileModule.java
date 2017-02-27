@@ -96,6 +96,6 @@ public abstract class DefaultProfileModule {
     abstract TelephoneCompleteRule provideTelephoneCompleteRule(TelephoneCompleteRuleImpl impl);
 
     @Binds
-    abstract PersonOtherIncomeTypeChangeRule providePersonOtherIncomeTypeChangeRule(PersonOtherIncomeTypeChangeRuleImpl impl);
+    abstract OtherIncomeTypeChangeRule provideOtherIncomeTypeChangeRule(OtherIncomeTypeChangeRuleImpl impl);
 }
 

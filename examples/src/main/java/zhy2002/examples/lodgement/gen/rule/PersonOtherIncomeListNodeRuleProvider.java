@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.PersonOtherIncomeListNode;
 
 @PersonOtherIncomeListNodeScope
 public class PersonOtherIncomeListNodeRuleProvider
-    extends ListUiNodeRuleProvider<PersonOtherIncomeListNode> {
+    extends BaseOtherIncomeListNodeRuleProvider<PersonOtherIncomeListNode> {
 
     @Inject
     public PersonOtherIncomeListNodeRuleProvider() {}

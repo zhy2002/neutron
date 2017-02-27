@@ -160,7 +160,7 @@ public class ApplicationNodeConstants {
             new StringOption("Other Income")
     );
 
-    public static final List<StringOption> PERSON_ADD_BACK_TYPE = Arrays.asList(
+    public static final List<StringOption> OTHER_INCOME_ADD_BACK_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Depreciation")
     );

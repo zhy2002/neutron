@@ -19,7 +19,11 @@ public class CompanyOtherIncomeListNodeModule {
         return owner;
     }
 
-    @Provides @CompanyOtherIncomeListNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @CompanyOtherIncomeListNodeScope @Owner BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
+        return owner;
+    }
+
+    @Provides @CompanyOtherIncomeListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 

@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.CompanyOtherIncomeListNode;
+import zhy2002.examples.lodgement.gen.node.OtherIncomeAmountNode;
 
 
-@CompanyOtherIncomeListNodeScope
-public class CompanyOtherIncomeListNodeRuleProvider
-    extends BaseOtherIncomeListNodeRuleProvider<CompanyOtherIncomeListNode> {
+@OtherIncomeAmountNodeScope
+public class OtherIncomeAmountNodeRuleProvider
+    extends BaseCurrencyNodeRuleProvider<OtherIncomeAmountNode> {
 
     @Inject
-    public CompanyOtherIncomeListNodeRuleProvider() {}
+    public OtherIncomeAmountNodeRuleProvider() {}
 
     @Override
-    public void initializeState(CompanyOtherIncomeListNode node) {
+    public void initializeState(OtherIncomeAmountNode node) {
     }
 
 

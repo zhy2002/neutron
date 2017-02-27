@@ -252,12 +252,12 @@ public class LodgementNodeTest {
     public void shouldNotRaiseRequiredErrorOnDisabledNode() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        PersonOtherIncomeNode personOtherIncomeNode = personNode.getPersonOtherIncomeListNode().createItem();
+        OtherIncomeNode personOtherIncomeNode = personNode.getPersonOtherIncomeListNode().createItem();
 
-        assertThat(personOtherIncomeNode.getPersonOtherIncomeDescriptionNode().isDisabled(), equalTo(false));
+        assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().isDisabled(), equalTo(false));
 
-        personOtherIncomeNode.getPersonOtherIncomeTypeNode().setValue("");
-        assertThat(personOtherIncomeNode.getPersonOtherIncomeDescriptionNode().isDisabled(), equalTo(true));
+        personOtherIncomeNode.getOtherIncomeTypeNode().setValue("");
+        assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().isDisabled(), equalTo(true));
 
     }
 
