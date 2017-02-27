@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.AddressListNode;
+import zhy2002.examples.lodgement.gen.node.AddressRefNode;
 
 
-@AddressListNodeScope
-public class AddressListNodeRuleProvider
-    extends ListUiNodeRuleProvider<AddressListNode> {
+@AddressRefNodeScope
+public class AddressRefNodeRuleProvider
+    extends ReferenceUiNodeRuleProvider<AddressRefNode> {
 
     @Inject
-    public AddressListNodeRuleProvider() {}
+    public AddressRefNodeRuleProvider() {}
 
     @Override
-    public void initializeState(AddressListNode node) {
+    public void initializeState(AddressRefNode node) {
     }
 
 

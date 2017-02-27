@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import static zhy2002.neutron.util.NeutronEventSubjects.REMOVE_EMPTY;
+
 public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
     protected ReferenceUiNode(@NotNull P parent, @NotNull String name) {
@@ -34,6 +36,15 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     @Override
     public final void setValue(String value) {
         super.setValue(String.class, value);
+    }
+
+    public final boolean isRemoveEmpty() {
+        Boolean result = getStateValueInternal(REMOVE_EMPTY);
+        return result != null && result;
+    }
+
+    public final void setRemoveEmpty(boolean value) {
+        setStateValueInternal(REMOVE_EMPTY, value);
     }
 
     @Override

@@ -87,9 +87,6 @@ public abstract class DefaultProfileModule {
     abstract ResponsibleSignificantChangeRule provideResponsibleSignificantChangeRule(ResponsibleSignificantChangeRuleImpl impl);
 
     @Binds
-    abstract RemoveOwnershipNodeRule provideRemoveOwnershipNodeRule(RemoveOwnershipNodeRuleImpl impl);
-
-    @Binds
     abstract ShowErrorListRule provideShowErrorListRule(ShowErrorListRuleImpl impl);
 
     @Binds

@@ -12,7 +12,7 @@ rootType:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}
   children:
-  - {typeName: AddressListNode}
+  - {typeName: AddressRefListNode}
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
   - {typeName: FinancialPositionNode}
@@ -22,15 +22,14 @@ rootType:
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
   childTypes:
-  - typeName: AddressListNode
+  - typeName: AddressRefListNode
     baseTypeName: ListUiNode
-    itemTypeName: AddressRefUiNode
+    itemTypeName: AddressRefNode
     childTypes:
-    - typeName: AddressRefUiNode
-      baseTypeName: ObjectUiNode
-      children: []
-      properties:
-      - {name: ref, typeName: AddressNode}
+    - typeName: AddressRefNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
 
   - typeName: PersonListNode
     baseTypeName: ListUiNode
@@ -1270,6 +1269,8 @@ commonTypes:
     childTypes:
     - typeName: AccountHolderReferenceNode
       baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
 
     - typeName: SelectAccountHolderFlagNode
       baseTypeName: BooleanUiNode
@@ -1295,8 +1296,8 @@ commonTypes:
     childTypes:
     - typeName: ApplicantReferenceNode
       baseTypeName: ReferenceUiNode
-      rules:
-      - {typeName: RemoveOwnershipNodeRule}
+      init:
+      - {propertyName: removeEmpty, value: true}
 
     - typeName: OwnershipPercentageNode
       baseTypeName: BasePercentageNode

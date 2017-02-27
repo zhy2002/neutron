@@ -5,7 +5,7 @@ export default class AddressListComponent extends React.PureComponent {
 
     renderItems() {
         const items = [];
-        const addressListNode = this.props.contextModel.getRootNode().getAddressListNode();
+        const addressListNode = this.props.contextModel.getRootNode().getAddressRefListNode();
         addressListNode.getUniqueAddressNodes().forEach(
             (item) => {
                 items.push(

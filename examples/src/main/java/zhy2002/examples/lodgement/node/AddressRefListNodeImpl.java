@@ -3,15 +3,16 @@ package zhy2002.examples.lodgement.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.UiNode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class AddressListNodeImpl extends AddressListNode {
+public class AddressRefListNodeImpl extends AddressRefListNode {
 
-    public AddressListNodeImpl(ApplicationNode parent, String name) {
+    public AddressRefListNodeImpl(ApplicationNode parent, String name) {
         super(parent, name);
     }
 
@@ -21,7 +22,7 @@ public class AddressListNodeImpl extends AddressListNode {
         List<AddressNode<?>> result = new ArrayList<>();
         Set<Address> hashSet = new HashSet<>();
         for (int i = 0; i < getItemCount(); i++) {
-            AddressNode<?> child = getItem(i).getRef();
+            AddressNode<?> child = (AddressNode<?>)getItem(i).getReferencedNode();
             if (!child.hasValue())
                 continue;
 

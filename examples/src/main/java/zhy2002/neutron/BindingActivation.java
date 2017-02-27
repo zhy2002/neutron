@@ -36,10 +36,9 @@ public final class BindingActivation {
 
     void fire() {
         UiNodeRule<?> rule = getRule();
-        if (rule != null) {
+        if (rule != null && rule.getOwner() != null && rule.getOwner().getNodeStatus() == NodeStatusEnum.Loaded) {
             logger.log(Level.INFO, "Firing rule " + rule.getClass().getSimpleName() + " with event " + getEvent() + " from " + getEvent().getOrigin().getClass().getSimpleName());
+            binding.fire(event);
         }
-
-        binding.fire(event);
     }
 }

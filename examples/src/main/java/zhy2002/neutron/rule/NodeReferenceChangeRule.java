@@ -41,6 +41,15 @@ public class NodeReferenceChangeRule extends UiNodeRule<ReferenceUiNode<?>> {
     }
 
     private void updateReference(StringStateChangeEvent event) {
-        nodeReferenceRegistry.update(getOwner(), event.getOldValue(), event.getNewValue());
+        if(event.getNewValue() == null && getOwner().isRemoveEmpty()) {
+            ParentUiNode<?> parentNode = getOwner().getParent();
+            if(parentNode instanceof ListUiNode<?, ?>) {
+                ((ListUiNode<?, ?>)parentNode).removeByName(getOwner().getName());
+            } else if(parentNode != null && parentNode.getParent() instanceof ListUiNode<?,?>) {
+                ((ListUiNode<?, ?>)parentNode.getParent()).removeByName(parentNode.getName());
+            }
+        } else {
+            nodeReferenceRegistry.update(getOwner(), event.getOldValue(), event.getNewValue());
+        }
     }
 }

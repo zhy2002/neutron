@@ -21,25 +21,25 @@ public class UpdateAddressRefListRuleImpl extends UpdateAddressRefListRule {
     public void addToOwner() {
         super.addToOwner();
 
-        getAddressListNode().createItem().setRef(getOwner());
+        getAddressRefListNode().createItem().setValue(getOwner().getPath());
     }
 
     @Override
     public void removeFromOwner() {
         super.removeFromOwner();
 
-        AddressListNode addressListNode = getAddressListNode();
+        AddressRefListNode addressListNode = getAddressRefListNode();
         for (int i = 0; i < addressListNode.getItemCount(); i++) {
-            if (addressListNode.getItem(i).getRef() == getOwner()) {
+            if (addressListNode.getItem(i).getReferencedNode() == getOwner()) {
                 addressListNode.removeByIndex(i);
                 break;
             }
         }
     }
 
-    private AddressListNode getAddressListNode() {
+    private AddressRefListNode getAddressRefListNode() {
         ApplicationNode root = (ApplicationNode)getContext().getRootNode();
-        return root.getAddressListNode();
+        return root.getAddressRefListNode();
     }
 
     @Override

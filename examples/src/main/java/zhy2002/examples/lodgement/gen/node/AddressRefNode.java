@@ -10,26 +10,26 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
+public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ApplicantReferenceNode.class;
+        return AddressRefNode.class;
     }
 
-    private ApplicantReferenceNodeComponent component;
+    private AddressRefNodeComponent component;
 
     @Inject
-    void createComponent(ApplicantReferenceNodeComponent.Builder builder) {
-        this.component = builder.setApplicantReferenceNodeModule(new ApplicantReferenceNodeModule(this)).build();
+    void createComponent(AddressRefNodeComponent.Builder builder) {
+        this.component = builder.setAddressRefNodeModule(new AddressRefNodeModule(this)).build();
     }
 
     @Override
-    protected ApplicantReferenceNodeRuleProvider getRuleProvider() {
-        return component.getApplicantReferenceNodeRuleProvider();
+    protected AddressRefNodeRuleProvider getRuleProvider() {
+        return component.getAddressRefNodeRuleProvider();
     }
 
-    public ApplicantReferenceNode(@NotNull OwnershipNode parent, String name) {
+    public AddressRefNode(@NotNull AddressRefListNode parent, String name) {
         super(parent, name);
     }
 

@@ -20,14 +20,11 @@ public class ApplicantReferenceNodeRuleProvider
     }
 
 
-    @Inject
-    Provider<RemoveOwnershipNodeRule> removeOwnershipNodeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-            createdRules.add(removeOwnershipNodeRuleProvider.get());
     }
 
 }

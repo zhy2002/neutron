@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 
 interface ApplicationNodeChildFactory {
-    AddressListNode createAddressListNode();
+    AddressRefListNode createAddressRefListNode();
     PersonListNode createPersonListNode();
     CompanyListNode createCompanyListNode();
     FinancialPositionNode createFinancialPositionNode();
@@ -20,11 +20,11 @@ interface ApplicationNodeChildFactory {
 @Singleton
 public class ApplicationNodeChildProvider {
     @Inject
-    MembersInjector<AddressListNode> addressListNodeInjector;
-    @Inject
     MembersInjector<PersonListNode> personListNodeInjector;
     @Inject
     MembersInjector<FinancialPositionNode> financialPositionNodeInjector;
+    @Inject
+    MembersInjector<AddressRefListNode> addressRefListNodeInjector;
     @Inject
     MembersInjector<SubmissionNode> submissionNodeInjector;
     @Inject
@@ -41,16 +41,16 @@ public class ApplicationNodeChildProvider {
     @Inject
     protected ApplicationNodeChildProvider () {}
 
-    protected MembersInjector<AddressListNode> getAddressListNodeInjector() {
-        return this.addressListNodeInjector;
-    }
-
     protected MembersInjector<PersonListNode> getPersonListNodeInjector() {
         return this.personListNodeInjector;
     }
 
     protected MembersInjector<FinancialPositionNode> getFinancialPositionNodeInjector() {
         return this.financialPositionNodeInjector;
+    }
+
+    protected MembersInjector<AddressRefListNode> getAddressRefListNodeInjector() {
+        return this.addressRefListNodeInjector;
     }
 
     protected MembersInjector<SubmissionNode> getSubmissionNodeInjector() {
@@ -77,14 +77,14 @@ public class ApplicationNodeChildProvider {
         return this.additionalNodeInjector;
     }
 
-    protected AddressListNode newAddressListNode(
+    protected AddressRefListNode newAddressRefListNode(
         ApplicationNode parent,
         String name
     ) {
-        return new AddressListNode(parent, name);
+        return new AddressRefListNode(parent, name);
     }
 
-    protected void configureAddressListNode(AddressListNode node) {
+    protected void configureAddressRefListNode(AddressRefListNode node) {
     }
 
     protected PersonListNode newPersonListNode(
@@ -180,10 +180,10 @@ public class ApplicationNodeChildProvider {
         }
 
         @Override
-        public AddressListNode createAddressListNode() {
-            AddressListNode node = newAddressListNode(parent, "addressListNode");
-            addressListNodeInjector.injectMembers(node);
-            configureAddressListNode(node);
+        public AddressRefListNode createAddressRefListNode() {
+            AddressRefListNode node = newAddressRefListNode(parent, "addressRefListNode");
+            addressRefListNodeInjector.injectMembers(node);
+            configureAddressRefListNode(node);
             return node;
         }
 
