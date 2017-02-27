@@ -1,12 +1,12 @@
 todo 
 ----------------- 
 1. context menu
-2. todo loading spinner
+2. loading spinner
 3. integrate with font awesome
 4. Per-lender config override
-  * implement load defaults functionality (auto populate)
-  * Use 'profile' dagger component/module to provide root node configured for a lender
-  * Need to create an example
+  - implement load defaults functionality (auto populate)
+  - Use 'profile' dagger component/module to provide root node configured for a lender
+  - Need to create an example
 5. implement router - navigate to view via url
 6. deferred event execution - if the user types in many characters quickly
   we should wait for a pause before we do an update. 
@@ -16,6 +16,7 @@ todo
 9. implement rule priority
 10. i18n
 11. Generate per-profile constants and assets
+12. Visualization of node hierarchy
 
 ### Engine - find a use case before doing these improvements
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.
@@ -26,7 +27,7 @@ todo
 ### Frontend - needs a more comprehensive example first
 * improve dev process (webpack, live-reload, jasmine to test all the examples)
 * react component scaffolding 
-* parser/transformer coversion between gwt and react
+* parser/transformer conversion between gwt and react
 * implement layout components to reduce duplication
 
 ### Node structure

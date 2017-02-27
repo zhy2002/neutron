@@ -1,10 +1,13 @@
 package zhy2002.examples.lodgement.rule;
 
-import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.event.CompanyNodeAddEvent;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.OwnershipListNode;
+import zhy2002.examples.lodgement.gen.node.OwnershipNode;
 import zhy2002.examples.lodgement.gen.rule.AddNewCompanyApplicantRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEventBinding;
+import zhy2002.neutron.NopUiNodeStatusListener;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.di.Owner;
 
@@ -21,7 +24,7 @@ public class AddNewCompanyApplicantRuleImpl extends AddNewCompanyApplicantRule {
     public AddNewCompanyApplicantRuleImpl(@Owner OwnershipListNode<?> owner) {
         super(owner);
 
-        applicationNode = (ApplicationNode)owner.getContext().getRootNode();
+        applicationNode = (ApplicationNode) owner.getContext().getRootNode();
     }
 
     @Override
@@ -41,6 +44,13 @@ public class AddNewCompanyApplicantRuleImpl extends AddNewCompanyApplicantRule {
     }
 
     private void importApplicant(CompanyNodeAddEvent addEvent) {
-        getOwnershipListNode().createItem().getApplicantReferenceNode().setValue(addEvent.getOrigin().getPath());
+        final OwnershipNode ownershipNode = getOwnershipListNode().createItem();
+        ownershipNode.setStatusListener(new NopUiNodeStatusListener() {
+            @Override
+            public void postLoad() {
+                super.postLoad();
+                ownershipNode.getApplicantReferenceNode().setValue(addEvent.getOrigin().getPath());
+            }
+        });
     }
 }

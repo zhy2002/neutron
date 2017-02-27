@@ -365,5 +365,16 @@ public class LodgementNodeTest {
         assertThat(ownershipListNode.getItem(1).getApplicantReferenceNode().getValue(), equalTo(personNode3.getPath()));
     }
 
+    @Test
+    public void newItemInOwnershipListWhenAddingCompany() {
+        FinancialPositionNode financialPositionNode = applicationNode.getFinancialPositionNode();
+        AssetsNode assetsNode = financialPositionNode.getAssetsNode();
+        SavingsAccountNode savingsAccountNode = assetsNode.getSavingsAccountListNode().createItem();
+        SavingsOwnershipListNode ownershipListNode = savingsAccountNode.getSavingsOwnershipListNode();
+        assertThat(ownershipListNode.getItemCount(), equalTo(0));
 
+        CompanyNode companyNode = applicationNode.getCompanyListNode().createItem();
+        assertThat(ownershipListNode.getItemCount(), equalTo(1));
+        assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getReferencedNode(), sameInstance(companyNode));
+    }
 }
