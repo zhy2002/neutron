@@ -21,6 +21,7 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
     private PropertyTypeNode propertyTypeNode;
     private PropertySubTypeNode propertySubTypeNode;
     private PropertyPurseNode propertyPurseNode;
+    private PropertyOwnershipListNode propertyOwnershipListNode;
 
     private PropertyNodeChildFactory childFactory;
 
@@ -95,6 +96,11 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         return propertyPurseNode;
     }
 
+    @JsMethod
+    public PropertyOwnershipListNode getPropertyOwnershipListNode() {
+        return propertyOwnershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -116,6 +122,8 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         children.add(propertySubTypeNode);
         propertyPurseNode = childFactory.createPropertyPurseNode();
         children.add(propertyPurseNode);
+        propertyOwnershipListNode = childFactory.createPropertyOwnershipListNode();
+        children.add(propertyOwnershipListNode);
         return children;
     }
 

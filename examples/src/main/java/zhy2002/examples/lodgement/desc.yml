@@ -383,7 +383,37 @@ rootType:
     childTypes:
     - typeName: CompanyNode
       baseTypeName: ObjectUiNode
-      children: []
+      children:
+      - {typeName: CompanyGeneralNode}
+      - {typeName: CompanyContactNode}
+      - {typeName: CompanyTrustNode}
+      - {typeName: CompanyPrivacyNode}
+      - {typeName: CompanyOtherIncomeListNode}
+      - {typeName: CompanyResponsibleLendNode}
+      childTypes:
+      - typeName: CompanyGeneralNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CompanyContactNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CompanyTrustNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CompanyPrivacyNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CompanyOtherIncomeListNode
+        baseTypeName: ObjectUiNode
+        children: []
+
+      - typeName: CompanyResponsibleLendNode
+        baseTypeName: ObjectUiNode
+        children: []
 
   - typeName: FinancialPositionNode
     rules:
@@ -663,6 +693,7 @@ rootType:
         - {typeName: OwnedOutrightFlagNode}
         - {typeName: PrimarySecurityFlagNode}
         - {typeName: ApprovalInPrincipleFlagNode}
+        - {typeName: ExistingMortgageListNode}
         childTypes:
         - typeName: UsedAsSecurityFlagNode
           baseTypeName: BooleanUiNode
@@ -679,6 +710,66 @@ rootType:
         - typeName: ApprovalInPrincipleFlagNode
           baseTypeName: BooleanUiNode
 
+        - typeName: ExistingMortgageListNode
+          baseTypeName: ListUiNode
+          itemTypeName: ExistingMortgageNode
+          childTypes:
+          - typeName: ExistingMortgageNode
+            baseTypeName: ObjectUiNode
+            children:
+            - {typeName: MortgageLenderInstitutionNode}
+            - {typeName: MortgqageUnpaidBalanceNode}
+            - {typeName: MortgageLimitAmountNode}
+            - {typeName: MortgageMonthlyRepaymentNode}
+            - {typeName: MortgageBorrowerRateNode}
+            - {typeName: MortgageLoanTypeNode}
+            - {typeName: MortgageLoanTermExpiryDateNode}
+            - {typeName: MortgageInterestOnlyExpiryDateNode}
+            - {typeName: MortgageClearingFlagNode}
+            - {typeName: MortgageBreakFeeNode}
+            - {typeName: MortgageChargePositionNode}
+            - {typeName: MortgageTermRemainingPeriodNode}
+            - {typeName: MortgageInterestOnlyRemainingPeriodNode}
+            childTypes:
+            - typeName: MortgageLenderInstitutionNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgqageUnpaidBalanceNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageLimitAmountNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageMonthlyRepaymentNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageBorrowerRateNode
+              baseTypeName: BasePercentageNode
+
+            - typeName: MortgageLoanTypeNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageLoanTermExpiryDateNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageInterestOnlyExpiryDateNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageClearingFlagNode
+              baseTypeName: BooleanUiNode
+
+            - typeName: MortgageBreakFeeNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageChargePositionNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageTermRemainingPeriodNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageInterestOnlyRemainingPeriodNode
+              baseTypeName: StringUiNode
+
       - typeName:  PropertyNode
         baseTypeName: ObjectUiNode
         children:
@@ -691,6 +782,7 @@ rootType:
         - {typeName: PropertyTypeNode}
         - {typeName: PropertySubTypeNode}
         - {typeName: PropertyPurseNode}
+        - {typeName: PropertyOwnershipListNode}
         childTypes:
         - typeName: RentedFlagNode
           baseTypeName: BooleanUiNode
@@ -718,6 +810,9 @@ rootType:
 
         - typeName: PropertyPurseNode
           baseTypeName: BooleanUiNode
+
+        - typeName: PropertyOwnershipListNode
+          baseTypeName: OwnershipListNode
 
       - typeName:  AccessNode
         baseTypeName: ObjectUiNode
@@ -754,11 +849,239 @@ rootType:
 
   - typeName: ProductsNode
     baseTypeName: ObjectUiNode
-    children: []
+    children:
+    - {typeName: ProductListNode}
+    - {typeName: ProductCustomerContributionNode}
+    - {typeName: ProductFeesNode}
+    - {typeName: ProductLoanTypeNode}
+    - {typeName: SettlementDateNode}
+    - {typeName: ProductTotalLoanAmountNode}
+    - {typeName: ProductTotalSecurityAmountNode}
+    - {typeName: ProductTotalLoanLmiAmountNode}
+    - {typeName: ProductTotalLvrNode}
+    - {typeName: ProductTotalLvrLmiNode}
+    childTypes:
+    - typeName: ProductListNode
+      baseTypeName: ListUiNode
+      itemTypeName: ProductNode
+      childTypes:
+      - typeName: ProductNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ProductDescriptionNode}
+        - {typeName: ProductFeaturesNode}
+        childTypes:
+        - typeName: ProductDescriptionNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: ProductGroupNode}
+          - {typeName: ProductNameNode}
+          - {typeName: ProductLoanPrimaryPurposeNode}
+          - {typeName: ProductLendingPurposeNode}
+          - {typeName: ProductRequestedAmountNode}
+          - {typeName: ProductTotalLoanTermNode}
+          - {typeName: ProductPaymentTypeNode}
+          - {typeName: ProductInterestOnlyTermNode}
+          - {typeName: ProductFixedTermNode}
+          - {typeName: ProductConstructionApplicationFlagNode}
+          - {typeName: ProductCostRecuctionFlagNode}
+          - {typeName: ProductConsolidationFlagNode}
+          - {typeName: ProductDissatisfactionFlagNode}
+          - {typeName: ProductSpecificFeaturesFlagNode}
+          - {typeName: ProductAccountHolderListNode}
+          childTypes:
+          - typeName: ProductGroupNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductLoanPrimaryPurposeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductLendingPurposeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRequestedAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: ProductTotalLoanTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductPaymentTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductInterestOnlyTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductFixedTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductConstructionApplicationFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCostRecuctionFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductConsolidationFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductDissatisfactionFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductSpecificFeaturesFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductAccountHolderListNode
+            baseTypeName: SelectAccountHolderListNode
+
+        - typeName: ProductFeaturesNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: ProductPackageNameNode}
+          - {typeName: ProductRepaymentFrequencyNode}
+          - {typeName: ProductRateLockFlagNode}
+          - {typeName: ProductTransactionAccountFlagNode}
+          - {typeName: ProductOptOutReasonNode}
+          - {typeName: ProductCreditCardFlagNode}
+          - {typeName: ProductCreditCardTypeNode}
+          - {typeName: ProductCreditCardLimitNode}
+          - {typeName: ProductExpressConsentFlagNode}
+          - {typeName: Product100PercentOffsetFlagNode}
+          - {typeName: ProductCardHolderNode, name: productPrimaryCardHolderNode}
+          - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
+          childTypes:
+          - typeName: ProductPackageNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRepaymentFrequencyNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRateLockFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductTransactionAccountFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductOptOutReasonNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductCreditCardFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCreditCardTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductCreditCardLimitNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: ProductExpressConsentFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: Product100PercentOffsetFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCardHolderNode
+            baseTypeName: ObjectUiNode
+            children:
+            - {typeName: ProductCardHodlerNameNode}
+            - {typeName: ProductRewardsProgramNode}
+            - {typeName: ProductRewardsMembershipNode}
+            childTypes:
+            - typeName: ProductCardHodlerNameNode
+              baseTypeName: StringUiNode
+
+            - typeName: ProductRewardsProgramNode
+              baseTypeName: StringUiNode
+
+            - typeName: ProductRewardsMembershipNode
+              baseTypeName: StringUiNode
+
+    - typeName: ProductCustomerContributionNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+    - typeName: ProductFeesNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+    - typeName: ProductLoanTypeNode
+      baseTypeName: StringUiNode
+
+    - typeName: SettlementDateNode
+      baseTypeName: StringUiNode
+
+    - typeName: ProductTotalLoanAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalSecurityAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalLoanLmiAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalLvrNode
+      baseTypeName: BasePercentageNode
+
+    - typeName: ProductTotalLvrLmiNode
+      baseTypeName: BasePercentageNode
 
   - typeName: AdditionalNode
     baseTypeName: ObjectUiNode
-    children: []
+    children:
+    - {typeName: AdditionalCommentNode}
+    - {typeName: RelatedPartyListNode}
+    childTypes:
+    - typeName: AdditionalCommentNode
+      baseTypeName: StringUiNode
+
+    - typeName: RelatedPartyListNode
+      baseTypeName: ListUiNode
+      itemTypeName: RelatedPartyNode
+      childTypes:
+      - typeName: RelatedPartyNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ThirdPartyTypeNode}
+        - {typeName: ThirdPartyDescriptionNode}
+        - {typeName: ThirdPartyTitleNode}
+        - {typeName: ThirdPartyFirstNameNode}
+        - {typeName: ThirdPartyLastNameNode}
+        - {typeName: ThirdPartyDobNode}
+        - {typeName: ThirdPartyCompanyNameNode}
+        - {typeName: ThirdPartyAddressNode}
+        - {typeName: ThirdPartyWorkPhoneNode}
+        - {typeName: ThirdPartyEmailNode}
+        childTypes:
+        - typeName: ThirdPartyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyTitleNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyLastNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyDobNode
+          baseTypeName: DobNode
+
+        - typeName: ThirdPartyCompanyNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: ThirdPartyWorkPhoneNode
+          baseTypeName: TelephoneNode
+
+        - typeName: ThirdPartyEmailNode
+          baseTypeName: StringUiNode
 
   - typeName: SubmissionNode
     baseTypeName: ObjectUiNode
@@ -1065,6 +1388,24 @@ commonTypes:
   - {propertyName: maxAge, value: 100}
   rules:
   - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}
+
+- typeName: SelectAccountHolderListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: SelectAccountHolderNode
+  childTypes:
+  - typeName: SelectAccountHolderNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: AccountHolderReferenceNode}
+    - {typeName: SelectAccountHolderFlagNode}
+    childTypes:
+    - typeName: AccountHolderReferenceNode
+      baseTypeName: ReferenceUiNode
+
+    - typeName: SelectAccountHolderFlagNode
+      baseTypeName: BooleanUiNode
 
 - typeName: OwnershipListNode
   baseTypeName: ListUiNode

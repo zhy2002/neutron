@@ -84,7 +84,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     public ${typeName}(@NotNull ${typeName}Context context) {
         super(context);
 <#else>
-    public ${typeName}(@NotNull ${parentType.typeName} parent, String name) {
+    public ${typeName}(@NotNull ${parentType.genericTypeName} parent, String name) {
         super(parent, name);
 </#if>
     }

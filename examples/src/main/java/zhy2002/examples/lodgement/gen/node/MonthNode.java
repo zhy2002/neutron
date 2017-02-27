@@ -30,7 +30,7 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
         return component.getMonthNodeRuleProvider();
     }
 
-    public MonthNode(@NotNull MonthYearNode parent, String name) {
+    public MonthNode(@NotNull MonthYearNode<?> parent, String name) {
         super(parent, name);
     }
 

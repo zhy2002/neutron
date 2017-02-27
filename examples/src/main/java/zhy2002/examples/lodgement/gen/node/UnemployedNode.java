@@ -42,7 +42,7 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
         return component.getUnemployedNodeRuleProvider();
     }
 
-    public UnemployedNode(@NotNull EmploymentNode parent, String name) {
+    public UnemployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

@@ -29,7 +29,7 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>> {
         return component.getPostcodeNodeRuleProvider();
     }
 
-    public PostcodeNode(@NotNull AddressNode parent, String name) {
+    public PostcodeNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }
 

@@ -29,7 +29,7 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
         return component.getSuburbNodeRuleProvider();
     }
 
-    public SuburbNode(@NotNull AddressNode parent, String name) {
+    public SuburbNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }
 

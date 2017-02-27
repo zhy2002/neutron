@@ -15,6 +15,7 @@ interface PropertyNodeChildFactory {
     PropertyTypeNode createPropertyTypeNode();
     PropertySubTypeNode createPropertySubTypeNode();
     PropertyPurseNode createPropertyPurseNode();
+    PropertyOwnershipListNode createPropertyOwnershipListNode();
 }
 
 @Singleton
@@ -27,6 +28,8 @@ public class PropertyNodeChildProvider {
     MembersInjector<PropertyWeeklyRentNode> propertyWeeklyRentNodeInjector;
     @Inject
     MembersInjector<PropertyAddressNode> propertyAddressNodeInjector;
+    @Inject
+    MembersInjector<PropertyOwnershipListNode> propertyOwnershipListNodeInjector;
     @Inject
     MembersInjector<RentedFlagNode> rentedFlagNodeInjector;
     @Inject
@@ -55,6 +58,10 @@ public class PropertyNodeChildProvider {
 
     protected MembersInjector<PropertyAddressNode> getPropertyAddressNodeInjector() {
         return this.propertyAddressNodeInjector;
+    }
+
+    protected MembersInjector<PropertyOwnershipListNode> getPropertyOwnershipListNodeInjector() {
+        return this.propertyOwnershipListNodeInjector;
     }
 
     protected MembersInjector<RentedFlagNode> getRentedFlagNodeInjector() {
@@ -167,6 +174,16 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyPurseNode(PropertyPurseNode node) {
     }
 
+    protected PropertyOwnershipListNode newPropertyOwnershipListNode(
+        PropertyNode parent,
+        String name
+    ) {
+        return new PropertyOwnershipListNode(parent, name);
+    }
+
+    protected void configurePropertyOwnershipListNode(PropertyOwnershipListNode node) {
+    }
+
     PropertyNodeChildFactory createFactory(PropertyNode parent) {
         return new PropertyNodeChildFactoryImpl(parent);
     }
@@ -248,6 +265,14 @@ public class PropertyNodeChildProvider {
             PropertyPurseNode node = newPropertyPurseNode(parent, "propertyPurseNode");
             propertyPurseNodeInjector.injectMembers(node);
             configurePropertyPurseNode(node);
+            return node;
+        }
+
+        @Override
+        public PropertyOwnershipListNode createPropertyOwnershipListNode() {
+            PropertyOwnershipListNode node = newPropertyOwnershipListNode(parent, "propertyOwnershipListNode");
+            propertyOwnershipListNodeInjector.injectMembers(node);
+            configurePropertyOwnershipListNode(node);
             return node;
         }
 

@@ -275,6 +275,12 @@ public class NodeInfo extends CodeGenInfo {
 
         if (getParentBaseTypeName() != null) {
             setAbstractNode(true);
+        } else {
+            if (isAbstractNode()) {
+                if (getBaseTypeName().equals("ListUiNode")) {
+                    setParentBaseTypeName("ObjectUiNode<?>");
+                }
+            }
         }
 
         if (getParentBaseTypeName() != null) {

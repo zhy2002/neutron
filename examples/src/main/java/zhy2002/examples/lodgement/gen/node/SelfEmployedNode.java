@@ -40,7 +40,7 @@ public class SelfEmployedNode extends EmployedNode {
         return component.getSelfEmployedNodeRuleProvider();
     }
 
-    public SelfEmployedNode(@NotNull EmploymentNode parent, String name) {
+    public SelfEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

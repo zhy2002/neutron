@@ -30,7 +30,7 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
         return component.getEmploymentTypeNodeRuleProvider();
     }
 
-    public EmploymentTypeNode(@NotNull EmploymentNode parent, String name) {
+    public EmploymentTypeNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

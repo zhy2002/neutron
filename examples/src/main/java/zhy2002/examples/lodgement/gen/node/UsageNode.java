@@ -17,6 +17,7 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
     private OwnedOutrightFlagNode ownedOutrightFlagNode;
     private PrimarySecurityFlagNode primarySecurityFlagNode;
     private ApprovalInPrincipleFlagNode approvalInPrincipleFlagNode;
+    private ExistingMortgageListNode existingMortgageListNode;
 
     private UsageNodeChildFactory childFactory;
 
@@ -71,6 +72,11 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
         return approvalInPrincipleFlagNode;
     }
 
+    @JsMethod
+    public ExistingMortgageListNode getExistingMortgageListNode() {
+        return existingMortgageListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -84,6 +90,8 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
         children.add(primarySecurityFlagNode);
         approvalInPrincipleFlagNode = childFactory.createApprovalInPrincipleFlagNode();
         children.add(approvalInPrincipleFlagNode);
+        existingMortgageListNode = childFactory.createExistingMortgageListNode();
+        children.add(existingMortgageListNode);
         return children;
     }
 

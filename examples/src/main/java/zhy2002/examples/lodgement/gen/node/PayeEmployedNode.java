@@ -38,7 +38,7 @@ public class PayeEmployedNode extends EmployedNode {
         return component.getPayeEmployedNodeRuleProvider();
     }
 
-    public PayeEmployedNode(@NotNull EmploymentNode parent, String name) {
+    public PayeEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

@@ -39,7 +39,7 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
         return component.getRetiredEmploymentNodeRuleProvider();
     }
 
-    public RetiredEmploymentNode(@NotNull EmploymentNode parent, String name) {
+    public RetiredEmploymentNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

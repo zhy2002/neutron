@@ -11,6 +11,7 @@ interface UsageNodeChildFactory {
     OwnedOutrightFlagNode createOwnedOutrightFlagNode();
     PrimarySecurityFlagNode createPrimarySecurityFlagNode();
     ApprovalInPrincipleFlagNode createApprovalInPrincipleFlagNode();
+    ExistingMortgageListNode createExistingMortgageListNode();
 }
 
 @Singleton
@@ -25,6 +26,8 @@ public class UsageNodeChildProvider {
     MembersInjector<BeingPurchasedFlagNode> beingPurchasedFlagNodeInjector;
     @Inject
     MembersInjector<UsedAsSecurityFlagNode> usedAsSecurityFlagNodeInjector;
+    @Inject
+    MembersInjector<ExistingMortgageListNode> existingMortgageListNodeInjector;
 
     @Inject
     protected UsageNodeChildProvider () {}
@@ -47,6 +50,10 @@ public class UsageNodeChildProvider {
 
     protected MembersInjector<UsedAsSecurityFlagNode> getUsedAsSecurityFlagNodeInjector() {
         return this.usedAsSecurityFlagNodeInjector;
+    }
+
+    protected MembersInjector<ExistingMortgageListNode> getExistingMortgageListNodeInjector() {
+        return this.existingMortgageListNodeInjector;
     }
 
     protected UsedAsSecurityFlagNode newUsedAsSecurityFlagNode(
@@ -99,6 +106,16 @@ public class UsageNodeChildProvider {
     protected void configureApprovalInPrincipleFlagNode(ApprovalInPrincipleFlagNode node) {
     }
 
+    protected ExistingMortgageListNode newExistingMortgageListNode(
+        UsageNode parent,
+        String name
+    ) {
+        return new ExistingMortgageListNode(parent, name);
+    }
+
+    protected void configureExistingMortgageListNode(ExistingMortgageListNode node) {
+    }
+
     UsageNodeChildFactory createFactory(UsageNode parent) {
         return new UsageNodeChildFactoryImpl(parent);
     }
@@ -148,6 +165,14 @@ public class UsageNodeChildProvider {
             ApprovalInPrincipleFlagNode node = newApprovalInPrincipleFlagNode(parent, "approvalInPrincipleFlagNode");
             approvalInPrincipleFlagNodeInjector.injectMembers(node);
             configureApprovalInPrincipleFlagNode(node);
+            return node;
+        }
+
+        @Override
+        public ExistingMortgageListNode createExistingMortgageListNode() {
+            ExistingMortgageListNode node = newExistingMortgageListNode(parent, "existingMortgageListNode");
+            existingMortgageListNodeInjector.injectMembers(node);
+            configureExistingMortgageListNode(node);
             return node;
         }
 

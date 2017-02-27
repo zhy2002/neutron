@@ -29,7 +29,7 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>> {
         return component.getCountryNodeRuleProvider();
     }
 
-    public CountryNode(@NotNull AddressNode parent, String name) {
+    public CountryNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }
 

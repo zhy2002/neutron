@@ -2,20 +2,21 @@ todo
 ----------------- 
 1. context menu
 2. todo loading spinner
+3. integrate with font awesome
+4. Per-lender config override (white label)
+  * Use 'profile' dagger component/module to provide root node configured for a lender
+5 implement router - navigate to view via url
 
 * Cancel (stop here or rollback) an event or a cycle from within a rule
 * performance tuning
 * implement rule priority
-* implement router - navigate to view via url
 * implement load defaults functionality (auto populate)
 * implement layout components to reduce duplication
-* write a proper code gen tool with friendly logging and error messages
 * deferred event execution - if the user types in many characters quickly
   we should wait for a pause before we do an update. 
-* per-lender config override (white label)
-* bean validation of domain info
+
+* 
 * simplify event binding api
-* integrate with font awesome
 * i18n
 
 
@@ -74,11 +75,11 @@ Goals
 ------------------
 * Decouple UI logic (GWT) from UI rendering (React & css)
 * Reuse UI logic such as validation on the server side
+* strong typing as much as possible
 * Small file and single responsibility so as to minimize merge conflict
 * Separation and well defined interface between generated code and customization (mismatch is caught by compiler)
 * Whole UI state can be serialized
 * Verify UI logic in unit tests and rendering result in screenshots
-* strong typing as much as possible
 * improve interop development experience
 * effect of rule execution should not depend on order of state change.
 same state via same rules -> same result state
@@ -90,6 +91,11 @@ Problems
   debug as a JSX application with browser sync and all the goodies (to be implemented).
   * Should verify Java code behaviour in unit tests first to reduce the need for debugging 
   in super dev mode.
+
+2. Code gen error reporting does not indicate line number
+  * The current code gen scheme is geared toward fast prototyping. When you edit desc.yml there is no intelli sense or 
+  on-the-fly error checking. 
+  * Error message can be difficult to understand as they come from different sources (Yml, Bean Validation, custom error and FTL).
 
 Functionality Check List
 ------------------
@@ -150,6 +156,12 @@ Functionality Check List
   * Kotlin and Scala.js are not mature enough (e.g. no tree shaking when compile).
   * Even though Java is a bit verbose it is still the preferred source language because of its popularity.
   
+9. Bean validation of domain info
+  * todo might need to write additional validators for better error reporting.
+  
+10. Write a proper code gen tool with friendly logging and error messages.
+  * The current code gen scheme is fine.
+
 # Node Roles
 In the node hierarchy a node can have one of three roles:
 

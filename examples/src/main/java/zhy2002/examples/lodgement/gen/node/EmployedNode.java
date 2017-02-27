@@ -29,7 +29,7 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
     @Override
     protected abstract EmployedNodeRuleProvider<?> getRuleProvider();
 
-    public EmployedNode(@NotNull EmploymentNode parent, String name) {
+    public EmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

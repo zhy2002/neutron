@@ -40,6 +40,7 @@ public class ChangeApplicationTypeRuleImpl extends ChangeApplicationTypeRule {
             spouseNode.setDisabled(false);
         } else {
             spouseNode.setDisabled(true);
+            spouseNode.setValue("");
         }
     }
 }

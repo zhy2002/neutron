@@ -29,7 +29,7 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>> {
         return component.getAddressLineNodeRuleProvider();
     }
 
-    public AddressLineNode(@NotNull AddressNode parent, String name) {
+    public AddressLineNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }
 
