@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
     @Inject
-    public TrustTypeChangedRuleImpl(@Owner PersonTrustTypeNode owner) {
+    public TrustTypeChangedRuleImpl(@Owner TrustTypeNode owner) {
         super(owner);
     }
 
@@ -33,15 +33,15 @@ public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
     }
 
     private void onChange() {
-        PersonTrustNode personTrustNode = getPersonTrustTypeNode().getParent();
-        if (getPersonTrustTypeNode().hasValue()) {
-            personTrustNode.getPersonTrustNameNode().setDisabled(false);
-            personTrustNode.getPersonTrustRegistrationDateNode().setDisabled(false);
+        BaseTrustNode<?> personTrustNode = getTrustTypeNode().getParent();
+        if (getTrustTypeNode().hasValue()) {
+            personTrustNode.getTrustNameNode().setDisabled(false);
+            personTrustNode.getTrustRegistrationDateNode().setDisabled(false);
         } else {
-            personTrustNode.getPersonTrustNameNode().setDisabled(true);
-            personTrustNode.getPersonTrustNameNode().setValue("");
-            personTrustNode.getPersonTrustRegistrationDateNode().setDisabled(true);
-            personTrustNode.getPersonTrustRegistrationDateNode().setValue("");
+            personTrustNode.getTrustNameNode().setDisabled(true);
+            personTrustNode.getTrustNameNode().setValue("");
+            personTrustNode.getTrustRegistrationDateNode().setDisabled(true);
+            personTrustNode.getTrustRegistrationDateNode().setValue("");
         }
 
     }

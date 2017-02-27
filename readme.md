@@ -15,6 +15,7 @@ todo
   - context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
 9. implement rule priority
 10. i18n
+11. Generate per-profile constants and assets
 
 ### Engine - find a use case before doing these improvements
 * more control about the rule logic, e.g. abort cycle, abort tick, cycle config, phase config, etc.

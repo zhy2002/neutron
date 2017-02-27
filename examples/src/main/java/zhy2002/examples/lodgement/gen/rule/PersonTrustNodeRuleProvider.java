@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.PersonTrustNode;
 
 @PersonTrustNodeScope
 public class PersonTrustNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<PersonTrustNode> {
+    extends BaseTrustNodeRuleProvider<PersonTrustNode> {
 
     @Inject
     public PersonTrustNodeRuleProvider() {}

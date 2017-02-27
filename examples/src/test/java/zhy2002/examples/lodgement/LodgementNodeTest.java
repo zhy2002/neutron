@@ -266,12 +266,12 @@ public class LodgementNodeTest {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
         PersonTrustNode personTrustNode = personNode.getPersonTrustNode();
-        assertThat(personTrustNode.getPersonTrustNameNode().isDisabled(), equalTo(true));
-        assertThat(personTrustNode.getPersonTrustRegistrationDateNode().isDisabled(), equalTo(true));
+        assertThat(personTrustNode.getTrustNameNode().isDisabled(), equalTo(true));
+        assertThat(personTrustNode.getTrustRegistrationDateNode().isDisabled(), equalTo(true));
 
-        personTrustNode.getPersonTrustTypeNode().setValue("Family Trust");
-        assertThat(personTrustNode.getPersonTrustNameNode().isDisabled(), equalTo(false));
-        assertThat(personTrustNode.getPersonTrustRegistrationDateNode().isDisabled(), equalTo(false));
+        personTrustNode.getTrustTypeNode().setValue("Family Trust");
+        assertThat(personTrustNode.getTrustNameNode().isDisabled(), equalTo(false));
+        assertThat(personTrustNode.getTrustRegistrationDateNode().isDisabled(), equalTo(false));
     }
 
     @Test

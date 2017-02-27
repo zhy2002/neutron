@@ -19,6 +19,10 @@ public class PersonTrustNodeModule {
         return owner;
     }
 
+    @Provides @PersonTrustNodeScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
+        return owner;
+    }
+
     @Provides @PersonTrustNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

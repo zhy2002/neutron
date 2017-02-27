@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.CompanyTrustNode;
+import zhy2002.examples.lodgement.gen.node.TrustCountryNode;
 
 
-@CompanyTrustNodeScope
-public class CompanyTrustNodeRuleProvider
-    extends BaseTrustNodeRuleProvider<CompanyTrustNode> {
+@TrustCountryNodeScope
+public class TrustCountryNodeRuleProvider
+    extends BaseCountryNodeRuleProvider<TrustCountryNode> {
 
     @Inject
-    public CompanyTrustNodeRuleProvider() {}
+    public TrustCountryNodeRuleProvider() {}
 
     @Override
-    public void initializeState(CompanyTrustNode node) {
+    public void initializeState(TrustCountryNode node) {
     }
 
 

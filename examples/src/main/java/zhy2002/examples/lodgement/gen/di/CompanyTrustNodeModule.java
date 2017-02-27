@@ -19,6 +19,10 @@ public class CompanyTrustNodeModule {
         return owner;
     }
 
+    @Provides @CompanyTrustNodeScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
+        return owner;
+    }
+
     @Provides @CompanyTrustNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

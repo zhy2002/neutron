@@ -4,13 +4,13 @@ import zhy2002.neutron.*;
 import zhy2002.examples.lodgement.gen.node.*;
 
 
-public abstract class TrustTypeChangedRule extends UiNodeRule<PersonTrustTypeNode> {
+public abstract class TrustTypeChangedRule extends UiNodeRule<TrustTypeNode> {
 
-    public TrustTypeChangedRule(PersonTrustTypeNode owner) {
+    public TrustTypeChangedRule(TrustTypeNode owner) {
         super(owner);
     }
 
-    protected PersonTrustTypeNode getPersonTrustTypeNode() {
+    protected TrustTypeNode getTrustTypeNode() {
         return getOwner();
     }
 }

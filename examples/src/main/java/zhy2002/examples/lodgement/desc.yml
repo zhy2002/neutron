@@ -237,44 +237,7 @@ rootType:
           - {propertyName: nodeLabel, value: '"Employment"'}
 
       - typeName: PersonTrustNode
-        baseTypeName: ObjectUiNode
-        children:
-        - {typeName: PersonTrustNameNode}
-        - {typeName: PersonTrustRegistrationDateNode}
-        - {typeName: PersonTrustTypeNode}
-        - {typeName: PersonTrustCountryNode}
-        - {typeName: PersonTrustAddressNode}
-        - {typeName: PersonTrustSettlorNotRequiredReasonNode}
-        - {typeName: PersonTrustIndustryNode}
-        childTypes:
-        - typeName: PersonTrustTypeNode
-          baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object}
-          init:
-          - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
-          rules:
-          - {typeName: TrustTypeChangedRule}
-
-        - typeName: PersonTrustNameNode
-          baseTypeName: StringUiNode
-
-        - typeName: PersonTrustRegistrationDateNode
-          baseTypeName: StringUiNode
-
-        - typeName: PersonTrustCountryNode
-          baseTypeName: BaseCountryNode
-          init:
-          - {propertyName: required, value: 'true'}
-
-        - typeName: PersonTrustAddressNode
-          baseTypeName: AddressNode
-
-        - typeName: PersonTrustSettlorNotRequiredReasonNode
-          baseTypeName: StringUiNode
-
-        - typeName: PersonTrustIndustryNode
-          baseTypeName: StringUiNode
+        baseTypeName: BaseTrustNode
 
       - typeName: PersonPrivacyNode
         baseTypeName: BasePrivacyNode
@@ -308,8 +271,7 @@ rootType:
         children: []
 
       - typeName: CompanyTrustNode
-        baseTypeName: ObjectUiNode
-        children: []
+        baseTypeName: BaseTrustNode
 
       - typeName: CompanyPrivacyNode
         baseTypeName: BasePrivacyNode
@@ -1457,4 +1419,66 @@ commonTypes:
     itemTypeName: CreditHistoryNode
     childTypes:
     - typeName: CreditHistoryNode
+      baseTypeName: StringUiNode
+
+- typeName: BaseTrustNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: TrustNameNode}
+  - {typeName: TrustRegistrationDateNode}
+  - {typeName: TrustTypeNode}
+  - {typeName: TrustCountryNode}
+  - {typeName: TrustAddressNode}
+  - {typeName: TrustIndustryNode}
+  - {typeName: TrustSettlorNotRequiredReasonNode}
+  - {typeName: TrustBeneficiaryListNode}
+  - {typeName: TrustSettlorListNode}
+  - {typeName: TrustBeneficialOwnerListNode}
+  - {typeName: TrustBeneficiaryClassListNode}
+  childTypes:
+  - typeName: TrustTypeNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
+    rules:
+    - {typeName: TrustTypeChangedRule}
+
+  - typeName: TrustNameNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustRegistrationDateNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustCountryNode
+    baseTypeName: BaseCountryNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+  - typeName: TrustAddressNode
+    baseTypeName: AddressNode
+
+  - typeName: TrustSettlorNotRequiredReasonNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustIndustryNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustBeneficiaryListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustSettlorListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustBeneficialOwnerListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustBeneficiaryClassListNode
+    baseTypeName: ListUiNode
+    itemTypeName: TrustBeneficiaryClassNode
+    childTypes:
+    - typeName: TrustBeneficiaryClassNode
       baseTypeName: StringUiNode

@@ -5,19 +5,12 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.CompanyTrustNode;
+import zhy2002.examples.lodgement.gen.node.BaseTrustNode;
 
 
-@CompanyTrustNodeScope
-public class CompanyTrustNodeRuleProvider
-    extends BaseTrustNodeRuleProvider<CompanyTrustNode> {
 
-    @Inject
-    public CompanyTrustNodeRuleProvider() {}
-
-    @Override
-    public void initializeState(CompanyTrustNode node) {
-    }
+public abstract class BaseTrustNodeRuleProvider<N extends BaseTrustNode<?>>
+    extends ObjectUiNodeRuleProvider <N> {
 
 
 

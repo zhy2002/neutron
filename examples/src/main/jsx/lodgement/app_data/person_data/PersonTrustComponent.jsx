@@ -13,27 +13,27 @@ export default class PersonTrustComponent extends NeutronComponent {
             <div className="container-fluid compact person-trust-component">
                 <div className="row">
                     <div className="col-md-3">
-                        <SelectInputComponent model={model.getPersonTrustTypeNode()}/>
+                        <SelectInputComponent model={model.getTrustTypeNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getPersonTrustNameNode()}/>
+                        <TextInputComponent model={model.getTrustNameNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <DateInputComponent model={model.getPersonTrustRegistrationDateNode()}/>
+                        <DateInputComponent model={model.getTrustRegistrationDateNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <SelectInputComponent model={model.getPersonTrustCountryNode()}/>
+                        <SelectInputComponent model={model.getTrustCountryNode()}/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <AddressComponent model={model.getPersonTrustAddressNode()}/>
+                        <AddressComponent model={model.getTrustAddressNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getPersonTrustSettlorNotRequiredReasonNode()}/>
+                        <TextInputComponent model={model.getTrustSettlorNotRequiredReasonNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getPersonTrustIndustryNode()}/>
+                        <TextInputComponent model={model.getTrustIndustryNode()}/>
                     </div>
                 </div>
             </div>
