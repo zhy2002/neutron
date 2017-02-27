@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode> {
+public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -29,7 +29,7 @@ public class LegalActionNode extends YesNoOptionNode<PersonPrivacyNode> {
         return component.getLegalActionNodeRuleProvider();
     }
 
-    public LegalActionNode(@NotNull PersonPrivacyNode parent, String name) {
+    public LegalActionNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
     }
 

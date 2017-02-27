@@ -277,27 +277,7 @@ rootType:
           baseTypeName: StringUiNode
 
       - typeName: PersonPrivacyNode
-        baseTypeName: ObjectUiNode
-        children:
-        - {typeName: CreditCheckFlagNode}
-        - {typeName: ThirdPartyDisclosureFlagNode}
-        - {typeName: LegalActionNode}
-        childTypes:
-        - typeName: CreditCheckFlagNode
-          baseTypeName: BooleanUiNode
-          init:
-          - {propertyName: fixedValue, value: 'true'}
-        
-        - typeName: ThirdPartyDisclosureFlagNode
-          baseTypeName: BooleanUiNode
-          init:
-          - {propertyName: fixedValue, value: 'true'}
-
-        - typeName: LegalActionNode
-          baseTypeName: YesNoOptionNode
-          init:
-          - {propertyName: disabled, value: 'true'}
-          - {propertyName: value, value: '"Yes"'}
+        baseTypeName: BasePrivacyNode
 
       - typeName: PersonOtherIncomeListNode
         baseTypeName: BaseOtherIncomeListNode
@@ -332,8 +312,7 @@ rootType:
         children: []
 
       - typeName: CompanyPrivacyNode
-        baseTypeName: ObjectUiNode
-        children: []
+        baseTypeName: BasePrivacyNode
 
       - typeName: CompanyOtherIncomeListNode
         baseTypeName: BaseOtherIncomeListNode
@@ -1409,40 +1388,73 @@ commonTypes:
   init:
   - {propertyName: nodeLabel, value: '"Other Incomes"'}
   childTypes:
-        - typeName: OtherIncomeNode
-          baseTypeName: ObjectUiNode
-          children:
-          - {typeName: OtherIncomeAddBackTypeNode}
-          - {typeName: OtherIncomeAmountNode}
-          - {typeName: OtherIncomeDescriptionNode}
-          - {typeName: OtherIncomePreviousYearNode}
-          - {typeName: OtherIncomeTypeNode}
-          childTypes:
-          - typeName: OtherIncomeTypeNode
-            baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object}
-            init:
-            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
-            - {propertyName: required, value: 'true'}
-            - {propertyName: value, value: '"Other Income"'}
-            rules:
-            - {typeName: OtherIncomeTypeChangeRule}
+  - typeName: OtherIncomeNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: OtherIncomeAddBackTypeNode}
+    - {typeName: OtherIncomeAmountNode}
+    - {typeName: OtherIncomeDescriptionNode}
+    - {typeName: OtherIncomePreviousYearNode}
+    - {typeName: OtherIncomeTypeNode}
+    childTypes:
+    - typeName: OtherIncomeTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
+      - {propertyName: required, value: 'true'}
+      - {propertyName: value, value: '"Other Income"'}
+      rules:
+      - {typeName: OtherIncomeTypeChangeRule}
 
-          - typeName: OtherIncomeAddBackTypeNode
-            baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object}
-            init:
-            - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
+    - typeName: OtherIncomeAddBackTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
 
-          - typeName: OtherIncomeAmountNode
-            baseTypeName: BaseCurrencyNode
-            init:
-            - {propertyName: required, value: 'true'}
+    - typeName: OtherIncomeAmountNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: required, value: 'true'}
 
-          - typeName: OtherIncomePreviousYearNode
-            baseTypeName: BooleanUiNode
+    - typeName: OtherIncomePreviousYearNode
+      baseTypeName: BooleanUiNode
 
-          - typeName: OtherIncomeDescriptionNode
-            baseTypeName: StringUiNode
+    - typeName: OtherIncomeDescriptionNode
+      baseTypeName: StringUiNode
+
+- typeName: BasePrivacyNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: CreditCheckFlagNode}
+  - {typeName: ThirdPartyDisclosureFlagNode}
+  - {typeName: LegalActionNode}
+  - {typeName: CreditHistoryListNode}
+  childTypes:
+  - typeName: CreditCheckFlagNode
+    baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+
+  - typeName: ThirdPartyDisclosureFlagNode
+    baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+
+  - typeName: LegalActionNode
+    baseTypeName: YesNoOptionNode
+    init:
+    - {propertyName: disabled, value: 'true'}
+    - {propertyName: value, value: '"Yes"'}
+
+  - typeName: CreditHistoryListNode
+    baseTypeName: ListUiNode
+    itemTypeName: CreditHistoryNode
+    childTypes:
+    - typeName: CreditHistoryNode
+      baseTypeName: StringUiNode

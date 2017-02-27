@@ -5,26 +5,33 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
-interface PersonPrivacyNodeChildFactory {
+interface BasePrivacyNodeChildFactory {
     CreditCheckFlagNode createCreditCheckFlagNode();
     ThirdPartyDisclosureFlagNode createThirdPartyDisclosureFlagNode();
     LegalActionNode createLegalActionNode();
+    CreditHistoryListNode createCreditHistoryListNode();
 }
 
 @Singleton
-public class PersonPrivacyNodeChildProvider {
+public class BasePrivacyNodeChildProvider {
     @Inject
     MembersInjector<ThirdPartyDisclosureFlagNode> thirdPartyDisclosureFlagNodeInjector;
+    @Inject
+    MembersInjector<CreditHistoryListNode> creditHistoryListNodeInjector;
     @Inject
     MembersInjector<LegalActionNode> legalActionNodeInjector;
     @Inject
     MembersInjector<CreditCheckFlagNode> creditCheckFlagNodeInjector;
 
     @Inject
-    protected PersonPrivacyNodeChildProvider () {}
+    protected BasePrivacyNodeChildProvider () {}
 
     protected MembersInjector<ThirdPartyDisclosureFlagNode> getThirdPartyDisclosureFlagNodeInjector() {
         return this.thirdPartyDisclosureFlagNodeInjector;
+    }
+
+    protected MembersInjector<CreditHistoryListNode> getCreditHistoryListNodeInjector() {
+        return this.creditHistoryListNodeInjector;
     }
 
     protected MembersInjector<LegalActionNode> getLegalActionNodeInjector() {
@@ -36,7 +43,7 @@ public class PersonPrivacyNodeChildProvider {
     }
 
     protected CreditCheckFlagNode newCreditCheckFlagNode(
-        PersonPrivacyNode parent,
+        BasePrivacyNode<?> parent,
         String name
     ) {
         return new CreditCheckFlagNode(parent, name);
@@ -46,7 +53,7 @@ public class PersonPrivacyNodeChildProvider {
     }
 
     protected ThirdPartyDisclosureFlagNode newThirdPartyDisclosureFlagNode(
-        PersonPrivacyNode parent,
+        BasePrivacyNode<?> parent,
         String name
     ) {
         return new ThirdPartyDisclosureFlagNode(parent, name);
@@ -56,7 +63,7 @@ public class PersonPrivacyNodeChildProvider {
     }
 
     protected LegalActionNode newLegalActionNode(
-        PersonPrivacyNode parent,
+        BasePrivacyNode<?> parent,
         String name
     ) {
         return new LegalActionNode(parent, name);
@@ -65,15 +72,25 @@ public class PersonPrivacyNodeChildProvider {
     protected void configureLegalActionNode(LegalActionNode node) {
     }
 
-    PersonPrivacyNodeChildFactory createFactory(PersonPrivacyNode parent) {
-        return new PersonPrivacyNodeChildFactoryImpl(parent);
+    protected CreditHistoryListNode newCreditHistoryListNode(
+        BasePrivacyNode<?> parent,
+        String name
+    ) {
+        return new CreditHistoryListNode(parent, name);
     }
 
-    private class PersonPrivacyNodeChildFactoryImpl implements PersonPrivacyNodeChildFactory {
+    protected void configureCreditHistoryListNode(CreditHistoryListNode node) {
+    }
 
-        private final PersonPrivacyNode parent;
+    BasePrivacyNodeChildFactory createFactory(BasePrivacyNode<?> parent) {
+        return new BasePrivacyNodeChildFactoryImpl(parent);
+    }
+
+    private class BasePrivacyNodeChildFactoryImpl implements BasePrivacyNodeChildFactory {
+
+        private final BasePrivacyNode<?> parent;
         
-        private PersonPrivacyNodeChildFactoryImpl(PersonPrivacyNode parent) {
+        private BasePrivacyNodeChildFactoryImpl(BasePrivacyNode<?> parent) {
             this.parent = parent;
         }
 
@@ -98,6 +115,14 @@ public class PersonPrivacyNodeChildProvider {
             LegalActionNode node = newLegalActionNode(parent, "legalActionNode");
             legalActionNodeInjector.injectMembers(node);
             configureLegalActionNode(node);
+            return node;
+        }
+
+        @Override
+        public CreditHistoryListNode createCreditHistoryListNode() {
+            CreditHistoryListNode node = newCreditHistoryListNode(parent, "creditHistoryListNode");
+            creditHistoryListNodeInjector.injectMembers(node);
+            configureCreditHistoryListNode(node);
             return node;
         }
 

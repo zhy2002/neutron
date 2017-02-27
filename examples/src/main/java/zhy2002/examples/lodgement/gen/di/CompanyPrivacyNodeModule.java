@@ -19,6 +19,10 @@ public class CompanyPrivacyNodeModule {
         return owner;
     }
 
+    @Provides @CompanyPrivacyNodeScope @Owner BasePrivacyNode<?> provideBasePrivacyNode() {
+        return owner;
+    }
+
     @Provides @CompanyPrivacyNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

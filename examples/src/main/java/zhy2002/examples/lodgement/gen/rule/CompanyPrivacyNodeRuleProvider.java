@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.CompanyPrivacyNode;
 
 @CompanyPrivacyNodeScope
 public class CompanyPrivacyNodeRuleProvider
-    extends ObjectUiNodeRuleProvider<CompanyPrivacyNode> {
+    extends BasePrivacyNodeRuleProvider<CompanyPrivacyNode> {
 
     @Inject
     public CompanyPrivacyNodeRuleProvider() {}

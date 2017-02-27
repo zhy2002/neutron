@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.PersonPrivacyNode;
+import zhy2002.examples.lodgement.gen.node.CreditHistoryListNode;
 
 
-@PersonPrivacyNodeScope
-public class PersonPrivacyNodeRuleProvider
-    extends BasePrivacyNodeRuleProvider<PersonPrivacyNode> {
+@CreditHistoryListNodeScope
+public class CreditHistoryListNodeRuleProvider
+    extends ListUiNodeRuleProvider<CreditHistoryListNode> {
 
     @Inject
-    public PersonPrivacyNodeRuleProvider() {}
+    public CreditHistoryListNodeRuleProvider() {}
 
     @Override
-    public void initializeState(PersonPrivacyNode node) {
+    public void initializeState(CreditHistoryListNode node) {
     }
 
 
