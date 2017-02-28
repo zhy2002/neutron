@@ -4,13 +4,13 @@ import zhy2002.neutron.*;
 import zhy2002.examples.lodgement.gen.node.*;
 
 
-public abstract class HomeOrWorkPhoneRequiredRule extends UiNodeRule<BaseContactNode<?>> {
+public abstract class HomeOrWorkPhoneRequiredRule extends UiNodeRule<PersonContactNode> {
 
-    public HomeOrWorkPhoneRequiredRule(BaseContactNode<?> owner) {
+    public HomeOrWorkPhoneRequiredRule(PersonContactNode owner) {
         super(owner);
     }
 
-    protected BaseContactNode<?> getBaseContactNode() {
+    protected PersonContactNode getPersonContactNode() {
         return getOwner();
     }
 }

@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseContactNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private ContactTelephoneNode homePhoneNode;
     private ContactTelephoneNode workPhoneNode;
     private ContactTelephoneNode faxNumberNode;
     private MobileNumberNode mobileNumberNode;
@@ -35,11 +34,6 @@ public abstract class BaseContactNode<P extends ParentUiNode<?>> extends ObjectU
 
     public BaseContactNode(@NotNull P parent, String name) {
         super(parent, name);
-    }
-
-    @JsMethod
-    public ContactTelephoneNode getHomePhoneNode() {
-        return homePhoneNode;
     }
 
     @JsMethod
@@ -95,8 +89,6 @@ public abstract class BaseContactNode<P extends ParentUiNode<?>> extends ObjectU
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        homePhoneNode = childFactory.createHomePhoneNode();
-        children.add(homePhoneNode);
         workPhoneNode = childFactory.createWorkPhoneNode();
         children.add(workPhoneNode);
         faxNumberNode = childFactory.createFaxNumberNode();

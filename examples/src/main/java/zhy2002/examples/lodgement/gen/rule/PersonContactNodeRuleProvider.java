@@ -20,11 +20,14 @@ public class PersonContactNodeRuleProvider
     }
 
 
+    @Inject
+    Provider<HomeOrWorkPhoneRequiredRule> homeOrWorkPhoneRequiredRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
+            createdRules.add(homeOrWorkPhoneRequiredRuleProvider.get());
     }
 
 }

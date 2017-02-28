@@ -168,6 +168,13 @@ rootType:
 
       - typeName: PersonContactNode
         baseTypeName: BaseContactNode
+        rules:
+          - {typeName: HomeOrWorkPhoneRequiredRule}
+        children:
+        - {typeName: PersonHomePhoneNode}
+        childTypes:
+        - typeName: PersonHomePhoneNode
+          baseTypeName: TelephoneNode
 
       - typeName: CurrentEmploymentListNode
         baseTypeName: ListUiNode
@@ -219,10 +226,75 @@ rootType:
       childTypes:
       - typeName: CompanyGeneralNode
         baseTypeName: ObjectUiNode
-        children: []
+        children:
+        - {typeName: CompanyApplicantTypeNode}
+        - {typeName: CompanyPrimaryApplicantFlagNode}
+        - {typeName: CompanyApplicationTypeNode}
+        - {typeName: CompanyRegisteredNameNode}
+        - {typeName: CompanyTypeNode}
+        - {typeName: CompanyDescriptionNode}
+        - {typeName: CompanyIndustryNode}
+        - {typeName: CompanyAbnNode}
+        - {typeName: CompanyAcnNode}
+        - {typeName: CompanyAbrnNode}
+        - {typeName: CompanyRegistrationDateNode}
+        - {typeName: CompanyRegistrationStateNode}
+        - {typeName: CompanySelectDirectorNode}
+        - {typeName: CompanySelectBeneficialOwnerNode}
+        childTypes:
+        - typeName: CompanyApplicantTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyPrimaryApplicantFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: CompanyApplicationTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegisteredNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyIndustryNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAbnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAcnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAbrnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegistrationDateNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegistrationStateNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanySelectDirectorNode
+          baseTypeName: SelectRelatedPersonListNode
+
+        - typeName: CompanySelectBeneficialOwnerNode
+          baseTypeName: SelectRelatedPersonListNode
 
       - typeName: CompanyContactNode
         baseTypeName: BaseContactNode
+        children:
+        - {typeName: CompanyContactFirstNameNode}
+        - {typeName: CompanyContactLastNameNode}
+        childTypes:
+        - typeName: CompanyContactFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyContactLastNameNode
+          baseTypeName: StringUiNode
 
       - typeName: CompanyTrustNode
         baseTypeName: BaseTrustNode
@@ -1210,6 +1282,26 @@ commonTypes:
   rules:
   - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}
 
+- typeName: SelectRelatedPersonListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: SelectRelatedPersonNode
+  childTypes:
+  - typeName: SelectRelatedPersonNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: RelatedPersonReferenceNode}
+    - {typeName: SelectRelatedPersonFlagNode}
+    childTypes:
+    - typeName: RelatedPersonReferenceNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
+
+    - typeName: SelectRelatedPersonFlagNode
+      baseTypeName: BooleanUiNode
+
 - typeName: SelectAccountHolderListNode
   baseTypeName: ListUiNode
   abstractNode: true
@@ -1443,10 +1535,7 @@ commonTypes:
   baseTypeName: ObjectUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
-  rules:
-  - {typeName: HomeOrWorkPhoneRequiredRule}
   children:
-  - {typeName: ContactTelephoneNode, name: homePhoneNode}
   - {typeName: ContactTelephoneNode, name: workPhoneNode}
   - {typeName: ContactTelephoneNode, name: faxNumberNode}
   - {typeName: MobileNumberNode}

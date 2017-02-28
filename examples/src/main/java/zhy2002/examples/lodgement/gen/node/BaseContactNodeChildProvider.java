@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 
 interface BaseContactNodeChildFactory {
-    ContactTelephoneNode createHomePhoneNode();
     ContactTelephoneNode createWorkPhoneNode();
     ContactTelephoneNode createFaxNumberNode();
     MobileNumberNode createMobileNumberNode();
@@ -65,16 +64,6 @@ public class BaseContactNodeChildProvider {
 
     protected MembersInjector<MovedToCurrentAddressNode> getMovedToCurrentAddressNodeInjector() {
         return this.movedToCurrentAddressNodeInjector;
-    }
-
-    protected ContactTelephoneNode newHomePhoneNode(
-        BaseContactNode<?> parent,
-        String name
-    ) {
-        return new ContactTelephoneNode(parent, name);
-    }
-
-    protected void configureHomePhoneNode(ContactTelephoneNode node) {
     }
 
     protected ContactTelephoneNode newWorkPhoneNode(
@@ -187,14 +176,6 @@ public class BaseContactNodeChildProvider {
         
         private BaseContactNodeChildFactoryImpl(BaseContactNode<?> parent) {
             this.parent = parent;
-        }
-
-        @Override
-        public ContactTelephoneNode createHomePhoneNode() {
-            ContactTelephoneNode node = newHomePhoneNode(parent, "homePhoneNode");
-            contactTelephoneNodeInjector.injectMembers(node);
-            configureHomePhoneNode(node);
-            return node;
         }
 
         @Override

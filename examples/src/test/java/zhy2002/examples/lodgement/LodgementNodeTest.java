@@ -113,7 +113,7 @@ public class LodgementNodeTest {
     public void phoneInfoShouldBeComplete() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        TelephoneNode<?> phoneNumberNode = personNode.getPersonContactNode().getHomePhoneNode();
+        TelephoneNode<?> phoneNumberNode = personNode.getPersonContactNode().getPersonHomePhoneNode();
 
         Predicate<ErrorNode> hasTelephoneCompleteError = errorNode -> errorNode.getRule() instanceof TelephoneCompleteRule;
 
@@ -153,12 +153,12 @@ public class LodgementNodeTest {
         PersonNode personNode = personListNode.createItem();
         PersonContactNode contactNode = personNode.getPersonContactNode();
 
-        assertThat(contactNode.getHomePhoneNode().getRequired(), equalTo(true));
+        assertThat(contactNode.getPersonHomePhoneNode().getRequired(), equalTo(true));
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(true));
 
         Telephone telephone = new Telephone();
         telephone.setPhoneNumber("123345");
-        contactNode.getHomePhoneNode().setValue(telephone);
+        contactNode.getPersonHomePhoneNode().setValue(telephone);
 
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(false));
 
@@ -175,14 +175,13 @@ public class LodgementNodeTest {
 
         Telephone telephone = new Telephone();
         telephone.setPhoneNumber("119");
-        contactNode.getHomePhoneNode().setValue(telephone);
+        contactNode.getPersonHomePhoneNode().setValue(telephone);
 
-        assertThat(contactNode.getHomePhoneNode().hasValue(), equalTo(true));
+        assertThat(contactNode.getPersonHomePhoneNode().hasValue(), equalTo(true));
         assertThat(contactNode.hasValue(), equalTo(true));
 
-        contactNode.getHomePhoneNode().setValue(new Telephone());
+        contactNode.getPersonHomePhoneNode().setValue(new Telephone());
         assertThat(contactNode.hasValue(), equalTo(false));
-
     }
 
     @Test

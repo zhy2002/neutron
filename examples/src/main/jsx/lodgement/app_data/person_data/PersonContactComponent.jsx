@@ -17,7 +17,7 @@ export default class PersonContactComponent extends NeutronComponent {
             <div className="container-fluid compact person-contact-component">
                 <div className="row">
                     <div className="col-md-4">
-                        <TelephoneComponent model={model.getHomePhoneNode()}/>
+                        <TelephoneComponent model={model.getPersonHomePhoneNode()}/>
                     </div>
                     <div className="col-md-4">
                         <TelephoneComponent model={model.getWorkPhoneNode()}/>

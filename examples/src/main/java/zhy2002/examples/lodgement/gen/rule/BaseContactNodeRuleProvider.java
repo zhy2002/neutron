@@ -13,14 +13,11 @@ public abstract class BaseContactNodeRuleProvider<N extends BaseContactNode<?>>
     extends ObjectUiNodeRuleProvider <N> {
 
 
-    @Inject
-    Provider<HomeOrWorkPhoneRequiredRule> homeOrWorkPhoneRequiredRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-            createdRules.add(homeOrWorkPhoneRequiredRuleProvider.get());
     }
 
 }
