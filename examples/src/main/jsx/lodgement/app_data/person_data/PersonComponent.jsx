@@ -69,7 +69,3 @@ export default class PersonComponent extends NeutronComponent {
         );
     }
 }
-
-PersonComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
-};

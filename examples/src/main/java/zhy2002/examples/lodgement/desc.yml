@@ -211,6 +211,8 @@ rootType:
     childTypes:
     - typeName: CompanyNode
       baseTypeName: ObjectUiNode
+      init:
+      - {propertyName: selectedName, value: '"companyGeneralNode"'}
       children:
       - {typeName: CompanyGeneralNode}
       - {typeName: CompanyContactNode}
