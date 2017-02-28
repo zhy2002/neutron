@@ -19,7 +19,7 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     private DateOfBirthNode dateOfBirthNode;
     private PrimaryApplicantFlagNode primaryApplicantFlagNode;
     private DriversLicenseNode driversLicenseNode;
-    private ApplicantTypeNode applicantTypeNode;
+    private PersonApplicantTypeNode personApplicantTypeNode;
     private MaritalStatusNode maritalStatusNode;
     private PermanentResidentFlagNode permanentResidentFlagNode;
     private SpouseNode spouseNode;
@@ -91,8 +91,8 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     }
 
     @JsMethod
-    public ApplicantTypeNode getApplicantTypeNode() {
-        return applicantTypeNode;
+    public PersonApplicantTypeNode getPersonApplicantTypeNode() {
+        return personApplicantTypeNode;
     }
 
     @JsMethod
@@ -142,8 +142,8 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         children.add(primaryApplicantFlagNode);
         driversLicenseNode = childFactory.createDriversLicenseNode();
         children.add(driversLicenseNode);
-        applicantTypeNode = childFactory.createApplicantTypeNode();
-        children.add(applicantTypeNode);
+        personApplicantTypeNode = childFactory.createPersonApplicantTypeNode();
+        children.add(personApplicantTypeNode);
         maritalStatusNode = childFactory.createMaritalStatusNode();
         children.add(maritalStatusNode);
         permanentResidentFlagNode = childFactory.createPermanentResidentFlagNode();

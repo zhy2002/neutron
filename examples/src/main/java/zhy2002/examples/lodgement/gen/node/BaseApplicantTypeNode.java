@@ -3,34 +3,18 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
-import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
-import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class ApplicantTypeNode extends StringUiNode<PersonGeneralNode> {
-
-    @Override
-    public final Class<?> getConcreteClass() {
-        return ApplicantTypeNode.class;
-    }
-
-    private ApplicantTypeNodeComponent component;
-
-    @Inject
-    void createComponent(ApplicantTypeNodeComponent.Builder builder) {
-        this.component = builder.setApplicantTypeNodeModule(new ApplicantTypeNodeModule(this)).build();
-    }
+public abstract class BaseApplicantTypeNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
     @Override
-    protected ApplicantTypeNodeRuleProvider getRuleProvider() {
-        return component.getApplicantTypeNodeRuleProvider();
-    }
+    protected abstract BaseApplicantTypeNodeRuleProvider<?> getRuleProvider();
 
-    public ApplicantTypeNode(@NotNull PersonGeneralNode parent, String name) {
+    public BaseApplicantTypeNode(@NotNull P parent, String name) {
         super(parent, name);
     }
 
@@ -40,6 +24,7 @@ public class ApplicantTypeNode extends StringUiNode<PersonGeneralNode> {
 
         setOptions(ApplicationNodeConstants.APPLICANT_TYPE.toArray());
         setRequired(true);
+        setValue("A");
     }
 
     @JsMethod

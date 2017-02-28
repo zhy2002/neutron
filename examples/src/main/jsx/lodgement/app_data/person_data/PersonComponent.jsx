@@ -24,7 +24,7 @@ export default class PersonComponent extends NeutronComponent {
     renderPersonContent() {
         console.log('PersonComponent renderPersonContent');
         const model = this.state.selectedItem;
-        const className = model.getSimpleClassName();
+        const className = model.getConcreteClassName();
         if (className === 'PersonGeneralNode') {
             return <PersonGeneralComponent model={model}/>;
         }

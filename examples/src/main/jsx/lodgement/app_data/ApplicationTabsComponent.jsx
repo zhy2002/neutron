@@ -5,7 +5,7 @@ export default class ApplicationTabsComponent extends React.PureComponent {
 
     renderTabs() {
         const model = this.props.model;
-        if (model.getSimpleClassName() === 'PersonNode') {
+        if (model.getConcreteClassName() === 'PersonNode') {
             return <PersonTabsComponent model={model}/>;
         }
         return null;

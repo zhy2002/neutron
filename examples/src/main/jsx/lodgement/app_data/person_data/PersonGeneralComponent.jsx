@@ -14,7 +14,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
             <div className="container-fluid compact">
                 <div className="row">
                     <div className="col-md-3">
-                        <RadioInputComponent model={model.getApplicantTypeNode()}/>
+                        <RadioInputComponent model={model.getPersonApplicantTypeNode()}/>
                     </div>
                     <div className="col-md-3">
                         <SelectInputComponent model={model.getApplicationTypeNode()}/>

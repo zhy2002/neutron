@@ -5,18 +5,18 @@ import zhy2002.neutron.node.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
-import zhy2002.examples.lodgement.gen.node.CompanyApplicantTypeNode;
+import zhy2002.examples.lodgement.gen.node.PersonApplicantTypeNode;
 
 
-@CompanyApplicantTypeNodeScope
-public class CompanyApplicantTypeNodeRuleProvider
-    extends BaseApplicantTypeNodeRuleProvider<CompanyApplicantTypeNode> {
+@PersonApplicantTypeNodeScope
+public class PersonApplicantTypeNodeRuleProvider
+    extends BaseApplicantTypeNodeRuleProvider<PersonApplicantTypeNode> {
 
     @Inject
-    public CompanyApplicantTypeNodeRuleProvider() {}
+    public PersonApplicantTypeNodeRuleProvider() {}
 
     @Override
-    public void initializeState(CompanyApplicantTypeNode node) {
+    public void initializeState(PersonApplicantTypeNode node) {
     }
 
 

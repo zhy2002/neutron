@@ -64,7 +64,7 @@ rootType:
         - {typeName: DateOfBirthNode}
         - {typeName: PrimaryApplicantFlagNode}
         - {typeName: DriversLicenseNode}
-        - {typeName: ApplicantTypeNode}
+        - {typeName: PersonApplicantTypeNode}
         - {typeName: MaritalStatusNode}
         - {typeName: PermanentResidentFlagNode}
         - {typeName: SpouseNode}
@@ -121,13 +121,8 @@ rootType:
           - {propertyName: pattern, value: '"\\d{8,8}"'}
           - {propertyName: patternMessage, value: '"Must be 8 digits"'}
 
-        - typeName: ApplicantTypeNode
-          baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object}
-          init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
-          - {propertyName: required, value: 'true'}
+        - typeName: PersonApplicantTypeNode
+          baseTypeName: BaseApplicantTypeNode
 
         - typeName: ApplicationTypeNode
           baseTypeName: StringUiNode
@@ -243,7 +238,7 @@ rootType:
         - {typeName: CompanySelectBeneficialOwnerNode}
         childTypes:
         - typeName: CompanyApplicantTypeNode
-          baseTypeName: StringUiNode
+          baseTypeName: BaseApplicantTypeNode
 
         - typeName: CompanyPrimaryApplicantFlagNode
           baseTypeName: BooleanUiNode
@@ -1576,3 +1571,14 @@ commonTypes:
     baseTypeName: EmailNode
     init:
     - {propertyName: required, value: 'true'}
+
+- typeName: BaseApplicantTypeNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  baseTypeName: StringUiNode
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
+  - {propertyName: required, value: 'true'}
+  - {propertyName: value, value: '"A"'}

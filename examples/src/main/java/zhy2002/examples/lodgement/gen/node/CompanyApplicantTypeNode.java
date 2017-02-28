@@ -8,7 +8,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class CompanyApplicantTypeNode extends StringUiNode<CompanyGeneralNode> {
+public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGeneralNode> {
 
     @Override
     public final Class<?> getConcreteClass() {

@@ -13,7 +13,7 @@ interface PersonGeneralNodeChildFactory {
     DateOfBirthNode createDateOfBirthNode();
     PrimaryApplicantFlagNode createPrimaryApplicantFlagNode();
     DriversLicenseNode createDriversLicenseNode();
-    ApplicantTypeNode createApplicantTypeNode();
+    PersonApplicantTypeNode createPersonApplicantTypeNode();
     MaritalStatusNode createMaritalStatusNode();
     PermanentResidentFlagNode createPermanentResidentFlagNode();
     SpouseNode createSpouseNode();
@@ -37,8 +37,6 @@ public class PersonGeneralNodeChildProvider {
     @Inject
     MembersInjector<DriversLicenseNode> driversLicenseNodeInjector;
     @Inject
-    MembersInjector<ApplicantTypeNode> applicantTypeNodeInjector;
-    @Inject
     MembersInjector<HousingStatusNode> housingStatusNodeInjector;
     @Inject
     MembersInjector<GenderNode> genderNodeInjector;
@@ -52,6 +50,8 @@ public class PersonGeneralNodeChildProvider {
     MembersInjector<TitleNode> titleNodeInjector;
     @Inject
     MembersInjector<SpouseNode> spouseNodeInjector;
+    @Inject
+    MembersInjector<PersonApplicantTypeNode> personApplicantTypeNodeInjector;
 
     @Inject
     protected PersonGeneralNodeChildProvider () {}
@@ -80,10 +80,6 @@ public class PersonGeneralNodeChildProvider {
         return this.driversLicenseNodeInjector;
     }
 
-    protected MembersInjector<ApplicantTypeNode> getApplicantTypeNodeInjector() {
-        return this.applicantTypeNodeInjector;
-    }
-
     protected MembersInjector<HousingStatusNode> getHousingStatusNodeInjector() {
         return this.housingStatusNodeInjector;
     }
@@ -110,6 +106,10 @@ public class PersonGeneralNodeChildProvider {
 
     protected MembersInjector<SpouseNode> getSpouseNodeInjector() {
         return this.spouseNodeInjector;
+    }
+
+    protected MembersInjector<PersonApplicantTypeNode> getPersonApplicantTypeNodeInjector() {
+        return this.personApplicantTypeNodeInjector;
     }
 
     protected TitleNode newTitleNode(
@@ -182,14 +182,14 @@ public class PersonGeneralNodeChildProvider {
     protected void configureDriversLicenseNode(DriversLicenseNode node) {
     }
 
-    protected ApplicantTypeNode newApplicantTypeNode(
+    protected PersonApplicantTypeNode newPersonApplicantTypeNode(
         PersonGeneralNode parent,
         String name
     ) {
-        return new ApplicantTypeNode(parent, name);
+        return new PersonApplicantTypeNode(parent, name);
     }
 
-    protected void configureApplicantTypeNode(ApplicantTypeNode node) {
+    protected void configurePersonApplicantTypeNode(PersonApplicantTypeNode node) {
     }
 
     protected MaritalStatusNode newMaritalStatusNode(
@@ -321,10 +321,10 @@ public class PersonGeneralNodeChildProvider {
         }
 
         @Override
-        public ApplicantTypeNode createApplicantTypeNode() {
-            ApplicantTypeNode node = newApplicantTypeNode(parent, "applicantTypeNode");
-            applicantTypeNodeInjector.injectMembers(node);
-            configureApplicantTypeNode(node);
+        public PersonApplicantTypeNode createPersonApplicantTypeNode() {
+            PersonApplicantTypeNode node = newPersonApplicantTypeNode(parent, "personApplicantTypeNode");
+            personApplicantTypeNodeInjector.injectMembers(node);
+            configurePersonApplicantTypeNode(node);
             return node;
         }
 

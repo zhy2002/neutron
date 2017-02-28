@@ -208,7 +208,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     @JsMethod
     public String getConcreteClassName() {
-        return getConcreteClass().getName();
+        return getConcreteClass().getSimpleName();
     }
 
     /**
@@ -711,11 +711,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     public void setRequiredMessage(String message) {
         setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
-    }
-
-    @JsMethod
-    public String getSimpleClassName() {
-        return this.getClass().getSimpleName();
     }
 
     @JsMethod

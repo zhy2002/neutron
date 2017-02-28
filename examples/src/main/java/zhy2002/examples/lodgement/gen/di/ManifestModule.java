@@ -90,7 +90,7 @@ subcomponents = {
     DateOfBirthNodeComponent.class,
     PrimaryApplicantFlagNodeComponent.class,
     DriversLicenseNodeComponent.class,
-    ApplicantTypeNodeComponent.class,
+    PersonApplicantTypeNodeComponent.class,
     ApplicationTypeNodeComponent.class,
     MaritalStatusNodeComponent.class,
     PermanentResidentFlagNodeComponent.class,

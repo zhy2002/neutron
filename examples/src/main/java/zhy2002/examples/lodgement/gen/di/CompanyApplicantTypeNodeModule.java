@@ -19,6 +19,10 @@ public class CompanyApplicantTypeNodeModule {
         return owner;
     }
 
+    @Provides @CompanyApplicantTypeNodeScope @Owner BaseApplicantTypeNode<?> provideBaseApplicantTypeNode() {
+        return owner;
+    }
+
     @Provides @CompanyApplicantTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
