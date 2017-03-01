@@ -36,6 +36,9 @@ export default class CreditHistoryListComponent extends ListNeutronComponent {
     }
 
     render() {
+        if (this.state.disabled)
+            return null;
+
         return (
             <div className="credit-history-list-component">
                 <div className="row">

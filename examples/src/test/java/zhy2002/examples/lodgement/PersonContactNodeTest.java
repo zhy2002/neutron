@@ -47,4 +47,20 @@ public class PersonContactNodeTest {
         personContactNode.getPostalAddressNode().getPostcodeNode().setValue("2500");
         assertThat(AddressRefListNode.getUniqueAddressNodes().length, equalTo(2));
     }
+
+    @Test
+    public void creditHistoryListIsEnabledByLegalActionEqYes() {
+        PersonPrivacyNode privacyNode = personNode.getPersonPrivacyNode();
+        CreditHistoryListNode creditHistoryListNode = privacyNode.getCreditHistoryListNode();
+        assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
+        creditHistoryListNode.createItem();
+
+        LegalActionNode legalActionNode = privacyNode.getLegalActionNode();
+        legalActionNode.setValue("No");
+        assertThat(creditHistoryListNode.isDisabled(), equalTo(true));
+        assertThat(creditHistoryListNode.getItemCount(), equalTo(0));
+
+        legalActionNode.setValue("Yes");
+        assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
+    }
 }

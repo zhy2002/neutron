@@ -37,7 +37,6 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
     protected void initializeState() {
         super.initializeState();
 
-        setDisabled(true);
         setValue("Yes");
     }
 

@@ -17,6 +17,7 @@ export default class CreditHistoryComponent extends NeutronComponent {
 
     render() {
         const model = this.model;
+
         return (
             <div className="row">
                 <div className="col-xs-4 col-xs-offset-2">

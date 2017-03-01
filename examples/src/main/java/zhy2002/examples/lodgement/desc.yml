@@ -1456,7 +1456,6 @@ commonTypes:
   - typeName: LegalActionNode
     baseTypeName: YesNoOptionNode
     init:
-    - {propertyName: disabled, value: 'true'}
     - {propertyName: value, value: '"Yes"'}
 
   - typeName: CreditHistoryListNode

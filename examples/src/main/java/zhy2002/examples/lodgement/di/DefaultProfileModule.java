@@ -2,13 +2,19 @@ package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
 import dagger.Module;
+import zhy2002.examples.lodgement.gen.di.LegalActionNodeScope;
 import zhy2002.examples.lodgement.gen.di.ManifestModule;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
+import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.rule.StringEnableSiblingRule;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.inject.Singleton;
+import java.util.List;
 
 @Module(includes = {ManifestModule.class, CustomModule.class})
 public abstract class DefaultProfileModule {
@@ -94,5 +100,27 @@ public abstract class DefaultProfileModule {
 
     @Binds
     abstract OtherIncomeTypeChangeRule provideOtherIncomeTypeChangeRule(OtherIncomeTypeChangeRuleImpl impl);
+
+    @Binds
+    abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 }
 
+@LegalActionNodeScope
+class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {
+
+    @Inject
+    public LegalActionNodeRuleProviderImpl() {
+    }
+
+    @Inject
+    Provider<StringEnableSiblingRule> stringEnableSiblingRuleProvider;
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        StringEnableSiblingRule rule = stringEnableSiblingRuleProvider.get();
+        rule.setSiblingName("creditHistoryListNode");
+        createdRules.add(rule);
+    }
+}

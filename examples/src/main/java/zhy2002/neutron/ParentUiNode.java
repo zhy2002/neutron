@@ -36,7 +36,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return children.indexOf(child);
     }
 
-    final UiNode<?> getChild(String name) {
+    public final UiNode<?> getChild(String name) {
         return childrenMap.get(name);
     }
 
@@ -90,6 +90,14 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     /**
      * Undo children creation and loading.
      */
-    protected abstract void uninitializeChildren();
+    protected void uninitializeChildren() {
+        UiNode<?>[] children = getChildren();
+        for (int i = children.length - 1; i >= 0; i--) {
+            children[i].unload();
+        }
+        for (int i = children.length - 1; i >= 0; i--) {
+            children[i].removeFromParent();
+        }
+    }
 
 }

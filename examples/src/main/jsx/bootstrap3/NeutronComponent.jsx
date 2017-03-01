@@ -106,6 +106,7 @@ export default class NeutronComponent extends React.PureComponent {
             componentClass = ' missing-value';
         }
         newState.componentClass = componentClass;
+        newState.disabled = this.model.isDisabled();
 
         return newState;
     }

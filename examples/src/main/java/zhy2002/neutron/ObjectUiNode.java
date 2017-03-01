@@ -47,17 +47,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         });
     }
 
-    @Override
-    protected void uninitializeChildren() {
-        UiNode<?>[] children = getChildren();
-        for (int i = children.length - 1; i >= 0; i--) {
-            children[i].unload();
-        }
-        for (int i = children.length - 1; i >= 0; i--) {
-            children[i].removeFromParent();
-        }
-    }
-
     protected
     @NotNull
     List<UiNode<?>> createChildren() {
