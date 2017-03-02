@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>neutron-core</artifactId>
+    <description>This jar that contains framework level Java code.</description>
 
     <dependencies>
         <dependency>

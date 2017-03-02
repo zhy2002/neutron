@@ -12,6 +12,9 @@
 
     <artifactId>neutron-examples</artifactId>
     <packaging>war</packaging>
+    <description>
+        This is the example Neutron project used to verify framework behaviour.
+    </description>
 
     <dependencies>
         <dependency>
@@ -39,7 +42,7 @@
 
             <plugin>
                 <groupId>zhy2002.neutron</groupId>
-                <artifactId>codegen</artifactId>
+                <artifactId>neutron-codegen</artifactId>
                 <executions>
                     <execution>
                         <id>gen-register</id>

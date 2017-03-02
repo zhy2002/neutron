@@ -8,6 +8,7 @@
     <artifactId>root-pom</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <description>The root pom for all Neutron artifacts and projects.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -21,10 +22,18 @@
         <module>neutron-codegen</module>
         <module>neutron-examples</module>
         <module>neutron-core</module>
+        <module>neutron-parent</module>
+        <module>neutron-examples-ui</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt</artifactId>
@@ -39,30 +48,22 @@
                 <version>${daggerVersion}</version>
             </dependency>
 
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -74,12 +75,13 @@
     </dependencies>
 
     <build>
+
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>zhy2002.neutron</groupId>
-                    <artifactId>codegen</artifactId>
-                    <version>1.0-SNAPSHOT</version>
+                    <artifactId>neutron-codegen</artifactId>
+                    <version>${project.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -112,4 +114,5 @@
             <url>file:///C:\zhy\mvn</url>
         </snapshotRepository>
     </distributionManagement>
+
 </project>

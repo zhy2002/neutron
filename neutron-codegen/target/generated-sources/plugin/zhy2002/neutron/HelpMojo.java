@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Display help information on neutron-codegen.<br>
- * Call <code>mvn codegen:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.
+ * Call <code>mvn neutron-codegen:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.
  * @author maven-plugin-tools
  */
 @Mojo( name = "help", requiresProject = false, threadSafe = true )
