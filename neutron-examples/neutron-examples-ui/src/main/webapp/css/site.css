@@ -134,7 +134,7 @@ html, body {
     float: left;
     width: 65%; }
 
-.person-component, .company-company {
+.person-component, .company-component {
   padding-top: 1.5em; }
 
 .application-main-content {
@@ -163,7 +163,7 @@ html, body {
   -moz-border-radius: 3px;
   border-radius: 3px; }
 
-.person-component > .nav-pills-component {
+.person-component > .nav-pills-component, company-component > .nav-pills-component {
   margin-top: 0; }
 
 .missing-value input, .missing-value select, .missing-value .radio-container {

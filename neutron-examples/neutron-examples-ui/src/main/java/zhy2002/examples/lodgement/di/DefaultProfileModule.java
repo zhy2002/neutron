@@ -2,8 +2,10 @@ package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
 import dagger.Module;
+import zhy2002.examples.lodgement.gen.di.CompanyNodeScope;
 import zhy2002.examples.lodgement.gen.di.LegalActionNodeScope;
 import zhy2002.examples.lodgement.gen.di.ManifestModule;
+import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
@@ -37,9 +39,6 @@ public abstract class DefaultProfileModule {
 
     @Binds
     abstract UpdateAddressRefListRule provideUpdateAddressRefListRule(UpdateAddressRefListRuleImpl impl);
-
-    @Binds
-    abstract UpdatePersonNodeLabelRule provideUpdatePersonNodeLabelRule(UpdatePersonNodeLabelRuleImpl impl);
 
     @Binds
     abstract AddExistingApplicantsRule provideAddExistingApplicantsRule(AddExistingApplicantsRuleImpl impl);
@@ -103,7 +102,46 @@ public abstract class DefaultProfileModule {
 
     @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
+
+    @Binds
+    abstract PersonNodeRuleProvider providePersonNodeRuleProvider(PersonNodeRuleProviderImpl impl);
+
+    @Binds
+    abstract CompanyNodeRuleProvider provideCompanyNodeRuleProvider(CompanyNodeRuleProviderImpl impl);
 }
+
+@PersonNodeScope
+class PersonNodeRuleProviderImpl extends PersonNodeRuleProvider {
+
+    @Inject
+    public PersonNodeRuleProviderImpl() {
+    }
+
+    @Inject
+    Provider<UpdatePersonNodeLabelRuleImpl> updatePersonNodeLabelRuleProvider;
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        createdRules.add(updatePersonNodeLabelRuleProvider.get());
+    }
+}
+
+@CompanyNodeScope
+class CompanyNodeRuleProviderImpl extends CompanyNodeRuleProvider {
+
+    @Inject
+    public CompanyNodeRuleProviderImpl() {
+    }
+
+    @Inject
+    Provider<UpdateCompanyNodeLabelRuleImpl> updateCompanyNodeLabelRuleProvider;
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        createdRules.add(updateCompanyNodeLabelRuleProvider.get());
+    }
+}
+
 
 @LegalActionNodeScope
 class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {

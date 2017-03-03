@@ -79,7 +79,10 @@ export default class NavDropdownComponent extends ListNeutronComponent {
 
     render() {
         return (
-            <li className={`dropdown${this.state.open ? ' open' : ''}`} onMouseLeave={this.close}>
+            <li
+                className={`nav-dropdown-component dropdown${this.state.open ? ' open' : ''}`}
+                onMouseLeave={this.close}
+            >
                 <a
                     tabIndex="0"
                     className="dropdown-toggle"

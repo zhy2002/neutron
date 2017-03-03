@@ -20,14 +20,11 @@ public class PersonNodeRuleProvider
     }
 
 
-    @Inject
-    Provider<UpdatePersonNodeLabelRule> updatePersonNodeLabelRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-            createdRules.add(updatePersonNodeLabelRuleProvider.get());
     }
 
 }

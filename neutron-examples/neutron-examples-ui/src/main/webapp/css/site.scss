@@ -213,7 +213,7 @@ html, body {
 
 //region person components
 
-.person-component, .company-company {
+.person-component, .company-component {
   padding-top: 1.5em;
 }
 
@@ -250,7 +250,7 @@ html, body {
   border-radius: 3px;
 }
 
-.person-component {
+.person-component,company-component {
   > .nav-pills-component {
     margin-top: 0;
   }
