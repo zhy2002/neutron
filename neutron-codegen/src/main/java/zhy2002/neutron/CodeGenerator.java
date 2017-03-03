@@ -47,11 +47,11 @@ class CodeGenerator {
 
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
         generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
-        generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getFactoryTemplate(), "", "Factory");
+        //generateFile(targetDirectory, domainInfo.getRootType(), templateBundle.getFactoryTemplate(), "", "Factory");
         generateFile(targetDirectory, domainInfo, templateBundle.getManifestModuleTemplate(), "di", "ManifestModule");
 
         //todo per profile
-        generateFile(targetDirectory, domainInfo, templateBundle.getProfileComponentTemplate(), "di", "DefaultProfileComponent");
+        //generateFile(targetDirectory, domainInfo, templateBundle.getProfileComponentTemplate(), "di", "DefaultProfileComponent");
     }
 
     private static void generateNodeFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {

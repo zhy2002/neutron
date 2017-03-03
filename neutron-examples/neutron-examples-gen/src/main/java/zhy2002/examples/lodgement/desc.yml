@@ -1,0 +1,1585 @@
+targetPackage: zhy2002.examples.lodgement
+rootType:
+  typeName: ApplicationNode
+  baseTypeName: ObjectUiNode
+  properties:
+  - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
+  - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1}
+  init:
+  - {propertyName: selectedName, value: '"personListNode"'}
+  - {propertyName: contentLevel, mode: Always}
+  rules:
+  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+  - {typeName: ShowErrorListRule}
+  children:
+  - {typeName: AddressRefListNode}
+  - {typeName: PersonListNode}
+  - {typeName: CompanyListNode}
+  - {typeName: FinancialPositionNode}
+  - {typeName: RealEstateListNode}
+  - {typeName: ProductsNode}
+  - {typeName: AdditionalNode}
+  - {typeName: SubmissionNode}
+  - {typeName: ErrorListNode}
+  childTypes:
+  - typeName: AddressRefListNode
+    baseTypeName: ListUiNode
+    itemTypeName: AddressRefNode
+    childTypes:
+    - typeName: AddressRefNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
+
+  - typeName: PersonListNode
+    baseTypeName: ListUiNode
+    itemTypeName: PersonNode
+    init:
+    - {propertyName: selectedIndex, value: 0}
+    - {propertyName: nodeLabel, value: '"Person Applicant"'}
+    childTypes:
+    - typeName: PersonNode
+      baseTypeName: ObjectUiNode
+      rules:
+      - {typeName: UpdatePersonNodeLabelRule}
+      init:
+      - {propertyName: selectedName, value: '"personGeneralNode"'}
+      children:
+      - {typeName: PersonGeneralNode}
+      - {typeName: PersonContactNode}
+      - {typeName: CurrentEmploymentListNode}
+      - {typeName: PreviousEmploymentListNode}
+      - {typeName: PersonTrustNode}
+      - {typeName: PersonPrivacyNode}
+      - {typeName: PersonOtherIncomeListNode}
+      - {typeName: PersonResponsibleLendNode}
+      childTypes:
+      - typeName: PersonGeneralNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: TitleNode}
+        - {typeName: FirstNameNode}
+        - {typeName: LastNameNode}
+        - {typeName: GenderNode}
+        - {typeName: DateOfBirthNode}
+        - {typeName: PrimaryApplicantFlagNode}
+        - {typeName: DriversLicenseNode}
+        - {typeName: PersonApplicantTypeNode}
+        - {typeName: MaritalStatusNode}
+        - {typeName: PermanentResidentFlagNode}
+        - {typeName: SpouseNode}
+        - {typeName: FirstHomeBuyerFlagNode}
+        - {typeName: HousingStatusNode}
+        - {typeName: ApplicationTypeNode}
+        childTypes:
+        - typeName: TitleNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: TitleGenderMatchRule, baseTypeName: ValidationRule}
+
+        - typeName: FirstNameNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
+
+        - typeName: LastNameNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
+
+        - typeName: GenderNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
+
+        - typeName: DateOfBirthNode
+          baseTypeName: DobNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: PrimaryApplicantFlagNode
+          baseTypeName: BooleanUiNode
+          rules:
+          - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
+          - {typeName: AtMostOnePrimaryApplicantRule, baseTypeName: ValidationRule}
+
+        - typeName: DriversLicenseNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: pattern, value: '"\\d{8,8}"'}
+          - {propertyName: patternMessage, value: '"Must be 8 digits"'}
+
+        - typeName: PersonApplicantTypeNode
+          baseTypeName: BaseApplicantTypeNode
+
+        - typeName: ApplicationTypeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ChangeApplicationTypeRule}
+
+        - typeName: MaritalStatusNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
+          - {propertyName: required, value: 'true'}
+
+        - typeName: PermanentResidentFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: SpouseNode
+          baseTypeName: StringUiNode
+
+        - typeName: FirstHomeBuyerFlagNode
+          baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: HousingStatusNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
+          - {propertyName: required, value: 'true'}
+
+      - typeName: PersonContactNode
+        baseTypeName: BaseContactNode
+        rules:
+          - {typeName: HomeOrWorkPhoneRequiredRule}
+        children:
+        - {typeName: PersonHomePhoneNode}
+        childTypes:
+        - typeName: PersonHomePhoneNode
+          baseTypeName: TelephoneNode
+
+      - typeName: CurrentEmploymentListNode
+        baseTypeName: ListUiNode
+        itemTypeName: CurrentEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Current Employment"'}
+        childTypes:
+        - typeName: CurrentEmploymentNode
+          baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
+
+      - typeName: PreviousEmploymentListNode
+        baseTypeName: ListUiNode
+        itemTypeName: PreviousEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Previous Employment"'}
+        childTypes:
+        - typeName: PreviousEmploymentNode
+          baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
+
+      - typeName: PersonTrustNode
+        baseTypeName: BaseTrustNode
+
+      - typeName: PersonPrivacyNode
+        baseTypeName: BasePrivacyNode
+
+      - typeName: PersonOtherIncomeListNode
+        baseTypeName: BaseOtherIncomeListNode
+
+      - typeName: PersonResponsibleLendNode
+        baseTypeName: BaseResponsibleLendNode
+
+  - typeName: CompanyListNode
+    baseTypeName: ListUiNode
+    itemTypeName: CompanyNode
+    childTypes:
+    - typeName: CompanyNode
+      baseTypeName: ObjectUiNode
+      init:
+      - {propertyName: selectedName, value: '"companyGeneralNode"'}
+      children:
+      - {typeName: CompanyGeneralNode}
+      - {typeName: CompanyContactNode}
+      - {typeName: CompanyTrustNode}
+      - {typeName: CompanyPrivacyNode}
+      - {typeName: CompanyOtherIncomeListNode}
+      - {typeName: CompanyResponsibleLendNode}
+      childTypes:
+      - typeName: CompanyGeneralNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: CompanyApplicantTypeNode}
+        - {typeName: CompanyPrimaryApplicantFlagNode}
+        - {typeName: CompanyApplicationTypeNode}
+        - {typeName: CompanyRegisteredNameNode}
+        - {typeName: CompanyTypeNode}
+        - {typeName: CompanyDescriptionNode}
+        - {typeName: CompanyIndustryNode}
+        - {typeName: CompanyAbnNode}
+        - {typeName: CompanyAcnNode}
+        - {typeName: CompanyAbrnNode}
+        - {typeName: CompanyRegistrationDateNode}
+        - {typeName: CompanyRegistrationStateNode}
+        - {typeName: CompanySelectDirectorNode}
+        - {typeName: CompanySelectBeneficialOwnerNode}
+        childTypes:
+        - typeName: CompanyApplicantTypeNode
+          baseTypeName: BaseApplicantTypeNode
+
+        - typeName: CompanyPrimaryApplicantFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: CompanyApplicationTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegisteredNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyIndustryNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAbnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAcnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyAbrnNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegistrationDateNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyRegistrationStateNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanySelectDirectorNode
+          baseTypeName: SelectRelatedPersonListNode
+
+        - typeName: CompanySelectBeneficialOwnerNode
+          baseTypeName: SelectRelatedPersonListNode
+
+      - typeName: CompanyContactNode
+        baseTypeName: BaseContactNode
+        children:
+        - {typeName: CompanyContactFirstNameNode}
+        - {typeName: CompanyContactLastNameNode}
+        childTypes:
+        - typeName: CompanyContactFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: CompanyContactLastNameNode
+          baseTypeName: StringUiNode
+
+      - typeName: CompanyTrustNode
+        baseTypeName: BaseTrustNode
+
+      - typeName: CompanyPrivacyNode
+        baseTypeName: BasePrivacyNode
+
+      - typeName: CompanyOtherIncomeListNode
+        baseTypeName: BaseOtherIncomeListNode
+
+      - typeName: CompanyResponsibleLendNode
+        baseTypeName: BaseResponsibleLendNode
+
+  - typeName: FinancialPositionNode
+    rules:
+    - {typeName: FinancialPositionChangedRule}
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: AssetsNode}
+    - {typeName: LiabilitiesNode}
+    - {typeName: ExpenseListNode}
+    - {typeName: TotalAssetNode}
+    - {typeName: TotalLiabilityNode}
+    - {typeName: TotalExpenseNode}
+    childTypes:
+    - typeName: AssetsNode
+      baseTypeName: ObjectUiNode
+      children:
+      - {typeName: SavingsAccountListNode}
+      - {typeName: MotorVehicleListNode}
+      - {typeName: OtherAssetListNode}
+      childTypes:
+      - typeName: SavingsAccountListNode
+        baseTypeName: ListUiNode
+        itemTypeName: SavingsAccountNode
+        childTypes:
+        - typeName: SavingsAccountNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: SavingsTypeNode}
+          - {typeName: SavingsInstitutionNameNode}
+          - {typeName: SavingsBalanceNode}
+          - {typeName: SavingsBsbNoNode}
+          - {typeName: SavingsAccountNoNode}
+          - {typeName: SavingsAccountNameNode}
+          - {typeName: SavingsOwnershipListNode}
+          childTypes:
+          - typeName: SavingsTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE.toArray()}
+
+          - typeName: SavingsInstitutionNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsBalanceNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: SavingsBsbNoNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsAccountNoNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsAccountNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: SavingsOwnershipListNode
+            baseTypeName: OwnershipListNode
+
+      - typeName: MotorVehicleListNode
+        baseTypeName: ListUiNode
+        itemTypeName: MotorVehicleNode
+        childTypes:
+        - typeName: MotorVehicleNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: VehicleModelNode}
+          - {typeName: VehicleYearNode}
+          - {typeName: VehicleMarketValueNode}
+          childTypes:
+          - typeName: VehicleModelNode
+            baseTypeName: StringUiNode
+
+          - typeName: VehicleYearNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: VehicleMarketValueNode
+            baseTypeName: BaseCurrencyNode
+
+      - typeName: OtherAssetListNode
+        baseTypeName: ListUiNode
+        itemTypeName: OtherAssetNode
+        childTypes:
+        - typeName: OtherAssetNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: OtherAssetTypeNode}
+          - {typeName: OtherAssetDescriptionNode}
+          - {typeName: OtherAssetMarketValueNode}
+          childTypes:
+          - typeName: OtherAssetTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherAssetDescriptionNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherAssetMarketValueNode
+            baseTypeName: BaseCurrencyNode
+
+    - typeName: LiabilitiesNode
+      baseTypeName: ObjectUiNode
+      children:
+      - {typeName: CreditCardListNode}
+      - {typeName: LoanListNode}
+      - {typeName: OtherLiabilityListNode}
+      childTypes:
+      - typeName: CreditCardListNode
+        baseTypeName: ListUiNode
+        itemTypeName: CreditCardNode
+        childTypes:
+        - typeName: CreditCardNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: CreditCardTypeNode}
+          - {typeName: CreditCardAmountOwingNode}
+          - {typeName: CreditCardLimitAmountNode}
+          - {typeName: CreditCardMonthlyRepaymentNode}
+          - {typeName: CreditCardClearingFlagNode}
+          - {typeName: CreditCardBreakCostNode}
+          - {typeName: CreditCardLenderNameNode}
+          childTypes:
+          - typeName: CreditCardTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE.toArray()}
+
+          - typeName: CreditCardAmountOwingNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: CreditCardLimitAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: CreditCardMonthlyRepaymentNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: CreditCardClearingFlagNode
+            baseTypeName: BooleanUiNode
+            rules:
+            - {typeName: CreditCardClearingFlagChangedRule}
+
+          - typeName: CreditCardBreakCostNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: CreditCardLenderNameNode
+            baseTypeName: StringUiNode
+
+      - typeName: LoanListNode
+        baseTypeName: ListUiNode
+        itemTypeName: LoanNode
+        childTypes:
+        - typeName: LoanNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: LoanTypeNode}
+          - {typeName: LoanLenderNameNode}
+          - {typeName: LoanLimitAmountNode}
+          - {typeName: LoanOwingAmountNode}
+          - {typeName: LoanMonthlyRepaymentNode}
+          - {typeName: LoanClearingFlagNode}
+          - {typeName: LoanBreakCostNode}
+          childTypes:
+          - typeName: LoanTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: LoanOwingAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: LoanLimitAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: LoanMonthlyRepaymentNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: LoanClearingFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: LoanBreakCostNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: LoanLenderNameNode
+            baseTypeName: StringUiNode
+
+      - typeName: OtherLiabilityListNode
+        baseTypeName: ListUiNode
+        itemTypeName: OtherLiabilityNode
+        childTypes:
+        - typeName: OtherLiabilityNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: OtherLiabilityTypeNode}
+          - {typeName: OtherLiabilityDescriptionNode}
+          - {typeName: OtherLiabilityLimitAmountNode}
+          - {typeName: OtherLiabilityAmountOwningNode}
+          - {typeName: OtherLiabilityMonthlyRepaymentNode}
+          - {typeName: OtherLiabilityClearingFlagNode}
+          - {typeName: OtherLiabilityBreakCostNode}
+          childTypes:
+          - typeName: OtherLiabilityTypeNode
+            baseTypeName: StringUiNode
+            properties:
+            - {name: options, typeName: Object}
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE.toArray()}
+
+          - typeName: OtherLiabilityDescriptionNode
+            baseTypeName: StringUiNode
+
+          - typeName: OtherLiabilityLimitAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: OtherLiabilityAmountOwningNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: OtherLiabilityMonthlyRepaymentNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: OtherLiabilityClearingFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: OtherLiabilityBreakCostNode
+            baseTypeName: BaseCurrencyNode
+
+    - typeName: ExpenseListNode
+      baseTypeName: ListUiNode
+      itemTypeName: ExpenseNode
+      childTypes:
+      - typeName: ExpenseNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ExpenseTypeNode}
+        - {typeName: ExpenseDescriptionNode}
+        - {typeName: ExpenseMonthlyRepaymentNode}
+        childTypes:
+        - typeName: ExpenseTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: ExpenseDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: ExpenseMonthlyRepaymentNode
+          baseTypeName: BigDecimalUiNode
+
+    - typeName: TotalAssetNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
+
+    - typeName: TotalLiabilityNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
+
+    - typeName: TotalExpenseNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
+
+  - typeName: RealEstateListNode
+    baseTypeName: ListUiNode
+    itemTypeName: RealEstateNode
+    childTypes:
+    - typeName: RealEstateNode
+      baseTypeName: ObjectUiNode
+      children:
+      - {typeName: UsageNode}
+      - {typeName: PropertyNode}
+      - {typeName: AccessNode}
+      childTypes:
+      - typeName:  UsageNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: UsedAsSecurityFlagNode}
+        - {typeName: BeingPurchasedFlagNode}
+        - {typeName: OwnedOutrightFlagNode}
+        - {typeName: PrimarySecurityFlagNode}
+        - {typeName: ApprovalInPrincipleFlagNode}
+        - {typeName: ExistingMortgageListNode}
+        childTypes:
+        - typeName: UsedAsSecurityFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: BeingPurchasedFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: OwnedOutrightFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PrimarySecurityFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: ApprovalInPrincipleFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: ExistingMortgageListNode
+          baseTypeName: ListUiNode
+          itemTypeName: ExistingMortgageNode
+          childTypes:
+          - typeName: ExistingMortgageNode
+            baseTypeName: ObjectUiNode
+            children:
+            - {typeName: MortgageLenderInstitutionNode}
+            - {typeName: MortgqageUnpaidBalanceNode}
+            - {typeName: MortgageLimitAmountNode}
+            - {typeName: MortgageMonthlyRepaymentNode}
+            - {typeName: MortgageBorrowerRateNode}
+            - {typeName: MortgageLoanTypeNode}
+            - {typeName: MortgageLoanTermExpiryDateNode}
+            - {typeName: MortgageInterestOnlyExpiryDateNode}
+            - {typeName: MortgageClearingFlagNode}
+            - {typeName: MortgageBreakFeeNode}
+            - {typeName: MortgageChargePositionNode}
+            - {typeName: MortgageTermRemainingPeriodNode}
+            - {typeName: MortgageInterestOnlyRemainingPeriodNode}
+            childTypes:
+            - typeName: MortgageLenderInstitutionNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgqageUnpaidBalanceNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageLimitAmountNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageMonthlyRepaymentNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageBorrowerRateNode
+              baseTypeName: BasePercentageNode
+
+            - typeName: MortgageLoanTypeNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageLoanTermExpiryDateNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageInterestOnlyExpiryDateNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageClearingFlagNode
+              baseTypeName: BooleanUiNode
+
+            - typeName: MortgageBreakFeeNode
+              baseTypeName: BaseCurrencyNode
+
+            - typeName: MortgageChargePositionNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageTermRemainingPeriodNode
+              baseTypeName: StringUiNode
+
+            - typeName: MortgageInterestOnlyRemainingPeriodNode
+              baseTypeName: StringUiNode
+
+      - typeName:  PropertyNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: RentedFlagNode}
+        - {typeName: PropertyWeeklyRentNode}
+        - {typeName: PropertyAddressNode}
+        - {typeName: EstimatedMarketValueNode}
+        - {typeName: ContractPriceNode}
+        - {typeName: DefenseServiceFlagNode}
+        - {typeName: PropertyTypeNode}
+        - {typeName: PropertySubTypeNode}
+        - {typeName: PropertyPurseNode}
+        - {typeName: PropertyOwnershipListNode}
+        childTypes:
+        - typeName: RentedFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PropertyWeeklyRentNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: PropertyAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: EstimatedMarketValueNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: ContractPriceNode
+          baseTypeName: BigDecimalUiNode
+
+        - typeName: DefenseServiceFlagNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PropertyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: PropertySubTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: PropertyPurseNode
+          baseTypeName: BooleanUiNode
+
+        - typeName: PropertyOwnershipListNode
+          baseTypeName: OwnershipListNode
+
+      - typeName:  AccessNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: AccessContactTypeNode}
+        - {typeName: AccessContactTitleNode}
+        - {typeName: AccessContactFirstNameNode}
+        - {typeName: AccessContactLastNameNode}
+        - {typeName: AccessCompanyNameNode}
+        - {typeName: AccessTelephoneNode}
+        - {typeName: AccessOtherDescriptionNode}
+
+        childTypes:
+        - typeName: AccessContactTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactTitleNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessContactLastNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessCompanyNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessTelephoneNode
+          baseTypeName: StringUiNode
+
+        - typeName: AccessOtherDescriptionNode
+          baseTypeName: StringUiNode
+
+  - typeName: ProductsNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: ProductListNode}
+    - {typeName: ProductCustomerContributionNode}
+    - {typeName: ProductFeesNode}
+    - {typeName: ProductLoanTypeNode}
+    - {typeName: SettlementDateNode}
+    - {typeName: ProductTotalLoanAmountNode}
+    - {typeName: ProductTotalSecurityAmountNode}
+    - {typeName: ProductTotalLoanLmiAmountNode}
+    - {typeName: ProductTotalLvrNode}
+    - {typeName: ProductTotalLvrLmiNode}
+    childTypes:
+    - typeName: ProductListNode
+      baseTypeName: ListUiNode
+      itemTypeName: ProductNode
+      childTypes:
+      - typeName: ProductNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ProductDescriptionNode}
+        - {typeName: ProductFeaturesNode}
+        childTypes:
+        - typeName: ProductDescriptionNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: ProductGroupNode}
+          - {typeName: ProductNameNode}
+          - {typeName: ProductLoanPrimaryPurposeNode}
+          - {typeName: ProductLendingPurposeNode}
+          - {typeName: ProductRequestedAmountNode}
+          - {typeName: ProductTotalLoanTermNode}
+          - {typeName: ProductPaymentTypeNode}
+          - {typeName: ProductInterestOnlyTermNode}
+          - {typeName: ProductFixedTermNode}
+          - {typeName: ProductConstructionApplicationFlagNode}
+          - {typeName: ProductCostRecuctionFlagNode}
+          - {typeName: ProductConsolidationFlagNode}
+          - {typeName: ProductDissatisfactionFlagNode}
+          - {typeName: ProductSpecificFeaturesFlagNode}
+          - {typeName: ProductAccountHolderListNode}
+          childTypes:
+          - typeName: ProductGroupNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductLoanPrimaryPurposeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductLendingPurposeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRequestedAmountNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: ProductTotalLoanTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductPaymentTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductInterestOnlyTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductFixedTermNode
+            baseTypeName: BigDecimalUiNode
+
+          - typeName: ProductConstructionApplicationFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCostRecuctionFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductConsolidationFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductDissatisfactionFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductSpecificFeaturesFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductAccountHolderListNode
+            baseTypeName: SelectAccountHolderListNode
+
+        - typeName: ProductFeaturesNode
+          baseTypeName: ObjectUiNode
+          children:
+          - {typeName: ProductPackageNameNode}
+          - {typeName: ProductRepaymentFrequencyNode}
+          - {typeName: ProductRateLockFlagNode}
+          - {typeName: ProductTransactionAccountFlagNode}
+          - {typeName: ProductOptOutReasonNode}
+          - {typeName: ProductCreditCardFlagNode}
+          - {typeName: ProductCreditCardTypeNode}
+          - {typeName: ProductCreditCardLimitNode}
+          - {typeName: ProductExpressConsentFlagNode}
+          - {typeName: Product100PercentOffsetFlagNode}
+          - {typeName: ProductCardHolderNode, name: productPrimaryCardHolderNode}
+          - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
+          childTypes:
+          - typeName: ProductPackageNameNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRepaymentFrequencyNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductRateLockFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductTransactionAccountFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductOptOutReasonNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductCreditCardFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCreditCardTypeNode
+            baseTypeName: StringUiNode
+
+          - typeName: ProductCreditCardLimitNode
+            baseTypeName: BaseCurrencyNode
+
+          - typeName: ProductExpressConsentFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: Product100PercentOffsetFlagNode
+            baseTypeName: BooleanUiNode
+
+          - typeName: ProductCardHolderNode
+            baseTypeName: ObjectUiNode
+            children:
+            - {typeName: ProductCardHodlerNameNode}
+            - {typeName: ProductRewardsProgramNode}
+            - {typeName: ProductRewardsMembershipNode}
+            childTypes:
+            - typeName: ProductCardHodlerNameNode
+              baseTypeName: StringUiNode
+
+            - typeName: ProductRewardsProgramNode
+              baseTypeName: StringUiNode
+
+            - typeName: ProductRewardsMembershipNode
+              baseTypeName: StringUiNode
+
+    - typeName: ProductCustomerContributionNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+    - typeName: ProductFeesNode
+      baseTypeName: ObjectUiNode
+      children: []
+
+    - typeName: ProductLoanTypeNode
+      baseTypeName: StringUiNode
+
+    - typeName: SettlementDateNode
+      baseTypeName: StringUiNode
+
+    - typeName: ProductTotalLoanAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalSecurityAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalLoanLmiAmountNode
+      baseTypeName: BaseCurrencyNode
+
+    - typeName: ProductTotalLvrNode
+      baseTypeName: BasePercentageNode
+
+    - typeName: ProductTotalLvrLmiNode
+      baseTypeName: BasePercentageNode
+
+  - typeName: AdditionalNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: AdditionalCommentNode}
+    - {typeName: RelatedPartyListNode}
+    childTypes:
+    - typeName: AdditionalCommentNode
+      baseTypeName: StringUiNode
+
+    - typeName: RelatedPartyListNode
+      baseTypeName: ListUiNode
+      itemTypeName: RelatedPartyNode
+      childTypes:
+      - typeName: RelatedPartyNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ThirdPartyTypeNode}
+        - {typeName: ThirdPartyDescriptionNode}
+        - {typeName: ThirdPartyTitleNode}
+        - {typeName: ThirdPartyFirstNameNode}
+        - {typeName: ThirdPartyLastNameNode}
+        - {typeName: ThirdPartyDobNode}
+        - {typeName: ThirdPartyCompanyNameNode}
+        - {typeName: ThirdPartyAddressNode}
+        - {typeName: ThirdPartyWorkPhoneNode}
+        - {typeName: ThirdPartyEmailNode}
+        childTypes:
+        - typeName: ThirdPartyTypeNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyDescriptionNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyTitleNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyFirstNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyLastNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyDobNode
+          baseTypeName: DobNode
+
+        - typeName: ThirdPartyCompanyNameNode
+          baseTypeName: StringUiNode
+
+        - typeName: ThirdPartyAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: ThirdPartyWorkPhoneNode
+          baseTypeName: TelephoneNode
+
+        - typeName: ThirdPartyEmailNode
+          baseTypeName: StringUiNode
+
+  - typeName: SubmissionNode
+    baseTypeName: ObjectUiNode
+    children: []
+
+  - typeName: ErrorListNode
+    baseTypeName: ListUiNode
+    itemTypeName: ErrorNode
+    properties:
+    - {name: focus, typeName: String}
+    init:
+    - {propertyName: focus, mode: Always}
+    rules:
+    - {typeName: ChangeFocusErrorRule}
+    childTypes:
+    - typeName: ErrorNode
+      baseTypeName: ValidationErrorUiNode
+
+#nodes that do not know the concrete type of their parent
+commonTypes:
+- typeName: TelephoneNode
+  baseTypeName: LeafUiNode
+  valueTypeName: Telephone
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  rules:
+  - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
+
+- typeName: AddressNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
+  children:
+  - {typeName: AddressLineNode}
+  - {typeName: SuburbNode}
+  - {typeName: PostcodeNode}
+  - {typeName: CountryNode}
+  rules:
+  - {typeName: UpdateAddressRefListRule}
+  childTypes:
+  - typeName: AddressLineNode
+    baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+  - typeName: SuburbNode
+    baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+  - typeName: PostcodeNode
+    baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: pattern, value: '"\\d{4,4}"'}
+
+  - typeName: CountryNode
+    baseTypeName: BaseCountryNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+- typeName: MonthYearNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
+  rules:
+  - {typeName: MonthYearNotInFutureRule, baseTypeName: ValidationRule}
+  children:
+  - {typeName: MonthNode}
+  - {typeName: YearNode}
+  childTypes:
+  - typeName: MonthNode
+    baseTypeName: BigDecimalUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE.toArray()}
+
+  - typeName: YearNode
+    baseTypeName: BigDecimalUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
+
+- typeName: EmailNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
+
+- typeName: BaseCurrencyNode
+  baseTypeName: BigDecimalUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0.01")}
+
+- typeName: BasePercentageNode
+  baseTypeName: BigDecimalUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0")}
+  - {propertyName: maxValue, value: new BigDecimal("100")}
+  properties:
+  - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.PERCENTAGE}
+
+- typeName: EmploymentNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  localRequired: true
+  children:
+  - {typeName: EmploymentTypeNode}
+  - {typeName: PayeEmployedNode}
+  - {typeName: SelfEmployedNode}
+  - {typeName: UnemployedNode}
+  - {typeName: RetiredEmploymentNode}
+  childTypes:
+  - typeName: EmploymentTypeNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray()'}
+    - {propertyName: value, value: '"payeEmployedNode"'}
+    rules:
+    - {typeName: EmploymentTypeChangedRule}
+  - typeName: PayeEmployedNode
+    baseTypeName: EmployedNode
+    children:
+    - {typeName: GrossYearlySalaryNode}
+    childTypes:
+    - typeName: GrossYearlySalaryNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+  - typeName: SelfEmployedNode
+    baseTypeName: EmployedNode
+    children:
+    - {typeName: BusinessTypeNode}
+    - {typeName: ProfitThisYearNode}
+    - {typeName: ProfitPreviousYearNode}
+    childTypes:
+    - typeName: BusinessTypeNode
+      baseTypeName: StringUiNode
+
+    - typeName: ProfitThisYearNode
+      baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: ProfitPreviousYearNode
+      baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+  - typeName: EmployedNode
+    baseTypeName: ObjectUiNode
+    abstractNode: true
+    children:
+    - {typeName: EmploymentStatusNode}
+    - {typeName: OccupationNode}
+    - {typeName: EmployerNameNode}
+    - {typeName: EmployerAddressNode}
+    - {typeName: EmployerPhoneNode}
+    - {typeName: EmploymentStartedNode}
+    - {typeName: EmploymentEndedNode}
+
+    childTypes:
+    - typeName: EmploymentStatusNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray()'}
+      - {propertyName: required, value: 'true'}
+
+    - typeName: OccupationNode
+      baseTypeName: BaseOccupationNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerNameNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerAddressNode
+      baseTypeName: AddressNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmployerPhoneNode
+      baseTypeName: TelephoneNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmploymentStartedNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: EmploymentEndedNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+      rules:
+      - {typeName: EmploymentEndedNoEarlierThanEmploymentStartedRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+  - typeName: UnemployedNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: UnemployedOnBenefitFlagNode}
+    - {typeName: StudentFlagNode}
+    - {typeName: StudentTypeNode}
+    - {typeName: HouseDutiesFlagNode}
+    - {typeName: UnemployedSinceNode}
+    childTypes:
+    - typeName: UnemployedOnBenefitFlagNode
+      baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: StudentFlagNode
+      baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: StudentTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE.toArray()'}
+
+    - typeName: HouseDutiesFlagNode
+      baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: UnemployedSinceNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+  - typeName: RetiredEmploymentNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: RetiredOnBenefitFlagNode}
+    - {typeName: RetiredSinceNode}
+    childTypes:
+    - typeName: RetiredOnBenefitFlagNode
+      baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: RetiredSinceNode
+      baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+- typeName: BaseOccupationNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+
+- typeName: YesNoOptionNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE.toArray()'}
+
+- typeName: BaseCountryNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
+
+- typeName: DobNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: minAge, typeName: Integer}
+  - {name: maxAge, typeName: Integer}
+  init:
+  - {propertyName: minAge, value: 18}
+  - {propertyName: maxAge, value: 100}
+  rules:
+  - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}
+
+- typeName: SelectRelatedPersonListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: SelectRelatedPersonNode
+  childTypes:
+  - typeName: SelectRelatedPersonNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: RelatedPersonReferenceNode}
+    - {typeName: SelectRelatedPersonFlagNode}
+    childTypes:
+    - typeName: RelatedPersonReferenceNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
+
+    - typeName: SelectRelatedPersonFlagNode
+      baseTypeName: BooleanUiNode
+
+- typeName: SelectAccountHolderListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: SelectAccountHolderNode
+  childTypes:
+  - typeName: SelectAccountHolderNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: AccountHolderReferenceNode}
+    - {typeName: SelectAccountHolderFlagNode}
+    childTypes:
+    - typeName: AccountHolderReferenceNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
+
+    - typeName: SelectAccountHolderFlagNode
+      baseTypeName: BooleanUiNode
+
+- typeName: OwnershipListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  properties:
+  - {name: totalOwnership, typeName: BigDecimalUiNode}
+  rules:
+  - {typeName: AddExistingApplicantsRule}
+  - {typeName: AddNewPersonApplicantRule}
+  - {typeName: AddNewCompanyApplicantRule}
+  itemTypeName: OwnershipNode
+  childTypes:
+  - typeName: OwnershipNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: ApplicantReferenceNode}
+    - {typeName: OwnershipPercentageNode}
+    - {typeName: AverageFlagNode}
+    childTypes:
+    - typeName: ApplicantReferenceNode
+      baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
+
+    - typeName: OwnershipPercentageNode
+      baseTypeName: BasePercentageNode
+      init:
+      - {propertyName: value, value: 'new BigDecimal("0")'}
+
+    - typeName: AverageFlagNode
+      baseTypeName: BooleanUiNode
+
+- typeName: BaseResponsibleLendNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: ResponsibleTypeOfChangeNode}
+  - {typeName: ResponsibleMitigationMethodNode}
+  - {typeName: ResponsibleSignificantChangeFlagNode}
+  - {typeName: ResponsibleRepaymentDifficultyNode}
+  childTypes:
+        - typeName: ResponsibleSignificantChangeFlagNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ResponsibleSignificantChangeRule}
+
+        - typeName: ResponsibleTypeOfChangeNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE.toArray()}
+
+        - typeName: ResponsibleMitigationMethodNode
+          baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray()}
+
+        - typeName: ResponsibleRepaymentDifficultyNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+- typeName: BaseOtherIncomeListNode
+  baseTypeName: ListUiNode
+  abstractNode: true
+  parentBaseTypeName: ObjectUiNode<?>
+  itemTypeName: OtherIncomeNode
+  init:
+  - {propertyName: nodeLabel, value: '"Other Incomes"'}
+  childTypes:
+  - typeName: OtherIncomeNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: OtherIncomeAddBackTypeNode}
+    - {typeName: OtherIncomeAmountNode}
+    - {typeName: OtherIncomeDescriptionNode}
+    - {typeName: OtherIncomePreviousYearNode}
+    - {typeName: OtherIncomeTypeNode}
+    childTypes:
+    - typeName: OtherIncomeTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
+      - {propertyName: required, value: 'true'}
+      - {propertyName: value, value: '"Other Income"'}
+      rules:
+      - {typeName: OtherIncomeTypeChangeRule}
+
+    - typeName: OtherIncomeAddBackTypeNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
+
+    - typeName: OtherIncomeAmountNode
+      baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: OtherIncomePreviousYearNode
+      baseTypeName: BooleanUiNode
+
+    - typeName: OtherIncomeDescriptionNode
+      baseTypeName: StringUiNode
+
+- typeName: BasePrivacyNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: CreditCheckFlagNode}
+  - {typeName: ThirdPartyDisclosureFlagNode}
+  - {typeName: LegalActionNode}
+  - {typeName: CreditHistoryListNode}
+  childTypes:
+  - typeName: CreditCheckFlagNode
+    baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+
+  - typeName: ThirdPartyDisclosureFlagNode
+    baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+
+  - typeName: LegalActionNode
+    baseTypeName: YesNoOptionNode
+    init:
+    - {propertyName: value, value: '"Yes"'}
+
+  - typeName: CreditHistoryListNode
+    baseTypeName: ListUiNode
+    itemTypeName: CreditHistoryNode
+    childTypes:
+    - typeName: CreditHistoryNode
+      baseTypeName: StringUiNode
+
+- typeName: BaseTrustNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: TrustNameNode}
+  - {typeName: TrustRegistrationDateNode}
+  - {typeName: TrustTypeNode}
+  - {typeName: TrustCountryNode}
+  - {typeName: TrustAddressNode}
+  - {typeName: TrustIndustryNode}
+  - {typeName: TrustSettlorNotRequiredReasonNode}
+  - {typeName: TrustBeneficiaryListNode}
+  - {typeName: TrustSettlorListNode}
+  - {typeName: TrustBeneficialOwnerListNode}
+  - {typeName: TrustBeneficiaryClassListNode}
+  childTypes:
+  - typeName: TrustTypeNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
+    rules:
+    - {typeName: TrustTypeChangedRule}
+
+  - typeName: TrustNameNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustRegistrationDateNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustCountryNode
+    baseTypeName: BaseCountryNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+  - typeName: TrustAddressNode
+    baseTypeName: AddressNode
+
+  - typeName: TrustSettlorNotRequiredReasonNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustIndustryNode
+    baseTypeName: StringUiNode
+
+  - typeName: TrustBeneficiaryListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustSettlorListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustBeneficialOwnerListNode
+    baseTypeName: SelectAccountHolderListNode
+
+  - typeName: TrustBeneficiaryClassListNode
+    baseTypeName: ListUiNode
+    itemTypeName: TrustBeneficiaryClassNode
+    childTypes:
+    - typeName: TrustBeneficiaryClassNode
+      baseTypeName: StringUiNode
+
+- typeName: BaseContactNode
+  baseTypeName: ObjectUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  children:
+  - {typeName: ContactTelephoneNode, name: workPhoneNode}
+  - {typeName: ContactTelephoneNode, name: faxNumberNode}
+  - {typeName: MobileNumberNode}
+  - {typeName: ContactEmailNode}
+  - {typeName: ContactAddressNode, name: currentAddressNode}
+  - {typeName: MovedToCurrentAddressNode}
+  - {typeName: ContactAddressNode, name: postalAddressNode}
+  - {typeName: ContactAddressNode, name: previousAddressNode}
+  - {typeName: MovedToPreviousAddressNode}
+  - {typeName: MovedFromPreviousAddressNode}
+  childTypes:
+  - typeName: ContactTelephoneNode
+    baseTypeName: TelephoneNode
+
+  - typeName: MobileNumberNode
+    baseTypeName: StringUiNode
+
+  - typeName: ContactAddressNode
+    baseTypeName: AddressNode
+
+  - typeName: MovedToCurrentAddressNode
+    baseTypeName: MonthYearNode
+    init:
+    - {propertyName: required, value: 'true'}
+    rules:
+    - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+    - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+  - typeName: MovedToPreviousAddressNode
+    baseTypeName: MonthYearNode
+
+  - typeName: MovedFromPreviousAddressNode
+    baseTypeName: MonthYearNode
+    rules:
+    - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+  - typeName: ContactEmailNode
+    baseTypeName: EmailNode
+    init:
+    - {propertyName: required, value: 'true'}
+
+- typeName: BaseApplicantTypeNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  baseTypeName: StringUiNode
+  properties:
+  - {name: options, typeName: Object}
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
+  - {propertyName: required, value: 'true'}
+  - {propertyName: value, value: '"A"'}

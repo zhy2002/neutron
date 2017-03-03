@@ -19,11 +19,10 @@
     </properties>
 
     <modules>
-        <module>neutron-codegen</module>
-        <module>neutron-examples</module>
         <module>neutron-core</module>
+        <module>neutron-codegen</module>
         <module>neutron-parent</module>
-        <module>neutron-examples-ui</module>
+        <module>neutron-examples</module>
     </modules>
 
     <dependencyManagement>
@@ -46,6 +45,12 @@
                 <groupId>com.google.dagger</groupId>
                 <artifactId>dagger-gwt</artifactId>
                 <version>${daggerVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava-gwt</artifactId>
+                <version>21.0</version>
             </dependency>
 
         </dependencies>
@@ -78,15 +83,71 @@
 
         <pluginManagement>
             <plugins>
+
                 <plugin>
                     <groupId>zhy2002.neutron</groupId>
                     <artifactId>neutron-codegen</artifactId>
                     <version>${project.version}</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+
+                <!-- GWT Maven Plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>${gwtVersion}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>test</goal>
+                                <goal>generateAsync</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <extraJvmArgs>-Xmx1024M -Xss2048k</extraJvmArgs>
+                        <generateJsInteropExports>true</generateJsInteropExports>
+                        <strict>true</strict>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <executions>
+                        <execution>
+                            <id>copy-source</id>
+                            <phase>process-classes</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/src/main/java</directory>
+                                        <includes>
+                                            <include>**/*.*</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

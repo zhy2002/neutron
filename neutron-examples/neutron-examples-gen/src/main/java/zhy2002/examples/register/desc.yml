@@ -1,0 +1,143 @@
+targetPackage: zhy2002.examples.register
+rootType:
+  typeName: RegisterNode
+  baseTypeName: ObjectUiNode
+
+  properties:
+  - {name: hasError, typeName: Boolean, default: Boolean.FALSE}
+
+  children:
+  - {typeName: UsernameNode}
+  - {typeName: EmailNode}
+  - {typeName: PasswordNode}
+  - {typeName: RepeatPasswordNode}
+  - {typeName: AgeNode}
+  - {typeName: PlanNode}
+  - {typeName: ReceiveOffersNode}
+  - {typeName: OwnInvestmentPropertyNode}
+  - {typeName: PropertyDetailsNode, name: residentialPropertyNode}
+  - {typeName: PropertyDetailsNode, name: investmentPropertyNode}
+  - {typeName: PhoneInfoNode, name: homePhoneNode}
+  - {typeName: ErrorListNode}
+
+  rules:
+  - {typeName: SetHasErrorRule}
+  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+
+  childTypes:
+  - typeName: UsernameNode
+    baseTypeName: StringUiNode
+    init:
+    - {propertyName: minLength, value: 4}
+    - {propertyName: invalidChars, value: "\"#\""}
+    - {propertyName: lengthMessage, value: "\"Username must have at least four characters.\""}
+    - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
+    rules:
+    - {typeName: DefaultEmailByUsernameRule}
+
+  - typeName: EmailNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: triggeredBy, typeName: String}
+    init:
+    - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
+    - {propertyName: patternMessage, value: '"Email format is invalid."'}
+    - {propertyName: requiredMessage, value: '"Email is required."'}
+    rules:
+    - {typeName: EmailChangeReasonRule}
+
+  - typeName: PasswordNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: message, typeName: String}
+    rules:
+    - {typeName: PasswordIsStrongRule, baseTypeName: ValidationRule}
+
+  - typeName: RepeatPasswordNode
+    baseTypeName: StringUiNode
+    rules:
+    - {typeName: RepeatPasswordRule, baseTypeName: ValidationRule}
+
+  - typeName: AgeNode
+    baseTypeName: BigDecimalUiNode
+    init:
+    - {propertyName: minValue, value: new BigDecimal("0")}
+    - {propertyName: maxValue, value: new BigDecimal("120")}
+    - {propertyName: rangeMessage, value: '"Age must be between 0 and 120."'}
+    rules:
+    - {typeName: UpdatePlanRule}
+
+  - typeName: PlanNode
+    baseTypeName: StringUiNode
+    properties:
+    - {name: options, typeName: Object}
+    init:
+    - {propertyName: options, value: 'new ProductPlan[0]'}
+
+  - typeName: ReceiveOffersNode
+    baseTypeName: BooleanUiNode
+    rules:
+    - {typeName: EmailIsRequiredWhenReceiveOffersRule}
+
+  - typeName: OwnInvestmentPropertyNode
+    baseTypeName: BooleanUiNode
+    rules:
+    - {typeName: LoadInvestmentPropertyRule}
+
+  - typeName: PropertyDetailsNode
+    baseTypeName: ObjectUiNode
+    unloadable: true
+    properties:
+    - {name: tooltip, typeName: String}
+    children:
+    - {typeName: PropertyAddressNode}
+    - {typeName: PropertyStateNode}
+    childTypes:
+    - typeName: PropertyAddressNode
+      baseTypeName: StringUiNode
+
+    - typeName: PropertyStateNode
+      baseTypeName: StringUiNode
+      properties:
+      - {name: options, typeName: Object}
+      init:
+      - {propertyName: required, value: 'true'}
+      - {propertyName: requiredMessage, value: '"Property state is required."'}
+      - {propertyName: options, value: RegisterNodeConstants.STATES.toArray()}
+
+  - typeName: PhoneInfoNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: CountryCodeNode}
+    - {typeName: AreaCodeNode}
+    - {typeName: PhoneNumberNode}
+    rules:
+    - {typeName: PhoneInfoAllOrNothingRule}
+    childTypes:
+    - typeName: PhoneInfoFieldNode
+      baseTypeName: StringUiNode
+      abstractNode: true
+
+    - typeName: CountryCodeNode
+      baseTypeName: PhoneInfoFieldNode
+      init:
+      - {propertyName: requiredMessage, value: '"Country code is required."'}
+
+    - typeName: AreaCodeNode
+      baseTypeName: PhoneInfoFieldNode
+      init:
+      - {propertyName: requiredMessage, value: '"Area code is required."'}
+
+    - typeName: PhoneNumberNode
+      baseTypeName: PhoneInfoFieldNode
+      init:
+      - {propertyName: requiredMessage, value: '"Phone number is required."'}
+
+  - typeName: ErrorListNode
+    baseTypeName: ListUiNode
+    itemTypeName: ErrorNode
+    childTypes:
+    - typeName: ErrorNode
+      baseTypeName: ValidationErrorUiNode
+
+

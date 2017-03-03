@@ -3,141 +3,39 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>neutron-examples-gen</module>
+        <module>neutron-examples-ui</module>
+        <module>neutron-examples-dep</module>
+    </modules>
 
     <parent>
         <groupId>zhy2002.neutron</groupId>
-        <artifactId>root-pom</artifactId>
+        <artifactId>neutron-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../neutron-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>neutron-examples</artifactId>
-    <packaging>war</packaging>
     <description>
         This is the example Neutron project used to verify framework behaviour.
     </description>
 
-    <dependencies>
-        <dependency>
-            <groupId>zhy2002.neutron</groupId>
-            <artifactId>neutron-codegen</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->
-        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <plugins>
-
-            <plugin>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
                 <groupId>zhy2002.neutron</groupId>
-                <artifactId>neutron-codegen</artifactId>
-                <executions>
-                    <execution>
-                        <id>gen-register</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <definitionFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/register/desc.yml
-                            </definitionFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/register/gen
-                            </targetDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>lodgement</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <definitionFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/desc.yml
-                            </definitionFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/gen
-                            </targetDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>app</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <definitionFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/app/desc.yml
-                            </definitionFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/app/gen
-                            </targetDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+                <artifactId>neutron-examples-gen</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-            <!-- GWT Maven Plugin -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>${gwtVersion}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>test</goal>
-                            <goal>generateAsync</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <!-- Plugin configuration. There are many available options, see
-                  gwt-maven-plugin documentation at codehaus.org -->
-                <configuration>
-                    <runTarget>bootstrap3.html</runTarget>
-                    <modules>
-                        <module>zhy2002.Lodgement</module>
-                    </modules>
-                    <extraJvmArgs>-Xmx1024M -Xss2048k</extraJvmArgs>
-                    <generateJsInteropExports>true</generateJsInteropExports>
-                    <strict>true</strict>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>com.google.dagger</groupId>
-                            <artifactId>dagger-compiler</artifactId>
-                            <version>${daggerVersion}</version>
-                        </path>
-                        <path>
-                            <groupId>com.google.auto.factory</groupId>
-                            <artifactId>auto-factory</artifactId>
-                            <version>1.0-beta3</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-        </plugins>
-
-    </build>
+            <dependency>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-examples-dep</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

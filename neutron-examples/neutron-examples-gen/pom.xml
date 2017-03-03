@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>neutron-examples</artifactId>
+        <groupId>zhy2002.neutron</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>neutron-examples-gen</artifactId>
+    <description>
+        A jar that contains domain description files.
+        The described classes are generated during the build.
+    </description>
+
+    <properties>
+        <gwt-jar>true</gwt-jar>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>zhy2002.neutron</groupId>
+            <artifactId>neutron-examples-dep</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-codegen</artifactId>
+                <executions>
+                    <execution>
+                        <id>gen-register</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/register/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/register/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>lodgement</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>app</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <definitionFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/app/desc.yml
+                            </definitionFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/app/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
