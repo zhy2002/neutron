@@ -13,5 +13,10 @@ public enum CycleModeEnum {
     /**
      * queue up all root changes until a cycle is processed manually.
      */
-    Batched
+    Batched,
+    /**
+     * all changes are temporarily applied without triggering any rules.
+     * The changes are officially applied when flush.
+     */
+    Debouncing
 }

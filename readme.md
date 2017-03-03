@@ -8,8 +8,6 @@ todo
   - Use 'profile' dagger component/module to provide root node configured for a lender
   - Need to create an example
 5. implement router - navigate to view via url
-6. deferred event execution - if the user types in many characters quickly
-  we should wait for a pause before we do an update. 
 7. simplify event binding api 
 8. node query and injection in rules 
   - context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
@@ -166,6 +164,10 @@ Problems
 10. Write a proper code gen tool with friendly logging and error messages.
   * The current code gen scheme is fine.
 
+11. Deferred event execution - if the user types in many characters quickly - we should wait for a pause before we do an update. 
+  * Added a debouncing cycle mode
+  * React need to debounce the flush event.
+  
 # Node Roles
 In the node hierarchy a node can have one of three roles:
 

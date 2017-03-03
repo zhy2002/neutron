@@ -6,7 +6,6 @@ import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.logging.Logger;
@@ -198,9 +197,35 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         state.put(key, value);
     }
 
+    private final Map<String, StateChangeEvent<?>> temporary = new HashMap<>();
+
+    @SuppressWarnings("unchecked")
     public <T> T getStateValue(String key, T defaultValue) {
-        T value = getStateValueInternal(key);
+        T value;
+        StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(key);
+        if (event != null) {
+            value = event.getNewValue();
+        } else {
+            value = getStateValueInternal(key);
+        }
         return value == null ? defaultValue : value;
+    }
+
+    void clearTemporary() {
+        temporary.clear();
+    }
+
+    @SuppressWarnings("unchecked")
+    <T> StateChangeEvent<T> applyTemporary(StateChangeEvent<T> newEvent) {
+        StateChangeEvent<T> oldEvent = (StateChangeEvent<T>) temporary.get(newEvent.getStateKey());
+        if (oldEvent != null) {
+            newEvent.setOldValue(oldEvent.getOldValue());
+        }
+        temporary.put(newEvent.getStateKey(), newEvent);
+        if (!Objects.equals(newEvent.getNewValue(), newEvent.getOldValue())) {
+            notifyChange();
+        }
+        return oldEvent;
     }
 
     @JsMethod
@@ -220,7 +245,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
 
     @JsMethod
     public String getPath() {
-        if(getNodeStatus() == NodeStatusEnum.Detached)
+        if (getNodeStatus() == NodeStatusEnum.Detached)
             return null;
 
         if (path == null) {
@@ -229,11 +254,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             do {
                 stack.push(node.getName());
                 node = node.getParent();
-            }while (node != null);
+            } while (node != null);
             StringBuilder stringBuilder = new StringBuilder();
             while (!stack.isEmpty()) {
                 stringBuilder.append(stack.pop());
-                if(!stack.isEmpty()) {
+                if (!stack.isEmpty()) {
                     stringBuilder.append("/"); //node name cannot contain /
                 }
             }
@@ -418,6 +443,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * This method is implemented by the concrete node.
      * NOTE: Direct base node type of a concrete node type must create its own
      * UiNodeRuleProvider class.
+     *
      * @return the rule provider.
      */
     protected abstract UiNodeRuleProvider getRuleProvider();

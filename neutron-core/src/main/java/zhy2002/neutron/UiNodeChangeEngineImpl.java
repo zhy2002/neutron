@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -24,6 +23,8 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      * True if is processing a cycle.
      */
     private boolean inCycle;
+
+    private boolean commitOnFlush;
     /**
      * Event mode.
      */
@@ -80,6 +81,16 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         processCycle();
         cycleDeque.clear();
         inSession = false;
+        commitOnFlush = false;
+    }
+
+    @Override
+    public void flush() {
+        if (commitOnFlush) {
+            commitSessionInternal();
+        } else {
+            processCycle();
+        }
     }
 
     @Override
@@ -90,12 +101,11 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         rollbackSessionInternal();
     }
 
-    @Override
-    public void flush() {
-        processCycle();
-    }
-
     private void rollbackSessionInternal() {
+        if (getCycleMode() == CycleModeEnum.Debouncing) {
+            clearTemporaryChanges();
+        }
+
         if (isInCycle())
             throw new UiNodeException("Cannot rollback during a cycle.");
 
@@ -111,6 +121,11 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
     @Override
     public boolean undo() {
+        if (getCycleMode() == CycleModeEnum.Debouncing) {
+            clearTemporaryChanges();
+        }
+        eventDeque.clear();
+
         if (isInCycle())
             throw new UiNodeException("Cannot undo during a cycle.");
 
@@ -140,6 +155,11 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
 
         Cycle cycle = findFirstApplicableCycle();
         if (cycle != null) {
+            if (getCycleMode() == CycleModeEnum.Debouncing) {
+                clearTemporaryChanges();
+            }
+            eventDeque.clear();
+
             cycle.apply();
             return true;
         }
@@ -215,24 +235,40 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         }
 
         if (autoCommit) {
-            commitSessionInternal();
+            if (getCycleMode() == CycleModeEnum.Debouncing) {
+                commitOnFlush = true;
+            } else {
+                commitSessionInternal();
+            }
         }
     }
 
     private void processEventInternal(UiNodeEvent event) {
 
-        //only pop undone cycles at the bottom of stack
-        if (!isInCycle()) {
-            popUndoneCycles();
-        }
-
-        eventDeque.add(event);
-        if (getCycleMode() == CycleModeEnum.Auto) {
-            processCycle();
+        if (getCycleMode() == CycleModeEnum.Debouncing) {
+            if (!isInCycle()) {
+                if (event instanceof StateChangeEvent) {
+                    StateChangeEvent<?> previousEvent = ((StateChangeEvent<?>) event).passThrough();
+                    if (previousEvent != null) {
+                        eventDeque.remove(previousEvent);
+                    }
+                }
+            }
+            eventDeque.add(event);
+        } else {
+            //only pop undone cycles at the bottom of stack
+            if (!isInCycle()) {
+                popUndoneCycles();
+            }
+            eventDeque.add(event);
+            if (getCycleMode() == CycleModeEnum.Auto) {
+                processCycle();
+            }
         }
     }
 
     private void popUndoneCycles() {
+        clearTemporaryChanges();
         while (!cycleDeque.isEmpty()) {
             if (cycleDeque.peekLast().canApply()) {
                 cycleDeque.pollLast();
@@ -242,6 +278,15 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         }
     }
 
+    private void clearTemporaryChanges() {
+        for (UiNodeEvent event : eventDeque) {
+            if (event instanceof StateChangeEvent) {
+                event.getOrigin().clearTemporary();
+            }
+        }
+        commitOnFlush = false;
+    }
+
     /**
      * Process all enqueued (root) events.
      * Root event is created by client via API calls
@@ -249,6 +294,9 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      * When this method exists eventDeque is empty.
      */
     public void processCycle() {
+        if (getCycleMode() == CycleModeEnum.Debouncing) {
+            clearTemporaryChanges();
+        }
 
         if (eventDeque.isEmpty())
             return; //nothing to process

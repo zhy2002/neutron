@@ -2,6 +2,7 @@ package zhy2002.examples.register;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.CountingChangeListener;
 import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.di.RegisterNodeFactory;
 import zhy2002.examples.register.gen.node.*;
@@ -193,19 +194,6 @@ public class RegisterCommonSendTest {
 
         emailNode.setValue("my@gmail.com");
         assertThat(emailNode.getTriggeredBy(), equalTo("user direct"));
-    }
-
-    private static class CountingChangeListener implements UiNodeChangeListener {
-        private int count = 0;
-
-        @Override
-        public void onUiNodeChanged() {
-            count++;
-        }
-
-        public int getCount() {
-            return count;
-        }
     }
 
     @Test

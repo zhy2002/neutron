@@ -42,4 +42,8 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     public void revert() {
         getOrigin().setStateValueInternal(getStateKey(), getOldValue());
     }
+
+    StateChangeEvent<T> passThrough() {
+        return getOrigin().applyTemporary(this);
+    }
 }
