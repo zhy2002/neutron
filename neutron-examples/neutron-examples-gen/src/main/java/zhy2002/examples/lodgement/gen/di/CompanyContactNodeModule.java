@@ -19,10 +19,6 @@ public class CompanyContactNodeModule {
         return owner;
     }
 
-    @Provides @CompanyContactNodeScope @Owner BaseContactNode<?> provideBaseContactNode() {
-        return owner;
-    }
-
     @Provides @CompanyContactNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

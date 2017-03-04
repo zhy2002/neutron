@@ -1,17 +1,12 @@
 import React from 'react';
-import PersonTabsComponent from '../app_data/person_data/PersonTabsComponent';
-import CompanyTabsComponent from '../app_data/company_data/CompanyTabsComponent';
-
+import ModelTabsComponent from '../../bootstrap3/ModelTabsComponent';
 
 export default class ApplicationTabsComponent extends React.PureComponent {
 
     renderTabs() {
         const model = this.props.model;
-        if (model.getConcreteClassName() === 'PersonNode') {
-            return <PersonTabsComponent model={model}/>;
-        }
-        if (model.getConcreteClassName() === 'CompanyNode') {
-            return <CompanyTabsComponent model={model}/>;
+        if (['PersonNode', 'CompanyNode', 'RealEstateNode'].indexOf(model.getConcreteClassName()) >= 0) {
+            return <ModelTabsComponent model={model}/>;
         }
         return null;
     }

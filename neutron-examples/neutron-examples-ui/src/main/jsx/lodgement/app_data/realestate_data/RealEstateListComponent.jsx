@@ -1,13 +1,29 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import AddListComponent from '../common/AddListComponent';
+import RealEstateSummaryComponent from './RealEstateSummaryComponent';
+import MainContentComponent from '../common/MainContentComponent';
 
-export default class RealEstateListComponent extends NeutronComponent {
+
+export default class RealEstateListComponent extends ListNeutronComponent {
+
+    renderItems() {
+        const result = [];
+        this.model.getChildren().forEach(
+            (item) => {
+                result.push(<RealEstateSummaryComponent key={item.getUniqueId()} model={item}/>);
+            }
+        );
+        return result;
+    }
 
     render() {
         return (
-            <div className="real-estate-list-component">
-                <h3>{this.label}</h3>
-            </div>
+            <MainContentComponent className="real-estate-list-component">
+                <AddListComponent model={this.model}>
+                    {this.renderItems()}
+                </AddListComponent>
+            </MainContentComponent>
         );
     }
 }

@@ -3,6 +3,7 @@ package zhy2002.examples.lodgement.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.util.NodeUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,7 +26,7 @@ public class AddressRefListNodeImpl extends AddressRefListNode {
             if (!child.hasValue())
                 continue;
 
-            Address address = extractAddress(child);
+            Address address = NodeUtil.extractAddress(child);
             if (hashSet.contains(address))
                 continue;
 
@@ -38,12 +39,5 @@ public class AddressRefListNodeImpl extends AddressRefListNode {
         return array;
     }
 
-    private Address extractAddress(AddressNode<?> node) {
-        Address address = new Address();
-        address.setAddressLine(node.getAddressLineNode().getValue());
-        address.setSuburb(node.getSuburbNode().getValue());
-        address.setPostcode(node.getPostcodeNode().getValue());
-        address.setCountry(node.getCountryNode().getValue());
-        return address;
-    }
+
 }

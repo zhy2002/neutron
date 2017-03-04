@@ -3,6 +3,7 @@ import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
 import MonthYearComponent from '../common/MonthYearComponent';
+import MainContentComponent from '../common/MainContentComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 // import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 // import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
@@ -14,10 +15,10 @@ export default class PersonContactComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <div className="container-fluid compact person-contact-component">
+            <MainContentComponent className="person-contact-component">
                 <div className="row">
                     <div className="col-md-4">
-                        <TelephoneComponent model={model.getPersonHomePhoneNode()}/>
+                        <TelephoneComponent model={model.getHomePhoneNode()}/>
                     </div>
                     <div className="col-md-4">
                         <TelephoneComponent model={model.getWorkPhoneNode()}/>
@@ -28,10 +29,10 @@ export default class PersonContactComponent extends NeutronComponent {
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <TextInputComponent model={model.getMobileNumberNode()}/>
+                        <TextInputComponent model={model.getPersonMobileNumberNode()}/>
                     </div>
                     <div className="col-md-4">
-                        <TextInputComponent model={model.getContactEmailNode()}/>
+                        <TextInputComponent model={model.getPersonEmailNode()}/>
                     </div>
                     <div className="col-md-4"/>
                 </div>
@@ -61,7 +62,7 @@ export default class PersonContactComponent extends NeutronComponent {
                         <MonthYearComponent model={model.getMovedFromPreviousAddressNode()}/>
                     </div>
                 </div>
-            </div>
+            </MainContentComponent>
         );
     }
 }

@@ -113,7 +113,7 @@ public class LodgementNodeTest {
     public void phoneInfoShouldBeComplete() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
-        TelephoneNode<?> phoneNumberNode = personNode.getPersonContactNode().getPersonHomePhoneNode();
+        TelephoneNode<?> phoneNumberNode = personNode.getPersonContactNode().getHomePhoneNode();
 
         Predicate<ErrorNode> hasTelephoneCompleteError = errorNode -> errorNode.getRule() instanceof TelephoneCompleteRule;
 
@@ -153,12 +153,12 @@ public class LodgementNodeTest {
         PersonNode personNode = personListNode.createItem();
         PersonContactNode contactNode = personNode.getPersonContactNode();
 
-        assertThat(contactNode.getPersonHomePhoneNode().getRequired(), equalTo(true));
+        assertThat(contactNode.getHomePhoneNode().getRequired(), equalTo(true));
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(true));
 
         Telephone telephone = new Telephone();
         telephone.setPhoneNumber("123345");
-        contactNode.getPersonHomePhoneNode().setValue(telephone);
+        contactNode.getHomePhoneNode().setValue(telephone);
 
         assertThat(contactNode.getWorkPhoneNode().getRequired(), equalTo(false));
 
@@ -175,12 +175,12 @@ public class LodgementNodeTest {
 
         Telephone telephone = new Telephone();
         telephone.setPhoneNumber("119");
-        contactNode.getPersonHomePhoneNode().setValue(telephone);
+        contactNode.getHomePhoneNode().setValue(telephone);
 
-        assertThat(contactNode.getPersonHomePhoneNode().hasValue(), equalTo(true));
+        assertThat(contactNode.getHomePhoneNode().hasValue(), equalTo(true));
         assertThat(contactNode.hasValue(), equalTo(true));
 
-        contactNode.getPersonHomePhoneNode().setValue(new Telephone());
+        contactNode.getHomePhoneNode().setValue(new Telephone());
         assertThat(contactNode.hasValue(), equalTo(false));
     }
 

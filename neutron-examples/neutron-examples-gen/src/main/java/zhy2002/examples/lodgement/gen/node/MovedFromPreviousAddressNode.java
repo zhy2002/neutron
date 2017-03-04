@@ -8,7 +8,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 
 
-public class MovedFromPreviousAddressNode extends MonthYearNode<BaseContactNode<?>> {
+public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -33,7 +33,7 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<BaseContactNode<
     }
 
 
-    public MovedFromPreviousAddressNode(@NotNull BaseContactNode<?> parent, String name) {
+    public MovedFromPreviousAddressNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);
     }
 

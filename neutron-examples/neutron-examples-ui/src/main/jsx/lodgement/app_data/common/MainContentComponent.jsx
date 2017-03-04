@@ -4,7 +4,7 @@ export default class MainContentComponent extends React.PureComponent {
 
     render() {
         return (
-            <div className={`container-fluid compact ${this.props.className}`}>
+            <div className={`container-fluid compact main-content-component ${this.props.className}`}>
                 {this.props.children}
             </div>
         );

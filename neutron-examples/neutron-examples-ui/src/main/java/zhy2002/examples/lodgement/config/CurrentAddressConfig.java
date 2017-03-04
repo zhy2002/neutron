@@ -1,11 +1,11 @@
 package zhy2002.examples.lodgement.config;
 
-import zhy2002.examples.lodgement.gen.node.ContactAddressNode;
+import zhy2002.examples.lodgement.gen.node.PersonAddressNode;
 import zhy2002.neutron.UiNodeConfig;
 
-public class CurrentAddressConfig extends UiNodeConfig<ContactAddressNode> {
+public class CurrentAddressConfig extends UiNodeConfig<PersonAddressNode> {
 
-    public CurrentAddressConfig(ContactAddressNode owner) {
+    public CurrentAddressConfig(PersonAddressNode owner) {
         super(owner);
     }
 

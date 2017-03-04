@@ -4,7 +4,10 @@ import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.di.*;
-import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.CompanyOtherIncomeListNode;
+import zhy2002.examples.lodgement.gen.node.OtherIncomeNode;
+import zhy2002.examples.lodgement.gen.node.OtherIncomeTypeNode;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
@@ -107,6 +110,27 @@ public abstract class DefaultProfileModule {
     @Binds
     abstract OtherIncomeTypeNodeRuleProvider provideOtherIncomeTypeNodeRuleProvider(OtherIncomeTypeNodeRuleProviderImpl impl);
 
+    @Binds
+    abstract RealEstateNodeRuleProvider provideRealEstateNodeRuleProvider(RealEstateNodeRuleProviderImpl impl);
+
+}
+
+@RealEstateNodeScope
+class RealEstateNodeRuleProviderImpl extends RealEstateNodeRuleProvider {
+
+    @Inject
+    public RealEstateNodeRuleProviderImpl() {
+    }
+
+    @Inject
+    Provider<UpdateRealEstateNodeLabelRule> updateRealEstateNodeLabelRuleProvider;
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.add(updateRealEstateNodeLabelRuleProvider.get());
+    }
 }
 
 @OtherIncomeTypeNodeScope

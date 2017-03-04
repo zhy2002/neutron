@@ -13,8 +13,21 @@ export default class RadioInputComponent extends InputComponent {
 
     extractNewState() {
         const newState = super.extractNewState();
-        newState.list = super.getValueOptions();
+        newState.list = this.getValueOptions();
         return newState;
+    }
+
+    getValueOptions() {
+        let options = super.getValueOptions();
+        if (options === null) { //assume binding to a boolean node
+            options = [
+                new GWT.SelectOption(true, 'Yes'),
+                new GWT.SelectOption(false, 'No')
+            ];
+        }
+        console.log('options:');
+        console.log(options);
+        return options;
     }
 
     renderOptions() {
@@ -22,7 +35,7 @@ export default class RadioInputComponent extends InputComponent {
         const options = [];
         if (this.state.list) {
             this.state.list.forEach((item, index) => {
-                if (item.getValue()) {
+                if (item.getValue() || item.getValue() === false) {
                     options.push(
                         <label key={item.getText()} className="radio-inline">
                             <input

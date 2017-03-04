@@ -160,14 +160,51 @@ rootType:
           - {propertyName: required, value: 'true'}
 
       - typeName: PersonContactNode
-        baseTypeName: BaseContactNode
+        baseTypeName: ObjectUiNode
         rules:
           - {typeName: HomeOrWorkPhoneRequiredRule}
         children:
-        - {typeName: PersonHomePhoneNode}
+        - {typeName: PersonTelephoneNode, name: homePhoneNode}
+        - {typeName: PersonTelephoneNode, name: workPhoneNode}
+        - {typeName: PersonTelephoneNode, name: faxNumberNode}
+        - {typeName: PersonMobileNumberNode}
+        - {typeName: PersonEmailNode}
+        - {typeName: PersonAddressNode, name: currentAddressNode}
+        - {typeName: MovedToCurrentAddressNode}
+        - {typeName: PersonAddressNode, name: postalAddressNode}
+        - {typeName: PersonAddressNode, name: previousAddressNode}
+        - {typeName: MovedToPreviousAddressNode}
+        - {typeName: MovedFromPreviousAddressNode}
         childTypes:
-        - typeName: PersonHomePhoneNode
+        - typeName: PersonTelephoneNode
           baseTypeName: TelephoneNode
+
+        - typeName: PersonMobileNumberNode
+          baseTypeName: BaseMobileNumberNode
+
+        - typeName: PersonEmailNode
+          baseTypeName: EmailNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: PersonAddressNode
+          baseTypeName: AddressNode
+
+        - typeName: MovedToCurrentAddressNode
+          baseTypeName: MonthYearNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+          - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+
+        - typeName: MovedToPreviousAddressNode
+          baseTypeName: MonthYearNode
+
+        - typeName: MovedFromPreviousAddressNode
+          baseTypeName: MonthYearNode
+          rules:
+          - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
 
       - typeName: CurrentEmploymentListNode
         baseTypeName: ListUiNode
@@ -284,16 +321,36 @@ rootType:
           baseTypeName: SelectRelatedPersonListNode
 
       - typeName: CompanyContactNode
-        baseTypeName: BaseContactNode
+        baseTypeName: ObjectUiNode
         children:
         - {typeName: CompanyContactFirstNameNode}
         - {typeName: CompanyContactLastNameNode}
+        - {typeName: CompanyTelephoneNode, name: workPhoneNode}
+        - {typeName: CompanyTelephoneNode, name: faxNumberNode}
+        - {typeName: CompanyMobileNumberNode}
+        - {typeName: CompanyEmailNode}
+        - {typeName: CompanyAddressNode, name: registeredAddressNode}
+        - {typeName: CompanyAddressNode, name: postalAddressNode}
+        - {typeName: CompanyAddressNode, name: tradingAddressNode}
+        - {typeName: CompanyAddressNode, name: principalPlaceAddressNode}
         childTypes:
         - typeName: CompanyContactFirstNameNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyContactLastNameNode
           baseTypeName: StringUiNode
+
+        - typeName: CompanyTelephoneNode
+          baseTypeName: TelephoneNode
+
+        - typeName: CompanyMobileNumberNode
+          baseTypeName: BaseMobileNumberNode
+
+        - typeName: CompanyEmailNode
+          baseTypeName: EmailNode
+
+        - typeName: CompanyAddressNode
+          baseTypeName: AddressNode
 
       - typeName: CompanyTrustNode
         baseTypeName: BaseTrustNode
@@ -572,6 +629,8 @@ rootType:
     childTypes:
     - typeName: RealEstateNode
       baseTypeName: ObjectUiNode
+      init:
+      - {propertyName: selectedName, value: '"usageNode"'}
       children:
       - {typeName: UsageNode}
       - {typeName: PropertyNode}
@@ -589,18 +648,28 @@ rootType:
         childTypes:
         - typeName: UsedAsSecurityFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: value, value: 'null'}
 
         - typeName: BeingPurchasedFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: value, value: 'null'}
 
         - typeName: OwnedOutrightFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: value, value: 'null'}
 
         - typeName: PrimarySecurityFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: value, value: 'null'}
 
         - typeName: ApprovalInPrincipleFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: value, value: 'null'}
 
         - typeName: ExistingMortgageListNode
           baseTypeName: ListUiNode
@@ -1070,6 +1139,14 @@ commonTypes:
   init:
   - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
 
+- typeName: BaseMobileNumberNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: '"^(\\+\\d{1,3}[- ]?)?\\d{10}$"'}
+  - {propertyName: patternMessage, value: '"Invalid mobile number."'}
+
 - typeName: BaseCurrencyNode
   baseTypeName: BigDecimalUiNode
   abstractNode: true
@@ -1524,52 +1601,6 @@ commonTypes:
     childTypes:
     - typeName: TrustBeneficiaryClassNode
       baseTypeName: StringUiNode
-
-- typeName: BaseContactNode
-  baseTypeName: ObjectUiNode
-  abstractNode: true
-  parentBaseTypeName: ParentUiNode<?>
-  children:
-  - {typeName: ContactTelephoneNode, name: workPhoneNode}
-  - {typeName: ContactTelephoneNode, name: faxNumberNode}
-  - {typeName: MobileNumberNode}
-  - {typeName: ContactEmailNode}
-  - {typeName: ContactAddressNode, name: currentAddressNode}
-  - {typeName: MovedToCurrentAddressNode}
-  - {typeName: ContactAddressNode, name: postalAddressNode}
-  - {typeName: ContactAddressNode, name: previousAddressNode}
-  - {typeName: MovedToPreviousAddressNode}
-  - {typeName: MovedFromPreviousAddressNode}
-  childTypes:
-  - typeName: ContactTelephoneNode
-    baseTypeName: TelephoneNode
-
-  - typeName: MobileNumberNode
-    baseTypeName: StringUiNode
-
-  - typeName: ContactAddressNode
-    baseTypeName: AddressNode
-
-  - typeName: MovedToCurrentAddressNode
-    baseTypeName: MonthYearNode
-    init:
-    - {propertyName: required, value: 'true'}
-    rules:
-    - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-    - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-
-  - typeName: MovedToPreviousAddressNode
-    baseTypeName: MonthYearNode
-
-  - typeName: MovedFromPreviousAddressNode
-    baseTypeName: MonthYearNode
-    rules:
-    - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
-
-  - typeName: ContactEmailNode
-    baseTypeName: EmailNode
-    init:
-    - {propertyName: required, value: 'true'}
 
 - typeName: BaseApplicantTypeNode
   abstractNode: true

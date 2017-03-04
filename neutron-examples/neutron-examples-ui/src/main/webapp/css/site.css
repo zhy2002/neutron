@@ -134,7 +134,7 @@ html, body {
     float: left;
     width: 65%; }
 
-.person-component, .company-component {
+.person-component, .company-component, .financial-position-component, .real-estate-component {
   padding-top: 1.5em; }
 
 .application-main-content {

@@ -213,7 +213,7 @@ html, body {
 
 //region person components
 
-.person-component, .company-component {
+.person-component, .company-component, .financial-position-component, .real-estate-component {
   padding-top: 1.5em;
 }
 
@@ -250,7 +250,7 @@ html, body {
   border-radius: 3px;
 }
 
-.person-component,company-component {
+.person-component, company-component {
   > .nav-pills-component {
     margin-top: 0;
   }
@@ -500,7 +500,7 @@ a[tabindex] {
     border: 2px solid #dfdfdf;
     width: 250px;
     top: -10px;
-    box-shadow: 5px 7px 5px 0 rgba(0,0,0,0.4);
+    box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.4);
   }
 
   .close-icon {
@@ -569,7 +569,5 @@ a[tabindex] {
   font-size: 120%;
   font-weight: bold;
 }
-
-
 
 //endregion

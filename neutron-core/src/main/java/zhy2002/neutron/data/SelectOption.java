@@ -1,9 +1,10 @@
 package zhy2002.neutron.data;
 
 import jsinterop.annotations.JsType;
+import zhy2002.neutron.util.NeutronConstants;
 
-@JsType
-public abstract class SelectOption<T> {
+@JsType(namespace = NeutronConstants.JS_NAMESPACE)
+public class SelectOption<T> {
 
     private final T value;
     private final String text;

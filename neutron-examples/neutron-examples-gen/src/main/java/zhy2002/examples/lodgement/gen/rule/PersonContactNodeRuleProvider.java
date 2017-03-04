@@ -10,7 +10,7 @@ import zhy2002.examples.lodgement.gen.node.PersonContactNode;
 
 @PersonContactNodeScope
 public class PersonContactNodeRuleProvider
-    extends BaseContactNodeRuleProvider<PersonContactNode> {
+    extends ObjectUiNodeRuleProvider<PersonContactNode> {
 
     @Inject
     public PersonContactNodeRuleProvider() {}

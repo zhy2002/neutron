@@ -21,7 +21,7 @@ export default class PersonComponent extends NeutronComponent {
         return newState;
     }
 
-    renderPersonContent() {
+    renderContent() {
         console.log('PersonComponent renderPersonContent');
         const model = this.state.selectedItem;
         const className = model.getConcreteClassName();
@@ -64,7 +64,7 @@ export default class PersonComponent extends NeutronComponent {
     render() {
         return (
             <div className="person-component">
-                {this.renderPersonContent()}
+                {this.renderContent()}
             </div>
         );
     }

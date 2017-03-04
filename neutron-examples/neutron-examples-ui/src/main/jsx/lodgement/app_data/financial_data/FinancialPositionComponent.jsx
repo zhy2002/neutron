@@ -11,16 +11,18 @@ export default class FinancialPositionComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <div className="container-fluid financial-position-component">
-                <div className="row">
-                    <div className="col-md-12">
-                        <FinancialSummaryComponent model={model}/>
-                        <AssetsComponent model={model.getAssetsNode()}/>
-                        <LiabilitiesComponent model={model.getLiabilitiesNode()}/>
-                        <ExpenseListComponent model={model.getExpenseListNode()}/>
+            <div className="financial-position-component">
+                <div className="container-fluid ">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <FinancialSummaryComponent model={model}/>
+                            <AssetsComponent model={model.getAssetsNode()}/>
+                            <LiabilitiesComponent model={model.getLiabilitiesNode()}/>
+                            <ExpenseListComponent model={model.getExpenseListNode()}/>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         );
     }
