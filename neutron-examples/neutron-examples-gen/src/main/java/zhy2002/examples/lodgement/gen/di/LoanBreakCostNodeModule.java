@@ -35,4 +35,8 @@ public class LoanBreakCostNodeModule {
         return owner;
     }
 
+    @Provides @LoanBreakCostNodeScope LoanNode provideLoanNode() {
+        return owner.getParent();
+    }
+
 }

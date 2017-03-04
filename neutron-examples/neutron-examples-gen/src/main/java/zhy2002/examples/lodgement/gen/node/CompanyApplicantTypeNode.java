@@ -27,6 +27,12 @@ public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGener
         return component.getCompanyApplicantTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyApplicantTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

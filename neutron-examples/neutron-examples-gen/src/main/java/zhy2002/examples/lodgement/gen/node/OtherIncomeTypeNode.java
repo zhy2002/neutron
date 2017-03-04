@@ -30,6 +30,12 @@ public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
         return component.getOtherIncomeTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomeTypeNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
     }
@@ -38,9 +44,7 @@ public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
     protected void initializeState() {
         super.initializeState();
 
-        setOptions(ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray());
         setRequired(true);
-        setValue("Other Income");
     }
 
     @JsMethod

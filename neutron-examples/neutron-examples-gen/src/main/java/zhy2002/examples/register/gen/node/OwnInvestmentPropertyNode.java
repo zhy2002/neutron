@@ -27,6 +27,12 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
         return component.getOwnInvestmentPropertyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

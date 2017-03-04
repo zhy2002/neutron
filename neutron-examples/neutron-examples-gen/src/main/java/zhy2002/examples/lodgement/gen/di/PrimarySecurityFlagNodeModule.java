@@ -31,4 +31,8 @@ public class PrimarySecurityFlagNodeModule {
         return owner;
     }
 
+    @Provides @PrimarySecurityFlagNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

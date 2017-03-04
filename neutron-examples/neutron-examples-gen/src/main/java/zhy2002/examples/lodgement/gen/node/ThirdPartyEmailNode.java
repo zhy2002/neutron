@@ -27,6 +27,12 @@ public class ThirdPartyEmailNode extends StringUiNode<RelatedPartyNode> {
         return component.getThirdPartyEmailNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyEmailNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

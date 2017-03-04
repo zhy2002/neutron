@@ -27,6 +27,12 @@ public class CreditCardMonthlyRepaymentNode extends BaseCurrencyNode<CreditCardN
         return component.getCreditCardMonthlyRepaymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardMonthlyRepaymentNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

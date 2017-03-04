@@ -31,4 +31,8 @@ public class ExpenseTypeNodeModule {
         return owner;
     }
 
+    @Provides @ExpenseTypeNodeScope ExpenseNode provideExpenseNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class ProductInterestOnlyTermNode extends BigDecimalUiNode<ProductDescrip
         return component.getProductInterestOnlyTermNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductInterestOnlyTermNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

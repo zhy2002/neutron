@@ -31,4 +31,8 @@ public class AccessTelephoneNodeModule {
         return owner;
     }
 
+    @Provides @AccessTelephoneNodeScope AccessNode provideAccessNode() {
+        return owner.getParent();
+    }
+
 }

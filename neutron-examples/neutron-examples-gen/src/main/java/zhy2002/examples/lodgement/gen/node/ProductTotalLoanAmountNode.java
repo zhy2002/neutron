@@ -27,6 +27,12 @@ public class ProductTotalLoanAmountNode extends BaseCurrencyNode<ProductsNode> {
         return component.getProductTotalLoanAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductTotalLoanAmountNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

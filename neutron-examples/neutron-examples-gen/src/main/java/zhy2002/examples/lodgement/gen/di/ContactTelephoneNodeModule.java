@@ -31,4 +31,8 @@ public class ContactTelephoneNodeModule {
         return owner;
     }
 
+    @Provides @ContactTelephoneNodeScope BaseContactNode<?> provideBaseContactNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class CompanyOtherIncomeListNode extends BaseOtherIncomeListNode<CompanyN
         return component.getCompanyOtherIncomeListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyOtherIncomeListNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);
     }

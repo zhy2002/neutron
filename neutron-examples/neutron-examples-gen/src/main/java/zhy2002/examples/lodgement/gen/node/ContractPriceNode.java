@@ -27,6 +27,12 @@ public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
         return component.getContractPriceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ContractPriceNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

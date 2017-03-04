@@ -35,4 +35,8 @@ public class ProductAccountHolderListNodeModule {
         return owner;
     }
 
+    @Provides @ProductAccountHolderListNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode> {
         return component.getSavingsBsbNoNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SavingsBsbNoNode(@NotNull SavingsAccountNode parent, String name) {
         super(parent, name);
     }

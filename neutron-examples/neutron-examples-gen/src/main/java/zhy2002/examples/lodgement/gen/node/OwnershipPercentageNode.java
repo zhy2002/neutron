@@ -29,6 +29,12 @@ public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
         return component.getOwnershipPercentageNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OwnershipPercentageNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);
     }

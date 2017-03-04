@@ -31,4 +31,8 @@ public class ProductInterestOnlyTermNodeModule {
         return owner;
     }
 
+    @Provides @ProductInterestOnlyTermNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

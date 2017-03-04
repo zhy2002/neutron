@@ -40,6 +40,12 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         return component.getExpenseNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExpenseNode(@NotNull ExpenseListNode parent, String name) {
         super(parent, name);
     }

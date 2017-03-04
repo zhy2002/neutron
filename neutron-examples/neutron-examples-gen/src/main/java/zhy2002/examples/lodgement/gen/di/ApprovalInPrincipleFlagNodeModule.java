@@ -31,4 +31,8 @@ public class ApprovalInPrincipleFlagNodeModule {
         return owner;
     }
 
+    @Provides @ApprovalInPrincipleFlagNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

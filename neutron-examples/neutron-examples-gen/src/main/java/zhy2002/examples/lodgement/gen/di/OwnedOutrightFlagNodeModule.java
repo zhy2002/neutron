@@ -31,4 +31,8 @@ public class OwnedOutrightFlagNodeModule {
         return owner;
     }
 
+    @Provides @OwnedOutrightFlagNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

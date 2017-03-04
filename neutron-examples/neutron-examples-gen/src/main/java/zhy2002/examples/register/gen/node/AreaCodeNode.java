@@ -29,6 +29,12 @@ public class AreaCodeNode extends PhoneInfoFieldNode {
         return component.getAreaCodeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AreaCodeNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);
     }

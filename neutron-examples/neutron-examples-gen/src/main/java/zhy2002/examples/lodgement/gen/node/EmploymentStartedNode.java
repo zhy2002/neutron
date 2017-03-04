@@ -29,6 +29,12 @@ public class EmploymentStartedNode extends MonthYearNode<EmployedNode> {
         return component.getEmploymentStartedNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmploymentStartedNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

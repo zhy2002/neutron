@@ -29,6 +29,12 @@ public class EmployerPhoneNode extends TelephoneNode<EmployedNode> {
         return component.getEmployerPhoneNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmployerPhoneNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

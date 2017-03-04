@@ -31,4 +31,8 @@ public class ProductSpecificFeaturesFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductSpecificFeaturesFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

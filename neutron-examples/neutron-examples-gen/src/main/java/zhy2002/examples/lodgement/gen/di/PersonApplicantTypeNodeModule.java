@@ -35,4 +35,8 @@ public class PersonApplicantTypeNodeModule {
         return owner;
     }
 
+    @Provides @PersonApplicantTypeNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

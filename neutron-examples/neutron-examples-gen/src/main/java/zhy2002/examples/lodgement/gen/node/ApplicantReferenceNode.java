@@ -29,6 +29,12 @@ public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
         return component.getApplicantReferenceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ApplicantReferenceNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);
     }

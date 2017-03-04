@@ -35,4 +35,8 @@ public class CompanyPrivacyNodeModule {
         return owner;
     }
 
+    @Provides @CompanyPrivacyNodeScope CompanyNode provideCompanyNode() {
+        return owner.getParent();
+    }
+
 }

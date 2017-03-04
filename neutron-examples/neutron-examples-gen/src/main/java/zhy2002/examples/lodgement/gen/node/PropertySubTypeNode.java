@@ -27,6 +27,12 @@ public class PropertySubTypeNode extends StringUiNode<PropertyNode> {
         return component.getPropertySubTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertySubTypeNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

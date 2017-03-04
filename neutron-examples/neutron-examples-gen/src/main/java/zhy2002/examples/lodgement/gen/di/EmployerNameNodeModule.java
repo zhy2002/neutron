@@ -31,4 +31,8 @@ public class EmployerNameNodeModule {
         return owner;
     }
 
+    @Provides @EmployerNameNodeScope EmployedNode provideEmployedNode() {
+        return owner.getParent();
+    }
+
 }

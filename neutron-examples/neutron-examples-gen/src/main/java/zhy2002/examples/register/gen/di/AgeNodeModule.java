@@ -31,4 +31,8 @@ public class AgeNodeModule {
         return owner;
     }
 
+    @Provides @AgeNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

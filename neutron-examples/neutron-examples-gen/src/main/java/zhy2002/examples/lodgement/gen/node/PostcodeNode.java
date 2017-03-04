@@ -29,6 +29,12 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>> {
         return component.getPostcodeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PostcodeNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }

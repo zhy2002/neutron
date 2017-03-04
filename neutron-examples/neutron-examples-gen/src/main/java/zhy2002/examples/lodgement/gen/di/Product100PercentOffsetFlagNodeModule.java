@@ -31,4 +31,8 @@ public class Product100PercentOffsetFlagNodeModule {
         return owner;
     }
 
+    @Provides @Product100PercentOffsetFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

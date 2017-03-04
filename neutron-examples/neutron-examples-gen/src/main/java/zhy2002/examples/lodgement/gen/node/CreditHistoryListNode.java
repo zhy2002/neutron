@@ -34,6 +34,12 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         return component.getCreditHistoryListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditHistoryListNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
     }

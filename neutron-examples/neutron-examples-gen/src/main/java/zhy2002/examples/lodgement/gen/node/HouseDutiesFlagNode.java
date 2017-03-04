@@ -29,6 +29,12 @@ public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
         return component.getHouseDutiesFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public HouseDutiesFlagNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);
     }

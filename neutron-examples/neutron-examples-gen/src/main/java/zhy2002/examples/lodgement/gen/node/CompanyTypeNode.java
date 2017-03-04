@@ -27,6 +27,12 @@ public class CompanyTypeNode extends StringUiNode<CompanyGeneralNode> {
         return component.getCompanyTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

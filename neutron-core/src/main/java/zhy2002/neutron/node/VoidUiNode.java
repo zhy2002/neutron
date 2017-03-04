@@ -66,6 +66,10 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
     }
 
     @Override
+    protected void initializeRuleState() {
+    }
+
+    @Override
     public boolean hasValue() {
         return false;
     }

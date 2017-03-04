@@ -31,4 +31,8 @@ public class UsageNodeModule {
         return owner;
     }
 
+    @Provides @UsageNodeScope RealEstateNode provideRealEstateNode() {
+        return owner.getParent();
+    }
+
 }

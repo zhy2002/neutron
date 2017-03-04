@@ -22,9 +22,8 @@ export default class AddListComponent extends ListNeutronComponent {
 
     render() {
         return (
-            <div className="add-list-component">
-                {this.props.children}
-                <div className="container-fluid compact">
+            <div className="row add-list-component">
+                <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-2">
                             <button className="btn btn-sm btn-primary pull-right" onClick={this.createNewItem}>
@@ -32,6 +31,11 @@ export default class AddListComponent extends ListNeutronComponent {
                             </button>
                         </div>
                         <div className="col-md-10"/>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
             </div>

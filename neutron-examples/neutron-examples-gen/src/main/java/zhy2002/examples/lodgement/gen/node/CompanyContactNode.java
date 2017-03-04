@@ -39,6 +39,12 @@ public class CompanyContactNode extends BaseContactNode<CompanyNode> {
         return component.getCompanyContactNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyContactNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);
     }

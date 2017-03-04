@@ -27,6 +27,12 @@ public class OtherIncomePreviousYearNode extends BooleanUiNode<OtherIncomeNode> 
         return component.getOtherIncomePreviousYearNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomePreviousYearNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
     }

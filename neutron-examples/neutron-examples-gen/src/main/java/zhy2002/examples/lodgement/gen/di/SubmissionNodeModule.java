@@ -31,4 +31,8 @@ public class SubmissionNodeModule {
         return owner;
     }
 
+    @Provides @SubmissionNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

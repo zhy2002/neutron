@@ -35,4 +35,8 @@ public class ProductTotalLoanLmiAmountNodeModule {
         return owner;
     }
 
+    @Provides @ProductTotalLoanLmiAmountNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

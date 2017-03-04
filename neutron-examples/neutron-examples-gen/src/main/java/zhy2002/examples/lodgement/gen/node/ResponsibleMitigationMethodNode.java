@@ -30,6 +30,12 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
         return component.getResponsibleMitigationMethodNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ResponsibleMitigationMethodNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
     }

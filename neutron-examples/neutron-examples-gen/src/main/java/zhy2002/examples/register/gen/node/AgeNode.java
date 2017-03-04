@@ -29,6 +29,12 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
         return component.getAgeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AgeNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

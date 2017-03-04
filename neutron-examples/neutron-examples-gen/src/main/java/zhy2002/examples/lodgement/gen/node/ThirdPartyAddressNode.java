@@ -27,6 +27,12 @@ public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
         return component.getThirdPartyAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyAddressNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

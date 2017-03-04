@@ -27,6 +27,12 @@ public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
         return component.getThirdPartyDobNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyDobNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

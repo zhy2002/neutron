@@ -31,4 +31,8 @@ public class RentedFlagNodeModule {
         return owner;
     }
 
+    @Provides @RentedFlagNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

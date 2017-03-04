@@ -30,6 +30,12 @@ public class HousingStatusNode extends StringUiNode<PersonGeneralNode> {
         return component.getHousingStatusNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public HousingStatusNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

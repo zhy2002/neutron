@@ -31,4 +31,8 @@ public class CreditHistoryNodeModule {
         return owner;
     }
 
+    @Provides @CreditHistoryNodeScope CreditHistoryListNode provideCreditHistoryListNode() {
+        return owner.getParent();
+    }
+
 }

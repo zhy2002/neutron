@@ -27,6 +27,12 @@ public class ProductLoanPrimaryPurposeNode extends StringUiNode<ProductDescripti
         return component.getProductLoanPrimaryPurposeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductLoanPrimaryPurposeNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

@@ -35,4 +35,8 @@ public class CountryCodeNodeModule {
         return owner;
     }
 
+    @Provides @CountryCodeNodeScope PhoneInfoNode providePhoneInfoNode() {
+        return owner.getParent();
+    }
+
 }

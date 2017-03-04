@@ -31,4 +31,8 @@ public class ProfitThisYearNodeModule {
         return owner;
     }
 
+    @Provides @ProfitThisYearNodeScope SelfEmployedNode provideSelfEmployedNode() {
+        return owner.getParent();
+    }
+
 }

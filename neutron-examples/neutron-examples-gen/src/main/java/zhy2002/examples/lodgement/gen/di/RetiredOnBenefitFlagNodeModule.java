@@ -35,4 +35,8 @@ public class RetiredOnBenefitFlagNodeModule {
         return owner;
     }
 
+    @Provides @RetiredOnBenefitFlagNodeScope RetiredEmploymentNode provideRetiredEmploymentNode() {
+        return owner.getParent();
+    }
+
 }

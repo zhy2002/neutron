@@ -38,6 +38,12 @@ public class PersonContactNode extends BaseContactNode<PersonNode> {
         return component.getPersonContactNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonContactNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

@@ -31,4 +31,8 @@ public class ProductFixedTermNodeModule {
         return owner;
     }
 
+    @Provides @ProductFixedTermNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

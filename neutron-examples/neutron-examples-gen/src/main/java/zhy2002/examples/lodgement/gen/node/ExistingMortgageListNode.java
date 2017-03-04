@@ -34,6 +34,12 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
         return component.getExistingMortgageListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExistingMortgageListNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
     }

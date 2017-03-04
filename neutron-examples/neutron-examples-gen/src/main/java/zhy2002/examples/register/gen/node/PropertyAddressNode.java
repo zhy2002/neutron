@@ -27,6 +27,12 @@ public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
         return component.getPropertyAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyAddressNode(@NotNull PropertyDetailsNode parent, String name) {
         super(parent, name);
     }

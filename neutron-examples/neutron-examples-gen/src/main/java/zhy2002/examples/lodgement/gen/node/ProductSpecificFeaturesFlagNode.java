@@ -27,6 +27,12 @@ public class ProductSpecificFeaturesFlagNode extends BooleanUiNode<ProductDescri
         return component.getProductSpecificFeaturesFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductSpecificFeaturesFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

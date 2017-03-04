@@ -35,4 +35,8 @@ public class CompanyResponsibleLendNodeModule {
         return owner;
     }
 
+    @Provides @CompanyResponsibleLendNodeScope CompanyNode provideCompanyNode() {
+        return owner.getParent();
+    }
+
 }

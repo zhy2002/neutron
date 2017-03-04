@@ -27,6 +27,12 @@ public class PersonPrivacyNode extends BasePrivacyNode<PersonNode> {
         return component.getPersonPrivacyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonPrivacyNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

@@ -39,6 +39,12 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
         return component.getProductNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductNode(@NotNull ProductListNode parent, String name) {
         super(parent, name);
     }

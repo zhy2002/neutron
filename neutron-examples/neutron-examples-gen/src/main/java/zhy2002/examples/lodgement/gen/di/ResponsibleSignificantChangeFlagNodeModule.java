@@ -35,4 +35,8 @@ public class ResponsibleSignificantChangeFlagNodeModule {
         return owner;
     }
 
+    @Provides @ResponsibleSignificantChangeFlagNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner.getParent();
+    }
+
 }

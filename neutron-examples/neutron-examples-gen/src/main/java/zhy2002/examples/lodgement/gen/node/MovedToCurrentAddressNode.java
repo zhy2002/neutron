@@ -29,6 +29,12 @@ public class MovedToCurrentAddressNode extends MonthYearNode<BaseContactNode<?>>
         return component.getMovedToCurrentAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MovedToCurrentAddressNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }

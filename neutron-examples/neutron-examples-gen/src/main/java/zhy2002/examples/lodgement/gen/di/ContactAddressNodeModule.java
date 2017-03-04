@@ -35,4 +35,8 @@ public class ContactAddressNodeModule {
         return owner;
     }
 
+    @Provides @ContactAddressNodeScope BaseContactNode<?> provideBaseContactNode() {
+        return owner.getParent();
+    }
+
 }

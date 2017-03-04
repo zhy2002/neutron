@@ -27,6 +27,12 @@ public class OtherLiabilityMonthlyRepaymentNode extends BaseCurrencyNode<OtherLi
         return component.getOtherLiabilityMonthlyRepaymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityMonthlyRepaymentNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

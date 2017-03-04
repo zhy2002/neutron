@@ -1,27 +1,12 @@
 import React from 'react';
 import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 import PersonOtherIncomeComponent from './PersonOtherIncomeComponent';
+import MainContentComponent from '../common/MainContentComponent';
+import AddListComponent from '../common/AddListComponent';
 
-//todo eliminate duplicate code; see PersonEmploymentListComponent.
 export default class PersonOtherIncomeListComponent extends ListNeutronComponent {
 
-    constructor(props) {
-        super(props);
-
-        this.createNewItem = () => {
-            const item = this.model.createItem();
-            //todo rename to afterUpdate or something.
-            this.addCallback(() => {
-                //todo extract method
-                const dom = document.getElementById(item.getUniqueId());
-                if (dom && item.focus) {
-                    dom.focus();
-                }
-            });
-        };
-    }
-
-    renderOtherIncomes() {
+    renderItems() {
         const items = [];
         this.model.getChildren().forEach((item) => {
             items.push(<PersonOtherIncomeComponent key={item.getUniqueId()} model={item}/>);
@@ -31,19 +16,11 @@ export default class PersonOtherIncomeListComponent extends ListNeutronComponent
 
     render() {
         return (
-            <div className="person-other-income-list-component">
-                {this.renderOtherIncomes()}
-                <div className="container-fluid compact">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <button className="btn btn-sm btn-primary pull-right" onClick={this.createNewItem}>
-                                Add
-                            </button>
-                        </div>
-                        <div className="col-md-10"/>
-                    </div>
-                </div>
-            </div>
+            <MainContentComponent className="person-other-income-list-component">
+                <AddListComponent model={this.model}>
+                    {this.renderItems()}
+                </AddListComponent>
+            </MainContentComponent>
         );
     }
 }

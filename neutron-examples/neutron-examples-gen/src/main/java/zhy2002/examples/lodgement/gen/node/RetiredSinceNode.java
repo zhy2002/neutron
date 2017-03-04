@@ -29,6 +29,12 @@ public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode> {
         return component.getRetiredSinceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RetiredSinceNode(@NotNull RetiredEmploymentNode parent, String name) {
         super(parent, name);
     }

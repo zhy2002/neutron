@@ -34,6 +34,12 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
         return component.getExpenseListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExpenseListNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);
     }

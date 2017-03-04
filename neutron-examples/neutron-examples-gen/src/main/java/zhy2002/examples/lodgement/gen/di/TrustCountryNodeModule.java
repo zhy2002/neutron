@@ -35,4 +35,8 @@ public class TrustCountryNodeModule {
         return owner;
     }
 
+    @Provides @TrustCountryNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

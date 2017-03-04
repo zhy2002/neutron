@@ -27,6 +27,12 @@ public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
         return component.getPropertyOwnershipListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyOwnershipListNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

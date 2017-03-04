@@ -29,6 +29,12 @@ public class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
         return component.getUnemployedOnBenefitFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public UnemployedOnBenefitFlagNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);
     }

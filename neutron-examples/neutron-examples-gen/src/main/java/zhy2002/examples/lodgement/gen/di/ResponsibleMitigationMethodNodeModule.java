@@ -31,4 +31,8 @@ public class ResponsibleMitigationMethodNodeModule {
         return owner;
     }
 
+    @Provides @ResponsibleMitigationMethodNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner.getParent();
+    }
+
 }

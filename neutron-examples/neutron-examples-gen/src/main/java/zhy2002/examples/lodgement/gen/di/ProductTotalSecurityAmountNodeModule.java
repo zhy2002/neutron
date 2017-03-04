@@ -35,4 +35,8 @@ public class ProductTotalSecurityAmountNodeModule {
         return owner;
     }
 
+    @Provides @ProductTotalSecurityAmountNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class ProductRepaymentFrequencyNodeModule {
         return owner;
     }
 
+    @Provides @ProductRepaymentFrequencyNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

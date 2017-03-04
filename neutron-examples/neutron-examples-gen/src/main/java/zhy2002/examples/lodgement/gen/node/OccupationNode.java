@@ -29,6 +29,12 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode> {
         return component.getOccupationNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OccupationNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

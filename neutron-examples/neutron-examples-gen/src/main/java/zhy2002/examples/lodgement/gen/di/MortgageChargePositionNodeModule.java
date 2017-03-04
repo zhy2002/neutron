@@ -31,4 +31,8 @@ public class MortgageChargePositionNodeModule {
         return owner;
     }
 
+    @Provides @MortgageChargePositionNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

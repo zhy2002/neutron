@@ -31,4 +31,8 @@ public class ProductTotalLoanTermNodeModule {
         return owner;
     }
 
+    @Provides @ProductTotalLoanTermNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

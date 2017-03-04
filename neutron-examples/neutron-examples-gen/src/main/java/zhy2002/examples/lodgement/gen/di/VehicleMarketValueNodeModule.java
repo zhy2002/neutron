@@ -35,4 +35,8 @@ public class VehicleMarketValueNodeModule {
         return owner;
     }
 
+    @Provides @VehicleMarketValueNodeScope MotorVehicleNode provideMotorVehicleNode() {
+        return owner.getParent();
+    }
+
 }

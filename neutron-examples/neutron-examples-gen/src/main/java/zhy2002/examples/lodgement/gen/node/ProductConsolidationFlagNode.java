@@ -27,6 +27,12 @@ public class ProductConsolidationFlagNode extends BooleanUiNode<ProductDescripti
         return component.getProductConsolidationFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductConsolidationFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

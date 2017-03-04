@@ -30,6 +30,12 @@ public class TrustTypeNode extends StringUiNode<BaseTrustNode<?>> {
         return component.getTrustTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustTypeNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

@@ -35,4 +35,8 @@ public class UnemployedSinceNodeModule {
         return owner;
     }
 
+    @Provides @UnemployedSinceNodeScope UnemployedNode provideUnemployedNode() {
+        return owner.getParent();
+    }
+
 }

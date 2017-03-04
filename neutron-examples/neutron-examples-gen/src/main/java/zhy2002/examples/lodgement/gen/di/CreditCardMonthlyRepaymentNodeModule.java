@@ -35,4 +35,8 @@ public class CreditCardMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @CreditCardMonthlyRepaymentNodeScope CreditCardNode provideCreditCardNode() {
+        return owner.getParent();
+    }
+
 }

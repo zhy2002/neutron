@@ -31,4 +31,8 @@ public class RelatedPartyNodeModule {
         return owner;
     }
 
+    @Provides @RelatedPartyNodeScope RelatedPartyListNode provideRelatedPartyListNode() {
+        return owner.getParent();
+    }
+
 }

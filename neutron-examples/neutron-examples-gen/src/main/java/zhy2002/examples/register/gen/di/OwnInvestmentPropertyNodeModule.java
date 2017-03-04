@@ -31,4 +31,8 @@ public class OwnInvestmentPropertyNodeModule {
         return owner;
     }
 
+    @Provides @OwnInvestmentPropertyNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

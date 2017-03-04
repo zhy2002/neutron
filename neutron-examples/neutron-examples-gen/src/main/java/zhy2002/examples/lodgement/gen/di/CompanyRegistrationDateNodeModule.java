@@ -31,4 +31,8 @@ public class CompanyRegistrationDateNodeModule {
         return owner;
     }
 
+    @Provides @CompanyRegistrationDateNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

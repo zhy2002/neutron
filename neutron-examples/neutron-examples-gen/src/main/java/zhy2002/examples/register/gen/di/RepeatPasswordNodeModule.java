@@ -31,4 +31,8 @@ public class RepeatPasswordNodeModule {
         return owner;
     }
 
+    @Provides @RepeatPasswordNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

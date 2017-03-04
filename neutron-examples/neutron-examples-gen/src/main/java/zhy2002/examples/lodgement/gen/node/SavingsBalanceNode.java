@@ -27,6 +27,12 @@ public class SavingsBalanceNode extends BaseCurrencyNode<SavingsAccountNode> {
         return component.getSavingsBalanceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SavingsBalanceNode(@NotNull SavingsAccountNode parent, String name) {
         super(parent, name);
     }

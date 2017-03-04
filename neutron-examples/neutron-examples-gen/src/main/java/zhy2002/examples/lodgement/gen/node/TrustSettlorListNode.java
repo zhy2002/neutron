@@ -27,6 +27,12 @@ public class TrustSettlorListNode extends SelectAccountHolderListNode<BaseTrustN
         return component.getTrustSettlorListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustSettlorListNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

@@ -31,4 +31,8 @@ public class ProductDissatisfactionFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductDissatisfactionFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

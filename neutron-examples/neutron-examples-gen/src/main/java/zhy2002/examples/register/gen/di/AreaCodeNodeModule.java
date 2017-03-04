@@ -35,4 +35,8 @@ public class AreaCodeNodeModule {
         return owner;
     }
 
+    @Provides @AreaCodeNodeScope PhoneInfoNode providePhoneInfoNode() {
+        return owner.getParent();
+    }
+
 }

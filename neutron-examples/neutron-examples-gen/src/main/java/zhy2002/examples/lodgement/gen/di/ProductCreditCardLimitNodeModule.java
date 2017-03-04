@@ -35,4 +35,8 @@ public class ProductCreditCardLimitNodeModule {
         return owner;
     }
 
+    @Provides @ProductCreditCardLimitNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

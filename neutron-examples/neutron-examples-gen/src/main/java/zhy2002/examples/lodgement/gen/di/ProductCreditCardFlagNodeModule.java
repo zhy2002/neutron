@@ -31,4 +31,8 @@ public class ProductCreditCardFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductCreditCardFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

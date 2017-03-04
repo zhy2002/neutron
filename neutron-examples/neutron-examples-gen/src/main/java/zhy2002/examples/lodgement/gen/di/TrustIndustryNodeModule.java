@@ -31,4 +31,8 @@ public class TrustIndustryNodeModule {
         return owner;
     }
 
+    @Provides @TrustIndustryNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
         return component.getEstimatedMarketValueNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EstimatedMarketValueNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

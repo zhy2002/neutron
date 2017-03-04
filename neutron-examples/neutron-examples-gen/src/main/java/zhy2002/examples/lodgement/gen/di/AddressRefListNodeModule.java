@@ -31,4 +31,8 @@ public class AddressRefListNodeModule {
         return owner;
     }
 
+    @Provides @AddressRefListNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

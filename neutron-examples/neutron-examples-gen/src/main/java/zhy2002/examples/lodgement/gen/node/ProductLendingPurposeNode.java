@@ -27,6 +27,12 @@ public class ProductLendingPurposeNode extends StringUiNode<ProductDescriptionNo
         return component.getProductLendingPurposeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductLendingPurposeNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

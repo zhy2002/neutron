@@ -27,6 +27,12 @@ public class PropertyPurseNode extends BooleanUiNode<PropertyNode> {
         return component.getPropertyPurseNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyPurseNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

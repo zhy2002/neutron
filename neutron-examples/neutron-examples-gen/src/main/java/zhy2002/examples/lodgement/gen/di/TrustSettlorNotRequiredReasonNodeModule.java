@@ -31,4 +31,8 @@ public class TrustSettlorNotRequiredReasonNodeModule {
         return owner;
     }
 
+    @Provides @TrustSettlorNotRequiredReasonNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

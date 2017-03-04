@@ -40,6 +40,12 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
         return component.getRealEstateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RealEstateNode(@NotNull RealEstateListNode parent, String name) {
         super(parent, name);
     }

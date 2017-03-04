@@ -31,4 +31,8 @@ public class AccessOtherDescriptionNodeModule {
         return owner;
     }
 
+    @Provides @AccessOtherDescriptionNodeScope AccessNode provideAccessNode() {
+        return owner.getParent();
+    }
+
 }

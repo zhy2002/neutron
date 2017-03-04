@@ -40,6 +40,12 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
         return component.getLiabilitiesNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LiabilitiesNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);
     }

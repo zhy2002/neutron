@@ -29,6 +29,12 @@ public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode> {
         return component.getGrossYearlySalaryNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public GrossYearlySalaryNode(@NotNull PayeEmployedNode parent, String name) {
         super(parent, name);
     }

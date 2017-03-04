@@ -35,4 +35,8 @@ public class ThirdPartyDobNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyDobNodeScope RelatedPartyNode provideRelatedPartyNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHold
         return component.getSelectAccountHolderFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SelectAccountHolderFlagNode(@NotNull SelectAccountHolderNode parent, String name) {
         super(parent, name);
     }

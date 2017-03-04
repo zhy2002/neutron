@@ -31,4 +31,8 @@ public class ProductPaymentTypeNodeModule {
         return owner;
     }
 
+    @Provides @ProductPaymentTypeNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

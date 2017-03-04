@@ -27,6 +27,12 @@ public class AccessContactTypeNode extends StringUiNode<AccessNode> {
         return component.getAccessContactTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccessContactTypeNode(@NotNull AccessNode parent, String name) {
         super(parent, name);
     }

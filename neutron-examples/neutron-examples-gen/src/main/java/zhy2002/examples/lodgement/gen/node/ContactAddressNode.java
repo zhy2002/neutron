@@ -27,6 +27,12 @@ public class ContactAddressNode extends AddressNode<BaseContactNode<?>> {
         return component.getContactAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ContactAddressNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }

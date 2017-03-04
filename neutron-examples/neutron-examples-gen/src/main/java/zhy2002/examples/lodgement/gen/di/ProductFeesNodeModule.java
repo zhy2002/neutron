@@ -31,4 +31,8 @@ public class ProductFeesNodeModule {
         return owner;
     }
 
+    @Provides @ProductFeesNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

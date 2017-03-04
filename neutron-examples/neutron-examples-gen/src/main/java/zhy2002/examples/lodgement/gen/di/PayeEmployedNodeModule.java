@@ -35,4 +35,8 @@ public class PayeEmployedNodeModule {
         return owner;
     }
 
+    @Provides @PayeEmployedNodeScope EmploymentNode<?> provideEmploymentNode() {
+        return owner.getParent();
+    }
+
 }

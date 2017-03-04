@@ -35,4 +35,8 @@ public class TrustAddressNodeModule {
         return owner;
     }
 
+    @Provides @TrustAddressNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

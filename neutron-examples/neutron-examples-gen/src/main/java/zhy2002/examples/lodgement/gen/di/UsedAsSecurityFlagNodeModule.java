@@ -31,4 +31,8 @@ public class UsedAsSecurityFlagNodeModule {
         return owner;
     }
 
+    @Provides @UsedAsSecurityFlagNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class MortgqageUnpaidBalanceNode extends BaseCurrencyNode<ExistingMortgag
         return component.getMortgqageUnpaidBalanceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgqageUnpaidBalanceNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

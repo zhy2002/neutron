@@ -27,6 +27,12 @@ public class PrimarySecurityFlagNode extends BooleanUiNode<UsageNode> {
         return component.getPrimarySecurityFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PrimarySecurityFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
     }

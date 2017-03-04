@@ -2,8 +2,8 @@ package zhy2002.examples.lodgement.rule;
 
 import zhy2002.examples.lodgement.gen.node.OtherIncomeNode;
 import zhy2002.examples.lodgement.gen.node.OtherIncomeTypeNode;
-import zhy2002.examples.lodgement.gen.rule.OtherIncomeTypeChangeRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
-public class OtherIncomeTypeChangeRuleImpl extends OtherIncomeTypeChangeRule {
+public class OtherIncomeTypeChangeRuleImpl extends UiNodeRule<OtherIncomeTypeNode> {
 
     @Inject
     public OtherIncomeTypeChangeRuleImpl(@Owner OtherIncomeTypeNode owner) {
@@ -39,25 +39,25 @@ public class OtherIncomeTypeChangeRuleImpl extends OtherIncomeTypeChangeRule {
     }
 
     private void updateUi() {
-        String value = getOtherIncomeTypeNode().getValue();
-        OtherIncomeNode personOtherIncomeNode = getOtherIncomeNode();
+        String value = getOwner().getValue();
+        OtherIncomeNode otherIncomeNode = getOtherIncomeNode();
         if ("Other Income".equals(value)) {
-            personOtherIncomeNode.getOtherIncomeDescriptionNode().setRequired(true);
-            personOtherIncomeNode.getOtherIncomeDescriptionNode().setDisabled(false);
+            otherIncomeNode.getOtherIncomeDescriptionNode().setRequired(true);
+            otherIncomeNode.getOtherIncomeDescriptionNode().setDisabled(false);
         } else {
-            personOtherIncomeNode.getOtherIncomeDescriptionNode().setDisabled(true);
-            personOtherIncomeNode.getOtherIncomeDescriptionNode().setRequired(false);
-            personOtherIncomeNode.getOtherIncomeDescriptionNode().resetValue();
+            otherIncomeNode.getOtherIncomeDescriptionNode().setDisabled(true);
+            otherIncomeNode.getOtherIncomeDescriptionNode().setRequired(false);
+            otherIncomeNode.getOtherIncomeDescriptionNode().resetValue();
         }
 
         if ("Add Back".equals(value)) {
-            personOtherIncomeNode.getOtherIncomePreviousYearNode().setDisabled(false);
-            personOtherIncomeNode.getOtherIncomeAddBackTypeNode().setDisabled(false);
+            otherIncomeNode.getOtherIncomePreviousYearNode().setDisabled(false);
+            otherIncomeNode.getOtherIncomeAddBackTypeNode().setDisabled(false);
         } else {
-            personOtherIncomeNode.getOtherIncomePreviousYearNode().setDisabled(true);
-            personOtherIncomeNode.getOtherIncomePreviousYearNode().resetValue();
-            personOtherIncomeNode.getOtherIncomeAddBackTypeNode().setDisabled(true);
-            personOtherIncomeNode.getOtherIncomeAddBackTypeNode().resetValue();
+            otherIncomeNode.getOtherIncomePreviousYearNode().setDisabled(true);
+            otherIncomeNode.getOtherIncomePreviousYearNode().resetValue();
+            otherIncomeNode.getOtherIncomeAddBackTypeNode().setDisabled(true);
+            otherIncomeNode.getOtherIncomeAddBackTypeNode().resetValue();
         }
     }
 }

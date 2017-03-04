@@ -27,6 +27,12 @@ public class CompanyPrivacyNode extends BasePrivacyNode<CompanyNode> {
         return component.getCompanyPrivacyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyPrivacyNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);
     }

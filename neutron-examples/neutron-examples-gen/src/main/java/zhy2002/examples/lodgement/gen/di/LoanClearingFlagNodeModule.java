@@ -31,4 +31,8 @@ public class LoanClearingFlagNodeModule {
         return owner;
     }
 
+    @Provides @LoanClearingFlagNodeScope LoanNode provideLoanNode() {
+        return owner.getParent();
+    }
+
 }

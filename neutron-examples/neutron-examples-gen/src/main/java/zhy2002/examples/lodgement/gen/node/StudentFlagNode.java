@@ -29,6 +29,12 @@ public class StudentFlagNode extends YesNoOptionNode<UnemployedNode> {
         return component.getStudentFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public StudentFlagNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);
     }

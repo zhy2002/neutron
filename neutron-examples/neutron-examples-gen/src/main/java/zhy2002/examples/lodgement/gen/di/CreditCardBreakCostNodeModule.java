@@ -35,4 +35,8 @@ public class CreditCardBreakCostNodeModule {
         return owner;
     }
 
+    @Provides @CreditCardBreakCostNodeScope CreditCardNode provideCreditCardNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class PersonListNodeModule {
         return owner;
     }
 
+    @Provides @PersonListNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

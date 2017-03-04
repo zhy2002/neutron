@@ -412,6 +412,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
 
         initializeState();
+        initializeRuleState();
 
         doLoad();
         if (statusListener != null) {
@@ -428,6 +429,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     protected void initializeState() {
     }
+
+    protected abstract void initializeRuleState();
 
     private void loadRules() {
         createRules(createdRules);
@@ -446,7 +449,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      *
      * @return the rule provider.
      */
-    protected abstract UiNodeRuleProvider getRuleProvider();
+    protected abstract UiNodeRuleProvider<?> getRuleProvider();
 
     /**
      * Override this method to add rules to be loaded.

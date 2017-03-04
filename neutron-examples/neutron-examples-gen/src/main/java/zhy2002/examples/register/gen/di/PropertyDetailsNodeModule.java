@@ -31,4 +31,8 @@ public class PropertyDetailsNodeModule {
         return owner;
     }
 
+    @Provides @PropertyDetailsNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

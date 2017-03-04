@@ -35,4 +35,8 @@ public class CreditCardLimitAmountNodeModule {
         return owner;
     }
 
+    @Provides @CreditCardLimitAmountNodeScope CreditCardNode provideCreditCardNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class ProductTotalSecurityAmountNode extends BaseCurrencyNode<ProductsNod
         return component.getProductTotalSecurityAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductTotalSecurityAmountNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

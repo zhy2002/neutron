@@ -27,6 +27,12 @@ public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
         return component.getOtherAssetDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherAssetDescriptionNode(@NotNull OtherAssetNode parent, String name) {
         super(parent, name);
     }

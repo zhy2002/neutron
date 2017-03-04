@@ -35,4 +35,8 @@ public class PropertyOwnershipListNodeModule {
         return owner;
     }
 
+    @Provides @PropertyOwnershipListNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

@@ -35,4 +35,8 @@ public class CountryNodeModule {
         return owner;
     }
 
+    @Provides @CountryNodeScope AddressNode<?> provideAddressNode() {
+        return owner.getParent();
+    }
+
 }

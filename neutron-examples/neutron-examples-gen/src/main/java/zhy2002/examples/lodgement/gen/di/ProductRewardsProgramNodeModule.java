@@ -31,4 +31,8 @@ public class ProductRewardsProgramNodeModule {
         return owner;
     }
 
+    @Provides @ProductRewardsProgramNodeScope ProductCardHolderNode provideProductCardHolderNode() {
+        return owner.getParent();
+    }
+
 }

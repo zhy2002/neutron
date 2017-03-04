@@ -40,6 +40,12 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         return component.getPropertyDetailsNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyDetailsNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

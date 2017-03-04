@@ -27,6 +27,12 @@ public class CompanyContactFirstNameNode extends StringUiNode<CompanyContactNode
         return component.getCompanyContactFirstNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyContactFirstNameNode(@NotNull CompanyContactNode parent, String name) {
         super(parent, name);
     }

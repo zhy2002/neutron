@@ -27,6 +27,12 @@ public class ProductLoanTypeNode extends StringUiNode<ProductsNode> {
         return component.getProductLoanTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductLoanTypeNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

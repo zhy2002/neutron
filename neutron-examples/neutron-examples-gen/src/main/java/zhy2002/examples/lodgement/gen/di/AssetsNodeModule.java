@@ -31,4 +31,8 @@ public class AssetsNodeModule {
         return owner;
     }
 
+    @Provides @AssetsNodeScope FinancialPositionNode provideFinancialPositionNode() {
+        return owner.getParent();
+    }
+
 }

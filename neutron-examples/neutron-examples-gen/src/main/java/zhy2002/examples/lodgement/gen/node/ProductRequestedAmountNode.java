@@ -27,6 +27,12 @@ public class ProductRequestedAmountNode extends BaseCurrencyNode<ProductDescript
         return component.getProductRequestedAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductRequestedAmountNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

@@ -27,6 +27,12 @@ public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode> {
         return component.getExpenseDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExpenseDescriptionNode(@NotNull ExpenseNode parent, String name) {
         super(parent, name);
     }

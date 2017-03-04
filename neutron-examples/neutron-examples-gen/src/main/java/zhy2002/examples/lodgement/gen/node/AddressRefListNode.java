@@ -34,6 +34,12 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
         return component.getAddressRefListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AddressRefListNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);
     }

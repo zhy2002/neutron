@@ -42,6 +42,12 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
         return component.getOtherIncomeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomeNode(@NotNull BaseOtherIncomeListNode<?> parent, String name) {
         super(parent, name);
     }

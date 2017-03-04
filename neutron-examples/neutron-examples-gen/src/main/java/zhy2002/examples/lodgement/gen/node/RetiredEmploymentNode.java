@@ -39,6 +39,12 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
         return component.getRetiredEmploymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RetiredEmploymentNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }

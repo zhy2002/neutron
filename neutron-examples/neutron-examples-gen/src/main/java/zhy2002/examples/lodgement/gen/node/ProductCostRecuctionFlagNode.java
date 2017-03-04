@@ -27,6 +27,12 @@ public class ProductCostRecuctionFlagNode extends BooleanUiNode<ProductDescripti
         return component.getProductCostRecuctionFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCostRecuctionFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

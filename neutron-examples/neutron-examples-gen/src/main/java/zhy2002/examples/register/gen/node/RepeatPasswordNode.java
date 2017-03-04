@@ -27,6 +27,12 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
         return component.getRepeatPasswordNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RepeatPasswordNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

@@ -36,6 +36,12 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         return component.getCurrentEmploymentListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CurrentEmploymentListNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

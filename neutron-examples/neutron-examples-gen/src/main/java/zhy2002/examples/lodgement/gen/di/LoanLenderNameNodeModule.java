@@ -31,4 +31,8 @@ public class LoanLenderNameNodeModule {
         return owner;
     }
 
+    @Provides @LoanLenderNameNodeScope LoanNode provideLoanNode() {
+        return owner.getParent();
+    }
+
 }

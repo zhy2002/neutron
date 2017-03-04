@@ -31,4 +31,8 @@ public class ResponsibleTypeOfChangeNodeModule {
         return owner;
     }
 
+    @Provides @ResponsibleTypeOfChangeNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner.getParent();
+    }
+
 }

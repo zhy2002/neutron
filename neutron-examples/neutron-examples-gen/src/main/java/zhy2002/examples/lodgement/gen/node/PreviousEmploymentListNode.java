@@ -36,6 +36,12 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         return component.getPreviousEmploymentListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PreviousEmploymentListNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

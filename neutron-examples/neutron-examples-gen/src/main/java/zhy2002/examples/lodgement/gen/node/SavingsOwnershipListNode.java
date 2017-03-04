@@ -27,6 +27,12 @@ public class SavingsOwnershipListNode extends OwnershipListNode<SavingsAccountNo
         return component.getSavingsOwnershipListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SavingsOwnershipListNode(@NotNull SavingsAccountNode parent, String name) {
         super(parent, name);
     }

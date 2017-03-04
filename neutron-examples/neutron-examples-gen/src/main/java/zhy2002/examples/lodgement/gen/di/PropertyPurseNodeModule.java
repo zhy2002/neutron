@@ -31,4 +31,8 @@ public class PropertyPurseNodeModule {
         return owner;
     }
 
+    @Provides @PropertyPurseNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

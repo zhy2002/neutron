@@ -27,6 +27,12 @@ public class CompanySelectDirectorNode extends SelectRelatedPersonListNode<Compa
         return component.getCompanySelectDirectorNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanySelectDirectorNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

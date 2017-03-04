@@ -27,6 +27,12 @@ public class PersonTrustNode extends BaseTrustNode<PersonNode> {
         return component.getPersonTrustNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonTrustNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

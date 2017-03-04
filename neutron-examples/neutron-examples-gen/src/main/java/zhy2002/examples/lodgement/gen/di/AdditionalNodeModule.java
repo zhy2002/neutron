@@ -31,4 +31,8 @@ public class AdditionalNodeModule {
         return owner;
     }
 
+    @Provides @AdditionalNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

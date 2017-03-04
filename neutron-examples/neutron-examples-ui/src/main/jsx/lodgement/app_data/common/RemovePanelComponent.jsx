@@ -9,7 +9,10 @@ export default class RemovePanelComponent extends NeutronComponent {
         super(props);
 
         this.removeItem = () => {
-            if (window.confirm(`Are you sure you want to delete this ${this.label} record?`)) {
+            if (window.confirm(
+                    `Are you sure you want to delete this ${this.model.getParent().getNodeLabel()} record?`
+                )
+            ) {
                 this.model.getParent().removeItem(this.model);
             }
         };
@@ -23,8 +26,8 @@ export default class RemovePanelComponent extends NeutronComponent {
 
     render() {
         return (
-            <div className="remove-panel-component">
-                <div className="container-fluid compact">
+            <div className={`row remove-panel-component ${this.props.className}`}>
+                <div className="col-sm-12">
                     <div className="row">
                         <div className="col-md-2">
                             <button className="btn btn-sm btn-warning pull-right" onClick={this.removeItem}>
@@ -47,5 +50,6 @@ export default class RemovePanelComponent extends NeutronComponent {
 }
 
 RemovePanelComponent.propTypes = {
+    className: React.PropTypes.string.isRequired,
     children: React.PropTypes.any.isRequired
 };

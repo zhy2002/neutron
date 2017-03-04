@@ -27,6 +27,12 @@ public class ProductRepaymentFrequencyNode extends StringUiNode<ProductFeaturesN
         return component.getProductRepaymentFrequencyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductRepaymentFrequencyNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

@@ -31,4 +31,8 @@ public class RelatedPersonReferenceNodeModule {
         return owner;
     }
 
+    @Provides @RelatedPersonReferenceNodeScope SelectRelatedPersonNode provideSelectRelatedPersonNode() {
+        return owner.getParent();
+    }
+
 }

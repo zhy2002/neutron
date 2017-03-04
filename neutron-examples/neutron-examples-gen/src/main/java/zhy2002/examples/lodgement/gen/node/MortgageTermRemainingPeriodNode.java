@@ -27,6 +27,12 @@ public class MortgageTermRemainingPeriodNode extends StringUiNode<ExistingMortga
         return component.getMortgageTermRemainingPeriodNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageTermRemainingPeriodNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

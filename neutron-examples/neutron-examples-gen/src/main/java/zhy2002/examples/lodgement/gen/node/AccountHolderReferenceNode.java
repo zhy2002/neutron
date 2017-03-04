@@ -29,6 +29,12 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
         return component.getAccountHolderReferenceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccountHolderReferenceNode(@NotNull SelectAccountHolderNode parent, String name) {
         super(parent, name);
     }

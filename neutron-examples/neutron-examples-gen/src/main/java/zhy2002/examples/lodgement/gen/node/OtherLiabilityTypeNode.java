@@ -30,6 +30,12 @@ public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode> {
         return component.getOtherLiabilityTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityTypeNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

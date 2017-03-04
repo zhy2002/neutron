@@ -27,6 +27,12 @@ public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
         return component.getAverageFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AverageFlagNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);
     }

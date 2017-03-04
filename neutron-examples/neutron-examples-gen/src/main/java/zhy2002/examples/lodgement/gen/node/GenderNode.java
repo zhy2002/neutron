@@ -30,6 +30,12 @@ public class GenderNode extends StringUiNode<PersonGeneralNode> {
         return component.getGenderNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public GenderNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

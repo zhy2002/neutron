@@ -35,4 +35,8 @@ public class MovedToPreviousAddressNodeModule {
         return owner;
     }
 
+    @Provides @MovedToPreviousAddressNodeScope BaseContactNode<?> provideBaseContactNode() {
+        return owner.getParent();
+    }
+
 }

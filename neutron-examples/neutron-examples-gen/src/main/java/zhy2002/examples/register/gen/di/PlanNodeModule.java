@@ -31,4 +31,8 @@ public class PlanNodeModule {
         return owner;
     }
 
+    @Provides @PlanNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

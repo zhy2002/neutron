@@ -31,4 +31,8 @@ public class DriversLicenseNodeModule {
         return owner;
     }
 
+    @Provides @DriversLicenseNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

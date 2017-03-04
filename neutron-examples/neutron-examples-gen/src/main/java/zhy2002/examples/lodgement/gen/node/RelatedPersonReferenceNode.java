@@ -29,6 +29,12 @@ public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPer
         return component.getRelatedPersonReferenceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RelatedPersonReferenceNode(@NotNull SelectRelatedPersonNode parent, String name) {
         super(parent, name);
     }

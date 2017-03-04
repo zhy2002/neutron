@@ -35,4 +35,8 @@ public class StudentFlagNodeModule {
         return owner;
     }
 
+    @Provides @StudentFlagNodeScope UnemployedNode provideUnemployedNode() {
+        return owner.getParent();
+    }
+
 }

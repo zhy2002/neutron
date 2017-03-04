@@ -31,4 +31,8 @@ public class YearNodeModule {
         return owner;
     }
 
+    @Provides @YearNodeScope MonthYearNode<?> provideMonthYearNode() {
+        return owner.getParent();
+    }
+
 }

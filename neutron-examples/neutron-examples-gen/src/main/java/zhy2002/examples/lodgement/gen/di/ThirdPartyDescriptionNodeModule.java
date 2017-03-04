@@ -31,4 +31,8 @@ public class ThirdPartyDescriptionNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyDescriptionNodeScope RelatedPartyNode provideRelatedPartyNode() {
+        return owner.getParent();
+    }
+
 }

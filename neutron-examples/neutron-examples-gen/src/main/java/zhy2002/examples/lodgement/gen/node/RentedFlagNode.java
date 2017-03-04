@@ -27,6 +27,12 @@ public class RentedFlagNode extends BooleanUiNode<PropertyNode> {
         return component.getRentedFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RentedFlagNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

@@ -27,6 +27,12 @@ public class SpouseNode extends StringUiNode<PersonGeneralNode> {
         return component.getSpouseNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SpouseNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

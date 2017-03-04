@@ -31,4 +31,8 @@ public class EmailNodeModule {
         return owner;
     }
 
+    @Provides @EmailNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

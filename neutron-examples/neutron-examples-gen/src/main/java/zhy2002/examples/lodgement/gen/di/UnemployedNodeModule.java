@@ -31,4 +31,8 @@ public class UnemployedNodeModule {
         return owner;
     }
 
+    @Provides @UnemployedNodeScope EmploymentNode<?> provideEmploymentNode() {
+        return owner.getParent();
+    }
+
 }

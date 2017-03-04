@@ -31,4 +31,8 @@ public class MortgageLoanTermExpiryDateNodeModule {
         return owner;
     }
 
+    @Provides @MortgageLoanTermExpiryDateNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

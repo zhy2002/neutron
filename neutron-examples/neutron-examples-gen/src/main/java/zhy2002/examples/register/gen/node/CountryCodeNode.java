@@ -29,6 +29,12 @@ public class CountryCodeNode extends PhoneInfoFieldNode {
         return component.getCountryCodeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CountryCodeNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);
     }

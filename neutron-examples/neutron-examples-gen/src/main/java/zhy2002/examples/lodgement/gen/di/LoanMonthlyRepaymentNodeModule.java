@@ -35,4 +35,8 @@ public class LoanMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @LoanMonthlyRepaymentNodeScope LoanNode provideLoanNode() {
+        return owner.getParent();
+    }
+
 }

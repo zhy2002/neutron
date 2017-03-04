@@ -248,16 +248,36 @@ public class LodgementNodeTest {
     }
 
     @Test
-    public void shouldNotRaiseRequiredErrorOnDisabledNode() {
+    public void personOtherIncomeDescriptionIsDisabledWhenTypeIsNotOtherIncome() {
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode = personListNode.createItem();
         OtherIncomeNode personOtherIncomeNode = personNode.getPersonOtherIncomeListNode().createItem();
 
+        assertThat(personOtherIncomeNode.getOtherIncomeTypeNode().getValue(), equalTo("Other Income"));
         assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().isDisabled(), equalTo(false));
+        personOtherIncomeNode.getOtherIncomeDescriptionNode().setValue("test");
 
         personOtherIncomeNode.getOtherIncomeTypeNode().setValue("");
         assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().isDisabled(), equalTo(true));
+        assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().getValue(), equalTo(""));
 
+        personOtherIncomeNode.getOtherIncomeTypeNode().setValue("Other Income");
+        assertThat(personOtherIncomeNode.getOtherIncomeDescriptionNode().isDisabled(), equalTo(false));
+
+        Object[] array = (Object[]) personOtherIncomeNode.getOtherIncomeTypeNode().getOptions();
+        assertThat(array.length, greaterThan(3));
+    }
+
+    @Test
+    public void companyOtherIncomeTypeHasThreeOptions() {
+        CompanyListNode companyListNode = applicationNode.getCompanyListNode();
+        CompanyNode companyNode = companyListNode.createItem();
+        OtherIncomeNode otherIncomeNode = companyNode.getCompanyOtherIncomeListNode().createItem();
+
+        assertThat(otherIncomeNode.getOtherIncomeTypeNode().getValue(), equalTo("Add Back"));
+
+        Object[] array = (Object[]) otherIncomeNode.getOtherIncomeTypeNode().getOptions();
+        assertThat(array.length, equalTo(3));
     }
 
     @Test

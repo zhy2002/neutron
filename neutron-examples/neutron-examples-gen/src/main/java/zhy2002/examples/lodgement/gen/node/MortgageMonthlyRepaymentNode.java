@@ -27,6 +27,12 @@ public class MortgageMonthlyRepaymentNode extends BaseCurrencyNode<ExistingMortg
         return component.getMortgageMonthlyRepaymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageMonthlyRepaymentNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

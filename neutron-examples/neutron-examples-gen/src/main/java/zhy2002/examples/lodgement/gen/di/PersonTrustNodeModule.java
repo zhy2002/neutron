@@ -35,4 +35,8 @@ public class PersonTrustNodeModule {
         return owner;
     }
 
+    @Provides @PersonTrustNodeScope PersonNode providePersonNode() {
+        return owner.getParent();
+    }
+
 }

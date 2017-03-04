@@ -29,6 +29,12 @@ public class EmployerAddressNode extends AddressNode<EmployedNode> {
         return component.getEmployerAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmployerAddressNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

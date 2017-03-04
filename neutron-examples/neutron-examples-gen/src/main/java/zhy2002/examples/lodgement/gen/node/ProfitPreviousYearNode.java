@@ -29,6 +29,12 @@ public class ProfitPreviousYearNode extends BigDecimalUiNode<SelfEmployedNode> {
         return component.getProfitPreviousYearNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProfitPreviousYearNode(@NotNull SelfEmployedNode parent, String name) {
         super(parent, name);
     }

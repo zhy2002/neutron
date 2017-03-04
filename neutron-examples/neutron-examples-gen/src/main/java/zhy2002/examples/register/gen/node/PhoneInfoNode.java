@@ -40,6 +40,12 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         return component.getPhoneInfoNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PhoneInfoNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

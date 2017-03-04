@@ -27,6 +27,12 @@ public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode> {
         return component.getApprovalInPrincipleFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ApprovalInPrincipleFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
     }

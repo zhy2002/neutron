@@ -31,4 +31,8 @@ public class ThirdPartyEmailNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyEmailNodeScope RelatedPartyNode provideRelatedPartyNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class SelectAccountHolderNodeModule {
         return owner;
     }
 
+    @Provides @SelectAccountHolderNodeScope SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
+        return owner.getParent();
+    }
+
 }

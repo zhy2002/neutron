@@ -35,4 +35,8 @@ public class PersonResponsibleLendNodeModule {
         return owner;
     }
 
+    @Provides @PersonResponsibleLendNodeScope PersonNode providePersonNode() {
+        return owner.getParent();
+    }
+
 }

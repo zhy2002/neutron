@@ -27,6 +27,12 @@ public class PersonHomePhoneNode extends TelephoneNode<PersonContactNode> {
         return component.getPersonHomePhoneNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonHomePhoneNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);
     }

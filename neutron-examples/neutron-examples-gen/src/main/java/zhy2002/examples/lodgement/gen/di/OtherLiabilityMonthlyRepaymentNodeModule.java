@@ -35,4 +35,8 @@ public class OtherLiabilityMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @OtherLiabilityMonthlyRepaymentNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+        return owner.getParent();
+    }
+
 }

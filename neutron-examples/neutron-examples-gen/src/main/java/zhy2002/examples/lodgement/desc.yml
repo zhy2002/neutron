@@ -1411,11 +1411,7 @@ commonTypes:
       properties:
       - {name: options, typeName: Object}
       init:
-      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_TYPE.toArray()}
       - {propertyName: required, value: 'true'}
-      - {propertyName: value, value: '"Other Income"'}
-      rules:
-      - {typeName: OtherIncomeTypeChangeRule}
 
     - typeName: OtherIncomeAddBackTypeNode
       baseTypeName: StringUiNode

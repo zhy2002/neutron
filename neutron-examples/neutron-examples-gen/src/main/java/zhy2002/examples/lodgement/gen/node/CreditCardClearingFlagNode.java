@@ -27,6 +27,12 @@ public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode> {
         return component.getCreditCardClearingFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardClearingFlagNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

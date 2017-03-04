@@ -29,6 +29,12 @@ public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentN
         return component.getRetiredOnBenefitFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RetiredOnBenefitFlagNode(@NotNull RetiredEmploymentNode parent, String name) {
         super(parent, name);
     }

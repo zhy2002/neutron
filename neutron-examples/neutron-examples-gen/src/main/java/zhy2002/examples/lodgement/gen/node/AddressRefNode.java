@@ -29,6 +29,12 @@ public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
         return component.getAddressRefNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AddressRefNode(@NotNull AddressRefListNode parent, String name) {
         super(parent, name);
     }

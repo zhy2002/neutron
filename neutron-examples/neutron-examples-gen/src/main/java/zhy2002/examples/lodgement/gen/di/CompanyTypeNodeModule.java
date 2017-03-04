@@ -31,4 +31,8 @@ public class CompanyTypeNodeModule {
         return owner;
     }
 
+    @Provides @CompanyTypeNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

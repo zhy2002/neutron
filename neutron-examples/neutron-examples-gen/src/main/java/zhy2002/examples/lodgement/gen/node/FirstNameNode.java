@@ -29,6 +29,12 @@ public class FirstNameNode extends StringUiNode<PersonGeneralNode> {
         return component.getFirstNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public FirstNameNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

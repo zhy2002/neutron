@@ -45,6 +45,12 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
         return component.getCompanyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyNode(@NotNull CompanyListNode parent, String name) {
         super(parent, name);
     }

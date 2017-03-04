@@ -27,6 +27,12 @@ public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyN
         return component.getCompanyResponsibleLendNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyResponsibleLendNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);
     }

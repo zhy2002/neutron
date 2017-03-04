@@ -27,6 +27,12 @@ public class CreditCardAmountOwingNode extends BaseCurrencyNode<CreditCardNode> 
         return component.getCreditCardAmountOwingNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardAmountOwingNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

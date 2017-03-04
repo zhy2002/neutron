@@ -35,4 +35,8 @@ public class TrustSettlorListNodeModule {
         return owner;
     }
 
+    @Provides @TrustSettlorListNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

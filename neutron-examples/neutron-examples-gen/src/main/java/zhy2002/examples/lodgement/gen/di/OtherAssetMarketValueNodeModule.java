@@ -35,4 +35,8 @@ public class OtherAssetMarketValueNodeModule {
         return owner;
     }
 
+    @Provides @OtherAssetMarketValueNodeScope OtherAssetNode provideOtherAssetNode() {
+        return owner.getParent();
+    }
+
 }

@@ -156,7 +156,7 @@ public class ApplicationNodeConstants {
             new StringOption("Temporary Decrease Income")
     );
 
-    public static final List<StringOption> OTHER_INCOME_TYPE = Arrays.asList(
+    public static final List<StringOption> PERSON_OTHER_INCOME_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Add Back"),
             new StringOption("Bonus"),
@@ -164,6 +164,12 @@ public class ApplicationNodeConstants {
             new StringOption("Government Benefits"),
             new StringOption("Investments"),
             new StringOption("Other Income")
+    );
+
+    public static final List<StringOption> COMPANY_OTHER_INCOME_TYPE =  Arrays.asList(
+            new StringOption(""),
+            new StringOption("Add Back"),
+            new StringOption("Company Profit Before Tax")
     );
 
     public static final List<StringOption> OTHER_INCOME_ADD_BACK_TYPE = Arrays.asList(

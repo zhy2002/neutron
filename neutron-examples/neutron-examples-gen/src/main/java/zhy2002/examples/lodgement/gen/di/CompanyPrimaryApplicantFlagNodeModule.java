@@ -31,4 +31,8 @@ public class CompanyPrimaryApplicantFlagNodeModule {
         return owner;
     }
 
+    @Provides @CompanyPrimaryApplicantFlagNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

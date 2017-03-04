@@ -29,6 +29,12 @@ public class EmployerNameNode extends StringUiNode<EmployedNode> {
         return component.getEmployerNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmployerNameNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

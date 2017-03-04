@@ -27,6 +27,12 @@ public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
         return component.getOwnedOutrightFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OwnedOutrightFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
     }

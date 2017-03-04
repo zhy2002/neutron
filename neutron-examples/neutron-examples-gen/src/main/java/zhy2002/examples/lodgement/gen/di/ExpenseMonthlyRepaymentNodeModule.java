@@ -31,4 +31,8 @@ public class ExpenseMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @ExpenseMonthlyRepaymentNodeScope ExpenseNode provideExpenseNode() {
+        return owner.getParent();
+    }
+
 }

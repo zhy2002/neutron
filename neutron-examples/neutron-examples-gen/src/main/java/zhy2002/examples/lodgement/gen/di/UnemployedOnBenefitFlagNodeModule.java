@@ -35,4 +35,8 @@ public class UnemployedOnBenefitFlagNodeModule {
         return owner;
     }
 
+    @Provides @UnemployedOnBenefitFlagNodeScope UnemployedNode provideUnemployedNode() {
+        return owner.getParent();
+    }
+
 }

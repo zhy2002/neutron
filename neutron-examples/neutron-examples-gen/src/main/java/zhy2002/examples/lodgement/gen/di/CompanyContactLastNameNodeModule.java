@@ -31,4 +31,8 @@ public class CompanyContactLastNameNodeModule {
         return owner;
     }
 
+    @Provides @CompanyContactLastNameNodeScope CompanyContactNode provideCompanyContactNode() {
+        return owner.getParent();
+    }
+
 }

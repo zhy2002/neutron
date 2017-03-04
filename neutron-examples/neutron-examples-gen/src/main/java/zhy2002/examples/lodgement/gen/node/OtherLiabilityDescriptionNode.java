@@ -27,6 +27,12 @@ public class OtherLiabilityDescriptionNode extends StringUiNode<OtherLiabilityNo
         return component.getOtherLiabilityDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityDescriptionNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

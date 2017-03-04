@@ -31,4 +31,8 @@ public class AppManagerNodeModule {
         return owner;
     }
 
+    @Provides @AppManagerNodeScope LodgementNode provideLodgementNode() {
+        return owner.getParent();
+    }
+
 }

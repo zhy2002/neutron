@@ -31,4 +31,8 @@ public class AddressLineNodeModule {
         return owner;
     }
 
+    @Provides @AddressLineNodeScope AddressNode<?> provideAddressNode() {
+        return owner.getParent();
+    }
+
 }

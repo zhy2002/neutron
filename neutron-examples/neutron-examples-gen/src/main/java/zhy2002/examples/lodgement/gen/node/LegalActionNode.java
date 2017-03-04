@@ -29,6 +29,12 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
         return component.getLegalActionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LegalActionNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
     }

@@ -27,6 +27,12 @@ public class LoanClearingFlagNode extends BooleanUiNode<LoanNode> {
         return component.getLoanClearingFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanClearingFlagNode(@NotNull LoanNode parent, String name) {
         super(parent, name);
     }

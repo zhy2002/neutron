@@ -30,6 +30,12 @@ public class PlanNode extends StringUiNode<RegisterNode> {
         return component.getPlanNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PlanNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

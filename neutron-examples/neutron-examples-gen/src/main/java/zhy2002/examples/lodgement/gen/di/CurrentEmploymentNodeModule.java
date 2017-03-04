@@ -35,4 +35,8 @@ public class CurrentEmploymentNodeModule {
         return owner;
     }
 
+    @Provides @CurrentEmploymentNodeScope CurrentEmploymentListNode provideCurrentEmploymentListNode() {
+        return owner.getParent();
+    }
+
 }

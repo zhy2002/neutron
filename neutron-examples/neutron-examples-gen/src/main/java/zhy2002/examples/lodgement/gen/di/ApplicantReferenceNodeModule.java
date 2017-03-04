@@ -31,4 +31,8 @@ public class ApplicantReferenceNodeModule {
         return owner;
     }
 
+    @Provides @ApplicantReferenceNodeScope OwnershipNode provideOwnershipNode() {
+        return owner.getParent();
+    }
+
 }

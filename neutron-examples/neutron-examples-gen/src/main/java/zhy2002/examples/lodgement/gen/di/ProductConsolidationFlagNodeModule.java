@@ -31,4 +31,8 @@ public class ProductConsolidationFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductConsolidationFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

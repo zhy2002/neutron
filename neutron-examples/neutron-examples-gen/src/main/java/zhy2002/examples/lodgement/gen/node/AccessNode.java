@@ -44,6 +44,12 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
         return component.getAccessNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccessNode(@NotNull RealEstateNode parent, String name) {
         super(parent, name);
     }

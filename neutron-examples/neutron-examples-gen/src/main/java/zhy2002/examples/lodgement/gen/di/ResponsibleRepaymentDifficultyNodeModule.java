@@ -35,4 +35,8 @@ public class ResponsibleRepaymentDifficultyNodeModule {
         return owner;
     }
 
+    @Provides @ResponsibleRepaymentDifficultyNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+        return owner.getParent();
+    }
+
 }

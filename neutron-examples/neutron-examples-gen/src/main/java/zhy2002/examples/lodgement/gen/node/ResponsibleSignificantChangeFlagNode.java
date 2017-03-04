@@ -29,6 +29,12 @@ public class ResponsibleSignificantChangeFlagNode extends YesNoOptionNode<BaseRe
         return component.getResponsibleSignificantChangeFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ResponsibleSignificantChangeFlagNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
     }

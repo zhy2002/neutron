@@ -27,6 +27,12 @@ public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNod
         return component.getCompanySelectBeneficialOwnerNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanySelectBeneficialOwnerNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

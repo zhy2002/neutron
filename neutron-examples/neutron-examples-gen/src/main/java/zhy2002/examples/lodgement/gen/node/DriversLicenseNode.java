@@ -29,6 +29,12 @@ public class DriversLicenseNode extends StringUiNode<PersonGeneralNode> {
         return component.getDriversLicenseNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public DriversLicenseNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

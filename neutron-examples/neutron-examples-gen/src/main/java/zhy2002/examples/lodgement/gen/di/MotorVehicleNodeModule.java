@@ -31,4 +31,8 @@ public class MotorVehicleNodeModule {
         return owner;
     }
 
+    @Provides @MotorVehicleNodeScope MotorVehicleListNode provideMotorVehicleListNode() {
+        return owner.getParent();
+    }
+
 }

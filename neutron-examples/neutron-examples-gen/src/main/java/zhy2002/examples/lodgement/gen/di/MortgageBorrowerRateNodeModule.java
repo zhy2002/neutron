@@ -35,4 +35,8 @@ public class MortgageBorrowerRateNodeModule {
         return owner;
     }
 
+    @Provides @MortgageBorrowerRateNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

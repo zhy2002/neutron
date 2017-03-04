@@ -31,4 +31,8 @@ public class ProductCreditCardTypeNodeModule {
         return owner;
     }
 
+    @Provides @ProductCreditCardTypeNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

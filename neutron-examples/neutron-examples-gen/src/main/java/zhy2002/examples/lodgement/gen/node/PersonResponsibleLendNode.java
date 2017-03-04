@@ -27,6 +27,12 @@ public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNod
         return component.getPersonResponsibleLendNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonResponsibleLendNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

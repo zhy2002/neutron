@@ -35,4 +35,8 @@ public class ThirdPartyAddressNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyAddressNodeScope RelatedPartyNode provideRelatedPartyNode() {
+        return owner.getParent();
+    }
+
 }

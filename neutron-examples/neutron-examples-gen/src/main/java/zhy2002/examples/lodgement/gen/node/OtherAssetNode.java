@@ -40,6 +40,12 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         return component.getOtherAssetNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherAssetNode(@NotNull OtherAssetListNode parent, String name) {
         super(parent, name);
     }

@@ -27,6 +27,12 @@ public class ProductExpressConsentFlagNode extends BooleanUiNode<ProductFeatures
         return component.getProductExpressConsentFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductExpressConsentFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

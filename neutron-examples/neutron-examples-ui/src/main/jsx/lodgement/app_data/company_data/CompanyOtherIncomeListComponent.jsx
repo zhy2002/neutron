@@ -1,13 +1,27 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import CompanyOtherIncomeComponent from './CompanyOtherIncomeComponent';
+import AddListComponent from '../common/AddListComponent';
+import MainContentComponent from '../common/MainContentComponent';
 
-export default class CompanyOtherIncomeListComponent extends NeutronComponent {
+
+export default class PersonOtherIncomeListComponent extends ListNeutronComponent {
+
+    renderItems() {
+        const items = [];
+        this.model.getChildren().forEach((item) => {
+            items.push(<CompanyOtherIncomeComponent key={item.getUniqueId()} model={item}/>);
+        });
+        return items;
+    }
 
     render() {
         return (
-            <div className="company-other-income-list-component">
-                <h3>{this.label}</h3>
-            </div>
+            <MainContentComponent className="person-other-income-list-component">
+                <AddListComponent model={this.model}>
+                    {this.renderItems()}
+                </AddListComponent>
+            </MainContentComponent>
         );
     }
 }

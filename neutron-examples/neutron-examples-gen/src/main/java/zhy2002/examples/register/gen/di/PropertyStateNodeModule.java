@@ -31,4 +31,8 @@ public class PropertyStateNodeModule {
         return owner;
     }
 
+    @Provides @PropertyStateNodeScope PropertyDetailsNode providePropertyDetailsNode() {
+        return owner.getParent();
+    }
+
 }

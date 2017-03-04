@@ -35,4 +35,8 @@ public class ProductTotalLvrNodeModule {
         return owner;
     }
 
+    @Provides @ProductTotalLvrNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

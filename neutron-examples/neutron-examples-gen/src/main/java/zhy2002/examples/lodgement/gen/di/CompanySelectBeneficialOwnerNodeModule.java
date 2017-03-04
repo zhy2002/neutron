@@ -35,4 +35,8 @@ public class CompanySelectBeneficialOwnerNodeModule {
         return owner;
     }
 
+    @Provides @CompanySelectBeneficialOwnerNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

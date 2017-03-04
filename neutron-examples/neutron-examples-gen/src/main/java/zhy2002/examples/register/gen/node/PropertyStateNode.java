@@ -30,6 +30,12 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
         return component.getPropertyStateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
         super(parent, name);
     }

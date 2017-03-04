@@ -37,6 +37,12 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         return component.getErrorListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ErrorListNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);
     }

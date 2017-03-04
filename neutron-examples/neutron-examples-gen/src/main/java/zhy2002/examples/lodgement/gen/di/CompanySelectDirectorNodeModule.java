@@ -35,4 +35,8 @@ public class CompanySelectDirectorNodeModule {
         return owner;
     }
 
+    @Provides @CompanySelectDirectorNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

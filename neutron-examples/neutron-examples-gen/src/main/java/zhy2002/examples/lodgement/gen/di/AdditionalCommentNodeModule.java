@@ -31,4 +31,8 @@ public class AdditionalCommentNodeModule {
         return owner;
     }
 
+    @Provides @AdditionalCommentNodeScope AdditionalNode provideAdditionalNode() {
+        return owner.getParent();
+    }
+
 }

@@ -34,6 +34,12 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         return component.getSavingsAccountListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SavingsAccountListNode(@NotNull AssetsNode parent, String name) {
         super(parent, name);
     }

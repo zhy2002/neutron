@@ -27,6 +27,12 @@ public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
         return component.getThirdPartyWorkPhoneNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyWorkPhoneNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

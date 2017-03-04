@@ -31,4 +31,8 @@ public class PropertyWeeklyRentNodeModule {
         return owner;
     }
 
+    @Provides @PropertyWeeklyRentNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

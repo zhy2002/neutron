@@ -27,6 +27,12 @@ public class SavingsAccountNameNode extends StringUiNode<SavingsAccountNode> {
         return component.getSavingsAccountNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SavingsAccountNameNode(@NotNull SavingsAccountNode parent, String name) {
         super(parent, name);
     }

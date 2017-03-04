@@ -27,6 +27,12 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<BaseContactNode<
         return component.getMovedFromPreviousAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MovedFromPreviousAddressNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }

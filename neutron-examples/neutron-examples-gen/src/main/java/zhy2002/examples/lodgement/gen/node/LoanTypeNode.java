@@ -27,6 +27,12 @@ public class LoanTypeNode extends StringUiNode<LoanNode> {
         return component.getLoanTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanTypeNode(@NotNull LoanNode parent, String name) {
         super(parent, name);
     }

@@ -2,11 +2,9 @@ package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.gen.di.CompanyNodeScope;
-import zhy2002.examples.lodgement.gen.di.LegalActionNodeScope;
-import zhy2002.examples.lodgement.gen.di.ManifestModule;
-import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
-import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
+import zhy2002.examples.lodgement.gen.di.*;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
@@ -98,9 +96,6 @@ public abstract class DefaultProfileModule {
     abstract TelephoneCompleteRule provideTelephoneCompleteRule(TelephoneCompleteRuleImpl impl);
 
     @Binds
-    abstract OtherIncomeTypeChangeRule provideOtherIncomeTypeChangeRule(OtherIncomeTypeChangeRuleImpl impl);
-
-    @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 
     @Binds
@@ -108,6 +103,44 @@ public abstract class DefaultProfileModule {
 
     @Binds
     abstract CompanyNodeRuleProvider provideCompanyNodeRuleProvider(CompanyNodeRuleProviderImpl impl);
+
+    @Binds
+    abstract OtherIncomeTypeNodeRuleProvider provideOtherIncomeTypeNodeRuleProvider(OtherIncomeTypeNodeRuleProviderImpl impl);
+
+}
+
+@OtherIncomeTypeNodeScope
+class OtherIncomeTypeNodeRuleProviderImpl extends OtherIncomeTypeNodeRuleProvider {
+
+    private final OtherIncomeNode parent;
+
+    @Inject
+    public OtherIncomeTypeNodeRuleProviderImpl(OtherIncomeNode parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public void initializeState(OtherIncomeTypeNode node) {
+        super.initializeState(node);
+
+        if (parent.getParent() instanceof CompanyOtherIncomeListNode) {
+            node.setOptions(ApplicationNodeConstants.COMPANY_OTHER_INCOME_TYPE.toArray());
+            node.setValue("Add Back");
+        } else {
+            node.setOptions(ApplicationNodeConstants.PERSON_OTHER_INCOME_TYPE.toArray());
+            node.setValue("Other Income");
+        }
+    }
+
+    @Inject
+    Provider<OtherIncomeTypeChangeRuleImpl> otherIncomeTypeChangeRuleProvider;
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
+        createdRules.add(otherIncomeTypeChangeRuleProvider.get());
+    }
 }
 
 @PersonNodeScope
@@ -141,7 +174,6 @@ class CompanyNodeRuleProviderImpl extends CompanyNodeRuleProvider {
         createdRules.add(updateCompanyNodeLabelRuleProvider.get());
     }
 }
-
 
 @LegalActionNodeScope
 class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {

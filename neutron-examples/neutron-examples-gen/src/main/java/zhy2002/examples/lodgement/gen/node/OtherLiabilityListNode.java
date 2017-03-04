@@ -34,6 +34,12 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         return component.getOtherLiabilityListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityListNode(@NotNull LiabilitiesNode parent, String name) {
         super(parent, name);
     }

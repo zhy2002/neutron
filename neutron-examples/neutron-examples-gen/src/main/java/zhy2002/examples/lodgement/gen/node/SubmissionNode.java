@@ -28,6 +28,12 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
         return component.getSubmissionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SubmissionNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);
     }

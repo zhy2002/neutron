@@ -30,6 +30,12 @@ public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
         return component.getCreditCardTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardTypeNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

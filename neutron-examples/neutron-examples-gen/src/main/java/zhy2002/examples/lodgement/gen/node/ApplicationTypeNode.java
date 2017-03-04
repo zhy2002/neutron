@@ -30,6 +30,12 @@ public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode> {
         return component.getApplicationTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ApplicationTypeNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

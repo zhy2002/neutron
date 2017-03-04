@@ -27,6 +27,12 @@ public class AccessTelephoneNode extends StringUiNode<AccessNode> {
         return component.getAccessTelephoneNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccessTelephoneNode(@NotNull AccessNode parent, String name) {
         super(parent, name);
     }

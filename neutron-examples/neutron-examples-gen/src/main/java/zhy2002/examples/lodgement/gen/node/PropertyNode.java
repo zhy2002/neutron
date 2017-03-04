@@ -47,6 +47,12 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         return component.getPropertyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyNode(@NotNull RealEstateNode parent, String name) {
         super(parent, name);
     }

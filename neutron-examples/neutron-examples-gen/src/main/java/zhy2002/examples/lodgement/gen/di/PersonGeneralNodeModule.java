@@ -31,4 +31,8 @@ public class PersonGeneralNodeModule {
         return owner;
     }
 
+    @Provides @PersonGeneralNodeScope PersonNode providePersonNode() {
+        return owner.getParent();
+    }
+
 }

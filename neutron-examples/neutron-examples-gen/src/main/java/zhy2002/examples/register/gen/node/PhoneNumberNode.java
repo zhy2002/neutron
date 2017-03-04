@@ -29,6 +29,12 @@ public class PhoneNumberNode extends PhoneInfoFieldNode {
         return component.getPhoneNumberNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PhoneNumberNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);
     }

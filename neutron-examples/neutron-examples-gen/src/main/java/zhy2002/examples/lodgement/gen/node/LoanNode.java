@@ -44,6 +44,12 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         return component.getLoanNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanNode(@NotNull LoanListNode parent, String name) {
         super(parent, name);
     }

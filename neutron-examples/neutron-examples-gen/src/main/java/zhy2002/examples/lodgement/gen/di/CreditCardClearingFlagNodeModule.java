@@ -31,4 +31,8 @@ public class CreditCardClearingFlagNodeModule {
         return owner;
     }
 
+    @Provides @CreditCardClearingFlagNodeScope CreditCardNode provideCreditCardNode() {
+        return owner.getParent();
+    }
+
 }

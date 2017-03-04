@@ -35,4 +35,8 @@ public class OtherLiabilityLimitAmountNodeModule {
         return owner;
     }
 
+    @Provides @OtherLiabilityLimitAmountNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+        return owner.getParent();
+    }
+
 }

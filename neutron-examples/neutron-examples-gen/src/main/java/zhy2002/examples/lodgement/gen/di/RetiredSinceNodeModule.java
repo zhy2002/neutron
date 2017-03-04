@@ -35,4 +35,8 @@ public class RetiredSinceNodeModule {
         return owner;
     }
 
+    @Provides @RetiredSinceNodeScope RetiredEmploymentNode provideRetiredEmploymentNode() {
+        return owner.getParent();
+    }
+
 }

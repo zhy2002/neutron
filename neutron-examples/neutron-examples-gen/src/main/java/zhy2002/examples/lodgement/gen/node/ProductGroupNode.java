@@ -27,6 +27,12 @@ public class ProductGroupNode extends StringUiNode<ProductDescriptionNode> {
         return component.getProductGroupNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductGroupNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

@@ -35,4 +35,8 @@ public class MovedToCurrentAddressNodeModule {
         return owner;
     }
 
+    @Provides @MovedToCurrentAddressNodeScope BaseContactNode<?> provideBaseContactNode() {
+        return owner.getParent();
+    }
+
 }

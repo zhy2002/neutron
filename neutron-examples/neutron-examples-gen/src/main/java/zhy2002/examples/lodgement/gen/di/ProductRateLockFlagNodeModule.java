@@ -31,4 +31,8 @@ public class ProductRateLockFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductRateLockFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

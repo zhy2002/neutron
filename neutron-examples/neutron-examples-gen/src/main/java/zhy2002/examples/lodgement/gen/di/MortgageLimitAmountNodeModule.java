@@ -35,4 +35,8 @@ public class MortgageLimitAmountNodeModule {
         return owner;
     }
 
+    @Provides @MortgageLimitAmountNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

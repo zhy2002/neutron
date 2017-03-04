@@ -31,4 +31,8 @@ public class SelectRelatedPersonFlagNodeModule {
         return owner;
     }
 
+    @Provides @SelectRelatedPersonFlagNodeScope SelectRelatedPersonNode provideSelectRelatedPersonNode() {
+        return owner.getParent();
+    }
+
 }

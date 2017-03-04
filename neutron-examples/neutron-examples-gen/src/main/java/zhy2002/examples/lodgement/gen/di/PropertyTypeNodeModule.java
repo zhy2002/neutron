@@ -31,4 +31,8 @@ public class PropertyTypeNodeModule {
         return owner;
     }
 
+    @Provides @PropertyTypeNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

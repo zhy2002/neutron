@@ -31,4 +31,8 @@ public class ExpenseListNodeModule {
         return owner;
     }
 
+    @Provides @ExpenseListNodeScope FinancialPositionNode provideFinancialPositionNode() {
+        return owner.getParent();
+    }
+
 }

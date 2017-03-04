@@ -35,4 +35,8 @@ public class LegalActionNodeModule {
         return owner;
     }
 
+    @Provides @LegalActionNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+        return owner.getParent();
+    }
+
 }

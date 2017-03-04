@@ -31,4 +31,8 @@ public class ErrorListNodeModule {
         return owner;
     }
 
+    @Provides @ErrorListNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class OwnershipNodeModule {
         return owner;
     }
 
+    @Provides @OwnershipNodeScope OwnershipListNode<?> provideOwnershipListNode() {
+        return owner.getParent();
+    }
+
 }

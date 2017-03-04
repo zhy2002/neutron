@@ -35,4 +35,8 @@ public class EmployerAddressNodeModule {
         return owner;
     }
 
+    @Provides @EmployerAddressNodeScope EmployedNode provideEmployedNode() {
+        return owner.getParent();
+    }
+
 }

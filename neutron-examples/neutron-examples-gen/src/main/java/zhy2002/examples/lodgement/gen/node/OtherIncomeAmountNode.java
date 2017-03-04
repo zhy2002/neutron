@@ -29,6 +29,12 @@ public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
         return component.getOtherIncomeAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomeAmountNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
     }

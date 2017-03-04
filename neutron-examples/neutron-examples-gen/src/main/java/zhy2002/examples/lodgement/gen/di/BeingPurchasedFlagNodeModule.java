@@ -31,4 +31,8 @@ public class BeingPurchasedFlagNodeModule {
         return owner;
     }
 
+    @Provides @BeingPurchasedFlagNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

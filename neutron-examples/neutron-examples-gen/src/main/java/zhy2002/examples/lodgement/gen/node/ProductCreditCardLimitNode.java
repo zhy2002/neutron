@@ -27,6 +27,12 @@ public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeatures
         return component.getProductCreditCardLimitNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCreditCardLimitNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

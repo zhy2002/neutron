@@ -40,6 +40,12 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         return component.getMotorVehicleNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MotorVehicleNode(@NotNull MotorVehicleListNode parent, String name) {
         super(parent, name);
     }

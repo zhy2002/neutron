@@ -31,4 +31,8 @@ public class EstimatedMarketValueNodeModule {
         return owner;
     }
 
+    @Provides @EstimatedMarketValueNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiability
         return component.getOtherLiabilityBreakCostNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityBreakCostNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

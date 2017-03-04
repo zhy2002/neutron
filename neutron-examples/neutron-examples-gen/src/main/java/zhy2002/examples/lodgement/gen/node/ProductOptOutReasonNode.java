@@ -27,6 +27,12 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
         return component.getProductOptOutReasonNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductOptOutReasonNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

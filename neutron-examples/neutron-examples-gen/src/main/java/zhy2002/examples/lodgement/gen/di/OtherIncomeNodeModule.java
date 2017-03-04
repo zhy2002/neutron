@@ -31,4 +31,8 @@ public class OtherIncomeNodeModule {
         return owner;
     }
 
+    @Provides @OtherIncomeNodeScope BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class CreditCardLimitAmountNode extends BaseCurrencyNode<CreditCardNode> 
         return component.getCreditCardLimitAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardLimitAmountNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

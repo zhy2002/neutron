@@ -5,13 +5,14 @@ import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
+import MainContentComponent from '../common/MainContentComponent';
 
 export default class PersonGeneralComponent extends NeutronComponent {
 
     render() {
         const model = this.props.model;
         return (
-            <div className="container-fluid compact">
+            <MainContentComponent className="person-general-component">
                 <div className="row">
                     <div className="col-md-3">
                         <RadioInputComponent model={model.getPersonApplicantTypeNode()}/>
@@ -63,7 +64,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
                     </div>
                     <div className="col-md-6"/>
                 </div>
-            </div>
+            </MainContentComponent>
         );
     }
 }

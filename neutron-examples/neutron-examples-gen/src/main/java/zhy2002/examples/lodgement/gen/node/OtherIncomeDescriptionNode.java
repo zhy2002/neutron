@@ -27,6 +27,12 @@ public class OtherIncomeDescriptionNode extends StringUiNode<OtherIncomeNode> {
         return component.getOtherIncomeDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomeDescriptionNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
     }

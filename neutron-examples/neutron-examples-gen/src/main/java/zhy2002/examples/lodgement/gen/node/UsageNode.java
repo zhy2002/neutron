@@ -43,6 +43,12 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
         return component.getUsageNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public UsageNode(@NotNull RealEstateNode parent, String name) {
         super(parent, name);
     }

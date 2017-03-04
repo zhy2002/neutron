@@ -29,6 +29,12 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         return component.getPasswordNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PasswordNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

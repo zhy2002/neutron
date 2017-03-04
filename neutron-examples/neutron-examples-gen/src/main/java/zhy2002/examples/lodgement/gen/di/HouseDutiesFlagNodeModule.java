@@ -35,4 +35,8 @@ public class HouseDutiesFlagNodeModule {
         return owner;
     }
 
+    @Provides @HouseDutiesFlagNodeScope UnemployedNode provideUnemployedNode() {
+        return owner.getParent();
+    }
+
 }

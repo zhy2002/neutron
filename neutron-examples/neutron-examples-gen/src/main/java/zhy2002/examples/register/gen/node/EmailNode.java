@@ -30,6 +30,12 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         return component.getEmailNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmailNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

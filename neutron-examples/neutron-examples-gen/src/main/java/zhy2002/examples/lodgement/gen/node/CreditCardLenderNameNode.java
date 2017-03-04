@@ -27,6 +27,12 @@ public class CreditCardLenderNameNode extends StringUiNode<CreditCardNode> {
         return component.getCreditCardLenderNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardLenderNameNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

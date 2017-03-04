@@ -28,6 +28,12 @@ public class ProductFeesNode extends ObjectUiNode<ProductsNode> {
         return component.getProductFeesNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductFeesNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

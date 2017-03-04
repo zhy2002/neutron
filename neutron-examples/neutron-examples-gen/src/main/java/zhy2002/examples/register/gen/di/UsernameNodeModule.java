@@ -31,4 +31,8 @@ public class UsernameNodeModule {
         return owner;
     }
 
+    @Provides @UsernameNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

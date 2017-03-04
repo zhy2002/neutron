@@ -31,4 +31,8 @@ public class ProductLendingPurposeNodeModule {
         return owner;
     }
 
+    @Provides @ProductLendingPurposeNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

@@ -36,6 +36,12 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
         return component.getPersonListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonListNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);
     }

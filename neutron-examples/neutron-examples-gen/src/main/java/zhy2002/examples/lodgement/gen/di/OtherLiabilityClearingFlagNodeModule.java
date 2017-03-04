@@ -31,4 +31,8 @@ public class OtherLiabilityClearingFlagNodeModule {
         return owner;
     }
 
+    @Provides @OtherLiabilityClearingFlagNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+        return owner.getParent();
+    }
+
 }

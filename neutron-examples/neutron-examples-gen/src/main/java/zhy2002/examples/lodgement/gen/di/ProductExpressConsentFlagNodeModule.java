@@ -31,4 +31,8 @@ public class ProductExpressConsentFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductExpressConsentFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

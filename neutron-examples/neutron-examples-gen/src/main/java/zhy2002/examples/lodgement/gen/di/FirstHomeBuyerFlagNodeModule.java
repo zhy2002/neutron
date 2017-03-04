@@ -31,4 +31,8 @@ public class FirstHomeBuyerFlagNodeModule {
         return owner;
     }
 
+    @Provides @FirstHomeBuyerFlagNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

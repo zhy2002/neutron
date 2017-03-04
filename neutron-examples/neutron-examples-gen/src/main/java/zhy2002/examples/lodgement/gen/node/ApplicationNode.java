@@ -50,6 +50,12 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
         return component.getApplicationNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     @Inject
     public ApplicationNode(@NotNull ApplicationNodeContext context) {
         super(context);

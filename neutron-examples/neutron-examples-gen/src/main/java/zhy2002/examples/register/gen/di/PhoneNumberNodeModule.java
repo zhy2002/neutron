@@ -35,4 +35,8 @@ public class PhoneNumberNodeModule {
         return owner;
     }
 
+    @Provides @PhoneNumberNodeScope PhoneInfoNode providePhoneInfoNode() {
+        return owner.getParent();
+    }
+
 }

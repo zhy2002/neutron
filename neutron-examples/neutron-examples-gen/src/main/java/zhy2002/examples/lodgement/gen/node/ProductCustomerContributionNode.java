@@ -28,6 +28,12 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductsNode> 
         return component.getProductCustomerContributionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCustomerContributionNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

@@ -30,6 +30,12 @@ public class StudentTypeNode extends StringUiNode<UnemployedNode> {
         return component.getStudentTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public StudentTypeNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);
     }

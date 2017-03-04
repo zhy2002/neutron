@@ -35,4 +35,8 @@ public class MortgageBreakFeeNodeModule {
         return owner;
     }
 
+    @Provides @MortgageBreakFeeNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

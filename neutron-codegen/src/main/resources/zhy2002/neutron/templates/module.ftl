@@ -22,4 +22,10 @@ public class ${typeName}Module {
     }
 
 </#list>
+<#if parentType.typeName != "VoidUiNode">
+    @Provides @${typeName}Scope ${parentType.genericTypeName} provide${parentType.typeName}() {
+        return owner.getParent();
+    }
+
+</#if>
 }

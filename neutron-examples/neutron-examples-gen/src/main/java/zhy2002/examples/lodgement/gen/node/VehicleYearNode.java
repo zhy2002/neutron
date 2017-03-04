@@ -27,6 +27,12 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
         return component.getVehicleYearNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public VehicleYearNode(@NotNull MotorVehicleNode parent, String name) {
         super(parent, name);
     }

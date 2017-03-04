@@ -39,6 +39,12 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         return component.getSelectAccountHolderNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SelectAccountHolderNode(@NotNull SelectAccountHolderListNode<?> parent, String name) {
         super(parent, name);
     }

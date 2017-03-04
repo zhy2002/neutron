@@ -30,6 +30,12 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
         return component.getMonthNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MonthNode(@NotNull MonthYearNode<?> parent, String name) {
         super(parent, name);
     }

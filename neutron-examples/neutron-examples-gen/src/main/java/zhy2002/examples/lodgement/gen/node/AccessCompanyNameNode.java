@@ -27,6 +27,12 @@ public class AccessCompanyNameNode extends StringUiNode<AccessNode> {
         return component.getAccessCompanyNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccessCompanyNameNode(@NotNull AccessNode parent, String name) {
         super(parent, name);
     }

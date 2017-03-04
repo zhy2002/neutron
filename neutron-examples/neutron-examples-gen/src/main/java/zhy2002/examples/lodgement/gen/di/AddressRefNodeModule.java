@@ -31,4 +31,8 @@ public class AddressRefNodeModule {
         return owner;
     }
 
+    @Provides @AddressRefNodeScope AddressRefListNode provideAddressRefListNode() {
+        return owner.getParent();
+    }
+
 }

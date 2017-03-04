@@ -27,6 +27,12 @@ public class TrustRegistrationDateNode extends StringUiNode<BaseTrustNode<?>> {
         return component.getTrustRegistrationDateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustRegistrationDateNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

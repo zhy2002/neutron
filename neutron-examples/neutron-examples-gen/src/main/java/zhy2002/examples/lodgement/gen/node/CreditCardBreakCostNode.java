@@ -27,6 +27,12 @@ public class CreditCardBreakCostNode extends BaseCurrencyNode<CreditCardNode> {
         return component.getCreditCardBreakCostNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardBreakCostNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);
     }

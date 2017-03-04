@@ -35,4 +35,8 @@ public class CompanyTrustNodeModule {
         return owner;
     }
 
+    @Provides @CompanyTrustNodeScope CompanyNode provideCompanyNode() {
+        return owner.getParent();
+    }
+
 }

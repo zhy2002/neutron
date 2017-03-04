@@ -27,6 +27,12 @@ public class VehicleModelNode extends StringUiNode<MotorVehicleNode> {
         return component.getVehicleModelNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public VehicleModelNode(@NotNull MotorVehicleNode parent, String name) {
         super(parent, name);
     }

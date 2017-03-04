@@ -31,4 +31,8 @@ public class TrustRegistrationDateNodeModule {
         return owner;
     }
 
+    @Provides @TrustRegistrationDateNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+        return owner.getParent();
+    }
+
 }

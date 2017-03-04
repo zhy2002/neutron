@@ -31,4 +31,8 @@ public class SuburbNodeModule {
         return owner;
     }
 
+    @Provides @SuburbNodeScope AddressNode<?> provideAddressNode() {
+        return owner.getParent();
+    }
+
 }

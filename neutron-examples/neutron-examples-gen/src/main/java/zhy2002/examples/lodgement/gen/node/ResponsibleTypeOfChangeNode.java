@@ -30,6 +30,12 @@ public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLen
         return component.getResponsibleTypeOfChangeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ResponsibleTypeOfChangeNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
     }

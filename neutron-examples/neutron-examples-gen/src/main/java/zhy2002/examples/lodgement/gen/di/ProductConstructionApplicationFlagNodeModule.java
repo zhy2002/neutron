@@ -31,4 +31,8 @@ public class ProductConstructionApplicationFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductConstructionApplicationFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

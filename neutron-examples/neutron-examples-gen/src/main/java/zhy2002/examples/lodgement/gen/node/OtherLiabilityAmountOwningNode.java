@@ -27,6 +27,12 @@ public class OtherLiabilityAmountOwningNode extends BaseCurrencyNode<OtherLiabil
         return component.getOtherLiabilityAmountOwningNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityAmountOwningNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

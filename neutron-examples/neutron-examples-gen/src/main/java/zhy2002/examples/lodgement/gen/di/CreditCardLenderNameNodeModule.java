@@ -31,4 +31,8 @@ public class CreditCardLenderNameNodeModule {
         return owner;
     }
 
+    @Provides @CreditCardLenderNameNodeScope CreditCardNode provideCreditCardNode() {
+        return owner.getParent();
+    }
+
 }

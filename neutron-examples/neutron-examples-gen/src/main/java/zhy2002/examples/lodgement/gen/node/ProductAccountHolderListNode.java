@@ -27,6 +27,12 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
         return component.getProductAccountHolderListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductAccountHolderListNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

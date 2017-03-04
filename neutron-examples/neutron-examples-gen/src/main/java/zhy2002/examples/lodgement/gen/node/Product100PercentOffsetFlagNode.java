@@ -27,6 +27,12 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
         return component.getProduct100PercentOffsetFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public Product100PercentOffsetFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

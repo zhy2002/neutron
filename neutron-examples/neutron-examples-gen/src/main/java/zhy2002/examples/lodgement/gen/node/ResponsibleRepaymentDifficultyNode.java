@@ -29,6 +29,12 @@ public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResp
         return component.getResponsibleRepaymentDifficultyNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ResponsibleRepaymentDifficultyNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
     }

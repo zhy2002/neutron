@@ -35,4 +35,8 @@ public class TotalExpenseNodeModule {
         return owner;
     }
 
+    @Provides @TotalExpenseNodeScope FinancialPositionNode provideFinancialPositionNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class BusinessTypeNodeModule {
         return owner;
     }
 
+    @Provides @BusinessTypeNodeScope SelfEmployedNode provideSelfEmployedNode() {
+        return owner.getParent();
+    }
+
 }

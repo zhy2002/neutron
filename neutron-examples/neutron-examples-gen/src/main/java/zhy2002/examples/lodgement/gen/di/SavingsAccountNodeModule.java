@@ -31,4 +31,8 @@ public class SavingsAccountNodeModule {
         return owner;
     }
 
+    @Provides @SavingsAccountNodeScope SavingsAccountListNode provideSavingsAccountListNode() {
+        return owner.getParent();
+    }
+
 }

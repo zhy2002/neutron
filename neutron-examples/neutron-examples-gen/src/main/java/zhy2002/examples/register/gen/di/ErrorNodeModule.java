@@ -31,4 +31,8 @@ public class ErrorNodeModule {
         return owner;
     }
 
+    @Provides @ErrorNodeScope ErrorListNode provideErrorListNode() {
+        return owner.getParent();
+    }
+
 }

@@ -30,6 +30,12 @@ public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode>
         return component.getCompanyApplicationTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyApplicationTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

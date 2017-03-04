@@ -34,6 +34,12 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         return component.getTrustBeneficiaryClassListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustBeneficiaryClassListNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

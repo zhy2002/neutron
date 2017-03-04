@@ -31,4 +31,8 @@ public class MortgageInterestOnlyExpiryDateNodeModule {
         return owner;
     }
 
+    @Provides @MortgageInterestOnlyExpiryDateNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

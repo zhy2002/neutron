@@ -29,6 +29,12 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
         return component.getDateOfBirthNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public DateOfBirthNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

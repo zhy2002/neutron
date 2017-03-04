@@ -31,4 +31,8 @@ public class PhoneInfoNodeModule {
         return owner;
     }
 
+    @Provides @PhoneInfoNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

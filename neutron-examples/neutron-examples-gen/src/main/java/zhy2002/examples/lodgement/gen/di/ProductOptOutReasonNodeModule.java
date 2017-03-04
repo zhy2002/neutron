@@ -31,4 +31,8 @@ public class ProductOptOutReasonNodeModule {
         return owner;
     }
 
+    @Provides @ProductOptOutReasonNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

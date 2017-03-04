@@ -27,6 +27,12 @@ public class LoanBreakCostNode extends BaseCurrencyNode<LoanNode> {
         return component.getLoanBreakCostNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanBreakCostNode(@NotNull LoanNode parent, String name) {
         super(parent, name);
     }

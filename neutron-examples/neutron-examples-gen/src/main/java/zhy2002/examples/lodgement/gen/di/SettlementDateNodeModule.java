@@ -31,4 +31,8 @@ public class SettlementDateNodeModule {
         return owner;
     }
 
+    @Provides @SettlementDateNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

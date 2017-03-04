@@ -31,4 +31,8 @@ public class ProductCardHodlerNameNodeModule {
         return owner;
     }
 
+    @Provides @ProductCardHodlerNameNodeScope ProductCardHolderNode provideProductCardHolderNode() {
+        return owner.getParent();
+    }
+
 }

@@ -50,6 +50,12 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
         return component.getExistingMortgageNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExistingMortgageNode(@NotNull ExistingMortgageListNode parent, String name) {
         super(parent, name);
     }

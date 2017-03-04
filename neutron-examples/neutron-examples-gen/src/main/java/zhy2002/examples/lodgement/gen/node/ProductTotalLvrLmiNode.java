@@ -27,6 +27,12 @@ public class ProductTotalLvrLmiNode extends BasePercentageNode<ProductsNode> {
         return component.getProductTotalLvrLmiNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductTotalLvrLmiNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

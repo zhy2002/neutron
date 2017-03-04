@@ -31,4 +31,8 @@ public class CreditCheckFlagNodeModule {
         return owner;
     }
 
+    @Provides @CreditCheckFlagNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+        return owner.getParent();
+    }
+
 }

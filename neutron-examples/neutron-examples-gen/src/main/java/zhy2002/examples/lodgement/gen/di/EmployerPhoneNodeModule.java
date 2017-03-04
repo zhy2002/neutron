@@ -31,4 +31,8 @@ public class EmployerPhoneNodeModule {
         return owner;
     }
 
+    @Provides @EmployerPhoneNodeScope EmployedNode provideEmployedNode() {
+        return owner.getParent();
+    }
+
 }

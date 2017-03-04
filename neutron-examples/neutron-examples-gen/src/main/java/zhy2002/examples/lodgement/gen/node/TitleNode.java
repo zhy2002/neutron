@@ -30,6 +30,12 @@ public class TitleNode extends StringUiNode<PersonGeneralNode> {
         return component.getTitleNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TitleNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

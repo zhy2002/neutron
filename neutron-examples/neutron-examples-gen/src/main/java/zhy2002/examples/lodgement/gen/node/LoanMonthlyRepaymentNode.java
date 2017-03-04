@@ -27,6 +27,12 @@ public class LoanMonthlyRepaymentNode extends BaseCurrencyNode<LoanNode> {
         return component.getLoanMonthlyRepaymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanMonthlyRepaymentNode(@NotNull LoanNode parent, String name) {
         super(parent, name);
     }

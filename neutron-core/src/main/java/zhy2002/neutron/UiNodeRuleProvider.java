@@ -12,6 +12,11 @@ public abstract class UiNodeRuleProvider<N extends UiNode<?>> implements RulePro
     Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;
 
     @Override
+    public void initializeState(N node) {
+        //provided so that subclasses can safely call super
+    }
+
+    @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         createdRules.add(clearErrorsForDisabledNodeRuleProvider.get());
     }

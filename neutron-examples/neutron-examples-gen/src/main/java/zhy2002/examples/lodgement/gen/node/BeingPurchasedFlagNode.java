@@ -27,6 +27,12 @@ public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
         return component.getBeingPurchasedFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public BeingPurchasedFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
     }

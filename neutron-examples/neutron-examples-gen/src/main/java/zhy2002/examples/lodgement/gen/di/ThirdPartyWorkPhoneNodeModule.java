@@ -31,4 +31,8 @@ public class ThirdPartyWorkPhoneNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyWorkPhoneNodeScope RelatedPartyNode provideRelatedPartyNode() {
+        return owner.getParent();
+    }
+
 }

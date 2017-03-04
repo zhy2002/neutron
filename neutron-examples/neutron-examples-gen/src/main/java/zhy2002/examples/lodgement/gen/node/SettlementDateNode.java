@@ -27,6 +27,12 @@ public class SettlementDateNode extends StringUiNode<ProductsNode> {
         return component.getSettlementDateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SettlementDateNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
     }

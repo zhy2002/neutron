@@ -31,4 +31,8 @@ public class VehicleModelNodeModule {
         return owner;
     }
 
+    @Provides @VehicleModelNodeScope MotorVehicleNode provideMotorVehicleNode() {
+        return owner.getParent();
+    }
+
 }

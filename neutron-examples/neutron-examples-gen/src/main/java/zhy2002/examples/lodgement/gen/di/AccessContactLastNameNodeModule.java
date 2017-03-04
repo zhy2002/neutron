@@ -31,4 +31,8 @@ public class AccessContactLastNameNodeModule {
         return owner;
     }
 
+    @Provides @AccessContactLastNameNodeScope AccessNode provideAccessNode() {
+        return owner.getParent();
+    }
+
 }

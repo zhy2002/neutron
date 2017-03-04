@@ -35,4 +35,8 @@ public class PropertyAddressNodeModule {
         return owner;
     }
 
+    @Provides @PropertyAddressNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

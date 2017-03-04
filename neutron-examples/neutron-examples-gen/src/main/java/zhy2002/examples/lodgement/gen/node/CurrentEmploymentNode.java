@@ -29,6 +29,12 @@ public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListN
         return component.getCurrentEmploymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CurrentEmploymentNode(@NotNull CurrentEmploymentListNode parent, String name) {
         super(parent, name);
     }

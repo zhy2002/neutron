@@ -39,6 +39,12 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         return component.getSelectRelatedPersonNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SelectRelatedPersonNode(@NotNull SelectRelatedPersonListNode<?> parent, String name) {
         super(parent, name);
     }

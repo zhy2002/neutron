@@ -27,6 +27,12 @@ public class ThirdPartyDescriptionNode extends StringUiNode<RelatedPartyNode> {
         return component.getThirdPartyDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyDescriptionNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

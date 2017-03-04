@@ -31,4 +31,8 @@ public class MortgageInterestOnlyRemainingPeriodNodeModule {
         return owner;
     }
 
+    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

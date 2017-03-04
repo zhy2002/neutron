@@ -40,6 +40,12 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
         return component.getAssetsNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AssetsNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);
     }

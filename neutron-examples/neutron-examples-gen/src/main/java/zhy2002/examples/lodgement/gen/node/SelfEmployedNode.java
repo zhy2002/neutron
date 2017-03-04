@@ -40,6 +40,12 @@ public class SelfEmployedNode extends EmployedNode {
         return component.getSelfEmployedNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SelfEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }

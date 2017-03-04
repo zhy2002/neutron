@@ -27,6 +27,12 @@ public class TrustAddressNode extends AddressNode<BaseTrustNode<?>> {
         return component.getTrustAddressNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustAddressNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

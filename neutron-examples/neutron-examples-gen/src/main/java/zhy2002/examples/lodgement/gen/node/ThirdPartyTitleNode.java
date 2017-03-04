@@ -27,6 +27,12 @@ public class ThirdPartyTitleNode extends StringUiNode<RelatedPartyNode> {
         return component.getThirdPartyTitleNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyTitleNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

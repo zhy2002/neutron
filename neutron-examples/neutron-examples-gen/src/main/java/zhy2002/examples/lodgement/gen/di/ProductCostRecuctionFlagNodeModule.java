@@ -31,4 +31,8 @@ public class ProductCostRecuctionFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductCostRecuctionFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+        return owner.getParent();
+    }
+
 }

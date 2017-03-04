@@ -35,4 +35,8 @@ public class GrossYearlySalaryNodeModule {
         return owner;
     }
 
+    @Provides @GrossYearlySalaryNodeScope PayeEmployedNode providePayeEmployedNode() {
+        return owner.getParent();
+    }
+
 }

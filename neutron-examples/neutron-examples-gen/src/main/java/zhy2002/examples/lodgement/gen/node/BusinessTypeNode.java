@@ -27,6 +27,12 @@ public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
         return component.getBusinessTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public BusinessTypeNode(@NotNull SelfEmployedNode parent, String name) {
         super(parent, name);
     }

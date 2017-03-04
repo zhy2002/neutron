@@ -31,4 +31,8 @@ public class OtherIncomePreviousYearNodeModule {
         return owner;
     }
 
+    @Provides @OtherIncomePreviousYearNodeScope OtherIncomeNode provideOtherIncomeNode() {
+        return owner.getParent();
+    }
+
 }

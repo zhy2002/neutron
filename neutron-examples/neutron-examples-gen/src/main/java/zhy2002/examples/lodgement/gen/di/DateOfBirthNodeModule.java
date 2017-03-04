@@ -35,4 +35,8 @@ public class DateOfBirthNodeModule {
         return owner;
     }
 
+    @Provides @DateOfBirthNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

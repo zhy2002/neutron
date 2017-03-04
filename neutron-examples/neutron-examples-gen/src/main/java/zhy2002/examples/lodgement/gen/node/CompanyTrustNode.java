@@ -27,6 +27,12 @@ public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
         return component.getCompanyTrustNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyTrustNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);
     }

@@ -31,4 +31,8 @@ public class CurrentEmploymentListNodeModule {
         return owner;
     }
 
+    @Provides @CurrentEmploymentListNodeScope PersonNode providePersonNode() {
+        return owner.getParent();
+    }
+
 }

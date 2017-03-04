@@ -27,6 +27,12 @@ public class MortgageLimitAmountNode extends BaseCurrencyNode<ExistingMortgageNo
         return component.getMortgageLimitAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageLimitAmountNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

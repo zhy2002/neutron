@@ -35,4 +35,8 @@ public class TotalLiabilityNodeModule {
         return owner;
     }
 
+    @Provides @TotalLiabilityNodeScope FinancialPositionNode provideFinancialPositionNode() {
+        return owner.getParent();
+    }
+
 }

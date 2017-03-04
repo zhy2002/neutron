@@ -27,6 +27,12 @@ public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
         return component.getCreditHistoryNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditHistoryNode(@NotNull CreditHistoryListNode parent, String name) {
         super(parent, name);
     }

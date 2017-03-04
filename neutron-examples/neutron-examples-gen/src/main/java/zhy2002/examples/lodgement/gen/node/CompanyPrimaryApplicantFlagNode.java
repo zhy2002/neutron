@@ -27,6 +27,12 @@ public class CompanyPrimaryApplicantFlagNode extends BooleanUiNode<CompanyGenera
         return component.getCompanyPrimaryApplicantFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CompanyPrimaryApplicantFlagNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
     }

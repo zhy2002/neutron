@@ -27,6 +27,12 @@ public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode> {
         return component.getPrimaryApplicantFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PrimaryApplicantFlagNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

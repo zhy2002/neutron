@@ -31,4 +31,8 @@ public class VehicleYearNodeModule {
         return owner;
     }
 
+    @Provides @VehicleYearNodeScope MotorVehicleNode provideMotorVehicleNode() {
+        return owner.getParent();
+    }
+
 }

@@ -51,6 +51,12 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         return component.getPersonGeneralNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonGeneralNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

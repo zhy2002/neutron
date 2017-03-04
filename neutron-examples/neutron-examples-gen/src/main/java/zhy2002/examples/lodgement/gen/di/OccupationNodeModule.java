@@ -35,4 +35,8 @@ public class OccupationNodeModule {
         return owner;
     }
 
+    @Provides @OccupationNodeScope EmployedNode provideEmployedNode() {
+        return owner.getParent();
+    }
+
 }

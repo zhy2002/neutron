@@ -27,6 +27,12 @@ public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode>
         return component.getProductPaymentTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductPaymentTypeNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

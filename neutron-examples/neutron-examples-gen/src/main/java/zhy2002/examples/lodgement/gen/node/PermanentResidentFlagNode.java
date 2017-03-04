@@ -27,6 +27,12 @@ public class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode> 
         return component.getPermanentResidentFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PermanentResidentFlagNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

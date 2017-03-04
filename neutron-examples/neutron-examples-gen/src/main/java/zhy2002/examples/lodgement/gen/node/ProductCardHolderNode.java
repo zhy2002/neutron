@@ -40,6 +40,12 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         return component.getProductCardHolderNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCardHolderNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

@@ -35,4 +35,8 @@ public class LoanLimitAmountNodeModule {
         return owner;
     }
 
+    @Provides @LoanLimitAmountNodeScope LoanNode provideLoanNode() {
+        return owner.getParent();
+    }
+
 }

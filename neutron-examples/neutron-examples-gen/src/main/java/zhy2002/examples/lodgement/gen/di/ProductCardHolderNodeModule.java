@@ -31,4 +31,8 @@ public class ProductCardHolderNodeModule {
         return owner;
     }
 
+    @Provides @ProductCardHolderNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class AccessNodeModule {
         return owner;
     }
 
+    @Provides @AccessNodeScope RealEstateNode provideRealEstateNode() {
+        return owner.getParent();
+    }
+
 }

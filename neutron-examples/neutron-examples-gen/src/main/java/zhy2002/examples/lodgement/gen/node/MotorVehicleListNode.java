@@ -34,6 +34,12 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
         return component.getMotorVehicleListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MotorVehicleListNode(@NotNull AssetsNode parent, String name) {
         super(parent, name);
     }

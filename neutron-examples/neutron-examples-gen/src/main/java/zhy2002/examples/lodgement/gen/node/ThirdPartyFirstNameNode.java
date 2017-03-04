@@ -27,6 +27,12 @@ public class ThirdPartyFirstNameNode extends StringUiNode<RelatedPartyNode> {
         return component.getThirdPartyFirstNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyFirstNameNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);
     }

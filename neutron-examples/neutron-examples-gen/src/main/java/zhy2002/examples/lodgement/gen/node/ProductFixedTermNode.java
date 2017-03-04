@@ -27,6 +27,12 @@ public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNod
         return component.getProductFixedTermNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductFixedTermNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

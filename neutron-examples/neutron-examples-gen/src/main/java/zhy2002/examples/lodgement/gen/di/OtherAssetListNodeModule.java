@@ -31,4 +31,8 @@ public class OtherAssetListNodeModule {
         return owner;
     }
 
+    @Provides @OtherAssetListNodeScope AssetsNode provideAssetsNode() {
+        return owner.getParent();
+    }
+
 }

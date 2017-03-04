@@ -27,6 +27,12 @@ public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> 
         return component.getOtherAssetMarketValueNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherAssetMarketValueNode(@NotNull OtherAssetNode parent, String name) {
         super(parent, name);
     }

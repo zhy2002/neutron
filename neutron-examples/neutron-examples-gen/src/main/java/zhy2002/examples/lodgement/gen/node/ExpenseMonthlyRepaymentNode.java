@@ -27,6 +27,12 @@ public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode> {
         return component.getExpenseMonthlyRepaymentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ExpenseMonthlyRepaymentNode(@NotNull ExpenseNode parent, String name) {
         super(parent, name);
     }

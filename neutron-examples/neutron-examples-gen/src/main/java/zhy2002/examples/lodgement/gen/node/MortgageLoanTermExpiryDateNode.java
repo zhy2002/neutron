@@ -27,6 +27,12 @@ public class MortgageLoanTermExpiryDateNode extends StringUiNode<ExistingMortgag
         return component.getMortgageLoanTermExpiryDateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageLoanTermExpiryDateNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

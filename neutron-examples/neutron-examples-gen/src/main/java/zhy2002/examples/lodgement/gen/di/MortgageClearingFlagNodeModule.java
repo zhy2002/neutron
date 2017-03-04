@@ -31,4 +31,8 @@ public class MortgageClearingFlagNodeModule {
         return owner;
     }
 
+    @Provides @MortgageClearingFlagNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

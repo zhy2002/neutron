@@ -31,4 +31,8 @@ public class RealEstateListNodeModule {
         return owner;
     }
 
+    @Provides @RealEstateListNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

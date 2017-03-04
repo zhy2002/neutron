@@ -35,4 +35,8 @@ public class PersonPrivacyNodeModule {
         return owner;
     }
 
+    @Provides @PersonPrivacyNodeScope PersonNode providePersonNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class PostcodeNodeModule {
         return owner;
     }
 
+    @Provides @PostcodeNodeScope AddressNode<?> provideAddressNode() {
+        return owner.getParent();
+    }
+
 }

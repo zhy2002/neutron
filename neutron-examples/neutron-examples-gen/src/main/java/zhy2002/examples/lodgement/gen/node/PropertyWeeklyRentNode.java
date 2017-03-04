@@ -27,6 +27,12 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
         return component.getPropertyWeeklyRentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PropertyWeeklyRentNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

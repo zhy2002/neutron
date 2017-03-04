@@ -35,4 +35,8 @@ public class SelfEmployedNodeModule {
         return owner;
     }
 
+    @Provides @SelfEmployedNodeScope EmploymentNode<?> provideEmploymentNode() {
+        return owner.getParent();
+    }
+
 }

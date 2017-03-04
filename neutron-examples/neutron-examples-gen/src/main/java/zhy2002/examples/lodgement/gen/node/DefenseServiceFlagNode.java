@@ -27,6 +27,12 @@ public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
         return component.getDefenseServiceFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public DefenseServiceFlagNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);
     }

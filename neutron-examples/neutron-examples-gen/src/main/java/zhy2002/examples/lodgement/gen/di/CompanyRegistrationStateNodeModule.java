@@ -31,4 +31,8 @@ public class CompanyRegistrationStateNodeModule {
         return owner;
     }
 
+    @Provides @CompanyRegistrationStateNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+        return owner.getParent();
+    }
+
 }

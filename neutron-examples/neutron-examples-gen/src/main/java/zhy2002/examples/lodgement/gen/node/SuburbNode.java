@@ -29,6 +29,12 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
         return component.getSuburbNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public SuburbNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }

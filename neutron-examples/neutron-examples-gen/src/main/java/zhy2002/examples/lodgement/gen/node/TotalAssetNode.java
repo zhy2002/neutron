@@ -29,6 +29,12 @@ public class TotalAssetNode extends BaseCurrencyNode<FinancialPositionNode> {
         return component.getTotalAssetNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TotalAssetNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);
     }

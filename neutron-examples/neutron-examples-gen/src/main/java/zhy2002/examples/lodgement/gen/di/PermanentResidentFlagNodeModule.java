@@ -31,4 +31,8 @@ public class PermanentResidentFlagNodeModule {
         return owner;
     }
 
+    @Provides @PermanentResidentFlagNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

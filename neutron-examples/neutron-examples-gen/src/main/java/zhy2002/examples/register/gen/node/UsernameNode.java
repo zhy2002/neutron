@@ -29,6 +29,12 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
         return component.getUsernameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public UsernameNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
     }

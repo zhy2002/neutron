@@ -44,6 +44,12 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         return component.getCreditCardNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCardNode(@NotNull CreditCardListNode parent, String name) {
         super(parent, name);
     }

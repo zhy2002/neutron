@@ -35,4 +35,8 @@ public class CompanyOtherIncomeListNodeModule {
         return owner;
     }
 
+    @Provides @CompanyOtherIncomeListNodeScope CompanyNode provideCompanyNode() {
+        return owner.getParent();
+    }
+
 }

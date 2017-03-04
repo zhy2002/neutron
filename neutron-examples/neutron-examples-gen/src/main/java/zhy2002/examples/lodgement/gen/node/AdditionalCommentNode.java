@@ -27,6 +27,12 @@ public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
         return component.getAdditionalCommentNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AdditionalCommentNode(@NotNull AdditionalNode parent, String name) {
         super(parent, name);
     }

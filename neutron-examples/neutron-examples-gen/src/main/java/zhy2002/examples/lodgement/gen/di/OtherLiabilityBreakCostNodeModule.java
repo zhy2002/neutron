@@ -35,4 +35,8 @@ public class OtherLiabilityBreakCostNodeModule {
         return owner;
     }
 
+    @Provides @OtherLiabilityBreakCostNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+        return owner.getParent();
+    }
+
 }

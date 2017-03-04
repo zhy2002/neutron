@@ -38,6 +38,12 @@ public class PayeEmployedNode extends EmployedNode {
         return component.getPayeEmployedNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PayeEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
     }

@@ -27,6 +27,12 @@ public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNod
         return component.getTrustSettlorNotRequiredReasonNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustSettlorNotRequiredReasonNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

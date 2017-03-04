@@ -35,4 +35,8 @@ public class OwnershipPercentageNodeModule {
         return owner;
     }
 
+    @Provides @OwnershipPercentageNodeScope OwnershipNode provideOwnershipNode() {
+        return owner.getParent();
+    }
+
 }

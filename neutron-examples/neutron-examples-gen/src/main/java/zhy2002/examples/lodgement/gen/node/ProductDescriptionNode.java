@@ -52,6 +52,12 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
         return component.getProductDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductDescriptionNode(@NotNull ProductNode parent, String name) {
         super(parent, name);
     }

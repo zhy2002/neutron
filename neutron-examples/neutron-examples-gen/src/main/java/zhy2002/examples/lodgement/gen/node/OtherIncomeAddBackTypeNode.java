@@ -30,6 +30,12 @@ public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
         return component.getOtherIncomeAddBackTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherIncomeAddBackTypeNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
     }

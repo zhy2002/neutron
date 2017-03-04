@@ -30,6 +30,12 @@ public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
         return component.getEmploymentStatusNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public EmploymentStatusNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
     }

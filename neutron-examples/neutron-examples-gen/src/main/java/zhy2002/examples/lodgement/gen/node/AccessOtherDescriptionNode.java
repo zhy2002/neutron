@@ -27,6 +27,12 @@ public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
         return component.getAccessOtherDescriptionNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AccessOtherDescriptionNode(@NotNull AccessNode parent, String name) {
         super(parent, name);
     }

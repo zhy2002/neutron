@@ -31,4 +31,8 @@ public class OtherLiabilityNodeModule {
         return owner;
     }
 
+    @Provides @OtherLiabilityNodeScope OtherLiabilityListNode provideOtherLiabilityListNode() {
+        return owner.getParent();
+    }
+
 }

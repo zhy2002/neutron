@@ -27,6 +27,12 @@ public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeat
         return component.getProductTransactionAccountFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductTransactionAccountFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

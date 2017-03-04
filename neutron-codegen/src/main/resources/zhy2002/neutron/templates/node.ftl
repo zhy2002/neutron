@@ -77,6 +77,12 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     protected ${typeName}RuleProvider getRuleProvider() {
         return component.get${typeName}RuleProvider();
     }
+
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
 </#if>
 
 <#if parentType.typeName == "VoidUiNode">

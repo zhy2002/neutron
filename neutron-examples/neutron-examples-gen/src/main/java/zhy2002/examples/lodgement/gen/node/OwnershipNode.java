@@ -40,6 +40,12 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         return component.getOwnershipNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OwnershipNode(@NotNull OwnershipListNode<?> parent, String name) {
         super(parent, name);
     }

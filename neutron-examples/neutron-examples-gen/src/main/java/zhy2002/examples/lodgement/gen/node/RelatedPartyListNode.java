@@ -34,6 +34,12 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
         return component.getRelatedPartyListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public RelatedPartyListNode(@NotNull AdditionalNode parent, String name) {
         super(parent, name);
     }

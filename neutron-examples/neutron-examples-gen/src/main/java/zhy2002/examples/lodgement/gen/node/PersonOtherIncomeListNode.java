@@ -27,6 +27,12 @@ public class PersonOtherIncomeListNode extends BaseOtherIncomeListNode<PersonNod
         return component.getPersonOtherIncomeListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public PersonOtherIncomeListNode(@NotNull PersonNode parent, String name) {
         super(parent, name);
     }

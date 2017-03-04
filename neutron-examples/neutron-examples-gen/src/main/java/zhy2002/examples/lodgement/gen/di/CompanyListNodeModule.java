@@ -31,4 +31,8 @@ public class CompanyListNodeModule {
         return owner;
     }
 
+    @Provides @CompanyListNodeScope ApplicationNode provideApplicationNode() {
+        return owner.getParent();
+    }
+
 }

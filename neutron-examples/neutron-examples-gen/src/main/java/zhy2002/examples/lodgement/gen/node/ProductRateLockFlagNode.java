@@ -27,6 +27,12 @@ public class ProductRateLockFlagNode extends BooleanUiNode<ProductFeaturesNode> 
         return component.getProductRateLockFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductRateLockFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

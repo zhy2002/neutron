@@ -27,6 +27,12 @@ public class ProductCreditCardFlagNode extends BooleanUiNode<ProductFeaturesNode
         return component.getProductCreditCardFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCreditCardFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

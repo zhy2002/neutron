@@ -27,6 +27,12 @@ public class ProductTotalLoanTermNode extends BigDecimalUiNode<ProductDescriptio
         return component.getProductTotalLoanTermNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductTotalLoanTermNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

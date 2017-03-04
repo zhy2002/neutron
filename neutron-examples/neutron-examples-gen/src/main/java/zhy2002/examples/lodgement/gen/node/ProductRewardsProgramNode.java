@@ -27,6 +27,12 @@ public class ProductRewardsProgramNode extends StringUiNode<ProductCardHolderNod
         return component.getProductRewardsProgramNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductRewardsProgramNode(@NotNull ProductCardHolderNode parent, String name) {
         super(parent, name);
     }

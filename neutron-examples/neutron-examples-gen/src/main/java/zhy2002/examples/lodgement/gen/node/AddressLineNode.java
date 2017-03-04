@@ -29,6 +29,12 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>> {
         return component.getAddressLineNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AddressLineNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }

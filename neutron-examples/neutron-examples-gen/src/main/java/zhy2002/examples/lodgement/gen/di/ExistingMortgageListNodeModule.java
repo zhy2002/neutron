@@ -31,4 +31,8 @@ public class ExistingMortgageListNodeModule {
         return owner;
     }
 
+    @Provides @ExistingMortgageListNodeScope UsageNode provideUsageNode() {
+        return owner.getParent();
+    }
+
 }

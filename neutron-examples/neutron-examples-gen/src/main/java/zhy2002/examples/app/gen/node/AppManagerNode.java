@@ -28,6 +28,12 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
         return component.getAppManagerNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AppManagerNode(@NotNull LodgementNode parent, String name) {
         super(parent, name);
     }

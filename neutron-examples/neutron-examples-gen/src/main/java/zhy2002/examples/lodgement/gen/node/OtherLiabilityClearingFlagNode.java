@@ -27,6 +27,12 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
         return component.getOtherLiabilityClearingFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityClearingFlagNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

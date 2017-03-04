@@ -29,6 +29,12 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>> {
         return component.getCountryNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CountryNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
     }

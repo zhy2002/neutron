@@ -29,6 +29,12 @@ public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
         return component.getCreditCheckFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public CreditCheckFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
     }

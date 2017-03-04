@@ -35,4 +35,8 @@ public class MortgqageUnpaidBalanceNodeModule {
         return owner;
     }
 
+    @Provides @MortgqageUnpaidBalanceNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

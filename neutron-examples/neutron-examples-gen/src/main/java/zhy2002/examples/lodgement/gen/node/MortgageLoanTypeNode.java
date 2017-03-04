@@ -27,6 +27,12 @@ public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
         return component.getMortgageLoanTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageLoanTypeNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

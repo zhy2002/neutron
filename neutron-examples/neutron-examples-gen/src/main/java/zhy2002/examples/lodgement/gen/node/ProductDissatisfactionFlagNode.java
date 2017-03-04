@@ -27,6 +27,12 @@ public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescrip
         return component.getProductDissatisfactionFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductDissatisfactionFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);
     }

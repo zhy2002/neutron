@@ -27,6 +27,12 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
         return component.getErrorNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ErrorNode(@NotNull ErrorListNode parent, String name) {
         super(parent, name);
     }

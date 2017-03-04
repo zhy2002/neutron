@@ -31,4 +31,8 @@ public class ProductListNodeModule {
         return owner;
     }
 
+    @Provides @ProductListNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }

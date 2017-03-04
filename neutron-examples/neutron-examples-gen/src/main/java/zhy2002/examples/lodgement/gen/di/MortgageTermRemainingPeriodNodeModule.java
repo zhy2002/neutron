@@ -31,4 +31,8 @@ public class MortgageTermRemainingPeriodNodeModule {
         return owner;
     }
 
+    @Provides @MortgageTermRemainingPeriodNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

@@ -31,4 +31,8 @@ public class ReceiveOffersNodeModule {
         return owner;
     }
 
+    @Provides @ReceiveOffersNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

@@ -27,6 +27,12 @@ public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMor
         return component.getMortgageInterestOnlyExpiryDateNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MortgageInterestOnlyExpiryDateNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);
     }

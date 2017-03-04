@@ -31,4 +31,8 @@ public class MaritalStatusNodeModule {
         return owner;
     }
 
+    @Provides @MaritalStatusNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

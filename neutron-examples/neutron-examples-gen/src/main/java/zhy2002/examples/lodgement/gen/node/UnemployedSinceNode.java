@@ -29,6 +29,12 @@ public class UnemployedSinceNode extends MonthYearNode<UnemployedNode> {
         return component.getUnemployedSinceNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public UnemployedSinceNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);
     }

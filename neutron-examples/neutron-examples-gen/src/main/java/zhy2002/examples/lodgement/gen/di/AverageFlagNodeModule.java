@@ -31,4 +31,8 @@ public class AverageFlagNodeModule {
         return owner;
     }
 
+    @Provides @AverageFlagNodeScope OwnershipNode provideOwnershipNode() {
+        return owner.getParent();
+    }
+
 }

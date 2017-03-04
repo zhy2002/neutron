@@ -31,4 +31,8 @@ public class AccessCompanyNameNodeModule {
         return owner;
     }
 
+    @Provides @AccessCompanyNameNodeScope AccessNode provideAccessNode() {
+        return owner.getParent();
+    }
+
 }

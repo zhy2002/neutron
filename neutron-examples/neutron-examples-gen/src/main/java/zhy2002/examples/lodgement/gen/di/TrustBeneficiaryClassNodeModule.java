@@ -31,4 +31,8 @@ public class TrustBeneficiaryClassNodeModule {
         return owner;
     }
 
+    @Provides @TrustBeneficiaryClassNodeScope TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
+        return owner.getParent();
+    }
+
 }

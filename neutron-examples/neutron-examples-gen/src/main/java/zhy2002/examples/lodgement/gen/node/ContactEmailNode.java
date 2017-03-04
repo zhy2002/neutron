@@ -29,6 +29,12 @@ public class ContactEmailNode extends EmailNode<BaseContactNode<?>> {
         return component.getContactEmailNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ContactEmailNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }

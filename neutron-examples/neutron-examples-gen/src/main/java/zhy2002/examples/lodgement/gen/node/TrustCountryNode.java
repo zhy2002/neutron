@@ -29,6 +29,12 @@ public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
         return component.getTrustCountryNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public TrustCountryNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);
     }

@@ -52,6 +52,12 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         return component.getRegisterNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     @Inject
     public RegisterNode(@NotNull RegisterNodeContext context) {
         super(context);

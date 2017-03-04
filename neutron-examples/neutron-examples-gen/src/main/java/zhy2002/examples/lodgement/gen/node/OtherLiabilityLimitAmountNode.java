@@ -27,6 +27,12 @@ public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabili
         return component.getOtherLiabilityLimitAmountNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public OtherLiabilityLimitAmountNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);
     }

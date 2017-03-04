@@ -29,6 +29,12 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<
         return component.getThirdPartyDisclosureFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ThirdPartyDisclosureFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
     }

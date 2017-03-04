@@ -40,6 +40,12 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode> {
         return component.getLodgementNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     @Inject
     public LodgementNode(@NotNull LodgementNodeContext context) {
         super(context);

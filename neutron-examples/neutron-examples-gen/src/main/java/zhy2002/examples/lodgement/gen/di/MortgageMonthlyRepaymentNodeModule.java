@@ -35,4 +35,8 @@ public class MortgageMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @MortgageMonthlyRepaymentNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+        return owner.getParent();
+    }
+
 }

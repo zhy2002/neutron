@@ -34,6 +34,12 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
         return component.getLoanListNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public LoanListNode(@NotNull LiabilitiesNode parent, String name) {
         super(parent, name);
     }

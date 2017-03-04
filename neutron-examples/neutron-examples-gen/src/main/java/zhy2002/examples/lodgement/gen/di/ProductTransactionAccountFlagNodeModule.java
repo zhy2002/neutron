@@ -31,4 +31,8 @@ public class ProductTransactionAccountFlagNodeModule {
         return owner;
     }
 
+    @Provides @ProductTransactionAccountFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+        return owner.getParent();
+    }
+
 }

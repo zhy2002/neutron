@@ -27,6 +27,12 @@ public class MobileNumberNode extends StringUiNode<BaseContactNode<?>> {
         return component.getMobileNumberNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public MobileNumberNode(@NotNull BaseContactNode<?> parent, String name) {
         super(parent, name);
     }

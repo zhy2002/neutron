@@ -39,6 +39,12 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
         return component.getAdditionalNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public AdditionalNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);
     }

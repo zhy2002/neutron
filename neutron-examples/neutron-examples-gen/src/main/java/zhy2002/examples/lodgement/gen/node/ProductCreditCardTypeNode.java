@@ -27,6 +27,12 @@ public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode>
         return component.getProductCreditCardTypeNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductCreditCardTypeNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

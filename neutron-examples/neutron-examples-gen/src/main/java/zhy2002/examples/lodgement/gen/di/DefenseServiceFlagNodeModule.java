@@ -31,4 +31,8 @@ public class DefenseServiceFlagNodeModule {
         return owner;
     }
 
+    @Provides @DefenseServiceFlagNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

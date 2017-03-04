@@ -29,6 +29,12 @@ public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode> {
         return component.getFirstHomeBuyerFlagNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public FirstHomeBuyerFlagNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
     }

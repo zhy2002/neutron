@@ -31,4 +31,8 @@ public class PasswordNodeModule {
         return owner;
     }
 
+    @Provides @PasswordNodeScope RegisterNode provideRegisterNode() {
+        return owner.getParent();
+    }
+
 }

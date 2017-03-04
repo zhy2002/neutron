@@ -27,6 +27,12 @@ public class ProductPackageNameNode extends StringUiNode<ProductFeaturesNode> {
         return component.getProductPackageNameNodeRuleProvider();
     }
 
+    @Override
+    protected void initializeRuleState() {
+        getRuleProvider().initializeState(this);
+    }
+
+
     public ProductPackageNameNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
     }

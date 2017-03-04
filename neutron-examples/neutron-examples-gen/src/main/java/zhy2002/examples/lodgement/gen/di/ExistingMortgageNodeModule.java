@@ -31,4 +31,8 @@ public class ExistingMortgageNodeModule {
         return owner;
     }
 
+    @Provides @ExistingMortgageNodeScope ExistingMortgageListNode provideExistingMortgageListNode() {
+        return owner.getParent();
+    }
+
 }

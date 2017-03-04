@@ -31,4 +31,8 @@ public class ThirdPartyDisclosureFlagNodeModule {
         return owner;
     }
 
+    @Provides @ThirdPartyDisclosureFlagNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+        return owner.getParent();
+    }
+
 }

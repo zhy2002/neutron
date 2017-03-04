@@ -20,17 +20,15 @@ export default class PersonSummaryComponent extends NeutronComponent {
 
     render() {
         return (
-            <div className="person-summary-component">
-                <RemovePanelComponent model={this.model}>
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <a tabIndex="0" onClick={this.selectItem}>
-                                {this.state.name}
-                            </a>
-                        </div>
+            <RemovePanelComponent className="person-summary-component" model={this.model}>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <a tabIndex="0" onClick={this.selectItem}>
+                            {this.state.name}
+                        </a>
                     </div>
-                </RemovePanelComponent>
-            </div>
+                </div>
+            </RemovePanelComponent>
         );
     }
 

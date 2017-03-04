@@ -31,4 +31,8 @@ public class ContractPriceNodeModule {
         return owner;
     }
 
+    @Provides @ContractPriceNodeScope PropertyNode providePropertyNode() {
+        return owner.getParent();
+    }
+
 }

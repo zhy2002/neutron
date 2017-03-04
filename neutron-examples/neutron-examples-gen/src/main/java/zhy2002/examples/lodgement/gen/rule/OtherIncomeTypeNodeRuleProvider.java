@@ -20,14 +20,11 @@ public class OtherIncomeTypeNodeRuleProvider
     }
 
 
-    @Inject
-    Provider<OtherIncomeTypeChangeRule> otherIncomeTypeChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-            createdRules.add(otherIncomeTypeChangeRuleProvider.get());
     }
 
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonListComponent from './PersonListComponent';
+import PersonListComponent from './person_data/PersonListComponent';
 import PersonComponent from './person_data/PersonComponent';
 import FinancialPositionComponent from './financial_data/FinancialPositionComponent';
 import AdditionalComponent from './additional_data/AdditionalComponent';

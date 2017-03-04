@@ -31,4 +31,8 @@ public class PrimaryApplicantFlagNodeModule {
         return owner;
     }
 
+    @Provides @PrimaryApplicantFlagNodeScope PersonGeneralNode providePersonGeneralNode() {
+        return owner.getParent();
+    }
+
 }

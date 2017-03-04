@@ -31,4 +31,8 @@ public class ProductLoanTypeNodeModule {
         return owner;
     }
 
+    @Provides @ProductLoanTypeNodeScope ProductsNode provideProductsNode() {
+        return owner.getParent();
+    }
+
 }
