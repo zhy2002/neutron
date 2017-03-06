@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
+import java.util.List;
 import zhy2002.examples.app.gen.*;
 
 
@@ -35,14 +36,18 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setLodgementNodeModule(new LodgementNodeModule(this)).build();
     }
 
-    @Override
-    protected LodgementNodeRuleProvider getRuleProvider() {
+    private LodgementNodeRuleProvider getRuleProvider() {
         return component.getLodgementNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

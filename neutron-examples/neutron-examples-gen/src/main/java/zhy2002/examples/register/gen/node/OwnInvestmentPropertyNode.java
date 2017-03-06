@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
@@ -22,14 +23,18 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
         this.component = builder.setOwnInvestmentPropertyNodeModule(new OwnInvestmentPropertyNodeModule(this)).build();
     }
 
-    @Override
-    protected OwnInvestmentPropertyNodeRuleProvider getRuleProvider() {
+    private OwnInvestmentPropertyNodeRuleProvider getRuleProvider() {
         return component.getOwnInvestmentPropertyNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

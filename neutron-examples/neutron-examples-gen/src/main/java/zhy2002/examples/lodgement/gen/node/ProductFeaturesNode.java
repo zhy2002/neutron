@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
@@ -44,14 +45,18 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
         this.component = builder.setProductFeaturesNodeModule(new ProductFeaturesNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductFeaturesNodeRuleProvider getRuleProvider() {
+    private ProductFeaturesNodeRuleProvider getRuleProvider() {
         return component.getProductFeaturesNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

@@ -6,10 +6,10 @@ import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 import zhy2002.examples.lodgement.gen.*;
 
 
@@ -45,28 +45,24 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setApplicationNodeModule(new ApplicationNodeModule(this)).build();
     }
 
-    @Override
-    protected ApplicationNodeRuleProvider getRuleProvider() {
+    private ApplicationNodeRuleProvider getRuleProvider() {
         return component.getApplicationNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     @Inject
     public ApplicationNode(@NotNull ApplicationNodeContext context) {
         super(context);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setSelectedName("personListNode");
-        setChangeTrackingMode(ApplicationNodeConstants.CONTENT_LEVEL, ChangeTrackingModeEnum.Always);
     }
 
     @JsMethod

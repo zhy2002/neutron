@@ -23,8 +23,6 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract BasePrivacyNodeRuleProvider<?> getRuleProvider();
 
     public BasePrivacyNode(@NotNull P parent, String name) {
         super(parent, name);

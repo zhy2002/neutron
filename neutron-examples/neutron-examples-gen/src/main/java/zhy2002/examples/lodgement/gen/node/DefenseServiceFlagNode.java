@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
@@ -22,14 +23,18 @@ public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
         this.component = builder.setDefenseServiceFlagNodeModule(new DefenseServiceFlagNodeModule(this)).build();
     }
 
-    @Override
-    protected DefenseServiceFlagNodeRuleProvider getRuleProvider() {
+    private DefenseServiceFlagNodeRuleProvider getRuleProvider() {
         return component.getDefenseServiceFlagNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

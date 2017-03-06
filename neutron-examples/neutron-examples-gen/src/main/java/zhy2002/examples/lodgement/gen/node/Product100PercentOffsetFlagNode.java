@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeaturesNode> {
@@ -22,14 +23,18 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
         this.component = builder.setProduct100PercentOffsetFlagNodeModule(new Product100PercentOffsetFlagNodeModule(this)).build();
     }
 
-    @Override
-    protected Product100PercentOffsetFlagNodeRuleProvider getRuleProvider() {
+    private Product100PercentOffsetFlagNodeRuleProvider getRuleProvider() {
         return component.getProduct100PercentOffsetFlagNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

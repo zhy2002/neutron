@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class AccessNode extends ObjectUiNode<RealEstateNode> {
@@ -39,14 +40,18 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
         this.component = builder.setAccessNodeModule(new AccessNodeModule(this)).build();
     }
 
-    @Override
-    protected AccessNodeRuleProvider getRuleProvider() {
+    private AccessNodeRuleProvider getRuleProvider() {
         return component.getAccessNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

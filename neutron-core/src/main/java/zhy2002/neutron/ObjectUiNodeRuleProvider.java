@@ -8,7 +8,19 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class ObjectUiNodeRuleProvider<N extends ObjectUiNode<?>> extends UiNodeRuleProvider<N> {
+public class ObjectUiNodeRuleProvider implements RuleProvider<ObjectUiNode<?>> {
+
+    @Inject
+    public ObjectUiNodeRuleProvider() {
+    }
+
+    @Inject
+    UiNodeRuleProvider parentRuleProvider;
+
+    @Override
+    public void initializeState(ObjectUiNode<?> node) {
+        parentRuleProvider.initializeState(node);
+    }
 
     @Inject
     Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;
@@ -18,7 +30,7 @@ public abstract class ObjectUiNodeRuleProvider<N extends ObjectUiNode<?>> extend
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
 
-        super.createRules(createdRules);
+        parentRuleProvider.createRules(createdRules);
 
         createdRules.add(objectValueRequiredValidationRuleProvider.get());
         createdRules.add(updateObjectHasValueRuleProvider.get());

@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
@@ -22,14 +23,18 @@ public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNod
         this.component = builder.setProductFixedTermNodeModule(new ProductFixedTermNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductFixedTermNodeRuleProvider getRuleProvider() {
+    private ProductFixedTermNodeRuleProvider getRuleProvider() {
         return component.getProductFixedTermNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

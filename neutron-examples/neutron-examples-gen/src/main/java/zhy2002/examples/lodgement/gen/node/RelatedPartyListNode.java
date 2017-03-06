@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedPartyNode> {
@@ -29,14 +30,18 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
         this.component = builder.setRelatedPartyListNodeModule(new RelatedPartyListNodeModule(this)).build();
     }
 
-    @Override
-    protected RelatedPartyListNodeRuleProvider getRuleProvider() {
+    private RelatedPartyListNodeRuleProvider getRuleProvider() {
         return component.getRelatedPartyListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

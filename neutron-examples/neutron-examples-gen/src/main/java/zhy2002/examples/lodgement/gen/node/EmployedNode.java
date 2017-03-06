@@ -26,8 +26,6 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract EmployedNodeRuleProvider<?> getRuleProvider();
 
     public EmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);

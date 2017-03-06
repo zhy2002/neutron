@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
@@ -22,14 +23,18 @@ public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
         this.component = builder.setMortgageLoanTypeNodeModule(new MortgageLoanTypeNodeModule(this)).build();
     }
 
-    @Override
-    protected MortgageLoanTypeNodeRuleProvider getRuleProvider() {
+    private MortgageLoanTypeNodeRuleProvider getRuleProvider() {
         return component.getMortgageLoanTypeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

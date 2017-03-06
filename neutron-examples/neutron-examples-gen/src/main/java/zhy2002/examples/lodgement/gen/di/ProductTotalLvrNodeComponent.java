@@ -1,7 +1,7 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
 import zhy2002.examples.lodgement.gen.*;
-import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.node.*;
 
 @ProductTotalLvrNodeScope
 @Subcomponent(modules = {ProductTotalLvrNodeModule.class})

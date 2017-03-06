@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class PersonMobileNumberNode extends BaseMobileNumberNode<PersonContactNode> {
@@ -22,14 +23,18 @@ public class PersonMobileNumberNode extends BaseMobileNumberNode<PersonContactNo
         this.component = builder.setPersonMobileNumberNodeModule(new PersonMobileNumberNodeModule(this)).build();
     }
 
-    @Override
-    protected PersonMobileNumberNodeRuleProvider getRuleProvider() {
+    private PersonMobileNumberNodeRuleProvider getRuleProvider() {
         return component.getPersonMobileNumberNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

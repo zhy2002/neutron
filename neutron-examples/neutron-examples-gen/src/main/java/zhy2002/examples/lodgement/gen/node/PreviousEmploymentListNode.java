@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEmploymentNode> {
@@ -31,14 +31,18 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         this.component = builder.setPreviousEmploymentListNodeModule(new PreviousEmploymentListNodeModule(this)).build();
     }
 
-    @Override
-    protected PreviousEmploymentListNodeRuleProvider getRuleProvider() {
+    private PreviousEmploymentListNodeRuleProvider getRuleProvider() {
         return component.getPreviousEmploymentListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
@@ -57,13 +61,6 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
 
     public NodeRemoveEvent<PreviousEmploymentNode> createItemRemoveEvent(PreviousEmploymentNode item) {
         return itemFactory.createItemRemoveEvent(item);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setNodeLabel("Previous Employment");
     }
 
 }

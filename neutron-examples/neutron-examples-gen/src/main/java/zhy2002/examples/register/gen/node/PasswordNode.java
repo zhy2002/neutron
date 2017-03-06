@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class PasswordNode extends StringUiNode<RegisterNode> {
@@ -24,14 +25,18 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         this.component = builder.setPasswordNodeModule(new PasswordNodeModule(this)).build();
     }
 
-    @Override
-    protected PasswordNodeRuleProvider getRuleProvider() {
+    private PasswordNodeRuleProvider getRuleProvider() {
         return component.getPasswordNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

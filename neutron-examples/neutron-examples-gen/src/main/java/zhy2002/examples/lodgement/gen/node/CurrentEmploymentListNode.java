@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmploymentNode> {
@@ -31,14 +31,18 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         this.component = builder.setCurrentEmploymentListNodeModule(new CurrentEmploymentListNodeModule(this)).build();
     }
 
-    @Override
-    protected CurrentEmploymentListNodeRuleProvider getRuleProvider() {
+    private CurrentEmploymentListNodeRuleProvider getRuleProvider() {
         return component.getCurrentEmploymentListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
@@ -57,13 +61,6 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
 
     public NodeRemoveEvent<CurrentEmploymentNode> createItemRemoveEvent(CurrentEmploymentNode item) {
         return itemFactory.createItemRemoveEvent(item);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setNodeLabel("Current Employment");
     }
 
 }

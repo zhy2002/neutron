@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
@@ -32,14 +32,18 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         this.component = builder.setErrorListNodeModule(new ErrorListNodeModule(this)).build();
     }
 
-    @Override
-    protected ErrorListNodeRuleProvider getRuleProvider() {
+    private ErrorListNodeRuleProvider getRuleProvider() {
         return component.getErrorListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
@@ -58,13 +62,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
 
     public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
         return itemFactory.createItemRemoveEvent(item);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setChangeTrackingMode(ApplicationNodeConstants.FOCUS, ChangeTrackingModeEnum.Always);
     }
 
     @JsMethod

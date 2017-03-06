@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
@@ -22,14 +23,18 @@ public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
         this.component = builder.setVehicleMarketValueNodeModule(new VehicleMarketValueNodeModule(this)).build();
     }
 
-    @Override
-    protected VehicleMarketValueNodeRuleProvider getRuleProvider() {
+    private VehicleMarketValueNodeRuleProvider getRuleProvider() {
         return component.getVehicleMarketValueNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

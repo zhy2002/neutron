@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
@@ -22,14 +23,18 @@ public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
         this.component = builder.setPropertyAddressNodeModule(new PropertyAddressNodeModule(this)).build();
     }
 
-    @Override
-    protected PropertyAddressNodeRuleProvider getRuleProvider() {
+    private PropertyAddressNodeRuleProvider getRuleProvider() {
         return component.getPropertyAddressNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

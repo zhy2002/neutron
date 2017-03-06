@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class OccupationNode extends BaseOccupationNode<EmployedNode> {
@@ -24,26 +24,23 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode> {
         this.component = builder.setOccupationNodeModule(new OccupationNodeModule(this)).build();
     }
 
-    @Override
-    protected OccupationNodeRuleProvider getRuleProvider() {
+    private OccupationNodeRuleProvider getRuleProvider() {
         return component.getOccupationNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public OccupationNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
 }

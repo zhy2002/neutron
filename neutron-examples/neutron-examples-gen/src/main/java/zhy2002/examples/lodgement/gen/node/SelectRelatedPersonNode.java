@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonListNode<?>> {
@@ -34,14 +35,18 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         this.component = builder.setSelectRelatedPersonNodeModule(new SelectRelatedPersonNodeModule(this)).build();
     }
 
-    @Override
-    protected SelectRelatedPersonNodeRuleProvider getRuleProvider() {
+    private SelectRelatedPersonNodeRuleProvider getRuleProvider() {
         return component.getSelectRelatedPersonNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

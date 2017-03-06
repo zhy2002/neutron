@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class HousingStatusNode extends StringUiNode<PersonGeneralNode> {
@@ -25,27 +25,23 @@ public class HousingStatusNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setHousingStatusNodeModule(new HousingStatusNodeModule(this)).build();
     }
 
-    @Override
-    protected HousingStatusNodeRuleProvider getRuleProvider() {
+    private HousingStatusNodeRuleProvider getRuleProvider() {
         return component.getHousingStatusNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public HousingStatusNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.HOUSING_STATUS.toArray());
-        setRequired(true);
     }
 
     @JsMethod

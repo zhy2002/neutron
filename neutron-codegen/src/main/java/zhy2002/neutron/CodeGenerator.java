@@ -77,7 +77,7 @@ class CodeGenerator {
                 generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
             }
         }
-        generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "rule", "RuleProvider");
+        generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "node", "RuleProvider");
 
         if (nodeInfo.getItemTypeName() != null) {
             generateFile(targetDirectory, nodeInfo, templateBundle.getItemFactoryTemplate(), "node", "ItemProvider");

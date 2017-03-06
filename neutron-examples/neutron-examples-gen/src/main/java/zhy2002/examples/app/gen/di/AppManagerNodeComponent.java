@@ -1,7 +1,7 @@
 package zhy2002.examples.app.gen.di;
 import dagger.Subcomponent;
 import zhy2002.examples.app.gen.*;
-import zhy2002.examples.app.gen.rule.*;
+import zhy2002.examples.app.gen.node.*;
 
 @AppManagerNodeScope
 @Subcomponent(modules = {AppManagerNodeModule.class})

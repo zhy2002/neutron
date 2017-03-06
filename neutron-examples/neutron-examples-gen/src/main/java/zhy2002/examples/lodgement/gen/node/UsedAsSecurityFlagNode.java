@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class UsedAsSecurityFlagNode extends BooleanUiNode<UsageNode> {
@@ -24,26 +24,23 @@ public class UsedAsSecurityFlagNode extends BooleanUiNode<UsageNode> {
         this.component = builder.setUsedAsSecurityFlagNodeModule(new UsedAsSecurityFlagNodeModule(this)).build();
     }
 
-    @Override
-    protected UsedAsSecurityFlagNodeRuleProvider getRuleProvider() {
+    private UsedAsSecurityFlagNodeRuleProvider getRuleProvider() {
         return component.getUsedAsSecurityFlagNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public UsedAsSecurityFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setValue(null);
     }
 
 }

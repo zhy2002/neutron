@@ -2,6 +2,8 @@ package zhy2002.neutron.node;
 
 import zhy2002.neutron.*;
 
+import java.util.List;
+
 /**
  * The parent UiNode type for a root UiNode.
  * This class cannot be instantiated.
@@ -53,8 +55,13 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
     }
 
     @Override
-    protected UiNodeRuleProvider<?> getRuleProvider() {
-        return null;
+    protected void initializeState() {
+
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+
     }
 
     @Override
@@ -63,10 +70,6 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
 
     @Override
     protected void uninitializeChildren() {
-    }
-
-    @Override
-    protected void initializeRuleState() {
     }
 
     @Override

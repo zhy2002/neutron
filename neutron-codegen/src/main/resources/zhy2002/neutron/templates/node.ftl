@@ -12,15 +12,13 @@ import javax.validation.constraints.NotNull;
 <#if children?? && children?size gt 0>
 import java.util.*;
 </#if>
-<#if init??>
-import java.math.*;
-</#if>
 <#if valueTypeName?? || init?? || properties??>
 import ${targetPackage}.data.*;
 </#if>
 import ${targetPackage}.gen.rule.*;
 <#if !abstractNode>
 import ${targetPackage}.gen.di.*;
+import java.util.List;
 </#if>
 <#if parentType.typeName == "VoidUiNode">
 import ${targetPackage}.gen.*;
@@ -62,10 +60,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
 </#if>
-<#if abstractNode>
-    @Override
-    protected abstract ${typeName}RuleProvider<?> getRuleProvider();
-<#else>
+<#if !abstractNode>
     private ${typeName}Component component;
 
     @Inject
@@ -73,14 +68,18 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         this.component = builder.set${typeName}Module(new ${typeName}Module(this)).build();
     }
 
-    @Override
-    protected ${typeName}RuleProvider getRuleProvider() {
+    private ${typeName}RuleProvider getRuleProvider() {
         return component.get${typeName}RuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 </#if>
@@ -115,22 +114,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @Override
     public final void setValue(${valueTypeName} value) {
         setValue(${valueTypeName}.class, value);
-    }
-
-</#if>
-<#if init??>
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-    <#list init as prop>
-        <#if prop.value??>
-        set${prop.propertyName?cap_first}(${prop.value});
-        </#if>
-        <#if prop.mode??>
-        setChangeTrackingMode(${contextName}Constants.${prop.nameAllCaps}, ChangeTrackingModeEnum.${prop.mode});
-        </#if>
-    </#list>
     }
 
 </#if>

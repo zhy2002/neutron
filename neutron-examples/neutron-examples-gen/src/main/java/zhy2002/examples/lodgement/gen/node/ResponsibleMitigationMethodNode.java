@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibleLendNode<?>> {
@@ -25,26 +25,23 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
         this.component = builder.setResponsibleMitigationMethodNodeModule(new ResponsibleMitigationMethodNodeModule(this)).build();
     }
 
-    @Override
-    protected ResponsibleMitigationMethodNodeRuleProvider getRuleProvider() {
+    private ResponsibleMitigationMethodNodeRuleProvider getRuleProvider() {
         return component.getResponsibleMitigationMethodNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public ResponsibleMitigationMethodNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray());
     }
 
     @JsMethod

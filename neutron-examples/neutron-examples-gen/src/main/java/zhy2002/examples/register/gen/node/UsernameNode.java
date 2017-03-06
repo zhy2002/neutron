@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class UsernameNode extends StringUiNode<RegisterNode> {
@@ -24,29 +24,23 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
         this.component = builder.setUsernameNodeModule(new UsernameNodeModule(this)).build();
     }
 
-    @Override
-    protected UsernameNodeRuleProvider getRuleProvider() {
+    private UsernameNodeRuleProvider getRuleProvider() {
         return component.getUsernameNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public UsernameNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setMinLength(4);
-        setInvalidChars("#");
-        setLengthMessage("Username must have at least four characters.");
-        setInvalidCharsMessage("Username cannot contain '#'.");
     }
 
 }

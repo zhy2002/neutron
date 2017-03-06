@@ -4,11 +4,8 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
-import zhy2002.neutron.UiNodeRule;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 import static zhy2002.neutron.util.NeutronEventSubjects.REMOVE_EMPTY;
 
@@ -46,8 +43,5 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     public final void setRemoveEmpty(boolean value) {
         setStateValueInternal(REMOVE_EMPTY, value);
     }
-
-    @Override
-    protected abstract ReferenceUiNodeRuleProvider<?> getRuleProvider();
 
 }

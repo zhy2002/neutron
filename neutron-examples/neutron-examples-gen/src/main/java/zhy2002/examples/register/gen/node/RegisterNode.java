@@ -9,6 +9,7 @@ import java.util.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 import zhy2002.examples.register.gen.*;
 
 
@@ -47,14 +48,18 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setRegisterNodeModule(new RegisterNodeModule(this)).build();
     }
 
-    @Override
-    protected RegisterNodeRuleProvider getRuleProvider() {
+    private RegisterNodeRuleProvider getRuleProvider() {
         return component.getRegisterNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

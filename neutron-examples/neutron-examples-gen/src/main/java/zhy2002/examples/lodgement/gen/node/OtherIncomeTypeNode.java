@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
@@ -25,26 +25,23 @@ public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeTypeNodeModule(new OtherIncomeTypeNodeModule(this)).build();
     }
 
-    @Override
-    protected OtherIncomeTypeNodeRuleProvider getRuleProvider() {
+    private OtherIncomeTypeNodeRuleProvider getRuleProvider() {
         return component.getOtherIncomeTypeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public OtherIncomeTypeNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
     }
 
     @JsMethod

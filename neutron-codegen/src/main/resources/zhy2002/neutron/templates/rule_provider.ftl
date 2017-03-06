@@ -1,26 +1,41 @@
-package ${targetPackage}.gen.rule;
+package ${targetPackage}.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import java.util.*;
 import ${targetPackage}.gen.di.*;
 import javax.inject.*;
-import ${targetPackage}.gen.node.${typeName};
-
+import ${targetPackage}.gen.rule.*;
+<#if init??>
+import ${targetPackage}.data.*;
+import java.math.*;
+</#if>
 
 <#if !abstractNode>@${typeName}Scope</#if>
-public <#if abstractNode>abstract </#if>class ${typeName}RuleProvider<#if abstractNode><N extends ${genericTypeName}></#if>
-    extends ${baseTypeName}RuleProvider<#if abstractNode> <N><#else><${genericTypeName}></#if> {
+public class ${typeName}RuleProvider implements RuleProvider<${genericTypeName}> {
 
-<#if !abstractNode>
     @Inject
-    public ${typeName}RuleProvider() {}
+    ${baseTypeName}RuleProvider parentRuleProvider;
+
+    @Inject
+    public ${typeName}RuleProvider() {
+    }
 
     @Override
     public void initializeState(${genericTypeName} node) {
-    }
+        parentRuleProvider.initializeState(node);
 
+<#if init??>
+    <#list init as prop>
+        <#if prop.value??>
+        node.set${prop.propertyName?cap_first}(${prop.value});
+        </#if>
+        <#if prop.mode??>
+        node.setChangeTrackingMode(${contextName}Constants.${prop.nameAllCaps}, ChangeTrackingModeEnum.${prop.mode});
+        </#if>
+    </#list>
 </#if>
+    }
 
 <#if rules??>
     <#list rules as rule>
@@ -31,8 +46,9 @@ public <#if abstractNode>abstract </#if>class ${typeName}RuleProvider<#if abstra
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
+        parentRuleProvider.createRules(createdRules);
 
+        //todo move source to a profile
         <#if rules??>
             <#list rules as rule>
             createdRules.add(${rule.typeName?uncap_first}Provider.get());

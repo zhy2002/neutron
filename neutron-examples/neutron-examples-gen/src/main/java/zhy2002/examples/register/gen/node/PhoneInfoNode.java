@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
@@ -35,14 +36,18 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         this.component = builder.setPhoneInfoNodeModule(new PhoneInfoNodeModule(this)).build();
     }
 
-    @Override
-    protected PhoneInfoNodeRuleProvider getRuleProvider() {
+    private PhoneInfoNodeRuleProvider getRuleProvider() {
         return component.getPhoneInfoNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

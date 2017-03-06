@@ -29,10 +29,6 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     protected BigDecimalUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
 
-        init();
-    }
-
-    private void init() {
         this.setText("");
     }
 
@@ -137,9 +133,6 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     public Class<BigDecimal> getValueClass() {
         return BigDecimal.class;
     }
-
-    @Override
-    protected abstract BigDecimalUiNodeRuleProvider<?> getRuleProvider();
 
     public String getRangeMessage() {
         return getStateValue(NeutronEventSubjects.RANGE_MESSAGE, "Value is out of range.");

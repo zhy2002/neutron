@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class EmailNode extends StringUiNode<RegisterNode> {
@@ -25,28 +25,23 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         this.component = builder.setEmailNodeModule(new EmailNodeModule(this)).build();
     }
 
-    @Override
-    protected EmailNodeRuleProvider getRuleProvider() {
+    private EmailNodeRuleProvider getRuleProvider() {
         return component.getEmailNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public EmailNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setPattern("\\w+@\\w+\\.[\\w.]+");
-        setPatternMessage("Email format is invalid.");
-        setRequiredMessage("Email is required.");
     }
 
     @JsMethod

@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNode> {
@@ -22,14 +23,18 @@ public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNod
         this.component = builder.setProductCardHodlerNameNodeModule(new ProductCardHodlerNameNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductCardHodlerNameNodeRuleProvider getRuleProvider() {
+    private ProductCardHodlerNameNodeRuleProvider getRuleProvider() {
         return component.getProductCardHodlerNameNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

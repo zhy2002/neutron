@@ -18,8 +18,6 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         itemFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract OwnershipListNodeRuleProvider<?> getRuleProvider();
 
     public OwnershipListNode(@NotNull P parent, String name) {
         super(parent, name);

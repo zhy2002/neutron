@@ -9,6 +9,7 @@ import java.util.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
@@ -35,14 +36,18 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         this.component = builder.setPropertyDetailsNodeModule(new PropertyDetailsNodeModule(this)).build();
     }
 
-    @Override
-    protected PropertyDetailsNodeRuleProvider getRuleProvider() {
+    private PropertyDetailsNodeRuleProvider getRuleProvider() {
         return component.getPropertyDetailsNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

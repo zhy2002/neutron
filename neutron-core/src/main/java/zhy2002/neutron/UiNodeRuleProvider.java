@@ -6,15 +6,17 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class UiNodeRuleProvider<N extends UiNode<?>> implements RuleProvider<N> {
+public class UiNodeRuleProvider implements RuleProvider<UiNode<?>> {
+
+    @Inject
+    public UiNodeRuleProvider() {}
+
+    @Override
+    public void initializeState(UiNode<?> node) {
+    }
 
     @Inject
     Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;
-
-    @Override
-    public void initializeState(N node) {
-        //provided so that subclasses can safely call super
-    }
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

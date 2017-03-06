@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
+import java.util.List;
 
 
 public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
@@ -22,14 +23,18 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
         this.component = builder.setErrorNodeModule(new ErrorNodeModule(this)).build();
     }
 
-    @Override
-    protected ErrorNodeRuleProvider getRuleProvider() {
+    private ErrorNodeRuleProvider getRuleProvider() {
         return component.getErrorNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

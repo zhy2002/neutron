@@ -1,7 +1,7 @@
 package ${targetPackage}.gen.di;
 import dagger.Subcomponent;
 import ${targetPackage}.gen.*;
-import ${targetPackage}.gen.rule.*;
+import ${targetPackage}.gen.node.*;
 
 @${typeName}Scope
 @Subcomponent(modules = {${typeName}Module.class})

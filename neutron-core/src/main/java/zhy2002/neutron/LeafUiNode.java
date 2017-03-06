@@ -3,9 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * A UiNode which cannot have children.
@@ -14,16 +12,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     protected LeafUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
-
-        init();
-    }
-
-    /**
-     * Changes made in the init method will become a part of the
-     * pre-state.
-     */
-    private void init() {
-        setRequired(false);
     }
 
     @JsMethod
@@ -61,8 +49,5 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     public abstract Class<T> getValueClass();
-
-    @Override
-    protected abstract LeafUiNodeRuleProvider<?> getRuleProvider();
 
 }

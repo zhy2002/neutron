@@ -232,3 +232,28 @@ To create a new domain and profiles, we need to do the following in the domain's
     - CustomModule: Optional module that contains instantiation logic (non-abstract module). If present it should be 
     included in XxxProfileModule.
     
+
+
+==================================================
+implement debouncing in jsx
+message provider
+profile
+
+
+
+mechanism	target	usage	
+childProvider -override new child	named concrete class	"provide node impl
+add node config"	node impl = add new jsinterop methods
+childProvider - create factory	abstract or concrete class	add node config	add node config = set properties & add rules
+ruleProvider	concrete class	set properties & add rules	
+rule	rule in the profile	rule implementation	
+di	super type	get instance by super type	
+classRegistry	(predefined) related type	get instance by related type	
+
+
+todo: 
+merge ruleprovider and childprovider - childProvider for all node classes (leaf)
+eliminate classRegistry
+
+
+

@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode> {
@@ -22,14 +23,18 @@ public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode> {
         this.component = builder.setExpenseMonthlyRepaymentNodeModule(new ExpenseMonthlyRepaymentNodeModule(this)).build();
     }
 
-    @Override
-    protected ExpenseMonthlyRepaymentNodeRuleProvider getRuleProvider() {
+    private ExpenseMonthlyRepaymentNodeRuleProvider getRuleProvider() {
         return component.getExpenseMonthlyRepaymentNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

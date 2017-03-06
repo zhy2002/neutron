@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
@@ -22,14 +23,18 @@ public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyAddressNodeModule(new ThirdPartyAddressNodeModule(this)).build();
     }
 
-    @Override
-    protected ThirdPartyAddressNodeRuleProvider getRuleProvider() {
+    private ThirdPartyAddressNodeRuleProvider getRuleProvider() {
         return component.getThirdPartyAddressNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

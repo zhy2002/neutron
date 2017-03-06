@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductAccountHolderListNode extends SelectAccountHolderListNode<ProductDescriptionNode> {
@@ -22,14 +23,18 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
         this.component = builder.setProductAccountHolderListNodeModule(new ProductAccountHolderListNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductAccountHolderListNodeRuleProvider getRuleProvider() {
+    private ProductAccountHolderListNodeRuleProvider getRuleProvider() {
         return component.getProductAccountHolderListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

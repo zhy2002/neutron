@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
@@ -29,14 +30,18 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         this.component = builder.setCreditHistoryListNodeModule(new CreditHistoryListNodeModule(this)).build();
     }
 
-    @Override
-    protected CreditHistoryListNodeRuleProvider getRuleProvider() {
+    private CreditHistoryListNodeRuleProvider getRuleProvider() {
         return component.getCreditHistoryListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

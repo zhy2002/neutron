@@ -21,8 +21,6 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract MonthYearNodeRuleProvider<?> getRuleProvider();
 
     public MonthYearNode(@NotNull P parent, String name) {
         super(parent, name);

@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
@@ -25,27 +25,23 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
         this.component = builder.setEmploymentTypeNodeModule(new EmploymentTypeNodeModule(this)).build();
     }
 
-    @Override
-    protected EmploymentTypeNodeRuleProvider getRuleProvider() {
+    private EmploymentTypeNodeRuleProvider getRuleProvider() {
         return component.getEmploymentTypeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public EmploymentTypeNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray());
-        setValue("payeEmployedNode");
     }
 
     @JsMethod

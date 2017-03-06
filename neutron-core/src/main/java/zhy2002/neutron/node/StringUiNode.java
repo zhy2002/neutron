@@ -1,15 +1,11 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.*;
-import zhy2002.neutron.rule.InvalidCharPreChangeRule;
-import zhy2002.neutron.rule.LengthValidationRule;
-import zhy2002.neutron.rule.PatternValidationRule;
+import zhy2002.neutron.ChangeTrackingModeEnum;
+import zhy2002.neutron.LeafUiNode;
+import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * String leaf node.
@@ -20,10 +16,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     protected StringUiNode(P parent, String name) {
         super(parent, name);
 
-        init();
-    }
-
-    private void init() {
         setChangeTrackingMode(NeutronEventSubjects.VALUE, ChangeTrackingModeEnum.Value);
         this.setValue("");
     }
@@ -49,9 +41,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     public Class<String> getValueClass() {
         return String.class;
     }
-
-    @Override
-    protected abstract StringUiNodeRuleProvider<?> getRuleProvider();
 
     public String getPattern() {
         return super.getStateValue(NeutronEventSubjects.PATTERN);

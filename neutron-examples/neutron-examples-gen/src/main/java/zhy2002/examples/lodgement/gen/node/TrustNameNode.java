@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class TrustNameNode extends StringUiNode<BaseTrustNode<?>> {
@@ -22,14 +23,18 @@ public class TrustNameNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustNameNodeModule(new TrustNameNodeModule(this)).build();
     }
 
-    @Override
-    protected TrustNameNodeRuleProvider getRuleProvider() {
+    private TrustNameNodeRuleProvider getRuleProvider() {
         return component.getTrustNameNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

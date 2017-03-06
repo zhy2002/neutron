@@ -23,8 +23,6 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract BaseResponsibleLendNodeRuleProvider<?> getRuleProvider();
 
     public BaseResponsibleLendNode(@NotNull P parent, String name) {
         super(parent, name);

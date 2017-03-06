@@ -1,6 +1,28 @@
 package zhy2002.neutron.node;
 
 import zhy2002.neutron.LeafUiNodeRuleProvider;
+import zhy2002.neutron.RuleProvider;
+import zhy2002.neutron.UiNodeRule;
 
-public abstract class ValidationErrorUiNodeRuleProvider<N extends ValidationErrorUiNode<?>> extends LeafUiNodeRuleProvider<N> {
+import javax.inject.Inject;
+import java.util.List;
+
+public class ValidationErrorUiNodeRuleProvider implements RuleProvider<ValidationErrorUiNode<?>> {
+
+    @Inject
+    public ValidationErrorUiNodeRuleProvider() {
+    }
+
+    @Inject
+    LeafUiNodeRuleProvider parentRuleProvider;
+
+    @Override
+    public void initializeState(ValidationErrorUiNode<?> node) {
+        parentRuleProvider.initializeState(node);
+    }
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        parentRuleProvider.createRules(createdRules);
+    }
 }

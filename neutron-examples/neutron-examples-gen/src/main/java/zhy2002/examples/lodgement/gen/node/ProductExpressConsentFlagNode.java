@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductExpressConsentFlagNode extends BooleanUiNode<ProductFeaturesNode> {
@@ -22,14 +23,18 @@ public class ProductExpressConsentFlagNode extends BooleanUiNode<ProductFeatures
         this.component = builder.setProductExpressConsentFlagNodeModule(new ProductExpressConsentFlagNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductExpressConsentFlagNodeRuleProvider getRuleProvider() {
+    private ProductExpressConsentFlagNodeRuleProvider getRuleProvider() {
         return component.getProductExpressConsentFlagNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

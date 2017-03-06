@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
@@ -25,26 +25,23 @@ public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeAddBackTypeNodeModule(new OtherIncomeAddBackTypeNodeModule(this)).build();
     }
 
-    @Override
-    protected OtherIncomeAddBackTypeNodeRuleProvider getRuleProvider() {
+    private OtherIncomeAddBackTypeNodeRuleProvider getRuleProvider() {
         return component.getOtherIncomeAddBackTypeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public OtherIncomeAddBackTypeNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray());
     }
 
     @JsMethod

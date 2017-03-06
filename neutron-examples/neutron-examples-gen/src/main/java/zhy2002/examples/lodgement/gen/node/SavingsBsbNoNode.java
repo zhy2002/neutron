@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode> {
@@ -22,14 +23,18 @@ public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode> {
         this.component = builder.setSavingsBsbNoNodeModule(new SavingsBsbNoNodeModule(this)).build();
     }
 
-    @Override
-    protected SavingsBsbNoNodeRuleProvider getRuleProvider() {
+    private SavingsBsbNoNodeRuleProvider getRuleProvider() {
         return component.getSavingsBsbNoNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

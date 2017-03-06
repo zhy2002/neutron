@@ -154,7 +154,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         return mode;
     }
 
-    protected final void setChangeTrackingMode(String propertyName, ChangeTrackingModeEnum changeTrackingMode) {
+    public final void setChangeTrackingMode(String propertyName, ChangeTrackingModeEnum changeTrackingMode) {
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
@@ -367,7 +367,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         if (this.uniqueId == null) {
             this.uniqueId = context.getUniqueId();
         } else {
-            //todo check if pre-assigned id is truely unique.
+            //todo check if pre-assigned id is truly unique.
         }
 
         if (parent == null) {
@@ -412,7 +412,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         }
 
         initializeState();
-        initializeRuleState();
 
         doLoad();
         if (statusListener != null) {
@@ -425,12 +424,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     /**
-     * Override this to run code before rules and children are loaded.
+     * Override at concrete node level.
      */
-    protected void initializeState() {
-    }
-
-    protected abstract void initializeRuleState();
+    protected abstract void initializeState();
 
     private void loadRules() {
         createRules(createdRules);
@@ -443,24 +439,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     /**
-     * This method is implemented by the concrete node.
-     * NOTE: Direct base node type of a concrete node type must create its own
-     * UiNodeRuleProvider class.
-     *
-     * @return the rule provider.
-     */
-    protected abstract UiNodeRuleProvider<?> getRuleProvider();
-
-    /**
-     * Override this method to add rules to be loaded.
-     * The rules added to this list does not have to be owned by this node.
-     * You can add rules to any node and they will be added
+     * Implemented at concrete node level.
      *
      * @param createdRules the list of rule that will be loaded.
      */
-    private void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-    }
+    protected abstract void createRules(List<UiNodeRule<?>> createdRules);
 
     /**
      * Override this method to run code at load time.

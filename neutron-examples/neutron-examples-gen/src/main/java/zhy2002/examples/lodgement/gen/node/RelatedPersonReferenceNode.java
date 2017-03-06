@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPersonNode> {
@@ -24,26 +24,23 @@ public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPer
         this.component = builder.setRelatedPersonReferenceNodeModule(new RelatedPersonReferenceNodeModule(this)).build();
     }
 
-    @Override
-    protected RelatedPersonReferenceNodeRuleProvider getRuleProvider() {
+    private RelatedPersonReferenceNodeRuleProvider getRuleProvider() {
         return component.getRelatedPersonReferenceNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public RelatedPersonReferenceNode(@NotNull SelectRelatedPersonNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRemoveEmpty(true);
     }
 
 }

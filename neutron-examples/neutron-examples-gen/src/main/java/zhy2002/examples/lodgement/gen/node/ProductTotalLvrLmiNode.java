@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductTotalLvrLmiNode extends BasePercentageNode<ProductsNode> {
@@ -22,14 +23,18 @@ public class ProductTotalLvrLmiNode extends BasePercentageNode<ProductsNode> {
         this.component = builder.setProductTotalLvrLmiNodeModule(new ProductTotalLvrLmiNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductTotalLvrLmiNodeRuleProvider getRuleProvider() {
+    private ProductTotalLvrLmiNodeRuleProvider getRuleProvider() {
         return component.getProductTotalLvrLmiNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

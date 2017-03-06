@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode> {
@@ -25,26 +25,23 @@ public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode>
         this.component = builder.setCompanyApplicationTypeNodeModule(new CompanyApplicationTypeNodeModule(this)).build();
     }
 
-    @Override
-    protected CompanyApplicationTypeNodeRuleProvider getRuleProvider() {
+    private CompanyApplicationTypeNodeRuleProvider getRuleProvider() {
         return component.getCompanyApplicationTypeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public CompanyApplicationTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.COMPANY_APPLICATION_TYPE.toArray());
     }
 
     @JsMethod

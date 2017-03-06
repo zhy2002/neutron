@@ -7,6 +7,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
+import java.util.List;
 
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
@@ -23,14 +24,18 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
         this.component = builder.setAppManagerNodeModule(new AppManagerNodeModule(this)).build();
     }
 
-    @Override
-    protected AppManagerNodeRuleProvider getRuleProvider() {
+    private AppManagerNodeRuleProvider getRuleProvider() {
         return component.getAppManagerNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

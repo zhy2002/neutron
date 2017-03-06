@@ -16,8 +16,6 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
         itemFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract SelectAccountHolderListNodeRuleProvider<?> getRuleProvider();
 
     public SelectAccountHolderListNode(@NotNull P parent, String name) {
         super(parent, name);

@@ -5,10 +5,10 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
@@ -25,27 +25,23 @@ public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
         this.component = builder.setEmploymentStatusNodeModule(new EmploymentStatusNodeModule(this)).build();
     }
 
-    @Override
-    protected EmploymentStatusNodeRuleProvider getRuleProvider() {
+    private EmploymentStatusNodeRuleProvider getRuleProvider() {
         return component.getEmploymentStatusNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public EmploymentStatusNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setOptions(ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray());
-        setRequired(true);
     }
 
     @JsMethod

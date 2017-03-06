@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
@@ -22,14 +23,18 @@ public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
         this.component = builder.setPropertyOwnershipListNodeModule(new PropertyOwnershipListNodeModule(this)).build();
     }
 
-    @Override
-    protected PropertyOwnershipListNodeRuleProvider getRuleProvider() {
+    private PropertyOwnershipListNodeRuleProvider getRuleProvider() {
         return component.getPropertyOwnershipListNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

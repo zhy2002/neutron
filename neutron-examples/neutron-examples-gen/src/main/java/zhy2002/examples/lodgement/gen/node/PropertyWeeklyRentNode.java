@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
@@ -22,14 +23,18 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
         this.component = builder.setPropertyWeeklyRentNodeModule(new PropertyWeeklyRentNodeModule(this)).build();
     }
 
-    @Override
-    protected PropertyWeeklyRentNodeRuleProvider getRuleProvider() {
+    private PropertyWeeklyRentNodeRuleProvider getRuleProvider() {
         return component.getPropertyWeeklyRentNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

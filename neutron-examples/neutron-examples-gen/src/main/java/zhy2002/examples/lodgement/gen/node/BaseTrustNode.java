@@ -30,8 +30,6 @@ public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiN
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract BaseTrustNodeRuleProvider<?> getRuleProvider();
 
     public BaseTrustNode(@NotNull P parent, String name) {
         super(parent, name);

@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode> {
@@ -22,14 +23,18 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
         this.component = builder.setOtherLiabilityClearingFlagNodeModule(new OtherLiabilityClearingFlagNodeModule(this)).build();
     }
 
-    @Override
-    protected OtherLiabilityClearingFlagNodeRuleProvider getRuleProvider() {
+    private OtherLiabilityClearingFlagNodeRuleProvider getRuleProvider() {
         return component.getOtherLiabilityClearingFlagNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

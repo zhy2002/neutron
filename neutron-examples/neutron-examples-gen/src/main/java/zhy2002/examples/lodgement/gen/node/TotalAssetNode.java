@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class TotalAssetNode extends BaseCurrencyNode<FinancialPositionNode> {
@@ -24,26 +24,23 @@ public class TotalAssetNode extends BaseCurrencyNode<FinancialPositionNode> {
         this.component = builder.setTotalAssetNodeModule(new TotalAssetNodeModule(this)).build();
     }
 
-    @Override
-    protected TotalAssetNodeRuleProvider getRuleProvider() {
+    private TotalAssetNodeRuleProvider getRuleProvider() {
         return component.getTotalAssetNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public TotalAssetNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setMinValue(new BigDecimal("0"));
     }
 
 }

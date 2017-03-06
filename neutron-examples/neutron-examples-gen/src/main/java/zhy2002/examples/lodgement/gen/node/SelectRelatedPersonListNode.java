@@ -16,8 +16,6 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
         itemFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract SelectRelatedPersonListNodeRuleProvider<?> getRuleProvider();
 
     public SelectRelatedPersonListNode(@NotNull P parent, String name) {
         super(parent, name);

@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class PostcodeNode extends StringUiNode<AddressNode<?>> {
@@ -24,27 +24,23 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setPostcodeNodeModule(new PostcodeNodeModule(this)).build();
     }
 
-    @Override
-    protected PostcodeNodeRuleProvider getRuleProvider() {
+    private PostcodeNodeRuleProvider getRuleProvider() {
         return component.getPostcodeNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public PostcodeNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setRequired(true);
-        setPattern("\\d{4,4}");
     }
 
     @Override

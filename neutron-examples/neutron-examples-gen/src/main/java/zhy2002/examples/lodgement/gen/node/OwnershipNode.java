@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
@@ -35,14 +36,18 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         this.component = builder.setOwnershipNodeModule(new OwnershipNodeModule(this)).build();
     }
 
-    @Override
-    protected OwnershipNodeRuleProvider getRuleProvider() {
+    private OwnershipNodeRuleProvider getRuleProvider() {
         return component.getOwnershipNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

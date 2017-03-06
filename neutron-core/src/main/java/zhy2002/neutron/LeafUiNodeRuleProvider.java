@@ -6,14 +6,26 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
 
-public abstract class LeafUiNodeRuleProvider<N extends LeafUiNode<?, ?>> extends UiNodeRuleProvider<N> {
+public class LeafUiNodeRuleProvider implements RuleProvider<LeafUiNode<?, ?>> {
+
+    @Inject
+    public LeafUiNodeRuleProvider() {
+    }
+
+    @Inject
+    UiNodeRuleProvider parentRuleProvider;
+
+    @Override
+    public void initializeState(LeafUiNode<?, ?> node) {
+        parentRuleProvider.initializeState(node);
+    }
 
     @Inject
     Provider<LeafValueRequiredValidationRule> leafValueRequiredValidationRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
-        super.createRules(createdRules);
+        parentRuleProvider.createRules(createdRules);
         createdRules.add(leafValueRequiredValidationRuleProvider.get());
     }
 }

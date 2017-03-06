@@ -12,9 +12,6 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
 
     private static ValidationError EMPTY_VALUE = new ValidationError();
 
-    @Override
-    protected abstract ValidationErrorUiNodeRuleProvider<?> getRuleProvider();
-
     public ValidationErrorUiNode(P parent, String name) {
         super(parent, name);
     }

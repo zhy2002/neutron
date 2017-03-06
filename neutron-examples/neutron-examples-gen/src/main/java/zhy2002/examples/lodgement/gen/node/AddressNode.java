@@ -23,8 +23,6 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         childFactory = provider.createFactory(this);
     }
 
-    @Override
-    protected abstract AddressNodeRuleProvider<?> getRuleProvider();
 
     public AddressNode(@NotNull P parent, String name) {
         super(parent, name);

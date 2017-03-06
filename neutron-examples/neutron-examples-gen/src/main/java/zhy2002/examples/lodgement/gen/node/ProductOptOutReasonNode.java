@@ -6,6 +6,7 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
@@ -22,14 +23,18 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
         this.component = builder.setProductOptOutReasonNodeModule(new ProductOptOutReasonNodeModule(this)).build();
     }
 
-    @Override
-    protected ProductOptOutReasonNodeRuleProvider getRuleProvider() {
+    private ProductOptOutReasonNodeRuleProvider getRuleProvider() {
         return component.getProductOptOutReasonNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 

@@ -4,10 +4,10 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
-import java.math.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import java.util.List;
 
 
 public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
@@ -24,26 +24,23 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
         this.component = builder.setLegalActionNodeModule(new LegalActionNodeModule(this)).build();
     }
 
-    @Override
-    protected LegalActionNodeRuleProvider getRuleProvider() {
+    private LegalActionNodeRuleProvider getRuleProvider() {
         return component.getLegalActionNodeRuleProvider();
     }
 
     @Override
-    protected void initializeRuleState() {
+    protected void initializeState() {
         getRuleProvider().initializeState(this);
+    }
+
+    @Override
+    protected void createRules(List<UiNodeRule<?>> createdRules) {
+        getRuleProvider().createRules(createdRules);
     }
 
 
     public LegalActionNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);
-    }
-
-    @Override
-    protected void initializeState() {
-        super.initializeState();
-
-        setValue("Yes");
     }
 
 }
