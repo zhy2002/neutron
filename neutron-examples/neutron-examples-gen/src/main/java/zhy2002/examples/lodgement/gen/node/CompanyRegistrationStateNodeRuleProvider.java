@@ -6,6 +6,8 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @CompanyRegistrationStateNodeScope
 public class CompanyRegistrationStateNodeRuleProvider implements RuleProvider<CompanyRegistrationStateNode> {
@@ -21,6 +23,8 @@ public class CompanyRegistrationStateNodeRuleProvider implements RuleProvider<Co
     public void initializeState(CompanyRegistrationStateNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setOptions(ApplicationNodeConstants.AUSTRALIAN_STATES.toArray());
+        node.setRequired(true);
     }
 
 

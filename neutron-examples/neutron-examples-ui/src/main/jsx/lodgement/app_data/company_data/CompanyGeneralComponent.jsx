@@ -5,6 +5,8 @@ import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
+import SelectRelatedPersonListComponent from '../common/SelectRelatedPersonListComponent';
+
 
 export default class CompanyGeneralComponent extends NeutronComponent {
 
@@ -23,7 +25,7 @@ export default class CompanyGeneralComponent extends NeutronComponent {
                     <div className="col-md-3">
                         <CheckboxInputComponent model={model.getCompanyPrimaryApplicantFlagNode()}/>
                     </div>
-                    <div className="col-md-3" />
+                    <div className="col-md-3"/>
                 </div>
                 <div className="row">
                     <div className="col-md-3">
@@ -49,7 +51,15 @@ export default class CompanyGeneralComponent extends NeutronComponent {
                     <div className="col-md-3">
                         <DateInputComponent model={model.getCompanyRegistrationDateNode()}/>
                     </div>
-                    <div className="col-md-3" />
+                    <div className="col-md-3"/>
+                </div>
+                <div className="row">
+                    <div className="col-md-6">
+                        <SelectRelatedPersonListComponent model={model.getCompanySelectDirectorNode()}/>
+                    </div>
+                    <div className="col-md-6">
+                        <SelectRelatedPersonListComponent model={model.getCompanySelectBeneficialOwnerNode()}/>
+                    </div>
                 </div>
             </div>
         );

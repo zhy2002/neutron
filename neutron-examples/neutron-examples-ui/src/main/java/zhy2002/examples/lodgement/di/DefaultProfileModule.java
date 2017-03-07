@@ -96,6 +96,15 @@ public abstract class DefaultProfileModule {
     abstract TelephoneCompleteRule provideTelephoneCompleteRule(TelephoneCompleteRuleImpl impl);
 
     @Binds
+    abstract AddExistingPeopleRule provideAddExistingPeopleRule(AddExistingPeopleRuleImpl impl);
+
+    @Binds
+    abstract AddNewPersonRule provideAddNewPersonRule(AddNewPersonRuleImpl impl);
+
+    @Binds
+    abstract AddNewThirdPartyApplicantRule provideAddNewThirdPartyApplicantRule(AddNewThirdPartyApplicantRuleImpl impl);
+
+    @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 
     @Binds

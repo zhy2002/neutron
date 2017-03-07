@@ -24,6 +24,7 @@ public class CompanyApplicationTypeNodeRuleProvider implements RuleProvider<Comp
         parentRuleProvider.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.COMPANY_APPLICATION_TYPE.toArray());
+        node.setRequired(true);
     }
 
 

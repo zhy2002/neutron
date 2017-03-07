@@ -276,6 +276,8 @@ rootType:
         childTypes:
         - typeName: CompanyApplicantTypeNode
           baseTypeName: BaseApplicantTypeNode
+          init:
+          - {propertyName: value, value: '"A"'}
 
         - typeName: CompanyPrimaryApplicantFlagNode
           baseTypeName: BooleanUiNode
@@ -286,33 +288,49 @@ rootType:
           - {name: options, typeName: Object}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegisteredNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyTypeNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyDescriptionNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyIndustryNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyAbnNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyAcnNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyAbrnNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyRegistrationDateNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegistrationStateNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.AUSTRALIAN_STATES.toArray()'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanySelectDirectorNode
           baseTypeName: SelectRelatedPersonListNode
@@ -1363,6 +1381,10 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: SelectRelatedPersonNode
+  rules:
+  - {typeName: AddExistingPeopleRule}
+  - {typeName: AddNewPersonRule}
+  - {typeName: AddNewThirdPartyApplicantRule}
   childTypes:
   - typeName: SelectRelatedPersonNode
     baseTypeName: ObjectUiNode

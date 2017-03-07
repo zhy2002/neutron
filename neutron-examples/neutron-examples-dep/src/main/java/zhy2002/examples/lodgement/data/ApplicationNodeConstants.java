@@ -80,6 +80,19 @@ public class ApplicationNodeConstants {
             new StringOption("G", "Guarantor")
     );
 
+    public static final List<StringOption> AUSTRALIAN_STATES = Arrays.asList(
+            new StringOption("", ""),
+            new StringOption("NSW"),
+            new StringOption("VIC"),
+            new StringOption("QLD"),
+            new StringOption("WA"),
+            new StringOption("SA"),
+            new StringOption("TAS"),
+            new StringOption("ACT"),
+            new StringOption("NT"),
+            new StringOption("Other")
+    );
+
     public static final List<StringOption> APPLICATION_TYPE = Arrays.asList(
             new StringOption("", ""),
             new StringOption("Sole", "Sole"),
