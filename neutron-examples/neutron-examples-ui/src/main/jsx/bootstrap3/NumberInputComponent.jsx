@@ -7,7 +7,9 @@ export default class NumberInputComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
+            this.ensureDebouncingMode();
             this.model.setText(event.target.value);
+            this.flush();
         };
     }
 

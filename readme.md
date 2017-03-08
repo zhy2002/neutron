@@ -1,7 +1,6 @@
 todo 
 ----------------- 
 1. context menu
-2. loading spinner
 3. integrate with font awesome
 4. Per-lender config override
   - implement load defaults functionality (auto populate)
@@ -109,7 +108,10 @@ Problems
   * Error message can be difficult to understand as they come from different sources (Yml, Bean Validation, custom error and FTL).
 
 3. Difficulty when configure the descendants of a abstract node
-  * 
+  * Descendants of an abstract node should pick up configuration from the abstract node.
+
+4. UI freeze when node update takes a long time
+  * run on web worker or break the long running process into multiple steps dispatched to a queue.
 
 # Finished
 1. Use dagger2 for DI
@@ -167,6 +169,11 @@ Problems
 11. Deferred event execution - if the user types in many characters quickly - we should wait for a pause before we do an update. 
   * Added a debouncing cycle mode
   * React need to debounce the flush event.
+  * Only used for textbox input
+  
+12. loading spinner
+  * Implemented in HTML and JavaScript
+
   
 # Node Roles
 In the node hierarchy a node can have one of three roles:
@@ -239,8 +246,6 @@ implement debouncing in jsx
 message provider
 profile
 
-
-
 mechanism	target	usage	
 childProvider -override new child	named concrete class	"provide node impl
 add node config"	node impl = add new jsinterop methods
@@ -250,9 +255,7 @@ rule	rule in the profile	rule implementation
 di	super type	get instance by super type	
 classRegistry	(predefined) related type	get instance by related type	
 
-
 todo: 
-merge ruleprovider and childprovider - childProvider for all node classes (leaf)
 eliminate classRegistry
 
 

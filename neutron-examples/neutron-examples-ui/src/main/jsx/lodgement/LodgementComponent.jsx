@@ -76,6 +76,7 @@ export default class LodgementComponent extends React.PureComponent {
 
         this.onLoadApp = (id) => {
             const url = `json/application/app${id}.json`;
+            CommonUtil.setIsLoading(true);
             axios.get(url).then(
                 (response) => {
                     console.log('response is:');
@@ -85,6 +86,7 @@ export default class LodgementComponent extends React.PureComponent {
                     context.beginSession();
                     CommonUtil.setValue(model, response.data);
                     context.commitSession();
+                    CommonUtil.setIsLoading(false);
                 }
             );
         };

@@ -1,3 +1,16 @@
+function setIsLoading(isLoading) {
+    console.log(`executing setIsLoading(${isLoading})`);
+    const items = document.getElementsByClassName('loading-spinner-component');
+    if (items.length === 0)
+        return;
+    const spinner = items.item(0);
+    if (isLoading) {
+        spinner.classList.remove('hide');
+    } else {
+        spinner.classList.add('hide');
+    }
+}
+
 function extractValue(node) {
     if (!node)
         return undefined;
@@ -116,3 +129,4 @@ export default class CommonUtil {
 
 CommonUtil.extractValue = extractValue;
 CommonUtil.setValue = setValue;
+CommonUtil.setIsLoading = setIsLoading;

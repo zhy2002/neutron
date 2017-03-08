@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import CommonUtil from '../services/CommonUtil';
@@ -22,18 +21,8 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
             this.setState({modelJson: json});
         };
 
-        this.loadJson = () => {
-            const model = this.model;
-            axios.get('json/application/app1.json').then(
-                (response) => {
-                    console.log('response is:');
-                    console.log(response);
-                    const context = model.getContext();
-                    context.beginSession();
-                    CommonUtil.setValue(model, response.data);
-                    context.commitSession();
-                }
-            );
+        this.saveJson = () => {
+            window.alert('Not implemented.');
         };
     }
 
@@ -70,7 +59,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0" onClick={this.loadJson}>
+                        <a tabIndex="0" onClick={this.saveJson}>
                             <div>
                                 <span className="glyphicon glyphicon-save"/>
                             </div>

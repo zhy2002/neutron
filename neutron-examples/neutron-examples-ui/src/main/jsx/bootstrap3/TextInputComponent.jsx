@@ -1,5 +1,7 @@
 import React from 'react';
+
 import InputComponent from './InputComponent';
+
 
 export default class TextInputComponent extends InputComponent {
 
@@ -7,7 +9,9 @@ export default class TextInputComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
+            this.ensureDebouncingMode();
             this.model.setValue(event.target.value);
+            this.flush();
         };
     }
 
