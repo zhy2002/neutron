@@ -30,13 +30,18 @@ public class LoanOwingAmountNode extends BaseCurrencyNode<LoanNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<LoanOwingAmountNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public LoanOwingAmountNode(@NotNull LoanNode parent, String name) {
         super(parent, name);

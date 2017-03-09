@@ -31,13 +31,18 @@ public class PersonEmailNode extends EmailNode<PersonContactNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PersonEmailNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PersonEmailNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);

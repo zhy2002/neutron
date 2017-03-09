@@ -30,13 +30,18 @@ public class TrustBeneficiaryListNode extends SelectAccountHolderListNode<BaseTr
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<TrustBeneficiaryListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public TrustBeneficiaryListNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);

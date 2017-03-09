@@ -37,13 +37,18 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CreditCardListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CreditCardListNode(@NotNull LiabilitiesNode parent, String name) {
         super(parent, name);

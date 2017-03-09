@@ -31,13 +31,18 @@ public class PhoneNumberNode extends PhoneInfoFieldNode {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PhoneNumberNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PhoneNumberNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);

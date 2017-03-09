@@ -30,13 +30,18 @@ public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> 
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OtherAssetMarketValueNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OtherAssetMarketValueNode(@NotNull OtherAssetNode parent, String name) {
         super(parent, name);

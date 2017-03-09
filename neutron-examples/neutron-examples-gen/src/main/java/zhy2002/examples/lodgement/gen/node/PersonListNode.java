@@ -38,13 +38,18 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PersonListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PersonListNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);

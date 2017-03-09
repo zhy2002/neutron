@@ -31,13 +31,18 @@ public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentN
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<RetiredOnBenefitFlagNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public RetiredOnBenefitFlagNode(@NotNull RetiredEmploymentNode parent, String name) {
         super(parent, name);

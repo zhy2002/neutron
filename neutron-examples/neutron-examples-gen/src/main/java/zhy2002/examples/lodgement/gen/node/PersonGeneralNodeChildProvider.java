@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface PersonGeneralNodeChildFactory {
@@ -122,6 +124,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureTitleNode(TitleNode node) {
     }
 
+    @TitleNodeScope
+    public static class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
+
+        @Inject
+        public TitleNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TitleNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected FirstNameNode newFirstNameNode(
         PersonGeneralNode parent,
         String name
@@ -130,6 +150,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configureFirstNameNode(FirstNameNode node) {
+    }
+
+    @FirstNameNodeScope
+    public static class FirstNameNodeRuleProvider implements RuleProvider<FirstNameNode> {
+
+        @Inject
+        public FirstNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(FirstNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected LastNameNode newLastNameNode(
@@ -142,6 +180,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureLastNameNode(LastNameNode node) {
     }
 
+    @LastNameNodeScope
+    public static class LastNameNodeRuleProvider implements RuleProvider<LastNameNode> {
+
+        @Inject
+        public LastNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LastNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected GenderNode newGenderNode(
         PersonGeneralNode parent,
         String name
@@ -150,6 +206,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configureGenderNode(GenderNode node) {
+    }
+
+    @GenderNodeScope
+    public static class GenderNodeRuleProvider implements RuleProvider<GenderNode> {
+
+        @Inject
+        public GenderNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(GenderNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected DateOfBirthNode newDateOfBirthNode(
@@ -162,6 +236,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureDateOfBirthNode(DateOfBirthNode node) {
     }
 
+    @DateOfBirthNodeScope
+    public static class DateOfBirthNodeRuleProvider implements RuleProvider<DateOfBirthNode> {
+
+        @Inject
+        public DateOfBirthNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DateOfBirthNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PrimaryApplicantFlagNode newPrimaryApplicantFlagNode(
         PersonGeneralNode parent,
         String name
@@ -170,6 +262,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configurePrimaryApplicantFlagNode(PrimaryApplicantFlagNode node) {
+    }
+
+    @PrimaryApplicantFlagNodeScope
+    public static class PrimaryApplicantFlagNodeRuleProvider implements RuleProvider<PrimaryApplicantFlagNode> {
+
+        @Inject
+        public PrimaryApplicantFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PrimaryApplicantFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected DriversLicenseNode newDriversLicenseNode(
@@ -182,6 +292,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureDriversLicenseNode(DriversLicenseNode node) {
     }
 
+    @DriversLicenseNodeScope
+    public static class DriversLicenseNodeRuleProvider implements RuleProvider<DriversLicenseNode> {
+
+        @Inject
+        public DriversLicenseNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DriversLicenseNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonApplicantTypeNode newPersonApplicantTypeNode(
         PersonGeneralNode parent,
         String name
@@ -190,6 +318,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configurePersonApplicantTypeNode(PersonApplicantTypeNode node) {
+    }
+
+    @PersonApplicantTypeNodeScope
+    public static class PersonApplicantTypeNodeRuleProvider implements RuleProvider<PersonApplicantTypeNode> {
+
+        @Inject
+        public PersonApplicantTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonApplicantTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MaritalStatusNode newMaritalStatusNode(
@@ -202,6 +348,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureMaritalStatusNode(MaritalStatusNode node) {
     }
 
+    @MaritalStatusNodeScope
+    public static class MaritalStatusNodeRuleProvider implements RuleProvider<MaritalStatusNode> {
+
+        @Inject
+        public MaritalStatusNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MaritalStatusNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PermanentResidentFlagNode newPermanentResidentFlagNode(
         PersonGeneralNode parent,
         String name
@@ -210,6 +374,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configurePermanentResidentFlagNode(PermanentResidentFlagNode node) {
+    }
+
+    @PermanentResidentFlagNodeScope
+    public static class PermanentResidentFlagNodeRuleProvider implements RuleProvider<PermanentResidentFlagNode> {
+
+        @Inject
+        public PermanentResidentFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PermanentResidentFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected SpouseNode newSpouseNode(
@@ -222,6 +404,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureSpouseNode(SpouseNode node) {
     }
 
+    @SpouseNodeScope
+    public static class SpouseNodeRuleProvider implements RuleProvider<SpouseNode> {
+
+        @Inject
+        public SpouseNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SpouseNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected FirstHomeBuyerFlagNode newFirstHomeBuyerFlagNode(
         PersonGeneralNode parent,
         String name
@@ -230,6 +430,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configureFirstHomeBuyerFlagNode(FirstHomeBuyerFlagNode node) {
+    }
+
+    @FirstHomeBuyerFlagNodeScope
+    public static class FirstHomeBuyerFlagNodeRuleProvider implements RuleProvider<FirstHomeBuyerFlagNode> {
+
+        @Inject
+        public FirstHomeBuyerFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(FirstHomeBuyerFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected HousingStatusNode newHousingStatusNode(
@@ -242,6 +460,24 @@ public class PersonGeneralNodeChildProvider {
     protected void configureHousingStatusNode(HousingStatusNode node) {
     }
 
+    @HousingStatusNodeScope
+    public static class HousingStatusNodeRuleProvider implements RuleProvider<HousingStatusNode> {
+
+        @Inject
+        public HousingStatusNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(HousingStatusNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ApplicationTypeNode newApplicationTypeNode(
         PersonGeneralNode parent,
         String name
@@ -250,6 +486,24 @@ public class PersonGeneralNodeChildProvider {
     }
 
     protected void configureApplicationTypeNode(ApplicationTypeNode node) {
+    }
+
+    @ApplicationTypeNodeScope
+    public static class ApplicationTypeNodeRuleProvider implements RuleProvider<ApplicationTypeNode> {
+
+        @Inject
+        public ApplicationTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ApplicationTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PersonGeneralNodeChildFactory createFactory(PersonGeneralNode parent) {

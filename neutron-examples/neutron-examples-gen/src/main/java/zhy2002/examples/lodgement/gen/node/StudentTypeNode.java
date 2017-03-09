@@ -32,13 +32,18 @@ public class StudentTypeNode extends StringUiNode<UnemployedNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<StudentTypeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public StudentTypeNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);

@@ -6,6 +6,7 @@ import jsinterop.annotations.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 
@@ -27,6 +28,16 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
 
     public EmploymentNode(@NotNull P parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public Boolean getCurrentRecord() {
+        return getStateValue(ApplicationNodeConstants.CURRENT_RECORD, Boolean.FALSE);
+    }
+
+    @JsMethod
+    public void setCurrentRecord(Boolean value) {
+        setStateValue(ApplicationNodeConstants.CURRENT_RECORD, Boolean.class, value);
     }
 
     @JsMethod

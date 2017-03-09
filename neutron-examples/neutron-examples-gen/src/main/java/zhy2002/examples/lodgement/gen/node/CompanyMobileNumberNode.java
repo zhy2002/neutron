@@ -30,13 +30,18 @@ public class CompanyMobileNumberNode extends BaseMobileNumberNode<CompanyContact
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyMobileNumberNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyMobileNumberNode(@NotNull CompanyContactNode parent, String name) {
         super(parent, name);

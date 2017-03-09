@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface AssetsNodeChildFactory {
@@ -45,6 +47,24 @@ public class AssetsNodeChildProvider {
     protected void configureSavingsAccountListNode(SavingsAccountListNode node) {
     }
 
+    @SavingsAccountListNodeScope
+    public static class SavingsAccountListNodeRuleProvider implements RuleProvider<SavingsAccountListNode> {
+
+        @Inject
+        public SavingsAccountListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsAccountListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MotorVehicleListNode newMotorVehicleListNode(
         AssetsNode parent,
         String name
@@ -55,6 +75,24 @@ public class AssetsNodeChildProvider {
     protected void configureMotorVehicleListNode(MotorVehicleListNode node) {
     }
 
+    @MotorVehicleListNodeScope
+    public static class MotorVehicleListNodeRuleProvider implements RuleProvider<MotorVehicleListNode> {
+
+        @Inject
+        public MotorVehicleListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MotorVehicleListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherAssetListNode newOtherAssetListNode(
         AssetsNode parent,
         String name
@@ -63,6 +101,24 @@ public class AssetsNodeChildProvider {
     }
 
     protected void configureOtherAssetListNode(OtherAssetListNode node) {
+    }
+
+    @OtherAssetListNodeScope
+    public static class OtherAssetListNodeRuleProvider implements RuleProvider<OtherAssetListNode> {
+
+        @Inject
+        public OtherAssetListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherAssetListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     AssetsNodeChildFactory createFactory(AssetsNode parent) {

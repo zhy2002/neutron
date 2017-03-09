@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ProductCardHolderNodeChildFactory {
@@ -45,6 +47,24 @@ public class ProductCardHolderNodeChildProvider {
     protected void configureProductCardHodlerNameNode(ProductCardHodlerNameNode node) {
     }
 
+    @ProductCardHodlerNameNodeScope
+    public static class ProductCardHodlerNameNodeRuleProvider implements RuleProvider<ProductCardHodlerNameNode> {
+
+        @Inject
+        public ProductCardHodlerNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCardHodlerNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductRewardsProgramNode newProductRewardsProgramNode(
         ProductCardHolderNode parent,
         String name
@@ -55,6 +75,24 @@ public class ProductCardHolderNodeChildProvider {
     protected void configureProductRewardsProgramNode(ProductRewardsProgramNode node) {
     }
 
+    @ProductRewardsProgramNodeScope
+    public static class ProductRewardsProgramNodeRuleProvider implements RuleProvider<ProductRewardsProgramNode> {
+
+        @Inject
+        public ProductRewardsProgramNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductRewardsProgramNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductRewardsMembershipNode newProductRewardsMembershipNode(
         ProductCardHolderNode parent,
         String name
@@ -63,6 +101,24 @@ public class ProductCardHolderNodeChildProvider {
     }
 
     protected void configureProductRewardsMembershipNode(ProductRewardsMembershipNode node) {
+    }
+
+    @ProductRewardsMembershipNodeScope
+    public static class ProductRewardsMembershipNodeRuleProvider implements RuleProvider<ProductRewardsMembershipNode> {
+
+        @Inject
+        public ProductRewardsMembershipNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductRewardsMembershipNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ProductCardHolderNodeChildFactory createFactory(ProductCardHolderNode parent) {

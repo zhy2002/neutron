@@ -32,7 +32,6 @@ public class BaseMobileNumberNodeRuleProvider implements RuleProvider<BaseMobile
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

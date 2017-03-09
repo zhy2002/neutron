@@ -36,7 +36,6 @@ public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(createErrorNodeRuleProvider.get());
             createdRules.add(showErrorListRuleProvider.get());
     }

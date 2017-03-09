@@ -2,10 +2,7 @@ package zhy2002.neutron;
 
 import freemarker.template.Template;
 import org.yaml.snakeyaml.Yaml;
-import zhy2002.neutron.model.CodeGenInfo;
-import zhy2002.neutron.model.DomainInfo;
-import zhy2002.neutron.model.NodeInfo;
-import zhy2002.neutron.model.RuleInfo;
+import zhy2002.neutron.model.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -75,6 +72,15 @@ class CodeGenerator {
         if (nodeInfo.getRules() != null) {
             for (RuleInfo ruleInfo : nodeInfo.getRules()) {
                 generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
+            }
+            if(nodeInfo.getChildren() != null) {
+                for(ChildInfo childInfo : nodeInfo.getChildren()) {
+                    if(childInfo.getRules() != null) {
+                        for (RuleInfo ruleInfo : childInfo.getRules()) {
+                            generateFile(targetDirectory, ruleInfo, templateBundle.getRuleTemplate(), "rule", "");
+                        }
+                    }
+                }
             }
         }
         generateFile(targetDirectory, nodeInfo, templateBundle.getRuleProviderTemplate(), "node", "RuleProvider");

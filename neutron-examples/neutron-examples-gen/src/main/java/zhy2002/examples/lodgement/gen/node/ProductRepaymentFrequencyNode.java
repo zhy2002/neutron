@@ -30,13 +30,18 @@ public class ProductRepaymentFrequencyNode extends StringUiNode<ProductFeaturesN
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductRepaymentFrequencyNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductRepaymentFrequencyNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);

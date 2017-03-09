@@ -30,13 +30,18 @@ public class PersonTelephoneNode extends TelephoneNode<PersonContactNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PersonTelephoneNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PersonTelephoneNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);

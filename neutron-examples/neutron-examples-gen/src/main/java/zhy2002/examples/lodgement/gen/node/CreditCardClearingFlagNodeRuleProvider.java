@@ -30,7 +30,6 @@ public class CreditCardClearingFlagNodeRuleProvider implements RuleProvider<Cred
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(creditCardClearingFlagChangedRuleProvider.get());
     }
 

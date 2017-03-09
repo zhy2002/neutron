@@ -30,7 +30,6 @@ public class MonthYearNodeRuleProvider implements RuleProvider<MonthYearNode<?>>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(monthYearNotInFutureRuleProvider.get());
     }
 

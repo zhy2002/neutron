@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class MovedFromPreviousAddressNodeModule {
@@ -39,4 +41,12 @@ public class MovedFromPreviousAddressNodeModule {
         return owner.getParent();
     }
 
+    @Provides @MovedFromPreviousAddressNodeScope
+    Map<String, RuleProvider<MovedFromPreviousAddressNode>> provideInstanceProviders(
+        Provider<PersonContactNodeChildProvider.MovedFromPreviousAddressNodeRuleProvider> movedFromPreviousAddressNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<MovedFromPreviousAddressNode>> result = new HashMap<>();
+        result.put("movedFromPreviousAddressNode", movedFromPreviousAddressNodeRuleProvider.get());
+        return result;
+    }
 }

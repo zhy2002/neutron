@@ -31,13 +31,18 @@ public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode> 
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<MovedToCurrentAddressNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public MovedToCurrentAddressNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);

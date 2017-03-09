@@ -30,13 +30,18 @@ public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OtherAssetDescriptionNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OtherAssetDescriptionNode(@NotNull OtherAssetNode parent, String name) {
         super(parent, name);

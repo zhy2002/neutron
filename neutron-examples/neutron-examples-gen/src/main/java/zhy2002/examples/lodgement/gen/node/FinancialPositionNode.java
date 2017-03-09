@@ -46,13 +46,18 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<FinancialPositionNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public FinancialPositionNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);

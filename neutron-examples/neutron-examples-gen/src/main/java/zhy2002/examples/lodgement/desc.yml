@@ -169,7 +169,10 @@ rootType:
         - {typeName: PersonTelephoneNode, name: faxNumberNode}
         - {typeName: PersonMobileNumberNode}
         - {typeName: PersonEmailNode}
-        - {typeName: PersonAddressNode, name: currentAddressNode}
+        - typeName: PersonAddressNode
+          name: currentAddressNode
+          init:
+          - {propertyName: required, value: 'true'}
         - {typeName: MovedToCurrentAddressNode}
         - {typeName: PersonAddressNode, name: postalAddressNode}
         - {typeName: PersonAddressNode, name: previousAddressNode}
@@ -216,6 +219,7 @@ rootType:
           baseTypeName: EmploymentNode
           init:
           - {propertyName: nodeLabel, value: '"Employment"'}
+          - {propertyName: currentRecord, value: Boolean.TRUE}
 
       - typeName: PreviousEmploymentListNode
         baseTypeName: ListUiNode
@@ -1189,6 +1193,8 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
+  properties:
+  - {name: currentRecord, typeName: Boolean, default: Boolean.FALSE}
   children:
   - {typeName: EmploymentTypeNode}
   - {typeName: PayeEmployedNode}
@@ -1238,6 +1244,8 @@ commonTypes:
   - typeName: EmployedNode
     baseTypeName: ObjectUiNode
     abstractNode: true
+    rules:
+    - {typeName: DoNotLoadEndedDateForCurrentRecordRule}
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}

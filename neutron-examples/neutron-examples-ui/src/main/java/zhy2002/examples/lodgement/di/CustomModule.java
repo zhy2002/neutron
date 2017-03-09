@@ -3,9 +3,9 @@ package zhy2002.examples.lodgement.di;
 import dagger.MembersInjector;
 import dagger.Module;
 import dagger.Provides;
-import zhy2002.examples.lodgement.config.CurrentAddressConfig;
-import zhy2002.examples.lodgement.config.EmploymentEndedNodeConfig;
-import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.gen.node.AddressRefListNode;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.ApplicationNodeChildProvider;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 
 import javax.inject.Singleton;
@@ -24,27 +24,26 @@ public class CustomModule {
         });
     }
 
-    @Provides
-    @Singleton
-    PersonContactNodeChildProvider provideBaseContactNodeChildProvider(MembersInjector<PersonContactNodeChildProvider> injector) {
-        return inject(injector, new PersonContactNodeChildProvider() {
-            @Override
-            protected void configureCurrentAddressNode(PersonAddressNode node) {
-                new CurrentAddressConfig(node);
-            }
-        });
-    }
-
-    @Provides
-    @Singleton
-    EmployedNodeChildProvider provideEmployedNodeChildProvider(MembersInjector<EmployedNodeChildProvider> injector) {
-        return inject(injector, new EmployedNodeChildProvider() {
-            @Override
-            protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
-                new EmploymentEndedNodeConfig(node);
-            }
-        });
-    }
+//    @Provides
+//    @Singleton
+//    PersonContactNodeChildProvider provideBaseContactNodeChildProvider(MembersInjector<PersonContactNodeChildProvider> injector) {
+//        return inject(injector, new PersonContactNodeChildProvider() {
+//            @Override
+//            protected void configureCurrentAddressNode(PersonAddressNode node) {
+//                new CurrentAddressConfig(node);
+//            }
+//        });
+//    }
+//    @Provides
+//    @Singleton
+//    EmployedNodeChildProvider provideEmployedNodeChildProvider(MembersInjector<EmployedNodeChildProvider> injector) {
+//        return inject(injector, new EmployedNodeChildProvider() {
+//            @Override
+//            protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
+//                new EmploymentEndedNodeConfig(node);
+//            }
+//        });
+//    }
 
     private static <T> T inject(MembersInjector<T> injector, T node) {
         injector.injectMembers(node);

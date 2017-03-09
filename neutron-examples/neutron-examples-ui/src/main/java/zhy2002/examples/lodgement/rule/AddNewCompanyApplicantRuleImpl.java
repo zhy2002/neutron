@@ -7,8 +7,8 @@ import zhy2002.examples.lodgement.gen.node.OwnershipNode;
 import zhy2002.examples.lodgement.gen.rule.AddNewCompanyApplicantRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEventBinding;
-import zhy2002.neutron.NopUiNodeStatusListener;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeConfig;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
@@ -45,12 +45,21 @@ public class AddNewCompanyApplicantRuleImpl extends AddNewCompanyApplicantRule {
 
     private void importApplicant(CompanyNodeAddEvent addEvent) {
         final OwnershipNode ownershipNode = getOwnershipListNode().createItem();
-        ownershipNode.setStatusListener(new NopUiNodeStatusListener() {
-            @Override
-            public void postLoad() {
-                super.postLoad();
-                ownershipNode.getApplicantReferenceNode().setValue(addEvent.getOrigin().getPath());
+
+        class Config extends UiNodeConfig<OwnershipNode> {
+            private Config(OwnershipNode owner) {
+                super(owner);
             }
-        });
+
+            @Override
+            public void exitLoad() {
+                super.exitLoad();
+                getOwner().getApplicantReferenceNode().setValue(addEvent.getOrigin().getPath());
+            }
+        }
+
+        new Config(ownershipNode);
     }
 }
+
+

@@ -2,12 +2,15 @@ package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
+import java.util.*;
 
 @PropertyTypeNodeScope
 @Subcomponent(modules = {PropertyTypeNodeModule.class})
 public interface PropertyTypeNodeComponent {
 
     PropertyTypeNodeRuleProvider getPropertyTypeNodeRuleProvider();
+    Map<String, RuleProvider<PropertyTypeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

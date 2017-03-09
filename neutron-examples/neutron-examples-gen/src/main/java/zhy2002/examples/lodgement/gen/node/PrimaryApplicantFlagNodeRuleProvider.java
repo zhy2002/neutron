@@ -32,7 +32,6 @@ public class PrimaryApplicantFlagNodeRuleProvider implements RuleProvider<Primar
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(atLeastOnePrimaryApplicantRuleProvider.get());
             createdRules.add(atMostOnePrimaryApplicantRuleProvider.get());
     }

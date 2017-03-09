@@ -45,13 +45,18 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<UnemployedNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public UnemployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);

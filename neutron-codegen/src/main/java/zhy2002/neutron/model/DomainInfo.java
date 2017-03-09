@@ -84,7 +84,7 @@ public class DomainInfo extends CodeGenInfo {
         setDomainInfo(this);
         initializeCommonTypes();
         initializeRootType();
-        resolveBaseTypes();
+        resolveTypes();
 
         raiseErrorIfNecessary();
     }
@@ -117,16 +117,30 @@ public class DomainInfo extends CodeGenInfo {
         }
     }
 
-    private void resolveBaseTypes() {
+    private void resolveTypes() {
         Map<String, NodeInfo> map = new HashMap<>();
         getAllNodes().forEach(node -> map.put(node.getTypeName(), node));
 
         getAllNodes().forEach(node -> {
             NodeInfo baseType = map.get(node.getBaseTypeName());
-            if(baseType == null) {
-               node.populateFrameworkTypes();
+            if (baseType == null) {
+                node.populateFrameworkTypes();
             } else {
                 node.setBaseType(baseType);
+            }
+
+            if (node.getChildren() != null) {
+                for (ChildInfo childInfo : node.getChildren()) {
+                    childInfo.setChildType(map.get(childInfo.getTypeName()));
+                    if (childInfo.getRules() != null) {
+                        for (RuleInfo rule : childInfo.getRules()) {
+                            rule.setDomainInfo(getDomainInfo());
+                            rule.setOwnerType(childInfo.getChildType());
+                            rule.initialize();
+                        }
+                    }
+
+                }
             }
         });
 

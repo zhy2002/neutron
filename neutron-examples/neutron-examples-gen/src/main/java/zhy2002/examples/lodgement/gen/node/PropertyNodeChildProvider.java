@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface PropertyNodeChildFactory {
@@ -94,6 +96,24 @@ public class PropertyNodeChildProvider {
     protected void configureRentedFlagNode(RentedFlagNode node) {
     }
 
+    @RentedFlagNodeScope
+    public static class RentedFlagNodeRuleProvider implements RuleProvider<RentedFlagNode> {
+
+        @Inject
+        public RentedFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RentedFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertyWeeklyRentNode newPropertyWeeklyRentNode(
         PropertyNode parent,
         String name
@@ -102,6 +122,24 @@ public class PropertyNodeChildProvider {
     }
 
     protected void configurePropertyWeeklyRentNode(PropertyWeeklyRentNode node) {
+    }
+
+    @PropertyWeeklyRentNodeScope
+    public static class PropertyWeeklyRentNodeRuleProvider implements RuleProvider<PropertyWeeklyRentNode> {
+
+        @Inject
+        public PropertyWeeklyRentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyWeeklyRentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PropertyAddressNode newPropertyAddressNode(
@@ -114,6 +152,24 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyAddressNode(PropertyAddressNode node) {
     }
 
+    @PropertyAddressNodeScope
+    public static class PropertyAddressNodeRuleProvider implements RuleProvider<PropertyAddressNode> {
+
+        @Inject
+        public PropertyAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected EstimatedMarketValueNode newEstimatedMarketValueNode(
         PropertyNode parent,
         String name
@@ -122,6 +178,24 @@ public class PropertyNodeChildProvider {
     }
 
     protected void configureEstimatedMarketValueNode(EstimatedMarketValueNode node) {
+    }
+
+    @EstimatedMarketValueNodeScope
+    public static class EstimatedMarketValueNodeRuleProvider implements RuleProvider<EstimatedMarketValueNode> {
+
+        @Inject
+        public EstimatedMarketValueNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EstimatedMarketValueNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ContractPriceNode newContractPriceNode(
@@ -134,6 +208,24 @@ public class PropertyNodeChildProvider {
     protected void configureContractPriceNode(ContractPriceNode node) {
     }
 
+    @ContractPriceNodeScope
+    public static class ContractPriceNodeRuleProvider implements RuleProvider<ContractPriceNode> {
+
+        @Inject
+        public ContractPriceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ContractPriceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected DefenseServiceFlagNode newDefenseServiceFlagNode(
         PropertyNode parent,
         String name
@@ -142,6 +234,24 @@ public class PropertyNodeChildProvider {
     }
 
     protected void configureDefenseServiceFlagNode(DefenseServiceFlagNode node) {
+    }
+
+    @DefenseServiceFlagNodeScope
+    public static class DefenseServiceFlagNodeRuleProvider implements RuleProvider<DefenseServiceFlagNode> {
+
+        @Inject
+        public DefenseServiceFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DefenseServiceFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PropertyTypeNode newPropertyTypeNode(
@@ -154,6 +264,24 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyTypeNode(PropertyTypeNode node) {
     }
 
+    @PropertyTypeNodeScope
+    public static class PropertyTypeNodeRuleProvider implements RuleProvider<PropertyTypeNode> {
+
+        @Inject
+        public PropertyTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertySubTypeNode newPropertySubTypeNode(
         PropertyNode parent,
         String name
@@ -162,6 +290,24 @@ public class PropertyNodeChildProvider {
     }
 
     protected void configurePropertySubTypeNode(PropertySubTypeNode node) {
+    }
+
+    @PropertySubTypeNodeScope
+    public static class PropertySubTypeNodeRuleProvider implements RuleProvider<PropertySubTypeNode> {
+
+        @Inject
+        public PropertySubTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertySubTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PropertyPurseNode newPropertyPurseNode(
@@ -174,6 +320,24 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyPurseNode(PropertyPurseNode node) {
     }
 
+    @PropertyPurseNodeScope
+    public static class PropertyPurseNodeRuleProvider implements RuleProvider<PropertyPurseNode> {
+
+        @Inject
+        public PropertyPurseNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyPurseNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertyOwnershipListNode newPropertyOwnershipListNode(
         PropertyNode parent,
         String name
@@ -182,6 +346,24 @@ public class PropertyNodeChildProvider {
     }
 
     protected void configurePropertyOwnershipListNode(PropertyOwnershipListNode node) {
+    }
+
+    @PropertyOwnershipListNodeScope
+    public static class PropertyOwnershipListNodeRuleProvider implements RuleProvider<PropertyOwnershipListNode> {
+
+        @Inject
+        public PropertyOwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PropertyNodeChildFactory createFactory(PropertyNode parent) {

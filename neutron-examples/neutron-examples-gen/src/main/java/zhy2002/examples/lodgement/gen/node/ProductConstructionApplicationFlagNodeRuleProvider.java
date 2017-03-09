@@ -28,7 +28,6 @@ public class ProductConstructionApplicationFlagNodeRuleProvider implements RuleP
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

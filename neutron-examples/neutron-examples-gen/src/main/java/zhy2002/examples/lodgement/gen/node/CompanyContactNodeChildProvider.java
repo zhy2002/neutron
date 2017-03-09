@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface CompanyContactNodeChildFactory {
@@ -70,6 +72,24 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyContactFirstNameNode(CompanyContactFirstNameNode node) {
     }
 
+    @CompanyContactFirstNameNodeScope
+    public static class CompanyContactFirstNameNodeRuleProvider implements RuleProvider<CompanyContactFirstNameNode> {
+
+        @Inject
+        public CompanyContactFirstNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyContactFirstNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyContactLastNameNode newCompanyContactLastNameNode(
         CompanyContactNode parent,
         String name
@@ -78,6 +98,24 @@ public class CompanyContactNodeChildProvider {
     }
 
     protected void configureCompanyContactLastNameNode(CompanyContactLastNameNode node) {
+    }
+
+    @CompanyContactLastNameNodeScope
+    public static class CompanyContactLastNameNodeRuleProvider implements RuleProvider<CompanyContactLastNameNode> {
+
+        @Inject
+        public CompanyContactLastNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyContactLastNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyTelephoneNode newWorkPhoneNode(
@@ -90,6 +128,24 @@ public class CompanyContactNodeChildProvider {
     protected void configureWorkPhoneNode(CompanyTelephoneNode node) {
     }
 
+    @CompanyTelephoneNodeScope
+    public static class WorkPhoneNodeRuleProvider implements RuleProvider<CompanyTelephoneNode> {
+
+        @Inject
+        public WorkPhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyTelephoneNode newFaxNumberNode(
         CompanyContactNode parent,
         String name
@@ -98,6 +154,24 @@ public class CompanyContactNodeChildProvider {
     }
 
     protected void configureFaxNumberNode(CompanyTelephoneNode node) {
+    }
+
+    @CompanyTelephoneNodeScope
+    public static class FaxNumberNodeRuleProvider implements RuleProvider<CompanyTelephoneNode> {
+
+        @Inject
+        public FaxNumberNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyMobileNumberNode newCompanyMobileNumberNode(
@@ -110,6 +184,24 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyMobileNumberNode(CompanyMobileNumberNode node) {
     }
 
+    @CompanyMobileNumberNodeScope
+    public static class CompanyMobileNumberNodeRuleProvider implements RuleProvider<CompanyMobileNumberNode> {
+
+        @Inject
+        public CompanyMobileNumberNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyMobileNumberNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyEmailNode newCompanyEmailNode(
         CompanyContactNode parent,
         String name
@@ -118,6 +210,24 @@ public class CompanyContactNodeChildProvider {
     }
 
     protected void configureCompanyEmailNode(CompanyEmailNode node) {
+    }
+
+    @CompanyEmailNodeScope
+    public static class CompanyEmailNodeRuleProvider implements RuleProvider<CompanyEmailNode> {
+
+        @Inject
+        public CompanyEmailNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyEmailNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyAddressNode newRegisteredAddressNode(
@@ -130,6 +240,24 @@ public class CompanyContactNodeChildProvider {
     protected void configureRegisteredAddressNode(CompanyAddressNode node) {
     }
 
+    @CompanyAddressNodeScope
+    public static class RegisteredAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
+
+        @Inject
+        public RegisteredAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyAddressNode newPostalAddressNode(
         CompanyContactNode parent,
         String name
@@ -138,6 +266,24 @@ public class CompanyContactNodeChildProvider {
     }
 
     protected void configurePostalAddressNode(CompanyAddressNode node) {
+    }
+
+    @CompanyAddressNodeScope
+    public static class PostalAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
+
+        @Inject
+        public PostalAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyAddressNode newTradingAddressNode(
@@ -150,6 +296,24 @@ public class CompanyContactNodeChildProvider {
     protected void configureTradingAddressNode(CompanyAddressNode node) {
     }
 
+    @CompanyAddressNodeScope
+    public static class TradingAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
+
+        @Inject
+        public TradingAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyAddressNode newPrincipalPlaceAddressNode(
         CompanyContactNode parent,
         String name
@@ -158,6 +322,24 @@ public class CompanyContactNodeChildProvider {
     }
 
     protected void configurePrincipalPlaceAddressNode(CompanyAddressNode node) {
+    }
+
+    @CompanyAddressNodeScope
+    public static class PrincipalPlaceAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
+
+        @Inject
+        public PrincipalPlaceAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     CompanyContactNodeChildFactory createFactory(CompanyContactNode parent) {

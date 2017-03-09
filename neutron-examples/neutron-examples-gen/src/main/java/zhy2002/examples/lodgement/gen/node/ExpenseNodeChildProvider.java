@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ExpenseNodeChildFactory {
@@ -45,6 +47,24 @@ public class ExpenseNodeChildProvider {
     protected void configureExpenseTypeNode(ExpenseTypeNode node) {
     }
 
+    @ExpenseTypeNodeScope
+    public static class ExpenseTypeNodeRuleProvider implements RuleProvider<ExpenseTypeNode> {
+
+        @Inject
+        public ExpenseTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExpenseTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ExpenseDescriptionNode newExpenseDescriptionNode(
         ExpenseNode parent,
         String name
@@ -55,6 +75,24 @@ public class ExpenseNodeChildProvider {
     protected void configureExpenseDescriptionNode(ExpenseDescriptionNode node) {
     }
 
+    @ExpenseDescriptionNodeScope
+    public static class ExpenseDescriptionNodeRuleProvider implements RuleProvider<ExpenseDescriptionNode> {
+
+        @Inject
+        public ExpenseDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExpenseDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ExpenseMonthlyRepaymentNode newExpenseMonthlyRepaymentNode(
         ExpenseNode parent,
         String name
@@ -63,6 +101,24 @@ public class ExpenseNodeChildProvider {
     }
 
     protected void configureExpenseMonthlyRepaymentNode(ExpenseMonthlyRepaymentNode node) {
+    }
+
+    @ExpenseMonthlyRepaymentNodeScope
+    public static class ExpenseMonthlyRepaymentNodeRuleProvider implements RuleProvider<ExpenseMonthlyRepaymentNode> {
+
+        @Inject
+        public ExpenseMonthlyRepaymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExpenseMonthlyRepaymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ExpenseNodeChildFactory createFactory(ExpenseNode parent) {

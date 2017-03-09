@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface MonthYearNodeChildFactory {
@@ -38,6 +40,24 @@ public class MonthYearNodeChildProvider {
     protected void configureMonthNode(MonthNode node) {
     }
 
+    @MonthNodeScope
+    public static class MonthNodeRuleProvider implements RuleProvider<MonthNode> {
+
+        @Inject
+        public MonthNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MonthNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected YearNode newYearNode(
         MonthYearNode<?> parent,
         String name
@@ -46,6 +66,24 @@ public class MonthYearNodeChildProvider {
     }
 
     protected void configureYearNode(YearNode node) {
+    }
+
+    @YearNodeScope
+    public static class YearNodeRuleProvider implements RuleProvider<YearNode> {
+
+        @Inject
+        public YearNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(YearNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     MonthYearNodeChildFactory createFactory(MonthYearNode<?> parent) {

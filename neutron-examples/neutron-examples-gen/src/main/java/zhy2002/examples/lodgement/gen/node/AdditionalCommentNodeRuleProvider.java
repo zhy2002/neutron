@@ -28,7 +28,6 @@ public class AdditionalCommentNodeRuleProvider implements RuleProvider<Additiona
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

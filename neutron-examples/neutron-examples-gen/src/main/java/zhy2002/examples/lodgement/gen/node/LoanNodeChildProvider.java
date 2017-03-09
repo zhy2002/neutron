@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface LoanNodeChildFactory {
@@ -73,6 +75,24 @@ public class LoanNodeChildProvider {
     protected void configureLoanTypeNode(LoanTypeNode node) {
     }
 
+    @LoanTypeNodeScope
+    public static class LoanTypeNodeRuleProvider implements RuleProvider<LoanTypeNode> {
+
+        @Inject
+        public LoanTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LoanLenderNameNode newLoanLenderNameNode(
         LoanNode parent,
         String name
@@ -81,6 +101,24 @@ public class LoanNodeChildProvider {
     }
 
     protected void configureLoanLenderNameNode(LoanLenderNameNode node) {
+    }
+
+    @LoanLenderNameNodeScope
+    public static class LoanLenderNameNodeRuleProvider implements RuleProvider<LoanLenderNameNode> {
+
+        @Inject
+        public LoanLenderNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanLenderNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected LoanLimitAmountNode newLoanLimitAmountNode(
@@ -93,6 +131,24 @@ public class LoanNodeChildProvider {
     protected void configureLoanLimitAmountNode(LoanLimitAmountNode node) {
     }
 
+    @LoanLimitAmountNodeScope
+    public static class LoanLimitAmountNodeRuleProvider implements RuleProvider<LoanLimitAmountNode> {
+
+        @Inject
+        public LoanLimitAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanLimitAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LoanOwingAmountNode newLoanOwingAmountNode(
         LoanNode parent,
         String name
@@ -101,6 +157,24 @@ public class LoanNodeChildProvider {
     }
 
     protected void configureLoanOwingAmountNode(LoanOwingAmountNode node) {
+    }
+
+    @LoanOwingAmountNodeScope
+    public static class LoanOwingAmountNodeRuleProvider implements RuleProvider<LoanOwingAmountNode> {
+
+        @Inject
+        public LoanOwingAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanOwingAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected LoanMonthlyRepaymentNode newLoanMonthlyRepaymentNode(
@@ -113,6 +187,24 @@ public class LoanNodeChildProvider {
     protected void configureLoanMonthlyRepaymentNode(LoanMonthlyRepaymentNode node) {
     }
 
+    @LoanMonthlyRepaymentNodeScope
+    public static class LoanMonthlyRepaymentNodeRuleProvider implements RuleProvider<LoanMonthlyRepaymentNode> {
+
+        @Inject
+        public LoanMonthlyRepaymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanMonthlyRepaymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LoanClearingFlagNode newLoanClearingFlagNode(
         LoanNode parent,
         String name
@@ -123,6 +215,24 @@ public class LoanNodeChildProvider {
     protected void configureLoanClearingFlagNode(LoanClearingFlagNode node) {
     }
 
+    @LoanClearingFlagNodeScope
+    public static class LoanClearingFlagNodeRuleProvider implements RuleProvider<LoanClearingFlagNode> {
+
+        @Inject
+        public LoanClearingFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanClearingFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LoanBreakCostNode newLoanBreakCostNode(
         LoanNode parent,
         String name
@@ -131,6 +241,24 @@ public class LoanNodeChildProvider {
     }
 
     protected void configureLoanBreakCostNode(LoanBreakCostNode node) {
+    }
+
+    @LoanBreakCostNodeScope
+    public static class LoanBreakCostNodeRuleProvider implements RuleProvider<LoanBreakCostNode> {
+
+        @Inject
+        public LoanBreakCostNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanBreakCostNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     LoanNodeChildFactory createFactory(LoanNode parent) {

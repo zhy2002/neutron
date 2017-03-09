@@ -7,8 +7,8 @@ import zhy2002.examples.lodgement.gen.node.SelectRelatedPersonNode;
 import zhy2002.examples.lodgement.gen.rule.AddNewPersonRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEventBinding;
-import zhy2002.neutron.NopUiNodeStatusListener;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeConfig;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
@@ -44,11 +44,18 @@ public class AddNewPersonRuleImpl extends AddNewPersonRule {
     private void importPerson(PersonNodeAddEvent addEvent) {
         SelectRelatedPersonNode itemNode = getOwner().createItem();
 
-        itemNode.setStatusListener(new NopUiNodeStatusListener() {
+        class Config extends UiNodeConfig<SelectRelatedPersonNode> {
+
+            private Config(SelectRelatedPersonNode owner) {
+                super(owner);
+            }
+
             @Override
-            public void postLoad() {
+            public void exitLoad() {
                 itemNode.getRelatedPersonReferenceNode().setValue(addEvent.getOrigin().getPath());
             }
-        });
+        }
+
+        new Config(itemNode);
     }
 }

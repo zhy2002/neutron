@@ -31,13 +31,18 @@ public class DriversLicenseNode extends StringUiNode<PersonGeneralNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<DriversLicenseNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public DriversLicenseNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);

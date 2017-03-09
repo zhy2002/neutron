@@ -28,7 +28,6 @@ public class LoanLimitAmountNodeRuleProvider implements RuleProvider<LoanLimitAm
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

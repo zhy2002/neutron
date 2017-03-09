@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ProductsNodeChildFactory {
@@ -94,6 +96,24 @@ public class ProductsNodeChildProvider {
     protected void configureProductListNode(ProductListNode node) {
     }
 
+    @ProductListNodeScope
+    public static class ProductListNodeRuleProvider implements RuleProvider<ProductListNode> {
+
+        @Inject
+        public ProductListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductCustomerContributionNode newProductCustomerContributionNode(
         ProductsNode parent,
         String name
@@ -102,6 +122,24 @@ public class ProductsNodeChildProvider {
     }
 
     protected void configureProductCustomerContributionNode(ProductCustomerContributionNode node) {
+    }
+
+    @ProductCustomerContributionNodeScope
+    public static class ProductCustomerContributionNodeRuleProvider implements RuleProvider<ProductCustomerContributionNode> {
+
+        @Inject
+        public ProductCustomerContributionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCustomerContributionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductFeesNode newProductFeesNode(
@@ -114,6 +152,24 @@ public class ProductsNodeChildProvider {
     protected void configureProductFeesNode(ProductFeesNode node) {
     }
 
+    @ProductFeesNodeScope
+    public static class ProductFeesNodeRuleProvider implements RuleProvider<ProductFeesNode> {
+
+        @Inject
+        public ProductFeesNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductFeesNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductLoanTypeNode newProductLoanTypeNode(
         ProductsNode parent,
         String name
@@ -122,6 +178,24 @@ public class ProductsNodeChildProvider {
     }
 
     protected void configureProductLoanTypeNode(ProductLoanTypeNode node) {
+    }
+
+    @ProductLoanTypeNodeScope
+    public static class ProductLoanTypeNodeRuleProvider implements RuleProvider<ProductLoanTypeNode> {
+
+        @Inject
+        public ProductLoanTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductLoanTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected SettlementDateNode newSettlementDateNode(
@@ -134,6 +208,24 @@ public class ProductsNodeChildProvider {
     protected void configureSettlementDateNode(SettlementDateNode node) {
     }
 
+    @SettlementDateNodeScope
+    public static class SettlementDateNodeRuleProvider implements RuleProvider<SettlementDateNode> {
+
+        @Inject
+        public SettlementDateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SettlementDateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductTotalLoanAmountNode newProductTotalLoanAmountNode(
         ProductsNode parent,
         String name
@@ -142,6 +234,24 @@ public class ProductsNodeChildProvider {
     }
 
     protected void configureProductTotalLoanAmountNode(ProductTotalLoanAmountNode node) {
+    }
+
+    @ProductTotalLoanAmountNodeScope
+    public static class ProductTotalLoanAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanAmountNode> {
+
+        @Inject
+        public ProductTotalLoanAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalLoanAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductTotalSecurityAmountNode newProductTotalSecurityAmountNode(
@@ -154,6 +264,24 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalSecurityAmountNode(ProductTotalSecurityAmountNode node) {
     }
 
+    @ProductTotalSecurityAmountNodeScope
+    public static class ProductTotalSecurityAmountNodeRuleProvider implements RuleProvider<ProductTotalSecurityAmountNode> {
+
+        @Inject
+        public ProductTotalSecurityAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalSecurityAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductTotalLoanLmiAmountNode newProductTotalLoanLmiAmountNode(
         ProductsNode parent,
         String name
@@ -162,6 +290,24 @@ public class ProductsNodeChildProvider {
     }
 
     protected void configureProductTotalLoanLmiAmountNode(ProductTotalLoanLmiAmountNode node) {
+    }
+
+    @ProductTotalLoanLmiAmountNodeScope
+    public static class ProductTotalLoanLmiAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanLmiAmountNode> {
+
+        @Inject
+        public ProductTotalLoanLmiAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalLoanLmiAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductTotalLvrNode newProductTotalLvrNode(
@@ -174,6 +320,24 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalLvrNode(ProductTotalLvrNode node) {
     }
 
+    @ProductTotalLvrNodeScope
+    public static class ProductTotalLvrNodeRuleProvider implements RuleProvider<ProductTotalLvrNode> {
+
+        @Inject
+        public ProductTotalLvrNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalLvrNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductTotalLvrLmiNode newProductTotalLvrLmiNode(
         ProductsNode parent,
         String name
@@ -182,6 +346,24 @@ public class ProductsNodeChildProvider {
     }
 
     protected void configureProductTotalLvrLmiNode(ProductTotalLvrLmiNode node) {
+    }
+
+    @ProductTotalLvrLmiNodeScope
+    public static class ProductTotalLvrLmiNodeRuleProvider implements RuleProvider<ProductTotalLvrLmiNode> {
+
+        @Inject
+        public ProductTotalLvrLmiNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalLvrLmiNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ProductsNodeChildFactory createFactory(ProductsNode parent) {

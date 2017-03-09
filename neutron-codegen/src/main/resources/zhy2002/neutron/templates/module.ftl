@@ -1,10 +1,14 @@
 package ${targetPackage}.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+<#if !abstractNode && parentType.children ??>
+import java.util.*;
+</#if>
+
 
 @Module
 public class ${typeName}Module {
@@ -27,5 +31,24 @@ public class ${typeName}Module {
         return owner.getParent();
     }
 
+</#if>
+<#if !abstractNode && parentType.children ??>
+    @Provides @${typeName}Scope
+    Map<String, RuleProvider<${typeName}>> provideInstanceProviders(
+    <#assign firstItem = true />
+    <#list parentType.children as child>
+        <#if child.typeName == typeName>
+        <#if firstItem><#assign firstItem = false/><#else>,</#if>Provider<${parentType.typeName}ChildProvider.${child.name?cap_first}RuleProvider> ${child.name}RuleProvider
+        </#if>
+    </#list>
+    ) {
+        Map<String, RuleProvider<${typeName}>> result = new HashMap<>();
+    <#list parentType.children as child>
+        <#if child.typeName == typeName>
+        result.put("${child.name}", ${child.name}RuleProvider.get());
+        </#if>
+    </#list>
+        return result;
+    }
 </#if>
 }

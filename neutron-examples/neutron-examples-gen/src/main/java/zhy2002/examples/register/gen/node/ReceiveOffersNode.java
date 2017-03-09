@@ -30,13 +30,18 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ReceiveOffersNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ReceiveOffersNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

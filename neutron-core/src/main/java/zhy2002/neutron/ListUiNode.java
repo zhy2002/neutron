@@ -117,10 +117,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     }
 
     @Override
-    protected void initializeChildren() {
-    }
-
-    @Override
     protected void addChild(UiNode<?> child) {
         super.addChild(child);
         child.setIndex(getItemCount() - 1);

@@ -31,7 +31,6 @@ public class CountryNodeRuleProvider implements RuleProvider<CountryNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

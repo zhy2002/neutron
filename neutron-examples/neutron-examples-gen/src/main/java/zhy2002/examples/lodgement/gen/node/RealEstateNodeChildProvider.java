@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface RealEstateNodeChildFactory {
@@ -45,6 +47,24 @@ public class RealEstateNodeChildProvider {
     protected void configureUsageNode(UsageNode node) {
     }
 
+    @UsageNodeScope
+    public static class UsageNodeRuleProvider implements RuleProvider<UsageNode> {
+
+        @Inject
+        public UsageNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UsageNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertyNode newPropertyNode(
         RealEstateNode parent,
         String name
@@ -55,6 +75,24 @@ public class RealEstateNodeChildProvider {
     protected void configurePropertyNode(PropertyNode node) {
     }
 
+    @PropertyNodeScope
+    public static class PropertyNodeRuleProvider implements RuleProvider<PropertyNode> {
+
+        @Inject
+        public PropertyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AccessNode newAccessNode(
         RealEstateNode parent,
         String name
@@ -63,6 +101,24 @@ public class RealEstateNodeChildProvider {
     }
 
     protected void configureAccessNode(AccessNode node) {
+    }
+
+    @AccessNodeScope
+    public static class AccessNodeRuleProvider implements RuleProvider<AccessNode> {
+
+        @Inject
+        public AccessNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     RealEstateNodeChildFactory createFactory(RealEstateNode parent) {

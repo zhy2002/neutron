@@ -31,13 +31,18 @@ public class AreaCodeNode extends PhoneInfoFieldNode {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<AreaCodeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public AreaCodeNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);

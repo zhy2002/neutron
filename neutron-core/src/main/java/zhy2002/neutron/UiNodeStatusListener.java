@@ -2,7 +2,7 @@ package zhy2002.neutron;
 
 import java.util.List;
 
-public interface UiNodeStatusListener {
+interface UiNodeStatusListener {
 
     /**
      * Called when rules are created.
@@ -11,7 +11,7 @@ public interface UiNodeStatusListener {
      */
     void postCreateRules(List<UiNodeRule<?>> createdRules);
 
-    void postAddToParent();
+    void exitAddToParent();
 
-    void postLoad();
+    void exitLoad();
 }

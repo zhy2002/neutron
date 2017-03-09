@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface UnemployedNodeChildFactory {
@@ -59,6 +61,24 @@ public class UnemployedNodeChildProvider {
     protected void configureUnemployedOnBenefitFlagNode(UnemployedOnBenefitFlagNode node) {
     }
 
+    @UnemployedOnBenefitFlagNodeScope
+    public static class UnemployedOnBenefitFlagNodeRuleProvider implements RuleProvider<UnemployedOnBenefitFlagNode> {
+
+        @Inject
+        public UnemployedOnBenefitFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UnemployedOnBenefitFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected StudentFlagNode newStudentFlagNode(
         UnemployedNode parent,
         String name
@@ -67,6 +87,24 @@ public class UnemployedNodeChildProvider {
     }
 
     protected void configureStudentFlagNode(StudentFlagNode node) {
+    }
+
+    @StudentFlagNodeScope
+    public static class StudentFlagNodeRuleProvider implements RuleProvider<StudentFlagNode> {
+
+        @Inject
+        public StudentFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(StudentFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected StudentTypeNode newStudentTypeNode(
@@ -79,6 +117,24 @@ public class UnemployedNodeChildProvider {
     protected void configureStudentTypeNode(StudentTypeNode node) {
     }
 
+    @StudentTypeNodeScope
+    public static class StudentTypeNodeRuleProvider implements RuleProvider<StudentTypeNode> {
+
+        @Inject
+        public StudentTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(StudentTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected HouseDutiesFlagNode newHouseDutiesFlagNode(
         UnemployedNode parent,
         String name
@@ -89,6 +145,24 @@ public class UnemployedNodeChildProvider {
     protected void configureHouseDutiesFlagNode(HouseDutiesFlagNode node) {
     }
 
+    @HouseDutiesFlagNodeScope
+    public static class HouseDutiesFlagNodeRuleProvider implements RuleProvider<HouseDutiesFlagNode> {
+
+        @Inject
+        public HouseDutiesFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(HouseDutiesFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected UnemployedSinceNode newUnemployedSinceNode(
         UnemployedNode parent,
         String name
@@ -97,6 +171,24 @@ public class UnemployedNodeChildProvider {
     }
 
     protected void configureUnemployedSinceNode(UnemployedSinceNode node) {
+    }
+
+    @UnemployedSinceNodeScope
+    public static class UnemployedSinceNodeRuleProvider implements RuleProvider<UnemployedSinceNode> {
+
+        @Inject
+        public UnemployedSinceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UnemployedSinceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     UnemployedNodeChildFactory createFactory(UnemployedNode parent) {

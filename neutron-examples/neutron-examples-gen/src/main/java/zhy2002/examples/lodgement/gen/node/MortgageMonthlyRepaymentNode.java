@@ -30,13 +30,18 @@ public class MortgageMonthlyRepaymentNode extends BaseCurrencyNode<ExistingMortg
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<MortgageMonthlyRepaymentNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public MortgageMonthlyRepaymentNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);

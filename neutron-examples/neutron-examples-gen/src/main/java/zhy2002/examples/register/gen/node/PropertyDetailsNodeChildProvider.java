@@ -1,8 +1,10 @@
 package zhy2002.examples.register.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.register.gen.di.*;
+import java.util.*;
 
 
 interface PropertyDetailsNodeChildFactory {
@@ -38,6 +40,24 @@ public class PropertyDetailsNodeChildProvider {
     protected void configurePropertyAddressNode(PropertyAddressNode node) {
     }
 
+    @PropertyAddressNodeScope
+    public static class PropertyAddressNodeRuleProvider implements RuleProvider<PropertyAddressNode> {
+
+        @Inject
+        public PropertyAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertyStateNode newPropertyStateNode(
         PropertyDetailsNode parent,
         String name
@@ -46,6 +66,24 @@ public class PropertyDetailsNodeChildProvider {
     }
 
     protected void configurePropertyStateNode(PropertyStateNode node) {
+    }
+
+    @PropertyStateNodeScope
+    public static class PropertyStateNodeRuleProvider implements RuleProvider<PropertyStateNode> {
+
+        @Inject
+        public PropertyStateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyStateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PropertyDetailsNodeChildFactory createFactory(PropertyDetailsNode parent) {

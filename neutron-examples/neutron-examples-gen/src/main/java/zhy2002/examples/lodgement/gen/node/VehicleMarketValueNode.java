@@ -30,13 +30,18 @@ public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<VehicleMarketValueNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public VehicleMarketValueNode(@NotNull MotorVehicleNode parent, String name) {
         super(parent, name);

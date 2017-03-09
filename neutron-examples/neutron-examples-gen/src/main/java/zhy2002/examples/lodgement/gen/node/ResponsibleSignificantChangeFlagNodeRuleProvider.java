@@ -33,7 +33,6 @@ public class ResponsibleSignificantChangeFlagNodeRuleProvider implements RulePro
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(responsibleSignificantChangeRuleProvider.get());
     }
 

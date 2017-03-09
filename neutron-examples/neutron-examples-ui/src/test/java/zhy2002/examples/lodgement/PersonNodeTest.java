@@ -5,11 +5,12 @@ import org.junit.Test;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
+import zhy2002.neutron.NodeStatusEnum;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PersonContactNodeTest {
+public class PersonNodeTest {
 
     private ApplicationNode applicationNode;
     private PersonNode personNode;
@@ -62,5 +63,14 @@ public class PersonContactNodeTest {
 
         legalActionNode.setValue("Yes");
         assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
+    }
+
+    @Test
+    public void employmentEndedNodeIsNotLoadedForCurrentEmployment() {
+        CurrentEmploymentNode currentEmploymentNode = personNode.getCurrentEmploymentListNode().createItem();
+        assertThat(currentEmploymentNode.getPayeEmployedNode().getEmploymentEndedNode().getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
+
+        PreviousEmploymentNode previousEmploymentNode = personNode.getPreviousEmploymentListNode().createItem();
+        assertThat(previousEmploymentNode.getSelfEmployedNode().getEmploymentEndedNode().getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
     }
 }

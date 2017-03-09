@@ -56,20 +56,10 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
 
     @Override
     protected void initializeState() {
-
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-
-    }
-
-    @Override
-    protected void initializeChildren() {
-    }
-
-    @Override
-    protected void uninitializeChildren() {
     }
 
     @Override

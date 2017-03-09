@@ -30,7 +30,6 @@ public class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(passwordIsStrongRuleProvider.get());
     }
 

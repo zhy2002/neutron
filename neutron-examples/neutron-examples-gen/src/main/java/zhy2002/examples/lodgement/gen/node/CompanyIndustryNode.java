@@ -31,13 +31,18 @@ public class CompanyIndustryNode extends StringUiNode<CompanyGeneralNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyIndustryNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyIndustryNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);

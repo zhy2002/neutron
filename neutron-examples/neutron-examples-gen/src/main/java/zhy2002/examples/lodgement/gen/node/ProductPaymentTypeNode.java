@@ -30,13 +30,18 @@ public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode>
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductPaymentTypeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductPaymentTypeNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);

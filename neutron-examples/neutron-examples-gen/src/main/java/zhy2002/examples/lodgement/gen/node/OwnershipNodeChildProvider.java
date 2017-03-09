@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface OwnershipNodeChildFactory {
@@ -45,6 +47,24 @@ public class OwnershipNodeChildProvider {
     protected void configureApplicantReferenceNode(ApplicantReferenceNode node) {
     }
 
+    @ApplicantReferenceNodeScope
+    public static class ApplicantReferenceNodeRuleProvider implements RuleProvider<ApplicantReferenceNode> {
+
+        @Inject
+        public ApplicantReferenceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ApplicantReferenceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OwnershipPercentageNode newOwnershipPercentageNode(
         OwnershipNode parent,
         String name
@@ -55,6 +75,24 @@ public class OwnershipNodeChildProvider {
     protected void configureOwnershipPercentageNode(OwnershipPercentageNode node) {
     }
 
+    @OwnershipPercentageNodeScope
+    public static class OwnershipPercentageNodeRuleProvider implements RuleProvider<OwnershipPercentageNode> {
+
+        @Inject
+        public OwnershipPercentageNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OwnershipPercentageNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AverageFlagNode newAverageFlagNode(
         OwnershipNode parent,
         String name
@@ -63,6 +101,24 @@ public class OwnershipNodeChildProvider {
     }
 
     protected void configureAverageFlagNode(AverageFlagNode node) {
+    }
+
+    @AverageFlagNodeScope
+    public static class AverageFlagNodeRuleProvider implements RuleProvider<AverageFlagNode> {
+
+        @Inject
+        public AverageFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AverageFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     OwnershipNodeChildFactory createFactory(OwnershipNode parent) {

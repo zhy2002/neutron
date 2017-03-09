@@ -32,7 +32,6 @@ public class RegisterNodeRuleProvider implements RuleProvider<RegisterNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(setHasErrorRuleProvider.get());
             createdRules.add(createErrorNodeRuleProvider.get());
     }

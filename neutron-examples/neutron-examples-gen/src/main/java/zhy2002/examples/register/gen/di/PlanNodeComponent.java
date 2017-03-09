@@ -2,12 +2,15 @@ package zhy2002.examples.register.gen.di;
 import dagger.Subcomponent;
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.node.*;
+import zhy2002.neutron.RuleProvider;
+import java.util.*;
 
 @PlanNodeScope
 @Subcomponent(modules = {PlanNodeModule.class})
 public interface PlanNodeComponent {
 
     PlanNodeRuleProvider getPlanNodeRuleProvider();
+    Map<String, RuleProvider<PlanNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

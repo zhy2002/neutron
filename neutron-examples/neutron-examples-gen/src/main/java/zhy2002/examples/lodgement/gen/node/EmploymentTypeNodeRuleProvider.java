@@ -34,7 +34,6 @@ public class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTy
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(employmentTypeChangedRuleProvider.get());
     }
 

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface EmploymentNodeChildFactory {
@@ -65,6 +67,24 @@ public class EmploymentNodeChildProvider {
     protected void configureEmploymentTypeNode(EmploymentTypeNode node) {
     }
 
+    @EmploymentTypeNodeScope
+    public static class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTypeNode> {
+
+        @Inject
+        public EmploymentTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmploymentTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PayeEmployedNode newPayeEmployedNode(
         EmploymentNode<?> parent,
         String name
@@ -73,6 +93,24 @@ public class EmploymentNodeChildProvider {
     }
 
     protected void configurePayeEmployedNode(PayeEmployedNode node) {
+    }
+
+    @PayeEmployedNodeScope
+    public static class PayeEmployedNodeRuleProvider implements RuleProvider<PayeEmployedNode> {
+
+        @Inject
+        public PayeEmployedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PayeEmployedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected SelfEmployedNode newSelfEmployedNode(
@@ -85,6 +123,24 @@ public class EmploymentNodeChildProvider {
     protected void configureSelfEmployedNode(SelfEmployedNode node) {
     }
 
+    @SelfEmployedNodeScope
+    public static class SelfEmployedNodeRuleProvider implements RuleProvider<SelfEmployedNode> {
+
+        @Inject
+        public SelfEmployedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SelfEmployedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected UnemployedNode newUnemployedNode(
         EmploymentNode<?> parent,
         String name
@@ -95,6 +151,24 @@ public class EmploymentNodeChildProvider {
     protected void configureUnemployedNode(UnemployedNode node) {
     }
 
+    @UnemployedNodeScope
+    public static class UnemployedNodeRuleProvider implements RuleProvider<UnemployedNode> {
+
+        @Inject
+        public UnemployedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UnemployedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected RetiredEmploymentNode newRetiredEmploymentNode(
         EmploymentNode<?> parent,
         String name
@@ -103,6 +177,24 @@ public class EmploymentNodeChildProvider {
     }
 
     protected void configureRetiredEmploymentNode(RetiredEmploymentNode node) {
+    }
+
+    @RetiredEmploymentNodeScope
+    public static class RetiredEmploymentNodeRuleProvider implements RuleProvider<RetiredEmploymentNode> {
+
+        @Inject
+        public RetiredEmploymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RetiredEmploymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     EmploymentNodeChildFactory createFactory(EmploymentNode<?> parent) {

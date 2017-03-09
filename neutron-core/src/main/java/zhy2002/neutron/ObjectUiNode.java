@@ -31,18 +31,28 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     }
 
     @Override
-    protected void initializeChildren() {
+    protected void addContent() {
         List<UiNode<?>> children = createChildren();
-        children.forEach(UiNode::addToParent);
         for (int i = 0; i < children.size(); i++) {
-            children.get(i).setIndex(i);
+            UiNode<?> child = children.get(i);
+            child.addToParent();
+            child.setIndex(i);
         }
-        children.forEach(node -> {
-            if (node.getLoadWithParent()) {
-                node.load();
-            }
-        });
+
+        super.addContent();
     }
+
+    @Override
+    protected void loadContent() {
+        for (UiNode<?> child : getChildren()) {
+            if (child.getLoadWithParent()) {
+                child.load();
+            }
+        }
+
+        super.loadContent();
+    }
+
 
     protected
     @NotNull

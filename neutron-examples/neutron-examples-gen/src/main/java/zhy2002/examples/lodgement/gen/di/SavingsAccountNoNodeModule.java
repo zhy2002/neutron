@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class SavingsAccountNoNodeModule {
@@ -35,4 +37,12 @@ public class SavingsAccountNoNodeModule {
         return owner.getParent();
     }
 
+    @Provides @SavingsAccountNoNodeScope
+    Map<String, RuleProvider<SavingsAccountNoNode>> provideInstanceProviders(
+        Provider<SavingsAccountNodeChildProvider.SavingsAccountNoNodeRuleProvider> savingsAccountNoNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<SavingsAccountNoNode>> result = new HashMap<>();
+        result.put("savingsAccountNoNode", savingsAccountNoNodeRuleProvider.get());
+        return result;
+    }
 }

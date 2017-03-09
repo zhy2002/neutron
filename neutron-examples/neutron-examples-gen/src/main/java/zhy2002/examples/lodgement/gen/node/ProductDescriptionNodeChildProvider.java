@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ProductDescriptionNodeChildFactory {
@@ -129,6 +131,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductGroupNode(ProductGroupNode node) {
     }
 
+    @ProductGroupNodeScope
+    public static class ProductGroupNodeRuleProvider implements RuleProvider<ProductGroupNode> {
+
+        @Inject
+        public ProductGroupNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductGroupNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductNameNode newProductNameNode(
         ProductDescriptionNode parent,
         String name
@@ -137,6 +157,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductNameNode(ProductNameNode node) {
+    }
+
+    @ProductNameNodeScope
+    public static class ProductNameNodeRuleProvider implements RuleProvider<ProductNameNode> {
+
+        @Inject
+        public ProductNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductLoanPrimaryPurposeNode newProductLoanPrimaryPurposeNode(
@@ -149,6 +187,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductLoanPrimaryPurposeNode(ProductLoanPrimaryPurposeNode node) {
     }
 
+    @ProductLoanPrimaryPurposeNodeScope
+    public static class ProductLoanPrimaryPurposeNodeRuleProvider implements RuleProvider<ProductLoanPrimaryPurposeNode> {
+
+        @Inject
+        public ProductLoanPrimaryPurposeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductLoanPrimaryPurposeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductLendingPurposeNode newProductLendingPurposeNode(
         ProductDescriptionNode parent,
         String name
@@ -157,6 +213,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductLendingPurposeNode(ProductLendingPurposeNode node) {
+    }
+
+    @ProductLendingPurposeNodeScope
+    public static class ProductLendingPurposeNodeRuleProvider implements RuleProvider<ProductLendingPurposeNode> {
+
+        @Inject
+        public ProductLendingPurposeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductLendingPurposeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductRequestedAmountNode newProductRequestedAmountNode(
@@ -169,6 +243,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductRequestedAmountNode(ProductRequestedAmountNode node) {
     }
 
+    @ProductRequestedAmountNodeScope
+    public static class ProductRequestedAmountNodeRuleProvider implements RuleProvider<ProductRequestedAmountNode> {
+
+        @Inject
+        public ProductRequestedAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductRequestedAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductTotalLoanTermNode newProductTotalLoanTermNode(
         ProductDescriptionNode parent,
         String name
@@ -177,6 +269,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductTotalLoanTermNode(ProductTotalLoanTermNode node) {
+    }
+
+    @ProductTotalLoanTermNodeScope
+    public static class ProductTotalLoanTermNodeRuleProvider implements RuleProvider<ProductTotalLoanTermNode> {
+
+        @Inject
+        public ProductTotalLoanTermNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTotalLoanTermNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductPaymentTypeNode newProductPaymentTypeNode(
@@ -189,6 +299,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductPaymentTypeNode(ProductPaymentTypeNode node) {
     }
 
+    @ProductPaymentTypeNodeScope
+    public static class ProductPaymentTypeNodeRuleProvider implements RuleProvider<ProductPaymentTypeNode> {
+
+        @Inject
+        public ProductPaymentTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductPaymentTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductInterestOnlyTermNode newProductInterestOnlyTermNode(
         ProductDescriptionNode parent,
         String name
@@ -197,6 +325,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductInterestOnlyTermNode(ProductInterestOnlyTermNode node) {
+    }
+
+    @ProductInterestOnlyTermNodeScope
+    public static class ProductInterestOnlyTermNodeRuleProvider implements RuleProvider<ProductInterestOnlyTermNode> {
+
+        @Inject
+        public ProductInterestOnlyTermNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductInterestOnlyTermNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductFixedTermNode newProductFixedTermNode(
@@ -209,6 +355,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductFixedTermNode(ProductFixedTermNode node) {
     }
 
+    @ProductFixedTermNodeScope
+    public static class ProductFixedTermNodeRuleProvider implements RuleProvider<ProductFixedTermNode> {
+
+        @Inject
+        public ProductFixedTermNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductFixedTermNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductConstructionApplicationFlagNode newProductConstructionApplicationFlagNode(
         ProductDescriptionNode parent,
         String name
@@ -217,6 +381,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductConstructionApplicationFlagNode(ProductConstructionApplicationFlagNode node) {
+    }
+
+    @ProductConstructionApplicationFlagNodeScope
+    public static class ProductConstructionApplicationFlagNodeRuleProvider implements RuleProvider<ProductConstructionApplicationFlagNode> {
+
+        @Inject
+        public ProductConstructionApplicationFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductConstructionApplicationFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductCostRecuctionFlagNode newProductCostRecuctionFlagNode(
@@ -229,6 +411,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductCostRecuctionFlagNode(ProductCostRecuctionFlagNode node) {
     }
 
+    @ProductCostRecuctionFlagNodeScope
+    public static class ProductCostRecuctionFlagNodeRuleProvider implements RuleProvider<ProductCostRecuctionFlagNode> {
+
+        @Inject
+        public ProductCostRecuctionFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCostRecuctionFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductConsolidationFlagNode newProductConsolidationFlagNode(
         ProductDescriptionNode parent,
         String name
@@ -237,6 +437,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductConsolidationFlagNode(ProductConsolidationFlagNode node) {
+    }
+
+    @ProductConsolidationFlagNodeScope
+    public static class ProductConsolidationFlagNodeRuleProvider implements RuleProvider<ProductConsolidationFlagNode> {
+
+        @Inject
+        public ProductConsolidationFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductConsolidationFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductDissatisfactionFlagNode newProductDissatisfactionFlagNode(
@@ -249,6 +467,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductDissatisfactionFlagNode(ProductDissatisfactionFlagNode node) {
     }
 
+    @ProductDissatisfactionFlagNodeScope
+    public static class ProductDissatisfactionFlagNodeRuleProvider implements RuleProvider<ProductDissatisfactionFlagNode> {
+
+        @Inject
+        public ProductDissatisfactionFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductDissatisfactionFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductSpecificFeaturesFlagNode newProductSpecificFeaturesFlagNode(
         ProductDescriptionNode parent,
         String name
@@ -259,6 +495,24 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductSpecificFeaturesFlagNode(ProductSpecificFeaturesFlagNode node) {
     }
 
+    @ProductSpecificFeaturesFlagNodeScope
+    public static class ProductSpecificFeaturesFlagNodeRuleProvider implements RuleProvider<ProductSpecificFeaturesFlagNode> {
+
+        @Inject
+        public ProductSpecificFeaturesFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductSpecificFeaturesFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductAccountHolderListNode newProductAccountHolderListNode(
         ProductDescriptionNode parent,
         String name
@@ -267,6 +521,24 @@ public class ProductDescriptionNodeChildProvider {
     }
 
     protected void configureProductAccountHolderListNode(ProductAccountHolderListNode node) {
+    }
+
+    @ProductAccountHolderListNodeScope
+    public static class ProductAccountHolderListNodeRuleProvider implements RuleProvider<ProductAccountHolderListNode> {
+
+        @Inject
+        public ProductAccountHolderListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductAccountHolderListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ProductDescriptionNodeChildFactory createFactory(ProductDescriptionNode parent) {

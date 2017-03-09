@@ -30,7 +30,6 @@ public class PersonContactNodeRuleProvider implements RuleProvider<PersonContact
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(homeOrWorkPhoneRequiredRuleProvider.get());
     }
 

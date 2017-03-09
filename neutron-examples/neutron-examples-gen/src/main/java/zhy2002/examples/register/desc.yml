@@ -16,7 +16,10 @@ rootType:
   - {typeName: ReceiveOffersNode}
   - {typeName: OwnInvestmentPropertyNode}
   - {typeName: PropertyDetailsNode, name: residentialPropertyNode}
-  - {typeName: PropertyDetailsNode, name: investmentPropertyNode}
+  - typeName: PropertyDetailsNode
+    name: investmentPropertyNode
+    init:
+    - {propertyName: loadWithParent, value: 'false'}
   - {typeName: PhoneInfoNode, name: homePhoneNode}
   - {typeName: ErrorListNode}
 

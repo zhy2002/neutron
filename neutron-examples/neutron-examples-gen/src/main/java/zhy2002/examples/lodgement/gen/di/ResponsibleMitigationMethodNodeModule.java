@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class ResponsibleMitigationMethodNodeModule {
@@ -35,4 +37,12 @@ public class ResponsibleMitigationMethodNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ResponsibleMitigationMethodNodeScope
+    Map<String, RuleProvider<ResponsibleMitigationMethodNode>> provideInstanceProviders(
+        Provider<BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider> responsibleMitigationMethodNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<ResponsibleMitigationMethodNode>> result = new HashMap<>();
+        result.put("responsibleMitigationMethodNode", responsibleMitigationMethodNodeRuleProvider.get());
+        return result;
+    }
 }

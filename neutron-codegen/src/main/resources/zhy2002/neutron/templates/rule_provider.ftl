@@ -48,7 +48,6 @@ public class ${typeName}RuleProvider implements RuleProvider<${genericTypeName}>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
         <#if rules??>
             <#list rules as rule>
             createdRules.add(${rule.typeName?uncap_first}Provider.get());

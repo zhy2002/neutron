@@ -31,13 +31,18 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<AccountHolderReferenceNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public AccountHolderReferenceNode(@NotNull SelectAccountHolderNode parent, String name) {
         super(parent, name);

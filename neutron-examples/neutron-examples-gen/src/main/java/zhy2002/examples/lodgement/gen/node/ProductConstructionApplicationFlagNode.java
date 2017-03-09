@@ -30,13 +30,18 @@ public class ProductConstructionApplicationFlagNode extends BooleanUiNode<Produc
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductConstructionApplicationFlagNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductConstructionApplicationFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);

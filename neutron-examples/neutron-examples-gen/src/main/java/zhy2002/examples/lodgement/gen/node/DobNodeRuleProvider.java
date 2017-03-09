@@ -34,7 +34,6 @@ public class DobNodeRuleProvider implements RuleProvider<DobNode<?>> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(dobRangeValidationRuleProvider.get());
     }
 

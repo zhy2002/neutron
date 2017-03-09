@@ -31,13 +31,18 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProfitThisYearNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProfitThisYearNode(@NotNull SelfEmployedNode parent, String name) {
         super(parent, name);

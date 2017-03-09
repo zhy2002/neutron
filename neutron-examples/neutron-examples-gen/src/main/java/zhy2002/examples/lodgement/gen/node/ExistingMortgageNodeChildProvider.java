@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ExistingMortgageNodeChildFactory {
@@ -115,6 +117,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLenderInstitutionNode(MortgageLenderInstitutionNode node) {
     }
 
+    @MortgageLenderInstitutionNodeScope
+    public static class MortgageLenderInstitutionNodeRuleProvider implements RuleProvider<MortgageLenderInstitutionNode> {
+
+        @Inject
+        public MortgageLenderInstitutionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageLenderInstitutionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgqageUnpaidBalanceNode newMortgqageUnpaidBalanceNode(
         ExistingMortgageNode parent,
         String name
@@ -123,6 +143,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgqageUnpaidBalanceNode(MortgqageUnpaidBalanceNode node) {
+    }
+
+    @MortgqageUnpaidBalanceNodeScope
+    public static class MortgqageUnpaidBalanceNodeRuleProvider implements RuleProvider<MortgqageUnpaidBalanceNode> {
+
+        @Inject
+        public MortgqageUnpaidBalanceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgqageUnpaidBalanceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MortgageLimitAmountNode newMortgageLimitAmountNode(
@@ -135,6 +173,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLimitAmountNode(MortgageLimitAmountNode node) {
     }
 
+    @MortgageLimitAmountNodeScope
+    public static class MortgageLimitAmountNodeRuleProvider implements RuleProvider<MortgageLimitAmountNode> {
+
+        @Inject
+        public MortgageLimitAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageLimitAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageMonthlyRepaymentNode newMortgageMonthlyRepaymentNode(
         ExistingMortgageNode parent,
         String name
@@ -143,6 +199,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgageMonthlyRepaymentNode(MortgageMonthlyRepaymentNode node) {
+    }
+
+    @MortgageMonthlyRepaymentNodeScope
+    public static class MortgageMonthlyRepaymentNodeRuleProvider implements RuleProvider<MortgageMonthlyRepaymentNode> {
+
+        @Inject
+        public MortgageMonthlyRepaymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageMonthlyRepaymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MortgageBorrowerRateNode newMortgageBorrowerRateNode(
@@ -155,6 +229,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageBorrowerRateNode(MortgageBorrowerRateNode node) {
     }
 
+    @MortgageBorrowerRateNodeScope
+    public static class MortgageBorrowerRateNodeRuleProvider implements RuleProvider<MortgageBorrowerRateNode> {
+
+        @Inject
+        public MortgageBorrowerRateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageBorrowerRateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageLoanTypeNode newMortgageLoanTypeNode(
         ExistingMortgageNode parent,
         String name
@@ -163,6 +255,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgageLoanTypeNode(MortgageLoanTypeNode node) {
+    }
+
+    @MortgageLoanTypeNodeScope
+    public static class MortgageLoanTypeNodeRuleProvider implements RuleProvider<MortgageLoanTypeNode> {
+
+        @Inject
+        public MortgageLoanTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageLoanTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MortgageLoanTermExpiryDateNode newMortgageLoanTermExpiryDateNode(
@@ -175,6 +285,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLoanTermExpiryDateNode(MortgageLoanTermExpiryDateNode node) {
     }
 
+    @MortgageLoanTermExpiryDateNodeScope
+    public static class MortgageLoanTermExpiryDateNodeRuleProvider implements RuleProvider<MortgageLoanTermExpiryDateNode> {
+
+        @Inject
+        public MortgageLoanTermExpiryDateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageLoanTermExpiryDateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageInterestOnlyExpiryDateNode newMortgageInterestOnlyExpiryDateNode(
         ExistingMortgageNode parent,
         String name
@@ -183,6 +311,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgageInterestOnlyExpiryDateNode(MortgageInterestOnlyExpiryDateNode node) {
+    }
+
+    @MortgageInterestOnlyExpiryDateNodeScope
+    public static class MortgageInterestOnlyExpiryDateNodeRuleProvider implements RuleProvider<MortgageInterestOnlyExpiryDateNode> {
+
+        @Inject
+        public MortgageInterestOnlyExpiryDateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageInterestOnlyExpiryDateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MortgageClearingFlagNode newMortgageClearingFlagNode(
@@ -195,6 +341,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageClearingFlagNode(MortgageClearingFlagNode node) {
     }
 
+    @MortgageClearingFlagNodeScope
+    public static class MortgageClearingFlagNodeRuleProvider implements RuleProvider<MortgageClearingFlagNode> {
+
+        @Inject
+        public MortgageClearingFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageClearingFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageBreakFeeNode newMortgageBreakFeeNode(
         ExistingMortgageNode parent,
         String name
@@ -203,6 +367,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgageBreakFeeNode(MortgageBreakFeeNode node) {
+    }
+
+    @MortgageBreakFeeNodeScope
+    public static class MortgageBreakFeeNodeRuleProvider implements RuleProvider<MortgageBreakFeeNode> {
+
+        @Inject
+        public MortgageBreakFeeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageBreakFeeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MortgageChargePositionNode newMortgageChargePositionNode(
@@ -215,6 +397,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageChargePositionNode(MortgageChargePositionNode node) {
     }
 
+    @MortgageChargePositionNodeScope
+    public static class MortgageChargePositionNodeRuleProvider implements RuleProvider<MortgageChargePositionNode> {
+
+        @Inject
+        public MortgageChargePositionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageChargePositionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageTermRemainingPeriodNode newMortgageTermRemainingPeriodNode(
         ExistingMortgageNode parent,
         String name
@@ -225,6 +425,24 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageTermRemainingPeriodNode(MortgageTermRemainingPeriodNode node) {
     }
 
+    @MortgageTermRemainingPeriodNodeScope
+    public static class MortgageTermRemainingPeriodNodeRuleProvider implements RuleProvider<MortgageTermRemainingPeriodNode> {
+
+        @Inject
+        public MortgageTermRemainingPeriodNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageTermRemainingPeriodNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MortgageInterestOnlyRemainingPeriodNode newMortgageInterestOnlyRemainingPeriodNode(
         ExistingMortgageNode parent,
         String name
@@ -233,6 +451,24 @@ public class ExistingMortgageNodeChildProvider {
     }
 
     protected void configureMortgageInterestOnlyRemainingPeriodNode(MortgageInterestOnlyRemainingPeriodNode node) {
+    }
+
+    @MortgageInterestOnlyRemainingPeriodNodeScope
+    public static class MortgageInterestOnlyRemainingPeriodNodeRuleProvider implements RuleProvider<MortgageInterestOnlyRemainingPeriodNode> {
+
+        @Inject
+        public MortgageInterestOnlyRemainingPeriodNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MortgageInterestOnlyRemainingPeriodNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ExistingMortgageNodeChildFactory createFactory(ExistingMortgageNode parent) {

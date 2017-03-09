@@ -30,13 +30,18 @@ public class CompanyPrivacyNode extends BasePrivacyNode<CompanyNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyPrivacyNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyPrivacyNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);

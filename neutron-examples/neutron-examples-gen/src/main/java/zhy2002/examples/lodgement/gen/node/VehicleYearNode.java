@@ -30,13 +30,18 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<VehicleYearNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public VehicleYearNode(@NotNull MotorVehicleNode parent, String name) {
         super(parent, name);

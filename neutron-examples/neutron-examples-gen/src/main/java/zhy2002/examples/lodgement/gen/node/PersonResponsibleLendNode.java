@@ -30,13 +30,18 @@ public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNod
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PersonResponsibleLendNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PersonResponsibleLendNode(@NotNull PersonNode parent, String name) {
         super(parent, name);

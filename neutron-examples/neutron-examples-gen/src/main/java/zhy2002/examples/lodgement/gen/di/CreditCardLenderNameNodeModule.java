@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class CreditCardLenderNameNodeModule {
@@ -35,4 +37,12 @@ public class CreditCardLenderNameNodeModule {
         return owner.getParent();
     }
 
+    @Provides @CreditCardLenderNameNodeScope
+    Map<String, RuleProvider<CreditCardLenderNameNode>> provideInstanceProviders(
+        Provider<CreditCardNodeChildProvider.CreditCardLenderNameNodeRuleProvider> creditCardLenderNameNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<CreditCardLenderNameNode>> result = new HashMap<>();
+        result.put("creditCardLenderNameNode", creditCardLenderNameNodeRuleProvider.get());
+        return result;
+    }
 }

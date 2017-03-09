@@ -12,12 +12,12 @@ public class NopUiNodeStatusListener implements UiNodeStatusListener {
     }
 
     @Override
-    public void postAddToParent() {
+    public void exitAddToParent() {
 
     }
 
     @Override
-    public void postLoad() {
+    public void exitLoad() {
 
     }
 }

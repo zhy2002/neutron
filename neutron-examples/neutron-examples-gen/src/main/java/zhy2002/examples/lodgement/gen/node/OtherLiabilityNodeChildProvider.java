@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface OtherLiabilityNodeChildFactory {
@@ -73,6 +75,24 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityTypeNode(OtherLiabilityTypeNode node) {
     }
 
+    @OtherLiabilityTypeNodeScope
+    public static class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLiabilityTypeNode> {
+
+        @Inject
+        public OtherLiabilityTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherLiabilityDescriptionNode newOtherLiabilityDescriptionNode(
         OtherLiabilityNode parent,
         String name
@@ -81,6 +101,24 @@ public class OtherLiabilityNodeChildProvider {
     }
 
     protected void configureOtherLiabilityDescriptionNode(OtherLiabilityDescriptionNode node) {
+    }
+
+    @OtherLiabilityDescriptionNodeScope
+    public static class OtherLiabilityDescriptionNodeRuleProvider implements RuleProvider<OtherLiabilityDescriptionNode> {
+
+        @Inject
+        public OtherLiabilityDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected OtherLiabilityLimitAmountNode newOtherLiabilityLimitAmountNode(
@@ -93,6 +131,24 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityLimitAmountNode(OtherLiabilityLimitAmountNode node) {
     }
 
+    @OtherLiabilityLimitAmountNodeScope
+    public static class OtherLiabilityLimitAmountNodeRuleProvider implements RuleProvider<OtherLiabilityLimitAmountNode> {
+
+        @Inject
+        public OtherLiabilityLimitAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityLimitAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherLiabilityAmountOwningNode newOtherLiabilityAmountOwningNode(
         OtherLiabilityNode parent,
         String name
@@ -101,6 +157,24 @@ public class OtherLiabilityNodeChildProvider {
     }
 
     protected void configureOtherLiabilityAmountOwningNode(OtherLiabilityAmountOwningNode node) {
+    }
+
+    @OtherLiabilityAmountOwningNodeScope
+    public static class OtherLiabilityAmountOwningNodeRuleProvider implements RuleProvider<OtherLiabilityAmountOwningNode> {
+
+        @Inject
+        public OtherLiabilityAmountOwningNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityAmountOwningNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected OtherLiabilityMonthlyRepaymentNode newOtherLiabilityMonthlyRepaymentNode(
@@ -113,6 +187,24 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityMonthlyRepaymentNode(OtherLiabilityMonthlyRepaymentNode node) {
     }
 
+    @OtherLiabilityMonthlyRepaymentNodeScope
+    public static class OtherLiabilityMonthlyRepaymentNodeRuleProvider implements RuleProvider<OtherLiabilityMonthlyRepaymentNode> {
+
+        @Inject
+        public OtherLiabilityMonthlyRepaymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityMonthlyRepaymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherLiabilityClearingFlagNode newOtherLiabilityClearingFlagNode(
         OtherLiabilityNode parent,
         String name
@@ -123,6 +215,24 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityClearingFlagNode(OtherLiabilityClearingFlagNode node) {
     }
 
+    @OtherLiabilityClearingFlagNodeScope
+    public static class OtherLiabilityClearingFlagNodeRuleProvider implements RuleProvider<OtherLiabilityClearingFlagNode> {
+
+        @Inject
+        public OtherLiabilityClearingFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityClearingFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherLiabilityBreakCostNode newOtherLiabilityBreakCostNode(
         OtherLiabilityNode parent,
         String name
@@ -131,6 +241,24 @@ public class OtherLiabilityNodeChildProvider {
     }
 
     protected void configureOtherLiabilityBreakCostNode(OtherLiabilityBreakCostNode node) {
+    }
+
+    @OtherLiabilityBreakCostNodeScope
+    public static class OtherLiabilityBreakCostNodeRuleProvider implements RuleProvider<OtherLiabilityBreakCostNode> {
+
+        @Inject
+        public OtherLiabilityBreakCostNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityBreakCostNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     OtherLiabilityNodeChildFactory createFactory(OtherLiabilityNode parent) {

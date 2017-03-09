@@ -30,7 +30,6 @@ public class PhoneInfoNodeRuleProvider implements RuleProvider<PhoneInfoNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(phoneInfoAllOrNothingRuleProvider.get());
     }
 

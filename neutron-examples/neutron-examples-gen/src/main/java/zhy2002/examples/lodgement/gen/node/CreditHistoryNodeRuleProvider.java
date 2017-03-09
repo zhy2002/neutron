@@ -28,7 +28,6 @@ public class CreditHistoryNodeRuleProvider implements RuleProvider<CreditHistory
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

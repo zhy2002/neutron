@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class PostcodeNodeModule {
@@ -35,4 +37,12 @@ public class PostcodeNodeModule {
         return owner.getParent();
     }
 
+    @Provides @PostcodeNodeScope
+    Map<String, RuleProvider<PostcodeNode>> provideInstanceProviders(
+        Provider<AddressNodeChildProvider.PostcodeNodeRuleProvider> postcodeNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<PostcodeNode>> result = new HashMap<>();
+        result.put("postcodeNode", postcodeNodeRuleProvider.get());
+        return result;
+    }
 }

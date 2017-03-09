@@ -3,10 +3,7 @@ package zhy2002.examples.lodgement.rule;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.event.PersonNodeAddEvent;
 import zhy2002.examples.lodgement.gen.rule.AddNewPersonApplicantRule;
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.NodeAddEventBinding;
-import zhy2002.neutron.NopUiNodeStatusListener;
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
@@ -45,12 +42,19 @@ public class AddNewPersonApplicantRuleImpl extends AddNewPersonApplicantRule {
     private void importApplicant(PersonNodeAddEvent addEvent) {
         OwnershipNode ownershipNode = getOwnershipListNode().createItem();
 
-        ownershipNode.setStatusListener(new NopUiNodeStatusListener() {
+        class Config extends UiNodeConfig<OwnershipNode> {
+
+            private Config(OwnershipNode owner) {
+                super(owner);
+            }
+
             @Override
-            public void postLoad() {
+            public void exitLoad() {
                 ownershipNode.getApplicantReferenceNode().setValue(addEvent.getOrigin().getPath());
             }
-        });
+        }
+
+        new Config(ownershipNode);
     }
 }
 

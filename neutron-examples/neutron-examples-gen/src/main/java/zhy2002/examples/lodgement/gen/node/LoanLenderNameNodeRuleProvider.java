@@ -28,7 +28,6 @@ public class LoanLenderNameNodeRuleProvider implements RuleProvider<LoanLenderNa
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

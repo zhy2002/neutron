@@ -34,7 +34,6 @@ public class SelectRelatedPersonListNodeRuleProvider implements RuleProvider<Sel
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(addExistingPeopleRuleProvider.get());
             createdRules.add(addNewPersonRuleProvider.get());
             createdRules.add(addNewThirdPartyApplicantRuleProvider.get());

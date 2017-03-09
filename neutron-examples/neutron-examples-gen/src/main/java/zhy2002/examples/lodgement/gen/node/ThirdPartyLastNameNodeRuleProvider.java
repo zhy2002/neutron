@@ -28,7 +28,6 @@ public class ThirdPartyLastNameNodeRuleProvider implements RuleProvider<ThirdPar
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

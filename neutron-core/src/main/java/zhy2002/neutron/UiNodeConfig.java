@@ -15,7 +15,11 @@ public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeStatusL
 
     public UiNodeConfig(N owner) {
         this.owner = owner;
-        owner.setStatusListener(this);
+        owner.addStatusListener(this);
+    }
+
+    public void dispose() {
+        owner.removeStatusListener(this);
     }
 
     public N getOwner() {
@@ -23,7 +27,7 @@ public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeStatusL
     }
 
     @Override
-    public void postAddToParent() {
+    public void exitAddToParent() {
     }
 
     @Override
@@ -31,7 +35,7 @@ public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeStatusL
     }
 
     @Override
-    public void postLoad() {
+    public void exitLoad() {
     }
 
 }

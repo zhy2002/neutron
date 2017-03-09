@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface EmployedNodeChildFactory {
@@ -73,6 +75,24 @@ public class EmployedNodeChildProvider {
     protected void configureEmploymentStatusNode(EmploymentStatusNode node) {
     }
 
+    @EmploymentStatusNodeScope
+    public static class EmploymentStatusNodeRuleProvider implements RuleProvider<EmploymentStatusNode> {
+
+        @Inject
+        public EmploymentStatusNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmploymentStatusNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OccupationNode newOccupationNode(
         EmployedNode parent,
         String name
@@ -81,6 +101,24 @@ public class EmployedNodeChildProvider {
     }
 
     protected void configureOccupationNode(OccupationNode node) {
+    }
+
+    @OccupationNodeScope
+    public static class OccupationNodeRuleProvider implements RuleProvider<OccupationNode> {
+
+        @Inject
+        public OccupationNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OccupationNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected EmployerNameNode newEmployerNameNode(
@@ -93,6 +131,24 @@ public class EmployedNodeChildProvider {
     protected void configureEmployerNameNode(EmployerNameNode node) {
     }
 
+    @EmployerNameNodeScope
+    public static class EmployerNameNodeRuleProvider implements RuleProvider<EmployerNameNode> {
+
+        @Inject
+        public EmployerNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmployerNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected EmployerAddressNode newEmployerAddressNode(
         EmployedNode parent,
         String name
@@ -101,6 +157,24 @@ public class EmployedNodeChildProvider {
     }
 
     protected void configureEmployerAddressNode(EmployerAddressNode node) {
+    }
+
+    @EmployerAddressNodeScope
+    public static class EmployerAddressNodeRuleProvider implements RuleProvider<EmployerAddressNode> {
+
+        @Inject
+        public EmployerAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmployerAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected EmployerPhoneNode newEmployerPhoneNode(
@@ -113,6 +187,24 @@ public class EmployedNodeChildProvider {
     protected void configureEmployerPhoneNode(EmployerPhoneNode node) {
     }
 
+    @EmployerPhoneNodeScope
+    public static class EmployerPhoneNodeRuleProvider implements RuleProvider<EmployerPhoneNode> {
+
+        @Inject
+        public EmployerPhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmployerPhoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected EmploymentStartedNode newEmploymentStartedNode(
         EmployedNode parent,
         String name
@@ -123,6 +215,24 @@ public class EmployedNodeChildProvider {
     protected void configureEmploymentStartedNode(EmploymentStartedNode node) {
     }
 
+    @EmploymentStartedNodeScope
+    public static class EmploymentStartedNodeRuleProvider implements RuleProvider<EmploymentStartedNode> {
+
+        @Inject
+        public EmploymentStartedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmploymentStartedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected EmploymentEndedNode newEmploymentEndedNode(
         EmployedNode parent,
         String name
@@ -131,6 +241,24 @@ public class EmployedNodeChildProvider {
     }
 
     protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
+    }
+
+    @EmploymentEndedNodeScope
+    public static class EmploymentEndedNodeRuleProvider implements RuleProvider<EmploymentEndedNode> {
+
+        @Inject
+        public EmploymentEndedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmploymentEndedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     EmployedNodeChildFactory createFactory(EmployedNode parent) {

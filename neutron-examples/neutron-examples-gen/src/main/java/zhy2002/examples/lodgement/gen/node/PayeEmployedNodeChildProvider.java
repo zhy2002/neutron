@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface PayeEmployedNodeChildFactory {
@@ -29,6 +31,24 @@ public class PayeEmployedNodeChildProvider {
     }
 
     protected void configureGrossYearlySalaryNode(GrossYearlySalaryNode node) {
+    }
+
+    @GrossYearlySalaryNodeScope
+    public static class GrossYearlySalaryNodeRuleProvider implements RuleProvider<GrossYearlySalaryNode> {
+
+        @Inject
+        public GrossYearlySalaryNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(GrossYearlySalaryNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PayeEmployedNodeChildFactory createFactory(PayeEmployedNode parent) {

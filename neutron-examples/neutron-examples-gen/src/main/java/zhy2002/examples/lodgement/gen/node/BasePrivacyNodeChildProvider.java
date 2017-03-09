@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface BasePrivacyNodeChildFactory {
@@ -52,6 +54,24 @@ public class BasePrivacyNodeChildProvider {
     protected void configureCreditCheckFlagNode(CreditCheckFlagNode node) {
     }
 
+    @CreditCheckFlagNodeScope
+    public static class CreditCheckFlagNodeRuleProvider implements RuleProvider<CreditCheckFlagNode> {
+
+        @Inject
+        public CreditCheckFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCheckFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyDisclosureFlagNode newThirdPartyDisclosureFlagNode(
         BasePrivacyNode<?> parent,
         String name
@@ -60,6 +80,24 @@ public class BasePrivacyNodeChildProvider {
     }
 
     protected void configureThirdPartyDisclosureFlagNode(ThirdPartyDisclosureFlagNode node) {
+    }
+
+    @ThirdPartyDisclosureFlagNodeScope
+    public static class ThirdPartyDisclosureFlagNodeRuleProvider implements RuleProvider<ThirdPartyDisclosureFlagNode> {
+
+        @Inject
+        public ThirdPartyDisclosureFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyDisclosureFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected LegalActionNode newLegalActionNode(
@@ -72,6 +110,24 @@ public class BasePrivacyNodeChildProvider {
     protected void configureLegalActionNode(LegalActionNode node) {
     }
 
+    @LegalActionNodeScope
+    public static class LegalActionNodeRuleProvider implements RuleProvider<LegalActionNode> {
+
+        @Inject
+        public LegalActionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LegalActionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CreditHistoryListNode newCreditHistoryListNode(
         BasePrivacyNode<?> parent,
         String name
@@ -80,6 +136,24 @@ public class BasePrivacyNodeChildProvider {
     }
 
     protected void configureCreditHistoryListNode(CreditHistoryListNode node) {
+    }
+
+    @CreditHistoryListNodeScope
+    public static class CreditHistoryListNodeRuleProvider implements RuleProvider<CreditHistoryListNode> {
+
+        @Inject
+        public CreditHistoryListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditHistoryListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     BasePrivacyNodeChildFactory createFactory(BasePrivacyNode<?> parent) {

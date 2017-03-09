@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ProductNodeChildFactory {
@@ -38,6 +40,24 @@ public class ProductNodeChildProvider {
     protected void configureProductDescriptionNode(ProductDescriptionNode node) {
     }
 
+    @ProductDescriptionNodeScope
+    public static class ProductDescriptionNodeRuleProvider implements RuleProvider<ProductDescriptionNode> {
+
+        @Inject
+        public ProductDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductFeaturesNode newProductFeaturesNode(
         ProductNode parent,
         String name
@@ -46,6 +66,24 @@ public class ProductNodeChildProvider {
     }
 
     protected void configureProductFeaturesNode(ProductFeaturesNode node) {
+    }
+
+    @ProductFeaturesNodeScope
+    public static class ProductFeaturesNodeRuleProvider implements RuleProvider<ProductFeaturesNode> {
+
+        @Inject
+        public ProductFeaturesNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductFeaturesNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ProductNodeChildFactory createFactory(ProductNode parent) {

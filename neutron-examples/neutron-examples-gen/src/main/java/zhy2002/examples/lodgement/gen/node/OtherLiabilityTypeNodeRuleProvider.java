@@ -31,7 +31,6 @@ public class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLia
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

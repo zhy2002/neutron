@@ -16,6 +16,7 @@ public class ApplicationNodeConstants {
     public static final String TOTAL_OWNERSHIP = "total_ownership";
     public static final String CURRENCY_INFO = "currency_info";
     public static final String SUFFIX_SYMBOL = "suffix_symbol";
+    public static final String CURRENT_RECORD = "current_record";
     public static final String FOCUS = "focus";
     public static final String MIN_AGE = "min_age";
     public static final String MAX_AGE = "max_age";

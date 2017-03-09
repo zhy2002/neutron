@@ -28,7 +28,6 @@ public class UnemployedNodeRuleProvider implements RuleProvider<UnemployedNode> 
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

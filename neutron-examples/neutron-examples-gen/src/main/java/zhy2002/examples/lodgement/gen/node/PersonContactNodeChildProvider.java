@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface PersonContactNodeChildFactory {
@@ -77,6 +79,24 @@ public class PersonContactNodeChildProvider {
     protected void configureHomePhoneNode(PersonTelephoneNode node) {
     }
 
+    @PersonTelephoneNodeScope
+    public static class HomePhoneNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
+
+        @Inject
+        public HomePhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonTelephoneNode newWorkPhoneNode(
         PersonContactNode parent,
         String name
@@ -85,6 +105,24 @@ public class PersonContactNodeChildProvider {
     }
 
     protected void configureWorkPhoneNode(PersonTelephoneNode node) {
+    }
+
+    @PersonTelephoneNodeScope
+    public static class WorkPhoneNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
+
+        @Inject
+        public WorkPhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PersonTelephoneNode newFaxNumberNode(
@@ -97,6 +135,24 @@ public class PersonContactNodeChildProvider {
     protected void configureFaxNumberNode(PersonTelephoneNode node) {
     }
 
+    @PersonTelephoneNodeScope
+    public static class FaxNumberNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
+
+        @Inject
+        public FaxNumberNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonMobileNumberNode newPersonMobileNumberNode(
         PersonContactNode parent,
         String name
@@ -105,6 +161,24 @@ public class PersonContactNodeChildProvider {
     }
 
     protected void configurePersonMobileNumberNode(PersonMobileNumberNode node) {
+    }
+
+    @PersonMobileNumberNodeScope
+    public static class PersonMobileNumberNodeRuleProvider implements RuleProvider<PersonMobileNumberNode> {
+
+        @Inject
+        public PersonMobileNumberNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonMobileNumberNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PersonEmailNode newPersonEmailNode(
@@ -117,6 +191,24 @@ public class PersonContactNodeChildProvider {
     protected void configurePersonEmailNode(PersonEmailNode node) {
     }
 
+    @PersonEmailNodeScope
+    public static class PersonEmailNodeRuleProvider implements RuleProvider<PersonEmailNode> {
+
+        @Inject
+        public PersonEmailNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonEmailNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonAddressNode newCurrentAddressNode(
         PersonContactNode parent,
         String name
@@ -125,6 +217,25 @@ public class PersonContactNodeChildProvider {
     }
 
     protected void configureCurrentAddressNode(PersonAddressNode node) {
+    }
+
+    @PersonAddressNodeScope
+    public static class CurrentAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
+
+        @Inject
+        public CurrentAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonAddressNode node) {
+            node.setRequired(true);
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected MovedToCurrentAddressNode newMovedToCurrentAddressNode(
@@ -137,6 +248,24 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedToCurrentAddressNode(MovedToCurrentAddressNode node) {
     }
 
+    @MovedToCurrentAddressNodeScope
+    public static class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<MovedToCurrentAddressNode> {
+
+        @Inject
+        public MovedToCurrentAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MovedToCurrentAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonAddressNode newPostalAddressNode(
         PersonContactNode parent,
         String name
@@ -145,6 +274,24 @@ public class PersonContactNodeChildProvider {
     }
 
     protected void configurePostalAddressNode(PersonAddressNode node) {
+    }
+
+    @PersonAddressNodeScope
+    public static class PostalAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
+
+        @Inject
+        public PostalAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PersonAddressNode newPreviousAddressNode(
@@ -157,6 +304,24 @@ public class PersonContactNodeChildProvider {
     protected void configurePreviousAddressNode(PersonAddressNode node) {
     }
 
+    @PersonAddressNodeScope
+    public static class PreviousAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
+
+        @Inject
+        public PreviousAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MovedToPreviousAddressNode newMovedToPreviousAddressNode(
         PersonContactNode parent,
         String name
@@ -167,6 +332,24 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedToPreviousAddressNode(MovedToPreviousAddressNode node) {
     }
 
+    @MovedToPreviousAddressNodeScope
+    public static class MovedToPreviousAddressNodeRuleProvider implements RuleProvider<MovedToPreviousAddressNode> {
+
+        @Inject
+        public MovedToPreviousAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MovedToPreviousAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected MovedFromPreviousAddressNode newMovedFromPreviousAddressNode(
         PersonContactNode parent,
         String name
@@ -175,6 +358,24 @@ public class PersonContactNodeChildProvider {
     }
 
     protected void configureMovedFromPreviousAddressNode(MovedFromPreviousAddressNode node) {
+    }
+
+    @MovedFromPreviousAddressNodeScope
+    public static class MovedFromPreviousAddressNodeRuleProvider implements RuleProvider<MovedFromPreviousAddressNode> {
+
+        @Inject
+        public MovedFromPreviousAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(MovedFromPreviousAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PersonContactNodeChildFactory createFactory(PersonContactNode parent) {

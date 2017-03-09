@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface RetiredEmploymentNodeChildFactory {
@@ -38,6 +40,24 @@ public class RetiredEmploymentNodeChildProvider {
     protected void configureRetiredOnBenefitFlagNode(RetiredOnBenefitFlagNode node) {
     }
 
+    @RetiredOnBenefitFlagNodeScope
+    public static class RetiredOnBenefitFlagNodeRuleProvider implements RuleProvider<RetiredOnBenefitFlagNode> {
+
+        @Inject
+        public RetiredOnBenefitFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RetiredOnBenefitFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected RetiredSinceNode newRetiredSinceNode(
         RetiredEmploymentNode parent,
         String name
@@ -46,6 +66,24 @@ public class RetiredEmploymentNodeChildProvider {
     }
 
     protected void configureRetiredSinceNode(RetiredSinceNode node) {
+    }
+
+    @RetiredSinceNodeScope
+    public static class RetiredSinceNodeRuleProvider implements RuleProvider<RetiredSinceNode> {
+
+        @Inject
+        public RetiredSinceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RetiredSinceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     RetiredEmploymentNodeChildFactory createFactory(RetiredEmploymentNode parent) {

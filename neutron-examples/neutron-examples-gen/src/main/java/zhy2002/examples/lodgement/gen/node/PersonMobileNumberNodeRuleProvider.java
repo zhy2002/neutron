@@ -28,7 +28,6 @@ public class PersonMobileNumberNodeRuleProvider implements RuleProvider<PersonMo
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

@@ -30,13 +30,18 @@ public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ThirdPartyDobNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ThirdPartyDobNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);

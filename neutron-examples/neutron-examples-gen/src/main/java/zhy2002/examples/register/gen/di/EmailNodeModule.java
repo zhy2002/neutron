@@ -1,10 +1,12 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class EmailNodeModule {
@@ -35,4 +37,12 @@ public class EmailNodeModule {
         return owner.getParent();
     }
 
+    @Provides @EmailNodeScope
+    Map<String, RuleProvider<EmailNode>> provideInstanceProviders(
+        Provider<RegisterNodeChildProvider.EmailNodeRuleProvider> emailNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<EmailNode>> result = new HashMap<>();
+        result.put("emailNode", emailNodeRuleProvider.get());
+        return result;
+    }
 }

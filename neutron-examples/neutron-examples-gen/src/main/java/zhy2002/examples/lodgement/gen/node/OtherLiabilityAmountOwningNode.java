@@ -30,13 +30,18 @@ public class OtherLiabilityAmountOwningNode extends BaseCurrencyNode<OtherLiabil
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OtherLiabilityAmountOwningNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OtherLiabilityAmountOwningNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);

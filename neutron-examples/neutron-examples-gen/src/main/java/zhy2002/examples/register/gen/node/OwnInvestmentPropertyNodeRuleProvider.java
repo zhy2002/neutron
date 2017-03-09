@@ -30,7 +30,6 @@ public class OwnInvestmentPropertyNodeRuleProvider implements RuleProvider<OwnIn
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(loadInvestmentPropertyRuleProvider.get());
     }
 

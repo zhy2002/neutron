@@ -57,7 +57,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     /**
      * Offers a chance to run custom code on life cycle events.
      */
-    private UiNodeStatusListener statusListener;
+    private final List<UiNodeStatusListener> statusListeners = new ArrayList<>();
     /**
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
@@ -158,8 +158,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
-    public final void setStatusListener(UiNodeStatusListener listener) {
-        this.statusListener = listener;
+    final boolean addStatusListener(UiNodeStatusListener listener) {
+        return this.statusListeners.add(listener);
+    }
+
+    final boolean removeStatusListener(UiNodeStatusListener listener) {
+        return this.statusListeners.remove(listener);
     }
 
     final void addCreatedRule(UiNodeRule<?> createdRule) {
@@ -376,11 +380,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             this.parent.addChild(this);
         }
 
-        if (statusListener != null) {
-            statusListener.postAddToParent();
+        for(UiNodeStatusListener listener : statusListeners) {
+            listener.exitAddToParent();
         }
+
         this.nodeStatus = NodeStatusEnum.Unloaded;
         getContext().getNodeFinder().registerNode(this);
+
+        initializeState();
     }
 
     /**
@@ -407,19 +414,17 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     public final void load() {
         if (this.nodeStatus != NodeStatusEnum.Unloaded)
             return;
+
         if (preState == null) {
             preState = new HashMap<>(state);
         }
 
-        initializeState();
+        addContent();
+        loadContent();
 
-        doLoad();
-        if (statusListener != null) {
-            statusListener.postLoad();
+        for(UiNodeStatusListener listener : statusListeners) {
+            listener.exitLoad();
         }
-
-        loadRules();
-
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
@@ -428,13 +433,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     protected abstract void initializeState();
 
-    private void loadRules() {
-        createRules(createdRules);
-        if (statusListener != null) {
-            statusListener.postCreateRules(createdRules);
-        }
-
-        createdRules.forEach(UiNodeRule::addToOwner);
+    protected void loadContent() {
+        createdRules.forEach(UiNodeRule::onLoad);
         createdRules.clear();
     }
 
@@ -448,7 +448,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     /**
      * Override this method to run code at load time.
      */
-    protected void doLoad() {
+    protected void addContent() {
+        createRules(createdRules);
+        for(UiNodeStatusListener listener : statusListeners) {
+            listener.postCreateRules(createdRules);
+        }
+        createdRules.forEach(UiNodeRule::addToOwner);
     }
 
     /**
@@ -456,21 +461,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     public final void unload() {
         if (this.nodeStatus != NodeStatusEnum.Loaded)
-            return; //todo should return boolean to indicate this ro throw exception
+            return;
         this.nodeStatus = NodeStatusEnum.Unloaded;
-        doUnload();
+
+        unloadContent();
+        removeContent();
+
+        this.state.clear();
+        assert this.preState != null;
+        this.state.putAll(this.preState);
+    }
+
+    protected void unloadContent() {
+        this.ownRules.forEach(UiNodeRule::onUnload);
     }
 
     /**
      * Override this method to do things before or after unload of this node.
      */
-    protected void doUnload() {
-        List<UiNodeRule<?>> ownRules = new ArrayList<>(this.ownRules);
+    protected void removeContent() {
+        List<UiNodeRule<?>> ownRules = new ArrayList<>();
         ownRules.forEach(UiNodeRule::removeFromOwner);
         clearValidationErrors();
-        this.state.clear();
-        assert this.preState != null;
-        this.state.putAll(this.preState);
     }
 
     public void clearValidationErrors() {

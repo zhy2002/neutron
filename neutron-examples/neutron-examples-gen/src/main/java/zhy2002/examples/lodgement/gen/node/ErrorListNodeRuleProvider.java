@@ -33,7 +33,6 @@ public class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(changeFocusErrorRuleProvider.get());
     }
 

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface RelatedPartyNodeChildFactory {
@@ -94,6 +96,24 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyTypeNode(ThirdPartyTypeNode node) {
     }
 
+    @ThirdPartyTypeNodeScope
+    public static class ThirdPartyTypeNodeRuleProvider implements RuleProvider<ThirdPartyTypeNode> {
+
+        @Inject
+        public ThirdPartyTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyDescriptionNode newThirdPartyDescriptionNode(
         RelatedPartyNode parent,
         String name
@@ -102,6 +122,24 @@ public class RelatedPartyNodeChildProvider {
     }
 
     protected void configureThirdPartyDescriptionNode(ThirdPartyDescriptionNode node) {
+    }
+
+    @ThirdPartyDescriptionNodeScope
+    public static class ThirdPartyDescriptionNodeRuleProvider implements RuleProvider<ThirdPartyDescriptionNode> {
+
+        @Inject
+        public ThirdPartyDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ThirdPartyTitleNode newThirdPartyTitleNode(
@@ -114,6 +152,24 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyTitleNode(ThirdPartyTitleNode node) {
     }
 
+    @ThirdPartyTitleNodeScope
+    public static class ThirdPartyTitleNodeRuleProvider implements RuleProvider<ThirdPartyTitleNode> {
+
+        @Inject
+        public ThirdPartyTitleNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyTitleNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyFirstNameNode newThirdPartyFirstNameNode(
         RelatedPartyNode parent,
         String name
@@ -122,6 +178,24 @@ public class RelatedPartyNodeChildProvider {
     }
 
     protected void configureThirdPartyFirstNameNode(ThirdPartyFirstNameNode node) {
+    }
+
+    @ThirdPartyFirstNameNodeScope
+    public static class ThirdPartyFirstNameNodeRuleProvider implements RuleProvider<ThirdPartyFirstNameNode> {
+
+        @Inject
+        public ThirdPartyFirstNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyFirstNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ThirdPartyLastNameNode newThirdPartyLastNameNode(
@@ -134,6 +208,24 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyLastNameNode(ThirdPartyLastNameNode node) {
     }
 
+    @ThirdPartyLastNameNodeScope
+    public static class ThirdPartyLastNameNodeRuleProvider implements RuleProvider<ThirdPartyLastNameNode> {
+
+        @Inject
+        public ThirdPartyLastNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyLastNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyDobNode newThirdPartyDobNode(
         RelatedPartyNode parent,
         String name
@@ -142,6 +234,24 @@ public class RelatedPartyNodeChildProvider {
     }
 
     protected void configureThirdPartyDobNode(ThirdPartyDobNode node) {
+    }
+
+    @ThirdPartyDobNodeScope
+    public static class ThirdPartyDobNodeRuleProvider implements RuleProvider<ThirdPartyDobNode> {
+
+        @Inject
+        public ThirdPartyDobNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyDobNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ThirdPartyCompanyNameNode newThirdPartyCompanyNameNode(
@@ -154,6 +264,24 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyCompanyNameNode(ThirdPartyCompanyNameNode node) {
     }
 
+    @ThirdPartyCompanyNameNodeScope
+    public static class ThirdPartyCompanyNameNodeRuleProvider implements RuleProvider<ThirdPartyCompanyNameNode> {
+
+        @Inject
+        public ThirdPartyCompanyNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyCompanyNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyAddressNode newThirdPartyAddressNode(
         RelatedPartyNode parent,
         String name
@@ -162,6 +290,24 @@ public class RelatedPartyNodeChildProvider {
     }
 
     protected void configureThirdPartyAddressNode(ThirdPartyAddressNode node) {
+    }
+
+    @ThirdPartyAddressNodeScope
+    public static class ThirdPartyAddressNodeRuleProvider implements RuleProvider<ThirdPartyAddressNode> {
+
+        @Inject
+        public ThirdPartyAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ThirdPartyWorkPhoneNode newThirdPartyWorkPhoneNode(
@@ -174,6 +320,24 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyWorkPhoneNode(ThirdPartyWorkPhoneNode node) {
     }
 
+    @ThirdPartyWorkPhoneNodeScope
+    public static class ThirdPartyWorkPhoneNodeRuleProvider implements RuleProvider<ThirdPartyWorkPhoneNode> {
+
+        @Inject
+        public ThirdPartyWorkPhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyWorkPhoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ThirdPartyEmailNode newThirdPartyEmailNode(
         RelatedPartyNode parent,
         String name
@@ -182,6 +346,24 @@ public class RelatedPartyNodeChildProvider {
     }
 
     protected void configureThirdPartyEmailNode(ThirdPartyEmailNode node) {
+    }
+
+    @ThirdPartyEmailNodeScope
+    public static class ThirdPartyEmailNodeRuleProvider implements RuleProvider<ThirdPartyEmailNode> {
+
+        @Inject
+        public ThirdPartyEmailNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ThirdPartyEmailNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     RelatedPartyNodeChildFactory createFactory(RelatedPartyNode parent) {

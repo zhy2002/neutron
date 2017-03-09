@@ -30,13 +30,18 @@ public class OtherIncomePreviousYearNode extends BooleanUiNode<OtherIncomeNode> 
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OtherIncomePreviousYearNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OtherIncomePreviousYearNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);

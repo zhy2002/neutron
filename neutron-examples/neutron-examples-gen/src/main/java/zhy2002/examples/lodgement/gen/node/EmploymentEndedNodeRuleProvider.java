@@ -33,7 +33,6 @@ public class EmploymentEndedNodeRuleProvider implements RuleProvider<EmploymentE
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get());
     }
 

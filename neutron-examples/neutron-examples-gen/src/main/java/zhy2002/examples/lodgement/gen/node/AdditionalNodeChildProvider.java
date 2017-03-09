@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface AdditionalNodeChildFactory {
@@ -38,6 +40,24 @@ public class AdditionalNodeChildProvider {
     protected void configureAdditionalCommentNode(AdditionalCommentNode node) {
     }
 
+    @AdditionalCommentNodeScope
+    public static class AdditionalCommentNodeRuleProvider implements RuleProvider<AdditionalCommentNode> {
+
+        @Inject
+        public AdditionalCommentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AdditionalCommentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected RelatedPartyListNode newRelatedPartyListNode(
         AdditionalNode parent,
         String name
@@ -46,6 +66,24 @@ public class AdditionalNodeChildProvider {
     }
 
     protected void configureRelatedPartyListNode(RelatedPartyListNode node) {
+    }
+
+    @RelatedPartyListNodeScope
+    public static class RelatedPartyListNodeRuleProvider implements RuleProvider<RelatedPartyListNode> {
+
+        @Inject
+        public RelatedPartyListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RelatedPartyListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     AdditionalNodeChildFactory createFactory(AdditionalNode parent) {

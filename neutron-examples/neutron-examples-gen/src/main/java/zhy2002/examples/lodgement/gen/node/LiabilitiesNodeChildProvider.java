@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface LiabilitiesNodeChildFactory {
@@ -45,6 +47,24 @@ public class LiabilitiesNodeChildProvider {
     protected void configureCreditCardListNode(CreditCardListNode node) {
     }
 
+    @CreditCardListNodeScope
+    public static class CreditCardListNodeRuleProvider implements RuleProvider<CreditCardListNode> {
+
+        @Inject
+        public CreditCardListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LoanListNode newLoanListNode(
         LiabilitiesNode parent,
         String name
@@ -55,6 +75,24 @@ public class LiabilitiesNodeChildProvider {
     protected void configureLoanListNode(LoanListNode node) {
     }
 
+    @LoanListNodeScope
+    public static class LoanListNodeRuleProvider implements RuleProvider<LoanListNode> {
+
+        @Inject
+        public LoanListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherLiabilityListNode newOtherLiabilityListNode(
         LiabilitiesNode parent,
         String name
@@ -63,6 +101,24 @@ public class LiabilitiesNodeChildProvider {
     }
 
     protected void configureOtherLiabilityListNode(OtherLiabilityListNode node) {
+    }
+
+    @OtherLiabilityListNodeScope
+    public static class OtherLiabilityListNodeRuleProvider implements RuleProvider<OtherLiabilityListNode> {
+
+        @Inject
+        public OtherLiabilityListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     LiabilitiesNodeChildFactory createFactory(LiabilitiesNode parent) {

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface CompanyNodeChildFactory {
@@ -66,6 +68,24 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyGeneralNode(CompanyGeneralNode node) {
     }
 
+    @CompanyGeneralNodeScope
+    public static class CompanyGeneralNodeRuleProvider implements RuleProvider<CompanyGeneralNode> {
+
+        @Inject
+        public CompanyGeneralNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyGeneralNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyContactNode newCompanyContactNode(
         CompanyNode parent,
         String name
@@ -74,6 +94,24 @@ public class CompanyNodeChildProvider {
     }
 
     protected void configureCompanyContactNode(CompanyContactNode node) {
+    }
+
+    @CompanyContactNodeScope
+    public static class CompanyContactNodeRuleProvider implements RuleProvider<CompanyContactNode> {
+
+        @Inject
+        public CompanyContactNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyContactNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyTrustNode newCompanyTrustNode(
@@ -86,6 +124,24 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyTrustNode(CompanyTrustNode node) {
     }
 
+    @CompanyTrustNodeScope
+    public static class CompanyTrustNodeRuleProvider implements RuleProvider<CompanyTrustNode> {
+
+        @Inject
+        public CompanyTrustNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyTrustNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyPrivacyNode newCompanyPrivacyNode(
         CompanyNode parent,
         String name
@@ -94,6 +150,24 @@ public class CompanyNodeChildProvider {
     }
 
     protected void configureCompanyPrivacyNode(CompanyPrivacyNode node) {
+    }
+
+    @CompanyPrivacyNodeScope
+    public static class CompanyPrivacyNodeRuleProvider implements RuleProvider<CompanyPrivacyNode> {
+
+        @Inject
+        public CompanyPrivacyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyPrivacyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyOtherIncomeListNode newCompanyOtherIncomeListNode(
@@ -106,6 +180,24 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyOtherIncomeListNode(CompanyOtherIncomeListNode node) {
     }
 
+    @CompanyOtherIncomeListNodeScope
+    public static class CompanyOtherIncomeListNodeRuleProvider implements RuleProvider<CompanyOtherIncomeListNode> {
+
+        @Inject
+        public CompanyOtherIncomeListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyOtherIncomeListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CompanyResponsibleLendNode newCompanyResponsibleLendNode(
         CompanyNode parent,
         String name
@@ -114,6 +206,24 @@ public class CompanyNodeChildProvider {
     }
 
     protected void configureCompanyResponsibleLendNode(CompanyResponsibleLendNode node) {
+    }
+
+    @CompanyResponsibleLendNodeScope
+    public static class CompanyResponsibleLendNodeRuleProvider implements RuleProvider<CompanyResponsibleLendNode> {
+
+        @Inject
+        public CompanyResponsibleLendNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyResponsibleLendNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     CompanyNodeChildFactory createFactory(CompanyNode parent) {

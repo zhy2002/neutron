@@ -30,13 +30,18 @@ public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneral
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<PersonApplicantTypeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public PersonApplicantTypeNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface CreditCardNodeChildFactory {
@@ -73,6 +75,24 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardTypeNode(CreditCardTypeNode node) {
     }
 
+    @CreditCardTypeNodeScope
+    public static class CreditCardTypeNodeRuleProvider implements RuleProvider<CreditCardTypeNode> {
+
+        @Inject
+        public CreditCardTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CreditCardAmountOwingNode newCreditCardAmountOwingNode(
         CreditCardNode parent,
         String name
@@ -81,6 +101,24 @@ public class CreditCardNodeChildProvider {
     }
 
     protected void configureCreditCardAmountOwingNode(CreditCardAmountOwingNode node) {
+    }
+
+    @CreditCardAmountOwingNodeScope
+    public static class CreditCardAmountOwingNodeRuleProvider implements RuleProvider<CreditCardAmountOwingNode> {
+
+        @Inject
+        public CreditCardAmountOwingNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardAmountOwingNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CreditCardLimitAmountNode newCreditCardLimitAmountNode(
@@ -93,6 +131,24 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardLimitAmountNode(CreditCardLimitAmountNode node) {
     }
 
+    @CreditCardLimitAmountNodeScope
+    public static class CreditCardLimitAmountNodeRuleProvider implements RuleProvider<CreditCardLimitAmountNode> {
+
+        @Inject
+        public CreditCardLimitAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardLimitAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CreditCardMonthlyRepaymentNode newCreditCardMonthlyRepaymentNode(
         CreditCardNode parent,
         String name
@@ -101,6 +157,24 @@ public class CreditCardNodeChildProvider {
     }
 
     protected void configureCreditCardMonthlyRepaymentNode(CreditCardMonthlyRepaymentNode node) {
+    }
+
+    @CreditCardMonthlyRepaymentNodeScope
+    public static class CreditCardMonthlyRepaymentNodeRuleProvider implements RuleProvider<CreditCardMonthlyRepaymentNode> {
+
+        @Inject
+        public CreditCardMonthlyRepaymentNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardMonthlyRepaymentNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CreditCardClearingFlagNode newCreditCardClearingFlagNode(
@@ -113,6 +187,24 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardClearingFlagNode(CreditCardClearingFlagNode node) {
     }
 
+    @CreditCardClearingFlagNodeScope
+    public static class CreditCardClearingFlagNodeRuleProvider implements RuleProvider<CreditCardClearingFlagNode> {
+
+        @Inject
+        public CreditCardClearingFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardClearingFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CreditCardBreakCostNode newCreditCardBreakCostNode(
         CreditCardNode parent,
         String name
@@ -123,6 +215,24 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardBreakCostNode(CreditCardBreakCostNode node) {
     }
 
+    @CreditCardBreakCostNodeScope
+    public static class CreditCardBreakCostNodeRuleProvider implements RuleProvider<CreditCardBreakCostNode> {
+
+        @Inject
+        public CreditCardBreakCostNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardBreakCostNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CreditCardLenderNameNode newCreditCardLenderNameNode(
         CreditCardNode parent,
         String name
@@ -131,6 +241,24 @@ public class CreditCardNodeChildProvider {
     }
 
     protected void configureCreditCardLenderNameNode(CreditCardLenderNameNode node) {
+    }
+
+    @CreditCardLenderNameNodeScope
+    public static class CreditCardLenderNameNodeRuleProvider implements RuleProvider<CreditCardLenderNameNode> {
+
+        @Inject
+        public CreditCardLenderNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardLenderNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     CreditCardNodeChildFactory createFactory(CreditCardNode parent) {

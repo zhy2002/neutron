@@ -30,13 +30,18 @@ public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<AdditionalCommentNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public AdditionalCommentNode(@NotNull AdditionalNode parent, String name) {
         super(parent, name);

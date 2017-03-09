@@ -75,13 +75,24 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+    <#if parentType.children ??>
+        getInstanceRuleProvider().initializeState(this);
+    </#if>
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+    <#if parentType.children ??>
+        getInstanceRuleProvider().createRules(createdRules);
+    </#if>
     }
 
+    <#if parentType.children ??>
+    private RuleProvider<${typeName}> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
+    </#if>
 </#if>
 
 <#if parentType.typeName == "VoidUiNode">

@@ -2,12 +2,15 @@ package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
+import java.util.*;
 
 @ProductFeaturesNodeScope
 @Subcomponent(modules = {ProductFeaturesNodeModule.class})
 public interface ProductFeaturesNodeComponent {
 
     ProductFeaturesNodeRuleProvider getProductFeaturesNodeRuleProvider();
+    Map<String, RuleProvider<ProductFeaturesNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

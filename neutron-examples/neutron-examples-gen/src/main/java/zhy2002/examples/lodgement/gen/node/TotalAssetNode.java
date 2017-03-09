@@ -31,13 +31,18 @@ public class TotalAssetNode extends BaseCurrencyNode<FinancialPositionNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<TotalAssetNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public TotalAssetNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface BaseTrustNodeChildFactory {
@@ -101,6 +103,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustNameNode(TrustNameNode node) {
     }
 
+    @TrustNameNodeScope
+    public static class TrustNameNodeRuleProvider implements RuleProvider<TrustNameNode> {
+
+        @Inject
+        public TrustNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustRegistrationDateNode newTrustRegistrationDateNode(
         BaseTrustNode<?> parent,
         String name
@@ -109,6 +129,24 @@ public class BaseTrustNodeChildProvider {
     }
 
     protected void configureTrustRegistrationDateNode(TrustRegistrationDateNode node) {
+    }
+
+    @TrustRegistrationDateNodeScope
+    public static class TrustRegistrationDateNodeRuleProvider implements RuleProvider<TrustRegistrationDateNode> {
+
+        @Inject
+        public TrustRegistrationDateNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustRegistrationDateNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected TrustTypeNode newTrustTypeNode(
@@ -121,6 +159,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustTypeNode(TrustTypeNode node) {
     }
 
+    @TrustTypeNodeScope
+    public static class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
+
+        @Inject
+        public TrustTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustCountryNode newTrustCountryNode(
         BaseTrustNode<?> parent,
         String name
@@ -129,6 +185,24 @@ public class BaseTrustNodeChildProvider {
     }
 
     protected void configureTrustCountryNode(TrustCountryNode node) {
+    }
+
+    @TrustCountryNodeScope
+    public static class TrustCountryNodeRuleProvider implements RuleProvider<TrustCountryNode> {
+
+        @Inject
+        public TrustCountryNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustCountryNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected TrustAddressNode newTrustAddressNode(
@@ -141,6 +215,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustAddressNode(TrustAddressNode node) {
     }
 
+    @TrustAddressNodeScope
+    public static class TrustAddressNodeRuleProvider implements RuleProvider<TrustAddressNode> {
+
+        @Inject
+        public TrustAddressNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustAddressNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustIndustryNode newTrustIndustryNode(
         BaseTrustNode<?> parent,
         String name
@@ -149,6 +241,24 @@ public class BaseTrustNodeChildProvider {
     }
 
     protected void configureTrustIndustryNode(TrustIndustryNode node) {
+    }
+
+    @TrustIndustryNodeScope
+    public static class TrustIndustryNodeRuleProvider implements RuleProvider<TrustIndustryNode> {
+
+        @Inject
+        public TrustIndustryNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustIndustryNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected TrustSettlorNotRequiredReasonNode newTrustSettlorNotRequiredReasonNode(
@@ -161,6 +271,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustSettlorNotRequiredReasonNode(TrustSettlorNotRequiredReasonNode node) {
     }
 
+    @TrustSettlorNotRequiredReasonNodeScope
+    public static class TrustSettlorNotRequiredReasonNodeRuleProvider implements RuleProvider<TrustSettlorNotRequiredReasonNode> {
+
+        @Inject
+        public TrustSettlorNotRequiredReasonNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustSettlorNotRequiredReasonNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustBeneficiaryListNode newTrustBeneficiaryListNode(
         BaseTrustNode<?> parent,
         String name
@@ -169,6 +297,24 @@ public class BaseTrustNodeChildProvider {
     }
 
     protected void configureTrustBeneficiaryListNode(TrustBeneficiaryListNode node) {
+    }
+
+    @TrustBeneficiaryListNodeScope
+    public static class TrustBeneficiaryListNodeRuleProvider implements RuleProvider<TrustBeneficiaryListNode> {
+
+        @Inject
+        public TrustBeneficiaryListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustBeneficiaryListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected TrustSettlorListNode newTrustSettlorListNode(
@@ -181,6 +327,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustSettlorListNode(TrustSettlorListNode node) {
     }
 
+    @TrustSettlorListNodeScope
+    public static class TrustSettlorListNodeRuleProvider implements RuleProvider<TrustSettlorListNode> {
+
+        @Inject
+        public TrustSettlorListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustSettlorListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustBeneficialOwnerListNode newTrustBeneficialOwnerListNode(
         BaseTrustNode<?> parent,
         String name
@@ -191,6 +355,24 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustBeneficialOwnerListNode(TrustBeneficialOwnerListNode node) {
     }
 
+    @TrustBeneficialOwnerListNodeScope
+    public static class TrustBeneficialOwnerListNodeRuleProvider implements RuleProvider<TrustBeneficialOwnerListNode> {
+
+        @Inject
+        public TrustBeneficialOwnerListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustBeneficialOwnerListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TrustBeneficiaryClassListNode newTrustBeneficiaryClassListNode(
         BaseTrustNode<?> parent,
         String name
@@ -199,6 +381,24 @@ public class BaseTrustNodeChildProvider {
     }
 
     protected void configureTrustBeneficiaryClassListNode(TrustBeneficiaryClassListNode node) {
+    }
+
+    @TrustBeneficiaryClassListNodeScope
+    public static class TrustBeneficiaryClassListNodeRuleProvider implements RuleProvider<TrustBeneficiaryClassListNode> {
+
+        @Inject
+        public TrustBeneficiaryClassListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TrustBeneficiaryClassListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     BaseTrustNodeChildFactory createFactory(BaseTrustNode<?> parent) {

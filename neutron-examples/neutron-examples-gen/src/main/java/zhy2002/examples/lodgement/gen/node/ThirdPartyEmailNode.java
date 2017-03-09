@@ -30,13 +30,18 @@ public class ThirdPartyEmailNode extends StringUiNode<RelatedPartyNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ThirdPartyEmailNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ThirdPartyEmailNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);

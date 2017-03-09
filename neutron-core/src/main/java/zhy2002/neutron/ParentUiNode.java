@@ -71,30 +71,20 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     }
 
     @Override
-    protected void doLoad() {
-        super.doLoad();
-        initializeChildren();
-    }
+    protected void unloadContent() {
+        super.unloadContent();
 
-    /**
-     * Create and load children.
-     */
-    protected abstract void initializeChildren();
-
-    @Override
-    protected void doUnload() {
-        super.doUnload();
-        uninitializeChildren();
-    }
-
-    /**
-     * Undo children creation and loading.
-     */
-    protected void uninitializeChildren() {
         UiNode<?>[] children = getChildren();
         for (int i = children.length - 1; i >= 0; i--) {
             children[i].unload();
         }
+    }
+
+    @Override
+    protected void removeContent() {
+        super.removeContent();
+
+        UiNode<?>[] children = getChildren();
         for (int i = children.length - 1; i >= 0; i--) {
             children[i].removeFromParent();
         }

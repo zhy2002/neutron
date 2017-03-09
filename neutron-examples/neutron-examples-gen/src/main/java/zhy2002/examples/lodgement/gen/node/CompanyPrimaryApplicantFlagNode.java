@@ -30,13 +30,18 @@ public class CompanyPrimaryApplicantFlagNode extends BooleanUiNode<CompanyGenera
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyPrimaryApplicantFlagNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyPrimaryApplicantFlagNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);

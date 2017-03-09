@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface UsageNodeChildFactory {
@@ -66,6 +68,24 @@ public class UsageNodeChildProvider {
     protected void configureUsedAsSecurityFlagNode(UsedAsSecurityFlagNode node) {
     }
 
+    @UsedAsSecurityFlagNodeScope
+    public static class UsedAsSecurityFlagNodeRuleProvider implements RuleProvider<UsedAsSecurityFlagNode> {
+
+        @Inject
+        public UsedAsSecurityFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UsedAsSecurityFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected BeingPurchasedFlagNode newBeingPurchasedFlagNode(
         UsageNode parent,
         String name
@@ -74,6 +94,24 @@ public class UsageNodeChildProvider {
     }
 
     protected void configureBeingPurchasedFlagNode(BeingPurchasedFlagNode node) {
+    }
+
+    @BeingPurchasedFlagNodeScope
+    public static class BeingPurchasedFlagNodeRuleProvider implements RuleProvider<BeingPurchasedFlagNode> {
+
+        @Inject
+        public BeingPurchasedFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(BeingPurchasedFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected OwnedOutrightFlagNode newOwnedOutrightFlagNode(
@@ -86,6 +124,24 @@ public class UsageNodeChildProvider {
     protected void configureOwnedOutrightFlagNode(OwnedOutrightFlagNode node) {
     }
 
+    @OwnedOutrightFlagNodeScope
+    public static class OwnedOutrightFlagNodeRuleProvider implements RuleProvider<OwnedOutrightFlagNode> {
+
+        @Inject
+        public OwnedOutrightFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OwnedOutrightFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PrimarySecurityFlagNode newPrimarySecurityFlagNode(
         UsageNode parent,
         String name
@@ -94,6 +150,24 @@ public class UsageNodeChildProvider {
     }
 
     protected void configurePrimarySecurityFlagNode(PrimarySecurityFlagNode node) {
+    }
+
+    @PrimarySecurityFlagNodeScope
+    public static class PrimarySecurityFlagNodeRuleProvider implements RuleProvider<PrimarySecurityFlagNode> {
+
+        @Inject
+        public PrimarySecurityFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PrimarySecurityFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ApprovalInPrincipleFlagNode newApprovalInPrincipleFlagNode(
@@ -106,6 +180,24 @@ public class UsageNodeChildProvider {
     protected void configureApprovalInPrincipleFlagNode(ApprovalInPrincipleFlagNode node) {
     }
 
+    @ApprovalInPrincipleFlagNodeScope
+    public static class ApprovalInPrincipleFlagNodeRuleProvider implements RuleProvider<ApprovalInPrincipleFlagNode> {
+
+        @Inject
+        public ApprovalInPrincipleFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ApprovalInPrincipleFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ExistingMortgageListNode newExistingMortgageListNode(
         UsageNode parent,
         String name
@@ -114,6 +206,24 @@ public class UsageNodeChildProvider {
     }
 
     protected void configureExistingMortgageListNode(ExistingMortgageListNode node) {
+    }
+
+    @ExistingMortgageListNodeScope
+    public static class ExistingMortgageListNodeRuleProvider implements RuleProvider<ExistingMortgageListNode> {
+
+        @Inject
+        public ExistingMortgageListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExistingMortgageListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     UsageNodeChildFactory createFactory(UsageNode parent) {

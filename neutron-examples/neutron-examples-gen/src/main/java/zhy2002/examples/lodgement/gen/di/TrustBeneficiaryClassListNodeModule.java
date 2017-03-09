@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class TrustBeneficiaryClassListNodeModule {
@@ -35,4 +37,12 @@ public class TrustBeneficiaryClassListNodeModule {
         return owner.getParent();
     }
 
+    @Provides @TrustBeneficiaryClassListNodeScope
+    Map<String, RuleProvider<TrustBeneficiaryClassListNode>> provideInstanceProviders(
+        Provider<BaseTrustNodeChildProvider.TrustBeneficiaryClassListNodeRuleProvider> trustBeneficiaryClassListNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<TrustBeneficiaryClassListNode>> result = new HashMap<>();
+        result.put("trustBeneficiaryClassListNode", trustBeneficiaryClassListNodeRuleProvider.get());
+        return result;
+    }
 }

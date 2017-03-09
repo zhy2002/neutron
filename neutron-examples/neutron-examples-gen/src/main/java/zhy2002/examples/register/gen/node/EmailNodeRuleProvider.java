@@ -35,7 +35,6 @@ public class EmailNodeRuleProvider implements RuleProvider<EmailNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(emailChangeReasonRuleProvider.get());
     }
 

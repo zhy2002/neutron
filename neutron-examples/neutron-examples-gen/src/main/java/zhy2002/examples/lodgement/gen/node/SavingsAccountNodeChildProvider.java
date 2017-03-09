@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface SavingsAccountNodeChildFactory {
@@ -73,6 +75,24 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsTypeNode(SavingsTypeNode node) {
     }
 
+    @SavingsTypeNodeScope
+    public static class SavingsTypeNodeRuleProvider implements RuleProvider<SavingsTypeNode> {
+
+        @Inject
+        public SavingsTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SavingsInstitutionNameNode newSavingsInstitutionNameNode(
         SavingsAccountNode parent,
         String name
@@ -81,6 +101,24 @@ public class SavingsAccountNodeChildProvider {
     }
 
     protected void configureSavingsInstitutionNameNode(SavingsInstitutionNameNode node) {
+    }
+
+    @SavingsInstitutionNameNodeScope
+    public static class SavingsInstitutionNameNodeRuleProvider implements RuleProvider<SavingsInstitutionNameNode> {
+
+        @Inject
+        public SavingsInstitutionNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsInstitutionNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected SavingsBalanceNode newSavingsBalanceNode(
@@ -93,6 +131,24 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsBalanceNode(SavingsBalanceNode node) {
     }
 
+    @SavingsBalanceNodeScope
+    public static class SavingsBalanceNodeRuleProvider implements RuleProvider<SavingsBalanceNode> {
+
+        @Inject
+        public SavingsBalanceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsBalanceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SavingsBsbNoNode newSavingsBsbNoNode(
         SavingsAccountNode parent,
         String name
@@ -101,6 +157,24 @@ public class SavingsAccountNodeChildProvider {
     }
 
     protected void configureSavingsBsbNoNode(SavingsBsbNoNode node) {
+    }
+
+    @SavingsBsbNoNodeScope
+    public static class SavingsBsbNoNodeRuleProvider implements RuleProvider<SavingsBsbNoNode> {
+
+        @Inject
+        public SavingsBsbNoNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsBsbNoNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected SavingsAccountNoNode newSavingsAccountNoNode(
@@ -113,6 +187,24 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsAccountNoNode(SavingsAccountNoNode node) {
     }
 
+    @SavingsAccountNoNodeScope
+    public static class SavingsAccountNoNodeRuleProvider implements RuleProvider<SavingsAccountNoNode> {
+
+        @Inject
+        public SavingsAccountNoNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsAccountNoNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SavingsAccountNameNode newSavingsAccountNameNode(
         SavingsAccountNode parent,
         String name
@@ -123,6 +215,24 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsAccountNameNode(SavingsAccountNameNode node) {
     }
 
+    @SavingsAccountNameNodeScope
+    public static class SavingsAccountNameNodeRuleProvider implements RuleProvider<SavingsAccountNameNode> {
+
+        @Inject
+        public SavingsAccountNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsAccountNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SavingsOwnershipListNode newSavingsOwnershipListNode(
         SavingsAccountNode parent,
         String name
@@ -131,6 +241,24 @@ public class SavingsAccountNodeChildProvider {
     }
 
     protected void configureSavingsOwnershipListNode(SavingsOwnershipListNode node) {
+    }
+
+    @SavingsOwnershipListNodeScope
+    public static class SavingsOwnershipListNodeRuleProvider implements RuleProvider<SavingsOwnershipListNode> {
+
+        @Inject
+        public SavingsOwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SavingsOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     SavingsAccountNodeChildFactory createFactory(SavingsAccountNode parent) {

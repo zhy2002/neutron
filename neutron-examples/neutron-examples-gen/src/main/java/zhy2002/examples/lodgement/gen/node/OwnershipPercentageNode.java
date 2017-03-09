@@ -31,13 +31,18 @@ public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OwnershipPercentageNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OwnershipPercentageNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);

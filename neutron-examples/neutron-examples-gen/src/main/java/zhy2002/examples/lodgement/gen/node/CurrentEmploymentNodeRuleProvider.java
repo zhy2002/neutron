@@ -24,6 +24,7 @@ public class CurrentEmploymentNodeRuleProvider implements RuleProvider<CurrentEm
         parentRuleProvider.initializeState(node);
 
         node.setNodeLabel("Employment");
+        node.setCurrentRecord(Boolean.TRUE);
     }
 
 
@@ -31,7 +32,6 @@ public class CurrentEmploymentNodeRuleProvider implements RuleProvider<CurrentEm
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

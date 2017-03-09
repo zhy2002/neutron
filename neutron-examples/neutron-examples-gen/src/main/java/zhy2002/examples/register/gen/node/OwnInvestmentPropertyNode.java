@@ -30,13 +30,18 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<OwnInvestmentPropertyNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

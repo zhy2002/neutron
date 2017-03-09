@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class ProfitThisYearNodeModule {
@@ -35,4 +37,12 @@ public class ProfitThisYearNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ProfitThisYearNodeScope
+    Map<String, RuleProvider<ProfitThisYearNode>> provideInstanceProviders(
+        Provider<SelfEmployedNodeChildProvider.ProfitThisYearNodeRuleProvider> profitThisYearNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<ProfitThisYearNode>> result = new HashMap<>();
+        result.put("profitThisYearNode", profitThisYearNodeRuleProvider.get());
+        return result;
+    }
 }

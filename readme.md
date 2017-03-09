@@ -239,10 +239,7 @@ To create a new domain and profiles, we need to do the following in the domain's
     - CustomModule: Optional module that contains instantiation logic (non-abstract module). If present it should be 
     included in XxxProfileModule.
     
-
-
 ==================================================
-implement debouncing in jsx
 message provider
 profile
 
@@ -257,6 +254,24 @@ classRegistry	(predefined) related type	get instance by related type
 
 todo: 
 eliminate classRegistry
+
+
+
+
+////////////////////////////////////
+valueTypeName -> default baseTypeName: LeafUiNode
+commonTypes -> abstractNode: true
+baseTypeName: LeafUiNode -> parentBaseTypeName: ParentUiNode<?>
+children is not null -> baseTypeName: ObjectUiNode
+baseTypeName: ObjectUiNode -> parentBaseTypeName: ParentUiNode<?>
+
+children level: init and rules collection
+
+
+
+
+
+
 
 
 

@@ -28,7 +28,6 @@ public class BaseOccupationNodeRuleProvider implements RuleProvider<BaseOccupati
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

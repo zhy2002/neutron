@@ -1,8 +1,10 @@
 package zhy2002.examples.app.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.app.gen.di.*;
+import java.util.*;
 
 
 interface LodgementNodeChildFactory {
@@ -29,6 +31,24 @@ public class LodgementNodeChildProvider {
     }
 
     protected void configureAppManagerNode(AppManagerNode node) {
+    }
+
+    @AppManagerNodeScope
+    public static class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> {
+
+        @Inject
+        public AppManagerNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AppManagerNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     LodgementNodeChildFactory createFactory(LodgementNode parent) {

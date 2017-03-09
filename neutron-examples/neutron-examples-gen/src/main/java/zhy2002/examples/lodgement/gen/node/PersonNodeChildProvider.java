@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface PersonNodeChildFactory {
@@ -80,6 +82,24 @@ public class PersonNodeChildProvider {
     protected void configurePersonGeneralNode(PersonGeneralNode node) {
     }
 
+    @PersonGeneralNodeScope
+    public static class PersonGeneralNodeRuleProvider implements RuleProvider<PersonGeneralNode> {
+
+        @Inject
+        public PersonGeneralNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonGeneralNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonContactNode newPersonContactNode(
         PersonNode parent,
         String name
@@ -88,6 +108,24 @@ public class PersonNodeChildProvider {
     }
 
     protected void configurePersonContactNode(PersonContactNode node) {
+    }
+
+    @PersonContactNodeScope
+    public static class PersonContactNodeRuleProvider implements RuleProvider<PersonContactNode> {
+
+        @Inject
+        public PersonContactNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonContactNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CurrentEmploymentListNode newCurrentEmploymentListNode(
@@ -100,6 +138,24 @@ public class PersonNodeChildProvider {
     protected void configureCurrentEmploymentListNode(CurrentEmploymentListNode node) {
     }
 
+    @CurrentEmploymentListNodeScope
+    public static class CurrentEmploymentListNodeRuleProvider implements RuleProvider<CurrentEmploymentListNode> {
+
+        @Inject
+        public CurrentEmploymentListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CurrentEmploymentListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PreviousEmploymentListNode newPreviousEmploymentListNode(
         PersonNode parent,
         String name
@@ -108,6 +164,24 @@ public class PersonNodeChildProvider {
     }
 
     protected void configurePreviousEmploymentListNode(PreviousEmploymentListNode node) {
+    }
+
+    @PreviousEmploymentListNodeScope
+    public static class PreviousEmploymentListNodeRuleProvider implements RuleProvider<PreviousEmploymentListNode> {
+
+        @Inject
+        public PreviousEmploymentListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PreviousEmploymentListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PersonTrustNode newPersonTrustNode(
@@ -120,6 +194,24 @@ public class PersonNodeChildProvider {
     protected void configurePersonTrustNode(PersonTrustNode node) {
     }
 
+    @PersonTrustNodeScope
+    public static class PersonTrustNodeRuleProvider implements RuleProvider<PersonTrustNode> {
+
+        @Inject
+        public PersonTrustNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonTrustNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonPrivacyNode newPersonPrivacyNode(
         PersonNode parent,
         String name
@@ -128,6 +220,24 @@ public class PersonNodeChildProvider {
     }
 
     protected void configurePersonPrivacyNode(PersonPrivacyNode node) {
+    }
+
+    @PersonPrivacyNodeScope
+    public static class PersonPrivacyNodeRuleProvider implements RuleProvider<PersonPrivacyNode> {
+
+        @Inject
+        public PersonPrivacyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonPrivacyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PersonOtherIncomeListNode newPersonOtherIncomeListNode(
@@ -140,6 +250,24 @@ public class PersonNodeChildProvider {
     protected void configurePersonOtherIncomeListNode(PersonOtherIncomeListNode node) {
     }
 
+    @PersonOtherIncomeListNodeScope
+    public static class PersonOtherIncomeListNodeRuleProvider implements RuleProvider<PersonOtherIncomeListNode> {
+
+        @Inject
+        public PersonOtherIncomeListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonOtherIncomeListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonResponsibleLendNode newPersonResponsibleLendNode(
         PersonNode parent,
         String name
@@ -148,6 +276,24 @@ public class PersonNodeChildProvider {
     }
 
     protected void configurePersonResponsibleLendNode(PersonResponsibleLendNode node) {
+    }
+
+    @PersonResponsibleLendNodeScope
+    public static class PersonResponsibleLendNodeRuleProvider implements RuleProvider<PersonResponsibleLendNode> {
+
+        @Inject
+        public PersonResponsibleLendNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonResponsibleLendNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PersonNodeChildFactory createFactory(PersonNode parent) {

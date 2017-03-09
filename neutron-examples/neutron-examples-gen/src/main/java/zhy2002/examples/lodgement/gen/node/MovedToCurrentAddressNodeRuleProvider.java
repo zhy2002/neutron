@@ -35,7 +35,6 @@ public class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<Moved
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(toCurrentNoEarlierThanToPreviousRuleProvider.get());
             createdRules.add(toCurrentNoEarlierThanFromPreviousRuleProvider.get());
     }

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface BaseResponsibleLendNodeChildFactory {
@@ -52,6 +54,24 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleTypeOfChangeNode(ResponsibleTypeOfChangeNode node) {
     }
 
+    @ResponsibleTypeOfChangeNodeScope
+    public static class ResponsibleTypeOfChangeNodeRuleProvider implements RuleProvider<ResponsibleTypeOfChangeNode> {
+
+        @Inject
+        public ResponsibleTypeOfChangeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ResponsibleTypeOfChangeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ResponsibleMitigationMethodNode newResponsibleMitigationMethodNode(
         BaseResponsibleLendNode<?> parent,
         String name
@@ -60,6 +80,24 @@ public class BaseResponsibleLendNodeChildProvider {
     }
 
     protected void configureResponsibleMitigationMethodNode(ResponsibleMitigationMethodNode node) {
+    }
+
+    @ResponsibleMitigationMethodNodeScope
+    public static class ResponsibleMitigationMethodNodeRuleProvider implements RuleProvider<ResponsibleMitigationMethodNode> {
+
+        @Inject
+        public ResponsibleMitigationMethodNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ResponsibleMitigationMethodNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ResponsibleSignificantChangeFlagNode newResponsibleSignificantChangeFlagNode(
@@ -72,6 +110,24 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleSignificantChangeFlagNode(ResponsibleSignificantChangeFlagNode node) {
     }
 
+    @ResponsibleSignificantChangeFlagNodeScope
+    public static class ResponsibleSignificantChangeFlagNodeRuleProvider implements RuleProvider<ResponsibleSignificantChangeFlagNode> {
+
+        @Inject
+        public ResponsibleSignificantChangeFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ResponsibleSignificantChangeFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ResponsibleRepaymentDifficultyNode newResponsibleRepaymentDifficultyNode(
         BaseResponsibleLendNode<?> parent,
         String name
@@ -80,6 +136,24 @@ public class BaseResponsibleLendNodeChildProvider {
     }
 
     protected void configureResponsibleRepaymentDifficultyNode(ResponsibleRepaymentDifficultyNode node) {
+    }
+
+    @ResponsibleRepaymentDifficultyNodeScope
+    public static class ResponsibleRepaymentDifficultyNodeRuleProvider implements RuleProvider<ResponsibleRepaymentDifficultyNode> {
+
+        @Inject
+        public ResponsibleRepaymentDifficultyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ResponsibleRepaymentDifficultyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     BaseResponsibleLendNodeChildFactory createFactory(BaseResponsibleLendNode<?> parent) {

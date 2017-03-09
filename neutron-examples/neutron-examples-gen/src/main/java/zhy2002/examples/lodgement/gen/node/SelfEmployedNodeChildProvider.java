@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface SelfEmployedNodeChildFactory {
@@ -45,6 +47,24 @@ public class SelfEmployedNodeChildProvider {
     protected void configureBusinessTypeNode(BusinessTypeNode node) {
     }
 
+    @BusinessTypeNodeScope
+    public static class BusinessTypeNodeRuleProvider implements RuleProvider<BusinessTypeNode> {
+
+        @Inject
+        public BusinessTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(BusinessTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProfitThisYearNode newProfitThisYearNode(
         SelfEmployedNode parent,
         String name
@@ -55,6 +75,24 @@ public class SelfEmployedNodeChildProvider {
     protected void configureProfitThisYearNode(ProfitThisYearNode node) {
     }
 
+    @ProfitThisYearNodeScope
+    public static class ProfitThisYearNodeRuleProvider implements RuleProvider<ProfitThisYearNode> {
+
+        @Inject
+        public ProfitThisYearNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProfitThisYearNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProfitPreviousYearNode newProfitPreviousYearNode(
         SelfEmployedNode parent,
         String name
@@ -63,6 +101,24 @@ public class SelfEmployedNodeChildProvider {
     }
 
     protected void configureProfitPreviousYearNode(ProfitPreviousYearNode node) {
+    }
+
+    @ProfitPreviousYearNodeScope
+    public static class ProfitPreviousYearNodeRuleProvider implements RuleProvider<ProfitPreviousYearNode> {
+
+        @Inject
+        public ProfitPreviousYearNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProfitPreviousYearNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     SelfEmployedNodeChildFactory createFactory(SelfEmployedNode parent) {

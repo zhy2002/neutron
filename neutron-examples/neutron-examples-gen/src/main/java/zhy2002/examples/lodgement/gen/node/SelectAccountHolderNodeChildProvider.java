@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface SelectAccountHolderNodeChildFactory {
@@ -38,6 +40,24 @@ public class SelectAccountHolderNodeChildProvider {
     protected void configureAccountHolderReferenceNode(AccountHolderReferenceNode node) {
     }
 
+    @AccountHolderReferenceNodeScope
+    public static class AccountHolderReferenceNodeRuleProvider implements RuleProvider<AccountHolderReferenceNode> {
+
+        @Inject
+        public AccountHolderReferenceNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccountHolderReferenceNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SelectAccountHolderFlagNode newSelectAccountHolderFlagNode(
         SelectAccountHolderNode parent,
         String name
@@ -46,6 +66,24 @@ public class SelectAccountHolderNodeChildProvider {
     }
 
     protected void configureSelectAccountHolderFlagNode(SelectAccountHolderFlagNode node) {
+    }
+
+    @SelectAccountHolderFlagNodeScope
+    public static class SelectAccountHolderFlagNodeRuleProvider implements RuleProvider<SelectAccountHolderFlagNode> {
+
+        @Inject
+        public SelectAccountHolderFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SelectAccountHolderFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     SelectAccountHolderNodeChildFactory createFactory(SelectAccountHolderNode parent) {

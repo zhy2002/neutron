@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ApplicationNodeChildFactory {
@@ -87,6 +89,24 @@ public class ApplicationNodeChildProvider {
     protected void configureAddressRefListNode(AddressRefListNode node) {
     }
 
+    @AddressRefListNodeScope
+    public static class AddressRefListNodeRuleProvider implements RuleProvider<AddressRefListNode> {
+
+        @Inject
+        public AddressRefListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AddressRefListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PersonListNode newPersonListNode(
         ApplicationNode parent,
         String name
@@ -95,6 +115,24 @@ public class ApplicationNodeChildProvider {
     }
 
     protected void configurePersonListNode(PersonListNode node) {
+    }
+
+    @PersonListNodeScope
+    public static class PersonListNodeRuleProvider implements RuleProvider<PersonListNode> {
+
+        @Inject
+        public PersonListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PersonListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected CompanyListNode newCompanyListNode(
@@ -107,6 +145,24 @@ public class ApplicationNodeChildProvider {
     protected void configureCompanyListNode(CompanyListNode node) {
     }
 
+    @CompanyListNodeScope
+    public static class CompanyListNodeRuleProvider implements RuleProvider<CompanyListNode> {
+
+        @Inject
+        public CompanyListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CompanyListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected FinancialPositionNode newFinancialPositionNode(
         ApplicationNode parent,
         String name
@@ -115,6 +171,24 @@ public class ApplicationNodeChildProvider {
     }
 
     protected void configureFinancialPositionNode(FinancialPositionNode node) {
+    }
+
+    @FinancialPositionNodeScope
+    public static class FinancialPositionNodeRuleProvider implements RuleProvider<FinancialPositionNode> {
+
+        @Inject
+        public FinancialPositionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(FinancialPositionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected RealEstateListNode newRealEstateListNode(
@@ -127,6 +201,24 @@ public class ApplicationNodeChildProvider {
     protected void configureRealEstateListNode(RealEstateListNode node) {
     }
 
+    @RealEstateListNodeScope
+    public static class RealEstateListNodeRuleProvider implements RuleProvider<RealEstateListNode> {
+
+        @Inject
+        public RealEstateListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RealEstateListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductsNode newProductsNode(
         ApplicationNode parent,
         String name
@@ -135,6 +227,24 @@ public class ApplicationNodeChildProvider {
     }
 
     protected void configureProductsNode(ProductsNode node) {
+    }
+
+    @ProductsNodeScope
+    public static class ProductsNodeRuleProvider implements RuleProvider<ProductsNode> {
+
+        @Inject
+        public ProductsNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductsNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected AdditionalNode newAdditionalNode(
@@ -147,6 +257,24 @@ public class ApplicationNodeChildProvider {
     protected void configureAdditionalNode(AdditionalNode node) {
     }
 
+    @AdditionalNodeScope
+    public static class AdditionalNodeRuleProvider implements RuleProvider<AdditionalNode> {
+
+        @Inject
+        public AdditionalNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AdditionalNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SubmissionNode newSubmissionNode(
         ApplicationNode parent,
         String name
@@ -157,6 +285,24 @@ public class ApplicationNodeChildProvider {
     protected void configureSubmissionNode(SubmissionNode node) {
     }
 
+    @SubmissionNodeScope
+    public static class SubmissionNodeRuleProvider implements RuleProvider<SubmissionNode> {
+
+        @Inject
+        public SubmissionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SubmissionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ErrorListNode newErrorListNode(
         ApplicationNode parent,
         String name
@@ -165,6 +311,24 @@ public class ApplicationNodeChildProvider {
     }
 
     protected void configureErrorListNode(ErrorListNode node) {
+    }
+
+    @ErrorListNodeScope
+    public static class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
+
+        @Inject
+        public ErrorListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ErrorListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ApplicationNodeChildFactory createFactory(ApplicationNode parent) {

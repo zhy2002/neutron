@@ -134,5 +134,8 @@ public abstract class UiNodeRule<N extends UiNode<?>> {
         this.host = null;
     }
 
+    protected void onLoad() {}
+
+    protected void onUnload() {}
 }
 

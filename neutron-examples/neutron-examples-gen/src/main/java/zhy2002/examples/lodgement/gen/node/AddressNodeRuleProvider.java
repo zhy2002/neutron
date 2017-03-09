@@ -30,7 +30,6 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
             createdRules.add(updateAddressRefListRuleProvider.get());
     }
 

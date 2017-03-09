@@ -30,13 +30,18 @@ public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPers
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<SelectRelatedPersonFlagNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public SelectRelatedPersonFlagNode(@NotNull SelectRelatedPersonNode parent, String name) {
         super(parent, name);

@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface AccessNodeChildFactory {
@@ -73,6 +75,24 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactTypeNode(AccessContactTypeNode node) {
     }
 
+    @AccessContactTypeNodeScope
+    public static class AccessContactTypeNodeRuleProvider implements RuleProvider<AccessContactTypeNode> {
+
+        @Inject
+        public AccessContactTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessContactTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AccessContactTitleNode newAccessContactTitleNode(
         AccessNode parent,
         String name
@@ -81,6 +101,24 @@ public class AccessNodeChildProvider {
     }
 
     protected void configureAccessContactTitleNode(AccessContactTitleNode node) {
+    }
+
+    @AccessContactTitleNodeScope
+    public static class AccessContactTitleNodeRuleProvider implements RuleProvider<AccessContactTitleNode> {
+
+        @Inject
+        public AccessContactTitleNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessContactTitleNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected AccessContactFirstNameNode newAccessContactFirstNameNode(
@@ -93,6 +131,24 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactFirstNameNode(AccessContactFirstNameNode node) {
     }
 
+    @AccessContactFirstNameNodeScope
+    public static class AccessContactFirstNameNodeRuleProvider implements RuleProvider<AccessContactFirstNameNode> {
+
+        @Inject
+        public AccessContactFirstNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessContactFirstNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AccessContactLastNameNode newAccessContactLastNameNode(
         AccessNode parent,
         String name
@@ -101,6 +157,24 @@ public class AccessNodeChildProvider {
     }
 
     protected void configureAccessContactLastNameNode(AccessContactLastNameNode node) {
+    }
+
+    @AccessContactLastNameNodeScope
+    public static class AccessContactLastNameNodeRuleProvider implements RuleProvider<AccessContactLastNameNode> {
+
+        @Inject
+        public AccessContactLastNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessContactLastNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected AccessCompanyNameNode newAccessCompanyNameNode(
@@ -113,6 +187,24 @@ public class AccessNodeChildProvider {
     protected void configureAccessCompanyNameNode(AccessCompanyNameNode node) {
     }
 
+    @AccessCompanyNameNodeScope
+    public static class AccessCompanyNameNodeRuleProvider implements RuleProvider<AccessCompanyNameNode> {
+
+        @Inject
+        public AccessCompanyNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessCompanyNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AccessTelephoneNode newAccessTelephoneNode(
         AccessNode parent,
         String name
@@ -123,6 +215,24 @@ public class AccessNodeChildProvider {
     protected void configureAccessTelephoneNode(AccessTelephoneNode node) {
     }
 
+    @AccessTelephoneNodeScope
+    public static class AccessTelephoneNodeRuleProvider implements RuleProvider<AccessTelephoneNode> {
+
+        @Inject
+        public AccessTelephoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessTelephoneNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AccessOtherDescriptionNode newAccessOtherDescriptionNode(
         AccessNode parent,
         String name
@@ -131,6 +241,24 @@ public class AccessNodeChildProvider {
     }
 
     protected void configureAccessOtherDescriptionNode(AccessOtherDescriptionNode node) {
+    }
+
+    @AccessOtherDescriptionNodeScope
+    public static class AccessOtherDescriptionNodeRuleProvider implements RuleProvider<AccessOtherDescriptionNode> {
+
+        @Inject
+        public AccessOtherDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AccessOtherDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     AccessNodeChildFactory createFactory(AccessNode parent) {

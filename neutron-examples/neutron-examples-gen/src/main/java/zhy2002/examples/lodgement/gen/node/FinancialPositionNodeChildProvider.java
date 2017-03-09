@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface FinancialPositionNodeChildFactory {
@@ -66,6 +68,24 @@ public class FinancialPositionNodeChildProvider {
     protected void configureAssetsNode(AssetsNode node) {
     }
 
+    @AssetsNodeScope
+    public static class AssetsNodeRuleProvider implements RuleProvider<AssetsNode> {
+
+        @Inject
+        public AssetsNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AssetsNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected LiabilitiesNode newLiabilitiesNode(
         FinancialPositionNode parent,
         String name
@@ -74,6 +94,24 @@ public class FinancialPositionNodeChildProvider {
     }
 
     protected void configureLiabilitiesNode(LiabilitiesNode node) {
+    }
+
+    @LiabilitiesNodeScope
+    public static class LiabilitiesNodeRuleProvider implements RuleProvider<LiabilitiesNode> {
+
+        @Inject
+        public LiabilitiesNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LiabilitiesNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ExpenseListNode newExpenseListNode(
@@ -86,6 +124,24 @@ public class FinancialPositionNodeChildProvider {
     protected void configureExpenseListNode(ExpenseListNode node) {
     }
 
+    @ExpenseListNodeScope
+    public static class ExpenseListNodeRuleProvider implements RuleProvider<ExpenseListNode> {
+
+        @Inject
+        public ExpenseListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExpenseListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TotalAssetNode newTotalAssetNode(
         FinancialPositionNode parent,
         String name
@@ -94,6 +150,24 @@ public class FinancialPositionNodeChildProvider {
     }
 
     protected void configureTotalAssetNode(TotalAssetNode node) {
+    }
+
+    @TotalAssetNodeScope
+    public static class TotalAssetNodeRuleProvider implements RuleProvider<TotalAssetNode> {
+
+        @Inject
+        public TotalAssetNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TotalAssetNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected TotalLiabilityNode newTotalLiabilityNode(
@@ -106,6 +180,24 @@ public class FinancialPositionNodeChildProvider {
     protected void configureTotalLiabilityNode(TotalLiabilityNode node) {
     }
 
+    @TotalLiabilityNodeScope
+    public static class TotalLiabilityNodeRuleProvider implements RuleProvider<TotalLiabilityNode> {
+
+        @Inject
+        public TotalLiabilityNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TotalLiabilityNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected TotalExpenseNode newTotalExpenseNode(
         FinancialPositionNode parent,
         String name
@@ -114,6 +206,24 @@ public class FinancialPositionNodeChildProvider {
     }
 
     protected void configureTotalExpenseNode(TotalExpenseNode node) {
+    }
+
+    @TotalExpenseNodeScope
+    public static class TotalExpenseNodeRuleProvider implements RuleProvider<TotalExpenseNode> {
+
+        @Inject
+        public TotalExpenseNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(TotalExpenseNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     FinancialPositionNodeChildFactory createFactory(FinancialPositionNode parent) {

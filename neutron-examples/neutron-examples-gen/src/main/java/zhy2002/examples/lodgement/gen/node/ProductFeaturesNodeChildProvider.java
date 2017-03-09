@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface ProductFeaturesNodeChildFactory {
@@ -102,6 +104,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductPackageNameNode(ProductPackageNameNode node) {
     }
 
+    @ProductPackageNameNodeScope
+    public static class ProductPackageNameNodeRuleProvider implements RuleProvider<ProductPackageNameNode> {
+
+        @Inject
+        public ProductPackageNameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductPackageNameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductRepaymentFrequencyNode newProductRepaymentFrequencyNode(
         ProductFeaturesNode parent,
         String name
@@ -110,6 +130,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProductRepaymentFrequencyNode(ProductRepaymentFrequencyNode node) {
+    }
+
+    @ProductRepaymentFrequencyNodeScope
+    public static class ProductRepaymentFrequencyNodeRuleProvider implements RuleProvider<ProductRepaymentFrequencyNode> {
+
+        @Inject
+        public ProductRepaymentFrequencyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductRepaymentFrequencyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductRateLockFlagNode newProductRateLockFlagNode(
@@ -122,6 +160,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductRateLockFlagNode(ProductRateLockFlagNode node) {
     }
 
+    @ProductRateLockFlagNodeScope
+    public static class ProductRateLockFlagNodeRuleProvider implements RuleProvider<ProductRateLockFlagNode> {
+
+        @Inject
+        public ProductRateLockFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductRateLockFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductTransactionAccountFlagNode newProductTransactionAccountFlagNode(
         ProductFeaturesNode parent,
         String name
@@ -130,6 +186,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProductTransactionAccountFlagNode(ProductTransactionAccountFlagNode node) {
+    }
+
+    @ProductTransactionAccountFlagNodeScope
+    public static class ProductTransactionAccountFlagNodeRuleProvider implements RuleProvider<ProductTransactionAccountFlagNode> {
+
+        @Inject
+        public ProductTransactionAccountFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductTransactionAccountFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductOptOutReasonNode newProductOptOutReasonNode(
@@ -142,6 +216,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductOptOutReasonNode(ProductOptOutReasonNode node) {
     }
 
+    @ProductOptOutReasonNodeScope
+    public static class ProductOptOutReasonNodeRuleProvider implements RuleProvider<ProductOptOutReasonNode> {
+
+        @Inject
+        public ProductOptOutReasonNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductOptOutReasonNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductCreditCardFlagNode newProductCreditCardFlagNode(
         ProductFeaturesNode parent,
         String name
@@ -150,6 +242,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProductCreditCardFlagNode(ProductCreditCardFlagNode node) {
+    }
+
+    @ProductCreditCardFlagNodeScope
+    public static class ProductCreditCardFlagNodeRuleProvider implements RuleProvider<ProductCreditCardFlagNode> {
+
+        @Inject
+        public ProductCreditCardFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCreditCardFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductCreditCardTypeNode newProductCreditCardTypeNode(
@@ -162,6 +272,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductCreditCardTypeNode(ProductCreditCardTypeNode node) {
     }
 
+    @ProductCreditCardTypeNodeScope
+    public static class ProductCreditCardTypeNodeRuleProvider implements RuleProvider<ProductCreditCardTypeNode> {
+
+        @Inject
+        public ProductCreditCardTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCreditCardTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductCreditCardLimitNode newProductCreditCardLimitNode(
         ProductFeaturesNode parent,
         String name
@@ -170,6 +298,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProductCreditCardLimitNode(ProductCreditCardLimitNode node) {
+    }
+
+    @ProductCreditCardLimitNodeScope
+    public static class ProductCreditCardLimitNodeRuleProvider implements RuleProvider<ProductCreditCardLimitNode> {
+
+        @Inject
+        public ProductCreditCardLimitNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCreditCardLimitNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductExpressConsentFlagNode newProductExpressConsentFlagNode(
@@ -182,6 +328,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductExpressConsentFlagNode(ProductExpressConsentFlagNode node) {
     }
 
+    @ProductExpressConsentFlagNodeScope
+    public static class ProductExpressConsentFlagNodeRuleProvider implements RuleProvider<ProductExpressConsentFlagNode> {
+
+        @Inject
+        public ProductExpressConsentFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductExpressConsentFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected Product100PercentOffsetFlagNode newProduct100PercentOffsetFlagNode(
         ProductFeaturesNode parent,
         String name
@@ -190,6 +354,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProduct100PercentOffsetFlagNode(Product100PercentOffsetFlagNode node) {
+    }
+
+    @Product100PercentOffsetFlagNodeScope
+    public static class Product100PercentOffsetFlagNodeRuleProvider implements RuleProvider<Product100PercentOffsetFlagNode> {
+
+        @Inject
+        public Product100PercentOffsetFlagNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(Product100PercentOffsetFlagNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ProductCardHolderNode newProductPrimaryCardHolderNode(
@@ -202,6 +384,24 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductPrimaryCardHolderNode(ProductCardHolderNode node) {
     }
 
+    @ProductCardHolderNodeScope
+    public static class ProductPrimaryCardHolderNodeRuleProvider implements RuleProvider<ProductCardHolderNode> {
+
+        @Inject
+        public ProductPrimaryCardHolderNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCardHolderNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ProductCardHolderNode newProductAdditionalCardHolderNode(
         ProductFeaturesNode parent,
         String name
@@ -210,6 +410,24 @@ public class ProductFeaturesNodeChildProvider {
     }
 
     protected void configureProductAdditionalCardHolderNode(ProductCardHolderNode node) {
+    }
+
+    @ProductCardHolderNodeScope
+    public static class ProductAdditionalCardHolderNodeRuleProvider implements RuleProvider<ProductCardHolderNode> {
+
+        @Inject
+        public ProductAdditionalCardHolderNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ProductCardHolderNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     ProductFeaturesNodeChildFactory createFactory(ProductFeaturesNode parent) {

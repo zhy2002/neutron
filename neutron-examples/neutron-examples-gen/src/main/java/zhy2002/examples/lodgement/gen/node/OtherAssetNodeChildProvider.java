@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface OtherAssetNodeChildFactory {
@@ -45,6 +47,24 @@ public class OtherAssetNodeChildProvider {
     protected void configureOtherAssetTypeNode(OtherAssetTypeNode node) {
     }
 
+    @OtherAssetTypeNodeScope
+    public static class OtherAssetTypeNodeRuleProvider implements RuleProvider<OtherAssetTypeNode> {
+
+        @Inject
+        public OtherAssetTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherAssetTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherAssetDescriptionNode newOtherAssetDescriptionNode(
         OtherAssetNode parent,
         String name
@@ -55,6 +75,24 @@ public class OtherAssetNodeChildProvider {
     protected void configureOtherAssetDescriptionNode(OtherAssetDescriptionNode node) {
     }
 
+    @OtherAssetDescriptionNodeScope
+    public static class OtherAssetDescriptionNodeRuleProvider implements RuleProvider<OtherAssetDescriptionNode> {
+
+        @Inject
+        public OtherAssetDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherAssetDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherAssetMarketValueNode newOtherAssetMarketValueNode(
         OtherAssetNode parent,
         String name
@@ -63,6 +101,24 @@ public class OtherAssetNodeChildProvider {
     }
 
     protected void configureOtherAssetMarketValueNode(OtherAssetMarketValueNode node) {
+    }
+
+    @OtherAssetMarketValueNodeScope
+    public static class OtherAssetMarketValueNodeRuleProvider implements RuleProvider<OtherAssetMarketValueNode> {
+
+        @Inject
+        public OtherAssetMarketValueNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherAssetMarketValueNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     OtherAssetNodeChildFactory createFactory(OtherAssetNode parent) {

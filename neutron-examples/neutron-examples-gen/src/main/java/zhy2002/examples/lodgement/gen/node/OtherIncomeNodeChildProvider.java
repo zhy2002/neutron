@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface OtherIncomeNodeChildFactory {
@@ -59,6 +61,24 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeAddBackTypeNode(OtherIncomeAddBackTypeNode node) {
     }
 
+    @OtherIncomeAddBackTypeNodeScope
+    public static class OtherIncomeAddBackTypeNodeRuleProvider implements RuleProvider<OtherIncomeAddBackTypeNode> {
+
+        @Inject
+        public OtherIncomeAddBackTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherIncomeAddBackTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherIncomeAmountNode newOtherIncomeAmountNode(
         OtherIncomeNode parent,
         String name
@@ -67,6 +87,24 @@ public class OtherIncomeNodeChildProvider {
     }
 
     protected void configureOtherIncomeAmountNode(OtherIncomeAmountNode node) {
+    }
+
+    @OtherIncomeAmountNodeScope
+    public static class OtherIncomeAmountNodeRuleProvider implements RuleProvider<OtherIncomeAmountNode> {
+
+        @Inject
+        public OtherIncomeAmountNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherIncomeAmountNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected OtherIncomeDescriptionNode newOtherIncomeDescriptionNode(
@@ -79,6 +117,24 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeDescriptionNode(OtherIncomeDescriptionNode node) {
     }
 
+    @OtherIncomeDescriptionNodeScope
+    public static class OtherIncomeDescriptionNodeRuleProvider implements RuleProvider<OtherIncomeDescriptionNode> {
+
+        @Inject
+        public OtherIncomeDescriptionNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherIncomeDescriptionNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherIncomePreviousYearNode newOtherIncomePreviousYearNode(
         OtherIncomeNode parent,
         String name
@@ -89,6 +145,24 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomePreviousYearNode(OtherIncomePreviousYearNode node) {
     }
 
+    @OtherIncomePreviousYearNodeScope
+    public static class OtherIncomePreviousYearNodeRuleProvider implements RuleProvider<OtherIncomePreviousYearNode> {
+
+        @Inject
+        public OtherIncomePreviousYearNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherIncomePreviousYearNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OtherIncomeTypeNode newOtherIncomeTypeNode(
         OtherIncomeNode parent,
         String name
@@ -97,6 +171,24 @@ public class OtherIncomeNodeChildProvider {
     }
 
     protected void configureOtherIncomeTypeNode(OtherIncomeTypeNode node) {
+    }
+
+    @OtherIncomeTypeNodeScope
+    public static class OtherIncomeTypeNodeRuleProvider implements RuleProvider<OtherIncomeTypeNode> {
+
+        @Inject
+        public OtherIncomeTypeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherIncomeTypeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     OtherIncomeNodeChildFactory createFactory(OtherIncomeNode parent) {

@@ -28,7 +28,6 @@ public class AdditionalNodeRuleProvider implements RuleProvider<AdditionalNode> 
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

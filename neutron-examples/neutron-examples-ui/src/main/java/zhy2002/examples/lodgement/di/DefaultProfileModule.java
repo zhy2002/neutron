@@ -105,6 +105,9 @@ public abstract class DefaultProfileModule {
     abstract AddNewThirdPartyApplicantRule provideAddNewThirdPartyApplicantRule(AddNewThirdPartyApplicantRuleImpl impl);
 
     @Binds
+    abstract DoNotLoadEndedDateForCurrentRecordRule provideDoNotLoadEndedDateForCurrentRecordRule(DoNotLoadEndedDateForCurrentRecordRuleImpl impl);
+
+    @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 
     @Binds

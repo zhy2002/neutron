@@ -1,8 +1,10 @@
 package zhy2002.examples.register.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.register.gen.di.*;
+import java.util.*;
 
 
 interface PhoneInfoNodeChildFactory {
@@ -51,6 +53,24 @@ public class PhoneInfoNodeChildProvider {
     protected void configureCountryCodeNode(CountryCodeNode node) {
     }
 
+    @CountryCodeNodeScope
+    public static class CountryCodeNodeRuleProvider implements RuleProvider<CountryCodeNode> {
+
+        @Inject
+        public CountryCodeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CountryCodeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected AreaCodeNode newAreaCodeNode(
         PhoneInfoNode parent,
         String name
@@ -61,6 +81,24 @@ public class PhoneInfoNodeChildProvider {
     protected void configureAreaCodeNode(AreaCodeNode node) {
     }
 
+    @AreaCodeNodeScope
+    public static class AreaCodeNodeRuleProvider implements RuleProvider<AreaCodeNode> {
+
+        @Inject
+        public AreaCodeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AreaCodeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PhoneNumberNode newPhoneNumberNode(
         PhoneInfoNode parent,
         String name
@@ -69,6 +107,24 @@ public class PhoneInfoNodeChildProvider {
     }
 
     protected void configurePhoneNumberNode(PhoneNumberNode node) {
+    }
+
+    @PhoneNumberNodeScope
+    public static class PhoneNumberNodeRuleProvider implements RuleProvider<PhoneNumberNode> {
+
+        @Inject
+        public PhoneNumberNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PhoneNumberNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     PhoneInfoNodeChildFactory createFactory(PhoneInfoNode parent) {

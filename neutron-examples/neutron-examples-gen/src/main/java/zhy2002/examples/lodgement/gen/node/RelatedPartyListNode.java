@@ -37,13 +37,18 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<RelatedPartyListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public RelatedPartyListNode(@NotNull AdditionalNode parent, String name) {
         super(parent, name);

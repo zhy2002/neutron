@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class ThirdPartyDisclosureFlagNodeModule {
@@ -35,4 +37,12 @@ public class ThirdPartyDisclosureFlagNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ThirdPartyDisclosureFlagNodeScope
+    Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> provideInstanceProviders(
+        Provider<BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider> thirdPartyDisclosureFlagNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> result = new HashMap<>();
+        result.put("thirdPartyDisclosureFlagNode", thirdPartyDisclosureFlagNodeRuleProvider.get());
+        return result;
+    }
 }

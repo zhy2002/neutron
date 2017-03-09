@@ -28,7 +28,6 @@ public class SavingsOwnershipListNodeRuleProvider implements RuleProvider<Saving
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

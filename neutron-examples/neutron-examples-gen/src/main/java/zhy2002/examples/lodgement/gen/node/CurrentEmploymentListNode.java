@@ -38,13 +38,18 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CurrentEmploymentListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CurrentEmploymentListNode(@NotNull PersonNode parent, String name) {
         super(parent, name);

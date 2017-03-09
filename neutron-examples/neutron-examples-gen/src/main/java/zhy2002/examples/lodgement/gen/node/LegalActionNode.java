@@ -31,13 +31,18 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<LegalActionNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public LegalActionNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);

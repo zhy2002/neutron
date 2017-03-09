@@ -30,13 +30,18 @@ public class ProductPackageNameNode extends StringUiNode<ProductFeaturesNode> {
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductPackageNameNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductPackageNameNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);

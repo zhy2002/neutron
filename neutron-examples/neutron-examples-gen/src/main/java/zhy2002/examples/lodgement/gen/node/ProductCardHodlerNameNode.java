@@ -30,13 +30,18 @@ public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNod
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductCardHodlerNameNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductCardHodlerNameNode(@NotNull ProductCardHolderNode parent, String name) {
         super(parent, name);

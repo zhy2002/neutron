@@ -30,13 +30,18 @@ public class CompanyContactLastNameNode extends StringUiNode<CompanyContactNode>
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyContactLastNameNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyContactLastNameNode(@NotNull CompanyContactNode parent, String name) {
         super(parent, name);

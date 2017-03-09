@@ -31,13 +31,18 @@ public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGener
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<CompanyApplicantTypeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public CompanyApplicantTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);

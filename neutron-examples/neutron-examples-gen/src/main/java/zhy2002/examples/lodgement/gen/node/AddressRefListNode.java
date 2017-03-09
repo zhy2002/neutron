@@ -37,13 +37,18 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<AddressRefListNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public AddressRefListNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);

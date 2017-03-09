@@ -28,7 +28,6 @@ public class SelfEmployedNodeRuleProvider implements RuleProvider<SelfEmployedNo
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        //todo move source to a profile
     }
 
 }

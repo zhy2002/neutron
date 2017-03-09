@@ -1,8 +1,10 @@
 package zhy2002.examples.register.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.register.gen.di.*;
+import java.util.*;
 
 
 interface RegisterNodeChildFactory {
@@ -102,6 +104,24 @@ public class RegisterNodeChildProvider {
     protected void configureUsernameNode(UsernameNode node) {
     }
 
+    @UsernameNodeScope
+    public static class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
+
+        @Inject
+        public UsernameNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(UsernameNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected EmailNode newEmailNode(
         RegisterNode parent,
         String name
@@ -110,6 +130,24 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configureEmailNode(EmailNode node) {
+    }
+
+    @EmailNodeScope
+    public static class EmailNodeRuleProvider implements RuleProvider<EmailNode> {
+
+        @Inject
+        public EmailNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(EmailNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PasswordNode newPasswordNode(
@@ -122,6 +160,24 @@ public class RegisterNodeChildProvider {
     protected void configurePasswordNode(PasswordNode node) {
     }
 
+    @PasswordNodeScope
+    public static class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
+
+        @Inject
+        public PasswordNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PasswordNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected RepeatPasswordNode newRepeatPasswordNode(
         RegisterNode parent,
         String name
@@ -130,6 +186,24 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configureRepeatPasswordNode(RepeatPasswordNode node) {
+    }
+
+    @RepeatPasswordNodeScope
+    public static class RepeatPasswordNodeRuleProvider implements RuleProvider<RepeatPasswordNode> {
+
+        @Inject
+        public RepeatPasswordNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(RepeatPasswordNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected AgeNode newAgeNode(
@@ -142,6 +216,24 @@ public class RegisterNodeChildProvider {
     protected void configureAgeNode(AgeNode node) {
     }
 
+    @AgeNodeScope
+    public static class AgeNodeRuleProvider implements RuleProvider<AgeNode> {
+
+        @Inject
+        public AgeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AgeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PlanNode newPlanNode(
         RegisterNode parent,
         String name
@@ -150,6 +242,24 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configurePlanNode(PlanNode node) {
+    }
+
+    @PlanNodeScope
+    public static class PlanNodeRuleProvider implements RuleProvider<PlanNode> {
+
+        @Inject
+        public PlanNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PlanNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected ReceiveOffersNode newReceiveOffersNode(
@@ -162,6 +272,24 @@ public class RegisterNodeChildProvider {
     protected void configureReceiveOffersNode(ReceiveOffersNode node) {
     }
 
+    @ReceiveOffersNodeScope
+    public static class ReceiveOffersNodeRuleProvider implements RuleProvider<ReceiveOffersNode> {
+
+        @Inject
+        public ReceiveOffersNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ReceiveOffersNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected OwnInvestmentPropertyNode newOwnInvestmentPropertyNode(
         RegisterNode parent,
         String name
@@ -170,6 +298,24 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configureOwnInvestmentPropertyNode(OwnInvestmentPropertyNode node) {
+    }
+
+    @OwnInvestmentPropertyNodeScope
+    public static class OwnInvestmentPropertyNodeRuleProvider implements RuleProvider<OwnInvestmentPropertyNode> {
+
+        @Inject
+        public OwnInvestmentPropertyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OwnInvestmentPropertyNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PropertyDetailsNode newResidentialPropertyNode(
@@ -182,6 +328,24 @@ public class RegisterNodeChildProvider {
     protected void configureResidentialPropertyNode(PropertyDetailsNode node) {
     }
 
+    @PropertyDetailsNodeScope
+    public static class ResidentialPropertyNodeRuleProvider implements RuleProvider<PropertyDetailsNode> {
+
+        @Inject
+        public ResidentialPropertyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyDetailsNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected PropertyDetailsNode newInvestmentPropertyNode(
         RegisterNode parent,
         String name
@@ -190,6 +354,25 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configureInvestmentPropertyNode(PropertyDetailsNode node) {
+    }
+
+    @PropertyDetailsNodeScope
+    public static class InvestmentPropertyNodeRuleProvider implements RuleProvider<PropertyDetailsNode> {
+
+        @Inject
+        public InvestmentPropertyNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PropertyDetailsNode node) {
+            node.setLoadWithParent(false);
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PhoneInfoNode newHomePhoneNode(
@@ -202,6 +385,24 @@ public class RegisterNodeChildProvider {
     protected void configureHomePhoneNode(PhoneInfoNode node) {
     }
 
+    @PhoneInfoNodeScope
+    public static class HomePhoneNodeRuleProvider implements RuleProvider<PhoneInfoNode> {
+
+        @Inject
+        public HomePhoneNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PhoneInfoNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected ErrorListNode newErrorListNode(
         RegisterNode parent,
         String name
@@ -210,6 +411,24 @@ public class RegisterNodeChildProvider {
     }
 
     protected void configureErrorListNode(ErrorListNode node) {
+    }
+
+    @ErrorListNodeScope
+    public static class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
+
+        @Inject
+        public ErrorListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ErrorListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     RegisterNodeChildFactory createFactory(RegisterNode parent) {

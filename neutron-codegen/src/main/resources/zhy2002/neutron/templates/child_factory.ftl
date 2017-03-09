@@ -1,8 +1,10 @@
 package ${targetPackage}.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import ${targetPackage}.gen.di.*;
+import java.util.*;
 
 
 interface ${typeName}ChildFactory {
@@ -36,6 +38,45 @@ public class ${typeName}ChildProvider {
     }
 
     protected void configure${child.name?cap_first}(${child.typeName} node) {
+    }
+
+    @${child.typeName}Scope
+    public static class ${child.name?cap_first}RuleProvider implements RuleProvider<${child.typeName}> {
+
+        @Inject
+        public ${child.name?cap_first}RuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(${child.typeName} node) {
+    <#if child.init??>
+        <#list child.init as prop>
+            <#if prop.value??>
+            node.set${prop.propertyName?cap_first}(${prop.value});
+            </#if>
+            <#if prop.mode??>
+            node.setChangeTrackingMode(${contextName}Constants.${prop.nameAllCaps}, ChangeTrackingModeEnum.${prop.mode});
+            </#if>
+        </#list>
+    </#if>
+        }
+
+    <#if child.rules??>
+        <#list child.rules as rule>
+        @Inject
+        Provider<${rule.typeName}> ${rule.typeName?uncap_first}Provider;
+        </#list>
+    </#if>
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        <#if child.rules??>
+            <#list child.rules as rule>
+            createdRules.add(${rule.typeName?uncap_first}Provider.get());
+            </#list>
+        </#if>
+        }
     }
 
 </#list>

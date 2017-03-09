@@ -1,10 +1,12 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class AreaCodeNodeModule {
@@ -39,4 +41,12 @@ public class AreaCodeNodeModule {
         return owner.getParent();
     }
 
+    @Provides @AreaCodeNodeScope
+    Map<String, RuleProvider<AreaCodeNode>> provideInstanceProviders(
+        Provider<PhoneInfoNodeChildProvider.AreaCodeNodeRuleProvider> areaCodeNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<AreaCodeNode>> result = new HashMap<>();
+        result.put("areaCodeNode", areaCodeNodeRuleProvider.get());
+        return result;
+    }
 }

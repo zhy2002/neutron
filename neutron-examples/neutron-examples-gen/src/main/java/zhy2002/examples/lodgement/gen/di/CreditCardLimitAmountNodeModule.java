@@ -1,10 +1,12 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
-import javax.inject.Named;
+import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+
 
 @Module
 public class CreditCardLimitAmountNodeModule {
@@ -39,4 +41,12 @@ public class CreditCardLimitAmountNodeModule {
         return owner.getParent();
     }
 
+    @Provides @CreditCardLimitAmountNodeScope
+    Map<String, RuleProvider<CreditCardLimitAmountNode>> provideInstanceProviders(
+        Provider<CreditCardNodeChildProvider.CreditCardLimitAmountNodeRuleProvider> creditCardLimitAmountNodeRuleProvider
+    ) {
+        Map<String, RuleProvider<CreditCardLimitAmountNode>> result = new HashMap<>();
+        result.put("creditCardLimitAmountNode", creditCardLimitAmountNodeRuleProvider.get());
+        return result;
+    }
 }

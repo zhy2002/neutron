@@ -1,8 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import zhy2002.neutron.*;
 import dagger.MembersInjector;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.*;
+import zhy2002.examples.lodgement.gen.di.*;
+import java.util.*;
 
 
 interface AddressNodeChildFactory {
@@ -52,6 +54,24 @@ public class AddressNodeChildProvider {
     protected void configureAddressLineNode(AddressLineNode node) {
     }
 
+    @AddressLineNodeScope
+    public static class AddressLineNodeRuleProvider implements RuleProvider<AddressLineNode> {
+
+        @Inject
+        public AddressLineNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AddressLineNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected SuburbNode newSuburbNode(
         AddressNode<?> parent,
         String name
@@ -60,6 +80,24 @@ public class AddressNodeChildProvider {
     }
 
     protected void configureSuburbNode(SuburbNode node) {
+    }
+
+    @SuburbNodeScope
+    public static class SuburbNodeRuleProvider implements RuleProvider<SuburbNode> {
+
+        @Inject
+        public SuburbNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(SuburbNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected PostcodeNode newPostcodeNode(
@@ -72,6 +110,24 @@ public class AddressNodeChildProvider {
     protected void configurePostcodeNode(PostcodeNode node) {
     }
 
+    @PostcodeNodeScope
+    public static class PostcodeNodeRuleProvider implements RuleProvider<PostcodeNode> {
+
+        @Inject
+        public PostcodeNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(PostcodeNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected CountryNode newCountryNode(
         AddressNode<?> parent,
         String name
@@ -80,6 +136,24 @@ public class AddressNodeChildProvider {
     }
 
     protected void configureCountryNode(CountryNode node) {
+    }
+
+    @CountryNodeScope
+    public static class CountryNodeRuleProvider implements RuleProvider<CountryNode> {
+
+        @Inject
+        public CountryNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CountryNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     AddressNodeChildFactory createFactory(AddressNode<?> parent) {

@@ -30,13 +30,18 @@ public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode>
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
+        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+        getInstanceRuleProvider().createRules(createdRules);
     }
 
+    private RuleProvider<ProductCreditCardTypeNode> getInstanceRuleProvider() {
+        return component.getInstanceRuleProviders().get(this.getName());
+    }
 
     public ProductCreditCardTypeNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);
