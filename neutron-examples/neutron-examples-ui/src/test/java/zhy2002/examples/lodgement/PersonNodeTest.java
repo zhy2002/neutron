@@ -27,14 +27,14 @@ public class PersonNodeTest {
     @Test
     public void addressRefListIsUpdatedWhenAnAddressNodeIsAdded() {
         AddressRefListNode AddressRefListNode = applicationNode.getAddressRefListNode();
-        assertThat(AddressRefListNode.getItemCount(), equalTo(4));
+        assertThat(AddressRefListNode.getItemCount(), equalTo(5));
 
         personNode.getParent().removeByIndex(0);
-        assertThat(AddressRefListNode.getItemCount(), equalTo(0));
+        assertThat(AddressRefListNode.getItemCount(), equalTo(1)); //first one is automatically added
 
         personNode.getParent().createItem();
         personNode.getParent().createItem();
-        assertThat(AddressRefListNode.getItemCount(), equalTo(8));
+        assertThat(AddressRefListNode.getItemCount(), equalTo(9));
     }
 
     @Test

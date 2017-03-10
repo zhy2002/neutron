@@ -6,6 +6,7 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.neutron.rule.*;
 
 @AccessOtherDescriptionNodeScope
 public class AccessOtherDescriptionNodeRuleProvider implements RuleProvider<AccessOtherDescriptionNode> {

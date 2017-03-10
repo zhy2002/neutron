@@ -144,4 +144,20 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     public boolean hasValue() {
         return getItemCount() > 0;
     }
+
+    public Integer getMinItemCount() {
+        return getStateValue(NeutronEventSubjects.MIN_ITEM_COUNT);
+    }
+
+    public void setMinItemCount(Integer count) {
+        setStateValue(NeutronEventSubjects.MIN_ITEM_COUNT, Integer.class, count);
+    }
+
+    public Integer getMaxItemCount() {
+        return getStateValue(NeutronEventSubjects.MAX_ITEM_COUNT);
+    }
+
+    public void setMaxItemCount(Integer count) {
+        setStateValue(NeutronEventSubjects.MAX_ITEM_COUNT, Integer.class, count);
+    }
 }

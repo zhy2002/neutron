@@ -6,6 +6,7 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.neutron.rule.*;
 
 @ProductLendingPurposeNodeScope
 public class ProductLendingPurposeNodeRuleProvider implements RuleProvider<ProductLendingPurposeNode> {

@@ -648,6 +648,10 @@ rootType:
   - typeName: RealEstateListNode
     baseTypeName: ListUiNode
     itemTypeName: RealEstateNode
+    init:
+    - {propertyName: minItemCount, value: 1}
+    rules:
+    - {typeName: AutoCreateListItemRule, existing: true}
     childTypes:
     - typeName: RealEstateNode
       baseTypeName: ObjectUiNode

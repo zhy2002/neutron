@@ -6,6 +6,7 @@ import java.util.*;
 import zhy2002.examples.app.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.app.gen.rule.*;
+import zhy2002.neutron.rule.*;
 
 @LodgementNodeScope
 public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {

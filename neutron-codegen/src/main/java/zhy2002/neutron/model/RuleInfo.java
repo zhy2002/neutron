@@ -3,6 +3,7 @@ package zhy2002.neutron.model;
 public class RuleInfo extends CodeGenInfo {
 
     private String baseTypeName;
+    private boolean existing;
 
     public String getBaseTypeName() {
         return baseTypeName;
@@ -10,6 +11,14 @@ public class RuleInfo extends CodeGenInfo {
 
     public void setBaseTypeName(String baseTypeName) {
         this.baseTypeName = baseTypeName;
+    }
+
+    public boolean isExisting() {
+        return existing;
+    }
+
+    public void setExisting(boolean existing) {
+        this.existing = existing;
     }
 
     ////////////////////////////////////////////////////////

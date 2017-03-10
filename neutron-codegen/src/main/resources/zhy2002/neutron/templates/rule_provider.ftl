@@ -6,6 +6,7 @@ import java.util.*;
 import ${targetPackage}.gen.di.*;
 import javax.inject.*;
 import ${targetPackage}.gen.rule.*;
+import zhy2002.neutron.rule.*;
 <#if init??>
 import ${targetPackage}.data.*;
 import java.math.*;

@@ -26,7 +26,7 @@ public class RealEstateNodeTest {
     public void defaultNodeLabelIsSet() {
         RealEstateNode realEstateNode = realEstateListNode.createItem();
 
-        assertThat(realEstateNode.getNodeLabel(), equalTo("[Real Estate 1]"));
+        assertThat(realEstateNode.getNodeLabel(), equalTo("[Real Estate 2]")); //first one is automatically created
 
         AddressNode<?> addressNode = realEstateNode.getPropertyNode().getPropertyAddressNode();
         addressNode.getAddressLineNode().setValue("1 Smith St.");

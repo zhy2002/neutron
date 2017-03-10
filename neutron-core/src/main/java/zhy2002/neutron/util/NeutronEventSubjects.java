@@ -6,6 +6,7 @@ package zhy2002.neutron.util;
  */
 public final class NeutronEventSubjects {
 
+
     private NeutronEventSubjects() {
     }
 
@@ -46,5 +47,6 @@ public final class NeutronEventSubjects {
     public static final String PATH_LABEL = "path_label";
     public static final String SELECTED_INDEX = "selectedIndex";
     public static final String SELECTED_NAME = "selectedName";
-
+    public static final String MIN_ITEM_COUNT = "min_item_count";
+    public static final String MAX_ITEM_COUNT = "max_item_count";
 }

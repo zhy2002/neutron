@@ -1,11 +1,14 @@
 todo 
 ----------------- 
 1. context menu
+2. load initial values (as a part of node load) 
+  - load value only or the full state?
 3. integrate with font awesome
 4. Per-lender config override
-  - implement load defaults functionality (auto populate)
+  - each profile (desc.yml) generate a separate profile (profile module and dependencies)
+  - add an option to combine the node structure of multiple desc.yml files
+  - support a tree of profiles
   - Use 'profile' dagger component/module to provide root node configured for a lender
-  - Need to create an example
 5. implement router - navigate to view via url
 7. simplify event binding api 
 8. node query and injection in rules 
@@ -174,6 +177,9 @@ Problems
 12. loading spinner
   * Implemented in HTML and JavaScript
 
+13. children level init and rules collection
+  * Implemented using instance rule provider
+  
   
 # Node Roles
 In the node hierarchy a node can have one of three roles:
@@ -265,9 +271,12 @@ baseTypeName: LeafUiNode -> parentBaseTypeName: ParentUiNode<?>
 children is not null -> baseTypeName: ObjectUiNode
 baseTypeName: ObjectUiNode -> parentBaseTypeName: ParentUiNode<?>
 
-children level: init and rules collection
 
-
+cascade list
+node state
+generic event binding
+field length
+trust ref list
 
 
 

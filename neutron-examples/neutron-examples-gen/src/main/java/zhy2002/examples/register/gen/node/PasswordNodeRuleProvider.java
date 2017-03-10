@@ -6,6 +6,7 @@ import java.util.*;
 import zhy2002.examples.register.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.neutron.rule.*;
 
 @PasswordNodeScope
 public class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
