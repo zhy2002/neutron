@@ -53,8 +53,8 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
                 }
             }
 
-            if(parent instanceof ApplicationNode) {
-                if(node instanceof PersonListNode || node instanceof CompanyListNode || node instanceof RealEstateListNode) {
+            if (parent instanceof ApplicationNode) {
+                if (event.getOrigin() != node && (node instanceof PersonListNode || node instanceof CompanyListNode || node instanceof RealEstateListNode)) {
                     ((ApplicationNode) parent).setContentLevel(2);
                 } else {
                     ((ApplicationNode) parent).setContentLevel(1);

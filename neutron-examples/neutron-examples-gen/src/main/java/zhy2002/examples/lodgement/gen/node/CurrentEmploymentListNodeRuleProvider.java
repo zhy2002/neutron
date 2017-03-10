@@ -25,13 +25,17 @@ public class CurrentEmploymentListNodeRuleProvider implements RuleProvider<Curre
         parentRuleProvider.initializeState(node);
 
         node.setNodeLabel("Current Employment");
+        node.setMinItemCount(1);
     }
 
+    @Inject
+    Provider<MinItemCountValidationRule> minItemCountValidationRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+            createdRules.add(minItemCountValidationRuleProvider.get());
     }
 
 }

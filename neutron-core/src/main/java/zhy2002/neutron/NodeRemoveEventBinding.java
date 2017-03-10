@@ -9,15 +9,15 @@ public class NodeRemoveEventBinding<E extends NodeRemoveEvent<?>> extends Abstra
     public NodeRemoveEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
-            @NotNull Class<E> eventCLass,
+             Class<E> eventCLass,
             @NotNull Collection<String> subjects,
-            @NotNull TickPhase phase) {
+            TickPhase phase) {
         super(filter, handler, eventCLass, subjects, phase);
     }
 
     public NodeRemoveEventBinding(
             @NotNull UiNodeEventHandler<E> handler,
-            @NotNull Class<E> eventClass,
+             Class<E> eventClass,
             @NotNull String subject
     ) {
         this(null, handler, eventClass, Collections.singletonList(subject), null);

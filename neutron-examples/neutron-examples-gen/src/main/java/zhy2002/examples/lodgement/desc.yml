@@ -214,6 +214,9 @@ rootType:
         itemTypeName: CurrentEmploymentNode
         init:
         - {propertyName: nodeLabel, value: '"Current Employment"'}
+        - {propertyName: minItemCount, value: 1}
+        rules:
+        - {typeName: MinItemCountValidationRule, existing: true}
         childTypes:
         - typeName: CurrentEmploymentNode
           baseTypeName: EmploymentNode

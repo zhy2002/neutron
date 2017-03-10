@@ -10,7 +10,7 @@ public class NodeAddEventBinding<E extends NodeAddEvent<?>> extends AbstractEven
     public NodeAddEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
-            @NotNull Class<E> eventCLass,
+            Class<E> eventCLass,
             @NotNull Collection<String> subjects,
             @NotNull TickPhase phase
     ) {
@@ -19,7 +19,7 @@ public class NodeAddEventBinding<E extends NodeAddEvent<?>> extends AbstractEven
 
     public NodeAddEventBinding(
             @NotNull UiNodeEventHandler<E> handler,
-            @NotNull Class<E> eventClass,
+            Class<E> eventClass,
             @NotNull String subject
     ) {
         this(null, handler, eventClass, Collections.singletonList(subject), null);

@@ -8,8 +8,8 @@ import java.util.List;
  */
 public abstract class ChangeUiNodeEvent extends UiNodeEvent {
 
-    protected ChangeUiNodeEvent(UiNode<?> target, String subject) {
-        super(target, subject);
+    protected ChangeUiNodeEvent(UiNode<?> origin, String subject) {
+        super(origin, subject);
     }
 
     /**
@@ -25,25 +25,32 @@ public abstract class ChangeUiNodeEvent extends UiNodeEvent {
     /**
      * Find all the rules that are activated by the this event.
      * Rule adding order is self -> descendants -> ancestors.
+     *
      * @return the activations.
      */
     @Override
     public final Iterable<BindingActivation> getActivations() {
-        UiNodeEvent event = this;
         List<BindingActivation> result = new ArrayList<>();
-        UiNode<?> anchor = event.getOrigin();
+        UiNode<?> anchor = this.getOrigin();
         do {
-            //at the moment rules have to declare the concrete event class they want to listen to.
-            for (EventBinding binding : anchor.getAttachedEventBindings(event.getEventKey())) {
-                if (binding.canFire(event)) {
-                    BindingActivation activation = new BindingActivation(binding, event);
-                    result.add(activation);
-                }
-            }
+            addBindingActivations(result, anchor);
             anchor = anchor.getParent();
         } while (anchor != null);
 
         return result;
     }
 
+    protected void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor) {
+        addBindingActivations(result, anchor, this.getEventKey());
+    }
+
+    protected final void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor, UiNodeEventKey<?> key) {
+        //at the moment rules have to declare the concrete event class they want to listen to.
+        for (EventBinding binding : anchor.getAttachedEventBindings(key)) {
+            if (binding.canFire(this)) {
+                BindingActivation activation = new BindingActivation(binding, this);
+                result.add(activation);
+            }
+        }
+    }
 }

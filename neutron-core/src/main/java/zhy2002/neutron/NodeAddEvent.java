@@ -2,6 +2,8 @@ package zhy2002.neutron;
 
 import zhy2002.neutron.util.NeutronEventSubjects;
 
+import java.util.List;
+
 /**
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
@@ -11,10 +13,10 @@ public abstract class NodeAddEvent<N extends UiNode<?>>
 
     private final N target;
 
-    public NodeAddEvent(N target) {
-        super(target, target.getParent().getName());
+    public NodeAddEvent(N origin) {
+        super(origin, origin.getParent().getName());
 
-        this.target = target;
+        this.target = origin;
     }
 
     /**
@@ -38,4 +40,9 @@ public abstract class NodeAddEvent<N extends UiNode<?>>
         target.detach();
     }
 
+    @Override
+    protected void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor) {
+        super.addBindingActivations(result, anchor);
+        addBindingActivations(result, anchor, new UiNodeEventKey<>(NodeAddEvent.class, this.getSubject()));
+    }
 }

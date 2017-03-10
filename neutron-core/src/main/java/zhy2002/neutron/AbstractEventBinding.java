@@ -27,18 +27,22 @@ public abstract class AbstractEventBinding<E extends UiNodeEvent> implements Eve
     protected AbstractEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
-            @NotNull Class<E> eventCLass,
+            Class<E> eventCLass,
             @NotNull Collection<String> subjects,
             TickPhase phase
     ) {
-        List<UiNodeEventKey<E>> eventKeys = new ArrayList<>();
+        List<UiNodeEventKey<?>> eventKeys = new ArrayList<>();
         for (String subject : subjects) {
-            eventKeys.add(new UiNodeEventKey<>(eventCLass, subject));
+            addEventKey(eventKeys, eventCLass, subject);
         }
         this.eventKeys = Collections.unmodifiableCollection(eventKeys);
         this.phase = ValueUtil.ifNull(phase, PredefinedPhases.Post);
         this.filter = ValueUtil.ifNull(filter, e -> true);
         this.handler = handler;
+    }
+
+    protected void addEventKey(List<UiNodeEventKey<?>> eventKeys, @NotNull Class<E> eventCLass, String subject) {
+        eventKeys.add(new UiNodeEventKey<>(eventCLass, subject));
     }
 
     public final Collection<UiNodeEventKey<?>> getEventKeys() {

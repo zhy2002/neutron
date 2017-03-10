@@ -26,7 +26,11 @@ export default class AddListComponent extends ListNeutronComponent {
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-2">
-                            <button className="btn btn-sm btn-primary pull-right" onClick={this.createNewItem}>
+                            <button
+                                id={this.model.getUniqueId()}
+                                className="btn btn-sm btn-primary pull-right"
+                                onClick={this.createNewItem}
+                            >
                                 Add
                             </button>
                         </div>
