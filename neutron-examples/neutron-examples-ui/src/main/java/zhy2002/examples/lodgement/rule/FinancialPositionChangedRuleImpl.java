@@ -3,6 +3,7 @@ package zhy2002.examples.lodgement.rule;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.FinancialPositionChangedRule;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.GenericNodeRemoveEventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.di.Owner;
@@ -26,7 +27,19 @@ public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRu
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
                 new BigDecimalStateChangeEventBinding(this::updateValues),
-                new RefreshEventBinding(this::updateValues, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON))
+                new RefreshEventBinding(this::updateValues, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)),
+                new GenericNodeRemoveEventBinding(
+                        this::updateValues,
+                        Arrays.asList(
+                                "creditCardListNode",
+                                "loanListNode",
+                                "otherLiabilityListNode",
+                                "savingsAccountListNode",
+                                "motorVehicleListNode",
+                                "otherAssetListNode",
+                                "expenseListNode"
+                        )
+                )
         );
     }
 
