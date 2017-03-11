@@ -31,7 +31,8 @@ public class FinancialPositionNodeRuleProvider implements RuleProvider<Financial
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(financialPositionChangedRuleProvider.get());
+            FinancialPositionChangedRule financialPositionChangedRule = financialPositionChangedRuleProvider.get();
+            createdRules.add(financialPositionChangedRule);
     }
 
 }

@@ -32,6 +32,7 @@ export default class NumberInputComponent extends InputComponent {
                 id={model.getUniqueId()}
                 value={this.state.value}
                 onChange={this.updateValue}
+                disabled={this.state.disabled}
                 readOnly={this.props.readonly}
                 {...conditionalProps}
             />

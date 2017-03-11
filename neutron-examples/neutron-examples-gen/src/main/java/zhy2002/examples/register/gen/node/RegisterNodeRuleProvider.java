@@ -33,8 +33,10 @@ public class RegisterNodeRuleProvider implements RuleProvider<RegisterNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(setHasErrorRuleProvider.get());
-            createdRules.add(createErrorNodeRuleProvider.get());
+            SetHasErrorRule setHasErrorRule = setHasErrorRuleProvider.get();
+            createdRules.add(setHasErrorRule);
+            CreateErrorNodeRule createErrorNodeRule = createErrorNodeRuleProvider.get();
+            createdRules.add(createErrorNodeRule);
     }
 
 }

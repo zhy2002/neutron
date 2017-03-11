@@ -565,10 +565,15 @@ rootType:
           - typeName: CreditCardClearingFlagNode
             baseTypeName: BooleanUiNode
             rules:
-            - {typeName: CreditCardClearingFlagChangedRule}
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"creditCardBreakCostNode"'}
 
           - typeName: CreditCardBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardLenderNameNode
             baseTypeName: StringUiNode
@@ -617,9 +622,16 @@ rootType:
 
           - typeName: LoanClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"loanBreakCostNode"'}
 
           - typeName: LoanBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanLenderNameNode
             baseTypeName: StringUiNode
@@ -671,9 +683,16 @@ rootType:
 
           - typeName: OtherLiabilityClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"otherLiabilityBreakCostNode"'}
 
           - typeName: OtherLiabilityBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityOwnershipListNode
             baseTypeName: OwnershipListNode

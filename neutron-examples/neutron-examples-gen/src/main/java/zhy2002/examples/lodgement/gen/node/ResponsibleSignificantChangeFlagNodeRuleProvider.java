@@ -34,7 +34,8 @@ public class ResponsibleSignificantChangeFlagNodeRuleProvider implements RulePro
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(responsibleSignificantChangeRuleProvider.get());
+            ResponsibleSignificantChangeRule responsibleSignificantChangeRule = responsibleSignificantChangeRuleProvider.get();
+            createdRules.add(responsibleSignificantChangeRule);
     }
 
 }

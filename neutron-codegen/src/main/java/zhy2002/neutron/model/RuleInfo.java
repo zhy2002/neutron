@@ -1,9 +1,14 @@
 package zhy2002.neutron.model;
 
+import javax.validation.Valid;
+import java.util.List;
+
 public class RuleInfo extends CodeGenInfo {
 
     private String baseTypeName;
     private boolean existing;
+    @Valid
+    private List<InitInfo> init;
 
     public String getBaseTypeName() {
         return baseTypeName;
@@ -19,6 +24,14 @@ public class RuleInfo extends CodeGenInfo {
 
     public void setExisting(boolean existing) {
         this.existing = existing;
+    }
+
+    public List<InitInfo> getInit() {
+        return init;
+    }
+
+    public void setInit(List<InitInfo> init) {
+        this.init = init;
     }
 
     ////////////////////////////////////////////////////////

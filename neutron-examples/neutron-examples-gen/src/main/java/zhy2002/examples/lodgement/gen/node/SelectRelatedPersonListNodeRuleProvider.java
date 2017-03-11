@@ -35,9 +35,12 @@ public class SelectRelatedPersonListNodeRuleProvider implements RuleProvider<Sel
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(addExistingPeopleRuleProvider.get());
-            createdRules.add(addNewPersonRuleProvider.get());
-            createdRules.add(addNewThirdPartyApplicantRuleProvider.get());
+            AddExistingPeopleRule addExistingPeopleRule = addExistingPeopleRuleProvider.get();
+            createdRules.add(addExistingPeopleRule);
+            AddNewPersonRule addNewPersonRule = addNewPersonRuleProvider.get();
+            createdRules.add(addNewPersonRule);
+            AddNewThirdPartyApplicantRule addNewThirdPartyApplicantRule = addNewThirdPartyApplicantRuleProvider.get();
+            createdRules.add(addNewThirdPartyApplicantRule);
     }
 
 }

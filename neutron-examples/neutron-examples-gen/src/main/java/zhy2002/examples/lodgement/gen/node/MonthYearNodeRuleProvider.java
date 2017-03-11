@@ -31,7 +31,8 @@ public class MonthYearNodeRuleProvider implements RuleProvider<MonthYearNode<?>>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(monthYearNotInFutureRuleProvider.get());
+            MonthYearNotInFutureRule monthYearNotInFutureRule = monthYearNotInFutureRuleProvider.get();
+            createdRules.add(monthYearNotInFutureRule);
     }
 
 }

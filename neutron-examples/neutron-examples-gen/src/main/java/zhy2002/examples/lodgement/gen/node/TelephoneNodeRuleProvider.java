@@ -31,7 +31,8 @@ public class TelephoneNodeRuleProvider implements RuleProvider<TelephoneNode<?>>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(telephoneCompleteRuleProvider.get());
+            TelephoneCompleteRule telephoneCompleteRule = telephoneCompleteRuleProvider.get();
+            createdRules.add(telephoneCompleteRule);
     }
 
 }

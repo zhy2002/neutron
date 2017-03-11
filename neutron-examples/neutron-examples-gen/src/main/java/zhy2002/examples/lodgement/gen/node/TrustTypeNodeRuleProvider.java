@@ -34,7 +34,8 @@ public class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(trustTypeChangedRuleProvider.get());
+            TrustTypeChangedRule trustTypeChangedRule = trustTypeChangedRuleProvider.get();
+            createdRules.add(trustTypeChangedRule);
     }
 
 }

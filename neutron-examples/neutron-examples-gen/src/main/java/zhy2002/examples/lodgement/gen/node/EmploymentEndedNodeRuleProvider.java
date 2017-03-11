@@ -34,7 +34,8 @@ public class EmploymentEndedNodeRuleProvider implements RuleProvider<EmploymentE
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get());
+            EmploymentEndedNoEarlierThanEmploymentStartedRule employmentEndedNoEarlierThanEmploymentStartedRule = employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get();
+            createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRule);
     }
 
 }

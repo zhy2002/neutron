@@ -63,9 +63,6 @@ public abstract class DefaultProfileModule {
     abstract CreateErrorNodeRule provideCreateErrorNodeRule(CreateErrorNodeRuleImpl impl);
 
     @Binds
-    abstract CreditCardClearingFlagChangedRule provideCreditCardClearingFlagChangedRule(CreditCardClearingFlagChangedRuleImpl impl);
-
-    @Binds
     abstract DobRangeValidationRule provideDobRangeValidationRule(DobRangeValidationRuleImpl impl);
 
     @Binds

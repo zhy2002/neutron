@@ -35,9 +35,12 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(addExistingApplicantsRuleProvider.get());
-            createdRules.add(addNewPersonApplicantRuleProvider.get());
-            createdRules.add(addNewCompanyApplicantRuleProvider.get());
+            AddExistingApplicantsRule addExistingApplicantsRule = addExistingApplicantsRuleProvider.get();
+            createdRules.add(addExistingApplicantsRule);
+            AddNewPersonApplicantRule addNewPersonApplicantRule = addNewPersonApplicantRuleProvider.get();
+            createdRules.add(addNewPersonApplicantRule);
+            AddNewCompanyApplicantRule addNewCompanyApplicantRule = addNewCompanyApplicantRuleProvider.get();
+            createdRules.add(addNewCompanyApplicantRule);
     }
 
 }

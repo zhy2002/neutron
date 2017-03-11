@@ -35,7 +35,8 @@ public class ApplicationTypeNodeRuleProvider implements RuleProvider<Application
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(changeApplicationTypeRuleProvider.get());
+            ChangeApplicationTypeRule changeApplicationTypeRule = changeApplicationTypeRuleProvider.get();
+            createdRules.add(changeApplicationTypeRule);
     }
 
 }

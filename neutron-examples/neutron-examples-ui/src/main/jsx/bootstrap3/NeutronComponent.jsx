@@ -102,7 +102,7 @@ export default class NeutronComponent extends React.PureComponent {
         let componentClass = '';
         if (newState.errorMessage) {
             componentClass = ' has-error';
-        } else if (this.model.getRequired() && !this.model.hasValue()) {
+        } else if (this.model.getRequired() && !this.model.hasValue() && !this.model.isDisabled()) {
             componentClass = ' missing-value';
         }
         newState.componentClass = componentClass;

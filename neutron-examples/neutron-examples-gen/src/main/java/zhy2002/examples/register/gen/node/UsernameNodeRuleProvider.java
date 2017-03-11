@@ -37,7 +37,8 @@ public class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(defaultEmailByUsernameRuleProvider.get());
+            DefaultEmailByUsernameRule defaultEmailByUsernameRule = defaultEmailByUsernameRuleProvider.get();
+            createdRules.add(defaultEmailByUsernameRule);
     }
 
 }

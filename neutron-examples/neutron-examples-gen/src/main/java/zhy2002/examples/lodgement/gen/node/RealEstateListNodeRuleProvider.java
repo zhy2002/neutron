@@ -34,7 +34,8 @@ public class RealEstateListNodeRuleProvider implements RuleProvider<RealEstateLi
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(autoCreateListItemRuleProvider.get());
+            AutoCreateListItemRule autoCreateListItemRule = autoCreateListItemRuleProvider.get();
+            createdRules.add(autoCreateListItemRule);
     }
 
 }

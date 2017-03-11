@@ -31,7 +31,8 @@ public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            createdRules.add(dummyRuleProvider.get());
+            DummyRule dummyRule = dummyRuleProvider.get();
+            createdRules.add(dummyRule);
     }
 
 }
