@@ -4,12 +4,13 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
+import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 
-public class ExpenseMonthlyRepaymentNode extends BigDecimalUiNode<ExpenseNode> {
+public class ExpenseMonthlyRepaymentNode extends BaseCurrencyNode<ExpenseNode> {
 
     @Override
     public final Class<?> getConcreteClass() {

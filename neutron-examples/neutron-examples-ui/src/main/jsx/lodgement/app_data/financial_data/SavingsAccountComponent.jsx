@@ -10,7 +10,7 @@ export default class SavingsAccountComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <FinancialItemComponent model={model}>
+            <FinancialItemComponent model={model} className="savings-account-component">
                 <div className="row">
                     <div className="col-md-4">
                         <SelectInputComponent model={model.getSavingsTypeNode()}/>

@@ -10,7 +10,7 @@ export default class PanelComponent extends React.PureComponent {
 
     render() {
         return (
-            <div className="panel panel-default panel-component">
+            <div className={`panel ${this.props.className} panel-component`}>
                 <div className="panel-heading clearfix">
                     <h3 className="panel-title small">{this.props.title} </h3>
                     {this.props.onAdd &&
@@ -30,9 +30,11 @@ export default class PanelComponent extends React.PureComponent {
 PanelComponent.propTypes = {
     title: React.PropTypes.string.isRequired,
     children: React.PropTypes.any.isRequired,
+    className: React.PropTypes.string,
     onAdd: React.PropTypes.func
 };
 
 PanelComponent.defaultProps = {
+    className: 'panel-default',
     onAdd: null
 };

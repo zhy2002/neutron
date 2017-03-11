@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @LoanTypeNodeScope
 public class LoanTypeNodeRuleProvider implements RuleProvider<LoanTypeNode> {
@@ -22,6 +24,8 @@ public class LoanTypeNodeRuleProvider implements RuleProvider<LoanTypeNode> {
     public void initializeState(LoanTypeNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setOptions(ApplicationNodeConstants.LIABILITY_LOAN_TYPE.toArray());
+        node.setRequired(true);
     }
 
 

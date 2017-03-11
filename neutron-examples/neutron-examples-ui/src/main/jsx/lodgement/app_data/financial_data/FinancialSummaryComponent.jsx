@@ -10,7 +10,7 @@ export default class FinancialSummaryComponent extends NeutronComponent {
 
         return (
             <div className="financial-summary-component">
-                <PanelComponent title="Summary">
+                <PanelComponent title="Summary" className="panel-primary">
                     <div className="row">
                         <div className="col-md-3">
                             <NumberInputComponent model={model.getTotalAssetNode()} readonly/>

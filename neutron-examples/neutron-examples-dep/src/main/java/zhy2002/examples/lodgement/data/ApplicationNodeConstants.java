@@ -48,6 +48,41 @@ public class ApplicationNodeConstants {
             new StringOption("US")
     );
 
+    public static final List<StringOption> OTHER_ASSET_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Home Contents"),
+            new StringOption("Superannuation"),
+            new StringOption("Good Will of Business"),
+            new StringOption("Other")
+    );
+
+    public static final List<StringOption> EXPENSE_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Ongoing Rent"),
+            new StringOption("Household Basic"),
+            new StringOption("Family Maintenance"),
+            new StringOption("Education Expenses"),
+            new StringOption("Insurance"),
+            new StringOption("Media"),
+            new StringOption("Groceries"),
+            new StringOption("Entertainment"),
+            new StringOption("Medical"),
+            new StringOption("Transport"),
+            new StringOption("Other")
+    );
+
+    public static final List<StringOption> LIABILITY_LOAN_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Hire Purchase"),
+            new StringOption("Lease"),
+            new StringOption("Line of Credit"),
+            new StringOption("Loan as Guarantor"),
+            new StringOption("Other Loan"),
+            new StringOption("Overdraft"),
+            new StringOption("Personal Loan"),
+            new StringOption("Term Loan")
+    );
+
     public static final List<StringOption> GENDER_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Male"),

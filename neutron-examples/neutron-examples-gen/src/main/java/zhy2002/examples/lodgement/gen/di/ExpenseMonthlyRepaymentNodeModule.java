@@ -21,6 +21,10 @@ public class ExpenseMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @ExpenseMonthlyRepaymentNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+        return owner;
+    }
+
     @Provides @ExpenseMonthlyRepaymentNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }

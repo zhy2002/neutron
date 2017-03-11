@@ -17,7 +17,7 @@ export default class LiabilityListComponent extends ListNeutronComponent {
         const model = this.model;
         return (
             <div className="liability-list-component">
-                <PanelComponent title="Liabilities">
+                <PanelComponent title="Liabilities" className="panel-primary">
                     <CreditCardListComponent model={model.getCreditCardListNode()}/>
                     <LoanListComponent model={model.getLoanListNode()}/>
                     <OtherLiabilityListComponent model={model.getOtherLiabilityListNode()}/>

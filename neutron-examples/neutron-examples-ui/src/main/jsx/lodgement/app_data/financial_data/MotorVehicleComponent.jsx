@@ -11,7 +11,7 @@ export default class MotorVehicleComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <FinancialItemComponent model={model}>
+            <FinancialItemComponent model={model} className="motor-vehicle-component">
                 <div className="row">
                     <div className="col-md-4">
                         <TextInputComponent model={model.getVehicleModelNode()}/>

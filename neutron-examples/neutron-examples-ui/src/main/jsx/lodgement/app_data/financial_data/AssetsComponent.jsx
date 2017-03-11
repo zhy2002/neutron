@@ -11,7 +11,7 @@ export default class AssetsComponent extends NeutronComponent {
         const model = this.model;
         return (
             <div className="assets-component">
-                <PanelComponent title="Assets">
+                <PanelComponent title="Assets" className="panel-primary">
                     <SavingAccountListComponent model={model.getSavingsAccountListNode()}/>
                     <MotorVehicleListComponent model={model.getMotorVehicleListNode()}/>
                     <OtherAssetListComponent model={model.getOtherAssetListNode()}/>

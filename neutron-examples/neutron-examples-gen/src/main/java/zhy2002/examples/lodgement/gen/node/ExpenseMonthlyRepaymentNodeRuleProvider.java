@@ -7,12 +7,14 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @ExpenseMonthlyRepaymentNodeScope
 public class ExpenseMonthlyRepaymentNodeRuleProvider implements RuleProvider<ExpenseMonthlyRepaymentNode> {
 
     @Inject
-    BigDecimalUiNodeRuleProvider parentRuleProvider;
+    BaseCurrencyNodeRuleProvider parentRuleProvider;
 
     @Inject
     public ExpenseMonthlyRepaymentNodeRuleProvider() {
@@ -22,6 +24,7 @@ public class ExpenseMonthlyRepaymentNodeRuleProvider implements RuleProvider<Exp
     public void initializeState(ExpenseMonthlyRepaymentNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setRequired(true);
     }
 
 

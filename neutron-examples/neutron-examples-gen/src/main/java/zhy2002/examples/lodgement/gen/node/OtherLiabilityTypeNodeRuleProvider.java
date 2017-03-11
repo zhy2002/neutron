@@ -25,6 +25,7 @@ public class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLia
         parentRuleProvider.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.OTHER_LIABILITY_TYPE.toArray());
+        node.setRequired(true);
     }
 
 

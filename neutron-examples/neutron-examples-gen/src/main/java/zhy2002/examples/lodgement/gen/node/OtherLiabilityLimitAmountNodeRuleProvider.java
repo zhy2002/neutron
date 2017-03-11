@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @OtherLiabilityLimitAmountNodeScope
 public class OtherLiabilityLimitAmountNodeRuleProvider implements RuleProvider<OtherLiabilityLimitAmountNode> {
@@ -22,6 +24,7 @@ public class OtherLiabilityLimitAmountNodeRuleProvider implements RuleProvider<O
     public void initializeState(OtherLiabilityLimitAmountNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setRequired(true);
     }
 
 

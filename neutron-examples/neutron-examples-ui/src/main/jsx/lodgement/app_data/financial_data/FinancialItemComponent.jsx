@@ -18,7 +18,7 @@ export default class FinancialItemComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <div className="well savings-account-component">
+            <div className={`well ${this.props.className}`}>
                 <div className="row">
                     <div className="col-md-7">
                         {this.props.children}
@@ -36,6 +36,7 @@ export default class FinancialItemComponent extends NeutronComponent {
 }
 
 FinancialItemComponent.propTypes = {
-    children: React.PropTypes.any.isRequired
+    children: React.PropTypes.any.isRequired,
+    className: React.PropTypes.string.isRequired
 };
 
