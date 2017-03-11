@@ -369,7 +369,7 @@ public class LodgementNodeTest {
         AssetsNode assetsNode = financialPositionNode.getAssetsNode();
         SavingsAccountListNode savingsAccountListNode = assetsNode.getSavingsAccountListNode();
         SavingsAccountNode savingsAccountNode = savingsAccountListNode.createItem();
-        OwnershipListNode<?> ownershipListNode = savingsAccountNode.getSavingsOwnershipListNode();
+        OwnershipListNode<?> ownershipListNode = savingsAccountNode.getOwnershipListNode();
 
         assertThat(ownershipListNode.getItemCount(), equalTo(2));
         assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getValue(), equalTo(personNode1.getPath()));
@@ -389,7 +389,7 @@ public class LodgementNodeTest {
         FinancialPositionNode financialPositionNode = applicationNode.getFinancialPositionNode();
         AssetsNode assetsNode = financialPositionNode.getAssetsNode();
         SavingsAccountNode savingsAccountNode = assetsNode.getSavingsAccountListNode().createItem();
-        SavingsOwnershipListNode ownershipListNode = savingsAccountNode.getSavingsOwnershipListNode();
+        SavingsOwnershipListNode ownershipListNode = savingsAccountNode.getOwnershipListNode();
         assertThat(ownershipListNode.getItemCount(), equalTo(0));
 
         CompanyNode companyNode = applicationNode.getCompanyListNode().createItem();

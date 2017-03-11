@@ -20,6 +20,7 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     private OtherLiabilityMonthlyRepaymentNode otherLiabilityMonthlyRepaymentNode;
     private OtherLiabilityClearingFlagNode otherLiabilityClearingFlagNode;
     private OtherLiabilityBreakCostNode otherLiabilityBreakCostNode;
+    private OtherLiabilityOwnershipListNode ownershipListNode;
 
     private OtherLiabilityNodeChildFactory childFactory;
 
@@ -94,6 +95,11 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         return otherLiabilityBreakCostNode;
     }
 
+    @JsMethod
+    public OtherLiabilityOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -111,6 +117,8 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         children.add(otherLiabilityClearingFlagNode);
         otherLiabilityBreakCostNode = childFactory.createOtherLiabilityBreakCostNode();
         children.add(otherLiabilityBreakCostNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

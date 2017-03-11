@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @SavingsAccountNameNodeScope
 public class SavingsAccountNameNodeRuleProvider implements RuleProvider<SavingsAccountNameNode> {
@@ -22,6 +24,7 @@ public class SavingsAccountNameNodeRuleProvider implements RuleProvider<SavingsA
     public void initializeState(SavingsAccountNameNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setRequired(true);
     }
 
 

@@ -43,10 +43,10 @@ public class SavingsOwnershipListNodeModule {
 
     @Provides @SavingsOwnershipListNodeScope
     Map<String, RuleProvider<SavingsOwnershipListNode>> provideInstanceProviders(
-        Provider<SavingsAccountNodeChildProvider.SavingsOwnershipListNodeRuleProvider> savingsOwnershipListNodeRuleProvider
+        Provider<SavingsAccountNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {
         Map<String, RuleProvider<SavingsOwnershipListNode>> result = new HashMap<>();
-        result.put("savingsOwnershipListNode", savingsOwnershipListNodeRuleProvider.get());
+        result.put("ownershipListNode", ownershipListNodeRuleProvider.get());
         return result;
     }
 }

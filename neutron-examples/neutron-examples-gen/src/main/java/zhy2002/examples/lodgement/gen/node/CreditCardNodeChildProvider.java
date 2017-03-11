@@ -15,6 +15,7 @@ interface CreditCardNodeChildFactory {
     CreditCardClearingFlagNode createCreditCardClearingFlagNode();
     CreditCardBreakCostNode createCreditCardBreakCostNode();
     CreditCardLenderNameNode createCreditCardLenderNameNode();
+    CreditCardOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
@@ -25,6 +26,8 @@ public class CreditCardNodeChildProvider {
     MembersInjector<CreditCardMonthlyRepaymentNode> creditCardMonthlyRepaymentNodeInjector;
     @Inject
     MembersInjector<CreditCardAmountOwingNode> creditCardAmountOwingNodeInjector;
+    @Inject
+    MembersInjector<CreditCardOwnershipListNode> creditCardOwnershipListNodeInjector;
     @Inject
     MembersInjector<CreditCardLimitAmountNode> creditCardLimitAmountNodeInjector;
     @Inject
@@ -47,6 +50,10 @@ public class CreditCardNodeChildProvider {
 
     protected MembersInjector<CreditCardAmountOwingNode> getCreditCardAmountOwingNodeInjector() {
         return this.creditCardAmountOwingNodeInjector;
+    }
+
+    protected MembersInjector<CreditCardOwnershipListNode> getCreditCardOwnershipListNodeInjector() {
+        return this.creditCardOwnershipListNodeInjector;
     }
 
     protected MembersInjector<CreditCardLimitAmountNode> getCreditCardLimitAmountNodeInjector() {
@@ -261,6 +268,34 @@ public class CreditCardNodeChildProvider {
         }
     }
 
+    protected CreditCardOwnershipListNode newOwnershipListNode(
+        CreditCardNode parent,
+        String name
+    ) {
+        return new CreditCardOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(CreditCardOwnershipListNode node) {
+    }
+
+    @CreditCardOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<CreditCardOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(CreditCardOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     CreditCardNodeChildFactory createFactory(CreditCardNode parent) {
         return new CreditCardNodeChildFactoryImpl(parent);
     }
@@ -326,6 +361,14 @@ public class CreditCardNodeChildProvider {
             CreditCardLenderNameNode node = newCreditCardLenderNameNode(parent, "creditCardLenderNameNode");
             creditCardLenderNameNodeInjector.injectMembers(node);
             configureCreditCardLenderNameNode(node);
+            return node;
+        }
+
+        @Override
+        public CreditCardOwnershipListNode createOwnershipListNode() {
+            CreditCardOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            creditCardOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

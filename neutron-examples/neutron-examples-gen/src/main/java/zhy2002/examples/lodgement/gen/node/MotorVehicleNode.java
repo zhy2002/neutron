@@ -16,6 +16,7 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     private VehicleModelNode vehicleModelNode;
     private VehicleYearNode vehicleYearNode;
     private VehicleMarketValueNode vehicleMarketValueNode;
+    private VehicleOwnershipListNode ownershipListNode;
 
     private MotorVehicleNodeChildFactory childFactory;
 
@@ -70,6 +71,11 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         return vehicleMarketValueNode;
     }
 
+    @JsMethod
+    public VehicleOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -79,6 +85,8 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         children.add(vehicleYearNode);
         vehicleMarketValueNode = childFactory.createVehicleMarketValueNode();
         children.add(vehicleMarketValueNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

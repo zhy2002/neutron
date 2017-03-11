@@ -15,6 +15,7 @@ interface LoanNodeChildFactory {
     LoanMonthlyRepaymentNode createLoanMonthlyRepaymentNode();
     LoanClearingFlagNode createLoanClearingFlagNode();
     LoanBreakCostNode createLoanBreakCostNode();
+    LoanOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
@@ -33,6 +34,8 @@ public class LoanNodeChildProvider {
     MembersInjector<LoanBreakCostNode> loanBreakCostNodeInjector;
     @Inject
     MembersInjector<LoanLenderNameNode> loanLenderNameNodeInjector;
+    @Inject
+    MembersInjector<LoanOwnershipListNode> loanOwnershipListNodeInjector;
 
     @Inject
     protected LoanNodeChildProvider () {}
@@ -63,6 +66,10 @@ public class LoanNodeChildProvider {
 
     protected MembersInjector<LoanLenderNameNode> getLoanLenderNameNodeInjector() {
         return this.loanLenderNameNodeInjector;
+    }
+
+    protected MembersInjector<LoanOwnershipListNode> getLoanOwnershipListNodeInjector() {
+        return this.loanOwnershipListNodeInjector;
     }
 
     protected LoanTypeNode newLoanTypeNode(
@@ -261,6 +268,34 @@ public class LoanNodeChildProvider {
         }
     }
 
+    protected LoanOwnershipListNode newOwnershipListNode(
+        LoanNode parent,
+        String name
+    ) {
+        return new LoanOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(LoanOwnershipListNode node) {
+    }
+
+    @LoanOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<LoanOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LoanOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     LoanNodeChildFactory createFactory(LoanNode parent) {
         return new LoanNodeChildFactoryImpl(parent);
     }
@@ -326,6 +361,14 @@ public class LoanNodeChildProvider {
             LoanBreakCostNode node = newLoanBreakCostNode(parent, "loanBreakCostNode");
             loanBreakCostNodeInjector.injectMembers(node);
             configureLoanBreakCostNode(node);
+            return node;
+        }
+
+        @Override
+        public LoanOwnershipListNode createOwnershipListNode() {
+            LoanOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            loanOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

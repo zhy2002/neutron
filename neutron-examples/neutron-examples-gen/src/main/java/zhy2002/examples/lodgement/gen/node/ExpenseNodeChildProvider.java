@@ -11,10 +11,13 @@ interface ExpenseNodeChildFactory {
     ExpenseTypeNode createExpenseTypeNode();
     ExpenseDescriptionNode createExpenseDescriptionNode();
     ExpenseMonthlyRepaymentNode createExpenseMonthlyRepaymentNode();
+    ExpenseOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
 public class ExpenseNodeChildProvider {
+    @Inject
+    MembersInjector<ExpenseOwnershipListNode> expenseOwnershipListNodeInjector;
     @Inject
     MembersInjector<ExpenseDescriptionNode> expenseDescriptionNodeInjector;
     @Inject
@@ -24,6 +27,10 @@ public class ExpenseNodeChildProvider {
 
     @Inject
     protected ExpenseNodeChildProvider () {}
+
+    protected MembersInjector<ExpenseOwnershipListNode> getExpenseOwnershipListNodeInjector() {
+        return this.expenseOwnershipListNodeInjector;
+    }
 
     protected MembersInjector<ExpenseDescriptionNode> getExpenseDescriptionNodeInjector() {
         return this.expenseDescriptionNodeInjector;
@@ -121,6 +128,34 @@ public class ExpenseNodeChildProvider {
         }
     }
 
+    protected ExpenseOwnershipListNode newOwnershipListNode(
+        ExpenseNode parent,
+        String name
+    ) {
+        return new ExpenseOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(ExpenseOwnershipListNode node) {
+    }
+
+    @ExpenseOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<ExpenseOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(ExpenseOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     ExpenseNodeChildFactory createFactory(ExpenseNode parent) {
         return new ExpenseNodeChildFactoryImpl(parent);
     }
@@ -154,6 +189,14 @@ public class ExpenseNodeChildProvider {
             ExpenseMonthlyRepaymentNode node = newExpenseMonthlyRepaymentNode(parent, "expenseMonthlyRepaymentNode");
             expenseMonthlyRepaymentNodeInjector.injectMembers(node);
             configureExpenseMonthlyRepaymentNode(node);
+            return node;
+        }
+
+        @Override
+        public ExpenseOwnershipListNode createOwnershipListNode() {
+            ExpenseOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            expenseOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

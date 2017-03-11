@@ -20,6 +20,7 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
     private LoanMonthlyRepaymentNode loanMonthlyRepaymentNode;
     private LoanClearingFlagNode loanClearingFlagNode;
     private LoanBreakCostNode loanBreakCostNode;
+    private LoanOwnershipListNode ownershipListNode;
 
     private LoanNodeChildFactory childFactory;
 
@@ -94,6 +95,11 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         return loanBreakCostNode;
     }
 
+    @JsMethod
+    public LoanOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -111,6 +117,8 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         children.add(loanClearingFlagNode);
         loanBreakCostNode = childFactory.createLoanBreakCostNode();
         children.add(loanBreakCostNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

@@ -11,10 +11,13 @@ interface OtherAssetNodeChildFactory {
     OtherAssetTypeNode createOtherAssetTypeNode();
     OtherAssetDescriptionNode createOtherAssetDescriptionNode();
     OtherAssetMarketValueNode createOtherAssetMarketValueNode();
+    OtherAssetOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
 public class OtherAssetNodeChildProvider {
+    @Inject
+    MembersInjector<OtherAssetOwnershipListNode> otherAssetOwnershipListNodeInjector;
     @Inject
     MembersInjector<OtherAssetDescriptionNode> otherAssetDescriptionNodeInjector;
     @Inject
@@ -24,6 +27,10 @@ public class OtherAssetNodeChildProvider {
 
     @Inject
     protected OtherAssetNodeChildProvider () {}
+
+    protected MembersInjector<OtherAssetOwnershipListNode> getOtherAssetOwnershipListNodeInjector() {
+        return this.otherAssetOwnershipListNodeInjector;
+    }
 
     protected MembersInjector<OtherAssetDescriptionNode> getOtherAssetDescriptionNodeInjector() {
         return this.otherAssetDescriptionNodeInjector;
@@ -121,6 +128,34 @@ public class OtherAssetNodeChildProvider {
         }
     }
 
+    protected OtherAssetOwnershipListNode newOwnershipListNode(
+        OtherAssetNode parent,
+        String name
+    ) {
+        return new OtherAssetOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(OtherAssetOwnershipListNode node) {
+    }
+
+    @OtherAssetOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<OtherAssetOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherAssetOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     OtherAssetNodeChildFactory createFactory(OtherAssetNode parent) {
         return new OtherAssetNodeChildFactoryImpl(parent);
     }
@@ -154,6 +189,14 @@ public class OtherAssetNodeChildProvider {
             OtherAssetMarketValueNode node = newOtherAssetMarketValueNode(parent, "otherAssetMarketValueNode");
             otherAssetMarketValueNodeInjector.injectMembers(node);
             configureOtherAssetMarketValueNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherAssetOwnershipListNode createOwnershipListNode() {
+            OtherAssetOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            otherAssetOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

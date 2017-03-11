@@ -19,7 +19,7 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     private SavingsBsbNoNode savingsBsbNoNode;
     private SavingsAccountNoNode savingsAccountNoNode;
     private SavingsAccountNameNode savingsAccountNameNode;
-    private SavingsOwnershipListNode savingsOwnershipListNode;
+    private SavingsOwnershipListNode ownershipListNode;
 
     private SavingsAccountNodeChildFactory childFactory;
 
@@ -90,8 +90,8 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     }
 
     @JsMethod
-    public SavingsOwnershipListNode getSavingsOwnershipListNode() {
-        return savingsOwnershipListNode;
+    public SavingsOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
     }
 
     @Override
@@ -109,8 +109,8 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
         children.add(savingsAccountNoNode);
         savingsAccountNameNode = childFactory.createSavingsAccountNameNode();
         children.add(savingsAccountNameNode);
-        savingsOwnershipListNode = childFactory.createSavingsOwnershipListNode();
-        children.add(savingsOwnershipListNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

@@ -20,6 +20,7 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     private CreditCardClearingFlagNode creditCardClearingFlagNode;
     private CreditCardBreakCostNode creditCardBreakCostNode;
     private CreditCardLenderNameNode creditCardLenderNameNode;
+    private CreditCardOwnershipListNode ownershipListNode;
 
     private CreditCardNodeChildFactory childFactory;
 
@@ -94,6 +95,11 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         return creditCardLenderNameNode;
     }
 
+    @JsMethod
+    public CreditCardOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -111,6 +117,8 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         children.add(creditCardBreakCostNode);
         creditCardLenderNameNode = childFactory.createCreditCardLenderNameNode();
         children.add(creditCardLenderNameNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

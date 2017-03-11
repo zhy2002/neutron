@@ -16,6 +16,7 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
     private ExpenseTypeNode expenseTypeNode;
     private ExpenseDescriptionNode expenseDescriptionNode;
     private ExpenseMonthlyRepaymentNode expenseMonthlyRepaymentNode;
+    private ExpenseOwnershipListNode ownershipListNode;
 
     private ExpenseNodeChildFactory childFactory;
 
@@ -70,6 +71,11 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         return expenseMonthlyRepaymentNode;
     }
 
+    @JsMethod
+    public ExpenseOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -79,6 +85,8 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         children.add(expenseDescriptionNode);
         expenseMonthlyRepaymentNode = childFactory.createExpenseMonthlyRepaymentNode();
         children.add(expenseMonthlyRepaymentNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 

@@ -11,6 +11,7 @@ interface MotorVehicleNodeChildFactory {
     VehicleModelNode createVehicleModelNode();
     VehicleYearNode createVehicleYearNode();
     VehicleMarketValueNode createVehicleMarketValueNode();
+    VehicleOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
@@ -19,6 +20,8 @@ public class MotorVehicleNodeChildProvider {
     MembersInjector<VehicleYearNode> vehicleYearNodeInjector;
     @Inject
     MembersInjector<VehicleModelNode> vehicleModelNodeInjector;
+    @Inject
+    MembersInjector<VehicleOwnershipListNode> vehicleOwnershipListNodeInjector;
     @Inject
     MembersInjector<VehicleMarketValueNode> vehicleMarketValueNodeInjector;
 
@@ -31,6 +34,10 @@ public class MotorVehicleNodeChildProvider {
 
     protected MembersInjector<VehicleModelNode> getVehicleModelNodeInjector() {
         return this.vehicleModelNodeInjector;
+    }
+
+    protected MembersInjector<VehicleOwnershipListNode> getVehicleOwnershipListNodeInjector() {
+        return this.vehicleOwnershipListNodeInjector;
     }
 
     protected MembersInjector<VehicleMarketValueNode> getVehicleMarketValueNodeInjector() {
@@ -121,6 +128,34 @@ public class MotorVehicleNodeChildProvider {
         }
     }
 
+    protected VehicleOwnershipListNode newOwnershipListNode(
+        MotorVehicleNode parent,
+        String name
+    ) {
+        return new VehicleOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(VehicleOwnershipListNode node) {
+    }
+
+    @VehicleOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<VehicleOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(VehicleOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     MotorVehicleNodeChildFactory createFactory(MotorVehicleNode parent) {
         return new MotorVehicleNodeChildFactoryImpl(parent);
     }
@@ -154,6 +189,14 @@ public class MotorVehicleNodeChildProvider {
             VehicleMarketValueNode node = newVehicleMarketValueNode(parent, "vehicleMarketValueNode");
             vehicleMarketValueNodeInjector.injectMembers(node);
             configureVehicleMarketValueNode(node);
+            return node;
+        }
+
+        @Override
+        public VehicleOwnershipListNode createOwnershipListNode() {
+            VehicleOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            vehicleOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

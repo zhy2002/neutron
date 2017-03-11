@@ -15,6 +15,7 @@ interface OtherLiabilityNodeChildFactory {
     OtherLiabilityMonthlyRepaymentNode createOtherLiabilityMonthlyRepaymentNode();
     OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode();
     OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode();
+    OtherLiabilityOwnershipListNode createOwnershipListNode();
 }
 
 @Singleton
@@ -33,6 +34,8 @@ public class OtherLiabilityNodeChildProvider {
     MembersInjector<OtherLiabilityDescriptionNode> otherLiabilityDescriptionNodeInjector;
     @Inject
     MembersInjector<OtherLiabilityTypeNode> otherLiabilityTypeNodeInjector;
+    @Inject
+    MembersInjector<OtherLiabilityOwnershipListNode> otherLiabilityOwnershipListNodeInjector;
 
     @Inject
     protected OtherLiabilityNodeChildProvider () {}
@@ -63,6 +66,10 @@ public class OtherLiabilityNodeChildProvider {
 
     protected MembersInjector<OtherLiabilityTypeNode> getOtherLiabilityTypeNodeInjector() {
         return this.otherLiabilityTypeNodeInjector;
+    }
+
+    protected MembersInjector<OtherLiabilityOwnershipListNode> getOtherLiabilityOwnershipListNodeInjector() {
+        return this.otherLiabilityOwnershipListNodeInjector;
     }
 
     protected OtherLiabilityTypeNode newOtherLiabilityTypeNode(
@@ -261,6 +268,34 @@ public class OtherLiabilityNodeChildProvider {
         }
     }
 
+    protected OtherLiabilityOwnershipListNode newOwnershipListNode(
+        OtherLiabilityNode parent,
+        String name
+    ) {
+        return new OtherLiabilityOwnershipListNode(parent, name);
+    }
+
+    protected void configureOwnershipListNode(OtherLiabilityOwnershipListNode node) {
+    }
+
+    @OtherLiabilityOwnershipListNodeScope
+    public static class OwnershipListNodeRuleProvider implements RuleProvider<OtherLiabilityOwnershipListNode> {
+
+        @Inject
+        public OwnershipListNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherLiabilityOwnershipListNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     OtherLiabilityNodeChildFactory createFactory(OtherLiabilityNode parent) {
         return new OtherLiabilityNodeChildFactoryImpl(parent);
     }
@@ -326,6 +361,14 @@ public class OtherLiabilityNodeChildProvider {
             OtherLiabilityBreakCostNode node = newOtherLiabilityBreakCostNode(parent, "otherLiabilityBreakCostNode");
             otherLiabilityBreakCostNodeInjector.injectMembers(node);
             configureOtherLiabilityBreakCostNode(node);
+            return node;
+        }
+
+        @Override
+        public OtherLiabilityOwnershipListNode createOwnershipListNode() {
+            OtherLiabilityOwnershipListNode node = newOwnershipListNode(parent, "ownershipListNode");
+            otherLiabilityOwnershipListNodeInjector.injectMembers(node);
+            configureOwnershipListNode(node);
             return node;
         }
 

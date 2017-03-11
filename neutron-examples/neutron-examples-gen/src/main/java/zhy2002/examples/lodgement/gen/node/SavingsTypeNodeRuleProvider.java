@@ -25,6 +25,7 @@ public class SavingsTypeNodeRuleProvider implements RuleProvider<SavingsTypeNode
         parentRuleProvider.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE.toArray());
+        node.setRequired(true);
     }
 
 

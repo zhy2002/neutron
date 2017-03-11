@@ -16,6 +16,7 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
     private OtherAssetTypeNode otherAssetTypeNode;
     private OtherAssetDescriptionNode otherAssetDescriptionNode;
     private OtherAssetMarketValueNode otherAssetMarketValueNode;
+    private OtherAssetOwnershipListNode ownershipListNode;
 
     private OtherAssetNodeChildFactory childFactory;
 
@@ -70,6 +71,11 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         return otherAssetMarketValueNode;
     }
 
+    @JsMethod
+    public OtherAssetOwnershipListNode getOwnershipListNode() {
+        return ownershipListNode;
+    }
+
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
@@ -79,6 +85,8 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         children.add(otherAssetDescriptionNode);
         otherAssetMarketValueNode = childFactory.createOtherAssetMarketValueNode();
         children.add(otherAssetMarketValueNode);
+        ownershipListNode = childFactory.createOwnershipListNode();
+        children.add(ownershipListNode);
         return children;
     }
 
