@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.neutron.NodeStatusEnum;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -72,5 +74,37 @@ public class PersonNodeTest {
 
         PreviousEmploymentNode previousEmploymentNode = personNode.getPreviousEmploymentListNode().createItem();
         assertThat(previousEmploymentNode.getSelfEmployedNode().getEmploymentEndedNode().getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
+    }
+
+    @Test
+    public void canDistributePercentage() {
+
+        SavingsAccountNode savingsAccountNode = applicationNode.getFinancialPositionNode().getAssetsNode().getSavingsAccountListNode().createItem();
+        SavingsOwnershipListNode ownershipListNode = savingsAccountNode.getOwnershipListNode();
+
+        assertThat(ownershipListNode.getItemCount(), equalTo(1));
+
+        OwnershipNode ownershipNode = ownershipListNode.getItem(0);
+        ownershipNode.getAverageFlagNode().setValue(Boolean.TRUE);
+
+        assertThat(ownershipNode.getOwnershipPercentageNode().getValue(), equalTo(new BigDecimal("100")));
+        assertThat(ownershipListNode.getTotalOwnership(), equalTo(new BigDecimal("100")));
+
+        ownershipNode.getAverageFlagNode().setValue(Boolean.FALSE);
+        assertThat(ownershipNode.getOwnershipPercentageNode().getValue(), equalTo(new BigDecimal("100")));
+        assertThat(ownershipListNode.getTotalOwnership(), equalTo(new BigDecimal("100")));
+
+        applicationNode.getPersonListNode().createItem();
+        assertThat(ownershipListNode.getItemCount(), equalTo(2));
+
+        OwnershipNode ownershipNode2 = ownershipListNode.getItem(1);
+        applicationNode.getContext().beginSession();
+        ownershipNode.getAverageFlagNode().setValue(Boolean.TRUE);
+        ownershipNode2.getAverageFlagNode().setValue(Boolean.TRUE);
+        applicationNode.getContext().commitSession();
+        assertThat(ownershipNode.getOwnershipPercentageNode().getValue(), equalTo(new BigDecimal("50")));
+        assertThat(ownershipNode2.getOwnershipPercentageNode().getValue(), equalTo(new BigDecimal("50")));
+        assertThat(ownershipListNode.getTotalOwnership(), equalTo(new BigDecimal("100")));
+
     }
 }

@@ -108,6 +108,9 @@ public abstract class DefaultProfileModule {
     abstract AddNewThirdPartyApplicantRule provideAddNewThirdPartyApplicantRule(AddNewThirdPartyApplicantRuleImpl impl);
 
     @Binds
+    abstract DistributePercentageRule provideDistributePercentageRule(DistributePercentageRuleImpl impl);
+
+    @Binds
     abstract DoNotLoadEndedDateForCurrentRecordRule provideDoNotLoadEndedDateForCurrentRecordRule(DoNotLoadEndedDateForCurrentRecordRuleImpl impl);
 
     @Binds

@@ -1544,6 +1544,7 @@ commonTypes:
   - {typeName: AddNewCompanyApplicantRule}
   - {typeName: OwnershipRequiredValidationRule, baseTypeName: ValidationRule}
   - {typeName: UpdateTotalOwnershipRule}
+  - {typeName: DistributePercentageRule}
   itemTypeName: OwnershipNode
   childTypes:
   - typeName: OwnershipNode

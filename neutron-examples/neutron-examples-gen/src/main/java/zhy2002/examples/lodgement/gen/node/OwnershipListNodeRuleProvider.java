@@ -34,6 +34,8 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
     Provider<OwnershipRequiredValidationRule> ownershipRequiredValidationRuleProvider;
     @Inject
     Provider<UpdateTotalOwnershipRule> updateTotalOwnershipRuleProvider;
+    @Inject
+    Provider<DistributePercentageRule> distributePercentageRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -49,6 +51,8 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
             createdRules.add(ownershipRequiredValidationRule);
             UpdateTotalOwnershipRule updateTotalOwnershipRule = updateTotalOwnershipRuleProvider.get();
             createdRules.add(updateTotalOwnershipRule);
+            DistributePercentageRule distributePercentageRule = distributePercentageRuleProvider.get();
+            createdRules.add(distributePercentageRule);
     }
 
 }

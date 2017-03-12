@@ -33,7 +33,7 @@ export default class TextInputComponent extends InputComponent {
                     value={this.state.value}
                     onChange={this.updateValue}
                     disabled={this.state.disabled}
-                    readOnly={this.props.readonly}
+                    readOnly={this.props.readonly || this.state.readonly}
                     {...conditionalProps}
                 />
                 {this.state.errorMessage &&
