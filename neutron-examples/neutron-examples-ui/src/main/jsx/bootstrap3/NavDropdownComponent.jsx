@@ -2,13 +2,6 @@ import React from 'react';
 import NodeLabelComponent from './NodeLabelComponent';
 import ListNeutronComponent from './ListNeutronComponent';
 
-function getClass(model, item) {
-    console.log('call getClass');
-    if (model.getSelectedIndex() === item.getIndex())
-        return 'active';
-
-    return '';
-}
 
 export default class NavDropdownComponent extends ListNeutronComponent {
 
@@ -42,26 +35,59 @@ export default class NavDropdownComponent extends ListNeutronComponent {
         };
 
         this.createNewItem = () => {
-            const newItem = this.props.model.createItem();
+            let newItem;
+            if (this.props.childList !== null) {
+                newItem = this.props.childList.createItem();
+            } else {
+                newItem = this.model.createItem();
+            }
             this.selectItem(newItem);
         };
     }
 
     isModelList() {
-        return !!this.props.model.getItemCount;
+        return !!this.props.model.getItemCount || !!this.props.childList;
+    }
+
+    getClass(model, item) {
+        if (model.getSelectedName) {
+            if (model.getSelectedName() === item.getName())
+                return 'active';
+        } else if (model === this.props.childList) {
+            if (this.model.getSelectedName() === model.getName() && model.getSelectedIndex() === item.getIndex())
+                return 'active';
+        } else if (model.getSelectedIndex() === item.getIndex()) {
+            return 'active';
+        }
+
+        return '';
     }
 
     renderItems() {
-        const model = this.props.model;
+        let model = this.props.model;
         if (!this.isModelList())
             return null;
 
         const items = [];
+        for (let i = 0; i < this.props.childItems.length; i++) {
+            const item = this.props.childItems[i];
+            const key = item.getUniqueId();
+            items.push(
+                <li key={key} className={this.getClass(model, item)}>
+                    <a tabIndex="0" onClick={() => this.selectItem(item)}>
+                        <NodeLabelComponent model={item}/>
+                    </a>
+                </li>
+            );
+        }
+        if (this.props.childList !== null) {
+            model = this.props.childList;
+        }
         for (let i = 0; i < model.getItemCount(); i++) {
             const item = model.getItem(i);
             const key = item.getUniqueId();
             items.push(
-                <li key={key} className={getClass(model, item)}>
+                <li key={key} className={this.getClass(model, item)}>
                     <a tabIndex="0" onClick={() => this.selectItem(item)}>
                         <NodeLabelComponent model={item}/>
                     </a>
@@ -105,5 +131,13 @@ export default class NavDropdownComponent extends ListNeutronComponent {
 
 NavDropdownComponent.propTypes = {
     onSelect: React.PropTypes.func.isRequired,
-    children: React.PropTypes.any.isRequired
+    children: React.PropTypes.any.isRequired,
+    childItems: React.PropTypes.array,
+    childList: React.PropTypes.object
 };
+
+NavDropdownComponent.defaultProps = {
+    childItems: [],
+    childList: null
+};
+

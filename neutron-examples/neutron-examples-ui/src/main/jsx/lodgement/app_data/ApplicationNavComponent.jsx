@@ -30,10 +30,25 @@ export default class ApplicationNavComponent extends NeutronComponent {
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getRealEstateListNode()}>
                             Real Estates
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getProductsNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getProductsNode()}
+                            childList={model.getProductsNode().getProductListNode()}
+                            childItems={[
+                                model.getProductsNode().getProductCustomerContributionNode(),
+                                model.getProductsNode().getProductFeesNode()
+                            ]}
+                        >
                             Products
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getAdditionalNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getAdditionalNode()}
+                            childItems={[
+                                model.getAdditionalNode().getAdditionalCommentNode()
+                            ]}
+                            childList={model.getAdditionalNode().getRelatedPartyListNode()}
+                        >
                             Additional
                         </NavDropdownComponent>
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getSubmissionNode()}>
