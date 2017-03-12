@@ -580,6 +580,8 @@ rootType:
 
           - typeName: CreditCardOwnershipListNode
             baseTypeName: OwnershipListNode
+            init:
+            - {propertyName: required, value: 'true'}
 
       - typeName: LoanListNode
         baseTypeName: ListUiNode
@@ -1535,11 +1537,13 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   properties:
-  - {name: totalOwnership, typeName: BigDecimalUiNode}
+  - {name: totalOwnership, typeName: BigDecimal}
   rules:
   - {typeName: AddExistingApplicantsRule}
   - {typeName: AddNewPersonApplicantRule}
   - {typeName: AddNewCompanyApplicantRule}
+  - {typeName: OwnershipRequiredValidationRule, baseTypeName: ValidationRule}
+  - {typeName: UpdateTotalOwnershipRule}
   itemTypeName: OwnershipNode
   childTypes:
   - typeName: OwnershipNode

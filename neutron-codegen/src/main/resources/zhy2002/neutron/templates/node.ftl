@@ -4,6 +4,7 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 <#if valueTypeName?? || properties?? || valueWrappers?? || children??>
 import jsinterop.annotations.*;
+import java.math.BigDecimal;
 </#if>
 <#if children?? || itemTypeName?? || !abstractNode || rules?? && rules?size gt 0>
 import javax.inject.*;

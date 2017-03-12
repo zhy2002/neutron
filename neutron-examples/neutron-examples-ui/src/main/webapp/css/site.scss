@@ -558,12 +558,22 @@ a[tabindex] {
 }
 
 .ownership-list-component {
-  .form-group {
+
+  .form-group.form-group-sm.checkbox-input-component {
     margin: 0;
   }
+
+  .form-group.form-group-sm.number-input-component {
+    margin: 0;
+  }
+
   .ownership-percentage-wrapper {
     width: 95px;
     margin-right: 10px;
+  }
+
+  .ownership-percentage-wrapper.total-percentage-container {
+    margin-right: 46px;
   }
 }
 

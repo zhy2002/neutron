@@ -3,6 +3,7 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
+import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
@@ -37,13 +38,13 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
     }
 
     @JsMethod
-    public BigDecimalUiNode getTotalOwnership() {
+    public BigDecimal getTotalOwnership() {
         return getStateValue(ApplicationNodeConstants.TOTAL_OWNERSHIP);
     }
 
     @JsMethod
-    public void setTotalOwnership(BigDecimalUiNode value) {
-        setStateValue(ApplicationNodeConstants.TOTAL_OWNERSHIP, BigDecimalUiNode.class, value);
+    public void setTotalOwnership(BigDecimal value) {
+        setStateValue(ApplicationNodeConstants.TOTAL_OWNERSHIP, BigDecimal.class, value);
     }
 
 }

@@ -344,11 +344,15 @@ a[tabindex] {
   margin-top: -10px;
   margin-right: -10px; }
 
-.ownership-list-component .form-group {
+.ownership-list-component .form-group.form-group-sm.checkbox-input-component {
+  margin: 0; }
+.ownership-list-component .form-group.form-group-sm.number-input-component {
   margin: 0; }
 .ownership-list-component .ownership-percentage-wrapper {
   width: 95px;
   margin-right: 10px; }
+.ownership-list-component .ownership-percentage-wrapper.total-percentage-container {
+  margin-right: 46px; }
 
 .select-related-person-list-component .form-group {
   margin-top: 0;

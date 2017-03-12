@@ -7,6 +7,12 @@ import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 
 export default class OwnershipListComponent extends ListNeutronComponent {
 
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.totalPercentage = this.model.getTotalOwnership().toString();
+        return newState;
+    }
+
     renderItems() {
         const result = [];
         const model = this.model;
@@ -36,10 +42,29 @@ export default class OwnershipListComponent extends ListNeutronComponent {
     render() {
         return (
             <div className="ownership-list-component">
-                <p>Ownership List</p>
+                <label htmlFor={this.model.getUniqueId()} >Ownership List</label>
                 <ul className="list-group">
                     {this.renderItems()}
                 </ul>
+                <div className="clearfix">
+                    <div className="pull-left">
+                        <span>Total:</span>
+                    </div>
+                    <div className="pull-right ownership-percentage-wrapper total-percentage-container">
+                        <div className="form-group form-group-sm number-input-component">
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id={this.model.getUniqueId()}
+                                    readOnly
+                                    value={this.state.totalPercentage}
+                                />
+                                <div className="input-group-addon">%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

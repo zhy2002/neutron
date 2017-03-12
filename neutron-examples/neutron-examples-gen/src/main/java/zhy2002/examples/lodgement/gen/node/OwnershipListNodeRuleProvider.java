@@ -30,6 +30,10 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
     Provider<AddNewPersonApplicantRule> addNewPersonApplicantRuleProvider;
     @Inject
     Provider<AddNewCompanyApplicantRule> addNewCompanyApplicantRuleProvider;
+    @Inject
+    Provider<OwnershipRequiredValidationRule> ownershipRequiredValidationRuleProvider;
+    @Inject
+    Provider<UpdateTotalOwnershipRule> updateTotalOwnershipRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -41,6 +45,10 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
             createdRules.add(addNewPersonApplicantRule);
             AddNewCompanyApplicantRule addNewCompanyApplicantRule = addNewCompanyApplicantRuleProvider.get();
             createdRules.add(addNewCompanyApplicantRule);
+            OwnershipRequiredValidationRule ownershipRequiredValidationRule = ownershipRequiredValidationRuleProvider.get();
+            createdRules.add(ownershipRequiredValidationRule);
+            UpdateTotalOwnershipRule updateTotalOwnershipRule = updateTotalOwnershipRuleProvider.get();
+            createdRules.add(updateTotalOwnershipRule);
     }
 
 }

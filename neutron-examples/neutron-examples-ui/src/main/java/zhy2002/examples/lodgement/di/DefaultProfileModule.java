@@ -57,6 +57,12 @@ public abstract class DefaultProfileModule {
     abstract ChangeApplicationTypeRule provideChangeApplicationTypeRule(ChangeApplicationTypeRuleImpl impl);
 
     @Binds
+    abstract OwnershipRequiredValidationRule provideOwnershipRequiredValidationRule(OwnershipRequiredValidationRuleImpl impl);
+
+    @Binds
+    abstract UpdateTotalOwnershipRule provideUpdateTotalOwnershipRule(UpdateTotalOwnershipRuleImpl impl);
+
+    @Binds
     abstract ChangeFocusErrorRule provideChangeFocusErrorRule(ChangeFocusErrorRuleImpl impl);
 
     @Binds
