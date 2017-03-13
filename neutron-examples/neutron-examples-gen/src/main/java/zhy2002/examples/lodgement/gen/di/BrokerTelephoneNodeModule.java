@@ -41,12 +41,10 @@ public class BrokerTelephoneNodeModule {
     Map<String, RuleProvider<BrokerTelephoneNode>> provideInstanceProviders(
         Provider<SubmissionNodeChildProvider.ContactNumberNodeRuleProvider> contactNumberNodeRuleProvider
         ,Provider<SubmissionNodeChildProvider.FaxNumberNodeRuleProvider> faxNumberNodeRuleProvider
-        ,Provider<SubmissionNodeChildProvider.MobileNumberNodeRuleProvider> mobileNumberNodeRuleProvider
     ) {
         Map<String, RuleProvider<BrokerTelephoneNode>> result = new HashMap<>();
         result.put("contactNumberNode", contactNumberNodeRuleProvider.get());
         result.put("faxNumberNode", faxNumberNodeRuleProvider.get());
-        result.put("mobileNumberNode", mobileNumberNodeRuleProvider.get());
         return result;
     }
 }

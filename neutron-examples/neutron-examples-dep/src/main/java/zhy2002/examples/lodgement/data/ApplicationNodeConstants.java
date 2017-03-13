@@ -48,6 +48,36 @@ public class ApplicationNodeConstants {
             new StringOption("US")
     );
 
+    public static final List<StringOption> THIRD_PARTY_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Accountant"),
+            new StringOption("Beneficiary"),
+            new StringOption("Solicitor"),
+            new StringOption("Next of Kin"),
+            new StringOption("Trust Beneficiary"),
+            new StringOption("Trust Settlor")
+    );
+
+    public static final List<StringOption> NEXT_KIN_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Mother"),
+            new StringOption("Mother-in-law"),
+            new StringOption("Father"),
+            new StringOption("Father-in-law"),
+            new StringOption("Brother"),
+            new StringOption("Brother-in-law"),
+            new StringOption("Sister"),
+            new StringOption("Sister-in-law"),
+            new StringOption("Cousin"),
+            new StringOption("Son"),
+            new StringOption("Daughter"),
+            new StringOption("Uncle"),
+            new StringOption("Aunt"),
+            new StringOption("Friend"),
+            new StringOption("Grandmother"),
+            new StringOption("Grandfather")
+    );
+
     public static final List<StringOption> OTHER_ASSET_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Home Contents"),

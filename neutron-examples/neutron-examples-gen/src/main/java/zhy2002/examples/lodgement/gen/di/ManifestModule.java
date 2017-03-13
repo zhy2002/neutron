@@ -312,6 +312,7 @@ subcomponents = {
     BrokerLastNameNodeComponent.class,
     BrokerCompanyNodeComponent.class,
     BrokerTelephoneNodeComponent.class,
+    BrokerMobileNumberNodeComponent.class,
     BrokerEmailNodeComponent.class,
     BrokerAddressNodeComponent.class,
     LenderIssuedBrokerNumberNodeComponent.class,

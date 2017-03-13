@@ -13,7 +13,7 @@ interface SubmissionNodeChildFactory {
     BrokerCompanyNode createBrokerCompanyNode();
     BrokerTelephoneNode createContactNumberNode();
     BrokerTelephoneNode createFaxNumberNode();
-    BrokerTelephoneNode createMobileNumberNode();
+    BrokerMobileNumberNode createMobileNumberNode();
     BrokerEmailNode createBrokerEmailNode();
     BrokerAddressNode createBrokerAddressNode();
     LenderIssuedBrokerNumberNode createLenderIssuedBrokerNumberNode();
@@ -25,6 +25,8 @@ public class SubmissionNodeChildProvider {
     MembersInjector<BrokerEmailNode> brokerEmailNodeInjector;
     @Inject
     MembersInjector<BrokerTelephoneNode> brokerTelephoneNodeInjector;
+    @Inject
+    MembersInjector<BrokerMobileNumberNode> brokerMobileNumberNodeInjector;
     @Inject
     MembersInjector<LenderIssuedBrokerNumberNode> lenderIssuedBrokerNumberNodeInjector;
     @Inject
@@ -45,6 +47,10 @@ public class SubmissionNodeChildProvider {
 
     protected MembersInjector<BrokerTelephoneNode> getBrokerTelephoneNodeInjector() {
         return this.brokerTelephoneNodeInjector;
+    }
+
+    protected MembersInjector<BrokerMobileNumberNode> getBrokerMobileNumberNodeInjector() {
+        return this.brokerMobileNumberNodeInjector;
     }
 
     protected MembersInjector<LenderIssuedBrokerNumberNode> getLenderIssuedBrokerNumberNodeInjector() {
@@ -208,18 +214,18 @@ public class SubmissionNodeChildProvider {
         }
     }
 
-    protected BrokerTelephoneNode newMobileNumberNode(
+    protected BrokerMobileNumberNode newMobileNumberNode(
         SubmissionNode parent,
         String name
     ) {
-        return new BrokerTelephoneNode(parent, name);
+        return new BrokerMobileNumberNode(parent, name);
     }
 
-    protected void configureMobileNumberNode(BrokerTelephoneNode node) {
+    protected void configureMobileNumberNode(BrokerMobileNumberNode node) {
     }
 
-    @BrokerTelephoneNodeScope
-    public static class MobileNumberNodeRuleProvider implements RuleProvider<BrokerTelephoneNode> {
+    @BrokerMobileNumberNodeScope
+    public static class MobileNumberNodeRuleProvider implements RuleProvider<BrokerMobileNumberNode> {
 
         @Inject
         public MobileNumberNodeRuleProvider() {
@@ -227,7 +233,7 @@ public class SubmissionNodeChildProvider {
         }
 
         @Override
-        public void initializeState(BrokerTelephoneNode node) {
+        public void initializeState(BrokerMobileNumberNode node) {
         }
 
 
@@ -373,9 +379,9 @@ public class SubmissionNodeChildProvider {
         }
 
         @Override
-        public BrokerTelephoneNode createMobileNumberNode() {
-            BrokerTelephoneNode node = newMobileNumberNode(parent, "mobileNumberNode");
-            brokerTelephoneNodeInjector.injectMembers(node);
+        public BrokerMobileNumberNode createMobileNumberNode() {
+            BrokerMobileNumberNode node = newMobileNumberNode(parent, "mobileNumberNode");
+            brokerMobileNumberNodeInjector.injectMembers(node);
             configureMobileNumberNode(node);
             return node;
         }

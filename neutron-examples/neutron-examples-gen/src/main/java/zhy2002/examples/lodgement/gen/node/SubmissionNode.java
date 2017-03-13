@@ -19,7 +19,7 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     private BrokerCompanyNode brokerCompanyNode;
     private BrokerTelephoneNode contactNumberNode;
     private BrokerTelephoneNode faxNumberNode;
-    private BrokerTelephoneNode mobileNumberNode;
+    private BrokerMobileNumberNode mobileNumberNode;
     private BrokerEmailNode brokerEmailNode;
     private BrokerAddressNode brokerAddressNode;
     private LenderIssuedBrokerNumberNode lenderIssuedBrokerNumberNode;
@@ -93,7 +93,7 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     }
 
     @JsMethod
-    public BrokerTelephoneNode getMobileNumberNode() {
+    public BrokerMobileNumberNode getMobileNumberNode() {
         return mobileNumberNode;
     }
 

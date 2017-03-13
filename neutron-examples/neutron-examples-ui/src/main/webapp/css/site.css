@@ -365,6 +365,9 @@ a[tabindex] {
   font-size: 120%;
   font-weight: bold; }
 
+.form-group-sm textarea.form-control {
+  height: auto !important; }
+
 #floatingBarsG {
   position: relative;
   width: 60px;

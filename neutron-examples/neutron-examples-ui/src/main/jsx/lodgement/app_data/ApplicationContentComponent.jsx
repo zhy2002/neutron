@@ -11,6 +11,7 @@ import RealEstateListComponent from './realestate_data/RealEstateListComponent';
 import RealEstateComponent from './realestate_data/RealEstateComponent';
 import ProductComponent from './product_data/ProductComponent';
 import ProductsComponent from './product_data/ProductsComponent';
+import SubmissionComponent from './submission_data/SubmissionComponent';
 
 
 export default class ApplicationContentComponent extends React.PureComponent {
@@ -57,6 +58,8 @@ export default class ApplicationContentComponent extends React.PureComponent {
         if (className === 'AdditionalCommentNode')
             return <AdditionalCommentComponent model={model} />;
 
+        if (className === 'SubmissionNode')
+            return <SubmissionComponent model={model} />;
         return (
             <div>View not defined for model: {className}</div>
         );

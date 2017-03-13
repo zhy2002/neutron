@@ -918,6 +918,10 @@ rootType:
 
         - typeName: AccessContactTitleNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
 
         - typeName: AccessContactFirstNameNode
           baseTypeName: StringUiNode
@@ -1204,18 +1208,43 @@ rootType:
         childTypes:
         - typeName: ThirdPartyTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.THIRD_PARTY_TYPE.toArray()}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"thirdPartyDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Next of Kin"'}
 
         - typeName: ThirdPartyDescriptionNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.NEXT_KIN_TYPE.toArray()}
 
         - typeName: ThirdPartyTitleNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyFirstNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyLastNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyDobNode
           baseTypeName: DobNode
@@ -1228,6 +1257,8 @@ rootType:
 
         - typeName: ThirdPartyWorkPhoneNode
           baseTypeName: TelephoneNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyEmailNode
           baseTypeName: StringUiNode
@@ -1243,7 +1274,7 @@ rootType:
       init:
       - {propertyName: required, value: 'true'}
     - {typeName: BrokerTelephoneNode, name: faxNumberNode}
-    - {typeName: BrokerTelephoneNode, name: mobileNumberNode}
+    - {typeName: BrokerMobileNumberNode, name: mobileNumberNode}
     - {typeName: BrokerEmailNode}
     - {typeName: BrokerAddressNode}
     - {typeName: LenderIssuedBrokerNumberNode}
@@ -1265,6 +1296,9 @@ rootType:
 
     - typeName: BrokerTelephoneNode
       baseTypeName: TelephoneNode
+
+    - typeName: BrokerMobileNumberNode
+      baseTypeName: BaseMobileNumberNode
 
     - typeName: BrokerEmailNode
       baseTypeName: EmailNode
