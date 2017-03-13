@@ -6,12 +6,24 @@ import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 
-public class ProductCustomerContributionNode extends ObjectUiNode<ProductsNode> {
+public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustomerContributionListNode> {
+
+    private ContributionTypeNode contributionTypeNode;
+    private ContributionDescriptionNode contributionDescriptionNode;
+    private ContributionAmountNode contributionAmountNode;
+
+    private ProductCustomerContributionNodeChildFactory childFactory;
+
+    @Inject
+    void receiveNodeProvider(ProductCustomerContributionNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -32,21 +44,43 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductsNode> 
     @Override
     protected void initializeState() {
         getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
     }
 
-    private RuleProvider<ProductCustomerContributionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
-    }
 
-    public ProductCustomerContributionNode(@NotNull ProductsNode parent, String name) {
+    public ProductCustomerContributionNode(@NotNull ProductCustomerContributionListNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public ContributionTypeNode getContributionTypeNode() {
+        return contributionTypeNode;
+    }
+
+    @JsMethod
+    public ContributionDescriptionNode getContributionDescriptionNode() {
+        return contributionDescriptionNode;
+    }
+
+    @JsMethod
+    public ContributionAmountNode getContributionAmountNode() {
+        return contributionAmountNode;
+    }
+
+    @Override
+    protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
+        contributionTypeNode = childFactory.createContributionTypeNode();
+        children.add(contributionTypeNode);
+        contributionDescriptionNode = childFactory.createContributionDescriptionNode();
+        children.add(contributionDescriptionNode);
+        contributionAmountNode = childFactory.createContributionAmountNode();
+        children.add(contributionAmountNode);
+        return children;
     }
 
 }

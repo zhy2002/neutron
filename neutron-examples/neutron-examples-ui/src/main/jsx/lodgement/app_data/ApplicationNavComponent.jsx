@@ -35,8 +35,8 @@ export default class ApplicationNavComponent extends NeutronComponent {
                             model={model.getProductsNode()}
                             childList={model.getProductsNode().getProductListNode()}
                             childItems={[
-                                model.getProductsNode().getProductCustomerContributionNode(),
-                                model.getProductsNode().getProductFeesNode()
+                                model.getProductsNode().getProductCustomerContributionListNode(),
+                                model.getProductsNode().getProductFeeListNode()
                             ]}
                         >
                             Products

@@ -9,8 +9,8 @@ import java.util.*;
 
 interface ProductsNodeChildFactory {
     ProductListNode createProductListNode();
-    ProductCustomerContributionNode createProductCustomerContributionNode();
-    ProductFeesNode createProductFeesNode();
+    ProductCustomerContributionListNode createProductCustomerContributionListNode();
+    ProductFeeListNode createProductFeeListNode();
     ProductLoanTypeNode createProductLoanTypeNode();
     SettlementDateNode createSettlementDateNode();
     ProductTotalLoanAmountNode createProductTotalLoanAmountNode();
@@ -25,7 +25,11 @@ public class ProductsNodeChildProvider {
     @Inject
     MembersInjector<SettlementDateNode> settlementDateNodeInjector;
     @Inject
+    MembersInjector<ProductFeeListNode> productFeeListNodeInjector;
+    @Inject
     MembersInjector<ProductTotalSecurityAmountNode> productTotalSecurityAmountNodeInjector;
+    @Inject
+    MembersInjector<ProductCustomerContributionListNode> productCustomerContributionListNodeInjector;
     @Inject
     MembersInjector<ProductLoanTypeNode> productLoanTypeNodeInjector;
     @Inject
@@ -33,13 +37,9 @@ public class ProductsNodeChildProvider {
     @Inject
     MembersInjector<ProductTotalLvrLmiNode> productTotalLvrLmiNodeInjector;
     @Inject
-    MembersInjector<ProductCustomerContributionNode> productCustomerContributionNodeInjector;
-    @Inject
     MembersInjector<ProductListNode> productListNodeInjector;
     @Inject
     MembersInjector<ProductTotalLoanLmiAmountNode> productTotalLoanLmiAmountNodeInjector;
-    @Inject
-    MembersInjector<ProductFeesNode> productFeesNodeInjector;
     @Inject
     MembersInjector<ProductTotalLvrNode> productTotalLvrNodeInjector;
 
@@ -50,8 +50,16 @@ public class ProductsNodeChildProvider {
         return this.settlementDateNodeInjector;
     }
 
+    protected MembersInjector<ProductFeeListNode> getProductFeeListNodeInjector() {
+        return this.productFeeListNodeInjector;
+    }
+
     protected MembersInjector<ProductTotalSecurityAmountNode> getProductTotalSecurityAmountNodeInjector() {
         return this.productTotalSecurityAmountNodeInjector;
+    }
+
+    protected MembersInjector<ProductCustomerContributionListNode> getProductCustomerContributionListNodeInjector() {
+        return this.productCustomerContributionListNodeInjector;
     }
 
     protected MembersInjector<ProductLoanTypeNode> getProductLoanTypeNodeInjector() {
@@ -66,20 +74,12 @@ public class ProductsNodeChildProvider {
         return this.productTotalLvrLmiNodeInjector;
     }
 
-    protected MembersInjector<ProductCustomerContributionNode> getProductCustomerContributionNodeInjector() {
-        return this.productCustomerContributionNodeInjector;
-    }
-
     protected MembersInjector<ProductListNode> getProductListNodeInjector() {
         return this.productListNodeInjector;
     }
 
     protected MembersInjector<ProductTotalLoanLmiAmountNode> getProductTotalLoanLmiAmountNodeInjector() {
         return this.productTotalLoanLmiAmountNodeInjector;
-    }
-
-    protected MembersInjector<ProductFeesNode> getProductFeesNodeInjector() {
-        return this.productFeesNodeInjector;
     }
 
     protected MembersInjector<ProductTotalLvrNode> getProductTotalLvrNodeInjector() {
@@ -114,26 +114,26 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductCustomerContributionNode newProductCustomerContributionNode(
+    protected ProductCustomerContributionListNode newProductCustomerContributionListNode(
         ProductsNode parent,
         String name
     ) {
-        return new ProductCustomerContributionNode(parent, name);
+        return new ProductCustomerContributionListNode(parent, name);
     }
 
-    protected void configureProductCustomerContributionNode(ProductCustomerContributionNode node) {
+    protected void configureProductCustomerContributionListNode(ProductCustomerContributionListNode node) {
     }
 
-    @ProductCustomerContributionNodeScope
-    public static class ProductCustomerContributionNodeRuleProvider implements RuleProvider<ProductCustomerContributionNode> {
+    @ProductCustomerContributionListNodeScope
+    public static class ProductCustomerContributionListNodeRuleProvider implements RuleProvider<ProductCustomerContributionListNode> {
 
         @Inject
-        public ProductCustomerContributionNodeRuleProvider() {
+        public ProductCustomerContributionListNodeRuleProvider() {
 
         }
 
         @Override
-        public void initializeState(ProductCustomerContributionNode node) {
+        public void initializeState(ProductCustomerContributionListNode node) {
         }
 
 
@@ -142,26 +142,26 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductFeesNode newProductFeesNode(
+    protected ProductFeeListNode newProductFeeListNode(
         ProductsNode parent,
         String name
     ) {
-        return new ProductFeesNode(parent, name);
+        return new ProductFeeListNode(parent, name);
     }
 
-    protected void configureProductFeesNode(ProductFeesNode node) {
+    protected void configureProductFeeListNode(ProductFeeListNode node) {
     }
 
-    @ProductFeesNodeScope
-    public static class ProductFeesNodeRuleProvider implements RuleProvider<ProductFeesNode> {
+    @ProductFeeListNodeScope
+    public static class ProductFeeListNodeRuleProvider implements RuleProvider<ProductFeeListNode> {
 
         @Inject
-        public ProductFeesNodeRuleProvider() {
+        public ProductFeeListNodeRuleProvider() {
 
         }
 
         @Override
-        public void initializeState(ProductFeesNode node) {
+        public void initializeState(ProductFeeListNode node) {
         }
 
 
@@ -387,18 +387,18 @@ public class ProductsNodeChildProvider {
         }
 
         @Override
-        public ProductCustomerContributionNode createProductCustomerContributionNode() {
-            ProductCustomerContributionNode node = newProductCustomerContributionNode(parent, "productCustomerContributionNode");
-            productCustomerContributionNodeInjector.injectMembers(node);
-            configureProductCustomerContributionNode(node);
+        public ProductCustomerContributionListNode createProductCustomerContributionListNode() {
+            ProductCustomerContributionListNode node = newProductCustomerContributionListNode(parent, "productCustomerContributionListNode");
+            productCustomerContributionListNodeInjector.injectMembers(node);
+            configureProductCustomerContributionListNode(node);
             return node;
         }
 
         @Override
-        public ProductFeesNode createProductFeesNode() {
-            ProductFeesNode node = newProductFeesNode(parent, "productFeesNode");
-            productFeesNodeInjector.injectMembers(node);
-            configureProductFeesNode(node);
+        public ProductFeeListNode createProductFeeListNode() {
+            ProductFeeListNode node = newProductFeeListNode(parent, "productFeeListNode");
+            productFeeListNodeInjector.injectMembers(node);
+            configureProductFeeListNode(node);
             return node;
         }
 

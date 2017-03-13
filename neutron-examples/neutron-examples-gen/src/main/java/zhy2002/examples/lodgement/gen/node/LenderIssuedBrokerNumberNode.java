@@ -2,31 +2,30 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import jsinterop.annotations.*;
-import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
+import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 
-public class ProductFeesNode extends ObjectUiNode<ProductsNode> {
+public class LenderIssuedBrokerNumberNode extends StringUiNode<SubmissionNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductFeesNode.class;
+        return LenderIssuedBrokerNumberNode.class;
     }
 
-    private ProductFeesNodeComponent component;
+    private LenderIssuedBrokerNumberNodeComponent component;
 
     @Inject
-    void createComponent(ProductFeesNodeComponent.Builder builder) {
-        this.component = builder.setProductFeesNodeModule(new ProductFeesNodeModule(this)).build();
+    void createComponent(LenderIssuedBrokerNumberNodeComponent.Builder builder) {
+        this.component = builder.setLenderIssuedBrokerNumberNodeModule(new LenderIssuedBrokerNumberNodeModule(this)).build();
     }
 
-    private ProductFeesNodeRuleProvider getRuleProvider() {
-        return component.getProductFeesNodeRuleProvider();
+    private LenderIssuedBrokerNumberNodeRuleProvider getRuleProvider() {
+        return component.getLenderIssuedBrokerNumberNodeRuleProvider();
     }
 
     @Override
@@ -41,11 +40,11 @@ public class ProductFeesNode extends ObjectUiNode<ProductsNode> {
         getInstanceRuleProvider().createRules(createdRules);
     }
 
-    private RuleProvider<ProductFeesNode> getInstanceRuleProvider() {
+    private RuleProvider<LenderIssuedBrokerNumberNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
-    public ProductFeesNode(@NotNull ProductsNode parent, String name) {
+    public LenderIssuedBrokerNumberNode(@NotNull SubmissionNode parent, String name) {
         super(parent, name);
     }
 

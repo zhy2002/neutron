@@ -15,8 +15,8 @@ import java.util.List;
 public class ProductsNode extends ObjectUiNode<ApplicationNode> {
 
     private ProductListNode productListNode;
-    private ProductCustomerContributionNode productCustomerContributionNode;
-    private ProductFeesNode productFeesNode;
+    private ProductCustomerContributionListNode productCustomerContributionListNode;
+    private ProductFeeListNode productFeeListNode;
     private ProductLoanTypeNode productLoanTypeNode;
     private SettlementDateNode settlementDateNode;
     private ProductTotalLoanAmountNode productTotalLoanAmountNode;
@@ -74,13 +74,13 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
     }
 
     @JsMethod
-    public ProductCustomerContributionNode getProductCustomerContributionNode() {
-        return productCustomerContributionNode;
+    public ProductCustomerContributionListNode getProductCustomerContributionListNode() {
+        return productCustomerContributionListNode;
     }
 
     @JsMethod
-    public ProductFeesNode getProductFeesNode() {
-        return productFeesNode;
+    public ProductFeeListNode getProductFeeListNode() {
+        return productFeeListNode;
     }
 
     @JsMethod
@@ -123,10 +123,10 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
         List<UiNode<?>> children = super.createChildren();
         productListNode = childFactory.createProductListNode();
         children.add(productListNode);
-        productCustomerContributionNode = childFactory.createProductCustomerContributionNode();
-        children.add(productCustomerContributionNode);
-        productFeesNode = childFactory.createProductFeesNode();
-        children.add(productFeesNode);
+        productCustomerContributionListNode = childFactory.createProductCustomerContributionListNode();
+        children.add(productCustomerContributionListNode);
+        productFeeListNode = childFactory.createProductFeeListNode();
+        children.add(productFeeListNode);
         productLoanTypeNode = childFactory.createProductLoanTypeNode();
         children.add(productLoanTypeNode);
         settlementDateNode = childFactory.createSettlementDateNode();

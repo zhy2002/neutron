@@ -8,18 +8,18 @@ import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
 
-@ProductFeesNodeScope
-public class ProductFeesNodeRuleProvider implements RuleProvider<ProductFeesNode> {
+@BrokerTelephoneNodeScope
+public class BrokerTelephoneNodeRuleProvider implements RuleProvider<BrokerTelephoneNode> {
 
     @Inject
-    ObjectUiNodeRuleProvider parentRuleProvider;
+    TelephoneNodeRuleProvider parentRuleProvider;
 
     @Inject
-    public ProductFeesNodeRuleProvider() {
+    public BrokerTelephoneNodeRuleProvider() {
     }
 
     @Override
-    public void initializeState(ProductFeesNode node) {
+    public void initializeState(BrokerTelephoneNode node) {
         parentRuleProvider.initializeState(node);
 
     }

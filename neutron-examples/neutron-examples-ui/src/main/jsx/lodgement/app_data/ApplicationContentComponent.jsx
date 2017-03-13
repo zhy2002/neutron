@@ -3,6 +3,7 @@ import PersonListComponent from './person_data/PersonListComponent';
 import PersonComponent from './person_data/PersonComponent';
 import FinancialPositionComponent from './financial_data/FinancialPositionComponent';
 import AdditionalComponent from './additional_data/AdditionalComponent';
+import AdditionalCommentComponent from './additional_data/AdditionalCommentComponent';
 import RelatedPartyComponent from './additional_data/RelatedPartyComponent';
 import CompanyComponent from './company_data/CompanyComponent';
 import CompanyListComponent from './company_data/CompanyListComponent';
@@ -52,6 +53,9 @@ export default class ApplicationContentComponent extends React.PureComponent {
 
         if (className === 'RelatedPartyNode')
             return <RelatedPartyComponent model={model}/>;
+
+        if (className === 'AdditionalCommentNode')
+            return <AdditionalCommentComponent model={model} />;
 
         return (
             <div>View not defined for model: {className}</div>

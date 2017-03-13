@@ -938,8 +938,8 @@ rootType:
     baseTypeName: ObjectUiNode
     children:
     - {typeName: ProductListNode}
-    - {typeName: ProductCustomerContributionNode}
-    - {typeName: ProductFeesNode}
+    - {typeName: ProductCustomerContributionListNode}
+    - {typeName: ProductFeeListNode}
     - {typeName: ProductLoanTypeNode}
     - {typeName: SettlementDateNode}
     - {typeName: ProductTotalLoanAmountNode}
@@ -1084,13 +1084,75 @@ rootType:
             - typeName: ProductRewardsMembershipNode
               baseTypeName: StringUiNode
 
-    - typeName: ProductCustomerContributionNode
-      baseTypeName: ObjectUiNode
-      children: []
+    - typeName: ProductCustomerContributionListNode
+      baseTypeName: ListUiNode
+      itemTypeName: ProductCustomerContributionNode
+      childTypes:
+      - typeName: ProductCustomerContributionNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: ContributionTypeNode}
+        - {typeName: ContributionDescriptionNode}
+        - {typeName: ContributionAmountNode}
+        childTypes:
+        - typeName: ContributionTypeNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"contributionDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
 
-    - typeName: ProductFeesNode
-      baseTypeName: ObjectUiNode
-      children: []
+        - typeName: ContributionDescriptionNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: ContributionAmountNode
+          baseTypeName: BaseCurrencyNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+    - typeName: ProductFeeListNode
+      baseTypeName: ListUiNode
+      itemTypeName: ProductFeeNode
+      childTypes:
+      - typeName: ProductFeeNode
+        baseTypeName: ObjectUiNode
+        children:
+        - {typeName: FeeTypeNode}
+        - {typeName: FeeDescriptionNode}
+        - {typeName: FeePayFromNode}
+        - {typeName: FeeAmountNode}
+        childTypes:
+        - typeName: FeeTypeNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"feeDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
+
+        - typeName: FeeDescriptionNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: FeePayFromNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+
+        - typeName: FeeAmountNode
+          baseTypeName: BaseCurrencyNode
+          init:
+          - {propertyName: required, value: 'true'}
 
     - typeName: ProductLoanTypeNode
       baseTypeName: StringUiNode
@@ -1172,7 +1234,50 @@ rootType:
 
   - typeName: SubmissionNode
     baseTypeName: ObjectUiNode
-    children: []
+    children:
+    - {typeName: BrokerFirstNameNode}
+    - {typeName: BrokerLastNameNode}
+    - {typeName: BrokerCompanyNode}
+    - typeName: BrokerTelephoneNode
+      name: contactNumberNode
+      init:
+      - {propertyName: required, value: 'true'}
+    - {typeName: BrokerTelephoneNode, name: faxNumberNode}
+    - {typeName: BrokerTelephoneNode, name: mobileNumberNode}
+    - {typeName: BrokerEmailNode}
+    - {typeName: BrokerAddressNode}
+    - {typeName: LenderIssuedBrokerNumberNode}
+    childTypes:
+    - typeName: BrokerFirstNameNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: BrokerLastNameNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: BrokerCompanyNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: BrokerTelephoneNode
+      baseTypeName: TelephoneNode
+
+    - typeName: BrokerEmailNode
+      baseTypeName: EmailNode
+      init:
+      - {propertyName: required, value: 'true'}
+
+    - typeName: BrokerAddressNode
+      baseTypeName: AddressNode
+
+    - typeName: LenderIssuedBrokerNumberNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: ErrorListNode
     baseTypeName: ListUiNode
