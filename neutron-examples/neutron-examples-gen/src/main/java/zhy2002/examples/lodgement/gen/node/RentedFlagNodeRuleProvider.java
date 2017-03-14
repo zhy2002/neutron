@@ -24,11 +24,16 @@ public class RentedFlagNodeRuleProvider implements RuleProvider<RentedFlagNode> 
 
     }
 
+    @Inject
+    Provider<BooleanEnableSiblingRule> booleanEnableSiblingRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("propertyWeeklyRentNode");
+            createdRules.add(booleanEnableSiblingRule);
     }
 
 }

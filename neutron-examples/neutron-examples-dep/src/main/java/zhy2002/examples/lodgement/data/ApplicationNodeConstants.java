@@ -58,6 +58,29 @@ public class ApplicationNodeConstants {
             new StringOption("Trust Settlor")
     );
 
+    public static final List<StringOption> ACCESS_CONTACT_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Selling Agent"),
+            new StringOption("Customer"),
+            new StringOption("Tenant")
+    );
+
+    public static final List<StringOption> PROPERTY_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Residential")
+    );
+
+    public static final List<StringOption> PROPERTY_SUB_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Apartment/Unit/Flat"),
+            new StringOption("Fully Detached House"),
+            new StringOption("Strata Title Unit"),
+            new StringOption("Townhouse"),
+            new StringOption("Duplex"),
+            new StringOption("Vacant Land"),
+            new StringOption("Rural")
+    );
+
     public static final List<StringOption> NEXT_KIN_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Mother"),

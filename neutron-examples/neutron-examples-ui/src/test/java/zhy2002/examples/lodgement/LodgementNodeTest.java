@@ -42,6 +42,7 @@ public class LodgementNodeTest {
     @Test
     public void shouldSetShowErrorListToTrueWhenRefresh() {
         applicationNode.getSubmissionNode().setDisabled(true);
+        applicationNode.getRealEstateListNode().setDisabled(true);
 
         assertThat(applicationNode.getShowErrorList(), equalTo(false));
 

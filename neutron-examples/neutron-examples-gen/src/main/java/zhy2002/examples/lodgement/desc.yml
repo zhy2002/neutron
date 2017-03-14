@@ -873,6 +873,11 @@ rootType:
         childTypes:
         - typeName: RentedFlagNode
           baseTypeName: BooleanUiNode
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"propertyWeeklyRentNode"'}
 
         - typeName: PropertyWeeklyRentNode
           baseTypeName: BigDecimalUiNode
@@ -882,6 +887,8 @@ rootType:
 
         - typeName: EstimatedMarketValueNode
           baseTypeName: BigDecimalUiNode
+          init:
+          - {propertyName: required, value: true}
 
         - typeName: ContractPriceNode
           baseTypeName: BigDecimalUiNode
@@ -891,12 +898,24 @@ rootType:
 
         - typeName: PropertyTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertySubTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE.toArray()'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertyPurseNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertyOwnershipListNode
           baseTypeName: OwnershipListNode
@@ -915,6 +934,16 @@ rootType:
         childTypes:
         - typeName: AccessContactTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE.toArray()'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"accessCompanyNameNode"'}
+            - {propertyName: enablingValue, value: '"Selling Agent"'}
 
         - typeName: AccessContactTitleNode
           baseTypeName: StringUiNode

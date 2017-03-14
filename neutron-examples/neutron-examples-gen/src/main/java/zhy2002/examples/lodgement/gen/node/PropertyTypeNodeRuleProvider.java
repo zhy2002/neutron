@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @PropertyTypeNodeScope
 public class PropertyTypeNodeRuleProvider implements RuleProvider<PropertyTypeNode> {
@@ -22,6 +24,8 @@ public class PropertyTypeNodeRuleProvider implements RuleProvider<PropertyTypeNo
     public void initializeState(PropertyTypeNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setOptions(ApplicationNodeConstants.PROPERTY_TYPE.toArray());
+        node.setRequired(true);
     }
 
 
