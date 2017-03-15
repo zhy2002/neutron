@@ -17,6 +17,9 @@ import zhy2002.examples.lodgement.gen.*;
 @Singleton
 public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
 
+    private IdNode idNode;
+    private StatusNode statusNode;
+    private OwningUserNode owningUserNode;
     private AddressRefListNode addressRefListNode;
     private PersonListNode personListNode;
     private CompanyListNode companyListNode;
@@ -87,6 +90,21 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     }
 
     @JsMethod
+    public IdNode getIdNode() {
+        return idNode;
+    }
+
+    @JsMethod
+    public StatusNode getStatusNode() {
+        return statusNode;
+    }
+
+    @JsMethod
+    public OwningUserNode getOwningUserNode() {
+        return owningUserNode;
+    }
+
+    @JsMethod
     public AddressRefListNode getAddressRefListNode() {
         return addressRefListNode;
     }
@@ -134,6 +152,12 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        idNode = childFactory.createIdNode();
+        children.add(idNode);
+        statusNode = childFactory.createStatusNode();
+        children.add(statusNode);
+        owningUserNode = childFactory.createOwningUserNode();
+        children.add(owningUserNode);
         addressRefListNode = childFactory.createAddressRefListNode();
         children.add(addressRefListNode);
         personListNode = childFactory.createPersonListNode();

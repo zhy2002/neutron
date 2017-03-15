@@ -2,6 +2,7 @@ import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import CommonUtil from '../services/CommonUtil';
+import StorageService from '../services/StorageService';
 
 
 export default class ApplicationToolbarComponent extends NeutronComponent {
@@ -22,7 +23,12 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         };
 
         this.saveJson = () => {
-            window.alert('Not implemented.');
+            StorageService.saveApplication(this.model).then(
+                (response) => {
+                    console.log(response);
+                    alert('saved!');
+                }
+            );
         };
     }
 
@@ -61,10 +67,10 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                     <li>
                         <a tabIndex="0" onClick={this.saveJson}>
                             <div>
-                                <span className="glyphicon glyphicon-save"/>
+                                <span className="glyphicon glyphicon-save-file"/>
                             </div>
                             <div>
-                                <small>Load JSON</small>
+                                <small>Save</small>
                             </div>
                         </a>
                     </li>

@@ -1,11 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import CommonUtil from './services/CommonUtil';
+import StorageService from './services/StorageService';
+
 
 const lenders = ['NAB', 'CBA', 'Westpac'];
 let nextLender = 0;
@@ -65,6 +66,7 @@ export default class LodgementComponent extends React.PureComponent {
             }
 
             const newApp = createApplicationNode();
+            newApp.getIdNode().setValue(newApp.getUniqueId());
 
             const newApps = [...openApps, newApp];
             this.setState({
@@ -75,18 +77,13 @@ export default class LodgementComponent extends React.PureComponent {
         };
 
         this.onLoadApp = (id) => {
-            const url = `json/application/app${id}.json`;
-            CommonUtil.setIsLoading(true);
-            axios.get(url).then(
-                (response) => {
-                    console.log('response is:');
-                    console.log(response);
+            StorageService.getApplication(id).then(
+                (node) => {
                     const model = this.onNewApp();
                     const context = model.getContext();
                     context.beginSession();
-                    CommonUtil.setValue(model, response.data);
+                    CommonUtil.setValue(model, node);
                     context.commitSession();
-                    CommonUtil.setIsLoading(false);
                 }
             );
         };

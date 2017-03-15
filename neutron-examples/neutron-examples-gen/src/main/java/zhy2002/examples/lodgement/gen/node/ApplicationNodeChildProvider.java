@@ -8,6 +8,9 @@ import java.util.*;
 
 
 interface ApplicationNodeChildFactory {
+    IdNode createIdNode();
+    StatusNode createStatusNode();
+    OwningUserNode createOwningUserNode();
     AddressRefListNode createAddressRefListNode();
     PersonListNode createPersonListNode();
     CompanyListNode createCompanyListNode();
@@ -22,9 +25,15 @@ interface ApplicationNodeChildFactory {
 @Singleton
 public class ApplicationNodeChildProvider {
     @Inject
+    MembersInjector<OwningUserNode> owningUserNodeInjector;
+    @Inject
     MembersInjector<PersonListNode> personListNodeInjector;
     @Inject
     MembersInjector<FinancialPositionNode> financialPositionNodeInjector;
+    @Inject
+    MembersInjector<StatusNode> statusNodeInjector;
+    @Inject
+    MembersInjector<IdNode> idNodeInjector;
     @Inject
     MembersInjector<AddressRefListNode> addressRefListNodeInjector;
     @Inject
@@ -43,12 +52,24 @@ public class ApplicationNodeChildProvider {
     @Inject
     protected ApplicationNodeChildProvider () {}
 
+    protected MembersInjector<OwningUserNode> getOwningUserNodeInjector() {
+        return this.owningUserNodeInjector;
+    }
+
     protected MembersInjector<PersonListNode> getPersonListNodeInjector() {
         return this.personListNodeInjector;
     }
 
     protected MembersInjector<FinancialPositionNode> getFinancialPositionNodeInjector() {
         return this.financialPositionNodeInjector;
+    }
+
+    protected MembersInjector<StatusNode> getStatusNodeInjector() {
+        return this.statusNodeInjector;
+    }
+
+    protected MembersInjector<IdNode> getIdNodeInjector() {
+        return this.idNodeInjector;
     }
 
     protected MembersInjector<AddressRefListNode> getAddressRefListNodeInjector() {
@@ -77,6 +98,90 @@ public class ApplicationNodeChildProvider {
 
     protected MembersInjector<AdditionalNode> getAdditionalNodeInjector() {
         return this.additionalNodeInjector;
+    }
+
+    protected IdNode newIdNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new IdNode(parent, name);
+    }
+
+    protected void configureIdNode(IdNode node) {
+    }
+
+    @IdNodeScope
+    public static class IdNodeRuleProvider implements RuleProvider<IdNode> {
+
+        @Inject
+        public IdNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(IdNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected StatusNode newStatusNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new StatusNode(parent, name);
+    }
+
+    protected void configureStatusNode(StatusNode node) {
+    }
+
+    @StatusNodeScope
+    public static class StatusNodeRuleProvider implements RuleProvider<StatusNode> {
+
+        @Inject
+        public StatusNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(StatusNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected OwningUserNode newOwningUserNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new OwningUserNode(parent, name);
+    }
+
+    protected void configureOwningUserNode(OwningUserNode node) {
+    }
+
+    @OwningUserNodeScope
+    public static class OwningUserNodeRuleProvider implements RuleProvider<OwningUserNode> {
+
+        @Inject
+        public OwningUserNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OwningUserNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
     }
 
     protected AddressRefListNode newAddressRefListNode(
@@ -341,6 +446,30 @@ public class ApplicationNodeChildProvider {
         
         private ApplicationNodeChildFactoryImpl(ApplicationNode parent) {
             this.parent = parent;
+        }
+
+        @Override
+        public IdNode createIdNode() {
+            IdNode node = newIdNode(parent, "idNode");
+            idNodeInjector.injectMembers(node);
+            configureIdNode(node);
+            return node;
+        }
+
+        @Override
+        public StatusNode createStatusNode() {
+            StatusNode node = newStatusNode(parent, "statusNode");
+            statusNodeInjector.injectMembers(node);
+            configureStatusNode(node);
+            return node;
+        }
+
+        @Override
+        public OwningUserNode createOwningUserNode() {
+            OwningUserNode node = newOwningUserNode(parent, "owningUserNode");
+            owningUserNodeInjector.injectMembers(node);
+            configureOwningUserNode(node);
+            return node;
         }
 
         @Override

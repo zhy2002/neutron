@@ -12,6 +12,9 @@ rootType:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}
   children:
+  - {typeName: IdNode}
+  - {typeName: StatusNode}
+  - {typeName: OwningUserNode}
   - {typeName: AddressRefListNode}
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
@@ -22,6 +25,15 @@ rootType:
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
   childTypes:
+  - typeName: IdNode
+    baseTypeName: StringUiNode
+
+  - typeName: StatusNode
+    baseTypeName: StringUiNode
+
+  - typeName: OwningUserNode
+    baseTypeName: StringUiNode
+
   - typeName: AddressRefListNode
     baseTypeName: ListUiNode
     itemTypeName: AddressRefNode

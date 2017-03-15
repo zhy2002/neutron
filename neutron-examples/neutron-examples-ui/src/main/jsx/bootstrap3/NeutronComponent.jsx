@@ -63,6 +63,8 @@ export default class NeutronComponent extends React.PureComponent {
      */
     receiveProps(props) {
         const model = props.model;
+        if (model === null)
+            console.error('model prop must be provided!');
 
         this.id = props.id;
         if (!this.id) {

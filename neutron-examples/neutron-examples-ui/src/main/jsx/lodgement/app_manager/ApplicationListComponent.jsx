@@ -1,6 +1,42 @@
 import React from 'react';
+import StorageService from '../services/StorageService';
+
 
 export default class ApplicationListComponent extends React.PureComponent {
+
+    componentDidMount() {
+        StorageService.getApplicationSummaries().then(
+            (data) => {
+                this.setState({result: data});
+            }
+        );
+    }
+
+    renderItems() {
+        const items = [];
+        if (!this.state || !this.state.result)
+            return items;
+
+        const result = this.state.result.hits.hits;
+        for (let i = 0; i < result.length; i++) {
+            const data = result[i]['_source'];
+            items.push(
+                <tr key={data.id}>
+                    <td>
+                        <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
+                            Application {i + 1}
+                        </a>
+                    </td>
+                    <td>{data.applicants}</td>
+                    <td>{data.amount}</td>
+                    <td>{data.status}</td>
+                    <td>{data.updated}</td>
+                    <td/>
+                </tr>
+            );
+        }
+        return items;
+    }
 
     render() {
         return (
@@ -17,71 +53,9 @@ export default class ApplicationListComponent extends React.PureComponent {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <a tabIndex="0" onClick={() => this.props.onLoadApp(1)}>
-                                Test User<br/>
-                                Test Partner
-                            </a>
-                        </td>
-                        <td>Loan Admin</td>
-                        <td>$300,000</td>
-                        <td>Created</td>
-                        <td>2017-02-11 14:32:11</td>
-                        <td />
-                    </tr>
-                    <tr>
-                        <td>
-                            <a tabIndex="0" onClick={() => this.props.onLoadApp(2)}>
-                                John Rambo
-                            </a>
-                        </td>
-                        <td>Loan Admin</td>
-                        <td>$450,000</td>
-                        <td>Created</td>
-                        <td>2017-02-12 09:34:22</td>
-                        <td/>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a tabIndex="0" onClick={() => this.props.onLoadApp(3)}>
-                                Michael Jackson
-                            </a>
-                        </td>
-                        <td>Loan Assistant</td>
-                        <td>$420,000</td>
-                        <td>Lodged</td>
-                        <td>2017-02-13 11:24:21</td>
-                        <td>2017-02-13 12:05:01</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a tabIndex="0" onClick={() => this.props.onLoadApp(4)}>
-                                Terminator<br/>
-                                Robocop
-                            </a>
-                        </td>
-                        <td>Loan Assistant</td>
-                        <td>$250,200</td>
-                        <td>Approved</td>
-                        <td>2017-01-22 10:12:59</td>
-                        <td>2017-02-08 13:42:11</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a tabIndex="0" onClick={() => this.props.onLoadApp(5)}>
-                                Will Smith
-                            </a>
-                        </td>
-                        <td>Loan Assistant</td>
-                        <td>$375,000</td>
-                        <td>Created</td>
-                        <td>2017-02-13 15:30:47</td>
-                        <td />
-                    </tr>
+                    {this.renderItems()}
                     </tbody>
                 </table>
-
             </div>
         );
     }

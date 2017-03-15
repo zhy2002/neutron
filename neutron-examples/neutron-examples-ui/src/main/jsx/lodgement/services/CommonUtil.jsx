@@ -1,3 +1,4 @@
+
 function setIsLoading(isLoading) {
     console.log(`executing setIsLoading(${isLoading})`);
     const items = document.getElementsByClassName('loading-spinner-component');
@@ -24,11 +25,17 @@ function extractValue(node) {
     return extractLeaf(node);
 }
 
+const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
+
+function isExcluded(nodeName) {
+    return excludedNodeNames.indexOf(nodeName) >= 0;
+}
+
 function extractObject(node) {
     const result = {};
     const children = node.getChildren();
     children.forEach((child) => {
-        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && child.getName() !== 'errorListNode') {
+        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && !isExcluded(child.getName())) {
             let fieldName = child.getName();
             if (fieldName.endsWith('Node')) {
                 fieldName = fieldName.substr(0, fieldName.length - 4);
@@ -75,7 +82,7 @@ function setValue(node, data) {
 function setObject(node, data) {
     const children = node.getChildren();
     children.forEach((child) => {
-        if (child.getName() !== 'errorListNode') {
+        if (!isExcluded(child.getName())) {
             let fieldName = child.getName();
             if (fieldName.endsWith('Node')) {
                 fieldName = fieldName.substr(0, fieldName.length - 4);

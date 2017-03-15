@@ -28,6 +28,9 @@ module.exports = {
         "no-console":[
             OFF
         ],
+        "dot-notation":[
+            OFF
+        ],
         "indent": [
             ERROR,
             4
