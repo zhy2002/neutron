@@ -25,6 +25,7 @@ public class CreditCardLimitAmountNodeRuleProvider implements RuleProvider<Credi
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
+        node.setMinValue(new BigDecimal("0.01"));
     }
 
 

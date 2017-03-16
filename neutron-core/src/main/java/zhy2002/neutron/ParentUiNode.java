@@ -90,4 +90,22 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         }
     }
 
+    @JsMethod
+    public boolean hasError() {
+        if (getValidationErrorList().size() > 0)
+            return true;
+
+        for (UiNode<?> child : children) {
+            if (child instanceof ParentUiNode) {
+                if (((ParentUiNode<?>) child).hasError())
+                    return true;
+            } else {
+                if (child.getValidationErrorList().size() > 0)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
 }

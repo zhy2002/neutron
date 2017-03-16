@@ -97,7 +97,6 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                 </ul>
                 <ModalDialogComponent
                     title="Application Value JSON"
-                    model={this.model}
                     show={this.state.modelJson !== null}
                     onClose={() => this.setState({modelJson: null})}
                 >

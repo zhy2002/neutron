@@ -15,6 +15,7 @@ rootType:
   - {typeName: IdNode}
   - {typeName: StatusNode}
   - {typeName: OwningUserNode}
+  - {typeName: LenderNode}
   - {typeName: AddressRefListNode}
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
@@ -32,6 +33,9 @@ rootType:
     baseTypeName: StringUiNode
 
   - typeName: OwningUserNode
+    baseTypeName: StringUiNode
+
+  - typeName: LenderNode
     baseTypeName: StringUiNode
 
   - typeName: AddressRefListNode
@@ -568,6 +572,7 @@ rootType:
             baseTypeName: BaseCurrencyNode
             init:
             - {propertyName: required, value: 'true'}
+            - {propertyName: minValue, value: new BigDecimal("0.01")}
 
           - typeName: CreditCardMonthlyRepaymentNode
             baseTypeName: BaseCurrencyNode
@@ -999,6 +1004,8 @@ rootType:
       childTypes:
       - typeName: ProductNode
         baseTypeName: ObjectUiNode
+        init:
+        - {propertyName: selectedName, value: '"productDescriptionNode"'}
         children:
         - {typeName: ProductDescriptionNode}
         - {typeName: ProductFeaturesNode}
@@ -1142,7 +1149,10 @@ rootType:
         childTypes:
         - typeName: ContributionTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
           init:
+          - {propertyName: options, value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE.toArray()}
           - {propertyName: required, value: 'true'}
           rules:
           - typeName: StringEnableSiblingRule
@@ -1160,6 +1170,7 @@ rootType:
           baseTypeName: BaseCurrencyNode
           init:
           - {propertyName: required, value: 'true'}
+          - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: ProductFeeListNode
       baseTypeName: ListUiNode
@@ -1175,8 +1186,11 @@ rootType:
         childTypes:
         - typeName: FeeTypeNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
           init:
           - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.PRODUCT_FEE_TYPE.toArray()}
           rules:
           - typeName: StringEnableSiblingRule
             existing: true
@@ -1191,13 +1205,17 @@ rootType:
 
         - typeName: FeePayFromNode
           baseTypeName: StringUiNode
+          properties:
+          - {name: options, typeName: Object}
           init:
           - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.FEE_FROM_TYPE.toArray()}
 
         - typeName: FeeAmountNode
           baseTypeName: BaseCurrencyNode
           init:
           - {propertyName: required, value: 'true'}
+          - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: ProductLoanTypeNode
       baseTypeName: StringUiNode
@@ -1818,6 +1836,7 @@ commonTypes:
       baseTypeName: BaseCurrencyNode
       init:
       - {propertyName: required, value: 'true'}
+      - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: OtherIncomePreviousYearNode
       baseTypeName: BooleanUiNode

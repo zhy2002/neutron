@@ -25,6 +25,7 @@ public class OtherIncomeAmountNodeRuleProvider implements RuleProvider<OtherInco
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
+        node.setMinValue(new BigDecimal("0.01"));
     }
 
 

@@ -20,6 +20,7 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     private IdNode idNode;
     private StatusNode statusNode;
     private OwningUserNode owningUserNode;
+    private LenderNode lenderNode;
     private AddressRefListNode addressRefListNode;
     private PersonListNode personListNode;
     private CompanyListNode companyListNode;
@@ -105,6 +106,11 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     }
 
     @JsMethod
+    public LenderNode getLenderNode() {
+        return lenderNode;
+    }
+
+    @JsMethod
     public AddressRefListNode getAddressRefListNode() {
         return addressRefListNode;
     }
@@ -158,6 +164,8 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
         children.add(statusNode);
         owningUserNode = childFactory.createOwningUserNode();
         children.add(owningUserNode);
+        lenderNode = childFactory.createLenderNode();
+        children.add(lenderNode);
         addressRefListNode = childFactory.createAddressRefListNode();
         children.add(addressRefListNode);
         personListNode = childFactory.createPersonListNode();

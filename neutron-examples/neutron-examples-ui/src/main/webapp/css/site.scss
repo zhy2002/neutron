@@ -597,6 +597,16 @@ a[tabindex] {
   height: auto !important;
 }
 
+.panel-primary .panel-heading .glyphicon {
+  color: white;
+}
+
+.product-fee-component {
+  &:hover {
+    color: lightblue;
+  }
+}
+
 //endregion
 
 //region spinner

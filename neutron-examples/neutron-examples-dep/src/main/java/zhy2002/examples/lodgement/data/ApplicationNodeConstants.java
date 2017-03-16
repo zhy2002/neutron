@@ -70,6 +70,27 @@ public class ApplicationNodeConstants {
             new StringOption("Residential")
     );
 
+    public static final List<StringOption> FEE_FROM_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Account"),
+            new StringOption("Loan Account")
+    );
+
+    public static final List<StringOption> PRODUCT_FEE_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("Account"),
+            new StringOption("Additional Legal"),
+            new StringOption("Additional Valuation"),
+            new StringOption("Application"),
+            new StringOption("Discharge"),
+            new StringOption("Establishment"),
+            new StringOption("Govt & Sec"),
+            new StringOption("Inspection"),
+            new StringOption("LMI"),
+            new StringOption("Legal"),
+            new StringOption("Other")
+    );
+
     public static final List<StringOption> PROPERTY_SUB_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Apartment/Unit/Flat"),
@@ -79,6 +100,16 @@ public class ApplicationNodeConstants {
             new StringOption("Duplex"),
             new StringOption("Vacant Land"),
             new StringOption("Rural")
+    );
+
+    public static final List<StringOption> CUSTOMER_CONTRIBUTION_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("First Home Buyers Grant"),
+            new StringOption("Net Proceeds from Sale of Property"),
+            new StringOption("Cash"),
+            new StringOption("Savings"),
+            new StringOption("Gift"),
+            new StringOption("Other")
     );
 
     public static final List<StringOption> NEXT_KIN_TYPE = Arrays.asList(

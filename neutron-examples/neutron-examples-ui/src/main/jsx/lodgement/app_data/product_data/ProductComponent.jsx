@@ -1,13 +1,21 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import TabContentComponent from '../common/TabContentComponent';
+import ProductDescriptionComponent from './ProductDescriptionComponent';
+import ProductFeaturesComponent from './ProductFeaturesComponent';
 
-export default class ProductComponent extends NeutronComponent {
 
-    render() {
-        return (
-            <div className="product-component">
-                <h3>{this.label}</h3>
-            </div>
-        );
+export default class ProductComponent extends TabContentComponent {
+
+    renderTabContent(className, model) {
+        console.log(`render tab content for ${this.label}`);
+
+        if (className === 'ProductDescriptionNode') {
+            return <ProductDescriptionComponent model={model}/>;
+        }
+        if (className === 'ProductFeaturesNode') {
+            return <ProductFeaturesComponent model={model}/>;
+        }
+
+        return null;
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import TabContentComponent from '../common/TabContentComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
 import PersonEmploymentListComponent from './PersonEmploymentListComponent';
@@ -8,23 +8,11 @@ import PersonPrivacyComponent from './PersonPrivacyComponent';
 import PersonOtherIncomeListComponent from './PersonOtherIncomeListComponent';
 import PersonResponsibleLendComponent from './PersonResponsibleLendComponent';
 
-export default class PersonComponent extends NeutronComponent {
+export default class PersonComponent extends TabContentComponent {
 
-    extractNewState() {
-        console.log('PersonComponent extract state');
-        console.log(this.model);
-        const newState = super.extractNewState();
+    renderTabContent(className, model) {
+        console.log(`render tab content for ${this.label}`);
 
-        const selectedName = this.model.getSelectedName();
-        newState.selectedItem = this.model.getChildByName(selectedName);
-
-        return newState;
-    }
-
-    renderContent() {
-        console.log('PersonComponent renderPersonContent');
-        const model = this.state.selectedItem;
-        const className = model.getConcreteClassName();
         if (className === 'PersonGeneralNode') {
             return <PersonGeneralComponent model={model}/>;
         }
@@ -50,22 +38,6 @@ export default class PersonComponent extends NeutronComponent {
             return <PersonResponsibleLendComponent model={model}/>;
         }
 
-        return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-12">
-                        <em>unknown model type {className}</em>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    render() {
-        return (
-            <div className="person-component">
-                {this.renderContent()}
-            </div>
-        );
+        return null;
     }
 }

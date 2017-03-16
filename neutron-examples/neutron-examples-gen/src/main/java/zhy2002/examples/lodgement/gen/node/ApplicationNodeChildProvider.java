@@ -11,6 +11,7 @@ interface ApplicationNodeChildFactory {
     IdNode createIdNode();
     StatusNode createStatusNode();
     OwningUserNode createOwningUserNode();
+    LenderNode createLenderNode();
     AddressRefListNode createAddressRefListNode();
     PersonListNode createPersonListNode();
     CompanyListNode createCompanyListNode();
@@ -27,13 +28,19 @@ public class ApplicationNodeChildProvider {
     @Inject
     MembersInjector<OwningUserNode> owningUserNodeInjector;
     @Inject
-    MembersInjector<PersonListNode> personListNodeInjector;
-    @Inject
     MembersInjector<FinancialPositionNode> financialPositionNodeInjector;
     @Inject
     MembersInjector<StatusNode> statusNodeInjector;
     @Inject
     MembersInjector<IdNode> idNodeInjector;
+    @Inject
+    MembersInjector<CompanyListNode> companyListNodeInjector;
+    @Inject
+    MembersInjector<ProductsNode> productsNodeInjector;
+    @Inject
+    MembersInjector<ErrorListNode> errorListNodeInjector;
+    @Inject
+    MembersInjector<PersonListNode> personListNodeInjector;
     @Inject
     MembersInjector<AddressRefListNode> addressRefListNodeInjector;
     @Inject
@@ -41,11 +48,7 @@ public class ApplicationNodeChildProvider {
     @Inject
     MembersInjector<RealEstateListNode> realEstateListNodeInjector;
     @Inject
-    MembersInjector<CompanyListNode> companyListNodeInjector;
-    @Inject
-    MembersInjector<ProductsNode> productsNodeInjector;
-    @Inject
-    MembersInjector<ErrorListNode> errorListNodeInjector;
+    MembersInjector<LenderNode> lenderNodeInjector;
     @Inject
     MembersInjector<AdditionalNode> additionalNodeInjector;
 
@@ -54,10 +57,6 @@ public class ApplicationNodeChildProvider {
 
     protected MembersInjector<OwningUserNode> getOwningUserNodeInjector() {
         return this.owningUserNodeInjector;
-    }
-
-    protected MembersInjector<PersonListNode> getPersonListNodeInjector() {
-        return this.personListNodeInjector;
     }
 
     protected MembersInjector<FinancialPositionNode> getFinancialPositionNodeInjector() {
@@ -72,6 +71,22 @@ public class ApplicationNodeChildProvider {
         return this.idNodeInjector;
     }
 
+    protected MembersInjector<CompanyListNode> getCompanyListNodeInjector() {
+        return this.companyListNodeInjector;
+    }
+
+    protected MembersInjector<ProductsNode> getProductsNodeInjector() {
+        return this.productsNodeInjector;
+    }
+
+    protected MembersInjector<ErrorListNode> getErrorListNodeInjector() {
+        return this.errorListNodeInjector;
+    }
+
+    protected MembersInjector<PersonListNode> getPersonListNodeInjector() {
+        return this.personListNodeInjector;
+    }
+
     protected MembersInjector<AddressRefListNode> getAddressRefListNodeInjector() {
         return this.addressRefListNodeInjector;
     }
@@ -84,16 +99,8 @@ public class ApplicationNodeChildProvider {
         return this.realEstateListNodeInjector;
     }
 
-    protected MembersInjector<CompanyListNode> getCompanyListNodeInjector() {
-        return this.companyListNodeInjector;
-    }
-
-    protected MembersInjector<ProductsNode> getProductsNodeInjector() {
-        return this.productsNodeInjector;
-    }
-
-    protected MembersInjector<ErrorListNode> getErrorListNodeInjector() {
-        return this.errorListNodeInjector;
+    protected MembersInjector<LenderNode> getLenderNodeInjector() {
+        return this.lenderNodeInjector;
     }
 
     protected MembersInjector<AdditionalNode> getAdditionalNodeInjector() {
@@ -176,6 +183,34 @@ public class ApplicationNodeChildProvider {
 
         @Override
         public void initializeState(OwningUserNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected LenderNode newLenderNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new LenderNode(parent, name);
+    }
+
+    protected void configureLenderNode(LenderNode node) {
+    }
+
+    @LenderNodeScope
+    public static class LenderNodeRuleProvider implements RuleProvider<LenderNode> {
+
+        @Inject
+        public LenderNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(LenderNode node) {
         }
 
 
@@ -469,6 +504,14 @@ public class ApplicationNodeChildProvider {
             OwningUserNode node = newOwningUserNode(parent, "owningUserNode");
             owningUserNodeInjector.injectMembers(node);
             configureOwningUserNode(node);
+            return node;
+        }
+
+        @Override
+        public LenderNode createLenderNode() {
+            LenderNode node = newLenderNode(parent, "lenderNode");
+            lenderNodeInjector.injectMembers(node);
+            configureLenderNode(node);
             return node;
         }
 

@@ -5,7 +5,7 @@ export default class ApplicationTabsComponent extends React.PureComponent {
 
     renderTabs() {
         const model = this.props.model;
-        if (['PersonNode', 'CompanyNode', 'RealEstateNode'].indexOf(model.getConcreteClassName()) >= 0) {
+        if (['PersonNode', 'CompanyNode', 'RealEstateNode', 'ProductNode'].indexOf(model.getConcreteClassName()) >= 0) {
             return <ModelTabsComponent model={model}/>;
         }
         return null;

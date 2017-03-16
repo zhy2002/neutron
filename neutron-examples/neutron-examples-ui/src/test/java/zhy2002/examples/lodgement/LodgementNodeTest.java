@@ -400,4 +400,14 @@ public class LodgementNodeTest {
         assertThat(ownershipListNode.getItemCount(), equalTo(1));
         assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getReferencedNode(), sameInstance(companyNode));
     }
+
+    @Test
+    public void canValidatePartOfNodeHierarchy() {
+        ProductFeeListNode productFeeListNode = applicationNode.getProductsNode().getProductFeeListNode();
+        ProductFeeNode productFeeNode = productFeeListNode.createItem();
+        assertThat(productFeeNode.hasError(), equalTo(false));
+
+        productFeeNode.refresh();
+        assertThat(productFeeNode.hasError(), equalTo(true));
+    }
 }

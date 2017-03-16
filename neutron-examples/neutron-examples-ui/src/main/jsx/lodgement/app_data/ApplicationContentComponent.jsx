@@ -11,6 +11,8 @@ import RealEstateListComponent from './realestate_data/RealEstateListComponent';
 import RealEstateComponent from './realestate_data/RealEstateComponent';
 import ProductComponent from './product_data/ProductComponent';
 import ProductsComponent from './product_data/ProductsComponent';
+import ProductFeeListComponent from './product_data/ProductFeeListComponent';
+import ProductCustomerContributionListComponent from './product_data/ProductCustomerContributionListComponent';
 import SubmissionComponent from './submission_data/SubmissionComponent';
 
 
@@ -18,24 +20,23 @@ export default class ApplicationContentComponent extends React.PureComponent {
 
     renderContent() {
         const model = this.props.model;
-        console.log('ApplicationContentComponent render');
-        console.log(model);
+        console.log('ApplicationContentComponent.renderContent');
         const className = model.getConcreteClassName();
 
         if (className === 'PersonListNode')
             return <PersonListComponent model={model}/>;
 
         if (className === 'PersonNode')
-            return <PersonComponent model={model} />;
+            return <PersonComponent model={model}/>;
 
         if (className === 'CompanyListNode')
             return <CompanyListComponent model={model}/>;
 
         if (className === 'CompanyNode')
-            return <CompanyComponent model={model} />;
+            return <CompanyComponent model={model}/>;
 
         if (className === 'FinancialPositionNode')
-            return <FinancialPositionComponent model={model} />;
+            return <FinancialPositionComponent model={model}/>;
 
         if (className === 'RealEstateListNode')
             return <RealEstateListComponent model={model}/>;
@@ -56,10 +57,17 @@ export default class ApplicationContentComponent extends React.PureComponent {
             return <RelatedPartyComponent model={model}/>;
 
         if (className === 'AdditionalCommentNode')
-            return <AdditionalCommentComponent model={model} />;
+            return <AdditionalCommentComponent model={model}/>;
 
         if (className === 'SubmissionNode')
-            return <SubmissionComponent model={model} />;
+            return <SubmissionComponent model={model}/>;
+
+        if (className === 'ProductFeeListNode')
+            return <ProductFeeListComponent model={model}/>;
+
+        if (className === 'ProductCustomerContributionListNode')
+            return <ProductCustomerContributionListComponent model={model}/>;
+
         return (
             <div>View not defined for model: {className}</div>
         );

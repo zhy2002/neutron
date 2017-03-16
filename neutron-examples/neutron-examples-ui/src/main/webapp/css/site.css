@@ -368,6 +368,12 @@ a[tabindex] {
 .form-group-sm textarea.form-control {
   height: auto !important; }
 
+.panel-primary .panel-heading .glyphicon {
+  color: white; }
+
+.product-fee-component:hover {
+  color: lightblue; }
+
 #floatingBarsG {
   position: relative;
   width: 60px;

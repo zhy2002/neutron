@@ -25,6 +25,7 @@ public class FeeAmountNodeRuleProvider implements RuleProvider<FeeAmountNode> {
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
+        node.setMinValue(new BigDecimal("0.01"));
     }
 
 

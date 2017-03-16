@@ -77,6 +77,7 @@ subcomponents = {
     IdNodeComponent.class,
     StatusNodeComponent.class,
     OwningUserNodeComponent.class,
+    LenderNodeComponent.class,
     AddressRefNodeComponent.class,
     AddressRefListNodeComponent.class,
     TitleNodeComponent.class,
