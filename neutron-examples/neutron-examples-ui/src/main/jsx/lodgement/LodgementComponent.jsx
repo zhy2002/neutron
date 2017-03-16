@@ -8,7 +8,7 @@ import CommonUtil from './services/CommonUtil';
 import StorageService from './services/StorageService';
 
 
-const lenders = ['NAB', 'CBA', 'Westpac'];
+const lenders = ['NAB'];
 let nextLender = 0;
 
 function createApplicationNode() {

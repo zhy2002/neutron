@@ -23,13 +23,17 @@ export default class ApplicationListComponent extends React.PureComponent {
             items.push(
                 <tr key={data.id}>
                     <td>
+                        NAB
+                    </td>
+                    <td>
                         <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
-                            Application {i + 1}
+                            {data.applicants}
                         </a>
                     </td>
-                    <td>{data.applicants}</td>
+                    <td>{data.username}</td>
                     <td>{data.amount}</td>
                     <td>{data.status}</td>
+                    <td>2017-03-16T09:54:36.115Z</td>
                     <td>{data.updated}</td>
                     <td/>
                 </tr>
@@ -41,13 +45,15 @@ export default class ApplicationListComponent extends React.PureComponent {
     render() {
         return (
             <div className="application-list-component">
-                <table className="table">
+                <table className="table table-striped">
                     <thead>
                     <tr>
+                        <th>Lender</th>
                         <th>Applicant Name</th>
                         <th>Owner</th>
                         <th>Loan Amount</th>
                         <th>Loan Status</th>
+                        <th>Date Created</th>
                         <th>Date Updated</th>
                         <th>Date Lodged</th>
                     </tr>
