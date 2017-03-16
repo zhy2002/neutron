@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @ProductPaymentTypeNodeScope
 public class ProductPaymentTypeNodeRuleProvider implements RuleProvider<ProductPaymentTypeNode> {
@@ -22,6 +24,7 @@ public class ProductPaymentTypeNodeRuleProvider implements RuleProvider<ProductP
     public void initializeState(ProductPaymentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setOptions(ApplicationNodeConstants.PAYMENT_TYPE.toArray());
     }
 
 

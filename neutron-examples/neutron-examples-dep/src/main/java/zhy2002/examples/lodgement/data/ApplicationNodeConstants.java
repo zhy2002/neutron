@@ -70,6 +70,31 @@ public class ApplicationNodeConstants {
             new StringOption("Residential")
     );
 
+    public static final List<StringOption> NAB_PRODUCT_GROUP = Arrays.asList(
+            new StringOption(""),
+            new StringOption("GROUP")
+    );
+
+    public static final List<StringOption> NAB_PRODUCT_NAME = Arrays.asList(
+            new StringOption(""),
+            new StringOption("NAME")
+    );
+
+    public static final List<StringOption> NAB_PRIMARY_PURPOSE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("PRIMARY PURPOSE")
+    );
+
+    public static final List<StringOption> PAYMENT_TYPE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("PAYMENT TYPE")
+    );
+
+    public static final List<StringOption> NAB_LENDING_PURPOSE = Arrays.asList(
+            new StringOption(""),
+            new StringOption("LENDING PURPOSE")
+    );
+
     public static final List<StringOption> FEE_FROM_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Account"),
