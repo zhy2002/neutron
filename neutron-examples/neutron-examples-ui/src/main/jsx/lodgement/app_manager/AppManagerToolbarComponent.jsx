@@ -1,6 +1,15 @@
 import React from 'react';
+import UiService from '../services/UiService';
 
 export default class AppManagerToolbarComponent extends React.PureComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.onRefresh = () => {
+            UiService.refreshApplicationList();
+        };
+    }
 
     render() {
         return (
@@ -17,7 +26,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" onClick={this.onRefresh}>
                             <div>
                                 <span className="glyphicon glyphicon-refresh"/>
                             </div>

@@ -8,7 +8,7 @@ export default class LodgementContentComponent extends React.PureComponent {
         const model = this.props.model;
         if (model.getName() === 'appManagerNode') {
             return (
-                <ApplicationListComponent model={model} onLoadApp={this.props.onLoadApp}/>
+                <ApplicationListComponent model={model.getApplicationListNode()} onLoadApp={this.props.onLoadApp}/>
             );
         }
         return (

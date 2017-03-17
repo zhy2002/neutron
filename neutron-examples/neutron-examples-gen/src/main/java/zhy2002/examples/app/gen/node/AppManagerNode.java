@@ -6,12 +6,22 @@ import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
+
+    private ApplicationListNode applicationListNode;
+
+    private AppManagerNodeChildFactory childFactory;
+
+    @Inject
+    void receiveNodeProvider(AppManagerNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
@@ -47,6 +57,19 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
     public AppManagerNode(@NotNull LodgementNode parent, String name) {
         super(parent, name);
+    }
+
+    @JsMethod
+    public ApplicationListNode getApplicationListNode() {
+        return applicationListNode;
+    }
+
+    @Override
+    protected List<UiNode<?>> createChildren() {
+        List<UiNode<?>> children = super.createChildren();
+        applicationListNode = childFactory.createApplicationListNode();
+        children.add(applicationListNode);
+        return children;
     }
 
 }

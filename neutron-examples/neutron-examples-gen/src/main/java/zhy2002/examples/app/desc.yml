@@ -9,4 +9,13 @@ rootType:
   childTypes:
   - typeName: AppManagerNode
     baseTypeName: ObjectUiNode
-    children: []
+    children:
+    - {typeName: ApplicationListNode}
+    childTypes:
+    - typeName: ApplicationListNode
+      baseTypeName: ObjectUiNode
+      children: []
+      properties:
+      - {name: updated, typeName: Boolean}
+      init:
+      - {propertyName: updated, mode: Always}

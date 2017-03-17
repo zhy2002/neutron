@@ -12,7 +12,7 @@ const errorHandler = (error) => {
     console.log(error);
     setTimeout(() => {
         alert(error);
-    }, 10);
+    }, 100);
     return window.Promise.reject(error);
 };
 
@@ -31,10 +31,7 @@ StorageService.getApplicationSummaries = () => {
 
 StorageService.getApplication = id =>
     axios.get(`${baseUrl}/lodgement/application/${id}`).then(
-        (response) => {
-            CommonUtil.setIsLoading(false);
-            return response.data['_source'].node;
-        },
+        response => response.data['_source'].node,
         errorHandler
     );
 
@@ -74,7 +71,7 @@ StorageService.saveApplication = (model) => {
     ).then(
         (response) => {
             CommonUtil.setIsLoading(false);
-            return response;
+            return CommonUtil.defer(response);
         },
         errorHandler
     );

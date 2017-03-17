@@ -1,15 +1,18 @@
 import React from 'react';
-import StorageService from '../services/StorageService';
+import NeutronComponent from '../../bootstrap3/NeutronComponent';
+import UiService from '../services/UiService';
 
 
-export default class ApplicationListComponent extends React.PureComponent {
+export default class ApplicationListComponent extends NeutronComponent {
 
     componentDidMount() {
-        StorageService.getApplicationSummaries().then(
-            (data) => {
-                this.setState({result: data});
-            }
-        );
+        UiService.refreshApplicationList();
+    }
+
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.result = this.model.data;
+        return newState;
     }
 
     renderItems() {

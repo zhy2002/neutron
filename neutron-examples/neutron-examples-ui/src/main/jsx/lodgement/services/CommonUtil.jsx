@@ -1,3 +1,21 @@
+import Promise from 'promise';
+
+
+function delay(interval = 0) {
+    return new Promise(
+        (resolve) => {
+            setTimeout(resolve, interval);
+        }
+    );
+}
+
+function defer(data) {
+    return new Promise(
+        (resolve) => {
+            setTimeout(() => resolve(data), 10);
+        }
+    );
+}
 
 function setIsLoading(isLoading) {
     console.log(`executing setIsLoading(${isLoading})`);
@@ -137,3 +155,5 @@ export default class CommonUtil {
 CommonUtil.extractValue = extractValue;
 CommonUtil.setValue = setValue;
 CommonUtil.setIsLoading = setIsLoading;
+CommonUtil.delay = delay;
+CommonUtil.defer = defer;

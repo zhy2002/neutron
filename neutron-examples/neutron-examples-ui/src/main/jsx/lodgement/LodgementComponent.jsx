@@ -6,21 +6,7 @@ import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import CommonUtil from './services/CommonUtil';
 import StorageService from './services/StorageService';
-
-
-const lenders = ['NAB'];
-let nextLender = 0;
-
-function createApplicationNode() {
-    const node = window.GWT.ApplicationNodeFactory.create();
-    node.setNodeLabel(lenders[nextLender++]);
-    nextLender %= lenders.length;
-    return node;
-}
-
-function createLodgementNode() {
-    return window.GWT.LodgementNodeFactory.create();
-}
+import UiService from './services/UiService';
 
 export default class LodgementComponent extends React.PureComponent {
 
@@ -28,7 +14,7 @@ export default class LodgementComponent extends React.PureComponent {
         super(props);
 
         this.state = {
-            lodgementNode: createLodgementNode(),
+            lodgementNode: UiService.getLodgementNode(),
             openApps: [],
             selectedIndex: 0
         };
@@ -59,32 +45,35 @@ export default class LodgementComponent extends React.PureComponent {
         };
 
         this.onNewApp = () => {
-            const openApps = this.state.openApps;
-            if (openApps.length >= 5) {
-                window.alert('Cannot open more tabs!');
-                return null;
-            }
-
-            const newApp = createApplicationNode();
-            newApp.getIdNode().setValue(newApp.getUniqueId());
-
-            const newApps = [...openApps, newApp];
-            this.setState({
-                openApps: newApps,
-                selectedIndex: newApps.length
-            });
+            const newApp = UiService.createApplicationNode();
+            this.createNewApp(newApp);
             return newApp;
         };
 
+        this.createNewApp = (newApp) => {
+            const newApps = [...this.state.openApps, newApp];
+            this.setState({
+                openApps: newApps,
+                selectedIndex: newApps.length //there is a appManager node in the front
+            });
+        };
+
         this.onLoadApp = (id) => {
+            CommonUtil.setIsLoading(true);
             StorageService.getApplication(id).then(
                 (node) => {
-                    const model = this.onNewApp();
+                    const model = UiService.createApplicationNode();
                     const context = model.getContext();
                     context.beginSession();
                     CommonUtil.setValue(model, node);
                     context.commitSession();
+                    return model;
                 }
+            ).then(
+                model => CommonUtil.delay().then(() => {
+                    this.createNewApp(model);
+                    CommonUtil.setIsLoading(false);
+                })
             );
         };
     }

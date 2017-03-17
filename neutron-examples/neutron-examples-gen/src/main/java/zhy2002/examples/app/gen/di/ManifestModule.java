@@ -8,6 +8,7 @@ import zhy2002.neutron.di.NeutronModule;
 
 @Module(includes = {NeutronModule.class},
 subcomponents = {
+    ApplicationListNodeComponent.class,
     AppManagerNodeComponent.class,
     LodgementNodeComponent.class
 })
