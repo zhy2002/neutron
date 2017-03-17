@@ -979,7 +979,10 @@ rootType:
           baseTypeName: StringUiNode
 
         - typeName: AccessTelephoneNode
-          baseTypeName: StringUiNode
+          baseTypeName: TelephoneNode
+          init:
+          - {propertyName: countryCodeReadonly, value: Boolean.TRUE}
+          - {propertyName: value, value: 'ApplicationNodeConstants.AUS_DEFAULT'}
 
         - typeName: AccessOtherDescriptionNode
           baseTypeName: StringUiNode
@@ -1375,6 +1378,9 @@ rootType:
 
     - typeName: BrokerTelephoneNode
       baseTypeName: TelephoneNode
+      init:
+      - {propertyName: countryCodeReadonly, value: Boolean.TRUE}
+      - {propertyName: value, value: 'ApplicationNodeConstants.AUS_DEFAULT'}
 
     - typeName: BrokerMobileNumberNode
       baseTypeName: BaseMobileNumberNode
@@ -1412,6 +1418,8 @@ commonTypes:
   valueTypeName: Telephone
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  properties:
+  - {name: countryCodeReadonly, typeName: Boolean, default: Boolean.FALSE}
   rules:
   - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
 

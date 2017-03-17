@@ -21,7 +21,7 @@ public class AccessTelephoneNodeModule {
         return owner;
     }
 
-    @Provides @AccessTelephoneNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @AccessTelephoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 

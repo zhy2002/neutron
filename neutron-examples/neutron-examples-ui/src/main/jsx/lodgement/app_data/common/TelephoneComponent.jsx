@@ -48,6 +48,8 @@ export default class TelephoneComponent extends InputComponent {
             }
         }
 
+        newState.countryCodeReadonly = this.model.getCountryCodeReadonly();
+
         return newState;
     }
 
@@ -70,6 +72,7 @@ export default class TelephoneComponent extends InputComponent {
                         placeholder="Country Code"
                         value={this.state.countryCode}
                         onChange={this.updateCountryCode}
+                        readOnly={this.state.countryCodeReadonly}
                     />
                     <input
                         type="text"
@@ -86,7 +89,9 @@ export default class TelephoneComponent extends InputComponent {
                         onChange={this.updatePhoneNumber}
                     />
                 </div>
-
+                {this.state.errorMessage &&
+                <div className="error-message text-warning">{this.state.errorMessage}</div>
+                }
             </div>
         );
     }

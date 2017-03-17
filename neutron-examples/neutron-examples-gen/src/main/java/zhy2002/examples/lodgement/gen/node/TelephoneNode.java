@@ -23,6 +23,16 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         setValue(Telephone.class, value);
     }
 
+    @JsMethod
+    public Boolean getCountryCodeReadonly() {
+        return getStateValue(ApplicationNodeConstants.COUNTRY_CODE_READONLY, Boolean.FALSE);
+    }
+
+    @JsMethod
+    public void setCountryCodeReadonly(Boolean value) {
+        setStateValue(ApplicationNodeConstants.COUNTRY_CODE_READONLY, Boolean.class, value);
+    }
+
     @Override
     public Telephone getCopyOfValue() {
         Telephone value = getValue();

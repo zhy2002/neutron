@@ -20,6 +20,11 @@ public class Telephone {
     }
 
     @JsIgnore
+    public Telephone(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    @JsIgnore
     public Telephone(Telephone original) {
         this.countryCode = original.countryCode;
         this.areaCode = original.areaCode;

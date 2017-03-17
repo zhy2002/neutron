@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @BrokerTelephoneNodeScope
 public class BrokerTelephoneNodeRuleProvider implements RuleProvider<BrokerTelephoneNode> {
@@ -22,6 +24,8 @@ public class BrokerTelephoneNodeRuleProvider implements RuleProvider<BrokerTelep
     public void initializeState(BrokerTelephoneNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setCountryCodeReadonly(Boolean.TRUE);
+        node.setValue(ApplicationNodeConstants.AUS_DEFAULT);
     }
 
 
