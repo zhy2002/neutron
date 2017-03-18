@@ -1,3 +1,4 @@
+import moment from 'moment';
 import StorageService from './StorageService';
 
 class UiService {
@@ -30,8 +31,21 @@ UiService.refreshApplicationList = () => {
 UiService.createApplicationNode = () => {
     const node = window.GWT.ApplicationNodeFactory.create();
     node.getIdNode().setValue(node.getUniqueId());
+    const user = UiService.getCurrentUser();
+    node.getOwningUserNode().setValue(user.username);
+    node.getStatusNode().setValue('In Progress');
+    node.getLenderNode().setValue('NAB');
     node.setNodeLabel('NAB');
+    const now = moment().format();
+    node.getDateCreatedNode().setValue(now);
+
     return node;
 };
+
+const demoUser = {
+    username: 'Demo User'
+};
+
+UiService.getCurrentUser = () => demoUser;
 
 export default UiService;

@@ -15,6 +15,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         this.validate = () => {
             console.log('validating...');
             this.model.refresh();
+            console.log('validation done.');
         };
 
         this.getJson = () => {
@@ -29,6 +30,14 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                     alert('saved!');
                 }
             );
+        };
+
+        this.clearErrors = () => {
+            this.model.resetValidationState();
+        };
+
+        this.refresh = () => {
+            alert('todo load all data from db again.');
         };
     }
 
@@ -75,7 +84,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" onClick={this.refresh}>
                             <div>
                                 <span className="glyphicon glyphicon-refresh"/>
                             </div>
@@ -85,7 +94,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0">
+                        <a tabIndex="0" alt="Clear Errors" onClick={this.clearErrors}>
                             <div>
                                 <span className="glyphicon glyphicon-align-justify"/>
                             </div>

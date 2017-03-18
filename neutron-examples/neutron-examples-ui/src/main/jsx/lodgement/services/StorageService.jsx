@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import CommonUtil from './CommonUtil';
 
 
@@ -35,34 +36,25 @@ StorageService.getApplication = id =>
         errorHandler
     );
 
-function getApplicants(model) {
-    let result = ''; //todo move to variant node
-    const persons = model.getPersonListNode();
-    if (persons) {
-        for (let i = 0; i < persons.getItemCount(); i++) {
-            const p = persons.getItem(i);
-            if (p) {
-                result += `${p.getNodeLabel()} `;
-            }
-        }
-    }
-    return result.trim();
-}
-
 function getSummary(node, model) {
     return {
         id: node.id,
-        username: 'abcd',
-        applicants: getApplicants(model),
-        amount: '$650,000',
-        status: 'In Progress',
-        updated: new Date().toISOString(),
+        lender: node.lender,
+        username: node.owningUser,
+        applicants: model.getApplicants(),
+        amount: model.getTotalLoanAmount(),
+        status: node.status,
+        created: node.dateCreated,
+        updated: node.dateUpdated,
+        lodged: node.dateLodged,
         node
     };
 }
 
 StorageService.saveApplication = (model) => {
     CommonUtil.setIsLoading(true);
+    const now = moment().format();
+    model.getDateUpdatedNode().setValue(now);
     const node = CommonUtil.extractValue(model);
     const id = node.id;
     const summary = getSummary(node, model);

@@ -59,6 +59,16 @@ export default class LodgementComponent extends React.PureComponent {
         };
 
         this.onLoadApp = (id) => {
+            const openApps = this.state.openApps;
+            if (openApps) {
+                for (let i = 0; i < openApps.length; i++) {
+                    const app = openApps[i];
+                    if (app.getIdNode().getValue() === id) {
+                        this.selectTab(i + 1);
+                        return;
+                    }
+                }
+            }
             CommonUtil.setIsLoading(true);
             StorageService.getApplication(id).then(
                 (node) => {

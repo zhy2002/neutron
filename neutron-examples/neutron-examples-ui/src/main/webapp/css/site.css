@@ -381,6 +381,9 @@ a[tabindex] {
   margin-top: 0;
   margin-bottom: 0; }
 
+.main-content-component {
+  padding-top: 1em; }
+
 #floatingBarsG {
   position: relative;
   width: 60px;

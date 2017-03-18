@@ -21,6 +21,9 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     private StatusNode statusNode;
     private OwningUserNode owningUserNode;
     private LenderNode lenderNode;
+    private DateCreatedNode dateCreatedNode;
+    private DateUpdatedNode dateUpdatedNode;
+    private DateLodgedNode dateLodgedNode;
     private AddressRefListNode addressRefListNode;
     private PersonListNode personListNode;
     private CompanyListNode companyListNode;
@@ -111,6 +114,21 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
     }
 
     @JsMethod
+    public DateCreatedNode getDateCreatedNode() {
+        return dateCreatedNode;
+    }
+
+    @JsMethod
+    public DateUpdatedNode getDateUpdatedNode() {
+        return dateUpdatedNode;
+    }
+
+    @JsMethod
+    public DateLodgedNode getDateLodgedNode() {
+        return dateLodgedNode;
+    }
+
+    @JsMethod
     public AddressRefListNode getAddressRefListNode() {
         return addressRefListNode;
     }
@@ -166,6 +184,12 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
         children.add(owningUserNode);
         lenderNode = childFactory.createLenderNode();
         children.add(lenderNode);
+        dateCreatedNode = childFactory.createDateCreatedNode();
+        children.add(dateCreatedNode);
+        dateUpdatedNode = childFactory.createDateUpdatedNode();
+        children.add(dateUpdatedNode);
+        dateLodgedNode = childFactory.createDateLodgedNode();
+        children.add(dateLodgedNode);
         addressRefListNode = childFactory.createAddressRefListNode();
         children.add(addressRefListNode);
         personListNode = childFactory.createPersonListNode();

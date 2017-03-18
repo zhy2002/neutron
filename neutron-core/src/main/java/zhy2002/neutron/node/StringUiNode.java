@@ -18,6 +18,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
         setChangeTrackingMode(NeutronEventSubjects.VALUE, ChangeTrackingModeEnum.Value);
         this.setValue("");
+        this.setMaxLength(255);
     }
 
     @Override

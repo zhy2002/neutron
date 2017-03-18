@@ -16,6 +16,9 @@ rootType:
   - {typeName: StatusNode}
   - {typeName: OwningUserNode}
   - {typeName: LenderNode}
+  - {typeName: DateCreatedNode}
+  - {typeName: DateUpdatedNode}
+  - {typeName: DateLodgedNode}
   - {typeName: AddressRefListNode}
   - {typeName: PersonListNode}
   - {typeName: CompanyListNode}
@@ -36,6 +39,15 @@ rootType:
     baseTypeName: StringUiNode
 
   - typeName: LenderNode
+    baseTypeName: StringUiNode
+
+  - typeName: DateCreatedNode
+    baseTypeName: StringUiNode
+
+  - typeName: DateUpdatedNode
+    baseTypeName: StringUiNode
+
+  - typeName: DateLodgedNode
     baseTypeName: StringUiNode
 
   - typeName: AddressRefListNode

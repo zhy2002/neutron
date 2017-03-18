@@ -53,7 +53,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         super.loadContent();
     }
 
-
     protected
     @NotNull
     List<UiNode<?>> createChildren() {

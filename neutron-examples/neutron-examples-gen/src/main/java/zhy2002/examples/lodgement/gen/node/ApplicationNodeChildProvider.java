@@ -12,6 +12,9 @@ interface ApplicationNodeChildFactory {
     StatusNode createStatusNode();
     OwningUserNode createOwningUserNode();
     LenderNode createLenderNode();
+    DateCreatedNode createDateCreatedNode();
+    DateUpdatedNode createDateUpdatedNode();
+    DateLodgedNode createDateLodgedNode();
     AddressRefListNode createAddressRefListNode();
     PersonListNode createPersonListNode();
     CompanyListNode createCompanyListNode();
@@ -34,17 +37,23 @@ public class ApplicationNodeChildProvider {
     @Inject
     MembersInjector<IdNode> idNodeInjector;
     @Inject
+    MembersInjector<DateCreatedNode> dateCreatedNodeInjector;
+    @Inject
     MembersInjector<CompanyListNode> companyListNodeInjector;
     @Inject
     MembersInjector<ProductsNode> productsNodeInjector;
     @Inject
     MembersInjector<ErrorListNode> errorListNodeInjector;
     @Inject
+    MembersInjector<DateLodgedNode> dateLodgedNodeInjector;
+    @Inject
     MembersInjector<PersonListNode> personListNodeInjector;
     @Inject
     MembersInjector<AddressRefListNode> addressRefListNodeInjector;
     @Inject
     MembersInjector<SubmissionNode> submissionNodeInjector;
+    @Inject
+    MembersInjector<DateUpdatedNode> dateUpdatedNodeInjector;
     @Inject
     MembersInjector<RealEstateListNode> realEstateListNodeInjector;
     @Inject
@@ -71,6 +80,10 @@ public class ApplicationNodeChildProvider {
         return this.idNodeInjector;
     }
 
+    protected MembersInjector<DateCreatedNode> getDateCreatedNodeInjector() {
+        return this.dateCreatedNodeInjector;
+    }
+
     protected MembersInjector<CompanyListNode> getCompanyListNodeInjector() {
         return this.companyListNodeInjector;
     }
@@ -83,6 +96,10 @@ public class ApplicationNodeChildProvider {
         return this.errorListNodeInjector;
     }
 
+    protected MembersInjector<DateLodgedNode> getDateLodgedNodeInjector() {
+        return this.dateLodgedNodeInjector;
+    }
+
     protected MembersInjector<PersonListNode> getPersonListNodeInjector() {
         return this.personListNodeInjector;
     }
@@ -93,6 +110,10 @@ public class ApplicationNodeChildProvider {
 
     protected MembersInjector<SubmissionNode> getSubmissionNodeInjector() {
         return this.submissionNodeInjector;
+    }
+
+    protected MembersInjector<DateUpdatedNode> getDateUpdatedNodeInjector() {
+        return this.dateUpdatedNodeInjector;
     }
 
     protected MembersInjector<RealEstateListNode> getRealEstateListNodeInjector() {
@@ -211,6 +232,90 @@ public class ApplicationNodeChildProvider {
 
         @Override
         public void initializeState(LenderNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected DateCreatedNode newDateCreatedNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new DateCreatedNode(parent, name);
+    }
+
+    protected void configureDateCreatedNode(DateCreatedNode node) {
+    }
+
+    @DateCreatedNodeScope
+    public static class DateCreatedNodeRuleProvider implements RuleProvider<DateCreatedNode> {
+
+        @Inject
+        public DateCreatedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DateCreatedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected DateUpdatedNode newDateUpdatedNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new DateUpdatedNode(parent, name);
+    }
+
+    protected void configureDateUpdatedNode(DateUpdatedNode node) {
+    }
+
+    @DateUpdatedNodeScope
+    public static class DateUpdatedNodeRuleProvider implements RuleProvider<DateUpdatedNode> {
+
+        @Inject
+        public DateUpdatedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DateUpdatedNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected DateLodgedNode newDateLodgedNode(
+        ApplicationNode parent,
+        String name
+    ) {
+        return new DateLodgedNode(parent, name);
+    }
+
+    protected void configureDateLodgedNode(DateLodgedNode node) {
+    }
+
+    @DateLodgedNodeScope
+    public static class DateLodgedNodeRuleProvider implements RuleProvider<DateLodgedNode> {
+
+        @Inject
+        public DateLodgedNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(DateLodgedNode node) {
         }
 
 
@@ -512,6 +617,30 @@ public class ApplicationNodeChildProvider {
             LenderNode node = newLenderNode(parent, "lenderNode");
             lenderNodeInjector.injectMembers(node);
             configureLenderNode(node);
+            return node;
+        }
+
+        @Override
+        public DateCreatedNode createDateCreatedNode() {
+            DateCreatedNode node = newDateCreatedNode(parent, "dateCreatedNode");
+            dateCreatedNodeInjector.injectMembers(node);
+            configureDateCreatedNode(node);
+            return node;
+        }
+
+        @Override
+        public DateUpdatedNode createDateUpdatedNode() {
+            DateUpdatedNode node = newDateUpdatedNode(parent, "dateUpdatedNode");
+            dateUpdatedNodeInjector.injectMembers(node);
+            configureDateUpdatedNode(node);
+            return node;
+        }
+
+        @Override
+        public DateLodgedNode createDateLodgedNode() {
+            DateLodgedNode node = newDateLodgedNode(parent, "dateLodgedNode");
+            dateLodgedNodeInjector.injectMembers(node);
+            configureDateLodgedNode(node);
             return node;
         }
 

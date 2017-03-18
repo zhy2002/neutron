@@ -108,4 +108,16 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         return false;
     }
 
+    @JsMethod
+    public void resetValidationState() {
+        clearValidationErrors();
+        for (UiNode<?> child : getChildren()) {
+            if (child instanceof ParentUiNode) {
+                ((ParentUiNode<?>) child).resetValidationState();
+            } else {
+                child.clearValidationErrors();
+            }
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
 
 public class PersonNodeTest {
 
@@ -108,5 +109,16 @@ public class PersonNodeTest {
         assertThat(ownershipNode2.getOwnershipPercentageNode().getValue(), equalTo(new BigDecimal("50")));
         assertThat(ownershipListNode.getTotalOwnership(), equalTo(new BigDecimal("100")));
 
+    }
+
+    @Test
+    public void canResetAllValidationErrors() {
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+
+        applicationNode.refresh();
+        assertThat(applicationNode.getErrorListNode().getItemCount(), greaterThan(0));
+
+        applicationNode.resetValidationState();
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
     }
 }

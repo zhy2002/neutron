@@ -28,7 +28,7 @@ export default class PersonGeneralComponent extends NeutronComponent {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-offset-1 col-md-2">
+                    <div className="col-md-3">
                         <SelectInputComponent model={model.getTitleNode()}/>
                     </div>
                     <div className="col-md-3">

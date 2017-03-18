@@ -2,6 +2,16 @@ import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import UiService from '../services/UiService';
 
+function renderNames(array) {
+    const result = [];
+    if (array) {
+        array.forEach((item, index) => {
+            const key = index + 1;
+            result.push(<p key={key}>{item}</p>);
+        });
+    }
+    return result;
+}
 
 export default class ApplicationListComponent extends NeutronComponent {
 
@@ -25,18 +35,16 @@ export default class ApplicationListComponent extends NeutronComponent {
             const data = result[i]['_source'];
             items.push(
                 <tr key={data.id}>
-                    <td>
-                        NAB
-                    </td>
+                    <td>{data.lender}</td>
                     <td>
                         <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
-                            {data.applicants}
+                            {renderNames(data.applicants)}
                         </a>
                     </td>
                     <td>{data.username}</td>
                     <td>{data.amount}</td>
                     <td>{data.status}</td>
-                    <td>2017-03-16T09:54:36.115Z</td>
+                    <td>{data.created}</td>
                     <td>{data.updated}</td>
                     <td/>
                 </tr>
