@@ -21,7 +21,7 @@ public class SpouseNodeModule {
         return owner;
     }
 
-    @Provides @SpouseNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @SpouseNodeScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
         return owner;
     }
 

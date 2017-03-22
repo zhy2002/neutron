@@ -172,7 +172,7 @@ rootType:
           baseTypeName: BooleanUiNode
 
         - typeName: SpouseNode
-          baseTypeName: StringUiNode
+          baseTypeName: ReferenceUiNode
 
         - typeName: FirstHomeBuyerFlagNode
           baseTypeName: BooleanUiNode

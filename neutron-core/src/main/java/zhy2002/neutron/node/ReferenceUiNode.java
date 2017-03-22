@@ -25,11 +25,13 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
         return String.class;
     }
 
+    @JsMethod
     @Override
     public final String getValue() {
         return super.getValue();
     }
 
+    @JsMethod
     @Override
     public final void setValue(String value) {
         super.setValue(String.class, value);

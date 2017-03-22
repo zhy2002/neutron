@@ -6,12 +6,14 @@ import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNode;
 
 import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.nullValue;
 
 public class PersonNodeTest {
 
@@ -120,5 +122,14 @@ public class PersonNodeTest {
 
         applicationNode.resetValidationState();
         assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+    }
+
+    @Test
+    public void referencedNodeShouldReturnNullByDefault() {
+        PersonGeneralNode personGeneralNode = personNode.getPersonGeneralNode();
+        assertThat(personGeneralNode.getSpouseNode().getValue(), nullValue());
+
+        UiNode<?> spouse = personGeneralNode.getSpouseNode().getReferencedNode();
+        assertThat(spouse, nullValue());
     }
 }

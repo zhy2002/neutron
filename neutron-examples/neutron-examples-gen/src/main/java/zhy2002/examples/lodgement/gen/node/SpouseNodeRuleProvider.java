@@ -12,7 +12,7 @@ import zhy2002.neutron.rule.*;
 public class SpouseNodeRuleProvider implements RuleProvider<SpouseNode> {
 
     @Inject
-    StringUiNodeRuleProvider parentRuleProvider;
+    ReferenceUiNodeRuleProvider parentRuleProvider;
 
     @Inject
     public SpouseNodeRuleProvider() {

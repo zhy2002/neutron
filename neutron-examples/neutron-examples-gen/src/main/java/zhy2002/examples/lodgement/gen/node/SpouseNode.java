@@ -9,7 +9,7 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 
-public class SpouseNode extends StringUiNode<PersonGeneralNode> {
+public class SpouseNode extends ReferenceUiNode<PersonGeneralNode> {
 
     @Override
     public final Class<?> getConcreteClass() {

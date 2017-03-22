@@ -5,9 +5,28 @@ import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
+import ReferenceInputComponent from '../../../bootstrap3/ReferenceInputComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
+
 export default class PersonGeneralComponent extends NeutronComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.getOtherPersonApplicants = () => {
+            const result = [];
+            const me = this.model.getParent();
+            const list = me.getParent();
+            for (let i = 0; i < list.getItemCount(); i++) {
+                const person = list.getItem(i);
+                if (person !== me) {
+                    result.push(person);
+                }
+            }
+            return result;
+        };
+    }
 
     render() {
         const model = this.props.model;
@@ -52,7 +71,10 @@ export default class PersonGeneralComponent extends NeutronComponent {
                         <SelectInputComponent model={model.getMaritalStatusNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getSpouseNode()}/>
+                        <ReferenceInputComponent
+                            model={model.getSpouseNode()}
+                            getOptionNodes={this.getOtherPersonApplicants}
+                        />
                     </div>
                 </div>
                 <div className="row">
