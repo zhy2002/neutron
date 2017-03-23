@@ -1,9 +1,16 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.PredefinedPhases;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Objects;
 
 /**
  * A UiNode which cannot have children.
@@ -48,6 +55,76 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         throw new NotImplementedException();
     }
 
+    private void setOriginalValue(T value) {
+        setStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE, value);
+    }
+
+    public T getOriginalValue() {
+        return getStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE);
+    }
+
+    private void makeDirty() {
+        setOriginalValue(getValue());
+        setSelfDirty(Boolean.TRUE);
+    }
+
+    private void clearDirty() {
+        clearStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE);
+        setSelfDirty(Boolean.FALSE);
+    }
+
     public abstract Class<T> getValueClass();
 
+    private Boolean getSelfDirty() {
+        return getStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.FALSE);
+    }
+
+    private void setSelfDirty(Boolean value) {
+        setStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.class, value);
+    }
+
+    @Override
+    public boolean isDirty() {
+        return getSelfDirty();
+    }
+
+    @Override
+    protected void resetDirty() {
+        setSelfDirty(null);
+    }
+
+    public static class MaintainSelfDirtyRule extends UiNodeRule<LeafUiNode<?, ?>> {
+
+        @Inject
+        protected MaintainSelfDirtyRule(@Owner LeafUiNode<?, ?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            StateChangeEvent<?> stateChangeEvent = getContext().createStateChangeEvent(getOwner(), "", getOwner().getValueClass(), null, null);
+
+            return Arrays.asList(
+                    new GenericStateChangeEventBinding<>(
+                            e -> getContext().isDirtyCheckEnabled(),
+                            this::updateSelfDirty,
+                            stateChangeEvent.getClass(),
+                            PredefinedPhases.Pre
+                    )
+            );
+        }
+
+        private void updateSelfDirty(StateChangeEvent<?> event) {
+            if (Boolean.TRUE.equals(getOwner().getSelfDirty())) { //check if should change to none-dirty
+                if (Objects.equals(event.getNewValue(), getOwner().getOriginalValue())) {
+                    getOwner().clearDirty();
+                }
+            } else { //check if should change to dirty
+                if (!Objects.equals(event.getOldValue(), event.getNewValue())) {
+                    getOwner().makeDirty();
+                }
+            }
+        }
+
+    }
 }

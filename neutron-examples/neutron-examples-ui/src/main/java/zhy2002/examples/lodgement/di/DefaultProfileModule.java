@@ -194,6 +194,8 @@ class PersonNodeRuleProviderImpl extends PersonNodeRuleProvider {
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
         createdRules.add(updatePersonNodeLabelRuleProvider.get());
     }
 }

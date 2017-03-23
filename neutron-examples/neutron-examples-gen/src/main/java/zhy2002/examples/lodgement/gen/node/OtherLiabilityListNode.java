@@ -59,10 +59,12 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         return OtherLiabilityNode.class;
     }
 
-    public NodeAddEvent<OtherLiabilityNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<OtherLiabilityNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<OtherLiabilityNode> createItemRemoveEvent(OtherLiabilityNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

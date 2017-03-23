@@ -59,10 +59,12 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
         return AddressRefNode.class;
     }
 
-    public NodeAddEvent<AddressRefNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<AddressRefNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<AddressRefNode> createItemRemoveEvent(AddressRefNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

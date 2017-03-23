@@ -27,10 +27,12 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
         return OtherIncomeNode.class;
     }
 
-    public NodeAddEvent<OtherIncomeNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<OtherIncomeNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<OtherIncomeNode> createItemRemoveEvent(OtherIncomeNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

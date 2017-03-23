@@ -18,8 +18,12 @@ public class UiNodeRuleProvider implements RuleProvider<UiNode<?>> {
     @Inject
     Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;
 
+    @Inject
+    Provider<ResetDirtyRule> resetDirtyRuleProvider;
+
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         createdRules.add(clearErrorsForDisabledNodeRuleProvider.get());
+        createdRules.add(resetDirtyRuleProvider.get());
     }
 }

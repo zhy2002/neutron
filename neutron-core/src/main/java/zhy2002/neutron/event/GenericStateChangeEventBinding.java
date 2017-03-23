@@ -9,4 +9,9 @@ public class GenericStateChangeEventBinding<E extends StateChangeEvent> extends 
             UiNodeEventHandler<E> handler, Class<E> eventCLass) {
         super(null, handler, eventCLass, null, null);
     }
+
+    public GenericStateChangeEventBinding(
+            UiNodeEventFilter<E> filter, UiNodeEventHandler<E> handler, Class<E> eventCLass, TickPhase phase) {
+        super(filter, handler, eventCLass, null, phase);
+    }
 }

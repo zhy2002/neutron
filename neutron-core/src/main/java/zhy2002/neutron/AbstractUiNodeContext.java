@@ -2,6 +2,7 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.VoidUiNode;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,8 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     NodeFinder nodeFinder;
     @Inject
     NodeReferenceRegistry nodeReferenceRegistry;
+    private boolean dirtyCheckEnabled;
+
 
     /**
      * Construct the context.
@@ -232,5 +235,20 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
 
     public NodeReferenceRegistry getNodeReferenceRegistry() {
         return nodeReferenceRegistry;
+    }
+
+    @Override
+    public boolean isDirtyCheckEnabled() {
+        return dirtyCheckEnabled;
+    }
+
+    @Override
+    public void setDirtyCheckEnabled(boolean enabled) {
+        dirtyCheckEnabled = enabled;
+    }
+
+    @JsMethod
+    public final void resetDirty() {
+        getRootNode().refreshWithReason(NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON);
     }
 }

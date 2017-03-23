@@ -59,10 +59,12 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
         return OtherAssetNode.class;
     }
 
-    public NodeAddEvent<OtherAssetNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<OtherAssetNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<OtherAssetNode> createItemRemoveEvent(OtherAssetNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

@@ -60,10 +60,12 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
         return PersonNode.class;
     }
 
-    public NodeAddEvent<PersonNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<PersonNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<PersonNode> createItemRemoveEvent(PersonNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

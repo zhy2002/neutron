@@ -41,4 +41,10 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
 
     NodeReferenceRegistry getNodeReferenceRegistry();
 
+    boolean isDirtyCheckEnabled();
+
+    void setDirtyCheckEnabled(boolean enabled);
+
+    void resetDirty();
+
 }

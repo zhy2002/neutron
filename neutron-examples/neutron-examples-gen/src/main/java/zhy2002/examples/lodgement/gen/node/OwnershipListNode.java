@@ -29,10 +29,12 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         return OwnershipNode.class;
     }
 
-    public NodeAddEvent<OwnershipNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<OwnershipNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<OwnershipNode> createItemRemoveEvent(OwnershipNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

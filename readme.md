@@ -1,5 +1,7 @@
 todo 
 ----------------- 
+reduce the number of rules to fire onload. e.g. bypass all validation rules.
+
 1. context menu
 2. load initial values (as a part of node load) 
   - load value only or the full state?

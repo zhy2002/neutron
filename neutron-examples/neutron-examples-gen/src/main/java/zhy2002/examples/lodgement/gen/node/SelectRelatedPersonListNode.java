@@ -26,10 +26,12 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
         return SelectRelatedPersonNode.class;
     }
 
-    public NodeAddEvent<SelectRelatedPersonNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<SelectRelatedPersonNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<SelectRelatedPersonNode> createItemRemoveEvent(SelectRelatedPersonNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

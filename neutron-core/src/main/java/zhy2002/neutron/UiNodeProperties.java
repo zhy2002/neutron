@@ -39,8 +39,6 @@ public interface UiNodeProperties {
      */
     boolean isDirty();
 
-    void setDirty(boolean value);
-
     /**
      * @return a label for the node itself.
      * Conceptually this is similar to the toString method.

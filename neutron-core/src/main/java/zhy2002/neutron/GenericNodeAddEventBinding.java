@@ -7,6 +7,15 @@ import java.util.List;
 
 public class GenericNodeAddEventBinding extends NodeAddEventBinding<NodeAddEvent<?>> {
 
+
+    public GenericNodeAddEventBinding(
+            UiNodeEventFilter<NodeAddEvent<?>> filter,
+            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,
+            @NotNull String subject,
+            TickPhase phase) {
+        super(filter, handler, null, Collections.singleton(subject), phase);
+    }
+
     public GenericNodeAddEventBinding(
             UiNodeEventFilter<NodeAddEvent<?>> filter,
             @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,

@@ -59,10 +59,12 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
         return CompanyNode.class;
     }
 
-    public NodeAddEvent<CompanyNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<CompanyNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<CompanyNode> createItemRemoveEvent(CompanyNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

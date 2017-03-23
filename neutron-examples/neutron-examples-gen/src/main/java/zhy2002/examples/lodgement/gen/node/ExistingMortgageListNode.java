@@ -59,10 +59,12 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
         return ExistingMortgageNode.class;
     }
 
-    public NodeAddEvent<ExistingMortgageNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<ExistingMortgageNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<ExistingMortgageNode> createItemRemoveEvent(ExistingMortgageNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

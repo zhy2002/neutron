@@ -59,10 +59,12 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         return CreditHistoryNode.class;
     }
 
-    public NodeAddEvent<CreditHistoryNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<CreditHistoryNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<CreditHistoryNode> createItemRemoveEvent(CreditHistoryNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

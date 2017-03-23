@@ -23,9 +23,13 @@ public class LeafUiNodeRuleProvider implements RuleProvider<LeafUiNode<?, ?>> {
     @Inject
     Provider<LeafValueRequiredValidationRule> leafValueRequiredValidationRuleProvider;
 
+    @Inject
+    Provider<LeafUiNode.MaintainSelfDirtyRule> maintainSelfDirtyRuleProvider;
+
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
         createdRules.add(leafValueRequiredValidationRuleProvider.get());
+        createdRules.add(maintainSelfDirtyRuleProvider.get());
     }
 }

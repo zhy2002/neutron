@@ -60,10 +60,12 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         return PreviousEmploymentNode.class;
     }
 
-    public NodeAddEvent<PreviousEmploymentNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<PreviousEmploymentNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<PreviousEmploymentNode> createItemRemoveEvent(PreviousEmploymentNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

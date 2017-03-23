@@ -52,7 +52,7 @@ export default class ProductCustomerContributionListComponent extends ListNeutro
     renderItems() {
         const result = [];
         result.push(
-            <div className="row">
+            <div key="-0-" className="row">
                 <div className="col-md-1">#</div>
                 <div className="col-md-2">Type</div>
                 <div className="col-md-5">Description</div>

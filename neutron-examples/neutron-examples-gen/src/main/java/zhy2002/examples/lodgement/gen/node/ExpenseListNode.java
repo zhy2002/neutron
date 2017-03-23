@@ -59,10 +59,12 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
         return ExpenseNode.class;
     }
 
-    public NodeAddEvent<ExpenseNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<ExpenseNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<ExpenseNode> createItemRemoveEvent(ExpenseNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

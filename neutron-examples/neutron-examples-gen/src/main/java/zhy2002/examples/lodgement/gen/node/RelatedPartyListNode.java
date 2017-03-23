@@ -59,10 +59,12 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
         return RelatedPartyNode.class;
     }
 
-    public NodeAddEvent<RelatedPartyNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<RelatedPartyNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<RelatedPartyNode> createItemRemoveEvent(RelatedPartyNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

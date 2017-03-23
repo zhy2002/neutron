@@ -15,7 +15,7 @@ public class ObjectUiNodeRuleProvider implements RuleProvider<ObjectUiNode<?>> {
     }
 
     @Inject
-    UiNodeRuleProvider parentRuleProvider;
+    ParentUiNodeRuleProvider parentRuleProvider;
 
     @Override
     public void initializeState(ObjectUiNode<?> node) {

@@ -410,4 +410,40 @@ public class LodgementNodeTest {
         productFeeNode.refresh();
         assertThat(productFeeNode.hasError(), equalTo(true));
     }
+
+    @Test
+    public void listShouldBeSetToDirtyWhenAddingItems() {
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+
+        assertThat(applicationNode.isDirty(), equalTo(false));
+        assertThat(personListNode.isDirty(), equalTo(false));
+
+        applicationNode.getContext().setDirtyCheckEnabled(true);
+        PersonNode personNode = personListNode.createItem();
+
+        assertThat(personListNode.isDirty(), equalTo(true));
+        assertThat(personNode.isDirty(), equalTo(false));
+
+        personNode.getPersonGeneralNode().getFirstNameNode().setValue("test");
+
+        personListNode.removeItem(personNode);
+        assertThat(personListNode.isDirty(), equalTo(false));
+
+    }
+
+    @Test
+    public void canResetDirty() {
+        applicationNode.getContext().setDirtyCheckEnabled(true);
+        PersonListNode personListNode = applicationNode.getPersonListNode();
+        PersonNode personNode = personListNode.createItem();
+        personNode.getPersonGeneralNode().getFirstNameNode().setValue("test");
+
+        assertThat(personNode.isDirty(), equalTo(true));
+
+        applicationNode.getContext().resetDirty();
+
+        assertThat(personNode.isDirty(), equalTo(false));
+        assertThat(personNode.getPersonGeneralNode().isDirty(), equalTo(false));
+
+    }
 }

@@ -65,11 +65,11 @@ function extractObject(node) {
 }
 
 function extractList(node) {
-    const result = [];
+    const result = {};
     const children = node.getChildren();
     children.forEach((child) => {
         if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded) {
-            result.push(extractValue(child));
+            result[child.getName()] = extractValue(child);
         }
     });
     return result;
@@ -113,12 +113,17 @@ function setObject(node, data) {
 }
 
 function setList(node, data) {
-    if (data && data.length > 0) {
-        for (let i = 0; i < data.length; i++) {
-            const item = data[i];
-            let child = node.getItemCount() === i ? child = node.createItem() : child = node.getItem(i);
-            if (item) {
-                setValue(child, item);
+    if (data) {
+        for (const key in data) {
+            if (Object.prototype.hasOwnProperty.call(data, key)) {
+                const item = data[key];
+                let child = node.getItemByName(key);
+                if (!child) {
+                    child = node.createItemWithName(key);
+                }
+                if (item) {
+                    setValue(child, item);
+                }
             }
         }
     }

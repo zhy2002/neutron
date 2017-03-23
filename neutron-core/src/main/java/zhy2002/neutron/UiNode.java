@@ -198,7 +198,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      * @param value state property value.
      */
     protected void setStateValueInternal(String key, Object value) {
-        state.put(key, value);
+        if (value == null) {
+            state.remove(key);
+        } else {
+            state.put(key, value);
+        }
+    }
+
+    protected void clearStateValueInternal(String key) {
+        state.remove(key);
     }
 
     private final Map<String, StateChangeEvent<?>> temporary = new HashMap<>();
@@ -380,7 +388,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             this.parent.addChild(this);
         }
 
-        for(UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeStatusListener listener : statusListeners) {
             listener.exitAddToParent();
         }
 
@@ -422,7 +430,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         addContent();
         loadContent();
 
-        for(UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeStatusListener listener : statusListeners) {
             listener.exitLoad();
         }
         this.nodeStatus = NodeStatusEnum.Loaded;
@@ -450,7 +458,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     protected void addContent() {
         createRules(createdRules);
-        for(UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeStatusListener listener : statusListeners) {
             listener.postCreateRules(createdRules);
         }
         createdRules.forEach(UiNodeRule::addToOwner);
@@ -634,14 +642,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @JsMethod
     @Override
     public boolean isDirty() {
-        return getStateValue(NeutronEventSubjects.DIRTY, Boolean.FALSE);
+        return false;
     }
 
-    @JsMethod
-    @Override
-    public void setDirty(boolean value) {
-        setStateValue(NeutronEventSubjects.DIRTY, Boolean.class, value);
-    }
+    protected abstract void resetDirty();
 
     @JsMethod
     @Override

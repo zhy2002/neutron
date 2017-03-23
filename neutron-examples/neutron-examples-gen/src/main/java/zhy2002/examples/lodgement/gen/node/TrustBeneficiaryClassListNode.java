@@ -59,10 +59,12 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         return TrustBeneficiaryClassNode.class;
     }
 
-    public NodeAddEvent<TrustBeneficiaryClassNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<TrustBeneficiaryClassNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<TrustBeneficiaryClassNode> createItemRemoveEvent(TrustBeneficiaryClassNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

@@ -59,10 +59,12 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         return SavingsAccountNode.class;
     }
 
-    public NodeAddEvent<SavingsAccountNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<SavingsAccountNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<SavingsAccountNode> createItemRemoveEvent(SavingsAccountNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

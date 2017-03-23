@@ -11,6 +11,8 @@ public final class NeutronEventSubjects {
     }
 
     public static final String VALUE = "value";
+    public static final String ORIGINAL_VALUE = "original_value";
+    public static final String ORIGINAL_CHILD_NAMES = "original_child_names";
     public static final String HAS_VALUE = "has_value";
     public static final String VALUE_TEXT = "value_text";
     public static final String VALUE_VALID = "value_valid";
@@ -22,6 +24,8 @@ public final class NeutronEventSubjects {
     public static final String READONLY = "readonly";
     public static final String HIGHLIGHTED = "highlighted";
     public static final String DIRTY = "dirty";
+    public static final String SELF_DIRTY = "self_dirty";
+    public static final String DESCENDANT_DIRTY_COUNT = "descendant_dirty_count";
     public static final String VISIBILITY = "visibility";
     public static final String IGNORED = "ignored";
     public static final String INVALID = "invalid";
@@ -34,6 +38,7 @@ public final class NeutronEventSubjects {
     public static final String MESSAGE = "message";
     public static final String DEFAULT_REFRESH_REASON = "";
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";
+    public static final String RESET_DIRTY_REFRESH_REASON = "RESET_DIRTY";
     public static final String RANGE_MESSAGE = "range_message";
     public static final String MIN_VALUE = "min_value";
     public static final String MAX_VALUE = "max_value";

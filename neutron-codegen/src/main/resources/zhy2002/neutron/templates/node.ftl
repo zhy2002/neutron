@@ -112,10 +112,12 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         return ${itemTypeName}.class;
     }
 
-    public NodeAddEvent<${itemTypeName}> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<${itemTypeName}> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<${itemTypeName}> createItemRemoveEvent(${itemTypeName} item) {
         return itemFactory.createItemRemoveEvent(item);
     }

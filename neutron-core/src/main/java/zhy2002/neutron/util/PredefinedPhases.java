@@ -10,7 +10,7 @@ import zhy2002.neutron.TickPhase;
  */
 public enum PredefinedPhases implements TickPhase {
 
-    Pre(ChangeModeEnum.PROHIBITED),
+    Pre(ChangeModeEnum.CASCADE),
     Post(ChangeModeEnum.CASCADE, true),
     Validate(ChangeModeEnum.CASCADE),
     CleanUp(ChangeModeEnum.IGNORED);

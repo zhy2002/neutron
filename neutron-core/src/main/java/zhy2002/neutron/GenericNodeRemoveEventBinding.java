@@ -8,7 +8,20 @@ import java.util.List;
 
 public class GenericNodeRemoveEventBinding extends NodeRemoveEventBinding<NodeRemoveEvent<?>> {
 
-    public GenericNodeRemoveEventBinding(UiNodeEventFilter<NodeRemoveEvent<?>> filter, @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler, @NotNull String subject) {
+    public GenericNodeRemoveEventBinding(
+            UiNodeEventFilter<NodeRemoveEvent<?>> filter,
+            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler,
+            @NotNull String subject,
+            TickPhase phase
+    ) {
+        super(filter, handler, null, Collections.singleton(subject), phase);
+    }
+
+    public GenericNodeRemoveEventBinding(
+            UiNodeEventFilter<NodeRemoveEvent<?>> filter,
+            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler,
+            @NotNull String subject
+    ) {
         super(filter, handler, null, Collections.singleton(subject), null);
     }
 

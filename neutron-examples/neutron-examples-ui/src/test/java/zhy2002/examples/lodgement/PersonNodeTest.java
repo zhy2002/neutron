@@ -132,4 +132,23 @@ public class PersonNodeTest {
         UiNode<?> spouse = personGeneralNode.getSpouseNode().getReferencedNode();
         assertThat(spouse, nullValue());
     }
+
+    @Test
+    public void isDirtyIsUpdatedWhenValueChanges() {
+        applicationNode.getContext().setDirtyCheckEnabled(true);
+        PersonGeneralNode personGeneralNode = personNode.getPersonGeneralNode();
+        assertThat(personGeneralNode.isDirty(), equalTo(false));
+
+        FirstNameNode firstNameNode = personGeneralNode.getFirstNameNode();
+        firstNameNode.setValue("test");
+        assertThat(firstNameNode.isDirty(), equalTo(true));
+        assertThat(personGeneralNode.isDirty(), equalTo(true));
+        assertThat(personNode.isDirty(), equalTo(true));
+
+        firstNameNode.setValue("");
+        assertThat(firstNameNode.isDirty(), equalTo(false));
+        assertThat(personGeneralNode.isDirty(), equalTo(false));
+        assertThat(personNode.isDirty(), equalTo(false));
+
+    }
 }

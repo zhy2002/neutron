@@ -26,10 +26,12 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
         return SelectAccountHolderNode.class;
     }
 
-    public NodeAddEvent<SelectAccountHolderNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<SelectAccountHolderNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<SelectAccountHolderNode> createItemRemoveEvent(SelectAccountHolderNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

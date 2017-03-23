@@ -59,10 +59,12 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
         return LoanNode.class;
     }
 
-    public NodeAddEvent<LoanNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<LoanNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<LoanNode> createItemRemoveEvent(LoanNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

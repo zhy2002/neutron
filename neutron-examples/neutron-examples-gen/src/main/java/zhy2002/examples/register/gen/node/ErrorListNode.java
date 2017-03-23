@@ -59,10 +59,12 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
         return ErrorNode.class;
     }
 
-    public NodeAddEvent<ErrorNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

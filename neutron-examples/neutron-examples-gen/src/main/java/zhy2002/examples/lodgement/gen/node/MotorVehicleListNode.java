@@ -59,10 +59,12 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
         return MotorVehicleNode.class;
     }
 
-    public NodeAddEvent<MotorVehicleNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<MotorVehicleNode> createItemRemoveEvent(MotorVehicleNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

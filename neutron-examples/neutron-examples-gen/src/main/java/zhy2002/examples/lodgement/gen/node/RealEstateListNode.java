@@ -60,10 +60,12 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
         return RealEstateNode.class;
     }
 
-    public NodeAddEvent<RealEstateNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<RealEstateNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<RealEstateNode> createItemRemoveEvent(RealEstateNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

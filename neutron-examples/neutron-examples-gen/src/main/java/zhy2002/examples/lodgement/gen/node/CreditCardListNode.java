@@ -59,10 +59,12 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
         return CreditCardNode.class;
     }
 
-    public NodeAddEvent<CreditCardNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<CreditCardNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<CreditCardNode> createItemRemoveEvent(CreditCardNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }

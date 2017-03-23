@@ -59,10 +59,12 @@ public class ProductListNode extends ListUiNode<ProductsNode,ProductNode> {
         return ProductNode.class;
     }
 
-    public NodeAddEvent<ProductNode> createItemAddEvent() {
-        return itemFactory.createItemAddEvent(String.valueOf(super.getChildSequenceNumber()));
+    @Override
+    public NodeAddEvent<ProductNode> createItemAddEvent(String name) {
+        return itemFactory.createItemAddEvent(name);
     }
 
+    @Override
     public NodeRemoveEvent<ProductNode> createItemRemoveEvent(ProductNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }
