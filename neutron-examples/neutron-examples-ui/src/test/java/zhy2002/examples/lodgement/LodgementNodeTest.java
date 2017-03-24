@@ -422,7 +422,7 @@ public class LodgementNodeTest {
         PersonNode personNode = personListNode.createItem();
 
         assertThat(personListNode.isDirty(), equalTo(true));
-        assertThat(personNode.isDirty(), equalTo(false));
+        assertThat(personNode.isDirty(), equalTo(true));
 
         personNode.getPersonGeneralNode().getFirstNameNode().setValue("test");
 

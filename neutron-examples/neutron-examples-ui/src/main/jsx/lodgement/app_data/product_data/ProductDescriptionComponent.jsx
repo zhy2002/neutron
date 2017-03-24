@@ -4,6 +4,8 @@ import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import MainContentComponent from '../common/MainContentComponent';
+import SelectAccountHolderListComponent from '../common/SelectAccountHolderListComponent';
+
 
 export default class ProductDescriptionComponent extends NeutronComponent {
 
@@ -65,7 +67,7 @@ export default class ProductDescriptionComponent extends NeutronComponent {
                         </ul>
                     </div>
                     <div className="col-md-4">
-                        todo select applicants
+                        <SelectAccountHolderListComponent model={model.getProductAccountHolderListNode()}/>
                     </div>
                     <div className="col-md-4"/>
                 </div>

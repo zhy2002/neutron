@@ -42,6 +42,15 @@ public abstract class DefaultProfileModule {
     abstract AddExistingApplicantsRule provideAddExistingApplicantsRule(AddExistingApplicantsRuleImpl impl);
 
     @Binds
+    abstract AddExistingHoldersRule provideAddExistingHoldersRule(AddExistingHoldersRuleImpl impl);
+
+    @Binds
+    abstract AddNewPersonHolderRule provideAddNewPersonHolderRule(AddNewPersonHolderRuleImpl impl);
+
+    @Binds
+    abstract AddNewCompanyHolderRule provideAddNewCompanyHolderRule(AddNewCompanyHolderRuleImpl impl);
+
+    @Binds
     abstract AddNewCompanyApplicantRule provideAddNewCompanyApplicantRule(AddNewCompanyApplicantRuleImpl impl);
 
     @Binds

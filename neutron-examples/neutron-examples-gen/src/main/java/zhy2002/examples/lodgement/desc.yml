@@ -1754,6 +1754,10 @@ commonTypes:
   baseTypeName: ListUiNode
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
+  rules:
+  - {typeName: AddExistingHoldersRule}
+  - {typeName: AddNewPersonHolderRule}
+  - {typeName: AddNewCompanyHolderRule}
   itemTypeName: SelectAccountHolderNode
   childTypes:
   - typeName: SelectAccountHolderNode

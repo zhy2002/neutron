@@ -1,6 +1,7 @@
 todo 
 ----------------- 
 reduce the number of rules to fire onload. e.g. bypass all validation rules.
+add a root node type 
 
 1. context menu
 2. load initial values (as a part of node load) 
