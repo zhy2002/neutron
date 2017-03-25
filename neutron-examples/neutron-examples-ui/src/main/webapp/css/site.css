@@ -40,7 +40,7 @@ html, body {
 .application-list-component {
   position: absolute;
   left: 0;
-  right: 10px; }
+  right: 0; }
 
 .application-component {
   position: absolute;

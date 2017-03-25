@@ -8,11 +8,11 @@ export default class LodgementHeaderComponent extends React.PureComponent {
             <nav className="navbar navbar-default lodgement-header-component">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <span className="navbar-brand">Brand Name</span>
+                        <img src="img/site_logo.png" alt="Site Logo" height="50px" />
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <DummyNavDropdownComponent model={{}} onSelect={() => {}}>
-                            User Name
+                            Demo User
                         </DummyNavDropdownComponent>
                         <DummyNavDropdownComponent model={{}} onSelect={() => {}}>
                             <span className="glyphicon glyphicon-user"/>
