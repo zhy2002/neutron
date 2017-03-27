@@ -19,16 +19,16 @@ export default class ApplicationNavComponent extends NeutronComponent {
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getPersonListNode()}>
-                            Person
+                            <span className="glyphicon glyphicon-user"/> Person
                         </NavDropdownComponent>
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getCompanyListNode()}>
-                            Company
+                            <span className="glyphicon glyphicon-road"/> Company
                         </NavDropdownComponent>
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getFinancialPositionNode()}>
-                            Financial Position
+                            <span className="glyphicon glyphicon-credit-card"/> Financial Position
                         </NavDropdownComponent>
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getRealEstateListNode()}>
-                            Real Estates
+                            <span className="glyphicon glyphicon-home"/> Real Estates
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
@@ -39,7 +39,7 @@ export default class ApplicationNavComponent extends NeutronComponent {
                                 model.getProductsNode().getProductFeeListNode()
                             ]}
                         >
-                            Products
+                            <span className="glyphicon glyphicon-apple"/> Products
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
@@ -49,10 +49,10 @@ export default class ApplicationNavComponent extends NeutronComponent {
                             ]}
                             childList={model.getAdditionalNode().getRelatedPartyListNode()}
                         >
-                            Additional
+                            <span className="glyphicon glyphicon-cog"/> Additional
                         </NavDropdownComponent>
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getSubmissionNode()}>
-                            Submission
+                            <span className="glyphicon glyphicon-arrow-up"/> Submission
                         </NavDropdownComponent>
                     </ul>
                 </div>

@@ -94,7 +94,13 @@ export default class NavDropdownComponent extends ListNeutronComponent {
                 </li>
             );
         }
-        items.push(<li key="create"><a tabIndex="0" onClick={this.createNewItem}>Create New</a></li>);
+        items.push(
+            <li key="create">
+                <a tabIndex="0" onClick={this.createNewItem}>
+                    Create New
+                </a>
+            </li>
+        );
 
         return (
             <ul className="dropdown-menu">
