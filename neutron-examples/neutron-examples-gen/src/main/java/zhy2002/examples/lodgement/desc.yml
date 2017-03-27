@@ -1434,6 +1434,7 @@ commonTypes:
   - {name: countryCodeReadonly, typeName: Boolean, default: Boolean.FALSE}
   rules:
   - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
+  - {typeName: AustralianTelephoneRule, baseTypeName: ValidationRule}
 
 - typeName: AddressNode
   baseTypeName: ObjectUiNode

@@ -81,6 +81,9 @@ public abstract class DefaultProfileModule {
     abstract DobRangeValidationRule provideDobRangeValidationRule(DobRangeValidationRuleImpl impl);
 
     @Binds
+    abstract AustralianTelephoneRule provideAustralianTelephoneRule(AustralianTelephoneRuleImpl impl);
+
+    @Binds
     abstract EmploymentEndedNoEarlierThanEmploymentStartedRule provideEmploymentEndedNoEarlierThanEmploymentStartedRule(EmploymentEndedNoEarlierThanEmploymentStartedRuleImpl impl);
 
     @Binds
