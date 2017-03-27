@@ -22,7 +22,10 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'stage-0', 'react']
+                    presets: ['es2015', 'stage-0', 'react'],
+                    plugins: [
+                        ["import", {libraryName: "antd", style: 'css'}]
+                    ]
                 }
             },
             { test: /\.css$/, loader: 'style-loader!css-loader' }

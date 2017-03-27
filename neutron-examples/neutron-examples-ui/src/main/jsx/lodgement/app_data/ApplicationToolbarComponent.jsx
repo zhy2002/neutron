@@ -1,4 +1,5 @@
 import React from 'react';
+import {message} from 'antd';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import CommonUtil from '../services/CommonUtil';
@@ -27,7 +28,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
             StorageService.saveApplication(this.model).then(
                 (response) => {
                     console.log(response);
-                    alert('saved!');
+                    message.info('saved!');
                 }
             );
         };
