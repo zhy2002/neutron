@@ -1,4 +1,5 @@
 import React from 'react';
+import NodeLabelComponent from '../bootstrap3/NodeLabelComponent';
 
 
 export default class NavPillsComponent extends React.PureComponent {
@@ -12,7 +13,7 @@ export default class NavPillsComponent extends React.PureComponent {
                 listItems.push(
                     <li key={item.getUniqueId()} className={itemClass}>
                         <a tabIndex="0" onClick={() => this.props.onSelect(item)}>
-                            {item.getNodeLabel()}
+                            <NodeLabelComponent model={item} />
                         </a>
                         {
                             item.getShowErrorList &&

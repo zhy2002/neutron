@@ -28,6 +28,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
             StorageService.saveApplication(this.model).then(
                 (response) => {
                     console.log(response);
+                    this.model.getContext().resetDirty();
                     message.info('saved!');
                 }
             );

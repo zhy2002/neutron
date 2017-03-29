@@ -56,6 +56,9 @@ export default class LodgementComponent extends React.PureComponent {
                 openApps: newApps,
                 selectedIndex: newApps.length //there is a appManager node in the front
             });
+            CommonUtil.delay(10).then(
+                () => newApp.getContext().setDirtyCheckEnabled(true)
+            );
         };
 
         this.onLoadApp = (id) => {
