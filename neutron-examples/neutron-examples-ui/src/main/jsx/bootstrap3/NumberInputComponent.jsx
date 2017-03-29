@@ -63,7 +63,7 @@ export default class NumberInputComponent extends InputComponent {
         return (
             <div className={super.renderContainerClass('number-input-component')}>
                 {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 {this.renderInputGroup()}
                 {this.state.errorMessage &&

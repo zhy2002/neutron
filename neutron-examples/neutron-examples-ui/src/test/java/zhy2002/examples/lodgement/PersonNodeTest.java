@@ -151,4 +151,18 @@ public class PersonNodeTest {
         assertThat(personNode.isDirty(), equalTo(false));
 
     }
+
+    @Test
+    public void addressHaveCorrectDirtyStatus() {
+
+        PersonAddressNode addressNode = this.personContactNode.getCurrentAddressNode();
+        assertThat(addressNode.isDirty(), equalTo(false));
+
+        addressNode.getContext().setDirtyCheckEnabled(true);
+        addressNode.getAddressLineNode().setValue("22 Jump St.");
+        assertThat(addressNode.isDirty(), equalTo(true));
+
+        addressNode.getAddressLineNode().setValue("");
+        assertThat(addressNode.isDirty(), equalTo(false));
+    }
 }

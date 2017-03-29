@@ -32,7 +32,7 @@ export default class SelectAccountHolderListComponent extends ListNeutronCompone
     render() {
         return (
             <div className="select-account-holder-list-component">
-                <p>{this.label}</p>
+                <p>{this.state.label}</p>
                 <ul className="list-group">
                     {this.renderItems()}
                 </ul>

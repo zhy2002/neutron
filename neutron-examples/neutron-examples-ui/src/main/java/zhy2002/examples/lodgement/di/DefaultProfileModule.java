@@ -227,6 +227,8 @@ class CompanyNodeRuleProviderImpl extends CompanyNodeRuleProvider {
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
+        super.createRules(createdRules);
+
         createdRules.add(updateCompanyNodeLabelRuleProvider.get());
     }
 }

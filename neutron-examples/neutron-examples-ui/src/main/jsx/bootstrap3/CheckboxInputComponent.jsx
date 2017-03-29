@@ -24,7 +24,7 @@ export default class CheckboxInputComponent extends InputComponent {
                         disabled={this.state.disabled}
                     />
                     {!this.props.hideLabel &&
-                        this.label
+                        this.state.label
                     }
                 </label>
                 {this.state.errorMessage &&

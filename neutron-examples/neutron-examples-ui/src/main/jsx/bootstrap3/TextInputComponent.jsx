@@ -24,7 +24,7 @@ export default class TextInputComponent extends InputComponent {
         return (
             <div className={super.renderContainerClass('text-input-component')}>
                 {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 <input
                     type="text"

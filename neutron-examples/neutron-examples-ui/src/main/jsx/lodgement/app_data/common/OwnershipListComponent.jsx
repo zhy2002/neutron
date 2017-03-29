@@ -42,7 +42,7 @@ export default class OwnershipListComponent extends ListNeutronComponent {
     render() {
         return (
             <div className="ownership-list-component">
-                <label htmlFor={this.model.getUniqueId()} >Ownership List</label>
+                <label htmlFor={this.model.getUniqueId()} >{this.state.label}</label>
                 <ul className="list-group">
                     {this.renderItems()}
                 </ul>

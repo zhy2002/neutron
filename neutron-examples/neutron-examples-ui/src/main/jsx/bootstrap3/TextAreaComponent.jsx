@@ -23,7 +23,7 @@ export default class TextAreaComponent extends InputComponent {
         return (
             <div className={super.renderContainerClass('text-area-component')}>
                 {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 <textarea
                     type="text"

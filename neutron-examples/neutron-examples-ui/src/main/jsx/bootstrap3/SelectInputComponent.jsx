@@ -55,7 +55,7 @@ export default class SelectInputComponent extends InputComponent {
         return (
             <div className={super.renderContainerClass('select-input-component')}>
                 {!this.props.noLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 <select
                     id={model.getUniqueId()}

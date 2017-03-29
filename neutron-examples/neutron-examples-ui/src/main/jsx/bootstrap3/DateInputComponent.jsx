@@ -24,7 +24,7 @@ export default class DateInputComponent extends InputComponent {
         const model = this.props.model;
         return (
             <div className={super.renderContainerClass('date-input-component')}>
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 <DatePicker
                     className="form-control"
                     onChange={this.updateValue}

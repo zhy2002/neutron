@@ -40,7 +40,7 @@ export default class AddressComponent extends NeutronComponent {
                 tabIndex="0"
                 className={`address-component${this.state.componentClass}`}
             >
-                <label htmlFor={model.getAddressLineNode().getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getAddressLineNode().getUniqueId()}>{this.state.label}</label>
                 <a tabIndex="0" onClick={this.showAddressList}> <span className="glyphicon glyphicon-eye-open"/></a>
                 {this.state.showAddressList &&
                 <AddressListComponent

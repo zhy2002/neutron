@@ -63,7 +63,7 @@ export default class TelephoneComponent extends InputComponent {
                 tabIndex="0"
                 className={`form-group form-group-sm telephone-component${this.state.componentClass}`}
             >
-                <label htmlFor={countryInputId}>{this.label}</label>
+                <label htmlFor={countryInputId}>{this.state.label}</label>
                 <div className="clearfix">
                     <input
                         id={countryInputId}

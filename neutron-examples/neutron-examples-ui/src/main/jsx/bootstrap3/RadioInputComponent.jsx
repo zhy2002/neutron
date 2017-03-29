@@ -61,7 +61,7 @@ export default class RadioInputComponent extends InputComponent {
         return (
             <div className={super.renderContainerClass('radio-input-component')}>
                 {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 <div id={model.getUniqueId()} tabIndex="0" className="radio-container">
                     {this.renderOptions()}

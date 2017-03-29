@@ -34,4 +34,12 @@ public class CompanyTest {
         assertThat(selectDirectorNode.getItemCount(), equalTo(0));
 
     }
+
+    @Test
+    public void newCompanyIsDirty() {
+        applicationNode.getContext().setDirtyCheckEnabled(true);
+        CompanyNode companyNode = companyListNode.createItem();
+        assertThat(companyNode.getCompanyTrustNode().isDirty(), equalTo(true));
+        assertThat(companyNode.isDirty(), equalTo(true));
+    }
 }

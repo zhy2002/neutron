@@ -15,7 +15,7 @@ export default class MonthYearComponent extends NeutronComponent {
                 tabIndex="0"
                 className={`month-year-component${this.state.componentClass}`}
             >
-                <label htmlFor={model.getMonthNode().getUniqueId()}>{this.label}</label>
+                <label htmlFor={model.getMonthNode().getUniqueId()}>{this.state.label}</label>
                 <div className="clearfix">
                     <SelectInputComponent
                         noLabel

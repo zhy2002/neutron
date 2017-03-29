@@ -33,7 +33,7 @@ export default class SelectRelatedPersonListComponent extends ListNeutronCompone
     render() {
         return (
             <div className="select-related-person-list-component">
-                <p>{this.label}</p>
+                <p>{this.state.label}</p>
                 <ul className="list-group">
                     {this.renderItems()}
                 </ul>
