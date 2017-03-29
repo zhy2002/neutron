@@ -24,11 +24,15 @@ public class RelatedPartyNodeRuleProvider implements RuleProvider<RelatedPartyNo
 
     }
 
+    @Inject
+    Provider<UpdateRelatedPartyNodeLabelRule> updateRelatedPartyNodeLabelRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+            UpdateRelatedPartyNodeLabelRule updateRelatedPartyNodeLabelRule = updateRelatedPartyNodeLabelRuleProvider.get();
+            createdRules.add(updateRelatedPartyNodeLabelRule);
     }
 
 }

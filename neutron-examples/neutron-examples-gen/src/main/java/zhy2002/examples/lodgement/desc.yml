@@ -1288,6 +1288,8 @@ rootType:
       childTypes:
       - typeName: RelatedPartyNode
         baseTypeName: ObjectUiNode
+        rules:
+        - {typeName: UpdateRelatedPartyNodeLabelRule, baseTypeName: UpdateItemNodeLabelRule}
         children:
         - {typeName: ThirdPartyTypeNode}
         - {typeName: ThirdPartyDescriptionNode}

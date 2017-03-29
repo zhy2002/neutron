@@ -42,6 +42,9 @@ public abstract class DefaultProfileModule {
     abstract AddExistingApplicantsRule provideAddExistingApplicantsRule(AddExistingApplicantsRuleImpl impl);
 
     @Binds
+    abstract UpdateRelatedPartyNodeLabelRule provideUpdateRelatedPartyNodeLabelRuleImpl(UpdateRelatedPartyNodeLabelRuleImpl impl);
+
+    @Binds
     abstract AddExistingHoldersRule provideAddExistingHoldersRule(AddExistingHoldersRuleImpl impl);
 
     @Binds
