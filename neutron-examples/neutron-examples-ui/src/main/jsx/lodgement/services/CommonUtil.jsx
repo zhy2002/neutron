@@ -1,5 +1,5 @@
 import Promise from 'promise';
-
+import moment from 'moment';
 
 function delay(interval = 0) {
     return new Promise(
@@ -154,6 +154,24 @@ function setLeaf(node, data) {
     }
 }
 
+function replaceDigit(c, i, a) {
+    return i && c !== '.' && ((a.length - i) % 3 === 0) ? `,${c}` : c;
+}
+
+function formatCurrency(n, symbol) {
+    if (n === null || n === undefined)
+        return '';
+    const s = symbol || '$';
+    return s + n.toFixed(2).replace(/./g, replaceDigit);
+}
+
+function formatDate(date) {
+    if (!date)
+        return '';
+
+    return moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
+}
+
 export default class CommonUtil {
 }
 
@@ -162,3 +180,5 @@ CommonUtil.setValue = setValue;
 CommonUtil.setIsLoading = setIsLoading;
 CommonUtil.delay = delay;
 CommonUtil.defer = defer;
+CommonUtil.formatCurrency = formatCurrency;
+CommonUtil.formatDate = formatDate;

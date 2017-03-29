@@ -53,16 +53,31 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Index" enabled="false">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Index" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-  &quot;settings&quot;: {&#xd;
-    &quot;index.mapping.ignore_malformed&quot;: true &#xd;
-  }&#xd;
+	&quot;settings&quot;: {&#xd;
+    		&quot;index.mapping.ignore_malformed&quot;: true &#xd;
+  	},&#xd;
+    	&quot;mappings&quot;: {&#xd;
+        &quot;application&quot;: {&#xd;
+            &quot;dynamic_templates&quot;: [&#xd;
+                { &#xd;
+                	&quot;dt_node&quot;: {&#xd;
+                      &quot;match&quot;:              &quot;node&quot;, &#xd;
+                      &quot;match_mapping_type&quot;: &quot;object&quot;,&#xd;
+                      &quot;mapping&quot;: {&#xd;
+                         &quot;index&quot;: &quot;not_analyzed&quot;&#xd;
+                      }&#xd;
+                	}&#xd;
+                }&#xd;
+            ]&#xd;
+		}&#xd;
+	}&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -74,7 +89,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/lodgement/?pretty</stringProp>
+          <stringProp name="HTTPSampler.path">/lodgement?pretty</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -256,7 +271,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/lodgement/application/_search?q=*&amp;_source=false&amp;pretty</stringProp>
+          <stringProp name="HTTPSampler.path">/lodgement/application/_search?q=*&amp;_source=true&amp;pretty&amp;from=10</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -266,7 +281,7 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Application" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Application" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">

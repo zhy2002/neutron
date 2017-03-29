@@ -33,58 +33,63 @@ export default class PersonGeneralComponent extends NeutronComponent {
         return (
             <MainContentComponent className="person-general-component">
                 <div className="row">
-                    <div className="col-md-3">
-                        <RadioInputComponent model={model.getPersonApplicantTypeNode()}/>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <SelectInputComponent model={model.getTitleNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <TextInputComponent model={model.getFirstNameNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <TextInputComponent model={model.getLastNameNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <RadioInputComponent model={model.getGenderNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <DateInputComponent model={model.getDateOfBirthNode()}/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-3">
-                        <SelectInputComponent model={model.getApplicationTypeNode()}/>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <RadioInputComponent model={model.getPersonApplicantTypeNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <SelectInputComponent model={model.getApplicationTypeNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <CheckboxInputComponent model={model.getPrimaryApplicantFlagNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <CheckboxInputComponent model={model.getFirstHomeBuyerFlagNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-3">
-                        <CheckboxInputComponent model={model.getPrimaryApplicantFlagNode()}/>
+                    <div className="col-md-6 col-lg-4">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <SelectInputComponent model={model.getMaritalStatusNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <ReferenceInputComponent
+                                    model={model.getSpouseNode()}
+                                    getOptionNodes={this.getOtherPersonApplicants}
+                                />
+                            </div>
+                            <div className="col-sm-12">
+                                <SelectInputComponent model={model.getHousingStatusNode()}/>
+                            </div>
+                            <div className="col-sm-12">
+                                <TextInputComponent model={model.getDriversLicenseNode()}/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-3">
-                        <CheckboxInputComponent model={model.getFirstHomeBuyerFlagNode()}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">
-                        <SelectInputComponent model={model.getTitleNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <TextInputComponent model={model.getFirstNameNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <TextInputComponent model={model.getLastNameNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <RadioInputComponent model={model.getGenderNode()}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">
-                        <DateInputComponent model={model.getDateOfBirthNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <TextInputComponent model={model.getDriversLicenseNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <SelectInputComponent model={model.getMaritalStatusNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <ReferenceInputComponent
-                            model={model.getSpouseNode()}
-                            getOptionNodes={this.getOtherPersonApplicants}
-                        />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-3">
-                        <SelectInputComponent model={model.getHousingStatusNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <CheckboxInputComponent model={model.getPermanentResidentFlagNode()}/>
-                    </div>
-                    <div className="col-md-6"/>
                 </div>
             </MainContentComponent>
         );

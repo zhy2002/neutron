@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import UiService from '../services/UiService';
+import CommonUtil from '../services/CommonUtil';
 
 function renderNames(array) {
     const result = [];
@@ -42,10 +43,10 @@ export default class ApplicationListComponent extends NeutronComponent {
                         </a>
                     </td>
                     <td>{data.username}</td>
-                    <td>{data.amount}</td>
+                    <td className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
                     <td>{data.status}</td>
-                    <td>{data.created}</td>
-                    <td>{data.updated}</td>
+                    <td>{CommonUtil.formatDate(data.created)}</td>
+                    <td>{CommonUtil.formatDate(data.updated)}</td>
                     <td/>
                 </tr>
             );
@@ -59,14 +60,14 @@ export default class ApplicationListComponent extends NeutronComponent {
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Lender</th>
-                        <th>Applicant Name</th>
-                        <th>Owner</th>
-                        <th>Loan Amount</th>
-                        <th>Loan Status</th>
-                        <th>Date Created</th>
-                        <th>Date Updated</th>
-                        <th>Date Lodged</th>
+                        <th width="10%">Lender</th>
+                        <th width="14%">Applicant Name</th>
+                        <th width="10%">Owner</th>
+                        <th className="text-right" width="10%">Loan Amount</th>
+                        <th width="10%">Loan Status</th>
+                        <th width="12%">Date Created</th>
+                        <th width="12%">Date Updated</th>
+                        <th width="12%">Date Lodged</th>
                     </tr>
                     </thead>
                     <tbody>

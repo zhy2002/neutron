@@ -20,7 +20,7 @@ const errorHandler = (error) => {
 StorageService.getApplicationSummaries = () => {
     CommonUtil.setIsLoading(true);
     return axios.get(
-        `${baseUrl}/lodgement/application/_search?q=*&_source_exclude=node`
+        `${baseUrl}/lodgement/application/_search?q=*&_source_exclude=node&size=100&sort=updated:desc`
     ).then(
         (response) => {
             CommonUtil.setIsLoading(false);

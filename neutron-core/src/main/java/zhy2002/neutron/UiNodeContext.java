@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.node.VoidUiNode;
 
 /**
@@ -41,10 +42,13 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
 
     NodeReferenceRegistry getNodeReferenceRegistry();
 
+    @JsMethod
     boolean isDirtyCheckEnabled();
 
+    @JsMethod
     void setDirtyCheckEnabled(boolean enabled);
 
+    @JsMethod
     void resetDirty();
 
 }

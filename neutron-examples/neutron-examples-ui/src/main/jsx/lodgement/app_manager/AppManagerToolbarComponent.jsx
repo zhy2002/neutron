@@ -41,7 +41,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-chevron-left"/>
                             </div>
                             <div>
-                                <small>Previous Page</small>
+                                <small>Previous</small>
                             </div>
                         </a>
                     </li>
@@ -51,7 +51,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-chevron-right"/>
                             </div>
                             <div>
-                                <small>Next Page</small>
+                                <small>Next</small>
                             </div>
                         </a>
                     </li>

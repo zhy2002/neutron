@@ -23,6 +23,7 @@ UiService.refreshApplicationList = () => {
         (data) => {
             const appListNode = lodgementNode.getAppManagerNode().getApplicationListNode();
             appListNode.data = data;
+            appListNode.totalCount = data.hits.total;
             appListNode.setUpdated(true);
         }
     );

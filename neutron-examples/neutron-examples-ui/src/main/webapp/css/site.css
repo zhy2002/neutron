@@ -7,7 +7,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  min-width: 1024px; }
+  min-width: 800px; }
 
 .loading-spinner-component {
   background-color: #000;
@@ -31,7 +31,7 @@ html, body {
 
 .lodgement-content-component {
   position: absolute;
-  top: 143px;
+  top: 140px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -85,10 +85,16 @@ html, body {
   padding: 0 1px; }
   .application-tabs-component .nav-pills-component {
     margin-top: 0; }
-  .application-tabs-component.has-content + .application-content-component {
-    top: 77px; }
-  .application-tabs-component.has-content ~ .application-errors-component {
-    top: 77px; }
+  @media (max-width: 900px) {
+    .application-tabs-component.has-content + .application-content-component {
+      top: 100px; }
+    .application-tabs-component.has-content ~ .application-errors-component {
+      top: 100px; } }
+  @media (min-width: 901px) {
+    .application-tabs-component.has-content + .application-content-component {
+      top: 77px; }
+    .application-tabs-component.has-content ~ .application-errors-component {
+      top: 77px; } }
 
 .application-content-component {
   position: absolute;
@@ -163,7 +169,7 @@ html, body {
 
 .radio-container {
   padding-top: 3px;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px; }
@@ -193,9 +199,6 @@ html, body {
   .active .close-icon .glyphicon:hover {
     color: orange; }
 
-@media (min-width: 992px) {
-  .compact .col-md-1:not(:last-child), .compact .col-md-2:not(:last-child), .compact .col-md-3:not(:last-child), .compact .col-md-4:not(:last-child), .compact .col-md-5:not(:last-child), .compact .col-md-6:not(:last-child) {
-    padding-right: 0; } }
 .grouper {
   position: relative;
   padding-left: 10px; }
@@ -245,20 +248,6 @@ html, body {
 .person-current-employment-component .btn-warning {
   margin-top: 15px; }
 
-/*stop navbar from collapsing*/
-.navbar-collapse.collapse {
-  display: block !important; }
-
-.navbar-nav > li, .navbar-nav, .navbar-header {
-  float: left !important; }
-
-.navbar-nav.navbar-right:last-child {
-  margin-right: -15px !important; }
-
-.navbar-right {
-  float: right !important; }
-
-/*stop navbar from collapsing*/
 .navbar-nav > li > a {
   cursor: pointer; }
 
@@ -277,8 +266,6 @@ a[tabindex] {
 .radio-inline input[type=radio] {
   margin-top: 1px; }
 
-.checkbox input[type=checkbox] {
-  margin-top: 1px; }
 .checkbox > label.missing-value {
   background-color: lightblue; }
 
@@ -391,5 +378,10 @@ a[tabindex] {
   margin: auto;
   top: 42%;
   color: white; }
+
+.load-more-strip {
+  text-align: center;
+  color: #045FB4;
+  font-size: 18px; }
 
 /*# sourceMappingURL=site.css.map */

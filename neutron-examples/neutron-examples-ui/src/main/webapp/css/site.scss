@@ -12,7 +12,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  min-width: 1024px;
+  min-width: 800px;
 }
 
 .loading-spinner-component {
@@ -50,7 +50,7 @@ html, body {
 
 .lodgement-content-component {
   position: absolute;
-  top: 143px;
+  top: 140px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -134,13 +134,27 @@ html, body {
   }
 
   &.has-content {
-    + .application-content-component {
-      top: 77px;
+
+    @media (max-width: 900px) {
+      + .application-content-component {
+        top: 100px;
+      }
+
+      ~ .application-errors-component {
+        top: 100px;
+      }
     }
 
-    ~ .application-errors-component {
-      top: 77px;
+    @media (min-width: 901px) {
+      + .application-content-component {
+        top: 77px;
+      }
+
+      ~ .application-errors-component {
+        top: 77px;
+      }
     }
+
   }
 }
 
@@ -250,7 +264,7 @@ html, body {
 
 .radio-container {
   padding-top: 3px;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -293,16 +307,6 @@ html, body {
 
     &:hover {
       color: orange;
-    }
-  }
-}
-
-@media (min-width: 992px) {
-  .compact {
-    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6 {
-      &:not(:last-child) {
-        padding-right: 0;
-      }
     }
   }
 }
@@ -384,26 +388,6 @@ html, body {
 
 //region Bootstrap Override
 
-/*stop navbar from collapsing*/
-
-.navbar-collapse.collapse {
-  display: block !important;
-}
-
-.navbar-nav > li, .navbar-nav, .navbar-header {
-  float: left !important;
-}
-
-.navbar-nav.navbar-right:last-child {
-  margin-right: -15px !important;
-}
-
-.navbar-right {
-  float: right !important;
-}
-
-/*stop navbar from collapsing*/
-
 .navbar-nav > li > a {
   cursor: pointer;
 }
@@ -434,9 +418,6 @@ a[tabindex] {
 }
 
 .checkbox {
-  input[type=checkbox] {
-    margin-top: 1px;
-  }
 
   > label.missing-value {
     background-color: lightblue;
@@ -629,4 +610,9 @@ a[tabindex] {
   color: white;
 }
 
+.load-more-strip {
+  text-align: center;
+  color: #045FB4;
+  font-size: 18px;
+}
 //endregion
