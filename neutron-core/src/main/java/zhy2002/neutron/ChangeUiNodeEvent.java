@@ -44,7 +44,7 @@ public abstract class ChangeUiNodeEvent extends UiNodeEvent {
         addBindingActivations(result, anchor, this.getEventKey());
     }
 
-    protected final void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor, UiNodeEventKey<?> key) {
+    void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor, UiNodeEventKey<?> key) {
         //at the moment rules have to declare the concrete event class they want to listen to.
         for (EventBinding binding : anchor.getAttachedEventBindings(key)) {
             if (binding.canFire(this)) {

@@ -149,7 +149,6 @@ public class PersonNodeTest {
         assertThat(firstNameNode.isDirty(), equalTo(false));
         assertThat(personGeneralNode.isDirty(), equalTo(false));
         assertThat(personNode.isDirty(), equalTo(false));
-
     }
 
     @Test
@@ -164,5 +163,16 @@ public class PersonNodeTest {
 
         addressNode.getAddressLineNode().setValue("");
         assertThat(addressNode.isDirty(), equalTo(false));
+    }
+
+    @Test
+    public void canDisableAWholePanel() {
+        PersonAddressNode addressNode = this.personContactNode.getCurrentAddressNode();
+        assertThat(addressNode.isEffectivelyDisabled(), equalTo(false));
+        assertThat(addressNode.getAddressLineNode().isEffectivelyDisabled(), equalTo(false));
+
+        addressNode.setDisabled(true);
+        assertThat(addressNode.isEffectivelyDisabled(), equalTo(true));
+        assertThat(addressNode.getAddressLineNode().isEffectivelyDisabled(), equalTo(true));
     }
 }

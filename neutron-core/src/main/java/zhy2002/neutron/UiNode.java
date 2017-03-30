@@ -92,6 +92,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         setChangeTrackingMode(NeutronEventSubjects.HAS_VALUE, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.REQUIRED, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.DISABLED, ChangeTrackingModeEnum.Value);
+        setChangeTrackingMode(NeutronEventSubjects.SELF_DIRTY, ChangeTrackingModeEnum.Value);
+        setChangeTrackingMode(NeutronEventSubjects.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
     }
 
     /**
@@ -625,6 +627,23 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     @Override
     public void setDisabled(boolean value) {
         setStateValue(NeutronEventSubjects.DISABLED, Boolean.class, value);
+    }
+
+    @JsMethod
+    public final boolean isEffectivelyDisabled() {
+        return isDisabled() || getDisabledAncestorCount() > 0;
+    }
+
+    public final int getDisabledAncestorCount() {
+        return getStateValue(NeutronEventSubjects.DISABLED_ANCESTOR_COUNT, 0);
+    }
+
+    public final void setDisabledAncestorCount(int count) {
+        setStateValue(NeutronEventSubjects.DISABLED_ANCESTOR_COUNT, Integer.class, count);
+    }
+
+    void forceUpdate() {
+        setStateValue(NeutronEventSubjects.FORCE_UPDATE, Boolean.class, Boolean.TRUE);
     }
 
     @JsMethod

@@ -9,7 +9,8 @@ import java.util.List;
 public class UiNodeRuleProvider implements RuleProvider<UiNode<?>> {
 
     @Inject
-    public UiNodeRuleProvider() {}
+    public UiNodeRuleProvider() {
+    }
 
     @Override
     public void initializeState(UiNode<?> node) {

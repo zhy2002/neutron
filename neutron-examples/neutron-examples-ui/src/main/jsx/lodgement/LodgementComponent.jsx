@@ -24,10 +24,10 @@ export default class LodgementComponent extends React.PureComponent {
         };
 
         this.closeTab = (tabIndex) => {
-            if (window.confirm('Are you sure you want to close the application?')) {
-                const openApps = this.state.openApps;
+            const openApps = this.state.openApps;
+            const appIndex = tabIndex - 1;
+            if (!openApps[appIndex].isDirty() || window.confirm('Are you sure you want to close the application?')) {
                 const newApps = [];
-                const appIndex = tabIndex - 1;
                 openApps.forEach((item, i) => {
                     if (i === appIndex)
                         return;
