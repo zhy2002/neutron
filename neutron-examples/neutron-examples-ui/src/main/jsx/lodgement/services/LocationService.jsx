@@ -7,36 +7,13 @@ class LocationService {
 }
 
 //service states
-const hashChangeHandlers = [];
+
 let lodgementNode = null;
 let openApps = [];
 let selectedIndex = 0;
 let currentHash = '';
-let restored = false;
-
-/**
- * Update the hash when the model being displayed is changed.
- * @param model the model being displayed.
- */
-function updateHash(model) {
-    if (!restored)
-        return false;
-
-    let hash;
-    if (model.getConcreteClassName() === 'ApplicationListNode') {
-        hash = '/apps';
-    } else {
-        const root = model.getContext().getRootNode();
-        hash = `/app/${root.getIdNode().getValue()}${model.getPath()}`;
-    }
-
-    if (window.location.hash !== `#${hash}`) {
-        console.warn(`Updating hash from ${window.location.hash} to #${hash}`);
-        currentHash = hash;
-        window.location.hash = hash;
-    }
-    return true;
-}
+let restored = false; //if the view specified in hash is opened
+const hashChangeHandlers = []; //notify state is changed
 
 function addHashChangeHandler(func) {
     hashChangeHandlers.push(func);
@@ -55,6 +32,32 @@ function notifyHashChange() {
         console.log(`notifying hash change ${i}`);
         hashChangeHandlers[i]();
     }
+}
+
+/**
+ * Update the hash when the model being displayed is changed.
+ * @param model the model being displayed.
+ */
+function updateHash(model) {
+    if (!restored) {
+        console.info('Skip updateHash util location is restored.');
+        return false;
+    }
+
+    let hash;
+    if (model.getConcreteClassName() === 'ApplicationListNode') {
+        hash = '/apps';
+    } else {
+        const root = model.getContext().getRootNode();
+        hash = `/app/${root.getIdNode().getValue()}${model.getPath()}`;
+    }
+
+    if (window.location.hash !== `#${hash}`) {
+        console.info(`Updating hash from ${window.location.hash} to #${hash}`);
+        currentHash = hash;
+        window.location.hash = hash;
+    }
+    return true;
 }
 
 function closeTab(tabIndex) {
@@ -76,6 +79,11 @@ function closeTab(tabIndex) {
     }
 }
 
+function selectTab(index) {
+    selectedIndex = index;
+    notifyHashChange();
+}
+
 function createNewApp(newApp) {
     const newApps = [...openApps, newApp];
     openApps = newApps;
@@ -95,49 +103,39 @@ function onNewApp() {
     return newApp;
 }
 
-function loadApp(id, path, failedCallback) {
+function loadApp(id) {
     if (openApps) {
         for (let i = 0; i < openApps.length; i++) {
             const app = openApps[i];
             if (app.getIdNode().getValue() === id) {
                 selectedIndex = i + 1;
-                if (path) {
-                    app.getContext().beginSession();
-                    app.selectDescendant(path);
-                    app.getContext().commitSession();
-                }
-                notifyHashChange();
-                return;
+                return CommonUtil.defer(app);
             }
         }
     }
     CommonUtil.setIsLoading(true);
-    StorageService.getApplication(id).then(
+    return StorageService.getApplication(id).then(
         (node) => {
             const model = UiService.createApplicationNode();
             const context = model.getContext();
             context.beginSession();
-            CommonUtil.setValue(model, node);
-            context.commitSession();
-            return model;
-        }
-    ).then(
-        model => CommonUtil.delay().then(() => {
-            if (path) {
-                model.getContext().beginSession();
-                model.selectDescendant(path);
-                model.getContext().commitSession();
+            const mode = context.getCycleMode();
+            context.setCycleMode(GWT.CycleModeEnum.Batched);
+            try {
+                CommonUtil.setValue(model, node);
+                context.commitSession();
+            } finally {
+                context.setCycleMode(mode);
             }
-            createNewApp(model);
-            CommonUtil.setIsLoading(false);
-        })
-    ).catch(
-        () => {
-            if (failedCallback) {
-                failedCallback();
-            }
+            return CommonUtil.defer(model);
         }
-    );
+    ).then((model) => {
+        createNewApp(model);
+        return CommonUtil.defer(model);
+    }).then((model) => {
+        CommonUtil.setIsLoading(false);
+        return CommonUtil.defer(model);
+    });
 }
 
 /**
@@ -158,27 +156,30 @@ function restoreLocation() {
         const index = newHash.indexOf('/');
         const appId = newHash.substr(0, index >= 0 ? index : newHash.length);
         const path = index >= 0 ? newHash.substr(index + 1) : '';
-        for (let i = 0; i < openApps.length; i++) {
-            if (openApps[i].getUniqueId() === appId) {
-                selectedIndex = i + 1;
-                openApps[i].getContext().beginSession();
-                openApps[i].selectDescendant(path);
-                openApps[i].getContext().commitSession();
-                notifyHashChange();
-                restored = true;
-                return;
-            }
-        }
         //open a new app
-        loadApp(appId, path, () => {
-            selectedIndex = 0;
-            notifyHashChange();
-        });
+        CommonUtil.setIsLoading(true);
+        CommonUtil
+            .delay(10)
+            .then(() => loadApp(appId))
+            .then((model) => {
+                if (path) {
+                    model.getContext().beginSession();
+                    model.selectDescendant(path);
+                    model.getContext().commitSession();
+                }
+            })
+            .catch(() => {
+                selectedIndex = 0;
+            })
+            .then(() => {
+                restored = true;
+                notifyHashChange();
+            });
     } else {
         selectedIndex = 0;
+        restored = true;
         notifyHashChange();
     }
-    restored = true;
 }
 
 function getState() {
@@ -192,10 +193,6 @@ function getState() {
     };
 }
 
-function selectTab(index) {
-    selectedIndex = index;
-    notifyHashChange();
-}
 
 LocationService.addHashChangeHandler = addHashChangeHandler;
 LocationService.removeHashChangeHandler = removeHashChangeHandler;
