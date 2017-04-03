@@ -119,14 +119,8 @@ function loadApp(id) {
             const model = UiService.createApplicationNode();
             const context = model.getContext();
             context.beginSession();
-            const mode = context.getCycleMode();
-            context.setCycleMode(GWT.CycleModeEnum.Batched);
-            try {
-                CommonUtil.setValue(model, node);
-                context.commitSession();
-            } finally {
-                context.setCycleMode(mode);
-            }
+            CommonUtil.setValue(model, node);
+            context.commitSession();
             return CommonUtil.defer(model);
         }
     ).then((model) => {

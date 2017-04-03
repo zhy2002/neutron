@@ -116,12 +116,13 @@ function setList(node, data) {
     if (data) {
         for (const key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
+                //todo sort key first
                 const item = data[key];
-                let child = node.getItemByName(key);
-                if (!child) {
-                    child = node.createItemWithName(key);
-                }
                 if (item) {
+                    let child = node.getItemByName(key);
+                    if (!child) {
+                        child = node.createItemWithName(key);
+                    }
                     setValue(child, item);
                 }
             }
