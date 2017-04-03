@@ -9,12 +9,15 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * A UiNode that can have child UiNodes.
  * The two known subclasses are ObjectUiNode and ListUiNode.
  */
 public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> {
+
+    private static final Logger logger = Logger.getLogger("ParentUiNode");
 
     /**
      * Support finding children by index.
@@ -188,4 +191,36 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         }
     }
 
+    @JsMethod
+    public void selectDescendant(String path) {
+        if (path == null) {
+            return;
+        }
+
+        logger.info("selecting path: " + path);
+
+        UiNode<?> parent = this;
+        String[] names = path.split("/");
+        for (String name : names) {
+            if (parent instanceof ListUiNode<?, ?>) {
+                ListUiNode<?, ?> list = (ListUiNode<?, ?>) parent;
+                UiNode<?> child = list.getChild(name);
+                if (child != null) {
+                    list.setSelectedIndex(child.getIndex());
+                    parent = child;
+                }
+            } else if (parent instanceof ObjectUiNode<?>) {
+                ObjectUiNode<?> obj = (ObjectUiNode<?>) parent;
+                UiNode<?> child = obj.getChild(name);
+                if (child != null) {
+                    obj.setSelectedName(child.getName());
+                    parent = child;
+                }
+            } else {
+                break;
+            }
+        }
+
+        getContext().setContentLevel(names.length);
+    }
 }

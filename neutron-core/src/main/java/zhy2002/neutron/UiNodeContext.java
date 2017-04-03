@@ -38,6 +38,7 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
 
     void flush();
 
+    @JsMethod
     NodeFinder getNodeFinder();
 
     NodeReferenceRegistry getNodeReferenceRegistry();
@@ -51,4 +52,5 @@ public interface UiNodeContext<R extends UiNode<VoidUiNode>> extends CycleStatus
     @JsMethod
     void resetDirty();
 
+    void setContentLevel(int level);
 }

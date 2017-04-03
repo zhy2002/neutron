@@ -6,13 +6,12 @@ add a root node type
 1. context menu
 2. load initial values (as a part of node load) 
   - load value only or the full state?
-3. integrate with font awesome
+3. 
 4. Per-lender config override
   - each profile (desc.yml) generate a separate profile (profile module and dependencies)
   - add an option to combine the node structure of multiple desc.yml files
   - support a tree of profiles
   - Use 'profile' dagger component/module to provide root node configured for a lender
-5. implement router - navigate to view via url
 7. simplify event binding api 
 8. node query and injection in rules 
   - context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
@@ -183,7 +182,10 @@ Problems
 13. children level init and rules collection
   * Implemented using instance rule provider
   
-  
+14. integrate with font awesome
+
+15. implement router - navigate to view via url
+
 # Node Roles
 In the node hierarchy a node can have one of three roles:
 

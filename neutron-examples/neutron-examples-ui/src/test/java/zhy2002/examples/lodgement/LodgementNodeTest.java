@@ -446,4 +446,12 @@ public class LodgementNodeTest {
         assertThat(personNode.getPersonGeneralNode().isDirty(), equalTo(false));
 
     }
+
+    @Test
+    public void canSelectDescendant() {
+        applicationNode.selectDescendant("productsNode/productFeeListNode");
+        assertThat(applicationNode.getSelectedName(), equalTo("productsNode"));
+        assertThat(applicationNode.getProductsNode().getSelectedName(), equalTo("productFeeListNode"));
+        assertThat(applicationNode.getContentLevel(), equalTo(2));
+    }
 }

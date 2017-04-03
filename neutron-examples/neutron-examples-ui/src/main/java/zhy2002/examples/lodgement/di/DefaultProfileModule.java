@@ -3,9 +3,11 @@ package zhy2002.examples.lodgement.di;
 import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.di.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.node.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
 import zhy2002.neutron.UiNodeRule;
@@ -18,6 +20,10 @@ import java.util.List;
 
 @Module(includes = {ManifestModule.class, CustomModule.class})
 public abstract class DefaultProfileModule {
+
+    @Binds
+    @Singleton
+    abstract ApplicationNodeContext provideApplicationNodeContext(ApplicationNodeContextImpl impl);
 
     @Binds
     @Singleton

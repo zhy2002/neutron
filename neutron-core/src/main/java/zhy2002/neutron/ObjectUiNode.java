@@ -14,10 +14,18 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     protected ObjectUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
+
+        init();
     }
 
     protected ObjectUiNode(@NotNull UiNodeContext<?> context) {
         super(context);
+
+        init();
+    }
+
+    private void init() {
+        setChangeTrackingMode(NeutronEventSubjects.SELECTED_NAME, ChangeTrackingModeEnum.Value);
     }
 
     @JsMethod

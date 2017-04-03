@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsMethod;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.validation.constraints.NotNull;
@@ -18,6 +20,7 @@ public class NodeFinder {
     public NodeFinder() {
     }
 
+    @JsMethod
     @SuppressWarnings("unchecked")
     public <N extends UiNode<?>> N findNodeByPath(@NotNull String path) {
         return (N) nodeMap.get(path);

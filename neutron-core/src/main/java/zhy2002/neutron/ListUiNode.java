@@ -34,6 +34,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
      */
     protected ListUiNode(@NotNull P parent, @NotNull String name) {
         super(parent, name);
+
+        setChangeTrackingMode(NeutronEventSubjects.SELECTED_INDEX, ChangeTrackingModeEnum.Value);
     }
 
     /**

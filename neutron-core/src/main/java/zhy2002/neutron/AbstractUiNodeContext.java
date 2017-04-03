@@ -251,4 +251,7 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     public final void resetDirty() {
         getRootNode().refreshWithReason(NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON);
     }
+
+    @Override
+    public void setContentLevel(int level) {}
 }

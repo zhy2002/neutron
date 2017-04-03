@@ -14,9 +14,18 @@ import ProductsComponent from './product_data/ProductsComponent';
 import ProductFeeListComponent from './product_data/ProductFeeListComponent';
 import ProductCustomerContributionListComponent from './product_data/ProductCustomerContributionListComponent';
 import SubmissionComponent from './submission_data/SubmissionComponent';
+import LocationService from '../services/LocationService';
 
 
 export default class ApplicationContentComponent extends React.PureComponent {
+
+    componentDidMount() {
+        LocationService.updateHash(this.props.model);
+    }
+
+    componentDidUpdate() {
+        LocationService.updateHash(this.props.model);
+    }
 
     renderContent() {
         const model = this.props.model;
