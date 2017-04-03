@@ -18,8 +18,9 @@ function renderNames(array) {
 export default class ApplicationListComponent extends NeutronComponent {
 
     componentDidMount() {
-        LocationService.updateHash(this.model);
-        UiService.refreshApplicationList();
+        if (LocationService.updateHash(this.model)) {
+            UiService.refreshApplicationList();
+        }
     }
 
     componentDidUpdate() {

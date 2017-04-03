@@ -12,12 +12,16 @@ let lodgementNode = null;
 let openApps = [];
 let selectedIndex = 0;
 let currentHash = '';
+let restored = false;
 
 /**
  * Update the hash when the model being displayed is changed.
  * @param model the model being displayed.
  */
 function updateHash(model) {
+    if (!restored)
+        return false;
+
     let hash;
     if (model.getConcreteClassName() === 'ApplicationListNode') {
         hash = '/apps';
@@ -31,6 +35,7 @@ function updateHash(model) {
         currentHash = hash;
         window.location.hash = hash;
     }
+    return true;
 }
 
 function addHashChangeHandler(func) {
@@ -138,13 +143,15 @@ function loadApp(id, path, failedCallback) {
 /**
  * When hash changes, change application state.
  */
-function loadHash() {
+function restoreLocation() {
     let newHash = window.location.hash;
     if (newHash.startsWith('#')) {
         newHash = newHash.substr(1);
     }
-    if (currentHash === newHash)
+    if (currentHash === newHash) {
+        restored = true;
         return;
+    }
 
     if (newHash.startsWith('/app/') && newHash.length > 5) {
         newHash = newHash.substr(5);
@@ -158,6 +165,7 @@ function loadHash() {
                 openApps[i].selectDescendant(path);
                 openApps[i].getContext().commitSession();
                 notifyHashChange();
+                restored = true;
                 return;
             }
         }
@@ -170,16 +178,10 @@ function loadHash() {
         selectedIndex = 0;
         notifyHashChange();
     }
+    restored = true;
 }
 
-LocationService.updateHash = updateHash;
-LocationService.addHashChangeHandler = addHashChangeHandler;
-LocationService.removeHashChangeHandler = removeHashChangeHandler;
-LocationService.closeTab = closeTab;
-LocationService.newApp = onNewApp;
-LocationService.loadApp = loadApp;
-LocationService.loadHash = loadHash;
-LocationService.getState = function getState() {
+function getState() {
     if (lodgementNode === null) {
         lodgementNode = UiService.getLodgementNode();
     }
@@ -188,6 +190,22 @@ LocationService.getState = function getState() {
         openApps,
         selectedIndex
     };
-};
+}
+
+function selectTab(index) {
+    selectedIndex = index;
+    notifyHashChange();
+}
+
+LocationService.addHashChangeHandler = addHashChangeHandler;
+LocationService.removeHashChangeHandler = removeHashChangeHandler;
+LocationService.updateHash = updateHash;
+LocationService.restoreLocation = restoreLocation;
+LocationService.closeTab = closeTab;
+LocationService.selectTab = selectTab;
+LocationService.newApp = onNewApp;
+LocationService.loadApp = loadApp;
+
+LocationService.getState = getState;
 
 export default LocationService;

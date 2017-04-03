@@ -13,17 +13,12 @@ export default class LodgementComponent extends React.PureComponent {
 
         this.state = LocationService.getState();
 
-        this.selectTab = (selectedIndex) => {
-            this.setState({selectedIndex});
-        };
-
         this.onHashChanged = () => {
             this.setState(LocationService.getState());
         };
-
         LocationService.addHashChangeHandler(this.onHashChanged);
 
-        LocationService.loadHash();
+        LocationService.restoreLocation();
     }
 
     componentWillUnmount() {
@@ -39,7 +34,7 @@ export default class LodgementComponent extends React.PureComponent {
                 <LodgementTabsComponent
                     tabItems={tabItems}
                     selectedIndex={this.state.selectedIndex}
-                    selectTab={this.selectTab}
+                    selectTab={LocationService.selectTab}
                     closeTab={LocationService.closeTab}
                 />
                 <LodgementToolbarComponent model={selectedModel} onNewApp={LocationService.newApp}/>

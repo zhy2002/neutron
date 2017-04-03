@@ -12,7 +12,7 @@ public class LodgementEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        logger.log(Level.INFO, "Loading test GWT module...");
+        logger.log(Level.INFO, "GWT module will call Window.startLodgement.");
         Window.startLodgement();
     }
 }
