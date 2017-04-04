@@ -615,4 +615,16 @@ a[tabindex] {
   color: #045FB4;
   font-size: 18px;
 }
+
+.add-list-component {
+ .btn-sm {
+    min-width: 95px;
+ }
+}
+
+.modal-dialog-component {
+  .btn-sm {
+    min-width: 95px;
+  }
+}
 //endregion

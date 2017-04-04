@@ -106,11 +106,11 @@ export default class ProductFeeListComponent extends ListNeutronComponent {
                         <ProductFeeEditorComponent model={this.state.editModel}/>
                     }
                     <div className="row">
-                        <div className="col-sm-offset-4 col-sm-4">
-                            <button className="btn btn-primary" onClick={this.saveEditModel}>Ok</button>
+                        <div className="text-center col-sm-offset-2 col-sm-8">
+                            <button className="btn btn-sm btn-primary" onClick={this.saveEditModel}>Ok</button>
                             &nbsp;
                             <button
-                                className="btn btn-warning"
+                                className="btn btn-sm btn-warning"
                                 onClick={this.deleteEditModel}
                             >
                                 Delete
