@@ -36,10 +36,10 @@ public class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<Moved
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            ToCurrentNoEarlierThanToPreviousRule toCurrentNoEarlierThanToPreviousRule = toCurrentNoEarlierThanToPreviousRuleProvider.get();
-            createdRules.add(toCurrentNoEarlierThanToPreviousRule);
-            ToCurrentNoEarlierThanFromPreviousRule toCurrentNoEarlierThanFromPreviousRule = toCurrentNoEarlierThanFromPreviousRuleProvider.get();
-            createdRules.add(toCurrentNoEarlierThanFromPreviousRule);
+        ToCurrentNoEarlierThanToPreviousRule toCurrentNoEarlierThanToPreviousRule = toCurrentNoEarlierThanToPreviousRuleProvider.get();
+        createdRules.add(toCurrentNoEarlierThanToPreviousRule);
+        ToCurrentNoEarlierThanFromPreviousRule toCurrentNoEarlierThanFromPreviousRule = toCurrentNoEarlierThanFromPreviousRuleProvider.get();
+        createdRules.add(toCurrentNoEarlierThanFromPreviousRule);
     }
 
 }

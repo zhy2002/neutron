@@ -31,8 +31,8 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            UpdateAddressRefListRule updateAddressRefListRule = updateAddressRefListRuleProvider.get();
-            createdRules.add(updateAddressRefListRule);
+        UpdateAddressRefListRule updateAddressRefListRule = updateAddressRefListRuleProvider.get();
+        createdRules.add(updateAddressRefListRule);
     }
 
 }

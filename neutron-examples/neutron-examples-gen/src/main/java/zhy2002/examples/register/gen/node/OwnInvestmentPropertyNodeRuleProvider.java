@@ -31,8 +31,8 @@ public class OwnInvestmentPropertyNodeRuleProvider implements RuleProvider<OwnIn
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            LoadInvestmentPropertyRule loadInvestmentPropertyRule = loadInvestmentPropertyRuleProvider.get();
-            createdRules.add(loadInvestmentPropertyRule);
+        LoadInvestmentPropertyRule loadInvestmentPropertyRule = loadInvestmentPropertyRuleProvider.get();
+        createdRules.add(loadInvestmentPropertyRule);
     }
 
 }

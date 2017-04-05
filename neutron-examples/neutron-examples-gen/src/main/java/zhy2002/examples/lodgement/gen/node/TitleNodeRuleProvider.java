@@ -35,8 +35,8 @@ public class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            TitleGenderMatchRule titleGenderMatchRule = titleGenderMatchRuleProvider.get();
-            createdRules.add(titleGenderMatchRule);
+        TitleGenderMatchRule titleGenderMatchRule = titleGenderMatchRuleProvider.get();
+        createdRules.add(titleGenderMatchRule);
     }
 
 }

@@ -31,8 +31,8 @@ public class RelatedPartyNodeRuleProvider implements RuleProvider<RelatedPartyNo
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            UpdateRelatedPartyNodeLabelRule updateRelatedPartyNodeLabelRule = updateRelatedPartyNodeLabelRuleProvider.get();
-            createdRules.add(updateRelatedPartyNodeLabelRule);
+        UpdateRelatedPartyNodeLabelRule updateRelatedPartyNodeLabelRule = updateRelatedPartyNodeLabelRuleProvider.get();
+        createdRules.add(updateRelatedPartyNodeLabelRule);
     }
 
 }

@@ -34,8 +34,8 @@ public class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            ChangeFocusErrorRule changeFocusErrorRule = changeFocusErrorRuleProvider.get();
-            createdRules.add(changeFocusErrorRule);
+        ChangeFocusErrorRule changeFocusErrorRule = changeFocusErrorRuleProvider.get();
+        createdRules.add(changeFocusErrorRule);
     }
 
 }

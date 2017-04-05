@@ -27,11 +27,15 @@ public class ProductGroupNodeRuleProvider implements RuleProvider<ProductGroupNo
         node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_GROUP.toArray());
     }
 
+    @Inject
+    Provider<ProductGroupChangedRule> productGroupChangedRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        ProductGroupChangedRule productGroupChangedRule = productGroupChangedRuleProvider.get();
+        createdRules.add(productGroupChangedRule);
     }
 
 }

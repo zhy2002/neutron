@@ -63,6 +63,9 @@ public abstract class DefaultProfileModule {
     abstract AddNewCompanyApplicantRule provideAddNewCompanyApplicantRule(AddNewCompanyApplicantRuleImpl impl);
 
     @Binds
+    abstract ProductGroupChangedRule provideProductGroupChangedRule(ProductGroupChangedRuleImpl impl);
+
+    @Binds
     abstract AddNewPersonApplicantRule provideAddNewPersonApplicantRule(AddNewPersonApplicantRuleImpl impl);
 
     @Binds

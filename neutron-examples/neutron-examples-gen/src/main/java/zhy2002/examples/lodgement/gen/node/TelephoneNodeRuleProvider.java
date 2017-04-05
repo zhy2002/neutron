@@ -33,10 +33,10 @@ public class TelephoneNodeRuleProvider implements RuleProvider<TelephoneNode<?>>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            TelephoneCompleteRule telephoneCompleteRule = telephoneCompleteRuleProvider.get();
-            createdRules.add(telephoneCompleteRule);
-            AustralianTelephoneRule australianTelephoneRule = australianTelephoneRuleProvider.get();
-            createdRules.add(australianTelephoneRule);
+        TelephoneCompleteRule telephoneCompleteRule = telephoneCompleteRuleProvider.get();
+        createdRules.add(telephoneCompleteRule);
+        AustralianTelephoneRule australianTelephoneRule = australianTelephoneRuleProvider.get();
+        createdRules.add(australianTelephoneRule);
     }
 
 }

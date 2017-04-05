@@ -31,8 +31,8 @@ public class PhoneInfoNodeRuleProvider implements RuleProvider<PhoneInfoNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            PhoneInfoAllOrNothingRule phoneInfoAllOrNothingRule = phoneInfoAllOrNothingRuleProvider.get();
-            createdRules.add(phoneInfoAllOrNothingRule);
+        PhoneInfoAllOrNothingRule phoneInfoAllOrNothingRule = phoneInfoAllOrNothingRuleProvider.get();
+        createdRules.add(phoneInfoAllOrNothingRule);
     }
 
 }

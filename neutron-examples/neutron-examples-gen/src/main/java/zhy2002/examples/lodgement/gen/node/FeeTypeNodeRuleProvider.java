@@ -35,10 +35,10 @@ public class FeeTypeNodeRuleProvider implements RuleProvider<FeeTypeNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-            stringEnableSiblingRule.setSiblingName("feeDescriptionNode");
-            stringEnableSiblingRule.setEnablingValue("Other");
-            createdRules.add(stringEnableSiblingRule);
+        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+        stringEnableSiblingRule.setSiblingName("feeDescriptionNode");
+        stringEnableSiblingRule.setEnablingValue("Other");
+        createdRules.add(stringEnableSiblingRule);
     }
 
 }

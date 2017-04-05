@@ -35,10 +35,10 @@ public class ContributionTypeNodeRuleProvider implements RuleProvider<Contributi
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-            stringEnableSiblingRule.setSiblingName("contributionDescriptionNode");
-            stringEnableSiblingRule.setEnablingValue("Other");
-            createdRules.add(stringEnableSiblingRule);
+        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+        stringEnableSiblingRule.setSiblingName("contributionDescriptionNode");
+        stringEnableSiblingRule.setEnablingValue("Other");
+        createdRules.add(stringEnableSiblingRule);
     }
 
 }

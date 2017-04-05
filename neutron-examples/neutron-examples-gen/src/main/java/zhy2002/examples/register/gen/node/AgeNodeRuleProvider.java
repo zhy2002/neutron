@@ -36,8 +36,8 @@ public class AgeNodeRuleProvider implements RuleProvider<AgeNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            UpdatePlanRule updatePlanRule = updatePlanRuleProvider.get();
-            createdRules.add(updatePlanRule);
+        UpdatePlanRule updatePlanRule = updatePlanRuleProvider.get();
+        createdRules.add(updatePlanRule);
     }
 
 }

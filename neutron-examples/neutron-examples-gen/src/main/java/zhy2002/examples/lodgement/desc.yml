@@ -1050,6 +1050,8 @@ rootType:
             - {name: options, typeName: Object}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP.toArray()'}
+            rules:
+            - {typeName: ProductGroupChangedRule}
 
           - typeName: ProductNameNode
             baseTypeName: StringUiNode

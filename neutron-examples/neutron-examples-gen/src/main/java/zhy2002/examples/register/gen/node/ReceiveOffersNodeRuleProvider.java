@@ -31,8 +31,8 @@ public class ReceiveOffersNodeRuleProvider implements RuleProvider<ReceiveOffers
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            EmailIsRequiredWhenReceiveOffersRule emailIsRequiredWhenReceiveOffersRule = emailIsRequiredWhenReceiveOffersRuleProvider.get();
-            createdRules.add(emailIsRequiredWhenReceiveOffersRule);
+        EmailIsRequiredWhenReceiveOffersRule emailIsRequiredWhenReceiveOffersRule = emailIsRequiredWhenReceiveOffersRuleProvider.get();
+        createdRules.add(emailIsRequiredWhenReceiveOffersRule);
     }
 
 }

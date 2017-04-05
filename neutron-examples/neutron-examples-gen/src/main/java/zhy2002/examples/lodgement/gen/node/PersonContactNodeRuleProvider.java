@@ -31,8 +31,8 @@ public class PersonContactNodeRuleProvider implements RuleProvider<PersonContact
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            HomeOrWorkPhoneRequiredRule homeOrWorkPhoneRequiredRule = homeOrWorkPhoneRequiredRuleProvider.get();
-            createdRules.add(homeOrWorkPhoneRequiredRule);
+        HomeOrWorkPhoneRequiredRule homeOrWorkPhoneRequiredRule = homeOrWorkPhoneRequiredRuleProvider.get();
+        createdRules.add(homeOrWorkPhoneRequiredRule);
     }
 
 }

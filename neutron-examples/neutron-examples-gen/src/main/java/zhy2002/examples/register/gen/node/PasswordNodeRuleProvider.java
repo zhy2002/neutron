@@ -31,8 +31,8 @@ public class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            PasswordIsStrongRule passwordIsStrongRule = passwordIsStrongRuleProvider.get();
-            createdRules.add(passwordIsStrongRule);
+        PasswordIsStrongRule passwordIsStrongRule = passwordIsStrongRuleProvider.get();
+        createdRules.add(passwordIsStrongRule);
     }
 
 }

@@ -49,17 +49,17 @@ public class ${typeName}RuleProvider implements RuleProvider<${genericTypeName}>
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        <#if rules??>
-            <#list rules as rule>
-            ${rule.typeName} ${rule.typeName?uncap_first} = ${rule.typeName?uncap_first}Provider.get();
-            <#if rule.init??>
-                <#list rule.init as prop>
-            ${rule.typeName?uncap_first}.set${prop.propertyName?cap_first}(${prop.value});
-                </#list>
-            </#if>
-            createdRules.add(${rule.typeName?uncap_first});
+    <#if rules??>
+        <#list rules as rule>
+        ${rule.typeName} ${rule.typeName?uncap_first} = ${rule.typeName?uncap_first}Provider.get();
+        <#if rule.init??>
+            <#list rule.init as prop>
+        ${rule.typeName?uncap_first}.set${prop.propertyName?cap_first}(${prop.value});
             </#list>
         </#if>
+        createdRules.add(${rule.typeName?uncap_first});
+        </#list>
+    </#if>
     }
 
 }

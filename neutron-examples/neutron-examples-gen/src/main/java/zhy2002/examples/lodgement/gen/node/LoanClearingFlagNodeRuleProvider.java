@@ -31,9 +31,9 @@ public class LoanClearingFlagNodeRuleProvider implements RuleProvider<LoanCleari
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-            booleanEnableSiblingRule.setSiblingName("loanBreakCostNode");
-            createdRules.add(booleanEnableSiblingRule);
+        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+        booleanEnableSiblingRule.setSiblingName("loanBreakCostNode");
+        createdRules.add(booleanEnableSiblingRule);
     }
 
 }

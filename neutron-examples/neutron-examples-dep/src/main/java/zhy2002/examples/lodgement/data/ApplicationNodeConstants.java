@@ -6,9 +6,7 @@ import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
@@ -75,13 +73,18 @@ public class ApplicationNodeConstants {
 
     public static final List<StringOption> NAB_PRODUCT_GROUP = Arrays.asList(
             new StringOption(""),
-            new StringOption("GROUP")
+            new StringOption("PeakPerformance", "Peak Performance Equity Mortgage"),
+            new StringOption("Homeplus", "Homeplus Home Loan"),
+            new StringOption("BaseVariable", "NAB Base Variable Home Loan"),
+            new StringOption("Tailored", "NAB Tailored Home Loan"),
+            new StringOption("FlexiPlus", "NAB FlexiPlus Mortgage")
     );
 
     public static final List<StringOption> NAB_PRODUCT_NAME = Arrays.asList(
-            new StringOption(""),
-            new StringOption("NAME")
+            new StringOption("")
     );
+
+    public static final Map<String, List<StringOption>> NAB_PRODUCT_NAME_MAP = new HashMap<>();
 
     public static final List<StringOption> NAB_PRIMARY_PURPOSE = Arrays.asList(
             new StringOption(""),
@@ -327,7 +330,7 @@ public class ApplicationNodeConstants {
             new StringOption("Other Income")
     );
 
-    public static final List<StringOption> COMPANY_OTHER_INCOME_TYPE =  Arrays.asList(
+    public static final List<StringOption> COMPANY_OTHER_INCOME_TYPE = Arrays.asList(
             new StringOption(""),
             new StringOption("Add Back"),
             new StringOption("Company Profit Before Tax")
@@ -372,6 +375,35 @@ public class ApplicationNodeConstants {
             result.add(new BigDecimalOption(new BigDecimal(yearValue), yearValue));
         }
         return result;
+    }
+
+    static {
+        NAB_PRODUCT_NAME_MAP.put("PeakPerformance", Arrays.asList(
+                new StringOption(""),
+                new StringOption("PeakPerformance", "Peak Performance Equity Mortgage")
+        ));
+
+        NAB_PRODUCT_NAME_MAP.put("Homeplus", Arrays.asList(
+                new StringOption(""),
+                new StringOption("HomeplusVariable", "Homeplus, Variable Rate"),
+                new StringOption("HomeplusFixed", "Homeplus, Fixed Term")
+
+        ));
+        NAB_PRODUCT_NAME_MAP.put("BaseVariable", Arrays.asList(
+                new StringOption(""),
+                new StringOption("NAB Base Variable Home Loan")
+        ));
+
+        NAB_PRODUCT_NAME_MAP.put("Tailored", Arrays.asList(
+                new StringOption(""),
+                new StringOption("TailoredVariable", "NAB Tailored Variable Home Loan"),
+                new StringOption("TailoredFixed", "NAB Tailored Fixed Home Loan")
+        ));
+
+        NAB_PRODUCT_NAME_MAP.put("FlexiPlus", Arrays.asList(
+                new StringOption(""),
+                new StringOption("FlexiPlus", "NAB FlexiPlus Mortgage")
+        ));
     }
 
 }

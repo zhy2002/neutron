@@ -34,10 +34,10 @@ public class AccessContactTypeNodeRuleProvider implements RuleProvider<AccessCon
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-            stringEnableSiblingRule.setSiblingName("accessCompanyNameNode");
-            stringEnableSiblingRule.setEnablingValue("Selling Agent");
-            createdRules.add(stringEnableSiblingRule);
+        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+        stringEnableSiblingRule.setSiblingName("accessCompanyNameNode");
+        stringEnableSiblingRule.setEnablingValue("Selling Agent");
+        createdRules.add(stringEnableSiblingRule);
     }
 
 }

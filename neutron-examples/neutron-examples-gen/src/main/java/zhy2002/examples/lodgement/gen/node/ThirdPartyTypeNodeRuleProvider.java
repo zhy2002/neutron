@@ -35,10 +35,10 @@ public class ThirdPartyTypeNodeRuleProvider implements RuleProvider<ThirdPartyTy
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-            stringEnableSiblingRule.setSiblingName("thirdPartyDescriptionNode");
-            stringEnableSiblingRule.setEnablingValue("Next of Kin");
-            createdRules.add(stringEnableSiblingRule);
+        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+        stringEnableSiblingRule.setSiblingName("thirdPartyDescriptionNode");
+        stringEnableSiblingRule.setEnablingValue("Next of Kin");
+        createdRules.add(stringEnableSiblingRule);
     }
 
 }

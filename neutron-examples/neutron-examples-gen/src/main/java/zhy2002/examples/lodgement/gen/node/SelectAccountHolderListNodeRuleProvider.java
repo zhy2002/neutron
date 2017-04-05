@@ -35,12 +35,12 @@ public class SelectAccountHolderListNodeRuleProvider implements RuleProvider<Sel
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            AddExistingHoldersRule addExistingHoldersRule = addExistingHoldersRuleProvider.get();
-            createdRules.add(addExistingHoldersRule);
-            AddNewPersonHolderRule addNewPersonHolderRule = addNewPersonHolderRuleProvider.get();
-            createdRules.add(addNewPersonHolderRule);
-            AddNewCompanyHolderRule addNewCompanyHolderRule = addNewCompanyHolderRuleProvider.get();
-            createdRules.add(addNewCompanyHolderRule);
+        AddExistingHoldersRule addExistingHoldersRule = addExistingHoldersRuleProvider.get();
+        createdRules.add(addExistingHoldersRule);
+        AddNewPersonHolderRule addNewPersonHolderRule = addNewPersonHolderRuleProvider.get();
+        createdRules.add(addNewPersonHolderRule);
+        AddNewCompanyHolderRule addNewCompanyHolderRule = addNewCompanyHolderRuleProvider.get();
+        createdRules.add(addNewCompanyHolderRule);
     }
 
 }

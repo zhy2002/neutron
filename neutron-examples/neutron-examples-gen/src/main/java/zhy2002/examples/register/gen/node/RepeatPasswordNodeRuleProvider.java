@@ -31,8 +31,8 @@ public class RepeatPasswordNodeRuleProvider implements RuleProvider<RepeatPasswo
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            RepeatPasswordRule repeatPasswordRule = repeatPasswordRuleProvider.get();
-            createdRules.add(repeatPasswordRule);
+        RepeatPasswordRule repeatPasswordRule = repeatPasswordRuleProvider.get();
+        createdRules.add(repeatPasswordRule);
     }
 
 }

@@ -35,8 +35,8 @@ public class CurrentEmploymentListNodeRuleProvider implements RuleProvider<Curre
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            MinItemCountValidationRule minItemCountValidationRule = minItemCountValidationRuleProvider.get();
-            createdRules.add(minItemCountValidationRule);
+        MinItemCountValidationRule minItemCountValidationRule = minItemCountValidationRuleProvider.get();
+        createdRules.add(minItemCountValidationRule);
     }
 
 }

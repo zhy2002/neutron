@@ -35,8 +35,8 @@ public class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTy
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            EmploymentTypeChangedRule employmentTypeChangedRule = employmentTypeChangedRuleProvider.get();
-            createdRules.add(employmentTypeChangedRule);
+        EmploymentTypeChangedRule employmentTypeChangedRule = employmentTypeChangedRuleProvider.get();
+        createdRules.add(employmentTypeChangedRule);
     }
 
 }

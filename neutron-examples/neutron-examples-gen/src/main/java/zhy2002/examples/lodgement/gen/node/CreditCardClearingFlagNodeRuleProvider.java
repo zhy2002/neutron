@@ -31,9 +31,9 @@ public class CreditCardClearingFlagNodeRuleProvider implements RuleProvider<Cred
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-            booleanEnableSiblingRule.setSiblingName("creditCardBreakCostNode");
-            createdRules.add(booleanEnableSiblingRule);
+        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+        booleanEnableSiblingRule.setSiblingName("creditCardBreakCostNode");
+        createdRules.add(booleanEnableSiblingRule);
     }
 
 }

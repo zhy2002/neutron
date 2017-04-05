@@ -35,8 +35,8 @@ public class DobNodeRuleProvider implements RuleProvider<DobNode<?>> {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-            DobRangeValidationRule dobRangeValidationRule = dobRangeValidationRuleProvider.get();
-            createdRules.add(dobRangeValidationRule);
+        DobRangeValidationRule dobRangeValidationRule = dobRangeValidationRuleProvider.get();
+        createdRules.add(dobRangeValidationRule);
     }
 
 }
