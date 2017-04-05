@@ -23,7 +23,7 @@ public class CompanyEmailNode extends EmailNode<CompanyContactNode> {
         this.component = builder.setCompanyEmailNodeModule(new CompanyEmailNodeModule(this)).build();
     }
 
-    private CompanyEmailNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyEmailNode> getRuleProvider() {
         return component.getCompanyEmailNodeRuleProvider();
     }
 

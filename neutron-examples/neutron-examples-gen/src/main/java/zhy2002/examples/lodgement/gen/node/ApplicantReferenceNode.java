@@ -24,7 +24,7 @@ public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
         this.component = builder.setApplicantReferenceNodeModule(new ApplicantReferenceNodeModule(this)).build();
     }
 
-    private ApplicantReferenceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ApplicantReferenceNode> getRuleProvider() {
         return component.getApplicantReferenceNodeRuleProvider();
     }
 

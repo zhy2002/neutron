@@ -24,7 +24,7 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<
         this.component = builder.setThirdPartyDisclosureFlagNodeModule(new ThirdPartyDisclosureFlagNodeModule(this)).build();
     }
 
-    private ThirdPartyDisclosureFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyDisclosureFlagNode> getRuleProvider() {
         return component.getThirdPartyDisclosureFlagNodeRuleProvider();
     }
 

@@ -30,7 +30,7 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         this.component = builder.setCreditHistoryListNodeModule(new CreditHistoryListNodeModule(this)).build();
     }
 
-    private CreditHistoryListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditHistoryListNode> getRuleProvider() {
         return component.getCreditHistoryListNodeRuleProvider();
     }
 

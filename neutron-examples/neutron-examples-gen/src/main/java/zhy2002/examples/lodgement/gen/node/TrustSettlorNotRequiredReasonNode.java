@@ -23,7 +23,7 @@ public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNod
         this.component = builder.setTrustSettlorNotRequiredReasonNodeModule(new TrustSettlorNotRequiredReasonNodeModule(this)).build();
     }
 
-    private TrustSettlorNotRequiredReasonNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustSettlorNotRequiredReasonNode> getRuleProvider() {
         return component.getTrustSettlorNotRequiredReasonNodeRuleProvider();
     }
 

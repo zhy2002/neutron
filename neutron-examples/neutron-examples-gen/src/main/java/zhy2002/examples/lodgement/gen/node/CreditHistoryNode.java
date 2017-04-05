@@ -23,7 +23,7 @@ public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
         this.component = builder.setCreditHistoryNodeModule(new CreditHistoryNodeModule(this)).build();
     }
 
-    private CreditHistoryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditHistoryNode> getRuleProvider() {
         return component.getCreditHistoryNodeRuleProvider();
     }
 

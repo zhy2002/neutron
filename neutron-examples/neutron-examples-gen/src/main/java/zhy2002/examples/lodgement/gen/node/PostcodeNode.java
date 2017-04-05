@@ -24,7 +24,7 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setPostcodeNodeModule(new PostcodeNodeModule(this)).build();
     }
 
-    private PostcodeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PostcodeNode> getRuleProvider() {
         return component.getPostcodeNodeRuleProvider();
     }
 

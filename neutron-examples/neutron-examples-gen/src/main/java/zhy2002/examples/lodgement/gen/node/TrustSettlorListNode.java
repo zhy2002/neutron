@@ -23,7 +23,7 @@ public class TrustSettlorListNode extends SelectAccountHolderListNode<BaseTrustN
         this.component = builder.setTrustSettlorListNodeModule(new TrustSettlorListNodeModule(this)).build();
     }
 
-    private TrustSettlorListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustSettlorListNode> getRuleProvider() {
         return component.getTrustSettlorListNodeRuleProvider();
     }
 

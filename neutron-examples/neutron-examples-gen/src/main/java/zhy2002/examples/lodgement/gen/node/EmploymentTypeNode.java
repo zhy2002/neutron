@@ -26,7 +26,7 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
         this.component = builder.setEmploymentTypeNodeModule(new EmploymentTypeNodeModule(this)).build();
     }
 
-    private EmploymentTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmploymentTypeNode> getRuleProvider() {
         return component.getEmploymentTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

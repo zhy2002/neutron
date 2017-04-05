@@ -23,7 +23,7 @@ public class CreditCardLenderNameNode extends StringUiNode<CreditCardNode> {
         this.component = builder.setCreditCardLenderNameNodeModule(new CreditCardLenderNameNodeModule(this)).build();
     }
 
-    private CreditCardLenderNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardLenderNameNode> getRuleProvider() {
         return component.getCreditCardLenderNameNodeRuleProvider();
     }
 

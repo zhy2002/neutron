@@ -53,7 +53,7 @@ public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setApplicationNodeModule(new ApplicationNodeModule(this)).build();
     }
 
-    private ApplicationNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ApplicationNode> getRuleProvider() {
         return component.getApplicationNodeRuleProvider();
     }
 

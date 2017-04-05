@@ -45,7 +45,7 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
         this.component = builder.setPersonContactNodeModule(new PersonContactNodeModule(this)).build();
     }
 
-    private PersonContactNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonContactNode> getRuleProvider() {
         return component.getPersonContactNodeRuleProvider();
     }
 

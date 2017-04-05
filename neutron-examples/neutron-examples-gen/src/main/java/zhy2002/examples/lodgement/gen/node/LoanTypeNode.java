@@ -26,7 +26,7 @@ public class LoanTypeNode extends StringUiNode<LoanNode> {
         this.component = builder.setLoanTypeNodeModule(new LoanTypeNodeModule(this)).build();
     }
 
-    private LoanTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanTypeNode> getRuleProvider() {
         return component.getLoanTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class LoanTypeNode extends StringUiNode<LoanNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

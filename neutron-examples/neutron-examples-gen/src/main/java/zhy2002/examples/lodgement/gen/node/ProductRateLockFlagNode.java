@@ -23,7 +23,7 @@ public class ProductRateLockFlagNode extends BooleanUiNode<ProductFeaturesNode> 
         this.component = builder.setProductRateLockFlagNodeModule(new ProductRateLockFlagNodeModule(this)).build();
     }
 
-    private ProductRateLockFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductRateLockFlagNode> getRuleProvider() {
         return component.getProductRateLockFlagNodeRuleProvider();
     }
 

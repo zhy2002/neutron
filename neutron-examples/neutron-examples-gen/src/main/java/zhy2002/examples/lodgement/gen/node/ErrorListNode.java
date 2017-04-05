@@ -33,7 +33,7 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         this.component = builder.setErrorListNodeModule(new ErrorListNodeModule(this)).build();
     }
 
-    private ErrorListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ErrorListNode> getRuleProvider() {
         return component.getErrorListNodeRuleProvider();
     }
 

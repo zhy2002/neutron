@@ -24,7 +24,7 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setSuburbNodeModule(new SuburbNodeModule(this)).build();
     }
 
-    private SuburbNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SuburbNode> getRuleProvider() {
         return component.getSuburbNodeRuleProvider();
     }
 

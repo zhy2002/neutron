@@ -23,7 +23,7 @@ public class ProductConstructionApplicationFlagNode extends BooleanUiNode<Produc
         this.component = builder.setProductConstructionApplicationFlagNodeModule(new ProductConstructionApplicationFlagNodeModule(this)).build();
     }
 
-    private ProductConstructionApplicationFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductConstructionApplicationFlagNode> getRuleProvider() {
         return component.getProductConstructionApplicationFlagNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> 
         this.component = builder.setOtherAssetMarketValueNodeModule(new OtherAssetMarketValueNodeModule(this)).build();
     }
 
-    private OtherAssetMarketValueNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherAssetMarketValueNode> getRuleProvider() {
         return component.getOtherAssetMarketValueNodeRuleProvider();
     }
 

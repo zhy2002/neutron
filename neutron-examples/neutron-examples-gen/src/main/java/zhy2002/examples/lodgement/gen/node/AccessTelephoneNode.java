@@ -24,7 +24,7 @@ public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
         this.component = builder.setAccessTelephoneNodeModule(new AccessTelephoneNodeModule(this)).build();
     }
 
-    private AccessTelephoneNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessTelephoneNode> getRuleProvider() {
         return component.getAccessTelephoneNodeRuleProvider();
     }
 

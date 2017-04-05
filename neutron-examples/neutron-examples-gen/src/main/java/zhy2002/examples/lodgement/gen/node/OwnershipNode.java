@@ -37,7 +37,7 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         this.component = builder.setOwnershipNodeModule(new OwnershipNodeModule(this)).build();
     }
 
-    private OwnershipNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OwnershipNode> getRuleProvider() {
         return component.getOwnershipNodeRuleProvider();
     }
 

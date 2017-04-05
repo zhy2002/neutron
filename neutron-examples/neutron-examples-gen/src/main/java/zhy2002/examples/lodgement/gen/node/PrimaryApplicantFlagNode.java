@@ -23,7 +23,7 @@ public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode> {
         this.component = builder.setPrimaryApplicantFlagNodeModule(new PrimaryApplicantFlagNodeModule(this)).build();
     }
 
-    private PrimaryApplicantFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PrimaryApplicantFlagNode> getRuleProvider() {
         return component.getPrimaryApplicantFlagNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
         this.component = builder.setHouseDutiesFlagNodeModule(new HouseDutiesFlagNodeModule(this)).build();
     }
 
-    private HouseDutiesFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<HouseDutiesFlagNode> getRuleProvider() {
         return component.getHouseDutiesFlagNodeRuleProvider();
     }
 

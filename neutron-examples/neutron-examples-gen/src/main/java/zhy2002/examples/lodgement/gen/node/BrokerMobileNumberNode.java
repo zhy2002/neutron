@@ -23,7 +23,7 @@ public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode>
         this.component = builder.setBrokerMobileNumberNodeModule(new BrokerMobileNumberNodeModule(this)).build();
     }
 
-    private BrokerMobileNumberNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BrokerMobileNumberNode> getRuleProvider() {
         return component.getBrokerMobileNumberNodeRuleProvider();
     }
 

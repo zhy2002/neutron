@@ -24,7 +24,7 @@ public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode> {
         this.component = builder.setRetiredSinceNodeModule(new RetiredSinceNodeModule(this)).build();
     }
 
-    private RetiredSinceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RetiredSinceNode> getRuleProvider() {
         return component.getRetiredSinceNodeRuleProvider();
     }
 

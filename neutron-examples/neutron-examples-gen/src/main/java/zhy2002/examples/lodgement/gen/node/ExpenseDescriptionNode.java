@@ -23,7 +23,7 @@ public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode> {
         this.component = builder.setExpenseDescriptionNodeModule(new ExpenseDescriptionNodeModule(this)).build();
     }
 
-    private ExpenseDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExpenseDescriptionNode> getRuleProvider() {
         return component.getExpenseDescriptionNodeRuleProvider();
     }
 

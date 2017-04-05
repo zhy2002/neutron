@@ -35,7 +35,7 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
         this.component = builder.setAppManagerNodeModule(new AppManagerNodeModule(this)).build();
     }
 
-    private AppManagerNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AppManagerNode> getRuleProvider() {
         return component.getAppManagerNodeRuleProvider();
     }
 

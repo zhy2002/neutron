@@ -23,7 +23,7 @@ public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeat
         this.component = builder.setProductTransactionAccountFlagNodeModule(new ProductTransactionAccountFlagNodeModule(this)).build();
     }
 
-    private ProductTransactionAccountFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductTransactionAccountFlagNode> getRuleProvider() {
         return component.getProductTransactionAccountFlagNodeRuleProvider();
     }
 

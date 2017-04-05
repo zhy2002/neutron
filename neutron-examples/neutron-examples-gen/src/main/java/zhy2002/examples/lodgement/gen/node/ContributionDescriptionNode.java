@@ -24,7 +24,7 @@ public class ContributionDescriptionNode extends StringUiNode<ProductCustomerCon
         this.component = builder.setContributionDescriptionNodeModule(new ContributionDescriptionNodeModule(this)).build();
     }
 
-    private ContributionDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ContributionDescriptionNode> getRuleProvider() {
         return component.getContributionDescriptionNodeRuleProvider();
     }
 

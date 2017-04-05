@@ -23,7 +23,7 @@ public class ProductTotalSecurityAmountNode extends BaseCurrencyNode<ProductsNod
         this.component = builder.setProductTotalSecurityAmountNodeModule(new ProductTotalSecurityAmountNodeModule(this)).build();
     }
 
-    private ProductTotalSecurityAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductTotalSecurityAmountNode> getRuleProvider() {
         return component.getProductTotalSecurityAmountNodeRuleProvider();
     }
 

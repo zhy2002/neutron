@@ -24,7 +24,7 @@ public class EmploymentEndedNode extends MonthYearNode<EmployedNode> {
         this.component = builder.setEmploymentEndedNodeModule(new EmploymentEndedNodeModule(this)).build();
     }
 
-    private EmploymentEndedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmploymentEndedNode> getRuleProvider() {
         return component.getEmploymentEndedNodeRuleProvider();
     }
 

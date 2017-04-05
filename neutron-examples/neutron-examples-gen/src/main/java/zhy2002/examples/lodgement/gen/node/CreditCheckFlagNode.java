@@ -24,7 +24,7 @@ public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
         this.component = builder.setCreditCheckFlagNodeModule(new CreditCheckFlagNodeModule(this)).build();
     }
 
-    private CreditCheckFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCheckFlagNode> getRuleProvider() {
         return component.getCreditCheckFlagNodeRuleProvider();
     }
 

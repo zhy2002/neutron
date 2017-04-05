@@ -23,7 +23,7 @@ public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
         this.component = builder.setMovedToPreviousAddressNodeModule(new MovedToPreviousAddressNodeModule(this)).build();
     }
 
-    private MovedToPreviousAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MovedToPreviousAddressNode> getRuleProvider() {
         return component.getMovedToPreviousAddressNodeRuleProvider();
     }
 

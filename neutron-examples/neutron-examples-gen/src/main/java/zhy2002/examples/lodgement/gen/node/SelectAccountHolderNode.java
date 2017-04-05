@@ -36,7 +36,7 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         this.component = builder.setSelectAccountHolderNodeModule(new SelectAccountHolderNodeModule(this)).build();
     }
 
-    private SelectAccountHolderNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SelectAccountHolderNode> getRuleProvider() {
         return component.getSelectAccountHolderNodeRuleProvider();
     }
 

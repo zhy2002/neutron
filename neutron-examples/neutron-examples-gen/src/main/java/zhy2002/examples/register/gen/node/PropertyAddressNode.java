@@ -23,7 +23,7 @@ public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
         this.component = builder.setPropertyAddressNodeModule(new PropertyAddressNodeModule(this)).build();
     }
 
-    private PropertyAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyAddressNode> getRuleProvider() {
         return component.getPropertyAddressNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class CreditCardBreakCostNode extends BaseCurrencyNode<CreditCardNode> {
         this.component = builder.setCreditCardBreakCostNodeModule(new CreditCardBreakCostNodeModule(this)).build();
     }
 
-    private CreditCardBreakCostNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardBreakCostNode> getRuleProvider() {
         return component.getCreditCardBreakCostNodeRuleProvider();
     }
 

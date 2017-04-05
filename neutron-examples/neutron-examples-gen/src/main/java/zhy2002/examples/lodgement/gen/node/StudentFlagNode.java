@@ -24,7 +24,7 @@ public class StudentFlagNode extends YesNoOptionNode<UnemployedNode> {
         this.component = builder.setStudentFlagNodeModule(new StudentFlagNodeModule(this)).build();
     }
 
-    private StudentFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<StudentFlagNode> getRuleProvider() {
         return component.getStudentFlagNodeRuleProvider();
     }
 

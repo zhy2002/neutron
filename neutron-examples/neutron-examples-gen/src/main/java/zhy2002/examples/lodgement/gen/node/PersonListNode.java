@@ -31,7 +31,7 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
         this.component = builder.setPersonListNodeModule(new PersonListNodeModule(this)).build();
     }
 
-    private PersonListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonListNode> getRuleProvider() {
         return component.getPersonListNodeRuleProvider();
     }
 

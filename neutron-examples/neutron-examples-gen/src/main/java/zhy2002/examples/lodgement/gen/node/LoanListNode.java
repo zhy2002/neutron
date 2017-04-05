@@ -30,7 +30,7 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
         this.component = builder.setLoanListNodeModule(new LoanListNodeModule(this)).build();
     }
 
-    private LoanListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanListNode> getRuleProvider() {
         return component.getLoanListNodeRuleProvider();
     }
 

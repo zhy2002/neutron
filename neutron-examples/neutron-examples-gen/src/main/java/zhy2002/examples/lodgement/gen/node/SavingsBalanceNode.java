@@ -24,7 +24,7 @@ public class SavingsBalanceNode extends BaseCurrencyNode<SavingsAccountNode> {
         this.component = builder.setSavingsBalanceNodeModule(new SavingsBalanceNodeModule(this)).build();
     }
 
-    private SavingsBalanceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsBalanceNode> getRuleProvider() {
         return component.getSavingsBalanceNodeRuleProvider();
     }
 

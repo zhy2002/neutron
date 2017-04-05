@@ -24,7 +24,7 @@ public class PhoneNumberNode extends PhoneInfoFieldNode {
         this.component = builder.setPhoneNumberNodeModule(new PhoneNumberNodeModule(this)).build();
     }
 
-    private PhoneNumberNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PhoneNumberNode> getRuleProvider() {
         return component.getPhoneNumberNodeRuleProvider();
     }
 

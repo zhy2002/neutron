@@ -26,7 +26,7 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
         this.component = builder.setPropertyStateNodeModule(new PropertyStateNodeModule(this)).build();
     }
 
-    private PropertyStateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyStateNode> getRuleProvider() {
         return component.getPropertyStateNodeRuleProvider();
     }
 

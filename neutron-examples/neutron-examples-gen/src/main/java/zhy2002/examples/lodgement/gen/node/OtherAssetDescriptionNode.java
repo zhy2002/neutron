@@ -23,7 +23,7 @@ public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
         this.component = builder.setOtherAssetDescriptionNodeModule(new OtherAssetDescriptionNodeModule(this)).build();
     }
 
-    private OtherAssetDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherAssetDescriptionNode> getRuleProvider() {
         return component.getOtherAssetDescriptionNodeRuleProvider();
     }
 

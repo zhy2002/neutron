@@ -23,7 +23,7 @@ public class RentedFlagNode extends BooleanUiNode<PropertyNode> {
         this.component = builder.setRentedFlagNodeModule(new RentedFlagNodeModule(this)).build();
     }
 
-    private RentedFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RentedFlagNode> getRuleProvider() {
         return component.getRentedFlagNodeRuleProvider();
     }
 

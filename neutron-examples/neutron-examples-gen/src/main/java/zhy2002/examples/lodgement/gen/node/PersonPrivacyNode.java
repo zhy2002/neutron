@@ -23,7 +23,7 @@ public class PersonPrivacyNode extends BasePrivacyNode<PersonNode> {
         this.component = builder.setPersonPrivacyNodeModule(new PersonPrivacyNodeModule(this)).build();
     }
 
-    private PersonPrivacyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonPrivacyNode> getRuleProvider() {
         return component.getPersonPrivacyNodeRuleProvider();
     }
 

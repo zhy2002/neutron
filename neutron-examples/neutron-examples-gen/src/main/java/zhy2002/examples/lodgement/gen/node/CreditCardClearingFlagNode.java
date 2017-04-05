@@ -23,7 +23,7 @@ public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode> {
         this.component = builder.setCreditCardClearingFlagNodeModule(new CreditCardClearingFlagNodeModule(this)).build();
     }
 
-    private CreditCardClearingFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardClearingFlagNode> getRuleProvider() {
         return component.getCreditCardClearingFlagNodeRuleProvider();
     }
 

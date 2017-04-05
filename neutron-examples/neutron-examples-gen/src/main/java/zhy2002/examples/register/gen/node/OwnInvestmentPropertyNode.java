@@ -23,7 +23,7 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
         this.component = builder.setOwnInvestmentPropertyNodeModule(new OwnInvestmentPropertyNodeModule(this)).build();
     }
 
-    private OwnInvestmentPropertyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OwnInvestmentPropertyNode> getRuleProvider() {
         return component.getOwnInvestmentPropertyNodeRuleProvider();
     }
 

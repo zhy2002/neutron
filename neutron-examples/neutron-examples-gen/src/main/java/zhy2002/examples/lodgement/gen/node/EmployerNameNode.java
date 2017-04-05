@@ -24,7 +24,7 @@ public class EmployerNameNode extends StringUiNode<EmployedNode> {
         this.component = builder.setEmployerNameNodeModule(new EmployerNameNodeModule(this)).build();
     }
 
-    private EmployerNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmployerNameNode> getRuleProvider() {
         return component.getEmployerNameNodeRuleProvider();
     }
 

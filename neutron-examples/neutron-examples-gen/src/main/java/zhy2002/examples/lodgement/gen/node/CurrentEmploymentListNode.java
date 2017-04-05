@@ -31,7 +31,7 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         this.component = builder.setCurrentEmploymentListNodeModule(new CurrentEmploymentListNodeModule(this)).build();
     }
 
-    private CurrentEmploymentListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CurrentEmploymentListNode> getRuleProvider() {
         return component.getCurrentEmploymentListNodeRuleProvider();
     }
 

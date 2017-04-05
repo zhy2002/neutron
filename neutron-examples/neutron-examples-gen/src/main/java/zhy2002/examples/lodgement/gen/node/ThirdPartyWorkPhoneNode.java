@@ -24,7 +24,7 @@ public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyWorkPhoneNodeModule(new ThirdPartyWorkPhoneNodeModule(this)).build();
     }
 
-    private ThirdPartyWorkPhoneNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyWorkPhoneNode> getRuleProvider() {
         return component.getThirdPartyWorkPhoneNodeRuleProvider();
     }
 

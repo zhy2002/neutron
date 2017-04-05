@@ -26,7 +26,7 @@ public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeTypeNodeModule(new OtherIncomeTypeNodeModule(this)).build();
     }
 
-    private OtherIncomeTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherIncomeTypeNode> getRuleProvider() {
         return component.getOtherIncomeTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class OtherIncomeTypeNode extends StringUiNode<OtherIncomeNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

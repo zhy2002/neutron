@@ -23,7 +23,7 @@ public class ProductPackageNameNode extends StringUiNode<ProductFeaturesNode> {
         this.component = builder.setProductPackageNameNodeModule(new ProductPackageNameNodeModule(this)).build();
     }
 
-    private ProductPackageNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductPackageNameNode> getRuleProvider() {
         return component.getProductPackageNameNodeRuleProvider();
     }
 

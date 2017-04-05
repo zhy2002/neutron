@@ -23,7 +23,7 @@ public class OwningUserNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setOwningUserNodeModule(new OwningUserNodeModule(this)).build();
     }
 
-    private OwningUserNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OwningUserNode> getRuleProvider() {
         return component.getOwningUserNodeRuleProvider();
     }
 

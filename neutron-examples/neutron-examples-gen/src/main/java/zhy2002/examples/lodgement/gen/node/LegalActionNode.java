@@ -24,7 +24,7 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
         this.component = builder.setLegalActionNodeModule(new LegalActionNodeModule(this)).build();
     }
 
-    private LegalActionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LegalActionNode> getRuleProvider() {
         return component.getLegalActionNodeRuleProvider();
     }
 

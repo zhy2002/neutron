@@ -23,7 +23,7 @@ public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
         this.component = builder.setContractPriceNodeModule(new ContractPriceNodeModule(this)).build();
     }
 
-    private ContractPriceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ContractPriceNode> getRuleProvider() {
         return component.getContractPriceNodeRuleProvider();
     }
 

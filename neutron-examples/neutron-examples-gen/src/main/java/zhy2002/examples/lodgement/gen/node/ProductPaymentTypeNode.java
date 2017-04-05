@@ -26,7 +26,7 @@ public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode>
         this.component = builder.setProductPaymentTypeNodeModule(new ProductPaymentTypeNodeModule(this)).build();
     }
 
-    private ProductPaymentTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductPaymentTypeNode> getRuleProvider() {
         return component.getProductPaymentTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode>
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

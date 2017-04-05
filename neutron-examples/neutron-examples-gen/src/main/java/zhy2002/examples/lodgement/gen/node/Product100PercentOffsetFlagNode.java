@@ -23,7 +23,7 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
         this.component = builder.setProduct100PercentOffsetFlagNodeModule(new Product100PercentOffsetFlagNodeModule(this)).build();
     }
 
-    private Product100PercentOffsetFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<Product100PercentOffsetFlagNode> getRuleProvider() {
         return component.getProduct100PercentOffsetFlagNodeRuleProvider();
     }
 

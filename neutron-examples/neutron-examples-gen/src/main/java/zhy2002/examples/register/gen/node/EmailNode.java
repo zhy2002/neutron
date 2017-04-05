@@ -26,7 +26,7 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         this.component = builder.setEmailNodeModule(new EmailNodeModule(this)).build();
     }
 
-    private EmailNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmailNode> getRuleProvider() {
         return component.getEmailNodeRuleProvider();
     }
 

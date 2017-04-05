@@ -23,7 +23,7 @@ public class TrustRegistrationDateNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustRegistrationDateNodeModule(new TrustRegistrationDateNodeModule(this)).build();
     }
 
-    private TrustRegistrationDateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustRegistrationDateNode> getRuleProvider() {
         return component.getTrustRegistrationDateNodeRuleProvider();
     }
 

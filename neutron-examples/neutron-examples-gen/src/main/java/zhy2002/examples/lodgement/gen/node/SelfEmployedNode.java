@@ -37,7 +37,7 @@ public class SelfEmployedNode extends EmployedNode {
         this.component = builder.setSelfEmployedNodeModule(new SelfEmployedNodeModule(this)).build();
     }
 
-    private SelfEmployedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SelfEmployedNode> getRuleProvider() {
         return component.getSelfEmployedNodeRuleProvider();
     }
 

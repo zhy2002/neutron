@@ -26,7 +26,7 @@ public class TitleNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setTitleNodeModule(new TitleNodeModule(this)).build();
     }
 
-    private TitleNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TitleNode> getRuleProvider() {
         return component.getTitleNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class TitleNode extends StringUiNode<PersonGeneralNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

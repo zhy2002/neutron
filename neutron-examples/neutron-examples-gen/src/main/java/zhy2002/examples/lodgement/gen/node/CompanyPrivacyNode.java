@@ -23,7 +23,7 @@ public class CompanyPrivacyNode extends BasePrivacyNode<CompanyNode> {
         this.component = builder.setCompanyPrivacyNodeModule(new CompanyPrivacyNodeModule(this)).build();
     }
 
-    private CompanyPrivacyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyPrivacyNode> getRuleProvider() {
         return component.getCompanyPrivacyNodeRuleProvider();
     }
 

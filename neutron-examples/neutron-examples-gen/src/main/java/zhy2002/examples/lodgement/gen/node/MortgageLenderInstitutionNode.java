@@ -23,7 +23,7 @@ public class MortgageLenderInstitutionNode extends StringUiNode<ExistingMortgage
         this.component = builder.setMortgageLenderInstitutionNodeModule(new MortgageLenderInstitutionNodeModule(this)).build();
     }
 
-    private MortgageLenderInstitutionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageLenderInstitutionNode> getRuleProvider() {
         return component.getMortgageLenderInstitutionNodeRuleProvider();
     }
 

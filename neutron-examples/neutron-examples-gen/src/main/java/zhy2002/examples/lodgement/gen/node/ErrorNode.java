@@ -23,7 +23,7 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
         this.component = builder.setErrorNodeModule(new ErrorNodeModule(this)).build();
     }
 
-    private ErrorNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ErrorNode> getRuleProvider() {
         return component.getErrorNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNod
         this.component = builder.setProductCardHodlerNameNodeModule(new ProductCardHodlerNameNodeModule(this)).build();
     }
 
-    private ProductCardHodlerNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCardHodlerNameNode> getRuleProvider() {
         return component.getProductCardHodlerNameNodeRuleProvider();
     }
 

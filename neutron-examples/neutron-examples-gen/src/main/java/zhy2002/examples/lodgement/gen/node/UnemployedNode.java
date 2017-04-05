@@ -39,7 +39,7 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
         this.component = builder.setUnemployedNodeModule(new UnemployedNodeModule(this)).build();
     }
 
-    private UnemployedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<UnemployedNode> getRuleProvider() {
         return component.getUnemployedNodeRuleProvider();
     }
 

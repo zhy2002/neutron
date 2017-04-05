@@ -49,7 +49,7 @@ public class RegisterNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setRegisterNodeModule(new RegisterNodeModule(this)).build();
     }
 
-    private RegisterNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RegisterNode> getRuleProvider() {
         return component.getRegisterNodeRuleProvider();
     }
 

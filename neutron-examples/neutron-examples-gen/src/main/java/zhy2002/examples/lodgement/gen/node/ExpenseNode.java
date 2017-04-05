@@ -38,7 +38,7 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         this.component = builder.setExpenseNodeModule(new ExpenseNodeModule(this)).build();
     }
 
-    private ExpenseNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExpenseNode> getRuleProvider() {
         return component.getExpenseNodeRuleProvider();
     }
 

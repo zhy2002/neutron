@@ -24,7 +24,7 @@ public class CreditCardLimitAmountNode extends BaseCurrencyNode<CreditCardNode> 
         this.component = builder.setCreditCardLimitAmountNodeModule(new CreditCardLimitAmountNodeModule(this)).build();
     }
 
-    private CreditCardLimitAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardLimitAmountNode> getRuleProvider() {
         return component.getCreditCardLimitAmountNodeRuleProvider();
     }
 

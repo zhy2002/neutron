@@ -23,7 +23,7 @@ public class CompanySelectDirectorNode extends SelectRelatedPersonListNode<Compa
         this.component = builder.setCompanySelectDirectorNodeModule(new CompanySelectDirectorNodeModule(this)).build();
     }
 
-    private CompanySelectDirectorNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanySelectDirectorNode> getRuleProvider() {
         return component.getCompanySelectDirectorNodeRuleProvider();
     }
 

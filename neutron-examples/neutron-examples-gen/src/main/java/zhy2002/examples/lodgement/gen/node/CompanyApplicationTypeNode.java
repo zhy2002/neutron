@@ -26,7 +26,7 @@ public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode>
         this.component = builder.setCompanyApplicationTypeNodeModule(new CompanyApplicationTypeNodeModule(this)).build();
     }
 
-    private CompanyApplicationTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyApplicationTypeNode> getRuleProvider() {
         return component.getCompanyApplicationTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode>
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

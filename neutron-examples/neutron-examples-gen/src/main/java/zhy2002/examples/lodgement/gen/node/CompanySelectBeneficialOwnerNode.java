@@ -23,7 +23,7 @@ public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNod
         this.component = builder.setCompanySelectBeneficialOwnerNodeModule(new CompanySelectBeneficialOwnerNodeModule(this)).build();
     }
 
-    private CompanySelectBeneficialOwnerNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanySelectBeneficialOwnerNode> getRuleProvider() {
         return component.getCompanySelectBeneficialOwnerNodeRuleProvider();
     }
 

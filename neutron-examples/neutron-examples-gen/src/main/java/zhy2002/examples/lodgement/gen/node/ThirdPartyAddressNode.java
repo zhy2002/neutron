@@ -23,7 +23,7 @@ public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyAddressNodeModule(new ThirdPartyAddressNodeModule(this)).build();
     }
 
-    private ThirdPartyAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyAddressNode> getRuleProvider() {
         return component.getThirdPartyAddressNodeRuleProvider();
     }
 

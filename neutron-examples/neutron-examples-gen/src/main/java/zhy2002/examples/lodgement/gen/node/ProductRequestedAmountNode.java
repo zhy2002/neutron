@@ -23,7 +23,7 @@ public class ProductRequestedAmountNode extends BaseCurrencyNode<ProductDescript
         this.component = builder.setProductRequestedAmountNodeModule(new ProductRequestedAmountNodeModule(this)).build();
     }
 
-    private ProductRequestedAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductRequestedAmountNode> getRuleProvider() {
         return component.getProductRequestedAmountNodeRuleProvider();
     }
 

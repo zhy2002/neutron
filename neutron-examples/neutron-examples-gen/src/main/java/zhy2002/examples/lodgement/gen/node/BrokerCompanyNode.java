@@ -24,7 +24,7 @@ public class BrokerCompanyNode extends StringUiNode<SubmissionNode> {
         this.component = builder.setBrokerCompanyNodeModule(new BrokerCompanyNodeModule(this)).build();
     }
 
-    private BrokerCompanyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BrokerCompanyNode> getRuleProvider() {
         return component.getBrokerCompanyNodeRuleProvider();
     }
 

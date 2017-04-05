@@ -23,7 +23,7 @@ public class ProductTotalLoanTermNode extends BigDecimalUiNode<ProductDescriptio
         this.component = builder.setProductTotalLoanTermNodeModule(new ProductTotalLoanTermNodeModule(this)).build();
     }
 
-    private ProductTotalLoanTermNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductTotalLoanTermNode> getRuleProvider() {
         return component.getProductTotalLoanTermNodeRuleProvider();
     }
 

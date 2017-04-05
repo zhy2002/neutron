@@ -26,7 +26,7 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         this.component = builder.setPasswordNodeModule(new PasswordNodeModule(this)).build();
     }
 
-    private PasswordNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PasswordNode> getRuleProvider() {
         return component.getPasswordNodeRuleProvider();
     }
 

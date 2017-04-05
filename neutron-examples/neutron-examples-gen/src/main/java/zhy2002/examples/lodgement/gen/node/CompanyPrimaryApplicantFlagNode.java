@@ -23,7 +23,7 @@ public class CompanyPrimaryApplicantFlagNode extends BooleanUiNode<CompanyGenera
         this.component = builder.setCompanyPrimaryApplicantFlagNodeModule(new CompanyPrimaryApplicantFlagNodeModule(this)).build();
     }
 
-    private CompanyPrimaryApplicantFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyPrimaryApplicantFlagNode> getRuleProvider() {
         return component.getCompanyPrimaryApplicantFlagNodeRuleProvider();
     }
 

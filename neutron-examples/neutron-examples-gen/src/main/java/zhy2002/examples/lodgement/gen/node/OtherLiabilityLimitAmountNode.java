@@ -24,7 +24,7 @@ public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabili
         this.component = builder.setOtherLiabilityLimitAmountNodeModule(new OtherLiabilityLimitAmountNodeModule(this)).build();
     }
 
-    private OtherLiabilityLimitAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityLimitAmountNode> getRuleProvider() {
         return component.getOtherLiabilityLimitAmountNodeRuleProvider();
     }
 

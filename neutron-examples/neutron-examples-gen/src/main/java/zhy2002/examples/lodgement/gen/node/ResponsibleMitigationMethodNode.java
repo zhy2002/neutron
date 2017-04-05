@@ -26,7 +26,7 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
         this.component = builder.setResponsibleMitigationMethodNodeModule(new ResponsibleMitigationMethodNodeModule(this)).build();
     }
 
-    private ResponsibleMitigationMethodNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ResponsibleMitigationMethodNode> getRuleProvider() {
         return component.getResponsibleMitigationMethodNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

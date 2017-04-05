@@ -23,7 +23,7 @@ public class PersonMobileNumberNode extends BaseMobileNumberNode<PersonContactNo
         this.component = builder.setPersonMobileNumberNodeModule(new PersonMobileNumberNodeModule(this)).build();
     }
 
-    private PersonMobileNumberNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonMobileNumberNode> getRuleProvider() {
         return component.getPersonMobileNumberNodeRuleProvider();
     }
 

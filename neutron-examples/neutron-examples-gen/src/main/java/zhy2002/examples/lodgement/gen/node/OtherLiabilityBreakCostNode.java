@@ -24,7 +24,7 @@ public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiability
         this.component = builder.setOtherLiabilityBreakCostNodeModule(new OtherLiabilityBreakCostNodeModule(this)).build();
     }
 
-    private OtherLiabilityBreakCostNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityBreakCostNode> getRuleProvider() {
         return component.getOtherLiabilityBreakCostNodeRuleProvider();
     }
 

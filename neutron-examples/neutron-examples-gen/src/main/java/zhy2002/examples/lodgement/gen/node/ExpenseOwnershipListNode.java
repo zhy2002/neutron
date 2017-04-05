@@ -23,7 +23,7 @@ public class ExpenseOwnershipListNode extends OwnershipListNode<ExpenseNode> {
         this.component = builder.setExpenseOwnershipListNodeModule(new ExpenseOwnershipListNodeModule(this)).build();
     }
 
-    private ExpenseOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExpenseOwnershipListNode> getRuleProvider() {
         return component.getExpenseOwnershipListNodeRuleProvider();
     }
 

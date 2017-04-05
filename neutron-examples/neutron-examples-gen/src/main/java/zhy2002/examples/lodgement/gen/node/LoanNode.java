@@ -42,7 +42,7 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         this.component = builder.setLoanNodeModule(new LoanNodeModule(this)).build();
     }
 
-    private LoanNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanNode> getRuleProvider() {
         return component.getLoanNodeRuleProvider();
     }
 

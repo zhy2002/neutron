@@ -23,7 +23,7 @@ public class CompanyContactLastNameNode extends StringUiNode<CompanyContactNode>
         this.component = builder.setCompanyContactLastNameNodeModule(new CompanyContactLastNameNodeModule(this)).build();
     }
 
-    private CompanyContactLastNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyContactLastNameNode> getRuleProvider() {
         return component.getCompanyContactLastNameNodeRuleProvider();
     }
 

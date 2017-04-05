@@ -23,7 +23,7 @@ public class IdNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setIdNodeModule(new IdNodeModule(this)).build();
     }
 
-    private IdNodeRuleProvider getRuleProvider() {
+    private RuleProvider<IdNode> getRuleProvider() {
         return component.getIdNodeRuleProvider();
     }
 

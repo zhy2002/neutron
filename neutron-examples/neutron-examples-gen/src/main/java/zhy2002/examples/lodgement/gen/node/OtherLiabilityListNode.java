@@ -30,7 +30,7 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         this.component = builder.setOtherLiabilityListNodeModule(new OtherLiabilityListNodeModule(this)).build();
     }
 
-    private OtherLiabilityListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityListNode> getRuleProvider() {
         return component.getOtherLiabilityListNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class FeeDescriptionNode extends StringUiNode<ProductFeeNode> {
         this.component = builder.setFeeDescriptionNodeModule(new FeeDescriptionNodeModule(this)).build();
     }
 
-    private FeeDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<FeeDescriptionNode> getRuleProvider() {
         return component.getFeeDescriptionNodeRuleProvider();
     }
 

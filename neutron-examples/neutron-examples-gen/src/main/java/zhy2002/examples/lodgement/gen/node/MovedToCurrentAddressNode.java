@@ -24,7 +24,7 @@ public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode> 
         this.component = builder.setMovedToCurrentAddressNodeModule(new MovedToCurrentAddressNodeModule(this)).build();
     }
 
-    private MovedToCurrentAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MovedToCurrentAddressNode> getRuleProvider() {
         return component.getMovedToCurrentAddressNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class ProductLendingPurposeNode extends StringUiNode<ProductDescriptionNo
         this.component = builder.setProductLendingPurposeNodeModule(new ProductLendingPurposeNodeModule(this)).build();
     }
 
-    private ProductLendingPurposeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductLendingPurposeNode> getRuleProvider() {
         return component.getProductLendingPurposeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ProductLendingPurposeNode extends StringUiNode<ProductDescriptionNo
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

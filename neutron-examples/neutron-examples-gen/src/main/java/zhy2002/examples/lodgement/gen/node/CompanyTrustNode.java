@@ -23,7 +23,7 @@ public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
         this.component = builder.setCompanyTrustNodeModule(new CompanyTrustNodeModule(this)).build();
     }
 
-    private CompanyTrustNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyTrustNode> getRuleProvider() {
         return component.getCompanyTrustNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class ExpenseTypeNode extends StringUiNode<ExpenseNode> {
         this.component = builder.setExpenseTypeNodeModule(new ExpenseTypeNodeModule(this)).build();
     }
 
-    private ExpenseTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExpenseTypeNode> getRuleProvider() {
         return component.getExpenseTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ExpenseTypeNode extends StringUiNode<ExpenseNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

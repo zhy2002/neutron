@@ -23,7 +23,7 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
         this.component = builder.setOtherLiabilityClearingFlagNodeModule(new OtherLiabilityClearingFlagNodeModule(this)).build();
     }
 
-    private OtherLiabilityClearingFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityClearingFlagNode> getRuleProvider() {
         return component.getOtherLiabilityClearingFlagNodeRuleProvider();
     }
 

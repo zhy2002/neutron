@@ -24,7 +24,7 @@ public class LoanMonthlyRepaymentNode extends BaseCurrencyNode<LoanNode> {
         this.component = builder.setLoanMonthlyRepaymentNodeModule(new LoanMonthlyRepaymentNodeModule(this)).build();
     }
 
-    private LoanMonthlyRepaymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanMonthlyRepaymentNode> getRuleProvider() {
         return component.getLoanMonthlyRepaymentNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class SavingsInstitutionNameNode extends StringUiNode<SavingsAccountNode>
         this.component = builder.setSavingsInstitutionNameNodeModule(new SavingsInstitutionNameNodeModule(this)).build();
     }
 
-    private SavingsInstitutionNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsInstitutionNameNode> getRuleProvider() {
         return component.getSavingsInstitutionNameNodeRuleProvider();
     }
 

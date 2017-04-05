@@ -23,7 +23,7 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
         this.component = builder.setPropertyWeeklyRentNodeModule(new PropertyWeeklyRentNodeModule(this)).build();
     }
 
-    private PropertyWeeklyRentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyWeeklyRentNode> getRuleProvider() {
         return component.getPropertyWeeklyRentNodeRuleProvider();
     }
 

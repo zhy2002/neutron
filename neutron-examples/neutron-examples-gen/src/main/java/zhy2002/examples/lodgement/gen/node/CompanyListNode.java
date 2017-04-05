@@ -30,7 +30,7 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
         this.component = builder.setCompanyListNodeModule(new CompanyListNodeModule(this)).build();
     }
 
-    private CompanyListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyListNode> getRuleProvider() {
         return component.getCompanyListNodeRuleProvider();
     }
 

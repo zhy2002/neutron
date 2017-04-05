@@ -24,7 +24,7 @@ public class ResponsibleSignificantChangeFlagNode extends YesNoOptionNode<BaseRe
         this.component = builder.setResponsibleSignificantChangeFlagNodeModule(new ResponsibleSignificantChangeFlagNodeModule(this)).build();
     }
 
-    private ResponsibleSignificantChangeFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ResponsibleSignificantChangeFlagNode> getRuleProvider() {
         return component.getResponsibleSignificantChangeFlagNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setAddressLineNodeModule(new AddressLineNodeModule(this)).build();
     }
 
-    private AddressLineNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AddressLineNode> getRuleProvider() {
         return component.getAddressLineNodeRuleProvider();
     }
 

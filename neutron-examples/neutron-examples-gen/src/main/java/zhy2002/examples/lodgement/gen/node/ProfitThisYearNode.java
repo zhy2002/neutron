@@ -24,7 +24,7 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
         this.component = builder.setProfitThisYearNodeModule(new ProfitThisYearNodeModule(this)).build();
     }
 
-    private ProfitThisYearNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProfitThisYearNode> getRuleProvider() {
         return component.getProfitThisYearNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class MortgageChargePositionNode extends StringUiNode<ExistingMortgageNod
         this.component = builder.setMortgageChargePositionNodeModule(new MortgageChargePositionNodeModule(this)).build();
     }
 
-    private MortgageChargePositionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageChargePositionNode> getRuleProvider() {
         return component.getMortgageChargePositionNodeRuleProvider();
     }
 

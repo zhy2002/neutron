@@ -23,7 +23,7 @@ public class PersonOtherIncomeListNode extends BaseOtherIncomeListNode<PersonNod
         this.component = builder.setPersonOtherIncomeListNodeModule(new PersonOtherIncomeListNodeModule(this)).build();
     }
 
-    private PersonOtherIncomeListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonOtherIncomeListNode> getRuleProvider() {
         return component.getPersonOtherIncomeListNodeRuleProvider();
     }
 

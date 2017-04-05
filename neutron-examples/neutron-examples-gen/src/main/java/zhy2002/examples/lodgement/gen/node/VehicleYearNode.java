@@ -26,7 +26,7 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
         this.component = builder.setVehicleYearNodeModule(new VehicleYearNodeModule(this)).build();
     }
 
-    private VehicleYearNodeRuleProvider getRuleProvider() {
+    private RuleProvider<VehicleYearNode> getRuleProvider() {
         return component.getVehicleYearNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

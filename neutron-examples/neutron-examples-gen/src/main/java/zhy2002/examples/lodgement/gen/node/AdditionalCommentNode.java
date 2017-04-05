@@ -23,7 +23,7 @@ public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
         this.component = builder.setAdditionalCommentNodeModule(new AdditionalCommentNodeModule(this)).build();
     }
 
-    private AdditionalCommentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AdditionalCommentNode> getRuleProvider() {
         return component.getAdditionalCommentNodeRuleProvider();
     }
 

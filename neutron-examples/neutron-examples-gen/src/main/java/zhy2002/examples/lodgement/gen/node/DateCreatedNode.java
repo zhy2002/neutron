@@ -23,7 +23,7 @@ public class DateCreatedNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setDateCreatedNodeModule(new DateCreatedNodeModule(this)).build();
     }
 
-    private DateCreatedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<DateCreatedNode> getRuleProvider() {
         return component.getDateCreatedNodeRuleProvider();
     }
 

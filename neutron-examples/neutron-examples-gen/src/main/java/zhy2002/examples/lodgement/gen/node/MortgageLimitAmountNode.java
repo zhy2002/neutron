@@ -23,7 +23,7 @@ public class MortgageLimitAmountNode extends BaseCurrencyNode<ExistingMortgageNo
         this.component = builder.setMortgageLimitAmountNodeModule(new MortgageLimitAmountNodeModule(this)).build();
     }
 
-    private MortgageLimitAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageLimitAmountNode> getRuleProvider() {
         return component.getMortgageLimitAmountNodeRuleProvider();
     }
 

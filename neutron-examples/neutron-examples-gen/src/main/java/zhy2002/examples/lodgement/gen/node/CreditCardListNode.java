@@ -30,7 +30,7 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
         this.component = builder.setCreditCardListNodeModule(new CreditCardListNodeModule(this)).build();
     }
 
-    private CreditCardListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardListNode> getRuleProvider() {
         return component.getCreditCardListNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode> {
         this.component = builder.setOccupationNodeModule(new OccupationNodeModule(this)).build();
     }
 
-    private OccupationNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OccupationNode> getRuleProvider() {
         return component.getOccupationNodeRuleProvider();
     }
 

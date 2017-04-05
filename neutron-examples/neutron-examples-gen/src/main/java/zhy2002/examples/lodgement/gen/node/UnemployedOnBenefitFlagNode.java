@@ -24,7 +24,7 @@ public class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
         this.component = builder.setUnemployedOnBenefitFlagNodeModule(new UnemployedOnBenefitFlagNodeModule(this)).build();
     }
 
-    private UnemployedOnBenefitFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<UnemployedOnBenefitFlagNode> getRuleProvider() {
         return component.getUnemployedOnBenefitFlagNodeRuleProvider();
     }
 

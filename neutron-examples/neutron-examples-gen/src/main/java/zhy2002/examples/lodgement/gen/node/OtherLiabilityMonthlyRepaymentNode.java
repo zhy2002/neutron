@@ -24,7 +24,7 @@ public class OtherLiabilityMonthlyRepaymentNode extends BaseCurrencyNode<OtherLi
         this.component = builder.setOtherLiabilityMonthlyRepaymentNodeModule(new OtherLiabilityMonthlyRepaymentNodeModule(this)).build();
     }
 
-    private OtherLiabilityMonthlyRepaymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityMonthlyRepaymentNode> getRuleProvider() {
         return component.getOtherLiabilityMonthlyRepaymentNodeRuleProvider();
     }
 

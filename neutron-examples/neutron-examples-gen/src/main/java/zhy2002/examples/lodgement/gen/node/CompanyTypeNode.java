@@ -23,7 +23,7 @@ public class CompanyTypeNode extends StringUiNode<CompanyGeneralNode> {
         this.component = builder.setCompanyTypeNodeModule(new CompanyTypeNodeModule(this)).build();
     }
 
-    private CompanyTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyTypeNode> getRuleProvider() {
         return component.getCompanyTypeNodeRuleProvider();
     }
 

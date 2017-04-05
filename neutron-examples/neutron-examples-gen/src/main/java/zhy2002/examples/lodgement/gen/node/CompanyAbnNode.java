@@ -23,7 +23,7 @@ public class CompanyAbnNode extends StringUiNode<CompanyGeneralNode> {
         this.component = builder.setCompanyAbnNodeModule(new CompanyAbnNodeModule(this)).build();
     }
 
-    private CompanyAbnNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyAbnNode> getRuleProvider() {
         return component.getCompanyAbnNodeRuleProvider();
     }
 

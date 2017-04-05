@@ -23,7 +23,7 @@ public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNod
         this.component = builder.setProductFixedTermNodeModule(new ProductFixedTermNodeModule(this)).build();
     }
 
-    private ProductFixedTermNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductFixedTermNode> getRuleProvider() {
         return component.getProductFixedTermNodeRuleProvider();
     }
 

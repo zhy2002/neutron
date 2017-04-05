@@ -23,7 +23,7 @@ public class PersonAddressNode extends AddressNode<PersonContactNode> {
         this.component = builder.setPersonAddressNodeModule(new PersonAddressNodeModule(this)).build();
     }
 
-    private PersonAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonAddressNode> getRuleProvider() {
         return component.getPersonAddressNodeRuleProvider();
     }
 

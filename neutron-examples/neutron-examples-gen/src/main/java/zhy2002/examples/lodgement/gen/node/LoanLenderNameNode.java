@@ -23,7 +23,7 @@ public class LoanLenderNameNode extends StringUiNode<LoanNode> {
         this.component = builder.setLoanLenderNameNodeModule(new LoanLenderNameNodeModule(this)).build();
     }
 
-    private LoanLenderNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanLenderNameNode> getRuleProvider() {
         return component.getLoanLenderNameNodeRuleProvider();
     }
 

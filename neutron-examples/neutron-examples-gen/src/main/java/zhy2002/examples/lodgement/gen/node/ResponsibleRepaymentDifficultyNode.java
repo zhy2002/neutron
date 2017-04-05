@@ -24,7 +24,7 @@ public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResp
         this.component = builder.setResponsibleRepaymentDifficultyNodeModule(new ResponsibleRepaymentDifficultyNodeModule(this)).build();
     }
 
-    private ResponsibleRepaymentDifficultyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ResponsibleRepaymentDifficultyNode> getRuleProvider() {
         return component.getResponsibleRepaymentDifficultyNodeRuleProvider();
     }
 

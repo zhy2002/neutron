@@ -23,7 +23,7 @@ public class ProductLoanTypeNode extends StringUiNode<ProductsNode> {
         this.component = builder.setProductLoanTypeNodeModule(new ProductLoanTypeNodeModule(this)).build();
     }
 
-    private ProductLoanTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductLoanTypeNode> getRuleProvider() {
         return component.getProductLoanTypeNodeRuleProvider();
     }
 

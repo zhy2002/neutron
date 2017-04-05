@@ -26,7 +26,7 @@ public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
         this.component = builder.setApplicationListNodeModule(new ApplicationListNodeModule(this)).build();
     }
 
-    private ApplicationListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ApplicationListNode> getRuleProvider() {
         return component.getApplicationListNodeRuleProvider();
     }
 

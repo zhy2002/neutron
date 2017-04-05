@@ -24,7 +24,7 @@ public class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentLis
         this.component = builder.setPreviousEmploymentNodeModule(new PreviousEmploymentNodeModule(this)).build();
     }
 
-    private PreviousEmploymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PreviousEmploymentNode> getRuleProvider() {
         return component.getPreviousEmploymentNodeRuleProvider();
     }
 

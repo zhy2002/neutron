@@ -24,7 +24,7 @@ public class BrokerEmailNode extends EmailNode<SubmissionNode> {
         this.component = builder.setBrokerEmailNodeModule(new BrokerEmailNodeModule(this)).build();
     }
 
-    private BrokerEmailNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BrokerEmailNode> getRuleProvider() {
         return component.getBrokerEmailNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
         this.component = builder.setMonthNodeModule(new MonthNodeModule(this)).build();
     }
 
-    private MonthNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MonthNode> getRuleProvider() {
         return component.getMonthNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

@@ -23,7 +23,7 @@ public class ProductInterestOnlyTermNode extends BigDecimalUiNode<ProductDescrip
         this.component = builder.setProductInterestOnlyTermNodeModule(new ProductInterestOnlyTermNodeModule(this)).build();
     }
 
-    private ProductInterestOnlyTermNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductInterestOnlyTermNode> getRuleProvider() {
         return component.getProductInterestOnlyTermNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
         this.component = builder.setSavingsTypeNodeModule(new SavingsTypeNodeModule(this)).build();
     }
 
-    private SavingsTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsTypeNode> getRuleProvider() {
         return component.getSavingsTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

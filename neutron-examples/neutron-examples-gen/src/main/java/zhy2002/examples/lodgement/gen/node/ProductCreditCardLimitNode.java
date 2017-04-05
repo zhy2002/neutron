@@ -23,7 +23,7 @@ public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeatures
         this.component = builder.setProductCreditCardLimitNodeModule(new ProductCreditCardLimitNodeModule(this)).build();
     }
 
-    private ProductCreditCardLimitNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCreditCardLimitNode> getRuleProvider() {
         return component.getProductCreditCardLimitNodeRuleProvider();
     }
 

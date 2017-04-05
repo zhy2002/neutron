@@ -23,7 +23,7 @@ public class SettlementDateNode extends StringUiNode<ProductsNode> {
         this.component = builder.setSettlementDateNodeModule(new SettlementDateNodeModule(this)).build();
     }
 
-    private SettlementDateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SettlementDateNode> getRuleProvider() {
         return component.getSettlementDateNodeRuleProvider();
     }
 

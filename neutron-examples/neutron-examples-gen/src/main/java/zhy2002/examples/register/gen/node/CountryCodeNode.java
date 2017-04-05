@@ -24,7 +24,7 @@ public class CountryCodeNode extends PhoneInfoFieldNode {
         this.component = builder.setCountryCodeNodeModule(new CountryCodeNodeModule(this)).build();
     }
 
-    private CountryCodeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CountryCodeNode> getRuleProvider() {
         return component.getCountryCodeNodeRuleProvider();
     }
 

@@ -38,7 +38,7 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         this.component = builder.setMotorVehicleNodeModule(new MotorVehicleNodeModule(this)).build();
     }
 
-    private MotorVehicleNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MotorVehicleNode> getRuleProvider() {
         return component.getMotorVehicleNodeRuleProvider();
     }
 

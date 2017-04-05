@@ -23,7 +23,7 @@ public class OtherLiabilityDescriptionNode extends StringUiNode<OtherLiabilityNo
         this.component = builder.setOtherLiabilityDescriptionNodeModule(new OtherLiabilityDescriptionNodeModule(this)).build();
     }
 
-    private OtherLiabilityDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityDescriptionNode> getRuleProvider() {
         return component.getOtherLiabilityDescriptionNodeRuleProvider();
     }
 

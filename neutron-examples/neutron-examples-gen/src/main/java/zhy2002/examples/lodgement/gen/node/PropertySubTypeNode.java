@@ -26,7 +26,7 @@ public class PropertySubTypeNode extends StringUiNode<PropertyNode> {
         this.component = builder.setPropertySubTypeNodeModule(new PropertySubTypeNodeModule(this)).build();
     }
 
-    private PropertySubTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertySubTypeNode> getRuleProvider() {
         return component.getPropertySubTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class PropertySubTypeNode extends StringUiNode<PropertyNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

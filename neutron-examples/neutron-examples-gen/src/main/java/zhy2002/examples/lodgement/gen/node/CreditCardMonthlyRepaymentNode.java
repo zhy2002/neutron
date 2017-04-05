@@ -24,7 +24,7 @@ public class CreditCardMonthlyRepaymentNode extends BaseCurrencyNode<CreditCardN
         this.component = builder.setCreditCardMonthlyRepaymentNodeModule(new CreditCardMonthlyRepaymentNodeModule(this)).build();
     }
 
-    private CreditCardMonthlyRepaymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardMonthlyRepaymentNode> getRuleProvider() {
         return component.getCreditCardMonthlyRepaymentNodeRuleProvider();
     }
 

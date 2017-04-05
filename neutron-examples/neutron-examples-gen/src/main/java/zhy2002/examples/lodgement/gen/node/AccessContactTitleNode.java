@@ -26,7 +26,7 @@ public class AccessContactTitleNode extends StringUiNode<AccessNode> {
         this.component = builder.setAccessContactTitleNodeModule(new AccessContactTitleNodeModule(this)).build();
     }
 
-    private AccessContactTitleNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessContactTitleNode> getRuleProvider() {
         return component.getAccessContactTitleNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class AccessContactTitleNode extends StringUiNode<AccessNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

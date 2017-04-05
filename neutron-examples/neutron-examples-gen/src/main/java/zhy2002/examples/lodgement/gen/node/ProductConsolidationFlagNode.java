@@ -23,7 +23,7 @@ public class ProductConsolidationFlagNode extends BooleanUiNode<ProductDescripti
         this.component = builder.setProductConsolidationFlagNodeModule(new ProductConsolidationFlagNodeModule(this)).build();
     }
 
-    private ProductConsolidationFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductConsolidationFlagNode> getRuleProvider() {
         return component.getProductConsolidationFlagNodeRuleProvider();
     }
 

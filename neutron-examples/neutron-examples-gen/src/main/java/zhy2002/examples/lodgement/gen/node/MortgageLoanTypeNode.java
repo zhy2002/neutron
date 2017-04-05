@@ -23,7 +23,7 @@ public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
         this.component = builder.setMortgageLoanTypeNodeModule(new MortgageLoanTypeNodeModule(this)).build();
     }
 
-    private MortgageLoanTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageLoanTypeNode> getRuleProvider() {
         return component.getMortgageLoanTypeNodeRuleProvider();
     }
 

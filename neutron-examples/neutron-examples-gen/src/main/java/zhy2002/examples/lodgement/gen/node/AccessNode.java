@@ -41,7 +41,7 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
         this.component = builder.setAccessNodeModule(new AccessNodeModule(this)).build();
     }
 
-    private AccessNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessNode> getRuleProvider() {
         return component.getAccessNodeRuleProvider();
     }
 

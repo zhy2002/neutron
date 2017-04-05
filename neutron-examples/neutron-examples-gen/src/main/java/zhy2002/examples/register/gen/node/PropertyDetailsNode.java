@@ -37,7 +37,7 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         this.component = builder.setPropertyDetailsNodeModule(new PropertyDetailsNodeModule(this)).build();
     }
 
-    private PropertyDetailsNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyDetailsNode> getRuleProvider() {
         return component.getPropertyDetailsNodeRuleProvider();
     }
 

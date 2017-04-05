@@ -26,7 +26,7 @@ public class CompanyRegistrationStateNode extends StringUiNode<CompanyGeneralNod
         this.component = builder.setCompanyRegistrationStateNodeModule(new CompanyRegistrationStateNodeModule(this)).build();
     }
 
-    private CompanyRegistrationStateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyRegistrationStateNode> getRuleProvider() {
         return component.getCompanyRegistrationStateNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class CompanyRegistrationStateNode extends StringUiNode<CompanyGeneralNod
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

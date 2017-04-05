@@ -24,7 +24,7 @@ public class PropertyPurseNode extends BooleanUiNode<PropertyNode> {
         this.component = builder.setPropertyPurseNodeModule(new PropertyPurseNodeModule(this)).build();
     }
 
-    private PropertyPurseNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyPurseNode> getRuleProvider() {
         return component.getPropertyPurseNodeRuleProvider();
     }
 

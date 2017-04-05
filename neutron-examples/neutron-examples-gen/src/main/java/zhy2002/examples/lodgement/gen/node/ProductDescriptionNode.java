@@ -49,7 +49,7 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
         this.component = builder.setProductDescriptionNodeModule(new ProductDescriptionNodeModule(this)).build();
     }
 
-    private ProductDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductDescriptionNode> getRuleProvider() {
         return component.getProductDescriptionNodeRuleProvider();
     }
 

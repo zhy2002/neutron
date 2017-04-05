@@ -23,7 +23,7 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
         this.component = builder.setReceiveOffersNodeModule(new ReceiveOffersNodeModule(this)).build();
     }
 
-    private ReceiveOffersNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ReceiveOffersNode> getRuleProvider() {
         return component.getReceiveOffersNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>> {
         this.component = builder.setCountryNodeModule(new CountryNodeModule(this)).build();
     }
 
-    private CountryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CountryNode> getRuleProvider() {
         return component.getCountryNodeRuleProvider();
     }
 

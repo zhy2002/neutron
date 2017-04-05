@@ -24,7 +24,7 @@ public class CompanyRegisteredNameNode extends StringUiNode<CompanyGeneralNode> 
         this.component = builder.setCompanyRegisteredNameNodeModule(new CompanyRegisteredNameNodeModule(this)).build();
     }
 
-    private CompanyRegisteredNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyRegisteredNameNode> getRuleProvider() {
         return component.getCompanyRegisteredNameNodeRuleProvider();
     }
 

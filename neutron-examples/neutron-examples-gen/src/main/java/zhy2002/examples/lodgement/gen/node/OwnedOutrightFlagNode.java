@@ -24,7 +24,7 @@ public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
         this.component = builder.setOwnedOutrightFlagNodeModule(new OwnedOutrightFlagNodeModule(this)).build();
     }
 
-    private OwnedOutrightFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OwnedOutrightFlagNode> getRuleProvider() {
         return component.getOwnedOutrightFlagNodeRuleProvider();
     }
 

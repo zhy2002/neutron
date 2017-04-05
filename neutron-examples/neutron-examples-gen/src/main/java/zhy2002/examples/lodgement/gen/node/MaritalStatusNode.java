@@ -26,7 +26,7 @@ public class MaritalStatusNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setMaritalStatusNodeModule(new MaritalStatusNodeModule(this)).build();
     }
 
-    private MaritalStatusNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MaritalStatusNode> getRuleProvider() {
         return component.getMaritalStatusNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class MaritalStatusNode extends StringUiNode<PersonGeneralNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

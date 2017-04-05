@@ -23,7 +23,7 @@ public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
         this.component = builder.setAverageFlagNodeModule(new AverageFlagNodeModule(this)).build();
     }
 
-    private AverageFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AverageFlagNode> getRuleProvider() {
         return component.getAverageFlagNodeRuleProvider();
     }
 

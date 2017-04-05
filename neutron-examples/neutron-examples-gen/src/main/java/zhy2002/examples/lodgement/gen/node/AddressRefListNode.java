@@ -30,7 +30,7 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
         this.component = builder.setAddressRefListNodeModule(new AddressRefListNodeModule(this)).build();
     }
 
-    private AddressRefListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AddressRefListNode> getRuleProvider() {
         return component.getAddressRefListNodeRuleProvider();
     }
 

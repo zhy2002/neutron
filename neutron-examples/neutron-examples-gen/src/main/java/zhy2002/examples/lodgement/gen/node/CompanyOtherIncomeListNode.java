@@ -23,7 +23,7 @@ public class CompanyOtherIncomeListNode extends BaseOtherIncomeListNode<CompanyN
         this.component = builder.setCompanyOtherIncomeListNodeModule(new CompanyOtherIncomeListNodeModule(this)).build();
     }
 
-    private CompanyOtherIncomeListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyOtherIncomeListNode> getRuleProvider() {
         return component.getCompanyOtherIncomeListNodeRuleProvider();
     }
 

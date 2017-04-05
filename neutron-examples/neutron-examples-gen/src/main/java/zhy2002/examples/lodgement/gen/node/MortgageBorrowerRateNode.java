@@ -23,7 +23,7 @@ public class MortgageBorrowerRateNode extends BasePercentageNode<ExistingMortgag
         this.component = builder.setMortgageBorrowerRateNodeModule(new MortgageBorrowerRateNodeModule(this)).build();
     }
 
-    private MortgageBorrowerRateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageBorrowerRateNode> getRuleProvider() {
         return component.getMortgageBorrowerRateNodeRuleProvider();
     }
 

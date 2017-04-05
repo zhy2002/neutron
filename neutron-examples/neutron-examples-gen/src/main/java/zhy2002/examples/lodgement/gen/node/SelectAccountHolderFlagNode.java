@@ -23,7 +23,7 @@ public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHold
         this.component = builder.setSelectAccountHolderFlagNodeModule(new SelectAccountHolderFlagNodeModule(this)).build();
     }
 
-    private SelectAccountHolderFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SelectAccountHolderFlagNode> getRuleProvider() {
         return component.getSelectAccountHolderFlagNodeRuleProvider();
     }
 

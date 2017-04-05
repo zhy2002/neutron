@@ -24,7 +24,7 @@ public class ContributionAmountNode extends BaseCurrencyNode<ProductCustomerCont
         this.component = builder.setContributionAmountNodeModule(new ContributionAmountNodeModule(this)).build();
     }
 
-    private ContributionAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ContributionAmountNode> getRuleProvider() {
         return component.getContributionAmountNodeRuleProvider();
     }
 

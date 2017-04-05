@@ -30,7 +30,7 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
         this.component = builder.setRelatedPartyListNodeModule(new RelatedPartyListNodeModule(this)).build();
     }
 
-    private RelatedPartyListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RelatedPartyListNode> getRuleProvider() {
         return component.getRelatedPartyListNodeRuleProvider();
     }
 

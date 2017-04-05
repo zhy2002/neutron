@@ -24,7 +24,7 @@ public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
         this.component = builder.setOwnershipPercentageNodeModule(new OwnershipPercentageNodeModule(this)).build();
     }
 
-    private OwnershipPercentageNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OwnershipPercentageNode> getRuleProvider() {
         return component.getOwnershipPercentageNodeRuleProvider();
     }
 

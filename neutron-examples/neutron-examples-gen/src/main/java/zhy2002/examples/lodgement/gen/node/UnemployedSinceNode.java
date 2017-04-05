@@ -24,7 +24,7 @@ public class UnemployedSinceNode extends MonthYearNode<UnemployedNode> {
         this.component = builder.setUnemployedSinceNodeModule(new UnemployedSinceNodeModule(this)).build();
     }
 
-    private UnemployedSinceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<UnemployedSinceNode> getRuleProvider() {
         return component.getUnemployedSinceNodeRuleProvider();
     }
 

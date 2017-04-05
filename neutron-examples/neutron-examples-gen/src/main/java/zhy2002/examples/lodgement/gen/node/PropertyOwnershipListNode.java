@@ -23,7 +23,7 @@ public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
         this.component = builder.setPropertyOwnershipListNodeModule(new PropertyOwnershipListNodeModule(this)).build();
     }
 
-    private PropertyOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyOwnershipListNode> getRuleProvider() {
         return component.getPropertyOwnershipListNodeRuleProvider();
     }
 

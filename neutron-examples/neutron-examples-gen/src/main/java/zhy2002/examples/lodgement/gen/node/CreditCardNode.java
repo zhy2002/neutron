@@ -42,7 +42,7 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         this.component = builder.setCreditCardNodeModule(new CreditCardNodeModule(this)).build();
     }
 
-    private CreditCardNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardNode> getRuleProvider() {
         return component.getCreditCardNodeRuleProvider();
     }
 

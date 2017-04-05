@@ -26,7 +26,7 @@ public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLen
         this.component = builder.setResponsibleTypeOfChangeNodeModule(new ResponsibleTypeOfChangeNodeModule(this)).build();
     }
 
-    private ResponsibleTypeOfChangeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ResponsibleTypeOfChangeNode> getRuleProvider() {
         return component.getResponsibleTypeOfChangeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLen
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

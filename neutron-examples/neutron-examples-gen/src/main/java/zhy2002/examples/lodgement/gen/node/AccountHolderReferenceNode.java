@@ -24,7 +24,7 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
         this.component = builder.setAccountHolderReferenceNodeModule(new AccountHolderReferenceNodeModule(this)).build();
     }
 
-    private AccountHolderReferenceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccountHolderReferenceNode> getRuleProvider() {
         return component.getAccountHolderReferenceNodeRuleProvider();
     }
 

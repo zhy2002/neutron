@@ -23,7 +23,7 @@ public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMor
         this.component = builder.setMortgageInterestOnlyExpiryDateNodeModule(new MortgageInterestOnlyExpiryDateNodeModule(this)).build();
     }
 
-    private MortgageInterestOnlyExpiryDateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageInterestOnlyExpiryDateNode> getRuleProvider() {
         return component.getMortgageInterestOnlyExpiryDateNodeRuleProvider();
     }
 

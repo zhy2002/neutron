@@ -40,7 +40,7 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
         this.component = builder.setUsageNodeModule(new UsageNodeModule(this)).build();
     }
 
-    private UsageNodeRuleProvider getRuleProvider() {
+    private RuleProvider<UsageNode> getRuleProvider() {
         return component.getUsageNodeRuleProvider();
     }
 

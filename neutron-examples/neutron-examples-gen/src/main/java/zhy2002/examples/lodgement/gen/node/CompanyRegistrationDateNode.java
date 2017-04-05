@@ -24,7 +24,7 @@ public class CompanyRegistrationDateNode extends StringUiNode<CompanyGeneralNode
         this.component = builder.setCompanyRegistrationDateNodeModule(new CompanyRegistrationDateNodeModule(this)).build();
     }
 
-    private CompanyRegistrationDateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyRegistrationDateNode> getRuleProvider() {
         return component.getCompanyRegistrationDateNodeRuleProvider();
     }
 

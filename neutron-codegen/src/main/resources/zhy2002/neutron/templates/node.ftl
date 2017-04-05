@@ -69,7 +69,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         this.component = builder.set${typeName}Module(new ${typeName}Module(this)).build();
     }
 
-    private ${typeName}RuleProvider getRuleProvider() {
+    private RuleProvider<${typeName}> getRuleProvider() {
         return component.get${typeName}RuleProvider();
     }
 

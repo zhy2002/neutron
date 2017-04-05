@@ -23,7 +23,7 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
         this.component = builder.setProductOptOutReasonNodeModule(new ProductOptOutReasonNodeModule(this)).build();
     }
 
-    private ProductOptOutReasonNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductOptOutReasonNode> getRuleProvider() {
         return component.getProductOptOutReasonNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
         this.component = builder.setCreditCardTypeNodeModule(new CreditCardTypeNodeModule(this)).build();
     }
 
-    private CreditCardTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardTypeNode> getRuleProvider() {
         return component.getCreditCardTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

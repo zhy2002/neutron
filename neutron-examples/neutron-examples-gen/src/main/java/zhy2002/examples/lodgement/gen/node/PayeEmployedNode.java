@@ -35,7 +35,7 @@ public class PayeEmployedNode extends EmployedNode {
         this.component = builder.setPayeEmployedNodeModule(new PayeEmployedNodeModule(this)).build();
     }
 
-    private PayeEmployedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PayeEmployedNode> getRuleProvider() {
         return component.getPayeEmployedNodeRuleProvider();
     }
 

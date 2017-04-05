@@ -48,7 +48,7 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         this.component = builder.setPersonGeneralNodeModule(new PersonGeneralNodeModule(this)).build();
     }
 
-    private PersonGeneralNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonGeneralNode> getRuleProvider() {
         return component.getPersonGeneralNodeRuleProvider();
     }
 

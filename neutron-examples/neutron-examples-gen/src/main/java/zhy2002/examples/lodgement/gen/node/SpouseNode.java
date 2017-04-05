@@ -23,7 +23,7 @@ public class SpouseNode extends ReferenceUiNode<PersonGeneralNode> {
         this.component = builder.setSpouseNodeModule(new SpouseNodeModule(this)).build();
     }
 
-    private SpouseNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SpouseNode> getRuleProvider() {
         return component.getSpouseNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
         this.component = builder.setEstimatedMarketValueNodeModule(new EstimatedMarketValueNodeModule(this)).build();
     }
 
-    private EstimatedMarketValueNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EstimatedMarketValueNode> getRuleProvider() {
         return component.getEstimatedMarketValueNodeRuleProvider();
     }
 

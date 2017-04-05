@@ -24,7 +24,7 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
         this.component = builder.setDateOfBirthNodeModule(new DateOfBirthNodeModule(this)).build();
     }
 
-    private DateOfBirthNodeRuleProvider getRuleProvider() {
+    private RuleProvider<DateOfBirthNode> getRuleProvider() {
         return component.getDateOfBirthNodeRuleProvider();
     }
 

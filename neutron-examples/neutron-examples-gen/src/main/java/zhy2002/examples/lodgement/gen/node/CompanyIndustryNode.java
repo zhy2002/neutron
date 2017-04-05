@@ -24,7 +24,7 @@ public class CompanyIndustryNode extends StringUiNode<CompanyGeneralNode> {
         this.component = builder.setCompanyIndustryNodeModule(new CompanyIndustryNodeModule(this)).build();
     }
 
-    private CompanyIndustryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyIndustryNode> getRuleProvider() {
         return component.getCompanyIndustryNodeRuleProvider();
     }
 

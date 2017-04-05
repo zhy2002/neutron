@@ -24,7 +24,7 @@ public class ThirdPartyFirstNameNode extends StringUiNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyFirstNameNodeModule(new ThirdPartyFirstNameNodeModule(this)).build();
     }
 
-    private ThirdPartyFirstNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyFirstNameNode> getRuleProvider() {
         return component.getThirdPartyFirstNameNodeRuleProvider();
     }
 

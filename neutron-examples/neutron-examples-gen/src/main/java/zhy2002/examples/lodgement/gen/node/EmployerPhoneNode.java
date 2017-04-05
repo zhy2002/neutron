@@ -24,7 +24,7 @@ public class EmployerPhoneNode extends TelephoneNode<EmployedNode> {
         this.component = builder.setEmployerPhoneNodeModule(new EmployerPhoneNodeModule(this)).build();
     }
 
-    private EmployerPhoneNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmployerPhoneNode> getRuleProvider() {
         return component.getEmployerPhoneNodeRuleProvider();
     }
 

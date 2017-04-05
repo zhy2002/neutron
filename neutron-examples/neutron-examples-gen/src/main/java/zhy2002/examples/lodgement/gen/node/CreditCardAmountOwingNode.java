@@ -24,7 +24,7 @@ public class CreditCardAmountOwingNode extends BaseCurrencyNode<CreditCardNode> 
         this.component = builder.setCreditCardAmountOwingNodeModule(new CreditCardAmountOwingNodeModule(this)).build();
     }
 
-    private CreditCardAmountOwingNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardAmountOwingNode> getRuleProvider() {
         return component.getCreditCardAmountOwingNodeRuleProvider();
     }
 

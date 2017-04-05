@@ -24,7 +24,7 @@ public class CreditCardOwnershipListNode extends OwnershipListNode<CreditCardNod
         this.component = builder.setCreditCardOwnershipListNodeModule(new CreditCardOwnershipListNodeModule(this)).build();
     }
 
-    private CreditCardOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CreditCardOwnershipListNode> getRuleProvider() {
         return component.getCreditCardOwnershipListNodeRuleProvider();
     }
 

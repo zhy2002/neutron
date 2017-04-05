@@ -23,7 +23,7 @@ public class ProductExpressConsentFlagNode extends BooleanUiNode<ProductFeatures
         this.component = builder.setProductExpressConsentFlagNodeModule(new ProductExpressConsentFlagNodeModule(this)).build();
     }
 
-    private ProductExpressConsentFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductExpressConsentFlagNode> getRuleProvider() {
         return component.getProductExpressConsentFlagNodeRuleProvider();
     }
 

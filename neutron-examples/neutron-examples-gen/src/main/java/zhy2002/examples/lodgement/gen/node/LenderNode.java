@@ -23,7 +23,7 @@ public class LenderNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setLenderNodeModule(new LenderNodeModule(this)).build();
     }
 
-    private LenderNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LenderNode> getRuleProvider() {
         return component.getLenderNodeRuleProvider();
     }
 

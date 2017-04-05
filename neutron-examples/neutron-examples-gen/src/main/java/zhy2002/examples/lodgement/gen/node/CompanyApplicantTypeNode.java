@@ -24,7 +24,7 @@ public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGener
         this.component = builder.setCompanyApplicantTypeNodeModule(new CompanyApplicantTypeNodeModule(this)).build();
     }
 
-    private CompanyApplicantTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyApplicantTypeNode> getRuleProvider() {
         return component.getCompanyApplicantTypeNodeRuleProvider();
     }
 

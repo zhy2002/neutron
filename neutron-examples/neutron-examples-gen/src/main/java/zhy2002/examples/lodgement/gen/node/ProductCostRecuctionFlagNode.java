@@ -23,7 +23,7 @@ public class ProductCostRecuctionFlagNode extends BooleanUiNode<ProductDescripti
         this.component = builder.setProductCostRecuctionFlagNodeModule(new ProductCostRecuctionFlagNodeModule(this)).build();
     }
 
-    private ProductCostRecuctionFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCostRecuctionFlagNode> getRuleProvider() {
         return component.getProductCostRecuctionFlagNodeRuleProvider();
     }
 

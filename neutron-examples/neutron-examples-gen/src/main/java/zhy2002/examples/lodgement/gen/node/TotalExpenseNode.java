@@ -24,7 +24,7 @@ public class TotalExpenseNode extends BaseCurrencyNode<FinancialPositionNode> {
         this.component = builder.setTotalExpenseNodeModule(new TotalExpenseNodeModule(this)).build();
     }
 
-    private TotalExpenseNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TotalExpenseNode> getRuleProvider() {
         return component.getTotalExpenseNodeRuleProvider();
     }
 

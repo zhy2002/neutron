@@ -48,7 +48,7 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
         this.component = builder.setCompanyGeneralNodeModule(new CompanyGeneralNodeModule(this)).build();
     }
 
-    private CompanyGeneralNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyGeneralNode> getRuleProvider() {
         return component.getCompanyGeneralNodeRuleProvider();
     }
 

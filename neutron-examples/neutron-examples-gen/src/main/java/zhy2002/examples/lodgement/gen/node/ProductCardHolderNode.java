@@ -37,7 +37,7 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         this.component = builder.setProductCardHolderNodeModule(new ProductCardHolderNodeModule(this)).build();
     }
 
-    private ProductCardHolderNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCardHolderNode> getRuleProvider() {
         return component.getProductCardHolderNodeRuleProvider();
     }
 

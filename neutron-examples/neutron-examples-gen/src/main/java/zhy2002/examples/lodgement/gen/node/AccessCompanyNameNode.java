@@ -23,7 +23,7 @@ public class AccessCompanyNameNode extends StringUiNode<AccessNode> {
         this.component = builder.setAccessCompanyNameNodeModule(new AccessCompanyNameNodeModule(this)).build();
     }
 
-    private AccessCompanyNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessCompanyNameNode> getRuleProvider() {
         return component.getAccessCompanyNameNodeRuleProvider();
     }
 

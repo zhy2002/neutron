@@ -44,7 +44,7 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
         this.component = builder.setRelatedPartyNodeModule(new RelatedPartyNodeModule(this)).build();
     }
 
-    private RelatedPartyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RelatedPartyNode> getRuleProvider() {
         return component.getRelatedPartyNodeRuleProvider();
     }
 

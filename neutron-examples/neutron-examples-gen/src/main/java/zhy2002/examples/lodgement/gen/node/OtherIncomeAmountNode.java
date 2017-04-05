@@ -24,7 +24,7 @@ public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeAmountNodeModule(new OtherIncomeAmountNodeModule(this)).build();
     }
 
-    private OtherIncomeAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherIncomeAmountNode> getRuleProvider() {
         return component.getOtherIncomeAmountNodeRuleProvider();
     }
 

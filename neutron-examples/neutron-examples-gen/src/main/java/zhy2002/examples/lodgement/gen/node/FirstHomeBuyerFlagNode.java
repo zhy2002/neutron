@@ -24,7 +24,7 @@ public class FirstHomeBuyerFlagNode extends BooleanUiNode<PersonGeneralNode> {
         this.component = builder.setFirstHomeBuyerFlagNodeModule(new FirstHomeBuyerFlagNodeModule(this)).build();
     }
 
-    private FirstHomeBuyerFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<FirstHomeBuyerFlagNode> getRuleProvider() {
         return component.getFirstHomeBuyerFlagNodeRuleProvider();
     }
 

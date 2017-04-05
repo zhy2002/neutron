@@ -36,7 +36,7 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
         this.component = builder.setAdditionalNodeModule(new AdditionalNodeModule(this)).build();
     }
 
-    private AdditionalNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AdditionalNode> getRuleProvider() {
         return component.getAdditionalNodeRuleProvider();
     }
 

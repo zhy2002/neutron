@@ -23,7 +23,7 @@ public class MortgageBreakFeeNode extends BaseCurrencyNode<ExistingMortgageNode>
         this.component = builder.setMortgageBreakFeeNodeModule(new MortgageBreakFeeNodeModule(this)).build();
     }
 
-    private MortgageBreakFeeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageBreakFeeNode> getRuleProvider() {
         return component.getMortgageBreakFeeNodeRuleProvider();
     }
 

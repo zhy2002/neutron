@@ -24,7 +24,7 @@ public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
         this.component = builder.setVehicleMarketValueNodeModule(new VehicleMarketValueNodeModule(this)).build();
     }
 
-    private VehicleMarketValueNodeRuleProvider getRuleProvider() {
+    private RuleProvider<VehicleMarketValueNode> getRuleProvider() {
         return component.getVehicleMarketValueNodeRuleProvider();
     }
 

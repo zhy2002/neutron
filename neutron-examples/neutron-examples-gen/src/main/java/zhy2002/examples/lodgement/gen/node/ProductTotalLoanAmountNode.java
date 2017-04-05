@@ -23,7 +23,7 @@ public class ProductTotalLoanAmountNode extends BaseCurrencyNode<ProductsNode> {
         this.component = builder.setProductTotalLoanAmountNodeModule(new ProductTotalLoanAmountNodeModule(this)).build();
     }
 
-    private ProductTotalLoanAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductTotalLoanAmountNode> getRuleProvider() {
         return component.getProductTotalLoanAmountNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class CompanyMobileNumberNode extends BaseMobileNumberNode<CompanyContact
         this.component = builder.setCompanyMobileNumberNodeModule(new CompanyMobileNumberNodeModule(this)).build();
     }
 
-    private CompanyMobileNumberNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyMobileNumberNode> getRuleProvider() {
         return component.getCompanyMobileNumberNodeRuleProvider();
     }
 

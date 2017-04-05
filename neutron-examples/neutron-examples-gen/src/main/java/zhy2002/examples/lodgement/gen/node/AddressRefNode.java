@@ -24,7 +24,7 @@ public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
         this.component = builder.setAddressRefNodeModule(new AddressRefNodeModule(this)).build();
     }
 
-    private AddressRefNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AddressRefNode> getRuleProvider() {
         return component.getAddressRefNodeRuleProvider();
     }
 

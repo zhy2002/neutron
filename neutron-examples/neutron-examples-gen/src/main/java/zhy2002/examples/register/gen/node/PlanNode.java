@@ -26,7 +26,7 @@ public class PlanNode extends StringUiNode<RegisterNode> {
         this.component = builder.setPlanNodeModule(new PlanNodeModule(this)).build();
     }
 
-    private PlanNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PlanNode> getRuleProvider() {
         return component.getPlanNodeRuleProvider();
     }
 

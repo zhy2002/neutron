@@ -23,7 +23,7 @@ public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
         this.component = builder.setAccessOtherDescriptionNodeModule(new AccessOtherDescriptionNodeModule(this)).build();
     }
 
-    private AccessOtherDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessOtherDescriptionNode> getRuleProvider() {
         return component.getAccessOtherDescriptionNodeRuleProvider();
     }
 

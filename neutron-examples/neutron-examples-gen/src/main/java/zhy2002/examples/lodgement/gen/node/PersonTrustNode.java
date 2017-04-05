@@ -23,7 +23,7 @@ public class PersonTrustNode extends BaseTrustNode<PersonNode> {
         this.component = builder.setPersonTrustNodeModule(new PersonTrustNodeModule(this)).build();
     }
 
-    private PersonTrustNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonTrustNode> getRuleProvider() {
         return component.getPersonTrustNodeRuleProvider();
     }
 

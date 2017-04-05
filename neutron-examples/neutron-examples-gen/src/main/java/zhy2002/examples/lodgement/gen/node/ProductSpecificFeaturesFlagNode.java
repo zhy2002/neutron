@@ -23,7 +23,7 @@ public class ProductSpecificFeaturesFlagNode extends BooleanUiNode<ProductDescri
         this.component = builder.setProductSpecificFeaturesFlagNodeModule(new ProductSpecificFeaturesFlagNodeModule(this)).build();
     }
 
-    private ProductSpecificFeaturesFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductSpecificFeaturesFlagNode> getRuleProvider() {
         return component.getProductSpecificFeaturesFlagNodeRuleProvider();
     }
 

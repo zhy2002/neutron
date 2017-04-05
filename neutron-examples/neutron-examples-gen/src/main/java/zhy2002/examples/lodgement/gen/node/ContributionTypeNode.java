@@ -26,7 +26,7 @@ public class ContributionTypeNode extends StringUiNode<ProductCustomerContributi
         this.component = builder.setContributionTypeNodeModule(new ContributionTypeNodeModule(this)).build();
     }
 
-    private ContributionTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ContributionTypeNode> getRuleProvider() {
         return component.getContributionTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ContributionTypeNode extends StringUiNode<ProductCustomerContributi
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

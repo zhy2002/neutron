@@ -26,7 +26,7 @@ public class ProductNameNode extends StringUiNode<ProductDescriptionNode> {
         this.component = builder.setProductNameNodeModule(new ProductNameNodeModule(this)).build();
     }
 
-    private ProductNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductNameNode> getRuleProvider() {
         return component.getProductNameNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ProductNameNode extends StringUiNode<ProductDescriptionNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

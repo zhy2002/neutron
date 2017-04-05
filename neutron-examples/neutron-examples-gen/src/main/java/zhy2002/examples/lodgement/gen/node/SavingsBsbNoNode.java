@@ -23,7 +23,7 @@ public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode> {
         this.component = builder.setSavingsBsbNoNodeModule(new SavingsBsbNoNodeModule(this)).build();
     }
 
-    private SavingsBsbNoNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsBsbNoNode> getRuleProvider() {
         return component.getSavingsBsbNoNodeRuleProvider();
     }
 

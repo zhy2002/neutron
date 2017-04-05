@@ -23,7 +23,7 @@ public class MortgageLoanTermExpiryDateNode extends StringUiNode<ExistingMortgag
         this.component = builder.setMortgageLoanTermExpiryDateNodeModule(new MortgageLoanTermExpiryDateNodeModule(this)).build();
     }
 
-    private MortgageLoanTermExpiryDateNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageLoanTermExpiryDateNode> getRuleProvider() {
         return component.getMortgageLoanTermExpiryDateNodeRuleProvider();
     }
 

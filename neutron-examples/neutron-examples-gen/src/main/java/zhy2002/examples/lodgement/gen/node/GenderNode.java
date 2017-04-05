@@ -26,7 +26,7 @@ public class GenderNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setGenderNodeModule(new GenderNodeModule(this)).build();
     }
 
-    private GenderNodeRuleProvider getRuleProvider() {
+    private RuleProvider<GenderNode> getRuleProvider() {
         return component.getGenderNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class GenderNode extends StringUiNode<PersonGeneralNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

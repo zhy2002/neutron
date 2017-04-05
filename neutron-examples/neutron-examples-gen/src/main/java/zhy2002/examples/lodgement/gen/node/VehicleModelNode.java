@@ -24,7 +24,7 @@ public class VehicleModelNode extends StringUiNode<MotorVehicleNode> {
         this.component = builder.setVehicleModelNodeModule(new VehicleModelNodeModule(this)).build();
     }
 
-    private VehicleModelNodeRuleProvider getRuleProvider() {
+    private RuleProvider<VehicleModelNode> getRuleProvider() {
         return component.getVehicleModelNodeRuleProvider();
     }
 

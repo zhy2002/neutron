@@ -23,7 +23,7 @@ public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPers
         this.component = builder.setSelectRelatedPersonFlagNodeModule(new SelectRelatedPersonFlagNodeModule(this)).build();
     }
 
-    private SelectRelatedPersonFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SelectRelatedPersonFlagNode> getRuleProvider() {
         return component.getSelectRelatedPersonFlagNodeRuleProvider();
     }
 

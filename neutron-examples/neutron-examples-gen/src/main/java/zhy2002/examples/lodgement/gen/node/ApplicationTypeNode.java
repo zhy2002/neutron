@@ -26,7 +26,7 @@ public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setApplicationTypeNodeModule(new ApplicationTypeNodeModule(this)).build();
     }
 
-    private ApplicationTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ApplicationTypeNode> getRuleProvider() {
         return component.getApplicationTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

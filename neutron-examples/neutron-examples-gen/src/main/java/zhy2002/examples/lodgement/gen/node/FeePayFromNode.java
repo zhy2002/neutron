@@ -26,7 +26,7 @@ public class FeePayFromNode extends StringUiNode<ProductFeeNode> {
         this.component = builder.setFeePayFromNodeModule(new FeePayFromNodeModule(this)).build();
     }
 
-    private FeePayFromNodeRuleProvider getRuleProvider() {
+    private RuleProvider<FeePayFromNode> getRuleProvider() {
         return component.getFeePayFromNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class FeePayFromNode extends StringUiNode<ProductFeeNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

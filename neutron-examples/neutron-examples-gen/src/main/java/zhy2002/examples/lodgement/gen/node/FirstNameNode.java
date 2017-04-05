@@ -24,7 +24,7 @@ public class FirstNameNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setFirstNameNodeModule(new FirstNameNodeModule(this)).build();
     }
 
-    private FirstNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<FirstNameNode> getRuleProvider() {
         return component.getFirstNameNodeRuleProvider();
     }
 

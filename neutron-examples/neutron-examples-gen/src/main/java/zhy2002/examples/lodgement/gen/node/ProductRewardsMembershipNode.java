@@ -23,7 +23,7 @@ public class ProductRewardsMembershipNode extends StringUiNode<ProductCardHolder
         this.component = builder.setProductRewardsMembershipNodeModule(new ProductRewardsMembershipNodeModule(this)).build();
     }
 
-    private ProductRewardsMembershipNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductRewardsMembershipNode> getRuleProvider() {
         return component.getProductRewardsMembershipNodeRuleProvider();
     }
 

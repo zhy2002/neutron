@@ -39,7 +39,7 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
         this.component = builder.setOtherIncomeNodeModule(new OtherIncomeNodeModule(this)).build();
     }
 
-    private OtherIncomeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherIncomeNode> getRuleProvider() {
         return component.getOtherIncomeNodeRuleProvider();
     }
 

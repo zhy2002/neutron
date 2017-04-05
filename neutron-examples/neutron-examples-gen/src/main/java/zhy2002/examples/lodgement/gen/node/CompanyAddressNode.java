@@ -23,7 +23,7 @@ public class CompanyAddressNode extends AddressNode<CompanyContactNode> {
         this.component = builder.setCompanyAddressNodeModule(new CompanyAddressNodeModule(this)).build();
     }
 
-    private CompanyAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyAddressNode> getRuleProvider() {
         return component.getCompanyAddressNodeRuleProvider();
     }
 

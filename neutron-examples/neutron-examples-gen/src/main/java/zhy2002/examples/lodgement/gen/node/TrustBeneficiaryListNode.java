@@ -23,7 +23,7 @@ public class TrustBeneficiaryListNode extends SelectAccountHolderListNode<BaseTr
         this.component = builder.setTrustBeneficiaryListNodeModule(new TrustBeneficiaryListNodeModule(this)).build();
     }
 
-    private TrustBeneficiaryListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustBeneficiaryListNode> getRuleProvider() {
         return component.getTrustBeneficiaryListNodeRuleProvider();
     }
 

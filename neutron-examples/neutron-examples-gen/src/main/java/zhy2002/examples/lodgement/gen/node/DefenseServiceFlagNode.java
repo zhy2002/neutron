@@ -23,7 +23,7 @@ public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
         this.component = builder.setDefenseServiceFlagNodeModule(new DefenseServiceFlagNodeModule(this)).build();
     }
 
-    private DefenseServiceFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<DefenseServiceFlagNode> getRuleProvider() {
         return component.getDefenseServiceFlagNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class MortgageInterestOnlyRemainingPeriodNode extends StringUiNode<Existi
         this.component = builder.setMortgageInterestOnlyRemainingPeriodNodeModule(new MortgageInterestOnlyRemainingPeriodNodeModule(this)).build();
     }
 
-    private MortgageInterestOnlyRemainingPeriodNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageInterestOnlyRemainingPeriodNode> getRuleProvider() {
         return component.getMortgageInterestOnlyRemainingPeriodNodeRuleProvider();
     }
 

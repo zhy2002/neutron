@@ -24,7 +24,7 @@ public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
         this.component = builder.setTrustCountryNodeModule(new TrustCountryNodeModule(this)).build();
     }
 
-    private TrustCountryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustCountryNode> getRuleProvider() {
         return component.getTrustCountryNodeRuleProvider();
     }
 

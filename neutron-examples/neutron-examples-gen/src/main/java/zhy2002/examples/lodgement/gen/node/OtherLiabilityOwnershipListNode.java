@@ -23,7 +23,7 @@ public class OtherLiabilityOwnershipListNode extends OwnershipListNode<OtherLiab
         this.component = builder.setOtherLiabilityOwnershipListNodeModule(new OtherLiabilityOwnershipListNodeModule(this)).build();
     }
 
-    private OtherLiabilityOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityOwnershipListNode> getRuleProvider() {
         return component.getOtherLiabilityOwnershipListNodeRuleProvider();
     }
 

@@ -38,7 +38,7 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         this.component = builder.setOtherAssetNodeModule(new OtherAssetNodeModule(this)).build();
     }
 
-    private OtherAssetNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherAssetNode> getRuleProvider() {
         return component.getOtherAssetNodeRuleProvider();
     }
 

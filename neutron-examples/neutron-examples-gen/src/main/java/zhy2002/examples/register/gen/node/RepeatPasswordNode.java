@@ -23,7 +23,7 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
         this.component = builder.setRepeatPasswordNodeModule(new RepeatPasswordNodeModule(this)).build();
     }
 
-    private RepeatPasswordNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RepeatPasswordNode> getRuleProvider() {
         return component.getRepeatPasswordNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class LenderIssuedBrokerNumberNode extends StringUiNode<SubmissionNode> {
         this.component = builder.setLenderIssuedBrokerNumberNodeModule(new LenderIssuedBrokerNumberNodeModule(this)).build();
     }
 
-    private LenderIssuedBrokerNumberNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LenderIssuedBrokerNumberNode> getRuleProvider() {
         return component.getLenderIssuedBrokerNumberNodeRuleProvider();
     }
 

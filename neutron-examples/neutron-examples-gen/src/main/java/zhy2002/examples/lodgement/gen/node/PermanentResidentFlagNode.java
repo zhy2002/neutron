@@ -23,7 +23,7 @@ public class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode> 
         this.component = builder.setPermanentResidentFlagNodeModule(new PermanentResidentFlagNodeModule(this)).build();
     }
 
-    private PermanentResidentFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PermanentResidentFlagNode> getRuleProvider() {
         return component.getPermanentResidentFlagNodeRuleProvider();
     }
 

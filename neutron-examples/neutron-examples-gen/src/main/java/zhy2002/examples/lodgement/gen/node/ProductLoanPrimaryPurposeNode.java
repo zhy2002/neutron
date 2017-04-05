@@ -26,7 +26,7 @@ public class ProductLoanPrimaryPurposeNode extends StringUiNode<ProductDescripti
         this.component = builder.setProductLoanPrimaryPurposeNodeModule(new ProductLoanPrimaryPurposeNodeModule(this)).build();
     }
 
-    private ProductLoanPrimaryPurposeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductLoanPrimaryPurposeNode> getRuleProvider() {
         return component.getProductLoanPrimaryPurposeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ProductLoanPrimaryPurposeNode extends StringUiNode<ProductDescripti
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

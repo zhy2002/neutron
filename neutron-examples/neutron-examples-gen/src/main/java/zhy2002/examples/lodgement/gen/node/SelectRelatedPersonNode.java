@@ -36,7 +36,7 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         this.component = builder.setSelectRelatedPersonNodeModule(new SelectRelatedPersonNodeModule(this)).build();
     }
 
-    private SelectRelatedPersonNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SelectRelatedPersonNode> getRuleProvider() {
         return component.getSelectRelatedPersonNodeRuleProvider();
     }
 

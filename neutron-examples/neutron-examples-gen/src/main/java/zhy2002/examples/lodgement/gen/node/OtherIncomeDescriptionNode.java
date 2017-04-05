@@ -23,7 +23,7 @@ public class OtherIncomeDescriptionNode extends StringUiNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeDescriptionNodeModule(new OtherIncomeDescriptionNodeModule(this)).build();
     }
 
-    private OtherIncomeDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherIncomeDescriptionNode> getRuleProvider() {
         return component.getOtherIncomeDescriptionNodeRuleProvider();
     }
 

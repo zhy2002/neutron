@@ -23,7 +23,7 @@ public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode
         this.component = builder.setMortgageClearingFlagNodeModule(new MortgageClearingFlagNodeModule(this)).build();
     }
 
-    private MortgageClearingFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageClearingFlagNode> getRuleProvider() {
         return component.getMortgageClearingFlagNodeRuleProvider();
     }
 

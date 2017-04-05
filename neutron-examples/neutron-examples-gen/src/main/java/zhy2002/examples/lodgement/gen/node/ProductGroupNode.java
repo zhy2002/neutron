@@ -26,7 +26,7 @@ public class ProductGroupNode extends StringUiNode<ProductDescriptionNode> {
         this.component = builder.setProductGroupNodeModule(new ProductGroupNodeModule(this)).build();
     }
 
-    private ProductGroupNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductGroupNode> getRuleProvider() {
         return component.getProductGroupNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ProductGroupNode extends StringUiNode<ProductDescriptionNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

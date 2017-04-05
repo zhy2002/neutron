@@ -23,7 +23,7 @@ public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneral
         this.component = builder.setPersonApplicantTypeNodeModule(new PersonApplicantTypeNodeModule(this)).build();
     }
 
-    private PersonApplicantTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonApplicantTypeNode> getRuleProvider() {
         return component.getPersonApplicantTypeNodeRuleProvider();
     }
 

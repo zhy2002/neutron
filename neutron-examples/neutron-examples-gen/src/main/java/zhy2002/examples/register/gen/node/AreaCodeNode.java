@@ -24,7 +24,7 @@ public class AreaCodeNode extends PhoneInfoFieldNode {
         this.component = builder.setAreaCodeNodeModule(new AreaCodeNodeModule(this)).build();
     }
 
-    private AreaCodeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AreaCodeNode> getRuleProvider() {
         return component.getAreaCodeNodeRuleProvider();
     }
 

@@ -37,7 +37,7 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
         this.component = builder.setProductCustomerContributionNodeModule(new ProductCustomerContributionNodeModule(this)).build();
     }
 
-    private ProductCustomerContributionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCustomerContributionNode> getRuleProvider() {
         return component.getProductCustomerContributionNodeRuleProvider();
     }
 

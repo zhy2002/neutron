@@ -24,7 +24,7 @@ public class DriversLicenseNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setDriversLicenseNodeModule(new DriversLicenseNodeModule(this)).build();
     }
 
-    private DriversLicenseNodeRuleProvider getRuleProvider() {
+    private RuleProvider<DriversLicenseNode> getRuleProvider() {
         return component.getDriversLicenseNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode>
         this.component = builder.setProductCreditCardTypeNodeModule(new ProductCreditCardTypeNodeModule(this)).build();
     }
 
-    private ProductCreditCardTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCreditCardTypeNode> getRuleProvider() {
         return component.getProductCreditCardTypeNodeRuleProvider();
     }
 

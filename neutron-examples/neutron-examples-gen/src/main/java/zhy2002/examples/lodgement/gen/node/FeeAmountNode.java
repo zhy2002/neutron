@@ -24,7 +24,7 @@ public class FeeAmountNode extends BaseCurrencyNode<ProductFeeNode> {
         this.component = builder.setFeeAmountNodeModule(new FeeAmountNodeModule(this)).build();
     }
 
-    private FeeAmountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<FeeAmountNode> getRuleProvider() {
         return component.getFeeAmountNodeRuleProvider();
     }
 

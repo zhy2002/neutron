@@ -23,7 +23,7 @@ public class BrokerAddressNode extends AddressNode<SubmissionNode> {
         this.component = builder.setBrokerAddressNodeModule(new BrokerAddressNodeModule(this)).build();
     }
 
-    private BrokerAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BrokerAddressNode> getRuleProvider() {
         return component.getBrokerAddressNodeRuleProvider();
     }
 

@@ -24,7 +24,7 @@ public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPer
         this.component = builder.setRelatedPersonReferenceNodeModule(new RelatedPersonReferenceNodeModule(this)).build();
     }
 
-    private RelatedPersonReferenceNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RelatedPersonReferenceNode> getRuleProvider() {
         return component.getRelatedPersonReferenceNodeRuleProvider();
     }
 

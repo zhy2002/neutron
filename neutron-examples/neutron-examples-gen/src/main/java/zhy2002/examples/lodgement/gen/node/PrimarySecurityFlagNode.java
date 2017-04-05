@@ -24,7 +24,7 @@ public class PrimarySecurityFlagNode extends BooleanUiNode<UsageNode> {
         this.component = builder.setPrimarySecurityFlagNodeModule(new PrimarySecurityFlagNodeModule(this)).build();
     }
 
-    private PrimarySecurityFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PrimarySecurityFlagNode> getRuleProvider() {
         return component.getPrimarySecurityFlagNodeRuleProvider();
     }
 

@@ -38,7 +38,7 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
         this.component = builder.setProductFeeNodeModule(new ProductFeeNodeModule(this)).build();
     }
 
-    private ProductFeeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductFeeNode> getRuleProvider() {
         return component.getProductFeeNodeRuleProvider();
     }
 

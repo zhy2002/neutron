@@ -23,7 +23,7 @@ public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyN
         this.component = builder.setCompanyResponsibleLendNodeModule(new CompanyResponsibleLendNodeModule(this)).build();
     }
 
-    private CompanyResponsibleLendNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyResponsibleLendNode> getRuleProvider() {
         return component.getCompanyResponsibleLendNodeRuleProvider();
     }
 

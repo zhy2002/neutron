@@ -41,7 +41,7 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
         this.component = builder.setSavingsAccountNodeModule(new SavingsAccountNodeModule(this)).build();
     }
 
-    private SavingsAccountNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsAccountNode> getRuleProvider() {
         return component.getSavingsAccountNodeRuleProvider();
     }
 

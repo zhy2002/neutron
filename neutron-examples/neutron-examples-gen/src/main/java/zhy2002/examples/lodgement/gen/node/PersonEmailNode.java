@@ -24,7 +24,7 @@ public class PersonEmailNode extends EmailNode<PersonContactNode> {
         this.component = builder.setPersonEmailNodeModule(new PersonEmailNodeModule(this)).build();
     }
 
-    private PersonEmailNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonEmailNode> getRuleProvider() {
         return component.getPersonEmailNodeRuleProvider();
     }
 

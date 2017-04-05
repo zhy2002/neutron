@@ -23,7 +23,7 @@ public class VehicleOwnershipListNode extends OwnershipListNode<MotorVehicleNode
         this.component = builder.setVehicleOwnershipListNodeModule(new VehicleOwnershipListNodeModule(this)).build();
     }
 
-    private VehicleOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<VehicleOwnershipListNode> getRuleProvider() {
         return component.getVehicleOwnershipListNodeRuleProvider();
     }
 

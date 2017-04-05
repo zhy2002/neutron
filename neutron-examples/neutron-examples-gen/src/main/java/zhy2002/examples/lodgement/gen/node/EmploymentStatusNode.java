@@ -26,7 +26,7 @@ public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
         this.component = builder.setEmploymentStatusNodeModule(new EmploymentStatusNodeModule(this)).build();
     }
 
-    private EmploymentStatusNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmploymentStatusNode> getRuleProvider() {
         return component.getEmploymentStatusNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class EmploymentStatusNode extends StringUiNode<EmployedNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

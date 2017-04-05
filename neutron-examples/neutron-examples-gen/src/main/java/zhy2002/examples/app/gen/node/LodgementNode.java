@@ -37,7 +37,7 @@ public class LodgementNode extends ObjectUiNode<VoidUiNode> {
         this.component = builder.setLodgementNodeModule(new LodgementNodeModule(this)).build();
     }
 
-    private LodgementNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LodgementNode> getRuleProvider() {
         return component.getLodgementNodeRuleProvider();
     }
 

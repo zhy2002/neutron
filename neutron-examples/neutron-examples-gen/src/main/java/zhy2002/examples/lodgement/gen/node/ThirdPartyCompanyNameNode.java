@@ -23,7 +23,7 @@ public class ThirdPartyCompanyNameNode extends StringUiNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyCompanyNameNodeModule(new ThirdPartyCompanyNameNodeModule(this)).build();
     }
 
-    private ThirdPartyCompanyNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyCompanyNameNode> getRuleProvider() {
         return component.getThirdPartyCompanyNameNodeRuleProvider();
     }
 

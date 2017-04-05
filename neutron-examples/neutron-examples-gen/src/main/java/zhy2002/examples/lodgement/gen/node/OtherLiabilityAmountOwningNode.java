@@ -24,7 +24,7 @@ public class OtherLiabilityAmountOwningNode extends BaseCurrencyNode<OtherLiabil
         this.component = builder.setOtherLiabilityAmountOwningNodeModule(new OtherLiabilityAmountOwningNodeModule(this)).build();
     }
 
-    private OtherLiabilityAmountOwningNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityAmountOwningNode> getRuleProvider() {
         return component.getOtherLiabilityAmountOwningNodeRuleProvider();
     }
 

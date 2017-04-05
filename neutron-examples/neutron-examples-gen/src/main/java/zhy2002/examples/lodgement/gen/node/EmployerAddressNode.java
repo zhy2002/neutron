@@ -24,7 +24,7 @@ public class EmployerAddressNode extends AddressNode<EmployedNode> {
         this.component = builder.setEmployerAddressNodeModule(new EmployerAddressNodeModule(this)).build();
     }
 
-    private EmployerAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<EmployerAddressNode> getRuleProvider() {
         return component.getEmployerAddressNodeRuleProvider();
     }
 

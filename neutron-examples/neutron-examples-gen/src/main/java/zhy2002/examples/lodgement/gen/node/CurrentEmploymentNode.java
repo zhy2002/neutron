@@ -24,7 +24,7 @@ public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListN
         this.component = builder.setCurrentEmploymentNodeModule(new CurrentEmploymentNodeModule(this)).build();
     }
 
-    private CurrentEmploymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CurrentEmploymentNode> getRuleProvider() {
         return component.getCurrentEmploymentNodeRuleProvider();
     }
 

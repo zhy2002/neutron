@@ -23,7 +23,7 @@ public class TrustBeneficiaryClassNode extends StringUiNode<TrustBeneficiaryClas
         this.component = builder.setTrustBeneficiaryClassNodeModule(new TrustBeneficiaryClassNodeModule(this)).build();
     }
 
-    private TrustBeneficiaryClassNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustBeneficiaryClassNode> getRuleProvider() {
         return component.getTrustBeneficiaryClassNodeRuleProvider();
     }
 

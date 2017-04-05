@@ -23,7 +23,7 @@ public class AccessContactFirstNameNode extends StringUiNode<AccessNode> {
         this.component = builder.setAccessContactFirstNameNodeModule(new AccessContactFirstNameNodeModule(this)).build();
     }
 
-    private AccessContactFirstNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AccessContactFirstNameNode> getRuleProvider() {
         return component.getAccessContactFirstNameNodeRuleProvider();
     }
 

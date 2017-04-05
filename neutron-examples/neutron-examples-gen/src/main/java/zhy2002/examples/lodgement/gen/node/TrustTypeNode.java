@@ -26,7 +26,7 @@ public class TrustTypeNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustTypeNodeModule(new TrustTypeNodeModule(this)).build();
     }
 
-    private TrustTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustTypeNode> getRuleProvider() {
         return component.getTrustTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class TrustTypeNode extends StringUiNode<BaseTrustNode<?>> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

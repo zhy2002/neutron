@@ -47,7 +47,7 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
         this.component = builder.setExistingMortgageNodeModule(new ExistingMortgageNodeModule(this)).build();
     }
 
-    private ExistingMortgageNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExistingMortgageNode> getRuleProvider() {
         return component.getExistingMortgageNodeRuleProvider();
     }
 

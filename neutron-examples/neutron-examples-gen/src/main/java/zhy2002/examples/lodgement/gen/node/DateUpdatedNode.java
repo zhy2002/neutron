@@ -23,7 +23,7 @@ public class DateUpdatedNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setDateUpdatedNodeModule(new DateUpdatedNodeModule(this)).build();
     }
 
-    private DateUpdatedNodeRuleProvider getRuleProvider() {
+    private RuleProvider<DateUpdatedNode> getRuleProvider() {
         return component.getDateUpdatedNodeRuleProvider();
     }
 

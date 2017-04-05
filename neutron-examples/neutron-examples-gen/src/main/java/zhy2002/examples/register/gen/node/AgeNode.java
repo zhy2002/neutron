@@ -24,7 +24,7 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
         this.component = builder.setAgeNodeModule(new AgeNodeModule(this)).build();
     }
 
-    private AgeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<AgeNode> getRuleProvider() {
         return component.getAgeNodeRuleProvider();
     }
 

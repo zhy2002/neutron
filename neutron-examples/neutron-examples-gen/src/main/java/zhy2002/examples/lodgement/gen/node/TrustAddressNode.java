@@ -23,7 +23,7 @@ public class TrustAddressNode extends AddressNode<BaseTrustNode<?>> {
         this.component = builder.setTrustAddressNodeModule(new TrustAddressNodeModule(this)).build();
     }
 
-    private TrustAddressNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustAddressNode> getRuleProvider() {
         return component.getTrustAddressNodeRuleProvider();
     }
 

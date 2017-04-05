@@ -30,7 +30,7 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
         this.component = builder.setExpenseListNodeModule(new ExpenseListNodeModule(this)).build();
     }
 
-    private ExpenseListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExpenseListNode> getRuleProvider() {
         return component.getExpenseListNodeRuleProvider();
     }
 

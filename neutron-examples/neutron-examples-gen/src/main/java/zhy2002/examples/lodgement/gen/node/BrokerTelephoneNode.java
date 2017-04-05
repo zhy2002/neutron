@@ -24,7 +24,7 @@ public class BrokerTelephoneNode extends TelephoneNode<SubmissionNode> {
         this.component = builder.setBrokerTelephoneNodeModule(new BrokerTelephoneNodeModule(this)).build();
     }
 
-    private BrokerTelephoneNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BrokerTelephoneNode> getRuleProvider() {
         return component.getBrokerTelephoneNodeRuleProvider();
     }
 

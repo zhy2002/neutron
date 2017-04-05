@@ -23,7 +23,7 @@ public class StatusNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setStatusNodeModule(new StatusNodeModule(this)).build();
     }
 
-    private StatusNodeRuleProvider getRuleProvider() {
+    private RuleProvider<StatusNode> getRuleProvider() {
         return component.getStatusNodeRuleProvider();
     }
 

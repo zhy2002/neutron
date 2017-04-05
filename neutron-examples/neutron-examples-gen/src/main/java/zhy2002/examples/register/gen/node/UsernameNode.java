@@ -24,7 +24,7 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
         this.component = builder.setUsernameNodeModule(new UsernameNodeModule(this)).build();
     }
 
-    private UsernameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<UsernameNode> getRuleProvider() {
         return component.getUsernameNodeRuleProvider();
     }
 

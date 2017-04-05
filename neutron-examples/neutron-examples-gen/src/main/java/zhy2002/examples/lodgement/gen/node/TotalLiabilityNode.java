@@ -24,7 +24,7 @@ public class TotalLiabilityNode extends BaseCurrencyNode<FinancialPositionNode> 
         this.component = builder.setTotalLiabilityNodeModule(new TotalLiabilityNodeModule(this)).build();
     }
 
-    private TotalLiabilityNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TotalLiabilityNode> getRuleProvider() {
         return component.getTotalLiabilityNodeRuleProvider();
     }
 

@@ -42,7 +42,7 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         this.component = builder.setOtherLiabilityNodeModule(new OtherLiabilityNodeModule(this)).build();
     }
 
-    private OtherLiabilityNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherLiabilityNode> getRuleProvider() {
         return component.getOtherLiabilityNodeRuleProvider();
     }
 

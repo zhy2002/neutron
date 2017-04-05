@@ -23,7 +23,7 @@ public class ProductRepaymentFrequencyNode extends StringUiNode<ProductFeaturesN
         this.component = builder.setProductRepaymentFrequencyNodeModule(new ProductRepaymentFrequencyNodeModule(this)).build();
     }
 
-    private ProductRepaymentFrequencyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductRepaymentFrequencyNode> getRuleProvider() {
         return component.getProductRepaymentFrequencyNodeRuleProvider();
     }
 

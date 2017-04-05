@@ -23,7 +23,7 @@ public class OtherIncomePreviousYearNode extends BooleanUiNode<OtherIncomeNode> 
         this.component = builder.setOtherIncomePreviousYearNodeModule(new OtherIncomePreviousYearNodeModule(this)).build();
     }
 
-    private OtherIncomePreviousYearNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherIncomePreviousYearNode> getRuleProvider() {
         return component.getOtherIncomePreviousYearNodeRuleProvider();
     }
 

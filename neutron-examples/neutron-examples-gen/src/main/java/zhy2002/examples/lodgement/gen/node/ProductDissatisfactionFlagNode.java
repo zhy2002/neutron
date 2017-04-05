@@ -23,7 +23,7 @@ public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescrip
         this.component = builder.setProductDissatisfactionFlagNodeModule(new ProductDissatisfactionFlagNodeModule(this)).build();
     }
 
-    private ProductDissatisfactionFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductDissatisfactionFlagNode> getRuleProvider() {
         return component.getProductDissatisfactionFlagNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class CompanyTelephoneNode extends TelephoneNode<CompanyContactNode> {
         this.component = builder.setCompanyTelephoneNodeModule(new CompanyTelephoneNodeModule(this)).build();
     }
 
-    private CompanyTelephoneNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyTelephoneNode> getRuleProvider() {
         return component.getCompanyTelephoneNodeRuleProvider();
     }
 

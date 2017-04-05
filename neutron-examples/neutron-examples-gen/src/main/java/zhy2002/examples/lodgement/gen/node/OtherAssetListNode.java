@@ -30,7 +30,7 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
         this.component = builder.setOtherAssetListNodeModule(new OtherAssetListNodeModule(this)).build();
     }
 
-    private OtherAssetListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<OtherAssetListNode> getRuleProvider() {
         return component.getOtherAssetListNodeRuleProvider();
     }
 

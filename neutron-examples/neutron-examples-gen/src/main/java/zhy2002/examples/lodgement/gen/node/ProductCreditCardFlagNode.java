@@ -23,7 +23,7 @@ public class ProductCreditCardFlagNode extends BooleanUiNode<ProductFeaturesNode
         this.component = builder.setProductCreditCardFlagNodeModule(new ProductCreditCardFlagNodeModule(this)).build();
     }
 
-    private ProductCreditCardFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductCreditCardFlagNode> getRuleProvider() {
         return component.getProductCreditCardFlagNodeRuleProvider();
     }
 

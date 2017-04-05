@@ -24,7 +24,7 @@ public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
         this.component = builder.setBeingPurchasedFlagNodeModule(new BeingPurchasedFlagNodeModule(this)).build();
     }
 
-    private BeingPurchasedFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BeingPurchasedFlagNode> getRuleProvider() {
         return component.getBeingPurchasedFlagNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
         this.component = builder.setProductAccountHolderListNodeModule(new ProductAccountHolderListNodeModule(this)).build();
     }
 
-    private ProductAccountHolderListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductAccountHolderListNode> getRuleProvider() {
         return component.getProductAccountHolderListNodeRuleProvider();
     }
 

@@ -101,7 +101,7 @@ rootType:
         - typeName: TitleNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -125,7 +125,7 @@ rootType:
         - typeName: GenderNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -153,7 +153,7 @@ rootType:
         - typeName: ApplicationTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -163,7 +163,7 @@ rootType:
         - typeName: MaritalStatusNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -182,7 +182,7 @@ rootType:
         - typeName: HousingStatusNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -320,7 +320,7 @@ rootType:
         - typeName: CompanyApplicationTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -362,7 +362,7 @@ rootType:
         - typeName: CompanyRegistrationStateNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.AUSTRALIAN_STATES.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -454,7 +454,7 @@ rootType:
           - typeName: SavingsTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE.toArray()}
             - {propertyName: required, value: 'true'}
@@ -500,7 +500,7 @@ rootType:
           - typeName: VehicleYearNode
             baseTypeName: BigDecimalUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: required, value: 'true'}
             - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
@@ -528,7 +528,7 @@ rootType:
           - typeName: OtherAssetTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.OTHER_ASSET_TYPE.toArray()}
             - {propertyName: required, value: 'true'}
@@ -570,7 +570,7 @@ rootType:
           - typeName: CreditCardTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE.toArray()}
             - {propertyName: required, value: 'true'}
@@ -631,7 +631,7 @@ rootType:
           - typeName: LoanTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE.toArray()}
             - {propertyName: required, value: 'true'}
@@ -689,7 +689,7 @@ rootType:
           - typeName: OtherLiabilityTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE.toArray()}
             - {propertyName: required, value: 'true'}
@@ -743,7 +743,7 @@ rootType:
         - typeName: ExpenseTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: ApplicationNodeConstants.EXPENSE_TYPE.toArray()}
           - {propertyName: required, value: 'true'}
@@ -928,7 +928,7 @@ rootType:
         - typeName: PropertyTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -936,7 +936,7 @@ rootType:
         - typeName: PropertySubTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -964,7 +964,7 @@ rootType:
         - typeName: AccessContactTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE.toArray()'}
           rules:
@@ -977,7 +977,7 @@ rootType:
         - typeName: AccessContactTitleNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
 
@@ -1047,7 +1047,7 @@ rootType:
           - typeName: ProductGroupNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP.toArray()'}
             rules:
@@ -1056,21 +1056,21 @@ rootType:
           - typeName: ProductNameNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME.toArray()'}
 
           - typeName: ProductLoanPrimaryPurposeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE.toArray()'}
 
           - typeName: ProductLendingPurposeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE.toArray()'}
 
@@ -1083,7 +1083,7 @@ rootType:
           - typeName: ProductPaymentTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object}
+            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.PAYMENT_TYPE.toArray()'}
 
@@ -1187,7 +1187,7 @@ rootType:
         - typeName: ContributionTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE.toArray()}
           - {propertyName: required, value: 'true'}
@@ -1224,7 +1224,7 @@ rootType:
         - typeName: FeeTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: options, value: ApplicationNodeConstants.PRODUCT_FEE_TYPE.toArray()}
@@ -1243,7 +1243,7 @@ rootType:
         - typeName: FeePayFromNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: options, value: ApplicationNodeConstants.FEE_FROM_TYPE.toArray()}
@@ -1307,7 +1307,7 @@ rootType:
         - typeName: ThirdPartyTypeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: options, value: ApplicationNodeConstants.THIRD_PARTY_TYPE.toArray()}
@@ -1321,7 +1321,7 @@ rootType:
         - typeName: ThirdPartyDescriptionNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
           - {propertyName: options, value: ApplicationNodeConstants.NEXT_KIN_TYPE.toArray()}
@@ -1329,7 +1329,7 @@ rootType:
         - typeName: ThirdPartyTitleNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
           - {propertyName: required, value: 'true'}
@@ -1488,7 +1488,7 @@ commonTypes:
   - typeName: MonthNode
     baseTypeName: BigDecimalUiNode
     properties:
-    - {name: options, typeName: Object}
+    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: required, value: 'true'}
     - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE.toArray()}
@@ -1496,7 +1496,7 @@ commonTypes:
   - typeName: YearNode
     baseTypeName: BigDecimalUiNode
     properties:
-    - {name: options, typeName: Object}
+    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: required, value: 'true'}
     - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
@@ -1552,7 +1552,7 @@ commonTypes:
   - typeName: EmploymentTypeNode
     baseTypeName: StringUiNode
     properties:
-    - {name: options, typeName: Object}
+    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray()'}
     - {propertyName: value, value: '"payeEmployedNode"'}
@@ -1606,7 +1606,7 @@ commonTypes:
     - typeName: EmploymentStatusNode
       baseTypeName: StringUiNode
       properties:
-      - {name: options, typeName: Object}
+      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
       - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray()'}
       - {propertyName: required, value: 'true'}
@@ -1665,7 +1665,7 @@ commonTypes:
     - typeName: StudentTypeNode
       baseTypeName: StringUiNode
       properties:
-      - {name: options, typeName: Object}
+      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
       - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE.toArray()'}
 
@@ -1705,7 +1705,7 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
-  - {name: options, typeName: Object}
+  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
   - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE.toArray()'}
 
@@ -1714,7 +1714,7 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
-  - {name: options, typeName: Object}
+  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
   - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
 
@@ -1834,14 +1834,14 @@ commonTypes:
         - typeName: ResponsibleTypeOfChangeNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE.toArray()}
 
         - typeName: ResponsibleMitigationMethodNode
           baseTypeName: StringUiNode
           properties:
-          - {name: options, typeName: Object}
+          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray()}
 
@@ -1870,14 +1870,14 @@ commonTypes:
     - typeName: OtherIncomeTypeNode
       baseTypeName: StringUiNode
       properties:
-      - {name: options, typeName: Object}
+      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
       - {propertyName: required, value: 'true'}
 
     - typeName: OtherIncomeAddBackTypeNode
       baseTypeName: StringUiNode
       properties:
-      - {name: options, typeName: Object}
+      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
       - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
 
@@ -1945,7 +1945,7 @@ commonTypes:
   - typeName: TrustTypeNode
     baseTypeName: StringUiNode
     properties:
-    - {name: options, typeName: Object}
+    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
     rules:
@@ -1992,7 +1992,7 @@ commonTypes:
   parentBaseTypeName: ParentUiNode<?>
   baseTypeName: StringUiNode
   properties:
-  - {name: options, typeName: Object}
+  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
   - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
   - {propertyName: required, value: 'true'}

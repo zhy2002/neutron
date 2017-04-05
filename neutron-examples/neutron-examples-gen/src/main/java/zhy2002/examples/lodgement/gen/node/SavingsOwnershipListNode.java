@@ -23,7 +23,7 @@ public class SavingsOwnershipListNode extends OwnershipListNode<SavingsAccountNo
         this.component = builder.setSavingsOwnershipListNodeModule(new SavingsOwnershipListNodeModule(this)).build();
     }
 
-    private SavingsOwnershipListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SavingsOwnershipListNode> getRuleProvider() {
         return component.getSavingsOwnershipListNodeRuleProvider();
     }
 

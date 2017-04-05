@@ -26,7 +26,7 @@ public class ThirdPartyDescriptionNode extends StringUiNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyDescriptionNodeModule(new ThirdPartyDescriptionNodeModule(this)).build();
     }
 
-    private ThirdPartyDescriptionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyDescriptionNode> getRuleProvider() {
         return component.getThirdPartyDescriptionNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class ThirdPartyDescriptionNode extends StringUiNode<RelatedPartyNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

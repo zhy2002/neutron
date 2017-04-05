@@ -23,7 +23,7 @@ public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNod
         this.component = builder.setPersonResponsibleLendNodeModule(new PersonResponsibleLendNodeModule(this)).build();
     }
 
-    private PersonResponsibleLendNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PersonResponsibleLendNode> getRuleProvider() {
         return component.getPersonResponsibleLendNodeRuleProvider();
     }
 

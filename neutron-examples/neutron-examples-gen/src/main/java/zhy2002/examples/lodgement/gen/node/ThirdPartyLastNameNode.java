@@ -24,7 +24,7 @@ public class ThirdPartyLastNameNode extends StringUiNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyLastNameNodeModule(new ThirdPartyLastNameNodeModule(this)).build();
     }
 
-    private ThirdPartyLastNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyLastNameNode> getRuleProvider() {
         return component.getThirdPartyLastNameNodeRuleProvider();
     }
 

@@ -23,7 +23,7 @@ public class MortgageMonthlyRepaymentNode extends BaseCurrencyNode<ExistingMortg
         this.component = builder.setMortgageMonthlyRepaymentNodeModule(new MortgageMonthlyRepaymentNodeModule(this)).build();
     }
 
-    private MortgageMonthlyRepaymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MortgageMonthlyRepaymentNode> getRuleProvider() {
         return component.getMortgageMonthlyRepaymentNodeRuleProvider();
     }
 

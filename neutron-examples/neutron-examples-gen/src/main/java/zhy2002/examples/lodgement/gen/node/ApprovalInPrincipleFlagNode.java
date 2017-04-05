@@ -24,7 +24,7 @@ public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode> {
         this.component = builder.setApprovalInPrincipleFlagNodeModule(new ApprovalInPrincipleFlagNodeModule(this)).build();
     }
 
-    private ApprovalInPrincipleFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ApprovalInPrincipleFlagNode> getRuleProvider() {
         return component.getApprovalInPrincipleFlagNodeRuleProvider();
     }
 

@@ -44,7 +44,7 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
         this.component = builder.setCompanyContactNodeModule(new CompanyContactNodeModule(this)).build();
     }
 
-    private CompanyContactNodeRuleProvider getRuleProvider() {
+    private RuleProvider<CompanyContactNode> getRuleProvider() {
         return component.getCompanyContactNodeRuleProvider();
     }
 

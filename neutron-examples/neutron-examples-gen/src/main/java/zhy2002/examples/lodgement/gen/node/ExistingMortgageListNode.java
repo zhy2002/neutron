@@ -30,7 +30,7 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
         this.component = builder.setExistingMortgageListNodeModule(new ExistingMortgageListNodeModule(this)).build();
     }
 
-    private ExistingMortgageListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ExistingMortgageListNode> getRuleProvider() {
         return component.getExistingMortgageListNodeRuleProvider();
     }
 

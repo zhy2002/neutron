@@ -24,7 +24,7 @@ public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentN
         this.component = builder.setRetiredOnBenefitFlagNodeModule(new RetiredOnBenefitFlagNodeModule(this)).build();
     }
 
-    private RetiredOnBenefitFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RetiredOnBenefitFlagNode> getRuleProvider() {
         return component.getRetiredOnBenefitFlagNodeRuleProvider();
     }
 

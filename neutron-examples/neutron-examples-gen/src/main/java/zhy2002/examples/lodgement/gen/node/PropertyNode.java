@@ -44,7 +44,7 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         this.component = builder.setPropertyNodeModule(new PropertyNodeModule(this)).build();
     }
 
-    private PropertyNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PropertyNode> getRuleProvider() {
         return component.getPropertyNodeRuleProvider();
     }
 

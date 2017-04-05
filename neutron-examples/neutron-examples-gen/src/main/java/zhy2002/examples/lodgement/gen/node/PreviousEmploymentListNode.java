@@ -31,7 +31,7 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
         this.component = builder.setPreviousEmploymentListNodeModule(new PreviousEmploymentListNodeModule(this)).build();
     }
 
-    private PreviousEmploymentListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PreviousEmploymentListNode> getRuleProvider() {
         return component.getPreviousEmploymentListNodeRuleProvider();
     }
 

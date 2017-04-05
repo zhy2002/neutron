@@ -23,7 +23,7 @@ public class ProductTotalLvrLmiNode extends BasePercentageNode<ProductsNode> {
         this.component = builder.setProductTotalLvrLmiNodeModule(new ProductTotalLvrLmiNodeModule(this)).build();
     }
 
-    private ProductTotalLvrLmiNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductTotalLvrLmiNode> getRuleProvider() {
         return component.getProductTotalLvrLmiNodeRuleProvider();
     }
 

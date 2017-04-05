@@ -30,7 +30,7 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         this.component = builder.setTrustBeneficiaryClassListNodeModule(new TrustBeneficiaryClassListNodeModule(this)).build();
     }
 
-    private TrustBeneficiaryClassListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustBeneficiaryClassListNode> getRuleProvider() {
         return component.getTrustBeneficiaryClassListNodeRuleProvider();
     }
 

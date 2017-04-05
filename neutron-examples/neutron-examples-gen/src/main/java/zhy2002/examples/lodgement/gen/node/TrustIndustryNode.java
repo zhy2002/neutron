@@ -23,7 +23,7 @@ public class TrustIndustryNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustIndustryNodeModule(new TrustIndustryNodeModule(this)).build();
     }
 
-    private TrustIndustryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<TrustIndustryNode> getRuleProvider() {
         return component.getTrustIndustryNodeRuleProvider();
     }
 

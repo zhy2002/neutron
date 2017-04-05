@@ -24,7 +24,7 @@ public class LastNameNode extends StringUiNode<PersonGeneralNode> {
         this.component = builder.setLastNameNodeModule(new LastNameNodeModule(this)).build();
     }
 
-    private LastNameNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LastNameNode> getRuleProvider() {
         return component.getLastNameNodeRuleProvider();
     }
 

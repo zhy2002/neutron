@@ -23,7 +23,7 @@ public class ThirdPartyEmailNode extends StringUiNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyEmailNodeModule(new ThirdPartyEmailNodeModule(this)).build();
     }
 
-    private ThirdPartyEmailNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyEmailNode> getRuleProvider() {
         return component.getThirdPartyEmailNodeRuleProvider();
     }
 

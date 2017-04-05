@@ -31,7 +31,7 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
         this.component = builder.setRealEstateListNodeModule(new RealEstateListNodeModule(this)).build();
     }
 
-    private RealEstateListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RealEstateListNode> getRuleProvider() {
         return component.getRealEstateListNodeRuleProvider();
     }
 

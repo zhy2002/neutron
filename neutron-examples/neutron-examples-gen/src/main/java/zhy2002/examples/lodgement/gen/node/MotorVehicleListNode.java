@@ -30,7 +30,7 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
         this.component = builder.setMotorVehicleListNodeModule(new MotorVehicleListNodeModule(this)).build();
     }
 
-    private MotorVehicleListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<MotorVehicleListNode> getRuleProvider() {
         return component.getMotorVehicleListNodeRuleProvider();
     }
 

@@ -37,7 +37,7 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
         this.component = builder.setLiabilitiesNodeModule(new LiabilitiesNodeModule(this)).build();
     }
 
-    private LiabilitiesNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LiabilitiesNode> getRuleProvider() {
         return component.getLiabilitiesNodeRuleProvider();
     }
 

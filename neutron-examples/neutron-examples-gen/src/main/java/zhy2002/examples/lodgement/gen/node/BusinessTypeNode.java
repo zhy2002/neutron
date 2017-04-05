@@ -23,7 +23,7 @@ public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
         this.component = builder.setBusinessTypeNodeModule(new BusinessTypeNodeModule(this)).build();
     }
 
-    private BusinessTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<BusinessTypeNode> getRuleProvider() {
         return component.getBusinessTypeNodeRuleProvider();
     }
 

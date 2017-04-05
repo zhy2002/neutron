@@ -43,7 +43,7 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
         this.component = builder.setSubmissionNodeModule(new SubmissionNodeModule(this)).build();
     }
 
-    private SubmissionNodeRuleProvider getRuleProvider() {
+    private RuleProvider<SubmissionNode> getRuleProvider() {
         return component.getSubmissionNodeRuleProvider();
     }
 

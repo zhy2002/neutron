@@ -30,7 +30,7 @@ public class ProductListNode extends ListUiNode<ProductsNode,ProductNode> {
         this.component = builder.setProductListNodeModule(new ProductListNodeModule(this)).build();
     }
 
-    private ProductListNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ProductListNode> getRuleProvider() {
         return component.getProductListNodeRuleProvider();
     }
 

@@ -26,7 +26,7 @@ public class StudentTypeNode extends StringUiNode<UnemployedNode> {
         this.component = builder.setStudentTypeNodeModule(new StudentTypeNodeModule(this)).build();
     }
 
-    private StudentTypeNodeRuleProvider getRuleProvider() {
+    private RuleProvider<StudentTypeNode> getRuleProvider() {
         return component.getStudentTypeNodeRuleProvider();
     }
 
@@ -51,12 +51,12 @@ public class StudentTypeNode extends StringUiNode<UnemployedNode> {
     }
 
     @JsMethod
-    public Object getOptions() {
+    public Object[] getOptions() {
         return getStateValue(ApplicationNodeConstants.OPTIONS);
     }
 
     @JsMethod
-    public void setOptions(Object value) {
+    public void setOptions(Object[] value) {
         setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, value);
     }
 

@@ -24,7 +24,7 @@ public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode> {
         this.component = builder.setGrossYearlySalaryNodeModule(new GrossYearlySalaryNodeModule(this)).build();
     }
 
-    private GrossYearlySalaryNodeRuleProvider getRuleProvider() {
+    private RuleProvider<GrossYearlySalaryNode> getRuleProvider() {
         return component.getGrossYearlySalaryNodeRuleProvider();
     }
 

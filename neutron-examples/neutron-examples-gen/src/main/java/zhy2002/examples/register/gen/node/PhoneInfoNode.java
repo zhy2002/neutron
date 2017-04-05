@@ -37,7 +37,7 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         this.component = builder.setPhoneInfoNodeModule(new PhoneInfoNodeModule(this)).build();
     }
 
-    private PhoneInfoNodeRuleProvider getRuleProvider() {
+    private RuleProvider<PhoneInfoNode> getRuleProvider() {
         return component.getPhoneInfoNodeRuleProvider();
     }
 

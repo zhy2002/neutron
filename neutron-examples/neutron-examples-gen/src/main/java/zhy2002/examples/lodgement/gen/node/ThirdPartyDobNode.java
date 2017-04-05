@@ -23,7 +23,7 @@ public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyDobNodeModule(new ThirdPartyDobNodeModule(this)).build();
     }
 
-    private ThirdPartyDobNodeRuleProvider getRuleProvider() {
+    private RuleProvider<ThirdPartyDobNode> getRuleProvider() {
         return component.getThirdPartyDobNodeRuleProvider();
     }
 

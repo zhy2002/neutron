@@ -23,7 +23,7 @@ public class LoanClearingFlagNode extends BooleanUiNode<LoanNode> {
         this.component = builder.setLoanClearingFlagNodeModule(new LoanClearingFlagNodeModule(this)).build();
     }
 
-    private LoanClearingFlagNodeRuleProvider getRuleProvider() {
+    private RuleProvider<LoanClearingFlagNode> getRuleProvider() {
         return component.getLoanClearingFlagNodeRuleProvider();
     }
 

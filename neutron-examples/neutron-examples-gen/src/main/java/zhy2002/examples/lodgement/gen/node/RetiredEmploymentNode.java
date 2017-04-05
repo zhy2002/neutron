@@ -36,7 +36,7 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
         this.component = builder.setRetiredEmploymentNodeModule(new RetiredEmploymentNodeModule(this)).build();
     }
 
-    private RetiredEmploymentNodeRuleProvider getRuleProvider() {
+    private RuleProvider<RetiredEmploymentNode> getRuleProvider() {
         return component.getRetiredEmploymentNodeRuleProvider();
     }
 
