@@ -12,6 +12,10 @@ public class ApplicationNodeFactory {
     }
 
     //todo factory methods for other profiles
+
+    public static ApplicationNode createCba() {
+        return DaggerCbaProfileComponent.create().provideApplicationNodeContext().getRootNode();
+    }
 }
 
 

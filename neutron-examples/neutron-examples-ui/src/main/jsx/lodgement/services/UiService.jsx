@@ -29,17 +29,25 @@ UiService.refreshApplicationList = () => {
     );
 };
 
+let cba = false;
+
 UiService.createApplicationNode = () => {
-    const node = window.GWT.ApplicationNodeFactory.create();
+    const node = cba ? window.GWT.ApplicationNodeFactory.createCba() : window.GWT.ApplicationNodeFactory.create();
     node.getIdNode().setValue(node.getUniqueId());
     const user = UiService.getCurrentUser();
     node.getOwningUserNode().setValue(user.username);
     node.getStatusNode().setValue('In Progress');
-    node.getLenderNode().setValue('NAB');
-    node.setNodeLabel('NAB');
+    if (cba) {
+        node.getLenderNode().setValue('CBA');
+        node.setNodeLabel('CBA');
+    } else {
+        node.getLenderNode().setValue('NAB');
+        node.setNodeLabel('NAB');
+    }
     const now = moment().format();
     node.getDateCreatedNode().setValue(now);
 
+    cba = !cba;
     return node;
 };
 

@@ -1,12 +1,15 @@
 package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
+import dagger.MembersInjector;
 import dagger.Module;
+import dagger.Provides;
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.di.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
 import zhy2002.examples.lodgement.rule.*;
@@ -18,7 +21,7 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 import java.util.List;
 
-@Module(includes = {ManifestModule.class, CustomModule.class})
+@Module(includes = {ManifestModule.class})
 public abstract class DefaultProfileModule {
 
     @Binds
@@ -152,6 +155,9 @@ public abstract class DefaultProfileModule {
     @Binds
     abstract RealEstateNodeRuleProvider provideRealEstateNodeRuleProvider(RealEstateNodeRuleProviderImpl impl);
 
+    @Binds
+    abstract ApplicationNodeChildProvider provideApplicationNodeChildProvider(ApplicationNodeChildProviderImpl impl);
+
 }
 
 @RealEstateNodeScope
@@ -259,5 +265,17 @@ class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {
         StringEnableSiblingRule rule = stringEnableSiblingRuleProvider.get();
         rule.setSiblingName("creditHistoryListNode");
         createdRules.add(rule);
+    }
+}
+
+@Singleton
+class ApplicationNodeChildProviderImpl extends ApplicationNodeChildProvider {
+
+    @Inject
+    public ApplicationNodeChildProviderImpl() {}
+
+    @Override
+    protected AddressRefListNode newAddressRefListNode(ApplicationNode parent, String name) {
+        return new AddressRefListNodeImpl(parent, name);
     }
 }
