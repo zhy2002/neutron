@@ -1,7 +1,7 @@
 todo 
 ----------------- 
 reduce the number of rules to fire onload. e.g. bypass all validation rules.
-add a root node type 
+
 
 1. context menu
 2. load initial values (as a part of node load) 
@@ -185,6 +185,8 @@ Problems
 14. integrate with font awesome
 
 15. implement router - navigate to view via url
+
+16. added a root node type 
 
 # Node Roles
 In the node hierarchy a node can have one of three roles:

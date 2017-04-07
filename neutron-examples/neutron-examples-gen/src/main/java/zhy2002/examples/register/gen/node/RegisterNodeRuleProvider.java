@@ -12,7 +12,7 @@ import zhy2002.neutron.rule.*;
 public class RegisterNodeRuleProvider implements RuleProvider<RegisterNode> {
 
     @Inject
-    ObjectUiNodeRuleProvider parentRuleProvider;
+    RootUiNodeRuleProvider parentRuleProvider;
 
     @Inject
     public RegisterNodeRuleProvider() {

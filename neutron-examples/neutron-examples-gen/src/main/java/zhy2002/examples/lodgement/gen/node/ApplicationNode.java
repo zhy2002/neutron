@@ -15,7 +15,7 @@ import zhy2002.examples.lodgement.gen.*;
 
 
 @Singleton
-public class ApplicationNode extends ObjectUiNode<VoidUiNode> {
+public class ApplicationNode extends RootUiNode<VoidUiNode> {
 
     private IdNode idNode;
     private StatusNode statusNode;

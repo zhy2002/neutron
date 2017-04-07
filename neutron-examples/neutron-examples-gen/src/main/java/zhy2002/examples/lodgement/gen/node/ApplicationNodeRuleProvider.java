@@ -14,7 +14,7 @@ import java.math.*;
 public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode> {
 
     @Inject
-    ObjectUiNodeRuleProvider parentRuleProvider;
+    RootUiNodeRuleProvider parentRuleProvider;
 
     @Inject
     public ApplicationNodeRuleProvider() {

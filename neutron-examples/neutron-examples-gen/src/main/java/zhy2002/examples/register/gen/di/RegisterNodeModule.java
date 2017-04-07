@@ -20,6 +20,10 @@ public class RegisterNodeModule {
         return owner;
     }
 
+    @Provides @RegisterNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+        return owner;
+    }
+
     @Provides @RegisterNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

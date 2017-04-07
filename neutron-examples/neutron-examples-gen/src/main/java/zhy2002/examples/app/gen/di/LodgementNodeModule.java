@@ -20,6 +20,10 @@ public class LodgementNodeModule {
         return owner;
     }
 
+    @Provides @LodgementNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+        return owner;
+    }
+
     @Provides @LodgementNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

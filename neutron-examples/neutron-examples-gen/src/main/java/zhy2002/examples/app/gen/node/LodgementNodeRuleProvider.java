@@ -12,7 +12,7 @@ import zhy2002.neutron.rule.*;
 public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {
 
     @Inject
-    ObjectUiNodeRuleProvider parentRuleProvider;
+    RootUiNodeRuleProvider parentRuleProvider;
 
     @Inject
     public LodgementNodeRuleProvider() {

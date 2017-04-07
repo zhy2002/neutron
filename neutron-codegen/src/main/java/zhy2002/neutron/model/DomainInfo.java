@@ -102,6 +102,7 @@ public class DomainInfo extends CodeGenInfo {
         getRootType().setDomainInfo(this);
         getRootType().setParentType(VOID_NODE_INFO);
         getRootType().setUnloadable(true);
+        getRootType().setBaseTypeName("RootUiNode");
         if (getRootType().isAbstractNode()) {
             logger.warning("Root node must be concrete, setting isAbstract to false");
             getRootType().setAbstractNode(false);

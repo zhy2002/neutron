@@ -20,6 +20,10 @@ public class ApplicationNodeModule {
         return owner;
     }
 
+    @Provides @ApplicationNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+        return owner;
+    }
+
     @Provides @ApplicationNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }

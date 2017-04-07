@@ -14,7 +14,7 @@ import zhy2002.examples.app.gen.*;
 
 
 @Singleton
-public class LodgementNode extends ObjectUiNode<VoidUiNode> {
+public class LodgementNode extends RootUiNode<VoidUiNode> {
 
     private AppManagerNode appManagerNode;
 

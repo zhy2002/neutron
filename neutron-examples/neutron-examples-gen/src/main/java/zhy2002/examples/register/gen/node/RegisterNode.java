@@ -15,7 +15,7 @@ import zhy2002.examples.register.gen.*;
 
 
 @Singleton
-public class RegisterNode extends ObjectUiNode<VoidUiNode> {
+public class RegisterNode extends RootUiNode<VoidUiNode> {
 
     private UsernameNode usernameNode;
     private EmailNode emailNode;

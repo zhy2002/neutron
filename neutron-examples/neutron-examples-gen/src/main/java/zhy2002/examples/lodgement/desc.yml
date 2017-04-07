@@ -1,7 +1,7 @@
 targetPackage: zhy2002.examples.lodgement
 rootType:
   typeName: ApplicationNode
-  baseTypeName: ObjectUiNode
+  baseTypeName: RootUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
   - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1}

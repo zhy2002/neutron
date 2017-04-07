@@ -56,4 +56,5 @@ public final class NeutronEventSubjects {
     public static final String SELECTED_NAME = "selectedName";
     public static final String MIN_ITEM_COUNT = "min_item_count";
     public static final String MAX_ITEM_COUNT = "max_item_count";
+    public static final String LOADING = "loading";
 }

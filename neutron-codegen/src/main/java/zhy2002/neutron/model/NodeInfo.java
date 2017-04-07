@@ -62,6 +62,18 @@ public class NodeInfo extends CodeGenInfo {
         objectUiNode.getBaseTypes().add(uiNode);
         FRAMEWORK_NODE_MAP.put(objectUiNode.getTypeName(), objectUiNode);
 
+        NodeInfo rootUiNode = new NodeInfo();
+        rootUiNode.setTypeName("RootUiNode");
+        rootUiNode.setGenericTypeName("RootUiNode<?>");
+        rootUiNode.setParentBaseTypeName("ObjectUiNode<?>");
+        rootUiNode.setBaseType(objectUiNode);
+        rootUiNode.setAbstractNode(true);
+        rootUiNode.getBaseTypes().add(rootUiNode);
+        rootUiNode.getBaseTypes().add(objectUiNode);
+        rootUiNode.getBaseTypes().add(parentUiNode);
+        rootUiNode.getBaseTypes().add(uiNode);
+        FRAMEWORK_NODE_MAP.put(rootUiNode.getTypeName(), rootUiNode);
+
         NodeInfo leafUiNode = new NodeInfo();
         leafUiNode.setTypeName("LeafUiNode");
         leafUiNode.setGenericTypeName("LeafUiNode<?,?>");
