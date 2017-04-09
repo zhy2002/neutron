@@ -2,7 +2,10 @@ package zhy2002.neutron;
 
 import java.util.List;
 
-interface UiNodeStatusListener {
+/**
+ * Implement this interface if interested in the life cycle phases of a UiNode.
+ */
+interface UiNodeLifeCycleListener {
 
     /**
      * Called when rules are created.

@@ -1,23 +1,29 @@
 todo 
 ----------------- 
 reduce the number of rules to fire onload. e.g. bypass all validation rules.
-
-
-1. context menu
+reduce memory consumption
 2. load initial values (as a part of node load) 
   - load value only or the full state?
-3. 
+7. simplify event binding api
+11. Generate per-profile constants and assets
+* Class level config  
+* state metadata (type and stuff)  
+* state property namespace or distinction between system property and user property  
+  
+
+1. context menu
 4. Per-lender config override
   - each profile (desc.yml) generate a separate profile (profile module and dependencies)
   - add an option to combine the node structure of multiple desc.yml files
   - support a tree of profiles
   - Use 'profile' dagger component/module to provide root node configured for a lender
-7. simplify event binding api 
-8. node query and injection in rules 
+ 
+8. node query and injection in rules
   - context.query("\ss\ee\tt[1]") node.query("$(host)\child\")
+
 9. implement rule priority
 10. i18n
-11. Generate per-profile constants and assets
+
 12. Visualization of node hierarchy (convert desc.yml to html)
 
 ### Engine - find a use case before doing these improvements
@@ -33,7 +39,7 @@ reduce the number of rules to fire onload. e.g. bypass all validation rules.
 * implement layout components to reduce duplication
 
 ### Node structure
-* Class level config
+
 * Consider adding MapUiNode which maps one UiNode to another.
 * Node/UI state copy and paste
 * query/reference/proxy nodes
@@ -49,13 +55,11 @@ reduce the number of rules to fire onload. e.g. bypass all validation rules.
 * hierarchical di
 * factor inheritance to composition once things get clearer
 * built in states
-* state metadata (type and stuff)
 * code gen xml overriding mechanism
 * performance changes
 * Design Ui node load/refresh/validate event
 * check for memory leak
 * tracing and visualization of rule firing / logging
-* state property namespace or distinction between system property and user property
 * allow user to customize ui, generate automatic fields
 * async rules
 * event bus for each node.

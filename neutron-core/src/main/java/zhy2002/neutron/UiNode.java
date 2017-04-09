@@ -12,31 +12,52 @@ import java.util.logging.Logger;
 
 /**
  * Base class for all ui nodes.
- * You should only access a node property via its getter and setter.
  */
-public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodeProperties {
+public abstract class UiNode<P extends ParentUiNode<?>> {
 
     private static final Logger logger = Logger.getLogger("UiNode");
     private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
 
-    private final P parent;
-    private final String name;
-    private String uniqueId;
+    /**
+     * The node context this node belongs to.
+     * Conceptually the context is the container of the whole node tree providing
+     * shared resources and services.
+     */
     private final UiNodeContext<?> context;
+    /**
+     * The parent node
+     * or null if this node is a root node.
+     */
+    private final P parent;
+    /**
+     * Name of the node. Name does not change during the life time of a node.
+     * Name of a list item node is its creation sequence number which is preserved when
+     * node hierarchy is serialized.
+     */
+    private final String name;
+    /**
+     * Globally unique id (across all contexts).
+     * This is either loaded from persistence source or auto generated.
+     */
+    private String uniqueId;
+    /**
+     * Cache the node path. Node path does not change with the node hierarchy structure.
+     */
+    private String path;
+    /**
+     * The life cycle status of this node.
+     */
     private NodeStatusEnum nodeStatus;
 
     /**
-     * Override property change tracking mode.
+     * Node level property change tracking mode Overrides.
      */
     private final Map<String, ChangeTrackingModeEnum> propertyChangeTrackingMode = new HashMap<>();
     /**
      * A copy of state before loading.
+     * When the node unloads it will restore to this state.
      */
     private Map<String, Object> preState;
-    /**
-     * Cache the node path.
-     */
-    private String path;
     /**
      * A map used to store current values of state properties.
      */
@@ -57,12 +78,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     /**
      * Offers a chance to run custom code on life cycle events.
      */
-    private final List<UiNodeStatusListener> statusListeners = new ArrayList<>();
+    private final List<UiNodeLifeCycleListener> lifeCycleListeners = new ArrayList<>();
     /**
      * Listeners that to be notified when this node changes.
      * At the moment node change means state change, add child or remove child.
      */
-    protected final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
+    private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
     /**
      * The constructor for a child node.
@@ -160,12 +181,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
     }
 
-    final boolean addStatusListener(UiNodeStatusListener listener) {
-        return this.statusListeners.add(listener);
+    final boolean addStatusListener(UiNodeLifeCycleListener listener) {
+        return this.lifeCycleListeners.add(listener);
     }
 
-    final boolean removeStatusListener(UiNodeStatusListener listener) {
-        return this.statusListeners.remove(listener);
+    final boolean removeStatusListener(UiNodeLifeCycleListener listener) {
+        return this.lifeCycleListeners.remove(listener);
     }
 
     final void addCreatedRule(UiNodeRule<?> createdRule) {
@@ -390,7 +411,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
             this.parent.addChild(this);
         }
 
-        for (UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeLifeCycleListener listener : lifeCycleListeners) {
             listener.exitAddToParent();
         }
 
@@ -432,7 +453,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
         addContent();
         loadContent();
 
-        for (UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeLifeCycleListener listener : lifeCycleListeners) {
             listener.exitLoad();
         }
         this.nodeStatus = NodeStatusEnum.Loaded;
@@ -460,7 +481,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
      */
     protected void addContent() {
         createRules(createdRules);
-        for (UiNodeStatusListener listener : statusListeners) {
+        for (UiNodeLifeCycleListener listener : lifeCycleListeners) {
             listener.postCreateRules(createdRules);
         }
         createdRules.forEach(UiNodeRule::addToOwner);
@@ -606,25 +627,21 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     //region ui node properties
 
     @JsMethod
-    @Override
     public String getVisibility() {
         return getStateValue(NeutronEventSubjects.VISIBILITY, "visible");
     }
 
     @JsMethod
-    @Override
     public void setVisibility(String value) {
         setStateValue(NeutronEventSubjects.VISIBILITY, String.class, value);
     }
 
     @JsMethod
-    @Override
     public boolean isDisabled() {
         return getStateValue(NeutronEventSubjects.DISABLED, Boolean.FALSE);
     }
 
     @JsMethod
-    @Override
     public void setDisabled(boolean value) {
         setStateValue(NeutronEventSubjects.DISABLED, Boolean.class, value);
     }
@@ -647,19 +664,16 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     @JsMethod
-    @Override
     public boolean isReadonly() {
         return getStateValue(NeutronEventSubjects.READONLY, Boolean.FALSE);
     }
 
     @JsMethod
-    @Override
     public void setReadonly(boolean value) {
         setStateValue(NeutronEventSubjects.READONLY, Boolean.class, value);
     }
 
     @JsMethod
-    @Override
     public boolean isDirty() {
         return false;
     }
@@ -667,7 +681,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     protected abstract void resetDirty();
 
     @JsMethod
-    @Override
     public String getNodeLabel() {
         String label = getStateValue(NeutronEventSubjects.NODE_LABEL);
         if (label != null)
@@ -677,13 +690,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     @JsMethod
-    @Override
     public void setNodeLabel(String value) {
         setStateValue(NeutronEventSubjects.NODE_LABEL, String.class, value);
     }
 
     @JsMethod
-    @Override
     public String getPathLabel() {
         String label = getStateValue(NeutronEventSubjects.PATH_LABEL);
         if (label != null)
@@ -713,30 +724,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> implements UiNodePropert
     }
 
     @JsMethod
-    @Override
     public void setPathLabel(String value) {
         setStateValue(NeutronEventSubjects.PATH_LABEL, String.class, value);
     }
 
     @JsMethod
-    @Override
     public ValidationErrorList getValidationErrorList() {
         return getStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.EMPTY);
     }
 
-    @Override
     public void setValidationErrorList(ValidationErrorList errors) {
         setStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
     }
 
     @JsMethod
-    @Override
     public boolean getLoadWithParent() {
         Object value = this.getStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT);
         return !Boolean.FALSE.equals(value);
     }
 
-    @Override
     public void setLoadWithParent(boolean value) {
         this.setStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT, value);
     }

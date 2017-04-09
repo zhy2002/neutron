@@ -9,7 +9,7 @@ import java.util.List;
  * If Multiple children of a ParentUiNode has the same class,
  * each one can have a different config identified by child name.
  */
-public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeStatusListener {
+public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeLifeCycleListener {
 
     private final N owner;
 
