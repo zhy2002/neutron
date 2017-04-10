@@ -70,12 +70,12 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     }
 
     @Override
-    public <T> void setStateValue(String key, Class<T> valueClass, T value, ChangeTrackingModeEnum mode) {
+    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
         if (!getContext().isInCycle()) {
             if (NeutronEventSubjects.VALUE.equals(key)) {
                 hasValue = value != null;
                 if (!hasValue) {
-                    super.setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, "", mode);
+                    super.setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, "");
                     return;
                 }
             } else if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
@@ -83,7 +83,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
             }
         }
 
-        super.setStateValue(key, valueClass, value, mode);
+        super.setStateValue(key, valueClass, value);
     }
 
     @JsMethod
@@ -97,8 +97,8 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     }
 
     @Override
-    protected void setStateValueInternal(String key, Object value) {
-        super.setStateValueInternal(key, value);
+    protected void setStateValueDirectly(String key, Object value) {
+        super.setStateValueDirectly(key, value);
         if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
             if (val == null && !ValueUtil.isEmpty(value.toString())) {

@@ -161,7 +161,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
     @Override
     protected void resetDirty() {
-        clearStateValueInternal(NeutronEventSubjects.DESCENDANT_DIRTY_COUNT);
+        clearStateValueDirectly(NeutronEventSubjects.DESCENDANT_DIRTY_COUNT);
     }
 
     public static class MaintainDirtyDescendantCountRule extends UiNodeRule<ParentUiNode<?>> {

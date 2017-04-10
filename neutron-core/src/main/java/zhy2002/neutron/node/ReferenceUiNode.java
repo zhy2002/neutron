@@ -38,12 +38,12 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     public final boolean isRemoveEmpty() {
-        Boolean result = getStateValueInternal(REMOVE_EMPTY);
+        Boolean result = getStateValueDirectly(REMOVE_EMPTY);
         return result != null && result;
     }
 
     public final void setRemoveEmpty(boolean value) {
-        setStateValueInternal(REMOVE_EMPTY, value);
+        setStateValueDirectly(REMOVE_EMPTY, value);
     }
 
 }

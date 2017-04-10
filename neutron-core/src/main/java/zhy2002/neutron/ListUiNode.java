@@ -84,7 +84,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     @JsMethod
     public N createItemWithName(String name) {
         NodeAddEvent<N> event = createItemAddEvent(name);
-        if (shouldChangeWithoutEvent()) {
+        if (shouldChangeDirectly()) {
             event.apply();
         } else {
             getContext().processEvent(event);
@@ -199,15 +199,15 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
 
     private void markDirty() {
         String childNames = getChildNames();
-        setStateValueInternal(NeutronEventSubjects.ORIGINAL_CHILD_NAMES, childNames);
+        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES, childNames);
         setSelfDirty(Boolean.TRUE);
     }
 
     private void tryClearDirty() {
         String childNames = getChildNames();
-        String originalChildNames = getStateValueInternal(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
+        String originalChildNames = getStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
         if (Objects.equals(childNames, originalChildNames)) {
-            clearStateValueInternal(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
+            clearStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
             setSelfDirty(Boolean.FALSE);
         }
     }

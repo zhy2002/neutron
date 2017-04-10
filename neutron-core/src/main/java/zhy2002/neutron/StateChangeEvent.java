@@ -35,12 +35,12 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
 
     @Override
     public void apply() {
-        getOrigin().setStateValueInternal(getStateKey(), getNewValue());
+        getOrigin().setStateValueDirectly(getStateKey(), getNewValue());
     }
 
     @Override
     public void revert() {
-        getOrigin().setStateValueInternal(getStateKey(), getOldValue());
+        getOrigin().setStateValueDirectly(getStateKey(), getOldValue());
     }
 
     StateChangeEvent<T> passThrough() {

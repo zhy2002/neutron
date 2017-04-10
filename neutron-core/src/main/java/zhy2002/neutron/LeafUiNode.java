@@ -43,8 +43,8 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     @Override
-    protected void setStateValueInternal(String key, Object value) {
-        super.setStateValueInternal(key, value);
+    protected void setStateValueDirectly(String key, Object value) {
+        super.setStateValueDirectly(key, value);
         if (NeutronEventSubjects.VALUE.equals(key)) {
             setHasValue(hasValue());
         }
@@ -56,11 +56,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     private void setOriginalValue(T value) {
-        setStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE, value);
+        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE, value);
     }
 
     public T getOriginalValue() {
-        return getStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE);
+        return getStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
     }
 
     private void makeDirty() {
@@ -69,7 +69,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     private void clearDirty() {
-        clearStateValueInternal(NeutronEventSubjects.ORIGINAL_VALUE);
+        clearStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
         setSelfDirty(Boolean.FALSE);
     }
 

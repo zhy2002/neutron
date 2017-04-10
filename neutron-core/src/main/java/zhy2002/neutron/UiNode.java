@@ -30,25 +30,26 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final P parent;
     /**
-     * Name of the node. Name does not change during the life time of a node.
+     * Name of the node, which is unique among siblings.
      * Name of a list item node is its creation sequence number which is preserved when
      * node hierarchy is serialized.
      */
     private final String name;
     /**
-     * Globally unique id (across all contexts).
-     * This is either loaded from persistence source or auto generated.
+     * Globally unique id (across all contexts). Unique id is assigned when
+     * this node is added to the node tree. The unique id will not change thereafter.
+     * In the same application there should not be two nodes with the same unique id.
      */
     private String uniqueId;
     /**
      * Cache the node path. Node path does not change with the node hierarchy structure.
+     * This is not put into state for debugging convenience.
      */
     private String path;
     /**
      * The life cycle status of this node.
      */
     private NodeStatusEnum nodeStatus;
-
     /**
      * Node level property change tracking mode Overrides.
      */
@@ -63,6 +64,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final Map<String, Object> state = new HashMap<>();
     /**
+     * Temporarily store debounced events.
+     */
+    private final Map<String, StateChangeEvent<?>> temporary = new HashMap<>();
+    /**
      * Rules added to this node before its loading time.
      * These rules are cached here until this node is loaded.
      */
@@ -76,17 +81,17 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final Map<UiNodeEventKey<?>, List<EventBinding>> attachedEventBindings = new HashMap<>();
     /**
-     * Offers a chance to run custom code on life cycle events.
+     * Offers a chance to run custom code at life cycle stages.
      */
     private final List<UiNodeLifeCycleListener> lifeCycleListeners = new ArrayList<>();
     /**
-     * Listeners that to be notified when this node changes.
+     * Listeners that are notified when this node changes.
      * At the moment node change means state change, add child or remove child.
      */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
     /**
-     * The constructor for a child node.
+     * Construct a child node.
      *
      * @param parent the parent node.
      * @param name   unique name within parent.
@@ -96,7 +101,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     /**
-     * The constructor used for a root node.
+     * The construct a root node.
      *
      * @param context the context instance.
      */
@@ -110,11 +115,21 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
 
+        //todo extract to property metadata
         setChangeTrackingMode(NeutronEventSubjects.HAS_VALUE, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.REQUIRED, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.DISABLED, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.SELF_DIRTY, ChangeTrackingModeEnum.Value);
         setChangeTrackingMode(NeutronEventSubjects.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
+    }
+
+    /**
+     * The context instance shared by the whole UiNode tree.
+     */
+    @JsMethod
+    @NotNull
+    public final UiNodeContext<?> getContext() {
+        return context;
     }
 
     /**
@@ -144,20 +159,46 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return uniqueId;
     }
 
-    public void setUniqueId(@NotNull String id) {
-        if (nodeStatus != NodeStatusEnum.Detached)
-            throw new UiNodeException("Cannot set unique id if the node is not detached.");
-        //todo ensure id is not already used and will not be used by other nodes.
-        this.uniqueId = id;
+    /**
+     * The implementation is generated in code.
+     *
+     * @return the concrete class (the first without the parent type parameter) of this node.
+     */
+    public abstract Class<?> getConcreteClass();
+
+    /**
+     * @return a simple string that identifies a type of node within its context.
+     */
+    @JsMethod
+    public final String getConcreteClassName() {
+        return getConcreteClass().getSimpleName();
     }
 
     /**
-     * The context instance shared by the whole UiNode tree.
+     * @return the path to a node within the node tree. Path does not change while the node is in the tree.
      */
     @JsMethod
-    @NotNull
-    public final UiNodeContext<?> getContext() {
-        return context;
+    public String getPath() {
+        if (getNodeStatus() == NodeStatusEnum.Detached)
+            return path = null;
+
+        if (path == null) {
+            Stack<String> stack = new Stack<>();
+            UiNode<?> node = this;
+            do {
+                stack.push(node.getName());
+                node = node.getParent();
+            } while (node != null);
+            StringBuilder stringBuilder = new StringBuilder();
+            while (!stack.isEmpty()) {
+                stringBuilder.append(stack.pop());
+                if (!stack.isEmpty()) {
+                    stringBuilder.append("/"); //node name cannot contain /
+                }
+            }
+            path = stringBuilder.toString();
+        }
+        return path;
     }
 
     /**
@@ -193,24 +234,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         createdRules.add(createdRule);
     }
 
-    /**
-     * @return the index in parent.
-     */
-    @JsMethod
-    public final int getIndex() {
-        Integer index = getStateValue(NeutronEventSubjects.INDEX);
-        return index == null ? -1 : index;
-    }
-
-    //set by parent node
-    final void setIndex(Integer index) {
-        setStateValue(NeutronEventSubjects.INDEX, Integer.class, index);
-    }
-
     //region state methods
 
     @SuppressWarnings("unchecked")
-    protected <T> T getStateValueInternal(String key) {
+    protected final <T> T getStateValueDirectly(String key) {
         return (T) state.get(key);
     }
 
@@ -220,7 +247,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @param key   state property key.
      * @param value state property value.
      */
-    protected void setStateValueInternal(String key, Object value) {
+    protected void setStateValueDirectly(String key, Object value) {
         if (value == null) {
             state.remove(key);
         } else {
@@ -228,30 +255,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
     }
 
-    protected void clearStateValueInternal(String key) {
+    final void clearStateValueDirectly(String key) {
         state.remove(key);
     }
 
-    private final Map<String, StateChangeEvent<?>> temporary = new HashMap<>();
-
     @SuppressWarnings("unchecked")
-    public <T> T getStateValue(String key, T defaultValue) {
+    public final <T> T getStateValue(String key, T defaultValue) {
         T value;
         StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(key);
         if (event != null) {
             value = event.getNewValue();
         } else {
-            value = getStateValueInternal(key);
+            value = getStateValueDirectly(key);
         }
         return value == null ? defaultValue : value;
     }
 
-    void clearTemporary() {
+    final void clearTemporary() {
         temporary.clear();
     }
 
     @SuppressWarnings("unchecked")
-    <T> StateChangeEvent<T> applyTemporary(StateChangeEvent<T> newEvent) {
+    final <T> StateChangeEvent<T> applyTemporary(StateChangeEvent<T> newEvent) {
         StateChangeEvent<T> oldEvent = (StateChangeEvent<T>) temporary.get(newEvent.getStateKey());
         if (oldEvent != null) {
             newEvent.setOldValue(oldEvent.getOldValue());
@@ -263,48 +288,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return oldEvent;
     }
 
+    /**
+     * Determines if the content of this node is empty.
+     * Empty is defined as no value is entered and there is no default value.
+     *
+     * @return true if is empty.
+     */
     @JsMethod
     public abstract boolean hasValue();
-
-    @JsMethod
-    public String getConcreteClassName() {
-        return getConcreteClass().getSimpleName();
-    }
-
-    /**
-     * The implementation is generated in code.
-     *
-     * @return the concrete class (the first without the parent type parameter) of this node.
-     */
-    public abstract Class<?> getConcreteClass();
-
-    @JsMethod
-    public String getPath() {
-        if (getNodeStatus() == NodeStatusEnum.Detached)
-            return null;
-
-        if (path == null) {
-            Stack<String> stack = new Stack<>();
-            UiNode<?> node = this;
-            do {
-                stack.push(node.getName());
-                node = node.getParent();
-            } while (node != null);
-            StringBuilder stringBuilder = new StringBuilder();
-            while (!stack.isEmpty()) {
-                stringBuilder.append(stack.pop());
-                if (!stack.isEmpty()) {
-                    stringBuilder.append("/"); //node name cannot contain /
-                }
-            }
-            path = stringBuilder.toString();
-        }
-        return path;
-    }
-
-    protected void setHasValue(boolean value) {
-        setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
-    }
 
     @JsMethod
     public final <T> T getStateValue(String key) {
@@ -312,7 +303,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     @SuppressWarnings("unchecked")
-    protected final <T> T getPreStateValue(String key) {
+    final <T> T getPreStateValue(String key) {
         return (T) preState.get(key);
     }
 
@@ -322,22 +313,18 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @param key        identifier of the state value to change.
      * @param valueClass the class of the state value. This decides what type of state change event to trigger.
      * @param value      the new state value.
-     * @param mode       a one time override of ChangeTrackingMode.
      * @param <T>        declared type of the value.
      */
-    public <T> void setStateValue(String key, Class<T> valueClass, T value, ChangeTrackingModeEnum mode) {
-        if (shouldChangeWithoutEvent()) {
-            setStateValueInternal(key, value);
+    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
+        if (shouldChangeDirectly()) {
+            setStateValueDirectly(key, value);
             return;
         }
 
-        ChangeTrackingModeEnum nodeChangeTrackingMode = mode;
-        if (nodeChangeTrackingMode == null) {
-            nodeChangeTrackingMode = getChangeTrackingMode(key);
-        }
+        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode(key);
 
         boolean process = false;
-        T oldValue = getStateValueInternal(key);
+        T oldValue = getStateValueDirectly(key);
         switch (nodeChangeTrackingMode) {
             case Always:
                 process = true;
@@ -353,7 +340,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
                 }
                 break;
             case None:
-                setStateValueInternal(key, value);
+                setStateValueDirectly(key, value);
         }
         if (!process)
             return;
@@ -362,14 +349,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         getContext().processEvent(event);
     }
 
-    public final <T> void setStateValue(String key, Class<T> valueClass, T value) {
-        setStateValue(key, valueClass, value, null);
-    }
-
     /**
      * @return true if changes should be applied directly (i.e. bypass event processing).
      */
-    final boolean shouldChangeWithoutEvent() {
+    final boolean shouldChangeDirectly() {
         if (this.getNodeStatus() != NodeStatusEnum.Loaded || this.getParent() != null && this.getParent().getNodeStatus() != NodeStatusEnum.Loaded) {
             return true;
         }
@@ -399,11 +382,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         if (this.nodeStatus != NodeStatusEnum.Detached)
             return;
 
-        if (this.uniqueId == null) {
-            this.uniqueId = context.getUniqueId();
-        } else {
-            //todo check if pre-assigned id is truly unique.
-        }
+        this.uniqueId = context.getUniqueId();
 
         if (parent == null) {
             //do nothing for root
@@ -626,6 +605,28 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region ui node properties
 
+    protected final boolean getHasValue() {
+        return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
+    }
+
+    protected final void setHasValue(boolean value) {
+        setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
+    }
+
+    /**
+     * @return the index in parent.
+     */
+    @JsMethod
+    public final int getIndex() {
+        Integer index = getStateValue(NeutronEventSubjects.INDEX);
+        return index == null ? -1 : index;
+    }
+
+    //set by parent node
+    final void setIndex(Integer index) {
+        setStateValue(NeutronEventSubjects.INDEX, Integer.class, index);
+    }
+
     @JsMethod
     public String getVisibility() {
         return getStateValue(NeutronEventSubjects.VISIBILITY, "visible");
@@ -739,12 +740,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public boolean getLoadWithParent() {
-        Object value = this.getStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT);
+        Object value = this.getStateValueDirectly(NeutronEventSubjects.LOAD_WITH_PARENT);
         return !Boolean.FALSE.equals(value);
     }
 
     public void setLoadWithParent(boolean value) {
-        this.setStateValueInternal(NeutronEventSubjects.LOAD_WITH_PARENT, value);
+        this.setStateValueDirectly(NeutronEventSubjects.LOAD_WITH_PARENT, value);
     }
 
     @JsMethod
