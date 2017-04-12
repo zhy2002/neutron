@@ -75,6 +75,14 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
+    public boolean isValueValid() {
+        return super.getStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.FALSE);
+    }
+
+    protected void setValueValid(boolean value) {
+        super.setStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.class, value);
+    }
+
     private Boolean getSelfDirty() {
         return getStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.FALSE);
     }

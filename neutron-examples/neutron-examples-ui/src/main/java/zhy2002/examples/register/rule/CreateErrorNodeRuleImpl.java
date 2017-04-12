@@ -8,7 +8,7 @@ import zhy2002.neutron.di.Owner;
 import javax.inject.Inject;
 
 /**
- * If the error list of a child is change check if we should create a new error node.
+ * If the error list of a child is change check if we should createProperty a new error node.
  */
 public class CreateErrorNodeRuleImpl extends CreateErrorNodeRule {
 

@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * If the number of items is smaller than minItemCount then create items.
+ * If the number of items is smaller than minItemCount then createProperty items.
  */
 public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
 

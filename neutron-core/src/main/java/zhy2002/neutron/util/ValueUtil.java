@@ -65,4 +65,17 @@ public final class ValueUtil {
             return src;
         return src.substring(0, index);
     }
+
+    public static String camelToConstantLower(String name) {
+        StringBuilder result = new StringBuilder();
+        for (char ch : name.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                result.append('_');
+                result.append(Character.toLowerCase(ch));
+            } else {
+                result.append(ch);
+            }
+        }
+        return result.toString();
+    }
 }

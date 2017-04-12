@@ -67,8 +67,8 @@ public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implem
     }
 
     /**
-     * Get the root node. If the root node has not been created this will create and addToOwner the root node.
-     * Use lazy loading so that when we create the root node this context instance is fully initialized.
+     * Get the root node. If the root node has not been created this will createProperty and addToOwner the root node.
+     * Use lazy loading so that when we createProperty the root node this context instance is fully initialized.
      *
      * @return the root node.
      */

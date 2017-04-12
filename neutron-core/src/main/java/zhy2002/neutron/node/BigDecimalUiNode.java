@@ -61,14 +61,6 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         this.setValue(BigDecimal.class, value);
     }
 
-    public boolean isValueValid() {
-        return super.getStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.FALSE);
-    }
-
-    private void setValueValid(boolean value) {
-        super.setStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.class, value);
-    }
-
     @Override
     public <T> void setStateValue(String key, Class<T> valueClass, T value) {
         if (!getContext().isInCycle()) {

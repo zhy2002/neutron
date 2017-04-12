@@ -1,6 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.util.NeutronEventSubjects;
@@ -174,6 +176,18 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getConcreteClass().getSimpleName();
     }
 
+    @JsMethod
+    public boolean inheritsFrom(String simpleName) {
+        Class<?> clazz = this.getClass();
+        do {
+            if (clazz.getSimpleName().equals(simpleName))
+                return true;
+            clazz = clazz.getSuperclass();
+        } while (clazz != null);
+
+        return false;
+    }
+
     /**
      * @return the path to a node within the node tree. Path does not change while the node is in the tree.
      */
@@ -241,13 +255,18 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return (T) state.get(key);
     }
 
+    @SuppressWarnings("unchecked")
+    protected final <T> T getStateValueDirectly(@NotNull PropertyMetadata<T> propertyMetadata) {
+        return (T) state.get(propertyMetadata.getStateKey());
+    }
+
     /**
      * Bypass event processing and set the value directly.
      *
      * @param key   state property key.
      * @param value state property value.
      */
-    protected void setStateValueDirectly(String key, Object value) {
+    protected void setStateValueDirectly(@NotNull String key, Object value) {
         if (value == null) {
             state.remove(key);
         } else {
@@ -255,18 +274,44 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
     }
 
-    final void clearStateValueDirectly(String key) {
+    protected <T> void setStateValueDirectly(@NotNull PropertyMetadata<T> propertyMetadata, T value) {
+        String key = propertyMetadata.getStateKey();
+        if (value == null) {
+            state.remove(key);
+        } else {
+            state.put(key, value);
+        }
+    }
+
+    final void clearStateValueDirectly(@NotNull String key) {
         state.remove(key);
     }
 
+    final void clearStateValueDirectly(@NotNull PropertyMetadata<?> propertyMetadata) {
+        state.remove(propertyMetadata.getStateKey());
+    }
+
     @SuppressWarnings("unchecked")
-    public final <T> T getStateValue(String key, T defaultValue) {
+    public final <T> T getStateValue(@NotNull String key, T defaultValue) {
         T value;
         StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(key);
         if (event != null) {
             value = event.getNewValue();
         } else {
             value = getStateValueDirectly(key);
+        }
+        return value == null ? defaultValue : value;
+    }
+
+    @SuppressWarnings("unchecked")
+    public final <T> T getStateValue(@NotNull PropertyMetadata<T> propertyMetadata, T defaultValue) {
+
+        T value;
+        StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(propertyMetadata.getName());
+        if (event != null) {
+            value = event.getNewValue();
+        } else {
+            value = getStateValueDirectly(propertyMetadata);
         }
         return value == null ? defaultValue : value;
     }
@@ -302,9 +347,18 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getStateValue(key, null);
     }
 
+    public final <T> T getStateValue(PropertyMetadata<T> propertyMetadata) {
+        return getStateValue(propertyMetadata.getStateKey(), propertyMetadata.getDefaultValue());
+    }
+
     @SuppressWarnings("unchecked")
     final <T> T getPreStateValue(String key) {
         return (T) preState.get(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    final <T> T getPreStateValue(PropertyMetadata<T> propertyMetadata) {
+        return (T) preState.get(propertyMetadata.getStateKey());
     }
 
     /**
@@ -346,6 +400,41 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             return;
         StateChangeEvent<T> event;
         event = context.createStateChangeEvent(this, key, valueClass, oldValue, value);
+        getContext().processEvent(event);
+    }
+
+    public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
+        String key = propertyMetadata.getStateKey();
+        if (shouldChangeDirectly()) {
+            setStateValueDirectly(key, value);
+            return;
+        }
+
+        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode(key);
+
+        boolean process = false;
+        T oldValue = getStateValueDirectly(key);
+        switch (nodeChangeTrackingMode) {
+            case Always:
+                process = true;
+                break;
+            case Reference:
+                process = oldValue != value;
+                break;
+            case Value:
+                if (oldValue == null) {
+                    process = value != null;
+                } else {
+                    process = !oldValue.equals(value);
+                }
+                break;
+            case None:
+                setStateValueDirectly(key, value);
+        }
+        if (!process)
+            return;
+        StateChangeEvent<T> event;
+        event = context.createStateChangeEvent(this, key, propertyMetadata.getValueClass(), oldValue, value);
         getContext().processEvent(event);
     }
 
@@ -605,46 +694,54 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region ui node properties
 
+    public static final PropertyMetadata<Boolean> LOAD_WITH_PARENT_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "loadWithParent", Boolean.class, Boolean.TRUE);
+    public static final PropertyMetadata<Boolean> HAS_VALUE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "hasValue", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> DISABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disabled", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> REQUIRED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "required", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
+    public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
+    public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
+    public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class, null);
+    public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class, null);
+    public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
+    public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
+
     protected final boolean getHasValue() {
-        return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
+        return getStateValue(HAS_VALUE_PROPERTY);
     }
 
     protected final void setHasValue(boolean value) {
-        setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, value);
+        setStateValue(HAS_VALUE_PROPERTY, value);
     }
 
-    /**
-     * @return the index in parent.
-     */
     @JsMethod
     public final int getIndex() {
-        Integer index = getStateValue(NeutronEventSubjects.INDEX);
-        return index == null ? -1 : index;
+        return getStateValue(INDEX_PROPERTY);
     }
 
-    //set by parent node
     final void setIndex(Integer index) {
-        setStateValue(NeutronEventSubjects.INDEX, Integer.class, index);
+        setStateValue(INDEX_PROPERTY, index);
     }
 
     @JsMethod
     public String getVisibility() {
-        return getStateValue(NeutronEventSubjects.VISIBILITY, "visible");
+        return getStateValue(VISIBILITY_PROPERTY);
     }
 
     @JsMethod
     public void setVisibility(String value) {
-        setStateValue(NeutronEventSubjects.VISIBILITY, String.class, value);
+        setStateValue(VISIBILITY_PROPERTY, value);
     }
 
     @JsMethod
     public boolean isDisabled() {
-        return getStateValue(NeutronEventSubjects.DISABLED, Boolean.FALSE);
+        return getStateValue(DISABLED_PROPERTY);
     }
 
     @JsMethod
     public void setDisabled(boolean value) {
-        setStateValue(NeutronEventSubjects.DISABLED, Boolean.class, value);
+        setStateValue(DISABLED_PROPERTY, value);
     }
 
     @JsMethod
@@ -653,25 +750,25 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public final int getDisabledAncestorCount() {
-        return getStateValue(NeutronEventSubjects.DISABLED_ANCESTOR_COUNT, 0);
+        return getStateValue(DISABLED_ANCESTOR_COUNT);
     }
 
     public final void setDisabledAncestorCount(int count) {
-        setStateValue(NeutronEventSubjects.DISABLED_ANCESTOR_COUNT, Integer.class, count);
+        setStateValue(DISABLED_ANCESTOR_COUNT, count);
     }
 
-    void forceUpdate() {
-        setStateValue(NeutronEventSubjects.FORCE_UPDATE, Boolean.class, Boolean.TRUE);
-    }
+//    void forceUpdate() {
+//        setStateValue(NeutronEventSubjects.FORCE_UPDATE, Boolean.class, Boolean.TRUE);
+//    }
 
     @JsMethod
     public boolean isReadonly() {
-        return getStateValue(NeutronEventSubjects.READONLY, Boolean.FALSE);
+        return getStateValue(READONLY_PROPERTY);
     }
 
     @JsMethod
     public void setReadonly(boolean value) {
-        setStateValue(NeutronEventSubjects.READONLY, Boolean.class, value);
+        setStateValue(READONLY_PROPERTY, value);
     }
 
     @JsMethod
@@ -683,7 +780,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public String getNodeLabel() {
-        String label = getStateValue(NeutronEventSubjects.NODE_LABEL);
+        String label = getStateValue(NODE_LABEL_PROPERTY);
         if (label != null)
             return label;
 
@@ -692,19 +789,24 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public void setNodeLabel(String value) {
-        setStateValue(NeutronEventSubjects.NODE_LABEL, String.class, value);
+        setStateValue(NODE_LABEL_PROPERTY, value);
     }
 
     @JsMethod
     public String getPathLabel() {
-        String label = getStateValue(NeutronEventSubjects.PATH_LABEL);
+        String label = getStateValue(PATH_LABEL_PROPERTY);
         if (label != null)
             return label;
 
-        return createDefaultNodeLabel();
+        return createDefaultPathLabel();
     }
 
-    private String createDefaultNodeLabel() {
+    @JsMethod
+    public void setPathLabel(String value) {
+        setStateValue(PATH_LABEL_PROPERTY, value);
+    }
+
+    private String createDefaultPathLabel() {
 
         Stack<String> nodeLabels = new Stack<>();
 
@@ -725,58 +827,41 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     @JsMethod
-    public void setPathLabel(String value) {
-        setStateValue(NeutronEventSubjects.PATH_LABEL, String.class, value);
-    }
-
-    @JsMethod
     public ValidationErrorList getValidationErrorList() {
-        return getStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.EMPTY);
+        return getStateValue(VALIDATION_ERROR_LIST_PROPERTY);
     }
 
     public void setValidationErrorList(ValidationErrorList errors) {
-        setStateValue(NeutronEventSubjects.VALIDATION_ERROR_LIST, ValidationErrorList.class, errors);
+        setStateValue(VALIDATION_ERROR_LIST_PROPERTY, errors);
     }
 
     @JsMethod
     public boolean getLoadWithParent() {
-        Object value = this.getStateValueDirectly(NeutronEventSubjects.LOAD_WITH_PARENT);
+        Object value = this.getStateValueDirectly(LOAD_WITH_PARENT_PROPERTY);
         return !Boolean.FALSE.equals(value);
     }
 
     public void setLoadWithParent(boolean value) {
-        this.setStateValueDirectly(NeutronEventSubjects.LOAD_WITH_PARENT, value);
+        this.setStateValueDirectly(LOAD_WITH_PARENT_PROPERTY, value);
     }
 
     @JsMethod
     public Boolean getRequired() {
-        Boolean result = getStateValue(NeutronEventSubjects.REQUIRED);
-        return result == null ? Boolean.FALSE : result;
+        return getStateValue(REQUIRED_PROPERTY);
     }
 
     public void setRequired(Boolean required) {
-        this.setStateValue(NeutronEventSubjects.REQUIRED, Boolean.class, required);
+        this.setStateValue(REQUIRED_PROPERTY, required);
     }
 
     @JsMethod
     public String getRequiredMessage() {
-        return getStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, "Value is required");
+        return getStateValue(REQUIRED_MESSAGE_PROPERTY);
     }
 
     public void setRequiredMessage(String message) {
-        setStateValue(NeutronEventSubjects.REQUIRED_MESSAGE, String.class, message);
+        setStateValue(REQUIRED_MESSAGE_PROPERTY, message);
     }
 
-    @JsMethod
-    public boolean inheritsFrom(String simpleName) {
-        Class<?> clazz = this.getClass();
-        do {
-            if (clazz.getSimpleName().equals(simpleName))
-                return true;
-            clazz = clazz.getSuperclass();
-        } while (clazz != null);
-
-        return false;
-    }
 //endregion
 }

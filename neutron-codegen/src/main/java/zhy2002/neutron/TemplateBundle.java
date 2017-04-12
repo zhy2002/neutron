@@ -66,7 +66,7 @@ class TemplateBundle {
             cfg.setLogTemplateExceptions(false);
             return cfg;
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to create template configuration.", ex);
+            throw new RuntimeException("Failed to createProperty template configuration.", ex);
         }
     }
 

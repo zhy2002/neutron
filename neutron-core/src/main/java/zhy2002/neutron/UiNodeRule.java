@@ -101,7 +101,7 @@ public abstract class UiNodeRule<N extends UiNode<?>> {
      * The second step of add a rule to the owner.
      * In Neutron when we setup a bidirectional relationship,
      * we use a two step approach:
-     * 1. Child is create knowing the parent
+     * 1. Child is createProperty knowing the parent
      * 2. Child make itself known to the parent
      * If step 2 is not done, there is no effect to the node tree
      * where the parent belongs.
