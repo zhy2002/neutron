@@ -18,11 +18,7 @@ public final class NeutronEventSubjects {
     public static final String FIXED_VALUE = "fixed_value";
     public static final String REMOVE_EMPTY = "remove_empty";
     public static final String DISABLED = "disabled";
-    public static final String REQUIRED = "required";
-    public static final String FORCE_UPDATE = "force_update";
-    public static final String REQUIRED_MESSAGE = "required_message";
     public static final String READONLY = "readonly";
-    public static final String HIGHLIGHTED = "highlighted";
     public static final String SELF_DIRTY = "self_dirty";
     public static final String DESCENDANT_DIRTY_COUNT = "descendant_dirty_count";
     public static final String VISIBILITY = "visibility";
@@ -42,8 +38,6 @@ public final class NeutronEventSubjects {
     public static final String LENGTH_MESSAGE = "length_message";
     public static final String MAX_LENGTH = "max_length";
     public static final String MIN_LENGTH = "min_length";
-    public static final String INVALID_CHARS_MESSAGE = "invalid_chars_message";
-    public static final String INVALID_CHARS = "invalid_chars";
     public static final String INDEX = "index";
     public static final String SELECTED_INDEX = "selected_index";
     public static final String SELECTED_NAME = "selected_name";

@@ -117,12 +117,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
 
-        //todo extract to property metadata
-        setChangeTrackingMode(NeutronEventSubjects.HAS_VALUE, ChangeTrackingModeEnum.Value);
-        setChangeTrackingMode(NeutronEventSubjects.REQUIRED, ChangeTrackingModeEnum.Value);
-        setChangeTrackingMode(NeutronEventSubjects.DISABLED, ChangeTrackingModeEnum.Value);
-        setChangeTrackingMode(NeutronEventSubjects.SELF_DIRTY, ChangeTrackingModeEnum.Value);
-        setChangeTrackingMode(NeutronEventSubjects.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
+        //setChangeTrackingMode(NeutronEventSubjects.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
     }
 
     /**
@@ -413,11 +408,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             return;
         }
 
-        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode(key);
+        ChangeTrackingModeEnum changeTrackingMode = propertyMetadata.getChangeTrackingMode();
 
         boolean process = false;
         T oldValue = getStateValueDirectly(key);
-        switch (nodeChangeTrackingMode) {
+        switch (changeTrackingMode) {
             case Always:
                 process = true;
                 break;

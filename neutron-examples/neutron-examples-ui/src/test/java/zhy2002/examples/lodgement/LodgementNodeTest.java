@@ -3,6 +3,7 @@ package zhy2002.examples.lodgement;
 import com.google.gwt.i18n.shared.DateTimeFormat;
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.CountingChangeListener;
 import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
@@ -453,5 +454,22 @@ public class LodgementNodeTest {
         assertThat(applicationNode.getSelectedName(), equalTo("productsNode"));
         assertThat(applicationNode.getProductsNode().getSelectedName(), equalTo("productFeeListNode"));
         assertThat(applicationNode.getContentLevel(), equalTo(2));
+    }
+
+    @Test
+    public void requiredPropertyOnlyTriggerChangeWhenValueChanged() {
+
+        assertThat(new Boolean("false"), not(sameInstance(new Boolean("false"))));
+
+        CountingChangeListener listener = new CountingChangeListener();
+        applicationNode.addChangeListener(listener);
+        applicationNode.setRequired(Boolean.FALSE);
+
+        assertThat(listener.getCount(), equalTo(1));
+
+        applicationNode.setRequired(new Boolean("false"));
+
+        assertThat(listener.getCount(), equalTo(1));
+
     }
 }
