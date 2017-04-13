@@ -1,5 +1,6 @@
 package zhy2002.neutron.config;
 
+import zhy2002.neutron.ChangeModeEnum;
 import zhy2002.neutron.ChangeTrackingModeEnum;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -14,16 +15,18 @@ public final class PropertyMetadata<T> {
     private final String name;
     private final String stateKey;
     private final Class<T> valueClass;
-    private final ChangeTrackingModeEnum changeTrackingMode;
     private final T defaultValue;
+    private final ChangeTrackingModeEnum changeTrackingMode;
+    private final ChangeModeEnum changeMode;
 
-    PropertyMetadata(Class<?> definingClass, String name, Class<T> valueClass, ChangeTrackingModeEnum changeTrackingMode, T defaultValue) {
+    PropertyMetadata(Class<?> definingClass, String name, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum changeTrackingMode, ChangeModeEnum changeMode) {
         this.definingClass = definingClass;
         this.name = name;
         this.stateKey = ValueUtil.camelToConstantLower(name);
         this.valueClass = valueClass;
-        this.changeTrackingMode = changeTrackingMode;
         this.defaultValue = defaultValue;
+        this.changeTrackingMode = changeTrackingMode;
+        this.changeMode = changeMode;
     }
 
     @NotNull
@@ -46,12 +49,17 @@ public final class PropertyMetadata<T> {
         return valueClass;
     }
 
+    public T getDefaultValue() {
+        return defaultValue;
+    }
+
     @NotNull
     public ChangeTrackingModeEnum getChangeTrackingMode() {
         return changeTrackingMode;
     }
 
-    public T getDefaultValue() {
-        return defaultValue;
+    @NotNull
+    public ChangeModeEnum getChangeMode() {
+        return changeMode;
     }
 }

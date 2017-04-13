@@ -348,6 +348,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public final <T> T getStateValue(PropertyMetadata<T> propertyMetadata) {
+        if (propertyMetadata.getChangeMode() == ChangeModeEnum.DIRECT)
+            return getStateValueDirectly(propertyMetadata);
+
         return getStateValue(propertyMetadata.getStateKey(), propertyMetadata.getDefaultValue());
     }
 
@@ -405,7 +408,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
         String key = propertyMetadata.getStateKey();
-        if (shouldChangeDirectly()) {
+        if (propertyMetadata.getChangeMode() == ChangeModeEnum.DIRECT || shouldChangeDirectly()) {
             setStateValueDirectly(key, value);
             return;
         }
@@ -702,8 +705,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
     public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
     public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
-    public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class, null);
-    public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class, null);
+    public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class);
+    public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class);
     public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
     public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
 

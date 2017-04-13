@@ -3,12 +3,10 @@ package zhy2002.neutron.node;
 import jsinterop.annotations.JsType;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
-import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @JsType
 public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
@@ -33,17 +31,23 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
         setValue(Boolean.class, value);
     }
 
-    public Boolean getFixedValue() {
-        return getStateValue(NeutronEventSubjects.FIXED_VALUE);
-    }
-
-    public void setFixedValue(Boolean fixedValue) {
-        setStateValue(NeutronEventSubjects.FIXED_VALUE, Boolean.class, fixedValue);
-    }
-
     @Override
     public Class<Boolean> getValueClass() {
         return Boolean.class;
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> FIXED_VALUE_PROPERTY = MetadataRegistry.createProperty(BooleanUiNode.class, "fixedValue", Boolean.class);
+
+    public Boolean getFixedValue() {
+        return getStateValue(FIXED_VALUE_PROPERTY);
+    }
+
+    public void setFixedValue(Boolean fixedValue) {
+        setStateValue(FIXED_VALUE_PROPERTY, fixedValue);
+    }
+
+    //endregion
 
 }

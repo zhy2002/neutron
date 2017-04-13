@@ -1,9 +1,12 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.ChangeModeEnum;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 
 import javax.validation.constraints.NotNull;
 
@@ -37,13 +40,20 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
         super.setValue(String.class, value);
     }
 
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> REMOVE_EMPTY_PROPERTY = MetadataRegistry.createProperty(ReferenceUiNode.class, "removeEmpty", Boolean.class, Boolean.FALSE, ChangeModeEnum.DIRECT);
+
     public final boolean isRemoveEmpty() {
-        Boolean result = getStateValueDirectly(REMOVE_EMPTY);
-        return result != null && result;
+        return getStateValue(REMOVE_EMPTY_PROPERTY);
     }
 
     public final void setRemoveEmpty(boolean value) {
-        setStateValueDirectly(REMOVE_EMPTY, value);
+        setStateValue(REMOVE_EMPTY_PROPERTY, value);
     }
+
+    //endregion
+
+
 
 }

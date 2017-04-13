@@ -1,6 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
@@ -75,21 +77,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
-    public boolean isValueValid() {
-        return super.getStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.FALSE);
-    }
-
-    protected void setValueValid(boolean value) {
-        super.setStateValue(NeutronEventSubjects.VALUE_VALID, Boolean.class, value);
-    }
-
-    private Boolean getSelfDirty() {
-        return getStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.FALSE);
-    }
-
-    private void setSelfDirty(Boolean value) {
-        setStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.class, value);
-    }
 
     @Override
     public boolean isDirty() {
@@ -135,4 +122,18 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         }
 
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+
+    private Boolean getSelfDirty() {
+        return getStateValue(SELF_DIRTY_PROPERTY);
+    }
+
+    private void setSelfDirty(Boolean value) {
+        setStateValue(SELF_DIRTY_PROPERTY, value);
+    }
+
+    //endregion
 }

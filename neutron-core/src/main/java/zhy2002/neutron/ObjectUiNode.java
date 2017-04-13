@@ -1,6 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.validation.constraints.NotNull;
@@ -26,16 +28,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     private void init() {
         setChangeTrackingMode(NeutronEventSubjects.SELECTED_NAME, ChangeTrackingModeEnum.Value);
-    }
-
-    @JsMethod
-    public String getSelectedName() {
-        return getStateValue(NeutronEventSubjects.SELECTED_NAME);
-    }
-
-    @JsMethod
-    public void setSelectedName(String value) {
-        setStateValue(NeutronEventSubjects.SELECTED_NAME, String.class, value);
     }
 
     @Override
@@ -80,7 +72,23 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     @Override
     public boolean hasValue() {
-        return getStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.FALSE);
+        return getHasValue();
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<String> SELECTED_NAME_PROPERTY = MetadataRegistry.createProperty(ObjectUiNode.class, "selectedName", String.class, ChangeTrackingModeEnum.Value);
+
+    @JsMethod
+    public String getSelectedName() {
+        return getStateValue(SELECTED_NAME_PROPERTY);
+    }
+
+    @JsMethod
+    public void setSelectedName(String value) {
+        setStateValue(SELECTED_NAME_PROPERTY, value);
+    }
+
+    //endregion
 
 }

@@ -2,6 +2,8 @@ package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -67,10 +69,10 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
             if (NeutronEventSubjects.VALUE.equals(key)) {
                 hasValue = value != null;
                 if (!hasValue) {
-                    super.setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, "");
+                    super.setStateValue(VALUE_TEXT_PROPERTY.getStateKey(), String.class, "");
                     return;
                 }
-            } else if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
+            } else if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
                 hasValue = !ValueUtil.isEmpty((String) value);
             }
         }
@@ -78,20 +80,10 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         super.setStateValue(key, valueClass, value);
     }
 
-    @JsMethod
-    public String getText() {
-        return this.getStateValue(NeutronEventSubjects.VALUE_TEXT);
-    }
-
-    @JsMethod
-    public void setText(String text) {
-        setStateValue(NeutronEventSubjects.VALUE_TEXT, String.class, text);
-    }
-
     @Override
     protected void setStateValueDirectly(String key, Object value) {
         super.setStateValueDirectly(key, value);
-        if (NeutronEventSubjects.VALUE_TEXT.equals(key)) {
+        if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
             if (val == null && !ValueUtil.isEmpty(value.toString())) {
                 setValueValid(false);
@@ -126,27 +118,55 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         return BigDecimal.class;
     }
 
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class);
+    public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value is out of range.");
+    public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
+    public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);
+
+    public boolean isValueValid() {
+        return super.getStateValue(VALUE_VALID_PROPERTY);
+    }
+
+    private void setValueValid(boolean value) {
+        super.setStateValue(VALUE_VALID_PROPERTY, value);
+    }
+
+    @JsMethod
+    public String getText() {
+        return this.getStateValue(VALUE_TEXT_PROPERTY);
+    }
+
+    @JsMethod
+    public void setText(String text) {
+        setStateValue(VALUE_TEXT_PROPERTY, text);
+    }
+
     public String getRangeMessage() {
-        return getStateValue(NeutronEventSubjects.RANGE_MESSAGE, "Value is out of range.");
+        return getStateValue(RANGE_MESSAGE_PROPERTY);
     }
 
     public void setRangeMessage(String message) {
-        setStateValue(NeutronEventSubjects.RANGE_MESSAGE, String.class, message);
+        setStateValue(RANGE_MESSAGE_PROPERTY, message);
     }
 
     public BigDecimal getMinValue() {
-        return super.getStateValue(NeutronEventSubjects.MIN_VALUE);
+        return super.getStateValue(MIN_VALUE_PROPERTY);
     }
 
     public void setMinValue(BigDecimal value) {
-        super.setStateValue(NeutronEventSubjects.MIN_VALUE, BigDecimal.class, value);
+        super.setStateValue(MIN_VALUE_PROPERTY, value);
     }
 
     public BigDecimal getMaxValue() {
-        return super.getStateValue(NeutronEventSubjects.MAX_VALUE);
+        return super.getStateValue(MAX_VALUE_PROPERTY);
     }
 
     public void setMaxValue(BigDecimal value) {
-        super.setStateValue(NeutronEventSubjects.MAX_VALUE, BigDecimal.class, value);
+        super.setStateValue(MAX_VALUE_PROPERTY, value);
     }
+
+    //endregion
 }

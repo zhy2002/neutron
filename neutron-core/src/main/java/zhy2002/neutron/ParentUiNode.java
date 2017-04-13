@@ -1,6 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
@@ -137,15 +139,6 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         }
     }
 
-    private int getDirtyDescendantCount() {
-        Integer value = getStateValue(NeutronEventSubjects.DESCENDANT_DIRTY_COUNT);
-        return value == null ? 0 : value;
-    }
-
-    private void setDirtyDescendantCount(int count) {
-        setStateValue(NeutronEventSubjects.DESCENDANT_DIRTY_COUNT, Integer.class, count);
-    }
-
     private void increaseDirtyDescendantCount() {
         setDirtyDescendantCount(getDirtyDescendantCount() + 1);
     }
@@ -223,4 +216,19 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
         getContext().setContentLevel(names.length);
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<Integer> DESCENDANT_DIRTY_COUNT_PROPERTY = MetadataRegistry.createProperty(ParentUiNode.class, "descendantDirtyCount", Integer.class, 0);
+
+    private int getDirtyDescendantCount() {
+        return getStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY);
+    }
+
+    private void setDirtyDescendantCount(int count) {
+        setStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY, count);
+    }
+
+    //endregion
+
 }

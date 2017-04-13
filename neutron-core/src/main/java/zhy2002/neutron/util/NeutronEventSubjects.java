@@ -14,12 +14,10 @@ public final class NeutronEventSubjects {
     public static final String ORIGINAL_VALUE = "original_value";
     public static final String ORIGINAL_CHILD_NAMES = "original_child_names";
     public static final String HAS_VALUE = "has_value";
-    public static final String VALUE_TEXT = "value_text";
     public static final String VALUE_VALID = "value_valid";
     public static final String FIXED_VALUE = "fixed_value";
     public static final String REMOVE_EMPTY = "remove_empty";
     public static final String DISABLED = "disabled";
-    public static final String DISABLED_ANCESTOR_COUNT = "disabled_ancestor_count";
     public static final String REQUIRED = "required";
     public static final String FORCE_UPDATE = "force_update";
     public static final String REQUIRED_MESSAGE = "required_message";
@@ -41,20 +39,14 @@ public final class NeutronEventSubjects {
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";
     public static final String RESET_DIRTY_REFRESH_REASON = "RESET_DIRTY";
     public static final String UPDATE_DISABLED_REFRESH_REASON = "UPDATE_DISABLED";
-    public static final String RANGE_MESSAGE = "range_message";
-    public static final String MIN_VALUE = "min_value";
-    public static final String MAX_VALUE = "max_value";
     public static final String LENGTH_MESSAGE = "length_message";
     public static final String MAX_LENGTH = "max_length";
     public static final String MIN_LENGTH = "min_length";
     public static final String INVALID_CHARS_MESSAGE = "invalid_chars_message";
     public static final String INVALID_CHARS = "invalid_chars";
     public static final String INDEX = "index";
-    public static final String NODE_LABEL = "node_label";
-    public static final String PATH_LABEL = "path_label";
-    public static final String SELECTED_INDEX = "selectedIndex";
-    public static final String SELECTED_NAME = "selectedName";
+    public static final String SELECTED_INDEX = "selected_index";
+    public static final String SELECTED_NAME = "selected_name";
     public static final String MIN_ITEM_COUNT = "min_item_count";
     public static final String MAX_ITEM_COUNT = "max_item_count";
-    public static final String LOADING = "loading";
 }

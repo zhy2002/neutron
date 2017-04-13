@@ -4,6 +4,8 @@ import jsinterop.annotations.JsType;
 import zhy2002.neutron.ChangeTrackingModeEnum;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -43,59 +45,72 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
         return String.class;
     }
 
+    //region node properties
+
+    public static final PropertyMetadata<String> PATTERN_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "pattern", String.class);
+    public static final PropertyMetadata<String> INVALID_CHARS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidChars", String.class);
+    public static final PropertyMetadata<String> PATTERN_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "patternMessage", String.class, "Pattern is invalid.");
+    public static final PropertyMetadata<String> INVALID_CHARS_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidCharsMessage", String.class, "Cannot contain invalid chars.");
+    public static final PropertyMetadata<String> LENGTH_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "lengthMessage", String.class, "Length is invalid.");
+    public static final PropertyMetadata<Integer> MIN_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "minLength", Integer.class);
+    public static final PropertyMetadata<Integer> MAX_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "maxLength", Integer.class);
+
     public String getPattern() {
-        return super.getStateValue(NeutronEventSubjects.PATTERN);
+        return super.getStateValue(PATTERN_PROPERTY);
     }
 
     public void setPattern(String value) {
-        super.setStateValue(NeutronEventSubjects.PATTERN, String.class, value);
+        super.setStateValue(PATTERN_PROPERTY, value);
     }
 
     public String getPatternMessage() {
-        return getStateValue(NeutronEventSubjects.PATTERN_MESSAGE, "Pattern is invalid.");
+        return getStateValue(PATTERN_MESSAGE_PROPERTY);
     }
 
     public void setPatternMessage(String message) {
-        setStateValue(NeutronEventSubjects.PATTERN_MESSAGE, String.class, message);
+        setStateValue(PATTERN_MESSAGE_PROPERTY, message);
     }
 
     public Integer getMinLength() {
-        return super.getStateValue(NeutronEventSubjects.MIN_LENGTH);
+        return super.getStateValue(MIN_LENGTH_PROPERTY);
     }
 
     public void setMinLength(Integer length) {
-        super.setStateValue(NeutronEventSubjects.MIN_LENGTH, Integer.class, length);
+        super.setStateValue(MIN_LENGTH_PROPERTY, length);
     }
 
     public Integer getMaxLength() {
-        return super.getStateValue(NeutronEventSubjects.MAX_LENGTH);
+        return super.getStateValue(MAX_LENGTH_PROPERTY);
     }
 
     public void setMaxLength(Integer length) {
-        super.setStateValue(NeutronEventSubjects.MAX_LENGTH, Integer.class, length);
+        super.setStateValue(MAX_LENGTH_PROPERTY, length);
     }
 
     public String getLengthMessage() {
-        return getStateValue(NeutronEventSubjects.LENGTH_MESSAGE, "Length is invalid.");
+        return getStateValue(LENGTH_MESSAGE_PROPERTY);
     }
 
     public void setLengthMessage(String message) {
-        setStateValue(NeutronEventSubjects.LENGTH_MESSAGE, String.class, message);
+        setStateValue(LENGTH_MESSAGE_PROPERTY, message);
     }
 
     public String getInvalidChars() {
-        return super.getStateValue(NeutronEventSubjects.INVALID_CHARS);
+        return super.getStateValue(INVALID_CHARS_PROPERTY);
     }
 
     public void setInvalidChars(String invalidChars) {
-        super.setStateValue(NeutronEventSubjects.INVALID_CHARS, String.class, invalidChars);
+        super.setStateValue(INVALID_CHARS_PROPERTY, invalidChars);
     }
 
     public String getInvalidCharsMessage() {
-        return getStateValue(NeutronEventSubjects.INVALID_CHARS_MESSAGE, "Cannot contain invalid chars.");
+        return getStateValue(INVALID_CHARS_MESSAGE_PROPERTY);
     }
 
     public void setInvalidCharsMessage(String message) {
-        setStateValue(NeutronEventSubjects.INVALID_CHARS_MESSAGE, String.class, message);
+        setStateValue(INVALID_CHARS_MESSAGE_PROPERTY, message);
     }
+
+    //endregion
+
 }

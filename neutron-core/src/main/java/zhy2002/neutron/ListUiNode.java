@@ -2,6 +2,8 @@ package zhy2002.neutron;
 
 import com.google.common.base.Joiner;
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.PredefinedPhases;
@@ -134,16 +136,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
         return childSequenceNumber++;
     }
 
-    @JsMethod
-    public int getSelectedIndex() {
-        return getStateValue(NeutronEventSubjects.SELECTED_INDEX, 0);
-    }
-
-    @JsMethod
-    public void setSelectedIndex(int value) {
-        setStateValue(NeutronEventSubjects.SELECTED_INDEX, Integer.class, value);
-    }
-
     @Override
     protected void addChild(UiNode<?> child) {
         super.addChild(child);
@@ -171,30 +163,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     @Override
     public boolean hasValue() {
         return getItemCount() > 0;
-    }
-
-    public Integer getMinItemCount() {
-        return getStateValue(NeutronEventSubjects.MIN_ITEM_COUNT);
-    }
-
-    public void setMinItemCount(Integer count) {
-        setStateValue(NeutronEventSubjects.MIN_ITEM_COUNT, Integer.class, count);
-    }
-
-    public Integer getMaxItemCount() {
-        return getStateValue(NeutronEventSubjects.MAX_ITEM_COUNT);
-    }
-
-    public void setMaxItemCount(Integer count) {
-        setStateValue(NeutronEventSubjects.MAX_ITEM_COUNT, Integer.class, count);
-    }
-
-    private Boolean getSelfDirty() {
-        return getStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.FALSE);
-    }
-
-    private void setSelfDirty(Boolean value) {
-        setStateValue(NeutronEventSubjects.SELF_DIRTY, Boolean.class, value);
     }
 
     private void markDirty() {
@@ -287,4 +255,47 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
             }
         }
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Integer> SELECTED_INDEX_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "selectedIndex", Integer.class, 0);
+    public static final PropertyMetadata<Integer> MIN_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "minItemCount", Integer.class);
+    public static final PropertyMetadata<Integer> MAX_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "maxItemCount", Integer.class);
+
+    private Boolean getSelfDirty() {
+        return getStateValue(SELF_DIRTY_PROPERTY);
+    }
+
+    private void setSelfDirty(Boolean value) {
+        setStateValue(SELF_DIRTY_PROPERTY, value);
+    }
+
+    @JsMethod
+    public int getSelectedIndex() {
+        return getStateValue(SELECTED_INDEX_PROPERTY);
+    }
+
+    @JsMethod
+    public void setSelectedIndex(int value) {
+        setStateValue(SELECTED_INDEX_PROPERTY, value);
+    }
+
+    public Integer getMinItemCount() {
+        return getStateValue(MIN_ITEM_COUNT_PROPERTY);
+    }
+
+    public void setMinItemCount(Integer count) {
+        setStateValue(MIN_ITEM_COUNT_PROPERTY, count);
+    }
+
+    public Integer getMaxItemCount() {
+        return getStateValue(MAX_ITEM_COUNT_PROPERTY);
+    }
+
+    public void setMaxItemCount(Integer count) {
+        setStateValue(MAX_ITEM_COUNT_PROPERTY, count);
+    }
+
+    //endregion
 }
