@@ -24,7 +24,7 @@ public class ProductGroupNodeRuleProvider implements RuleProvider<ProductGroupNo
     public void initializeState(ProductGroupNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_GROUP.toArray());
+        node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_GROUP);
     }
 
     @Inject

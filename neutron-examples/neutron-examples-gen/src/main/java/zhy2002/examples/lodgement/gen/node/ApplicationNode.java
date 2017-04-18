@@ -8,6 +8,8 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
@@ -73,24 +75,28 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
         super(context);
     }
 
+    public static final PropertyMetadata<Boolean> SHOW_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "showErrorList", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Integer> CONTENT_LEVEL_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "contentLevel", Integer.class, 1, ChangeTrackingModeEnum.Always);
+
     @JsMethod
     public Boolean getShowErrorList() {
-        return getStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.FALSE);
+        return getStateValue(SHOW_ERROR_LIST_PROPERTY);
     }
 
     @JsMethod
     public void setShowErrorList(Boolean value) {
-        setStateValue(ApplicationNodeConstants.SHOW_ERROR_LIST, Boolean.class, value);
+        setStateValue(SHOW_ERROR_LIST_PROPERTY, value);
     }
+
 
     @JsMethod
     public int getContentLevel() {
-        return getStateValue(ApplicationNodeConstants.CONTENT_LEVEL, 1);
+        return getStateValue(CONTENT_LEVEL_PROPERTY);
     }
 
     @JsMethod
     public void setContentLevel(int value) {
-        setStateValue(ApplicationNodeConstants.CONTENT_LEVEL, Integer.class, value);
+        setStateValue(CONTENT_LEVEL_PROPERTY, value);
     }
 
     @JsMethod

@@ -24,7 +24,7 @@ public class BaseCountryNodeRuleProvider implements RuleProvider<BaseCountryNode
     public void initializeState(BaseCountryNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.COUNTRY_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.COUNTRY_TYPE);
     }
 
 

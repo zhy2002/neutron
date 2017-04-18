@@ -24,7 +24,7 @@ public class CreditCardTypeNodeRuleProvider implements RuleProvider<CreditCardTy
     public void initializeState(CreditCardTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.CREDIT_CARD_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.CREDIT_CARD_TYPE);
         node.setRequired(true);
     }
 

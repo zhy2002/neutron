@@ -24,7 +24,7 @@ public class PlanNodeRuleProvider implements RuleProvider<PlanNode> {
     public void initializeState(PlanNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(new ProductPlan[0]);
+        node.setOptions(RegisterNodeConstants.PLANS);
     }
 
 

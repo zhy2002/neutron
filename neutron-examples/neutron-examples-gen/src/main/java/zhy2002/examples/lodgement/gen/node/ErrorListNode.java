@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
@@ -72,14 +74,16 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         return itemFactory.createItemRemoveEvent(item);
     }
 
+    public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);
+
     @JsMethod
     public String getFocus() {
-        return getStateValue(ApplicationNodeConstants.FOCUS);
+        return getStateValue(FOCUS_PROPERTY);
     }
 
     @JsMethod
     public void setFocus(String value) {
-        setStateValue(ApplicationNodeConstants.FOCUS, String.class, value);
+        setStateValue(FOCUS_PROPERTY, value);
     }
 
 }

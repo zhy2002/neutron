@@ -24,7 +24,7 @@ public class ResponsibleMitigationMethodNodeRuleProvider implements RuleProvider
     public void initializeState(ResponsibleMitigationMethodNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE);
     }
 
 

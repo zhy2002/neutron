@@ -16,6 +16,4 @@ rootType:
       baseTypeName: ObjectUiNode
       children: []
       properties:
-      - {name: updated, typeName: Boolean}
-      init:
-      - {propertyName: updated, mode: Always}
+      - {name: updated, typeName: Boolean, trackingMode: Always}

@@ -25,7 +25,6 @@ public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode
         parentRuleProvider.initializeState(node);
 
         node.setSelectedName("personListNode");
-        node.setChangeTrackingMode(ApplicationNodeConstants.CONTENT_LEVEL, ChangeTrackingModeEnum.Always);
     }
 
     @Inject

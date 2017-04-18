@@ -7,8 +7,6 @@ import zhy2002.examples.app.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.app.data.*;
-import java.math.*;
 
 @ApplicationListNodeScope
 public class ApplicationListNodeRuleProvider implements RuleProvider<ApplicationListNode> {
@@ -24,7 +22,6 @@ public class ApplicationListNodeRuleProvider implements RuleProvider<Application
     public void initializeState(ApplicationListNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setChangeTrackingMode(LodgementNodeConstants.UPDATED, ChangeTrackingModeEnum.Always);
     }
 
 

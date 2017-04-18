@@ -26,7 +26,7 @@ public class PropertyStateNodeRuleProvider implements RuleProvider<PropertyState
 
         node.setRequired(true);
         node.setRequiredMessage("Property state is required.");
-        node.setOptions(RegisterNodeConstants.STATES.toArray());
+        node.setOptions(RegisterNodeConstants.STATES);
     }
 
 

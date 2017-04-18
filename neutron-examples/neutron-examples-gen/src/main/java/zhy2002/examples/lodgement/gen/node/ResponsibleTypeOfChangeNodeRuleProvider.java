@@ -24,7 +24,7 @@ public class ResponsibleTypeOfChangeNodeRuleProvider implements RuleProvider<Res
     public void initializeState(ResponsibleTypeOfChangeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE);
     }
 
 

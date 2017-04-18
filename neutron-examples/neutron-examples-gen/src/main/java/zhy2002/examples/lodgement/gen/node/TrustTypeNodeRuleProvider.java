@@ -24,7 +24,7 @@ public class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
     public void initializeState(TrustTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TRUST_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.TRUST_TYPE);
     }
 
     @Inject

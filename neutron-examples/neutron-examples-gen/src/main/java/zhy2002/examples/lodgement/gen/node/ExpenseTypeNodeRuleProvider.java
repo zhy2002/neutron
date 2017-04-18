@@ -24,7 +24,7 @@ public class ExpenseTypeNodeRuleProvider implements RuleProvider<ExpenseTypeNode
     public void initializeState(ExpenseTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.EXPENSE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.EXPENSE_TYPE);
         node.setRequired(true);
     }
 

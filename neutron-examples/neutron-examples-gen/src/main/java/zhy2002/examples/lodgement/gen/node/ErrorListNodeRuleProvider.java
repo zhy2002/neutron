@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ErrorListNodeScope
 public class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
@@ -24,7 +22,6 @@ public class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
     public void initializeState(ErrorListNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setChangeTrackingMode(ApplicationNodeConstants.FOCUS, ChangeTrackingModeEnum.Always);
     }
 
     @Inject

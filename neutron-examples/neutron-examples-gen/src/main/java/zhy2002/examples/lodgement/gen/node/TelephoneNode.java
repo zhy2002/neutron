@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 
@@ -23,14 +25,16 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         setValue(Telephone.class, value);
     }
 
+    public static final PropertyMetadata<Boolean> COUNTRY_CODE_READONLY_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "countryCodeReadonly", Boolean.class, Boolean.FALSE);
+
     @JsMethod
     public Boolean getCountryCodeReadonly() {
-        return getStateValue(ApplicationNodeConstants.COUNTRY_CODE_READONLY, Boolean.FALSE);
+        return getStateValue(COUNTRY_CODE_READONLY_PROPERTY);
     }
 
     @JsMethod
     public void setCountryCodeReadonly(Boolean value) {
-        setStateValue(ApplicationNodeConstants.COUNTRY_CODE_READONLY, Boolean.class, value);
+        setStateValue(COUNTRY_CODE_READONLY_PROPERTY, value);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class FeePayFromNodeRuleProvider implements RuleProvider<FeePayFromNode> 
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.FEE_FROM_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.FEE_FROM_TYPE);
     }
 
 

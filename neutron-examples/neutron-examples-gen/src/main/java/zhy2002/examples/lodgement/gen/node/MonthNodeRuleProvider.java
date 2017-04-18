@@ -25,7 +25,7 @@ public class MonthNodeRuleProvider implements RuleProvider<MonthNode> {
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.MONTH_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.MONTH_TYPE);
     }
 
 

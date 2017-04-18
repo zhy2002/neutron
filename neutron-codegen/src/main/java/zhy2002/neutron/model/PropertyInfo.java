@@ -6,6 +6,7 @@ public class PropertyInfo {
     @NotNull
     private String name;
     private String typeName;
+    private String trackingMode;
     private String externalTypeName;
     private String defaultValue;
 
@@ -39,6 +40,14 @@ public class PropertyInfo {
 
     public void setExternalTypeName(String externalTypeName) {
         this.externalTypeName = externalTypeName;
+    }
+
+    public String getTrackingMode() {
+        return trackingMode;
+    }
+
+    public void setTrackingMode(String trackingMode) {
+        this.trackingMode = trackingMode;
     }
 
     ////////////////////////////////////////////////////////

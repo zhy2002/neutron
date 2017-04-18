@@ -44,15 +44,14 @@ public class ProductGroupChangedRuleImpl extends ProductGroupChangedRule {
 
     private void onChange() {
         String group = getProductGroupNode().getValue();
-        List<StringOption> productList = ApplicationNodeConstants.NAB_PRODUCT_NAME_MAP.get(group);
+        StringOption[] productList = ApplicationNodeConstants.NAB_PRODUCT_NAME_MAP.get(group);
         ProductNameNode productNameNode = getProductNameNode();
         if (productList == null) {
             productList = ApplicationNodeConstants.NAB_PRODUCT_NAME;
         }
 
-        Object[] array = productList.toArray();
-        if (!Arrays.equals(array, (Object[]) productNameNode.getOptions())) {
-            productNameNode.setOptions(array);
+        if (!Arrays.equals(productList, productNameNode.getOptions())) {
+            productNameNode.setOptions(productList);
             productNameNode.setValue("");
         }
 

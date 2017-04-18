@@ -24,7 +24,7 @@ public class OtherAssetTypeNodeRuleProvider implements RuleProvider<OtherAssetTy
     public void initializeState(OtherAssetTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.OTHER_ASSET_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.OTHER_ASSET_TYPE);
         node.setRequired(true);
     }
 

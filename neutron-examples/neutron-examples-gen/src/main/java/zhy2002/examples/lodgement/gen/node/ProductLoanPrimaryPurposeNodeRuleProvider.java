@@ -24,7 +24,7 @@ public class ProductLoanPrimaryPurposeNodeRuleProvider implements RuleProvider<P
     public void initializeState(ProductLoanPrimaryPurposeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.NAB_PRIMARY_PURPOSE.toArray());
+        node.setOptions(ApplicationNodeConstants.NAB_PRIMARY_PURPOSE);
     }
 
 

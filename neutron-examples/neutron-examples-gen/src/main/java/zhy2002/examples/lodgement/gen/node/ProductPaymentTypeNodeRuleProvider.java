@@ -24,7 +24,7 @@ public class ProductPaymentTypeNodeRuleProvider implements RuleProvider<ProductP
     public void initializeState(ProductPaymentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.PAYMENT_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.PAYMENT_TYPE);
     }
 
 

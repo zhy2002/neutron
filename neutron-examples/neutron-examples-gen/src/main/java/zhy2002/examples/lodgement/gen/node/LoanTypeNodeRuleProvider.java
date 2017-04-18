@@ -24,7 +24,7 @@ public class LoanTypeNodeRuleProvider implements RuleProvider<LoanTypeNode> {
     public void initializeState(LoanTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.LIABILITY_LOAN_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.LIABILITY_LOAN_TYPE);
         node.setRequired(true);
     }
 

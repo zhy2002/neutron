@@ -24,7 +24,7 @@ public class EmploymentStatusNodeRuleProvider implements RuleProvider<Employment
     public void initializeState(EmploymentStatusNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray());
+        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_STATUS);
         node.setRequired(true);
     }
 

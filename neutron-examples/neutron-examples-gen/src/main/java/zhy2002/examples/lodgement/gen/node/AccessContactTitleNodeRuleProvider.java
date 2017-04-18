@@ -24,7 +24,7 @@ public class AccessContactTitleNodeRuleProvider implements RuleProvider<AccessCo
     public void initializeState(AccessContactTitleNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TITLE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.TITLE_TYPE);
     }
 
 

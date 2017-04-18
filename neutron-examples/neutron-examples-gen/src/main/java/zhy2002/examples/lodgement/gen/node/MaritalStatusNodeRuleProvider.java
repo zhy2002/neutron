@@ -24,7 +24,7 @@ public class MaritalStatusNodeRuleProvider implements RuleProvider<MaritalStatus
     public void initializeState(MaritalStatusNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.MARITAL_STATUS.toArray());
+        node.setOptions(ApplicationNodeConstants.MARITAL_STATUS);
         node.setRequired(true);
     }
 

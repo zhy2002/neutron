@@ -25,7 +25,7 @@ public class ThirdPartyDescriptionNodeRuleProvider implements RuleProvider<Third
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.NEXT_KIN_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.NEXT_KIN_TYPE);
     }
 
 

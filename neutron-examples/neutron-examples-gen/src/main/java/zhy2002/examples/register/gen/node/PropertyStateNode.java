@@ -2,8 +2,6 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import jsinterop.annotations.*;
-import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.data.*;
@@ -48,16 +46,6 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
 
     public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
         super(parent, name);
-    }
-
-    @JsMethod
-    public Object getOptions() {
-        return getStateValue(RegisterNodeConstants.OPTIONS);
-    }
-
-    @JsMethod
-    public void setOptions(Object value) {
-        setStateValue(RegisterNodeConstants.OPTIONS, Object.class, value);
     }
 
 }

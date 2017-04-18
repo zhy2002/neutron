@@ -193,10 +193,10 @@ class OtherIncomeTypeNodeRuleProviderImpl extends OtherIncomeTypeNodeRuleProvide
         super.initializeState(node);
 
         if (parent.getParent() instanceof CompanyOtherIncomeListNode) {
-            node.setOptions(ApplicationNodeConstants.COMPANY_OTHER_INCOME_TYPE.toArray());
+            node.setOptions(ApplicationNodeConstants.COMPANY_OTHER_INCOME_TYPE);
             node.setValue("Add Back");
         } else {
-            node.setOptions(ApplicationNodeConstants.PERSON_OTHER_INCOME_TYPE.toArray());
+            node.setOptions(ApplicationNodeConstants.PERSON_OTHER_INCOME_TYPE);
             node.setValue("Other Income");
         }
     }

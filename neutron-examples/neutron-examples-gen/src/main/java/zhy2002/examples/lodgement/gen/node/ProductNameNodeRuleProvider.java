@@ -24,7 +24,7 @@ public class ProductNameNodeRuleProvider implements RuleProvider<ProductNameNode
     public void initializeState(ProductNameNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_NAME.toArray());
+        node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_NAME);
     }
 
 

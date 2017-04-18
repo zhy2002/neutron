@@ -24,7 +24,7 @@ public class StudentTypeNodeRuleProvider implements RuleProvider<StudentTypeNode
     public void initializeState(StudentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.STUDENT_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.STUDENT_TYPE);
     }
 
 

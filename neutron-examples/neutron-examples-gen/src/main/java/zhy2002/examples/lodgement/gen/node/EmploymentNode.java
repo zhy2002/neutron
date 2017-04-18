@@ -8,6 +8,8 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 
@@ -31,14 +33,16 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
         super(parent, name);
     }
 
+    public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
+
     @JsMethod
     public Boolean getCurrentRecord() {
-        return getStateValue(ApplicationNodeConstants.CURRENT_RECORD, Boolean.FALSE);
+        return getStateValue(CURRENT_RECORD_PROPERTY);
     }
 
     @JsMethod
     public void setCurrentRecord(Boolean value) {
-        setStateValue(ApplicationNodeConstants.CURRENT_RECORD, Boolean.class, value);
+        setStateValue(CURRENT_RECORD_PROPERTY, value);
     }
 
     @JsMethod

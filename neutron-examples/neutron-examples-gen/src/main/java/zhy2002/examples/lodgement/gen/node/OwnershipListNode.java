@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 
@@ -39,14 +41,16 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         return itemFactory.createItemRemoveEvent(item);
     }
 
+    public static final PropertyMetadata<BigDecimal> TOTAL_OWNERSHIP_PROPERTY = MetadataRegistry.createProperty(OwnershipListNode.class, "totalOwnership", BigDecimal.class);
+
     @JsMethod
     public BigDecimal getTotalOwnership() {
-        return getStateValue(ApplicationNodeConstants.TOTAL_OWNERSHIP);
+        return getStateValue(TOTAL_OWNERSHIP_PROPERTY);
     }
 
     @JsMethod
     public void setTotalOwnership(BigDecimal value) {
-        setStateValue(ApplicationNodeConstants.TOTAL_OWNERSHIP, BigDecimal.class, value);
+        setStateValue(TOTAL_OWNERSHIP_PROPERTY, value);
     }
 
 }

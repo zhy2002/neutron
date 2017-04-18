@@ -24,7 +24,7 @@ public class BaseApplicantTypeNodeRuleProvider implements RuleProvider<BaseAppli
     public void initializeState(BaseApplicantTypeNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.APPLICANT_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.APPLICANT_TYPE);
         node.setRequired(true);
         node.setValue("A");
     }

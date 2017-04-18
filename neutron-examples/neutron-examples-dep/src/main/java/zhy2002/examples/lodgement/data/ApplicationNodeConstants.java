@@ -6,7 +6,10 @@ import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ApplicationNodeConstants {
     public static final String OPTIONS = "options";
@@ -29,7 +32,7 @@ public class ApplicationNodeConstants {
 
     public static final UnitSymbol PERCENTAGE = new UnitSymbol("Percentage", "%");
 
-    public static final List<StringOption> TITLE_TYPE = Arrays.asList(
+    public static final StringOption[] TITLE_TYPE = {
             new StringOption(""),
             new StringOption("Mr"),
             new StringOption("Mrs"),
@@ -39,17 +42,17 @@ public class ApplicationNodeConstants {
             new StringOption("Prof"),
             new StringOption("Rev"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> COUNTRY_TYPE = Arrays.asList(
+    public static final StringOption[] COUNTRY_TYPE = {
             new StringOption(""),
             new StringOption("Australia"),
             new StringOption("China"),
             new StringOption("India"),
             new StringOption("US")
-    );
+    };
 
-    public static final List<StringOption> THIRD_PARTY_TYPE = Arrays.asList(
+    public static final StringOption[] THIRD_PARTY_TYPE = {
             new StringOption(""),
             new StringOption("Accountant"),
             new StringOption("Beneficiary"),
@@ -57,57 +60,56 @@ public class ApplicationNodeConstants {
             new StringOption("Next of Kin"),
             new StringOption("Trust Beneficiary"),
             new StringOption("Trust Settlor")
-    );
+    };
 
-    public static final List<StringOption> ACCESS_CONTACT_TYPE = Arrays.asList(
+    public static final StringOption[] ACCESS_CONTACT_TYPE = {
             new StringOption(""),
             new StringOption("Selling Agent"),
             new StringOption("Customer"),
             new StringOption("Tenant")
-    );
+    };
 
-    public static final List<StringOption> PROPERTY_TYPE = Arrays.asList(
+    public static final StringOption[] PROPERTY_TYPE = {
             new StringOption(""),
             new StringOption("Residential")
-    );
+    };
 
-    public static final List<StringOption> NAB_PRODUCT_GROUP = Arrays.asList(
+    public static final StringOption[] NAB_PRODUCT_GROUP = {
             new StringOption(""),
             new StringOption("PeakPerformance", "Peak Performance Equity Mortgage"),
             new StringOption("Homeplus", "Homeplus Home Loan"),
             new StringOption("BaseVariable", "NAB Base Variable Home Loan"),
             new StringOption("Tailored", "NAB Tailored Home Loan"),
             new StringOption("FlexiPlus", "NAB FlexiPlus Mortgage")
-    );
+    };
 
-    public static final List<StringOption> NAB_PRODUCT_NAME = Arrays.asList(
+    public static final StringOption[] NAB_PRODUCT_NAME = {
             new StringOption("")
-    );
+    };
 
-    public static final Map<String, List<StringOption>> NAB_PRODUCT_NAME_MAP = new HashMap<>();
+    public static final Map<String, StringOption[]> NAB_PRODUCT_NAME_MAP = new HashMap<>();
 
-    public static final List<StringOption> NAB_PRIMARY_PURPOSE = Arrays.asList(
+    public static final StringOption[] NAB_PRIMARY_PURPOSE = {
             new StringOption(""),
             new StringOption("PRIMARY PURPOSE")
-    );
+    };
 
-    public static final List<StringOption> PAYMENT_TYPE = Arrays.asList(
-            new StringOption(""),
+    public static final StringOption[] PAYMENT_TYPE = {
             new StringOption("PAYMENT TYPE")
-    );
+    };
 
-    public static final List<StringOption> NAB_LENDING_PURPOSE = Arrays.asList(
+    public static final StringOption[] NAB_LENDING_PURPOSE = {
             new StringOption(""),
             new StringOption("LENDING PURPOSE")
-    );
+    };
 
-    public static final List<StringOption> FEE_FROM_TYPE = Arrays.asList(
+    public static final StringOption[] FEE_FROM_TYPE = {
             new StringOption(""),
             new StringOption("Account"),
             new StringOption("Loan Account")
-    );
+    };
 
-    public static final List<StringOption> PRODUCT_FEE_TYPE = Arrays.asList(
+    public static final StringOption[] PRODUCT_FEE_TYPE = {
             new StringOption(""),
             new StringOption("Account"),
             new StringOption("Additional Legal"),
@@ -120,9 +122,9 @@ public class ApplicationNodeConstants {
             new StringOption("LMI"),
             new StringOption("Legal"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> PROPERTY_SUB_TYPE = Arrays.asList(
+    public static final StringOption[] PROPERTY_SUB_TYPE = {
             new StringOption(""),
             new StringOption("Apartment/Unit/Flat"),
             new StringOption("Fully Detached House"),
@@ -131,9 +133,9 @@ public class ApplicationNodeConstants {
             new StringOption("Duplex"),
             new StringOption("Vacant Land"),
             new StringOption("Rural")
-    );
+    };
 
-    public static final List<StringOption> CUSTOMER_CONTRIBUTION_TYPE = Arrays.asList(
+    public static final StringOption[] CUSTOMER_CONTRIBUTION_TYPE = {
             new StringOption(""),
             new StringOption("First Home Buyers Grant"),
             new StringOption("Net Proceeds from Sale of Property"),
@@ -141,9 +143,9 @@ public class ApplicationNodeConstants {
             new StringOption("Savings"),
             new StringOption("Gift"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> NEXT_KIN_TYPE = Arrays.asList(
+    public static final StringOption[] NEXT_KIN_TYPE = {
             new StringOption(""),
             new StringOption("Mother"),
             new StringOption("Mother-in-law"),
@@ -161,17 +163,17 @@ public class ApplicationNodeConstants {
             new StringOption("Friend"),
             new StringOption("Grandmother"),
             new StringOption("Grandfather")
-    );
+    };
 
-    public static final List<StringOption> OTHER_ASSET_TYPE = Arrays.asList(
+    public static final StringOption[] OTHER_ASSET_TYPE = {
             new StringOption(""),
             new StringOption("Home Contents"),
             new StringOption("Superannuation"),
             new StringOption("Good Will of Business"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> EXPENSE_TYPE = Arrays.asList(
+    public static final StringOption[] EXPENSE_TYPE = {
             new StringOption(""),
             new StringOption("Ongoing Rent"),
             new StringOption("Household Basic"),
@@ -184,9 +186,9 @@ public class ApplicationNodeConstants {
             new StringOption("Medical"),
             new StringOption("Transport"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> LIABILITY_LOAN_TYPE = Arrays.asList(
+    public static final StringOption[] LIABILITY_LOAN_TYPE = {
             new StringOption(""),
             new StringOption("Hire Purchase"),
             new StringOption("Lease"),
@@ -196,42 +198,42 @@ public class ApplicationNodeConstants {
             new StringOption("Overdraft"),
             new StringOption("Personal Loan"),
             new StringOption("Term Loan")
-    );
+    };
 
-    public static final List<StringOption> GENDER_TYPE = Arrays.asList(
+    public static final StringOption[] GENDER_TYPE = {
             new StringOption(""),
             new StringOption("Male"),
             new StringOption("Female")
-    );
+    };
 
-    public static final List<StringOption> SAVINGS_ACCOUNT_TYPE = Arrays.asList(
+    public static final StringOption[] SAVINGS_ACCOUNT_TYPE = {
             new StringOption(""),
             new StringOption("Savings Account"),
             new StringOption("Term Deposit")
-    );
+    };
 
-    public static final List<StringOption> OTHER_LIABILITY_TYPE = Arrays.asList(
+    public static final StringOption[] OTHER_LIABILITY_TYPE = {
             new StringOption(""),
             new StringOption("Commercial Bill"),
             new StringOption("Contingent Liability"),
             new StringOption("HECS"),
             new StringOption("Maintenance"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> CREDIT_CARD_TYPE = Arrays.asList(
+    public static final StringOption[] CREDIT_CARD_TYPE = {
             new StringOption(""),
             new StringOption("Credit Card"),
             new StringOption("Store Card")
-    );
+    };
 
-    public static final List<StringOption> APPLICANT_TYPE = Arrays.asList(
+    public static final StringOption[] APPLICANT_TYPE = {
             new StringOption("", ""),
             new StringOption("A", "Applicant"),
             new StringOption("G", "Guarantor")
-    );
+    };
 
-    public static final List<StringOption> AUSTRALIAN_STATES = Arrays.asList(
+    public static final StringOption[] AUSTRALIAN_STATES = {
             new StringOption("", ""),
             new StringOption("NSW"),
             new StringOption("VIC"),
@@ -242,29 +244,29 @@ public class ApplicationNodeConstants {
             new StringOption("ACT"),
             new StringOption("NT"),
             new StringOption("Other")
-    );
+    };
 
-    public static final List<StringOption> APPLICATION_TYPE = Arrays.asList(
+    public static final StringOption[] APPLICATION_TYPE = {
             new StringOption("", ""),
             new StringOption("Sole", "Sole"),
             new StringOption("Joint", "Joint"),
             new StringOption("Spouse", "Joint with Spouse")
-    );
+    };
 
-    public static final List<StringOption> COMPANY_APPLICATION_TYPE = Arrays.asList(
+    public static final StringOption[] COMPANY_APPLICATION_TYPE = {
             new StringOption("", ""),
             new StringOption("Sole", "Sole"),
             new StringOption("Joint", "Joint")
-    );
+    };
 
-    public static final List<StringOption> EMPLOYMENT_TYPE = Arrays.asList(
+    public static final StringOption[] EMPLOYMENT_TYPE = {
             new StringOption("payeEmployedNode"),
             new StringOption("selfEmployedNode"),
             new StringOption("unemployedNode"),
             new StringOption("retiredEmploymentNode")
-    );
+    };
 
-    public static final List<StringOption> MARITAL_STATUS = Arrays.asList(
+    public static final StringOption[] MARITAL_STATUS = {
             new StringOption("", ""),
             new StringOption("Single"),
             new StringOption("Married"),
@@ -272,9 +274,9 @@ public class ApplicationNodeConstants {
             new StringOption("Separated"),
             new StringOption("Divorced"),
             new StringOption("Widowed")
-    );
+    };
 
-    public static final List<StringOption> HOUSING_STATUS = Arrays.asList(
+    public static final StringOption[] HOUSING_STATUS = {
             new StringOption(""),
             new StringOption("Renting"),
             new StringOption("Own Home"),
@@ -283,44 +285,44 @@ public class ApplicationNodeConstants {
             new StringOption("Boarding"),
             new StringOption("Supplied by Employer"),
             new StringOption("Caravan")
-    );
+    };
 
-    public static final List<StringOption> YES_NO_TYPE = Arrays.asList(
+    public static final StringOption[] YES_NO_TYPE = {
             new StringOption(""),
             new StringOption("Yes"),
             new StringOption("No")
-    );
+    };
 
-    public static final List<StringOption> EMPLOYMENT_STATUS = Arrays.asList(
+    public static final StringOption[] EMPLOYMENT_STATUS = {
             new StringOption(""),
             new StringOption("Full Time"),
             new StringOption("Part Time"),
             new StringOption("Contract"),
             new StringOption("Casual")
-    );
+    };
 
-    public static final List<StringOption> STUDENT_TYPE = Arrays.asList(
+    public static final StringOption[] STUDENT_TYPE = {
             new StringOption(""),
             new StringOption("University Student"),
             new StringOption("School Student")
-    );
+    };
 
-    public static final List<StringOption> TRUST_TYPE = Arrays.asList(
+    public static final StringOption[] TRUST_TYPE = {
             new StringOption(""),
             new StringOption("Unit Trust"),
             new StringOption("Family Trust"),
             new StringOption("Hybrid Trust"),
             new StringOption("Simple Trust")
-    );
+    };
 
-    public static final List<StringOption> RESPONSIBLE_CHANGE_TYPE = Arrays.asList(
+    public static final StringOption[] RESPONSIBLE_CHANGE_TYPE = {
             new StringOption(""),
             new StringOption("Large Expenditure"),
             new StringOption("Permanent Decrease Income"),
             new StringOption("Temporary Decrease Income")
-    );
+    };
 
-    public static final List<StringOption> PERSON_OTHER_INCOME_TYPE = Arrays.asList(
+    public static final StringOption[] PERSON_OTHER_INCOME_TYPE = {
             new StringOption(""),
             new StringOption("Add Back"),
             new StringOption("Bonus"),
@@ -328,29 +330,29 @@ public class ApplicationNodeConstants {
             new StringOption("Government Benefits"),
             new StringOption("Investments"),
             new StringOption("Other Income")
-    );
+    };
 
-    public static final List<StringOption> COMPANY_OTHER_INCOME_TYPE = Arrays.asList(
+    public static final StringOption[] COMPANY_OTHER_INCOME_TYPE = {
             new StringOption(""),
             new StringOption("Add Back"),
             new StringOption("Company Profit Before Tax")
-    );
+    };
 
-    public static final List<StringOption> OTHER_INCOME_ADD_BACK_TYPE = Arrays.asList(
+    public static final StringOption[] OTHER_INCOME_ADD_BACK_TYPE = {
             new StringOption(""),
             new StringOption("Depreciation")
-    );
+    };
 
-    public static final List<StringOption> RESPONSIBLE_MITIGATION_TYPE = Arrays.asList(
+    public static final StringOption[] RESPONSIBLE_MITIGATION_TYPE = {
             new StringOption(""),
             new StringOption("Secure Additional Income"),
             new StringOption("Use Savings"),
             new StringOption("Sale Assets"),
             new StringOption("Reduce Expenditure"),
             new StringOption("My Application Reflect These Changes")
-    );
+    };
 
-    public static final List<BigDecimalOption> MONTH_TYPE = Arrays.asList(
+    public static final BigDecimalOption[] MONTH_TYPE = {
             new BigDecimalOption(null, ""),
             new BigDecimalOption(new BigDecimal("1"), "January"),
             new BigDecimalOption(new BigDecimal("2"), "February"),
@@ -364,46 +366,47 @@ public class ApplicationNodeConstants {
             new BigDecimalOption(new BigDecimal("10"), "October"),
             new BigDecimalOption(new BigDecimal("11"), "November"),
             new BigDecimalOption(new BigDecimal("12"), "December")
-    );
+    };
 
-    public static List<BigDecimalOption> getYearType() {
+    public static BigDecimalOption[] getYearType() {
         List<BigDecimalOption> result = new ArrayList<>();
         result.add(new BigDecimalOption(null, ""));
         int start = ValueUtil.getCurrentYear();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             String yearValue = String.valueOf(start - i);
             result.add(new BigDecimalOption(new BigDecimal(yearValue), yearValue));
         }
-        return result;
+        return result.toArray(new BigDecimalOption[result.size()]);
     }
 
     static {
-        NAB_PRODUCT_NAME_MAP.put("PeakPerformance", Arrays.asList(
+        NAB_PRODUCT_NAME_MAP.put("PeakPerformance", new StringOption[]{
                 new StringOption(""),
                 new StringOption("PeakPerformance", "Peak Performance Equity Mortgage")
-        ));
+        });
 
-        NAB_PRODUCT_NAME_MAP.put("Homeplus", Arrays.asList(
+        NAB_PRODUCT_NAME_MAP.put("Homeplus", new StringOption[]{
                 new StringOption(""),
                 new StringOption("HomeplusVariable", "Homeplus, Variable Rate"),
                 new StringOption("HomeplusFixed", "Homeplus, Fixed Term")
 
-        ));
-        NAB_PRODUCT_NAME_MAP.put("BaseVariable", Arrays.asList(
+        });
+
+        NAB_PRODUCT_NAME_MAP.put("BaseVariable", new StringOption[]{
                 new StringOption(""),
                 new StringOption("NAB Base Variable Home Loan")
-        ));
+        });
 
-        NAB_PRODUCT_NAME_MAP.put("Tailored", Arrays.asList(
+        NAB_PRODUCT_NAME_MAP.put("Tailored", new StringOption[]{
                 new StringOption(""),
                 new StringOption("TailoredVariable", "NAB Tailored Variable Home Loan"),
                 new StringOption("TailoredFixed", "NAB Tailored Fixed Home Loan")
-        ));
+        });
 
-        NAB_PRODUCT_NAME_MAP.put("FlexiPlus", Arrays.asList(
+        NAB_PRODUCT_NAME_MAP.put("FlexiPlus", new StringOption[]{
                 new StringOption(""),
                 new StringOption("FlexiPlus", "NAB FlexiPlus Mortgage")
-        ));
+        });
     }
 
 }

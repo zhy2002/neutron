@@ -24,7 +24,7 @@ public class CompanyRegistrationStateNodeRuleProvider implements RuleProvider<Co
     public void initializeState(CompanyRegistrationStateNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.AUSTRALIAN_STATES.toArray());
+        node.setOptions(ApplicationNodeConstants.AUSTRALIAN_STATES);
         node.setRequired(true);
     }
 

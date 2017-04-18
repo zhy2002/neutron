@@ -8,6 +8,8 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
@@ -61,14 +63,16 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         super(parent, name);
     }
 
+    public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
+
     @JsMethod
     public String getTooltip() {
-        return getStateValue(RegisterNodeConstants.TOOLTIP);
+        return getStateValue(TOOLTIP_PROPERTY);
     }
 
     @JsMethod
     public void setTooltip(String value) {
-        setStateValue(RegisterNodeConstants.TOOLTIP, String.class, value);
+        setStateValue(TOOLTIP_PROPERTY, value);
     }
 
     @JsMethod

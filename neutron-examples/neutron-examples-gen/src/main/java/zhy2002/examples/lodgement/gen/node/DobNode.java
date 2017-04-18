@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 
@@ -17,24 +19,28 @@ public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
         super(parent, name);
     }
 
+    public static final PropertyMetadata<Integer> MIN_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "minAge", Integer.class);
+    public static final PropertyMetadata<Integer> MAX_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "maxAge", Integer.class);
+
     @JsMethod
     public Integer getMinAge() {
-        return getStateValue(ApplicationNodeConstants.MIN_AGE);
+        return getStateValue(MIN_AGE_PROPERTY);
     }
 
     @JsMethod
     public void setMinAge(Integer value) {
-        setStateValue(ApplicationNodeConstants.MIN_AGE, Integer.class, value);
+        setStateValue(MIN_AGE_PROPERTY, value);
     }
+
 
     @JsMethod
     public Integer getMaxAge() {
-        return getStateValue(ApplicationNodeConstants.MAX_AGE);
+        return getStateValue(MAX_AGE_PROPERTY);
     }
 
     @JsMethod
     public void setMaxAge(Integer value) {
-        setStateValue(ApplicationNodeConstants.MAX_AGE, Integer.class, value);
+        setStateValue(MAX_AGE_PROPERTY, value);
     }
 
 }

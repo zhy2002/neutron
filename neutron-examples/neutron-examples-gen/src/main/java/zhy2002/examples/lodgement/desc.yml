@@ -4,10 +4,9 @@ rootType:
   baseTypeName: RootUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
-  - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1}
+  - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1, trackingMode: Always}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
-  - {propertyName: contentLevel, mode: Always}
   rules:
   - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
   - {typeName: ShowErrorListRule}
@@ -100,10 +99,8 @@ rootType:
         childTypes:
         - typeName: TitleNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
           - {propertyName: required, value: 'true'}
           rules:
           - {typeName: TitleGenderMatchRule, baseTypeName: ValidationRule}
@@ -124,10 +121,8 @@ rootType:
 
         - typeName: GenderNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE'}
           - {propertyName: required, value: 'true'}
 
         - typeName: DateOfBirthNode
@@ -152,20 +147,16 @@ rootType:
 
         - typeName: ApplicationTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE'}
           - {propertyName: required, value: 'true'}
           rules:
           - {typeName: ChangeApplicationTypeRule}
 
         - typeName: MaritalStatusNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS'}
           - {propertyName: required, value: 'true'}
 
         - typeName: PermanentResidentFlagNode
@@ -181,10 +172,8 @@ rootType:
 
         - typeName: HousingStatusNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS'}
           - {propertyName: required, value: 'true'}
 
       - typeName: PersonContactNode
@@ -319,10 +308,8 @@ rootType:
 
         - typeName: CompanyApplicationTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE'}
           - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegisteredNameNode
@@ -361,10 +348,8 @@ rootType:
 
         - typeName: CompanyRegistrationStateNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.AUSTRALIAN_STATES.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.AUSTRALIAN_STATES'}
           - {propertyName: required, value: 'true'}
 
         - typeName: CompanySelectDirectorNode
@@ -453,10 +438,8 @@ rootType:
           childTypes:
           - typeName: SavingsTypeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE.toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE}
             - {propertyName: required, value: 'true'}
           - typeName: SavingsInstitutionNameNode
             baseTypeName: StringUiNode
@@ -499,11 +482,9 @@ rootType:
 
           - typeName: VehicleYearNode
             baseTypeName: BigDecimalUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
             - {propertyName: required, value: 'true'}
-            - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.getYearType()}
 
           - typeName: VehicleMarketValueNode
             baseTypeName: BaseCurrencyNode
@@ -527,10 +508,8 @@ rootType:
           childTypes:
           - typeName: OtherAssetTypeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: ApplicationNodeConstants.OTHER_ASSET_TYPE.toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_ASSET_TYPE}
             - {propertyName: required, value: 'true'}
 
           - typeName: OtherAssetDescriptionNode
@@ -569,10 +548,8 @@ rootType:
           childTypes:
           - typeName: CreditCardTypeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE.toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE}
             - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardAmountOwingNode
@@ -630,10 +607,8 @@ rootType:
           childTypes:
           - typeName: LoanTypeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE.toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
             - {propertyName: required, value: 'true'}
 
           - typeName: LoanOwingAmountNode
@@ -689,9 +664,8 @@ rootType:
           - typeName: OtherLiabilityTypeNode
             baseTypeName: StringUiNode
             properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE.toArray()}
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE}
             - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityDescriptionNode
@@ -742,10 +716,8 @@ rootType:
         childTypes:
         - typeName: ExpenseTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: ApplicationNodeConstants.EXPENSE_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.EXPENSE_TYPE}
           - {propertyName: required, value: 'true'}
 
         - typeName: ExpenseDescriptionNode
@@ -927,18 +899,14 @@ rootType:
 
         - typeName: PropertyTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_TYPE'}
           - {propertyName: required, value: 'true'}
 
         - typeName: PropertySubTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE'}
           - {propertyName: required, value: 'true'}
 
         - typeName: PropertyPurseNode
@@ -963,10 +931,8 @@ rootType:
         childTypes:
         - typeName: AccessContactTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE'}
           rules:
           - typeName: StringEnableSiblingRule
             existing: true
@@ -976,10 +942,8 @@ rootType:
 
         - typeName: AccessContactTitleNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
 
         - typeName: AccessContactFirstNameNode
           baseTypeName: StringUiNode
@@ -1046,33 +1010,25 @@ rootType:
           childTypes:
           - typeName: ProductGroupNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP.toArray()'}
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
             rules:
             - {typeName: ProductGroupChangedRule}
 
           - typeName: ProductNameNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME.toArray()'}
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME'}
 
           - typeName: ProductLoanPrimaryPurposeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE.toArray()'}
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE'}
 
           - typeName: ProductLendingPurposeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE.toArray()'}
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE'}
 
           - typeName: ProductRequestedAmountNode
             baseTypeName: BaseCurrencyNode
@@ -1082,10 +1038,8 @@ rootType:
 
           - typeName: ProductPaymentTypeNode
             baseTypeName: StringUiNode
-            properties:
-            - {name: options, typeName: Object, externalTypeName: 'Object[]'}
             init:
-            - {propertyName: options, value: 'ApplicationNodeConstants.PAYMENT_TYPE.toArray()'}
+            - {propertyName: options, value: 'ApplicationNodeConstants.PAYMENT_TYPE'}
 
           - typeName: ProductInterestOnlyTermNode
             baseTypeName: BigDecimalUiNode
@@ -1186,10 +1140,8 @@ rootType:
         childTypes:
         - typeName: ContributionTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE}
           - {propertyName: required, value: 'true'}
           rules:
           - typeName: StringEnableSiblingRule
@@ -1223,11 +1175,9 @@ rootType:
         childTypes:
         - typeName: FeeTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
-          - {propertyName: options, value: ApplicationNodeConstants.PRODUCT_FEE_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.PRODUCT_FEE_TYPE}
           rules:
           - typeName: StringEnableSiblingRule
             existing: true
@@ -1242,11 +1192,9 @@ rootType:
 
         - typeName: FeePayFromNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
-          - {propertyName: options, value: ApplicationNodeConstants.FEE_FROM_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.FEE_FROM_TYPE}
 
         - typeName: FeeAmountNode
           baseTypeName: BaseCurrencyNode
@@ -1306,11 +1254,9 @@ rootType:
         childTypes:
         - typeName: ThirdPartyTypeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
-          - {propertyName: options, value: ApplicationNodeConstants.THIRD_PARTY_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.THIRD_PARTY_TYPE}
           rules:
           - typeName: StringEnableSiblingRule
             existing: true
@@ -1320,18 +1266,14 @@ rootType:
 
         - typeName: ThirdPartyDescriptionNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
           - {propertyName: required, value: 'true'}
-          - {propertyName: options, value: ApplicationNodeConstants.NEXT_KIN_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.NEXT_KIN_TYPE}
 
         - typeName: ThirdPartyTitleNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE.toArray()'}
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
           - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyFirstNameNode
@@ -1418,9 +1360,7 @@ rootType:
     baseTypeName: ListUiNode
     itemTypeName: ErrorNode
     properties:
-    - {name: focus, typeName: String}
-    init:
-    - {propertyName: focus, mode: Always}
+    - {name: focus, typeName: String, trackingMode: Always}
     rules:
     - {typeName: ChangeFocusErrorRule}
     childTypes:
@@ -1487,19 +1427,15 @@ commonTypes:
   childTypes:
   - typeName: MonthNode
     baseTypeName: BigDecimalUiNode
-    properties:
-    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: required, value: 'true'}
-    - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE.toArray()}
+    - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE}
 
   - typeName: YearNode
     baseTypeName: BigDecimalUiNode
-    properties:
-    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
     - {propertyName: required, value: 'true'}
-    - {propertyName: options, value: ApplicationNodeConstants.getYearType().toArray()}
+    - {propertyName: options, value: ApplicationNodeConstants.getYearType()}
 
 - typeName: EmailNode
   baseTypeName: StringUiNode
@@ -1552,9 +1488,8 @@ commonTypes:
   - typeName: EmploymentTypeNode
     baseTypeName: StringUiNode
     properties:
-    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
-    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray()'}
+    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE'}
     - {propertyName: value, value: '"payeEmployedNode"'}
     rules:
     - {typeName: EmploymentTypeChangedRule}
@@ -1605,10 +1540,8 @@ commonTypes:
     childTypes:
     - typeName: EmploymentStatusNode
       baseTypeName: StringUiNode
-      properties:
-      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
-      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS.toArray()'}
+      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS'}
       - {propertyName: required, value: 'true'}
 
     - typeName: OccupationNode
@@ -1664,10 +1597,8 @@ commonTypes:
 
     - typeName: StudentTypeNode
       baseTypeName: StringUiNode
-      properties:
-      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
-      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE.toArray()'}
+      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE'}
 
     - typeName: HouseDutiesFlagNode
       baseTypeName: YesNoOptionNode
@@ -1704,19 +1635,15 @@ commonTypes:
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
-  properties:
-  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
-  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE.toArray()'}
+  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE'}
 
 - typeName: BaseCountryNode
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
-  properties:
-  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
-  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE.toArray()}
+  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE}
 
 - typeName: DobNode
   baseTypeName: StringUiNode
@@ -1833,17 +1760,13 @@ commonTypes:
 
         - typeName: ResponsibleTypeOfChangeNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE}
 
         - typeName: ResponsibleMitigationMethodNode
           baseTypeName: StringUiNode
-          properties:
-          - {name: options, typeName: Object, externalTypeName: 'Object[]'}
           init:
-          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE.toArray()}
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE}
 
         - typeName: ResponsibleRepaymentDifficultyNode
           baseTypeName: YesNoOptionNode
@@ -1869,17 +1792,13 @@ commonTypes:
     childTypes:
     - typeName: OtherIncomeTypeNode
       baseTypeName: StringUiNode
-      properties:
-      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
       - {propertyName: required, value: 'true'}
 
     - typeName: OtherIncomeAddBackTypeNode
       baseTypeName: StringUiNode
-      properties:
-      - {name: options, typeName: Object, externalTypeName: 'Object[]'}
       init:
-      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray()}
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE}
 
     - typeName: OtherIncomeAmountNode
       baseTypeName: BaseCurrencyNode
@@ -1944,10 +1863,8 @@ commonTypes:
   childTypes:
   - typeName: TrustTypeNode
     baseTypeName: StringUiNode
-    properties:
-    - {name: options, typeName: Object, externalTypeName: 'Object[]'}
     init:
-    - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE.toArray()}
+    - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE}
     rules:
     - {typeName: TrustTypeChangedRule}
 
@@ -1991,9 +1908,7 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   baseTypeName: StringUiNode
-  properties:
-  - {name: options, typeName: Object, externalTypeName: 'Object[]'}
   init:
-  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE.toArray()'}
+  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE'}
   - {propertyName: required, value: 'true'}
   - {propertyName: value, value: '"A"'}

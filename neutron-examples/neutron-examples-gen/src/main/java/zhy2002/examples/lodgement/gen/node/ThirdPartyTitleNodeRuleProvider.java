@@ -24,7 +24,7 @@ public class ThirdPartyTitleNodeRuleProvider implements RuleProvider<ThirdPartyT
     public void initializeState(ThirdPartyTitleNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TITLE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.TITLE_TYPE);
         node.setRequired(true);
     }
 

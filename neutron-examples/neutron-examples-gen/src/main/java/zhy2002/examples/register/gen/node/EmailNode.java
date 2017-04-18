@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
@@ -50,14 +52,16 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         super(parent, name);
     }
 
+    public static final PropertyMetadata<String> TRIGGERED_BY_PROPERTY = MetadataRegistry.createProperty(EmailNode.class, "triggeredBy", String.class);
+
     @JsMethod
     public String getTriggeredBy() {
-        return getStateValue(RegisterNodeConstants.TRIGGERED_BY);
+        return getStateValue(TRIGGERED_BY_PROPERTY);
     }
 
     @JsMethod
     public void setTriggeredBy(String value) {
-        setStateValue(RegisterNodeConstants.TRIGGERED_BY, String.class, value);
+        setStateValue(TRIGGERED_BY_PROPERTY, value);
     }
 
 }

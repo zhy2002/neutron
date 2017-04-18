@@ -25,7 +25,7 @@ public class YearNodeRuleProvider implements RuleProvider<YearNode> {
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.getYearType().toArray());
+        node.setOptions(ApplicationNodeConstants.getYearType());
     }
 
 

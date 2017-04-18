@@ -300,8 +300,7 @@ public class LodgementNodeTest {
 
     @Test
     public void shouldUpdateSelectedIndexWhenSetContentNode() {
-        final List<Integer> changeList = new ArrayList<>();
-        UiNodeChangeListener myListener = () -> changeList.add(0);
+        CountingChangeListener myListener = new CountingChangeListener();
         ApplicationNodeImpl applicationNodeImpl = (ApplicationNodeImpl) applicationNode;
         applicationNodeImpl.addChangeListener(myListener);
 
@@ -326,7 +325,7 @@ public class LodgementNodeTest {
         assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
         assertThat(personListNode.getSelectedIndex(), equalTo(1));
 
-        assertThat(changeList, hasSize(5));
+        assertThat(myListener.getCount(), equalTo(5));
 
     }
 

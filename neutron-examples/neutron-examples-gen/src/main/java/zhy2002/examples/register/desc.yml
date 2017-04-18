@@ -72,10 +72,8 @@ rootType:
 
   - typeName: PlanNode
     baseTypeName: StringUiNode
-    properties:
-    - {name: options, typeName: Object}
     init:
-    - {propertyName: options, value: 'new ProductPlan[0]'}
+    - {propertyName: options, value: RegisterNodeConstants.PLANS}
 
   - typeName: ReceiveOffersNode
     baseTypeName: BooleanUiNode
@@ -101,12 +99,10 @@ rootType:
 
     - typeName: PropertyStateNode
       baseTypeName: StringUiNode
-      properties:
-      - {name: options, typeName: Object}
       init:
       - {propertyName: required, value: 'true'}
       - {propertyName: requiredMessage, value: '"Property state is required."'}
-      - {propertyName: options, value: RegisterNodeConstants.STATES.toArray()}
+      - {propertyName: options, value: RegisterNodeConstants.STATES}
 
   - typeName: PhoneInfoNode
     baseTypeName: ObjectUiNode

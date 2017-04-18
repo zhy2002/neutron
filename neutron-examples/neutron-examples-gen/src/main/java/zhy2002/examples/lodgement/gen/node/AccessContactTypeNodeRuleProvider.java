@@ -24,7 +24,7 @@ public class AccessContactTypeNodeRuleProvider implements RuleProvider<AccessCon
     public void initializeState(AccessContactTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.ACCESS_CONTACT_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.ACCESS_CONTACT_TYPE);
     }
 
     @Inject

@@ -24,7 +24,7 @@ public class YesNoOptionNodeRuleProvider implements RuleProvider<YesNoOptionNode
     public void initializeState(YesNoOptionNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.YES_NO_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.YES_NO_TYPE);
     }
 
 

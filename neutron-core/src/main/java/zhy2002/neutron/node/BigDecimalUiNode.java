@@ -1,14 +1,19 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.*;
+import zhy2002.neutron.LeafUiNode;
+import zhy2002.neutron.ParentUiNode;
+import zhy2002.neutron.ValueFormatter;
+import zhy2002.neutron.ValueParser;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.BigDecimalOption;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -125,6 +130,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value is out of range.");
     public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
     public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);
+    public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "options", Object.class);
 
     public boolean isValueValid() {
         return super.getStateValue(VALUE_VALID_PROPERTY);
@@ -168,5 +174,19 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         super.setStateValue(MAX_VALUE_PROPERTY, value);
     }
 
+    @JsMethod
+    public BigDecimalOption[] getOptions() {
+        BigDecimalOption[] options = (BigDecimalOption[]) getStateValue(OPTIONS_PROPERTY);
+        BigDecimalOption[] result = null;
+        if (options != null) {
+            result = Arrays.copyOf(options, options.length);
+        }
+        return result;
+    }
+
+    @JsMethod
+    public void setOptions(BigDecimalOption[] value) {
+        setStateValue(OPTIONS_PROPERTY, value);
+    }
     //endregion
 }

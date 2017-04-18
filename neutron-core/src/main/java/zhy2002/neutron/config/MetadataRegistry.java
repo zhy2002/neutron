@@ -21,7 +21,7 @@ public class MetadataRegistry {
     }
 
     public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue) {
-        return createProperty(definingClass, propertyName, valueClass, defaultValue, null);
+        return createProperty(definingClass, propertyName, valueClass, defaultValue, null, null);
     }
 
     public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, ChangeTrackingModeEnum trackingMode) {
@@ -32,10 +32,14 @@ public class MetadataRegistry {
         return createProperty(definingClass, propertyName, valueClass, defaultValue, null, changeMode);
     }
 
-    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum mode, ChangeModeEnum changeMode) {
+    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum trackingMode) {
+        return createProperty(definingClass, propertyName, valueClass, defaultValue, trackingMode, null);
+    }
 
-        if (mode == null) {
-            mode = getDefaultChangeTrackingMode(valueClass);
+    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode) {
+
+        if (tracingMode == null) {
+            tracingMode = getDefaultChangeTrackingMode(valueClass);
         }
 
         if (changeMode == null) {
@@ -47,7 +51,7 @@ public class MetadataRegistry {
                 propertyName,
                 valueClass,
                 defaultValue,
-                mode,
+                tracingMode,
                 changeMode
         );
         UiNodeMetadata nodeMetadata = getClassMetadata(definingClass);

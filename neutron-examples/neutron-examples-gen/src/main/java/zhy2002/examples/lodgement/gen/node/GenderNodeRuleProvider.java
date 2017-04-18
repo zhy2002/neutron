@@ -24,7 +24,7 @@ public class GenderNodeRuleProvider implements RuleProvider<GenderNode> {
     public void initializeState(GenderNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.GENDER_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.GENDER_TYPE);
         node.setRequired(true);
     }
 

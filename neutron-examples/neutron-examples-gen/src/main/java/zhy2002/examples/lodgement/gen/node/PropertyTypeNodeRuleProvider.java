@@ -24,7 +24,7 @@ public class PropertyTypeNodeRuleProvider implements RuleProvider<PropertyTypeNo
     public void initializeState(PropertyTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.PROPERTY_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.PROPERTY_TYPE);
         node.setRequired(true);
     }
 

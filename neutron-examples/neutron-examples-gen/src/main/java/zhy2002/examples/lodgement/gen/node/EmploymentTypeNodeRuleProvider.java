@@ -24,7 +24,7 @@ public class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTy
     public void initializeState(EmploymentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_TYPE);
         node.setValue("payeEmployedNode");
     }
 

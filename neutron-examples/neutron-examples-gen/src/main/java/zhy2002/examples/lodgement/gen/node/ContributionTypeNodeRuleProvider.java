@@ -24,7 +24,7 @@ public class ContributionTypeNodeRuleProvider implements RuleProvider<Contributi
     public void initializeState(ContributionTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE);
         node.setRequired(true);
     }
 

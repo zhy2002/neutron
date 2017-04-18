@@ -24,7 +24,7 @@ public class HousingStatusNodeRuleProvider implements RuleProvider<HousingStatus
     public void initializeState(HousingStatusNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.HOUSING_STATUS.toArray());
+        node.setOptions(ApplicationNodeConstants.HOUSING_STATUS);
         node.setRequired(true);
     }
 

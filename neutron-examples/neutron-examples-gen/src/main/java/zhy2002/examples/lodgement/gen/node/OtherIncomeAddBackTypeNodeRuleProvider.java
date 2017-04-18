@@ -24,7 +24,7 @@ public class OtherIncomeAddBackTypeNodeRuleProvider implements RuleProvider<Othe
     public void initializeState(OtherIncomeAddBackTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE);
     }
 
 

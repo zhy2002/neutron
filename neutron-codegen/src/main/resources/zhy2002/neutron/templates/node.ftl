@@ -16,6 +16,10 @@ import java.util.*;
 <#if valueTypeName?? || init?? || properties??>
 import ${targetPackage}.data.*;
 </#if>
+<#if properties?? && properties?size gt 0>
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
+</#if>
 import ${targetPackage}.gen.rule.*;
 <#if !abstractNode>
 import ${targetPackage}.gen.di.*;
@@ -133,14 +137,18 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 <#if properties??>
     <#list properties as prop>
+    public static final PropertyMetadata<${prop.typeName}> ${prop.nameAllCaps}_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "${prop.name}", ${prop.typeName}.class<#if prop.default??>, ${prop.default}</#if><#if prop.trackingMode??>, ChangeTrackingModeEnum.${prop.trackingMode}</#if>);
+    </#list>
+    <#list properties as prop>
+
     @JsMethod
     public ${prop.externalTypeName} get${prop.name?cap_first}() {
-        return getStateValue(${contextName}Constants.${prop.nameAllCaps}<#if prop.default??>, ${prop.default}</#if>);
+        return getStateValue(${prop.nameAllCaps}_PROPERTY);
     }
 
     @JsMethod
     public void set${prop.name?cap_first}(${prop.externalTypeName} value) {
-        setStateValue(${contextName}Constants.${prop.nameAllCaps}, ${prop.typeName}.class, value);
+        setStateValue(${prop.nameAllCaps}_PROPERTY, value);
     }
 
     </#list>

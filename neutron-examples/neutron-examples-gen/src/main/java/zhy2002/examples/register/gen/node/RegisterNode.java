@@ -8,6 +8,8 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.register.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
@@ -69,14 +71,16 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
         super(context);
     }
 
+    public static final PropertyMetadata<Boolean> HAS_ERROR_PROPERTY = MetadataRegistry.createProperty(RegisterNode.class, "hasError", Boolean.class, Boolean.FALSE);
+
     @JsMethod
     public Boolean getHasError() {
-        return getStateValue(RegisterNodeConstants.HAS_ERROR, Boolean.FALSE);
+        return getStateValue(HAS_ERROR_PROPERTY);
     }
 
     @JsMethod
     public void setHasError(Boolean value) {
-        setStateValue(RegisterNodeConstants.HAS_ERROR, Boolean.class, value);
+        setStateValue(HAS_ERROR_PROPERTY, value);
     }
 
     @JsMethod

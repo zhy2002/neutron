@@ -24,7 +24,7 @@ public class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
     public void initializeState(TitleNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TITLE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.TITLE_TYPE);
         node.setRequired(true);
     }
 

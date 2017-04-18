@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.register.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
@@ -50,14 +52,16 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         super(parent, name);
     }
 
+    public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);
+
     @JsMethod
     public String getMessage() {
-        return getStateValue(RegisterNodeConstants.MESSAGE);
+        return getStateValue(MESSAGE_PROPERTY);
     }
 
     @JsMethod
     public void setMessage(String value) {
-        setStateValue(RegisterNodeConstants.MESSAGE, String.class, value);
+        setStateValue(MESSAGE_PROPERTY, value);
     }
 
 }

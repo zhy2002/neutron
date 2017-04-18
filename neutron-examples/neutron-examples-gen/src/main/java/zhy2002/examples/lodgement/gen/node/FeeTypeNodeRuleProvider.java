@@ -25,7 +25,7 @@ public class FeeTypeNodeRuleProvider implements RuleProvider<FeeTypeNode> {
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.PRODUCT_FEE_TYPE.toArray());
+        node.setOptions(ApplicationNodeConstants.PRODUCT_FEE_TYPE);
     }
 
     @Inject

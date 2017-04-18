@@ -24,7 +24,7 @@ public class ProductLendingPurposeNodeRuleProvider implements RuleProvider<Produ
     public void initializeState(ProductLendingPurposeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.NAB_LENDING_PURPOSE.toArray());
+        node.setOptions(ApplicationNodeConstants.NAB_LENDING_PURPOSE);
     }
 
 
