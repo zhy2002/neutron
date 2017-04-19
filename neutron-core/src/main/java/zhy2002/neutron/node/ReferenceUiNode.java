@@ -10,8 +10,6 @@ import zhy2002.neutron.config.PropertyMetadata;
 
 import javax.validation.constraints.NotNull;
 
-import static zhy2002.neutron.util.NeutronEventSubjects.REMOVE_EMPTY;
-
 public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
     protected ReferenceUiNode(@NotNull P parent, @NotNull String name) {
@@ -28,21 +26,22 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
         return String.class;
     }
 
-    @JsMethod
-    @Override
-    public final String getValue() {
-        return super.getValue();
-    }
-
-    @JsMethod
-    @Override
-    public final void setValue(String value) {
-        super.setValue(String.class, value);
-    }
-
     //region node properties
 
+    public static final PropertyMetadata<String> VALUE_PROPERTY = MetadataRegistry.createProperty(ReferenceUiNode.class, "value", String.class);
     public static final PropertyMetadata<Boolean> REMOVE_EMPTY_PROPERTY = MetadataRegistry.createProperty(ReferenceUiNode.class, "removeEmpty", Boolean.class, Boolean.FALSE, ChangeModeEnum.DIRECT);
+
+    @JsMethod
+    @Override
+    public String getValue() {
+        return getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public void setValue(String value) {
+        setStateValue(VALUE_PROPERTY, value);
+    }
 
     public final boolean isRemoveEmpty() {
         return getStateValue(REMOVE_EMPTY_PROPERTY);
@@ -53,7 +52,4 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     //endregion
-
-
-
 }

@@ -8,6 +8,7 @@ import zhy2002.examples.lodgement.gen.node.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.sameInstance;
 
 public class RealEstateNodeTest {
 
@@ -37,12 +38,15 @@ public class RealEstateNodeTest {
 
     @Test
     public void shouldNotHaveNullOwnershipReference() {
-        PersonNode personNode = applicationNode.getPersonListNode().createItem();
         assertThat(realEstateListNode.getItemCount(), equalTo(1));
+
+        PersonNode personNode = applicationNode.getPersonListNode().createItem();
         RealEstateNode realEstateNode = realEstateListNode.getItem(0);
         PropertyNode propertyNode = realEstateNode.getPropertyNode();
         OwnershipListNode<?> ownershipListNode = propertyNode.getPropertyOwnershipListNode();
         assertThat(ownershipListNode.getItemCount(), equalTo(1));
         assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getValue(), notNullValue());
+        assertThat(ownershipListNode.getItem(0).getApplicantReferenceNode().getReferencedNode(), sameInstance(personNode));
     }
+
 }

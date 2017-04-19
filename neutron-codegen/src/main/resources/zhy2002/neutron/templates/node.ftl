@@ -128,12 +128,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 
 </#if>
 <#if valueTypeName??>
-    @JsMethod
-    @Override
-    public final void setValue(${valueTypeName} value) {
-        setValue(${valueTypeName}.class, value);
-    }
-
+    public static final PropertyMetadata<${valueTypeName}> VALUE_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "value", ${valueTypeName}.class);
 </#if>
 <#if properties??>
     <#list properties as prop>
@@ -152,6 +147,20 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
     </#list>
+</#if>
+<#if valueTypeName??>
+    @JsMethod
+    @Override
+    public final ${valueTypeName} getValue() {
+    return super.getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public final void setValue(${valueTypeName} value) {
+    super.setStateValue(VALUE_PROPERTY, value);
+    }
+
 </#if>
 <#if valueWrappers??>
     <#list valueWrappers as wrapper>

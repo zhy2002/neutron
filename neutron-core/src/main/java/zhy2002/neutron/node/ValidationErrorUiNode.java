@@ -6,6 +6,8 @@ import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 
 public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, ValidationError> {
@@ -14,12 +16,6 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
 
     public ValidationErrorUiNode(P parent, String name) {
         super(parent, name);
-    }
-
-    @JsMethod
-    @Override
-    public final void setValue(ValidationError value) {
-        setValue(ValidationError.class, value);
     }
 
     @JsMethod
@@ -60,7 +56,6 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
         return new ValidationError(value);
     }
 
-
     @Override
     public boolean hasValue() {
         ValidationError value = getValue();
@@ -71,5 +66,23 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
     public Class<ValidationError> getValueClass() {
         return ValidationError.class;
     }
+
+    //region node properties
+
+    public static final PropertyMetadata<ValidationError> VALUE_PROPERTY = MetadataRegistry.createProperty(ValidationError.class, "value", ValidationError.class, EMPTY_VALUE);
+
+    @JsMethod
+    @Override
+    public ValidationError getValue() {
+        return super.getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public void setValue(ValidationError value) {
+        super.setStateValue(VALUE_PROPERTY, value);
+    }
+
+    //endregion
 
 }

@@ -28,16 +28,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     @Override
-    public final String getValue() {
-        return super.getValue();
-    }
-
-    @Override
-    public final void setValue(String value) {
-        super.setValue(String.class, value);
-    }
-
-    @Override
     public boolean hasValue() {
 
         String value = getValue();
@@ -51,6 +41,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     //region node properties
 
+    public static final PropertyMetadata<String> VALUE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "value", String.class, "", ChangeTrackingModeEnum.Value);
     public static final PropertyMetadata<String> PATTERN_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "pattern", String.class);
     public static final PropertyMetadata<String> INVALID_CHARS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidChars", String.class);
     public static final PropertyMetadata<String> PATTERN_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "patternMessage", String.class, "Pattern is invalid.");
@@ -59,6 +50,18 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     public static final PropertyMetadata<Integer> MIN_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "minLength", Integer.class);
     public static final PropertyMetadata<Integer> MAX_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "maxLength", Integer.class);
     public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "options", Object.class);
+
+    @JsMethod
+    @Override
+    public final String getValue() {
+        return super.getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public final void setValue(String value) {
+        super.setStateValue(VALUE_PROPERTY, value);
+    }
 
     public String getPattern() {
         return super.getStateValue(PATTERN_PROPERTY);
@@ -118,7 +121,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     @JsMethod
     public StringOption[] getOptions() {
-        StringOption[] options = (StringOption[])getStateValue(OPTIONS_PROPERTY);
+        StringOption[] options = (StringOption[]) getStateValue(OPTIONS_PROPERTY);
         StringOption[] result = null;
         if (options != null) {
             result = Arrays.copyOf(options, options.length);

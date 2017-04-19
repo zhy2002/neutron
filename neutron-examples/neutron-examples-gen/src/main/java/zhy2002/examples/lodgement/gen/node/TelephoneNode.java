@@ -19,12 +19,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         super(parent, name);
     }
 
-    @JsMethod
-    @Override
-    public final void setValue(Telephone value) {
-        setValue(Telephone.class, value);
-    }
-
+    public static final PropertyMetadata<Telephone> VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "value", Telephone.class);
     public static final PropertyMetadata<Boolean> COUNTRY_CODE_READONLY_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "countryCodeReadonly", Boolean.class, Boolean.FALSE);
 
     @JsMethod
@@ -35,6 +30,18 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     @JsMethod
     public void setCountryCodeReadonly(Boolean value) {
         setStateValue(COUNTRY_CODE_READONLY_PROPERTY, value);
+    }
+
+    @JsMethod
+    @Override
+    public final Telephone getValue() {
+    return super.getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public final void setValue(Telephone value) {
+    super.setStateValue(VALUE_PROPERTY, value);
     }
 
     @Override

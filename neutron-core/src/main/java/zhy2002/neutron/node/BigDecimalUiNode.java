@@ -8,7 +8,6 @@ import zhy2002.neutron.ValueParser;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.BigDecimalOption;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -55,34 +54,21 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         this.formatter = formatter;
     }
 
-    @JsMethod
     @Override
-    public BigDecimal getValue() {
-        return super.getValue();
-    }
-
-    @NotNull
-    @JsMethod
-    @Override
-    public void setValue(BigDecimal value) {
-        this.setValue(BigDecimal.class, value);
-    }
-
-    @Override
-    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
+    public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
         if (!getContext().isInCycle()) {
-            if (NeutronEventSubjects.VALUE.equals(key)) {
+            if (VALUE_PROPERTY == propertyMetadata) {
                 hasValue = value != null;
                 if (!hasValue) {
                     super.setStateValue(VALUE_TEXT_PROPERTY.getStateKey(), String.class, "");
                     return;
                 }
-            } else if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
+            } else if (VALUE_TEXT_PROPERTY == propertyMetadata) {
                 hasValue = !ValueUtil.isEmpty((String) value);
             }
         }
 
-        super.setStateValue(key, valueClass, value);
+        super.setStateValue(propertyMetadata, value);
     }
 
     @Override
@@ -98,7 +84,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
             if (!Objects.equals(val, getValue())) {
                 setValue(val);
             }
-        } else if (NeutronEventSubjects.VALUE.equals(key)) {
+        } else if (VALUE_PROPERTY.getStateKey().equals(key)) {
             if (value == null) {
                 if (getParser().parse(getText()) != null) {
                     setText("");
@@ -125,12 +111,25 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
 
     //region node properties
 
+    public static final PropertyMetadata<BigDecimal> VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "value", BigDecimal.class);
     public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class);
     public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value is out of range.");
     public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
     public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);
     public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "options", Object.class);
+
+    @JsMethod
+    @Override
+    public BigDecimal getValue() {
+        return super.getStateValue(VALUE_PROPERTY);
+    }
+
+    @JsMethod
+    @Override
+    public void setValue(BigDecimal value) {
+        super.setStateValue(VALUE_PROPERTY, value);
+    }
 
     public boolean isValueValid() {
         return super.getStateValue(VALUE_VALID_PROPERTY);

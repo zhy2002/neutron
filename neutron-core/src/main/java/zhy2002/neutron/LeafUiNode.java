@@ -23,14 +23,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         super(parent, name);
     }
 
-    @JsMethod
-    public T getValue() {
-        return getStateValue(NeutronEventSubjects.VALUE);
-    }
-
-    protected final void setValue(Class<T> valueClass, T value) {
-        setStateValue(NeutronEventSubjects.VALUE, valueClass, value);
-    }
+    public abstract T getValue();
 
     public abstract void setValue(T value);
 
@@ -61,6 +54,10 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE, value);
     }
 
+    /**
+     * @return the value of this leaf node before it becomes dirty.
+     * returns null when the node is not dirty.
+     */
     public T getOriginalValue() {
         return getStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
     }
