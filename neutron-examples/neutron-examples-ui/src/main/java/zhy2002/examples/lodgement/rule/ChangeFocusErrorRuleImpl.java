@@ -4,13 +4,10 @@ package zhy2002.examples.lodgement.rule;
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.ParentUiNode;
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -42,14 +39,19 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
 
         UiNode<?> node = errorNode.getSource();
         while (node.getParent() != null) {
-            ParentUiNode<?> parent = node.getParent(); //todo make code gen metadata available at runtime
-            Integer selectedIndex = parent.getStateValue(NeutronEventSubjects.SELECTED_INDEX);
-            if (selectedIndex != null && !selectedIndex.equals(node.getIndex())) {
-                parent.setStateValue(NeutronEventSubjects.SELECTED_INDEX, Integer.class, node.getIndex());
-            } else {
-                String selectedName = parent.getStateValue(NeutronEventSubjects.SELECTED_NAME);
-                if (selectedName != null && !selectedName.equals(node.getName())) {
-                    parent.setStateValue(NeutronEventSubjects.SELECTED_NAME, String.class, node.getName());
+            ParentUiNode<?> parent = node.getParent();
+            if (parent instanceof ListUiNode) {
+                ListUiNode<?, ?> listUiNode = (ListUiNode<?, ?>) parent;
+                int selectedIndex = listUiNode.getSelectedIndex();
+                if (selectedIndex != node.getIndex()) {
+                    listUiNode.setSelectedIndex(node.getIndex());
+                }
+
+            } else if (parent instanceof ObjectUiNode) {
+                ObjectUiNode<?> objectUiNode = (ObjectUiNode<?>) parent;
+                String selectedName = objectUiNode.getSelectedName();
+                if (!node.getName().equals(selectedName)) {
+                    objectUiNode.setSelectedName(node.getName());
                 }
             }
 

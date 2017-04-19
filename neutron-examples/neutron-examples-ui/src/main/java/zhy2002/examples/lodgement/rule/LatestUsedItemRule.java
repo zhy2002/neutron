@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.rule;
 
 import com.google.common.base.Strings;
-import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.data.StringOption;
@@ -28,7 +27,7 @@ public class LatestUsedItemRule extends UiNodeRule<StringUiNode<?>> {
     protected Collection<EventBinding> createEventBindings() {
         return Collections.singletonList(
                 new StringStateChangeEventBinding(
-                        e -> getOwner().getStateValue(ApplicationNodeConstants.OPTIONS) != null,
+                        e -> getOwner().getOptions() != null,
                         this::updateList
                 )
         );
@@ -41,7 +40,7 @@ public class LatestUsedItemRule extends UiNodeRule<StringUiNode<?>> {
         if (Strings.isNullOrEmpty(value))
             return;
 
-        Object[] options = getOwner().getStateValue(ApplicationNodeConstants.OPTIONS);
+        StringOption[] options = getOwner().getOptions();
         StringOption emptyOption = null;
         StringOption justUsedOption = null;
         List<StringOption> newOptions = new ArrayList<>();
@@ -66,6 +65,6 @@ public class LatestUsedItemRule extends UiNodeRule<StringUiNode<?>> {
             newOptions.add(0, emptyOption);
         }
 
-        getOwner().setStateValue(ApplicationNodeConstants.OPTIONS, Object.class, newOptions.toArray());
+        getOwner().setOptions(newOptions.toArray(new StringOption[newOptions.size()]));
     }
 }

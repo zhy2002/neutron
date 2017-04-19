@@ -40,7 +40,7 @@ export default class InputComponent extends NeutronComponent {
     }
 
     getValueOptions() {
-        return this.model.getStateValue(this.props.listName);
+        return this.model.getOptions();
     }
 
     renderContainerClass(clazz) {
@@ -59,11 +59,9 @@ export default class InputComponent extends NeutronComponent {
 }
 
 InputComponent.propTypes = {
-    containerClass: React.PropTypes.string,
-    listName: React.PropTypes.string
+    containerClass: React.PropTypes.string
 };
 
 InputComponent.defaultProps = {
-    containerClass: '',
-    listName: 'options'
+    containerClass: ''
 };

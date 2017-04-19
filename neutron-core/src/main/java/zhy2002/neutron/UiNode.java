@@ -5,7 +5,6 @@ import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +17,8 @@ import java.util.logging.Logger;
 public abstract class UiNode<P extends ParentUiNode<?>> {
 
     private static final Logger logger = Logger.getLogger("UiNode");
-    private static final ChangeTrackingModeEnum DEFAULT_CHANGE_TRACKING_MODE = ChangeTrackingModeEnum.Reference;
+
+    //region basic properties
 
     /**
      * The node context this node belongs to.
@@ -52,10 +52,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * The life cycle status of this node.
      */
     private NodeStatusEnum nodeStatus;
-    /**
-     * Node level property change tracking mode Overrides.
-     */
-    private final Map<String, ChangeTrackingModeEnum> propertyChangeTrackingMode = new HashMap<>();
     /**
      * A copy of state before loading.
      * When the node unloads it will restore to this state.
@@ -171,18 +167,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return getConcreteClass().getSimpleName();
     }
 
-    @JsMethod
-    public boolean inheritsFrom(String simpleName) {
-        Class<?> clazz = this.getClass();
-        do {
-            if (clazz.getSimpleName().equals(simpleName))
-                return true;
-            clazz = clazz.getSuperclass();
-        } while (clazz != null);
-
-        return false;
-    }
-
     /**
      * @return the path to a node within the node tree. Path does not change while the node is in the tree.
      */
@@ -219,18 +203,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return nodeStatus;
     }
 
-    @NotNull
-    private ChangeTrackingModeEnum getChangeTrackingMode(String propertyName) {
-        ChangeTrackingModeEnum mode = propertyChangeTrackingMode.get(propertyName);
-        if (mode == null)
-            return DEFAULT_CHANGE_TRACKING_MODE;
-        return mode;
-    }
-
-    public final void setChangeTrackingMode(String propertyName, ChangeTrackingModeEnum changeTrackingMode) {
-        this.propertyChangeTrackingMode.put(propertyName, changeTrackingMode);
-    }
-
     final boolean addStatusListener(UiNodeLifeCycleListener listener) {
         return this.lifeCycleListeners.add(listener);
     }
@@ -242,6 +214,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     final void addCreatedRule(UiNodeRule<?> createdRule) {
         createdRules.add(createdRule);
     }
+
+    //endregion
 
     //region state methods
 
@@ -339,6 +313,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public final <T> T getStateValue(String key) {
+
         return getStateValue(key, null);
     }
 
@@ -357,48 +332,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     @SuppressWarnings("unchecked")
     final <T> T getPreStateValue(PropertyMetadata<T> propertyMetadata) {
         return (T) preState.get(propertyMetadata.getStateKey());
-    }
-
-    /**
-     * Trigger a state value change.
-     *
-     * @param key        identifier of the state value to change.
-     * @param valueClass the class of the state value. This decides what type of state change event to trigger.
-     * @param value      the new state value.
-     * @param <T>        declared type of the value.
-     */
-    public <T> void setStateValue(String key, Class<T> valueClass, T value) {
-        if (shouldChangeDirectly()) {
-            setStateValueDirectly(key, value);
-            return;
-        }
-
-        ChangeTrackingModeEnum nodeChangeTrackingMode = getChangeTrackingMode(key);
-
-        boolean process = false;
-        T oldValue = getStateValueDirectly(key);
-        switch (nodeChangeTrackingMode) {
-            case Always:
-                process = true;
-                break;
-            case Reference:
-                process = oldValue != value;
-                break;
-            case Value:
-                if (oldValue == null) {
-                    process = value != null;
-                } else {
-                    process = !oldValue.equals(value);
-                }
-                break;
-            case None:
-                setStateValueDirectly(key, value);
-        }
-        if (!process)
-            return;
-        StateChangeEvent<T> event;
-        event = context.createStateChangeEvent(this, key, valueClass, oldValue, value);
-        getContext().processEvent(event);
     }
 
     public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
@@ -705,11 +638,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
     public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
 
-    protected final boolean getHasValue() {
+    public final boolean getHasValue() {
         return getStateValue(HAS_VALUE_PROPERTY);
     }
 
-    protected final void setHasValue(boolean value) {
+    public final void setHasValue(boolean value) {
         setStateValue(HAS_VALUE_PROPERTY, value);
     }
 

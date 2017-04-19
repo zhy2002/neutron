@@ -20,7 +20,7 @@ public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
     }
 
     private String getPattern() {
-        return getOwner().getStateValue(NeutronEventSubjects.PATTERN);
+        return getOwner().getPattern();
     }
 
     private String getValue() {

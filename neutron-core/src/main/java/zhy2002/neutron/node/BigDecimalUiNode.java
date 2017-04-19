@@ -60,7 +60,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
             if (VALUE_PROPERTY == propertyMetadata) {
                 hasValue = value != null;
                 if (!hasValue) {
-                    super.setStateValue(VALUE_TEXT_PROPERTY.getStateKey(), String.class, "");
+                    super.setStateValue(VALUE_TEXT_PROPERTY, "");
                     return;
                 }
             } else if (VALUE_TEXT_PROPERTY == propertyMetadata) {

@@ -3,6 +3,8 @@ package zhy2002.neutron.config;
 import zhy2002.neutron.ChangeModeEnum;
 import zhy2002.neutron.ChangeTrackingModeEnum;
 
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,8 +65,9 @@ public class MetadataRegistry {
         return uiNodeMetadataMap.computeIfAbsent(definingClass, UiNodeMetadata::new);
     }
 
-    private static ChangeTrackingModeEnum getDefaultChangeTrackingMode(Class<?> valueClass) {
-        if (valueClass == Boolean.class || valueClass == Integer.class || valueClass == String.class)
+    private static @NotNull
+    ChangeTrackingModeEnum getDefaultChangeTrackingMode(Class<?> valueClass) {
+        if (valueClass == Boolean.class || valueClass == Integer.class || valueClass == BigDecimal.class)
             return ChangeTrackingModeEnum.Value;
 
         return ChangeTrackingModeEnum.Reference;

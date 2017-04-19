@@ -2,11 +2,11 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ObjectUiNode;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
@@ -31,7 +31,7 @@ public class UpdateObjectHasValueRule extends UiNodeRule<ObjectUiNode<?>> {
                 new BooleanStateChangeEventBinding(
                         event -> event.getOrigin() != null && event.getOrigin().getParent() == getOwner(),
                         this::updateHasValue,
-                        Collections.singletonList(NeutronEventSubjects.HAS_VALUE),
+                        Collections.singletonList(UiNode.HAS_VALUE_PROPERTY.getStateKey()),
                         PredefinedPhases.Post
                 )
         );
@@ -44,6 +44,6 @@ public class UpdateObjectHasValueRule extends UiNodeRule<ObjectUiNode<?>> {
             noneEmptyChildNames.remove(event.getSubject());
         }
 
-        getOwner().setStateValue(NeutronEventSubjects.HAS_VALUE, Boolean.class, !noneEmptyChildNames.isEmpty());
+        getOwner().setHasValue(!noneEmptyChildNames.isEmpty());
     }
 }
