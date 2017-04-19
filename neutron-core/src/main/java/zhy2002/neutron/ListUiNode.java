@@ -5,7 +5,6 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
@@ -84,7 +83,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     @JsMethod
     public N createItemWithName(String name) {
         NodeAddEvent<N> event = createItemAddEvent(name);
-        if (shouldChangeDirectly()) {
+        if (isInDirectChangeMode()) {
             event.apply();
         } else {
             getContext().processEvent(event);
@@ -152,8 +151,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
 
         setHasValue(hasValue());
 
-        Integer selectedIndex = getSelectedIndex();
-        if (selectedIndex != null && selectedIndex >= getItemCount()) {
+        int selectedIndex = getSelectedIndex();
+        if (selectedIndex >= getItemCount()) {
             setSelectedIndex(Math.max(0, getItemCount() - 1));
         }
     }
@@ -165,15 +164,15 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
 
     private void markDirty() {
         String childNames = getChildNames();
-        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES, childNames);
+        setOriginalChildNames(childNames);
         setSelfDirty(Boolean.TRUE);
     }
 
     private void tryClearDirty() {
         String childNames = getChildNames();
-        String originalChildNames = getStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
+        String originalChildNames = getOriginalChildNames();
         if (Objects.equals(childNames, originalChildNames)) {
-            clearStateValueDirectly(NeutronEventSubjects.ORIGINAL_CHILD_NAMES);
+            setOriginalChildNames(null);
             setSelfDirty(Boolean.FALSE);
         }
     }
@@ -260,6 +259,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     public static final PropertyMetadata<Integer> SELECTED_INDEX_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "selectedIndex", Integer.class, 0);
     public static final PropertyMetadata<Integer> MIN_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "minItemCount", Integer.class);
     public static final PropertyMetadata<Integer> MAX_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "maxItemCount", Integer.class);
+    public static final PropertyMetadata<String> ORIGINAL_CHILD_NAMES_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "originalChildNames", String.class, "", ChangeModeEnum.DIRECT);
 
     private Boolean getSelfDirty() {
         return getStateValue(SELF_DIRTY_PROPERTY);
@@ -293,6 +293,14 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
 
     public void setMaxItemCount(Integer count) {
         setStateValue(MAX_ITEM_COUNT_PROPERTY, count);
+    }
+
+    private String getOriginalChildNames() {
+        return getStateValue(ORIGINAL_CHILD_NAMES_PROPERTY);
+    }
+
+    private void setOriginalChildNames(String childNames) {
+        setStateValue(ORIGINAL_CHILD_NAMES_PROPERTY, childNames);
     }
 
     //endregion

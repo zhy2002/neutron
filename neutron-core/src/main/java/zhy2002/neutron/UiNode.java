@@ -219,14 +219,16 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region state methods
 
+    /**
+     * Wrapper method for state.
+     *
+     * @param key the state key.
+     * @param <T> the type to cast state value to.
+     * @return the state value.
+     */
     @SuppressWarnings("unchecked")
-    protected final <T> T getStateValueDirectly(String key) {
+    protected <T> T getStateValueDirectly(String key) {
         return (T) state.get(key);
-    }
-
-    @SuppressWarnings("unchecked")
-    protected final <T> T getStateValueDirectly(@NotNull PropertyMetadata<T> propertyMetadata) {
-        return (T) state.get(propertyMetadata.getStateKey());
     }
 
     /**
@@ -243,106 +245,41 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
     }
 
-    protected <T> void setStateValueDirectly(@NotNull PropertyMetadata<T> propertyMetadata, T value) {
-        String key = propertyMetadata.getStateKey();
-        if (value == null) {
-            state.remove(key);
-        } else {
-            state.put(key, value);
-        }
-    }
-
-    final void clearStateValueDirectly(@NotNull String key) {
+    /**
+     * Clear a state value.
+     *
+     * @param key the state key (derived from property name).
+     */
+    protected void clearStateValueDirectly(@NotNull String key) {
         state.remove(key);
     }
 
-    final void clearStateValueDirectly(@NotNull PropertyMetadata<?> propertyMetadata) {
-        state.remove(propertyMetadata.getStateKey());
-    }
-
     @SuppressWarnings("unchecked")
-    public final <T> T getStateValue(@NotNull String key, T defaultValue) {
+    public <T> T getStateValue(@NotNull PropertyMetadata<T> propertyMetadata) {
         T value;
-        StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(key);
-        if (event != null) {
-            value = event.getNewValue();
+
+        if (propertyMetadata.getChangeMode() == ChangeModeEnum.CASCADE) {
+            StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(propertyMetadata.getStateKey());
+            if (event != null) {
+                value = event.getNewValue();
+            } else {
+                value = getStateValueDirectly(propertyMetadata.getStateKey());
+            }
         } else {
-            value = getStateValueDirectly(key);
+            value = getStateValueDirectly(propertyMetadata.getStateKey());
         }
-        return value == null ? defaultValue : value;
-    }
 
-    @SuppressWarnings("unchecked")
-    public final <T> T getStateValue(@NotNull PropertyMetadata<T> propertyMetadata, T defaultValue) {
-
-        T value;
-        StateChangeEvent<T> event = (StateChangeEvent<T>) temporary.get(propertyMetadata.getName());
-        if (event != null) {
-            value = event.getNewValue();
-        } else {
-            value = getStateValueDirectly(propertyMetadata);
-        }
-        return value == null ? defaultValue : value;
-    }
-
-    final void clearTemporary() {
-        temporary.clear();
-    }
-
-    @SuppressWarnings("unchecked")
-    final <T> StateChangeEvent<T> applyTemporary(StateChangeEvent<T> newEvent) {
-        StateChangeEvent<T> oldEvent = (StateChangeEvent<T>) temporary.get(newEvent.getStateKey());
-        if (oldEvent != null) {
-            newEvent.setOldValue(oldEvent.getOldValue());
-        }
-        temporary.put(newEvent.getStateKey(), newEvent);
-        if (!Objects.equals(newEvent.getNewValue(), newEvent.getOldValue())) {
-            notifyChange();
-        }
-        return oldEvent;
-    }
-
-    /**
-     * Determines if the content of this node is empty.
-     * Empty is defined as no value is entered and there is no default value.
-     *
-     * @return true if is empty.
-     */
-    @JsMethod
-    public abstract boolean hasValue();
-
-    @JsMethod
-    public final <T> T getStateValue(String key) {
-
-        return getStateValue(key, null);
-    }
-
-    public final <T> T getStateValue(PropertyMetadata<T> propertyMetadata) {
-        if (propertyMetadata.getChangeMode() == ChangeModeEnum.DIRECT)
-            return getStateValueDirectly(propertyMetadata);
-
-        return getStateValue(propertyMetadata.getStateKey(), propertyMetadata.getDefaultValue());
-    }
-
-    @SuppressWarnings("unchecked")
-    final <T> T getPreStateValue(String key) {
-        return (T) preState.get(key);
-    }
-
-    @SuppressWarnings("unchecked")
-    final <T> T getPreStateValue(PropertyMetadata<T> propertyMetadata) {
-        return (T) preState.get(propertyMetadata.getStateKey());
+        return value == null ? propertyMetadata.getDefaultValue() : value;
     }
 
     public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
         String key = propertyMetadata.getStateKey();
-        if (propertyMetadata.getChangeMode() == ChangeModeEnum.DIRECT || shouldChangeDirectly()) {
+        if (propertyMetadata.getChangeMode() == ChangeModeEnum.DIRECT || isInDirectChangeMode()) {
             setStateValueDirectly(key, value);
             return;
         }
 
         ChangeTrackingModeEnum changeTrackingMode = propertyMetadata.getChangeTrackingMode();
-
         boolean process = false;
         T oldValue = getStateValueDirectly(key);
         switch (changeTrackingMode) {
@@ -360,19 +297,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
                 }
                 break;
             case None:
-                setStateValueDirectly(key, value);
+                process = false;
+                break;
         }
         if (!process)
             return;
-        StateChangeEvent<T> event;
-        event = context.createStateChangeEvent(this, key, propertyMetadata.getValueClass(), oldValue, value);
+
+        StateChangeEvent<T> event = context.createStateChangeEvent(this, key, propertyMetadata.getValueClass(), oldValue, value);
         getContext().processEvent(event);
     }
 
     /**
      * @return true if changes should be applied directly (i.e. bypass event processing).
      */
-    final boolean shouldChangeDirectly() {
+    final boolean isInDirectChangeMode() {
         if (this.getNodeStatus() != NodeStatusEnum.Loaded || this.getParent() != null && this.getParent().getNodeStatus() != NodeStatusEnum.Loaded) {
             return true;
         }
@@ -388,6 +326,37 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             }
         }
         return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    final <T> StateChangeEvent<T> applyTemporary(StateChangeEvent<T> newEvent) {
+        StateChangeEvent<T> oldEvent = (StateChangeEvent<T>) temporary.get(newEvent.getStateKey());
+        if (oldEvent != null) {
+            newEvent.setOldValue(oldEvent.getOldValue());
+        }
+        temporary.put(newEvent.getStateKey(), newEvent);
+        if (!Objects.equals(newEvent.getNewValue(), newEvent.getOldValue())) {
+            notifyChange();
+        }
+        return oldEvent;
+    }
+
+    final void clearTemporary() {
+        temporary.clear();
+    }
+
+    /**
+     * Determines if the content of this node is empty.
+     * Empty is defined as no value is entered and there is no default value.
+     *
+     * @return true if is empty.
+     */
+    @JsMethod
+    public abstract boolean hasValue();
+
+    @SuppressWarnings("unchecked")
+    final <T> T getPreStateValue(String key) {
+        return (T) preState.get(key);
     }
 
     //endregion
@@ -625,7 +594,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     //region ui node properties
 
-    public static final PropertyMetadata<Boolean> LOAD_WITH_PARENT_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "loadWithParent", Boolean.class, Boolean.TRUE);
+    public static final PropertyMetadata<Boolean> LOAD_WITH_PARENT_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "loadWithParent", Boolean.class, Boolean.TRUE, ChangeModeEnum.DIRECT);
     public static final PropertyMetadata<Boolean> HAS_VALUE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "hasValue", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> DISABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disabled", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
@@ -768,12 +737,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     @JsMethod
     public boolean getLoadWithParent() {
-        Object value = this.getStateValueDirectly(LOAD_WITH_PARENT_PROPERTY);
-        return !Boolean.FALSE.equals(value);
+        return getStateValue(LOAD_WITH_PARENT_PROPERTY);
     }
 
     public void setLoadWithParent(boolean value) {
-        this.setStateValueDirectly(LOAD_WITH_PARENT_PROPERTY, value);
+        setStateValue(LOAD_WITH_PARENT_PROPERTY, value);
     }
 
     @JsMethod
@@ -782,7 +750,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public void setRequired(Boolean required) {
-        this.setStateValue(REQUIRED_PROPERTY, required);
+        setStateValue(REQUIRED_PROPERTY, required);
     }
 
     @JsMethod

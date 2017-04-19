@@ -12,7 +12,6 @@ public final class NeutronEventSubjects {
 
     public static final String VALUE = "value";
     public static final String ORIGINAL_VALUE = "original_value";
-    public static final String ORIGINAL_CHILD_NAMES = "original_child_names";
     public static final String HAS_VALUE = "has_value";
     public static final String VALUE_VALID = "value_valid";
     public static final String FIXED_VALUE = "fixed_value";
