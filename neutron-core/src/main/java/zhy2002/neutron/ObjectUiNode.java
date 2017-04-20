@@ -3,7 +3,6 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     @JsMethod
     @Override
-    public int getChildCount() {
+    public final int getChildCount() {
         return super.getChildCount();
     }
 

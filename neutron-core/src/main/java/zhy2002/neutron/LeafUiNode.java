@@ -27,22 +27,49 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract void setValue(T value);
 
+    public abstract Class<T> getValueClass();
+
+    @Override
+    protected final void unloadContent() {
+        super.unloadContent();
+
+        decreaseAncestorDirtyDescendantCount();
+    }
+
+    private void decreaseAncestorDirtyDescendantCount() {
+        if (getParent() != null && getParent().getNodeStatus() == NodeStatusEnum.Loaded) {
+            if (getSelfDirty()) {
+                ParentUiNode<?> parent = getParent();
+                do {
+                    parent.setDirtyDescendantCount(parent.getDirtyDescendantCount() - 1);
+                    parent = parent.getParent();
+                } while (parent != null);
+            }
+        }
+    }
+
     @Override
     public boolean hasValue() {
         return getValue() != null;
     }
 
-    public void resetValue() {
-        T initialValue = getPreStateValue(NeutronEventSubjects.VALUE);
-        setValue(initialValue);
+    @Override
+    public final boolean hasError() {
+        return getValidationErrorList().size() > 0;
     }
 
     @Override
     protected void setStateValueDirectly(String key, Object value) {
         super.setStateValueDirectly(key, value);
+
         if (NeutronEventSubjects.VALUE.equals(key)) {
             setHasValue(hasValue());
         }
+    }
+
+    public final void resetValue() {
+        T initialValue = getPreStateValue(NeutronEventSubjects.VALUE);
+        setValue(initialValue);
     }
 
     @JsMethod
@@ -50,16 +77,16 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         throw new NotImplementedException();
     }
 
-    private void setOriginalValue(T value) {
-        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE, value);
-    }
-
     /**
      * @return the value of this leaf node before it becomes dirty.
      * returns null when the node is not dirty.
      */
-    public T getOriginalValue() {
+    final T getOriginalValue() {
         return getStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
+    }
+
+    private void setOriginalValue(T value) {
+        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE, value);
     }
 
     private void makeDirty() {
@@ -72,9 +99,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setSelfDirty(Boolean.FALSE);
     }
 
-    public abstract Class<T> getValueClass();
-
-
     @Override
     public boolean isDirty() {
         return getSelfDirty();
@@ -85,16 +109,35 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setSelfDirty(null);
     }
 
+    //region node properties
+
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+
+    @NotNull
+    private Boolean getSelfDirty() {
+        return getStateValue(SELF_DIRTY_PROPERTY);
+    }
+
+    private void setSelfDirty(Boolean value) {
+        setStateValue(SELF_DIRTY_PROPERTY, value);
+    }
+
+    //endregion
+
     public static class MaintainSelfDirtyRule extends UiNodeRule<LeafUiNode<?, ?>> {
+
+        private final StateChangeEvent<?> stateChangeEvent;
 
         @Inject
         protected MaintainSelfDirtyRule(@Owner LeafUiNode<?, ?> owner) {
             super(owner);
+
+            //this object is only used to obtain a reference to Class<StateChangeEvent<?>>
+            stateChangeEvent = getContext().createStateChangeEvent(getOwner(), "", getOwner().getValueClass(), null, null);
         }
 
         @Override
         protected Collection<EventBinding> createEventBindings() {
-            StateChangeEvent<?> stateChangeEvent = getContext().createStateChangeEvent(getOwner(), "", getOwner().getValueClass(), null, null);
 
             return Arrays.asList(
                     new GenericStateChangeEventBinding<>(
@@ -107,7 +150,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         }
 
         private void updateSelfDirty(StateChangeEvent<?> event) {
-            if (Boolean.TRUE.equals(getOwner().getSelfDirty())) { //check if should change to none-dirty
+            if (getOwner().getSelfDirty()) { //check if should change to none-dirty
                 if (Objects.equals(event.getNewValue(), getOwner().getOriginalValue())) {
                     getOwner().clearDirty();
                 }
@@ -117,20 +160,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
                 }
             }
         }
-
     }
 
-    //region node properties
-
-    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
-
-    private Boolean getSelfDirty() {
-        return getStateValue(SELF_DIRTY_PROPERTY);
-    }
-
-    private void setSelfDirty(Boolean value) {
-        setStateValue(SELF_DIRTY_PROPERTY, value);
-    }
-
-    //endregion
 }

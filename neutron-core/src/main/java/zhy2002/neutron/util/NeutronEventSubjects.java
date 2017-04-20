@@ -20,16 +20,12 @@ public final class NeutronEventSubjects {
     public static final String SELF_DIRTY = "self_dirty";
     public static final String DESCENDANT_DIRTY_COUNT = "descendant_dirty_count";
     public static final String VALIDATION_ERROR_LIST = "validation_error_list";
-    public static final String PATTERN = "pattern";
     public static final String DEFAULT_REFRESH_REASON = "";
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";
     public static final String RESET_DIRTY_REFRESH_REASON = "RESET_DIRTY";
     public static final String UPDATE_DISABLED_REFRESH_REASON = "UPDATE_DISABLED";
-    public static final String LENGTH_MESSAGE = "length_message";
     public static final String MAX_LENGTH = "max_length";
     public static final String MIN_LENGTH = "min_length";
     public static final String INDEX = "index";
-    public static final String SELECTED_INDEX = "selected_index";
-    public static final String SELECTED_NAME = "selected_name";
     public static final String MIN_ITEM_COUNT = "min_item_count";
 }

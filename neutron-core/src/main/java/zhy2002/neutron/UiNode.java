@@ -354,6 +354,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     @JsMethod
     public abstract boolean hasValue();
 
+    @JsMethod
+    public abstract boolean hasError();
+
     @SuppressWarnings("unchecked")
     final <T> T getPreStateValue(String key) {
         return (T) preState.get(key);
@@ -388,6 +391,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
         initializeState();
     }
+
+    /**
+     * Override at concrete node level.
+     */
+    protected abstract void initializeState();
 
     /**
      * Return to step 1 status.
@@ -426,11 +434,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         }
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
-
-    /**
-     * Override at concrete node level.
-     */
-    protected abstract void initializeState();
 
     protected void loadContent() {
         createdRules.forEach(UiNodeRule::onLoad);
@@ -656,10 +659,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public final void setDisabledAncestorCount(int count) {
         setStateValue(DISABLED_ANCESTOR_COUNT, count);
     }
-
-//    void forceUpdate() {
-//        setStateValue(NeutronEventSubjects.FORCE_UPDATE, Boolean.class, Boolean.TRUE);
-//    }
 
     @JsMethod
     public boolean isReadonly() {

@@ -25,7 +25,6 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
      * Support finding children by index.
      */
     private final List<UiNode<?>> children = new ArrayList<>();
-
     /**
      * Support finding children by name.
      */
@@ -37,10 +36,6 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
     protected ParentUiNode(@NotNull UiNodeContext<?> context) {
         super(context);
-    }
-
-    final int indexOf(UiNode<?> child) {
-        return children.indexOf(child);
     }
 
     public final UiNode<?> getChild(String name) {
@@ -78,10 +73,18 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     }
 
     @Override
-    protected void unloadContent() {
+    protected final void unloadContent() {
         super.unloadContent();
 
-        //todo do similar for leaf node
+        decreaseAncestorDirtyDescendantCount();
+
+        UiNode<?>[] children = getChildren();
+        for (int i = children.length - 1; i >= 0; i--) {
+            children[i].unload();
+        }
+    }
+
+    private void decreaseAncestorDirtyDescendantCount() {
         if (getParent() != null && getParent().getNodeStatus() == NodeStatusEnum.Loaded) {
             int count = getDirtyDescendantCount();
             if (count > 0) {
@@ -92,15 +95,10 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 } while (parent != null);
             }
         }
-
-        UiNode<?>[] children = getChildren();
-        for (int i = children.length - 1; i >= 0; i--) {
-            children[i].unload();
-        }
     }
 
     @Override
-    protected void removeContent() {
+    protected final void removeContent() {
         super.removeContent();
 
         UiNode<?>[] children = getChildren();
@@ -109,19 +107,14 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         }
     }
 
-    @JsMethod
-    public boolean hasError() {
+    @Override
+    public final boolean hasError() {
         if (getValidationErrorList().size() > 0)
             return true;
 
         for (UiNode<?> child : children) {
-            if (child instanceof ParentUiNode) {
-                if (((ParentUiNode<?>) child).hasError())
-                    return true;
-            } else {
-                if (child.getValidationErrorList().size() > 0)
-                    return true;
-            }
+            if (child.hasError())
+                return true;
         }
 
         return false;
@@ -135,51 +128,6 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 ((ParentUiNode<?>) child).resetValidationState();
             } else {
                 child.clearValidationErrors();
-            }
-        }
-    }
-
-    private void increaseDirtyDescendantCount() {
-        setDirtyDescendantCount(getDirtyDescendantCount() + 1);
-    }
-
-    private void decreaseDirtyDescendantCount() {
-        setDirtyDescendantCount(getDirtyDescendantCount() - 1);
-    }
-
-    @Override
-    public boolean isDirty() {
-        return getDirtyDescendantCount() > 0;
-    }
-
-    @Override
-    protected void resetDirty() {
-        clearStateValueDirectly(NeutronEventSubjects.DESCENDANT_DIRTY_COUNT);
-    }
-
-    public static class MaintainDirtyDescendantCountRule extends UiNodeRule<ParentUiNode<?>> {
-
-        @Inject
-        protected MaintainDirtyDescendantCountRule(@Owner ParentUiNode<?> owner) {
-            super(owner);
-        }
-
-        @Override
-        protected Collection<EventBinding> createEventBindings() {
-            return Arrays.asList(
-                    new BooleanStateChangeEventBinding(
-                            e -> getContext().isDirtyCheckEnabled(),
-                            this::updateCount,
-                            Collections.singletonList(NeutronEventSubjects.SELF_DIRTY)
-                    )
-            );
-        }
-
-        private void updateCount(BooleanStateChangeEvent event) {
-            if (Boolean.TRUE.equals(event.getNewValue()) && !Boolean.TRUE.equals(event.getOldValue())) {
-                getOwner().increaseDirtyDescendantCount();
-            } else if (!Boolean.TRUE.equals(event.getNewValue()) && Boolean.TRUE.equals(event.getOldValue())) {
-                getOwner().decreaseDirtyDescendantCount();
             }
         }
     }
@@ -217,18 +165,64 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         getContext().setContentLevel(names.length);
     }
 
+    final void increaseDirtyDescendantCount() {
+        setDirtyDescendantCount(getDirtyDescendantCount() + 1);
+    }
+
+    final void decreaseDirtyDescendantCount() {
+        setDirtyDescendantCount(getDirtyDescendantCount() - 1);
+    }
+
+    @Override
+    public boolean isDirty() {
+        return getDirtyDescendantCount() > 0;
+    }
+
+    @Override
+    protected void resetDirty() {
+        clearStateValueDirectly(DESCENDANT_DIRTY_COUNT_PROPERTY.getStateKey());
+    }
+
     //region node properties
 
     public static final PropertyMetadata<Integer> DESCENDANT_DIRTY_COUNT_PROPERTY = MetadataRegistry.createProperty(ParentUiNode.class, "descendantDirtyCount", Integer.class, 0);
 
-    private int getDirtyDescendantCount() {
+    int getDirtyDescendantCount() {
         return getStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY);
     }
 
-    private void setDirtyDescendantCount(int count) {
+    void setDirtyDescendantCount(int count) {
         setStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY, count);
     }
 
     //endregion
 
+    static class MaintainDirtyDescendantCountRule extends UiNodeRule<ParentUiNode<?>> {
+
+        @Inject
+        protected MaintainDirtyDescendantCountRule(@Owner ParentUiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Arrays.asList(
+                    new BooleanStateChangeEventBinding(
+                            e -> getContext().isDirtyCheckEnabled(),
+                            this::updateCount,
+                            Collections.singletonList(NeutronEventSubjects.SELF_DIRTY)
+                    )
+            );
+        }
+
+        private void updateCount(BooleanStateChangeEvent event) {
+            if (Boolean.TRUE.equals(event.getNewValue()) && !Boolean.TRUE.equals(event.getOldValue())) {
+                getOwner().increaseDirtyDescendantCount();
+            } else if (!Boolean.TRUE.equals(event.getNewValue()) && Boolean.TRUE.equals(event.getOldValue())) {
+                getOwner().decreaseDirtyDescendantCount();
+            }
+        }
+    }
+
 }
+
