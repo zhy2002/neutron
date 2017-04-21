@@ -1,8 +1,6 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.config.MetadataRegistry;
-import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.NeutronEventSubjects;
@@ -10,8 +8,8 @@ import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 
 /**
@@ -122,6 +120,9 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     //endregion
 
+    /**
+     * When the value of this leaf node is set, check if the node becomes dirty or not dirty.
+     */
     public static class MaintainSelfDirtyRule extends UiNodeRule<LeafUiNode<?, ?>> {
 
         private final StateChangeEvent<?> stateChangeEvent;
@@ -137,12 +138,12 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         @Override
         protected Collection<EventBinding> createEventBindings() {
 
-            return Arrays.asList(
+            return Collections.singleton(
                     new GenericStateChangeEventBinding<>(
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateSelfDirty,
                             stateChangeEvent.getClass(),
-                            PredefinedPhases.Pre
+                            PredefinedPhases.Pre //need to do this in pre phase to capture original value
                     )
             );
         }

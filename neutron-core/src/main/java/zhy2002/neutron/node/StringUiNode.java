@@ -47,7 +47,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     public static final PropertyMetadata<String> LENGTH_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "lengthMessage", String.class, "Length is invalid.");
     public static final PropertyMetadata<Integer> MIN_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "minLength", Integer.class);
     public static final PropertyMetadata<Integer> MAX_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "maxLength", Integer.class);
-    public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "options", Object.class);
 
     @JsMethod
     @Override

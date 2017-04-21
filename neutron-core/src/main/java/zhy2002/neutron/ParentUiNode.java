@@ -197,6 +197,10 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
     //endregion
 
+    /**
+     * Increment dirty descendant count when a descendant node itself becomes dirty.
+     * Decrement dirty descendant count when a descendant node itself becomes not dirty.
+     */
     static class MaintainDirtyDescendantCountRule extends UiNodeRule<ParentUiNode<?>> {
 
         @Inject
@@ -224,5 +228,47 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         }
     }
 
+    /**
+     * When this parent node becomes disabled, increment disabled ancestor count of all descendants.
+     * When this parent node becomes not disabled, decrement disabled ancestor count of all descendants.
+     */
+    static class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?>> {
+
+        @Inject
+        protected MaintainDisabledAncestorCountRule(@Owner ParentUiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Collections.singletonList(
+                    new BooleanStateChangeEventBinding(
+                            e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
+                            this::updateCount,
+                            Collections.singleton(DISABLED_PROPERTY.getStateKey())
+                    )
+            );
+        }
+
+        private void updateCount(BooleanStateChangeEvent event) {
+            int delta;
+            if (Boolean.TRUE.equals(event.getNewValue())) {
+                delta = 1;
+            } else {
+                delta = -1;
+            }
+
+            Queue<UiNode<?>> nodes = new ArrayDeque<>();
+            nodes.addAll(Arrays.asList(getOwner().getChildren()));
+            while (!nodes.isEmpty()) {
+                UiNode<?> node = nodes.poll();
+                node.setDisabledAncestorCount(node.getDisabledAncestorCount() + delta);
+                if (node instanceof ParentUiNode) {
+                    ParentUiNode<?> parent = (ParentUiNode<?>) node;
+                    nodes.addAll(Arrays.asList(parent.getChildren()));
+                }
+            }
+        }
+    }
 }
 

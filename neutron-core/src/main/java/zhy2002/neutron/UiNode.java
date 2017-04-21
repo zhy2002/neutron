@@ -618,6 +618,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class);
     public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
     public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
+    public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "options", Object.class);
 
     public final boolean getHasValue() {
         return getStateValue(HAS_VALUE_PROPERTY);
@@ -770,6 +771,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
 //endregion
 
+    /**
+     * When RESET_DIRTY_REFRESH_REASON refresh event occurs, clear the dirty state of this node.
+     */
     static class ResetDirtyRule extends UiNodeRule<UiNode<?>> {
 
         @Inject

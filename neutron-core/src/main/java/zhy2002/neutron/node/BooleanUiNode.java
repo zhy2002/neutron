@@ -6,8 +6,10 @@ import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.BooleanOption;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 @JsType
 public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
@@ -44,6 +46,21 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
 
     public void setFixedValue(Boolean fixedValue) {
         setStateValue(FIXED_VALUE_PROPERTY, fixedValue);
+    }
+
+    @JsMethod
+    public BooleanOption[] getOptions() {
+        BooleanOption[] options = (BooleanOption[]) getStateValue(OPTIONS_PROPERTY);
+        BooleanOption[] result = null;
+        if (options != null) {
+            result = Arrays.copyOf(options, options.length);
+        }
+        return result;
+    }
+
+    @JsMethod
+    public void setOptions(BooleanOption[] value) {
+        setStateValue(OPTIONS_PROPERTY, value);
     }
 
     //endregion

@@ -1,7 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.rule.UpdateDisabledRule;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.List;
@@ -24,7 +22,7 @@ public class ParentUiNodeRuleProvider implements RuleProvider<ParentUiNode<?>> {
     Provider<ParentUiNode.MaintainDirtyDescendantCountRule> maintainDirtyDescendantCountRuleProvider;
 
     @Inject
-    Provider<UpdateDisabledRule> updateDisabledRuleProvider;
+    Provider<ParentUiNode.MaintainDisabledAncestorCountRule> updateDisabledRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

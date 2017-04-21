@@ -261,6 +261,9 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
 
     //endregion
 
+    /**
+     * When the child name list changes mark this list node as self dirty.
+     */
     static class MaintainSelfDirtyRule extends UiNodeRule<ListUiNode<?, ?>> {
 
         @Inject

@@ -86,6 +86,10 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     //endregion
 
+    /**
+     * When any child becomes has_value mark this object node as has_value.
+     * If all children becomes not has_value mark this object node as not has_value.
+     */
     static class UpdateObjectHasValueRule extends UiNodeRule<ObjectUiNode<?>> {
 
         private final Set<String> noneEmptyChildNames = new HashSet<>();
