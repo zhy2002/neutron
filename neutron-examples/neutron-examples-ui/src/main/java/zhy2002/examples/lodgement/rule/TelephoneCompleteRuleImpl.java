@@ -1,8 +1,8 @@
 package zhy2002.examples.lodgement.rule;
 
 import zhy2002.examples.lodgement.data.Telephone;
-import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.event.TelephoneStateChangeEvent;
+import zhy2002.examples.lodgement.gen.node.TelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;
@@ -43,12 +43,21 @@ public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
         if (value == null)
             return false;
 
+        if (Boolean.TRUE.equals(getTelephoneNode().getCountryCodeReadonly())) {
+            return !(
+                    ValueUtil.isEmpty(value.getAreaCode())
+                            && ValueUtil.isEmpty(value.getPhoneNumber())
+                            || !ValueUtil.isEmpty(value.getAreaCode())
+                            && !ValueUtil.isEmpty(value.getPhoneNumber())
+            );
+        }
+
         return !(
-                ValueUtil.isEmpty(value.getAreaCode())
-                        && ValueUtil.isEmpty(value.getCountryCode())
+                ValueUtil.isEmpty(value.getCountryCode())
+                        && ValueUtil.isEmpty(value.getAreaCode())
                         && ValueUtil.isEmpty(value.getPhoneNumber())
-                        || !ValueUtil.isEmpty(value.getAreaCode())
-                        && !ValueUtil.isEmpty(value.getCountryCode())
+                        || !ValueUtil.isEmpty(value.getCountryCode())
+                        && !ValueUtil.isEmpty(value.getAreaCode())
                         && !ValueUtil.isEmpty(value.getPhoneNumber())
         );
     }

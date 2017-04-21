@@ -9,7 +9,7 @@ import javax.inject.Inject;
 /**
  * There is one context per node hierarchy.
  */
-public abstract class AbstractUiNodeContext<R extends UiNode<VoidUiNode>> implements UiNodeContext<R> {
+public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
     private final ClassRegistry classRegistry;
