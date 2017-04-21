@@ -5,8 +5,11 @@ import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
+import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.logging.Logger;
@@ -158,6 +161,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @return the concrete class (the first without the parent type parameter) of this node.
      */
     public abstract Class<?> getConcreteClass();
+
+    /**
+     * Reset the dirty status of this node only.
+     */
+    abstract void resetDirty();
 
     /**
      * @return a simple string that identifies a type of node within its context.
@@ -602,6 +610,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<Boolean> DISABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disabled", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> REQUIRED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "required", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
     public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
     public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
@@ -674,8 +683,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public boolean isDirty() {
         return false;
     }
-
-    protected abstract void resetDirty();
 
     @JsMethod
     public String getNodeLabel() {
@@ -762,4 +769,23 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
 //endregion
+
+    static class ResetDirtyRule extends UiNodeRule<UiNode<?>> {
+
+        @Inject
+        protected ResetDirtyRule(@Owner UiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Collections.singletonList(
+                    new RefreshEventBinding(
+                            e -> getOwner().resetDirty(),
+                            Collections.singleton(NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON)
+                    )
+            );
+        }
+    }
+
 }

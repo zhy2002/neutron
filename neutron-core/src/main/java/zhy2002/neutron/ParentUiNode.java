@@ -179,7 +179,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     }
 
     @Override
-    protected void resetDirty() {
+    void resetDirty() {
         clearStateValueDirectly(DESCENDANT_DIRTY_COUNT_PROPERTY.getStateKey());
     }
 

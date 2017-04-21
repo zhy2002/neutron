@@ -2,7 +2,6 @@ package zhy2002.neutron;
 
 
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
-import zhy2002.neutron.rule.UpdateObjectHasValueRule;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -25,7 +24,7 @@ public class ObjectUiNodeRuleProvider implements RuleProvider<ObjectUiNode<?>> {
     @Inject
     Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;
     @Inject
-    Provider<UpdateObjectHasValueRule> updateObjectHasValueRuleProvider;
+    Provider<ObjectUiNode.UpdateObjectHasValueRule> updateObjectHasValueRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

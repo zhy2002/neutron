@@ -20,7 +20,7 @@ public class UiNodeRuleProvider implements RuleProvider<UiNode<?>> {
     Provider<ClearErrorsForDisabledNodeRule> clearErrorsForDisabledNodeRuleProvider;
 
     @Inject
-    Provider<ResetDirtyRule> resetDirtyRuleProvider;
+    Provider<UiNode.ResetDirtyRule> resetDirtyRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

@@ -44,105 +44,28 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
      */
     public abstract Class<N> getItemClass();
 
-    @JsMethod
-    @SuppressWarnings("unchecked")
-    public N getItem(int index) {
-        return (N) getChild(index);
-    }
-
-    @JsMethod
-    @SuppressWarnings("unchecked")
-    public N getItemByName(String name) {
-        return (N) getChild(name);
-    }
-
     /**
-     * @return the number of items in this list.
-     */
-    @JsMethod
-    public int getItemCount() {
-        return super.getChildCount();
-    }
-
-    /**
-     * Create an instance of item node.
+     * Create an item with a specified name.
      *
-     * @return the node newly created.
+     * @param name this is the string representation of the item's sequence number.
+     * @return the new item.
      */
-    @JsMethod
-    public N createItem() {
-        return createItemWithName(String.valueOf(getChildSequenceNumber()));
-    }
-
-    /**
-     * For loading existing items from data store.
-     *
-     * @param name the name of the item node.
-     * @return the recreated item node.
-     */
-    @JsMethod
-    public N createItemWithName(String name) {
-        NodeAddEvent<N> event = createItemAddEvent(name);
-        if (isInDirectChangeMode()) {
-            event.apply();
-        } else {
-            getContext().processEvent(event);
-        }
-        int index = Integer.parseInt(name);
-        if (childSequenceNumber <= index) {
-            childSequenceNumber = index + 1;
-        }
-        return event.getOrigin();
-    }
-
-    @JsMethod
-    public N removeByIndex(int index) {
-        N item = getItem(index);
-        removeItem(item);
-        return item;
-    }
-
-    @SuppressWarnings("unchecked")
-    public N removeByName(String name) {
-        UiNode<?> child = getChild(name);
-        if (child == null)
-            return null;
-
-        N typed = (N) child;
-        removeItem(typed);
-        return typed;
-    }
-
-    @JsMethod
-    public void removeItem(N item) {
-        if (item.getParent() != this)
-            return;
-        NodeRemoveEvent<N> event = createItemRemoveEvent(item);
-        getContext().processEvent(event);
-    }
-
     public abstract NodeAddEvent<N> createItemAddEvent(String name);
-
-    public final NodeAddEvent<N> createItemAddEvent() {
-        return createItemAddEvent(String.valueOf(getChildSequenceNumber()));
-    }
 
     public abstract NodeRemoveEvent<N> createItemRemoveEvent(N item);
 
-    protected final int getChildSequenceNumber() {
-        return childSequenceNumber++;
-    }
-
     @Override
-    protected void addChild(UiNode<?> child) {
+    protected final void addChild(UiNode<?> child) {
         super.addChild(child);
+
         child.setIndex(getItemCount() - 1);
-        setHasValue(hasValue());
+        setHasValue(true);
     }
 
     @Override
-    protected void removeChild(UiNode<?> child) {
+    protected final void removeChild(UiNode<?> child) {
         super.removeChild(child);
+
         int index = child.getIndex();
         child.setIndex(null);
         for (int i = index; i < getItemCount(); i++) {
@@ -158,22 +81,111 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     }
 
     @Override
-    public boolean hasValue() {
+    public final boolean hasValue() {
         return getItemCount() > 0;
     }
 
-    private void markDirty() {
-        String childNames = getChildNames();
-        setOriginalChildNames(childNames);
-        setSelfDirty(Boolean.TRUE);
+    @JsMethod
+    @SuppressWarnings("unchecked")
+    public final N getItem(int index) {
+        return (N) getChild(index);
     }
 
-    private void tryClearDirty() {
-        String childNames = getChildNames();
-        String originalChildNames = getOriginalChildNames();
-        if (Objects.equals(childNames, originalChildNames)) {
+    @JsMethod
+    @SuppressWarnings("unchecked")
+    public final N getItemByName(String name) {
+        return (N) getChild(name);
+    }
+
+    /**
+     * @return the number of items in this list.
+     */
+    @JsMethod
+    public final int getItemCount() {
+        return getChildCount();
+    }
+
+    /**
+     * Create an instance of item node.
+     *
+     * @return the node newly created.
+     */
+    @JsMethod
+    public final N createItem() {
+        return createItemWithName(String.valueOf(getChildSequenceNumber()));
+    }
+
+    /**
+     * For loading existing items from data store.
+     *
+     * @param name must be the string representation of the
+     *             sequence number of the item.
+     * @return the recreated item node.
+     */
+    @JsMethod
+    public final N createItemWithName(String name) {
+        int index = Integer.parseInt(name);
+
+        NodeAddEvent<N> event = createItemAddEvent(name);
+        if (isInDirectChangeMode()) {
+            event.apply();
+        } else {
+            getContext().processEvent(event);
+        }
+
+        if (childSequenceNumber <= index) {
+            childSequenceNumber = index + 1;
+        }
+        return event.getOrigin();
+    }
+
+    @JsMethod
+    public final N removeByIndex(int index) {
+        N item = getItem(index);
+        removeItem(item);
+        return item;
+    }
+
+    @SuppressWarnings("unchecked")
+    public final N removeByName(String name) {
+        UiNode<?> child = getChild(name);
+        if (child == null)
+            return null;
+
+        N typed = (N) child;
+        removeItem(typed);
+        return typed;
+    }
+
+    @JsMethod
+    public final void removeItem(N item) {
+        if (item.getParent() != this)
+            return;
+
+        NodeRemoveEvent<N> event = createItemRemoveEvent(item);
+        getContext().processEvent(event);
+    }
+
+    public final NodeAddEvent<N> createItemAddEvent() {
+        return createItemAddEvent(String.valueOf(getChildSequenceNumber()));
+    }
+
+    private int getChildSequenceNumber() {
+        return childSequenceNumber++;
+    }
+
+    private void markSelfDirty() {
+        if (!getSelfDirty()) {
+            String childNames = getChildNames();
+            setOriginalChildNames(childNames);
+            setSelfDirty(Boolean.TRUE);
+        }
+    }
+
+    private void clearSelfDirty() {
+        if (getSelfDirty()) {
             setOriginalChildNames(null);
-            setSelfDirty(Boolean.FALSE);
+            setSelfDirty(null);
         }
     }
 
@@ -183,10 +195,10 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     }
 
     @Override
-    protected void resetDirty() {
+    final void resetDirty() {
         super.resetDirty();
 
-        setSelfDirty(null);
+        clearSelfDirty();
     }
 
     private String getChildNames() {
@@ -198,64 +210,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
         return joiner.join(names);
     }
 
-    public static class MaintainSelfDirtyRule extends UiNodeRule<ListUiNode<?, ?>> {
-
-        @Inject
-        protected MaintainSelfDirtyRule(@Owner ListUiNode<?, ?> owner) {
-            super(owner);
-        }
-
-        @Override
-        protected Collection<EventBinding> createEventBindings() {
-            return Arrays.asList(
-                    new GenericNodeAddEventBinding(
-                            this::filter,
-                            this::setSelfDirty,
-                            getOwner().getName(),
-                            PredefinedPhases.Pre
-                    ),
-                    new GenericNodeRemoveEventBinding(
-                            this::filter,
-                            this::setSelfDirty,
-                            getOwner().getName(),
-                            PredefinedPhases.Pre
-                    ),
-                    new GenericNodeAddEventBinding(
-                            this::filter,
-                            this::clearSelfDirty,
-                            getOwner().getName(),
-                            PredefinedPhases.Post
-                    ),
-                    new GenericNodeRemoveEventBinding(
-                            this::filter,
-                            this::clearSelfDirty,
-                            getOwner().getName(),
-                            PredefinedPhases.Post
-                    )
-            );
-        }
-
-        private boolean filter(UiNodeEvent event) {
-            return getContext().isDirtyCheckEnabled() && event.getOrigin().getParent() == getOwner();
-        }
-
-        private void setSelfDirty(ChangeUiNodeEvent event) {
-            if (!Boolean.TRUE.equals(getOwner().getSelfDirty())) {
-                getOwner().markDirty();
-            }
-        }
-
-        private void clearSelfDirty(ChangeUiNodeEvent event) {
-            if (Boolean.TRUE.equals(getOwner().getSelfDirty())) {
-                getOwner().tryClearDirty();
-
-            }
-        }
-    }
-
     //region node properties
 
-    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Integer> SELECTED_INDEX_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "selectedIndex", Integer.class, 0);
     public static final PropertyMetadata<Integer> MIN_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "minItemCount", Integer.class);
     public static final PropertyMetadata<Integer> MAX_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "maxItemCount", Integer.class);
@@ -304,4 +260,51 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
     }
 
     //endregion
+
+    static class MaintainSelfDirtyRule extends UiNodeRule<ListUiNode<?, ?>> {
+
+        @Inject
+        protected MaintainSelfDirtyRule(@Owner ListUiNode<?, ?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Arrays.asList(
+                    new GenericNodeAddEventBinding(
+                            this::originatesFromChildrenAndCheckDirty,
+                            e -> getOwner().markSelfDirty(),
+                            getOwner().getName(),
+                            PredefinedPhases.Pre
+                    ),
+                    new GenericNodeRemoveEventBinding(
+                            this::originatesFromChildrenAndCheckDirty,
+                            e -> getOwner().markSelfDirty(),
+                            getOwner().getName(),
+                            PredefinedPhases.Pre
+                    ),
+                    new GenericNodeRemoveEventBinding(
+                            this::originatesFromChildrenAndCheckDirty,
+                            this::tryClearSelfDirty,
+                            getOwner().getName(),
+                            PredefinedPhases.Post
+                    )
+            );
+        }
+
+        private boolean originatesFromChildrenAndCheckDirty(UiNodeEvent event) {
+            return getContext().isDirtyCheckEnabled() && event.getOrigin().getParent() == getOwner();
+        }
+
+        private void tryClearSelfDirty(ChangeUiNodeEvent event) {
+            String childNames = getOwner().getChildNames();
+            String originalChildNames = getOwner().getOriginalChildNames();
+
+            if (Objects.equals(childNames, originalChildNames)) {
+                getOwner().clearSelfDirty();
+            }
+        }
+
+    }
+
 }

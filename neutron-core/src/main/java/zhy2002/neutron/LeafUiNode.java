@@ -105,13 +105,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     @Override
-    protected void resetDirty() {
+    final void resetDirty() {
         setSelfDirty(null);
     }
 
     //region node properties
-
-    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
 
     @NotNull
     private Boolean getSelfDirty() {

@@ -12,13 +12,11 @@ public final class NeutronEventSubjects {
 
     public static final String VALUE = "value";
     public static final String ORIGINAL_VALUE = "original_value";
-    public static final String HAS_VALUE = "has_value";
     public static final String VALUE_VALID = "value_valid";
     public static final String FIXED_VALUE = "fixed_value";
     public static final String DISABLED = "disabled";
     public static final String READONLY = "readonly";
     public static final String SELF_DIRTY = "self_dirty";
-    public static final String DESCENDANT_DIRTY_COUNT = "descendant_dirty_count";
     public static final String VALIDATION_ERROR_LIST = "validation_error_list";
     public static final String DEFAULT_REFRESH_REASON = "";
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";

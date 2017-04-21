@@ -2,11 +2,11 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ObjectUiNode;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -27,7 +27,7 @@ public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNo
                 new BooleanStateChangeEventBinding(
                         event -> event.getOrigin() == getOwner(),
                         event -> this.validate(),
-                        Collections.singletonList(NeutronEventSubjects.HAS_VALUE),
+                        Collections.singletonList(UiNode.HAS_VALUE_PROPERTY.getStateKey()),
                         null
                 )
         );
@@ -35,13 +35,9 @@ public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNo
 
     @Override
     protected String getErrorMessage() {
-        if(isActivated())
-        return "Cannot be empty.";
-        return null;
-    }
-
-    private boolean isActivated() {
         Boolean required = getOwner().getRequired();
-        return Boolean.TRUE.equals(required) && !getOwner().hasValue();
+        if (Boolean.TRUE.equals(required) && !getOwner().hasValue())
+            return "Cannot be empty.";
+        return null;
     }
 }
