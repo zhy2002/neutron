@@ -9,6 +9,10 @@ import zhy2002.neutron.util.SequentialUniqueIdGenerator;
 
 import javax.inject.Singleton;
 
+/**
+ * This Dagger 2 module provides the core Neutron components.
+ * This module is included in the ManifestModule of generated node hierarchies.
+ */
 @Module
 public abstract class NeutronModule {
 

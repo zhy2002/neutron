@@ -8,7 +8,7 @@ import java.util.List;
  * This event is fired when a node is attached to a node tree (or context if it is a root node).
  * This event does not fire for the nodes' descendants.
  */
-public abstract class NodeAddEvent<N extends UiNode<?>>
+public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
         extends ChangeUiNodeEvent {
 
     private final N target;

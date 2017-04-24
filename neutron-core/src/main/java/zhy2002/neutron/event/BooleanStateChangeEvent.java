@@ -5,7 +5,7 @@ import zhy2002.neutron.UiNode;
 
 public class BooleanStateChangeEvent extends StateChangeEvent<Boolean> {
 
-    public BooleanStateChangeEvent(UiNode<?> target, String key) {
+    BooleanStateChangeEvent(UiNode<?> target, String key) {
         super(target, key);
     }
 }

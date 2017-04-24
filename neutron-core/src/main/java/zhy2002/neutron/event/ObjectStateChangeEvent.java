@@ -5,7 +5,7 @@ import zhy2002.neutron.UiNode;
 
 public class ObjectStateChangeEvent extends StateChangeEvent<Object> {
 
-    public ObjectStateChangeEvent(UiNode<?> target, String key) {
+    ObjectStateChangeEvent(UiNode<?> target, String key) {
         super(target, key);
     }
 

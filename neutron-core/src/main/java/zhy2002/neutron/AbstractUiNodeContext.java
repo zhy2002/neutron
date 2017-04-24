@@ -1,6 +1,9 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.event.EventRegistry;
+import zhy2002.neutron.event.EventRegistryImpl;
+import zhy2002.neutron.event.ImmutableEventRegistry;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.NeutronEventSubjects;
 
@@ -12,7 +15,7 @@ import javax.inject.Inject;
 public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
-    private final ClassRegistry classRegistry;
+    private final EventRegistry eventRegistry;
     private final String contextId;
     private final UniqueIdGenerator nodeIdGenerator;
     private final UiNodeChangeEngine changeEngine;
@@ -26,19 +29,19 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     /**
      * Construct the context.
      *
-     * @param registries an array of ClassRegistry.
+     * @param registries an array of EventRegistry.
      *                   The latter will override the former.
      */
     protected AbstractUiNodeContext(
             String contextId,
             UiNodeChangeEngine changeEngine,
             UniqueIdGenerator nodeIdGenerator,
-            ClassRegistryImpl... registries) {
+            EventRegistryImpl... registries) {
 
         this.contextId = contextId;
         this.changeEngine = changeEngine;
         this.nodeIdGenerator = nodeIdGenerator;
-        this.classRegistry = new ImmutableClassRegistry(registries);
+        this.eventRegistry = new ImmutableEventRegistry(registries);
     }
 
     /**
@@ -85,19 +88,19 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @Override
     public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
-        StateChangeEventFactory<T> factory = classRegistry.getStateChangeEventFactory(valueClass);
+        StateChangeEventFactory<T> factory = eventRegistry.getStateChangeEventFactory(valueClass);
         return factory.create(target, key, oldValue, newValue);
     }
 
     @Override
     public final <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node) {
-        NodeLoadEventFactory<N> factory = classRegistry.getNodeLoadEventFactory(nodeClass);
+        NodeLoadEventFactory<N> factory = eventRegistry.getNodeLoadEventFactory(nodeClass);
         return factory.create(node);
     }
 
     @Override
     public final <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node) {
-        NodeUnloadEventFactory<N> factory = classRegistry.getNodeUnloadEventFactory(nodeClass);
+        NodeUnloadEventFactory<N> factory = eventRegistry.getNodeUnloadEventFactory(nodeClass);
         return factory.create(node);
     }
 

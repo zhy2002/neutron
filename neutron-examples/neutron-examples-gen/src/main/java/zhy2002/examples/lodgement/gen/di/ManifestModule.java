@@ -1,7 +1,7 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
 import zhy2002.examples.lodgement.gen.*;
-import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.Singleton;
 import zhy2002.neutron.di.NeutronModule;
 
@@ -332,6 +332,6 @@ public abstract class ManifestModule {
 
     @Binds
     @Singleton
-    abstract ClassRegistryImpl provideClassRegistryImpl(ApplicationNodeClassRegistry impl);
+    abstract EventRegistryImpl provideEventRegistryImpl(ApplicationNodeClassRegistry impl);
 
 }

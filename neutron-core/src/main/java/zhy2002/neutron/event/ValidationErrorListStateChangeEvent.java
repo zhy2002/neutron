@@ -6,7 +6,7 @@ import zhy2002.neutron.data.ValidationErrorList;
 
 public class ValidationErrorListStateChangeEvent extends StateChangeEvent<ValidationErrorList> {
 
-    public ValidationErrorListStateChangeEvent(UiNode<?> target, String key) {
+    ValidationErrorListStateChangeEvent(UiNode<?> target, String key) {
         super(target, key);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * Reset = removeFromOwner + addToOwner.
  * Must be inherited to fill in the type parameters.
  */
-public abstract class NodeRemoveEvent<N extends UiNode<?>>
+public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N>>>
         extends ChangeUiNodeEvent {
 
     private final N target;

@@ -13,7 +13,10 @@ public abstract class NodeUnloadEvent<N extends UiNode<?>>
 
     @Override
     public void apply() {
-        getOrigin().unload();
+        UiNode<?> origin = getOrigin();
+        if (origin.getNodeStatus() == NodeStatusEnum.Loaded) {
+            origin.unload();
+        }
     }
 
     @Override

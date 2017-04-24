@@ -1,42 +1,35 @@
-package zhy2002.neutron;
+package zhy2002.neutron.event;
 
+import zhy2002.neutron.NodeLoadEventFactory;
+import zhy2002.neutron.NodeUnloadEventFactory;
+import zhy2002.neutron.StateChangeEventFactory;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
-import zhy2002.neutron.event.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * A simple mechanism to allow overriding implementation class.
  */
-public class ClassRegistryImpl implements ClassRegistry {
-    private final Map<Class<?>, Object> childNodeFactories = new HashMap<>();
-    private final Map<Class<?>, Object> uiNodeRuleFactories = new HashMap<>();
-    private final Map<Class<?>, List<UiNodeConfig<?>>> nodeConfigMap = new HashMap<>();
+public class EventRegistryImpl implements EventRegistry {
+
     private final Map<Class<?>, Object> stateChangeEventFactories = new HashMap<>();
-    private final Map<Class<?>, Object> nodeAddEventFactories = new HashMap<>();
-    private final Map<Class<?>, Object> nodeRemoveEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeLoadEventFactories = new HashMap<>();
     private final Map<Class<?>, Object> nodeUnloadEventFactories = new HashMap<>();
 
-    public ClassRegistryImpl() {
+    public EventRegistryImpl() {
         //system -> context -> custom
         loadStateChangeEventFactories();
     }
 
-    final void copyFrom(ClassRegistryImpl registry) {
+    final void copyFrom(EventRegistryImpl registry) {
         if (registry == null)
             return;
 
-        uiNodeRuleFactories.putAll(registry.uiNodeRuleFactories);
-        childNodeFactories.putAll(registry.childNodeFactories);
         stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
-        nodeAddEventFactories.putAll(registry.nodeAddEventFactories);
-        nodeRemoveEventFactories.putAll(registry.nodeRemoveEventFactories);
-        nodeConfigMap.putAll(registry.nodeConfigMap);
         nodeLoadEventFactories.putAll(registry.nodeLoadEventFactories);
         nodeUnloadEventFactories.putAll(registry.nodeUnloadEventFactories);
     }
@@ -50,12 +43,12 @@ public class ClassRegistryImpl implements ClassRegistry {
     }
 
     private void loadStateChangeEventFactories() {
-        this.setStateChangeEventFactory(String.class, new StringStateChangeEventFactory());
-        this.setStateChangeEventFactory(Boolean.class, new BooleanStateChangeEventFactory());
-        this.setStateChangeEventFactory(BigDecimal.class, new BigDecimalStateChangeEventFactory());
-        this.setStateChangeEventFactory(ValidationErrorList.class, new ValidationErrorListStateChangeEventFactory());
-        this.setStateChangeEventFactory(Object.class, new ObjectStateChangeEventFactory());
-        this.setStateChangeEventFactory(Integer.class, new IntegerStateChangeEventFactory());
+        this.setStateChangeEventFactory(String.class, StringStateChangeEvent::new);
+        this.setStateChangeEventFactory(Boolean.class, BooleanStateChangeEvent::new);
+        this.setStateChangeEventFactory(BigDecimal.class, BigDecimalStateChangeEvent::new);
+        this.setStateChangeEventFactory(ValidationErrorList.class, ValidationErrorListStateChangeEvent::new);
+        this.setStateChangeEventFactory(Object.class, ObjectStateChangeEvent::new);
+        this.setStateChangeEventFactory(Integer.class, IntegerStateChangeEvent::new);
         this.setStateChangeEventFactory(ValidationError.class, ValidationErrorStateChangeEvent::new);
     }
 
@@ -65,7 +58,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         return (StateChangeEventFactory<T>) getObject(stateChangeEventFactories, valueClass, "StateChangeEventFactory");
     }
 
-    public final <T> void setStateChangeEventFactory(Class<T> valueClass, StateChangeEventFactory<T> factory) {
+    protected final <T> void setStateChangeEventFactory(Class<T> valueClass, StateChangeEventFactory<T> factory) {
         stateChangeEventFactories.put(valueClass, factory);
     }
 
@@ -75,7 +68,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         return (NodeLoadEventFactory<N>) getObject(nodeLoadEventFactories, nodeClass, "NodeLoadEventFactory");
     }
 
-    public final <N extends UiNode<?>> void setNodeLoadEventFactory(Class<N> nodeClass, NodeLoadEventFactory<N> factory) {
+    protected final <N extends UiNode<?>> void setNodeLoadEventFactory(Class<N> nodeClass, NodeLoadEventFactory<N> factory) {
         nodeLoadEventFactories.put(nodeClass, factory);
     }
 
@@ -85,7 +78,7 @@ public class ClassRegistryImpl implements ClassRegistry {
         return (NodeUnloadEventFactory<N>) getObject(nodeUnloadEventFactories, nodeClass, "NodeUnloadEventFactory");
     }
 
-    public final <N extends UiNode<?>> void setNodeUnloadEventFactory(Class<N> nodeClass, NodeUnloadEventFactory<N> factory) {
+    protected final <N extends UiNode<?>> void setNodeUnloadEventFactory(Class<N> nodeClass, NodeUnloadEventFactory<N> factory) {
         nodeUnloadEventFactories.put(nodeClass, factory);
     }
 

@@ -17,7 +17,7 @@ import java.util.*;
  * @param <P> concrete class of parent.
  * @param <N> concrete class of item.
  */
-public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<?>>
+public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? extends ListUiNode<?, N>>>
         extends ParentUiNode<P> {
 
     private static final Joiner joiner = Joiner.on(",");

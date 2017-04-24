@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Use static methods to createProperty property metadata.
+ * This class offers static methods to createProperty property metadata.
  */
 public class MetadataRegistry {
 

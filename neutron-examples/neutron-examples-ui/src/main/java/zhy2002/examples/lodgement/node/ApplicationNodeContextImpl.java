@@ -1,7 +1,7 @@
 package zhy2002.examples.lodgement.node;
 
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
-import zhy2002.neutron.ClassRegistryImpl;
+import zhy2002.neutron.event.EventRegistryImpl;
 import zhy2002.neutron.UiNodeChangeEngine;
 import zhy2002.neutron.UniqueIdGenerator;
 
@@ -16,7 +16,7 @@ public class ApplicationNodeContextImpl extends ApplicationNodeContext {
     public ApplicationNodeContextImpl(
             UiNodeChangeEngine changeEngine,
             UniqueIdGenerator nodeIdGenerator,
-            @NotNull ClassRegistryImpl implRegistry
+            @NotNull EventRegistryImpl implRegistry
     ) {
         super(changeEngine, nodeIdGenerator, implRegistry);
     }

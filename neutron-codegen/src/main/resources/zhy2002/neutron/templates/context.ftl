@@ -1,6 +1,7 @@
 package ${targetPackage}.gen;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.event.EventRegistryImpl;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import javax.validation.constraints.NotNull;
 import dagger.Lazy;
@@ -18,7 +19,7 @@ public class ${typeName}Context extends AbstractUiNodeContext<${typeName}> {
     public ${typeName}Context(
         UiNodeChangeEngine changeEngine,
         UniqueIdGenerator nodeIdGenerator,
-        @NotNull ClassRegistryImpl implRegistry
+        @NotNull EventRegistryImpl implRegistry
     ) {
         super(
             RandomUniqueIdGenerator.Instance.next(),
