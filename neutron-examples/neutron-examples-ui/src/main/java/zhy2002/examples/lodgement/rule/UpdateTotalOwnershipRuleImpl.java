@@ -40,8 +40,7 @@ public class UpdateTotalOwnershipRuleImpl extends UpdateTotalOwnershipRule {
                 ),
                 new NodeRemoveEventBinding<>(
                         this::updateTotalOwnership,
-                        OwnershipNodeRemoveEvent.class,
-                        getOwner().getName()
+                        OwnershipNodeRemoveEvent.class
                 )
         );
     }

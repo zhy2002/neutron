@@ -34,8 +34,7 @@ public class OwnershipRequiredValidationRuleImpl extends OwnershipRequiredValida
                 ),
                 new NodeRemoveEventBinding<>(
                         e -> this.validate(),
-                        OwnershipNodeRemoveEvent.class,
-                        getOwner().getName()
+                        OwnershipNodeRemoveEvent.class
                 )
         );
     }

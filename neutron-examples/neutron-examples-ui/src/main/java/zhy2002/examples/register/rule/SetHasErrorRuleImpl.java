@@ -27,13 +27,11 @@ public class SetHasErrorRuleImpl extends SetHasErrorRule {
         return Arrays.asList(
                 new NodeAddEventBinding<>(
                         this::updateHasError,
-                        ErrorNodeAddEvent.class,
-                        "errorListNode"
+                        ErrorNodeAddEvent.class
                 ),
                 new NodeRemoveEventBinding<>(
                         this::updateHasError,
-                        ErrorNodeRemoveEvent.class,
-                        "errorListNode"
+                        ErrorNodeRemoveEvent.class
                 )
         );
     }

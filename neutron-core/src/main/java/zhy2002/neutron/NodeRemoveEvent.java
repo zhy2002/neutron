@@ -14,7 +14,7 @@ public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N
     private final N target;
 
     public NodeRemoveEvent(N target) {
-        super(target, target.getParent().getName());
+        super(target, "");
 
         this.target = target;
     }

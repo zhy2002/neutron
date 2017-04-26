@@ -32,8 +32,7 @@ public class ShowErrorListRuleImpl extends ShowErrorListRule {
                                 getApplicationNode().setShowErrorList(Boolean.FALSE);
                             }
                         },
-                        ErrorNodeRemoveEvent.class,
-                        "errorListNode"
+                        ErrorNodeRemoveEvent.class
                 )
         );
     }

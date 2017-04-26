@@ -5,28 +5,27 @@ import javax.validation.constraints.NotNull;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Match any NodeAddEvent.
+ */
 public class GenericNodeAddEventBinding extends NodeAddEventBinding<NodeAddEvent<?>> {
 
-
     public GenericNodeAddEventBinding(
             UiNodeEventFilter<NodeAddEvent<?>> filter,
             @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,
-            @NotNull String subject,
             TickPhase phase) {
-        super(filter, handler, null, Collections.singleton(subject), phase);
+        super(filter, handler, null, phase);
     }
 
     public GenericNodeAddEventBinding(
             UiNodeEventFilter<NodeAddEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,
-            @NotNull String subject) {
-        super(filter, handler, null, Collections.singleton(subject), null);
+            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler) {
+        super(filter, handler, null, null);
     }
 
     public GenericNodeAddEventBinding(
-            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,
-            @NotNull String subject) {
-        this(null, handler, subject);
+            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler) {
+        this(null, handler);
     }
 
     @Override

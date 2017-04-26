@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.Collections;
 
 public class NodeRemoveEventBinding<E extends NodeRemoveEvent<?>> extends AbstractEventBinding<E> {
@@ -9,17 +8,15 @@ public class NodeRemoveEventBinding<E extends NodeRemoveEvent<?>> extends Abstra
     public NodeRemoveEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
-             Class<E> eventCLass,
-            @NotNull Collection<String> subjects,
+            Class<E> eventCLass,
             TickPhase phase) {
-        super(filter, handler, eventCLass, subjects, phase);
+        super(filter, handler, eventCLass, Collections.singleton(""), phase);
     }
 
     public NodeRemoveEventBinding(
             @NotNull UiNodeEventHandler<E> handler,
-             Class<E> eventClass,
-            @NotNull String subject
+            Class<E> eventClass
     ) {
-        this(null, handler, eventClass, Collections.singletonList(subject), null);
+        this(null, handler, eventClass, null);
     }
 }

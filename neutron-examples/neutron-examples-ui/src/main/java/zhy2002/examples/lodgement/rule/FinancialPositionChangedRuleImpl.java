@@ -29,16 +29,7 @@ public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRu
                 new BigDecimalStateChangeEventBinding(this::updateValues),
                 new RefreshEventBinding(this::updateValues, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)),
                 new GenericNodeRemoveEventBinding(
-                        this::updateValues,
-                        Arrays.asList(
-                                "creditCardListNode",
-                                "loanListNode",
-                                "otherLiabilityListNode",
-                                "savingsAccountListNode",
-                                "motorVehicleListNode",
-                                "otherAssetListNode",
-                                "expenseListNode"
-                        )
+                    this::updateValues
                 )
         );
     }

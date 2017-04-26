@@ -36,8 +36,7 @@ public class AddNewThirdPartyApplicantRuleImpl extends AddNewThirdPartyApplicant
         return Collections.singletonList(
                 new NodeAddEventBinding<>(
                         this::importRelatedParty,
-                        PersonNodeAddEvent.class,
-                        applicationNode.getAdditionalNode().getRelatedPartyListNode().getName()
+                        PersonNodeAddEvent.class
                 )
         );
     }

@@ -6,31 +6,28 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Match any NodeRemoveEvent.
+ */
 public class GenericNodeRemoveEventBinding extends NodeRemoveEventBinding<NodeRemoveEvent<?>> {
 
     public GenericNodeRemoveEventBinding(
             UiNodeEventFilter<NodeRemoveEvent<?>> filter,
             @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler,
-            @NotNull String subject,
             TickPhase phase
     ) {
-        super(filter, handler, null, Collections.singleton(subject), phase);
+        super(filter, handler, null, phase);
     }
 
     public GenericNodeRemoveEventBinding(
             UiNodeEventFilter<NodeRemoveEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler,
-            @NotNull String subject
+            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler
     ) {
-        super(filter, handler, null, Collections.singleton(subject), null);
+        super(filter, handler, null, null);
     }
 
-    public GenericNodeRemoveEventBinding(@NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler, @NotNull Collection<String> subjects) {
-        super(null, handler, null, subjects, null);
-    }
-
-    public GenericNodeRemoveEventBinding(@NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler, @NotNull String subject) {
-        this(null, handler, subject);
+    public GenericNodeRemoveEventBinding(@NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler) {
+        this(null, handler);
     }
 
     @Override

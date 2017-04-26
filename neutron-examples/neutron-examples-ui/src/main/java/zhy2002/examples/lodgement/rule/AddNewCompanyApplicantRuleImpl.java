@@ -37,8 +37,7 @@ public class AddNewCompanyApplicantRuleImpl extends AddNewCompanyApplicantRule {
         return Collections.singletonList(
                 new NodeAddEventBinding<>(
                         this::importApplicant,
-                        CompanyNodeAddEvent.class,
-                        applicationNode.getCompanyListNode().getName()
+                        CompanyNodeAddEvent.class
                 )
         );
     }

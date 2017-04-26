@@ -277,19 +277,16 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
                     new GenericNodeAddEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             e -> getOwner().markSelfDirty(),
-                            getOwner().getName(),
                             PredefinedPhases.Pre
                     ),
                     new GenericNodeRemoveEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             e -> getOwner().markSelfDirty(),
-                            getOwner().getName(),
                             PredefinedPhases.Pre
                     ),
                     new GenericNodeRemoveEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             this::tryClearSelfDirty,
-                            getOwner().getName(),
                             PredefinedPhases.Post
                     )
             );

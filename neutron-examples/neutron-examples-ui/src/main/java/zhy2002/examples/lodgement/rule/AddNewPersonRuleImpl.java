@@ -35,8 +35,7 @@ public class AddNewPersonRuleImpl extends AddNewPersonRule {
         return Collections.singletonList(
                 new NodeAddEventBinding<>(
                         this::importPerson,
-                        PersonNodeAddEvent.class,
-                        applicationNode.getPersonListNode().getName()
+                        PersonNodeAddEvent.class
                 )
         );
     }

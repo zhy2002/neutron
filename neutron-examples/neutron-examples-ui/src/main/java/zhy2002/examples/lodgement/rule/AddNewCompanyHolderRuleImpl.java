@@ -37,8 +37,7 @@ public class AddNewCompanyHolderRuleImpl extends AddNewCompanyHolderRule {
         return Collections.singletonList(
                 new NodeAddEventBinding<>(
                         this::importApplicant,
-                        CompanyNodeAddEvent.class,
-                        applicationNode.getCompanyListNode().getName()
+                        CompanyNodeAddEvent.class
                 )
         );
     }

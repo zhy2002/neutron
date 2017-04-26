@@ -28,13 +28,11 @@ public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>>
                 ),
                 new GenericNodeAddEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),
-                        (e) -> validate(),
-                        getOwner().getName()
+                        (e) -> validate()
                 ),
                 new GenericNodeRemoveEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),
-                        (e) -> validate(),
-                        getOwner().getName()
+                        (e) -> validate()
                 )
         );
     }

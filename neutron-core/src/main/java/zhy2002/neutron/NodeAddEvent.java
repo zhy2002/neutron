@@ -14,7 +14,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     private final N target;
 
     public NodeAddEvent(N origin) {
-        super(origin, origin.getParent().getName());
+        super(origin, "");
 
         this.target = origin;
     }
