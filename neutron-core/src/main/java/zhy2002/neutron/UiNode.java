@@ -425,8 +425,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     /**
      * Calling this method with transition from Unloaded to Loaded.
+     * This loads the node directly no event will be emitted.
      */
-    public final void load() {
+    public final void loadDirectly() {
         if (this.nodeStatus != NodeStatusEnum.Unloaded)
             return;
 
@@ -469,7 +470,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * Calling this method will transition from Loaded to Unloaded.
      */
-    public final void unload() {
+    public final void unloadDirectly() {
         if (this.nodeStatus != NodeStatusEnum.Loaded)
             return;
         this.nodeStatus = NodeStatusEnum.Unloaded;
@@ -516,12 +517,40 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     final void attach() {
         addToParent();
-        load();
+        loadDirectly();
     }
 
     final void detach() {
-        unload();
+        unloadDirectly();
         removeFromParent();
+    }
+
+    public final void load() {
+        NodeLoadEvent<?> event = createNodeLoadEvent();
+        getContext().processEvent(event);
+    }
+
+    public final void unLoad() {
+        NodeUnloadEvent<?> event = createNodeUnloadEvent();
+        getContext().processEvent(event);
+    }
+
+    /**
+     * Only concrete node (generated) is allowed override this method.
+     *
+     * @return the load event for this node, not processed.
+     */
+    protected NodeLoadEvent<?> createNodeLoadEvent() {
+        throw new NotImplementedException();
+    }
+
+    /**
+     * Only concrete node (generated) is allowed to override this method.
+     *
+     * @return the unload event for this node, not processed.
+     */
+    protected NodeUnloadEvent<?> createNodeUnloadEvent() {
+        throw new NotImplementedException();
     }
 
     final <T extends UiNode<?>> void addRule(@NotNull UiNodeRule<T> rule) {

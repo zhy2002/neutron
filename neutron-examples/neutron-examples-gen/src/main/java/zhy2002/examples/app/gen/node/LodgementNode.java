@@ -11,7 +11,7 @@ import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 import zhy2002.examples.app.gen.*;
-
+import zhy2002.examples.app.gen.event.*;
 
 @Singleton
 public class LodgementNode extends RootUiNode<VoidUiNode> {
@@ -49,6 +49,16 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+    }
+
+    @Override
+    protected final NodeLoadEvent<LodgementNode> createNodeLoadEvent() {
+        return new LodgementNodeLoadEvent(this);
+    }
+
+    @Override
+    protected final NodeUnloadEvent<LodgementNode> createNodeUnloadEvent() {
+        return new LodgementNodeUnloadEvent(this);
     }
 
 

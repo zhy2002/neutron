@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResponsibleLendNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResp
     private RuleProvider<ResponsibleRepaymentDifficultyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ResponsibleRepaymentDifficultyNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);

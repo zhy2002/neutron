@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
     private RuleProvider<TrustCountryNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public TrustCountryNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);

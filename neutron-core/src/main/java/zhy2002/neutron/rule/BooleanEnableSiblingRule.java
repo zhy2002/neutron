@@ -65,8 +65,8 @@ public class BooleanEnableSiblingRule extends UiNodeRule<BooleanUiNode<?>> {
         if (getEnablingValue().equals(getOwner().getValue())) {
             sibling.setDisabled(false);
         } else {
-            sibling.unload();
-            sibling.load();
+            sibling.unloadDirectly();
+            sibling.loadDirectly();
             sibling.setDisabled(true);
         }
     }

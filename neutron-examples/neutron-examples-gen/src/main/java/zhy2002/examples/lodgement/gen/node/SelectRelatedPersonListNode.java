@@ -6,7 +6,6 @@ import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectRelatedPersonNode> {
 
     private SelectRelatedPersonListNodeItemFactory itemFactory;

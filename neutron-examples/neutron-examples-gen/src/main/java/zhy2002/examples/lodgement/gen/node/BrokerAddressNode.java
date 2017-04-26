@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class BrokerAddressNode extends AddressNode<SubmissionNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class BrokerAddressNode extends AddressNode<SubmissionNode> {
     private RuleProvider<BrokerAddressNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public BrokerAddressNode(@NotNull SubmissionNode parent, String name) {
         super(parent, name);

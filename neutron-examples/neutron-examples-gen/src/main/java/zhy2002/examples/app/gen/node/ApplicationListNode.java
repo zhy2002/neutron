@@ -13,7 +13,6 @@ import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
-
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
 
     @Override
@@ -47,6 +46,7 @@ public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
     private RuleProvider<ApplicationListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ApplicationListNode(@NotNull AppManagerNode parent, String name) {
         super(parent, name);

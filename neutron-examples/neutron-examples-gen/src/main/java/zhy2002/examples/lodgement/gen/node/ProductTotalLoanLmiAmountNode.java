@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductTotalLoanLmiAmountNode extends BaseCurrencyNode<ProductsNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ProductTotalLoanLmiAmountNode extends BaseCurrencyNode<ProductsNode
     private RuleProvider<ProductTotalLoanLmiAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductTotalLoanLmiAmountNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);

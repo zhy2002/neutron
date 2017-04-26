@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
     private RuleProvider<CompanyTrustNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyTrustNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);

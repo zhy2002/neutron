@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeaturesNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
     private RuleProvider<Product100PercentOffsetFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public Product100PercentOffsetFlagNode(@NotNull ProductFeaturesNode parent, String name) {
         super(parent, name);

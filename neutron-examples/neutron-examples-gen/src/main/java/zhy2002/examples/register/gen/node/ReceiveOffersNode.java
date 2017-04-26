@@ -8,7 +8,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
     private RuleProvider<ReceiveOffersNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ReceiveOffersNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

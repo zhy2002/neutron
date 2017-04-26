@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class YearNode extends BigDecimalUiNode<MonthYearNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class YearNode extends BigDecimalUiNode<MonthYearNode<?>> {
     private RuleProvider<YearNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public YearNode(@NotNull MonthYearNode<?> parent, String name) {
         super(parent, name);

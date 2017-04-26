@@ -11,21 +11,7 @@ public class ${typeName}ClassRegistry extends EventRegistryImpl {
 
     @Inject
     ${typeName}ClassRegistry() {
-        loadNodeLoadEventFactories();
-        loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeLoadEventFactories() {
-<#list domainInfo.loadEventNodes as node>
-        super.setNodeLoadEventFactory(${node.typeName}.class, ${node.typeName}LoadEvent::new);
-</#list>
-    }
-
-    private void loadNodeUnloadEventFactories() {
-<#list domainInfo.loadEventNodes as node>
-        super.setNodeUnloadEventFactory(${node.typeName}.class, ${node.typeName}UnloadEvent::new);
-</#list>
     }
 
     private void loadStateChangeEventFactories() {

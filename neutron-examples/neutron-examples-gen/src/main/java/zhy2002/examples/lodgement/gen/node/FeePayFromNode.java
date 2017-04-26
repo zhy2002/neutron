@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class FeePayFromNode extends StringUiNode<ProductFeeNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class FeePayFromNode extends StringUiNode<ProductFeeNode> {
     private RuleProvider<FeePayFromNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public FeePayFromNode(@NotNull ProductFeeNode parent, String name) {
         super(parent, name);

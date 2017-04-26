@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AccessContactTitleNode extends StringUiNode<AccessNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class AccessContactTitleNode extends StringUiNode<AccessNode> {
     private RuleProvider<AccessContactTitleNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AccessContactTitleNode(@NotNull AccessNode parent, String name) {
         super(parent, name);

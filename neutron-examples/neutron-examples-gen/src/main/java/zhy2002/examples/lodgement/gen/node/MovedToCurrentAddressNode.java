@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class MovedToCurrentAddressNode extends MonthYearNode<PersonContactNode> 
     private RuleProvider<MovedToCurrentAddressNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public MovedToCurrentAddressNode(@NotNull PersonContactNode parent, String name) {
         super(parent, name);

@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
     private RuleProvider<ThirdPartyWorkPhoneNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ThirdPartyWorkPhoneNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyPrivacyNode extends BasePrivacyNode<CompanyNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class CompanyPrivacyNode extends BasePrivacyNode<CompanyNode> {
     private RuleProvider<CompanyPrivacyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyPrivacyNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);

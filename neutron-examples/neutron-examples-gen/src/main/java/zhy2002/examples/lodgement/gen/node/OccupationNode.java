@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OccupationNode extends BaseOccupationNode<EmployedNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode> {
     private RuleProvider<OccupationNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OccupationNode(@NotNull EmployedNode parent, String name) {
         super(parent, name);

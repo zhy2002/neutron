@@ -5,7 +5,6 @@ import zhy2002.neutron.node.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class BaseOccupationNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
 

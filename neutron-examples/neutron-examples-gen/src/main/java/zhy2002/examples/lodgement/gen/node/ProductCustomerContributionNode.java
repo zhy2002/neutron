@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustomerContributionListNode> {
 
     private ContributionTypeNode contributionTypeNode;

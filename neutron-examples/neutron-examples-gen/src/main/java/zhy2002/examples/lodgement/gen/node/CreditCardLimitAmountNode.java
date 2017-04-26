@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CreditCardLimitAmountNode extends BaseCurrencyNode<CreditCardNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class CreditCardLimitAmountNode extends BaseCurrencyNode<CreditCardNode> 
     private RuleProvider<CreditCardLimitAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CreditCardLimitAmountNode(@NotNull CreditCardNode parent, String name) {
         super(parent, name);

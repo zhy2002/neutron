@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PersonContactNode extends ObjectUiNode<PersonNode> {
 
     private PersonTelephoneNode homePhoneNode;
@@ -64,6 +63,7 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
     private RuleProvider<PersonContactNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PersonContactNode(@NotNull PersonNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class MortgageLimitAmountNode extends BaseCurrencyNode<ExistingMortgageNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class MortgageLimitAmountNode extends BaseCurrencyNode<ExistingMortgageNo
     private RuleProvider<MortgageLimitAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public MortgageLimitAmountNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);

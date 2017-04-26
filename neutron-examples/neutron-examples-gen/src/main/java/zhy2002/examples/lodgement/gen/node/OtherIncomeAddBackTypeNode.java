@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
     private RuleProvider<OtherIncomeAddBackTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherIncomeAddBackTypeNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductListNode extends ListUiNode<ProductsNode,ProductNode> {
 
     private ProductListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class ProductListNode extends ListUiNode<ProductsNode,ProductNode> {
     private RuleProvider<ProductListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductListNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);

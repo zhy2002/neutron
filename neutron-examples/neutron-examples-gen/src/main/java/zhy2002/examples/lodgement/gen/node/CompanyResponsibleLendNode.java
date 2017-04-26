@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyN
     private RuleProvider<CompanyResponsibleLendNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyResponsibleLendNode(@NotNull CompanyNode parent, String name) {
         super(parent, name);

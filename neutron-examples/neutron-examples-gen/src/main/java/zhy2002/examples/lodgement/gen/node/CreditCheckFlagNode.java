@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
     private RuleProvider<CreditCheckFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CreditCheckFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);

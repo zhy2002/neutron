@@ -14,7 +14,7 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 import zhy2002.examples.register.gen.*;
-
+import zhy2002.examples.register.gen.event.*;
 
 @Singleton
 public class RegisterNode extends RootUiNode<VoidUiNode> {
@@ -63,6 +63,16 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+    }
+
+    @Override
+    protected final NodeLoadEvent<RegisterNode> createNodeLoadEvent() {
+        return new RegisterNodeLoadEvent(this);
+    }
+
+    @Override
+    protected final NodeUnloadEvent<RegisterNode> createNodeUnloadEvent() {
+        return new RegisterNodeUnloadEvent(this);
     }
 
 

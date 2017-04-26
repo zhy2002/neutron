@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
     private MonthNode monthNode;

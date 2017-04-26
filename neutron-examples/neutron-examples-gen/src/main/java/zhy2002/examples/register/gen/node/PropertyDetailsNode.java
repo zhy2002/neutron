@@ -13,7 +13,7 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
-
+import zhy2002.examples.register.gen.event.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
@@ -58,6 +58,17 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     private RuleProvider<PropertyDetailsNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    @Override
+    protected final NodeLoadEvent<PropertyDetailsNode> createNodeLoadEvent() {
+        return new PropertyDetailsNodeLoadEvent(this);
+    }
+
+    @Override
+    protected final NodeUnloadEvent<PropertyDetailsNode> createNodeUnloadEvent() {
+        return new PropertyDetailsNodeUnloadEvent(this);
+    }
+
 
     public PropertyDetailsNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

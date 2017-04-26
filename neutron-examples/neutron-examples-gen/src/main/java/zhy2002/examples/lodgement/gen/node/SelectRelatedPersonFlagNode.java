@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPersonNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPers
     private RuleProvider<SelectRelatedPersonFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SelectRelatedPersonFlagNode(@NotNull SelectRelatedPersonNode parent, String name) {
         super(parent, name);

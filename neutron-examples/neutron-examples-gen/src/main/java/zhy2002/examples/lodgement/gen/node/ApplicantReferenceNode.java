@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
     private RuleProvider<ApplicantReferenceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ApplicantReferenceNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);

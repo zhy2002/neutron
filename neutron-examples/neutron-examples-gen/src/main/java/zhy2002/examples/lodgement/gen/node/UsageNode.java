@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class UsageNode extends ObjectUiNode<RealEstateNode> {
 
     private UsedAsSecurityFlagNode usedAsSecurityFlagNode;
@@ -59,6 +58,7 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
     private RuleProvider<UsageNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public UsageNode(@NotNull RealEstateNode parent, String name) {
         super(parent, name);

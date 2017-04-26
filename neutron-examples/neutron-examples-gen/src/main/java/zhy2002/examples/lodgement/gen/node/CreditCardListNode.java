@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
 
     private CreditCardListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
     private RuleProvider<CreditCardListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CreditCardListNode(@NotNull LiabilitiesNode parent, String name) {
         super(parent, name);

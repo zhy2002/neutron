@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabilityNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabili
     private RuleProvider<OtherLiabilityLimitAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherLiabilityLimitAmountNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);

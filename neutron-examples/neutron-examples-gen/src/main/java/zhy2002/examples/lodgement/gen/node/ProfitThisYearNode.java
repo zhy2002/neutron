@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
     private RuleProvider<ProfitThisYearNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProfitThisYearNode(@NotNull SelfEmployedNode parent, String name) {
         super(parent, name);

@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
     private RuleProvider<AccessTelephoneNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AccessTelephoneNode(@NotNull AccessNode parent, String name) {
         super(parent, name);

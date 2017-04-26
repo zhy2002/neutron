@@ -9,7 +9,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class PlanNode extends StringUiNode<RegisterNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class PlanNode extends StringUiNode<RegisterNode> {
     private RuleProvider<PlanNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PlanNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

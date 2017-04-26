@@ -11,7 +11,6 @@ import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
 
     private OwnershipListNodeItemFactory itemFactory;

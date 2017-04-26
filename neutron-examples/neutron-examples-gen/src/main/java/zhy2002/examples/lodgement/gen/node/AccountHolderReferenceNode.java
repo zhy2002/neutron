@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHolderNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
     private RuleProvider<AccountHolderReferenceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AccountHolderReferenceNode(@NotNull SelectAccountHolderNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
     private RuleProvider<RepeatPasswordNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public RepeatPasswordNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

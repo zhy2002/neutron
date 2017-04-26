@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
     private BrokerFirstNameNode brokerFirstNameNode;
@@ -62,6 +61,7 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     private RuleProvider<SubmissionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SubmissionNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);

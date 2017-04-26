@@ -13,7 +13,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
     @Override
@@ -47,6 +46,7 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     private RuleProvider<PasswordNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PasswordNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

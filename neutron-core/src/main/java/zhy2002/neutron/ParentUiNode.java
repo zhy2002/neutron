@@ -80,7 +80,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
         UiNode<?>[] children = getChildren();
         for (int i = children.length - 1; i >= 0; i--) {
-            children[i].unload();
+            children[i].unloadDirectly();
         }
     }
 

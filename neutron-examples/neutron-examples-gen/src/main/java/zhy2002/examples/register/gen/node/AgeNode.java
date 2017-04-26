@@ -9,7 +9,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
     private RuleProvider<AgeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AgeNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

@@ -24,15 +24,7 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
      */
     R getRootNode();
 
-    <N extends UiNode<?>> void loadNode(Class<N> nodeClass, N node);
-
-    <N extends UiNode<?>> void unLoadNode(Class<N> nodeClass, N node);
-
     <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue);
-
-    <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node);
-
-    <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node);
 
     void processEvent(UiNodeEvent event);
 

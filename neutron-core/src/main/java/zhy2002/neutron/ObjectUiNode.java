@@ -41,7 +41,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     protected final void loadContent() {
         for (UiNode<?> child : getChildren()) {
             if (child.getLoadWithParent()) {
-                child.load();
+                child.loadDirectly();
             }
         }
 

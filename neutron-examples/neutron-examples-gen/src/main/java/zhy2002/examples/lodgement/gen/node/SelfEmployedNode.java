@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SelfEmployedNode extends EmployedNode {
 
     private BusinessTypeNode businessTypeNode;
@@ -56,6 +55,7 @@ public class SelfEmployedNode extends EmployedNode {
     private RuleProvider<SelfEmployedNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SelfEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);

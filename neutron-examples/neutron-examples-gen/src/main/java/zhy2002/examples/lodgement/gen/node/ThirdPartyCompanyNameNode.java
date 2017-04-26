@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ThirdPartyCompanyNameNode extends StringUiNode<RelatedPartyNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ThirdPartyCompanyNameNode extends StringUiNode<RelatedPartyNode> {
     private RuleProvider<ThirdPartyCompanyNameNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ThirdPartyCompanyNameNode(@NotNull RelatedPartyNode parent, String name) {
         super(parent, name);

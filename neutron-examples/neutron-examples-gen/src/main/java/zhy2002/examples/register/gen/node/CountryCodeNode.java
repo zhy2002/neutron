@@ -9,7 +9,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class CountryCodeNode extends PhoneInfoFieldNode {
 
     @Override
@@ -43,6 +42,7 @@ public class CountryCodeNode extends PhoneInfoFieldNode {
     private RuleProvider<CountryCodeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CountryCodeNode(@NotNull PhoneInfoNode parent, String name) {
         super(parent, name);

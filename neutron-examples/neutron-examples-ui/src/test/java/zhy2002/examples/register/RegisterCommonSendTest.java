@@ -11,7 +11,6 @@ import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
 import zhy2002.examples.register.rule.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.NodeStatusEnum;
-import zhy2002.neutron.UiNodeChangeListener;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.LengthValidationRule;
@@ -416,11 +415,11 @@ public class RegisterCommonSendTest {
         PropertyDetailsNode investmentProperty = registerNode.getInvestmentPropertyNode();
         assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
 
-        investmentProperty.load();
+        investmentProperty.loadDirectly();
         assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
 
-        investmentProperty.load(); //will not cause error
-        investmentProperty.unload();
+        investmentProperty.loadDirectly(); //will not cause error
+        investmentProperty.unloadDirectly();
         assertThat(investmentProperty.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
     }
 

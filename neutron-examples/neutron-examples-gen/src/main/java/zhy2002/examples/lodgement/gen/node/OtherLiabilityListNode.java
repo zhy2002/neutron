@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityNode> {
 
     private OtherLiabilityListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
     private RuleProvider<OtherLiabilityListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherLiabilityListNode(@NotNull LiabilitiesNode parent, String name) {
         super(parent, name);

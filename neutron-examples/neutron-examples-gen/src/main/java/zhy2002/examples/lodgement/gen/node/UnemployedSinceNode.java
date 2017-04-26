@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class UnemployedSinceNode extends MonthYearNode<UnemployedNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class UnemployedSinceNode extends MonthYearNode<UnemployedNode> {
     private RuleProvider<UnemployedSinceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public UnemployedSinceNode(@NotNull UnemployedNode parent, String name) {
         super(parent, name);

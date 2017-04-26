@@ -12,7 +12,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PersonNode extends ObjectUiNode<PersonListNode> {
 
     private PersonGeneralNode personGeneralNode;

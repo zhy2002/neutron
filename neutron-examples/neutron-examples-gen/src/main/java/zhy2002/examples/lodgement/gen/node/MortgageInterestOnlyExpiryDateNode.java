@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMortgageNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMor
     private RuleProvider<MortgageInterestOnlyExpiryDateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public MortgageInterestOnlyExpiryDateNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);

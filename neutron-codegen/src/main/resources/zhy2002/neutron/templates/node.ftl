@@ -28,7 +28,9 @@ import java.util.List;
 <#if parentType.typeName == "VoidUiNode">
 import ${targetPackage}.gen.*;
 </#if>
-
+<#if unloadable>
+import ${targetPackage}.gen.event.*;
+</#if>
 
 <#if parentType.typeName == 'VoidUiNode'>
 @Singleton
@@ -64,8 +66,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         return ${typeName}.class;
     }
 
-</#if>
-<#if !abstractNode>
     private ${typeName}Component component;
 
     @Inject
@@ -97,6 +97,19 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     private RuleProvider<${typeName}> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    </#if>
+    <#if unloadable>
+    @Override
+    protected final NodeLoadEvent<${typeName}> createNodeLoadEvent() {
+        return new ${typeName}LoadEvent(this);
+    }
+
+    @Override
+    protected final NodeUnloadEvent<${typeName}> createNodeUnloadEvent() {
+        return new ${typeName}UnloadEvent(this);
+    }
+
     </#if>
 </#if>
 

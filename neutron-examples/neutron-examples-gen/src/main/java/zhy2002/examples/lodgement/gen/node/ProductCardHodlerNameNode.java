@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNod
     private RuleProvider<ProductCardHodlerNameNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductCardHodlerNameNode(@NotNull ProductCardHolderNode parent, String name) {
         super(parent, name);

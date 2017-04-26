@@ -11,17 +11,7 @@ public class ApplicationNodeClassRegistry extends EventRegistryImpl {
 
     @Inject
     ApplicationNodeClassRegistry() {
-        loadNodeLoadEventFactories();
-        loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeLoadEventFactories() {
-        super.setNodeLoadEventFactory(ApplicationNode.class, ApplicationNodeLoadEvent::new);
-    }
-
-    private void loadNodeUnloadEventFactories() {
-        super.setNodeUnloadEventFactory(ApplicationNode.class, ApplicationNodeUnloadEvent::new);
     }
 
     private void loadStateChangeEventFactories() {

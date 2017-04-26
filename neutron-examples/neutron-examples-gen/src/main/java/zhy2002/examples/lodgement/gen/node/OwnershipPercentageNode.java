@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
     private RuleProvider<OwnershipPercentageNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OwnershipPercentageNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);

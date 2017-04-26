@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyRegistrationStateNode extends StringUiNode<CompanyGeneralNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class CompanyRegistrationStateNode extends StringUiNode<CompanyGeneralNod
     private RuleProvider<CompanyRegistrationStateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyRegistrationStateNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);

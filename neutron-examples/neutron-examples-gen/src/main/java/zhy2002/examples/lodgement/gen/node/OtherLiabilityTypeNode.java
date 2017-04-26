@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode> {
     private RuleProvider<OtherLiabilityTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherLiabilityTypeNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);

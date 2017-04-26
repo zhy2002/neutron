@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNode<?>> {
 
     @Override
@@ -42,6 +41,7 @@ public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNod
     private RuleProvider<TrustSettlorNotRequiredReasonNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public TrustSettlorNotRequiredReasonNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);

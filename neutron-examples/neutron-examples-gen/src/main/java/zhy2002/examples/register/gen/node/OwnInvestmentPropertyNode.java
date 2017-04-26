@@ -8,7 +8,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
     private RuleProvider<OwnInvestmentPropertyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

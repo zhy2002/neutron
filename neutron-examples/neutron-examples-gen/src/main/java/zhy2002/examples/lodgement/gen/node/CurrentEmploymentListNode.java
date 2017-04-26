@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmploymentNode> {
 
     private CurrentEmploymentListNodeItemFactory itemFactory;
@@ -50,6 +49,7 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
     private RuleProvider<CurrentEmploymentListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CurrentEmploymentListNode(@NotNull PersonNode parent, String name) {
         super(parent, name);

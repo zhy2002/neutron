@@ -34,9 +34,9 @@ public class LoadInvestmentPropertyRuleImpl extends LoadInvestmentPropertyRule {
     private void loadPropertyDetails() {
         PropertyDetailsNode propertyDetailsNode = getInvestmentPropertyDetailsNode();
         if (Boolean.TRUE.equals(getOwnInvestmentPropertyNode().getValue())) {
-            getContext().loadNode(PropertyDetailsNode.class, propertyDetailsNode);
+            propertyDetailsNode.load();
         } else {
-            getContext().unLoadNode(PropertyDetailsNode.class, propertyDetailsNode);
+            propertyDetailsNode.unLoad();
         }
     }
 }

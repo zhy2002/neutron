@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
 
     private AdditionalCommentNode additionalCommentNode;
@@ -55,6 +54,7 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
     private RuleProvider<AdditionalNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AdditionalNode(@NotNull ApplicationNode parent, String name) {
         super(parent, name);

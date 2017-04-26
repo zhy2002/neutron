@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
     private RuleProvider<VehicleMarketValueNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public VehicleMarketValueNode(@NotNull MotorVehicleNode parent, String name) {
         super(parent, name);

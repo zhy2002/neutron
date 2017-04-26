@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductTotalLoanTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ProductTotalLoanTermNode extends BigDecimalUiNode<ProductDescriptio
     private RuleProvider<ProductTotalLoanTermNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductTotalLoanTermNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);

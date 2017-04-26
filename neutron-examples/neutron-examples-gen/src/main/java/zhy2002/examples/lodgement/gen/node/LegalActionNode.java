@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
     private RuleProvider<LegalActionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public LegalActionNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);

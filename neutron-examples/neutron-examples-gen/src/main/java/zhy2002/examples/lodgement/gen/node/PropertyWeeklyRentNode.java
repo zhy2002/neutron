@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
     private RuleProvider<PropertyWeeklyRentNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PropertyWeeklyRentNode(@NotNull PropertyNode parent, String name) {
         super(parent, name);

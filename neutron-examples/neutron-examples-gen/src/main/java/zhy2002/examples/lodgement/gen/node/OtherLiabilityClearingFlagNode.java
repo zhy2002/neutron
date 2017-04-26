@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
     private RuleProvider<OtherLiabilityClearingFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherLiabilityClearingFlagNode(@NotNull OtherLiabilityNode parent, String name) {
         super(parent, name);

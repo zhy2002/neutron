@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 import zhy2002.examples.lodgement.gen.*;
-
+import zhy2002.examples.lodgement.gen.event.*;
 
 @Singleton
 public class ApplicationNode extends RootUiNode<VoidUiNode> {
@@ -67,6 +67,16 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
+    }
+
+    @Override
+    protected final NodeLoadEvent<ApplicationNode> createNodeLoadEvent() {
+        return new ApplicationNodeLoadEvent(this);
+    }
+
+    @Override
+    protected final NodeUnloadEvent<ApplicationNode> createNodeUnloadEvent() {
+        return new ApplicationNodeUnloadEvent(this);
     }
 
 

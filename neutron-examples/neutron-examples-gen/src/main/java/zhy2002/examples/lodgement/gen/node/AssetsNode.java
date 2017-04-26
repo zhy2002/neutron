@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
 
     private SavingsAccountListNode savingsAccountListNode;
@@ -56,6 +55,7 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
     private RuleProvider<AssetsNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AssetsNode(@NotNull FinancialPositionNode parent, String name) {
         super(parent, name);

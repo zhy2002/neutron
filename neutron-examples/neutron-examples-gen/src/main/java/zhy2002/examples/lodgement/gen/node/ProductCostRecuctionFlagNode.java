@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductCostRecuctionFlagNode extends BooleanUiNode<ProductDescriptionNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ProductCostRecuctionFlagNode extends BooleanUiNode<ProductDescripti
     private RuleProvider<ProductCostRecuctionFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductCostRecuctionFlagNode(@NotNull ProductDescriptionNode parent, String name) {
         super(parent, name);

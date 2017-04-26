@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SpouseNode extends ReferenceUiNode<PersonGeneralNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class SpouseNode extends ReferenceUiNode<PersonGeneralNode> {
     private RuleProvider<SpouseNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SpouseNode(@NotNull PersonGeneralNode parent, String name) {
         super(parent, name);

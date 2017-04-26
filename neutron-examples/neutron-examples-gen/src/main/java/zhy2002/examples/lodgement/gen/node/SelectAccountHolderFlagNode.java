@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHolderNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHold
     private RuleProvider<SelectAccountHolderFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SelectAccountHolderFlagNode(@NotNull SelectAccountHolderNode parent, String name) {
         super(parent, name);

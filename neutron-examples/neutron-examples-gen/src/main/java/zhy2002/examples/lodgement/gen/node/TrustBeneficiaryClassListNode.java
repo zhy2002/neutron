@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
 
     private TrustBeneficiaryClassListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
     private RuleProvider<TrustBeneficiaryClassListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public TrustBeneficiaryClassListNode(@NotNull BaseTrustNode<?> parent, String name) {
         super(parent, name);

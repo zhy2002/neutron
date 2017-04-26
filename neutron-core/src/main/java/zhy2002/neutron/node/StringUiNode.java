@@ -1,5 +1,6 @@
 package zhy2002.neutron.node;
 
+import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 import zhy2002.neutron.ChangeTrackingModeEnum;
@@ -16,7 +17,6 @@ import java.util.Arrays;
 /**
  * String leaf node.
  */
-@JsType
 public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
     protected StringUiNode(P parent, String name) {
@@ -40,8 +40,11 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     //region node properties
 
     public static final PropertyMetadata<String> VALUE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "value", String.class, "", ChangeTrackingModeEnum.Value);
+    @JsIgnore
     public static final PropertyMetadata<String> PATTERN_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "pattern", String.class);
+    @JsIgnore
     public static final PropertyMetadata<String> INVALID_CHARS_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidChars", String.class);
+    @JsIgnore
     public static final PropertyMetadata<String> PATTERN_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "patternMessage", String.class, "Pattern is invalid.");
     public static final PropertyMetadata<String> INVALID_CHARS_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidCharsMessage", String.class, "Cannot contain invalid chars.");
     public static final PropertyMetadata<String> LENGTH_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "lengthMessage", String.class, "Length is invalid.");

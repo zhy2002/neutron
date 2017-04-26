@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
 
     private ProductGroupNode productGroupNode;
@@ -68,6 +67,7 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
     private RuleProvider<ProductDescriptionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductDescriptionNode(@NotNull ProductNode parent, String name) {
         super(parent, name);

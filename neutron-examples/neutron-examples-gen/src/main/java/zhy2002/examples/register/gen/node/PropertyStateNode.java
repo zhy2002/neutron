@@ -9,7 +9,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
     private RuleProvider<PropertyStateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
         super(parent, name);

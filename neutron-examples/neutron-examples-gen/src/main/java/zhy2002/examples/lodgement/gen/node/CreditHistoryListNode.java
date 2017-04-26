@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
 
     private CreditHistoryListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
     private RuleProvider<CreditHistoryListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CreditHistoryListNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);

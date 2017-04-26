@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
     private RuleProvider<BeingPurchasedFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public BeingPurchasedFlagNode(@NotNull UsageNode parent, String name) {
         super(parent, name);

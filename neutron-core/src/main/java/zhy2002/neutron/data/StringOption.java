@@ -2,7 +2,10 @@ package zhy2002.neutron.data;
 
 
 import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsType;
+import zhy2002.neutron.util.NeutronConstants;
 
+@JsType(namespace = NeutronConstants.JS_NAMESPACE)
 public class StringOption extends SelectOption<String> {
 
     @JsIgnore

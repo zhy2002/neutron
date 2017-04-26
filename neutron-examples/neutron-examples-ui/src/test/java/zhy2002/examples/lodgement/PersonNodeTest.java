@@ -31,7 +31,7 @@ public class PersonNodeTest {
 
     @Test
     public void addressRefListIsUpdatedWhenAnAddressNodeIsAdded() {
-        applicationNode.getSubmissionNode().unload();
+        applicationNode.getSubmissionNode().unloadDirectly();
 
         AddressRefListNode AddressRefListNode = applicationNode.getAddressRefListNode();
         assertThat(AddressRefListNode.getItemCount(), equalTo(5));

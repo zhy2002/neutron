@@ -15,12 +15,12 @@ public abstract class NodeUnloadEvent<N extends UiNode<?>>
     public void apply() {
         UiNode<?> origin = getOrigin();
         if (origin.getNodeStatus() == NodeStatusEnum.Loaded) {
-            origin.unload();
+            origin.unloadDirectly();
         }
     }
 
     @Override
     public void revert() {
-        getOrigin().load();
+        getOrigin().loadDirectly();
     }
 }

@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGeneralNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class CompanyApplicantTypeNode extends BaseApplicantTypeNode<CompanyGener
     private RuleProvider<CompanyApplicantTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyApplicantTypeNode(@NotNull CompanyGeneralNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
     private RuleProvider<OtherAssetDescriptionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherAssetDescriptionNode(@NotNull OtherAssetNode parent, String name) {
         super(parent, name);

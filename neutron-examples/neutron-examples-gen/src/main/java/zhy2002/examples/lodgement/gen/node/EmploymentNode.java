@@ -12,7 +12,6 @@ import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
     private EmploymentTypeNode employmentTypeNode;

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class MortgageChargePositionNode extends StringUiNode<ExistingMortgageNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class MortgageChargePositionNode extends StringUiNode<ExistingMortgageNod
     private RuleProvider<MortgageChargePositionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public MortgageChargePositionNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);

@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
     private RuleProvider<AverageFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AverageFlagNode(@NotNull OwnershipNode parent, String name) {
         super(parent, name);

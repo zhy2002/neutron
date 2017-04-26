@@ -11,17 +11,7 @@ public class LodgementNodeClassRegistry extends EventRegistryImpl {
 
     @Inject
     LodgementNodeClassRegistry() {
-        loadNodeLoadEventFactories();
-        loadNodeUnloadEventFactories();
         loadStateChangeEventFactories();
-    }
-
-    private void loadNodeLoadEventFactories() {
-        super.setNodeLoadEventFactory(LodgementNode.class, LodgementNodeLoadEvent::new);
-    }
-
-    private void loadNodeUnloadEventFactories() {
-        super.setNodeUnloadEventFactory(LodgementNode.class, LodgementNodeUnloadEvent::new);
     }
 
     private void loadStateChangeEventFactories() {

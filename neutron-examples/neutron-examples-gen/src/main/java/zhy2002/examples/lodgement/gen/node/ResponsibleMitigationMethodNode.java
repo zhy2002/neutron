@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibleLendNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
     private RuleProvider<ResponsibleMitigationMethodNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ResponsibleMitigationMethodNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
         super(parent, name);

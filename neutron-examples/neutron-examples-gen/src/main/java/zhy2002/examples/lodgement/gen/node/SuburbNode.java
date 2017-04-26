@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SuburbNode extends StringUiNode<AddressNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
     private RuleProvider<SuburbNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SuburbNode(@NotNull AddressNode<?> parent, String name) {
         super(parent, name);

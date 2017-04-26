@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CompanyEmailNode extends EmailNode<CompanyContactNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class CompanyEmailNode extends EmailNode<CompanyContactNode> {
     private RuleProvider<CompanyEmailNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public CompanyEmailNode(@NotNull CompanyContactNode parent, String name) {
         super(parent, name);

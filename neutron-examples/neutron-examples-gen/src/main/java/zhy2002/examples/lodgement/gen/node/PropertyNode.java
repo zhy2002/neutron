@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PropertyNode extends ObjectUiNode<RealEstateNode> {
 
     private RentedFlagNode rentedFlagNode;
@@ -63,6 +62,7 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
     private RuleProvider<PropertyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PropertyNode(@NotNull RealEstateNode parent, String name) {
         super(parent, name);

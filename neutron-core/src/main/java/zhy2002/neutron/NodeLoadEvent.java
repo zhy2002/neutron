@@ -17,13 +17,13 @@ public abstract class NodeLoadEvent<N extends UiNode<?>>
     public void apply() {
         UiNode<?> origin = getOrigin();
         if (origin.getNodeStatus() == NodeStatusEnum.Unloaded) {
-            getOrigin().load();
+            getOrigin().loadDirectly();
             getOrigin().refreshWithReason(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON);
         }
     }
 
     @Override
     public void revert() {
-        getOrigin().unload();
+        getOrigin().unloadDirectly();
     }
 }

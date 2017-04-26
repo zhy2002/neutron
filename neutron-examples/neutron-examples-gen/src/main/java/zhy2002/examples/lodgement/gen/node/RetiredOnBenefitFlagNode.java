@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentN
     private RuleProvider<RetiredOnBenefitFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public RetiredOnBenefitFlagNode(@NotNull RetiredEmploymentNode parent, String name) {
         super(parent, name);

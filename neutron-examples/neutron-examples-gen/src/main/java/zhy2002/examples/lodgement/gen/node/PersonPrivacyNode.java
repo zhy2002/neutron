@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PersonPrivacyNode extends BasePrivacyNode<PersonNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class PersonPrivacyNode extends BasePrivacyNode<PersonNode> {
     private RuleProvider<PersonPrivacyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PersonPrivacyNode(@NotNull PersonNode parent, String name) {
         super(parent, name);

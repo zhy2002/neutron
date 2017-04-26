@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
 
     @Override
@@ -43,6 +42,7 @@ public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
     private RuleProvider<OtherIncomeAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public OtherIncomeAmountNode(@NotNull OtherIncomeNode parent, String name) {
         super(parent, name);

@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class PayeEmployedNode extends EmployedNode {
 
     private GrossYearlySalaryNode grossYearlySalaryNode;
@@ -54,6 +53,7 @@ public class PayeEmployedNode extends EmployedNode {
     private RuleProvider<PayeEmployedNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PayeEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);

@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode> {
 
     @Override

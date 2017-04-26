@@ -1,9 +1,6 @@
 package zhy2002.neutron.event;
 
-import zhy2002.neutron.NodeLoadEventFactory;
-import zhy2002.neutron.NodeUnloadEventFactory;
 import zhy2002.neutron.StateChangeEventFactory;
-import zhy2002.neutron.UiNode;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 
@@ -17,8 +14,6 @@ import java.util.Map;
 public class EventRegistryImpl implements EventRegistry {
 
     private final Map<Class<?>, Object> stateChangeEventFactories = new HashMap<>();
-    private final Map<Class<?>, Object> nodeLoadEventFactories = new HashMap<>();
-    private final Map<Class<?>, Object> nodeUnloadEventFactories = new HashMap<>();
 
     public EventRegistryImpl() {
         //system -> context -> custom
@@ -30,8 +25,6 @@ public class EventRegistryImpl implements EventRegistry {
             return;
 
         stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
-        nodeLoadEventFactories.putAll(registry.nodeLoadEventFactories);
-        nodeUnloadEventFactories.putAll(registry.nodeUnloadEventFactories);
     }
 
     private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {
@@ -60,26 +53,6 @@ public class EventRegistryImpl implements EventRegistry {
 
     protected final <T> void setStateChangeEventFactory(Class<T> valueClass, StateChangeEventFactory<T> factory) {
         stateChangeEventFactories.put(valueClass, factory);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public final <N extends UiNode<?>> NodeLoadEventFactory<N> getNodeLoadEventFactory(Class<N> nodeClass) {
-        return (NodeLoadEventFactory<N>) getObject(nodeLoadEventFactories, nodeClass, "NodeLoadEventFactory");
-    }
-
-    protected final <N extends UiNode<?>> void setNodeLoadEventFactory(Class<N> nodeClass, NodeLoadEventFactory<N> factory) {
-        nodeLoadEventFactories.put(nodeClass, factory);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public final <N extends UiNode<?>> NodeUnloadEventFactory<N> getNodeUnloadEventFactory(Class<N> nodeClass) {
-        return (NodeUnloadEventFactory<N>) getObject(nodeUnloadEventFactories, nodeClass, "NodeUnloadEventFactory");
-    }
-
-    protected final <N extends UiNode<?>> void setNodeUnloadEventFactory(Class<N> nodeClass, NodeUnloadEventFactory<N> factory) {
-        nodeUnloadEventFactories.put(nodeClass, factory);
     }
 
 }

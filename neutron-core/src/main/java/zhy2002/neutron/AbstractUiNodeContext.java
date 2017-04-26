@@ -81,7 +81,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         if (root == null) {
             root = createRootNode();
             root.addToParent();
-            loadNode(getRootClass(), root);
+            root.load();
         }
         return this.root;
     }
@@ -90,30 +90,6 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
         StateChangeEventFactory<T> factory = eventRegistry.getStateChangeEventFactory(valueClass);
         return factory.create(target, key, oldValue, newValue);
-    }
-
-    @Override
-    public final <N extends UiNode<?>> NodeLoadEvent<N> createNodeLoadEvent(Class<N> nodeClass, N node) {
-        NodeLoadEventFactory<N> factory = eventRegistry.getNodeLoadEventFactory(nodeClass);
-        return factory.create(node);
-    }
-
-    @Override
-    public final <N extends UiNode<?>> NodeUnloadEvent<N> createNodeUnloadEvent(Class<N> nodeClass, N node) {
-        NodeUnloadEventFactory<N> factory = eventRegistry.getNodeUnloadEventFactory(nodeClass);
-        return factory.create(node);
-    }
-
-    @Override
-    public final <N extends UiNode<?>> void loadNode(Class<N> nodeClass, N node) {
-        NodeLoadEvent<N> event = createNodeLoadEvent(nodeClass, node);
-        processEvent(event);
-    }
-
-    @Override
-    public final <N extends UiNode<?>> void unLoadNode(Class<N> nodeClass, N node) {
-        NodeUnloadEvent<N> event = createNodeUnloadEvent(nodeClass, node);
-        processEvent(event);
     }
 
     //endregion

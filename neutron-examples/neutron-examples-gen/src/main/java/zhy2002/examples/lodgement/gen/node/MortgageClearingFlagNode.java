@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode
     private RuleProvider<MortgageClearingFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public MortgageClearingFlagNode(@NotNull ExistingMortgageNode parent, String name) {
         super(parent, name);

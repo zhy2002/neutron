@@ -11,7 +11,6 @@ import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
-
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
     private ApplicationListNode applicationListNode;
@@ -54,6 +53,7 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
     private RuleProvider<AppManagerNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public AppManagerNode(@NotNull LodgementNode parent, String name) {
         super(parent, name);

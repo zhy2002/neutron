@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
     private ThirdPartyTypeNode thirdPartyTypeNode;

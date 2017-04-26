@@ -11,7 +11,6 @@ import zhy2002.neutron.data.BooleanOption;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 
-@JsType
 public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
 
     protected BooleanUiNode(@NotNull P parent, @NotNull String name) {

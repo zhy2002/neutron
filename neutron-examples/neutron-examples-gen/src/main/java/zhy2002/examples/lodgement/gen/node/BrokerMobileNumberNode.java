@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode>
     private RuleProvider<BrokerMobileNumberNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public BrokerMobileNumberNode(@NotNull SubmissionNode parent, String name) {
         super(parent, name);

@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
-
 public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OtherIncomeNode> {
 
     private BaseOtherIncomeListNodeItemFactory itemFactory;

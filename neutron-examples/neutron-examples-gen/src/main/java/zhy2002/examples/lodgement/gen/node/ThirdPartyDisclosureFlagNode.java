@@ -9,7 +9,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
 
     @Override
@@ -43,6 +42,7 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<
     private RuleProvider<ThirdPartyDisclosureFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ThirdPartyDisclosureFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
         super(parent, name);

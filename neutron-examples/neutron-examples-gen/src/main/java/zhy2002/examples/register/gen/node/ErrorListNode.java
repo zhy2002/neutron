@@ -8,7 +8,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
 
     private ErrorListNodeItemFactory itemFactory;
@@ -49,6 +48,7 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
     private RuleProvider<ErrorListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ErrorListNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

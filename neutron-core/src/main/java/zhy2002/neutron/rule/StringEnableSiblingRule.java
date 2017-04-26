@@ -64,8 +64,8 @@ public class StringEnableSiblingRule extends UiNodeRule<StringUiNode<?>> {
         if (getEnablingValue().equals(getOwner().getValue())) {
             sibling.setDisabled(false);
         } else {
-            sibling.unload();
-            sibling.load();
+            sibling.unloadDirectly();
+            sibling.loadDirectly();
             sibling.setDisabled(true);
         }
     }

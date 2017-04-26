@@ -11,7 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
     private UnemployedOnBenefitFlagNode unemployedOnBenefitFlagNode;
@@ -58,6 +57,7 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
     private RuleProvider<UnemployedNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public UnemployedNode(@NotNull EmploymentNode<?> parent, String name) {
         super(parent, name);

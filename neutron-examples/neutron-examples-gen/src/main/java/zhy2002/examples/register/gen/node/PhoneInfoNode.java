@@ -11,7 +11,6 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
-
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
 
     private CountryCodeNode countryCodeNode;
@@ -56,6 +55,7 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
     private RuleProvider<PhoneInfoNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public PhoneInfoNode(@NotNull RegisterNode parent, String name) {
         super(parent, name);

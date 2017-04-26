@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class SavingsAccountNoNode extends StringUiNode<SavingsAccountNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class SavingsAccountNoNode extends StringUiNode<SavingsAccountNode> {
     private RuleProvider<SavingsAccountNoNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public SavingsAccountNoNode(@NotNull SavingsAccountNode parent, String name) {
         super(parent, name);

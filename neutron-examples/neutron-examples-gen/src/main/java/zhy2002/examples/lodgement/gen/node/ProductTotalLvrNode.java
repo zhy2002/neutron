@@ -8,7 +8,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-
 public class ProductTotalLvrNode extends BasePercentageNode<ProductsNode> {
 
     @Override
@@ -42,6 +41,7 @@ public class ProductTotalLvrNode extends BasePercentageNode<ProductsNode> {
     private RuleProvider<ProductTotalLvrNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
 
     public ProductTotalLvrNode(@NotNull ProductsNode parent, String name) {
         super(parent, name);
