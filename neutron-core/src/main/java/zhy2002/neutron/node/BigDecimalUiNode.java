@@ -57,14 +57,9 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     @Override
     public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
         if (!getContext().isInCycle()) {
-            if (VALUE_PROPERTY == propertyMetadata) {
-                hasValue = value != null;
-                if (!hasValue) {
-                    super.setStateValue(VALUE_TEXT_PROPERTY, "");
-                    return;
-                }
-            } else if (VALUE_TEXT_PROPERTY == propertyMetadata) {
-                hasValue = !ValueUtil.isEmpty((String) value);
+            if (VALUE_PROPERTY == propertyMetadata && value == null) {
+                super.setStateValue(VALUE_TEXT_PROPERTY, "");
+                return;
             }
         }
 
@@ -73,7 +68,12 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
 
     @Override
     protected void setStateValueDirectly(String key, Object value) {
+        if (VALUE_PROPERTY.getStateKey().equals(key)) {
+            hasValue = value != null;
+        }
         super.setStateValueDirectly(key, value);
+
+        //sync value_text and value states
         if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
             BigDecimal val = getParser().parse(value.toString());
             if (val == null && !ValueUtil.isEmpty(value.toString())) {

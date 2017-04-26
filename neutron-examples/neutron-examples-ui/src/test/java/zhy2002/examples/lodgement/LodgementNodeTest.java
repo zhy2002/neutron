@@ -304,10 +304,14 @@ public class LodgementNodeTest {
         ApplicationNodeImpl applicationNodeImpl = (ApplicationNodeImpl) applicationNode;
         applicationNodeImpl.addChangeListener(myListener);
 
+        assertThat(applicationNodeImpl.hasValue(), equalTo(true));
+
         PersonListNode personListNode = applicationNode.getPersonListNode();
         PersonNode personNode1 = personListNode.createItem();
         PersonNode personNode2 = personListNode.createItem();
         PersonNode personNode3 = personListNode.createItem();
+
+        assertThat(myListener.getCount(), equalTo(0));
 
         applicationNodeImpl.setContentNode(personNode1);
         assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
@@ -325,7 +329,7 @@ public class LodgementNodeTest {
         assertThat(applicationNodeImpl.getContentLevel(), equalTo(2));
         assertThat(personListNode.getSelectedIndex(), equalTo(1));
 
-        assertThat(myListener.getCount(), equalTo(5));
+        assertThat(myListener.getCount(), equalTo(4));
 
     }
 

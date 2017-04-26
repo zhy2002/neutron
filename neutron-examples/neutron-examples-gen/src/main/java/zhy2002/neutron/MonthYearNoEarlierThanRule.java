@@ -1,9 +1,6 @@
 package zhy2002.neutron;
 
 import zhy2002.examples.lodgement.gen.node.MonthYearNode;
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.UiNode;
-import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.BigDecimalStateChangeEvent;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 
@@ -24,6 +21,7 @@ public abstract class MonthYearNoEarlierThanRule<N extends MonthYearNode<?>> ext
 
     /**
      * Must be in the same parent as owner node.
+     *
      * @return owner node ge this returned node.
      */
     protected abstract MonthYearNode<?> getOtherMonthYearNode();
@@ -36,11 +34,14 @@ public abstract class MonthYearNoEarlierThanRule<N extends MonthYearNode<?>> ext
         BigDecimal year2 = getOwner().getYearNode().getValue();
         BigDecimal month2 = getOwner().getMonthNode().getValue();
 
-        int yearComp = year2.compareTo(year1);
-        if (yearComp > 0)
-            return null;
-        if (yearComp < 0 || month2.compareTo(month1) < 0)
-            return "Cannot be earlier than " + otherNode.getNodeLabel();
+        if (year1 != null && year2 != null) {
+            int yearComp = year2.compareTo(year1);
+            if (yearComp > 0)
+                return null;
+
+            if (yearComp < 0 || month1 != null && month2 != null && month2.compareTo(month1) < 0)
+                return "Cannot be earlier than " + otherNode.getNodeLabel();
+        }
 
         return null;
     }

@@ -11,9 +11,7 @@ import zhy2002.neutron.UiNode;
 import java.math.BigDecimal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 
 public class PersonNodeTest {
 
@@ -174,5 +172,25 @@ public class PersonNodeTest {
         addressNode.setDisabled(true);
         assertThat(addressNode.isEffectivelyDisabled(), equalTo(true));
         assertThat(addressNode.getAddressLineNode().isEffectivelyDisabled(), equalTo(true));
+    }
+
+    @Test
+    public void objectNodeIsSetToHasValueWhenChildHasValue() {
+
+        MovedToCurrentAddressNode movedToCurrentAddressNode = personContactNode.getMovedToCurrentAddressNode();
+        MonthNode monthNode = movedToCurrentAddressNode.getMonthNode();
+        monthNode.setValue(new BigDecimal("12"));
+        assertThat(monthNode.hasValue(), equalTo(true));
+        assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
+
+        YearNode yearNode = movedToCurrentAddressNode.getYearNode();
+        yearNode.setValue(new BigDecimal("1999"));
+        assertThat(yearNode.getText(), equalTo("1999"));
+        assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
+
+        yearNode.setValue(null);
+        assertThat(yearNode.getText(), equalTo(""));
+        assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
+
     }
 }

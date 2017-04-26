@@ -113,9 +113,9 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
         private void updateHasValue(BooleanStateChangeEvent event) {
             if (Boolean.TRUE.equals(event.getNewValue())) {
-                noneEmptyChildNames.add(event.getSubject());
+                noneEmptyChildNames.add(event.getOrigin().getName());
             } else {
-                noneEmptyChildNames.remove(event.getSubject());
+                noneEmptyChildNames.remove(event.getOrigin().getName());
             }
 
             getOwner().setHasValue(!noneEmptyChildNames.isEmpty());
