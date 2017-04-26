@@ -1,10 +1,8 @@
 package zhy2002.neutron;
 
-import java.util.Collection;
-
 /**
- * This class is created so that at runtime we cannot which rule created
- * the target event binding.
+ * Instances of this class wrap EventBindings created by a rule
+ * so that at runtime we can know which rule created the event bindings.
  */
 public class RuleEventBinding implements EventBinding {
 
@@ -24,8 +22,8 @@ public class RuleEventBinding implements EventBinding {
     }
 
     @Override
-    public Collection<UiNodeEventKey<?>> getEventKeys() {
-        return target.getEventKeys();
+    public UiNodeEventKey<?> getEventKey() {
+        return target.getEventKey();
     }
 
     @Override

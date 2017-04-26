@@ -214,7 +214,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                     new BooleanStateChangeEventBinding(
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateCount,
-                            Collections.singletonList(NeutronEventSubjects.SELF_DIRTY)
+                            NeutronEventSubjects.SELF_DIRTY
                     )
             );
         }
@@ -245,7 +245,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                     new BooleanStateChangeEventBinding(
                             e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
                             this::updateCount,
-                            Collections.singleton(DISABLED_PROPERTY.getStateKey())
+                            DISABLED_PROPERTY.getStateKey()
                     )
             );
         }

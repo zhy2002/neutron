@@ -14,7 +14,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     private final N target;
 
     public NodeAddEvent(N origin) {
-        super(origin, "");
+        super(origin, NeutronEventSubjects.ADD_OR_REMOVE_NODE);
 
         this.target = origin;
     }

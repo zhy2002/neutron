@@ -49,7 +49,7 @@ public abstract class RootUiNode<P extends ParentUiNode<?>> extends ObjectUiNode
                     new BooleanStateChangeEventBinding(
                             event -> Boolean.TRUE.equals(event.getNewValue()),
                             this::clearValidationErrors,
-                            Collections.singletonList(DISABLED_PROPERTY.getStateKey())
+                            DISABLED_PROPERTY.getStateKey()
                     )
             );
         }

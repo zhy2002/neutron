@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 
 /**
@@ -46,7 +45,7 @@ public class BooleanEnableSiblingRule extends UiNodeRule<BooleanUiNode<?>> {
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
-                new RefreshEventBinding(this::updateSibling, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)),
+                new RefreshEventBinding(this::updateSibling, NeutronEventSubjects.NODE_LOADED_REFRESH_REASON),
                 new BooleanStateChangeEventBinding(this::updateSibling)
         );
     }

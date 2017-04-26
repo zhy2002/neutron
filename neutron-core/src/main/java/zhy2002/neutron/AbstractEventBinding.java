@@ -4,10 +4,6 @@ import zhy2002.neutron.util.PredefinedPhases;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * An AbstractEventBinding instance is a hook into the node structure which is notified when
@@ -19,34 +15,26 @@ import java.util.List;
  */
 public abstract class AbstractEventBinding<E extends UiNodeEvent> implements EventBinding {
 
-    private final Collection<UiNodeEventKey<?>> eventKeys;
+    private final UiNodeEventKey<?> eventKey;
     private final TickPhase phase;
     private final UiNodeEventFilter<E> filter;
     private final UiNodeEventHandler<E> handler;
 
-    protected AbstractEventBinding(
+    AbstractEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
-            Class<E> eventCLass,
-            @NotNull Collection<String> subjects,
+            @NotNull Class<? extends UiNodeEvent> eventClass,
+            @NotNull String subject,
             TickPhase phase
     ) {
-        List<UiNodeEventKey<?>> eventKeys = new ArrayList<>();
-        for (String subject : subjects) {
-            addEventKey(eventKeys, eventCLass, subject);
-        }
-        this.eventKeys = Collections.unmodifiableCollection(eventKeys);
+        this.eventKey = new UiNodeEventKey<>(eventClass, subject);
         this.phase = ValueUtil.ifNull(phase, PredefinedPhases.Post);
         this.filter = ValueUtil.ifNull(filter, e -> true);
         this.handler = handler;
     }
 
-    protected void addEventKey(List<UiNodeEventKey<?>> eventKeys, @NotNull Class<E> eventCLass, String subject) {
-        eventKeys.add(new UiNodeEventKey<>(eventCLass, subject));
-    }
-
-    public final Collection<UiNodeEventKey<?>> getEventKeys() {
-        return eventKeys;
+    public final UiNodeEventKey<?> getEventKey() {
+        return eventKey;
     }
 
     public final TickPhase getPhase() {
@@ -65,6 +53,6 @@ public abstract class AbstractEventBinding<E extends UiNodeEvent> implements Eve
 
     @Override
     public String toString() {
-        return this.phase + " phase of " + getEventKeys().toString();
+        return this.phase + " phase of " + getEventKey().toString();
     }
 }

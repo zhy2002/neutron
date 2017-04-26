@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 public class DistributePercentageRuleImpl extends DistributePercentageRule {
 
@@ -41,7 +40,7 @@ public class DistributePercentageRuleImpl extends DistributePercentageRule {
                 new BooleanStateChangeEventBinding(
                         this::percentageNodeReadOnlySetToTrue,
                         e -> this.recalculate(),
-                        Collections.singleton(NeutronEventSubjects.READONLY)
+                        NeutronEventSubjects.READONLY
                 )
         );
     }

@@ -8,7 +8,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 
 
 public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>> {
@@ -24,7 +23,7 @@ public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>>
                 super.createEventBindings(),
                 new IntegerStateChangeEventBinding(
                         (e) -> validate(),
-                        Collections.singletonList(NeutronEventSubjects.MIN_ITEM_COUNT)
+                        NeutronEventSubjects.MIN_ITEM_COUNT
                 ),
                 new GenericNodeAddEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),

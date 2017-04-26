@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRule {
 
@@ -27,9 +26,12 @@ public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRu
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
                 new BigDecimalStateChangeEventBinding(this::updateValues),
-                new RefreshEventBinding(this::updateValues, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)),
+                new RefreshEventBinding(
+                        this::updateValues,
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                ),
                 new GenericNodeRemoveEventBinding(
-                    this::updateValues
+                        this::updateValues
                 )
         );
     }

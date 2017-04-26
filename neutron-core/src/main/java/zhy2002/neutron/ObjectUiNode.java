@@ -105,7 +105,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
                     new BooleanStateChangeEventBinding(
                             event -> event.getOrigin() != null && event.getOrigin().getParent() == getOwner(),
                             this::updateHasValue,
-                            Collections.singletonList(UiNode.HAS_VALUE_PROPERTY.getStateKey()),
+                            UiNode.HAS_VALUE_PROPERTY.getStateKey(),
                             PredefinedPhases.Post
                     )
             );

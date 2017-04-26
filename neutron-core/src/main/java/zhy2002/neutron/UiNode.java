@@ -567,10 +567,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         assert rule.getHost() == this;
 
         for (EventBinding binding : rule.getEventBindings()) {
-            for (UiNodeEventKey<?> eventKey : binding.getEventKeys()) {
-                List<EventBinding> bindingList = attachedEventBindings.computeIfAbsent(eventKey, k -> new ArrayList<>());
-                bindingList.add(binding);
-            }
+            List<EventBinding> bindingList = attachedEventBindings.computeIfAbsent(binding.getEventKey(), k -> new ArrayList<>());
+            bindingList.add(binding);
         }
     }
 
@@ -578,13 +576,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         assert rule.getHost() == this;
 
         for (EventBinding binding : rule.getEventBindings()) {
-            for (UiNodeEventKey<?> eventKey : binding.getEventKeys()) {
-                List<EventBinding> bindingList = attachedEventBindings.get(eventKey);
-                if (bindingList != null) {
-                    bindingList.remove(binding);
-                }
+            List<EventBinding> bindingList = attachedEventBindings.get(binding.getEventKey());
+            if (bindingList != null) {
+                bindingList.remove(binding);
             }
-
         }
     }
 
@@ -815,7 +810,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             return Collections.singletonList(
                     new RefreshEventBinding(
                             e -> getOwner().resetDirty(),
-                            Collections.singleton(NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON)
+                            NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON
                     )
             );
         }

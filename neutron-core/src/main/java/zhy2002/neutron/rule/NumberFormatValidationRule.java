@@ -10,7 +10,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * Validate that the text in a BigDecimalUiNode is a valid number.
@@ -28,7 +27,7 @@ public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<
                 super.createEventBindings(),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),
-                        Collections.singletonList(NeutronEventSubjects.VALUE_VALID)
+                        NeutronEventSubjects.VALUE_VALID
                 )
         );
     }

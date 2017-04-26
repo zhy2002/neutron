@@ -24,4 +24,5 @@ public final class NeutronEventSubjects {
     public static final String MIN_LENGTH = "min_length";
     public static final String INDEX = "index";
     public static final String MIN_ITEM_COUNT = "min_item_count";
+    public static final String ADD_OR_REMOVE_NODE = "";
 }

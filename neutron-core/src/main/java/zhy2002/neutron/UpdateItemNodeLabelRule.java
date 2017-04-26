@@ -6,7 +6,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 public abstract class UpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNodeRule<N> {
 
@@ -23,11 +22,11 @@ public abstract class UpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNod
                 ),
                 new IntegerStateChangeEventBinding(
                         this::updateLabel,
-                        Collections.singletonList(NeutronEventSubjects.INDEX)
+                        NeutronEventSubjects.INDEX
                 ),
                 new RefreshEventBinding(
                         this::updateLabel,
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

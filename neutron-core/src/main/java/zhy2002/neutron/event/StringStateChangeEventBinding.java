@@ -5,17 +5,15 @@ import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
 
-import java.util.Collection;
-
 public class StringStateChangeEventBinding extends StateChangeEventBinding<StringStateChangeEvent> {
 
     public StringStateChangeEventBinding(
             UiNodeEventFilter<StringStateChangeEvent> filter,
             UiNodeEventHandler<StringStateChangeEvent> handler,
-            Collection<String> subjects,
+            String subject,
             TickPhase phase
     ) {
-        super(filter, handler, StringStateChangeEvent.class, subjects, phase);
+        super(filter, handler, StringStateChangeEvent.class, subject, phase);
     }
 
     public StringStateChangeEventBinding(
@@ -27,9 +25,9 @@ public class StringStateChangeEventBinding extends StateChangeEventBinding<Strin
 
     public StringStateChangeEventBinding(
             UiNodeEventHandler<StringStateChangeEvent> handler,
-            Collection<String> subjects
+            String subject
     ) {
-        this(null, handler, subjects, null);
+        this(null, handler, subject, null);
     }
 
     public StringStateChangeEventBinding(

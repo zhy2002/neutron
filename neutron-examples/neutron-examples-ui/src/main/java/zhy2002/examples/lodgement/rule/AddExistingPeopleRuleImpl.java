@@ -29,7 +29,7 @@ public class AddExistingPeopleRuleImpl extends AddExistingPeopleRule {
         return Collections.singletonList(
                 new RefreshEventBinding(
                         this::importPeople,
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

@@ -10,7 +10,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 
 public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNode<?>> {
 
@@ -24,7 +23,10 @@ public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNod
         return CollectionUtil.combine(
                 super.createEventBindings(),
                 new BooleanStateChangeEventBinding(e -> validate()),
-                new BooleanStateChangeEventBinding(e -> validate(), Collections.singleton(NeutronEventSubjects.FIXED_VALUE))
+                new BooleanStateChangeEventBinding(
+                        e -> validate(),
+                        NeutronEventSubjects.FIXED_VALUE
+                )
         );
     }
 

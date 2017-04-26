@@ -3,25 +3,19 @@ package zhy2002.neutron;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 
 public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent> {
-
-    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(NeutronEventSubjects.DEFAULT_REFRESH_REASON);
 
     public RefreshEventBinding(
             UiNodeEventFilter<RefreshUiNodeEvent> filter,
             UiNodeEventHandler<RefreshUiNodeEvent> handler,
-            Collection<String> subjects,
+            String subject,
             TickPhase phase) {
         super(
                 filter,
                 handler,
                 RefreshUiNodeEvent.class,
-                ValueUtil.ifNull(subjects, DEFAULT_SUBJECTS),
+                ValueUtil.ifNull(subject, NeutronEventSubjects.DEFAULT_REFRESH_REASON),
                 phase
         );
     }
@@ -29,10 +23,9 @@ public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent
     public RefreshEventBinding(
             UiNodeEventFilter<RefreshUiNodeEvent> filter,
             UiNodeEventHandler<RefreshUiNodeEvent> handler,
-            Collection<String> subjects) {
-        this(filter, handler, subjects, null);
+            String subject) {
+        this(filter, handler, subject, null);
     }
-
 
     public RefreshEventBinding(
             UiNodeEventFilter<RefreshUiNodeEvent> filter,
@@ -42,9 +35,9 @@ public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent
 
     public RefreshEventBinding(
             UiNodeEventHandler<RefreshUiNodeEvent> handler,
-            Collection<String> subjects
+            String subject
     ) {
-        this(null, handler, subjects, null);
+        this(null, handler, subject, null);
     }
 
     public RefreshEventBinding(

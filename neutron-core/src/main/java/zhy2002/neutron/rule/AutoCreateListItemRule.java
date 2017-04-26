@@ -8,7 +8,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * If the number of items is smaller than minItemCount then createProperty items.
@@ -41,11 +40,11 @@ public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
         return Arrays.asList(
                 new RefreshEventBinding(
                         this::addItems,
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 ),
                 new IntegerStateChangeEventBinding(
                         this::addItems,
-                        Collections.singletonList(NeutronEventSubjects.MIN_ITEM_COUNT)
+                        NeutronEventSubjects.MIN_ITEM_COUNT
                 )
         );
     }

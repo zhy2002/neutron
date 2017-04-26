@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * Enable a sibling node if owner has a certain value.
@@ -45,7 +44,8 @@ public class StringEnableSiblingRule extends UiNodeRule<StringUiNode<?>> {
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
-                new RefreshEventBinding(this::updateSibling, Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)),
+                new RefreshEventBinding(
+                        this::updateSibling, NeutronEventSubjects.NODE_LOADED_REFRESH_REASON),
                 new StringStateChangeEventBinding(this::updateSibling)
         );
     }

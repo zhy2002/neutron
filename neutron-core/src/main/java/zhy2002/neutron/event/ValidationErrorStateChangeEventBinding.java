@@ -5,19 +5,17 @@ import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
 
-import java.util.Collection;
-
 public class ValidationErrorStateChangeEventBinding extends StateChangeEventBinding<ValidationErrorStateChangeEvent> {
 
     public ValidationErrorStateChangeEventBinding(
             UiNodeEventFilter<ValidationErrorStateChangeEvent> filter,
             UiNodeEventHandler<ValidationErrorStateChangeEvent> handler,
-            Collection<String> subjects, TickPhase phase) {
+            String subject, TickPhase phase) {
         super(
                 filter,
                 handler,
                 ValidationErrorStateChangeEvent.class,
-                subjects,
+                subject,
                 phase
         );
     }

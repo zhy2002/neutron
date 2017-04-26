@@ -25,7 +25,7 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
         return Collections.singletonList(
                 new StringStateChangeEventBinding(
                         this::updateFocusError,
-                        Collections.singletonList(ApplicationNodeConstants.FOCUS)
+                        ApplicationNodeConstants.FOCUS
                 )
         );
     }

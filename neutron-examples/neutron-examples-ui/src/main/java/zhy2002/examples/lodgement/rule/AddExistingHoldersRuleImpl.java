@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.rule;
 
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.gen.rule.AddExistingApplicantsRule;
 import zhy2002.examples.lodgement.gen.rule.AddExistingHoldersRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.NodeAddEvent;
@@ -33,7 +32,7 @@ public class AddExistingHoldersRuleImpl extends AddExistingHoldersRule {
         return Collections.singletonList(
                 new RefreshEventBinding(
                         this::importApplicants,
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

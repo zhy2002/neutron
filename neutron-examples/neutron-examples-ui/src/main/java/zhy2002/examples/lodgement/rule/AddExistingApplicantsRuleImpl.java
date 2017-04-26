@@ -32,7 +32,7 @@ public class AddExistingApplicantsRuleImpl extends AddExistingApplicantsRule {
         return Collections.singletonList(
                 new RefreshEventBinding(
                         this::importApplicants,
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                       NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

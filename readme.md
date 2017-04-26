@@ -4,7 +4,6 @@ reduce the number of rules to fire onload. e.g. bypass all validation rules.
 reduce memory consumption
 2. load initial values (as a part of node load) 
   - load value only or the full state?
-7. simplify event binding api
 11. Generate per-profile constants and assets
 * Class level config  
 * state metadata (type and stuff)  
@@ -192,6 +191,9 @@ Problems
 
 16. added a root node type 
 
+17. simplify event binding api
+  * Allow only one subject per binding.
+  
 # Node Roles
 In the node hierarchy a node can have one of three roles:
 

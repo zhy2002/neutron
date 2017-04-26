@@ -1,26 +1,23 @@
 package zhy2002.neutron.event;
 
-import zhy2002.neutron.*;
+import zhy2002.neutron.StateChangeEventBinding;
+import zhy2002.neutron.TickPhase;
+import zhy2002.neutron.UiNodeEventFilter;
+import zhy2002.neutron.UiNodeEventHandler;
 import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 public class ValidationErrorListStateChangeEventBinding extends StateChangeEventBinding<ValidationErrorListStateChangeEvent> {
-
-    private static final List<String> DEFAULT_SUBJECTS = Collections.singletonList(NeutronEventSubjects.VALIDATION_ERROR_LIST);
 
     public ValidationErrorListStateChangeEventBinding(
             UiNodeEventFilter<ValidationErrorListStateChangeEvent> filter,
             UiNodeEventHandler<ValidationErrorListStateChangeEvent> handler,
-            Collection<String> subjects, TickPhase phase) {
+            String subject, TickPhase phase) {
         super(
                 filter,
                 handler,
                 ValidationErrorListStateChangeEvent.class,
-                ValueUtil.ifNull(subjects, DEFAULT_SUBJECTS),
+                ValueUtil.ifNull(subject, NeutronEventSubjects.VALIDATION_ERROR_LIST),
                 phase
         );
     }

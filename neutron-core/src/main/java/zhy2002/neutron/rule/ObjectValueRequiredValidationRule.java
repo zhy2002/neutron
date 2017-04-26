@@ -10,7 +10,6 @@ import zhy2002.neutron.util.CollectionUtil;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 
 
 public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNode<?>> {
@@ -27,7 +26,7 @@ public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNo
                 new BooleanStateChangeEventBinding(
                         event -> event.getOrigin() == getOwner(),
                         event -> this.validate(),
-                        Collections.singletonList(UiNode.HAS_VALUE_PROPERTY.getStateKey()),
+                        UiNode.HAS_VALUE_PROPERTY.getStateKey(),
                         null
                 )
         );

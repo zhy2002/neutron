@@ -5,24 +5,22 @@ import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
 
-import java.util.Collection;
-
 public class BooleanStateChangeEventBinding extends StateChangeEventBinding<BooleanStateChangeEvent> {
 
     public BooleanStateChangeEventBinding(
             UiNodeEventFilter<BooleanStateChangeEvent> filter,
             UiNodeEventHandler<BooleanStateChangeEvent> handler,
-            Collection<String> subjects,
+            String subject,
             TickPhase phase
     ) {
-        super(filter, handler, BooleanStateChangeEvent.class, subjects, phase);
+        super(filter, handler, BooleanStateChangeEvent.class, subject, phase);
     }
 
     public BooleanStateChangeEventBinding(
             UiNodeEventHandler<BooleanStateChangeEvent> handler,
-            Collection<String> subjects
+            String subject
     ) {
-        this(null, handler, subjects, null);
+        this(null, handler, subject, null);
     }
 
     public BooleanStateChangeEventBinding(
@@ -35,9 +33,9 @@ public class BooleanStateChangeEventBinding extends StateChangeEventBinding<Bool
     public BooleanStateChangeEventBinding(
             UiNodeEventFilter<BooleanStateChangeEvent> filter,
             UiNodeEventHandler<BooleanStateChangeEvent> handler,
-            Collection<String> subjects
+            String subject
     ) {
-        this(filter, handler, subjects, null);
+        this(filter, handler, subject, null);
     }
 
     public BooleanStateChangeEventBinding(

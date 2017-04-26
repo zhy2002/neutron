@@ -1,10 +1,11 @@
 package zhy2002.neutron;
 
 
-import javax.validation.constraints.NotNull;
-import java.util.Collections;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
-public class NodeAddEventBinding<E extends NodeAddEvent<?>> extends AbstractEventBinding<E> {
+import javax.validation.constraints.NotNull;
+
+public final class NodeAddEventBinding<E extends NodeAddEvent<?>> extends AbstractEventBinding<E> {
 
     public NodeAddEventBinding(
             UiNodeEventFilter<E> filter,
@@ -12,7 +13,7 @@ public class NodeAddEventBinding<E extends NodeAddEvent<?>> extends AbstractEven
             Class<E> eventCLass,
             @NotNull TickPhase phase
     ) {
-        super(filter, handler, eventCLass, Collections.singleton(""), phase);
+        super(filter, handler, eventCLass, NeutronEventSubjects.ADD_OR_REMOVE_NODE, phase);
     }
 
     public NodeAddEventBinding(

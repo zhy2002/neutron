@@ -17,7 +17,6 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 
 public class UpdateTotalOwnershipRuleImpl extends UpdateTotalOwnershipRule {
@@ -32,7 +31,7 @@ public class UpdateTotalOwnershipRuleImpl extends UpdateTotalOwnershipRule {
         return Arrays.asList(
                 new RefreshEventBinding(
                         this::updateTotalOwnership,
-                        Collections.singleton(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 ),
                 new BigDecimalStateChangeEventBinding(
                         e -> e.getOrigin() instanceof OwnershipPercentageNode,

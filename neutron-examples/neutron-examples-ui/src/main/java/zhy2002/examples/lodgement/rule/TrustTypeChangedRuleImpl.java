@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.rule;
 
-import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.gen.node.BaseTrustNode;
+import zhy2002.examples.lodgement.gen.node.TrustTypeNode;
 import zhy2002.examples.lodgement.gen.rule.TrustTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
@@ -11,7 +12,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
     @Inject
@@ -27,7 +27,7 @@ public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
                 ),
                 new RefreshEventBinding(
                         (e) -> onChange(),
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

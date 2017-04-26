@@ -15,8 +15,6 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class ProductGroupChangedRuleImpl extends ProductGroupChangedRule {
 
@@ -33,7 +31,7 @@ public class ProductGroupChangedRuleImpl extends ProductGroupChangedRule {
                 ),
                 new RefreshEventBinding(
                         (e) -> onChange(),
-                        Collections.singletonList(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
                 )
         );
     }
