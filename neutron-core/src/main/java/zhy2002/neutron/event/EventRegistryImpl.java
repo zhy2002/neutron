@@ -20,21 +20,6 @@ public class EventRegistryImpl implements EventRegistry {
         loadStateChangeEventFactories();
     }
 
-    final void copyFrom(EventRegistryImpl registry) {
-        if (registry == null)
-            return;
-
-        stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
-    }
-
-    private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {
-        Object instance = map.get(key);
-        if (instance == null) {
-            throw new RuntimeException("Cannot find registered " + type + " instance for " + key.getName());
-        }
-        return instance;
-    }
-
     private void loadStateChangeEventFactories() {
         this.setStateChangeEventFactory(String.class, StringStateChangeEvent::new);
         this.setStateChangeEventFactory(Boolean.class, BooleanStateChangeEvent::new);
@@ -55,4 +40,18 @@ public class EventRegistryImpl implements EventRegistry {
         stateChangeEventFactories.put(valueClass, factory);
     }
 
+    private static Object getObject(Map<Class<?>, Object> map, Class<?> key, String type) {
+        Object instance = map.get(key);
+        if (instance == null) {
+            throw new RuntimeException("Cannot find registered " + type + " instance for " + key.getName());
+        }
+        return instance;
+    }
+
+    final void copyFrom(EventRegistryImpl registry) {
+        if (registry == null)
+            return;
+
+        stateChangeEventFactories.putAll(registry.stateChangeEventFactories);
+    }
 }

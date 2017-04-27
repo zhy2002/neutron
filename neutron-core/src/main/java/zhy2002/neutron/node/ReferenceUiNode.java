@@ -1,14 +1,18 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.ChangeModeEnum;
-import zhy2002.neutron.LeafUiNode;
-import zhy2002.neutron.ParentUiNode;
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
+import zhy2002.neutron.util.NeutronEventSubjects;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.Collection;
 
 public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
@@ -52,4 +56,46 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     //endregion
+
+    static class NodeReferenceChangeRule extends UiNodeRule<ReferenceUiNode<?>> {
+
+        @Inject
+        NodeReferenceRegistry nodeReferenceRegistry;
+
+        @Inject
+        protected NodeReferenceChangeRule(@Owner ReferenceUiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Arrays.asList(
+                    new RefreshEventBinding(
+                            this::loadReference,
+                            NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                    ),
+                    new StringStateChangeEventBinding(
+                            this::updateReference
+                    )
+            );
+        }
+
+        private void loadReference(RefreshUiNodeEvent event) {
+            nodeReferenceRegistry.update(getOwner(), null, getOwner().getValue());
+        }
+
+        private void updateReference(StringStateChangeEvent event) {
+            if (event.getNewValue() == null && getOwner().isRemoveEmpty()) {
+                ParentUiNode<?> parentNode = getOwner().getParent();
+                if (parentNode instanceof ListUiNode<?, ?>) {
+                    ((ListUiNode<?, ?>) parentNode).removeByName(getOwner().getName());
+                } else if (parentNode != null && parentNode.getParent() instanceof ListUiNode<?, ?>) {
+                    ((ListUiNode<?, ?>) parentNode.getParent()).removeByName(parentNode.getName());
+                }
+            } else {
+                nodeReferenceRegistry.update(getOwner(), event.getOldValue(), event.getNewValue());
+            }
+        }
+    }
+
 }

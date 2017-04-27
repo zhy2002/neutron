@@ -3,7 +3,6 @@ package zhy2002.neutron.node;
 import zhy2002.neutron.LeafUiNodeRuleProvider;
 import zhy2002.neutron.RuleProvider;
 import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.rule.InvalidCharPreChangeRule;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.PatternValidationRule;
 
@@ -30,8 +29,6 @@ public class StringUiNodeRuleProvider implements RuleProvider<StringUiNode<?>> {
     Provider<PatternValidationRule> patternValidationRuleProvider;
     @Inject
     Provider<LengthValidationRule> lengthValidationRuleProvider;
-    @Inject
-    Provider<InvalidCharPreChangeRule> invalidCharPreChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -39,6 +36,5 @@ public class StringUiNodeRuleProvider implements RuleProvider<StringUiNode<?>> {
 
         createdRules.add(patternValidationRuleProvider.get());
         createdRules.add(lengthValidationRuleProvider.get());
-        createdRules.add(invalidCharPreChangeRuleProvider.get());
     }
 }

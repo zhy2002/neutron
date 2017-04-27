@@ -795,6 +795,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
 //endregion
 
+    //Internal rule are defined in the owning node class.
+    //These rules are always added and are never referenced by client code.
+
     /**
      * When RESET_DIRTY_REFRESH_REASON refresh event occurs, clear the dirty state of this node.
      */

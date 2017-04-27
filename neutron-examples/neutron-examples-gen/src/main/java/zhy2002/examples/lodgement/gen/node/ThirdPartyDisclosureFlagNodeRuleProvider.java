@@ -27,11 +27,15 @@ public class ThirdPartyDisclosureFlagNodeRuleProvider implements RuleProvider<Th
         node.setFixedValue(true);
     }
 
+    @Inject
+    Provider<BooleanFixedValueValidationRule> booleanFixedValueValidationRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        BooleanFixedValueValidationRule booleanFixedValueValidationRule = booleanFixedValueValidationRuleProvider.get();
+        createdRules.add(booleanFixedValueValidationRule);
     }
 
 }

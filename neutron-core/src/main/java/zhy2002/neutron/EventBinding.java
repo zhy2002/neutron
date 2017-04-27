@@ -10,6 +10,13 @@ public interface EventBinding {
 
     TickPhase getPhase();
 
+    /**
+     * Test if this binding can be added to the activation list.
+     * This is called when the event is processed.
+     *
+     * @param event the event that matches this binding by event key.
+     * @return true if this binding will fire.
+     */
     boolean canFire(UiNodeEvent event);
 
     void fire(UiNodeEvent event);

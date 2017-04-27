@@ -11,7 +11,9 @@ import zhy2002.neutron.util.CollectionUtil;
 import javax.inject.Inject;
 import java.util.Collection;
 
-
+/**
+ * Optional rule that validates an ObjectUiNode must have value.
+ */
 public class ObjectValueRequiredValidationRule extends ValidationRule<ObjectUiNode<?>> {
 
     @Inject

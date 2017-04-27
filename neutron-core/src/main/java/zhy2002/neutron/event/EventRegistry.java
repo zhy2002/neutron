@@ -4,7 +4,7 @@ import zhy2002.neutron.StateChangeEventFactory;
 
 
 /**
- * A central place to obtain event factories.
+ * A map of state change event factories.
  */
 public interface EventRegistry {
 

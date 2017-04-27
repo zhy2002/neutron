@@ -3,7 +3,6 @@ package zhy2002.neutron.node;
 import zhy2002.neutron.LeafUiNodeRuleProvider;
 import zhy2002.neutron.RuleProvider;
 import zhy2002.neutron.UiNodeRule;
-import zhy2002.neutron.rule.NodeReferenceChangeRule;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -25,7 +24,7 @@ public class ReferenceUiNodeRuleProvider implements RuleProvider<ReferenceUiNode
     }
 
     @Inject
-    Provider<NodeReferenceChangeRule> nodeReferenceChangeRuleProvider;
+    Provider<ReferenceUiNode.NodeReferenceChangeRule> nodeReferenceChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

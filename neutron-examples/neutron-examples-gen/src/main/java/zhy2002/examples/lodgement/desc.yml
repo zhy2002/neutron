@@ -111,6 +111,10 @@ rootType:
           - {propertyName: required, value: 'true'}
           - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
           - {propertyName: maxLength, value: 20}
+          - {propertyName: invalidChars, value: "\"#\""}
+          - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
+          rules:
+          - {typeName: InvalidCharPreChangeRule, existing: true}
 
         - typeName: LastNameNode
           baseTypeName: StringUiNode
@@ -1392,6 +1396,7 @@ commonTypes:
   - {typeName: CountryNode}
   rules:
   - {typeName: UpdateAddressRefListRule}
+  - {typeName: ObjectValueRequiredValidationRule, existing: true}
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode
@@ -1421,6 +1426,7 @@ commonTypes:
   localRequired: true
   rules:
   - {typeName: MonthYearNotInFutureRule, baseTypeName: ValidationRule}
+  - {typeName: ObjectValueRequiredValidationRule, existing: true}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}
@@ -1826,11 +1832,15 @@ commonTypes:
     baseTypeName: BooleanUiNode
     init:
     - {propertyName: fixedValue, value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
 
   - typeName: ThirdPartyDisclosureFlagNode
     baseTypeName: BooleanUiNode
     init:
     - {propertyName: fixedValue, value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
 
   - typeName: LegalActionNode
     baseTypeName: YesNoOptionNode

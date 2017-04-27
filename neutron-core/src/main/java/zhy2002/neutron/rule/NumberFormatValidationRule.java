@@ -6,13 +6,12 @@ import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
 
 /**
- * Validate that the text in a BigDecimalUiNode is a valid number.
+ * Validate whether the text in a BigDecimalUiNode is a valid number.
  */
 public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
 
@@ -27,7 +26,7 @@ public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<
                 super.createEventBindings(),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),
-                        NeutronEventSubjects.VALUE_VALID
+                        BigDecimalUiNode.VALUE_VALID_PROPERTY.getStateKey()
                 )
         );
     }

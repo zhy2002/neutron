@@ -11,6 +11,9 @@ import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+/**
+ * Built in validation for BigDecimal value range.
+ */
 public class RangeValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
 
     @Inject

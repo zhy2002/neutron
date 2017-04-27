@@ -14,6 +14,9 @@ import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Built in value required validation for leafUiNode.
+ */
 public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?, ?>> {
 
     @Inject

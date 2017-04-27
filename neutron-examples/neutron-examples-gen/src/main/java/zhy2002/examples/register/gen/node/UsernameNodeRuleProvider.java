@@ -32,6 +32,8 @@ public class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
 
     @Inject
     Provider<DefaultEmailByUsernameRule> defaultEmailByUsernameRuleProvider;
+    @Inject
+    Provider<InvalidCharPreChangeRule> invalidCharPreChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -39,6 +41,8 @@ public class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
 
         DefaultEmailByUsernameRule defaultEmailByUsernameRule = defaultEmailByUsernameRuleProvider.get();
         createdRules.add(defaultEmailByUsernameRule);
+        InvalidCharPreChangeRule invalidCharPreChangeRule = invalidCharPreChangeRuleProvider.get();
+        createdRules.add(invalidCharPreChangeRule);
     }
 
 }

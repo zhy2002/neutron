@@ -1,6 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.*;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.UiNodeEventException;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
@@ -12,6 +14,10 @@ import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Optional pre rule for StringUiNode to revert whole cycle
+ * when invalid chars are entered.
+ */
 public class InvalidCharPreChangeRule extends UiNodeRule<StringUiNode<?>> {
 
     @Inject

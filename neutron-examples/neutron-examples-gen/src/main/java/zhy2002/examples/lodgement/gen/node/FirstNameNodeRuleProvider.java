@@ -27,13 +27,19 @@ public class FirstNameNodeRuleProvider implements RuleProvider<FirstNameNode> {
         node.setRequired(true);
         node.setPattern(ApplicationNodeConstants.NAME_PATTERN);
         node.setMaxLength(20);
+        node.setInvalidChars("#");
+        node.setInvalidCharsMessage("Username cannot contain '#'.");
     }
 
+    @Inject
+    Provider<InvalidCharPreChangeRule> invalidCharPreChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        InvalidCharPreChangeRule invalidCharPreChangeRule = invalidCharPreChangeRuleProvider.get();
+        createdRules.add(invalidCharPreChangeRule);
     }
 
 }

@@ -2,11 +2,13 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.examples.TestUtil;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.neutron.NodeStatusEnum;
 import zhy2002.neutron.UiNode;
+import zhy2002.neutron.rule.BooleanFixedValueValidationRule;
 
 import java.math.BigDecimal;
 
@@ -192,5 +194,23 @@ public class PersonNodeTest {
         assertThat(yearNode.getText(), equalTo(""));
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
 
+    }
+
+    @Test
+    public void booleanFixedValueValidationWorks() {
+       PersonPrivacyNode personPrivacyNode = personNode.getPersonPrivacyNode();
+       personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.FALSE);
+
+       assertThat(
+               TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
+               equalTo(true)
+       );
+
+        personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.TRUE);
+
+        assertThat(
+                TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
+                equalTo(false)
+        );
     }
 }

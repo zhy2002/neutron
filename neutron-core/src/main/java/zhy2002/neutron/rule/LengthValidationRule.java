@@ -13,6 +13,9 @@ import zhy2002.neutron.util.ValueUtil;
 import javax.inject.Inject;
 import java.util.Collection;
 
+/**
+ * Built in string length validation for StringUiNode.
+ */
 public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
 
     @Inject

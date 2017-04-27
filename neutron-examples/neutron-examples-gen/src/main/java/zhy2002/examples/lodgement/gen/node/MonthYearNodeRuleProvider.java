@@ -26,6 +26,8 @@ public class MonthYearNodeRuleProvider implements RuleProvider<MonthYearNode<?>>
 
     @Inject
     Provider<MonthYearNotInFutureRule> monthYearNotInFutureRuleProvider;
+    @Inject
+    Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -33,6 +35,8 @@ public class MonthYearNodeRuleProvider implements RuleProvider<MonthYearNode<?>>
 
         MonthYearNotInFutureRule monthYearNotInFutureRule = monthYearNotInFutureRuleProvider.get();
         createdRules.add(monthYearNotInFutureRule);
+        ObjectValueRequiredValidationRule objectValueRequiredValidationRule = objectValueRequiredValidationRuleProvider.get();
+        createdRules.add(objectValueRequiredValidationRule);
     }
 
 }

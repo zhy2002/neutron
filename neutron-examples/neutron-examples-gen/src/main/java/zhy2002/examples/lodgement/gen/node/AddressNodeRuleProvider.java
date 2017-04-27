@@ -26,6 +26,8 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
 
     @Inject
     Provider<UpdateAddressRefListRule> updateAddressRefListRuleProvider;
+    @Inject
+    Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -33,6 +35,8 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
 
         UpdateAddressRefListRule updateAddressRefListRule = updateAddressRefListRuleProvider.get();
         createdRules.add(updateAddressRefListRule);
+        ObjectValueRequiredValidationRule objectValueRequiredValidationRule = objectValueRequiredValidationRuleProvider.get();
+        createdRules.add(objectValueRequiredValidationRule);
     }
 
 }

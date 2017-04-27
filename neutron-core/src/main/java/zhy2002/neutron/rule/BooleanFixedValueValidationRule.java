@@ -11,6 +11,9 @@ import zhy2002.neutron.util.NeutronEventSubjects;
 import javax.inject.Inject;
 import java.util.Collection;
 
+/**
+ * Optional validation rule for BooleanUiNode.
+ */
 public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNode<?>> {
 
     @Inject
@@ -25,7 +28,7 @@ public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNod
                 new BooleanStateChangeEventBinding(e -> validate()),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),
-                        NeutronEventSubjects.FIXED_VALUE
+                        BooleanUiNode.FIXED_VALUE_PROPERTY.getStateKey()
                 )
         );
     }
@@ -40,6 +43,6 @@ public class BooleanFixedValueValidationRule extends ValidationRule<BooleanUiNod
         if (fixedValue.equals(value))
             return null;
 
-        return "Value must be " + !value;
+        return "Value must be " + fixedValue;
     }
 }

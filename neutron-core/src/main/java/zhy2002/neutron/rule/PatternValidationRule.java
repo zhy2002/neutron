@@ -6,12 +6,14 @@ import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 import java.util.Collection;
 
+/**
+ * Built in string pattern validation.
+ */
 public class PatternValidationRule extends ValidationRule<StringUiNode<?>> {
 
     @Inject

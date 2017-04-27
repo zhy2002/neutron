@@ -4,12 +4,13 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
 
-
+/**
+ * Optional item count validation for ListUiNode.
+ */
 public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>> {
 
     @Inject
@@ -23,7 +24,7 @@ public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>>
                 super.createEventBindings(),
                 new IntegerStateChangeEventBinding(
                         (e) -> validate(),
-                        NeutronEventSubjects.MIN_ITEM_COUNT
+                        ListUiNode.MIN_ITEM_COUNT_PROPERTY.getStateKey()
                 ),
                 new GenericNodeAddEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),
@@ -38,6 +39,7 @@ public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>>
 
     @Override
     protected String getErrorMessage() {
+        //cannot use filter to check minItemCount because filters run at activation stage (the change event is not applied).
         if (getOwner().getMinItemCount() == null)
             return null;
 

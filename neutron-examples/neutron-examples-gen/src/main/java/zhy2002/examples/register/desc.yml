@@ -37,6 +37,7 @@ rootType:
     - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
     rules:
     - {typeName: DefaultEmailByUsernameRule}
+    - {typeName: InvalidCharPreChangeRule, existing: true}
 
   - typeName: EmailNode
     baseTypeName: StringUiNode

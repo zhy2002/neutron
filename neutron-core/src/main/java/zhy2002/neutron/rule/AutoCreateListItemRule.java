@@ -11,6 +11,7 @@ import java.util.Collection;
 
 /**
  * If the number of items is smaller than minItemCount then createProperty items.
+ * This is an optional rule for ListUiNode. You need to include it explicitly.
  */
 public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
 
@@ -44,7 +45,7 @@ public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
                 ),
                 new IntegerStateChangeEventBinding(
                         this::addItems,
-                        NeutronEventSubjects.MIN_ITEM_COUNT
+                        ListUiNode.MIN_ITEM_COUNT_PROPERTY.getStateKey()
                 )
         );
     }
