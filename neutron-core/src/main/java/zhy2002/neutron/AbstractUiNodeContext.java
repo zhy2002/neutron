@@ -1,13 +1,14 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.event.EventRegistry;
-import zhy2002.neutron.event.EventRegistryImpl;
-import zhy2002.neutron.event.ImmutableEventRegistry;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.util.RandomUniqueIdGenerator;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * There is one context per node hierarchy.
@@ -15,47 +16,22 @@ import javax.inject.Inject;
 public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> implements UiNodeContext<R> {
 
     private R root;
-    private final EventRegistry eventRegistry;
-    private final String contextId;
-    private final UniqueIdGenerator nodeIdGenerator;
-    private final UiNodeChangeEngine changeEngine;
+    private boolean dirtyCheckEnabled;
+
+
+    private String contextId = RandomUniqueIdGenerator.Instance.next();
+    @Inject
+    EventRegistry eventRegistry;
+    @Inject
+    UiNodeChangeEngine changeEngine;
+    @Inject
+    UniqueIdGenerator nodeIdGenerator;
     @Inject
     NodeFinder nodeFinder;
     @Inject
     NodeReferenceRegistry nodeReferenceRegistry;
-    private boolean dirtyCheckEnabled;
-
-
-    /**
-     * Construct the context.
-     *
-     * @param registries an array of EventRegistry.
-     *                   The latter will override the former.
-     */
-    protected AbstractUiNodeContext(
-            String contextId,
-            UiNodeChangeEngine changeEngine,
-            UniqueIdGenerator nodeIdGenerator,
-            EventRegistryImpl... registries) {
-
-        this.contextId = contextId;
-        this.changeEngine = changeEngine;
-        this.nodeIdGenerator = nodeIdGenerator;
-        this.eventRegistry = new ImmutableEventRegistry(registries);
-    }
-
-    /**
-     * @return class object of the root node.
-     */
-    protected abstract Class<R> getRootClass();
-
-    /**
-     * Create the root node.
-     * This function should not change the context in any way.
-     *
-     * @return the root node to be added to this context instance.
-     */
-    protected abstract R createRootNode();
+    @Inject
+    NodeDataStore nodeDataStore;
 
     //region node construction
 
@@ -85,6 +61,14 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         }
         return this.root;
     }
+
+    /**
+     * Create the root node.
+     * This function should not change the context in any way.
+     *
+     * @return the root node to be added to this context instance.
+     */
+    protected abstract R createRootNode();
 
     @Override
     public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
@@ -232,5 +216,6 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     }
 
     @Override
-    public void setContentLevel(int level) {}
+    public void setContentLevel(int level) {
+    }
 }

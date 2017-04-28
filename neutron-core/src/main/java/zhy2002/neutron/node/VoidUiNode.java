@@ -1,7 +1,6 @@
 package zhy2002.neutron.node;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.event.EventRegistryImpl;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      * IT SHOULD NEVER BE CALLED.
      */
     private VoidUiNode() {
-        super(new VoidDummyUiNodeContext(new EventRegistryImpl()));
+        super(new VoidDummyUiNodeContext());
     }
 
     @Override
@@ -65,18 +64,8 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
      */
     private static final class VoidDummyUiNodeContext extends AbstractUiNodeContext<VoidDummyRootUiNode> {
 
-        VoidDummyUiNodeContext(EventRegistryImpl factoryRegistry) {
-            super(
-                    null,
-                    null,
-                    null,
-                    factoryRegistry
-            );
-        }
-
-        @Override
-        protected Class<VoidDummyRootUiNode> getRootClass() {
-            return VoidDummyRootUiNode.class;
+        VoidDummyUiNodeContext() {
+            super();
         }
 
         @Override

@@ -2,7 +2,7 @@ package zhy2002.examples.app.di;
 
 import dagger.Component;
 import zhy2002.examples.app.gen.LodgementNodeContext;
-import zhy2002.examples.app.di.DefaultProfileModule;
+
 import javax.inject.Singleton;
 
 
@@ -11,5 +11,4 @@ import javax.inject.Singleton;
 public interface DefaultProfileComponent {
 
     LodgementNodeContext provideLodgementNodeContext();
-
 }

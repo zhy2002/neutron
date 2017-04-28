@@ -133,12 +133,4 @@ class TemplateBundle {
     Template getManifestModuleTemplate() {
         return manifestModuleTemplate;
     }
-
-    public Template getProfileComponentTemplate() {
-        return profileComponentTemplate;
-    }
-
-    public Template getFactoryTemplate() {
-        return factoryTemplate;
-    }
 }

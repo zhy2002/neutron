@@ -1,8 +1,6 @@
 package zhy2002.examples.register.gen;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.event.EventRegistryImpl;
-import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import javax.validation.constraints.NotNull;
 import dagger.Lazy;
 import javax.inject.*;
@@ -16,26 +14,12 @@ public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
     Lazy<RegisterNode> rootNodeLazy;
 
     @Inject
-    public RegisterNodeContext(
-        UiNodeChangeEngine changeEngine,
-        UniqueIdGenerator nodeIdGenerator,
-        @NotNull EventRegistryImpl implRegistry
-    ) {
-        super(
-            RandomUniqueIdGenerator.Instance.next(),
-            changeEngine,
-            nodeIdGenerator,
-            new RegisterNodeClassRegistry(),
-            implRegistry
-        );
+    public RegisterNodeContext() {
+        super();
     }
 
     @Override
-    protected Class<RegisterNode> getRootClass() {
-        return RegisterNode.class;
-    }
-
-    @Override
+    @NotNull
     protected RegisterNode createRootNode() {
         return rootNodeLazy.get();
     }
