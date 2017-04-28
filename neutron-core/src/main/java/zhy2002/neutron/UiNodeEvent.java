@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.PredefinedRuleGroups;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.validation.constraints.NotNull;
 
@@ -69,7 +69,7 @@ public abstract class UiNodeEvent {
 
     public final void setRuleGroup(String ruleGroup) {
         if (ruleGroup == null) {
-            ruleGroup = PredefinedRuleGroups.DEFAULT;
+            ruleGroup = NeutronConstants.DEFAULT_RULE_GROUP;
         }
         this.ruleGroup = ruleGroup;
     }

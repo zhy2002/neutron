@@ -10,7 +10,7 @@ import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class ProductGroupChangedRuleImpl extends ProductGroupChangedRule {
                 ),
                 new RefreshEventBinding(
                         (e) -> onChange(),
-                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

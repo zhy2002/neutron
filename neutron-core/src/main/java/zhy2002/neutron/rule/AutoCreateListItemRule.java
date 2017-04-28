@@ -3,7 +3,7 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -41,7 +41,7 @@ public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
         return Arrays.asList(
                 new RefreshEventBinding(
                         this::addItems,
-                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 ),
                 new IntegerStateChangeEventBinding(
                         this::addItems,

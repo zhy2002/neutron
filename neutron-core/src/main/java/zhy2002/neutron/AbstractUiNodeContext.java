@@ -5,7 +5,7 @@ import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.event.EventRegistryImpl;
 import zhy2002.neutron.event.ImmutableEventRegistry;
 import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 
@@ -228,7 +228,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @JsMethod
     public final void resetDirty() {
-        getRootNode().refreshWithReason(NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON);
+        getRootNode().refreshWithReason(NeutronConstants.RESET_DIRTY_REFRESH_REASON);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
     }
 
     protected RefreshUiNodeEvent(UiNode<?> origin, String reason) {
-        super(origin, reason == null ? NeutronEventSubjects.DEFAULT_REFRESH_REASON : reason);
+        super(origin, reason == null ? NeutronConstants.DEFAULT_REFRESH_REASON : reason);
     }
 
     @Override

@@ -1,10 +1,6 @@
 package zhy2002.neutron.event;
 
-import zhy2002.neutron.StateChangeEventBinding;
-import zhy2002.neutron.TickPhase;
-import zhy2002.neutron.UiNodeEventFilter;
-import zhy2002.neutron.UiNodeEventHandler;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.*;
 import zhy2002.neutron.util.ValueUtil;
 
 public class ValidationErrorListStateChangeEventBinding extends StateChangeEventBinding<ValidationErrorListStateChangeEvent> {
@@ -17,7 +13,7 @@ public class ValidationErrorListStateChangeEventBinding extends StateChangeEvent
                 filter,
                 handler,
                 ValidationErrorListStateChangeEvent.class,
-                ValueUtil.ifNull(subject, NeutronEventSubjects.VALIDATION_ERROR_LIST),
+                ValueUtil.ifNull(subject, UiNode.VALIDATION_ERROR_LIST_PROPERTY.getStateKey()),
                 phase
         );
     }

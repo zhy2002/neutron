@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.PredefinedRuleGroups;
+import zhy2002.neutron.util.NeutronConstants;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -94,7 +94,7 @@ public abstract class UiNodeRule<N extends UiNode<?>> {
     }
 
     protected Collection<String> getDefaultRuleGroups() {
-        return Collections.singletonList(PredefinedRuleGroups.DEFAULT);
+        return Collections.singletonList(NeutronConstants.DEFAULT_RULE_GROUP);
     }
 
     /**

@@ -12,7 +12,7 @@ import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -40,7 +40,7 @@ public class DistributePercentageRuleImpl extends DistributePercentageRule {
                 new BooleanStateChangeEventBinding(
                         this::percentageNodeReadOnlySetToTrue,
                         e -> this.recalculate(),
-                        NeutronEventSubjects.READONLY
+                        NeutronConstants.READONLY
                 )
         );
     }

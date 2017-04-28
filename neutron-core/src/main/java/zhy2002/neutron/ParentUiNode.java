@@ -6,7 +6,7 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -214,7 +214,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                     new BooleanStateChangeEventBinding(
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateCount,
-                            NeutronEventSubjects.SELF_DIRTY
+                            NeutronConstants.SELF_DIRTY
                     )
             );
         }

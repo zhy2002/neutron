@@ -5,14 +5,11 @@ import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.StateChangeEvent;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * Built in value required validation for leafUiNode.
@@ -36,7 +33,7 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
                 )//,
 //                new BooleanStateChangeEventBinding(
 //                        e -> validate(),
-//                        Collections.singletonList(NeutronEventSubjects.REQUIRED)
+//                        Collections.singletonList(NeutronConstants.REQUIRED)
 //                )
         );
     }

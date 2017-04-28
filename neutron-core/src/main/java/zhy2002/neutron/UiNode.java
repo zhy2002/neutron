@@ -6,7 +6,7 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
@@ -116,7 +116,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.name = name;
         this.nodeStatus = NodeStatusEnum.Detached;
 
-        //setChangeTrackingMode(NeutronEventSubjects.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
+        //setChangeTrackingMode(NeutronConstants.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
     }
 
     /**
@@ -813,7 +813,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             return Collections.singletonList(
                     new RefreshEventBinding(
                             e -> getOwner().resetDirty(),
-                            NeutronEventSubjects.RESET_DIRTY_REFRESH_REASON
+                            NeutronConstants.RESET_DIRTY_REFRESH_REASON
                     )
             );
         }

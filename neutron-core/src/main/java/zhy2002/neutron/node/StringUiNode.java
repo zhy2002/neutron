@@ -2,14 +2,12 @@ package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsMethod;
-import jsinterop.annotations.JsType;
 import zhy2002.neutron.ChangeTrackingModeEnum;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.StringOption;
-import zhy2002.neutron.util.NeutronEventSubjects;
 import zhy2002.neutron.util.ValueUtil;
 
 import java.util.Arrays;

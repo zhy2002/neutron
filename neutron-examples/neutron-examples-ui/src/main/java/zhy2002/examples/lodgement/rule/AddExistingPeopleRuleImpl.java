@@ -7,7 +7,7 @@ import zhy2002.neutron.NodeAddEvent;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.RefreshUiNodeEvent;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -29,7 +29,7 @@ public class AddExistingPeopleRuleImpl extends AddExistingPeopleRule {
         return Collections.singletonList(
                 new RefreshEventBinding(
                         this::importPeople,
-                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

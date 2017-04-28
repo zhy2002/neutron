@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public abstract class NodeRemoveEvent<N extends UiNode<? extends ListUiNode<?, N
     private final N target;
 
     public NodeRemoveEvent(N target) {
-        super(target, NeutronEventSubjects.ADD_OR_REMOVE_NODE);
+        super(target, NeutronConstants.ADD_OR_REMOVE_NODE);
 
         this.target = target;
     }

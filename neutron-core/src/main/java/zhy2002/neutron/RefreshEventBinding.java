@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 
@@ -15,7 +15,7 @@ public class RefreshEventBinding extends AbstractEventBinding<RefreshUiNodeEvent
                 filter,
                 handler,
                 RefreshUiNodeEvent.class,
-                ValueUtil.ifNull(subject, NeutronEventSubjects.DEFAULT_REFRESH_REASON),
+                ValueUtil.ifNull(subject, NeutronConstants.DEFAULT_REFRESH_REASON),
                 phase
         );
     }

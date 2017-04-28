@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     private final N target;
 
     public NodeAddEvent(N origin) {
-        super(origin, NeutronEventSubjects.ADD_OR_REMOVE_NODE);
+        super(origin, NeutronConstants.ADD_OR_REMOVE_NODE);
 
         this.target = origin;
     }
@@ -31,7 +31,7 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     @Override
     public void apply() {
         target.attach();
-        target.refreshWithReason(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON);
+        target.refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
     }
 
     @SuppressWarnings("unchecked")

@@ -6,7 +6,6 @@ import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.node.BooleanUiNode;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
 
 import javax.inject.Inject;
 import java.util.Collection;

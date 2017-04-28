@@ -2,7 +2,7 @@ package zhy2002.neutron;
 
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,11 +22,11 @@ public abstract class UpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNod
                 ),
                 new IntegerStateChangeEventBinding(
                         this::updateLabel,
-                        NeutronEventSubjects.INDEX
+                        NeutronConstants.INDEX
                 ),
                 new RefreshEventBinding(
                         this::updateLabel,
-                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 )
         );
     }

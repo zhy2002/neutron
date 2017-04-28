@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 /**
  * This event is fired when a node loads its content (and children if any).
@@ -18,7 +18,7 @@ public abstract class NodeLoadEvent<N extends UiNode<?>>
         UiNode<?> origin = getOrigin();
         if (origin.getNodeStatus() == NodeStatusEnum.Unloaded) {
             getOrigin().loadDirectly();
-            getOrigin().refreshWithReason(NeutronEventSubjects.NODE_LOADED_REFRESH_REASON);
+            getOrigin().refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
         }
     }
 

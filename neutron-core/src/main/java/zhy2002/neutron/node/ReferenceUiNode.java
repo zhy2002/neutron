@@ -7,7 +7,7 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -72,7 +72,7 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
             return Arrays.asList(
                     new RefreshEventBinding(
                             this::loadReference,
-                            NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                            NeutronConstants.NODE_LOADED_REFRESH_REASON
                     ),
                     new StringStateChangeEventBinding(
                             this::updateReference

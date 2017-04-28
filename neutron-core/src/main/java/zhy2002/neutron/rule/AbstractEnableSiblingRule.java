@@ -1,7 +1,7 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -40,7 +40,7 @@ public abstract class AbstractEnableSiblingRule<N extends LeafUiNode<?, T>, T> e
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
-                new RefreshEventBinding(this::updateSibling, NeutronEventSubjects.NODE_LOADED_REFRESH_REASON)
+                new RefreshEventBinding(this::updateSibling, NeutronConstants.NODE_LOADED_REFRESH_REASON)
         );
     }
 

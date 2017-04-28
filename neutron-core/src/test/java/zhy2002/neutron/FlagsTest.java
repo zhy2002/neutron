@@ -7,17 +7,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-class TestFlags extends Flags {
-
-    public boolean getFlag(int index) {
-        return super.getFlag(index);
-    }
-
-    public void setFlag(int index, boolean value) {
-        super.setFlag(index, value);
-    }
-}
-
 public class FlagsTest {
 
     @Test
@@ -29,7 +18,7 @@ public class FlagsTest {
 
     private void testBit(int index) {
         try {
-            TestFlags testFlags = new TestFlags();
+            Flags testFlags = new Flags();
             assertThat(testFlags.getFlag(index), equalTo(false));
 
             testFlags.setFlag(index, true);
@@ -38,7 +27,7 @@ public class FlagsTest {
             testFlags.setFlag(index, false);
             assertThat(testFlags.getFlag(index), equalTo(false));
         } catch (Throwable t) {
-            System.out.println(index);
+            throw new RuntimeException("Failed at index " + index, t);
         }
     }
 

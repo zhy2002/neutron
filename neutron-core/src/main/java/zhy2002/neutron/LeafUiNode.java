@@ -2,10 +2,8 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
-import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
@@ -62,13 +60,13 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     protected void setStateValueDirectly(String key, Object value) {
         super.setStateValueDirectly(key, value);
 
-        if (NeutronEventSubjects.VALUE.equals(key)) {
+        if (NeutronConstants.VALUE.equals(key)) {
             setHasValue(hasValue());
         }
     }
 
     public final void resetValue() {
-        T initialValue = getPreStateValue(NeutronEventSubjects.VALUE);
+        T initialValue = getPreStateValue(NeutronConstants.VALUE);
         setValue(initialValue);
     }
 
@@ -82,11 +80,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
      * returns null when the node is not dirty.
      */
     final T getOriginalValue() {
-        return getStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
+        return getStateValueDirectly(NeutronConstants.ORIGINAL_VALUE);
     }
 
     private void setOriginalValue(T value) {
-        setStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE, value);
+        setStateValueDirectly(NeutronConstants.ORIGINAL_VALUE, value);
     }
 
     private void makeDirty() {
@@ -95,7 +93,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     private void clearDirty() {
-        clearStateValueDirectly(NeutronEventSubjects.ORIGINAL_VALUE);
+        clearStateValueDirectly(NeutronConstants.ORIGINAL_VALUE);
         setSelfDirty(Boolean.FALSE);
     }
 

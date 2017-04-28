@@ -16,7 +16,7 @@ import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.LengthValidationRule;
 import zhy2002.neutron.rule.NumberFormatValidationRule;
 import zhy2002.neutron.rule.RangeValidationRule;
-import zhy2002.neutron.util.ClassUtil;
+import zhy2002.neutron.util.ValueUtil;
 
 import java.math.BigDecimal;
 import java.util.function.Predicate;
@@ -266,7 +266,7 @@ public class RegisterCommonSendTest {
     }
 
     private boolean hasError(Class<? extends UiNodeRule<?>> clazz) {
-        return hasError(node -> ClassUtil.isInstanceOf(clazz, node.getRule()));
+        return hasError(node -> ValueUtil.isInstanceOf(node.getRule(), clazz));
     }
 
     private boolean hasError(Predicate<ErrorNode> predicate) {

@@ -8,7 +8,7 @@ import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -28,7 +28,7 @@ public class FinancialPositionChangedRuleImpl extends FinancialPositionChangedRu
                 new BigDecimalStateChangeEventBinding(this::updateValues),
                 new RefreshEventBinding(
                         this::updateValues,
-                        NeutronEventSubjects.NODE_LOADED_REFRESH_REASON
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 ),
                 new GenericNodeRemoveEventBinding(
                         this::updateValues

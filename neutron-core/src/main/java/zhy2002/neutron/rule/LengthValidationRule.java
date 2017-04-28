@@ -7,7 +7,7 @@ import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.StringUiNode;
 import zhy2002.neutron.util.CollectionUtil;
-import zhy2002.neutron.util.NeutronEventSubjects;
+import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
@@ -29,15 +29,15 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
                 super.createEventBindings(),
                 new StringStateChangeEventBinding(
                         e -> validate(),
-                        NeutronEventSubjects.VALUE
+                        NeutronConstants.VALUE
                 ),
                 new IntegerStateChangeEventBinding(
                         e -> validate(),
-                        NeutronEventSubjects.MIN_LENGTH
+                        NeutronConstants.MIN_LENGTH
                 ),
                 new IntegerStateChangeEventBinding(
                         e -> validate(),
-                        NeutronEventSubjects.MAX_LENGTH
+                        NeutronConstants.MAX_LENGTH
                 )
         );
     }

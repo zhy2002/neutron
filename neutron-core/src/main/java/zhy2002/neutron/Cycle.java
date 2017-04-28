@@ -20,7 +20,7 @@ public class Cycle implements CycleStatus {
      * Rule prioritization on happens in the same phase.
      * Full priority is Tick -> Phase -> Priority.
      */
-    private static final TickPhase[] TICK_PHASES = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate, PredefinedPhases.CleanUp};
+    private static final TickPhase[] TICK_PHASES = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate};
 
     /**
      * UiNode events that are parsed by not applied.

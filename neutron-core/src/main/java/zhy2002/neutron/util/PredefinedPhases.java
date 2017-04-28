@@ -12,8 +12,7 @@ public enum PredefinedPhases implements TickPhase {
 
     Pre(ChangeModeEnum.CASCADE),
     Post(ChangeModeEnum.CASCADE, true),
-    Validate(ChangeModeEnum.CASCADE),
-    CleanUp(ChangeModeEnum.IGNORED);
+    Validate(ChangeModeEnum.CASCADE);
 
     private final ChangeModeEnum changeMode;
     private final boolean postChanges;
