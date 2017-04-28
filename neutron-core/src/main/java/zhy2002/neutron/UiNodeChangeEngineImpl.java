@@ -87,7 +87,12 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
     @Override
     public void flush() {
         if (commitOnFlush) {
-            commitSessionInternal();
+            try {
+                commitSessionInternal();
+            } catch (RuntimeException ex) {
+                rollbackSession();
+                throw ex;
+            }
         } else {
             processCycle();
         }
@@ -117,6 +122,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             }
         }
         cycleDeque.clear();
+        inSession = false;
     }
 
     @Override

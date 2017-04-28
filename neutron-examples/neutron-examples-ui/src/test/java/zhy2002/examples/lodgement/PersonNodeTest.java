@@ -6,8 +6,7 @@ import zhy2002.examples.TestUtil;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
-import zhy2002.neutron.NodeStatusEnum;
-import zhy2002.neutron.UiNode;
+import zhy2002.neutron.*;
 import zhy2002.neutron.rule.BooleanFixedValueValidationRule;
 
 import java.math.BigDecimal;
@@ -17,16 +16,20 @@ import static org.hamcrest.Matchers.*;
 
 public class PersonNodeTest {
 
+    private UiNodeContext<?> context;
     private ApplicationNode applicationNode;
     private PersonNode personNode;
     private PersonContactNode personContactNode;
+    private PersonGeneralNode personGeneralNode;
 
     @Before
     public void setup() {
         applicationNode = ApplicationNodeFactory.create();
+        context = applicationNode.getContext();
         PersonListNode personListNode = applicationNode.getPersonListNode();
         personNode = personListNode.createItem();
         personContactNode = personNode.getPersonContactNode();
+        personGeneralNode = personNode.getPersonGeneralNode();
     }
 
     @Test
@@ -198,13 +201,13 @@ public class PersonNodeTest {
 
     @Test
     public void booleanFixedValueValidationWorks() {
-       PersonPrivacyNode personPrivacyNode = personNode.getPersonPrivacyNode();
-       personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.FALSE);
+        PersonPrivacyNode personPrivacyNode = personNode.getPersonPrivacyNode();
+        personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.FALSE);
 
-       assertThat(
-               TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
-               equalTo(true)
-       );
+        assertThat(
+                TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
+                equalTo(true)
+        );
 
         personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.TRUE);
 
@@ -212,5 +215,47 @@ public class PersonNodeTest {
                 TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
                 equalTo(false)
         );
+    }
+
+    @Test
+    public void firstNameCannotContainHash() {
+
+        boolean exceptionThrown = false;
+        try {
+            personGeneralNode.getFirstNameNode().setValue("test#");
+        } catch (UiNodeEventException ex) {
+            exceptionThrown = true;
+        }
+
+        assertThat(exceptionThrown, equalTo(true));
+        assertThat(context.isInSession(), equalTo(false));
+
+        //no exception
+        personGeneralNode.getFirstNameNode().setValue("test2");
+
+    }
+
+    @Test
+    public void exceptionInPreRuleWorksInDebouncedMode() {
+        context.setCycleMode(CycleModeEnum.Debouncing);
+        personGeneralNode.getFirstNameNode().setValue("test#");
+
+        boolean exceptionThrown = false;
+        try {
+            context.flush();
+        } catch (UiNodeEventException ex) {
+            exceptionThrown = true;
+        }
+
+        assertThat(exceptionThrown, equalTo(true));
+        assertThat(context.isInSession(), equalTo(false));
+        assertThat(personGeneralNode.getFirstNameNode().getValue(), equalTo(""));
+
+        //no exception
+        personGeneralNode.getFirstNameNode().setValue("test2");
+        assertThat(personGeneralNode.getFirstNameNode().getValue(), equalTo("test2"));
+        assertThat(context.isInSession(), equalTo(true));
+
+        context.flush();
     }
 }

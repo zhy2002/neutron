@@ -9,7 +9,12 @@ export default class InputComponent extends NeutronComponent {
 
         this.flush = debounce(300, () => {
             const context = this.model.getContext();
-            context.flush();
+            try {
+                context.flush();
+            } catch (e) {
+                console.warn('Rolling back session due to exception.');
+                this.onUiNodeChanged(); //clear debounded values
+            }
             context.setCycleMode(context.oldCycleMode);
             delete context.oldCycleMode;
         });

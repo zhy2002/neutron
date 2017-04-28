@@ -3,8 +3,8 @@ package zhy2002.examples.register;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.CountingChangeListener;
-import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.di.RegisterNodeFactory;
+import zhy2002.examples.register.gen.RegisterNodeContext;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.examples.register.gen.rule.PasswordIsStrongRule;
 import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
@@ -114,6 +114,11 @@ public class RegisterCommonSendTest {
 
         assertThat(exceptionThrown, equalTo(true));
         assertThat(usernameNode.getValue(), equalTo("test"));
+        assertThat(context.isInSession(), equalTo(false));
+
+        //no exception
+        usernameNode.setValue("test1");
+        assertThat(usernameNode.getValue(), equalTo("test1"));
     }
 
     @Test
@@ -151,6 +156,7 @@ public class RegisterCommonSendTest {
     public void canCascadeChange() {
         UsernameNode usernameNode = registerNode.getUsernameNode();
         usernameNode.setValue("tes");
+        assertThat(context.isInSession(), equalTo(false));
         assertThat(registerNode.getHasError(), equalTo(true));
 
         usernameNode.setValue("test");
