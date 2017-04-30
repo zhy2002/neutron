@@ -24,7 +24,17 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
      */
     R getRootNode();
 
-    <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue);
+    /**
+     * Create a state change event for a node in this context.
+     * @param origin the node whose state change is described by this event.
+     * @param key the key that identifies which state (property) is changing.
+     * @param valueClass class object of the value.
+     * @param oldValue the state value when the event is created.
+     * @param newValue the new value.
+     * @param <T> type of the state value.
+     * @return a state change event instance.
+     */
+    <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> origin, String key, Class<T> valueClass, T oldValue, T newValue);
 
     void processEvent(UiNodeEvent event);
 
@@ -44,5 +54,4 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
     @JsMethod
     void resetDirty();
 
-    void setContentLevel(int level);
 }

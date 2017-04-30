@@ -6,4 +6,8 @@ package zhy2002.neutron.data;
  * To be implemented.
  */
 public class NodeDataStore {
+
+    public String getContextId() {
+        return null;
+    }
 }

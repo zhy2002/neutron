@@ -12,9 +12,4 @@ public class ApplicationNodeContextImpl extends ApplicationNodeContext {
     public ApplicationNodeContextImpl() {
         super();
     }
-
-    @Override
-    public void setContentLevel(int level) {
-        getRootNode().setContentLevel(level);
-    }
 }

@@ -28,7 +28,7 @@ public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode
     }
 
     @Inject
-    Provider<CreateErrorNodeRule> createErrorNodeRuleProvider;
+    Provider<MergeValidationErrorsRule> mergeValidationErrorsRuleProvider;
     @Inject
     Provider<ShowErrorListRule> showErrorListRuleProvider;
 
@@ -36,8 +36,8 @@ public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        CreateErrorNodeRule createErrorNodeRule = createErrorNodeRuleProvider.get();
-        createdRules.add(createErrorNodeRule);
+        MergeValidationErrorsRule mergeValidationErrorsRule = mergeValidationErrorsRuleProvider.get();
+        createdRules.add(mergeValidationErrorsRule);
         ShowErrorListRule showErrorListRule = showErrorListRuleProvider.get();
         createdRules.add(showErrorListRule);
     }

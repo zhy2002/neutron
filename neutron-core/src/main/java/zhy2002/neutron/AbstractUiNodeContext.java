@@ -8,7 +8,6 @@ import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * There is one context per node hierarchy.
@@ -17,9 +16,9 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     private R root;
     private boolean dirtyCheckEnabled;
+    private String contextId;
+    private NodeDataStore nodeDataStore;
 
-
-    private String contextId = RandomUniqueIdGenerator.Instance.next();
     @Inject
     EventRegistry eventRegistry;
     @Inject
@@ -30,8 +29,48 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     NodeFinder nodeFinder;
     @Inject
     NodeReferenceRegistry nodeReferenceRegistry;
+
     @Inject
-    NodeDataStore nodeDataStore;
+    void injectNodeDataStore(NodeDataStore nodeDataStore) {
+        this.nodeDataStore = nodeDataStore;
+        contextId = this.nodeDataStore.getContextId();
+        if (contextId == null) {
+            contextId = RandomUniqueIdGenerator.Instance.next();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> origin, String key, Class<T> valueClass, T oldValue, T newValue) {
+        StateChangeEventFactory<T> factory = eventRegistry.getStateChangeEventFactory(valueClass);
+        return factory.create(origin, key, oldValue, newValue);
+    }
+
+    @Override
+    public NodeFinder getNodeFinder() {
+        return nodeFinder;
+    }
+
+    public NodeReferenceRegistry getNodeReferenceRegistry() {
+        return nodeReferenceRegistry;
+    }
+
+    @Override
+    public boolean isDirtyCheckEnabled() {
+        return dirtyCheckEnabled;
+    }
+
+    @Override
+    public void setDirtyCheckEnabled(boolean enabled) {
+        dirtyCheckEnabled = enabled;
+    }
+
+    @JsMethod
+    public final void resetDirty() {
+        getRootNode().refreshWithReason(NeutronConstants.RESET_DIRTY_REFRESH_REASON);
+    }
 
     //region node construction
 
@@ -42,7 +81,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      */
     @Override
     public final String getUniqueId() {
-        return 'n' + contextId + nodeIdGenerator.next();
+        return contextId + nodeIdGenerator.next();
     }
 
     /**
@@ -64,17 +103,11 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     /**
      * Create the root node.
-     * This function should not change the context in any way.
+     * Execution of this function should not change the context in any way.
      *
      * @return the root node to be added to this context instance.
      */
     protected abstract R createRootNode();
-
-    @Override
-    public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> target, String key, Class<T> valueClass, T oldValue, T newValue) {
-        StateChangeEventFactory<T> factory = eventRegistry.getStateChangeEventFactory(valueClass);
-        return factory.create(target, key, oldValue, newValue);
-    }
 
     //endregion
 
@@ -191,31 +224,4 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     //endregion
 
-    @Override
-    public NodeFinder getNodeFinder() {
-        return nodeFinder;
-    }
-
-    public NodeReferenceRegistry getNodeReferenceRegistry() {
-        return nodeReferenceRegistry;
-    }
-
-    @Override
-    public boolean isDirtyCheckEnabled() {
-        return dirtyCheckEnabled;
-    }
-
-    @Override
-    public void setDirtyCheckEnabled(boolean enabled) {
-        dirtyCheckEnabled = enabled;
-    }
-
-    @JsMethod
-    public final void resetDirty() {
-        getRootNode().refreshWithReason(NeutronConstants.RESET_DIRTY_REFRESH_REASON);
-    }
-
-    @Override
-    public void setContentLevel(int level) {
-    }
 }

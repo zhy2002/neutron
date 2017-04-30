@@ -25,7 +25,7 @@ rootType:
 
   rules:
   - {typeName: SetHasErrorRule}
-  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+  - {typeName: MergeValidationErrorsRule, existing: true}
 
   childTypes:
   - typeName: UsernameNode

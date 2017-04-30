@@ -24,49 +24,6 @@ public class ApplicationNodeImpl extends ApplicationNode {
     }
 
     @JsMethod
-    public void setContentNode(UiNode<?> descendant) {
-
-        if (descendant == null)
-            return;
-
-        CycleModeEnum mode = getContext().getCycleMode();
-        if (mode == CycleModeEnum.Auto) {
-            getContext().setCycleMode(CycleModeEnum.Batched);
-        } else {
-            mode = null;
-        }
-        try {
-            getContext().beginSession();
-            int level = selectDescendant(descendant);
-            if (level > 0) {
-                setContentLevel(level);
-            }
-            getContext().commitSession();
-        } finally {
-            if (mode != null) {
-                getContext().setCycleMode(mode);
-            }
-        }
-    }
-
-    private int selectDescendant(UiNode<?> descendant) {
-        int level = 0;
-        while (descendant != this) {
-            level++;
-            UiNode<?> parent = descendant.getParent();
-            if (parent instanceof ListUiNode<?, ?>) {
-                ((ListUiNode) parent).setSelectedIndex(descendant.getIndex());
-            } else if (parent instanceof ObjectUiNode<?>) {
-                ((ObjectUiNode) parent).setSelectedName(descendant.getName());
-            } else {
-                throw new UiNodeException("Unsupported node type in path:" + parent.getClass().getName());
-            }
-            descendant = parent;
-        }
-        return level;
-    }
-
-    @JsMethod
     public String[] getApplicants() {
         List<String> result = new ArrayList<>();
 

@@ -4,7 +4,9 @@ import dagger.Binds;
 import dagger.Module;
 import zhy2002.examples.register.gen.di.ManifestModule;
 import zhy2002.examples.register.gen.rule.*;
+import zhy2002.examples.register.node.RegisterValidationErrorListAdaptor;
 import zhy2002.examples.register.rule.*;
+import zhy2002.neutron.ValidationErrorListAdaptor;
 
 @Module(includes = {ManifestModule.class, CustomModule.class})
 public abstract class DefaultProfileModule {
@@ -13,7 +15,7 @@ public abstract class DefaultProfileModule {
     abstract DefaultEmailByUsernameRule provideDefaultEmailByUsernameRule(DefaultEmailByUsernameRuleImpl impl);
 
     @Binds
-    abstract CreateErrorNodeRule provideCreateErrorNodeRule(CreateErrorNodeRuleImpl impl);
+    abstract ValidationErrorListAdaptor provideValidationErrorListAdaptor(RegisterValidationErrorListAdaptor impl);
 
     @Binds
     abstract PasswordIsStrongRule providePasswordIsStrongRule(PasswordIsStrongRuleImpl impl);

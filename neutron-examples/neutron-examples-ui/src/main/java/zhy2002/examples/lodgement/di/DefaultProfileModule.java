@@ -12,8 +12,10 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
+import zhy2002.examples.lodgement.node.LodgementValidationErrorListAdaptor;
 import zhy2002.examples.lodgement.rule.*;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.ValidationErrorListAdaptor;
 import zhy2002.neutron.rule.StringEnableSiblingRule;
 
 import javax.inject.Inject;
@@ -90,7 +92,7 @@ public abstract class DefaultProfileModule {
     abstract ChangeFocusErrorRule provideChangeFocusErrorRule(ChangeFocusErrorRuleImpl impl);
 
     @Binds
-    abstract CreateErrorNodeRule provideCreateErrorNodeRule(CreateErrorNodeRuleImpl impl);
+    abstract ValidationErrorListAdaptor provideValidationErrorListAdaptor(LodgementValidationErrorListAdaptor impl);
 
     @Binds
     abstract DobRangeValidationRule provideDobRangeValidationRule(DobRangeValidationRuleImpl impl);

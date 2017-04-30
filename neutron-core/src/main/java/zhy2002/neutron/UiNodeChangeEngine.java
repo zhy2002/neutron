@@ -35,6 +35,11 @@ public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
 
     void setCycleMode(@NotNull CycleModeEnum cycleMode);
 
+    /**
+     * Finish debounce mode.
+     * If is in auto commit state the commit the current changes.
+     * Otherwise process the current cycle.
+     */
     void flush();
 
 }

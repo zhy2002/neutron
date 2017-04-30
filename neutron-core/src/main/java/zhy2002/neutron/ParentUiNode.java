@@ -162,7 +162,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
             }
         }
 
-        getContext().setContentLevel(names.length);
+        getContext().getRootNode().setContentLevel(names.length);
     }
 
     final void increaseDirtyDescendantCount() {

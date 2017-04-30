@@ -27,7 +27,7 @@ public class RegisterNodeRuleProvider implements RuleProvider<RegisterNode> {
     @Inject
     Provider<SetHasErrorRule> setHasErrorRuleProvider;
     @Inject
-    Provider<CreateErrorNodeRule> createErrorNodeRuleProvider;
+    Provider<MergeValidationErrorsRule> mergeValidationErrorsRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -35,8 +35,8 @@ public class RegisterNodeRuleProvider implements RuleProvider<RegisterNode> {
 
         SetHasErrorRule setHasErrorRule = setHasErrorRuleProvider.get();
         createdRules.add(setHasErrorRule);
-        CreateErrorNodeRule createErrorNodeRule = createErrorNodeRuleProvider.get();
-        createdRules.add(createErrorNodeRule);
+        MergeValidationErrorsRule mergeValidationErrorsRule = mergeValidationErrorsRuleProvider.get();
+        createdRules.add(mergeValidationErrorsRule);
     }
 
 }

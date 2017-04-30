@@ -8,7 +8,7 @@ rootType:
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
   rules:
-  - {typeName: CreateErrorNodeRule, baseTypeName: BaseCreateErrorNodeRule}
+  - {typeName: MergeValidationErrorsRule, existing: true}
   - {typeName: ShowErrorListRule}
   children:
   - {typeName: IdNode}
