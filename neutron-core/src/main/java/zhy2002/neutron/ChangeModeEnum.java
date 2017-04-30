@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 /**
- * Restrictions to changes in a phase.
+ * Determines how changes should propagate.
  */
 public enum ChangeModeEnum {
     /**
@@ -11,13 +11,5 @@ public enum ChangeModeEnum {
     /**
      * All changes do not cause other changes.
      */
-    DIRECT,
-    /**
-     * All changes are ignored.
-     */
-    IGNORED,
-    /**
-     * All changes are prohibited (cause exception and everything in the current cycle will rollback).
-     */
-    PROHIBITED
+    DIRECT
 }

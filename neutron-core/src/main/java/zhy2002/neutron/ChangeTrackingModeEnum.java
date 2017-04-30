@@ -20,7 +20,7 @@ public enum ChangeTrackingModeEnum {
      * As long as the new value does not equal to the old value.
      */
     Value,
-    NeutronEventSubjects, /**
+    /**
      * State is constant.
      */
     None

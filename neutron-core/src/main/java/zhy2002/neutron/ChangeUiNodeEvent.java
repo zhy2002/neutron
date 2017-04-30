@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Change event.
+ * Represents a change change in the state or structure of the node tree.
  */
 public abstract class ChangeUiNodeEvent extends UiNodeEvent {
 

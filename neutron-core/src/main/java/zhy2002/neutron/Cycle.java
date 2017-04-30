@@ -5,9 +5,17 @@ import zhy2002.neutron.util.PredefinedPhases;
 import java.util.*;
 
 /**
- * Contains all changes done in this cycle.
- * A cycle must be complete, otherwise every change
- * occurred in it will revert.
+ * A cycle is triggered by one or multiple change events
+ * and contains all the changes that ensue (e.g. via rules).
+ * A cycle is atomic, meaning all of its changes must be either
+ * complete or abort.
+ * A cycle is processed in multiple ticks.
+ * A tick is dequeue all events in event queue + executing all rules polled
+ * into the cycles agenda.
+ * When the agenda is emptied the cycle will check if the event queue is empty.
+ * If not another tick is executed.
+ * In Send mode events triggered by rules will be polled into agenda directly and
+ * thus be included into the current tick.
  */
 public class Cycle implements CycleStatus {
 

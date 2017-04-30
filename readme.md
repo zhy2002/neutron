@@ -1,14 +1,14 @@
 todo 
 ----------------- 
-reduce the number of rules to fire onload. e.g. bypass all validation rules.
-reduce memory consumption
+1. rolling commit - only keep N cycles in the current session
 2. load initial values (as a part of node load) 
   - load value only or the full state?
 11. Generate per-profile constants and assets
 * Class level config  
 * state metadata (type and stuff)  
 * state property namespace or distinction between system property and user property  
-  
+reduce the number of rules to fire onload. e.g. bypass all validation rules.
+reduce memory consumption
 
 1. context menu
 4. Per-lender config override

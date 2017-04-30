@@ -326,12 +326,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         TickPhase phase = getContext().getCurrentPhase();
         if (phase != null) {
             ChangeModeEnum changeMode = phase.getChangeMode();
-            switch (changeMode) {
-                case DIRECT:
-                    return true;
-                case PROHIBITED:
-                    throw new UiNodeEventException(); //todo specialized exception type
-            }
+            if (changeMode == ChangeModeEnum.DIRECT)
+                return true;
         }
         return false;
     }

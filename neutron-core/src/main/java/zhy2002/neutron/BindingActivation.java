@@ -41,4 +41,9 @@ public final class BindingActivation {
             binding.fire(event);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Binding activation of [" + binding + "] for [" + event + "]";
+    }
 }
