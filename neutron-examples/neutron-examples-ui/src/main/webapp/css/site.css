@@ -248,6 +248,12 @@ html, body {
 .person-current-employment-component .btn-warning {
   margin-top: 15px; }
 
+.input-options-panel {
+  position: relative; }
+  .input-options-panel .list-group {
+    position: absolute;
+    z-index: 1; }
+
 .navbar-nav > li > a {
   cursor: pointer; }
 

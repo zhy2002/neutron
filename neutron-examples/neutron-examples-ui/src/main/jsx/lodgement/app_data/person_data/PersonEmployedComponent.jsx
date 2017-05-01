@@ -21,7 +21,10 @@ export default class PersonEmployedComponent extends NeutronComponent {
                         <SelectInputComponent model={model.getEmploymentStatusNode()}/>
                     </div>
                     <div className="col-md-6">
-                        <TextInputComponent model={model.getOccupationNode()}/>
+                        <TextInputComponent
+                            model={model.getOccupationNode()}
+                            searchUrl="http://localhost:9200/lodgement/occupation/_search?q={key}&_source=true&pretty"
+                        />
                     </div>
                 </div>
                 <div className="row">

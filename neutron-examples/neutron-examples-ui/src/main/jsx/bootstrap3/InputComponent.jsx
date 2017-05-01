@@ -7,7 +7,7 @@ export default class InputComponent extends NeutronComponent {
     constructor(props) {
         super(props);
 
-        this.flush = debounce(300, () => {
+        this.flushNow = () => {
             const context = this.model.getContext();
             try {
                 context.flush();
@@ -17,7 +17,9 @@ export default class InputComponent extends NeutronComponent {
             }
             context.setCycleMode(context.oldCycleMode);
             delete context.oldCycleMode;
-        });
+        };
+
+        this.flush = debounce(300, this.flushNow);
 
         this.ensureDebouncingMode = () => {
             const context = this.model.getContext();

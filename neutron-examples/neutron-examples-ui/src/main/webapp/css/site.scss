@@ -1,3 +1,5 @@
+
+
 $scrollbarWidth: 10px;
 
 //region Top Level Components
@@ -385,6 +387,16 @@ html, body {
     margin-top: 15px;
   }
 }
+
+.input-options-panel {
+  position: relative;
+
+  .list-group {
+    position: absolute;
+    z-index: 1;
+  }
+}
+
 
 //region Bootstrap Override
 
