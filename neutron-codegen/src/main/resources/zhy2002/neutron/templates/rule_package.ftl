@@ -1,0 +1,1 @@
+package ${targetPackage}.gen.rule;

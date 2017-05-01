@@ -24,15 +24,11 @@ public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {
 
     }
 
-    @Inject
-    Provider<DummyRule> dummyRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        DummyRule dummyRule = dummyRuleProvider.get();
-        createdRules.add(dummyRule);
     }
 
 }
