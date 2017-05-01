@@ -6,6 +6,7 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.exception.NotImplementedException;
 import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -321,13 +322,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     final boolean isInDirectChangeMode() {
         if (this.getNodeStatus() != NodeStatusEnum.Loaded || this.getParent() != null && this.getParent().getNodeStatus() != NodeStatusEnum.Loaded) {
             return true;
-        }
-
-        TickPhase phase = getContext().getCurrentPhase();
-        if (phase != null) {
-            ChangeModeEnum changeMode = phase.getChangeMode();
-            if (changeMode == ChangeModeEnum.DIRECT)
-                return true;
         }
         return false;
     }

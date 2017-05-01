@@ -1,7 +1,7 @@
-package zhy2002.neutron;
+package zhy2002.neutron.exception;
 
 /**
- * Created by ZHY on 12/11/2016.
+ * Indicate feature is not implemented.
  */
 public class NotImplementedException extends RuntimeException {
 }

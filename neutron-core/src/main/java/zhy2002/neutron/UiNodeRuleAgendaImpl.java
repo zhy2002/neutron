@@ -10,7 +10,6 @@ import java.util.Map;
  */
 public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
 
-    private boolean paused = false;
     private final Map<TickPhase, Deque<BindingActivation>> activationQueueMap = new HashMap<>(); //todo this is actually a priority queue.
 
     @Override
@@ -23,17 +22,12 @@ public class UiNodeRuleAgendaImpl implements UiNodeRuleAgenda {
 
     @Override
     public boolean hasActivation(TickPhase phase) {
-        if (paused)
-            return false;
         Deque<BindingActivation> activationDeque = activationQueueMap.get(phase);
         return activationDeque != null && !activationDeque.isEmpty();
     }
 
     @Override
     public BindingActivation getNextActivation(TickPhase phase) {
-        if(paused)
-            throw new UiNodeException("Cannot get activation when agenda is paused.");
-
         Deque<BindingActivation> activationDeque = activationQueueMap.get(phase);
         return activationDeque.poll();
     }

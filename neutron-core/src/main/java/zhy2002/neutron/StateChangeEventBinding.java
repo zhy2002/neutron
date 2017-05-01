@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
 import zhy2002.neutron.util.NeutronConstants;
-import zhy2002.neutron.util.PredefinedPhases;
 import zhy2002.neutron.util.ValueUtil;
 
 public abstract class StateChangeEventBinding<E extends StateChangeEvent> extends AbstractEventBinding<E> {

@@ -8,7 +8,7 @@ import zhy2002.neutron.node.VoidUiNode;
  *
  * @param <R> type of the root UiNode.
  */
-public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleStatus, UiNodeChangeEngineStatus, UiNodeChangeEngine {
+public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleStatus, UiNodeChangeEngine {
 
     /**
      * Get an automatically generate unique id.

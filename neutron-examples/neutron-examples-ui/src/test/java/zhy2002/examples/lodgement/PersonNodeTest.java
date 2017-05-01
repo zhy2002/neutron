@@ -7,6 +7,7 @@ import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.neutron.*;
+import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.rule.BooleanFixedValueValidationRule;
 
 import java.math.BigDecimal;

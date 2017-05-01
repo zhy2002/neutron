@@ -22,7 +22,7 @@ public interface CycleStatus {
      * Indicates what the cycle is doing.
      * @return status.
      */
-    CycleStatusEnum getCurrentStatus();
+    CycleStateEnum getCurrentStatus();
 
     /**
      * If is applying or reverting this is the event.

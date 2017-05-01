@@ -3,7 +3,7 @@ package zhy2002.neutron;
 /**
  * Indicates what the cycle is doing.
  */
-public enum CycleStatusEnum {
+public enum CycleStateEnum {
 
     /**
      * Applying changes.

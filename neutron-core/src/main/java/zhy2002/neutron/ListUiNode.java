@@ -5,7 +5,6 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;

@@ -6,7 +6,6 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.util.PredefinedPhases;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;

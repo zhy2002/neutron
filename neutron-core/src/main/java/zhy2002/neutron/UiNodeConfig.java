@@ -18,7 +18,7 @@ public abstract class UiNodeConfig<N extends UiNode<?>> implements UiNodeLifeCyc
         owner.addStatusListener(this);
     }
 
-    public void dispose() {
+    public final void dispose() {
         owner.removeStatusListener(this);
     }
 

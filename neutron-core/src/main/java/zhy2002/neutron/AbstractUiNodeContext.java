@@ -211,7 +211,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     }
 
     @Override
-    public final CycleStatusEnum getCurrentStatus() {
+    public final CycleStateEnum getCurrentStatus() {
         CycleStatus cycleStatus = getCurrentCycleStatus();
         return cycleStatus == null ? null : cycleStatus.getCurrentStatus();
     }

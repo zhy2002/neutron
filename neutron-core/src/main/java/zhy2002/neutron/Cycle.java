@@ -1,6 +1,6 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.util.PredefinedPhases;
+import zhy2002.neutron.exception.UiNodeEventException;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class Cycle implements CycleStatus {
     /**
      * Maximum number of rules fired in one cycle.
      */
-    private static final int MAX_RULE_ACTIVATION_COUNT = 100000;
+    private static final int MAX_RULE_ACTIVATION_COUNT = 10000;
     /**
      * The predefined phases of a tick.
      * Rule prioritization on happens in the same phase.
@@ -31,8 +31,8 @@ public class Cycle implements CycleStatus {
     private static final TickPhase[] TICK_PHASES = {PredefinedPhases.Pre, PredefinedPhases.Post, PredefinedPhases.Validate};
 
     /**
-     * UiNode events that are parsed by not applied.
-     * "parse" means the activations of the event is added to the agenda.
+     * UiNode events that are parsed but not applied.
+     * "parsed" means the activations of the event is added to the agenda.
      */
     private final Deque<UiNodeEvent> notAppliedDeque = new ArrayDeque<>();
     /**
@@ -50,7 +50,7 @@ public class Cycle implements CycleStatus {
     /**
      * An enum value indicating what this cycle is doing at the moment.
      */
-    private CycleStatusEnum status;
+    private CycleStateEnum state;
     /**
      * The current event being applied or reverted.
      * When rules are firing this is null.
@@ -61,62 +61,68 @@ public class Cycle implements CycleStatus {
      * to find out what is causing itself to execute.
      */
     private BindingActivation currentActivation;
-
+    /**
+     * Count the number of rules activated.
+     */
     private int ruleActivationCount;
-
+    /**
+     * A flag that indicates the current tick should rerun all the phases.
+     */
     private boolean resetTick;
 
+    boolean canRevert() {
+        return !appliedDeque.isEmpty();
+    }
+
+    boolean canApply() {
+        return !notAppliedDeque.isEmpty();
+    }
+
+    private void increaseActivationCount() {
+        if (++ruleActivationCount > MAX_RULE_ACTIVATION_COUNT)
+            throw new UiNodeEventException("Rule activation limit exceeded.");
+    }
+
+    void resetTick() {
+        this.resetTick = true;
+    }
 
     public void apply() {
-        status = CycleStatusEnum.Applying;
-        while (!notAppliedDeque.isEmpty()) {
-            UiNodeEvent uiNodeEvent = notAppliedDeque.poll();
-            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
-                currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
-                currentActivation = new BindingActivation(null, currentChangeEvent);
-                currentChangeEvent.apply();
-                currentChangeEvent = null;
-                currentActivation = null;
+        state = CycleStateEnum.Applying;
+        try {
+            while (!notAppliedDeque.isEmpty()) {
+                UiNodeEvent uiNodeEvent = notAppliedDeque.poll();
+                if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+                    currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
+                    currentActivation = new BindingActivation(null, currentChangeEvent);
+                    currentChangeEvent.apply();
+                    currentChangeEvent = null;
+                    currentActivation = null;
+                }
+                appliedDeque.add(uiNodeEvent);
             }
-            appliedDeque.add(uiNodeEvent);
+        } finally {
+            state = null;
         }
-        status = null;
     }
 
     public void revert() {
-        status = CycleStatusEnum.Applying;
-        while (!appliedDeque.isEmpty()) {
-            UiNodeEvent uiNodeEvent = appliedDeque.pollLast();
-            if (uiNodeEvent instanceof ChangeUiNodeEvent) {
-                currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
-                currentActivation = new BindingActivation(null, currentChangeEvent);
-                currentChangeEvent.revert();
-                currentChangeEvent = null;
-                currentActivation = null;
+        state = CycleStateEnum.Reverting;
+        try {
+            while (!appliedDeque.isEmpty()) {
+                UiNodeEvent uiNodeEvent = appliedDeque.pollLast();
+                if (uiNodeEvent instanceof ChangeUiNodeEvent) {
+                    currentChangeEvent = (ChangeUiNodeEvent) uiNodeEvent;
+                    currentActivation = new BindingActivation(null, currentChangeEvent);
+                    currentChangeEvent.revert();
+                    currentChangeEvent = null;
+                    currentActivation = null;
+                }
+                notAppliedDeque.addFirst(uiNodeEvent);
             }
-            notAppliedDeque.addFirst(uiNodeEvent);
+        } finally {
+            state = null;
         }
-        status = null;
-    }
-
-    @Override
-    public TickPhase getCurrentPhase() {
-        return currentPhase;
-    }
-
-    @Override
-    public CycleStatusEnum getCurrentStatus() {
-        return status;
-    }
-
-    @Override
-    public ChangeUiNodeEvent getCurrentChangeEvent() {
-        return currentChangeEvent;
-    }
-
-    @Override
-    public BindingActivation getCurrentActivation() {
-        return currentActivation;
     }
 
     void notifyChanges() {
@@ -138,6 +144,26 @@ public class Cycle implements CycleStatus {
             node.notifyChange();
             notified.add(node);
         }
+    }
+
+    @Override
+    public TickPhase getCurrentPhase() {
+        return currentPhase;
+    }
+
+    @Override
+    public CycleStateEnum getCurrentStatus() {
+        return state;
+    }
+
+    @Override
+    public ChangeUiNodeEvent getCurrentChangeEvent() {
+        return currentChangeEvent;
+    }
+
+    @Override
+    public BindingActivation getCurrentActivation() {
+        return currentActivation;
     }
 
     void pollAll(Deque<UiNodeEvent> eventDeque) {
@@ -184,7 +210,7 @@ public class Cycle implements CycleStatus {
 
     private void processPhase() {
         try {
-            status = CycleStatusEnum.Firing;
+            state = CycleStateEnum.Firing;
             while (!resetTick && agenda.hasActivation(currentPhase)) {
                 currentActivation = agenda.getNextActivation(currentPhase);
                 increaseActivationCount();
@@ -192,25 +218,7 @@ public class Cycle implements CycleStatus {
             }
         } finally {
             currentActivation = null;
-            status = null;
+            state = null;
         }
     }
-
-    private void increaseActivationCount() {
-        if (++ruleActivationCount > MAX_RULE_ACTIVATION_COUNT)
-            throw new UiNodeEventException("Rule activation limit exceeded.");
-    }
-
-    boolean canRevert() {
-        return !appliedDeque.isEmpty();
-    }
-
-    boolean canApply() {
-        return !notAppliedDeque.isEmpty();
-    }
-
-    void resetTick() {
-        this.resetTick = true;
-    }
-
 }
