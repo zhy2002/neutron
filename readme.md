@@ -1,9 +1,5 @@
 todo 
 ----------------- 
-bugs
-- handle situation where when loading a url some node does not exist
-- limit number of entries from auto complete - also show list on focus
-
 1. rolling commit - only keep N cycles in the current session
 2. load initial values (as a part of node load) 
   - load value only or the full state?

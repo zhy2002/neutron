@@ -37,6 +37,12 @@ export default class TextInputComponent extends InputComponent {
 
         this.showOptions = () => {
             this.setState({showOptions: true});
+            if (this.model.getOptions) {
+                const options = this.model.getOptions();
+                if (options === null) {
+                    this.fetchSearchList();
+                }
+            }
         };
 
         this.hideOptions = debounce(250, () => {
