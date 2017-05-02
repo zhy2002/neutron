@@ -142,23 +142,42 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
         logger.info("selecting path: " + path);
 
+        final String[] select = new String[1];
+        int queryStringStart = path.indexOf("?");
+        if (queryStringStart >= 0) {
+            String queryString = path.substring(queryStringStart + 1);
+            path = path.substring(0, queryStringStart);
+            String[] parameters = queryString.split("&");
+            Arrays.stream(parameters).forEach(p -> {
+                String[] parts = p.split("=");
+                if (parts.length >= 2 && parts[0].equals("select")) {
+                    select[0] = parts[1];
+                }
+            });
+        }
+
         UiNode<?> parent = this;
         String[] names = path.split("/");
-        for (String name : names) {
+        List<String> allNames = new ArrayList<>(Arrays.asList(names));
+        if (select[0] != null) {
+            allNames.add(select[0]);
+        }
+
+        for (String name : allNames) {
             if (parent instanceof ListUiNode<?, ?>) {
                 ListUiNode<?, ?> list = (ListUiNode<?, ?>) parent;
                 UiNode<?> child = list.getChild(name);
-                if (child != null) {
-                    list.setSelectedIndex(child.getIndex());
-                    parent = child;
-                }
+                parent = child;
+                if (child == null)
+                    break;
+                list.setSelectedIndex(child.getIndex());
             } else if (parent instanceof ObjectUiNode<?>) {
                 ObjectUiNode<?> obj = (ObjectUiNode<?>) parent;
                 UiNode<?> child = obj.getChild(name);
-                if (child != null) {
-                    obj.setSelectedName(child.getName());
-                    parent = child;
-                }
+                parent = child;
+                if (child == null)
+                    break;
+                obj.setSelectedName(child.getName());
             } else {
                 break;
             }

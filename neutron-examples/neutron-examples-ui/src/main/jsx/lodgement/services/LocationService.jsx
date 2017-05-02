@@ -38,7 +38,7 @@ function notifyHashChange() {
  * Update the hash when the model being displayed is changed.
  * @param model the model being displayed.
  */
-function updateHash(model) {
+function updateHash(model, tab) {
     if (!restored) {
         console.info('Skip updateHash util location is restored.');
         return false;
@@ -50,6 +50,11 @@ function updateHash(model) {
     } else {
         const root = model.getContext().getRootNode();
         hash = `/app/${root.getIdNode().getValue()}${model.getPath()}`;
+        if (tab) {
+            hash += `?select=${model.getSelectedName()}`;
+        } else if (currentHash && currentHash.startsWith(`${hash}?`)) {
+            return false; //hash already updated at descendant level.
+        }
     }
 
     if (window.location.hash !== `#${hash}`) {

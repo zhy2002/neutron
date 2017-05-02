@@ -11,14 +11,11 @@ import zhy2002.examples.lodgement.gen.rule.DobRangeValidationRule;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.examples.lodgement.gen.rule.TitleGenderMatchRule;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
-import zhy2002.neutron.UiNodeChangeListener;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.ObjectValueRequiredValidationRule;
 import zhy2002.neutron.util.SharedDateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.function.Predicate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -457,6 +454,17 @@ public class LodgementNodeTest {
         assertThat(applicationNode.getSelectedName(), equalTo("productsNode"));
         assertThat(applicationNode.getProductsNode().getSelectedName(), equalTo("productFeeListNode"));
         assertThat(applicationNode.getContentLevel(), equalTo(2));
+    }
+
+    @Test
+    public void canSelectDescendantAndTab() {
+        PersonNode personNode = applicationNode.getPersonListNode().createItem();
+        applicationNode.selectDescendant("personListNode/0?select=currentEmploymentListNode");
+        assertThat(applicationNode.getSelectedName(), equalTo("personListNode"));
+        assertThat(applicationNode.getPersonListNode().getSelectedIndex(), equalTo(0));
+        assertThat(applicationNode.getContentLevel(), equalTo(2));
+        assertThat(personNode.getSelectedName(), equalTo("currentEmploymentListNode"));
+
     }
 
     @Test

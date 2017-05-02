@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import TabContentComponent from '../common/TabContentComponent';
 import CompanyTrustComponent from './CompanyTrustComponent';
 import CompanyPrivacyComponent from './CompanyPrivacyComponent';
 import CompanyGeneralComponent from './CompanyGeneralComponent';
@@ -7,20 +7,11 @@ import CompanyResponsibleLendComponent from './CompanyResponsibleLendComponent';
 import CompanyOtherIncomeListComponent from './CompanyOtherIncomeListComponent';
 import CompanyContactComponent from './CompanyContactComponent';
 
-export default class CompanyComponent extends NeutronComponent {
+export default class CompanyComponent extends TabContentComponent {
 
-    extractNewState() {
-        const newState = super.extractNewState();
+    renderTabContent(className, model) {
+        console.log(`render tab content for ${this.label}`);
 
-        const selectedName = this.model.getSelectedName();
-        newState.selectedItem = this.model.getChildByName(selectedName);
-
-        return newState;
-    }
-
-    renderContent() {
-        const model = this.state.selectedItem;
-        const className = model.getConcreteClassName();
         if (className === 'CompanyGeneralNode') {
             return <CompanyGeneralComponent model={model}/>;
         }
@@ -40,22 +31,7 @@ export default class CompanyComponent extends NeutronComponent {
             return <CompanyResponsibleLendComponent model={model}/>;
         }
 
-        return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-12">
-                        <em>unknown model type {className}</em>
-                    </div>
-                </div>
-            </div>
-        );
+        return null;
     }
 
-    render() {
-        return (
-            <div className="company-component">
-                {this.renderContent()}
-            </div>
-        );
-    }
 }

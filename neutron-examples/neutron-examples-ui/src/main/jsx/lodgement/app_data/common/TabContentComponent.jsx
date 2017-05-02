@@ -1,5 +1,6 @@
 import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import LocationService from '../../services/LocationService';
 
 export default class TabContentComponent extends NeutronComponent {
 
@@ -11,6 +12,15 @@ export default class TabContentComponent extends NeutronComponent {
         newState.selectedItem = this.model.getChildByName(selectedName);
 
         return newState;
+    }
+
+    componentDidMount() {
+        LocationService.updateHash(this.model, true);
+    }
+
+    componentDidUpdate() {
+        super.componentDidUpdate();
+        LocationService.updateHash(this.model, true);
     }
 
     renderTabContent(className, model) {
