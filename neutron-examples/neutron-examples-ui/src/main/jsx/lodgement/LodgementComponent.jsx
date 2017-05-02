@@ -11,6 +11,7 @@ export default class LodgementComponent extends React.PureComponent {
     constructor(props) {
         super(props);
 
+        console.log('constructing lodgement component');
         this.state = LocationService.getState();
 
         this.onHashChanged = () => {

@@ -28,7 +28,7 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
         queue.add(target); //bfs
         while (!queue.isEmpty()) {
             target = queue.poll();
-            if(target.isDisabled())
+            if (target.isDisabled())
                 continue;
             if (target instanceof ParentUiNode) {
                 ParentUiNode<?> parentUiNode = (ParentUiNode<?>) target;
@@ -37,8 +37,10 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
                 }
             }
             for (EventBinding binding : target.getAttachedEventBindings(this.getEventKey())) {//todo not right, event inheritance
-                BindingActivation activation = new BindingActivation(binding, this);
-                result.add(activation);
+                if (binding.canFire(this)) {
+                    BindingActivation activation = new BindingActivation(binding, this);
+                    result.add(activation);
+                }
             }
         }
         return result;

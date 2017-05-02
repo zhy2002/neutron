@@ -28,6 +28,10 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
     Provider<UpdateAddressRefListRule> updateAddressRefListRuleProvider;
     @Inject
     Provider<ObjectValueRequiredValidationRule> objectValueRequiredValidationRuleProvider;
+    @Inject
+    Provider<MaintainDisabledAncestorCountRule> maintainDisabledAncestorCountRuleProvider;
+    @Inject
+    Provider<MaintainReadonlyAncestorCountRule> maintainReadonlyAncestorCountRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -37,6 +41,10 @@ public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {
         createdRules.add(updateAddressRefListRule);
         ObjectValueRequiredValidationRule objectValueRequiredValidationRule = objectValueRequiredValidationRuleProvider.get();
         createdRules.add(objectValueRequiredValidationRule);
+        MaintainDisabledAncestorCountRule maintainDisabledAncestorCountRule = maintainDisabledAncestorCountRuleProvider.get();
+        createdRules.add(maintainDisabledAncestorCountRule);
+        MaintainReadonlyAncestorCountRule maintainReadonlyAncestorCountRule = maintainReadonlyAncestorCountRuleProvider.get();
+        createdRules.add(maintainReadonlyAncestorCountRule);
     }
 
 }

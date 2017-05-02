@@ -1397,6 +1397,8 @@ commonTypes:
   rules:
   - {typeName: UpdateAddressRefListRule}
   - {typeName: ObjectValueRequiredValidationRule, existing: true}
+  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
+  - {typeName: MaintainReadonlyAncestorCountRule, existing: true}
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode
