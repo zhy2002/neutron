@@ -235,7 +235,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                     new BooleanStateChangeEventBinding(
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateCount,
-                            NeutronConstants.SELF_DIRTY
+                            SELF_DIRTY_PROPERTY.getStateKey()
                     )
             );
         }
@@ -262,11 +262,16 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
         @Override
         protected Collection<EventBinding> createEventBindings() {
-            return Collections.singletonList(
+            return Arrays.asList(
                     new BooleanStateChangeEventBinding(
                             e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
                             this::updateCount,
                             DISABLED_PROPERTY.getStateKey()
+                    ),
+                    new RefreshEventBinding(
+                            e -> e.getOrigin() == getOwner(),
+                            this::initCount,
+                            NeutronConstants.NODE_LOADED_REFRESH_REASON
                     )
             );
         }
@@ -279,6 +284,16 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 delta = -1;
             }
 
+            doUpdate(delta);
+        }
+
+        private void initCount(RefreshUiNodeEvent event) {
+            if (getOwner().isDisabled()) {
+                doUpdate(1);
+            }
+        }
+
+        private void doUpdate(int delta) {
             Queue<UiNode<?>> nodes = new ArrayDeque<>();
             nodes.addAll(Arrays.asList(getOwner().getChildren()));
             while (!nodes.isEmpty()) {
@@ -291,5 +306,64 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
             }
         }
     }
+
+    /**
+     * When this parent node becomes readonly, increment readonly ancestor count of all descendants.
+     * When this parent node becomes not readonly, decrement readonly ancestor count of all descendants.
+     */
+    static class MaintainReadonlyAncestorCountRule extends UiNodeRule<ParentUiNode<?>> {
+
+        @Inject
+        protected MaintainReadonlyAncestorCountRule(@Owner ParentUiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Arrays.asList(
+                    new BooleanStateChangeEventBinding(
+                            e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
+                            this::updateCount,
+                            READONLY_PROPERTY.getStateKey()
+                    ),
+                    new RefreshEventBinding(
+                            e -> e.getOrigin() == getOwner(),
+                            this::initCount,
+                            NeutronConstants.NODE_LOADED_REFRESH_REASON
+                    )
+            );
+        }
+
+        private void updateCount(BooleanStateChangeEvent event) {
+            int delta;
+            if (Boolean.TRUE.equals(event.getNewValue())) {
+                delta = 1;
+            } else {
+                delta = -1;
+            }
+
+            doUpdate(delta);
+        }
+
+        private void initCount(RefreshUiNodeEvent event) {
+            if (getOwner().isReadonly()) {
+                doUpdate(1);
+            }
+        }
+
+        private void doUpdate(int delta) {
+            Queue<UiNode<?>> nodes = new ArrayDeque<>();
+            nodes.addAll(Arrays.asList(getOwner().getChildren()));
+            while (!nodes.isEmpty()) {
+                UiNode<?> node = nodes.poll();
+                node.setReadonlyAncestorCount(node.getReadonlyAncestorCount() + delta);
+                if (node instanceof ParentUiNode) {
+                    ParentUiNode<?> parent = (ParentUiNode<?>) node;
+                    nodes.addAll(Arrays.asList(parent.getChildren()));
+                }
+            }
+        }
+    }
+
 }
 

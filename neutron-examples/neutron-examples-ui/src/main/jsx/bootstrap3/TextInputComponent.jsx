@@ -116,7 +116,7 @@ export default class TextInputComponent extends InputComponent {
                     value={this.state.value}
                     onChange={this.updateValue}
                     disabled={this.state.disabled}
-                    readOnly={this.props.readonly || this.state.readonly}
+                    readOnly={this.state.readonly}
                     {...conditionalProps}
                 />
                 {this.renderOptions()}
@@ -129,12 +129,10 @@ export default class TextInputComponent extends InputComponent {
 }
 
 TextInputComponent.propTypes = {
-    readonly: React.PropTypes.bool,
     searchUrl: React.PropTypes.string
 };
 
 TextInputComponent.defaultProps = {
-    readonly: false,
     searchUrl: null
 };
 

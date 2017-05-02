@@ -162,7 +162,12 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
             return;
 
         NodeRemoveEvent<N> event = createItemRemoveEvent(item);
-        getContext().processEvent(event);
+        if (isInDirectChangeMode()) {
+            event.apply();
+        } else {
+            getContext().processEvent(event);
+        }
+
     }
 
     public final NodeAddEvent<N> createItemAddEvent() {

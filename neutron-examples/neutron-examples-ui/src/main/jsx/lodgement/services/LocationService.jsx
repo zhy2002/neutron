@@ -27,9 +27,8 @@ function removeHashChangeHandler(func) {
 }
 
 function notifyHashChange() {
-    console.log(`number of handlers ${hashChangeHandlers.length}`);
+    console.debug('notifying hash change');
     for (let i = 0; i < hashChangeHandlers.length; i++) {
-        console.log(`notifying hash change ${i}`);
         hashChangeHandlers[i]();
     }
 }
@@ -40,7 +39,7 @@ function notifyHashChange() {
  */
 function updateHash(model, tab) {
     if (!restored) {
-        console.info('Skip updateHash util location is restored.');
+        console.debug('skipping updateHash until model is restored');
         return false;
     }
 

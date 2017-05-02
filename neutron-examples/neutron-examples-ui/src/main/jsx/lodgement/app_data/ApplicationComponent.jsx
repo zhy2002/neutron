@@ -40,7 +40,6 @@ export default class ApplicationComponent extends NeutronComponent {
     }
 
     render() {
-        console.log('ApplicationComponent render');
         const errorClass = this.state.showErrorList ? 'show-error-list' : '';
         return (
             <div className={`application-component ${errorClass}`}>

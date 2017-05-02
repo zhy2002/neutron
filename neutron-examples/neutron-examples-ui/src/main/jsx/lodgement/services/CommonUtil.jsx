@@ -18,7 +18,6 @@ function defer(data) {
 }
 
 function setIsLoading(isLoading) {
-    console.log(`executing setIsLoading(${isLoading})`);
     const items = document.getElementsByClassName('loading-spinner-component');
     if (items.length === 0)
         return;
@@ -28,6 +27,7 @@ function setIsLoading(isLoading) {
     } else {
         spinner.classList.add('hide');
     }
+    console.debug(`IsLoading: ${isLoading}`);
 }
 
 function extractValue(node) {

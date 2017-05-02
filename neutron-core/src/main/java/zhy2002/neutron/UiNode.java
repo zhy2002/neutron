@@ -627,6 +627,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
     public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
+    public static final PropertyMetadata<Integer> READONLY_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "readonlyAncestorCount", Integer.class, 0);
     public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
     public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class);
     public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class);
@@ -692,6 +693,19 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     @JsMethod
     public void setReadonly(boolean value) {
         setStateValue(READONLY_PROPERTY, value);
+    }
+
+    @JsMethod
+    public final boolean isEffectivelyReadonly() {
+        return isReadonly() || getReadonlyAncestorCount() > 0;
+    }
+
+    public final int getReadonlyAncestorCount() {
+        return getStateValue(READONLY_ANCESTOR_COUNT);
+    }
+
+    public final void setReadonlyAncestorCount(int count) {
+        setStateValue(READONLY_ANCESTOR_COUNT, count);
     }
 
     @JsMethod

@@ -7,7 +7,7 @@ import ProductFeaturesComponent from './ProductFeaturesComponent';
 export default class ProductComponent extends TabContentComponent {
 
     renderTabContent(className, model) {
-        console.log(`render tab content for ${this.label}`);
+        console.log(`render tab content for product ${this.label}`);
 
         if (className === 'ProductDescriptionNode') {
             return <ProductDescriptionComponent model={model}/>;

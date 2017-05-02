@@ -29,7 +29,6 @@ export default class ApplicationContentComponent extends React.PureComponent {
 
     renderContent() {
         const model = this.props.model;
-        console.log('ApplicationContentComponent.renderContent');
         const className = model.getConcreteClassName();
 
         if (className === 'PersonListNode')

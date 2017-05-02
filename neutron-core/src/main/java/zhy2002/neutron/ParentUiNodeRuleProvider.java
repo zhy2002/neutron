@@ -22,13 +22,17 @@ public class ParentUiNodeRuleProvider implements RuleProvider<ParentUiNode<?>> {
     Provider<ParentUiNode.MaintainDirtyDescendantCountRule> maintainDirtyDescendantCountRuleProvider;
 
     @Inject
-    Provider<ParentUiNode.MaintainDisabledAncestorCountRule> updateDisabledRuleProvider;
+    Provider<ParentUiNode.MaintainDisabledAncestorCountRule> maintainDisabledAncestorCountRuleProvider;
+
+    @Inject
+    Provider<ParentUiNode.MaintainReadonlyAncestorCountRule> maintainReadonlyAncestorCountRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
         createdRules.add(maintainDirtyDescendantCountRuleProvider.get());
-        createdRules.add(updateDisabledRuleProvider.get());
+        createdRules.add(maintainDisabledAncestorCountRuleProvider.get());
+        createdRules.add(maintainReadonlyAncestorCountRuleProvider.get());
     }
 }

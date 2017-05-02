@@ -6,7 +6,10 @@ import zhy2002.examples.TestUtil;
 import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
-import zhy2002.neutron.*;
+import zhy2002.neutron.CycleModeEnum;
+import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNode;
+import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.rule.BooleanFixedValueValidationRule;
 
@@ -178,6 +181,17 @@ public class PersonNodeTest {
         addressNode.setDisabled(true);
         assertThat(addressNode.isEffectivelyDisabled(), equalTo(true));
         assertThat(addressNode.getAddressLineNode().isEffectivelyDisabled(), equalTo(true));
+    }
+
+    @Test
+    public void canMakeWholePanelReadonly() {
+        PersonAddressNode addressNode = this.personContactNode.getCurrentAddressNode();
+        assertThat(addressNode.isEffectivelyReadonly(), equalTo(false));
+        assertThat(addressNode.getAddressLineNode().isEffectivelyReadonly(), equalTo(false));
+
+        addressNode.setReadonly(true);
+        assertThat(addressNode.isEffectivelyReadonly(), equalTo(true));
+        assertThat(addressNode.getAddressLineNode().isEffectivelyReadonly(), equalTo(true));
     }
 
     @Test
