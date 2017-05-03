@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NodeLabelComponent from './NodeLabelComponent';
 import ListNeutronComponent from './ListNeutronComponent';
 
@@ -136,10 +137,10 @@ export default class NavDropdownComponent extends ListNeutronComponent {
 }
 
 NavDropdownComponent.propTypes = {
-    onSelect: React.PropTypes.func.isRequired,
-    children: React.PropTypes.any.isRequired,
-    childItems: React.PropTypes.array,
-    childList: React.PropTypes.object
+    onSelect: PropTypes.func.isRequired,
+    children: PropTypes.any.isRequired,
+    childItems: PropTypes.array,
+    childList: PropTypes.object
 };
 
 NavDropdownComponent.defaultProps = {

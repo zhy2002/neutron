@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ApplicationNavComponent from './ApplicationNavComponent';
 import ApplicationTabsComponent from './ApplicationTabsComponent';
@@ -57,5 +58,5 @@ export default class ApplicationComponent extends NeutronComponent {
 }
 
 ApplicationComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
+    model: PropTypes.object.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class PanelComponent extends React.PureComponent {
 
@@ -28,10 +29,10 @@ export default class PanelComponent extends React.PureComponent {
 }
 
 PanelComponent.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    children: React.PropTypes.any.isRequired,
-    className: React.PropTypes.string,
-    onAdd: React.PropTypes.func
+    title: PropTypes.string.isRequired,
+    children: PropTypes.any.isRequired,
+    className: PropTypes.string,
+    onAdd: PropTypes.func
 };
 
 PanelComponent.defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 
 
@@ -48,5 +49,5 @@ export default class AddListComponent extends ListNeutronComponent {
 }
 
 AddListComponent.propTypes = {
-    children: React.PropTypes.any.isRequired
+    children: PropTypes.any.isRequired
 };

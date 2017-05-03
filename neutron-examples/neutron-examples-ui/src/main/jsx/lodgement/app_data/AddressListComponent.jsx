@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NodeValueComponent from '../../bootstrap3/NodeValueComponent';
 
 export default class AddressListComponent extends React.PureComponent {
@@ -41,7 +42,7 @@ export default class AddressListComponent extends React.PureComponent {
 }
 
 AddressListComponent.propTypes = {
-    contextModel: React.PropTypes.object.isRequired,
-    onSelect: React.PropTypes.func.isRequired,
-    onHide: React.PropTypes.func.isRequired
+    contextModel: PropTypes.object.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    onHide: PropTypes.func.isRequired
 };

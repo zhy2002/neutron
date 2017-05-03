@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ModelTabsComponent from '../../bootstrap3/ModelTabsComponent';
 
 export default class ApplicationTabsComponent extends React.PureComponent {
@@ -23,5 +24,5 @@ export default class ApplicationTabsComponent extends React.PureComponent {
 }
 
 ApplicationTabsComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
+    model: PropTypes.object.isRequired
 };

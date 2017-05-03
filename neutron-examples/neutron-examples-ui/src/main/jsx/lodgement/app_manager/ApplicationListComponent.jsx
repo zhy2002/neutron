@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import UiService from '../services/UiService';
 import LocationService from '../services/LocationService';
@@ -87,6 +88,6 @@ export default class ApplicationListComponent extends NeutronComponent {
 }
 
 ApplicationListComponent.propTypes = {
-    model: React.PropTypes.object.isRequired,
-    onLoadApp: React.PropTypes.func.isRequired
+    model: PropTypes.object.isRequired,
+    onLoadApp: PropTypes.func.isRequired
 };

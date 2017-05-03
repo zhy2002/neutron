@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 function nodeNameToLabel(nodeName) {
     let name = nodeName;
@@ -129,10 +129,10 @@ export default class NeutronComponent extends React.PureComponent {
 }
 
 NeutronComponent.propTypes = {
-    id: React.PropTypes.string,
-    label: React.PropTypes.string,
-    hideLabel: React.PropTypes.bool,
-    model: React.PropTypes.object.isRequired
+    id: PropTypes.string,
+    label: PropTypes.string,
+    hideLabel: PropTypes.bool,
+    model: PropTypes.object.isRequired
 };
 
 NeutronComponent.defaultProps = {

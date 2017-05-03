@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 
 
@@ -46,9 +47,9 @@ export default class TextAreaComponent extends InputComponent {
 }
 
 TextAreaComponent.propTypes = {
-    readonly: React.PropTypes.bool,
-    rows: React.PropTypes.number,
-    cols: React.PropTypes.number
+    readonly: PropTypes.bool,
+    rows: PropTypes.number,
+    cols: PropTypes.number
 };
 
 TextAreaComponent.defaultProps = {

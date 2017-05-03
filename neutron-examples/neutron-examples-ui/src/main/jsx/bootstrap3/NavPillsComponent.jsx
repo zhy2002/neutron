@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NodeLabelComponent from '../bootstrap3/NodeLabelComponent';
 
 
@@ -44,10 +45,10 @@ export default class NavPillsComponent extends React.PureComponent {
 }
 
 NavPillsComponent.propTypes = {
-    selectedItem: React.PropTypes.object.isRequired,
-    items: React.PropTypes.array.isRequired,
-    onSelect: React.PropTypes.func.isRequired,
-    onClose: React.PropTypes.func
+    selectedItem: PropTypes.object.isRequired,
+    items: PropTypes.array.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    onClose: PropTypes.func
 };
 
 NavPillsComponent.defaultProps = {

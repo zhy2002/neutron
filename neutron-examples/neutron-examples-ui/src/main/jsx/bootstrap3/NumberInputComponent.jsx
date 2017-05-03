@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 
 export default class NumberInputComponent extends InputComponent {
@@ -75,7 +76,7 @@ export default class NumberInputComponent extends InputComponent {
 }
 
 NumberInputComponent.propTypes = {
-    readonly: React.PropTypes.bool
+    readonly: PropTypes.bool
 };
 
 NumberInputComponent.defaultProps = {

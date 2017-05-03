@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 import ModalDialogComponent from './ModalDialogComponent';
 import NodeLabelComponent from './NodeLabelComponent';
@@ -90,5 +91,5 @@ export default class ReferenceInputComponent extends InputComponent {
 }
 
 ReferenceInputComponent.propTypes = {
-    getOptionNodes: React.PropTypes.func.isRequired
+    getOptionNodes: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PanelComponent from '../../../bootstrap3/PanelComponent';
 import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 
@@ -34,6 +35,6 @@ export default class SimpleListComponent extends ListNeutronComponent {
 }
 
 SimpleListComponent.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    createItemComponent: React.PropTypes.func.isRequired
+    title: PropTypes.string.isRequired,
+    createItemComponent: PropTypes.func.isRequired
 };

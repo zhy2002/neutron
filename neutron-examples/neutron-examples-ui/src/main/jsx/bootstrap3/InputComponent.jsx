@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'throttle-debounce/debounce';
 import NeutronComponent from './NeutronComponent';
 
@@ -66,7 +66,7 @@ export default class InputComponent extends NeutronComponent {
 }
 
 InputComponent.propTypes = {
-    containerClass: React.PropTypes.string
+    containerClass: PropTypes.string
 };
 
 InputComponent.defaultProps = {

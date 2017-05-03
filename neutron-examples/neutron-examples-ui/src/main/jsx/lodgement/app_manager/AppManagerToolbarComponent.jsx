@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import UiService from '../services/UiService';
 
 export default class AppManagerToolbarComponent extends React.PureComponent {
@@ -62,5 +63,5 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
 }
 
 AppManagerToolbarComponent.propTypes = {
-    onNewApp: React.PropTypes.func.isRequired
+    onNewApp: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import ItemIndexComponent from '../../../bootstrap3/ItemIndexComponent';
 
@@ -50,6 +51,6 @@ export default class RemovePanelComponent extends NeutronComponent {
 }
 
 RemovePanelComponent.propTypes = {
-    className: React.PropTypes.string.isRequired,
-    children: React.PropTypes.any.isRequired
+    className: PropTypes.string.isRequired,
+    children: PropTypes.any.isRequired
 };

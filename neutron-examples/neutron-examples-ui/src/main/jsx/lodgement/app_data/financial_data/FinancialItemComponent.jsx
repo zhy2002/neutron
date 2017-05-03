@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import OwnershipListComponent from '../common/OwnershipListComponent';
 
@@ -36,7 +37,7 @@ export default class FinancialItemComponent extends NeutronComponent {
 }
 
 FinancialItemComponent.propTypes = {
-    children: React.PropTypes.any.isRequired,
-    className: React.PropTypes.string.isRequired
+    children: PropTypes.any.isRequired,
+    className: PropTypes.string.isRequired
 };
 

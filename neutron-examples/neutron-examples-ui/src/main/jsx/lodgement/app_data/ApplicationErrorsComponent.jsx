@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ListNeutronComponent from '../../bootstrap3/ListNeutronComponent';
 
 export default class ApplicationErrorsComponent extends ListNeutronComponent {
@@ -79,6 +80,6 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
 }
 
 ApplicationErrorsComponent.propTypes = {
-    visible: React.PropTypes.bool.isRequired,
-    onClose: React.PropTypes.func.isRequired
+    visible: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
 };

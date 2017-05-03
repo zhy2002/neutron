@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ModalDialogComponent extends React.PureComponent {
 
@@ -40,10 +41,10 @@ export default class ModalDialogComponent extends React.PureComponent {
 }
 
 ModalDialogComponent.propTypes = {
-    show: React.PropTypes.bool.isRequired,
-    onClose: React.PropTypes.func,
-    title: React.PropTypes.string,
-    children: React.PropTypes.any
+    show: PropTypes.bool.isRequired,
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    children: PropTypes.any
 };
 
 ModalDialogComponent.defaultProps = {

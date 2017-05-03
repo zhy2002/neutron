@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class DummyNavDropdownComponent extends React.PureComponent {
 
@@ -45,7 +46,7 @@ export default class DummyNavDropdownComponent extends React.PureComponent {
 }
 
 DummyNavDropdownComponent.propTypes = {
-    model: React.PropTypes.object.isRequired,
-    onSelect: React.PropTypes.func.isRequired,
-    children: React.PropTypes.any.isRequired
+    model: PropTypes.object.isRequired,
+    onSelect: PropTypes.func.isRequired,
+    children: PropTypes.any.isRequired
 };

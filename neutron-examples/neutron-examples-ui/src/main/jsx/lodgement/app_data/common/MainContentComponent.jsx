@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class MainContentComponent extends React.PureComponent {
 
@@ -13,6 +14,6 @@ export default class MainContentComponent extends React.PureComponent {
 }
 
 MainContentComponent.propTypes = {
-    className: React.PropTypes.string.isRequired,
-    children: React.PropTypes.any.isRequired
+    className: PropTypes.string.isRequired,
+    children: PropTypes.any.isRequired
 };

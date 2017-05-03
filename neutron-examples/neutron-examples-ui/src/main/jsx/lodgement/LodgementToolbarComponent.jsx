@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
 import ApplicationToolbarComponent from './app_data/ApplicationToolbarComponent';
 
@@ -23,6 +24,6 @@ export default class LodgementToolbarComponent extends React.PureComponent {
 }
 
 LodgementToolbarComponent.propTypes = {
-    model: React.PropTypes.object.isRequired,
-    onNewApp: React.PropTypes.func.isRequired
+    model: PropTypes.object.isRequired,
+    onNewApp: PropTypes.func.isRequired
 };

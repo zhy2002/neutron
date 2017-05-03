@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
 
 export default class LodgementTabsComponent extends React.PureComponent {
@@ -23,8 +24,8 @@ export default class LodgementTabsComponent extends React.PureComponent {
 }
 
 LodgementTabsComponent.propTypes = {
-    selectedIndex: React.PropTypes.number.isRequired,
-    tabItems: React.PropTypes.array.isRequired,
-    selectTab: React.PropTypes.func.isRequired,
-    closeTab: React.PropTypes.func.isRequired
+    selectedIndex: PropTypes.number.isRequired,
+    tabItems: PropTypes.array.isRequired,
+    selectTab: PropTypes.func.isRequired,
+    closeTab: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ApplicationComponent from './app_data/ApplicationComponent';
 import ApplicationListComponent from './app_manager/ApplicationListComponent';
 
@@ -27,6 +28,6 @@ export default class LodgementContentComponent extends React.PureComponent {
 }
 
 LodgementContentComponent.propTypes = {
-    model: React.PropTypes.object.isRequired,
-    onLoadApp: React.PropTypes.func.isRequired
+    model: PropTypes.object.isRequired,
+    onLoadApp: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronComponent from './NeutronComponent';
 
 export default class ItemIndexComponent extends NeutronComponent {
@@ -19,5 +20,5 @@ export default class ItemIndexComponent extends NeutronComponent {
 }
 
 ItemIndexComponent.propTypes = {
-    index: React.PropTypes.number.isRequired
+    index: PropTypes.number.isRequired
 };

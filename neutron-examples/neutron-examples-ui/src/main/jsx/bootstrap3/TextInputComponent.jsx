@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
@@ -129,7 +130,7 @@ export default class TextInputComponent extends InputComponent {
 }
 
 TextInputComponent.propTypes = {
-    searchUrl: React.PropTypes.string
+    searchUrl: PropTypes.string
 };
 
 TextInputComponent.defaultProps = {

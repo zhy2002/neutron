@@ -25,7 +25,8 @@
     "font-awesome": "^4.7.0",
     "moment": "^2.17.1",
     "promise": "^7.1.1",
-    "react": "^15.5.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
     "react-datepicker": "^0.46.0",
     "react-dom": "^15.4.2",
     "throttle-debounce": "^1.0.1"

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputComponent from '../../../bootstrap3/InputComponent';
 
 export default class TelephoneComponent extends InputComponent {
@@ -99,5 +100,5 @@ export default class TelephoneComponent extends InputComponent {
 }
 
 TelephoneComponent.propTypes = {
-    label: React.PropTypes.string
+    label: PropTypes.string
 };

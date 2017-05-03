@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PersonListComponent from './person_data/PersonListComponent';
 import PersonComponent from './person_data/PersonComponent';
 import FinancialPositionComponent from './financial_data/FinancialPositionComponent';
@@ -91,5 +92,5 @@ export default class ApplicationContentComponent extends React.PureComponent {
 }
 
 ApplicationContentComponent.propTypes = {
-    model: React.PropTypes.object.isRequired
+    model: PropTypes.object.isRequired
 };
