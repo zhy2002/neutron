@@ -1,5 +1,7 @@
 todo 
 ----------------- 
+use rxjs
+do not directly reference context and nodes (implement web worker)
 1. rolling commit - only keep N cycles in the current session
 2. load initial values (as a part of node load) 
   - load value only or the full state?

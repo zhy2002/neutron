@@ -1,12 +1,14 @@
-var path = require('path');
+//see https://github.com/RaphaelHadjadj/webpack2-cssmodules-sass/blob/master/webpack.config.js
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 process.traceDeprecation = true;
 
 var config = {
-    entry: './src/main/jsx/lodgement/main.jsx',
+    entry: './src/main/jsx/main',
     output: {
         path: path.join(__dirname, 'src/main/webapp/js'),
-        filename: 'index.js'
+        filename: 'main.js'
     },
     devtool: '#inline-source-map',
     module: {
@@ -28,9 +30,19 @@ var config = {
                     ]
                 }
             },
-            { test: /\.css$/, loader: 'style-loader!css-loader' }
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
+            }
         ]
     },
+    plugins: [
+        new ExtractTextPlugin("../css/main.css")
+    ],
     resolve: {
         extensions: ['.js', '.jsx']
     }
