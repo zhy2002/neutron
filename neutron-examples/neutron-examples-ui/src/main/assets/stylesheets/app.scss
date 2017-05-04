@@ -1,3 +1,17 @@
+$fa-font-path: '~font-awesome/fonts/';
+@import '~font-awesome/scss/font-awesome';
+@import '~font-awesome-animation/src/font-awesome-animation';
+@import '~bootswatch/flatly/variables';
+//required to load bootstrap, see https://github.com/angular/angular-cli/issues/2170
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+$screen-xs: 1px;
+$screen-sm: 2px;
+$screen-md: 800px;
+$screen-lg: 1024px;
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~bootswatch/flatly/bootswatch';
+@import '~react-datepicker/src/stylesheets/datepicker';
+
 $scrollbarWidth: 10px;
 
 //region Top Level Components
@@ -395,7 +409,6 @@ html, body {
   }
 }
 
-
 //region Bootstrap Override
 
 .navbar-nav > li > a {
@@ -611,11 +624,11 @@ a[tabindex] {
   padding-top: 1em;
 }
 
-#floatingBarsG{
-  position:relative;
-  width:60px;
-  height:75px;
-  margin:auto;
+#floatingBarsG {
+  position: relative;
+  width: 60px;
+  height: 75px;
+  margin: auto;
   top: 42%;
   color: white;
 }
@@ -627,9 +640,9 @@ a[tabindex] {
 }
 
 .add-list-component {
- .btn-sm {
+  .btn-sm {
     min-width: 95px;
- }
+  }
 }
 
 .modal-dialog-component {
@@ -637,4 +650,5 @@ a[tabindex] {
     min-width: 95px;
   }
 }
+
 //endregion
