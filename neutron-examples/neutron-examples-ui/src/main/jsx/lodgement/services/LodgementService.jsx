@@ -65,6 +65,7 @@ export default class LodgementService {
             const app = openApps[i];
             if (app.getIdNode().getValue() === id) {
                 selectedIndex = i + appTabOffset;
+                LodgementService.selectTab(selectedIndex);
                 console.debug('app is already loaded');
                 return CommonUtil.defer(app);
             }
@@ -91,7 +92,7 @@ export default class LodgementService {
 
     static closeTab(tabIndex) {
         const appIndex = tabIndex - appTabOffset;
-        if (appIndex === 0)
+        if (appIndex < 0)
             return;
 
         if (!openApps[appIndex].isDirty() || window.confirm('You will lose your changes if you close this app.')) {

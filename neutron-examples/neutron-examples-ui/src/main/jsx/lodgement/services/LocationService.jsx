@@ -1,6 +1,5 @@
 import CommonUtil from './CommonUtil';
 import LodgementService from './LodgementService';
-import UiService from './UiService';
 
 
 let currentHash = ''; //the hash that represents the application state (without leading '#')
@@ -11,10 +10,10 @@ function restoreLodgementState(newHash/*format: appId/path_to_content_node[?sele
     const appId = newHash.substr(0, index >= 0 ? index : newHash.length);
     const path = index >= 0 ? newHash.substr(index + 1) : '';
 
-    CommonUtil.setIsLoading(true);
     return LodgementService.loadApp(appId, path).catch(
         () => {
             LodgementService.selectTab(0);
+            return null;
         }
     );
 }
@@ -34,21 +33,25 @@ export default class LocationService {
         //if application state is already synced
         if (currentHash === newHash) {
             restored = true;
-            return;
+            return restored;
         }
 
         restored = false;
         if (newHash.startsWith('/app/') && newHash.length > 5) {
-            restoreLodgementState(newHash.substr(5)).then(
-                () => {
-                    restored = true;
-                }
+            CommonUtil.setIsLoading(true);
+            CommonUtil.delay().then(
+                () => restoreLodgementState(newHash.substr(5)).then(
+                    () => {
+                        restored = true;
+                        CommonUtil.setIsLoading(false);
+                    }
+                )
             );
         } else {
             LodgementService.selectTab(0);
-            UiService.refreshApplicationList();
             restored = true;
         }
+        return restored;
     }
 
     /**

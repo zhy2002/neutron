@@ -1,6 +1,8 @@
 import Promise from 'promise';
 import moment from 'moment';
 
+let loadingCount = 0;
+
 function delay(interval = 0) {
     return new Promise(
         (resolve) => {
@@ -21,10 +23,11 @@ function setIsLoading(isLoading) {
     const items = document.getElementsByClassName('loading-spinner-component');
     if (items.length === 0)
         return;
+    loadingCount += isLoading ? 1 : -1;
     const spinner = items.item(0);
-    if (isLoading) {
+    if (loadingCount === 1) {
         spinner.classList.remove('hide');
-    } else {
+    } else if (loadingCount === 0) {
         spinner.classList.add('hide');
     }
     console.debug(`IsLoading: ${isLoading}`);

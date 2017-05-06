@@ -5,6 +5,8 @@ import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import LodgementService from './services/LodgementService';
 import LocationService from './services/LocationService';
+import UiService from './services/UiService';
+
 
 /**
  * Root component of the example application.
@@ -24,6 +26,7 @@ export default class LodgementComponent extends React.PureComponent {
     componentDidMount() {
         LodgementService.addHashChangeHandler(this.onHashChanged);
         LocationService.syncStateToHash();
+        UiService.refreshApplicationList();
     }
 
     componentWillUnmount() {
