@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import UiService from '../services/UiService';
 import LocationService from '../services/LocationService';
 import CommonUtil from '../services/CommonUtil';
 
@@ -18,14 +17,8 @@ function renderNames(array) {
 
 export default class ApplicationListComponent extends NeutronComponent {
 
-    componentDidMount() {
-        if (LocationService.updateHash(this.model)) {
-            UiService.refreshApplicationList();
-        }
-    }
-
     componentDidUpdate() {
-        LocationService.updateHash(this.model);
+        LocationService.syncHashToState(this.model);
     }
 
     extractNewState() {

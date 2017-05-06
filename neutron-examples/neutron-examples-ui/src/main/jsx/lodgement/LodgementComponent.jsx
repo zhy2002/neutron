@@ -3,27 +3,31 @@ import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementContentComponent from './LodgementContentComponent';
+import LodgementService from './services/LodgementService';
 import LocationService from './services/LocationService';
 
-
+/**
+ * Root component of the example application.
+ */
 export default class LodgementComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
-        console.log('constructing lodgement component');
-        this.state = LocationService.getState();
-
         this.onHashChanged = () => {
-            this.setState(LocationService.getState());
+            this.setState(LodgementService.getState());
         };
-        LocationService.addHashChangeHandler(this.onHashChanged);
 
-        LocationService.restoreLocation();
+        this.state = LodgementService.getState();
+    }
+
+    componentDidMount() {
+        LodgementService.addHashChangeHandler(this.onHashChanged);
+        LocationService.syncStateToHash();
     }
 
     componentWillUnmount() {
-        LocationService.removeHashChangeHandler(this.onHashChanged);
+        LodgementService.removeHashChangeHandler(this.onHashChanged);
     }
 
     render() {
@@ -35,11 +39,17 @@ export default class LodgementComponent extends React.PureComponent {
                 <LodgementTabsComponent
                     tabItems={tabItems}
                     selectedIndex={this.state.selectedIndex}
-                    selectTab={LocationService.selectTab}
-                    closeTab={LocationService.closeTab}
+                    selectTab={LodgementService.selectTab}
+                    closeTab={LodgementService.closeTab}
                 />
-                <LodgementToolbarComponent model={selectedModel} onNewApp={LocationService.newApp}/>
-                <LodgementContentComponent model={selectedModel} onLoadApp={LocationService.loadApp}/>
+                <LodgementToolbarComponent model={selectedModel} onNewApp={LodgementService.newApp}/>
+                <LodgementContentComponent model={selectedModel} onLoadApp={LodgementService.loadApp}/>
+                <div className="loading-spinner-component hide">
+                    <div id="floatingBarsG">
+                        <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"/>
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
             </div>
         );
     }

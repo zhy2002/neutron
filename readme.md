@@ -1,6 +1,7 @@
 todo 
 ----------------- 
 use rxjs
+load portion by portion (e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy)
 do not directly reference context and nodes (implement web worker)
 1. rolling commit - only keep N cycles in the current session
 2. load initial values (as a part of node load) 

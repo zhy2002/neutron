@@ -15,12 +15,12 @@ export default class TabContentComponent extends NeutronComponent {
     }
 
     componentDidMount() {
-        LocationService.updateHash(this.model, true);
+        LocationService.syncHashToState(this.model, true);
     }
 
     componentDidUpdate() {
         super.componentDidUpdate();
-        LocationService.updateHash(this.model, true);
+        LocationService.syncHashToState(this.model, true);
     }
 
     renderTabContent(className, model) {

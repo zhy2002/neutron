@@ -5,22 +5,19 @@ import ApplicationListComponent from './app_manager/ApplicationListComponent';
 
 export default class LodgementContentComponent extends React.PureComponent {
 
-    renderContent() {
-        const model = this.props.model;
-        if (model.getName() === 'appManagerNode') {
-            return (
-                <ApplicationListComponent model={model.getApplicationListNode()} onLoadApp={this.props.onLoadApp}/>
-            );
-        }
-        return (
-            <ApplicationComponent model={model}/>
-        );
-    }
-
     render() {
+        const model = this.props.model;
+
         return (
             <div className="lodgement-content-component">
-                {this.renderContent()}
+                {
+                    model.getName() === 'appManagerNode' ?
+                    <ApplicationListComponent
+                        model={model.getApplicationListNode()}
+                        onLoadApp={this.props.onLoadApp}
+                    /> :
+                    <ApplicationComponent model={model}/>
+                }
             </div>
         );
     }

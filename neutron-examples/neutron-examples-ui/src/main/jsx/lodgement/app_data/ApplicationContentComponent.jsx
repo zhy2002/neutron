@@ -21,11 +21,11 @@ import LocationService from '../services/LocationService';
 export default class ApplicationContentComponent extends React.PureComponent {
 
     componentDidMount() {
-        LocationService.updateHash(this.props.model);
+        LocationService.syncHashToState(this.props.model);
     }
 
     componentDidUpdate() {
-        LocationService.updateHash(this.props.model);
+        LocationService.syncHashToState(this.props.model);
     }
 
     renderContent() {
