@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import ApplicationNavComponent from './ApplicationNavComponent';
-import ApplicationTabsComponent from './ApplicationTabsComponent';
+import ApplicationHeaderComponent from './ApplicationHeaderComponent';
 import ApplicationContentComponent from './ApplicationContentComponent';
 import ApplicationErrorsComponent from '../app_data/ApplicationErrorsComponent';
 
@@ -14,6 +13,11 @@ export default class ApplicationComponent extends NeutronComponent {
 
         this.hideErrorList = () => {
             this.model.setShowErrorList(false);
+        };
+
+        this.handleHeaderHeightChanged = (height) => {
+            this.contentTop = height + 1;
+            this.setState({contentTop: this.contentTop});
         };
     }
 
@@ -34,8 +38,11 @@ export default class ApplicationComponent extends NeutronComponent {
         const newState = super.extractNewState();
 
         newState.showErrorList = this.model.getShowErrorList();
-
         newState.currentModel = this.getCurrentModel();
+        if (typeof this.contentTop !== 'number') {
+            this.contentTop = NaN;
+        }
+        newState.currentTop = this.currentTop;
 
         return newState;
     }
@@ -44,9 +51,15 @@ export default class ApplicationComponent extends NeutronComponent {
         const errorClass = this.state.showErrorList ? 'show-error-list' : '';
         return (
             <div className={`application-component ${errorClass}`}>
-                <ApplicationNavComponent model={this.model}/>
-                <ApplicationTabsComponent model={this.state.currentModel}/>
-                <ApplicationContentComponent model={this.state.currentModel}/>
+                <ApplicationHeaderComponent
+                    applicationNode={this.model}
+                    contentNode={this.state.currentModel}
+                    onHeightChanged={this.handleHeaderHeightChanged}
+                />
+                {
+                    !isNaN(this.state.contentTop) &&
+                    <ApplicationContentComponent model={this.state.currentModel} top={this.state.contentTop}/>
+                }
                 <ApplicationErrorsComponent
                     visible={this.state.showErrorList}
                     onClose={this.hideErrorList}
