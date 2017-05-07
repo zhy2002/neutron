@@ -2,25 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
 
-export default class LodgementTabsComponent extends React.PureComponent {
+export default function LodgementTabsComponent(props) {
+    const items = props.tabItems;
 
-    render() {
-        const items = this.props.tabItems;
-        return (
-            <div className="lodgement-tabs-component">
-                <NavPillsComponent
-                    items={items}
-                    selectedItem={items[this.props.selectedIndex]}
-                    onSelect={(item) => {
-                        this.props.selectTab(items.indexOf(item));
-                    }}
-                    onClose={(item) => {
-                        this.props.closeTab(items.indexOf(item));
-                    }}
-                />
-            </div>
-        );
-    }
+    return (
+        <div className="lodgement-tabs-component">
+            <NavPillsComponent
+                items={items}
+                selectedItem={items[props.selectedIndex]}
+                onSelect={(item) => {
+                    props.selectTab(items.indexOf(item));
+                }}
+                onClose={(item) => {
+                    props.closeTab(items.indexOf(item));
+                }}
+            />
+        </div>
+    );
 }
 
 LodgementTabsComponent.propTypes = {

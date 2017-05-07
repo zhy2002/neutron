@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 import AppManagerToolbarComponent from './app_manager/AppManagerToolbarComponent';
 import ApplicationToolbarComponent from './app_data/ApplicationToolbarComponent';
 
-export default class LodgementToolbarComponent extends React.PureComponent {
-    //todo eliminate passing prop down multiple layers by ui node event system.
-    render() {
-        const model = this.props.model;
-        return (
-            <div className="lodgement-toolbar-component">
-                {
-                    model.getName() === 'appManagerNode' ?
-                    <AppManagerToolbarComponent model={model} onNewApp={this.props.onNewApp}/> :
+export default function LodgementToolbarComponent(props) {
+    const model = props.model;
+
+    return (
+        <div className="navbar navbar-default lodgement-toolbar-component">
+            {
+                model.getName() === 'appManagerNode' ?
+                    <AppManagerToolbarComponent model={model} onNewApp={props.onNewApp}/> :
                     <ApplicationToolbarComponent model={model}/>
-                }
-            </div>
-        );
-    }
+            }
+        </div>
+    );
 }
 
 LodgementToolbarComponent.propTypes = {

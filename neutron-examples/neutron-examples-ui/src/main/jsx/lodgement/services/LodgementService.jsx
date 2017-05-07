@@ -6,6 +6,8 @@ import StorageService from './StorageService';
 let lodgementNode = null;
 let openApps = [];
 let selectedIndex = 0;
+let headerHeight = NaN;
+let footerHeight = NaN;
 
 const hashChangeHandlers = []; //notify state is changed
 const appTabOffset = 1; //the first is app manager tab
@@ -97,14 +99,21 @@ export default class LodgementService {
 
         if (!openApps[appIndex].isDirty() || window.confirm('You will lose your changes if you close this app.')) {
             const newApps = openApps.filter((item, i) => i !== appIndex);
-            selectedIndex = tabIndex;
-            if (selectedIndex > newApps.length) {
-                selectedIndex = newApps.length;
-            }
+            selectedIndex = Math.min(tabIndex, newApps.length);
             openApps = newApps;
 
             notifyStateChange();
         }
+    }
+
+    static updateHeaderHeight(height) {
+        headerHeight = height;
+        notifyStateChange();
+    }
+
+    static updateFooterHeight(height) {
+        footerHeight = height;
+        notifyStateChange();
     }
 
     static getState() {
@@ -115,7 +124,9 @@ export default class LodgementService {
         return {
             lodgementNode,
             openApps,
-            selectedIndex
+            selectedIndex,
+            headerHeight,
+            footerHeight
         };
     }
 

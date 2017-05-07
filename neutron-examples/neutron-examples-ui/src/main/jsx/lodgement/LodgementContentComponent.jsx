@@ -2,29 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ApplicationComponent from './app_data/ApplicationComponent';
 import ApplicationListComponent from './app_manager/ApplicationListComponent';
+import LodgementService from './services/LodgementService';
 
-export default class LodgementContentComponent extends React.PureComponent {
 
-    render() {
-        const model = this.props.model;
+export default function LodgementContentComponent(props) {
+    const model = props.model;
 
-        return (
-            <div className="lodgement-content-component">
-                {
-                    model.getName() === 'appManagerNode' ?
+    return (
+        <div className="lodgement-content-component" style={{top: `${props.top}px`, bottom: `${props.bottom}px`}}>
+            {
+                model.getName() === 'appManagerNode' ?
                     <ApplicationListComponent
                         model={model.getApplicationListNode()}
-                        onLoadApp={this.props.onLoadApp}
+                        onLoadApp={LodgementService.loadApp}
                     /> :
                     <ApplicationComponent model={model}/>
-                }
-            </div>
-        );
-    }
-
+            }
+        </div>
+    );
 }
 
 LodgementContentComponent.propTypes = {
     model: PropTypes.object.isRequired,
-    onLoadApp: PropTypes.func.isRequired
+    top: PropTypes.number.isRequired,
+    bottom: PropTypes.number.isRequired
 };

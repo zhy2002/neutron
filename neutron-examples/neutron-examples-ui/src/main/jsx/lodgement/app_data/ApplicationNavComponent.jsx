@@ -15,7 +15,7 @@ export default class ApplicationNavComponent extends NeutronComponent {
     render() {
         const model = this.model;
         return (
-            <nav className="navbar navbar-default application-nav-component">
+            <nav className="navbar navbar-inverse application-nav-component">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavDropdownComponent onSelect={this.onSelect} model={model.getPersonListNode()}>

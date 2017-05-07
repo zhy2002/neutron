@@ -1,654 +1,718 @@
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
 @import '~font-awesome-animation/src/font-awesome-animation';
-@import '~bootswatch/flatly/variables';
-//required to load bootstrap, see https://github.com/angular/angular-cli/issues/2170
-$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+//customize bootstrap
 $screen-xs: 1px;
 $screen-sm: 2px;
 $screen-md: 800px;
 $screen-lg: 1024px;
+@import '~bootswatch/flatly/variables';
+//required to load bootstrap, see https://github.com/angular/angular-cli/issues/2170
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import '~bootswatch/flatly/bootswatch';
 @import '~react-datepicker/src/stylesheets/datepicker';
 
-$scrollbarWidth: 10px;
-
-//region Top Level Components
-
-html, body {
-  height: 100%;
+a[tabindex] {
+  cursor: pointer;
 }
 
-.lodgement-component, .loading-spinner-component {
+.close-icon {
+  background: none;
+  border: none;
+  padding: 0;
+  transition: all .3s ease-in-out;
+
+  .glyphicon:hover {
+    color: gold;
+    transform: scale(1.15);
+  }
+}
+
+.lodgement-header-component {
+
+  .lodgement-banner-component {
+    margin-bottom: 0;
+
+    .navbar-header {
+      background-color: #fefefe;
+      border-radius: 5px;
+      margin-top: 5px;
+      margin-left: -10px;
+    }
+  }
+
+  .lodgement-tabs-component {
+    padding: 1px;
+
+    .close-icon {
+      margin-left: 15px;
+    }
+  }
+
+  .lodgement-toolbar-component {
+    margin-bottom: 1px;
+
+    .glyphicon {
+      font-size: 1.5em;
+    }
+
+    li > a {
+      text-align: center;
+    }
+  }
+}
+
+.lodgement-content-component {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
+.lodgement-footer-component {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.loading-spinner-component {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   min-width: 800px;
-}
-
-.loading-spinner-component {
   background-color: #000;
   opacity: 0.5;
   z-index: 2147483647;
-}
 
-.lodgement-header-component {
-  margin-bottom: 0;
-  border-bottom: none;
-
-  > .container-fluid {
-    background-color: #efefef;
-
-    .navbar-brand {
-      font-size: 1.5em;
-    }
-  }
-
-  .icon-wrapper {
-    padding-top: 9px;
-
-    .glyphicon {
-      font-size: 1.5em;
-    }
-  }
-}
-
-.lodgement-tabs-component {
-  .nav-pills-component {
-    margin-top: 0;
-  }
-}
-
-.lodgement-content-component {
-  position: absolute;
-  top: 140px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-}
-
-//endregion
-
-//region application components
-
-.application-list-component {
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
-.application-component {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  &.show-error-list .application-content-component {
-    width: 70%;
-  }
-}
-
-.application-toolbar-component, .app-manager-toolbar-component {
-  background-color: #337ab7;
-  color: white;
-  padding: 0;
-
-  > .nav {
-    margin: 5px 0 0 0;
-
-    > li > a {
-      padding-top: 5px;
-      padding-bottom: 5px;
-      color: white;
-      background-color: transparent !important;
-      cursor: pointer;
-
-      &:hover {
-        color: orange;
-      }
-
-      &:active {
-        color: yellow;
-      }
-
-      > div {
-        text-align: center;
-      }
-    }
-
-    .glyphicon {
-      font-size: 1.75em;
-    }
-  }
-
-  .modal {
-    color: #333;
-  }
-}
-
-.force-wrap {
-  word-break: break-all;
-}
-
-.application-nav-component {
-  margin-bottom: 0;
-  border-bottom: none;
-}
-
-.application-tabs-component {
-  padding: 0 1px;
-
-  .nav-pills-component {
-    margin-top: 0;
-  }
-
-  &.has-content {
-
-    @media (max-width: 900px) {
-      + .application-content-component {
-        top: 100px;
-      }
-
-      ~ .application-errors-component {
-        top: 100px;
-      }
-    }
-
-    @media (min-width: 901px) {
-      + .application-content-component {
-        top: 77px;
-      }
-
-      ~ .application-errors-component {
-        top: 77px;
-      }
-    }
-
-  }
-}
-
-.application-content-component {
-  position: absolute;
-  top: 52px;
-  left: 0;
-  width: 100%;
-  bottom: 0;
-  font-size: 80%;
-  overflow: auto;
-
-  :first-child:last-child {
-  }
-}
-
-.application-errors-component {
-  position: absolute;
-  top: 52px;
-  bottom: 0;
-  right: 0;
-  width: 30%;
-
-  .title-bar {
-    background-color: #337ab7;
-    padding: 3px 5px 1px 5px;
-    color: white;
-    text-align: right;
-
-    a {
-      color: inherit;
-      :hover {
-        cursor: pointer;
-        color: orange;
-      }
-    }
-  }
-
-  .header {
-    padding: 5px 21px 0 5px;
-    font-weight: bold;
-    background-color: #f8f8f8;
-
-    .title {
-      padding: 5px;
-    }
-  }
-
-  .content {
-    padding: 5px 5px 0 5px;
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow-y: scroll;
-
-    .alert {
-      margin-bottom: 7px;
-      padding: 5px;
-    }
-  }
-
-  .col-p35 {
-    float: left;
-    width: 35%;
-  }
-
-  .col-p65 {
-    float: left;
-    width: 65%;
-  }
-}
-
-//endregion
-
-//region person components
-
-.person-component, .company-component, .financial-position-component, .real-estate-component {
-  padding-top: 1.5em;
-}
-
-//endregion
-
-.application-main-content {
-  position: absolute;
-  top: 52px;
-  left: 0;
-  width: 70%;
-  bottom: 0;
-  overflow: auto;
-
-  &:last-child {
-    width: 100%;
-  }
-}
-
-.person-main-content {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  padding-top: 1em;
-}
-
-.radio-container {
-  padding-top: 3px;
-  padding-bottom: 4px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-
-.person-component, company-component {
-  > .nav-pills-component {
-    margin-top: 0;
-  }
-}
-
-.missing-value {
-  input, select, .radio-container {
-    background-color: lightblue;
-  }
-}
-
-.close-icon {
-  background: none;
-  border: none;
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 0.25em;
-  right: 0.25em;
-  font-size: 1.25em;
-
-  &.active {
+  .floatingBarsG {
+    position: relative;
+    width: 60px;
+    height: 75px;
+    margin: auto;
+    top: 42%;
     color: white;
   }
-
-  .glyphicon {
-    margin: 0 !important;
-  }
 }
 
-.active .close-icon {
-  .glyphicon {
-    color: white;
-
-    &:hover {
-      color: orange;
-    }
-  }
-}
-
-.grouper {
-  position: relative;
-  padding-left: 10px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    border-left: 5px solid orangered;
-    height: 93%;
-    left: 0;
-  }
-}
-
-.react-datepicker {
-  font-size: 12px !important;
-}
-
-.checkbox-input-component {
-  padding-top: 4px;
-  margin-top: 20px;
-  border-radius: 3px;
-
-  label {
-    vertical-align: middle;
-  }
-}
-
-.date-input-component {
-  > div {
-    width: 100%;
-  }
-}
-
-.nav-pills-component {
-  margin: 1px 0;
-  background-color: #efefef;
-
-  .glyphicon {
-    margin-left: 1.5em;
-  }
-
-  li:not(:first-child) a {
-    padding-right: 1.75em;
-  }
-
-  > li > a {
-    cursor: pointer;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-}
-
-.month-year-component {
-  .month {
-    width: 49%;
-    margin-right: 2%;
-    float: left;
-  }
-
-  .year {
-    width: 49%;
-    float: left;
-  }
-}
-
-.row.small-gap {
-  margin-top: 8px;
-}
-
-.person-current-employment-component {
-  .btn-warning {
-    margin-top: 15px;
-  }
-}
-
-.input-options-panel {
-  position: relative;
-
-  .list-group {
-    position: absolute;
-    z-index: 1;
-  }
-}
-
-//region Bootstrap Override
-
-.navbar-nav > li > a {
-  cursor: pointer;
-}
-
-.form-group.form-group-sm {
-  margin-bottom: 7px;
-
-  &.checkbox-input-component {
-    margin-bottom: 6px;
-  }
-}
-
-a[tabindex] {
-  cursor: pointer;
-}
-
-.form-group-sm {
-  .form-control, .input-group-addon {
-    padding: 2px 5px;
-    height: 24px !important;
-  }
-}
-
-.radio-inline {
-  input[type=radio] {
-    margin-top: 1px;
-  }
-}
-
-.checkbox {
-
-  > label.missing-value {
-    background-color: lightblue;
-  }
-}
-
-.has-error {
-  input, select, .radio-container, &.checkbox {
-    background-color: #ef9a9a;
-  }
-
-}
-
-.telephone-component {
-  .country-code {
-    width: 20%;
-    float: left;
-  }
-
-  .area-code {
-    width: 20%;
-    float: left;
-    margin: 0 1%;
-  }
-
-  .phone-number {
-    width: 58%;
-    float: left;
-  }
-}
-
-.address-component {
-  .clearfix {
-    > .form-group {
-      float: left;
-    }
-  }
-
-  .suburb {
-    width: 29%;
-  }
-  .postcode {
-    width: 29%;
-    margin: 0 1%;
-  }
-  .country {
-    width: 40%;
-  }
-}
-
-.compact {
-  .btn-sm.btn-primary.pull-right {
-    width: 45px;
-  }
-}
-
-.error-message {
-}
-
-.address-list-component {
-  position: relative;
-
-  .overlay-panel {
-    position: absolute;
-    z-index: 100;
-    background-color: #fefefe;
-    border: 2px solid #dfdfdf;
-    width: 250px;
-    top: -10px;
-    box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.4);
-  }
-
-  .close-icon {
-    position: static;
-  }
-
-  .list-group {
-    margin-top: 20px;
-    margin-bottom: 0;
-  }
-}
-
-.application-list-component tbody tr {
-}
-
-.modal-dialog-component {
-  .modal {
-    display: block;
-  }
-}
-
-.panel-component {
-  .panel-heading {
-    padding: 7px;
-
-    .panel-title {
-      font-size: 125%;
-    }
-
-    > * {
-      float: left;
-      margin-right: 10px;
-    }
-
-    .glyphicon {
-      font-size: 150%;
-    }
-  }
-
-}
-
-.well {
-  .close-link {
-    float: right;
-    font-size: 150%;
-    margin-top: -10px;
-    margin-right: -10px;
-  }
-}
-
-.ownership-list-component {
-
-  .form-group.form-group-sm.checkbox-input-component {
-    margin: 0;
-  }
-
-  .form-group.form-group-sm.number-input-component {
-    margin: 0;
-  }
-
-  .ownership-percentage-wrapper {
-    width: 95px;
-    margin-right: 10px;
-  }
-
-  .ownership-percentage-wrapper.total-percentage-container {
-    margin-right: 46px;
-  }
-}
-
-.select-related-person-list-component {
-  .form-group {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-.remove-panel-component {
-  padding: 1.5em 0;
-}
-
-.item-index-component {
-  font-size: 120%;
-  font-weight: bold;
-}
-
-.form-group-sm textarea.form-control {
-  height: auto !important;
-}
-
-.panel-primary .panel-heading .glyphicon {
-  color: white;
-}
-
-.product-fee-component {
-  &:hover {
-    color: lightblue;
-  }
-}
-
-.application-list-component tbody tr:hover {
-  background-color: #f5f5f5;
-}
-
-.list-group .form-group.form-group-sm.checkbox-input-component {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.main-content-component {
-  padding-top: 1em;
-}
-
-#floatingBarsG {
-  position: relative;
-  width: 60px;
-  height: 75px;
-  margin: auto;
-  top: 42%;
-  color: white;
-}
-
-.load-more-strip {
-  text-align: center;
-  color: #045FB4;
-  font-size: 18px;
-}
-
-.add-list-component {
-  .btn-sm {
-    min-width: 95px;
-  }
-}
-
-.modal-dialog-component {
-  .btn-sm {
-    min-width: 95px;
-  }
-}
-
-//endregion
+//
+//$scrollbarWidth: 10px;
+//
+////region Top Level Components
+//
+//html, body {
+//  height: 100%;
+//}
+//
+//.lodgement-component, .loading-spinner-component {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  right: 0;
+//  bottom: 0;
+//  min-width: 800px;
+//}
+//
+//.loading-spinner-component {
+//  background-color: #000;
+//  opacity: 0.5;
+//  z-index: 2147483647;
+//}
+//
+//.lodgement-header-component {
+//  margin-bottom: 0;
+//  border-bottom: none;
+//
+//  > .container-fluid {
+//    background-color: #efefef;
+//
+//    .navbar-brand {
+//      font-size: 1.5em;
+//    }
+//  }
+//
+//  .icon-wrapper {
+//    padding-top: 9px;
+//
+//    .glyphicon {
+//      font-size: 1.5em;
+//    }
+//  }
+//}
+//
+//.lodgement-tabs-component {
+//  .nav-pills-component {
+//    margin-top: 0;
+//  }
+//}
+//
+
+//
+////endregion
+//
+////region application components
+//
+//.application-list-component {
+//  position: absolute;
+//  left: 0;
+//  right: 0;
+//}
+//
+//.application-component {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  right: 0;
+//  bottom: 0;
+//
+//  &.show-error-list .application-content-component {
+//    width: 70%;
+//  }
+//}
+//
+//.application-toolbar-component, .app-manager-toolbar-component {
+//  background-color: #337ab7;
+//  color: white;
+//  padding: 0;
+//
+//  > .nav {
+//    margin: 5px 0 0 0;
+//
+//    > li > a {
+//      padding-top: 5px;
+//      padding-bottom: 5px;
+//      color: white;
+//      background-color: transparent !important;
+//      cursor: pointer;
+//
+//      &:hover {
+//        color: orange;
+//      }
+//
+//      &:active {
+//        color: yellow;
+//      }
+//
+//      > div {
+//        text-align: center;
+//      }
+//    }
+//
+//    .glyphicon {
+//      font-size: 1.75em;
+//    }
+//  }
+//
+//  .modal {
+//    color: #333;
+//  }
+//}
+//
+//.force-wrap {
+//  word-break: break-all;
+//}
+//
+//.application-nav-component {
+//  margin-bottom: 0;
+//  border-bottom: none;
+//}
+//
+//.application-tabs-component {
+//  padding: 0 1px;
+//
+//  .nav-pills-component {
+//    margin-top: 0;
+//  }
+//
+//  &.has-content {
+//
+//    @media (max-width: 900px) {
+//      + .application-content-component {
+//        top: 100px;
+//      }
+//
+//      ~ .application-errors-component {
+//        top: 100px;
+//      }
+//    }
+//
+//    @media (min-width: 901px) {
+//      + .application-content-component {
+//        top: 77px;
+//      }
+//
+//      ~ .application-errors-component {
+//        top: 77px;
+//      }
+//    }
+//
+//  }
+//}
+//
+//.application-content-component {
+//  position: absolute;
+//  top: 52px;
+//  left: 0;
+//  width: 100%;
+//  bottom: 0;
+//  font-size: 80%;
+//  overflow: auto;
+//
+//  :first-child:last-child {
+//  }
+//}
+//
+//.application-errors-component {
+//  position: absolute;
+//  top: 52px;
+//  bottom: 0;
+//  right: 0;
+//  width: 30%;
+//
+//  .title-bar {
+//    background-color: #337ab7;
+//    padding: 3px 5px 1px 5px;
+//    color: white;
+//    text-align: right;
+//
+//    a {
+//      color: inherit;
+//      :hover {
+//        cursor: pointer;
+//        color: orange;
+//      }
+//    }
+//  }
+//
+//  .header {
+//    padding: 5px 21px 0 5px;
+//    font-weight: bold;
+//    background-color: #f8f8f8;
+//
+//    .title {
+//      padding: 5px;
+//    }
+//  }
+//
+//  .content {
+//    padding: 5px 5px 0 5px;
+//    position: absolute;
+//    top: 60px;
+//    bottom: 0;
+//    left: 0;
+//    right: 0;
+//    overflow-y: scroll;
+//
+//    .alert {
+//      margin-bottom: 7px;
+//      padding: 5px;
+//    }
+//  }
+//
+//  .col-p35 {
+//    float: left;
+//    width: 35%;
+//  }
+//
+//  .col-p65 {
+//    float: left;
+//    width: 65%;
+//  }
+//}
+//
+////endregion
+//
+////region person components
+//
+//.person-component, .company-component, .financial-position-component, .real-estate-component {
+//  padding-top: 1.5em;
+//}
+//
+////endregion
+//
+//.application-main-content {
+//  position: absolute;
+//  top: 52px;
+//  left: 0;
+//  width: 70%;
+//  bottom: 0;
+//  overflow: auto;
+//
+//  &:last-child {
+//    width: 100%;
+//  }
+//}
+//
+//.person-main-content {
+//  position: absolute;
+//  top: 30px;
+//  left: 0;
+//  right: 0;
+//  bottom: 0;
+//  overflow: auto;
+//  padding-top: 1em;
+//}
+//
+//.radio-container {
+//  padding-top: 3px;
+//  padding-bottom: 4px;
+//  -webkit-border-radius: 3px;
+//  -moz-border-radius: 3px;
+//  border-radius: 3px;
+//}
+//
+//.person-component, company-component {
+//  > .nav-pills-component {
+//    margin-top: 0;
+//  }
+//}
+//
+//.missing-value {
+//  input, select, .radio-container {
+//    background-color: lightblue;
+//  }
+//}
+//
+
+//
+
+//
+//  .glyphicon {
+//    margin: 0 !important;
+//  }
+//}
+//
+//.active .close-icon {
+//  .glyphicon {
+//    color: white;
+//
+//    &:hover {
+//      color: orange;
+//    }
+//  }
+//}
+//
+//.grouper {
+//  position: relative;
+//  padding-left: 10px;
+//
+//  &::before {
+//    content: "";
+//    position: absolute;
+//    border-left: 5px solid orangered;
+//    height: 93%;
+//    left: 0;
+//  }
+//}
+//
+//.react-datepicker {
+//  font-size: 12px !important;
+//}
+//
+//.checkbox-input-component {
+//  padding-top: 4px;
+//  margin-top: 20px;
+//  border-radius: 3px;
+//
+//  label {
+//    vertical-align: middle;
+//  }
+//}
+//
+//.date-input-component {
+//  > div {
+//    width: 100%;
+//  }
+//}
+//
+//.nav-pills-component {
+//  margin: 1px 0;
+//  background-color: #efefef;
+//
+//  .glyphicon {
+//    margin-left: 1.5em;
+//  }
+//
+//  li:not(:first-child) a {
+//    padding-right: 1.75em;
+//  }
+//
+//  > li > a {
+//    cursor: pointer;
+//    padding-top: 5px;
+//    padding-bottom: 5px;
+//  }
+//}
+//
+//.month-year-component {
+//  .month {
+//    width: 49%;
+//    margin-right: 2%;
+//    float: left;
+//  }
+//
+//  .year {
+//    width: 49%;
+//    float: left;
+//  }
+//}
+//
+//.row.small-gap {
+//  margin-top: 8px;
+//}
+//
+//.person-current-employment-component {
+//  .btn-warning {
+//    margin-top: 15px;
+//  }
+//}
+//
+//.input-options-panel {
+//  position: relative;
+//
+//  .list-group {
+//    position: absolute;
+//    z-index: 1;
+//  }
+//}
+//
+////region Bootstrap Override
+//
+//.navbar-nav > li > a {
+//  cursor: pointer;
+//}
+//
+//.form-group.form-group-sm {
+//  margin-bottom: 7px;
+//
+//  &.checkbox-input-component {
+//    margin-bottom: 6px;
+//  }
+//}
+//
+//a[tabindex] {
+//  cursor: pointer;
+//}
+//
+//.form-group-sm {
+//  .form-control, .input-group-addon {
+//    padding: 2px 5px;
+//    height: 24px !important;
+//  }
+//}
+//
+//.radio-inline {
+//  input[type=radio] {
+//    margin-top: 1px;
+//  }
+//}
+//
+//.checkbox {
+//
+//  > label.missing-value {
+//    background-color: lightblue;
+//  }
+//}
+//
+//.has-error {
+//  input, select, .radio-container, &.checkbox {
+//    background-color: #ef9a9a;
+//  }
+//
+//}
+//
+//.telephone-component {
+//  .country-code {
+//    width: 20%;
+//    float: left;
+//  }
+//
+//  .area-code {
+//    width: 20%;
+//    float: left;
+//    margin: 0 1%;
+//  }
+//
+//  .phone-number {
+//    width: 58%;
+//    float: left;
+//  }
+//}
+//
+//.address-component {
+//  .clearfix {
+//    > .form-group {
+//      float: left;
+//    }
+//  }
+//
+//  .suburb {
+//    width: 29%;
+//  }
+//  .postcode {
+//    width: 29%;
+//    margin: 0 1%;
+//  }
+//  .country {
+//    width: 40%;
+//  }
+//}
+//
+//.compact {
+//  .btn-sm.btn-primary.pull-right {
+//    width: 45px;
+//  }
+//}
+//
+//.error-message {
+//}
+//
+//.address-list-component {
+//  position: relative;
+//
+//  .overlay-panel {
+//    position: absolute;
+//    z-index: 100;
+//    background-color: #fefefe;
+//    border: 2px solid #dfdfdf;
+//    width: 250px;
+//    top: -10px;
+//    box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.4);
+//  }
+//
+//  .close-icon {
+//    position: static;
+//  }
+//
+//  .list-group {
+//    margin-top: 20px;
+//    margin-bottom: 0;
+//  }
+//}
+//
+//.application-list-component tbody tr {
+//}
+//
+//.modal-dialog-component {
+//  .modal {
+//    display: block;
+//  }
+//}
+//
+//.panel-component {
+//  .panel-heading {
+//    padding: 7px;
+//
+//    .panel-title {
+//      font-size: 125%;
+//    }
+//
+//    > * {
+//      float: left;
+//      margin-right: 10px;
+//    }
+//
+//    .glyphicon {
+//      font-size: 150%;
+//    }
+//  }
+//
+//}
+//
+//.well {
+//  .close-link {
+//    float: right;
+//    font-size: 150%;
+//    margin-top: -10px;
+//    margin-right: -10px;
+//  }
+//}
+//
+//.ownership-list-component {
+//
+//  .form-group.form-group-sm.checkbox-input-component {
+//    margin: 0;
+//  }
+//
+//  .form-group.form-group-sm.number-input-component {
+//    margin: 0;
+//  }
+//
+//  .ownership-percentage-wrapper {
+//    width: 95px;
+//    margin-right: 10px;
+//  }
+//
+//  .ownership-percentage-wrapper.total-percentage-container {
+//    margin-right: 46px;
+//  }
+//}
+//
+//.select-related-person-list-component {
+//  .form-group {
+//    margin-top: 0;
+//    margin-bottom: 0;
+//  }
+//}
+//
+//.remove-panel-component {
+//  padding: 1.5em 0;
+//}
+//
+//.item-index-component {
+//  font-size: 120%;
+//  font-weight: bold;
+//}
+//
+//.form-group-sm textarea.form-control {
+//  height: auto !important;
+//}
+//
+//.panel-primary .panel-heading .glyphicon {
+//  color: white;
+//}
+//
+//.product-fee-component {
+//  &:hover {
+//    color: lightblue;
+//  }
+//}
+//
+//.application-list-component tbody tr:hover {
+//  background-color: #f5f5f5;
+//}
+//
+//.list-group .form-group.form-group-sm.checkbox-input-component {
+//  margin-top: 0;
+//  margin-bottom: 0;
+//}
+//
+//.main-content-component {
+//  padding-top: 1em;
+//}
+//
+
+//
+//.load-more-strip {
+//  text-align: center;
+//  color: #045FB4;
+//  font-size: 18px;
+//}
+//
+//.add-list-component {
+//  .btn-sm {
+//    min-width: 95px;
+//  }
+//}
+//
+//.modal-dialog-component {
+//  .btn-sm {
+//    min-width: 95px;
+//  }
+//}
+//
+////endregion
