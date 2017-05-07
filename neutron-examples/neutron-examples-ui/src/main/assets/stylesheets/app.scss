@@ -6,6 +6,7 @@ $screen-xs: 1px;
 $screen-sm: 2px;
 $screen-md: 800px;
 $screen-lg: 1024px;
+$table-bg: #f5f5f5;
 @import '~bootswatch/flatly/variables';
 //required to load bootstrap, see https://github.com/angular/angular-cli/issues/2170
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
@@ -27,6 +28,15 @@ a[tabindex] {
     color: gold;
     transform: scale(1.15);
   }
+}
+
+.fill-all {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
 }
 
 .lodgement-header-component {
@@ -70,17 +80,22 @@ a[tabindex] {
   overflow: auto;
 
   .application-list-component {
-    thead tr {
-      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
-      background: rgb(255, 255, 255); /* Old browsers */
-      background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0); /* IE6-9 */
+
+    table.application-table-header {
+      margin-bottom: 0;
+      border-bottom: 1px solid #dedede;
+
+      thead tr {
+        background-color: $breadcrumb-bg;
+        th {
+          font-size: 1.125em;
+          padding-bottom: 12px;
+        }
+      }
     }
 
-    th {
-      font-size: 1.125em;
+    table.application-table {
+
     }
   }
 

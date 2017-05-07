@@ -39,18 +39,18 @@ export default class ApplicationListComponent extends NeutronComponent {
             const data = result[i]['_source'];
             items.push(
                 <tr key={data.id}>
-                    <td>{data.lender}</td>
-                    <td>
+                    <td width="10%">{data.lender}</td>
+                    <td width="14%">
                         <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
                             {renderNames(data.applicants)}
                         </a>
                     </td>
-                    <td>{data.username}</td>
-                    <td className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
-                    <td>{data.status}</td>
-                    <td>{CommonUtil.formatDate(data.created)}</td>
-                    <td>{CommonUtil.formatDate(data.updated)}</td>
-                    <td/>
+                    <td width="10%">{data.username}</td>
+                    <td width="10%" className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
+                    <td width="10%">{data.status}</td>
+                    <td width="12%">{CommonUtil.formatDate(data.created)}</td>
+                    <td width="12%">{CommonUtil.formatDate(data.updated)}</td>
+                    <td width="12%"/>
                 </tr>
             );
         }
@@ -60,23 +60,27 @@ export default class ApplicationListComponent extends NeutronComponent {
     render() {
         return (
             <div className="application-list-component">
-                <table className="table table-striped">
+                <table className="table application-table-header">
                     <thead>
                     <tr>
                         <th width="10%">Lender</th>
                         <th width="14%">Applicant Name</th>
                         <th width="10%">Owner</th>
-                        <th className="text-right" width="10%">Loan Amount</th>
+                        <th width="10%" className="text-right">Loan Amount</th>
                         <th width="10%">Loan Status</th>
                         <th width="12%">Date Created</th>
                         <th width="12%">Date Updated</th>
                         <th width="12%">Date Lodged</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    {this.renderItems()}
-                    </tbody>
                 </table>
+                <div className="fill-all" style={{top: '46px'}}>
+                    <table className="table table-striped table-hover application-table">
+                        <tbody>
+                        {this.renderItems()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
