@@ -35,10 +35,7 @@ export default class AddListComponent extends ListNeutronComponent {
                                 Add
                             </button>
                         </div>
-                        <div className="col-md-10"/>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-10">
                             {this.props.children}
                         </div>
                     </div>

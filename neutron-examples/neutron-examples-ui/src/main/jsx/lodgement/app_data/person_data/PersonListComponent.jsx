@@ -3,35 +3,32 @@ import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 import AddListComponent from '../common/AddListComponent';
 import PersonSummaryComponent from './PersonSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
+import CommonUtil from '../../services/CommonUtil';
+
 
 export default class PersonListComponent extends ListNeutronComponent {
 
     componentDidMount() {
-        setTimeout(() => {
-            if (this.model.getItemCount() === 0) {
-                this.model.createItem();
-            }
-        }, 10);
-    }
-
-    renderItems() {
-        const result = [];
-        this.model.getChildren().forEach(
-            (item) => {
-                result.push(<PersonSummaryComponent key={item.getUniqueId()} model={item}/>);
+        CommonUtil.delay(10).then(
+            () => {
+                if (this.model.getItemCount() === 0) {
+                    this.model.createItem();
+                }
             }
         );
-        return result;
     }
 
     render() {
         return (
             <MainContentComponent className="person-list-component">
                 <AddListComponent model={this.model}>
-                    {this.renderItems()}
+                    {
+                        this.model.getChildren().map(
+                            item => <PersonSummaryComponent key={item.getUniqueId()} model={item}/>
+                        )
+                    }
                 </AddListComponent>
             </MainContentComponent>
         );
     }
 }
-

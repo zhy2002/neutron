@@ -33,6 +33,12 @@ a[tabindex] {
   }
 }
 
+.remove-panel-component{
+  h5 {
+    margin-top: 0;
+  }
+}
+
 .simple-list-component {
   .well {
     .close-icon {
@@ -626,13 +632,6 @@ a[tabindex] {
 //
 //}
 //
-
-//
-//.compact {
-//  .btn-sm.btn-primary.pull-right {
-//    width: 45px;
-//  }
-//}
 //
 //.error-message {
 //}

@@ -29,18 +29,14 @@ export default class RemovePanelComponent extends NeutronComponent {
         return (
             <div className={`row remove-panel-component ${this.props.className}`}>
                 <div className="col-sm-12">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <button className="btn btn-sm btn-warning pull-right" onClick={this.removeItem}>
-                                Remove
-                            </button>
-                        </div>
-                        <div className="col-md-10">
+                    <div className="well">
+                        <button className="btn btn-sm btn-warning pull-right" onClick={this.removeItem}>
+                            Remove
+                        </button>
+                        <h5>
                             <ItemIndexComponent index={this.model.getIndex()} model={this.model.getParent()}/>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-offset-2 col-md-10">
+                        </h5>
+                        <div>
                             {this.props.children}
                         </div>
                     </div>
