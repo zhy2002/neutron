@@ -78,6 +78,7 @@ a[tabindex] {
   left: 0;
   right: 0;
   overflow: auto;
+  background-color: $table-bg-accent;
 
   .application-list-component {
 
@@ -94,9 +95,6 @@ a[tabindex] {
       }
     }
 
-    table.application-table {
-
-    }
   }
 
   .application-component {
@@ -111,6 +109,37 @@ a[tabindex] {
       bottom: 0;
       overflow: auto;
     }
+
+    .application-errors-component {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 30%;
+
+      .title-bar {
+        background-color: $brand-info;
+        padding: 1em;
+        color: white;
+        text-align: right;
+        border-radius: 5px;
+        line-height: 2em;
+        margin-bottom: 1em;
+
+        .badge-link {
+          float: left;
+          margin-top: -3px;
+        }
+
+        .close-icon {
+          color: white;
+        }
+      }
+
+      .alert {
+        margin-bottom: 1em;
+      }
+    }
   }
 }
 
@@ -121,7 +150,8 @@ a[tabindex] {
   bottom: 0;
   overflow: auto;
   font-size: 0.8em;
-  color: #777;
+  color: $table-bg-accent;
+  background-color: $brand-primary;
 }
 
 .loading-spinner-component {
@@ -312,27 +342,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.application-errors-component {
-//  position: absolute;
-//  top: 52px;
-//  bottom: 0;
-//  right: 0;
-//  width: 30%;
-//
-//  .title-bar {
-//    background-color: #337ab7;
-//    padding: 3px 5px 1px 5px;
-//    color: white;
-//    text-align: right;
-//
-//    a {
-//      color: inherit;
-//      :hover {
-//        cursor: pointer;
-//        color: orange;
-//      }
-//    }
-//  }
+
 //
 //  .header {
 //    padding: 5px 21px 0 5px;

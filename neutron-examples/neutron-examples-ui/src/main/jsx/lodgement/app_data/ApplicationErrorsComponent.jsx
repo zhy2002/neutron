@@ -56,19 +56,14 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
             return (
                 <div className="application-errors-component">
                     <div className="title-bar">
-                        <a tabIndex="0" onClick={this.props.onClose} alt="Close">
+                        <div className="badge-link">
+                            <span className="badge">{this.state.count}</span>
+                        </div>
+                        <a className="close-icon" tabIndex="0" onClick={this.props.onClose} alt="Close">
                             <span className="glyphicon glyphicon-remove"/>
                         </a>
                     </div>
-                    <div className="header small">
-                        <div className="title clearfix">
-                            <div className="col-p35">Source</div>
-                            <div className="col-p65">
-                                Message
-                                <span className="badge pull-right">{this.state.count}</span>
-                            </div>
-                        </div>
-                    </div>
+
                     <div className="content small">
                         {this.renderErrors()}
                     </div>
