@@ -58,13 +58,18 @@ export default class ApplicationComponent extends NeutronComponent {
                 />
                 {
                     !isNaN(this.state.contentTop) &&
-                    <ApplicationContentComponent model={this.state.currentModel} top={this.state.contentTop}/>
+                    <div className="fill-all" style={{top: `${this.state.contentTop}px`}}>
+                        <ApplicationContentComponent model={this.state.currentModel}/>
+                        {
+                            this.state.showErrorList &&
+                            <ApplicationErrorsComponent
+                                onClose={this.hideErrorList}
+                                model={this.model.getErrorListNode()}
+                            />
+                        }
+                    </div>
+
                 }
-                <ApplicationErrorsComponent
-                    visible={this.state.showErrorList}
-                    onClose={this.hideErrorList}
-                    model={this.model.getErrorListNode()}
-                />
             </div>
         );
     }

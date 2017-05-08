@@ -84,7 +84,7 @@ export default class ApplicationContentComponent extends React.PureComponent {
 
     render() {
         return (
-            <div className="application-content-component" style={{top: `${this.props.top}px`}}>
+            <div className="application-content-component" >
                 {this.renderContent()}
             </div>
         );
@@ -92,6 +92,5 @@ export default class ApplicationContentComponent extends React.PureComponent {
 }
 
 ApplicationContentComponent.propTypes = {
-    model: PropTypes.object.isRequired,
-    top: PropTypes.number.isRequired
+    model: PropTypes.object.isRequired
 };

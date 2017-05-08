@@ -37,10 +37,10 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
             (item) => {
                 errors.push(
                     <div key={item.getUniqueId()} className="clearfix alert alert-warning">
-                        <div className="col-p35">
+                        <div className="error-path">
                             {item.getSource() ? item.getSource().getPathLabel() : ''}
                         </div>
-                        <div className="col-p65">
+                        <div className="error-text">
                             <a tabIndex="0" onClick={() => this.focusOnField(item)}>{item.getMessage()}</a>
                         </div>
                     </div>
@@ -52,29 +52,25 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
     }
 
     render() {
-        if (this.props.visible) {
-            return (
-                <div className="application-errors-component">
-                    <div className="title-bar">
-                        <div className="badge-link">
-                            <span className="badge">{this.state.count}</span>
-                        </div>
-                        <a className="close-icon" tabIndex="0" onClick={this.props.onClose} alt="Close">
-                            <span className="glyphicon glyphicon-remove"/>
-                        </a>
+        return (
+            <div className="application-errors-component">
+                <div className="title-bar">
+                    <div className="badge-link">
+                        <span className="badge">{this.state.count}</span>
                     </div>
-
-                    <div className="content small">
-                        {this.renderErrors()}
-                    </div>
+                    <a className="close-icon" tabIndex="0" onClick={this.props.onClose} alt="Close">
+                        <span className="glyphicon glyphicon-remove"/>
+                    </a>
                 </div>
-            );
-        }
-        return null;
+
+                <div className="content small">
+                    {this.renderErrors()}
+                </div>
+            </div>
+        );
     }
 }
 
 ApplicationErrorsComponent.propTypes = {
-    visible: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
 };

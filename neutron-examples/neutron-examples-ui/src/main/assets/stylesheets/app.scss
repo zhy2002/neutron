@@ -30,6 +30,43 @@ a[tabindex] {
   }
 }
 
+.telephone-component {
+  .country-code {
+    width: 20%;
+    float: left;
+  }
+
+  .area-code {
+    width: 20%;
+    float: left;
+    margin: 0 1%;
+  }
+
+  .phone-number {
+    width: 58%;
+    float: left;
+  }
+}
+
+.address-component {
+  .clearfix {
+    > .form-group {
+      float: left;
+    }
+  }
+
+  .suburb {
+    width: 29%;
+  }
+  .postcode {
+    width: 29%;
+    margin: 0 1%;
+  }
+  .country {
+    width: 40%;
+  }
+}
+
 .fill-all {
   position: absolute;
   top: 0;
@@ -63,6 +100,14 @@ a[tabindex] {
   .lodgement-toolbar-component {
     margin-bottom: 1px;
 
+    .toolbar li > a {
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        color: gold;
+        transform: scale(1.15);
+      }
+    }
     .glyphicon {
       font-size: 1.5em;
     }
@@ -102,12 +147,14 @@ a[tabindex] {
       margin-bottom: 1px;
     }
 
+    &.show-error-list {
+      .application-content-component {
+        width: 70%;
+      }
+    }
+
     .application-content-component {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow: auto;
+      font-size: 80%;
     }
 
     .application-errors-component {
@@ -116,6 +163,7 @@ a[tabindex] {
       bottom: 0;
       right: 0;
       width: 30%;
+      overflow-y: auto;
 
       .title-bar {
         background-color: $brand-info;
@@ -137,7 +185,16 @@ a[tabindex] {
       }
 
       .alert {
+        padding: 10px;
         margin-bottom: 1em;
+      }
+
+      .error-path {
+        padding-bottom: 0.75em;
+      }
+
+      .error-text a {
+        color: $brand-primary;
       }
     }
   }
@@ -238,17 +295,6 @@ a[tabindex] {
 //  right: 0;
 //}
 //
-//.application-component {
-//  position: absolute;
-//  top: 0;
-//  left: 0;
-//  right: 0;
-//  bottom: 0;
-//
-//  &.show-error-list .application-content-component {
-//    width: 70%;
-//  }
-//}
 //
 //.application-toolbar-component, .app-manager-toolbar-component {
 //  background-color: #337ab7;
@@ -581,42 +627,7 @@ a[tabindex] {
 //
 //}
 //
-//.telephone-component {
-//  .country-code {
-//    width: 20%;
-//    float: left;
-//  }
-//
-//  .area-code {
-//    width: 20%;
-//    float: left;
-//    margin: 0 1%;
-//  }
-//
-//  .phone-number {
-//    width: 58%;
-//    float: left;
-//  }
-//}
-//
-//.address-component {
-//  .clearfix {
-//    > .form-group {
-//      float: left;
-//    }
-//  }
-//
-//  .suburb {
-//    width: 29%;
-//  }
-//  .postcode {
-//    width: 29%;
-//    margin: 0 1%;
-//  }
-//  .country {
-//    width: 40%;
-//  }
-//}
+
 //
 //.compact {
 //  .btn-sm.btn-primary.pull-right {
