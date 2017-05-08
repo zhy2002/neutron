@@ -13,12 +13,14 @@ export default class PanelComponent extends React.PureComponent {
         return (
             <div className={`panel ${this.props.className} panel-component`}>
                 <div className="panel-heading clearfix">
-                    <h3 className="panel-title small">{this.props.title} </h3>
-                    {this.props.onAdd &&
-                    <a tabIndex="0" onClick={this.props.onAdd}>
-                        <span className="glyphicon glyphicon-plus-sign"/>
-                    </a>
+                    {
+                        this.props.onAdd &&
+                        <a tabIndex="0" onClick={this.props.onAdd}>
+                            <span className="glyphicon glyphicon-plus-sign"/>
+                            &nbsp;
+                        </a>
                     }
+                    <h3 className="panel-title small">{this.props.title} </h3>
                 </div>
                 <div className="panel-body">
                     {this.props.children}

@@ -25,7 +25,7 @@ export default class FinancialItemComponent extends NeutronComponent {
                         {this.props.children}
                     </div>
                     <div className="col-md-5">
-                        <a tabIndex="0" className="close-link" onClick={this.delete}>
+                        <a tabIndex="0" className="close-icon" onClick={this.delete}>
                             <span className="glyphicon glyphicon-remove-circle"/>
                         </a>
                         <OwnershipListComponent model={model.getOwnershipListNode()}/>

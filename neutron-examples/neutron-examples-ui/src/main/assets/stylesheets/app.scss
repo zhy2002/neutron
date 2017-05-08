@@ -18,6 +18,32 @@ a[tabindex] {
   cursor: pointer;
 }
 
+.panel-component {
+  .panel-heading {
+    > a {
+      display: block;
+      float: left;
+      font-size: 1.5em;
+    }
+
+    > .panel-title {
+      float: left;
+      margin-top: 2px;
+    }
+  }
+}
+
+.simple-list-component {
+  .well {
+    .close-icon {
+      font-size: 1.5em;
+      float: right;
+      margin-top: -10px;
+      margin-right: -5px;
+    }
+  }
+}
+
 .close-icon {
   background: none;
   border: none;
@@ -145,6 +171,10 @@ a[tabindex] {
   .application-component {
     .navbar.navbar-inverse {
       margin-bottom: 1px;
+    }
+
+    .application-tabs-component {
+      padding-bottom: 1em;
     }
 
     &.show-error-list {
@@ -343,37 +373,6 @@ a[tabindex] {
 //  border-bottom: none;
 //}
 //
-//.application-tabs-component {
-//  padding: 0 1px;
-//
-//  .nav-pills-component {
-//    margin-top: 0;
-//  }
-//
-//  &.has-content {
-//
-//    @media (max-width: 900px) {
-//      + .application-content-component {
-//        top: 100px;
-//      }
-//
-//      ~ .application-errors-component {
-//        top: 100px;
-//      }
-//    }
-//
-//    @media (min-width: 901px) {
-//      + .application-content-component {
-//        top: 77px;
-//      }
-//
-//      ~ .application-errors-component {
-//        top: 77px;
-//      }
-//    }
-//
-//  }
-//}
 //
 //.application-content-component {
 //  position: absolute;
