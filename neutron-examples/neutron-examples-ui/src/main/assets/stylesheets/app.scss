@@ -14,6 +14,8 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootswatch/flatly/bootswatch';
 @import '~react-datepicker/src/stylesheets/datepicker';
 
+$missing-value-bg: rgba(100, 100, 200, 0.33);
+
 a[tabindex] {
   cursor: pointer;
 }
@@ -226,6 +228,25 @@ a[tabindex] {
   .btn-sm {
     min-width: 95px;
   }
+}
+
+.missing-value {
+  input, select, .radio-container {
+    background-color: $missing-value-bg;
+  }
+}
+
+.checkbox {
+  > label.missing-value {
+    background-color: $missing-value-bg;
+  }
+}
+
+.has-error {
+  input, select, .radio-container, &.checkbox {
+    background-color: #ef9a9a;
+  }
+
 }
 
 .lodgement-header-component {
@@ -582,11 +603,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.missing-value {
-//  input, select, .radio-container {
-//    background-color: lightblue;
-//  }
-//}
+
 //
 
 //
@@ -706,19 +723,7 @@ a[tabindex] {
 //
 
 //
-//.checkbox {
-//
-//  > label.missing-value {
-//    background-color: lightblue;
-//  }
-//}
-//
-//.has-error {
-//  input, select, .radio-container, &.checkbox {
-//    background-color: #ef9a9a;
-//  }
-//
-//}
+
 //
 //
 //.error-message {
