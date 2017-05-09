@@ -39,6 +39,15 @@ a[tabindex] {
   }
 }
 
+.json-container {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.force-wrap {
+  word-break: break-all;
+}
+
 .radio-container {
   height: $input-height-small;
   line-height: $input-height-small;
@@ -481,9 +490,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.force-wrap {
-//  word-break: break-all;
-//}
+
 //
 //.application-nav-component {
 //  margin-bottom: 0;

@@ -110,7 +110,9 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                     show={this.state.modelJson !== null}
                     onClose={() => this.setState({modelJson: null})}
                 >
-                    <p className="force-wrap">{this.state.modelJson}</p>
+                    <div className="json-container">
+                        <p className="force-wrap">{this.state.modelJson}</p>
+                    </div>
                 </ModalDialogComponent>
             </div>
         );
