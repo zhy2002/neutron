@@ -66,7 +66,7 @@ export default class SelectInputComponent extends InputComponent {
                 >
                     {this.renderOptions()}
                 </select>
-                {this.state.errorMessage &&
+                {this.state.errorMessage && !this.state.readonly &&
                 <div className="error-message text-warning">{this.state.errorMessage}</div>
                 }
             </div>

@@ -295,6 +295,45 @@ field length
 trust ref list
 
 
+//pending tasks
+<pre>
+add to person summary:
+Employment Incomes (0)
+Other Incomes (0)
+</pre>
+
+<pre>
+person general page: 
+age and number of dependants
+name of trust field
+next of kin field
+other title field
+</pre>
+
+<pre>
+
+</pre>
+
+<pre>
+
+</pre>
+
+<pre>
+
+</pre>
+
+<pre>
+
+</pre>
+
+<pre>
+
+</pre>
+
+<pre>
+
+</pre>
+
 
 
 

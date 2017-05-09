@@ -33,6 +33,53 @@ a[tabindex] {
   }
 }
 
+.date-input-component {
+  > div {
+    width: 100%;
+  }
+}
+
+.radio-container {
+  height: $input-height-small;
+  line-height: $input-height-small;
+  border-radius: $input-border-radius;
+  vertical-align: middle;
+
+  label:first-child {
+    padding-left: 0;
+  }
+
+  input[type=radio] {
+    position: relative;
+    top: 2px;
+    margin-left: auto;
+    margin-right: 0.5em;
+  }
+}
+
+//region adjust react date picker size: https://github.com/Hacker0x01/react-datepicker/issues/624
+.react-datepicker {
+  font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+  padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+  top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+  margin: 0.5rem !important;
+}
+
+//endregion
+
 .remove-panel-component {
   h5 {
     margin-top: 0;
@@ -132,6 +179,44 @@ a[tabindex] {
     }
   }
 
+}
+
+.reference-input-component {
+
+  .reference-container {
+    position: relative;
+    min-height: $input-height-small;
+    line-height: $input-height-small;
+
+    span {
+      display: block;
+      padding-right: 55px;
+    }
+
+    button.btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.checkbox-input-component {
+  padding-bottom: 10px;
+
+  .checkbox-container {
+    display: block;
+  }
+}
+
+.modal-dialog-component {
+  .modal {
+    display: block;
+  }
+
+  .btn-sm {
+    min-width: 95px;
+  }
 }
 
 .lodgement-header-component {
@@ -480,23 +565,9 @@ a[tabindex] {
 //  }
 //}
 //
-//.person-main-content {
-//  position: absolute;
-//  top: 30px;
-//  left: 0;
-//  right: 0;
-//  bottom: 0;
-//  overflow: auto;
-//  padding-top: 1em;
-//}
+
 //
-//.radio-container {
-//  padding-top: 3px;
-//  padding-bottom: 4px;
-//  -webkit-border-radius: 3px;
-//  -moz-border-radius: 3px;
-//  border-radius: 3px;
-//}
+
 //
 //.person-component, company-component {
 //  > .nav-pills-component {
@@ -548,11 +619,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.date-input-component {
-//  > div {
-//    width: 100%;
-//  }
-//}
+
 //
 //.nav-pills-component {
 //  margin: 1px 0;
@@ -630,11 +697,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.radio-inline {
-//  input[type=radio] {
-//    margin-top: 1px;
-//  }
-//}
+
 //
 //.checkbox {
 //
@@ -678,11 +741,7 @@ a[tabindex] {
 //.application-list-component tbody tr {
 //}
 //
-//.modal-dialog-component {
-//  .modal {
-//    display: block;
-//  }
-//}
+
 //
 //.panel-component {
 //  .panel-heading {
@@ -790,10 +849,5 @@ a[tabindex] {
 //  }
 //}
 //
-//.modal-dialog-component {
-//  .btn-sm {
-//    min-width: 95px;
-//  }
-//}
 //
 ////endregion

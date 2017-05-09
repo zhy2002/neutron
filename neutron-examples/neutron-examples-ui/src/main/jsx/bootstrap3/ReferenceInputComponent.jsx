@@ -56,7 +56,7 @@ export default class ReferenceInputComponent extends InputComponent {
                 {!this.props.hideLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
-                <div>
+                <div className="reference-container">
                     {this.model.getReferencedNode() &&
                     <NodeLabelComponent model={this.model.getReferencedNode()}/>
                     }

@@ -65,6 +65,16 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                         </a>
                     </li>
                     <li>
+                        <a tabIndex="0" alt="Clear Errors" onClick={this.clearErrors}>
+                            <div>
+                                <span className="glyphicon glyphicon-align-justify"/>
+                            </div>
+                            <div>
+                                <small>Clear</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a tabIndex="0" onClick={this.getJson}>
                             <div>
                                 <span className="glyphicon glyphicon-open"/>
@@ -91,16 +101,6 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                             </div>
                             <div>
                                 <small>Refresh</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a tabIndex="0" alt="Clear Errors" onClick={this.clearErrors}>
-                            <div>
-                                <span className="glyphicon glyphicon-align-justify"/>
-                            </div>
-                            <div>
-                                <small>Clear</small>
                             </div>
                         </a>
                     </li>

@@ -15,7 +15,8 @@ export default class CheckboxInputComponent extends InputComponent {
     render() {
         return (
             <div className={super.renderContainerClass('checkbox checkbox-input-component')}>
-                <label>
+                <label>&nbsp;</label>
+                <label className="checkbox-container">
                     <input
                         id={this.id}
                         type="checkbox"
