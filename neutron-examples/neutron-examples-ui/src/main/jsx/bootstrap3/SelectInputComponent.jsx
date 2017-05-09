@@ -62,7 +62,7 @@ export default class SelectInputComponent extends InputComponent {
                     className="form-control"
                     value={`${this.valueIndex()}`}
                     onChange={this.updateValue}
-                    disabled={this.state.disabled}
+                    disabled={this.state.readonly || this.state.disabled}
                 >
                     {this.renderOptions()}
                 </select>

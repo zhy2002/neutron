@@ -34,7 +34,7 @@ export default class InputComponent extends NeutronComponent {
         const newState = super.extractNewState();
         newState.value = this.getUiValue();
         newState.disabled = this.model.isDisabled();
-        newState.readonly = this.model.isReadonly();
+        newState.readonly = this.props.readonly || this.model.isReadonly();
         return newState;
     }
 
@@ -66,9 +66,11 @@ export default class InputComponent extends NeutronComponent {
 }
 
 InputComponent.propTypes = {
-    containerClass: PropTypes.string
+    containerClass: PropTypes.string,
+    readonly: PropTypes.bool
 };
 
 InputComponent.defaultProps = {
-    containerClass: ''
+    containerClass: '',
+    readonly: false
 };

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 export default function CloseIconComponent(props) {
     return (
-        <a
+        <button
             className="close-icon-component"
             tabIndex="0"
             title={props.title}
             onClick={props.onClose}
         >
             <span className="glyphicon glyphicon-remove"/>
-        </a>
+        </button>
     );
 }
 

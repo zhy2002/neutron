@@ -4,6 +4,7 @@ import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
 import zhy2002.examples.lodgement.gen.node.FirstNameNode;
 import zhy2002.examples.lodgement.gen.node.LastNameNode;
 import zhy2002.examples.lodgement.gen.node.PersonNode;
+import zhy2002.examples.lodgement.gen.node.TitleNode;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UpdateItemNodeLabelRule;
 import zhy2002.neutron.di.Owner;
@@ -31,6 +32,10 @@ public class UpdatePersonNodeLabelRuleImpl extends UpdateItemNodeLabelRule<Perso
         return getPersonNode().getPersonGeneralNode().getLastNameNode();
     }
 
+    private TitleNode getTitleNode() {
+        return getPersonNode().getPersonGeneralNode().getTitleNode();
+    }
+
     @Owner
     protected boolean filter(UiNodeEvent event) {
         FirstNameNode firstNameNode = getFirstNameNode();
@@ -42,11 +47,17 @@ public class UpdatePersonNodeLabelRuleImpl extends UpdateItemNodeLabelRule<Perso
     protected void updateLabel(UiNodeEvent event) {
         String firstName = getFirstNameNode().getValue();
         String lastName = getLastNameNode().getValue();
+        String title = getTitleNode().getValue();
 
+        String label;
         if (!ValueUtil.isEmpty(firstName) || !ValueUtil.isEmpty(lastName)) {
-            getPersonNode().setNodeLabel(firstName + " " + lastName);
+            label = firstName + " " + lastName;
+            if (!ValueUtil.isEmpty(title)) {
+                label = title + " " + label;
+            }
         } else {
-            getPersonNode().setNodeLabel("[Person " + (getPersonNode().getIndex() + 1) + "]");
+            label = "[Person " + (getPersonNode().getIndex() + 1) + "]";
         }
+        getPersonNode().setNodeLabel(label);
     }
 }
