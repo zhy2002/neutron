@@ -17,6 +17,11 @@ export default class ReferenceInputComponent extends InputComponent {
             });
         };
 
+        this.clearValue = () => {
+            this.model.setValue(null);
+            this.setState({showModal: false});
+        };
+
         this.showList = () => {
             this.setState({
                 showModal: true
@@ -72,17 +77,21 @@ export default class ReferenceInputComponent extends InputComponent {
                 {this.state.errorMessage &&
                 <div className="error-message text-warning">{this.state.errorMessage}</div>
                 }
-                <ModalDialogComponent show={this.state.showModal}>
+                <ModalDialogComponent
+                    show={this.state.showModal}
+                    title={this.label}
+                    onClose={this.closeList}
+                >
                     <div>
                         <ul className="list-group">
                             {this.renderOptions()}
                         </ul>
                     </div>
                     <button
-                        onClick={this.closeList}
-                        className="btn btn-primary"
+                        onClick={this.clearValue}
+                        className="btn btn-sm btn-danger"
                     >
-                        Close
+                        Clear
                     </button>
                 </ModalDialogComponent>
             </div>
