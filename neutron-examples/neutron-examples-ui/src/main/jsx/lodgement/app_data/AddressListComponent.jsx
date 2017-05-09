@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NodeValueComponent from '../../bootstrap3/NodeValueComponent';
+import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
 
 export default class AddressListComponent extends React.PureComponent {
 
@@ -28,9 +29,7 @@ export default class AddressListComponent extends React.PureComponent {
             <div className="address-list-component">
                 <div className="overlay-panel">
                     <div className="pull-right">
-                        <a onClick={this.props.onHide} tabIndex="0" className="close-icon">
-                            <span className="glyphicon glyphicon-remove"/>
-                        </a>
+                        <CloseIconComponent onClose={this.props.onHide}/>
                     </div>
                     <div className="list-group">
                         {this.renderItems()}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListNeutronComponent from '../../bootstrap3/ListNeutronComponent';
+import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
 
 export default class ApplicationErrorsComponent extends ListNeutronComponent {
 
@@ -58,9 +59,7 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
                     <div className="badge-link">
                         <span className="badge">{this.state.count}</span>
                     </div>
-                    <a className="close-icon" tabIndex="0" onClick={this.props.onClose} alt="Close">
-                        <span className="glyphicon glyphicon-remove"/>
-                    </a>
+                    <CloseIconComponent onClose={this.props.onClose}/>
                 </div>
 
                 <div className="content small">

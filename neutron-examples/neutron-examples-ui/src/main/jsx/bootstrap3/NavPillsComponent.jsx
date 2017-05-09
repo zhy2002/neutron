@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NodeLabelComponent from '../bootstrap3/NodeLabelComponent';
+import CloseIconComponent from '../bootstrap3/CloseIconComponent';
 
 
 export default function NavPillsComponent(props) {
@@ -16,19 +17,16 @@ export default function NavPillsComponent(props) {
                         return (
                             <li key={item.getUniqueId()} className={itemClass}>
                                 <a tabIndex="0" onClick={() => props.onSelect(item)}>
-                                    <NodeLabelComponent model={item} />
+                                    <NodeLabelComponent model={item}/>
                                     {
                                         item.getShowErrorList &&
-                                        <button
-                                            className="close-icon"
-                                            onClick={(e) => {
+                                        <CloseIconComponent
+                                            onClose={(e) => {
                                                 props.onClose(item);
                                                 e.preventDefault();
                                                 e.stopPropagation();
                                             }}
-                                        >
-                                            <span className="glyphicon glyphicon-remove-sign"/>
-                                        </button>
+                                        />
                                     }
                                 </a>
                             </li>

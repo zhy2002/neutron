@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
 import OwnershipListComponent from '../common/OwnershipListComponent';
 
 
@@ -25,9 +26,7 @@ export default class FinancialItemComponent extends NeutronComponent {
                         {this.props.children}
                     </div>
                     <div className="col-md-5">
-                        <a tabIndex="0" className="close-icon" onClick={this.delete}>
-                            <span className="glyphicon glyphicon-remove-circle"/>
-                        </a>
+                        <CloseIconComponent onClose={this.delete}/>
                         <OwnershipListComponent model={model.getOwnershipListNode()}/>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import ItemIndexComponent from '../../../bootstrap3/ItemIndexComponent';
+import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
 
 
 export default class RemovePanelComponent extends NeutronComponent {
@@ -30,9 +31,7 @@ export default class RemovePanelComponent extends NeutronComponent {
             <div className={`row remove-panel-component ${this.props.className}`}>
                 <div className="col-sm-12">
                     <div className="well">
-                        <button className="btn btn-sm btn-warning pull-right" onClick={this.removeItem}>
-                            Remove
-                        </button>
+                        <CloseIconComponent onClose={this.removeItem} title="Remove"/>
                         <h5>
                             <ItemIndexComponent index={this.model.getIndex()} model={this.model.getParent()}/>
                         </h5>
