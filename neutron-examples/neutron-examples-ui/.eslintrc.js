@@ -25,6 +25,9 @@ module.exports = {
         "react/prefer-stateless-function": [
             OFF
         ],
+        "react/no-find-dom-node": [
+            OFF
+        ],
         "no-console":[
             OFF
         ],

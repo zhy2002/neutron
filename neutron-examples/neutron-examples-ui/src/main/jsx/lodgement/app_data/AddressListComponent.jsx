@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NodeValueComponent from '../../bootstrap3/NodeValueComponent';
 import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
+import AutoCloseContainer from '../../bootstrap3/AutoCloseContainer';
 
 export default class AddressListComponent extends React.PureComponent {
 
@@ -11,7 +12,12 @@ export default class AddressListComponent extends React.PureComponent {
         addressListNode.getUniqueAddressNodes().forEach(
             (item) => {
                 items.push(
-                    <a className="list-group-item" tabIndex="0" onClick={() => this.props.onSelect(item)}>
+                    <a
+                        key={item.getUniqueId()}
+                        className="list-group-item"
+                        tabIndex="0"
+                        onClick={() => this.props.onSelect(item)}
+                    >
                         <NodeValueComponent model={item.getAddressLineNode()}/>
                         <br/>
                         <NodeValueComponent model={item.getSuburbNode()}/>
@@ -21,12 +27,16 @@ export default class AddressListComponent extends React.PureComponent {
                 );
             }
         );
+
+        if (items.length === 0) {
+            items.push(<span key="no_result">No address found</span>);
+        }
         return items;
     }
 
     render() {
         return (
-            <div className="address-list-component">
+            <AutoCloseContainer className="address-list-component" onHide={this.props.onHide}>
                 <div className="overlay-panel">
                     <div className="pull-right">
                         <CloseIconComponent onClose={this.props.onHide}/>
@@ -35,7 +45,7 @@ export default class AddressListComponent extends React.PureComponent {
                         {this.renderItems()}
                     </div>
                 </div>
-            </div>
+            </AutoCloseContainer>
         );
     }
 }

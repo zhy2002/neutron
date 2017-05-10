@@ -16,6 +16,7 @@ export default class AddressComponent extends NeutronComponent {
         };
 
         this.hideAddressList = () => {
+            console.debug('hiding address list...');
             this.setState({showAddressList: false});
         };
 
@@ -41,7 +42,7 @@ export default class AddressComponent extends NeutronComponent {
                 className={`address-component${this.state.componentClass}`}
             >
                 <label htmlFor={model.getAddressLineNode().getUniqueId()}>{this.state.label}</label>
-                <a tabIndex="0" onClick={this.showAddressList}> <span className="glyphicon glyphicon-eye-open"/></a>
+                <a tabIndex="0" onClick={this.showAddressList}> <span className="glyphicon glyphicon-search"/></a>
                 {this.state.showAddressList &&
                 <AddressListComponent
                     contextModel={model.getContext()}

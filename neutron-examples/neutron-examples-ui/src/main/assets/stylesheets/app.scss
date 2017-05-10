@@ -19,7 +19,6 @@ $missing-value-border-color: rgba(100, 100, 200, 0.88);
 $missing-value-placeholder-color: #999;
 $has-error-placeholder-color: #d0d0d0;
 
-
 a[tabindex] {
   cursor: pointer;
 }
@@ -167,6 +166,11 @@ a[tabindex] {
     }
   }
 
+  .glyphicon-search {
+    transform: scale(1.1);
+    margin-left: 0.5em;
+  }
+
   .suburb {
     width: 29%;
   }
@@ -300,6 +304,26 @@ a[tabindex] {
     color: $has-error-placeholder-color;
   }
 
+}
+
+.address-list-component {
+  position: relative;
+
+  .overlay-panel {
+    position: absolute;
+    z-index: 100;
+    background-color: #fefefe;
+    border: 2px solid #dfdfdf;
+    width: 250px;
+    top: -10px;
+    box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.4);
+    padding: 0.5em;
+  }
+
+  .list-group {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
 }
 
 .lodgement-header-component {
@@ -771,26 +795,7 @@ a[tabindex] {
 //.error-message {
 //}
 //
-//.address-list-component {
-//  position: relative;
-//
-//  .overlay-panel {
-//    position: absolute;
-//    z-index: 100;
-//    background-color: #fefefe;
-//    border: 2px solid #dfdfdf;
-//    width: 250px;
-//    top: -10px;
-//    box-shadow: 5px 7px 5px 0 rgba(0, 0, 0, 0.4);
-//  }
-//
 
-//
-//  .list-group {
-//    margin-top: 20px;
-//    margin-bottom: 0;
-//  }
-//}
 //
 //.application-list-component tbody tr {
 //}
