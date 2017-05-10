@@ -29,8 +29,8 @@ public class HomeOrWorkPhoneRequiredRuleImpl extends HomeOrWorkPhoneRequiredRule
     }
 
     @Override
-    public void addToOwner() {
-        super.addToOwner();
+    protected void onLoad() {
+        super.onLoad();
 
         updateRequiredPhone(null);
     }

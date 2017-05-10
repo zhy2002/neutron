@@ -30,6 +30,11 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
         return String.class;
     }
 
+    @Override
+    protected PropertyMetadata<String> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
+    }
+
     //region node properties
 
     public static final PropertyMetadata<String> VALUE_PROPERTY = MetadataRegistry.createProperty(ReferenceUiNode.class, "value", String.class);

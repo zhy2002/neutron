@@ -1,7 +1,6 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
-import jsinterop.annotations.JsType;
 import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
@@ -20,6 +19,11 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
     @Override
     public Class<Boolean> getValueClass() {
         return Boolean.class;
+    }
+
+    @Override
+    protected PropertyMetadata<Boolean> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
     }
 
     //region node properties

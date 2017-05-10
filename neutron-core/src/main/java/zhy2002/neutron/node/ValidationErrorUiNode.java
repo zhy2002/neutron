@@ -57,14 +57,18 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
     }
 
     @Override
-    public boolean hasValue() {
-        ValidationError value = getValue();
-        return value != null && !value.equals(EMPTY_VALUE);
+    public ValidationError getEmptyValue() {
+        return EMPTY_VALUE;
     }
 
     @Override
     public Class<ValidationError> getValueClass() {
         return ValidationError.class;
+    }
+
+    @Override
+    protected PropertyMetadata<ValidationError> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
     }
 
     //region node properties

@@ -24,15 +24,18 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     @Override
-    public boolean hasValue() {
-
-        String value = getValue();
-        return !ValueUtil.isEmpty(value);
+    public String getEmptyValue() {
+        return "";
     }
 
     @Override
     public Class<String> getValueClass() {
         return String.class;
+    }
+
+    @Override
+    protected PropertyMetadata<String> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
     }
 
     //region node properties

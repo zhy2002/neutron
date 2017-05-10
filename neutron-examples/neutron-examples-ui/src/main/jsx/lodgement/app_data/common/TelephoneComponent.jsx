@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'throttle-debounce/debounce';
 import InputComponent from '../../../bootstrap3/InputComponent';
 
 export default class TelephoneComponent extends InputComponent {
@@ -8,24 +9,46 @@ export default class TelephoneComponent extends InputComponent {
         super(props);
 
         this.updateCountryCode = (event) => {
+            this.ensureDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getCopyOfValue();
             telephone.setCountryCode(value);
             this.model.setValue(telephone);
+            this.flush();
         };
 
         this.updateAreaCode = (event) => {
+            this.ensureDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getCopyOfValue();
             telephone.setAreaCode(value);
             this.model.setValue(telephone);
+            this.flush();
         };
 
         this.updatePhoneNumber = (event) => {
+            this.ensureDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getCopyOfValue();
             telephone.setPhoneNumber(value);
             this.model.setValue(telephone);
+            this.flush();
+        };
+
+        const suppressIncompleteValidation = debounce(
+            250,
+            false,
+            (val) => {
+                this.model.setSuppressTelephoneCompleteRule(val);
+            }
+        );
+
+        this.handleFocus = () => {
+            suppressIncompleteValidation(true);
+        };
+
+        this.handleBlur = () => {
+            suppressIncompleteValidation(false);
         };
     }
 
@@ -63,6 +86,8 @@ export default class TelephoneComponent extends InputComponent {
                 id={model.getUniqueId()}
                 tabIndex="0"
                 className={`form-group form-group-sm telephone-component${this.state.componentClass}`}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
             >
                 <label htmlFor={countryInputId}>{this.state.label}</label>
                 <div className="clearfix">
@@ -70,7 +95,7 @@ export default class TelephoneComponent extends InputComponent {
                         id={countryInputId}
                         type="text"
                         className="form-control country-code"
-                        placeholder="Country Code"
+                        placeholder="Country"
                         value={this.state.countryCode}
                         onChange={this.updateCountryCode}
                         readOnly={this.state.countryCodeReadonly}
@@ -78,7 +103,7 @@ export default class TelephoneComponent extends InputComponent {
                     <input
                         type="text"
                         className="form-control area-code"
-                        placeholder="Area Code"
+                        placeholder="Area"
                         value={this.state.areaCode}
                         onChange={this.updateAreaCode}
                     />

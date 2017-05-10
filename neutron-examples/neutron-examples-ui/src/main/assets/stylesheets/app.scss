@@ -15,6 +15,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~react-datepicker/src/stylesheets/datepicker';
 
 $missing-value-bg: rgba(100, 100, 200, 0.33);
+$missing-value-border-color: rgba(100, 100, 200, 0.88);
+$missing-value-placeholder-color: #999;
+$has-error-placeholder-color: #d0d0d0;
+
 
 a[tabindex] {
   cursor: pointer;
@@ -65,6 +69,19 @@ a[tabindex] {
     top: 2px;
     margin-left: auto;
     margin-right: 0.5em;
+  }
+}
+
+.month-year-component {
+  .month {
+    width: 49%;
+    margin-right: 2%;
+    float: left;
+  }
+
+  .year {
+    width: 49%;
+    float: left;
   }
 }
 
@@ -217,6 +234,10 @@ a[tabindex] {
 
   .checkbox-container {
     display: block;
+
+    input[type=checkbox] {
+      margin-top: 2px;
+    }
   }
 }
 
@@ -233,18 +254,50 @@ a[tabindex] {
 .missing-value {
   input, select, .radio-container {
     background-color: $missing-value-bg;
+    border-color: $missing-value-border-color;
+  }
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: $missing-value-placeholder-color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $missing-value-placeholder-color;
+    opacity: 1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $missing-value-placeholder-color;
+    opacity: 1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $missing-value-placeholder-color;
   }
 }
 
 .checkbox {
   > label.missing-value {
     background-color: $missing-value-bg;
+    border-color: $missing-value-border-color;
   }
 }
 
 .has-error {
   input, select, .radio-container, &.checkbox {
     background-color: #ef9a9a;
+  }
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: $has-error-placeholder-color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $has-error-placeholder-color;
+    opacity: 1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $has-error-placeholder-color;
+    opacity: 1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $has-error-placeholder-color;
   }
 
 }
@@ -664,18 +717,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.month-year-component {
-//  .month {
-//    width: 49%;
-//    margin-right: 2%;
-//    float: left;
-//  }
-//
-//  .year {
-//    width: 49%;
-//    float: left;
-//  }
-//}
+
 //
 //.row.small-gap {
 //  margin-top: 8px;

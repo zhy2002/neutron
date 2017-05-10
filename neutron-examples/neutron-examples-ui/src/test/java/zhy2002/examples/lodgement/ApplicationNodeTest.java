@@ -131,10 +131,18 @@ public class ApplicationNodeTest {
         newValue = phoneNumberNode.getCopyOfValue();
         newValue.setAreaCode("2");
         phoneNumberNode.setValue(newValue);
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(true));
+
+        phoneNumberNode.setSuppressTelephoneCompleteRule(true);
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(false));
+
+        phoneNumberNode.setSuppressTelephoneCompleteRule(false);
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(true));
 
         newValue = phoneNumberNode.getCopyOfValue();
         newValue.setPhoneNumber("119");
         phoneNumberNode.setValue(newValue);
+        assertThat(hasError(hasTelephoneCompleteError), equalTo(false));
 
     }
 
@@ -183,6 +191,9 @@ public class ApplicationNodeTest {
         assertThat(contactNode.hasValue(), equalTo(true));
 
         contactNode.getHomePhoneNode().setValue(new Telephone());
+        assertThat(contactNode.hasValue(), equalTo(true));
+
+        contactNode.getHomePhoneNode().setValue(new Telephone("+61"));
         assertThat(contactNode.hasValue(), equalTo(false));
     }
 

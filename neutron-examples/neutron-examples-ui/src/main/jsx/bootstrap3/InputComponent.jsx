@@ -19,7 +19,7 @@ export default class InputComponent extends NeutronComponent {
             delete context.oldCycleMode;
         };
 
-        this.flush = debounce(300, this.flushNow);
+        this.flush = debounce(350, this.flushNow);
 
         this.ensureDebouncingMode = () => {
             const context = this.model.getContext();

@@ -7,6 +7,7 @@ import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.exception.NotImplementedException;
+import zhy2002.neutron.exception.UiNodeException;
 import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -356,8 +357,15 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public abstract boolean hasError();
 
     @SuppressWarnings("unchecked")
-    final <T> T getPreStateValue(String key) {
-        return (T) preState.get(key);
+    final <T> T getPreStateValue(PropertyMetadata<T> propertyMetadata) {
+        if (preState == null)
+            throw new UiNodeException("Pre-state is not initialized.");
+
+        T value = (T) preState.get(propertyMetadata.getStateKey());
+        if (value == null) {
+            value = propertyMetadata.getDefaultValue();
+        }
+        return value;
     }
 
     //endregion

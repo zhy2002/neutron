@@ -109,6 +109,11 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         return BigDecimal.class;
     }
 
+    @Override
+    protected PropertyMetadata<BigDecimal> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
+    }
+
     //region node properties
 
     public static final PropertyMetadata<BigDecimal> VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "value", BigDecimal.class);

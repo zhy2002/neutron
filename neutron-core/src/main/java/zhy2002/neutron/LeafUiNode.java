@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.exception.NotImplementedException;
@@ -27,6 +28,8 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
+    protected abstract PropertyMetadata<T> getValuePropertyMetadata();
+
     @Override
     protected final void unloadContent() {
         super.unloadContent();
@@ -48,7 +51,32 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     @Override
     public boolean hasValue() {
-        return getValue() != null;
+        return getValue() != null && !getValue().equals(getPreStateValue());
+    }
+
+    protected final T getPreStateValue() {
+        return getPreStateValue(getValuePropertyMetadata());
+    }
+
+
+
+    final void tryAvoidNull() {
+        if (getValue() == null) {
+            T empty = getEmptyValue();
+            if (empty != null) {
+                setValue(empty);
+            }
+        }
+    }
+
+    /**
+     * The value of type T that has the same meaning as null.
+     *
+     * @return an instance of T used in place of null.
+     */
+    @JsMethod
+    public T getEmptyValue() {
+        return null;
     }
 
     @Override
@@ -60,13 +88,13 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     protected void setStateValueDirectly(String key, Object value) {
         super.setStateValueDirectly(key, value);
 
-        if (NeutronConstants.VALUE.equals(key)) {
+        if (NeutronConstants.VALUE.equals(key) && getNodeStatus() == NodeStatusEnum.Loaded) {
             setHasValue(hasValue());
         }
     }
 
     public final void resetValue() {
-        T initialValue = getPreStateValue(NeutronConstants.VALUE);
+        T initialValue = getPreStateValue(getValuePropertyMetadata());
         setValue(initialValue);
     }
 

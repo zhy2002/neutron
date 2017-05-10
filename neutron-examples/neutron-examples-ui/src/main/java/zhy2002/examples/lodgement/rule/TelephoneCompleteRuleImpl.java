@@ -6,6 +6,7 @@ import zhy2002.examples.lodgement.gen.node.TelephoneNode;
 import zhy2002.examples.lodgement.gen.rule.TelephoneCompleteRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 import zhy2002.neutron.util.ValueUtil;
@@ -27,6 +28,10 @@ public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
                         TelephoneStateChangeEvent.class
+                ),
+                new BooleanStateChangeEventBinding(
+                        e -> validate(),
+                        TelephoneNode.SUPPRESS_TELEPHONE_COMPLETE_RULE_PROPERTY.getStateKey()
                 )
         );
     }
@@ -40,8 +45,12 @@ public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
 
     private boolean isActivated() {
         Telephone value = getTelephoneNode().getValue();
-        if (value == null)
+        if (!getTelephoneNode().hasValue())
             return false;
+
+        if (getTelephoneNode().getSuppressTelephoneCompleteRule()) {
+            return false;
+        }
 
         if (Boolean.TRUE.equals(getTelephoneNode().getCountryCodeReadonly())) {
             return !(

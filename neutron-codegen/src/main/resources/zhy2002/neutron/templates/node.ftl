@@ -221,14 +221,18 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     private static ${valueTypeName} EMPTY_VALUE = new ${valueTypeName}();
 
     @Override
-    public boolean hasValue() {
-        ${valueTypeName} value = getValue();
-        return value != null && !value.equals(EMPTY_VALUE);
+    public ${valueTypeName} getEmptyValue() {
+        return EMPTY_VALUE;
     }
 
     @Override
     public Class<${valueTypeName}> getValueClass() {
         return ${valueTypeName}.class;
+    }
+
+    @Override
+    protected PropertyMetadata<${valueTypeName}> getValuePropertyMetadata() {
+        return VALUE_PROPERTY;
     }
 
 </#if>
