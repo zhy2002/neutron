@@ -9,7 +9,7 @@ import CommonUtil from '../../services/CommonUtil';
 export default class PersonListComponent extends ListNeutronComponent {
 
     componentDidMount() {
-        CommonUtil.delay(10).then(
+        CommonUtil.delay().then(
             () => {
                 if (this.model.getItemCount() === 0) {
                     this.model.createItem();

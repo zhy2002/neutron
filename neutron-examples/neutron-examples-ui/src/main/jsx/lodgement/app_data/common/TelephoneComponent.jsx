@@ -80,7 +80,11 @@ export default class TelephoneComponent extends InputComponent {
     render() {
         const model = this.model;
         const countryInputId = `${model.getUniqueId()}-country`;
-
+        const areaInputId = `${model.getUniqueId()}-area`;
+        const conditionalAreaProps = {};
+        if (this.state.countryCode === '+61') {
+            conditionalAreaProps.list = `${areaInputId}-list`;
+        }
         return (
             <div
                 id={model.getUniqueId()}
@@ -99,14 +103,34 @@ export default class TelephoneComponent extends InputComponent {
                         value={this.state.countryCode}
                         onChange={this.updateCountryCode}
                         readOnly={this.state.countryCodeReadonly}
+                        list={`${countryInputId}-list`}
                     />
+                    <datalist id={`${countryInputId}-list`}>
+                        <option value="+61"/>
+                        <option value="+1"/>
+                        <option value="+44"/>
+                        <option value="+64"/>
+                        <option value="+86"/>
+                    </datalist>
                     <input
+                        id={areaInputId}
                         type="text"
                         className="form-control area-code"
                         placeholder="Area"
                         value={this.state.areaCode}
                         onChange={this.updateAreaCode}
+                        {...conditionalAreaProps}
                     />
+                    {
+                        this.state.countryCode === '+61' &&
+                        <datalist id={`${areaInputId}-list`}>
+                            <option value="02"/>
+                            <option value="03"/>
+                            <option value="04"/>
+                            <option value="07"/>
+                            <option value="08"/>
+                        </datalist>
+                    }
                     <input
                         type="text"
                         className="form-control phone-number"
@@ -121,7 +145,6 @@ export default class TelephoneComponent extends InputComponent {
             </div>
         );
     }
-
 }
 
 TelephoneComponent.propTypes = {

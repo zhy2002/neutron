@@ -39,7 +39,7 @@ export default class LocationService {
         restored = false;
         if (newHash.startsWith('/app/') && newHash.length > 5) {
             CommonUtil.setIsLoading(true);
-            CommonUtil.delay().then(
+            CommonUtil.delay(50).then(
                 () => restoreLodgementState(newHash.substr(5)).then(
                     () => {
                         restored = true;
