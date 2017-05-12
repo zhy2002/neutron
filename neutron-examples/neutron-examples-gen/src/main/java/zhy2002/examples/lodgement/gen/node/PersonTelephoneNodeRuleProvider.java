@@ -24,7 +24,7 @@ public class PersonTelephoneNodeRuleProvider implements RuleProvider<PersonTelep
     public void initializeState(PersonTelephoneNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setValue(new Telephone("+61"));
+        node.setEmptyValue(new Telephone("+61"));
     }
 
 

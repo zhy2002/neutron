@@ -20,7 +20,9 @@ function createAppModel(node, path) {
     const model = UiService.createApplicationNode();
     const context = model.getContext();
     context.beginSession();
+    model.setLoading(true);
     CommonUtil.setValue(model, node);
+    model.setLoading(false);
     context.commitSession();
     console.debug(`loaded app ${node.id}`);
 

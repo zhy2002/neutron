@@ -11,6 +11,7 @@ import zhy2002.examples.register.gen.rule.RepeatPasswordRule;
 import zhy2002.examples.register.rule.PasswordIsStrongRuleImpl;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.NodeStatusEnum;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.rule.LengthValidationRule;
@@ -257,7 +258,7 @@ public class RegisterCommonSendTest {
 
         receiveOffersNode.setValue(Boolean.TRUE);
         assertThat(emailNode.getRequired(), equalTo(true));
-        assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
+        assertThat(hasError(LeafValueRequiredValidationRule.class, receiveOffersNode), equalTo(false));
 
         receiveOffersNode.setValue(Boolean.FALSE);
         assertThat(emailNode.getRequired(), equalTo(false));
@@ -266,7 +267,11 @@ public class RegisterCommonSendTest {
     }
 
     private boolean hasError(Class<? extends UiNodeRule<?>> clazz) {
-        return hasError(node -> ValueUtil.isInstanceOf(node.getRule(), clazz));
+        return hasError(clazz, null);
+    }
+
+    private boolean hasError(Class<? extends UiNodeRule<?>> clazz, UiNode<?> source) {
+        return hasError(node -> ValueUtil.isInstanceOf(node.getRule(), clazz) && (source == null || node.getSource() == source));
     }
 
     private boolean hasError(Predicate<ErrorNode> predicate) {
@@ -554,10 +559,10 @@ public class RegisterCommonSendTest {
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("02");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
 
         registerNode.getHomePhoneNode().getCountryCodeNode().setValue("+61");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
 
         registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("11112222");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));

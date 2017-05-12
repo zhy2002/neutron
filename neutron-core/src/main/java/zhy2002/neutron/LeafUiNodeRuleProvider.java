@@ -18,8 +18,6 @@ public class LeafUiNodeRuleProvider implements RuleProvider<LeafUiNode<?, ?>> {
     @Override
     public void initializeState(LeafUiNode<?, ?> node) {
         parentRuleProvider.initializeState(node);
-
-        node.tryAvoidNull();
     }
 
     @Inject

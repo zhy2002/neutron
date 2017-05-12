@@ -31,6 +31,14 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     protected abstract PropertyMetadata<T> getValuePropertyMetadata();
 
     @Override
+    protected final void addContent() {
+
+        tryAvoidNull();
+
+        super.addContent();
+    }
+
+    @Override
     protected final void unloadContent() {
         super.unloadContent();
 
@@ -51,14 +59,17 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     @Override
     public boolean hasValue() {
-        return getValue() != null && !getValue().equals(getPreStateValue());
+        return getValue() != null && !getValue().equals(getEmptyValue());
+    }
+
+    @JsMethod
+    public boolean isValueUpdated() {
+        return !Objects.equals(getValue(), getPreStateValue());
     }
 
     protected final T getPreStateValue() {
         return getPreStateValue(getValuePropertyMetadata());
     }
-
-
 
     final void tryAvoidNull() {
         if (getValue() == null) {

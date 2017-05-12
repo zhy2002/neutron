@@ -273,4 +273,25 @@ public class PersonNodeTest {
 
         context.flush();
     }
+
+    @Test
+    public void applicantTypeShouldHaveDefaultValue() {
+
+        String value = personGeneralNode.getPersonApplicantTypeNode().getValue();
+
+        assertThat(value, equalTo("A"));
+        assertThat(personGeneralNode.getPersonApplicantTypeNode().getRequired(), equalTo(true));
+        assertThat(personGeneralNode.getPersonApplicantTypeNode().hasValue(), equalTo(true));
+    }
+
+    @Test
+    public void hasValueHasCorrectInitialValue() {
+
+        assertThat(personGeneralNode.getPersonApplicantTypeNode().hasValue(), equalTo(true));
+        assertThat(personGeneralNode.hasValue(), equalTo(true));
+        assertThat(personNode.hasValue(), equalTo(true));
+        assertThat(applicationNode.getPersonListNode().hasValue(), equalTo(true));
+        assertThat(applicationNode.hasValue(), equalTo(true));
+    }
+
 }

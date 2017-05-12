@@ -73,6 +73,7 @@ public abstract class RootUiNode<P extends ParentUiNode<?>> extends ObjectUiNode
         return getStateValue(LOADING_PROPERTY);
     }
 
+    @JsMethod
     public void setLoading(boolean value) {
         setStateValue(LOADING_PROPERTY, value);
     }

@@ -105,7 +105,7 @@ export default class TextInputComponent extends InputComponent {
             }
 
             const options = this.state.options;
-            if (options && options.length > 0) {
+            if (this.state.showOptions && options && options.length > 0) {
                 let index = this.state.activeOptionIndex;
                 if (keyCode === 39 || keyCode === 40 || keyCode === 9 && !e.shiftKey) {
                     index = (index + 1) % options.length;

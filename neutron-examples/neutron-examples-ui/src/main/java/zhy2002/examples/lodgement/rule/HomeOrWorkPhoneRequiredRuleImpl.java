@@ -48,14 +48,12 @@ public class HomeOrWorkPhoneRequiredRuleImpl extends HomeOrWorkPhoneRequiredRule
     //todo write test for this
 
     private void updateRequiredPhone(TelephoneStateChangeEvent event) {
-        System.out.println("Updating telephone required property..");
-
         TelephoneNode<?> homePhoneNode = getHomePhoneNode();
         TelephoneNode<?> workPhoneNode = getWorkPhoneNode();
 
-        if (homePhoneNode.hasValue()) {
+        if (homePhoneNode.isValueUpdated()) {
             workPhoneNode.setRequired(false);
-        } else if (workPhoneNode.hasValue()) {
+        } else if (workPhoneNode.isValueUpdated()) {
             homePhoneNode.setRequired(false);
         } else {
             homePhoneNode.setRequired(true);

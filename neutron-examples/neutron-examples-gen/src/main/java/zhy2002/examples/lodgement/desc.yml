@@ -203,7 +203,7 @@ rootType:
         - typeName: PersonTelephoneNode
           baseTypeName: TelephoneNode
           init:
-          - {propertyName: value, value: 'new Telephone("+61")'}
+          - {propertyName: emptyValue, value: 'new Telephone("+61")'}
 
         - typeName: PersonMobileNumberNode
           baseTypeName: BaseMobileNumberNode
@@ -306,8 +306,6 @@ rootType:
         childTypes:
         - typeName: CompanyApplicantTypeNode
           baseTypeName: BaseApplicantTypeNode
-          init:
-          - {propertyName: value, value: '"A"'}
 
         - typeName: CompanyPrimaryApplicantFlagNode
           baseTypeName: BooleanUiNode

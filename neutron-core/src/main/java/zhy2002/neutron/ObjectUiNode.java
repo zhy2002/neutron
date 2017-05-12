@@ -100,7 +100,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
         @Override
         protected Collection<EventBinding> createEventBindings() {
-            return Collections.singletonList(
+            return Arrays.asList(
                     new BooleanStateChangeEventBinding(
                             event -> event.getOrigin() != null && event.getOrigin().getParent() == getOwner(),
                             this::updateHasValue,
@@ -108,6 +108,37 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
                             PredefinedPhases.Post
                     )
             );
+        }
+
+        @Override
+        protected void onLoad() {
+            super.onLoad();
+
+            if (getOwner().getParent() == null || getOwner().getParent().getNodeStatus() == NodeStatusEnum.Loaded) {
+                if (initHasValue(getOwner()) && getOwner().getParent() instanceof ObjectUiNode) {
+                    getOwner().getParent().setHasValue(true);
+                }
+            }
+        }
+
+        private static boolean initHasValue(UiNode<?> node) {
+            if (node instanceof LeafUiNode)
+                return node.hasValue();
+
+            ParentUiNode<?> parent = (ParentUiNode<?>) node;
+            boolean childHasValue = false;
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                UiNode<?> child = parent.getChild(i);
+                if (initHasValue(child)) {
+                    childHasValue = true;
+                }
+            }
+
+            if (parent instanceof ObjectUiNode) {
+                parent.setStateValueDirectly(HAS_VALUE_PROPERTY.getStateKey(), childHasValue);
+            }
+
+            return parent.hasValue();
         }
 
         private void updateHasValue(BooleanStateChangeEvent event) {

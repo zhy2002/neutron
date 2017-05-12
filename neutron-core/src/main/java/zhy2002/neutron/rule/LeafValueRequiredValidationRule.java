@@ -1,10 +1,8 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.LeafUiNode;
-import zhy2002.neutron.StateChangeEvent;
-import zhy2002.neutron.ValidationRule;
+import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 
@@ -30,11 +28,11 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
                         stateChangeEvent.getClass()
-                )//,
-//                new BooleanStateChangeEventBinding(
-//                        e -> validate(),
-//                        Collections.singletonList(NeutronConstants.REQUIRED)
-//                )
+                ),
+                new BooleanStateChangeEventBinding(
+                        e -> validate(),
+                        UiNode.REQUIRED_PROPERTY.getStateKey()
+                )
         );
     }
 

@@ -142,6 +142,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 <#if valueTypeName??>
     public static final PropertyMetadata<${valueTypeName}> VALUE_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "value", ${valueTypeName}.class);
+    public static final PropertyMetadata<${valueTypeName}> EMPTY_VALUE_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "emptyValue", ${valueTypeName}.class, new ${valueTypeName}(), ChangeModeEnum.DIRECT);
 </#if>
 <#if properties??>
     <#list properties as prop>
@@ -165,13 +166,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @JsMethod
     @Override
     public final ${valueTypeName} getValue() {
-    return super.getStateValue(VALUE_PROPERTY);
+        return super.getStateValue(VALUE_PROPERTY);
     }
 
     @JsMethod
     @Override
     public final void setValue(${valueTypeName} value) {
-    super.setStateValue(VALUE_PROPERTY, value);
+        super.setStateValue(VALUE_PROPERTY, value);
     }
 
 </#if>
@@ -218,11 +219,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         return new ${valueTypeName}(value);
     }
 
-    private static ${valueTypeName} EMPTY_VALUE = new ${valueTypeName}();
+    final void setEmptyValue(${valueTypeName} value) {
+        super.setStateValue(EMPTY_VALUE_PROPERTY, value);
+    }
 
     @Override
     public ${valueTypeName} getEmptyValue() {
-        return EMPTY_VALUE;
+        return super.getStateValue(EMPTY_VALUE_PROPERTY);
     }
 
     @Override

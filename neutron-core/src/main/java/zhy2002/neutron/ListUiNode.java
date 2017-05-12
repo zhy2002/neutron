@@ -81,7 +81,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
 
     @Override
     public final boolean hasValue() {
-        return getItemCount() > 0;
+        return getItemCount() > 0; //list node cannot have initial items
     }
 
     @JsMethod

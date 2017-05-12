@@ -45,7 +45,7 @@ public class TelephoneCompleteRuleImpl extends TelephoneCompleteRule {
 
     private boolean isActivated() {
         Telephone value = getTelephoneNode().getValue();
-        if (!getTelephoneNode().hasValue())
+        if (!getTelephoneNode().isValueUpdated())
             return false;
 
         if (getTelephoneNode().getSuppressTelephoneCompleteRule()) {

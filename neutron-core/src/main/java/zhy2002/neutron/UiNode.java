@@ -345,10 +345,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     /**
-     * Determines if the content of this node is empty.
-     * Empty is defined as no value is entered and there is no default value.
+     * Determines if the content of this node has been changed from its initial value.
      *
-     * @return true if is empty.
+     * @return true if is its still the initial value.
      */
     @JsMethod
     public abstract boolean hasValue();
@@ -429,11 +428,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         if (this.nodeStatus != NodeStatusEnum.Unloaded)
             return;
 
+        addContent();
+
         if (preState == null) {
             preState = new HashMap<>(state);
         }
 
-        addContent();
         loadContent();
 
         for (UiNodeLifeCycleListener listener : lifeCycleListeners) {

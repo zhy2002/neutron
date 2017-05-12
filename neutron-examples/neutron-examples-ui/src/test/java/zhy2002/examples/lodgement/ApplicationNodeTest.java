@@ -181,6 +181,8 @@ public class ApplicationNodeTest {
         PersonNode personNode = personListNode.createItem();
         PersonContactNode contactNode = personNode.getPersonContactNode();
 
+        assertThat(contactNode.getHomePhoneNode().getValue().getCountryCode(), equalTo("+61"));
+
         assertThat(contactNode.hasValue(), equalTo(false));
 
         Telephone telephone = new Telephone();

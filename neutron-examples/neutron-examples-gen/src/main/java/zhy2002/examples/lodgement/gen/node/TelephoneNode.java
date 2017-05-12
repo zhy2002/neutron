@@ -19,6 +19,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     }
 
     public static final PropertyMetadata<Telephone> VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "value", Telephone.class);
+    public static final PropertyMetadata<Telephone> EMPTY_VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "emptyValue", Telephone.class, new Telephone(), ChangeModeEnum.DIRECT);
     public static final PropertyMetadata<Boolean> COUNTRY_CODE_READONLY_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "countryCodeReadonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> SUPPRESS_TELEPHONE_COMPLETE_RULE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "suppressTelephoneCompleteRule", Boolean.class, Boolean.FALSE);
 
@@ -46,13 +47,13 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     @JsMethod
     @Override
     public final Telephone getValue() {
-    return super.getStateValue(VALUE_PROPERTY);
+        return super.getStateValue(VALUE_PROPERTY);
     }
 
     @JsMethod
     @Override
     public final void setValue(Telephone value) {
-    super.setStateValue(VALUE_PROPERTY, value);
+        super.setStateValue(VALUE_PROPERTY, value);
     }
 
     @Override
@@ -63,11 +64,13 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         return new Telephone(value);
     }
 
-    private static Telephone EMPTY_VALUE = new Telephone();
+    final void setEmptyValue(Telephone value) {
+        super.setStateValue(EMPTY_VALUE_PROPERTY, value);
+    }
 
     @Override
     public Telephone getEmptyValue() {
-        return EMPTY_VALUE;
+        return super.getStateValue(EMPTY_VALUE_PROPERTY);
     }
 
     @Override
