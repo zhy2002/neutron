@@ -28,6 +28,9 @@ module.exports = {
         "react/no-find-dom-node": [
             OFF
         ],
+        "no-mixed-operators": [
+            OFF
+        ],
         "no-console":[
             OFF
         ],

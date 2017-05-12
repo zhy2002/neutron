@@ -3,7 +3,29 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
+import AutoCloseContainer from './AutoCloseContainer';
 
+
+const baseUrl = 'http://localhost:9200';
+const reservedChars = '+-=&|><!(){}[]^"~*?:\\/';
+
+/**
+ * Convert keyword to elastic search literal.
+ */
+function encodeKeyword(key) {
+    let result = '';
+    for (let i = 0; i < key.length; i++) {
+        const char = key[i];
+        if (reservedChars.indexOf(char) >= 0) {
+            result += '\\';
+        }
+        result += char;
+    }
+
+    result = result.trim();
+    result = result.replace(/\s+/, ' AND ');
+    return encodeURIComponent(`${result}`);
+}
 
 export default class TextInputComponent extends InputComponent {
 
@@ -11,18 +33,46 @@ export default class TextInputComponent extends InputComponent {
         super(props);
 
         this.state.showOptions = false;
+        this.state.activeOptionIndex = -1;
+        this.state.lastSearchKey = null;
 
         this.updateValue = (event) => {
             this.ensureDebouncingMode();
             this.model.setValue(event.target.value);
             this.flush();
+            if (this.props.searchPath) {
+                this.debouncedSearch();
+            }
         };
 
-        this.fetchSearchList = debounce(300, () => {
-            let url = this.props.searchUrl;
-            if (!url)
+        this.shouldSendRequest = (key) => {
+            const lastKey = this.state.lastSearchKey;
+            if (key === lastKey)
+                return false;
+
+            const options = this.state.options;
+            if (lastKey !== null && key.indexOf(lastKey) >= 0) {
+                if (!options || options.length === 0)
+                    return false;
+
+                if (options.length === 1 && options[0].getValue() === lastKey) {
+                    return false;
+                }
+            }
+
+            return true;
+        };
+
+        this.search = () => {
+            const key = this.state.value;
+            if (!this.shouldSendRequest(key)) {
+                this.setState({
+                    showOptions: true
+                });
                 return;
-            url = url.replace('{key}', `*${this.state.value}*`);
+            }
+
+            const url = baseUrl + this.props.searchPath.replace('{key}', `*${encodeKeyword(key)}*`);
             axios.get(url).then(
                 (response) => {
                     const result = response.data.hits.hits;
@@ -32,23 +82,75 @@ export default class TextInputComponent extends InputComponent {
                         list.addItem(source.value, source.text);
                     });
                     this.model.setOptions(list.toArray());
+                    this.setState({
+                        showOptions: true,
+                        activeOptionIndex: -1,
+                        lastSearchKey: key
+                    });
                 }
             );
-        });
+        };
 
-        this.showOptions = () => {
-            this.setState({showOptions: true});
-            if (this.model.getOptions) {
-                const options = this.model.getOptions();
-                if (options === null) {
-                    this.fetchSearchList();
+        this.debouncedSearch = debounce(350, this.search);
+
+        this.handleFocus = () => {
+            this.search();
+        };
+
+        this.handleKeyDown = (e) => {
+            const keyCode = e.keyCode;
+            if (keyCode === 27) {
+                this.handleHide();
+                return;
+            }
+
+            const options = this.state.options;
+            if (options && options.length > 0) {
+                let index = this.state.activeOptionIndex;
+                if (keyCode === 39 || keyCode === 40 || keyCode === 9 && !e.shiftKey) {
+                    index = (index + 1) % options.length;
+                    this.setState({activeOptionIndex: index});
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                if (keyCode === 37 || keyCode === 38 || keyCode === 9 && e.shiftKey) {
+                    if (index === -1) {
+                        index = options.length - 1;
+                    } else {
+                        index--;
+                        if (index < 0) {
+                            index += options.length;
+                        }
+                    }
+                    this.setState({activeOptionIndex: index});
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                if (keyCode === 32) {
+                    if (index >= 0) {
+                        this.model.setValue(options[index].getValue());
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.handleHide();
+                    }
                 }
             }
         };
 
-        this.hideOptions = debounce(250, () => {
-            this.setState({showOptions: false});
-        });
+        this.handleHide = (eventTarget) => {
+            if (eventTarget && eventTarget.id === this.model.getUniqueId()) {
+                return;
+            }
+
+            this.setState({
+                showOptions: false,
+                activeOptionIndex: -1
+            });
+        };
     }
 
     extractNewState() {
@@ -59,38 +161,48 @@ export default class TextInputComponent extends InputComponent {
         return newState;
     }
 
-    renderOptions() {
+    shouldRenderOptions() {
         const options = this.state.options;
         if (!options || !this.state.showOptions)
-            return null;
+            return false;
 
-        const result = [];
-        let index = 0;
-        options.forEach((item) => {
-            result.push(
-                <a
-                    className="list-group-item"
-                    tabIndex={0}
-                    onClick={
-                        () => {
-                            this.model.setValue(item.getValue());
-                            this.flushNow();
-                            this.hideOptions();
-                            this.fetchSearchList();
-                        }
-                    }
-                    key={index++}
-                >
-                    {item.getText()}
-                </a>
-            );
-        });
+        if (options.length === 1 && options[0].getValue() === this.state.value) {
+            return false;
+        }
+
+        return true;
+    }
+
+    renderOptions() {
+        if (!this.shouldRenderOptions()) {
+            return null;
+        }
+
+        const activeIndex = this.state.activeOptionIndex;
         return (
-            <div className="input-options-panel">
+            <AutoCloseContainer className="input-options-panel" onHide={this.handleHide}>
                 <div className="list-group">
-                    {result}
+                    {
+                        this.state.options.map(
+                            (item, index) =>
+                                <a
+                                    className={`list-group-item${activeIndex === index ? ' active' : ''}`}
+                                    tabIndex={0}
+                                    onClick={
+                                        () => {
+                                            this.model.setValue(item.getValue());
+                                            this.flushNow();
+                                            this.handleHide();
+                                        }
+                                    }
+                                    key={item.getValue()}
+                                >
+                                    {item.getText()}
+                                </a>
+                        )
+                    }
                 </div>
-            </div>
+            </AutoCloseContainer>
         );
     }
 
@@ -100,10 +212,9 @@ export default class TextInputComponent extends InputComponent {
         if (this.props.hideLabel) {
             conditionalProps.placeholder = this.label;
         }
-        if (this.props.searchUrl) {
-            conditionalProps.onKeyDown = this.fetchSearchList;
-            conditionalProps.onFocus = this.showOptions;
-            conditionalProps.onBlur = this.hideOptions;
+        if (this.props.searchPath) {
+            conditionalProps.onKeyDown = this.handleKeyDown;
+            conditionalProps.onFocus = this.handleFocus;
         }
         return (
             <div className={super.renderContainerClass('text-input-component')}>
@@ -130,10 +241,9 @@ export default class TextInputComponent extends InputComponent {
 }
 
 TextInputComponent.propTypes = {
-    searchUrl: PropTypes.string
+    searchPath: PropTypes.string
 };
 
 TextInputComponent.defaultProps = {
-    searchUrl: null
+    searchPath: null
 };
-

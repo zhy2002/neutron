@@ -326,6 +326,31 @@ a[tabindex] {
   }
 }
 
+.input-options-panel {
+  position: relative;
+
+  .list-group {
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.person-employment-component {
+
+  .employment-section {
+    & > .container-fluid {
+      background-color: #e9e9e9;
+      padding-top: 1em;
+    }
+  }
+}
+
+.add-list-component {
+  .btn-sm.pull-right {
+    min-width: 75px;
+  }
+}
+
 .lodgement-header-component {
 
   .lodgement-banner-component {
@@ -753,14 +778,7 @@ a[tabindex] {
 //  }
 //}
 //
-//.input-options-panel {
-//  position: relative;
-//
-//  .list-group {
-//    position: absolute;
-//    z-index: 1;
-//  }
-//}
+
 //
 ////region Bootstrap Override
 //
@@ -902,11 +920,7 @@ a[tabindex] {
 //  font-size: 18px;
 //}
 //
-//.add-list-component {
-//  .btn-sm {
-//    min-width: 95px;
-//  }
-//}
+
 //
 //
 ////endregion

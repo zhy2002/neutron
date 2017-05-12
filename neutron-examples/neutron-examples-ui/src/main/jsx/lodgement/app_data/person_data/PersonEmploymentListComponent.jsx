@@ -12,6 +12,13 @@ export default class PersonEmploymentListComponent extends ListNeutronComponent 
         this.model.getChildren().forEach((item) => {
             items.push(<PersonEmploymentComponent key={item.getUniqueId()} model={item}/>);
         });
+        if (items.length === 0) {
+            items.push(
+                <div key="no_result" className="alert alert-info">
+                    <span>Click <em>Add</em> to create a record.</span>
+                </div>
+            );
+        }
         return items;
     }
 

@@ -13,15 +13,12 @@ export default class AutoCloseContainer extends React.PureComponent {
             this.refInstance = refInstance;
         };
 
-        this.rendered = false;
-
         this.hideIfNecessary = (eventTarget) => {
-            if (this.rendered && this.refInstance) {
+            if (this.refInstance) {
                 const domElement = ReactDOM.findDOMNode(this.refInstance);
                 if (domElement) {
                     if (!domElement.contains(eventTarget)) {
-                        this.props.onHide();
-                        this.rendered = false;
+                        this.props.onHide(eventTarget);
                     }
                 }
             }
@@ -40,7 +37,6 @@ export default class AutoCloseContainer extends React.PureComponent {
     }
 
     render() {
-        this.rendered = true;
         return (
             <div className={`auto-close-container ${this.props.className}`} ref={this.acceptInstance}>
                 {this.props.children}
