@@ -84,6 +84,20 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         return getItemCount() > 0; //list node cannot have initial items
     }
 
+    @Override
+    public final void resetValue() {
+        if (getKeepItemsOnReset()) {
+            Arrays.stream(getChildren()).forEach(UiNode::resetValue);
+        } else {
+            List<N> items = new ArrayList<>();
+            for (int i = 0; i < getItemCount(); i++) {
+                N item = getItem(i);
+                items.add(item);
+            }
+            items.forEach(this::removeItem);
+        }
+    }
+
     @JsMethod
     @SuppressWarnings("unchecked")
     public final N getItem(int index) {
@@ -220,6 +234,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
     public static final PropertyMetadata<Integer> MIN_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "minItemCount", Integer.class);
     public static final PropertyMetadata<Integer> MAX_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "maxItemCount", Integer.class);
     public static final PropertyMetadata<String> ORIGINAL_CHILD_NAMES_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "originalChildNames", String.class, "", ChangeModeEnum.DIRECT);
+    public static final PropertyMetadata<Boolean> KEEP_ITEMS_ON_RESET_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "keepItemsOnReset", Boolean.class, Boolean.FALSE, ChangeModeEnum.DIRECT);
 
     private Boolean getSelfDirty() {
         return getStateValue(SELF_DIRTY_PROPERTY);
@@ -261,6 +276,14 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
 
     private void setOriginalChildNames(String childNames) {
         setStateValue(ORIGINAL_CHILD_NAMES_PROPERTY, childNames);
+    }
+
+    public Boolean getKeepItemsOnReset() {
+        return getStateValue(KEEP_ITEMS_ON_RESET_PROPERTY);
+    }
+
+    public void setKeepItemsOnReset(Boolean value) {
+        setStateValue(KEEP_ITEMS_ON_RESET_PROPERTY, value);
     }
 
     //endregion

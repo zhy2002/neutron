@@ -34,15 +34,19 @@ public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
 
     private void onChange() {
         BaseTrustNode<?> personTrustNode = getTrustTypeNode().getParent();
-        if (getTrustTypeNode().hasValue()) {
-            personTrustNode.getTrustNameNode().setDisabled(false);
-            personTrustNode.getTrustRegistrationDateNode().setDisabled(false);
-        } else {
-            personTrustNode.getTrustNameNode().setDisabled(true);
-            personTrustNode.getTrustNameNode().setValue("");
-            personTrustNode.getTrustRegistrationDateNode().setDisabled(true);
-            personTrustNode.getTrustRegistrationDateNode().setValue("");
-        }
+        final boolean disabled = !getTrustTypeNode().hasValue();
+        Arrays.stream(personTrustNode.getChildren()).forEach(
+                node -> {
+                    if (node == personTrustNode)
+                        return;
 
+                    if (disabled) {
+                        node.resetValue();
+                        node.setDisabled(true);
+                    } else {
+                        node.setDisabled(false);
+                    }
+                }
+        );
     }
 }

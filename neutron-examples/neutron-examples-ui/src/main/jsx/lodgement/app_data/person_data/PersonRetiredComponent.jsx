@@ -7,7 +7,7 @@ export default class PersonRetiredComponent extends NeutronComponent {
 
     render() {
         const model = this.model;
-        if (model.isDisabled())
+        if (model.isEffectivelyDisabled())
             return null;
 
         return (

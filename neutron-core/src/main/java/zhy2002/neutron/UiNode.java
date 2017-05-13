@@ -353,6 +353,9 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public abstract boolean hasValue();
 
     @JsMethod
+    public abstract void resetValue();
+
+    @JsMethod
     public abstract boolean hasError();
 
     @SuppressWarnings("unchecked")

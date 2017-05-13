@@ -11,7 +11,7 @@ export default class PersonEmployedComponent extends NeutronComponent {
 
     render() {
         const model = this.model;
-        if (model.isDisabled())
+        if (model.isEffectivelyDisabled())
             return null;
 
         return (

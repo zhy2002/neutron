@@ -37,6 +37,11 @@ public final class VoidUiNode extends ParentUiNode<VoidUiNode> {
         return false;
     }
 
+    @Override
+    public void resetValue() {
+
+    }
+
     private static final class VoidDummyRootUiNode extends RootUiNode<VoidUiNode> {
 
         private VoidDummyRootUiNode(UiNodeContext<?> context) {

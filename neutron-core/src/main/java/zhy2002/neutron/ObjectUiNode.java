@@ -52,6 +52,16 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         return getHasValue();
     }
 
+    @Override
+    public final void resetValue() {
+        if (getNodeStatus() != NodeStatusEnum.Loaded)
+            return;
+
+        for (int i = 0; i < getChildCount(); i++) {
+            getChild(i).resetValue();
+        }
+    }
+
     @JsMethod
     @Override
     public final int getChildCount() {
@@ -121,7 +131,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
             }
         }
 
-        private static boolean initHasValue(UiNode<?> node) {
+        private boolean initHasValue(UiNode<?> node) {
             if (node instanceof LeafUiNode)
                 return node.hasValue();
 
@@ -131,6 +141,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
                 UiNode<?> child = parent.getChild(i);
                 if (initHasValue(child)) {
                     childHasValue = true;
+                    noneEmptyChildNames.add(child.getName());
                 }
             }
 
