@@ -34,7 +34,10 @@ export default class TrustComponent extends NeutronComponent {
                         <TextInputComponent model={model.getTrustSettlorNotRequiredReasonNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getTrustIndustryNode()}/>
+                        <TextInputComponent
+                            model={model.getTrustIndustryNode()}
+                            searchPath="/lodgement/industry/_search?q=value:{key}&size=10&pretty"
+                        />
                     </div>
                 </div>
                 <div className="row">
