@@ -23,6 +23,11 @@ a[tabindex] {
   cursor: pointer;
 }
 
+button.link {
+  background: none;
+  border: none;
+}
+
 .panel-component {
   .panel-heading {
     > a {

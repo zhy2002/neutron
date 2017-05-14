@@ -37,7 +37,7 @@ public class TrustTypeChangedRuleImpl extends TrustTypeChangedRule {
         final boolean disabled = !getTrustTypeNode().hasValue();
         Arrays.stream(personTrustNode.getChildren()).forEach(
                 node -> {
-                    if (node == personTrustNode)
+                    if (node == getOwner())
                         return;
 
                     if (disabled) {
