@@ -105,7 +105,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     @Override
-    public final void resetValue() {
+    public void resetValue() {
         T initialValue = getPreStateValue(getValuePropertyMetadata());
         setValue(initialValue);
     }

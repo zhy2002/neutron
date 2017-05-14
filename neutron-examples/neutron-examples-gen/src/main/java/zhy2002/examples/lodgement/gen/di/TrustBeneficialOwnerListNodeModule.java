@@ -21,7 +21,7 @@ public class TrustBeneficialOwnerListNodeModule {
         return owner;
     }
 
-    @Provides @TrustBeneficialOwnerListNodeScope @Owner SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
+    @Provides @TrustBeneficialOwnerListNodeScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner;
     }
 

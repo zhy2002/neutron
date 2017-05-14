@@ -12,7 +12,7 @@ import zhy2002.neutron.rule.*;
 public class TrustBeneficiaryListNodeRuleProvider implements RuleProvider<TrustBeneficiaryListNode> {
 
     @Inject
-    SelectAccountHolderListNodeRuleProvider parentRuleProvider;
+    SelectRelatedPersonListNodeRuleProvider parentRuleProvider;
 
     @Inject
     public TrustBeneficiaryListNodeRuleProvider() {

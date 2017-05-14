@@ -294,4 +294,14 @@ public class PersonNodeTest {
         assertThat(applicationNode.hasValue(), equalTo(true));
     }
 
+    @Test
+    public void disableListWillDisableItems() {
+        PersonTrustNode personTrustNode = personNode.getPersonTrustNode();
+        assertThat(personTrustNode.getTrustTypeNode().hasValue(), equalTo(false));
+        assertThat(personTrustNode.getTrustNameNode().isDisabled(), equalTo(true));
+        assertThat(personTrustNode.getTrustBeneficiaryListNode().isDisabled(), equalTo(true));
+        assertThat(personTrustNode.getTrustBeneficiaryListNode().getItemCount(), equalTo(1));
+        assertThat(personTrustNode.getTrustBeneficiaryListNode().getItem(0).isEffectivelyDisabled(), equalTo(true));
+    }
+
 }

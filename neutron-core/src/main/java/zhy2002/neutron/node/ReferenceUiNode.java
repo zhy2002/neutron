@@ -31,6 +31,21 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     @Override
+    public void resetValue() {
+        ParentUiNode<?> parent = this.getParent();
+        while (parent != null) {
+            if (parent instanceof ListUiNode) {
+                if (((ListUiNode) parent).getKeepItemsOnReset()) {
+                    return;
+                }
+            }
+            parent = parent.getParent();
+        }
+
+        super.resetValue();
+    }
+
+    @Override
     protected PropertyMetadata<String> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }

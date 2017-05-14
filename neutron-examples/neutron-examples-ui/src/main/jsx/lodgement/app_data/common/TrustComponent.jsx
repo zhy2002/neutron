@@ -4,6 +4,7 @@ import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 import AddressComponent from '../common/AddressComponent';
+import SelectRelatedPersonListComponent from '../common/SelectRelatedPersonListComponent';
 
 export default class TrustComponent extends NeutronComponent {
 
@@ -34,6 +35,17 @@ export default class TrustComponent extends NeutronComponent {
                     </div>
                     <div className="col-md-3">
                         <TextInputComponent model={model.getTrustIndustryNode()}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-3">
+                        <SelectRelatedPersonListComponent model={model.getTrustBeneficialOwnerListNode()}/>
+                    </div>
+                    <div className="col-md-3">
+                        <SelectRelatedPersonListComponent model={model.getTrustBeneficiaryListNode()}/>
+                    </div>
+                    <div className="col-md-3">
+                        <SelectRelatedPersonListComponent model={model.getTrustSettlorListNode()}/>
                     </div>
                 </div>
             </div>

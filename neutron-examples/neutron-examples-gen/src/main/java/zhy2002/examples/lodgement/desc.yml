@@ -1672,10 +1672,13 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: SelectRelatedPersonNode
+  init:
+  - {propertyName: keepItemsOnReset, value: 'true'}
   rules:
   - {typeName: AddExistingPeopleRule}
   - {typeName: AddNewPersonRule}
   - {typeName: AddNewThirdPartyApplicantRule}
+  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
   childTypes:
   - typeName: SelectRelatedPersonNode
     baseTypeName: ObjectUiNode
@@ -1902,13 +1905,13 @@ commonTypes:
     baseTypeName: StringUiNode
 
   - typeName: TrustBeneficiaryListNode
-    baseTypeName: SelectAccountHolderListNode
+    baseTypeName: SelectRelatedPersonListNode
 
   - typeName: TrustSettlorListNode
-    baseTypeName: SelectAccountHolderListNode
+    baseTypeName: SelectRelatedPersonListNode
 
   - typeName: TrustBeneficialOwnerListNode
-    baseTypeName: SelectAccountHolderListNode
+    baseTypeName: SelectRelatedPersonListNode
 
   - typeName: TrustBeneficiaryClassListNode
     baseTypeName: ListUiNode

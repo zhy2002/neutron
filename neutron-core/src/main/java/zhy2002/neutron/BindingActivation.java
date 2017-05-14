@@ -37,9 +37,13 @@ public final class BindingActivation {
     void fire() {
         UiNodeRule<?> rule = getRule();
         if (rule != null && rule.getOwner() != null && rule.getOwner().getNodeStatus() == NodeStatusEnum.Loaded) {
-            if (rule instanceof ValidationRule && rule.getContext().getRootNode().isLoading()) {
-                return;
+
+            if (rule instanceof ValidationRule) {
+                if (rule.getContext().getRootNode().isLoading() || event.getOrigin().isEffectivelyDisabled()) {
+                    return;
+                }
             }
+
             logger.log(Level.INFO, "Firing rule " + rule.getClass().getSimpleName() + " with event " + getEvent() + " from " + getEvent().getOrigin().getClass().getSimpleName());
             binding.fire(event);
         }

@@ -60,7 +60,7 @@ public class ApplicationNodeTest {
 
         applicationNode.refresh();
 
-        assertThat(applicationNode.getShowErrorList(), equalTo(false));
+        assertThat(applicationNode.getShowErrorList(), equalTo(true));
 
     }
 

@@ -8,7 +8,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-public class TrustBeneficialOwnerListNode extends SelectAccountHolderListNode<BaseTrustNode<?>> {
+public class TrustBeneficialOwnerListNode extends SelectRelatedPersonListNode<BaseTrustNode<?>> {
 
     @Override
     public final Class<?> getConcreteClass() {

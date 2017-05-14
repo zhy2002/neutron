@@ -21,7 +21,7 @@ public class TrustSettlorListNodeModule {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
+    @Provides @TrustSettlorListNodeScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner;
     }
 
