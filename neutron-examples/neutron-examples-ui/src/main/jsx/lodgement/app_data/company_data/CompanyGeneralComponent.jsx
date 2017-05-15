@@ -38,7 +38,10 @@ export default class CompanyGeneralComponent extends NeutronComponent {
                         <TextInputComponent model={model.getCompanyDescriptionNode()}/>
                     </div>
                     <div className="col-md-3">
-                        <TextInputComponent model={model.getCompanyIndustryNode()}/>
+                        <TextInputComponent
+                            model={model.getCompanyIndustryNode()}
+                            searchPath="/lodgement/industry/_search?q=value:{key}&size=10&pretty"
+                        />
                     </div>
                 </div>
                 <div className="row">

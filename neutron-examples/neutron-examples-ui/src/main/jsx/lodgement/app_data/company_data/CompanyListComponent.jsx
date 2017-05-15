@@ -13,6 +13,10 @@ export default class CompanyListComponent extends ListNeutronComponent {
                 result.push(<CompanySummaryComponent key={item.getUniqueId()} model={item}/>);
             }
         );
+
+        if (result.length === 0) {
+            result.push(<div key="no_result" className="alsert alert-info">No company in this application.</div>);
+        }
         return result;
     }
 

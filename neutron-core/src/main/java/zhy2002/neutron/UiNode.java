@@ -93,6 +93,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
+    private boolean allParentsLoaded = false;
+
     /**
      * Construct a child node.
      *
@@ -321,9 +323,22 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @return true if changes should be applied directly (i.e. bypass event processing).
      */
     final boolean isInDirectChangeMode() {
-        if (this.getNodeStatus() != NodeStatusEnum.Loaded || this.getParent() != null && this.getParent().getNodeStatus() != NodeStatusEnum.Loaded) {
+        if (this.getNodeStatus() != NodeStatusEnum.Loaded) {
             return true;
         }
+
+        if (allParentsLoaded)
+            return false;
+
+        ParentUiNode<?> parent = this.getParent();
+        while (parent != null) {
+            if (parent.getNodeStatus() != NodeStatusEnum.Loaded) {
+                return true;
+            }
+            parent = parent.getParent();
+        }
+
+        allParentsLoaded = true;
         return false;
     }
 
