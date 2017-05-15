@@ -19,6 +19,15 @@ $missing-value-border-color: rgba(100, 100, 200, 0.88);
 $missing-value-placeholder-color: #999;
 $has-error-placeholder-color: #d0d0d0;
 
+.form-group-sm {
+  .input-group {
+    .input-group-addon {
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+  }
+}
+
 a[tabindex] {
   cursor: pointer;
 }
@@ -237,7 +246,6 @@ button.link {
   }
 }
 
-
 .reference-input-component {
 
   .reference-container {
@@ -327,6 +335,51 @@ button.link {
   }
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: $has-error-placeholder-color;
+  }
+
+}
+
+.select-account-holder-list-component {
+  label.layout-helper {
+    display: none;
+  }
+
+  div.pull-left {
+    line-height: 35px;
+  }
+
+  .form-group.form-group-sm.checkbox-input-component {
+    margin: 0;
+    padding-bottom: 0;
+  }
+}
+
+.ownership-list-component {
+
+  label.layout-helper {
+    display: none;
+  }
+
+  div.pull-left {
+    line-height: 35px;
+  }
+
+  .form-group.form-group-sm.checkbox-input-component {
+    margin: 0;
+    padding-top: 10px;
+  }
+
+  .form-group.form-group-sm.number-input-component {
+    margin: 0;
+  }
+
+  .ownership-percentage-wrapper {
+    width: 95px;
+    margin-right: 10px;
+  }
+
+  .ownership-percentage-wrapper.total-percentage-container {
+    margin-right: 46px;
   }
 
 }
@@ -882,26 +935,6 @@ button.link {
 //    font-size: 150%;
 //    margin-top: -10px;
 //    margin-right: -10px;
-//  }
-//}
-//
-//.ownership-list-component {
-//
-//  .form-group.form-group-sm.checkbox-input-component {
-//    margin: 0;
-//  }
-//
-//  .form-group.form-group-sm.number-input-component {
-//    margin: 0;
-//  }
-//
-//  .ownership-percentage-wrapper {
-//    width: 95px;
-//    margin-right: 10px;
-//  }
-//
-//  .ownership-percentage-wrapper.total-percentage-container {
-//    margin-right: 46px;
 //  }
 //}
 //

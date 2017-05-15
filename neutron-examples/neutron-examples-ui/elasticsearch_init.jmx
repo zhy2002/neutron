@@ -199,7 +199,7 @@
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Industries" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Industries" enabled="false">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
@@ -219,6 +219,47 @@
 {&quot;value&quot;: &quot;Retail Trade&quot;, &quot;text&quot;: &quot;Retail Trade&quot;}&#xd;
 { &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;industry&quot;, &quot;_id&quot;: &quot;Central Bank&quot; } }&#xd;
 {&quot;value&quot;: &quot;Central Bank&quot;, &quot;text&quot;: &quot;Central Bank&quot;}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">9200</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/lodgement/occupation/_bulk?pretty</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.monitor">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Create Institutions" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;CBA&quot; } }&#xd;
+{&quot;value&quot;: &quot;CBA&quot;, &quot;text&quot;: &quot;CBA&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;NAB&quot; } }&#xd;
+{&quot;value&quot;: &quot;NAB&quot;, &quot;text&quot;: &quot;NAB&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;ANZ&quot; } }&#xd;
+{&quot;value&quot;: &quot;ANZ&quot;, &quot;text&quot;: &quot;ANZ&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;Westpac&quot; } }&#xd;
+{&quot;value&quot;: &quot;Westpac&quot;, &quot;text&quot;: &quot;Westpac&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;ING&quot; } }&#xd;
+{&quot;value&quot;: &quot;ING&quot;, &quot;text&quot;: &quot;ING&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;Suncorp&quot; } }&#xd;
+{&quot;value&quot;: &quot;Suncorp&quot;, &quot;text&quot;: &quot;Suncorp&quot;}&#xd;
+{ &quot;index&quot; : { &quot;_index&quot;: &quot;lodgement&quot;, &quot;_type&quot;: &quot;institution&quot;, &quot;_id&quot;: &quot;Citi Bank&quot; } }&#xd;
+{&quot;value&quot;: &quot;Citi Bank&quot;, &quot;text&quot;: &quot;Citi Bank&quot;}&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>

@@ -16,7 +16,10 @@ export default class SavingsAccountComponent extends NeutronComponent {
                         <SelectInputComponent model={model.getSavingsTypeNode()}/>
                     </div>
                     <div className="col-md-4">
-                        <TextInputComponent model={model.getSavingsInstitutionNameNode()}/>
+                        <TextInputComponent
+                            model={model.getSavingsInstitutionNameNode()}
+                            searchPath="/lodgement/institution/_search?q=value:{key}&size=10&pretty"
+                        />
                     </div>
                     <div className="col-md-4">
                         <NumberInputComponent model={model.getSavingsBalanceNode()}/>
