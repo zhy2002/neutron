@@ -13,11 +13,6 @@ import java.util.List;
 
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
 
-    private VehicleModelNode vehicleModelNode;
-    private VehicleYearNode vehicleYearNode;
-    private VehicleMarketValueNode vehicleMarketValueNode;
-    private VehicleOwnershipListNode ownershipListNode;
-
     private MotorVehicleNodeChildFactory childFactory;
 
     @Inject
@@ -58,35 +53,31 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
 
     @JsMethod
     public VehicleModelNode getVehicleModelNode() {
-        return vehicleModelNode;
+        return (VehicleModelNode)getChildByName("vehicleModelNode");
     }
 
     @JsMethod
     public VehicleYearNode getVehicleYearNode() {
-        return vehicleYearNode;
+        return (VehicleYearNode)getChildByName("vehicleYearNode");
     }
 
     @JsMethod
     public VehicleMarketValueNode getVehicleMarketValueNode() {
-        return vehicleMarketValueNode;
+        return (VehicleMarketValueNode)getChildByName("vehicleMarketValueNode");
     }
 
     @JsMethod
     public VehicleOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (VehicleOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        vehicleModelNode = childFactory.createVehicleModelNode();
-        children.add(vehicleModelNode);
-        vehicleYearNode = childFactory.createVehicleYearNode();
-        children.add(vehicleYearNode);
-        vehicleMarketValueNode = childFactory.createVehicleMarketValueNode();
-        children.add(vehicleMarketValueNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createVehicleModelNode());
+        children.add(childFactory.createVehicleYearNode());
+        children.add(childFactory.createVehicleMarketValueNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

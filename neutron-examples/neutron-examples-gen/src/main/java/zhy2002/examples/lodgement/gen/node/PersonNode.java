@@ -14,15 +14,6 @@ import java.util.List;
 
 public class PersonNode extends ObjectUiNode<PersonListNode> {
 
-    private PersonGeneralNode personGeneralNode;
-    private PersonContactNode personContactNode;
-    private CurrentEmploymentListNode currentEmploymentListNode;
-    private PreviousEmploymentListNode previousEmploymentListNode;
-    private PersonTrustNode personTrustNode;
-    private PersonPrivacyNode personPrivacyNode;
-    private PersonOtherIncomeListNode personOtherIncomeListNode;
-    private PersonResponsibleLendNode personResponsibleLendNode;
-
     private PersonNodeChildFactory childFactory;
 
     @Inject
@@ -63,63 +54,55 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
 
     @JsMethod
     public PersonGeneralNode getPersonGeneralNode() {
-        return personGeneralNode;
+        return (PersonGeneralNode)getChildByName("personGeneralNode");
     }
 
     @JsMethod
     public PersonContactNode getPersonContactNode() {
-        return personContactNode;
+        return (PersonContactNode)getChildByName("personContactNode");
     }
 
     @JsMethod
     public CurrentEmploymentListNode getCurrentEmploymentListNode() {
-        return currentEmploymentListNode;
+        return (CurrentEmploymentListNode)getChildByName("currentEmploymentListNode");
     }
 
     @JsMethod
     public PreviousEmploymentListNode getPreviousEmploymentListNode() {
-        return previousEmploymentListNode;
+        return (PreviousEmploymentListNode)getChildByName("previousEmploymentListNode");
     }
 
     @JsMethod
     public PersonTrustNode getPersonTrustNode() {
-        return personTrustNode;
+        return (PersonTrustNode)getChildByName("personTrustNode");
     }
 
     @JsMethod
     public PersonPrivacyNode getPersonPrivacyNode() {
-        return personPrivacyNode;
+        return (PersonPrivacyNode)getChildByName("personPrivacyNode");
     }
 
     @JsMethod
     public PersonOtherIncomeListNode getPersonOtherIncomeListNode() {
-        return personOtherIncomeListNode;
+        return (PersonOtherIncomeListNode)getChildByName("personOtherIncomeListNode");
     }
 
     @JsMethod
     public PersonResponsibleLendNode getPersonResponsibleLendNode() {
-        return personResponsibleLendNode;
+        return (PersonResponsibleLendNode)getChildByName("personResponsibleLendNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        personGeneralNode = childFactory.createPersonGeneralNode();
-        children.add(personGeneralNode);
-        personContactNode = childFactory.createPersonContactNode();
-        children.add(personContactNode);
-        currentEmploymentListNode = childFactory.createCurrentEmploymentListNode();
-        children.add(currentEmploymentListNode);
-        previousEmploymentListNode = childFactory.createPreviousEmploymentListNode();
-        children.add(previousEmploymentListNode);
-        personTrustNode = childFactory.createPersonTrustNode();
-        children.add(personTrustNode);
-        personPrivacyNode = childFactory.createPersonPrivacyNode();
-        children.add(personPrivacyNode);
-        personOtherIncomeListNode = childFactory.createPersonOtherIncomeListNode();
-        children.add(personOtherIncomeListNode);
-        personResponsibleLendNode = childFactory.createPersonResponsibleLendNode();
-        children.add(personResponsibleLendNode);
+        children.add(childFactory.createPersonGeneralNode());
+        children.add(childFactory.createPersonContactNode());
+        children.add(childFactory.createCurrentEmploymentListNode());
+        children.add(childFactory.createPreviousEmploymentListNode());
+        children.add(childFactory.createPersonTrustNode());
+        children.add(childFactory.createPersonPrivacyNode());
+        children.add(childFactory.createPersonOtherIncomeListNode());
+        children.add(childFactory.createPersonResponsibleLendNode());
         return children;
     }
 

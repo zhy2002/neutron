@@ -13,9 +13,6 @@ import java.util.List;
 
 public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderListNode<?>> {
 
-    private AccountHolderReferenceNode accountHolderReferenceNode;
-    private SelectAccountHolderFlagNode selectAccountHolderFlagNode;
-
     private SelectAccountHolderNodeChildFactory childFactory;
 
     @Inject
@@ -56,21 +53,19 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
 
     @JsMethod
     public AccountHolderReferenceNode getAccountHolderReferenceNode() {
-        return accountHolderReferenceNode;
+        return (AccountHolderReferenceNode)getChildByName("accountHolderReferenceNode");
     }
 
     @JsMethod
     public SelectAccountHolderFlagNode getSelectAccountHolderFlagNode() {
-        return selectAccountHolderFlagNode;
+        return (SelectAccountHolderFlagNode)getChildByName("selectAccountHolderFlagNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        accountHolderReferenceNode = childFactory.createAccountHolderReferenceNode();
-        children.add(accountHolderReferenceNode);
-        selectAccountHolderFlagNode = childFactory.createSelectAccountHolderFlagNode();
-        children.add(selectAccountHolderFlagNode);
+        children.add(childFactory.createAccountHolderReferenceNode());
+        children.add(childFactory.createSelectAccountHolderFlagNode());
         return children;
     }
 

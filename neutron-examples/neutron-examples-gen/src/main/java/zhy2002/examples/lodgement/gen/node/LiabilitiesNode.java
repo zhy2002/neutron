@@ -13,10 +13,6 @@ import java.util.List;
 
 public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
 
-    private CreditCardListNode creditCardListNode;
-    private LoanListNode loanListNode;
-    private OtherLiabilityListNode otherLiabilityListNode;
-
     private LiabilitiesNodeChildFactory childFactory;
 
     @Inject
@@ -63,28 +59,25 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
 
     @JsMethod
     public CreditCardListNode getCreditCardListNode() {
-        return creditCardListNode;
+        return (CreditCardListNode)getChildByName("creditCardListNode");
     }
 
     @JsMethod
     public LoanListNode getLoanListNode() {
-        return loanListNode;
+        return (LoanListNode)getChildByName("loanListNode");
     }
 
     @JsMethod
     public OtherLiabilityListNode getOtherLiabilityListNode() {
-        return otherLiabilityListNode;
+        return (OtherLiabilityListNode)getChildByName("otherLiabilityListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        creditCardListNode = childFactory.createCreditCardListNode();
-        children.add(creditCardListNode);
-        loanListNode = childFactory.createLoanListNode();
-        children.add(loanListNode);
-        otherLiabilityListNode = childFactory.createOtherLiabilityListNode();
-        children.add(otherLiabilityListNode);
+        children.add(childFactory.createCreditCardListNode());
+        children.add(childFactory.createLoanListNode());
+        children.add(childFactory.createOtherLiabilityListNode());
         return children;
     }
 

@@ -13,10 +13,6 @@ import java.util.List;
 
 public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
 
-    private ProductCardHodlerNameNode productCardHodlerNameNode;
-    private ProductRewardsProgramNode productRewardsProgramNode;
-    private ProductRewardsMembershipNode productRewardsMembershipNode;
-
     private ProductCardHolderNodeChildFactory childFactory;
 
     @Inject
@@ -63,28 +59,25 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
 
     @JsMethod
     public ProductCardHodlerNameNode getProductCardHodlerNameNode() {
-        return productCardHodlerNameNode;
+        return (ProductCardHodlerNameNode)getChildByName("productCardHodlerNameNode");
     }
 
     @JsMethod
     public ProductRewardsProgramNode getProductRewardsProgramNode() {
-        return productRewardsProgramNode;
+        return (ProductRewardsProgramNode)getChildByName("productRewardsProgramNode");
     }
 
     @JsMethod
     public ProductRewardsMembershipNode getProductRewardsMembershipNode() {
-        return productRewardsMembershipNode;
+        return (ProductRewardsMembershipNode)getChildByName("productRewardsMembershipNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        productCardHodlerNameNode = childFactory.createProductCardHodlerNameNode();
-        children.add(productCardHodlerNameNode);
-        productRewardsProgramNode = childFactory.createProductRewardsProgramNode();
-        children.add(productRewardsProgramNode);
-        productRewardsMembershipNode = childFactory.createProductRewardsMembershipNode();
-        children.add(productRewardsMembershipNode);
+        children.add(childFactory.createProductCardHodlerNameNode());
+        children.add(childFactory.createProductRewardsProgramNode());
+        children.add(childFactory.createProductRewardsMembershipNode());
         return children;
     }
 

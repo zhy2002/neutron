@@ -304,4 +304,18 @@ public class PersonNodeTest {
         assertThat(personTrustNode.getTrustBeneficiaryListNode().getItem(0).isEffectivelyDisabled(), equalTo(true));
     }
 
+    @Test
+    public void testUnloadDirectly() {
+        FirstNameNode firstNameNode = personGeneralNode.getFirstNameNode();
+
+        personGeneralNode.unloadDirectly();
+        assertThat(personGeneralNode.getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
+        assertThat(personGeneralNode.getFirstNameNode(), nullValue());
+
+        personGeneralNode.loadDirectly();
+        assertThat(firstNameNode, not(sameInstance(personGeneralNode.getFirstNameNode())));
+        assertThat(personGeneralNode.getFirstNameNode().getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
+
+    }
+
 }

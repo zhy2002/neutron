@@ -14,9 +14,6 @@ import java.util.List;
 
 public class ProductNode extends ObjectUiNode<ProductListNode> {
 
-    private ProductDescriptionNode productDescriptionNode;
-    private ProductFeaturesNode productFeaturesNode;
-
     private ProductNodeChildFactory childFactory;
 
     @Inject
@@ -57,21 +54,19 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
 
     @JsMethod
     public ProductDescriptionNode getProductDescriptionNode() {
-        return productDescriptionNode;
+        return (ProductDescriptionNode)getChildByName("productDescriptionNode");
     }
 
     @JsMethod
     public ProductFeaturesNode getProductFeaturesNode() {
-        return productFeaturesNode;
+        return (ProductFeaturesNode)getChildByName("productFeaturesNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        productDescriptionNode = childFactory.createProductDescriptionNode();
-        children.add(productDescriptionNode);
-        productFeaturesNode = childFactory.createProductFeaturesNode();
-        children.add(productFeaturesNode);
+        children.add(childFactory.createProductDescriptionNode());
+        children.add(childFactory.createProductFeaturesNode());
         return children;
     }
 

@@ -17,9 +17,6 @@ import zhy2002.examples.register.gen.event.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
-    private PropertyAddressNode propertyAddressNode;
-    private PropertyStateNode propertyStateNode;
-
     private PropertyDetailsNodeChildFactory childFactory;
 
     @Inject
@@ -88,21 +85,19 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
     @JsMethod
     public PropertyAddressNode getPropertyAddressNode() {
-        return propertyAddressNode;
+        return (PropertyAddressNode)getChildByName("propertyAddressNode");
     }
 
     @JsMethod
     public PropertyStateNode getPropertyStateNode() {
-        return propertyStateNode;
+        return (PropertyStateNode)getChildByName("propertyStateNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        propertyAddressNode = childFactory.createPropertyAddressNode();
-        children.add(propertyAddressNode);
-        propertyStateNode = childFactory.createPropertyStateNode();
-        children.add(propertyStateNode);
+        children.add(childFactory.createPropertyAddressNode());
+        children.add(childFactory.createPropertyStateNode());
         return children;
     }
 

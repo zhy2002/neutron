@@ -14,13 +14,6 @@ import java.util.List;
 
 public class CompanyNode extends ObjectUiNode<CompanyListNode> {
 
-    private CompanyGeneralNode companyGeneralNode;
-    private CompanyContactNode companyContactNode;
-    private CompanyTrustNode companyTrustNode;
-    private CompanyPrivacyNode companyPrivacyNode;
-    private CompanyOtherIncomeListNode companyOtherIncomeListNode;
-    private CompanyResponsibleLendNode companyResponsibleLendNode;
-
     private CompanyNodeChildFactory childFactory;
 
     @Inject
@@ -61,49 +54,43 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
 
     @JsMethod
     public CompanyGeneralNode getCompanyGeneralNode() {
-        return companyGeneralNode;
+        return (CompanyGeneralNode)getChildByName("companyGeneralNode");
     }
 
     @JsMethod
     public CompanyContactNode getCompanyContactNode() {
-        return companyContactNode;
+        return (CompanyContactNode)getChildByName("companyContactNode");
     }
 
     @JsMethod
     public CompanyTrustNode getCompanyTrustNode() {
-        return companyTrustNode;
+        return (CompanyTrustNode)getChildByName("companyTrustNode");
     }
 
     @JsMethod
     public CompanyPrivacyNode getCompanyPrivacyNode() {
-        return companyPrivacyNode;
+        return (CompanyPrivacyNode)getChildByName("companyPrivacyNode");
     }
 
     @JsMethod
     public CompanyOtherIncomeListNode getCompanyOtherIncomeListNode() {
-        return companyOtherIncomeListNode;
+        return (CompanyOtherIncomeListNode)getChildByName("companyOtherIncomeListNode");
     }
 
     @JsMethod
     public CompanyResponsibleLendNode getCompanyResponsibleLendNode() {
-        return companyResponsibleLendNode;
+        return (CompanyResponsibleLendNode)getChildByName("companyResponsibleLendNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        companyGeneralNode = childFactory.createCompanyGeneralNode();
-        children.add(companyGeneralNode);
-        companyContactNode = childFactory.createCompanyContactNode();
-        children.add(companyContactNode);
-        companyTrustNode = childFactory.createCompanyTrustNode();
-        children.add(companyTrustNode);
-        companyPrivacyNode = childFactory.createCompanyPrivacyNode();
-        children.add(companyPrivacyNode);
-        companyOtherIncomeListNode = childFactory.createCompanyOtherIncomeListNode();
-        children.add(companyOtherIncomeListNode);
-        companyResponsibleLendNode = childFactory.createCompanyResponsibleLendNode();
-        children.add(companyResponsibleLendNode);
+        children.add(childFactory.createCompanyGeneralNode());
+        children.add(childFactory.createCompanyContactNode());
+        children.add(childFactory.createCompanyTrustNode());
+        children.add(childFactory.createCompanyPrivacyNode());
+        children.add(childFactory.createCompanyOtherIncomeListNode());
+        children.add(childFactory.createCompanyResponsibleLendNode());
         return children;
     }
 

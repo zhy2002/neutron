@@ -13,10 +13,6 @@ import java.util.List;
 
 public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
 
-    private SavingsAccountListNode savingsAccountListNode;
-    private MotorVehicleListNode motorVehicleListNode;
-    private OtherAssetListNode otherAssetListNode;
-
     private AssetsNodeChildFactory childFactory;
 
     @Inject
@@ -63,28 +59,25 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
 
     @JsMethod
     public SavingsAccountListNode getSavingsAccountListNode() {
-        return savingsAccountListNode;
+        return (SavingsAccountListNode)getChildByName("savingsAccountListNode");
     }
 
     @JsMethod
     public MotorVehicleListNode getMotorVehicleListNode() {
-        return motorVehicleListNode;
+        return (MotorVehicleListNode)getChildByName("motorVehicleListNode");
     }
 
     @JsMethod
     public OtherAssetListNode getOtherAssetListNode() {
-        return otherAssetListNode;
+        return (OtherAssetListNode)getChildByName("otherAssetListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        savingsAccountListNode = childFactory.createSavingsAccountListNode();
-        children.add(savingsAccountListNode);
-        motorVehicleListNode = childFactory.createMotorVehicleListNode();
-        children.add(motorVehicleListNode);
-        otherAssetListNode = childFactory.createOtherAssetListNode();
-        children.add(otherAssetListNode);
+        children.add(childFactory.createSavingsAccountListNode());
+        children.add(childFactory.createMotorVehicleListNode());
+        children.add(childFactory.createOtherAssetListNode());
         return children;
     }
 

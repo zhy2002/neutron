@@ -13,17 +13,6 @@ import java.util.List;
 
 public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
-    private ThirdPartyTypeNode thirdPartyTypeNode;
-    private ThirdPartyDescriptionNode thirdPartyDescriptionNode;
-    private ThirdPartyTitleNode thirdPartyTitleNode;
-    private ThirdPartyFirstNameNode thirdPartyFirstNameNode;
-    private ThirdPartyLastNameNode thirdPartyLastNameNode;
-    private ThirdPartyDobNode thirdPartyDobNode;
-    private ThirdPartyCompanyNameNode thirdPartyCompanyNameNode;
-    private ThirdPartyAddressNode thirdPartyAddressNode;
-    private ThirdPartyWorkPhoneNode thirdPartyWorkPhoneNode;
-    private ThirdPartyEmailNode thirdPartyEmailNode;
-
     private RelatedPartyNodeChildFactory childFactory;
 
     @Inject
@@ -64,77 +53,67 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
     @JsMethod
     public ThirdPartyTypeNode getThirdPartyTypeNode() {
-        return thirdPartyTypeNode;
+        return (ThirdPartyTypeNode)getChildByName("thirdPartyTypeNode");
     }
 
     @JsMethod
     public ThirdPartyDescriptionNode getThirdPartyDescriptionNode() {
-        return thirdPartyDescriptionNode;
+        return (ThirdPartyDescriptionNode)getChildByName("thirdPartyDescriptionNode");
     }
 
     @JsMethod
     public ThirdPartyTitleNode getThirdPartyTitleNode() {
-        return thirdPartyTitleNode;
+        return (ThirdPartyTitleNode)getChildByName("thirdPartyTitleNode");
     }
 
     @JsMethod
     public ThirdPartyFirstNameNode getThirdPartyFirstNameNode() {
-        return thirdPartyFirstNameNode;
+        return (ThirdPartyFirstNameNode)getChildByName("thirdPartyFirstNameNode");
     }
 
     @JsMethod
     public ThirdPartyLastNameNode getThirdPartyLastNameNode() {
-        return thirdPartyLastNameNode;
+        return (ThirdPartyLastNameNode)getChildByName("thirdPartyLastNameNode");
     }
 
     @JsMethod
     public ThirdPartyDobNode getThirdPartyDobNode() {
-        return thirdPartyDobNode;
+        return (ThirdPartyDobNode)getChildByName("thirdPartyDobNode");
     }
 
     @JsMethod
     public ThirdPartyCompanyNameNode getThirdPartyCompanyNameNode() {
-        return thirdPartyCompanyNameNode;
+        return (ThirdPartyCompanyNameNode)getChildByName("thirdPartyCompanyNameNode");
     }
 
     @JsMethod
     public ThirdPartyAddressNode getThirdPartyAddressNode() {
-        return thirdPartyAddressNode;
+        return (ThirdPartyAddressNode)getChildByName("thirdPartyAddressNode");
     }
 
     @JsMethod
     public ThirdPartyWorkPhoneNode getThirdPartyWorkPhoneNode() {
-        return thirdPartyWorkPhoneNode;
+        return (ThirdPartyWorkPhoneNode)getChildByName("thirdPartyWorkPhoneNode");
     }
 
     @JsMethod
     public ThirdPartyEmailNode getThirdPartyEmailNode() {
-        return thirdPartyEmailNode;
+        return (ThirdPartyEmailNode)getChildByName("thirdPartyEmailNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        thirdPartyTypeNode = childFactory.createThirdPartyTypeNode();
-        children.add(thirdPartyTypeNode);
-        thirdPartyDescriptionNode = childFactory.createThirdPartyDescriptionNode();
-        children.add(thirdPartyDescriptionNode);
-        thirdPartyTitleNode = childFactory.createThirdPartyTitleNode();
-        children.add(thirdPartyTitleNode);
-        thirdPartyFirstNameNode = childFactory.createThirdPartyFirstNameNode();
-        children.add(thirdPartyFirstNameNode);
-        thirdPartyLastNameNode = childFactory.createThirdPartyLastNameNode();
-        children.add(thirdPartyLastNameNode);
-        thirdPartyDobNode = childFactory.createThirdPartyDobNode();
-        children.add(thirdPartyDobNode);
-        thirdPartyCompanyNameNode = childFactory.createThirdPartyCompanyNameNode();
-        children.add(thirdPartyCompanyNameNode);
-        thirdPartyAddressNode = childFactory.createThirdPartyAddressNode();
-        children.add(thirdPartyAddressNode);
-        thirdPartyWorkPhoneNode = childFactory.createThirdPartyWorkPhoneNode();
-        children.add(thirdPartyWorkPhoneNode);
-        thirdPartyEmailNode = childFactory.createThirdPartyEmailNode();
-        children.add(thirdPartyEmailNode);
+        children.add(childFactory.createThirdPartyTypeNode());
+        children.add(childFactory.createThirdPartyDescriptionNode());
+        children.add(childFactory.createThirdPartyTitleNode());
+        children.add(childFactory.createThirdPartyFirstNameNode());
+        children.add(childFactory.createThirdPartyLastNameNode());
+        children.add(childFactory.createThirdPartyDobNode());
+        children.add(childFactory.createThirdPartyCompanyNameNode());
+        children.add(childFactory.createThirdPartyAddressNode());
+        children.add(childFactory.createThirdPartyWorkPhoneNode());
+        children.add(childFactory.createThirdPartyEmailNode());
         return children;
     }
 

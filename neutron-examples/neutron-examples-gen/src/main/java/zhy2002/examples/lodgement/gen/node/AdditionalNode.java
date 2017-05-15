@@ -13,9 +13,6 @@ import java.util.List;
 
 public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
 
-    private AdditionalCommentNode additionalCommentNode;
-    private RelatedPartyListNode relatedPartyListNode;
-
     private AdditionalNodeChildFactory childFactory;
 
     @Inject
@@ -62,21 +59,19 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
 
     @JsMethod
     public AdditionalCommentNode getAdditionalCommentNode() {
-        return additionalCommentNode;
+        return (AdditionalCommentNode)getChildByName("additionalCommentNode");
     }
 
     @JsMethod
     public RelatedPartyListNode getRelatedPartyListNode() {
-        return relatedPartyListNode;
+        return (RelatedPartyListNode)getChildByName("relatedPartyListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        additionalCommentNode = childFactory.createAdditionalCommentNode();
-        children.add(additionalCommentNode);
-        relatedPartyListNode = childFactory.createRelatedPartyListNode();
-        children.add(relatedPartyListNode);
+        children.add(childFactory.createAdditionalCommentNode());
+        children.add(childFactory.createRelatedPartyListNode());
         return children;
     }
 

@@ -13,11 +13,6 @@ import java.util.List;
 
 public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
 
-    private ExpenseTypeNode expenseTypeNode;
-    private ExpenseDescriptionNode expenseDescriptionNode;
-    private ExpenseMonthlyRepaymentNode expenseMonthlyRepaymentNode;
-    private ExpenseOwnershipListNode ownershipListNode;
-
     private ExpenseNodeChildFactory childFactory;
 
     @Inject
@@ -58,35 +53,31 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
 
     @JsMethod
     public ExpenseTypeNode getExpenseTypeNode() {
-        return expenseTypeNode;
+        return (ExpenseTypeNode)getChildByName("expenseTypeNode");
     }
 
     @JsMethod
     public ExpenseDescriptionNode getExpenseDescriptionNode() {
-        return expenseDescriptionNode;
+        return (ExpenseDescriptionNode)getChildByName("expenseDescriptionNode");
     }
 
     @JsMethod
     public ExpenseMonthlyRepaymentNode getExpenseMonthlyRepaymentNode() {
-        return expenseMonthlyRepaymentNode;
+        return (ExpenseMonthlyRepaymentNode)getChildByName("expenseMonthlyRepaymentNode");
     }
 
     @JsMethod
     public ExpenseOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (ExpenseOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        expenseTypeNode = childFactory.createExpenseTypeNode();
-        children.add(expenseTypeNode);
-        expenseDescriptionNode = childFactory.createExpenseDescriptionNode();
-        children.add(expenseDescriptionNode);
-        expenseMonthlyRepaymentNode = childFactory.createExpenseMonthlyRepaymentNode();
-        children.add(expenseMonthlyRepaymentNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createExpenseTypeNode());
+        children.add(childFactory.createExpenseDescriptionNode());
+        children.add(childFactory.createExpenseMonthlyRepaymentNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

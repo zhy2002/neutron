@@ -11,14 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private EmploymentStatusNode employmentStatusNode;
-    private OccupationNode occupationNode;
-    private EmployerNameNode employerNameNode;
-    private EmployerAddressNode employerAddressNode;
-    private EmployerPhoneNode employerPhoneNode;
-    private EmploymentStartedNode employmentStartedNode;
-    private EmploymentEndedNode employmentEndedNode;
-
     private EmployedNodeChildFactory childFactory;
 
     @Inject
@@ -33,56 +25,49 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
     @JsMethod
     public EmploymentStatusNode getEmploymentStatusNode() {
-        return employmentStatusNode;
+        return (EmploymentStatusNode)getChildByName("employmentStatusNode");
     }
 
     @JsMethod
     public OccupationNode getOccupationNode() {
-        return occupationNode;
+        return (OccupationNode)getChildByName("occupationNode");
     }
 
     @JsMethod
     public EmployerNameNode getEmployerNameNode() {
-        return employerNameNode;
+        return (EmployerNameNode)getChildByName("employerNameNode");
     }
 
     @JsMethod
     public EmployerAddressNode getEmployerAddressNode() {
-        return employerAddressNode;
+        return (EmployerAddressNode)getChildByName("employerAddressNode");
     }
 
     @JsMethod
     public EmployerPhoneNode getEmployerPhoneNode() {
-        return employerPhoneNode;
+        return (EmployerPhoneNode)getChildByName("employerPhoneNode");
     }
 
     @JsMethod
     public EmploymentStartedNode getEmploymentStartedNode() {
-        return employmentStartedNode;
+        return (EmploymentStartedNode)getChildByName("employmentStartedNode");
     }
 
     @JsMethod
     public EmploymentEndedNode getEmploymentEndedNode() {
-        return employmentEndedNode;
+        return (EmploymentEndedNode)getChildByName("employmentEndedNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        employmentStatusNode = childFactory.createEmploymentStatusNode();
-        children.add(employmentStatusNode);
-        occupationNode = childFactory.createOccupationNode();
-        children.add(occupationNode);
-        employerNameNode = childFactory.createEmployerNameNode();
-        children.add(employerNameNode);
-        employerAddressNode = childFactory.createEmployerAddressNode();
-        children.add(employerAddressNode);
-        employerPhoneNode = childFactory.createEmployerPhoneNode();
-        children.add(employerPhoneNode);
-        employmentStartedNode = childFactory.createEmploymentStartedNode();
-        children.add(employmentStartedNode);
-        employmentEndedNode = childFactory.createEmploymentEndedNode();
-        children.add(employmentEndedNode);
+        children.add(childFactory.createEmploymentStatusNode());
+        children.add(childFactory.createOccupationNode());
+        children.add(childFactory.createEmployerNameNode());
+        children.add(childFactory.createEmployerAddressNode());
+        children.add(childFactory.createEmployerPhoneNode());
+        children.add(childFactory.createEmploymentStartedNode());
+        children.add(childFactory.createEmploymentEndedNode());
         return children;
     }
 

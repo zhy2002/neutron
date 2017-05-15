@@ -13,13 +13,6 @@ import java.util.List;
 
 public class UsageNode extends ObjectUiNode<RealEstateNode> {
 
-    private UsedAsSecurityFlagNode usedAsSecurityFlagNode;
-    private BeingPurchasedFlagNode beingPurchasedFlagNode;
-    private OwnedOutrightFlagNode ownedOutrightFlagNode;
-    private PrimarySecurityFlagNode primarySecurityFlagNode;
-    private ApprovalInPrincipleFlagNode approvalInPrincipleFlagNode;
-    private ExistingMortgageListNode existingMortgageListNode;
-
     private UsageNodeChildFactory childFactory;
 
     @Inject
@@ -66,49 +59,43 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
 
     @JsMethod
     public UsedAsSecurityFlagNode getUsedAsSecurityFlagNode() {
-        return usedAsSecurityFlagNode;
+        return (UsedAsSecurityFlagNode)getChildByName("usedAsSecurityFlagNode");
     }
 
     @JsMethod
     public BeingPurchasedFlagNode getBeingPurchasedFlagNode() {
-        return beingPurchasedFlagNode;
+        return (BeingPurchasedFlagNode)getChildByName("beingPurchasedFlagNode");
     }
 
     @JsMethod
     public OwnedOutrightFlagNode getOwnedOutrightFlagNode() {
-        return ownedOutrightFlagNode;
+        return (OwnedOutrightFlagNode)getChildByName("ownedOutrightFlagNode");
     }
 
     @JsMethod
     public PrimarySecurityFlagNode getPrimarySecurityFlagNode() {
-        return primarySecurityFlagNode;
+        return (PrimarySecurityFlagNode)getChildByName("primarySecurityFlagNode");
     }
 
     @JsMethod
     public ApprovalInPrincipleFlagNode getApprovalInPrincipleFlagNode() {
-        return approvalInPrincipleFlagNode;
+        return (ApprovalInPrincipleFlagNode)getChildByName("approvalInPrincipleFlagNode");
     }
 
     @JsMethod
     public ExistingMortgageListNode getExistingMortgageListNode() {
-        return existingMortgageListNode;
+        return (ExistingMortgageListNode)getChildByName("existingMortgageListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        usedAsSecurityFlagNode = childFactory.createUsedAsSecurityFlagNode();
-        children.add(usedAsSecurityFlagNode);
-        beingPurchasedFlagNode = childFactory.createBeingPurchasedFlagNode();
-        children.add(beingPurchasedFlagNode);
-        ownedOutrightFlagNode = childFactory.createOwnedOutrightFlagNode();
-        children.add(ownedOutrightFlagNode);
-        primarySecurityFlagNode = childFactory.createPrimarySecurityFlagNode();
-        children.add(primarySecurityFlagNode);
-        approvalInPrincipleFlagNode = childFactory.createApprovalInPrincipleFlagNode();
-        children.add(approvalInPrincipleFlagNode);
-        existingMortgageListNode = childFactory.createExistingMortgageListNode();
-        children.add(existingMortgageListNode);
+        children.add(childFactory.createUsedAsSecurityFlagNode());
+        children.add(childFactory.createBeingPurchasedFlagNode());
+        children.add(childFactory.createOwnedOutrightFlagNode());
+        children.add(childFactory.createPrimarySecurityFlagNode());
+        children.add(childFactory.createApprovalInPrincipleFlagNode());
+        children.add(childFactory.createExistingMortgageListNode());
         return children;
     }
 

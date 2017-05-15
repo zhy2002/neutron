@@ -11,18 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private TrustNameNode trustNameNode;
-    private TrustRegistrationDateNode trustRegistrationDateNode;
-    private TrustTypeNode trustTypeNode;
-    private TrustCountryNode trustCountryNode;
-    private TrustAddressNode trustAddressNode;
-    private TrustIndustryNode trustIndustryNode;
-    private TrustSettlorNotRequiredReasonNode trustSettlorNotRequiredReasonNode;
-    private TrustBeneficiaryListNode trustBeneficiaryListNode;
-    private TrustSettlorListNode trustSettlorListNode;
-    private TrustBeneficialOwnerListNode trustBeneficialOwnerListNode;
-    private TrustBeneficiaryClassListNode trustBeneficiaryClassListNode;
-
     private BaseTrustNodeChildFactory childFactory;
 
     @Inject
@@ -37,84 +25,73 @@ public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiN
 
     @JsMethod
     public TrustNameNode getTrustNameNode() {
-        return trustNameNode;
+        return (TrustNameNode)getChildByName("trustNameNode");
     }
 
     @JsMethod
     public TrustRegistrationDateNode getTrustRegistrationDateNode() {
-        return trustRegistrationDateNode;
+        return (TrustRegistrationDateNode)getChildByName("trustRegistrationDateNode");
     }
 
     @JsMethod
     public TrustTypeNode getTrustTypeNode() {
-        return trustTypeNode;
+        return (TrustTypeNode)getChildByName("trustTypeNode");
     }
 
     @JsMethod
     public TrustCountryNode getTrustCountryNode() {
-        return trustCountryNode;
+        return (TrustCountryNode)getChildByName("trustCountryNode");
     }
 
     @JsMethod
     public TrustAddressNode getTrustAddressNode() {
-        return trustAddressNode;
+        return (TrustAddressNode)getChildByName("trustAddressNode");
     }
 
     @JsMethod
     public TrustIndustryNode getTrustIndustryNode() {
-        return trustIndustryNode;
+        return (TrustIndustryNode)getChildByName("trustIndustryNode");
     }
 
     @JsMethod
     public TrustSettlorNotRequiredReasonNode getTrustSettlorNotRequiredReasonNode() {
-        return trustSettlorNotRequiredReasonNode;
+        return (TrustSettlorNotRequiredReasonNode)getChildByName("trustSettlorNotRequiredReasonNode");
     }
 
     @JsMethod
     public TrustBeneficiaryListNode getTrustBeneficiaryListNode() {
-        return trustBeneficiaryListNode;
+        return (TrustBeneficiaryListNode)getChildByName("trustBeneficiaryListNode");
     }
 
     @JsMethod
     public TrustSettlorListNode getTrustSettlorListNode() {
-        return trustSettlorListNode;
+        return (TrustSettlorListNode)getChildByName("trustSettlorListNode");
     }
 
     @JsMethod
     public TrustBeneficialOwnerListNode getTrustBeneficialOwnerListNode() {
-        return trustBeneficialOwnerListNode;
+        return (TrustBeneficialOwnerListNode)getChildByName("trustBeneficialOwnerListNode");
     }
 
     @JsMethod
     public TrustBeneficiaryClassListNode getTrustBeneficiaryClassListNode() {
-        return trustBeneficiaryClassListNode;
+        return (TrustBeneficiaryClassListNode)getChildByName("trustBeneficiaryClassListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        trustNameNode = childFactory.createTrustNameNode();
-        children.add(trustNameNode);
-        trustRegistrationDateNode = childFactory.createTrustRegistrationDateNode();
-        children.add(trustRegistrationDateNode);
-        trustTypeNode = childFactory.createTrustTypeNode();
-        children.add(trustTypeNode);
-        trustCountryNode = childFactory.createTrustCountryNode();
-        children.add(trustCountryNode);
-        trustAddressNode = childFactory.createTrustAddressNode();
-        children.add(trustAddressNode);
-        trustIndustryNode = childFactory.createTrustIndustryNode();
-        children.add(trustIndustryNode);
-        trustSettlorNotRequiredReasonNode = childFactory.createTrustSettlorNotRequiredReasonNode();
-        children.add(trustSettlorNotRequiredReasonNode);
-        trustBeneficiaryListNode = childFactory.createTrustBeneficiaryListNode();
-        children.add(trustBeneficiaryListNode);
-        trustSettlorListNode = childFactory.createTrustSettlorListNode();
-        children.add(trustSettlorListNode);
-        trustBeneficialOwnerListNode = childFactory.createTrustBeneficialOwnerListNode();
-        children.add(trustBeneficialOwnerListNode);
-        trustBeneficiaryClassListNode = childFactory.createTrustBeneficiaryClassListNode();
-        children.add(trustBeneficiaryClassListNode);
+        children.add(childFactory.createTrustNameNode());
+        children.add(childFactory.createTrustRegistrationDateNode());
+        children.add(childFactory.createTrustTypeNode());
+        children.add(childFactory.createTrustCountryNode());
+        children.add(childFactory.createTrustAddressNode());
+        children.add(childFactory.createTrustIndustryNode());
+        children.add(childFactory.createTrustSettlorNotRequiredReasonNode());
+        children.add(childFactory.createTrustBeneficiaryListNode());
+        children.add(childFactory.createTrustSettlorListNode());
+        children.add(childFactory.createTrustBeneficialOwnerListNode());
+        children.add(childFactory.createTrustBeneficiaryClassListNode());
         return children;
     }
 

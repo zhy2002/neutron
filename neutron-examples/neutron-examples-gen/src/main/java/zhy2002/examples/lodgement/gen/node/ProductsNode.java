@@ -13,17 +13,6 @@ import java.util.List;
 
 public class ProductsNode extends ObjectUiNode<ApplicationNode> {
 
-    private ProductListNode productListNode;
-    private ProductCustomerContributionListNode productCustomerContributionListNode;
-    private ProductFeeListNode productFeeListNode;
-    private ProductLoanTypeNode productLoanTypeNode;
-    private SettlementDateNode settlementDateNode;
-    private ProductTotalLoanAmountNode productTotalLoanAmountNode;
-    private ProductTotalSecurityAmountNode productTotalSecurityAmountNode;
-    private ProductTotalLoanLmiAmountNode productTotalLoanLmiAmountNode;
-    private ProductTotalLvrNode productTotalLvrNode;
-    private ProductTotalLvrLmiNode productTotalLvrLmiNode;
-
     private ProductsNodeChildFactory childFactory;
 
     @Inject
@@ -70,77 +59,67 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
 
     @JsMethod
     public ProductListNode getProductListNode() {
-        return productListNode;
+        return (ProductListNode)getChildByName("productListNode");
     }
 
     @JsMethod
     public ProductCustomerContributionListNode getProductCustomerContributionListNode() {
-        return productCustomerContributionListNode;
+        return (ProductCustomerContributionListNode)getChildByName("productCustomerContributionListNode");
     }
 
     @JsMethod
     public ProductFeeListNode getProductFeeListNode() {
-        return productFeeListNode;
+        return (ProductFeeListNode)getChildByName("productFeeListNode");
     }
 
     @JsMethod
     public ProductLoanTypeNode getProductLoanTypeNode() {
-        return productLoanTypeNode;
+        return (ProductLoanTypeNode)getChildByName("productLoanTypeNode");
     }
 
     @JsMethod
     public SettlementDateNode getSettlementDateNode() {
-        return settlementDateNode;
+        return (SettlementDateNode)getChildByName("settlementDateNode");
     }
 
     @JsMethod
     public ProductTotalLoanAmountNode getProductTotalLoanAmountNode() {
-        return productTotalLoanAmountNode;
+        return (ProductTotalLoanAmountNode)getChildByName("productTotalLoanAmountNode");
     }
 
     @JsMethod
     public ProductTotalSecurityAmountNode getProductTotalSecurityAmountNode() {
-        return productTotalSecurityAmountNode;
+        return (ProductTotalSecurityAmountNode)getChildByName("productTotalSecurityAmountNode");
     }
 
     @JsMethod
     public ProductTotalLoanLmiAmountNode getProductTotalLoanLmiAmountNode() {
-        return productTotalLoanLmiAmountNode;
+        return (ProductTotalLoanLmiAmountNode)getChildByName("productTotalLoanLmiAmountNode");
     }
 
     @JsMethod
     public ProductTotalLvrNode getProductTotalLvrNode() {
-        return productTotalLvrNode;
+        return (ProductTotalLvrNode)getChildByName("productTotalLvrNode");
     }
 
     @JsMethod
     public ProductTotalLvrLmiNode getProductTotalLvrLmiNode() {
-        return productTotalLvrLmiNode;
+        return (ProductTotalLvrLmiNode)getChildByName("productTotalLvrLmiNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        productListNode = childFactory.createProductListNode();
-        children.add(productListNode);
-        productCustomerContributionListNode = childFactory.createProductCustomerContributionListNode();
-        children.add(productCustomerContributionListNode);
-        productFeeListNode = childFactory.createProductFeeListNode();
-        children.add(productFeeListNode);
-        productLoanTypeNode = childFactory.createProductLoanTypeNode();
-        children.add(productLoanTypeNode);
-        settlementDateNode = childFactory.createSettlementDateNode();
-        children.add(settlementDateNode);
-        productTotalLoanAmountNode = childFactory.createProductTotalLoanAmountNode();
-        children.add(productTotalLoanAmountNode);
-        productTotalSecurityAmountNode = childFactory.createProductTotalSecurityAmountNode();
-        children.add(productTotalSecurityAmountNode);
-        productTotalLoanLmiAmountNode = childFactory.createProductTotalLoanLmiAmountNode();
-        children.add(productTotalLoanLmiAmountNode);
-        productTotalLvrNode = childFactory.createProductTotalLvrNode();
-        children.add(productTotalLvrNode);
-        productTotalLvrLmiNode = childFactory.createProductTotalLvrLmiNode();
-        children.add(productTotalLvrLmiNode);
+        children.add(childFactory.createProductListNode());
+        children.add(childFactory.createProductCustomerContributionListNode());
+        children.add(childFactory.createProductFeeListNode());
+        children.add(childFactory.createProductLoanTypeNode());
+        children.add(childFactory.createSettlementDateNode());
+        children.add(childFactory.createProductTotalLoanAmountNode());
+        children.add(childFactory.createProductTotalSecurityAmountNode());
+        children.add(childFactory.createProductTotalLoanLmiAmountNode());
+        children.add(childFactory.createProductTotalLvrNode());
+        children.add(childFactory.createProductTotalLvrLmiNode());
         return children;
     }
 

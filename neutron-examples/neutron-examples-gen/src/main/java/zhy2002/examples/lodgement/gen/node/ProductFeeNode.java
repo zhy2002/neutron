@@ -13,11 +13,6 @@ import java.util.List;
 
 public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
 
-    private FeeTypeNode feeTypeNode;
-    private FeeDescriptionNode feeDescriptionNode;
-    private FeePayFromNode feePayFromNode;
-    private FeeAmountNode feeAmountNode;
-
     private ProductFeeNodeChildFactory childFactory;
 
     @Inject
@@ -58,35 +53,31 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
 
     @JsMethod
     public FeeTypeNode getFeeTypeNode() {
-        return feeTypeNode;
+        return (FeeTypeNode)getChildByName("feeTypeNode");
     }
 
     @JsMethod
     public FeeDescriptionNode getFeeDescriptionNode() {
-        return feeDescriptionNode;
+        return (FeeDescriptionNode)getChildByName("feeDescriptionNode");
     }
 
     @JsMethod
     public FeePayFromNode getFeePayFromNode() {
-        return feePayFromNode;
+        return (FeePayFromNode)getChildByName("feePayFromNode");
     }
 
     @JsMethod
     public FeeAmountNode getFeeAmountNode() {
-        return feeAmountNode;
+        return (FeeAmountNode)getChildByName("feeAmountNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        feeTypeNode = childFactory.createFeeTypeNode();
-        children.add(feeTypeNode);
-        feeDescriptionNode = childFactory.createFeeDescriptionNode();
-        children.add(feeDescriptionNode);
-        feePayFromNode = childFactory.createFeePayFromNode();
-        children.add(feePayFromNode);
-        feeAmountNode = childFactory.createFeeAmountNode();
-        children.add(feeAmountNode);
+        children.add(childFactory.createFeeTypeNode());
+        children.add(childFactory.createFeeDescriptionNode());
+        children.add(childFactory.createFeePayFromNode());
+        children.add(childFactory.createFeeAmountNode());
         return children;
     }
 

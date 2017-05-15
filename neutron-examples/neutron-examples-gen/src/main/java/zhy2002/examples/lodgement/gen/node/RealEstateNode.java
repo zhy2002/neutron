@@ -14,10 +14,6 @@ import java.util.List;
 
 public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
 
-    private UsageNode usageNode;
-    private PropertyNode propertyNode;
-    private AccessNode accessNode;
-
     private RealEstateNodeChildFactory childFactory;
 
     @Inject
@@ -58,28 +54,25 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
 
     @JsMethod
     public UsageNode getUsageNode() {
-        return usageNode;
+        return (UsageNode)getChildByName("usageNode");
     }
 
     @JsMethod
     public PropertyNode getPropertyNode() {
-        return propertyNode;
+        return (PropertyNode)getChildByName("propertyNode");
     }
 
     @JsMethod
     public AccessNode getAccessNode() {
-        return accessNode;
+        return (AccessNode)getChildByName("accessNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        usageNode = childFactory.createUsageNode();
-        children.add(usageNode);
-        propertyNode = childFactory.createPropertyNode();
-        children.add(propertyNode);
-        accessNode = childFactory.createAccessNode();
-        children.add(accessNode);
+        children.add(childFactory.createUsageNode());
+        children.add(childFactory.createPropertyNode());
+        children.add(childFactory.createAccessNode());
         return children;
     }
 

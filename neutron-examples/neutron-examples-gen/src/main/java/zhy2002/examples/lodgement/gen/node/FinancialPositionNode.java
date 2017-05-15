@@ -13,13 +13,6 @@ import java.util.List;
 
 public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
 
-    private AssetsNode assetsNode;
-    private LiabilitiesNode liabilitiesNode;
-    private ExpenseListNode expenseListNode;
-    private TotalAssetNode totalAssetNode;
-    private TotalLiabilityNode totalLiabilityNode;
-    private TotalExpenseNode totalExpenseNode;
-
     private FinancialPositionNodeChildFactory childFactory;
 
     @Inject
@@ -66,49 +59,43 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
 
     @JsMethod
     public AssetsNode getAssetsNode() {
-        return assetsNode;
+        return (AssetsNode)getChildByName("assetsNode");
     }
 
     @JsMethod
     public LiabilitiesNode getLiabilitiesNode() {
-        return liabilitiesNode;
+        return (LiabilitiesNode)getChildByName("liabilitiesNode");
     }
 
     @JsMethod
     public ExpenseListNode getExpenseListNode() {
-        return expenseListNode;
+        return (ExpenseListNode)getChildByName("expenseListNode");
     }
 
     @JsMethod
     public TotalAssetNode getTotalAssetNode() {
-        return totalAssetNode;
+        return (TotalAssetNode)getChildByName("totalAssetNode");
     }
 
     @JsMethod
     public TotalLiabilityNode getTotalLiabilityNode() {
-        return totalLiabilityNode;
+        return (TotalLiabilityNode)getChildByName("totalLiabilityNode");
     }
 
     @JsMethod
     public TotalExpenseNode getTotalExpenseNode() {
-        return totalExpenseNode;
+        return (TotalExpenseNode)getChildByName("totalExpenseNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        assetsNode = childFactory.createAssetsNode();
-        children.add(assetsNode);
-        liabilitiesNode = childFactory.createLiabilitiesNode();
-        children.add(liabilitiesNode);
-        expenseListNode = childFactory.createExpenseListNode();
-        children.add(expenseListNode);
-        totalAssetNode = childFactory.createTotalAssetNode();
-        children.add(totalAssetNode);
-        totalLiabilityNode = childFactory.createTotalLiabilityNode();
-        children.add(totalLiabilityNode);
-        totalExpenseNode = childFactory.createTotalExpenseNode();
-        children.add(totalExpenseNode);
+        children.add(childFactory.createAssetsNode());
+        children.add(childFactory.createLiabilitiesNode());
+        children.add(childFactory.createExpenseListNode());
+        children.add(childFactory.createTotalAssetNode());
+        children.add(childFactory.createTotalLiabilityNode());
+        children.add(childFactory.createTotalExpenseNode());
         return children;
     }
 

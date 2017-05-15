@@ -13,10 +13,6 @@ import java.util.List;
 
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
 
-    private CountryCodeNode countryCodeNode;
-    private AreaCodeNode areaCodeNode;
-    private PhoneNumberNode phoneNumberNode;
-
     private PhoneInfoNodeChildFactory childFactory;
 
     @Inject
@@ -63,28 +59,25 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
 
     @JsMethod
     public CountryCodeNode getCountryCodeNode() {
-        return countryCodeNode;
+        return (CountryCodeNode)getChildByName("countryCodeNode");
     }
 
     @JsMethod
     public AreaCodeNode getAreaCodeNode() {
-        return areaCodeNode;
+        return (AreaCodeNode)getChildByName("areaCodeNode");
     }
 
     @JsMethod
     public PhoneNumberNode getPhoneNumberNode() {
-        return phoneNumberNode;
+        return (PhoneNumberNode)getChildByName("phoneNumberNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        countryCodeNode = childFactory.createCountryCodeNode();
-        children.add(countryCodeNode);
-        areaCodeNode = childFactory.createAreaCodeNode();
-        children.add(areaCodeNode);
-        phoneNumberNode = childFactory.createPhoneNumberNode();
-        children.add(phoneNumberNode);
+        children.add(childFactory.createCountryCodeNode());
+        children.add(childFactory.createAreaCodeNode());
+        children.add(childFactory.createPhoneNumberNode());
         return children;
     }
 

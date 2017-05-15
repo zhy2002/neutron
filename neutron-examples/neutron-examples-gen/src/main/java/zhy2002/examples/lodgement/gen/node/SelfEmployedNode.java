@@ -13,10 +13,6 @@ import java.util.List;
 
 public class SelfEmployedNode extends EmployedNode {
 
-    private BusinessTypeNode businessTypeNode;
-    private ProfitThisYearNode profitThisYearNode;
-    private ProfitPreviousYearNode profitPreviousYearNode;
-
     private SelfEmployedNodeChildFactory childFactory;
 
     @Inject
@@ -63,28 +59,25 @@ public class SelfEmployedNode extends EmployedNode {
 
     @JsMethod
     public BusinessTypeNode getBusinessTypeNode() {
-        return businessTypeNode;
+        return (BusinessTypeNode)getChildByName("businessTypeNode");
     }
 
     @JsMethod
     public ProfitThisYearNode getProfitThisYearNode() {
-        return profitThisYearNode;
+        return (ProfitThisYearNode)getChildByName("profitThisYearNode");
     }
 
     @JsMethod
     public ProfitPreviousYearNode getProfitPreviousYearNode() {
-        return profitPreviousYearNode;
+        return (ProfitPreviousYearNode)getChildByName("profitPreviousYearNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        businessTypeNode = childFactory.createBusinessTypeNode();
-        children.add(businessTypeNode);
-        profitThisYearNode = childFactory.createProfitThisYearNode();
-        children.add(profitThisYearNode);
-        profitPreviousYearNode = childFactory.createProfitPreviousYearNode();
-        children.add(profitPreviousYearNode);
+        children.add(childFactory.createBusinessTypeNode());
+        children.add(childFactory.createProfitThisYearNode());
+        children.add(childFactory.createProfitPreviousYearNode());
         return children;
     }
 

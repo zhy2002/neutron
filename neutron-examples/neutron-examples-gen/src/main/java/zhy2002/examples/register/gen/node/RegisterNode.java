@@ -19,19 +19,6 @@ import zhy2002.examples.register.gen.event.*;
 @Singleton
 public class RegisterNode extends RootUiNode<VoidUiNode> {
 
-    private UsernameNode usernameNode;
-    private EmailNode emailNode;
-    private PasswordNode passwordNode;
-    private RepeatPasswordNode repeatPasswordNode;
-    private AgeNode ageNode;
-    private PlanNode planNode;
-    private ReceiveOffersNode receiveOffersNode;
-    private OwnInvestmentPropertyNode ownInvestmentPropertyNode;
-    private PropertyDetailsNode residentialPropertyNode;
-    private PropertyDetailsNode investmentPropertyNode;
-    private PhoneInfoNode homePhoneNode;
-    private ErrorListNode errorListNode;
-
     private RegisterNodeChildFactory childFactory;
 
     @Inject
@@ -95,91 +82,79 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
 
     @JsMethod
     public UsernameNode getUsernameNode() {
-        return usernameNode;
+        return (UsernameNode)getChildByName("usernameNode");
     }
 
     @JsMethod
     public EmailNode getEmailNode() {
-        return emailNode;
+        return (EmailNode)getChildByName("emailNode");
     }
 
     @JsMethod
     public PasswordNode getPasswordNode() {
-        return passwordNode;
+        return (PasswordNode)getChildByName("passwordNode");
     }
 
     @JsMethod
     public RepeatPasswordNode getRepeatPasswordNode() {
-        return repeatPasswordNode;
+        return (RepeatPasswordNode)getChildByName("repeatPasswordNode");
     }
 
     @JsMethod
     public AgeNode getAgeNode() {
-        return ageNode;
+        return (AgeNode)getChildByName("ageNode");
     }
 
     @JsMethod
     public PlanNode getPlanNode() {
-        return planNode;
+        return (PlanNode)getChildByName("planNode");
     }
 
     @JsMethod
     public ReceiveOffersNode getReceiveOffersNode() {
-        return receiveOffersNode;
+        return (ReceiveOffersNode)getChildByName("receiveOffersNode");
     }
 
     @JsMethod
     public OwnInvestmentPropertyNode getOwnInvestmentPropertyNode() {
-        return ownInvestmentPropertyNode;
+        return (OwnInvestmentPropertyNode)getChildByName("ownInvestmentPropertyNode");
     }
 
     @JsMethod
     public PropertyDetailsNode getResidentialPropertyNode() {
-        return residentialPropertyNode;
+        return (PropertyDetailsNode)getChildByName("residentialPropertyNode");
     }
 
     @JsMethod
     public PropertyDetailsNode getInvestmentPropertyNode() {
-        return investmentPropertyNode;
+        return (PropertyDetailsNode)getChildByName("investmentPropertyNode");
     }
 
     @JsMethod
     public PhoneInfoNode getHomePhoneNode() {
-        return homePhoneNode;
+        return (PhoneInfoNode)getChildByName("homePhoneNode");
     }
 
     @JsMethod
     public ErrorListNode getErrorListNode() {
-        return errorListNode;
+        return (ErrorListNode)getChildByName("errorListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        usernameNode = childFactory.createUsernameNode();
-        children.add(usernameNode);
-        emailNode = childFactory.createEmailNode();
-        children.add(emailNode);
-        passwordNode = childFactory.createPasswordNode();
-        children.add(passwordNode);
-        repeatPasswordNode = childFactory.createRepeatPasswordNode();
-        children.add(repeatPasswordNode);
-        ageNode = childFactory.createAgeNode();
-        children.add(ageNode);
-        planNode = childFactory.createPlanNode();
-        children.add(planNode);
-        receiveOffersNode = childFactory.createReceiveOffersNode();
-        children.add(receiveOffersNode);
-        ownInvestmentPropertyNode = childFactory.createOwnInvestmentPropertyNode();
-        children.add(ownInvestmentPropertyNode);
-        residentialPropertyNode = childFactory.createResidentialPropertyNode();
-        children.add(residentialPropertyNode);
-        investmentPropertyNode = childFactory.createInvestmentPropertyNode();
-        children.add(investmentPropertyNode);
-        homePhoneNode = childFactory.createHomePhoneNode();
-        children.add(homePhoneNode);
-        errorListNode = childFactory.createErrorListNode();
-        children.add(errorListNode);
+        children.add(childFactory.createUsernameNode());
+        children.add(childFactory.createEmailNode());
+        children.add(childFactory.createPasswordNode());
+        children.add(childFactory.createRepeatPasswordNode());
+        children.add(childFactory.createAgeNode());
+        children.add(childFactory.createPlanNode());
+        children.add(childFactory.createReceiveOffersNode());
+        children.add(childFactory.createOwnInvestmentPropertyNode());
+        children.add(childFactory.createResidentialPropertyNode());
+        children.add(childFactory.createInvestmentPropertyNode());
+        children.add(childFactory.createHomePhoneNode());
+        children.add(childFactory.createErrorListNode());
         return children;
     }
 

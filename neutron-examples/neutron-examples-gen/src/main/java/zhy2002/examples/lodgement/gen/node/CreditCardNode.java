@@ -13,15 +13,6 @@ import java.util.List;
 
 public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
 
-    private CreditCardTypeNode creditCardTypeNode;
-    private CreditCardAmountOwingNode creditCardAmountOwingNode;
-    private CreditCardLimitAmountNode creditCardLimitAmountNode;
-    private CreditCardMonthlyRepaymentNode creditCardMonthlyRepaymentNode;
-    private CreditCardClearingFlagNode creditCardClearingFlagNode;
-    private CreditCardBreakCostNode creditCardBreakCostNode;
-    private CreditCardLenderNameNode creditCardLenderNameNode;
-    private CreditCardOwnershipListNode ownershipListNode;
-
     private CreditCardNodeChildFactory childFactory;
 
     @Inject
@@ -62,63 +53,55 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
 
     @JsMethod
     public CreditCardTypeNode getCreditCardTypeNode() {
-        return creditCardTypeNode;
+        return (CreditCardTypeNode)getChildByName("creditCardTypeNode");
     }
 
     @JsMethod
     public CreditCardAmountOwingNode getCreditCardAmountOwingNode() {
-        return creditCardAmountOwingNode;
+        return (CreditCardAmountOwingNode)getChildByName("creditCardAmountOwingNode");
     }
 
     @JsMethod
     public CreditCardLimitAmountNode getCreditCardLimitAmountNode() {
-        return creditCardLimitAmountNode;
+        return (CreditCardLimitAmountNode)getChildByName("creditCardLimitAmountNode");
     }
 
     @JsMethod
     public CreditCardMonthlyRepaymentNode getCreditCardMonthlyRepaymentNode() {
-        return creditCardMonthlyRepaymentNode;
+        return (CreditCardMonthlyRepaymentNode)getChildByName("creditCardMonthlyRepaymentNode");
     }
 
     @JsMethod
     public CreditCardClearingFlagNode getCreditCardClearingFlagNode() {
-        return creditCardClearingFlagNode;
+        return (CreditCardClearingFlagNode)getChildByName("creditCardClearingFlagNode");
     }
 
     @JsMethod
     public CreditCardBreakCostNode getCreditCardBreakCostNode() {
-        return creditCardBreakCostNode;
+        return (CreditCardBreakCostNode)getChildByName("creditCardBreakCostNode");
     }
 
     @JsMethod
     public CreditCardLenderNameNode getCreditCardLenderNameNode() {
-        return creditCardLenderNameNode;
+        return (CreditCardLenderNameNode)getChildByName("creditCardLenderNameNode");
     }
 
     @JsMethod
     public CreditCardOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (CreditCardOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        creditCardTypeNode = childFactory.createCreditCardTypeNode();
-        children.add(creditCardTypeNode);
-        creditCardAmountOwingNode = childFactory.createCreditCardAmountOwingNode();
-        children.add(creditCardAmountOwingNode);
-        creditCardLimitAmountNode = childFactory.createCreditCardLimitAmountNode();
-        children.add(creditCardLimitAmountNode);
-        creditCardMonthlyRepaymentNode = childFactory.createCreditCardMonthlyRepaymentNode();
-        children.add(creditCardMonthlyRepaymentNode);
-        creditCardClearingFlagNode = childFactory.createCreditCardClearingFlagNode();
-        children.add(creditCardClearingFlagNode);
-        creditCardBreakCostNode = childFactory.createCreditCardBreakCostNode();
-        children.add(creditCardBreakCostNode);
-        creditCardLenderNameNode = childFactory.createCreditCardLenderNameNode();
-        children.add(creditCardLenderNameNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createCreditCardTypeNode());
+        children.add(childFactory.createCreditCardAmountOwingNode());
+        children.add(childFactory.createCreditCardLimitAmountNode());
+        children.add(childFactory.createCreditCardMonthlyRepaymentNode());
+        children.add(childFactory.createCreditCardClearingFlagNode());
+        children.add(childFactory.createCreditCardBreakCostNode());
+        children.add(childFactory.createCreditCardLenderNameNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

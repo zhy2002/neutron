@@ -13,17 +13,6 @@ import java.util.List;
 
 public class PropertyNode extends ObjectUiNode<RealEstateNode> {
 
-    private RentedFlagNode rentedFlagNode;
-    private PropertyWeeklyRentNode propertyWeeklyRentNode;
-    private PropertyAddressNode propertyAddressNode;
-    private EstimatedMarketValueNode estimatedMarketValueNode;
-    private ContractPriceNode contractPriceNode;
-    private DefenseServiceFlagNode defenseServiceFlagNode;
-    private PropertyTypeNode propertyTypeNode;
-    private PropertySubTypeNode propertySubTypeNode;
-    private PropertyPurseNode propertyPurseNode;
-    private PropertyOwnershipListNode propertyOwnershipListNode;
-
     private PropertyNodeChildFactory childFactory;
 
     @Inject
@@ -70,77 +59,67 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
 
     @JsMethod
     public RentedFlagNode getRentedFlagNode() {
-        return rentedFlagNode;
+        return (RentedFlagNode)getChildByName("rentedFlagNode");
     }
 
     @JsMethod
     public PropertyWeeklyRentNode getPropertyWeeklyRentNode() {
-        return propertyWeeklyRentNode;
+        return (PropertyWeeklyRentNode)getChildByName("propertyWeeklyRentNode");
     }
 
     @JsMethod
     public PropertyAddressNode getPropertyAddressNode() {
-        return propertyAddressNode;
+        return (PropertyAddressNode)getChildByName("propertyAddressNode");
     }
 
     @JsMethod
     public EstimatedMarketValueNode getEstimatedMarketValueNode() {
-        return estimatedMarketValueNode;
+        return (EstimatedMarketValueNode)getChildByName("estimatedMarketValueNode");
     }
 
     @JsMethod
     public ContractPriceNode getContractPriceNode() {
-        return contractPriceNode;
+        return (ContractPriceNode)getChildByName("contractPriceNode");
     }
 
     @JsMethod
     public DefenseServiceFlagNode getDefenseServiceFlagNode() {
-        return defenseServiceFlagNode;
+        return (DefenseServiceFlagNode)getChildByName("defenseServiceFlagNode");
     }
 
     @JsMethod
     public PropertyTypeNode getPropertyTypeNode() {
-        return propertyTypeNode;
+        return (PropertyTypeNode)getChildByName("propertyTypeNode");
     }
 
     @JsMethod
     public PropertySubTypeNode getPropertySubTypeNode() {
-        return propertySubTypeNode;
+        return (PropertySubTypeNode)getChildByName("propertySubTypeNode");
     }
 
     @JsMethod
     public PropertyPurseNode getPropertyPurseNode() {
-        return propertyPurseNode;
+        return (PropertyPurseNode)getChildByName("propertyPurseNode");
     }
 
     @JsMethod
     public PropertyOwnershipListNode getPropertyOwnershipListNode() {
-        return propertyOwnershipListNode;
+        return (PropertyOwnershipListNode)getChildByName("propertyOwnershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        rentedFlagNode = childFactory.createRentedFlagNode();
-        children.add(rentedFlagNode);
-        propertyWeeklyRentNode = childFactory.createPropertyWeeklyRentNode();
-        children.add(propertyWeeklyRentNode);
-        propertyAddressNode = childFactory.createPropertyAddressNode();
-        children.add(propertyAddressNode);
-        estimatedMarketValueNode = childFactory.createEstimatedMarketValueNode();
-        children.add(estimatedMarketValueNode);
-        contractPriceNode = childFactory.createContractPriceNode();
-        children.add(contractPriceNode);
-        defenseServiceFlagNode = childFactory.createDefenseServiceFlagNode();
-        children.add(defenseServiceFlagNode);
-        propertyTypeNode = childFactory.createPropertyTypeNode();
-        children.add(propertyTypeNode);
-        propertySubTypeNode = childFactory.createPropertySubTypeNode();
-        children.add(propertySubTypeNode);
-        propertyPurseNode = childFactory.createPropertyPurseNode();
-        children.add(propertyPurseNode);
-        propertyOwnershipListNode = childFactory.createPropertyOwnershipListNode();
-        children.add(propertyOwnershipListNode);
+        children.add(childFactory.createRentedFlagNode());
+        children.add(childFactory.createPropertyWeeklyRentNode());
+        children.add(childFactory.createPropertyAddressNode());
+        children.add(childFactory.createEstimatedMarketValueNode());
+        children.add(childFactory.createContractPriceNode());
+        children.add(childFactory.createDefenseServiceFlagNode());
+        children.add(childFactory.createPropertyTypeNode());
+        children.add(childFactory.createPropertySubTypeNode());
+        children.add(childFactory.createPropertyPurseNode());
+        children.add(childFactory.createPropertyOwnershipListNode());
         return children;
     }
 

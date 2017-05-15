@@ -13,18 +13,6 @@ import java.util.List;
 
 public class PersonContactNode extends ObjectUiNode<PersonNode> {
 
-    private PersonTelephoneNode homePhoneNode;
-    private PersonTelephoneNode workPhoneNode;
-    private PersonTelephoneNode faxNumberNode;
-    private PersonMobileNumberNode personMobileNumberNode;
-    private PersonEmailNode personEmailNode;
-    private PersonAddressNode currentAddressNode;
-    private MovedToCurrentAddressNode movedToCurrentAddressNode;
-    private PersonAddressNode postalAddressNode;
-    private PersonAddressNode previousAddressNode;
-    private MovedToPreviousAddressNode movedToPreviousAddressNode;
-    private MovedFromPreviousAddressNode movedFromPreviousAddressNode;
-
     private PersonContactNodeChildFactory childFactory;
 
     @Inject
@@ -71,84 +59,73 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
 
     @JsMethod
     public PersonTelephoneNode getHomePhoneNode() {
-        return homePhoneNode;
+        return (PersonTelephoneNode)getChildByName("homePhoneNode");
     }
 
     @JsMethod
     public PersonTelephoneNode getWorkPhoneNode() {
-        return workPhoneNode;
+        return (PersonTelephoneNode)getChildByName("workPhoneNode");
     }
 
     @JsMethod
     public PersonTelephoneNode getFaxNumberNode() {
-        return faxNumberNode;
+        return (PersonTelephoneNode)getChildByName("faxNumberNode");
     }
 
     @JsMethod
     public PersonMobileNumberNode getPersonMobileNumberNode() {
-        return personMobileNumberNode;
+        return (PersonMobileNumberNode)getChildByName("personMobileNumberNode");
     }
 
     @JsMethod
     public PersonEmailNode getPersonEmailNode() {
-        return personEmailNode;
+        return (PersonEmailNode)getChildByName("personEmailNode");
     }
 
     @JsMethod
     public PersonAddressNode getCurrentAddressNode() {
-        return currentAddressNode;
+        return (PersonAddressNode)getChildByName("currentAddressNode");
     }
 
     @JsMethod
     public MovedToCurrentAddressNode getMovedToCurrentAddressNode() {
-        return movedToCurrentAddressNode;
+        return (MovedToCurrentAddressNode)getChildByName("movedToCurrentAddressNode");
     }
 
     @JsMethod
     public PersonAddressNode getPostalAddressNode() {
-        return postalAddressNode;
+        return (PersonAddressNode)getChildByName("postalAddressNode");
     }
 
     @JsMethod
     public PersonAddressNode getPreviousAddressNode() {
-        return previousAddressNode;
+        return (PersonAddressNode)getChildByName("previousAddressNode");
     }
 
     @JsMethod
     public MovedToPreviousAddressNode getMovedToPreviousAddressNode() {
-        return movedToPreviousAddressNode;
+        return (MovedToPreviousAddressNode)getChildByName("movedToPreviousAddressNode");
     }
 
     @JsMethod
     public MovedFromPreviousAddressNode getMovedFromPreviousAddressNode() {
-        return movedFromPreviousAddressNode;
+        return (MovedFromPreviousAddressNode)getChildByName("movedFromPreviousAddressNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        homePhoneNode = childFactory.createHomePhoneNode();
-        children.add(homePhoneNode);
-        workPhoneNode = childFactory.createWorkPhoneNode();
-        children.add(workPhoneNode);
-        faxNumberNode = childFactory.createFaxNumberNode();
-        children.add(faxNumberNode);
-        personMobileNumberNode = childFactory.createPersonMobileNumberNode();
-        children.add(personMobileNumberNode);
-        personEmailNode = childFactory.createPersonEmailNode();
-        children.add(personEmailNode);
-        currentAddressNode = childFactory.createCurrentAddressNode();
-        children.add(currentAddressNode);
-        movedToCurrentAddressNode = childFactory.createMovedToCurrentAddressNode();
-        children.add(movedToCurrentAddressNode);
-        postalAddressNode = childFactory.createPostalAddressNode();
-        children.add(postalAddressNode);
-        previousAddressNode = childFactory.createPreviousAddressNode();
-        children.add(previousAddressNode);
-        movedToPreviousAddressNode = childFactory.createMovedToPreviousAddressNode();
-        children.add(movedToPreviousAddressNode);
-        movedFromPreviousAddressNode = childFactory.createMovedFromPreviousAddressNode();
-        children.add(movedFromPreviousAddressNode);
+        children.add(childFactory.createHomePhoneNode());
+        children.add(childFactory.createWorkPhoneNode());
+        children.add(childFactory.createFaxNumberNode());
+        children.add(childFactory.createPersonMobileNumberNode());
+        children.add(childFactory.createPersonEmailNode());
+        children.add(childFactory.createCurrentAddressNode());
+        children.add(childFactory.createMovedToCurrentAddressNode());
+        children.add(childFactory.createPostalAddressNode());
+        children.add(childFactory.createPreviousAddressNode());
+        children.add(childFactory.createMovedToPreviousAddressNode());
+        children.add(childFactory.createMovedFromPreviousAddressNode());
         return children;
     }
 

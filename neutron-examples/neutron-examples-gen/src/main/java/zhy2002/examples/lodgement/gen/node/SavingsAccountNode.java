@@ -13,14 +13,6 @@ import java.util.List;
 
 public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
 
-    private SavingsTypeNode savingsTypeNode;
-    private SavingsInstitutionNameNode savingsInstitutionNameNode;
-    private SavingsBalanceNode savingsBalanceNode;
-    private SavingsBsbNoNode savingsBsbNoNode;
-    private SavingsAccountNoNode savingsAccountNoNode;
-    private SavingsAccountNameNode savingsAccountNameNode;
-    private SavingsOwnershipListNode ownershipListNode;
-
     private SavingsAccountNodeChildFactory childFactory;
 
     @Inject
@@ -61,56 +53,49 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
 
     @JsMethod
     public SavingsTypeNode getSavingsTypeNode() {
-        return savingsTypeNode;
+        return (SavingsTypeNode)getChildByName("savingsTypeNode");
     }
 
     @JsMethod
     public SavingsInstitutionNameNode getSavingsInstitutionNameNode() {
-        return savingsInstitutionNameNode;
+        return (SavingsInstitutionNameNode)getChildByName("savingsInstitutionNameNode");
     }
 
     @JsMethod
     public SavingsBalanceNode getSavingsBalanceNode() {
-        return savingsBalanceNode;
+        return (SavingsBalanceNode)getChildByName("savingsBalanceNode");
     }
 
     @JsMethod
     public SavingsBsbNoNode getSavingsBsbNoNode() {
-        return savingsBsbNoNode;
+        return (SavingsBsbNoNode)getChildByName("savingsBsbNoNode");
     }
 
     @JsMethod
     public SavingsAccountNoNode getSavingsAccountNoNode() {
-        return savingsAccountNoNode;
+        return (SavingsAccountNoNode)getChildByName("savingsAccountNoNode");
     }
 
     @JsMethod
     public SavingsAccountNameNode getSavingsAccountNameNode() {
-        return savingsAccountNameNode;
+        return (SavingsAccountNameNode)getChildByName("savingsAccountNameNode");
     }
 
     @JsMethod
     public SavingsOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (SavingsOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        savingsTypeNode = childFactory.createSavingsTypeNode();
-        children.add(savingsTypeNode);
-        savingsInstitutionNameNode = childFactory.createSavingsInstitutionNameNode();
-        children.add(savingsInstitutionNameNode);
-        savingsBalanceNode = childFactory.createSavingsBalanceNode();
-        children.add(savingsBalanceNode);
-        savingsBsbNoNode = childFactory.createSavingsBsbNoNode();
-        children.add(savingsBsbNoNode);
-        savingsAccountNoNode = childFactory.createSavingsAccountNoNode();
-        children.add(savingsAccountNoNode);
-        savingsAccountNameNode = childFactory.createSavingsAccountNameNode();
-        children.add(savingsAccountNameNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createSavingsTypeNode());
+        children.add(childFactory.createSavingsInstitutionNameNode());
+        children.add(childFactory.createSavingsBalanceNode());
+        children.add(childFactory.createSavingsBsbNoNode());
+        children.add(childFactory.createSavingsAccountNoNode());
+        children.add(childFactory.createSavingsAccountNameNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

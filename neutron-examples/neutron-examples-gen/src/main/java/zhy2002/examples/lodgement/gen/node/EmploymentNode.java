@@ -14,12 +14,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private EmploymentTypeNode employmentTypeNode;
-    private PayeEmployedNode payeEmployedNode;
-    private SelfEmployedNode selfEmployedNode;
-    private UnemployedNode unemployedNode;
-    private RetiredEmploymentNode retiredEmploymentNode;
-
     private EmploymentNodeChildFactory childFactory;
 
     @Inject
@@ -46,42 +40,37 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
 
     @JsMethod
     public EmploymentTypeNode getEmploymentTypeNode() {
-        return employmentTypeNode;
+        return (EmploymentTypeNode)getChildByName("employmentTypeNode");
     }
 
     @JsMethod
     public PayeEmployedNode getPayeEmployedNode() {
-        return payeEmployedNode;
+        return (PayeEmployedNode)getChildByName("payeEmployedNode");
     }
 
     @JsMethod
     public SelfEmployedNode getSelfEmployedNode() {
-        return selfEmployedNode;
+        return (SelfEmployedNode)getChildByName("selfEmployedNode");
     }
 
     @JsMethod
     public UnemployedNode getUnemployedNode() {
-        return unemployedNode;
+        return (UnemployedNode)getChildByName("unemployedNode");
     }
 
     @JsMethod
     public RetiredEmploymentNode getRetiredEmploymentNode() {
-        return retiredEmploymentNode;
+        return (RetiredEmploymentNode)getChildByName("retiredEmploymentNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        employmentTypeNode = childFactory.createEmploymentTypeNode();
-        children.add(employmentTypeNode);
-        payeEmployedNode = childFactory.createPayeEmployedNode();
-        children.add(payeEmployedNode);
-        selfEmployedNode = childFactory.createSelfEmployedNode();
-        children.add(selfEmployedNode);
-        unemployedNode = childFactory.createUnemployedNode();
-        children.add(unemployedNode);
-        retiredEmploymentNode = childFactory.createRetiredEmploymentNode();
-        children.add(retiredEmploymentNode);
+        children.add(childFactory.createEmploymentTypeNode());
+        children.add(childFactory.createPayeEmployedNode());
+        children.add(childFactory.createSelfEmployedNode());
+        children.add(childFactory.createUnemployedNode());
+        children.add(childFactory.createRetiredEmploymentNode());
         return children;
     }
 

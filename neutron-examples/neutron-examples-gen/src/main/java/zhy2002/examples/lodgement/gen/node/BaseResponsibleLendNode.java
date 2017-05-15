@@ -11,11 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private ResponsibleTypeOfChangeNode responsibleTypeOfChangeNode;
-    private ResponsibleMitigationMethodNode responsibleMitigationMethodNode;
-    private ResponsibleSignificantChangeFlagNode responsibleSignificantChangeFlagNode;
-    private ResponsibleRepaymentDifficultyNode responsibleRepaymentDifficultyNode;
-
     private BaseResponsibleLendNodeChildFactory childFactory;
 
     @Inject
@@ -30,35 +25,31 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
 
     @JsMethod
     public ResponsibleTypeOfChangeNode getResponsibleTypeOfChangeNode() {
-        return responsibleTypeOfChangeNode;
+        return (ResponsibleTypeOfChangeNode)getChildByName("responsibleTypeOfChangeNode");
     }
 
     @JsMethod
     public ResponsibleMitigationMethodNode getResponsibleMitigationMethodNode() {
-        return responsibleMitigationMethodNode;
+        return (ResponsibleMitigationMethodNode)getChildByName("responsibleMitigationMethodNode");
     }
 
     @JsMethod
     public ResponsibleSignificantChangeFlagNode getResponsibleSignificantChangeFlagNode() {
-        return responsibleSignificantChangeFlagNode;
+        return (ResponsibleSignificantChangeFlagNode)getChildByName("responsibleSignificantChangeFlagNode");
     }
 
     @JsMethod
     public ResponsibleRepaymentDifficultyNode getResponsibleRepaymentDifficultyNode() {
-        return responsibleRepaymentDifficultyNode;
+        return (ResponsibleRepaymentDifficultyNode)getChildByName("responsibleRepaymentDifficultyNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        responsibleTypeOfChangeNode = childFactory.createResponsibleTypeOfChangeNode();
-        children.add(responsibleTypeOfChangeNode);
-        responsibleMitigationMethodNode = childFactory.createResponsibleMitigationMethodNode();
-        children.add(responsibleMitigationMethodNode);
-        responsibleSignificantChangeFlagNode = childFactory.createResponsibleSignificantChangeFlagNode();
-        children.add(responsibleSignificantChangeFlagNode);
-        responsibleRepaymentDifficultyNode = childFactory.createResponsibleRepaymentDifficultyNode();
-        children.add(responsibleRepaymentDifficultyNode);
+        children.add(childFactory.createResponsibleTypeOfChangeNode());
+        children.add(childFactory.createResponsibleMitigationMethodNode());
+        children.add(childFactory.createResponsibleSignificantChangeFlagNode());
+        children.add(childFactory.createResponsibleRepaymentDifficultyNode());
         return children;
     }
 

@@ -16,8 +16,6 @@ import zhy2002.examples.app.gen.event.*;
 @Singleton
 public class LodgementNode extends RootUiNode<VoidUiNode> {
 
-    private AppManagerNode appManagerNode;
-
     private LodgementNodeChildFactory childFactory;
 
     @Inject
@@ -69,14 +67,13 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
 
     @JsMethod
     public AppManagerNode getAppManagerNode() {
-        return appManagerNode;
+        return (AppManagerNode)getChildByName("appManagerNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        appManagerNode = childFactory.createAppManagerNode();
-        children.add(appManagerNode);
+        children.add(childFactory.createAppManagerNode());
         return children;
     }
 

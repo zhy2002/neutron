@@ -13,10 +13,6 @@ import java.util.List;
 
 public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustomerContributionListNode> {
 
-    private ContributionTypeNode contributionTypeNode;
-    private ContributionDescriptionNode contributionDescriptionNode;
-    private ContributionAmountNode contributionAmountNode;
-
     private ProductCustomerContributionNodeChildFactory childFactory;
 
     @Inject
@@ -57,28 +53,25 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
 
     @JsMethod
     public ContributionTypeNode getContributionTypeNode() {
-        return contributionTypeNode;
+        return (ContributionTypeNode)getChildByName("contributionTypeNode");
     }
 
     @JsMethod
     public ContributionDescriptionNode getContributionDescriptionNode() {
-        return contributionDescriptionNode;
+        return (ContributionDescriptionNode)getChildByName("contributionDescriptionNode");
     }
 
     @JsMethod
     public ContributionAmountNode getContributionAmountNode() {
-        return contributionAmountNode;
+        return (ContributionAmountNode)getChildByName("contributionAmountNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        contributionTypeNode = childFactory.createContributionTypeNode();
-        children.add(contributionTypeNode);
-        contributionDescriptionNode = childFactory.createContributionDescriptionNode();
-        children.add(contributionDescriptionNode);
-        contributionAmountNode = childFactory.createContributionAmountNode();
-        children.add(contributionAmountNode);
+        children.add(childFactory.createContributionTypeNode());
+        children.add(childFactory.createContributionDescriptionNode());
+        children.add(childFactory.createContributionAmountNode());
         return children;
     }
 

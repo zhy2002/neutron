@@ -13,22 +13,6 @@ import java.util.List;
 
 public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
 
-    private ProductGroupNode productGroupNode;
-    private ProductNameNode productNameNode;
-    private ProductLoanPrimaryPurposeNode productLoanPrimaryPurposeNode;
-    private ProductLendingPurposeNode productLendingPurposeNode;
-    private ProductRequestedAmountNode productRequestedAmountNode;
-    private ProductTotalLoanTermNode productTotalLoanTermNode;
-    private ProductPaymentTypeNode productPaymentTypeNode;
-    private ProductInterestOnlyTermNode productInterestOnlyTermNode;
-    private ProductFixedTermNode productFixedTermNode;
-    private ProductConstructionApplicationFlagNode productConstructionApplicationFlagNode;
-    private ProductCostRecuctionFlagNode productCostRecuctionFlagNode;
-    private ProductConsolidationFlagNode productConsolidationFlagNode;
-    private ProductDissatisfactionFlagNode productDissatisfactionFlagNode;
-    private ProductSpecificFeaturesFlagNode productSpecificFeaturesFlagNode;
-    private ProductAccountHolderListNode productAccountHolderListNode;
-
     private ProductDescriptionNodeChildFactory childFactory;
 
     @Inject
@@ -75,112 +59,97 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
 
     @JsMethod
     public ProductGroupNode getProductGroupNode() {
-        return productGroupNode;
+        return (ProductGroupNode)getChildByName("productGroupNode");
     }
 
     @JsMethod
     public ProductNameNode getProductNameNode() {
-        return productNameNode;
+        return (ProductNameNode)getChildByName("productNameNode");
     }
 
     @JsMethod
     public ProductLoanPrimaryPurposeNode getProductLoanPrimaryPurposeNode() {
-        return productLoanPrimaryPurposeNode;
+        return (ProductLoanPrimaryPurposeNode)getChildByName("productLoanPrimaryPurposeNode");
     }
 
     @JsMethod
     public ProductLendingPurposeNode getProductLendingPurposeNode() {
-        return productLendingPurposeNode;
+        return (ProductLendingPurposeNode)getChildByName("productLendingPurposeNode");
     }
 
     @JsMethod
     public ProductRequestedAmountNode getProductRequestedAmountNode() {
-        return productRequestedAmountNode;
+        return (ProductRequestedAmountNode)getChildByName("productRequestedAmountNode");
     }
 
     @JsMethod
     public ProductTotalLoanTermNode getProductTotalLoanTermNode() {
-        return productTotalLoanTermNode;
+        return (ProductTotalLoanTermNode)getChildByName("productTotalLoanTermNode");
     }
 
     @JsMethod
     public ProductPaymentTypeNode getProductPaymentTypeNode() {
-        return productPaymentTypeNode;
+        return (ProductPaymentTypeNode)getChildByName("productPaymentTypeNode");
     }
 
     @JsMethod
     public ProductInterestOnlyTermNode getProductInterestOnlyTermNode() {
-        return productInterestOnlyTermNode;
+        return (ProductInterestOnlyTermNode)getChildByName("productInterestOnlyTermNode");
     }
 
     @JsMethod
     public ProductFixedTermNode getProductFixedTermNode() {
-        return productFixedTermNode;
+        return (ProductFixedTermNode)getChildByName("productFixedTermNode");
     }
 
     @JsMethod
     public ProductConstructionApplicationFlagNode getProductConstructionApplicationFlagNode() {
-        return productConstructionApplicationFlagNode;
+        return (ProductConstructionApplicationFlagNode)getChildByName("productConstructionApplicationFlagNode");
     }
 
     @JsMethod
     public ProductCostRecuctionFlagNode getProductCostRecuctionFlagNode() {
-        return productCostRecuctionFlagNode;
+        return (ProductCostRecuctionFlagNode)getChildByName("productCostRecuctionFlagNode");
     }
 
     @JsMethod
     public ProductConsolidationFlagNode getProductConsolidationFlagNode() {
-        return productConsolidationFlagNode;
+        return (ProductConsolidationFlagNode)getChildByName("productConsolidationFlagNode");
     }
 
     @JsMethod
     public ProductDissatisfactionFlagNode getProductDissatisfactionFlagNode() {
-        return productDissatisfactionFlagNode;
+        return (ProductDissatisfactionFlagNode)getChildByName("productDissatisfactionFlagNode");
     }
 
     @JsMethod
     public ProductSpecificFeaturesFlagNode getProductSpecificFeaturesFlagNode() {
-        return productSpecificFeaturesFlagNode;
+        return (ProductSpecificFeaturesFlagNode)getChildByName("productSpecificFeaturesFlagNode");
     }
 
     @JsMethod
     public ProductAccountHolderListNode getProductAccountHolderListNode() {
-        return productAccountHolderListNode;
+        return (ProductAccountHolderListNode)getChildByName("productAccountHolderListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        productGroupNode = childFactory.createProductGroupNode();
-        children.add(productGroupNode);
-        productNameNode = childFactory.createProductNameNode();
-        children.add(productNameNode);
-        productLoanPrimaryPurposeNode = childFactory.createProductLoanPrimaryPurposeNode();
-        children.add(productLoanPrimaryPurposeNode);
-        productLendingPurposeNode = childFactory.createProductLendingPurposeNode();
-        children.add(productLendingPurposeNode);
-        productRequestedAmountNode = childFactory.createProductRequestedAmountNode();
-        children.add(productRequestedAmountNode);
-        productTotalLoanTermNode = childFactory.createProductTotalLoanTermNode();
-        children.add(productTotalLoanTermNode);
-        productPaymentTypeNode = childFactory.createProductPaymentTypeNode();
-        children.add(productPaymentTypeNode);
-        productInterestOnlyTermNode = childFactory.createProductInterestOnlyTermNode();
-        children.add(productInterestOnlyTermNode);
-        productFixedTermNode = childFactory.createProductFixedTermNode();
-        children.add(productFixedTermNode);
-        productConstructionApplicationFlagNode = childFactory.createProductConstructionApplicationFlagNode();
-        children.add(productConstructionApplicationFlagNode);
-        productCostRecuctionFlagNode = childFactory.createProductCostRecuctionFlagNode();
-        children.add(productCostRecuctionFlagNode);
-        productConsolidationFlagNode = childFactory.createProductConsolidationFlagNode();
-        children.add(productConsolidationFlagNode);
-        productDissatisfactionFlagNode = childFactory.createProductDissatisfactionFlagNode();
-        children.add(productDissatisfactionFlagNode);
-        productSpecificFeaturesFlagNode = childFactory.createProductSpecificFeaturesFlagNode();
-        children.add(productSpecificFeaturesFlagNode);
-        productAccountHolderListNode = childFactory.createProductAccountHolderListNode();
-        children.add(productAccountHolderListNode);
+        children.add(childFactory.createProductGroupNode());
+        children.add(childFactory.createProductNameNode());
+        children.add(childFactory.createProductLoanPrimaryPurposeNode());
+        children.add(childFactory.createProductLendingPurposeNode());
+        children.add(childFactory.createProductRequestedAmountNode());
+        children.add(childFactory.createProductTotalLoanTermNode());
+        children.add(childFactory.createProductPaymentTypeNode());
+        children.add(childFactory.createProductInterestOnlyTermNode());
+        children.add(childFactory.createProductFixedTermNode());
+        children.add(childFactory.createProductConstructionApplicationFlagNode());
+        children.add(childFactory.createProductCostRecuctionFlagNode());
+        children.add(childFactory.createProductConsolidationFlagNode());
+        children.add(childFactory.createProductDissatisfactionFlagNode());
+        children.add(childFactory.createProductSpecificFeaturesFlagNode());
+        children.add(childFactory.createProductAccountHolderListNode());
         return children;
     }
 

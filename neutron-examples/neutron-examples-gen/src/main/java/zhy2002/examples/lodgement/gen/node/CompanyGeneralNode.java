@@ -13,21 +13,6 @@ import java.util.List;
 
 public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
 
-    private CompanyApplicantTypeNode companyApplicantTypeNode;
-    private CompanyPrimaryApplicantFlagNode companyPrimaryApplicantFlagNode;
-    private CompanyApplicationTypeNode companyApplicationTypeNode;
-    private CompanyRegisteredNameNode companyRegisteredNameNode;
-    private CompanyTypeNode companyTypeNode;
-    private CompanyDescriptionNode companyDescriptionNode;
-    private CompanyIndustryNode companyIndustryNode;
-    private CompanyAbnNode companyAbnNode;
-    private CompanyAcnNode companyAcnNode;
-    private CompanyAbrnNode companyAbrnNode;
-    private CompanyRegistrationDateNode companyRegistrationDateNode;
-    private CompanyRegistrationStateNode companyRegistrationStateNode;
-    private CompanySelectDirectorNode companySelectDirectorNode;
-    private CompanySelectBeneficialOwnerNode companySelectBeneficialOwnerNode;
-
     private CompanyGeneralNodeChildFactory childFactory;
 
     @Inject
@@ -74,105 +59,91 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
 
     @JsMethod
     public CompanyApplicantTypeNode getCompanyApplicantTypeNode() {
-        return companyApplicantTypeNode;
+        return (CompanyApplicantTypeNode)getChildByName("companyApplicantTypeNode");
     }
 
     @JsMethod
     public CompanyPrimaryApplicantFlagNode getCompanyPrimaryApplicantFlagNode() {
-        return companyPrimaryApplicantFlagNode;
+        return (CompanyPrimaryApplicantFlagNode)getChildByName("companyPrimaryApplicantFlagNode");
     }
 
     @JsMethod
     public CompanyApplicationTypeNode getCompanyApplicationTypeNode() {
-        return companyApplicationTypeNode;
+        return (CompanyApplicationTypeNode)getChildByName("companyApplicationTypeNode");
     }
 
     @JsMethod
     public CompanyRegisteredNameNode getCompanyRegisteredNameNode() {
-        return companyRegisteredNameNode;
+        return (CompanyRegisteredNameNode)getChildByName("companyRegisteredNameNode");
     }
 
     @JsMethod
     public CompanyTypeNode getCompanyTypeNode() {
-        return companyTypeNode;
+        return (CompanyTypeNode)getChildByName("companyTypeNode");
     }
 
     @JsMethod
     public CompanyDescriptionNode getCompanyDescriptionNode() {
-        return companyDescriptionNode;
+        return (CompanyDescriptionNode)getChildByName("companyDescriptionNode");
     }
 
     @JsMethod
     public CompanyIndustryNode getCompanyIndustryNode() {
-        return companyIndustryNode;
+        return (CompanyIndustryNode)getChildByName("companyIndustryNode");
     }
 
     @JsMethod
     public CompanyAbnNode getCompanyAbnNode() {
-        return companyAbnNode;
+        return (CompanyAbnNode)getChildByName("companyAbnNode");
     }
 
     @JsMethod
     public CompanyAcnNode getCompanyAcnNode() {
-        return companyAcnNode;
+        return (CompanyAcnNode)getChildByName("companyAcnNode");
     }
 
     @JsMethod
     public CompanyAbrnNode getCompanyAbrnNode() {
-        return companyAbrnNode;
+        return (CompanyAbrnNode)getChildByName("companyAbrnNode");
     }
 
     @JsMethod
     public CompanyRegistrationDateNode getCompanyRegistrationDateNode() {
-        return companyRegistrationDateNode;
+        return (CompanyRegistrationDateNode)getChildByName("companyRegistrationDateNode");
     }
 
     @JsMethod
     public CompanyRegistrationStateNode getCompanyRegistrationStateNode() {
-        return companyRegistrationStateNode;
+        return (CompanyRegistrationStateNode)getChildByName("companyRegistrationStateNode");
     }
 
     @JsMethod
     public CompanySelectDirectorNode getCompanySelectDirectorNode() {
-        return companySelectDirectorNode;
+        return (CompanySelectDirectorNode)getChildByName("companySelectDirectorNode");
     }
 
     @JsMethod
     public CompanySelectBeneficialOwnerNode getCompanySelectBeneficialOwnerNode() {
-        return companySelectBeneficialOwnerNode;
+        return (CompanySelectBeneficialOwnerNode)getChildByName("companySelectBeneficialOwnerNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        companyApplicantTypeNode = childFactory.createCompanyApplicantTypeNode();
-        children.add(companyApplicantTypeNode);
-        companyPrimaryApplicantFlagNode = childFactory.createCompanyPrimaryApplicantFlagNode();
-        children.add(companyPrimaryApplicantFlagNode);
-        companyApplicationTypeNode = childFactory.createCompanyApplicationTypeNode();
-        children.add(companyApplicationTypeNode);
-        companyRegisteredNameNode = childFactory.createCompanyRegisteredNameNode();
-        children.add(companyRegisteredNameNode);
-        companyTypeNode = childFactory.createCompanyTypeNode();
-        children.add(companyTypeNode);
-        companyDescriptionNode = childFactory.createCompanyDescriptionNode();
-        children.add(companyDescriptionNode);
-        companyIndustryNode = childFactory.createCompanyIndustryNode();
-        children.add(companyIndustryNode);
-        companyAbnNode = childFactory.createCompanyAbnNode();
-        children.add(companyAbnNode);
-        companyAcnNode = childFactory.createCompanyAcnNode();
-        children.add(companyAcnNode);
-        companyAbrnNode = childFactory.createCompanyAbrnNode();
-        children.add(companyAbrnNode);
-        companyRegistrationDateNode = childFactory.createCompanyRegistrationDateNode();
-        children.add(companyRegistrationDateNode);
-        companyRegistrationStateNode = childFactory.createCompanyRegistrationStateNode();
-        children.add(companyRegistrationStateNode);
-        companySelectDirectorNode = childFactory.createCompanySelectDirectorNode();
-        children.add(companySelectDirectorNode);
-        companySelectBeneficialOwnerNode = childFactory.createCompanySelectBeneficialOwnerNode();
-        children.add(companySelectBeneficialOwnerNode);
+        children.add(childFactory.createCompanyApplicantTypeNode());
+        children.add(childFactory.createCompanyPrimaryApplicantFlagNode());
+        children.add(childFactory.createCompanyApplicationTypeNode());
+        children.add(childFactory.createCompanyRegisteredNameNode());
+        children.add(childFactory.createCompanyTypeNode());
+        children.add(childFactory.createCompanyDescriptionNode());
+        children.add(childFactory.createCompanyIndustryNode());
+        children.add(childFactory.createCompanyAbnNode());
+        children.add(childFactory.createCompanyAcnNode());
+        children.add(childFactory.createCompanyAbrnNode());
+        children.add(childFactory.createCompanyRegistrationDateNode());
+        children.add(childFactory.createCompanyRegistrationStateNode());
+        children.add(childFactory.createCompanySelectDirectorNode());
+        children.add(childFactory.createCompanySelectBeneficialOwnerNode());
         return children;
     }
 

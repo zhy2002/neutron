@@ -13,15 +13,6 @@ import java.util.List;
 
 public class LoanNode extends ObjectUiNode<LoanListNode> {
 
-    private LoanTypeNode loanTypeNode;
-    private LoanLenderNameNode loanLenderNameNode;
-    private LoanLimitAmountNode loanLimitAmountNode;
-    private LoanOwingAmountNode loanOwingAmountNode;
-    private LoanMonthlyRepaymentNode loanMonthlyRepaymentNode;
-    private LoanClearingFlagNode loanClearingFlagNode;
-    private LoanBreakCostNode loanBreakCostNode;
-    private LoanOwnershipListNode ownershipListNode;
-
     private LoanNodeChildFactory childFactory;
 
     @Inject
@@ -62,63 +53,55 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
 
     @JsMethod
     public LoanTypeNode getLoanTypeNode() {
-        return loanTypeNode;
+        return (LoanTypeNode)getChildByName("loanTypeNode");
     }
 
     @JsMethod
     public LoanLenderNameNode getLoanLenderNameNode() {
-        return loanLenderNameNode;
+        return (LoanLenderNameNode)getChildByName("loanLenderNameNode");
     }
 
     @JsMethod
     public LoanLimitAmountNode getLoanLimitAmountNode() {
-        return loanLimitAmountNode;
+        return (LoanLimitAmountNode)getChildByName("loanLimitAmountNode");
     }
 
     @JsMethod
     public LoanOwingAmountNode getLoanOwingAmountNode() {
-        return loanOwingAmountNode;
+        return (LoanOwingAmountNode)getChildByName("loanOwingAmountNode");
     }
 
     @JsMethod
     public LoanMonthlyRepaymentNode getLoanMonthlyRepaymentNode() {
-        return loanMonthlyRepaymentNode;
+        return (LoanMonthlyRepaymentNode)getChildByName("loanMonthlyRepaymentNode");
     }
 
     @JsMethod
     public LoanClearingFlagNode getLoanClearingFlagNode() {
-        return loanClearingFlagNode;
+        return (LoanClearingFlagNode)getChildByName("loanClearingFlagNode");
     }
 
     @JsMethod
     public LoanBreakCostNode getLoanBreakCostNode() {
-        return loanBreakCostNode;
+        return (LoanBreakCostNode)getChildByName("loanBreakCostNode");
     }
 
     @JsMethod
     public LoanOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (LoanOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        loanTypeNode = childFactory.createLoanTypeNode();
-        children.add(loanTypeNode);
-        loanLenderNameNode = childFactory.createLoanLenderNameNode();
-        children.add(loanLenderNameNode);
-        loanLimitAmountNode = childFactory.createLoanLimitAmountNode();
-        children.add(loanLimitAmountNode);
-        loanOwingAmountNode = childFactory.createLoanOwingAmountNode();
-        children.add(loanOwingAmountNode);
-        loanMonthlyRepaymentNode = childFactory.createLoanMonthlyRepaymentNode();
-        children.add(loanMonthlyRepaymentNode);
-        loanClearingFlagNode = childFactory.createLoanClearingFlagNode();
-        children.add(loanClearingFlagNode);
-        loanBreakCostNode = childFactory.createLoanBreakCostNode();
-        children.add(loanBreakCostNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createLoanTypeNode());
+        children.add(childFactory.createLoanLenderNameNode());
+        children.add(childFactory.createLoanLimitAmountNode());
+        children.add(childFactory.createLoanOwingAmountNode());
+        children.add(childFactory.createLoanMonthlyRepaymentNode());
+        children.add(childFactory.createLoanClearingFlagNode());
+        children.add(childFactory.createLoanBreakCostNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

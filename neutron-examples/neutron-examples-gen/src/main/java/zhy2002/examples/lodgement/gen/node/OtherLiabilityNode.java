@@ -13,15 +13,6 @@ import java.util.List;
 
 public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
 
-    private OtherLiabilityTypeNode otherLiabilityTypeNode;
-    private OtherLiabilityDescriptionNode otherLiabilityDescriptionNode;
-    private OtherLiabilityLimitAmountNode otherLiabilityLimitAmountNode;
-    private OtherLiabilityAmountOwningNode otherLiabilityAmountOwningNode;
-    private OtherLiabilityMonthlyRepaymentNode otherLiabilityMonthlyRepaymentNode;
-    private OtherLiabilityClearingFlagNode otherLiabilityClearingFlagNode;
-    private OtherLiabilityBreakCostNode otherLiabilityBreakCostNode;
-    private OtherLiabilityOwnershipListNode ownershipListNode;
-
     private OtherLiabilityNodeChildFactory childFactory;
 
     @Inject
@@ -62,63 +53,55 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
 
     @JsMethod
     public OtherLiabilityTypeNode getOtherLiabilityTypeNode() {
-        return otherLiabilityTypeNode;
+        return (OtherLiabilityTypeNode)getChildByName("otherLiabilityTypeNode");
     }
 
     @JsMethod
     public OtherLiabilityDescriptionNode getOtherLiabilityDescriptionNode() {
-        return otherLiabilityDescriptionNode;
+        return (OtherLiabilityDescriptionNode)getChildByName("otherLiabilityDescriptionNode");
     }
 
     @JsMethod
     public OtherLiabilityLimitAmountNode getOtherLiabilityLimitAmountNode() {
-        return otherLiabilityLimitAmountNode;
+        return (OtherLiabilityLimitAmountNode)getChildByName("otherLiabilityLimitAmountNode");
     }
 
     @JsMethod
     public OtherLiabilityAmountOwningNode getOtherLiabilityAmountOwningNode() {
-        return otherLiabilityAmountOwningNode;
+        return (OtherLiabilityAmountOwningNode)getChildByName("otherLiabilityAmountOwningNode");
     }
 
     @JsMethod
     public OtherLiabilityMonthlyRepaymentNode getOtherLiabilityMonthlyRepaymentNode() {
-        return otherLiabilityMonthlyRepaymentNode;
+        return (OtherLiabilityMonthlyRepaymentNode)getChildByName("otherLiabilityMonthlyRepaymentNode");
     }
 
     @JsMethod
     public OtherLiabilityClearingFlagNode getOtherLiabilityClearingFlagNode() {
-        return otherLiabilityClearingFlagNode;
+        return (OtherLiabilityClearingFlagNode)getChildByName("otherLiabilityClearingFlagNode");
     }
 
     @JsMethod
     public OtherLiabilityBreakCostNode getOtherLiabilityBreakCostNode() {
-        return otherLiabilityBreakCostNode;
+        return (OtherLiabilityBreakCostNode)getChildByName("otherLiabilityBreakCostNode");
     }
 
     @JsMethod
     public OtherLiabilityOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (OtherLiabilityOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        otherLiabilityTypeNode = childFactory.createOtherLiabilityTypeNode();
-        children.add(otherLiabilityTypeNode);
-        otherLiabilityDescriptionNode = childFactory.createOtherLiabilityDescriptionNode();
-        children.add(otherLiabilityDescriptionNode);
-        otherLiabilityLimitAmountNode = childFactory.createOtherLiabilityLimitAmountNode();
-        children.add(otherLiabilityLimitAmountNode);
-        otherLiabilityAmountOwningNode = childFactory.createOtherLiabilityAmountOwningNode();
-        children.add(otherLiabilityAmountOwningNode);
-        otherLiabilityMonthlyRepaymentNode = childFactory.createOtherLiabilityMonthlyRepaymentNode();
-        children.add(otherLiabilityMonthlyRepaymentNode);
-        otherLiabilityClearingFlagNode = childFactory.createOtherLiabilityClearingFlagNode();
-        children.add(otherLiabilityClearingFlagNode);
-        otherLiabilityBreakCostNode = childFactory.createOtherLiabilityBreakCostNode();
-        children.add(otherLiabilityBreakCostNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createOtherLiabilityTypeNode());
+        children.add(childFactory.createOtherLiabilityDescriptionNode());
+        children.add(childFactory.createOtherLiabilityLimitAmountNode());
+        children.add(childFactory.createOtherLiabilityAmountOwningNode());
+        children.add(childFactory.createOtherLiabilityMonthlyRepaymentNode());
+        children.add(childFactory.createOtherLiabilityClearingFlagNode());
+        children.add(childFactory.createOtherLiabilityBreakCostNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

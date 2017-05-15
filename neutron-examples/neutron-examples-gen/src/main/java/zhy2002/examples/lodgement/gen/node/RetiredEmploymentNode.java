@@ -13,9 +13,6 @@ import java.util.List;
 
 public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private RetiredOnBenefitFlagNode retiredOnBenefitFlagNode;
-    private RetiredSinceNode retiredSinceNode;
-
     private RetiredEmploymentNodeChildFactory childFactory;
 
     @Inject
@@ -62,21 +59,19 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
 
     @JsMethod
     public RetiredOnBenefitFlagNode getRetiredOnBenefitFlagNode() {
-        return retiredOnBenefitFlagNode;
+        return (RetiredOnBenefitFlagNode)getChildByName("retiredOnBenefitFlagNode");
     }
 
     @JsMethod
     public RetiredSinceNode getRetiredSinceNode() {
-        return retiredSinceNode;
+        return (RetiredSinceNode)getChildByName("retiredSinceNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        retiredOnBenefitFlagNode = childFactory.createRetiredOnBenefitFlagNode();
-        children.add(retiredOnBenefitFlagNode);
-        retiredSinceNode = childFactory.createRetiredSinceNode();
-        children.add(retiredSinceNode);
+        children.add(childFactory.createRetiredOnBenefitFlagNode());
+        children.add(childFactory.createRetiredSinceNode());
         return children;
     }
 

@@ -13,17 +13,6 @@ import java.util.List;
 
 public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
 
-    private CompanyContactFirstNameNode companyContactFirstNameNode;
-    private CompanyContactLastNameNode companyContactLastNameNode;
-    private CompanyTelephoneNode workPhoneNode;
-    private CompanyTelephoneNode faxNumberNode;
-    private CompanyMobileNumberNode companyMobileNumberNode;
-    private CompanyEmailNode companyEmailNode;
-    private CompanyAddressNode registeredAddressNode;
-    private CompanyAddressNode postalAddressNode;
-    private CompanyAddressNode tradingAddressNode;
-    private CompanyAddressNode principalPlaceAddressNode;
-
     private CompanyContactNodeChildFactory childFactory;
 
     @Inject
@@ -70,77 +59,67 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
 
     @JsMethod
     public CompanyContactFirstNameNode getCompanyContactFirstNameNode() {
-        return companyContactFirstNameNode;
+        return (CompanyContactFirstNameNode)getChildByName("companyContactFirstNameNode");
     }
 
     @JsMethod
     public CompanyContactLastNameNode getCompanyContactLastNameNode() {
-        return companyContactLastNameNode;
+        return (CompanyContactLastNameNode)getChildByName("companyContactLastNameNode");
     }
 
     @JsMethod
     public CompanyTelephoneNode getWorkPhoneNode() {
-        return workPhoneNode;
+        return (CompanyTelephoneNode)getChildByName("workPhoneNode");
     }
 
     @JsMethod
     public CompanyTelephoneNode getFaxNumberNode() {
-        return faxNumberNode;
+        return (CompanyTelephoneNode)getChildByName("faxNumberNode");
     }
 
     @JsMethod
     public CompanyMobileNumberNode getCompanyMobileNumberNode() {
-        return companyMobileNumberNode;
+        return (CompanyMobileNumberNode)getChildByName("companyMobileNumberNode");
     }
 
     @JsMethod
     public CompanyEmailNode getCompanyEmailNode() {
-        return companyEmailNode;
+        return (CompanyEmailNode)getChildByName("companyEmailNode");
     }
 
     @JsMethod
     public CompanyAddressNode getRegisteredAddressNode() {
-        return registeredAddressNode;
+        return (CompanyAddressNode)getChildByName("registeredAddressNode");
     }
 
     @JsMethod
     public CompanyAddressNode getPostalAddressNode() {
-        return postalAddressNode;
+        return (CompanyAddressNode)getChildByName("postalAddressNode");
     }
 
     @JsMethod
     public CompanyAddressNode getTradingAddressNode() {
-        return tradingAddressNode;
+        return (CompanyAddressNode)getChildByName("tradingAddressNode");
     }
 
     @JsMethod
     public CompanyAddressNode getPrincipalPlaceAddressNode() {
-        return principalPlaceAddressNode;
+        return (CompanyAddressNode)getChildByName("principalPlaceAddressNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        companyContactFirstNameNode = childFactory.createCompanyContactFirstNameNode();
-        children.add(companyContactFirstNameNode);
-        companyContactLastNameNode = childFactory.createCompanyContactLastNameNode();
-        children.add(companyContactLastNameNode);
-        workPhoneNode = childFactory.createWorkPhoneNode();
-        children.add(workPhoneNode);
-        faxNumberNode = childFactory.createFaxNumberNode();
-        children.add(faxNumberNode);
-        companyMobileNumberNode = childFactory.createCompanyMobileNumberNode();
-        children.add(companyMobileNumberNode);
-        companyEmailNode = childFactory.createCompanyEmailNode();
-        children.add(companyEmailNode);
-        registeredAddressNode = childFactory.createRegisteredAddressNode();
-        children.add(registeredAddressNode);
-        postalAddressNode = childFactory.createPostalAddressNode();
-        children.add(postalAddressNode);
-        tradingAddressNode = childFactory.createTradingAddressNode();
-        children.add(tradingAddressNode);
-        principalPlaceAddressNode = childFactory.createPrincipalPlaceAddressNode();
-        children.add(principalPlaceAddressNode);
+        children.add(childFactory.createCompanyContactFirstNameNode());
+        children.add(childFactory.createCompanyContactLastNameNode());
+        children.add(childFactory.createWorkPhoneNode());
+        children.add(childFactory.createFaxNumberNode());
+        children.add(childFactory.createCompanyMobileNumberNode());
+        children.add(childFactory.createCompanyEmailNode());
+        children.add(childFactory.createRegisteredAddressNode());
+        children.add(childFactory.createPostalAddressNode());
+        children.add(childFactory.createTradingAddressNode());
+        children.add(childFactory.createPrincipalPlaceAddressNode());
         return children;
     }
 

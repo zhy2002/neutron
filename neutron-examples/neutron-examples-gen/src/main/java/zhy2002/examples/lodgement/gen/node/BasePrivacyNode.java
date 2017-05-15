@@ -11,11 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private CreditCheckFlagNode creditCheckFlagNode;
-    private ThirdPartyDisclosureFlagNode thirdPartyDisclosureFlagNode;
-    private LegalActionNode legalActionNode;
-    private CreditHistoryListNode creditHistoryListNode;
-
     private BasePrivacyNodeChildFactory childFactory;
 
     @Inject
@@ -30,35 +25,31 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
 
     @JsMethod
     public CreditCheckFlagNode getCreditCheckFlagNode() {
-        return creditCheckFlagNode;
+        return (CreditCheckFlagNode)getChildByName("creditCheckFlagNode");
     }
 
     @JsMethod
     public ThirdPartyDisclosureFlagNode getThirdPartyDisclosureFlagNode() {
-        return thirdPartyDisclosureFlagNode;
+        return (ThirdPartyDisclosureFlagNode)getChildByName("thirdPartyDisclosureFlagNode");
     }
 
     @JsMethod
     public LegalActionNode getLegalActionNode() {
-        return legalActionNode;
+        return (LegalActionNode)getChildByName("legalActionNode");
     }
 
     @JsMethod
     public CreditHistoryListNode getCreditHistoryListNode() {
-        return creditHistoryListNode;
+        return (CreditHistoryListNode)getChildByName("creditHistoryListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        creditCheckFlagNode = childFactory.createCreditCheckFlagNode();
-        children.add(creditCheckFlagNode);
-        thirdPartyDisclosureFlagNode = childFactory.createThirdPartyDisclosureFlagNode();
-        children.add(thirdPartyDisclosureFlagNode);
-        legalActionNode = childFactory.createLegalActionNode();
-        children.add(legalActionNode);
-        creditHistoryListNode = childFactory.createCreditHistoryListNode();
-        children.add(creditHistoryListNode);
+        children.add(childFactory.createCreditCheckFlagNode());
+        children.add(childFactory.createThirdPartyDisclosureFlagNode());
+        children.add(childFactory.createLegalActionNode());
+        children.add(childFactory.createCreditHistoryListNode());
         return children;
     }
 

@@ -13,11 +13,6 @@ import java.util.List;
 
 public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
 
-    private OtherAssetTypeNode otherAssetTypeNode;
-    private OtherAssetDescriptionNode otherAssetDescriptionNode;
-    private OtherAssetMarketValueNode otherAssetMarketValueNode;
-    private OtherAssetOwnershipListNode ownershipListNode;
-
     private OtherAssetNodeChildFactory childFactory;
 
     @Inject
@@ -58,35 +53,31 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
 
     @JsMethod
     public OtherAssetTypeNode getOtherAssetTypeNode() {
-        return otherAssetTypeNode;
+        return (OtherAssetTypeNode)getChildByName("otherAssetTypeNode");
     }
 
     @JsMethod
     public OtherAssetDescriptionNode getOtherAssetDescriptionNode() {
-        return otherAssetDescriptionNode;
+        return (OtherAssetDescriptionNode)getChildByName("otherAssetDescriptionNode");
     }
 
     @JsMethod
     public OtherAssetMarketValueNode getOtherAssetMarketValueNode() {
-        return otherAssetMarketValueNode;
+        return (OtherAssetMarketValueNode)getChildByName("otherAssetMarketValueNode");
     }
 
     @JsMethod
     public OtherAssetOwnershipListNode getOwnershipListNode() {
-        return ownershipListNode;
+        return (OtherAssetOwnershipListNode)getChildByName("ownershipListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        otherAssetTypeNode = childFactory.createOtherAssetTypeNode();
-        children.add(otherAssetTypeNode);
-        otherAssetDescriptionNode = childFactory.createOtherAssetDescriptionNode();
-        children.add(otherAssetDescriptionNode);
-        otherAssetMarketValueNode = childFactory.createOtherAssetMarketValueNode();
-        children.add(otherAssetMarketValueNode);
-        ownershipListNode = childFactory.createOwnershipListNode();
-        children.add(ownershipListNode);
+        children.add(childFactory.createOtherAssetTypeNode());
+        children.add(childFactory.createOtherAssetDescriptionNode());
+        children.add(childFactory.createOtherAssetMarketValueNode());
+        children.add(childFactory.createOwnershipListNode());
         return children;
     }
 

@@ -13,8 +13,6 @@ import java.util.List;
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
-    private ApplicationListNode applicationListNode;
-
     private AppManagerNodeChildFactory childFactory;
 
     @Inject
@@ -61,14 +59,13 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
     @JsMethod
     public ApplicationListNode getApplicationListNode() {
-        return applicationListNode;
+        return (ApplicationListNode)getChildByName("applicationListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        applicationListNode = childFactory.createApplicationListNode();
-        children.add(applicationListNode);
+        children.add(childFactory.createApplicationListNode());
         return children;
     }
 

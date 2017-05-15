@@ -13,16 +13,6 @@ import java.util.List;
 
 public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
-    private BrokerFirstNameNode brokerFirstNameNode;
-    private BrokerLastNameNode brokerLastNameNode;
-    private BrokerCompanyNode brokerCompanyNode;
-    private BrokerTelephoneNode contactNumberNode;
-    private BrokerTelephoneNode faxNumberNode;
-    private BrokerMobileNumberNode mobileNumberNode;
-    private BrokerEmailNode brokerEmailNode;
-    private BrokerAddressNode brokerAddressNode;
-    private LenderIssuedBrokerNumberNode lenderIssuedBrokerNumberNode;
-
     private SubmissionNodeChildFactory childFactory;
 
     @Inject
@@ -69,70 +59,61 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
     @JsMethod
     public BrokerFirstNameNode getBrokerFirstNameNode() {
-        return brokerFirstNameNode;
+        return (BrokerFirstNameNode)getChildByName("brokerFirstNameNode");
     }
 
     @JsMethod
     public BrokerLastNameNode getBrokerLastNameNode() {
-        return brokerLastNameNode;
+        return (BrokerLastNameNode)getChildByName("brokerLastNameNode");
     }
 
     @JsMethod
     public BrokerCompanyNode getBrokerCompanyNode() {
-        return brokerCompanyNode;
+        return (BrokerCompanyNode)getChildByName("brokerCompanyNode");
     }
 
     @JsMethod
     public BrokerTelephoneNode getContactNumberNode() {
-        return contactNumberNode;
+        return (BrokerTelephoneNode)getChildByName("contactNumberNode");
     }
 
     @JsMethod
     public BrokerTelephoneNode getFaxNumberNode() {
-        return faxNumberNode;
+        return (BrokerTelephoneNode)getChildByName("faxNumberNode");
     }
 
     @JsMethod
     public BrokerMobileNumberNode getMobileNumberNode() {
-        return mobileNumberNode;
+        return (BrokerMobileNumberNode)getChildByName("mobileNumberNode");
     }
 
     @JsMethod
     public BrokerEmailNode getBrokerEmailNode() {
-        return brokerEmailNode;
+        return (BrokerEmailNode)getChildByName("brokerEmailNode");
     }
 
     @JsMethod
     public BrokerAddressNode getBrokerAddressNode() {
-        return brokerAddressNode;
+        return (BrokerAddressNode)getChildByName("brokerAddressNode");
     }
 
     @JsMethod
     public LenderIssuedBrokerNumberNode getLenderIssuedBrokerNumberNode() {
-        return lenderIssuedBrokerNumberNode;
+        return (LenderIssuedBrokerNumberNode)getChildByName("lenderIssuedBrokerNumberNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        brokerFirstNameNode = childFactory.createBrokerFirstNameNode();
-        children.add(brokerFirstNameNode);
-        brokerLastNameNode = childFactory.createBrokerLastNameNode();
-        children.add(brokerLastNameNode);
-        brokerCompanyNode = childFactory.createBrokerCompanyNode();
-        children.add(brokerCompanyNode);
-        contactNumberNode = childFactory.createContactNumberNode();
-        children.add(contactNumberNode);
-        faxNumberNode = childFactory.createFaxNumberNode();
-        children.add(faxNumberNode);
-        mobileNumberNode = childFactory.createMobileNumberNode();
-        children.add(mobileNumberNode);
-        brokerEmailNode = childFactory.createBrokerEmailNode();
-        children.add(brokerEmailNode);
-        brokerAddressNode = childFactory.createBrokerAddressNode();
-        children.add(brokerAddressNode);
-        lenderIssuedBrokerNumberNode = childFactory.createLenderIssuedBrokerNumberNode();
-        children.add(lenderIssuedBrokerNumberNode);
+        children.add(childFactory.createBrokerFirstNameNode());
+        children.add(childFactory.createBrokerLastNameNode());
+        children.add(childFactory.createBrokerCompanyNode());
+        children.add(childFactory.createContactNumberNode());
+        children.add(childFactory.createFaxNumberNode());
+        children.add(childFactory.createMobileNumberNode());
+        children.add(childFactory.createBrokerEmailNode());
+        children.add(childFactory.createBrokerAddressNode());
+        children.add(childFactory.createLenderIssuedBrokerNumberNode());
         return children;
     }
 

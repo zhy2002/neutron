@@ -13,21 +13,6 @@ import java.util.List;
 
 public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
 
-    private TitleNode titleNode;
-    private FirstNameNode firstNameNode;
-    private LastNameNode lastNameNode;
-    private GenderNode genderNode;
-    private DateOfBirthNode dateOfBirthNode;
-    private PrimaryApplicantFlagNode primaryApplicantFlagNode;
-    private DriversLicenseNode driversLicenseNode;
-    private PersonApplicantTypeNode personApplicantTypeNode;
-    private MaritalStatusNode maritalStatusNode;
-    private PermanentResidentFlagNode permanentResidentFlagNode;
-    private SpouseNode spouseNode;
-    private FirstHomeBuyerFlagNode firstHomeBuyerFlagNode;
-    private HousingStatusNode housingStatusNode;
-    private ApplicationTypeNode applicationTypeNode;
-
     private PersonGeneralNodeChildFactory childFactory;
 
     @Inject
@@ -74,105 +59,91 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
 
     @JsMethod
     public TitleNode getTitleNode() {
-        return titleNode;
+        return (TitleNode)getChildByName("titleNode");
     }
 
     @JsMethod
     public FirstNameNode getFirstNameNode() {
-        return firstNameNode;
+        return (FirstNameNode)getChildByName("firstNameNode");
     }
 
     @JsMethod
     public LastNameNode getLastNameNode() {
-        return lastNameNode;
+        return (LastNameNode)getChildByName("lastNameNode");
     }
 
     @JsMethod
     public GenderNode getGenderNode() {
-        return genderNode;
+        return (GenderNode)getChildByName("genderNode");
     }
 
     @JsMethod
     public DateOfBirthNode getDateOfBirthNode() {
-        return dateOfBirthNode;
+        return (DateOfBirthNode)getChildByName("dateOfBirthNode");
     }
 
     @JsMethod
     public PrimaryApplicantFlagNode getPrimaryApplicantFlagNode() {
-        return primaryApplicantFlagNode;
+        return (PrimaryApplicantFlagNode)getChildByName("primaryApplicantFlagNode");
     }
 
     @JsMethod
     public DriversLicenseNode getDriversLicenseNode() {
-        return driversLicenseNode;
+        return (DriversLicenseNode)getChildByName("driversLicenseNode");
     }
 
     @JsMethod
     public PersonApplicantTypeNode getPersonApplicantTypeNode() {
-        return personApplicantTypeNode;
+        return (PersonApplicantTypeNode)getChildByName("personApplicantTypeNode");
     }
 
     @JsMethod
     public MaritalStatusNode getMaritalStatusNode() {
-        return maritalStatusNode;
+        return (MaritalStatusNode)getChildByName("maritalStatusNode");
     }
 
     @JsMethod
     public PermanentResidentFlagNode getPermanentResidentFlagNode() {
-        return permanentResidentFlagNode;
+        return (PermanentResidentFlagNode)getChildByName("permanentResidentFlagNode");
     }
 
     @JsMethod
     public SpouseNode getSpouseNode() {
-        return spouseNode;
+        return (SpouseNode)getChildByName("spouseNode");
     }
 
     @JsMethod
     public FirstHomeBuyerFlagNode getFirstHomeBuyerFlagNode() {
-        return firstHomeBuyerFlagNode;
+        return (FirstHomeBuyerFlagNode)getChildByName("firstHomeBuyerFlagNode");
     }
 
     @JsMethod
     public HousingStatusNode getHousingStatusNode() {
-        return housingStatusNode;
+        return (HousingStatusNode)getChildByName("housingStatusNode");
     }
 
     @JsMethod
     public ApplicationTypeNode getApplicationTypeNode() {
-        return applicationTypeNode;
+        return (ApplicationTypeNode)getChildByName("applicationTypeNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        titleNode = childFactory.createTitleNode();
-        children.add(titleNode);
-        firstNameNode = childFactory.createFirstNameNode();
-        children.add(firstNameNode);
-        lastNameNode = childFactory.createLastNameNode();
-        children.add(lastNameNode);
-        genderNode = childFactory.createGenderNode();
-        children.add(genderNode);
-        dateOfBirthNode = childFactory.createDateOfBirthNode();
-        children.add(dateOfBirthNode);
-        primaryApplicantFlagNode = childFactory.createPrimaryApplicantFlagNode();
-        children.add(primaryApplicantFlagNode);
-        driversLicenseNode = childFactory.createDriversLicenseNode();
-        children.add(driversLicenseNode);
-        personApplicantTypeNode = childFactory.createPersonApplicantTypeNode();
-        children.add(personApplicantTypeNode);
-        maritalStatusNode = childFactory.createMaritalStatusNode();
-        children.add(maritalStatusNode);
-        permanentResidentFlagNode = childFactory.createPermanentResidentFlagNode();
-        children.add(permanentResidentFlagNode);
-        spouseNode = childFactory.createSpouseNode();
-        children.add(spouseNode);
-        firstHomeBuyerFlagNode = childFactory.createFirstHomeBuyerFlagNode();
-        children.add(firstHomeBuyerFlagNode);
-        housingStatusNode = childFactory.createHousingStatusNode();
-        children.add(housingStatusNode);
-        applicationTypeNode = childFactory.createApplicationTypeNode();
-        children.add(applicationTypeNode);
+        children.add(childFactory.createTitleNode());
+        children.add(childFactory.createFirstNameNode());
+        children.add(childFactory.createLastNameNode());
+        children.add(childFactory.createGenderNode());
+        children.add(childFactory.createDateOfBirthNode());
+        children.add(childFactory.createPrimaryApplicantFlagNode());
+        children.add(childFactory.createDriversLicenseNode());
+        children.add(childFactory.createPersonApplicantTypeNode());
+        children.add(childFactory.createMaritalStatusNode());
+        children.add(childFactory.createPermanentResidentFlagNode());
+        children.add(childFactory.createSpouseNode());
+        children.add(childFactory.createFirstHomeBuyerFlagNode());
+        children.add(childFactory.createHousingStatusNode());
+        children.add(childFactory.createApplicationTypeNode());
         return children;
     }
 

@@ -13,12 +13,6 @@ import java.util.List;
 
 public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
 
-    private OtherIncomeAddBackTypeNode otherIncomeAddBackTypeNode;
-    private OtherIncomeAmountNode otherIncomeAmountNode;
-    private OtherIncomeDescriptionNode otherIncomeDescriptionNode;
-    private OtherIncomePreviousYearNode otherIncomePreviousYearNode;
-    private OtherIncomeTypeNode otherIncomeTypeNode;
-
     private OtherIncomeNodeChildFactory childFactory;
 
     @Inject
@@ -59,42 +53,37 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
 
     @JsMethod
     public OtherIncomeAddBackTypeNode getOtherIncomeAddBackTypeNode() {
-        return otherIncomeAddBackTypeNode;
+        return (OtherIncomeAddBackTypeNode)getChildByName("otherIncomeAddBackTypeNode");
     }
 
     @JsMethod
     public OtherIncomeAmountNode getOtherIncomeAmountNode() {
-        return otherIncomeAmountNode;
+        return (OtherIncomeAmountNode)getChildByName("otherIncomeAmountNode");
     }
 
     @JsMethod
     public OtherIncomeDescriptionNode getOtherIncomeDescriptionNode() {
-        return otherIncomeDescriptionNode;
+        return (OtherIncomeDescriptionNode)getChildByName("otherIncomeDescriptionNode");
     }
 
     @JsMethod
     public OtherIncomePreviousYearNode getOtherIncomePreviousYearNode() {
-        return otherIncomePreviousYearNode;
+        return (OtherIncomePreviousYearNode)getChildByName("otherIncomePreviousYearNode");
     }
 
     @JsMethod
     public OtherIncomeTypeNode getOtherIncomeTypeNode() {
-        return otherIncomeTypeNode;
+        return (OtherIncomeTypeNode)getChildByName("otherIncomeTypeNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        otherIncomeAddBackTypeNode = childFactory.createOtherIncomeAddBackTypeNode();
-        children.add(otherIncomeAddBackTypeNode);
-        otherIncomeAmountNode = childFactory.createOtherIncomeAmountNode();
-        children.add(otherIncomeAmountNode);
-        otherIncomeDescriptionNode = childFactory.createOtherIncomeDescriptionNode();
-        children.add(otherIncomeDescriptionNode);
-        otherIncomePreviousYearNode = childFactory.createOtherIncomePreviousYearNode();
-        children.add(otherIncomePreviousYearNode);
-        otherIncomeTypeNode = childFactory.createOtherIncomeTypeNode();
-        children.add(otherIncomeTypeNode);
+        children.add(childFactory.createOtherIncomeAddBackTypeNode());
+        children.add(childFactory.createOtherIncomeAmountNode());
+        children.add(childFactory.createOtherIncomeDescriptionNode());
+        children.add(childFactory.createOtherIncomePreviousYearNode());
+        children.add(childFactory.createOtherIncomeTypeNode());
         return children;
     }
 

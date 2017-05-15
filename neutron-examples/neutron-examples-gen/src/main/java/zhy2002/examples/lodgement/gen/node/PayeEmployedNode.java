@@ -13,8 +13,6 @@ import java.util.List;
 
 public class PayeEmployedNode extends EmployedNode {
 
-    private GrossYearlySalaryNode grossYearlySalaryNode;
-
     private PayeEmployedNodeChildFactory childFactory;
 
     @Inject
@@ -61,14 +59,13 @@ public class PayeEmployedNode extends EmployedNode {
 
     @JsMethod
     public GrossYearlySalaryNode getGrossYearlySalaryNode() {
-        return grossYearlySalaryNode;
+        return (GrossYearlySalaryNode)getChildByName("grossYearlySalaryNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        grossYearlySalaryNode = childFactory.createGrossYearlySalaryNode();
-        children.add(grossYearlySalaryNode);
+        children.add(childFactory.createGrossYearlySalaryNode());
         return children;
     }
 

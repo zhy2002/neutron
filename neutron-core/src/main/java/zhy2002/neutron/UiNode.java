@@ -493,6 +493,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     protected void removeContent() {
         List<UiNodeRule<?>> ownRules = new ArrayList<>();
+        ownRules.addAll(this.ownRules);
         ownRules.forEach(UiNodeRule::removeFromOwner);
         clearValidationErrors();
     }

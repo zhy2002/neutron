@@ -13,12 +13,6 @@ import java.util.List;
 
 public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private UnemployedOnBenefitFlagNode unemployedOnBenefitFlagNode;
-    private StudentFlagNode studentFlagNode;
-    private StudentTypeNode studentTypeNode;
-    private HouseDutiesFlagNode houseDutiesFlagNode;
-    private UnemployedSinceNode unemployedSinceNode;
-
     private UnemployedNodeChildFactory childFactory;
 
     @Inject
@@ -65,42 +59,37 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
     @JsMethod
     public UnemployedOnBenefitFlagNode getUnemployedOnBenefitFlagNode() {
-        return unemployedOnBenefitFlagNode;
+        return (UnemployedOnBenefitFlagNode)getChildByName("unemployedOnBenefitFlagNode");
     }
 
     @JsMethod
     public StudentFlagNode getStudentFlagNode() {
-        return studentFlagNode;
+        return (StudentFlagNode)getChildByName("studentFlagNode");
     }
 
     @JsMethod
     public StudentTypeNode getStudentTypeNode() {
-        return studentTypeNode;
+        return (StudentTypeNode)getChildByName("studentTypeNode");
     }
 
     @JsMethod
     public HouseDutiesFlagNode getHouseDutiesFlagNode() {
-        return houseDutiesFlagNode;
+        return (HouseDutiesFlagNode)getChildByName("houseDutiesFlagNode");
     }
 
     @JsMethod
     public UnemployedSinceNode getUnemployedSinceNode() {
-        return unemployedSinceNode;
+        return (UnemployedSinceNode)getChildByName("unemployedSinceNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        unemployedOnBenefitFlagNode = childFactory.createUnemployedOnBenefitFlagNode();
-        children.add(unemployedOnBenefitFlagNode);
-        studentFlagNode = childFactory.createStudentFlagNode();
-        children.add(studentFlagNode);
-        studentTypeNode = childFactory.createStudentTypeNode();
-        children.add(studentTypeNode);
-        houseDutiesFlagNode = childFactory.createHouseDutiesFlagNode();
-        children.add(houseDutiesFlagNode);
-        unemployedSinceNode = childFactory.createUnemployedSinceNode();
-        children.add(unemployedSinceNode);
+        children.add(childFactory.createUnemployedOnBenefitFlagNode());
+        children.add(childFactory.createStudentFlagNode());
+        children.add(childFactory.createStudentTypeNode());
+        children.add(childFactory.createHouseDutiesFlagNode());
+        children.add(childFactory.createUnemployedSinceNode());
         return children;
     }
 

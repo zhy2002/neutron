@@ -13,14 +13,6 @@ import java.util.List;
 
 public class AccessNode extends ObjectUiNode<RealEstateNode> {
 
-    private AccessContactTypeNode accessContactTypeNode;
-    private AccessContactTitleNode accessContactTitleNode;
-    private AccessContactFirstNameNode accessContactFirstNameNode;
-    private AccessContactLastNameNode accessContactLastNameNode;
-    private AccessCompanyNameNode accessCompanyNameNode;
-    private AccessTelephoneNode accessTelephoneNode;
-    private AccessOtherDescriptionNode accessOtherDescriptionNode;
-
     private AccessNodeChildFactory childFactory;
 
     @Inject
@@ -67,56 +59,49 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
 
     @JsMethod
     public AccessContactTypeNode getAccessContactTypeNode() {
-        return accessContactTypeNode;
+        return (AccessContactTypeNode)getChildByName("accessContactTypeNode");
     }
 
     @JsMethod
     public AccessContactTitleNode getAccessContactTitleNode() {
-        return accessContactTitleNode;
+        return (AccessContactTitleNode)getChildByName("accessContactTitleNode");
     }
 
     @JsMethod
     public AccessContactFirstNameNode getAccessContactFirstNameNode() {
-        return accessContactFirstNameNode;
+        return (AccessContactFirstNameNode)getChildByName("accessContactFirstNameNode");
     }
 
     @JsMethod
     public AccessContactLastNameNode getAccessContactLastNameNode() {
-        return accessContactLastNameNode;
+        return (AccessContactLastNameNode)getChildByName("accessContactLastNameNode");
     }
 
     @JsMethod
     public AccessCompanyNameNode getAccessCompanyNameNode() {
-        return accessCompanyNameNode;
+        return (AccessCompanyNameNode)getChildByName("accessCompanyNameNode");
     }
 
     @JsMethod
     public AccessTelephoneNode getAccessTelephoneNode() {
-        return accessTelephoneNode;
+        return (AccessTelephoneNode)getChildByName("accessTelephoneNode");
     }
 
     @JsMethod
     public AccessOtherDescriptionNode getAccessOtherDescriptionNode() {
-        return accessOtherDescriptionNode;
+        return (AccessOtherDescriptionNode)getChildByName("accessOtherDescriptionNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        accessContactTypeNode = childFactory.createAccessContactTypeNode();
-        children.add(accessContactTypeNode);
-        accessContactTitleNode = childFactory.createAccessContactTitleNode();
-        children.add(accessContactTitleNode);
-        accessContactFirstNameNode = childFactory.createAccessContactFirstNameNode();
-        children.add(accessContactFirstNameNode);
-        accessContactLastNameNode = childFactory.createAccessContactLastNameNode();
-        children.add(accessContactLastNameNode);
-        accessCompanyNameNode = childFactory.createAccessCompanyNameNode();
-        children.add(accessCompanyNameNode);
-        accessTelephoneNode = childFactory.createAccessTelephoneNode();
-        children.add(accessTelephoneNode);
-        accessOtherDescriptionNode = childFactory.createAccessOtherDescriptionNode();
-        children.add(accessOtherDescriptionNode);
+        children.add(childFactory.createAccessContactTypeNode());
+        children.add(childFactory.createAccessContactTitleNode());
+        children.add(childFactory.createAccessContactFirstNameNode());
+        children.add(childFactory.createAccessContactLastNameNode());
+        children.add(childFactory.createAccessCompanyNameNode());
+        children.add(childFactory.createAccessTelephoneNode());
+        children.add(childFactory.createAccessOtherDescriptionNode());
         return children;
     }
 

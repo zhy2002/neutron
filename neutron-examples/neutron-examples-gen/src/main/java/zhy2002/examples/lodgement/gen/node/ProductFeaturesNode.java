@@ -13,19 +13,6 @@ import java.util.List;
 
 public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
 
-    private ProductPackageNameNode productPackageNameNode;
-    private ProductRepaymentFrequencyNode productRepaymentFrequencyNode;
-    private ProductRateLockFlagNode productRateLockFlagNode;
-    private ProductTransactionAccountFlagNode productTransactionAccountFlagNode;
-    private ProductOptOutReasonNode productOptOutReasonNode;
-    private ProductCreditCardFlagNode productCreditCardFlagNode;
-    private ProductCreditCardTypeNode productCreditCardTypeNode;
-    private ProductCreditCardLimitNode productCreditCardLimitNode;
-    private ProductExpressConsentFlagNode productExpressConsentFlagNode;
-    private Product100PercentOffsetFlagNode product100PercentOffsetFlagNode;
-    private ProductCardHolderNode productPrimaryCardHolderNode;
-    private ProductCardHolderNode productAdditionalCardHolderNode;
-
     private ProductFeaturesNodeChildFactory childFactory;
 
     @Inject
@@ -72,91 +59,79 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
 
     @JsMethod
     public ProductPackageNameNode getProductPackageNameNode() {
-        return productPackageNameNode;
+        return (ProductPackageNameNode)getChildByName("productPackageNameNode");
     }
 
     @JsMethod
     public ProductRepaymentFrequencyNode getProductRepaymentFrequencyNode() {
-        return productRepaymentFrequencyNode;
+        return (ProductRepaymentFrequencyNode)getChildByName("productRepaymentFrequencyNode");
     }
 
     @JsMethod
     public ProductRateLockFlagNode getProductRateLockFlagNode() {
-        return productRateLockFlagNode;
+        return (ProductRateLockFlagNode)getChildByName("productRateLockFlagNode");
     }
 
     @JsMethod
     public ProductTransactionAccountFlagNode getProductTransactionAccountFlagNode() {
-        return productTransactionAccountFlagNode;
+        return (ProductTransactionAccountFlagNode)getChildByName("productTransactionAccountFlagNode");
     }
 
     @JsMethod
     public ProductOptOutReasonNode getProductOptOutReasonNode() {
-        return productOptOutReasonNode;
+        return (ProductOptOutReasonNode)getChildByName("productOptOutReasonNode");
     }
 
     @JsMethod
     public ProductCreditCardFlagNode getProductCreditCardFlagNode() {
-        return productCreditCardFlagNode;
+        return (ProductCreditCardFlagNode)getChildByName("productCreditCardFlagNode");
     }
 
     @JsMethod
     public ProductCreditCardTypeNode getProductCreditCardTypeNode() {
-        return productCreditCardTypeNode;
+        return (ProductCreditCardTypeNode)getChildByName("productCreditCardTypeNode");
     }
 
     @JsMethod
     public ProductCreditCardLimitNode getProductCreditCardLimitNode() {
-        return productCreditCardLimitNode;
+        return (ProductCreditCardLimitNode)getChildByName("productCreditCardLimitNode");
     }
 
     @JsMethod
     public ProductExpressConsentFlagNode getProductExpressConsentFlagNode() {
-        return productExpressConsentFlagNode;
+        return (ProductExpressConsentFlagNode)getChildByName("productExpressConsentFlagNode");
     }
 
     @JsMethod
     public Product100PercentOffsetFlagNode getProduct100PercentOffsetFlagNode() {
-        return product100PercentOffsetFlagNode;
+        return (Product100PercentOffsetFlagNode)getChildByName("product100PercentOffsetFlagNode");
     }
 
     @JsMethod
     public ProductCardHolderNode getProductPrimaryCardHolderNode() {
-        return productPrimaryCardHolderNode;
+        return (ProductCardHolderNode)getChildByName("productPrimaryCardHolderNode");
     }
 
     @JsMethod
     public ProductCardHolderNode getProductAdditionalCardHolderNode() {
-        return productAdditionalCardHolderNode;
+        return (ProductCardHolderNode)getChildByName("productAdditionalCardHolderNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        productPackageNameNode = childFactory.createProductPackageNameNode();
-        children.add(productPackageNameNode);
-        productRepaymentFrequencyNode = childFactory.createProductRepaymentFrequencyNode();
-        children.add(productRepaymentFrequencyNode);
-        productRateLockFlagNode = childFactory.createProductRateLockFlagNode();
-        children.add(productRateLockFlagNode);
-        productTransactionAccountFlagNode = childFactory.createProductTransactionAccountFlagNode();
-        children.add(productTransactionAccountFlagNode);
-        productOptOutReasonNode = childFactory.createProductOptOutReasonNode();
-        children.add(productOptOutReasonNode);
-        productCreditCardFlagNode = childFactory.createProductCreditCardFlagNode();
-        children.add(productCreditCardFlagNode);
-        productCreditCardTypeNode = childFactory.createProductCreditCardTypeNode();
-        children.add(productCreditCardTypeNode);
-        productCreditCardLimitNode = childFactory.createProductCreditCardLimitNode();
-        children.add(productCreditCardLimitNode);
-        productExpressConsentFlagNode = childFactory.createProductExpressConsentFlagNode();
-        children.add(productExpressConsentFlagNode);
-        product100PercentOffsetFlagNode = childFactory.createProduct100PercentOffsetFlagNode();
-        children.add(product100PercentOffsetFlagNode);
-        productPrimaryCardHolderNode = childFactory.createProductPrimaryCardHolderNode();
-        children.add(productPrimaryCardHolderNode);
-        productAdditionalCardHolderNode = childFactory.createProductAdditionalCardHolderNode();
-        children.add(productAdditionalCardHolderNode);
+        children.add(childFactory.createProductPackageNameNode());
+        children.add(childFactory.createProductRepaymentFrequencyNode());
+        children.add(childFactory.createProductRateLockFlagNode());
+        children.add(childFactory.createProductTransactionAccountFlagNode());
+        children.add(childFactory.createProductOptOutReasonNode());
+        children.add(childFactory.createProductCreditCardFlagNode());
+        children.add(childFactory.createProductCreditCardTypeNode());
+        children.add(childFactory.createProductCreditCardLimitNode());
+        children.add(childFactory.createProductExpressConsentFlagNode());
+        children.add(childFactory.createProduct100PercentOffsetFlagNode());
+        children.add(childFactory.createProductPrimaryCardHolderNode());
+        children.add(childFactory.createProductAdditionalCardHolderNode());
         return children;
     }
 

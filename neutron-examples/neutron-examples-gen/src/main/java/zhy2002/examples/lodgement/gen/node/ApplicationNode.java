@@ -19,23 +19,6 @@ import zhy2002.examples.lodgement.gen.event.*;
 @Singleton
 public class ApplicationNode extends RootUiNode<VoidUiNode> {
 
-    private IdNode idNode;
-    private StatusNode statusNode;
-    private OwningUserNode owningUserNode;
-    private LenderNode lenderNode;
-    private DateCreatedNode dateCreatedNode;
-    private DateUpdatedNode dateUpdatedNode;
-    private DateLodgedNode dateLodgedNode;
-    private AddressRefListNode addressRefListNode;
-    private PersonListNode personListNode;
-    private CompanyListNode companyListNode;
-    private FinancialPositionNode financialPositionNode;
-    private RealEstateListNode realEstateListNode;
-    private ProductsNode productsNode;
-    private AdditionalNode additionalNode;
-    private SubmissionNode submissionNode;
-    private ErrorListNode errorListNode;
-
     private ApplicationNodeChildFactory childFactory;
 
     @Inject
@@ -111,119 +94,103 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
 
     @JsMethod
     public IdNode getIdNode() {
-        return idNode;
+        return (IdNode)getChildByName("idNode");
     }
 
     @JsMethod
     public StatusNode getStatusNode() {
-        return statusNode;
+        return (StatusNode)getChildByName("statusNode");
     }
 
     @JsMethod
     public OwningUserNode getOwningUserNode() {
-        return owningUserNode;
+        return (OwningUserNode)getChildByName("owningUserNode");
     }
 
     @JsMethod
     public LenderNode getLenderNode() {
-        return lenderNode;
+        return (LenderNode)getChildByName("lenderNode");
     }
 
     @JsMethod
     public DateCreatedNode getDateCreatedNode() {
-        return dateCreatedNode;
+        return (DateCreatedNode)getChildByName("dateCreatedNode");
     }
 
     @JsMethod
     public DateUpdatedNode getDateUpdatedNode() {
-        return dateUpdatedNode;
+        return (DateUpdatedNode)getChildByName("dateUpdatedNode");
     }
 
     @JsMethod
     public DateLodgedNode getDateLodgedNode() {
-        return dateLodgedNode;
+        return (DateLodgedNode)getChildByName("dateLodgedNode");
     }
 
     @JsMethod
     public AddressRefListNode getAddressRefListNode() {
-        return addressRefListNode;
+        return (AddressRefListNode)getChildByName("addressRefListNode");
     }
 
     @JsMethod
     public PersonListNode getPersonListNode() {
-        return personListNode;
+        return (PersonListNode)getChildByName("personListNode");
     }
 
     @JsMethod
     public CompanyListNode getCompanyListNode() {
-        return companyListNode;
+        return (CompanyListNode)getChildByName("companyListNode");
     }
 
     @JsMethod
     public FinancialPositionNode getFinancialPositionNode() {
-        return financialPositionNode;
+        return (FinancialPositionNode)getChildByName("financialPositionNode");
     }
 
     @JsMethod
     public RealEstateListNode getRealEstateListNode() {
-        return realEstateListNode;
+        return (RealEstateListNode)getChildByName("realEstateListNode");
     }
 
     @JsMethod
     public ProductsNode getProductsNode() {
-        return productsNode;
+        return (ProductsNode)getChildByName("productsNode");
     }
 
     @JsMethod
     public AdditionalNode getAdditionalNode() {
-        return additionalNode;
+        return (AdditionalNode)getChildByName("additionalNode");
     }
 
     @JsMethod
     public SubmissionNode getSubmissionNode() {
-        return submissionNode;
+        return (SubmissionNode)getChildByName("submissionNode");
     }
 
     @JsMethod
     public ErrorListNode getErrorListNode() {
-        return errorListNode;
+        return (ErrorListNode)getChildByName("errorListNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        idNode = childFactory.createIdNode();
-        children.add(idNode);
-        statusNode = childFactory.createStatusNode();
-        children.add(statusNode);
-        owningUserNode = childFactory.createOwningUserNode();
-        children.add(owningUserNode);
-        lenderNode = childFactory.createLenderNode();
-        children.add(lenderNode);
-        dateCreatedNode = childFactory.createDateCreatedNode();
-        children.add(dateCreatedNode);
-        dateUpdatedNode = childFactory.createDateUpdatedNode();
-        children.add(dateUpdatedNode);
-        dateLodgedNode = childFactory.createDateLodgedNode();
-        children.add(dateLodgedNode);
-        addressRefListNode = childFactory.createAddressRefListNode();
-        children.add(addressRefListNode);
-        personListNode = childFactory.createPersonListNode();
-        children.add(personListNode);
-        companyListNode = childFactory.createCompanyListNode();
-        children.add(companyListNode);
-        financialPositionNode = childFactory.createFinancialPositionNode();
-        children.add(financialPositionNode);
-        realEstateListNode = childFactory.createRealEstateListNode();
-        children.add(realEstateListNode);
-        productsNode = childFactory.createProductsNode();
-        children.add(productsNode);
-        additionalNode = childFactory.createAdditionalNode();
-        children.add(additionalNode);
-        submissionNode = childFactory.createSubmissionNode();
-        children.add(submissionNode);
-        errorListNode = childFactory.createErrorListNode();
-        children.add(errorListNode);
+        children.add(childFactory.createIdNode());
+        children.add(childFactory.createStatusNode());
+        children.add(childFactory.createOwningUserNode());
+        children.add(childFactory.createLenderNode());
+        children.add(childFactory.createDateCreatedNode());
+        children.add(childFactory.createDateUpdatedNode());
+        children.add(childFactory.createDateLodgedNode());
+        children.add(childFactory.createAddressRefListNode());
+        children.add(childFactory.createPersonListNode());
+        children.add(childFactory.createCompanyListNode());
+        children.add(childFactory.createFinancialPositionNode());
+        children.add(childFactory.createRealEstateListNode());
+        children.add(childFactory.createProductsNode());
+        children.add(childFactory.createAdditionalNode());
+        children.add(childFactory.createSubmissionNode());
+        children.add(childFactory.createErrorListNode());
         return children;
     }
 

@@ -13,10 +13,6 @@ import java.util.List;
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
 
-    private ApplicantReferenceNode applicantReferenceNode;
-    private OwnershipPercentageNode ownershipPercentageNode;
-    private AverageFlagNode averageFlagNode;
-
     private OwnershipNodeChildFactory childFactory;
 
     @Inject
@@ -57,28 +53,25 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
 
     @JsMethod
     public ApplicantReferenceNode getApplicantReferenceNode() {
-        return applicantReferenceNode;
+        return (ApplicantReferenceNode)getChildByName("applicantReferenceNode");
     }
 
     @JsMethod
     public OwnershipPercentageNode getOwnershipPercentageNode() {
-        return ownershipPercentageNode;
+        return (OwnershipPercentageNode)getChildByName("ownershipPercentageNode");
     }
 
     @JsMethod
     public AverageFlagNode getAverageFlagNode() {
-        return averageFlagNode;
+        return (AverageFlagNode)getChildByName("averageFlagNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        applicantReferenceNode = childFactory.createApplicantReferenceNode();
-        children.add(applicantReferenceNode);
-        ownershipPercentageNode = childFactory.createOwnershipPercentageNode();
-        children.add(ownershipPercentageNode);
-        averageFlagNode = childFactory.createAverageFlagNode();
-        children.add(averageFlagNode);
+        children.add(childFactory.createApplicantReferenceNode());
+        children.add(childFactory.createOwnershipPercentageNode());
+        children.add(childFactory.createAverageFlagNode());
         return children;
     }
 

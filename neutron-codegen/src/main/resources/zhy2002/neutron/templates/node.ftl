@@ -45,12 +45,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 </#compress> {
 
-<#if children?? && children?size gt 0>
-    <#list children as child>
-    private ${child.typeName} ${child.name};
-    </#list>
-
-</#if>
 <#if children?? && children?size gt 0 || itemTypeName??>
     private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
 
@@ -193,7 +187,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     <#list children as child>
     @JsMethod
     public ${child.typeName} get${child.name?cap_first}() {
-        return ${child.name};
+        return (${child.typeName})getChildByName("${child.name}");
     }
 
     </#list>
@@ -203,8 +197,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
     <#list children as child>
-        ${child.name} = childFactory.create${child.name?cap_first}();
-        children.add(${child.name});
+        children.add(childFactory.create${child.name?cap_first}());
     </#list>
         return children;
     }

@@ -11,11 +11,6 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private AddressLineNode addressLineNode;
-    private SuburbNode suburbNode;
-    private PostcodeNode postcodeNode;
-    private CountryNode countryNode;
-
     private AddressNodeChildFactory childFactory;
 
     @Inject
@@ -30,35 +25,31 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
 
     @JsMethod
     public AddressLineNode getAddressLineNode() {
-        return addressLineNode;
+        return (AddressLineNode)getChildByName("addressLineNode");
     }
 
     @JsMethod
     public SuburbNode getSuburbNode() {
-        return suburbNode;
+        return (SuburbNode)getChildByName("suburbNode");
     }
 
     @JsMethod
     public PostcodeNode getPostcodeNode() {
-        return postcodeNode;
+        return (PostcodeNode)getChildByName("postcodeNode");
     }
 
     @JsMethod
     public CountryNode getCountryNode() {
-        return countryNode;
+        return (CountryNode)getChildByName("countryNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        addressLineNode = childFactory.createAddressLineNode();
-        children.add(addressLineNode);
-        suburbNode = childFactory.createSuburbNode();
-        children.add(suburbNode);
-        postcodeNode = childFactory.createPostcodeNode();
-        children.add(postcodeNode);
-        countryNode = childFactory.createCountryNode();
-        children.add(countryNode);
+        children.add(childFactory.createAddressLineNode());
+        children.add(childFactory.createSuburbNode());
+        children.add(childFactory.createPostcodeNode());
+        children.add(childFactory.createCountryNode());
         return children;
     }
 

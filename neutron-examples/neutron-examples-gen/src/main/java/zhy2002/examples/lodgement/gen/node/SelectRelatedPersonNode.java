@@ -13,9 +13,6 @@ import java.util.List;
 
 public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonListNode<?>> {
 
-    private RelatedPersonReferenceNode relatedPersonReferenceNode;
-    private SelectRelatedPersonFlagNode selectRelatedPersonFlagNode;
-
     private SelectRelatedPersonNodeChildFactory childFactory;
 
     @Inject
@@ -56,21 +53,19 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
 
     @JsMethod
     public RelatedPersonReferenceNode getRelatedPersonReferenceNode() {
-        return relatedPersonReferenceNode;
+        return (RelatedPersonReferenceNode)getChildByName("relatedPersonReferenceNode");
     }
 
     @JsMethod
     public SelectRelatedPersonFlagNode getSelectRelatedPersonFlagNode() {
-        return selectRelatedPersonFlagNode;
+        return (SelectRelatedPersonFlagNode)getChildByName("selectRelatedPersonFlagNode");
     }
 
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        relatedPersonReferenceNode = childFactory.createRelatedPersonReferenceNode();
-        children.add(relatedPersonReferenceNode);
-        selectRelatedPersonFlagNode = childFactory.createSelectRelatedPersonFlagNode();
-        children.add(selectRelatedPersonFlagNode);
+        children.add(childFactory.createRelatedPersonReferenceNode());
+        children.add(childFactory.createSelectRelatedPersonFlagNode());
         return children;
     }
 
