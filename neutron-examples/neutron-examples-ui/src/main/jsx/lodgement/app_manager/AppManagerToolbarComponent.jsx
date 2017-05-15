@@ -15,7 +15,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
     render() {
         return (
             <div className="container-fluid app-manager-toolbar-component">
-                <ul className="nav navbar-nav">
+                <ul className="nav navbar-nav toolbar">
                     <li>
                         <a tabIndex="0" onClick={this.props.onNewApp}>
                             <div>
@@ -33,26 +33,6 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                             </div>
                             <div>
                                 <small>Refresh</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a tabIndex="0">
-                            <div>
-                                <span className="glyphicon glyphicon-chevron-left"/>
-                            </div>
-                            <div>
-                                <small>Previous</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a tabIndex="0">
-                            <div>
-                                <span className="glyphicon glyphicon-chevron-right"/>
-                            </div>
-                            <div>
-                                <small>Next</small>
                             </div>
                         </a>
                     </li>

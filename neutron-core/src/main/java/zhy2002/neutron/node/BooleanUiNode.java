@@ -28,7 +28,7 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
 
     //region node properties
 
-    public static final PropertyMetadata<Boolean> VALUE_PROPERTY = MetadataRegistry.createProperty(BooleanUiNode.class, "value", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> VALUE_PROPERTY = MetadataRegistry.createProperty(BooleanUiNode.class, "value", Boolean.class);
     public static final PropertyMetadata<Boolean> FIXED_VALUE_PROPERTY = MetadataRegistry.createProperty(BooleanUiNode.class, "fixedValue", Boolean.class);
 
     @JsMethod

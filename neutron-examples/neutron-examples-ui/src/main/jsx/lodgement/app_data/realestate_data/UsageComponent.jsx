@@ -14,10 +14,10 @@ export default class UsageComponent extends NeutronComponent {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="row">
-                            <div className="col-xs-9">
+                            <div className="col-xs-8">
                                 Used as security?
                             </div>
-                            <div className="col-xs-3">
+                            <div className="col-xs-4">
                                 <RadioInputComponent
                                     hideLabel
                                     model={model.getUsedAsSecurityFlagNode()}
@@ -25,10 +25,10 @@ export default class UsageComponent extends NeutronComponent {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-9">
+                            <div className="col-xs-8">
                                 Is this property being purchased?
                             </div>
-                            <div className="col-xs-3">
+                            <div className="col-xs-4">
                                 <RadioInputComponent
                                     hideLabel
                                     model={model.getBeingPurchasedFlagNode()}
@@ -36,10 +36,10 @@ export default class UsageComponent extends NeutronComponent {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-9">
+                            <div className="col-xs-8">
                                 Is the property owned outright?
                             </div>
-                            <div className="col-xs-3">
+                            <div className="col-xs-4">
                                 <RadioInputComponent
                                     hideLabel
                                     model={model.getOwnedOutrightFlagNode()}
@@ -47,10 +47,10 @@ export default class UsageComponent extends NeutronComponent {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-9">
+                            <div className="col-xs-8">
                                 Is this property the Primary Security?
                             </div>
-                            <div className="col-xs-3">
+                            <div className="col-xs-4">
                                 <RadioInputComponent
                                     hideLabel
                                     model={model.getPrimarySecurityFlagNode()}
@@ -58,10 +58,10 @@ export default class UsageComponent extends NeutronComponent {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-xs-9">
+                            <div className="col-xs-8">
                                 Approval In Principle?
                             </div>
-                            <div className="col-xs-3">
+                            <div className="col-xs-4">
                                 <RadioInputComponent
                                     hideLabel
                                     model={model.getApprovalInPrincipleFlagNode()}
@@ -70,7 +70,7 @@ export default class UsageComponent extends NeutronComponent {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <ExistingMortgageList model={model.getExistingMortgageListNode()} />
+                        <ExistingMortgageList model={model.getExistingMortgageListNode()}/>
                     </div>
                 </div>
             </MainContentComponent>

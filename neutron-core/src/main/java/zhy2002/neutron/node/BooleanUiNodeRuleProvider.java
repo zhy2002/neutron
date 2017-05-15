@@ -20,6 +20,8 @@ public class BooleanUiNodeRuleProvider implements RuleProvider<BooleanUiNode<?>>
     @Override
     public void initializeState(BooleanUiNode<?> node) {
         parentRuleProvider.initializeState(node);
+
+        node.setValue(Boolean.FALSE);
     }
 
 //    @Inject
