@@ -1,9 +1,7 @@
 package zhy2002.examples.lodgement.di;
 
 import dagger.Binds;
-import dagger.MembersInjector;
 import dagger.Module;
-import dagger.Provides;
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.di.*;
@@ -143,6 +141,9 @@ public abstract class DefaultProfileModule {
     abstract DoNotLoadEndedDateForCurrentRecordRule provideDoNotLoadEndedDateForCurrentRecordRule(DoNotLoadEndedDateForCurrentRecordRuleImpl impl);
 
     @Binds
+    abstract UpdateProductNodeLabelRule provideUpdateProductNodeLabelRule(UpdateProductNodeLabelRuleImpl impl);
+
+    @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 
     @Binds
@@ -274,7 +275,8 @@ class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {
 class ApplicationNodeChildProviderImpl extends ApplicationNodeChildProvider {
 
     @Inject
-    public ApplicationNodeChildProviderImpl() {}
+    public ApplicationNodeChildProviderImpl() {
+    }
 
     @Override
     protected AddressRefListNode newAddressRefListNode(ApplicationNode parent, String name) {

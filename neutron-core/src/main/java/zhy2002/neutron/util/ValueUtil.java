@@ -1,8 +1,10 @@
 package zhy2002.neutron.util;
 
 import com.google.gwt.i18n.shared.DateTimeFormat;
+import zhy2002.neutron.data.StringOption;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,14 +82,25 @@ public final class ValueUtil {
     }
 
     public static boolean isInstanceOf(Object object, Class clazz) {
-        if(object == null)
+        if (object == null)
             return false;
         Class objClass = object.getClass();
         while (objClass != null) {
-            if(clazz == objClass)
+            if (clazz == objClass)
                 return true;
             objClass = objClass.getSuperclass();
         }
         return false;
+    }
+
+    public static String getText(StringOption[] options, String value) {
+        if (options != null) {
+            for (StringOption option : options) {
+                if (Objects.equals(value, option.getValue())) {
+                    return option.getText();
+                }
+            }
+        }
+        return value;
     }
 }

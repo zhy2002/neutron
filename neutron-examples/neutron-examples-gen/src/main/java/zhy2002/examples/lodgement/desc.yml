@@ -989,6 +989,8 @@ rootType:
         baseTypeName: ObjectUiNode
         init:
         - {propertyName: selectedName, value: '"productDescriptionNode"'}
+        rules:
+        - {typeName: UpdateProductNodeLabelRule, baseTypeName: UpdateItemNodeLabelRule}
         children:
         - {typeName: ProductDescriptionNode}
         - {typeName: ProductFeaturesNode}

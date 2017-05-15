@@ -27,11 +27,15 @@ public class ProductNodeRuleProvider implements RuleProvider<ProductNode> {
         node.setSelectedName("productDescriptionNode");
     }
 
+    @Inject
+    Provider<UpdateProductNodeLabelRule> updateProductNodeLabelRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        UpdateProductNodeLabelRule updateProductNodeLabelRule = updateProductNodeLabelRuleProvider.get();
+        createdRules.add(updateProductNodeLabelRule);
     }
 
 }
