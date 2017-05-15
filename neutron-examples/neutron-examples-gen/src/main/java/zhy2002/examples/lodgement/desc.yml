@@ -781,6 +781,9 @@ rootType:
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: required, value: true}
+          rules:
+          - {typeName: UsedAsSecurityFlagChangeRule}
 
         - typeName: BeingPurchasedFlagNode
           baseTypeName: BooleanUiNode
@@ -791,11 +794,13 @@ rootType:
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: required, value: true}
 
         - typeName: PrimarySecurityFlagNode
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: disabled, value: true}
 
         - typeName: ApprovalInPrincipleFlagNode
           baseTypeName: BooleanUiNode

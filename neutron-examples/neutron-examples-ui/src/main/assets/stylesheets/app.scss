@@ -67,23 +67,34 @@ button.link {
   word-break: break-all;
 }
 
-.radio-container {
-  height: $input-height-small;
-  line-height: $input-height-small;
-  border-radius: $input-border-radius;
-  vertical-align: middle;
+.radio-input-component {
+  .radio-container {
+    height: $input-height-small;
+    line-height: $input-height-small;
+    border-radius: $input-border-radius;
+    vertical-align: middle;
 
-  label:first-child {
-    padding-left: 0;
+    label:first-child {
+      padding-left: 0;
+    }
+
+    input[type=radio] {
+      position: relative;
+      top: 2px;
+      margin-left: auto;
+      margin-right: 0.5em;
+    }
   }
 
-  input[type=radio] {
-    position: relative;
-    top: 2px;
-    margin-left: auto;
-    margin-right: 0.5em;
+  &.disabled {
+    color: #aaa;
+
+    label.radio-inline {
+      cursor: not-allowed;
+    }
   }
 }
+
 
 .month-year-component {
   .month {
@@ -494,6 +505,7 @@ button.link {
     table.application-table-header {
       margin-bottom: 0;
       border-bottom: 1px solid #dedede;
+      font-size: 85%;
 
       thead tr {
         background-color: $breadcrumb-bg;

@@ -25,6 +25,7 @@ public class OwnedOutrightFlagNodeRuleProvider implements RuleProvider<OwnedOutr
         parentRuleProvider.initializeState(node);
 
         node.setValue(null);
+        node.setRequired(true);
     }
 
 

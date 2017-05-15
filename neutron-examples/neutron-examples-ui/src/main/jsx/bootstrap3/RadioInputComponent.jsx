@@ -46,6 +46,8 @@ export default class RadioInputComponent extends InputComponent {
                                     this.updateValue(item.getValue());
                                 }}
                                 checked={item.getValue() === this.state.value}
+                                disabled={this.state.disabled}
+                                readOnly={this.state.readonly}
                             />
                             {item.getText()}
                         </label>
@@ -59,7 +61,11 @@ export default class RadioInputComponent extends InputComponent {
     render() {
         const model = this.props.model;
         return (
-            <div className={super.renderContainerClass('radio-input-component')}>
+            <div
+                className={
+                    super.renderContainerClass(`radio-input-component ${this.state.disabled ? 'disabled' : ''}`)
+                }
+            >
                 {!this.props.hideLabel &&
                 <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }

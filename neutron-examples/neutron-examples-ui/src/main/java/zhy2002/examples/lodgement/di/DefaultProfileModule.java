@@ -132,6 +132,9 @@ public abstract class DefaultProfileModule {
     abstract AddNewPersonRule provideAddNewPersonRule(AddNewPersonRuleImpl impl);
 
     @Binds
+    abstract UsedAsSecurityFlagChangeRule provideUsedAsSecurityFlagChangeRule(UsedAsSecurityFlagChangeRuleImpl impl);
+
+    @Binds
     abstract AddNewThirdPartyApplicantRule provideAddNewThirdPartyApplicantRule(AddNewThirdPartyApplicantRuleImpl impl);
 
     @Binds

@@ -31,7 +31,7 @@ StorageService.getApplicationSummaries = () => {
 };
 
 StorageService.getApplication = id =>
-    axios.get(`${baseUrl}/lodgement/application/${id}`).then(
+    axios.get(`${baseUrl}/lodgement/application/${id}?pretty`).then(
         response => response.data['_source'].node,
         errorHandler
     );

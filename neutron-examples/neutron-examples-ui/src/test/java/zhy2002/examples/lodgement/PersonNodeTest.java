@@ -219,6 +219,8 @@ public class PersonNodeTest {
         PersonPrivacyNode personPrivacyNode = personNode.getPersonPrivacyNode();
         personPrivacyNode.getCreditCheckFlagNode().setValue(Boolean.FALSE);
 
+        personPrivacyNode.getCreditCheckFlagNode().refresh();
+
         assertThat(
                 TestUtil.hasError(personPrivacyNode.getCreditCheckFlagNode().getValidationErrorList(), BooleanFixedValueValidationRule.class),
                 equalTo(true)

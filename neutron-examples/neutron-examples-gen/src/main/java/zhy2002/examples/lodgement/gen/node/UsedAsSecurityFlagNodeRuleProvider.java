@@ -25,13 +25,18 @@ public class UsedAsSecurityFlagNodeRuleProvider implements RuleProvider<UsedAsSe
         parentRuleProvider.initializeState(node);
 
         node.setValue(null);
+        node.setRequired(true);
     }
 
+    @Inject
+    Provider<UsedAsSecurityFlagChangeRule> usedAsSecurityFlagChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        UsedAsSecurityFlagChangeRule usedAsSecurityFlagChangeRule = usedAsSecurityFlagChangeRuleProvider.get();
+        createdRules.add(usedAsSecurityFlagChangeRule);
     }
 
 }
