@@ -320,4 +320,11 @@ public class PersonNodeTest {
 
     }
 
+    @Test
+    public void employmentTypeShouldNotBeDisabledOnLoad() {
+        CurrentEmploymentNode currentEmploymentNode = personNode.getCurrentEmploymentListNode().createItem();
+        assertThat(currentEmploymentNode.getEmploymentTypeNode().isDisabled(), equalTo(false));
+
+    }
+
 }

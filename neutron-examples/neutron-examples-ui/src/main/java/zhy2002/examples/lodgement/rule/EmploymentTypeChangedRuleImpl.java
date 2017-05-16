@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.rule;
 
-import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.gen.node.EmploymentNode;
+import zhy2002.examples.lodgement.gen.node.EmploymentTypeNode;
 import zhy2002.examples.lodgement.gen.rule.EmploymentTypeChangedRule;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNode;
@@ -52,6 +53,9 @@ public class EmploymentTypeChangedRuleImpl extends EmploymentTypeChangedRule {
     private void changeEmploymentType(String newType) {
         logger.info("Changing employment type to: " + newType);
         for (UiNode<?> node : getEmploymentNode().getChildren()) {
+            if (node == getOwner())
+                continue;
+
             if (node.getName().equals(newType)) {
                 node.setDisabled(false);
                 getEmploymentNode().setSelectedName(newType);
