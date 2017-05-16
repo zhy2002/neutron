@@ -28,6 +28,10 @@ $has-error-placeholder-color: #d0d0d0;
   }
 }
 
+[contenteditable].form-control, [type=email].form-control, [type=password].form-control, [type=tel].form-control, [type=text].form-control, input.form-control, input[type=email], input[type=number], input[type=password], input[type=text], textarea, textarea.form-control {
+  font-size: 12px;
+}
+
 a[tabindex] {
   cursor: pointer;
 }
@@ -95,7 +99,6 @@ button.link {
   }
 }
 
-
 .month-year-component {
   .month {
     width: 49%;
@@ -140,6 +143,12 @@ button.link {
   .close-icon-component {
     float: right;
     font-size: 125%;
+  }
+}
+
+.list-group-item {
+  .form-group {
+    padding-bottom: 0;
   }
 }
 
@@ -451,6 +460,16 @@ button.link {
   }
 }
 
+.application-nav-component {
+  &.navbar {
+    min-height: 32px;
+  }
+  .navbar-nav > li > a {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+}
+
 .lodgement-header-component {
 
   .lodgement-banner-component {
@@ -470,13 +489,21 @@ button.link {
     .close-icon-component {
       margin-left: 15px;
     }
+
+    .nav > li > a {
+      padding: 5px 10px;
+    }
+
   }
 
   .lodgement-toolbar-component {
     margin-bottom: 1px;
 
-    .toolbar li > a {
+    .toolbar > li > a {
       transition: all .3s ease-in-out;
+      padding-bottom: 0.5em;
+      padding-top: 1em;
+      outline: none;
 
       &:hover {
         color: gold;
@@ -505,17 +532,19 @@ button.link {
     table.application-table-header {
       margin-bottom: 0;
       border-bottom: 1px solid #dedede;
-      font-size: 85%;
 
       thead tr {
         background-color: $breadcrumb-bg;
         th {
-          font-size: 1.125em;
+          font-size: 1em;
           padding-bottom: 12px;
         }
       }
     }
 
+    table.application-table {
+      font-size: 12px;
+    }
   }
 
   .application-component {
@@ -525,6 +554,11 @@ button.link {
 
     .application-tabs-component {
       padding-bottom: 1em;
+
+      .nav > li > a {
+        padding: 5px 10px;
+      }
+
     }
 
     &.show-error-list {
@@ -657,12 +691,6 @@ button.link {
 //  }
 //}
 //
-//.lodgement-tabs-component {
-//  .nav-pills-component {
-//    margin-top: 0;
-//  }
-//}
-//
 
 //
 ////endregion
@@ -716,10 +744,7 @@ button.link {
 //
 
 //
-//.application-nav-component {
-//  margin-bottom: 0;
-//  border-bottom: none;
-//}
+
 //
 //
 //.application-content-component {

@@ -45,7 +45,7 @@ export default class LodgementComponent extends React.PureComponent {
                     !isNaN(this.state.footerHeight) &&
                     <LodgementContentComponent
                         model={selectedModel}
-                        top={this.state.headerHeight + 1}
+                        top={this.state.headerHeight + 2}
                         bottom={this.state.footerHeight + 1}
                     />
                 }

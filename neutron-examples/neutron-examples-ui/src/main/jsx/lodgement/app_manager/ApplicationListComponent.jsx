@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ResizeAware from 'react-resize-aware';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import CommonUtil from '../services/CommonUtil';
 import LocationService from '../services/LocationService';
@@ -17,6 +18,16 @@ function renderNames(array) {
 }
 
 export default class ApplicationListComponent extends NeutronComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.handleResize = ({height}) => {
+            this.setState({
+                headerHeight: height - 1
+            });
+        };
+    }
 
     componentDidMount() {
         LocationService.syncHashToState(this.model);
@@ -67,27 +78,37 @@ export default class ApplicationListComponent extends NeutronComponent {
     render() {
         return (
             <div className="application-list-component">
-                <table className="table application-table-header">
-                    <thead>
-                    <tr>
-                        <th width="10%">Lender</th>
-                        <th width="14%">Applicant Name</th>
-                        <th width="10%">Owner</th>
-                        <th width="10%" className="text-right">Loan Amount</th>
-                        <th width="10%">Loan Status</th>
-                        <th width="12%">Date Created</th>
-                        <th width="12%">Date Updated</th>
-                        <th width="12%">Date Lodged</th>
-                    </tr>
-                    </thead>
-                </table>
-                <div className="fill-all" style={{top: '46px'}}>
-                    <table className="table table-striped table-hover application-table">
-                        <tbody>
-                        {this.renderItems()}
-                        </tbody>
+                <ResizeAware
+                    className="lodgement-header-component"
+                    style={{position: 'relative'}}
+                    onlyEvent
+                    onResize={this.handleResize}
+                >
+                    <table className="table application-table-header">
+                        <thead>
+                        <tr>
+                            <th width="10%">Lender</th>
+                            <th width="14%">Applicant Name</th>
+                            <th width="10%">Owner</th>
+                            <th width="10%" className="text-right">Loan Amount</th>
+                            <th width="10%">Loan Status</th>
+                            <th width="12%">Date Created</th>
+                            <th width="12%">Date Updated</th>
+                            <th width="12%">Date Lodged</th>
+                        </tr>
+                        </thead>
                     </table>
-                </div>
+                </ResizeAware>
+                {
+                    !isNaN(this.state.headerHeight) &&
+                    <div className="fill-all" style={{top: `${this.state.headerHeight}px`}}>
+                        <table className="table table-striped table-hover application-table">
+                            <tbody>
+                            {this.renderItems()}
+                            </tbody>
+                        </table>
+                    </div>
+                }
             </div>
         );
     }
