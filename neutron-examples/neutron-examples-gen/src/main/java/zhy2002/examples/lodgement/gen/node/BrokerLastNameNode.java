@@ -9,7 +9,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
-public class BrokerLastNameNode extends StringUiNode<SubmissionNode> {
+public class BrokerLastNameNode extends NameNode<SubmissionNode> {
 
     @Override
     public final Class<?> getConcreteClass() {

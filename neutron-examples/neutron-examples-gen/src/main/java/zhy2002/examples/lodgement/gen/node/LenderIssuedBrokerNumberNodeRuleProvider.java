@@ -25,6 +25,7 @@ public class LenderIssuedBrokerNumberNodeRuleProvider implements RuleProvider<Le
         parentRuleProvider.initializeState(node);
 
         node.setRequired(true);
+        node.setPattern("\\d+");
     }
 
 

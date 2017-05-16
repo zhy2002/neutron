@@ -14,7 +14,7 @@ import java.math.*;
 public class BrokerFirstNameNodeRuleProvider implements RuleProvider<BrokerFirstNameNode> {
 
     @Inject
-    StringUiNodeRuleProvider parentRuleProvider;
+    NameNodeRuleProvider parentRuleProvider;
 
     @Inject
     public BrokerFirstNameNodeRuleProvider() {

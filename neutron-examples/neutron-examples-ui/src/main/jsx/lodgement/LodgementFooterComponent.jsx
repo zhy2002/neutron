@@ -21,7 +21,6 @@ export default class LodgementFooterComponent extends React.PureComponent {
                     onResize={this.handleResize}
                 >
                     <div className="text-center">
-                        <br/>
                         This is the footer
                     </div>
                 </ResizeAware>

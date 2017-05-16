@@ -21,6 +21,10 @@ public class BrokerFirstNameNodeModule {
         return owner;
     }
 
+    @Provides @BrokerFirstNameNodeScope @Owner NameNode<?> provideNameNode() {
+        return owner;
+    }
+
     @Provides @BrokerFirstNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }

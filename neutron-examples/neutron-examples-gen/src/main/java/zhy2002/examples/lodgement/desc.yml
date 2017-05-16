@@ -1363,12 +1363,12 @@ rootType:
     - {typeName: LenderIssuedBrokerNumberNode}
     childTypes:
     - typeName: BrokerFirstNameNode
-      baseTypeName: StringUiNode
+      baseTypeName: NameNode
       init:
       - {propertyName: required, value: 'true'}
 
     - typeName: BrokerLastNameNode
-      baseTypeName: StringUiNode
+      baseTypeName: NameNode
       init:
       - {propertyName: required, value: 'true'}
 
@@ -1398,6 +1398,7 @@ rootType:
       baseTypeName: StringUiNode
       init:
       - {propertyName: required, value: 'true'}
+      - {propertyName: pattern, value: '"\\d+"'}
 
   - typeName: ErrorListNode
     baseTypeName: ListUiNode
@@ -1491,6 +1492,19 @@ commonTypes:
   parentBaseTypeName: ParentUiNode<?>
   init:
   - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
+
+- typeName: NameNode
+  baseTypeName: StringUiNode
+  abstractNode: true
+  parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+  - {propertyName: maxLength, value: 25}
+  - {propertyName: lengthMessage, value: '"Cannot exceed 25 characters."'}
+  - {propertyName: invalidChars, value: "\"#\""}
+  - {propertyName: invalidCharsMessage, value: "\"Name cannot contain '#'.\""}
+  rules:
+  - {typeName: InvalidCharPreChangeRule, existing: true}
 
 - typeName: BaseMobileNumberNode
   baseTypeName: StringUiNode

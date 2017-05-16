@@ -26,6 +26,11 @@ $has-error-placeholder-color: #d0d0d0;
       padding-bottom: 9px;
     }
   }
+
+  select.form-control {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 [contenteditable].form-control, [type=email].form-control, [type=password].form-control, [type=tel].form-control, [type=text].form-control, input.form-control, input[type=email], input[type=number], input[type=password], input[type=text], textarea, textarea.form-control {
@@ -568,7 +573,7 @@ button.link {
     }
 
     .application-content-component {
-      font-size: 80%;
+      font-size: 12px;
     }
 
     .application-errors-component {
