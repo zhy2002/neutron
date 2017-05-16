@@ -1,5 +1,7 @@
 import React from 'react';
 import InputComponent from './InputComponent';
+import ErrorMessageComponent from './ErrorMessageComponent';
+
 
 export default class CheckboxInputComponent extends InputComponent {
 
@@ -28,9 +30,7 @@ export default class CheckboxInputComponent extends InputComponent {
                         this.state.label
                     }
                 </label>
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+                <ErrorMessageComponent message={this.state.errorMessage} />
             </div>
         );
     }

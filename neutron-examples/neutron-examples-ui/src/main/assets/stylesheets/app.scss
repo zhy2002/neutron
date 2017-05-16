@@ -20,6 +20,8 @@ $missing-value-placeholder-color: #999;
 $has-error-placeholder-color: #d0d0d0;
 
 .form-group-sm {
+  position: relative;
+
   .input-group {
     .input-group-addon {
       padding-top: 9px;
@@ -342,7 +344,26 @@ button.link {
   }
 }
 
+.tooltip.bottom.error-message {
+  right: 2em;
+
+  .tooltip-arrow {
+    border-bottom-color: #ef9a9a;
+  }
+
+  .tooltip-inner {
+    background-color: #ef9a9a;
+  }
+}
+
 .has-error {
+
+  &:hover {
+    .error-message.tooltip {
+      opacity: 1;
+    }
+  }
+
   input, select, .radio-container, &.checkbox {
     background-color: #ef9a9a;
   }

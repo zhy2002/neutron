@@ -4,7 +4,7 @@ import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
 import AutoCloseContainer from './AutoCloseContainer';
-
+import ErrorMessageComponent from './ErrorMessageComponent';
 
 const baseUrl = 'http://localhost:9200';
 const reservedChars = '+-=&|><!(){}[]^"~*?:\\/';
@@ -232,9 +232,7 @@ export default class TextInputComponent extends InputComponent {
                     {...conditionalProps}
                 />
                 {this.renderOptions()}
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+                <ErrorMessageComponent message={this.state.errorMessage} />
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import InputComponent from './InputComponent';
+import ErrorMessageComponent from './ErrorMessageComponent';
 
 export default class SelectInputComponent extends InputComponent {
 
@@ -66,9 +67,7 @@ export default class SelectInputComponent extends InputComponent {
                 >
                     {this.renderOptions()}
                 </select>
-                {this.state.errorMessage && !this.state.readonly &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+                <ErrorMessageComponent message={this.state.errorMessage} />
             </div>
         );
     }

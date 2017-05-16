@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
+import ErrorMessageComponent from './ErrorMessageComponent';
+
 
 export default class NumberInputComponent extends InputComponent {
 
@@ -67,9 +69,7 @@ export default class NumberInputComponent extends InputComponent {
                 <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
                 }
                 {this.renderInputGroup()}
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+                <ErrorMessageComponent message={this.state.errorMessage} />
             </div>
         );
     }

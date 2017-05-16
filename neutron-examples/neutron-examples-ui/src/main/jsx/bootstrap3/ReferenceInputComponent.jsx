@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 import ModalDialogComponent from './ModalDialogComponent';
 import NodeLabelComponent from './NodeLabelComponent';
+import ErrorMessageComponent from './ErrorMessageComponent';
+
 
 export default class ReferenceInputComponent extends InputComponent {
 
@@ -74,9 +76,7 @@ export default class ReferenceInputComponent extends InputComponent {
                         Select
                     </button>
                 </div>
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+                <ErrorMessageComponent message={this.state.errorMessage} />
                 <ModalDialogComponent
                     show={this.state.showModal}
                     title={this.label}
