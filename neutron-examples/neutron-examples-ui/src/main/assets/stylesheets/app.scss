@@ -7,11 +7,11 @@ $screen-sm: 2px;
 $screen-md: 800px;
 $screen-lg: 1024px;
 $table-bg: #f5f5f5;
-@import '~bootswatch/flatly/variables';
+@import '~bootswatch/paper/variables';
 //required to load bootstrap, see https://github.com/angular/angular-cli/issues/2170
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
-@import '~bootswatch/flatly/bootswatch';
+@import '~bootswatch/paper/bootswatch';
 @import '~react-datepicker/src/stylesheets/datepicker';
 
 $missing-value-bg: rgba(100, 100, 200, 0.33);
