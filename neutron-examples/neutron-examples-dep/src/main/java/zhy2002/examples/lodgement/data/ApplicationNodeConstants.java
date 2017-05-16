@@ -62,6 +62,16 @@ public class ApplicationNodeConstants {
             new StringOption("Trust Settlor")
     };
 
+    public static final StringOption[] LENDER_CHARGE_POSITION = {
+            new StringOption(""),
+            new StringOption("First"),
+            new StringOption("Second"),
+            new StringOption("Third"),
+            new StringOption("Fourth"),
+            new StringOption("Guarantee"),
+            new StringOption("Unregistered Mortgage")
+    };
+
     public static final StringOption[] ACCESS_CONTACT_TYPE = {
             new StringOption(""),
             new StringOption("Selling Agent"),

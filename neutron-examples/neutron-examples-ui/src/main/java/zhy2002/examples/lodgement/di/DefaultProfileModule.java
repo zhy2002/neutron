@@ -141,6 +141,9 @@ public abstract class DefaultProfileModule {
     abstract DistributePercentageRule provideDistributePercentageRule(DistributePercentageRuleImpl impl);
 
     @Binds
+    abstract BeingPurchasedFlagChangeRule provideBeingPurchasedFlagChangeRule(BeingPurchasedFlagChangeRuleImpl impl);
+
+    @Binds
     abstract DoNotLoadEndedDateForCurrentRecordRule provideDoNotLoadEndedDateForCurrentRecordRule(DoNotLoadEndedDateForCurrentRecordRuleImpl impl);
 
     @Binds

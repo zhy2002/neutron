@@ -14,6 +14,9 @@ export default class ExistingMortgageListComponent extends ListNeutronComponent 
     }
 
     render() {
+        if (this.state.disabled)
+            return null;
+
         return (
             <AddListComponent model={this.model}>
                 {this.renderItems()}

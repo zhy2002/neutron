@@ -559,16 +559,19 @@ public class RegisterCommonSendTest {
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("02");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getCountryCodeNode().setValue("+61");
-        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("11112222");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("");
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
+
+        registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("");
+        assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
     }
 
     private void typeInValidData(String test, String aAaA12) {

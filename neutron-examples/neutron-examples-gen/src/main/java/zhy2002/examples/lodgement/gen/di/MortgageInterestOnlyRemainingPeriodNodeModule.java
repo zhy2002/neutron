@@ -21,11 +21,15 @@ public class MortgageInterestOnlyRemainingPeriodNodeModule {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+        return owner;
+    }
+
+    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 

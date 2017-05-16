@@ -789,12 +789,20 @@ rootType:
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          rules:
+          - {typeName: BeingPurchasedFlagChangeRule}
 
         - typeName: OwnedOutrightFlagNode
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
           - {propertyName: required, value: true}
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"existingMortgageListNode"'}
+            - {propertyName: enablingValue, value: false}
 
         - typeName: PrimarySecurityFlagNode
           baseTypeName: BooleanUiNode
@@ -833,39 +841,63 @@ rootType:
 
             - typeName: MortgqageUnpaidBalanceNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageLimitAmountNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageMonthlyRepaymentNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageBorrowerRateNode
               baseTypeName: BasePercentageNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageLoanTypeNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
+              - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
 
             - typeName: MortgageLoanTermExpiryDateNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageInterestOnlyExpiryDateNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageClearingFlagNode
               baseTypeName: BooleanUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageBreakFeeNode
               baseTypeName: BaseCurrencyNode
 
             - typeName: MortgageChargePositionNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
+              - {propertyName: options, value: ApplicationNodeConstants.LENDER_CHARGE_POSITION}
 
             - typeName: MortgageTermRemainingPeriodNode
-              baseTypeName: StringUiNode
+              baseTypeName: MonthYearNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageInterestOnlyRemainingPeriodNode
-              baseTypeName: StringUiNode
+              baseTypeName: MonthYearNode
+              init:
+              - {propertyName: required, value: true}
 
       - typeName:  PropertyNode
         baseTypeName: ObjectUiNode

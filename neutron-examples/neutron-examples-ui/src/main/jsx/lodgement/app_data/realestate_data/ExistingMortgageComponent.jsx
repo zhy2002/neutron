@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
+import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import RemovePanelComponent from '../common/RemovePanelComponent';
@@ -32,7 +33,7 @@ export default class ExistingMortgageComponent extends NeutronComponent {
                         <NumberInputComponent model={model.getMortgageBorrowerRateNode()}/>
                     </div>
                     <div className="col-xs-6">
-                        <TextInputComponent model={model.getMortgageLoanTypeNode()}/>
+                        <SelectInputComponent model={model.getMortgageLoanTypeNode()}/>
                     </div>
                 </div>
                 <div className="row">
@@ -46,7 +47,7 @@ export default class ExistingMortgageComponent extends NeutronComponent {
 
                     </div>
                     <div className="col-xs-6">
-                        <TextInputComponent model={model.getMortgageChargePositionNode()}/>
+                        <SelectInputComponent model={model.getMortgageChargePositionNode()}/>
                     </div>
                 </div>
             </RemovePanelComponent>

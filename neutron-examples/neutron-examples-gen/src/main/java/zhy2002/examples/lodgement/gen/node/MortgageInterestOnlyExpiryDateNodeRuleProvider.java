@@ -7,6 +7,8 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @MortgageInterestOnlyExpiryDateNodeScope
 public class MortgageInterestOnlyExpiryDateNodeRuleProvider implements RuleProvider<MortgageInterestOnlyExpiryDateNode> {
@@ -22,6 +24,7 @@ public class MortgageInterestOnlyExpiryDateNodeRuleProvider implements RuleProvi
     public void initializeState(MortgageInterestOnlyExpiryDateNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setRequired(true);
     }
 
 
