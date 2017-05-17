@@ -513,7 +513,7 @@ button.link {
     padding: 1px;
 
     .close-icon-component {
-      margin-left: 15px;
+      margin-left: 10px;
     }
 
     .nav > li > a {
@@ -574,12 +574,14 @@ button.link {
   }
 
   .application-component {
-    .navbar.navbar-inverse {
+
+    .application-nav-component {
       margin-bottom: 1px;
     }
 
     .application-tabs-component {
       padding-bottom: 1em;
+      margin-top: 5px;
 
       .nav > li > a {
         padding: 5px 10px;

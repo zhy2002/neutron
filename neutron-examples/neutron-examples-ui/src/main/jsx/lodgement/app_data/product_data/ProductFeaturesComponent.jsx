@@ -5,7 +5,7 @@ export default class ProductFeatureComponent extends ListNeutronComponent {
 
     render() {
         return (
-            <div>{this.label}</div>
+            <div>{this.state.label}</div>
         );
     }
 }

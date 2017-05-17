@@ -11,7 +11,7 @@ import PersonResponsibleLendComponent from './PersonResponsibleLendComponent';
 export default class PersonComponent extends TabContentComponent {
 
     renderTabContent(className, model) {
-        console.log(`render tab content for person ${this.label}`);
+        console.log(`render tab content for person ${this.state.label}`);
 
         if (className === 'PersonGeneralNode') {
             return <PersonGeneralComponent model={model}/>;

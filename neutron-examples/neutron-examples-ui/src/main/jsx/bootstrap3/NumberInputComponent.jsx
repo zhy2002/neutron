@@ -25,7 +25,7 @@ export default class NumberInputComponent extends InputComponent {
 
         const conditionalProps = {};
         if (this.props.hideLabel) {
-            conditionalProps.placeholder = this.label;
+            conditionalProps.placeholder = this.state.label;
         }
 
         return (

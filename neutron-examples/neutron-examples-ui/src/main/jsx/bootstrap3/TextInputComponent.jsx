@@ -210,7 +210,7 @@ export default class TextInputComponent extends InputComponent {
         const model = this.model;
         const conditionalProps = {};
         if (this.props.hideLabel) {
-            conditionalProps.placeholder = this.label;
+            conditionalProps.placeholder = this.state.label;
         }
         if (this.props.searchPath) {
             conditionalProps.onKeyDown = this.handleKeyDown;

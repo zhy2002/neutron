@@ -13,7 +13,7 @@ export default class ItemIndexComponent extends NeutronComponent {
     render() {
         return (
             <span className="item-index-component">
-                {this.label} ({this.props.index + 1} of {this.state.text})
+                {this.state.label} ({this.props.index + 1} of {this.state.text})
             </span>
         );
     }

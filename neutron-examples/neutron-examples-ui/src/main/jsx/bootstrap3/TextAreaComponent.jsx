@@ -19,7 +19,7 @@ export default class TextAreaComponent extends InputComponent {
         const model = this.model;
         const conditionalProps = {};
         if (this.props.hideLabel) {
-            conditionalProps.placeholder = this.label;
+            conditionalProps.placeholder = this.state.label;
         }
         return (
             <div className={super.renderContainerClass('text-area-component')}>

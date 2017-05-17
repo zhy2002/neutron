@@ -7,7 +7,7 @@ import AccessComponent from './AccessComponent';
 export default class RealEstateComponent extends TabContentComponent {
 
     renderTabContent(className, model) {
-        console.log(`render tab content for Real Estate ${this.label}`);
+        console.log(`render tab content for Real Estate ${this.state.label}`);
 
         if (className === 'UsageNode') {
             return <UsageComponent model={model}/>;

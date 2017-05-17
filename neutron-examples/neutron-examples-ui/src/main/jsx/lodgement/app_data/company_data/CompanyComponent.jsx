@@ -10,7 +10,7 @@ import CompanyContactComponent from './CompanyContactComponent';
 export default class CompanyComponent extends TabContentComponent {
 
     renderTabContent(className, model) {
-        console.log(`render tab content for company ${this.label}`);
+        console.log(`render tab content for company ${this.state.label}`);
 
         if (className === 'CompanyGeneralNode') {
             return <CompanyGeneralComponent model={model}/>;

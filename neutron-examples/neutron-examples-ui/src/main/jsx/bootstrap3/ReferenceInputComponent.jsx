@@ -79,7 +79,7 @@ export default class ReferenceInputComponent extends InputComponent {
                 <ErrorMessageComponent message={this.state.errorMessage} />
                 <ModalDialogComponent
                     show={this.state.showModal}
-                    title={this.label}
+                    title={this.state.label}
                     onClose={this.closeList}
                 >
                     <div>

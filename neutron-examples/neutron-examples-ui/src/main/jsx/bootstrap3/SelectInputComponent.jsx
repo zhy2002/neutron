@@ -25,7 +25,7 @@ export default class SelectInputComponent extends InputComponent {
             this.state.list.forEach((item, index) => {
                 let text = item.getText();
                 if (this.props.noLabel && index === 0 && !text && !item.getValue()) {
-                    text = this.label;
+                    text = this.state.label;
                 }
                 options.push(
                     <option key={text} value={`${index}`}>

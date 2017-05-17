@@ -24,9 +24,7 @@ export default class TabContentComponent extends NeutronComponent {
     }
 
     renderTabContent(className, model) {
-        console.log(this.label);
-        console.log(className);
-        console.log(model);
+        console.log(`${this.state.label} ${className} ${model}`);
     }
 
     renderContent() {

@@ -1,24 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function nodeNameToLabel(nodeName) {
-    let name = nodeName;
-    if (name.endsWith('Node')) {
-        name = nodeName.substr(0, name.length - 4);
-    }
-    let result = '';
-    for (let i = 0; i < name.length; i++) {
-        let ch = name.charAt(i);
-        if (ch === ch.toUpperCase()) {
-            result += ' ';
-        }
-        if (i === 0) {
-            ch = ch.toUpperCase();
-        }
-        result += ch;
-    }
-    return result;
-}
 
 export default class NeutronComponent extends React.PureComponent {
 
@@ -71,11 +53,6 @@ export default class NeutronComponent extends React.PureComponent {
             this.id = model.getUniqueId();
         }
 
-        this.label = props.label;
-        if (!this.label) {
-            this.label = nodeNameToLabel(model.getName());
-        }
-
         if (this.model !== model) {
             if (this.model) {
                 this.model.removeChangeListener(this);
@@ -110,10 +87,15 @@ export default class NeutronComponent extends React.PureComponent {
         newState.componentClass = componentClass;
         newState.disabled = this.model.isEffectivelyDisabled();
 
-        if (this.model.isDirty()) {
-            newState.label = `* ${this.label}`;
+        if (this.props.label) {
+            newState.label = this.props.label;
         } else {
-            newState.label = this.label;
+            newState.label = this.model.getNodeLabel();
+        }
+        if (this.model.isDirty()) {
+            newState.label = `${newState.label} *`;
+        } else {
+            newState.label = `${newState.label} `;
         }
 
         return newState;
