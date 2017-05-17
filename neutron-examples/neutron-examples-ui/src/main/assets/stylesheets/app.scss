@@ -591,6 +591,12 @@ button.link {
 
     table.application-table {
       font-size: 12px;
+      
+      tr {
+        p {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 

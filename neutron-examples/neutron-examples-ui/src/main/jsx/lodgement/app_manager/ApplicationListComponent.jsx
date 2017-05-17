@@ -27,6 +27,8 @@ export default class ApplicationListComponent extends NeutronComponent {
                 headerHeight: height - 1
             });
         };
+
+        this.state.selectedAppId = null;
     }
 
     componentDidMount() {
@@ -50,15 +52,23 @@ export default class ApplicationListComponent extends NeutronComponent {
             const data = result[i]['_source'];
             items.push(
                 <tr key={data.id}>
-                    <td width="10%">{data.lender}</td>
+                    <td width="4%">
+                        <input
+                            tabIndex="0"
+                            type="radio"
+                            name="select_application"
+                            onClick={() => this.setState({selectedAppId: data.id})}
+                        />
+                    </td>
+                    <td width="9%">{data.lender}</td>
                     <td width="14%">
                         <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
                             {renderNames(data.applicants)}
                         </a>
                     </td>
                     <td width="10%">{data.username}</td>
-                    <td width="10%" className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
-                    <td width="10%">{data.status}</td>
+                    <td width="9%" className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
+                    <td width="8%">{data.status}</td>
                     <td width="12%">{CommonUtil.formatDate(data.created)}</td>
                     <td width="12%">{CommonUtil.formatDate(data.updated)}</td>
                     <td width="12%"/>
@@ -87,11 +97,12 @@ export default class ApplicationListComponent extends NeutronComponent {
                     <table className="table application-table-header">
                         <thead>
                         <tr>
-                            <th width="10%">Lender</th>
+                            <th width="4%"/>
+                            <th width="9%">Lender</th>
                             <th width="14%">Applicant Name</th>
                             <th width="10%">Owner</th>
-                            <th width="10%" className="text-right">Loan Amount</th>
-                            <th width="10%">Loan Status</th>
+                            <th width="9%" className="text-right">Loan Amount</th>
+                            <th width="8%">Loan Status</th>
                             <th width="12%">Date Created</th>
                             <th width="12%">Date Updated</th>
                             <th width="12%">Date Lodged</th>

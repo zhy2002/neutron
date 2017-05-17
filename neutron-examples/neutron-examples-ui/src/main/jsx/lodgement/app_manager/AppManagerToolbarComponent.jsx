@@ -10,6 +10,10 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
         this.onRefresh = () => {
             UiService.refreshApplicationList();
         };
+
+        this.notImplemented = () => {
+            alert('This feature is not implemented');
+        };
     }
 
     render() {
@@ -23,6 +27,36 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                             </div>
                             <div>
                                 <small>Create</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0" onClick={this.notImplemented}>
+                            <div>
+                                <span className="glyphicon glyphicon-open"/>
+                            </div>
+                            <div>
+                                <small>Open</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0" onClick={this.notImplemented}>
+                            <div>
+                                <span className="glyphicon glyphicon-copy"/>
+                            </div>
+                            <div>
+                                <small>Clone</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a tabIndex="0" onClick={this.notImplemented}>
+                            <div>
+                                <span className="glyphicon glyphicon-stats"/>
+                            </div>
+                            <div>
+                                <small>Status</small>
                             </div>
                         </a>
                     </li>
