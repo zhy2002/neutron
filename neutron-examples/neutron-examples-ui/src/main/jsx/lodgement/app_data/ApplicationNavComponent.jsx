@@ -12,22 +12,51 @@ export default class ApplicationNavComponent extends NeutronComponent {
         };
     }
 
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.contentNode = this.model.getContentNode();
+        while (newState.contentNode) {
+            if (newState.contentNode.getParent() === this.model)
+                break;
+
+            newState.contentNode = newState.contentNode.getParent();
+        }
+        return newState;
+    }
+
     render() {
         const model = this.model;
+
         return (
             <nav className="navbar navbar-inverse application-nav-component">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getPersonListNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getPersonListNode()}
+                            selected={this.state.contentNode === model.getPersonListNode()}
+                        >
                             <span className="glyphicon glyphicon-user"/> Person
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getCompanyListNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getCompanyListNode()}
+                            selected={this.state.contentNode === model.getCompanyListNode()}
+                        >
                             <span className="glyphicon glyphicon-road"/> Company
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getFinancialPositionNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getFinancialPositionNode()}
+                            selected={this.state.contentNode === model.getFinancialPositionNode()}
+                        >
                             <span className="glyphicon glyphicon-credit-card"/> Financial Position
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getRealEstateListNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getRealEstateListNode()}
+                            selected={this.state.contentNode === model.getRealEstateListNode()}
+                        >
                             <span className="glyphicon glyphicon-home"/> Real Estates
                         </NavDropdownComponent>
                         <NavDropdownComponent
@@ -38,6 +67,7 @@ export default class ApplicationNavComponent extends NeutronComponent {
                                 model.getProductsNode().getProductCustomerContributionListNode(),
                                 model.getProductsNode().getProductFeeListNode()
                             ]}
+                            selected={this.state.contentNode === model.getProductsNode()}
                         >
                             <span className="glyphicon glyphicon-apple"/> Products
                         </NavDropdownComponent>
@@ -48,10 +78,15 @@ export default class ApplicationNavComponent extends NeutronComponent {
                                 model.getAdditionalNode().getAdditionalCommentNode()
                             ]}
                             childList={model.getAdditionalNode().getRelatedPartyListNode()}
+                            selected={this.state.contentNode === model.getAdditionalNode()}
                         >
                             <span className="glyphicon glyphicon-cog"/> Additional
                         </NavDropdownComponent>
-                        <NavDropdownComponent onSelect={this.onSelect} model={model.getSubmissionNode()}>
+                        <NavDropdownComponent
+                            onSelect={this.onSelect}
+                            model={model.getSubmissionNode()}
+                            selected={this.state.contentNode === model.getSubmissionNode()}
+                        >
                             <span className="glyphicon glyphicon-arrow-up"/> Submission
                         </NavDropdownComponent>
                     </ul>
@@ -60,4 +95,3 @@ export default class ApplicationNavComponent extends NeutronComponent {
         );
     }
 }
-

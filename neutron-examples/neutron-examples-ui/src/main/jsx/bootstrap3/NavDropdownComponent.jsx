@@ -13,12 +13,6 @@ export default class NavDropdownComponent extends ListNeutronComponent {
             open: false
         };
 
-        this.toggle = () => {
-            this.setState(
-                state => ({open: !state.open})
-            );
-        };
-
         this.open = () => {
             this.setState({open: true});
         };
@@ -47,7 +41,7 @@ export default class NavDropdownComponent extends ListNeutronComponent {
     }
 
     isModelList() {
-        return !!this.props.model.getItemCount || !!this.props.childList;
+        return !!this.model.getItemCount || !!this.props.childList;
     }
 
     getClass(model, item) {
@@ -111,17 +105,20 @@ export default class NavDropdownComponent extends ListNeutronComponent {
     }
 
     render() {
+        const extraClass = `${this.state.open ? ' open' : ''}${this.props.selected ? ' selected' : ''}`;
+
         return (
             <li
-                className={`nav-dropdown-component dropdown${this.state.open ? ' open' : ''}`}
+                className={`nav-dropdown-component dropdown${extraClass}`}
                 onMouseLeave={this.close}
             >
                 <a
                     tabIndex="0"
                     className="dropdown-toggle"
                     onMouseEnter={this.open}
+
                     onClick={() => {
-                        this.selectItem(this.props.model);
+                        this.selectItem(this.model);
                     }}
                 >
                     {this.props.children}
@@ -140,11 +137,13 @@ NavDropdownComponent.propTypes = {
     onSelect: PropTypes.func.isRequired,
     children: PropTypes.any.isRequired,
     childItems: PropTypes.array,
-    childList: PropTypes.object
+    childList: PropTypes.object,
+    selected: PropTypes.bool
 };
 
 NavDropdownComponent.defaultProps = {
     childItems: [],
-    childList: null
+    childList: null,
+    selected: false
 };
 

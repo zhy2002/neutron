@@ -22,6 +22,24 @@ public abstract class RootUiNode<P extends ParentUiNode<?>> extends ObjectUiNode
     }
 
     @JsMethod
+    public UiNode<?> getContentNode() {
+        int level = getContentLevel();
+        UiNode<?> node = this;
+        while (level-- > 0) {
+            if (node instanceof ObjectUiNode) {
+                ObjectUiNode<?> objectUiNode = (ObjectUiNode<?>) node;
+                node = objectUiNode.getChild(objectUiNode.getSelectedName());
+            } else if (node instanceof ListUiNode) {
+                ListUiNode<?, ?> listUiNode = (ListUiNode<?, ?>) node;
+                node = listUiNode.getItem(listUiNode.getSelectedIndex());
+            } else {
+                break;
+            }
+        }
+        return node == this ? null : node;
+    }
+
+    @JsMethod
     public void setContentNode(UiNode<?> descendant) {
 
         if (descendant == null)

@@ -29,9 +29,26 @@ $has-error-placeholder-color: #d0d0d0;
     }
   }
 
+  label {
+    font-weight: 500;
+  }
+
   select.form-control {
     padding-top: 0;
     padding-bottom: 0;
+  }
+
+  input[type=text].form-control {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+li.nav-dropdown-component.selected {
+  & > a {
+    color: white;
+    font-weight: 500;
+    background-color: #308FD8;
   }
 }
 
@@ -138,6 +155,10 @@ button.link {
 
 .react-datepicker__day-name, .react-datepicker__day {
   margin: 0.5rem !important;
+}
+
+.react-datepicker__year-select {
+  width: 55px;
 }
 
 //endregion
@@ -582,6 +603,10 @@ button.link {
     .application-tabs-component {
       padding-bottom: 1em;
       margin-top: 5px;
+
+      .model-tabs-component {
+        background-color: rgba(100, 100, 200, .33);
+      }
 
       .nav > li > a {
         padding: 5px 10px;
