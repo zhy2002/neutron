@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
@@ -53,6 +54,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * This is not put into state for debugging convenience.
      */
     private String path;
+
+    /**
+     * The JS object that stores the persisted identity of this node.
+     */
+    private final NodeIdentity nodeIdentity;
+
     /**
      * The life cycle status of this node.
      */
@@ -118,10 +125,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.parent = parent;
         this.context = context;
         this.name = name;
-        this.uniqueId = context.getUniqueId();
+        this.nodeIdentity = context.getNodeIdentity();
+        if (this.nodeIdentity == null) {
+            this.uniqueId = context.generateNodeId();
+        } else {
+            this.uniqueId = context.generateNodeId(nodeIdentity.getLocalId());
+        }
         this.nodeStatus = NodeStatusEnum.Detached;
-
-        //setChangeTrackingMode(NeutronConstants.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
     }
 
     /**
@@ -149,6 +159,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     @NotNull
     public final String getName() {
         return name;
+    }
+
+    protected NodeIdentity getNodeIdentity() {
+        return nodeIdentity;
     }
 
     /**

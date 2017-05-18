@@ -2,6 +2,7 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.NodeDataStore;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.NeutronConstants;
@@ -18,14 +19,18 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     private R root;
     private boolean dirtyCheckEnabled;
     private String contextId;
-    private NodeDataStore nodeDataStore;
+    /**
+     * If re-creating an existing application,
+     * this is the node identity of the root node.
+     * In construction phase this can be nodeIdentity of any node or null.
+     * Afterwards this is always null.
+     */
+    private NodeIdentity nodeIdentity;
 
     @Inject
     EventRegistry eventRegistry;
     @Inject
     UiNodeChangeEngine changeEngine;
-    @Inject
-    UniqueIdGenerator nodeIdGenerator;
     @Inject
     NodeFinder nodeFinder;
     @Inject
@@ -33,14 +38,15 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @Inject
     void injectNodeDataStore(NodeDataStore nodeDataStore) {
-        this.nodeDataStore = nodeDataStore;
-        contextId = ValueUtil.ifNull(this.nodeDataStore.getContextId(), RandomUniqueIdGenerator.Instance.next()) ;
+        this.nodeIdentity = nodeDataStore.getNodeIdentity();
+        contextId = ValueUtil.ifNull(nodeDataStore.getContextId(), RandomUniqueIdGenerator.Instance.next());
     }
 
     @JsMethod
     public String getContextId() {
         return contextId;
     }
+
 
     /**
      * {@inheritDoc}
@@ -49,6 +55,16 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     public final <T> StateChangeEvent<T> createStateChangeEvent(UiNode<?> origin, String key, Class<T> valueClass, T oldValue, T newValue) {
         StateChangeEventFactory<T> factory = eventRegistry.getStateChangeEventFactory(valueClass);
         return factory.create(origin, key, oldValue, newValue);
+    }
+
+    @Override
+    public void setNodeIdentity(NodeIdentity nodeIdentity) {
+        this.nodeIdentity = nodeIdentity;
+    }
+
+    @Override
+    public NodeIdentity getNodeIdentity() {
+        return nodeIdentity;
     }
 
     @Override
@@ -83,8 +99,19 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * @return a unique string value.
      */
     @Override
-    public final String getUniqueId() {
-        return contextId + "-" + nodeIdGenerator.next();
+    public final String generateNodeId() {
+        String newId = null;
+        while (newId == null) {
+            newId = contextId + "-" + RandomUniqueIdGenerator.Instance.nextShort();
+            if (nodeFinder.findNodeById(newId) != null) {
+                newId = null;
+            }
+        }
+        return newId;
+    }
+
+    public final String generateNodeId(String localId) {
+        return contextId + "-" + localId;
     }
 
     /**

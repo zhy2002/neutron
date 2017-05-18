@@ -8,7 +8,7 @@ import java.util.Random;
 public class RandomUniqueIdGenerator implements UniqueIdGenerator {
 
     //todo This seed is not secure enough. Need to retrieve this from the server side.
-    public static final UniqueIdGenerator Instance = new RandomUniqueIdGenerator((int) System.currentTimeMillis());
+    public static final RandomUniqueIdGenerator Instance = new RandomUniqueIdGenerator((int) System.currentTimeMillis());
     private Random random;
 
     RandomUniqueIdGenerator(int seed) {
@@ -16,9 +16,17 @@ public class RandomUniqueIdGenerator implements UniqueIdGenerator {
     }
 
     public String next() {
+        return next(3);
+    }
+
+    public String nextShort() {
+        return next(2);
+    }
+
+    private String next(int times) {
         int upperBound = 62 * 62 * 62 * 62;
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < times; i++) {
             int rand = random.nextInt(upperBound);
             addToResult(result, rand);
         }

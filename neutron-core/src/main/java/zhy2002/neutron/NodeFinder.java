@@ -14,7 +14,8 @@ import java.util.Map;
 @Singleton
 public class NodeFinder {
 
-    private final Map<String, UiNode<?>> nodeMap = new HashMap<>();
+    private final Map<String, UiNode<?>> mapPathToNode = new HashMap<>();
+    private final Map<String, UiNode<?>> mapIdToNode = new HashMap<>();
 
     @Inject
     public NodeFinder() {
@@ -23,14 +24,22 @@ public class NodeFinder {
     @JsMethod
     @SuppressWarnings("unchecked")
     public <N extends UiNode<?>> N findNodeByPath(@NotNull String path) {
-        return (N) nodeMap.get(path);
+        return (N) mapPathToNode.get(path);
+    }
+
+    @JsMethod
+    @SuppressWarnings("unchecked")
+    public <N extends UiNode<?>> N findNodeById(@NotNull String path) {
+        return (N) mapIdToNode.get(path);
     }
 
     public void registerNode(UiNode<?> node) {
-        nodeMap.put(node.getPath(), node);
+        mapPathToNode.put(node.getPath(), node);
+        mapIdToNode.put(node.getUniqueId(), node);
     }
 
     public void deregisterNode(UiNode<?> node) {
-        nodeMap.remove(node.getPath());
+        mapPathToNode.remove(node.getPath());
+        mapIdToNode.remove(node.getUniqueId());
     }
 }

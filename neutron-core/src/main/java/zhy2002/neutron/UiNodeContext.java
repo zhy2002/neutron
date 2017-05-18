@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.node.VoidUiNode;
 
 /**
@@ -10,12 +11,16 @@ import zhy2002.neutron.node.VoidUiNode;
  */
 public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleStatus, UiNodeChangeEngine {
 
+    String generateNodeId(String localId);
+
     /**
-     * Get an automatically generate unique id.
-     *
-     * @return a unique id in this context.
+     * @return the next node id in sequence.
      */
-    String getUniqueId();
+    String generateNodeId();
+
+    NodeIdentity getNodeIdentity();
+
+    void setNodeIdentity(NodeIdentity nodeIdentity);
 
     /**
      * Get the root ui node of this context.
