@@ -110,16 +110,27 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("companyContactFirstNameNode");
         children.add(childFactory.createCompanyContactFirstNameNode());
+        setChildNodeIdentity("companyContactLastNameNode");
         children.add(childFactory.createCompanyContactLastNameNode());
+        setChildNodeIdentity("workPhoneNode");
         children.add(childFactory.createWorkPhoneNode());
+        setChildNodeIdentity("faxNumberNode");
         children.add(childFactory.createFaxNumberNode());
+        setChildNodeIdentity("companyMobileNumberNode");
         children.add(childFactory.createCompanyMobileNumberNode());
+        setChildNodeIdentity("companyEmailNode");
         children.add(childFactory.createCompanyEmailNode());
+        setChildNodeIdentity("registeredAddressNode");
         children.add(childFactory.createRegisteredAddressNode());
+        setChildNodeIdentity("postalAddressNode");
         children.add(childFactory.createPostalAddressNode());
+        setChildNodeIdentity("tradingAddressNode");
         children.add(childFactory.createTradingAddressNode());
+        setChildNodeIdentity("principalPlaceAddressNode");
         children.add(childFactory.createPrincipalPlaceAddressNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

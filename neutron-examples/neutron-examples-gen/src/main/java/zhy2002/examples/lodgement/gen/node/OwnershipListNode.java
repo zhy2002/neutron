@@ -32,6 +32,7 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
 
     @Override
     public NodeAddEvent<OwnershipNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

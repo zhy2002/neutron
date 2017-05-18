@@ -70,9 +70,13 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("usageNode");
         children.add(childFactory.createUsageNode());
+        setChildNodeIdentity("propertyNode");
         children.add(childFactory.createPropertyNode());
+        setChildNodeIdentity("accessNode");
         children.add(childFactory.createAccessNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -65,8 +65,11 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("productDescriptionNode");
         children.add(childFactory.createProductDescriptionNode());
+        setChildNodeIdentity("productFeaturesNode");
         children.add(childFactory.createProductFeaturesNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

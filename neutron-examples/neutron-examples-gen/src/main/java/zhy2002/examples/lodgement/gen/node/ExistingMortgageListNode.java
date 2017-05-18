@@ -61,6 +61,7 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
 
     @Override
     public NodeAddEvent<ExistingMortgageNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

@@ -119,19 +119,33 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("mortgageLenderInstitutionNode");
         children.add(childFactory.createMortgageLenderInstitutionNode());
+        setChildNodeIdentity("mortgqageUnpaidBalanceNode");
         children.add(childFactory.createMortgqageUnpaidBalanceNode());
+        setChildNodeIdentity("mortgageLimitAmountNode");
         children.add(childFactory.createMortgageLimitAmountNode());
+        setChildNodeIdentity("mortgageMonthlyRepaymentNode");
         children.add(childFactory.createMortgageMonthlyRepaymentNode());
+        setChildNodeIdentity("mortgageBorrowerRateNode");
         children.add(childFactory.createMortgageBorrowerRateNode());
+        setChildNodeIdentity("mortgageLoanTypeNode");
         children.add(childFactory.createMortgageLoanTypeNode());
+        setChildNodeIdentity("mortgageLoanTermExpiryDateNode");
         children.add(childFactory.createMortgageLoanTermExpiryDateNode());
+        setChildNodeIdentity("mortgageInterestOnlyExpiryDateNode");
         children.add(childFactory.createMortgageInterestOnlyExpiryDateNode());
+        setChildNodeIdentity("mortgageClearingFlagNode");
         children.add(childFactory.createMortgageClearingFlagNode());
+        setChildNodeIdentity("mortgageBreakFeeNode");
         children.add(childFactory.createMortgageBreakFeeNode());
+        setChildNodeIdentity("mortgageChargePositionNode");
         children.add(childFactory.createMortgageChargePositionNode());
+        setChildNodeIdentity("mortgageTermRemainingPeriodNode");
         children.add(childFactory.createMortgageTermRemainingPeriodNode());
+        setChildNodeIdentity("mortgageInterestOnlyRemainingPeriodNode");
         children.add(childFactory.createMortgageInterestOnlyRemainingPeriodNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

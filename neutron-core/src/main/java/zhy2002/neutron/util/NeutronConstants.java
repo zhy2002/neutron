@@ -15,7 +15,6 @@ public final class NeutronConstants {
     public static final String VALUE = "value";
     public static final String ORIGINAL_VALUE = "original_value";
     public static final String READONLY = "readonly";
-    public static final String SELF_DIRTY = "self_dirty";
     public static final String DEFAULT_REFRESH_REASON = "";
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";
     public static final String RESET_DIRTY_REFRESH_REASON = "RESET_DIRTY";

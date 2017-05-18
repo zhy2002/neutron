@@ -115,17 +115,29 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("homePhoneNode");
         children.add(childFactory.createHomePhoneNode());
+        setChildNodeIdentity("workPhoneNode");
         children.add(childFactory.createWorkPhoneNode());
+        setChildNodeIdentity("faxNumberNode");
         children.add(childFactory.createFaxNumberNode());
+        setChildNodeIdentity("personMobileNumberNode");
         children.add(childFactory.createPersonMobileNumberNode());
+        setChildNodeIdentity("personEmailNode");
         children.add(childFactory.createPersonEmailNode());
+        setChildNodeIdentity("currentAddressNode");
         children.add(childFactory.createCurrentAddressNode());
+        setChildNodeIdentity("movedToCurrentAddressNode");
         children.add(childFactory.createMovedToCurrentAddressNode());
+        setChildNodeIdentity("postalAddressNode");
         children.add(childFactory.createPostalAddressNode());
+        setChildNodeIdentity("previousAddressNode");
         children.add(childFactory.createPreviousAddressNode());
+        setChildNodeIdentity("movedToPreviousAddressNode");
         children.add(childFactory.createMovedToPreviousAddressNode());
+        setChildNodeIdentity("movedFromPreviousAddressNode");
         children.add(childFactory.createMovedFromPreviousAddressNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

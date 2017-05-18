@@ -95,14 +95,23 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("personGeneralNode");
         children.add(childFactory.createPersonGeneralNode());
+        setChildNodeIdentity("personContactNode");
         children.add(childFactory.createPersonContactNode());
+        setChildNodeIdentity("currentEmploymentListNode");
         children.add(childFactory.createCurrentEmploymentListNode());
+        setChildNodeIdentity("previousEmploymentListNode");
         children.add(childFactory.createPreviousEmploymentListNode());
+        setChildNodeIdentity("personTrustNode");
         children.add(childFactory.createPersonTrustNode());
+        setChildNodeIdentity("personPrivacyNode");
         children.add(childFactory.createPersonPrivacyNode());
+        setChildNodeIdentity("personOtherIncomeListNode");
         children.add(childFactory.createPersonOtherIncomeListNode());
+        setChildNodeIdentity("personResponsibleLendNode");
         children.add(childFactory.createPersonResponsibleLendNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

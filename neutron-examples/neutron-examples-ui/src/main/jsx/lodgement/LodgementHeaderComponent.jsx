@@ -34,7 +34,12 @@ export default class LodgementHeaderComponent extends React.PureComponent {
                     selectTab={LodgementService.selectTab}
                     closeTab={LodgementService.closeTab}
                 />
-                <LodgementToolbarComponent model={selectedModel} onNewApp={LodgementService.newApp}/>
+                <LodgementToolbarComponent
+                    model={selectedModel}
+                    onNewApp={LodgementService.newApp}
+                    onOpenApp={LodgementService.openApp}
+                    onCloneApp={LodgementService.cloneApp}
+                />
             </ResizeAware>
         );
     }

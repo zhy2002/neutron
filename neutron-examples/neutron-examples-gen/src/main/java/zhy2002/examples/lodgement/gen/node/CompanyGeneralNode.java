@@ -130,20 +130,35 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("companyApplicantTypeNode");
         children.add(childFactory.createCompanyApplicantTypeNode());
+        setChildNodeIdentity("companyPrimaryApplicantFlagNode");
         children.add(childFactory.createCompanyPrimaryApplicantFlagNode());
+        setChildNodeIdentity("companyApplicationTypeNode");
         children.add(childFactory.createCompanyApplicationTypeNode());
+        setChildNodeIdentity("companyRegisteredNameNode");
         children.add(childFactory.createCompanyRegisteredNameNode());
+        setChildNodeIdentity("companyTypeNode");
         children.add(childFactory.createCompanyTypeNode());
+        setChildNodeIdentity("companyDescriptionNode");
         children.add(childFactory.createCompanyDescriptionNode());
+        setChildNodeIdentity("companyIndustryNode");
         children.add(childFactory.createCompanyIndustryNode());
+        setChildNodeIdentity("companyAbnNode");
         children.add(childFactory.createCompanyAbnNode());
+        setChildNodeIdentity("companyAcnNode");
         children.add(childFactory.createCompanyAcnNode());
+        setChildNodeIdentity("companyAbrnNode");
         children.add(childFactory.createCompanyAbrnNode());
+        setChildNodeIdentity("companyRegistrationDateNode");
         children.add(childFactory.createCompanyRegistrationDateNode());
+        setChildNodeIdentity("companyRegistrationStateNode");
         children.add(childFactory.createCompanyRegistrationStateNode());
+        setChildNodeIdentity("companySelectDirectorNode");
         children.add(childFactory.createCompanySelectDirectorNode());
+        setChildNodeIdentity("companySelectBeneficialOwnerNode");
         children.add(childFactory.createCompanySelectBeneficialOwnerNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -135,21 +135,37 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("productGroupNode");
         children.add(childFactory.createProductGroupNode());
+        setChildNodeIdentity("productNameNode");
         children.add(childFactory.createProductNameNode());
+        setChildNodeIdentity("productLoanPrimaryPurposeNode");
         children.add(childFactory.createProductLoanPrimaryPurposeNode());
+        setChildNodeIdentity("productLendingPurposeNode");
         children.add(childFactory.createProductLendingPurposeNode());
+        setChildNodeIdentity("productRequestedAmountNode");
         children.add(childFactory.createProductRequestedAmountNode());
+        setChildNodeIdentity("productTotalLoanTermNode");
         children.add(childFactory.createProductTotalLoanTermNode());
+        setChildNodeIdentity("productPaymentTypeNode");
         children.add(childFactory.createProductPaymentTypeNode());
+        setChildNodeIdentity("productInterestOnlyTermNode");
         children.add(childFactory.createProductInterestOnlyTermNode());
+        setChildNodeIdentity("productFixedTermNode");
         children.add(childFactory.createProductFixedTermNode());
+        setChildNodeIdentity("productConstructionApplicationFlagNode");
         children.add(childFactory.createProductConstructionApplicationFlagNode());
+        setChildNodeIdentity("productCostRecuctionFlagNode");
         children.add(childFactory.createProductCostRecuctionFlagNode());
+        setChildNodeIdentity("productConsolidationFlagNode");
         children.add(childFactory.createProductConsolidationFlagNode());
+        setChildNodeIdentity("productDissatisfactionFlagNode");
         children.add(childFactory.createProductDissatisfactionFlagNode());
+        setChildNodeIdentity("productSpecificFeaturesFlagNode");
         children.add(childFactory.createProductSpecificFeaturesFlagNode());
+        setChildNodeIdentity("productAccountHolderListNode");
         children.add(childFactory.createProductAccountHolderListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

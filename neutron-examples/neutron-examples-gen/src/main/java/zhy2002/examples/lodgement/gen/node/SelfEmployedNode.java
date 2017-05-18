@@ -75,9 +75,13 @@ public class SelfEmployedNode extends EmployedNode {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("businessTypeNode");
         children.add(childFactory.createBusinessTypeNode());
+        setChildNodeIdentity("profitThisYearNode");
         children.add(childFactory.createProfitThisYearNode());
+        setChildNodeIdentity("profitPreviousYearNode");
         children.add(childFactory.createProfitPreviousYearNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

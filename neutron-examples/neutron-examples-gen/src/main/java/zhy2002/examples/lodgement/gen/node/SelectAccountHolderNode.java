@@ -64,8 +64,11 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("accountHolderReferenceNode");
         children.add(childFactory.createAccountHolderReferenceNode());
+        setChildNodeIdentity("selectAccountHolderFlagNode");
         children.add(childFactory.createSelectAccountHolderFlagNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

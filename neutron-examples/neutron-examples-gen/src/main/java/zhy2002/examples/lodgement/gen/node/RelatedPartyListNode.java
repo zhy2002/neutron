@@ -61,6 +61,7 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
 
     @Override
     public NodeAddEvent<RelatedPartyNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

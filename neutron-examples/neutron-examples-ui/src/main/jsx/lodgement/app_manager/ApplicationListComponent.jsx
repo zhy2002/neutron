@@ -4,7 +4,7 @@ import ResizeAware from 'react-resize-aware';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import CommonUtil from '../services/CommonUtil';
 import LocationService from '../services/LocationService';
-
+import LodgementService from '../services/LodgementService';
 
 function renderNames(array) {
     const result = [];
@@ -27,8 +27,6 @@ export default class ApplicationListComponent extends NeutronComponent {
                 headerHeight: height - 1
             });
         };
-
-        this.state.selectedAppId = null;
     }
 
     componentDidMount() {
@@ -57,12 +55,12 @@ export default class ApplicationListComponent extends NeutronComponent {
                             tabIndex="0"
                             type="radio"
                             name="select_application"
-                            onClick={() => this.setState({selectedAppId: data.id})}
+                            onClick={() => LodgementService.setCurrentAppId(data.id)}
                         />
                     </td>
                     <td width="9%">{data.lender}</td>
                     <td width="14%">
-                        <a tabIndex="0" onClick={() => this.props.onLoadApp(data.id)}>
+                        <a tabIndex="0" onClick={() => LodgementService.openApp(data.id)}>
                             {renderNames(data.applicants)}
                         </a>
                     </td>
@@ -126,6 +124,5 @@ export default class ApplicationListComponent extends NeutronComponent {
 }
 
 ApplicationListComponent.propTypes = {
-    model: PropTypes.object.isRequired,
-    onLoadApp: PropTypes.func.isRequired
+    model: PropTypes.object.isRequired
 };

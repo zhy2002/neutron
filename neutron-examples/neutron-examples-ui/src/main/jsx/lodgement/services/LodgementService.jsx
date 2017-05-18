@@ -8,32 +8,13 @@ let openApps = [];
 let selectedIndex = 0;
 let headerHeight = NaN;
 let footerHeight = NaN;
+let currentAppId = null;
 
 const hashChangeHandlers = []; //notify state is changed
 const appTabOffset = 1; //the first is app manager tab
 
 function notifyStateChange() {
     hashChangeHandlers.forEach(h => h());
-}
-
-function createAppModel(node, path) {
-    const model = UiService.createApplicationNode();
-    const context = model.getContext();
-    context.beginSession();
-    model.setLoading(true);
-    CommonUtil.setValue(model, node);
-    model.setLoading(false);
-    context.commitSession();
-    console.debug(`loaded app ${node.id}`);
-
-    if (path) {
-        model.getContext().beginSession();
-        model.selectDescendant(path); //this handles ...[?selected=tabName]
-        model.getContext().commitSession();
-        console.debug(`selected path ${path}`);
-    }
-
-    return CommonUtil.defer(model);
 }
 
 function createAppTab(newApp) {
@@ -58,12 +39,22 @@ export default class LodgementService {
     }
 
     static newApp() {
-        const newApp = UiService.createApplicationNode();
-        console.debug('created new app');
-        return createAppTab(newApp);
+        return UiService.createApplicationNode().then(createAppTab);
     }
 
-    static loadApp(id, path) {
+    static openApp(appId, path) {
+        let id = null;
+        if (typeof appId === 'string') {
+            id = appId;
+        }
+        if (!id) {
+            id = currentAppId;
+            if (!id) {
+                alert('No application is selected.');
+                return CommonUtil.defer(null);
+            }
+        }
+
         //check if app is already opened
         for (let i = 0; i < openApps.length; i++) {
             const app = openApps[i];
@@ -75,18 +66,42 @@ export default class LodgementService {
             }
         }
 
-        //load new app
+        //load existing app
         CommonUtil.setIsLoading(true);
-        return StorageService.getApplication(id).then(
-            node => createAppModel(node, path)
-        ).then(
-            createAppTab
-        ).then(
-            (model) => {
-                CommonUtil.setIsLoading(false);
-                return CommonUtil.defer(model);
+        return StorageService.getApplication(id)
+            .then(node => UiService.restoreApplicationNode(node, path))
+            .then(createAppTab)
+            .then(
+                (model) => {
+                    CommonUtil.setIsLoading(false);
+                    return CommonUtil.defer(model);
+                }
+            );
+    }
+
+    static cloneApp(appId, path) {
+        let id = null;
+        if (typeof appId === 'string') {
+            id = appId;
+        }
+        if (!id) {
+            id = currentAppId;
+            if (!id) {
+                alert('No application is selected.');
+                return CommonUtil.defer(null);
             }
-        );
+        }
+
+        CommonUtil.setIsLoading(true);
+        return StorageService.getApplication(id)
+            .then(node => UiService.cloneApplicationNode(node, path))
+            .then(createAppTab)
+            .then(
+                (model) => {
+                    CommonUtil.setIsLoading(false);
+                    return CommonUtil.defer(model);
+                }
+            );
     }
 
     static selectTab(index) {
@@ -130,6 +145,10 @@ export default class LodgementService {
             headerHeight,
             footerHeight
         };
+    }
+
+    static setCurrentAppId(id) {
+        currentAppId = id;
     }
 
     static addHashChangeHandler(func) {

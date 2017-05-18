@@ -79,11 +79,17 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("otherIncomeAddBackTypeNode");
         children.add(childFactory.createOtherIncomeAddBackTypeNode());
+        setChildNodeIdentity("otherIncomeAmountNode");
         children.add(childFactory.createOtherIncomeAmountNode());
+        setChildNodeIdentity("otherIncomeDescriptionNode");
         children.add(childFactory.createOtherIncomeDescriptionNode());
+        setChildNodeIdentity("otherIncomePreviousYearNode");
         children.add(childFactory.createOtherIncomePreviousYearNode());
+        setChildNodeIdentity("otherIncomeTypeNode");
         children.add(childFactory.createOtherIncomeTypeNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

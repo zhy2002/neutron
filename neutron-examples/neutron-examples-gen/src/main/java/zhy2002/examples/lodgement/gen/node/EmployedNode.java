@@ -61,13 +61,21 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("employmentStatusNode");
         children.add(childFactory.createEmploymentStatusNode());
+        setChildNodeIdentity("occupationNode");
         children.add(childFactory.createOccupationNode());
+        setChildNodeIdentity("employerNameNode");
         children.add(childFactory.createEmployerNameNode());
+        setChildNodeIdentity("employerAddressNode");
         children.add(childFactory.createEmployerAddressNode());
+        setChildNodeIdentity("employerPhoneNode");
         children.add(childFactory.createEmployerPhoneNode());
+        setChildNodeIdentity("employmentStartedNode");
         children.add(childFactory.createEmploymentStartedNode());
+        setChildNodeIdentity("employmentEndedNode");
         children.add(childFactory.createEmploymentEndedNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

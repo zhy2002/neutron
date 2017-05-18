@@ -69,9 +69,13 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("contributionTypeNode");
         children.add(childFactory.createContributionTypeNode());
+        setChildNodeIdentity("contributionDescriptionNode");
         children.add(childFactory.createContributionDescriptionNode());
+        setChildNodeIdentity("contributionAmountNode");
         children.add(childFactory.createContributionAmountNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -175,22 +175,39 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("idNode");
         children.add(childFactory.createIdNode());
+        setChildNodeIdentity("statusNode");
         children.add(childFactory.createStatusNode());
+        setChildNodeIdentity("owningUserNode");
         children.add(childFactory.createOwningUserNode());
+        setChildNodeIdentity("lenderNode");
         children.add(childFactory.createLenderNode());
+        setChildNodeIdentity("dateCreatedNode");
         children.add(childFactory.createDateCreatedNode());
+        setChildNodeIdentity("dateUpdatedNode");
         children.add(childFactory.createDateUpdatedNode());
+        setChildNodeIdentity("dateLodgedNode");
         children.add(childFactory.createDateLodgedNode());
+        setChildNodeIdentity("addressRefListNode");
         children.add(childFactory.createAddressRefListNode());
+        setChildNodeIdentity("personListNode");
         children.add(childFactory.createPersonListNode());
+        setChildNodeIdentity("companyListNode");
         children.add(childFactory.createCompanyListNode());
+        setChildNodeIdentity("financialPositionNode");
         children.add(childFactory.createFinancialPositionNode());
+        setChildNodeIdentity("realEstateListNode");
         children.add(childFactory.createRealEstateListNode());
+        setChildNodeIdentity("productsNode");
         children.add(childFactory.createProductsNode());
+        setChildNodeIdentity("additionalNode");
         children.add(childFactory.createAdditionalNode());
+        setChildNodeIdentity("submissionNode");
         children.add(childFactory.createSubmissionNode());
+        setChildNodeIdentity("errorListNode");
         children.add(childFactory.createErrorListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

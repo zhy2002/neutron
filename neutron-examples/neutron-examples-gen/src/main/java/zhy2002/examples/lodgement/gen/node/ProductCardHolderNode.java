@@ -75,9 +75,13 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("productCardHodlerNameNode");
         children.add(childFactory.createProductCardHodlerNameNode());
+        setChildNodeIdentity("productRewardsProgramNode");
         children.add(childFactory.createProductRewardsProgramNode());
+        setChildNodeIdentity("productRewardsMembershipNode");
         children.add(childFactory.createProductRewardsMembershipNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

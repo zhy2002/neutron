@@ -10,5 +10,5 @@ public interface NodeIdentity {
 
     String getName();
 
-    NodeIdentityMap getNodeDataMap();
+    NodeIdentityMap getNodeIdentityMap();
 }

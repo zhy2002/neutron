@@ -31,6 +31,7 @@ export default class ModelTabsComponent extends ListNeutronComponent {
                     items={tabItems}
                     selectedItem={this.state.selectedItem}
                     onSelect={this.selectTab}
+                    large
                 />
             </div>
         );

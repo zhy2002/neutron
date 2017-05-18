@@ -81,17 +81,29 @@ public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiN
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("trustNameNode");
         children.add(childFactory.createTrustNameNode());
+        setChildNodeIdentity("trustRegistrationDateNode");
         children.add(childFactory.createTrustRegistrationDateNode());
+        setChildNodeIdentity("trustTypeNode");
         children.add(childFactory.createTrustTypeNode());
+        setChildNodeIdentity("trustCountryNode");
         children.add(childFactory.createTrustCountryNode());
+        setChildNodeIdentity("trustAddressNode");
         children.add(childFactory.createTrustAddressNode());
+        setChildNodeIdentity("trustIndustryNode");
         children.add(childFactory.createTrustIndustryNode());
+        setChildNodeIdentity("trustSettlorNotRequiredReasonNode");
         children.add(childFactory.createTrustSettlorNotRequiredReasonNode());
+        setChildNodeIdentity("trustBeneficiaryListNode");
         children.add(childFactory.createTrustBeneficiaryListNode());
+        setChildNodeIdentity("trustSettlorListNode");
         children.add(childFactory.createTrustSettlorListNode());
+        setChildNodeIdentity("trustBeneficialOwnerListNode");
         children.add(childFactory.createTrustBeneficialOwnerListNode());
+        setChildNodeIdentity("trustBeneficiaryClassListNode");
         children.add(childFactory.createTrustBeneficiaryClassListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

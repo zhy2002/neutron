@@ -73,7 +73,9 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("appManagerNode");
         children.add(childFactory.createAppManagerNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

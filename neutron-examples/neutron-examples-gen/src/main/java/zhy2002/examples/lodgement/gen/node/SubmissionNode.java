@@ -105,15 +105,25 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("brokerFirstNameNode");
         children.add(childFactory.createBrokerFirstNameNode());
+        setChildNodeIdentity("brokerLastNameNode");
         children.add(childFactory.createBrokerLastNameNode());
+        setChildNodeIdentity("brokerCompanyNode");
         children.add(childFactory.createBrokerCompanyNode());
+        setChildNodeIdentity("contactNumberNode");
         children.add(childFactory.createContactNumberNode());
+        setChildNodeIdentity("faxNumberNode");
         children.add(childFactory.createFaxNumberNode());
+        setChildNodeIdentity("mobileNumberNode");
         children.add(childFactory.createMobileNumberNode());
+        setChildNodeIdentity("brokerEmailNode");
         children.add(childFactory.createBrokerEmailNode());
+        setChildNodeIdentity("brokerAddressNode");
         children.add(childFactory.createBrokerAddressNode());
+        setChildNodeIdentity("lenderIssuedBrokerNumberNode");
         children.add(childFactory.createLenderIssuedBrokerNumberNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

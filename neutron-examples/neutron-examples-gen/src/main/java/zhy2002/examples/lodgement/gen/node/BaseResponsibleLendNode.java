@@ -46,10 +46,15 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("responsibleTypeOfChangeNode");
         children.add(childFactory.createResponsibleTypeOfChangeNode());
+        setChildNodeIdentity("responsibleMitigationMethodNode");
         children.add(childFactory.createResponsibleMitigationMethodNode());
+        setChildNodeIdentity("responsibleSignificantChangeFlagNode");
         children.add(childFactory.createResponsibleSignificantChangeFlagNode());
+        setChildNodeIdentity("responsibleRepaymentDifficultyNode");
         children.add(childFactory.createResponsibleRepaymentDifficultyNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

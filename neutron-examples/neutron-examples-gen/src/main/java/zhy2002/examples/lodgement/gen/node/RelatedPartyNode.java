@@ -104,16 +104,27 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("thirdPartyTypeNode");
         children.add(childFactory.createThirdPartyTypeNode());
+        setChildNodeIdentity("thirdPartyDescriptionNode");
         children.add(childFactory.createThirdPartyDescriptionNode());
+        setChildNodeIdentity("thirdPartyTitleNode");
         children.add(childFactory.createThirdPartyTitleNode());
+        setChildNodeIdentity("thirdPartyFirstNameNode");
         children.add(childFactory.createThirdPartyFirstNameNode());
+        setChildNodeIdentity("thirdPartyLastNameNode");
         children.add(childFactory.createThirdPartyLastNameNode());
+        setChildNodeIdentity("thirdPartyDobNode");
         children.add(childFactory.createThirdPartyDobNode());
+        setChildNodeIdentity("thirdPartyCompanyNameNode");
         children.add(childFactory.createThirdPartyCompanyNameNode());
+        setChildNodeIdentity("thirdPartyAddressNode");
         children.add(childFactory.createThirdPartyAddressNode());
+        setChildNodeIdentity("thirdPartyWorkPhoneNode");
         children.add(childFactory.createThirdPartyWorkPhoneNode());
+        setChildNodeIdentity("thirdPartyEmailNode");
         children.add(childFactory.createThirdPartyEmailNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

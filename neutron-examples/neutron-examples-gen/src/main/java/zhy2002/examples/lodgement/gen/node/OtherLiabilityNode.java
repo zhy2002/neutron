@@ -94,14 +94,23 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("otherLiabilityTypeNode");
         children.add(childFactory.createOtherLiabilityTypeNode());
+        setChildNodeIdentity("otherLiabilityDescriptionNode");
         children.add(childFactory.createOtherLiabilityDescriptionNode());
+        setChildNodeIdentity("otherLiabilityLimitAmountNode");
         children.add(childFactory.createOtherLiabilityLimitAmountNode());
+        setChildNodeIdentity("otherLiabilityAmountOwningNode");
         children.add(childFactory.createOtherLiabilityAmountOwningNode());
+        setChildNodeIdentity("otherLiabilityMonthlyRepaymentNode");
         children.add(childFactory.createOtherLiabilityMonthlyRepaymentNode());
+        setChildNodeIdentity("otherLiabilityClearingFlagNode");
         children.add(childFactory.createOtherLiabilityClearingFlagNode());
+        setChildNodeIdentity("otherLiabilityBreakCostNode");
         children.add(childFactory.createOtherLiabilityBreakCostNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

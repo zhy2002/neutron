@@ -10,7 +10,7 @@ function restoreLodgementState(newHash/*format: appId/path_to_content_node[?sele
     const appId = newHash.substr(0, index >= 0 ? index : newHash.length);
     const path = index >= 0 ? newHash.substr(index + 1) : '';
 
-    return LodgementService.loadApp(appId, path).catch(
+    return LodgementService.openApp(appId, path).catch(
         () => {
             LodgementService.selectTab(0);
             return null;

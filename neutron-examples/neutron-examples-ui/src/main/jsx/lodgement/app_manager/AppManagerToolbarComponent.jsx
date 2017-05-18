@@ -31,7 +31,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0" onClick={this.notImplemented}>
+                        <a tabIndex="0" onClick={this.props.onOpenApp}>
                             <div>
                                 <span className="glyphicon glyphicon-open"/>
                             </div>
@@ -41,7 +41,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                         </a>
                     </li>
                     <li>
-                        <a tabIndex="0" onClick={this.notImplemented}>
+                        <a tabIndex="0" onClick={this.props.onCloneApp}>
                             <div>
                                 <span className="glyphicon glyphicon-copy"/>
                             </div>
@@ -77,5 +77,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
 }
 
 AppManagerToolbarComponent.propTypes = {
-    onNewApp: PropTypes.func.isRequired
+    onNewApp: PropTypes.func.isRequired,
+    onOpenApp: PropTypes.func.isRequired,
+    onCloneApp: PropTypes.func.isRequired
 };

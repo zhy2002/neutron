@@ -66,6 +66,7 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
 
     @Override
     public NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

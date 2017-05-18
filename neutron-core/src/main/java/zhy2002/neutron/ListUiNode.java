@@ -4,6 +4,8 @@ import com.google.common.base.Joiner;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.NodeIdentity;
+import zhy2002.neutron.data.NodeIdentityMap;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
@@ -42,6 +44,23 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
      * @return the class object of item type.
      */
     public abstract Class<N> getItemClass();
+
+    @Override
+    protected void addContent() {
+        createItems();
+
+        super.addContent();
+    }
+
+    private void createItems() {
+        List<NodeIdentity> nodeIdentities = getItemNodeIdentities();
+        nodeIdentities.sort(Comparator.comparingInt(identity -> Integer.parseInt(identity.getName())));
+        for (NodeIdentity identity : nodeIdentities) {
+            getContext().setNodeIdentity(identity);
+            getContext().addPendingChangeEvent(createItemAddEvent(identity.getName()));
+        }
+        getContext().setNodeIdentity(null);
+    }
 
     /**
      * Create an item with a specified name.
@@ -137,8 +156,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
      */
     @JsMethod
     public final N createItemWithName(String name) {
-        int index = Integer.parseInt(name);
-
         NodeAddEvent<N> event = createItemAddEvent(name);
         if (isInDirectChangeMode()) {
             event.apply();
@@ -146,10 +163,14 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
             getContext().processEvent(event);
         }
 
+        return event.getOrigin();
+    }
+
+    protected void ensureSequenceNumber(String name) {
+        int index = Integer.parseInt(name);
         if (childSequenceNumber <= index) {
             childSequenceNumber = index + 1;
         }
-        return event.getOrigin();
     }
 
     @JsMethod
@@ -226,6 +247,26 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
             names.add(node.getName());
         }
         return joiner.join(names);
+    }
+
+    private List<NodeIdentity> getItemNodeIdentities() {
+        List<NodeIdentity> itemNodeIdentities = new ArrayList<>();
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            NodeIdentityMap nodeIdentityMap = nodeIdentity.getNodeIdentityMap();
+            assert nodeIdentityMap != null;
+            NodeIdentity item = null;
+            while (true) {
+                item = nodeIdentityMap.next();
+                if (item == null)
+                    break;
+                else
+                    itemNodeIdentities.add(item);
+            }
+        }
+        return itemNodeIdentities;
+
+
     }
 
     //region node properties

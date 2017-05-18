@@ -75,9 +75,13 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("countryCodeNode");
         children.add(childFactory.createCountryCodeNode());
+        setChildNodeIdentity("areaCodeNode");
         children.add(childFactory.createAreaCodeNode());
+        setChildNodeIdentity("phoneNumberNode");
         children.add(childFactory.createPhoneNumberNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

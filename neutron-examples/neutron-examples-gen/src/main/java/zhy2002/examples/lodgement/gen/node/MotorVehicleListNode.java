@@ -61,6 +61,7 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
 
     @Override
     public NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

@@ -64,8 +64,11 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("relatedPersonReferenceNode");
         children.add(childFactory.createRelatedPersonReferenceNode());
+        setChildNodeIdentity("selectRelatedPersonFlagNode");
         children.add(childFactory.createSelectRelatedPersonFlagNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

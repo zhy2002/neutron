@@ -62,6 +62,7 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
 
     @Override
     public NodeAddEvent<CurrentEmploymentNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

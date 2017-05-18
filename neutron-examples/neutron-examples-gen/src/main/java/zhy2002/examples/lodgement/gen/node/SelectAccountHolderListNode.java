@@ -27,6 +27,7 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
 
     @Override
     public NodeAddEvent<SelectAccountHolderNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
@@ -91,6 +92,16 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     @JsMethod
     public void setSelectedName(String value) {
         setStateValue(SELECTED_NAME_PROPERTY, value);
+    }
+
+    protected void setChildNodeIdentity(String childName) {
+        NodeIdentity childNodeIdentity = null;
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            assert nodeIdentity.getNodeIdentityMap() != null;
+            childNodeIdentity = nodeIdentity.getNodeIdentityMap().get(childName);
+        }
+        getContext().setNodeIdentity(childNodeIdentity);
     }
 
     //endregion

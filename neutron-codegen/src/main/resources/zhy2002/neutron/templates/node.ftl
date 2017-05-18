@@ -125,6 +125,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 
     @Override
     public NodeAddEvent<${itemTypeName}> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 
@@ -197,8 +198,10 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
     <#list children as child>
+        setChildNodeIdentity("${child.name}");
         children.add(childFactory.create${child.name?cap_first}());
     </#list>
+        setChildNodeIdentity(null);
         return children;
     }
 

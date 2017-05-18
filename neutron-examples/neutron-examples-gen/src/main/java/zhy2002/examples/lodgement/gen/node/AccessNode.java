@@ -95,13 +95,21 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("accessContactTypeNode");
         children.add(childFactory.createAccessContactTypeNode());
+        setChildNodeIdentity("accessContactTitleNode");
         children.add(childFactory.createAccessContactTitleNode());
+        setChildNodeIdentity("accessContactFirstNameNode");
         children.add(childFactory.createAccessContactFirstNameNode());
+        setChildNodeIdentity("accessContactLastNameNode");
         children.add(childFactory.createAccessContactLastNameNode());
+        setChildNodeIdentity("accessCompanyNameNode");
         children.add(childFactory.createAccessCompanyNameNode());
+        setChildNodeIdentity("accessTelephoneNode");
         children.add(childFactory.createAccessTelephoneNode());
+        setChildNodeIdentity("accessOtherDescriptionNode");
         children.add(childFactory.createAccessOtherDescriptionNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

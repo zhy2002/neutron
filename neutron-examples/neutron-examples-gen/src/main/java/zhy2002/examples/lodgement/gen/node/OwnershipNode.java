@@ -69,9 +69,13 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("applicantReferenceNode");
         children.add(childFactory.createApplicantReferenceNode());
+        setChildNodeIdentity("ownershipPercentageNode");
         children.add(childFactory.createOwnershipPercentageNode());
+        setChildNodeIdentity("averageFlagNode");
         children.add(childFactory.createAverageFlagNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

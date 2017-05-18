@@ -94,14 +94,23 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("creditCardTypeNode");
         children.add(childFactory.createCreditCardTypeNode());
+        setChildNodeIdentity("creditCardAmountOwingNode");
         children.add(childFactory.createCreditCardAmountOwingNode());
+        setChildNodeIdentity("creditCardLimitAmountNode");
         children.add(childFactory.createCreditCardLimitAmountNode());
+        setChildNodeIdentity("creditCardMonthlyRepaymentNode");
         children.add(childFactory.createCreditCardMonthlyRepaymentNode());
+        setChildNodeIdentity("creditCardClearingFlagNode");
         children.add(childFactory.createCreditCardClearingFlagNode());
+        setChildNodeIdentity("creditCardBreakCostNode");
         children.add(childFactory.createCreditCardBreakCostNode());
+        setChildNodeIdentity("creditCardLenderNameNode");
         children.add(childFactory.createCreditCardLenderNameNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

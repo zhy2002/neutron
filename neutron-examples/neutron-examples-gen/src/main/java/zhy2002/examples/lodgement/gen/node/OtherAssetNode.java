@@ -74,10 +74,15 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("otherAssetTypeNode");
         children.add(childFactory.createOtherAssetTypeNode());
+        setChildNodeIdentity("otherAssetDescriptionNode");
         children.add(childFactory.createOtherAssetDescriptionNode());
+        setChildNodeIdentity("otherAssetMarketValueNode");
         children.add(childFactory.createOtherAssetMarketValueNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

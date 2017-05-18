@@ -61,6 +61,7 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
 
     @Override
     public NodeAddEvent<OtherAssetNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

@@ -110,16 +110,27 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("rentedFlagNode");
         children.add(childFactory.createRentedFlagNode());
+        setChildNodeIdentity("propertyWeeklyRentNode");
         children.add(childFactory.createPropertyWeeklyRentNode());
+        setChildNodeIdentity("propertyAddressNode");
         children.add(childFactory.createPropertyAddressNode());
+        setChildNodeIdentity("estimatedMarketValueNode");
         children.add(childFactory.createEstimatedMarketValueNode());
+        setChildNodeIdentity("contractPriceNode");
         children.add(childFactory.createContractPriceNode());
+        setChildNodeIdentity("defenseServiceFlagNode");
         children.add(childFactory.createDefenseServiceFlagNode());
+        setChildNodeIdentity("propertyTypeNode");
         children.add(childFactory.createPropertyTypeNode());
+        setChildNodeIdentity("propertySubTypeNode");
         children.add(childFactory.createPropertySubTypeNode());
+        setChildNodeIdentity("propertyPurseNode");
         children.add(childFactory.createPropertyPurseNode());
+        setChildNodeIdentity("propertyOwnershipListNode");
         children.add(childFactory.createPropertyOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

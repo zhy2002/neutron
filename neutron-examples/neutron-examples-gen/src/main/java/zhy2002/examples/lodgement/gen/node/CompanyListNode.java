@@ -61,6 +61,7 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
 
     @Override
     public NodeAddEvent<CompanyNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

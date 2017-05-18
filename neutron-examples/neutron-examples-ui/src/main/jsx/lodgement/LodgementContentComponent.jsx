@@ -14,7 +14,7 @@ export default function LodgementContentComponent(props) {
                 model.getName() === 'appManagerNode' ?
                     <ApplicationListComponent
                         model={model.getApplicationListNode()}
-                        onLoadApp={LodgementService.loadApp}
+                        onOpenApp={LodgementService.openApp}
                     /> :
                     <ApplicationComponent model={model}/>
             }

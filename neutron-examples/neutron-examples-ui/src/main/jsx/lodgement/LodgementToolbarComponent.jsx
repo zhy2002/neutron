@@ -10,7 +10,12 @@ export default function LodgementToolbarComponent(props) {
         <div className="navbar navbar-default lodgement-toolbar-component">
             {
                 model.getName() === 'appManagerNode' ?
-                    <AppManagerToolbarComponent model={model} onNewApp={props.onNewApp}/> :
+                    <AppManagerToolbarComponent
+                        model={model}
+                        onNewApp={props.onNewApp}
+                        onOpenApp={props.onOpenApp}
+                        onCloneApp={props.onCloneApp}
+                    /> :
                     <ApplicationToolbarComponent model={model}/>
             }
         </div>
@@ -19,5 +24,7 @@ export default function LodgementToolbarComponent(props) {
 
 LodgementToolbarComponent.propTypes = {
     model: PropTypes.object.isRequired,
-    onNewApp: PropTypes.func.isRequired
+    onNewApp: PropTypes.func.isRequired,
+    onOpenApp: PropTypes.func.isRequired,
+    onCloneApp: PropTypes.func.isRequired
 };

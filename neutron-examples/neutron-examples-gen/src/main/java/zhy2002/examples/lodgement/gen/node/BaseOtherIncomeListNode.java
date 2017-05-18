@@ -28,6 +28,7 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
 
     @Override
     public NodeAddEvent<OtherIncomeNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

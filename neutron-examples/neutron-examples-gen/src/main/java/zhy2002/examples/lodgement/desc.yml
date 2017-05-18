@@ -7,6 +7,7 @@ rootType:
   - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1, trackingMode: Always}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
+  - {propertyName: nodeLabel, value: '"NAB"'}
   rules:
   - {typeName: MergeValidationErrorsRule, existing: true}
   - {typeName: ShowErrorListRule}

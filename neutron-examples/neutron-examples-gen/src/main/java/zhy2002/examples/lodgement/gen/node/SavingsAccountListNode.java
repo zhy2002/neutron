@@ -61,6 +61,7 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
 
     @Override
     public NodeAddEvent<SavingsAccountNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

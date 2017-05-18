@@ -90,12 +90,19 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("usedAsSecurityFlagNode");
         children.add(childFactory.createUsedAsSecurityFlagNode());
+        setChildNodeIdentity("beingPurchasedFlagNode");
         children.add(childFactory.createBeingPurchasedFlagNode());
+        setChildNodeIdentity("ownedOutrightFlagNode");
         children.add(childFactory.createOwnedOutrightFlagNode());
+        setChildNodeIdentity("primarySecurityFlagNode");
         children.add(childFactory.createPrimarySecurityFlagNode());
+        setChildNodeIdentity("approvalInPrincipleFlagNode");
         children.add(childFactory.createApprovalInPrincipleFlagNode());
+        setChildNodeIdentity("existingMortgageListNode");
         children.add(childFactory.createExistingMortgageListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

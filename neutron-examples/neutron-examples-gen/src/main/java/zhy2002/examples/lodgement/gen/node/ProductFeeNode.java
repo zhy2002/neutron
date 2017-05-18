@@ -74,10 +74,15 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("feeTypeNode");
         children.add(childFactory.createFeeTypeNode());
+        setChildNodeIdentity("feeDescriptionNode");
         children.add(childFactory.createFeeDescriptionNode());
+        setChildNodeIdentity("feePayFromNode");
         children.add(childFactory.createFeePayFromNode());
+        setChildNodeIdentity("feeAmountNode");
         children.add(childFactory.createFeeAmountNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

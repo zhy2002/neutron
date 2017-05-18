@@ -61,6 +61,7 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
 
     @Override
     public NodeAddEvent<ExpenseNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

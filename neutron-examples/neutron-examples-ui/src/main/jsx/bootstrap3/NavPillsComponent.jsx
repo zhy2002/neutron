@@ -8,7 +8,7 @@ export default function NavPillsComponent(props) {
     const selectedItem = props.selectedItem;
 
     return (
-        <ul className="nav nav-pills small nav-pills-component">
+        <ul className={`nav nav-pills${props.large ? '' : ' small'} nav-pills-component`}>
             {
                 props.items.map(
                     (item) => {
@@ -42,10 +42,12 @@ NavPillsComponent.propTypes = {
     selectedItem: PropTypes.object.isRequired,
     items: PropTypes.array.isRequired,
     onSelect: PropTypes.func.isRequired,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    large: PropTypes.bool
 };
 
 NavPillsComponent.defaultProps = {
     onClose: () => {
-    }
+    },
+    large: false
 };

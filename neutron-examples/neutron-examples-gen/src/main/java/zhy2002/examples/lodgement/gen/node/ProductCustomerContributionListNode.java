@@ -61,6 +61,7 @@ public class ProductCustomerContributionListNode extends ListUiNode<ProductsNode
 
     @Override
     public NodeAddEvent<ProductCustomerContributionNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

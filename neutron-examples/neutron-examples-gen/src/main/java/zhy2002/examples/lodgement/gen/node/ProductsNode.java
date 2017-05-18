@@ -110,16 +110,27 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("productListNode");
         children.add(childFactory.createProductListNode());
+        setChildNodeIdentity("productCustomerContributionListNode");
         children.add(childFactory.createProductCustomerContributionListNode());
+        setChildNodeIdentity("productFeeListNode");
         children.add(childFactory.createProductFeeListNode());
+        setChildNodeIdentity("productLoanTypeNode");
         children.add(childFactory.createProductLoanTypeNode());
+        setChildNodeIdentity("settlementDateNode");
         children.add(childFactory.createSettlementDateNode());
+        setChildNodeIdentity("productTotalLoanAmountNode");
         children.add(childFactory.createProductTotalLoanAmountNode());
+        setChildNodeIdentity("productTotalSecurityAmountNode");
         children.add(childFactory.createProductTotalSecurityAmountNode());
+        setChildNodeIdentity("productTotalLoanLmiAmountNode");
         children.add(childFactory.createProductTotalLoanLmiAmountNode());
+        setChildNodeIdentity("productTotalLvrNode");
         children.add(childFactory.createProductTotalLvrNode());
+        setChildNodeIdentity("productTotalLvrLmiNode");
         children.add(childFactory.createProductTotalLvrLmiNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

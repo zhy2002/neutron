@@ -61,6 +61,7 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
 
     @Override
     public NodeAddEvent<OtherLiabilityNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

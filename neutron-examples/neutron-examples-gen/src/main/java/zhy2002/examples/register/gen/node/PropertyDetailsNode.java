@@ -96,8 +96,11 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("propertyAddressNode");
         children.add(childFactory.createPropertyAddressNode());
+        setChildNodeIdentity("propertyStateNode");
         children.add(childFactory.createPropertyStateNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

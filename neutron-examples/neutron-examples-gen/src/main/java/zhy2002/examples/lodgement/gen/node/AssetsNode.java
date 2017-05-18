@@ -75,9 +75,13 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("savingsAccountListNode");
         children.add(childFactory.createSavingsAccountListNode());
+        setChildNodeIdentity("motorVehicleListNode");
         children.add(childFactory.createMotorVehicleListNode());
+        setChildNodeIdentity("otherAssetListNode");
         children.add(childFactory.createOtherAssetListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

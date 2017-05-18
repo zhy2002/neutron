@@ -90,12 +90,19 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("assetsNode");
         children.add(childFactory.createAssetsNode());
+        setChildNodeIdentity("liabilitiesNode");
         children.add(childFactory.createLiabilitiesNode());
+        setChildNodeIdentity("expenseListNode");
         children.add(childFactory.createExpenseListNode());
+        setChildNodeIdentity("totalAssetNode");
         children.add(childFactory.createTotalAssetNode());
+        setChildNodeIdentity("totalLiabilityNode");
         children.add(childFactory.createTotalLiabilityNode());
+        setChildNodeIdentity("totalExpenseNode");
         children.add(childFactory.createTotalExpenseNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

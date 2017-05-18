@@ -94,14 +94,23 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("loanTypeNode");
         children.add(childFactory.createLoanTypeNode());
+        setChildNodeIdentity("loanLenderNameNode");
         children.add(childFactory.createLoanLenderNameNode());
+        setChildNodeIdentity("loanLimitAmountNode");
         children.add(childFactory.createLoanLimitAmountNode());
+        setChildNodeIdentity("loanOwingAmountNode");
         children.add(childFactory.createLoanOwingAmountNode());
+        setChildNodeIdentity("loanMonthlyRepaymentNode");
         children.add(childFactory.createLoanMonthlyRepaymentNode());
+        setChildNodeIdentity("loanClearingFlagNode");
         children.add(childFactory.createLoanClearingFlagNode());
+        setChildNodeIdentity("loanBreakCostNode");
         children.add(childFactory.createLoanBreakCostNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

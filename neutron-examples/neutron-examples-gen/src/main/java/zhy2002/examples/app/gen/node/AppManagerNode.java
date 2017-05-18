@@ -65,7 +65,9 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("applicationListNode");
         children.add(childFactory.createApplicationListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

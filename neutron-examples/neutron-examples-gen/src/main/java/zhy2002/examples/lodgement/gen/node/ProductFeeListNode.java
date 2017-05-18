@@ -61,6 +61,7 @@ public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> 
 
     @Override
     public NodeAddEvent<ProductFeeNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

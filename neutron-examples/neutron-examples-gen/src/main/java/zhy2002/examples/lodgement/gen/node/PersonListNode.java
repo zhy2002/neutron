@@ -62,6 +62,7 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
 
     @Override
     public NodeAddEvent<PersonNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

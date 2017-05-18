@@ -74,10 +74,15 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("vehicleModelNode");
         children.add(childFactory.createVehicleModelNode());
+        setChildNodeIdentity("vehicleYearNode");
         children.add(childFactory.createVehicleYearNode());
+        setChildNodeIdentity("vehicleMarketValueNode");
         children.add(childFactory.createVehicleMarketValueNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

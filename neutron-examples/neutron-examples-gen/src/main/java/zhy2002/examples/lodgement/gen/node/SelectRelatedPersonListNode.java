@@ -28,6 +28,7 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
 
     @Override
     public NodeAddEvent<SelectRelatedPersonNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

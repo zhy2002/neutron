@@ -70,8 +70,11 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("retiredOnBenefitFlagNode");
         children.add(childFactory.createRetiredOnBenefitFlagNode());
+        setChildNodeIdentity("retiredSinceNode");
         children.add(childFactory.createRetiredSinceNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

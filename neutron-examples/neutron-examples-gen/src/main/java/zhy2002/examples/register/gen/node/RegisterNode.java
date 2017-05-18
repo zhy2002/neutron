@@ -143,18 +143,31 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("usernameNode");
         children.add(childFactory.createUsernameNode());
+        setChildNodeIdentity("emailNode");
         children.add(childFactory.createEmailNode());
+        setChildNodeIdentity("passwordNode");
         children.add(childFactory.createPasswordNode());
+        setChildNodeIdentity("repeatPasswordNode");
         children.add(childFactory.createRepeatPasswordNode());
+        setChildNodeIdentity("ageNode");
         children.add(childFactory.createAgeNode());
+        setChildNodeIdentity("planNode");
         children.add(childFactory.createPlanNode());
+        setChildNodeIdentity("receiveOffersNode");
         children.add(childFactory.createReceiveOffersNode());
+        setChildNodeIdentity("ownInvestmentPropertyNode");
         children.add(childFactory.createOwnInvestmentPropertyNode());
+        setChildNodeIdentity("residentialPropertyNode");
         children.add(childFactory.createResidentialPropertyNode());
+        setChildNodeIdentity("investmentPropertyNode");
         children.add(childFactory.createInvestmentPropertyNode());
+        setChildNodeIdentity("homePhoneNode");
         children.add(childFactory.createHomePhoneNode());
+        setChildNodeIdentity("errorListNode");
         children.add(childFactory.createErrorListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

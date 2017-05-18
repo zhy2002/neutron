@@ -85,11 +85,17 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("unemployedOnBenefitFlagNode");
         children.add(childFactory.createUnemployedOnBenefitFlagNode());
+        setChildNodeIdentity("studentFlagNode");
         children.add(childFactory.createStudentFlagNode());
+        setChildNodeIdentity("studentTypeNode");
         children.add(childFactory.createStudentTypeNode());
+        setChildNodeIdentity("houseDutiesFlagNode");
         children.add(childFactory.createHouseDutiesFlagNode());
+        setChildNodeIdentity("unemployedSinceNode");
         children.add(childFactory.createUnemployedSinceNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -61,6 +61,7 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
 
     @Override
     public NodeAddEvent<LoanNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

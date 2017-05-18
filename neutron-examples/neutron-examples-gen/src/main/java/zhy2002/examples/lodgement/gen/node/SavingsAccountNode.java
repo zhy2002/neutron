@@ -89,13 +89,21 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("savingsTypeNode");
         children.add(childFactory.createSavingsTypeNode());
+        setChildNodeIdentity("savingsInstitutionNameNode");
         children.add(childFactory.createSavingsInstitutionNameNode());
+        setChildNodeIdentity("savingsBalanceNode");
         children.add(childFactory.createSavingsBalanceNode());
+        setChildNodeIdentity("savingsBsbNoNode");
         children.add(childFactory.createSavingsBsbNoNode());
+        setChildNodeIdentity("savingsAccountNoNode");
         children.add(childFactory.createSavingsAccountNoNode());
+        setChildNodeIdentity("savingsAccountNameNode");
         children.add(childFactory.createSavingsAccountNameNode());
+        setChildNodeIdentity("ownershipListNode");
         children.add(childFactory.createOwnershipListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -65,7 +65,9 @@ public class PayeEmployedNode extends EmployedNode {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("grossYearlySalaryNode");
         children.add(childFactory.createGrossYearlySalaryNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -4,12 +4,15 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
+import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * There is one context per node hierarchy.
@@ -26,6 +29,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * Afterwards this is always null.
      */
     private NodeIdentity nodeIdentity;
+    private final List<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayList<>();
 
     @Inject
     EventRegistry eventRegistry;
@@ -127,8 +131,16 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
             root = createRootNode();
             root.addToParent();
             root.load();
+            flushPendingChanges();
         }
         return this.root;
+    }
+
+    private void flushPendingChanges() {
+        beginSession();
+        changeUiNodeEvents.forEach(this::processEvent);
+        commitSession();
+        changeUiNodeEvents.clear();
     }
 
     /**
@@ -217,6 +229,14 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     @Override
     public final void setEventMode(EngineEventModeEnum mode) {
         changeEngine.setEventMode(mode);
+    }
+
+    @Override
+    public final void addPendingChangeEvent(ChangeUiNodeEvent event) {
+        if (root.getNodeStatus() != NodeStatusEnum.Unloaded)
+            throw new UiNodeEventException("Can only call this method before root is loaded.");
+
+        changeUiNodeEvents.add(event);
     }
 
     //endregion

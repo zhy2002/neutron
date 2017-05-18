@@ -70,8 +70,11 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("additionalCommentNode");
         children.add(childFactory.createAdditionalCommentNode());
+        setChildNodeIdentity("relatedPartyListNode");
         children.add(childFactory.createRelatedPartyListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

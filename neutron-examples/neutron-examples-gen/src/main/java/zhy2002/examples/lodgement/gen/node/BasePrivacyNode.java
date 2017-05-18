@@ -46,10 +46,15 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("creditCheckFlagNode");
         children.add(childFactory.createCreditCheckFlagNode());
+        setChildNodeIdentity("thirdPartyDisclosureFlagNode");
         children.add(childFactory.createThirdPartyDisclosureFlagNode());
+        setChildNodeIdentity("legalActionNode");
         children.add(childFactory.createLegalActionNode());
+        setChildNodeIdentity("creditHistoryListNode");
         children.add(childFactory.createCreditHistoryListNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -85,12 +85,19 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("companyGeneralNode");
         children.add(childFactory.createCompanyGeneralNode());
+        setChildNodeIdentity("companyContactNode");
         children.add(childFactory.createCompanyContactNode());
+        setChildNodeIdentity("companyTrustNode");
         children.add(childFactory.createCompanyTrustNode());
+        setChildNodeIdentity("companyPrivacyNode");
         children.add(childFactory.createCompanyPrivacyNode());
+        setChildNodeIdentity("companyOtherIncomeListNode");
         children.add(childFactory.createCompanyOtherIncomeListNode());
+        setChildNodeIdentity("companyResponsibleLendNode");
         children.add(childFactory.createCompanyResponsibleLendNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -61,6 +61,7 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
 
     @Override
     public NodeAddEvent<CreditHistoryNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

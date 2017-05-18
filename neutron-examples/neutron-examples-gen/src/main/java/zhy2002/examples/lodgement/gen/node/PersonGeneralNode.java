@@ -130,20 +130,35 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("titleNode");
         children.add(childFactory.createTitleNode());
+        setChildNodeIdentity("firstNameNode");
         children.add(childFactory.createFirstNameNode());
+        setChildNodeIdentity("lastNameNode");
         children.add(childFactory.createLastNameNode());
+        setChildNodeIdentity("genderNode");
         children.add(childFactory.createGenderNode());
+        setChildNodeIdentity("dateOfBirthNode");
         children.add(childFactory.createDateOfBirthNode());
+        setChildNodeIdentity("primaryApplicantFlagNode");
         children.add(childFactory.createPrimaryApplicantFlagNode());
+        setChildNodeIdentity("driversLicenseNode");
         children.add(childFactory.createDriversLicenseNode());
+        setChildNodeIdentity("personApplicantTypeNode");
         children.add(childFactory.createPersonApplicantTypeNode());
+        setChildNodeIdentity("maritalStatusNode");
         children.add(childFactory.createMaritalStatusNode());
+        setChildNodeIdentity("permanentResidentFlagNode");
         children.add(childFactory.createPermanentResidentFlagNode());
+        setChildNodeIdentity("spouseNode");
         children.add(childFactory.createSpouseNode());
+        setChildNodeIdentity("firstHomeBuyerFlagNode");
         children.add(childFactory.createFirstHomeBuyerFlagNode());
+        setChildNodeIdentity("housingStatusNode");
         children.add(childFactory.createHousingStatusNode());
+        setChildNodeIdentity("applicationTypeNode");
         children.add(childFactory.createApplicationTypeNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

@@ -61,6 +61,7 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
 
     @Override
     public NodeAddEvent<AddressRefNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

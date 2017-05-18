@@ -120,18 +120,31 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
+        setChildNodeIdentity("productPackageNameNode");
         children.add(childFactory.createProductPackageNameNode());
+        setChildNodeIdentity("productRepaymentFrequencyNode");
         children.add(childFactory.createProductRepaymentFrequencyNode());
+        setChildNodeIdentity("productRateLockFlagNode");
         children.add(childFactory.createProductRateLockFlagNode());
+        setChildNodeIdentity("productTransactionAccountFlagNode");
         children.add(childFactory.createProductTransactionAccountFlagNode());
+        setChildNodeIdentity("productOptOutReasonNode");
         children.add(childFactory.createProductOptOutReasonNode());
+        setChildNodeIdentity("productCreditCardFlagNode");
         children.add(childFactory.createProductCreditCardFlagNode());
+        setChildNodeIdentity("productCreditCardTypeNode");
         children.add(childFactory.createProductCreditCardTypeNode());
+        setChildNodeIdentity("productCreditCardLimitNode");
         children.add(childFactory.createProductCreditCardLimitNode());
+        setChildNodeIdentity("productExpressConsentFlagNode");
         children.add(childFactory.createProductExpressConsentFlagNode());
+        setChildNodeIdentity("product100PercentOffsetFlagNode");
         children.add(childFactory.createProduct100PercentOffsetFlagNode());
+        setChildNodeIdentity("productPrimaryCardHolderNode");
         children.add(childFactory.createProductPrimaryCardHolderNode());
+        setChildNodeIdentity("productAdditionalCardHolderNode");
         children.add(childFactory.createProductAdditionalCardHolderNode());
+        setChildNodeIdentity(null);
         return children;
     }
 

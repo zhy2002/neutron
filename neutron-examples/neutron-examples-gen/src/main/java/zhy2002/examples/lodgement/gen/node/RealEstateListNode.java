@@ -62,6 +62,7 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
 
     @Override
     public NodeAddEvent<RealEstateNode> createItemAddEvent(String name) {
+        ensureSequenceNumber(name);
         return itemFactory.createItemAddEvent(name);
     }
 

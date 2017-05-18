@@ -58,7 +58,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     /**
      * The JS object that stores the persisted identity of this node.
      */
-    private final NodeIdentity nodeIdentity;
+    private NodeIdentity nodeIdentity;
 
     /**
      * The life cycle status of this node.
@@ -130,6 +130,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             this.uniqueId = context.generateNodeId();
         } else {
             this.uniqueId = context.generateNodeId(nodeIdentity.getLocalId());
+            assert name.equals(nodeIdentity.getName());
         }
         this.nodeStatus = NodeStatusEnum.Detached;
     }
@@ -161,7 +162,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return name;
     }
 
-    protected NodeIdentity getNodeIdentity() {
+    NodeIdentity getNodeIdentity() {
         return nodeIdentity;
     }
 
@@ -470,6 +471,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         for (UiNodeLifeCycleListener listener : lifeCycleListeners) {
             listener.exitLoad();
         }
+        nodeIdentity = null;
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
