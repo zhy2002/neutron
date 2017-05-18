@@ -6,6 +6,7 @@ import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.node.VoidUiNode;
 import zhy2002.neutron.util.NeutronConstants;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
@@ -33,10 +34,12 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     @Inject
     void injectNodeDataStore(NodeDataStore nodeDataStore) {
         this.nodeDataStore = nodeDataStore;
-        contextId = this.nodeDataStore.getContextId();
-        if (contextId == null) {
-            contextId = RandomUniqueIdGenerator.Instance.next();
-        }
+        contextId = ValueUtil.ifNull(this.nodeDataStore.getContextId(), RandomUniqueIdGenerator.Instance.next()) ;
+    }
+
+    @JsMethod
+    public String getContextId() {
+        return contextId;
     }
 
     /**
@@ -81,7 +84,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      */
     @Override
     public final String getUniqueId() {
-        return contextId + nodeIdGenerator.next();
+        return contextId + "-" + nodeIdGenerator.next();
     }
 
     /**

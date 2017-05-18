@@ -47,7 +47,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * this node is added to the node tree. The unique id will not change thereafter.
      * In the same application there should not be two nodes with the same unique id.
      */
-    private String uniqueId;
+    private final String uniqueId;
     /**
      * Cache the node path. Node path does not change with the node hierarchy structure.
      * This is not put into state for debugging convenience.
@@ -118,6 +118,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.parent = parent;
         this.context = context;
         this.name = name;
+        this.uniqueId = context.getUniqueId();
         this.nodeStatus = NodeStatusEnum.Detached;
 
         //setChangeTrackingMode(NeutronConstants.FORCE_UPDATE, ChangeTrackingModeEnum.Always);
@@ -396,8 +397,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     final void addToParent() {
         if (this.nodeStatus != NodeStatusEnum.Detached)
             return;
-
-        this.uniqueId = context.getUniqueId();
 
         if (parent == null) {
             //do nothing for root

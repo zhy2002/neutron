@@ -33,7 +33,7 @@ let cba = false;
 
 UiService.createApplicationNode = () => {
     const node = cba ? window.GWT.ApplicationNodeFactory.createCba() : window.GWT.ApplicationNodeFactory.create();
-    node.getIdNode().setValue(node.getUniqueId());
+    node.getIdNode().setValue(node.getContext().getContextId());
     const user = UiService.getCurrentUser();
     node.getOwningUserNode().setValue(user.username);
     node.getStatusNode().setValue('In Progress');
