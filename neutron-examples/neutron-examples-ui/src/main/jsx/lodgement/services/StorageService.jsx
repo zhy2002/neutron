@@ -36,18 +36,19 @@ StorageService.getApplication = id =>
         errorHandler
     );
 
-function getSummary(node, model) {
+function getSummary(data, model) {
+    const node = data.children;
     return {
-        id: node.id,
-        lender: node.lender,
-        username: node.owningUser,
+        id: node.id.value,
+        lender: node.lender.value,
+        username: node.owningUser.value,
         applicants: model.getApplicants(),
         amount: model.getTotalLoanAmount(),
-        status: node.status,
-        created: node.dateCreated,
-        updated: node.dateUpdated,
-        lodged: node.dateLodged,
-        node
+        status: node.status.value,
+        created: node.dateCreated.value,
+        updated: node.dateUpdated.value,
+        lodged: node.dateLodged.value,
+        node: data
     };
 }
 
@@ -56,7 +57,7 @@ StorageService.saveApplication = (model) => {
     const now = moment().format();
     model.getDateUpdatedNode().setValue(now);
     const node = CommonUtil.extractValue(model);
-    const id = node.id;
+    const id = node.children.id.value;
     const summary = getSummary(node, model);
     return axios.put(
         `${baseUrl}/lodgement/application/${id}`, summary

@@ -75,9 +75,13 @@ export default class ApplicationListComponent extends NeutronComponent {
         }
         if (items.length === 0) {
             items.push(
-                <div key="no_result" className="alert alert-info">
-                    No application found.
-                </div>
+                <tr key="no_result">
+                    <td colSpan="9">
+                        <div className="alert alert-info">
+                            No application found.
+                        </div>
+                    </td>
+                </tr>
             );
         }
         return items;

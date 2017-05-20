@@ -97,7 +97,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     protected void setChildNodeIdentity(String childName) {
         NodeIdentity childNodeIdentity = null;
         NodeIdentity nodeIdentity = getNodeIdentity();
-        if (nodeIdentity != null) {
+        if (nodeIdentity != null && childName != null) {
             assert nodeIdentity.getNodeIdentityMap() != null;
             childNodeIdentity = nodeIdentity.getNodeIdentityMap().get(childName);
         }

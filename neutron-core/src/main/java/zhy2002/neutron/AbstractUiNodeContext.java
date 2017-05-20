@@ -11,8 +11,8 @@ import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * There is one context per node hierarchy.
@@ -29,7 +29,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * Afterwards this is always null.
      */
     private NodeIdentity nodeIdentity;
-    private final List<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayList<>();
+    private Deque<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayDeque<>();
 
     @Inject
     EventRegistry eventRegistry;
@@ -138,9 +138,11 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     private void flushPendingChanges() {
         beginSession();
-        changeUiNodeEvents.forEach(this::processEvent);
+        while (!changeUiNodeEvents.isEmpty()) {
+            processEvent(changeUiNodeEvents.pollFirst());
+        }
         commitSession();
-        changeUiNodeEvents.clear();
+        changeUiNodeEvents = null;
     }
 
     /**
@@ -233,10 +235,10 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @Override
     public final void addPendingChangeEvent(ChangeUiNodeEvent event) {
-        if (root.getNodeStatus() != NodeStatusEnum.Unloaded)
+        if (changeUiNodeEvents == null)
             throw new UiNodeEventException("Can only call this method before root is loaded.");
 
-        changeUiNodeEvents.add(event);
+        changeUiNodeEvents.addLast(event);
     }
 
     //endregion

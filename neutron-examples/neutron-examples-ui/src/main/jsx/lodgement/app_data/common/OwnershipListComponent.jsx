@@ -20,7 +20,7 @@ export default class OwnershipListComponent extends ListNeutronComponent {
             (node) => {
                 const referencedNode = node.getApplicantReferenceNode().getReferencedNode();
                 result.push(
-                    <li className="list-group-item" key={referencedNode.getUniqueId()}>
+                    <li className="list-group-item" key={node.getApplicantReferenceNode().getUniqueId()}>
                         <div className="clearfix">
                             <div className="pull-left">
                                 <NodeLabelComponent model={referencedNode}/>

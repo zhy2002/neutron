@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 process.traceDeprecation = true;
 
 var config = {
-    entry: './src/main/jsx/main',
+    entry: ['babel-polyfill', './src/main/jsx/main'],
     output: {
         path: path.join(__dirname, 'src/main/webapp/js'),
         filename: 'app.js'

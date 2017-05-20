@@ -3,6 +3,12 @@ import moment from 'moment';
 
 let loadingCount = 0;
 
+const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
+
+function isExcluded(nodeName) {
+    return excludedNodeNames.indexOf(nodeName) >= 0;
+}
+
 function delay(interval = 0) {
     return new Promise(
         (resolve) => {
@@ -14,9 +20,14 @@ function delay(interval = 0) {
 function defer(data) {
     return new Promise(
         (resolve) => {
-            setTimeout(() => resolve(data), 10);
+            setTimeout(() => resolve(data), 50);
         }
     );
+}
+
+function toLocalId(uniqueId) {
+    const index = uniqueId.indexOf('-');
+    return uniqueId.substring(index + 1);
 }
 
 function setIsLoading(isLoading) {
@@ -35,21 +46,14 @@ function setIsLoading(isLoading) {
 
 function extractValue(node) {
     if (!node)
-        return undefined;
+        return null;
 
     if (node.getChildCount) {
         return extractObject(node);
     } else if (node.getItemCount) {
         return extractList(node);
     }
-
     return extractLeaf(node);
-}
-
-const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
-
-function isExcluded(nodeName) {
-    return excludedNodeNames.indexOf(nodeName) >= 0;
 }
 
 function extractObject(node) {
@@ -58,13 +62,17 @@ function extractObject(node) {
     children.forEach((child) => {
         if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && !isExcluded(child.getName())) {
             let fieldName = child.getName();
+            //todo duplicate of clean up function
             if (fieldName.endsWith('Node')) {
                 fieldName = fieldName.substr(0, fieldName.length - 4);
             }
             result[fieldName] = extractValue(child);
         }
     });
-    return result;
+    return {
+        $id: toLocalId(node.getUniqueId()),
+        children: result
+    };
 }
 
 function extractList(node) {
@@ -75,7 +83,10 @@ function extractList(node) {
             result[child.getName()] = extractValue(child);
         }
     });
-    return result;
+    return {
+        $id: toLocalId(node.getUniqueId()),
+        children: result
+    };
 }
 
 function extractLeaf(node) {
@@ -84,24 +95,29 @@ function extractLeaf(node) {
         const text = node.getText();
         value = text ? parseFloat(text) : null;
     }
-    return value;
+    return {
+        $id: toLocalId(node.getUniqueId()),
+        value
+    };
 }
 
-function setValue(node, data) {
-    if (!data)
+function setValue(node, obj) {
+    if (!obj)
         return;
 
     if (node.getChildCount) {
-        setObject(node, data);
+        setObject(node, obj);
     } else if (node.getItemCount) {
-        setList(node, data);
+        setList(node, obj);
     } else if (node.setValue) {
-        setLeaf(node, data);
+        setLeaf(node, obj);
     }
 }
 
-function setObject(node, data) {
+function setObject(node, obj) {
+    const data = obj.children || {};
     const children = node.getChildren();
+
     children.forEach((child) => {
         if (!isExcluded(child.getName())) {
             let fieldName = child.getName();
@@ -115,34 +131,29 @@ function setObject(node, data) {
     });
 }
 
-function setList(node, data) {
-    if (data) {
-        for (const key in data) {
-            if (Object.prototype.hasOwnProperty.call(data, key)) {
-                //todo sort key first
-                const item = data[key];
-                if (item) {
-                    let child = node.getItemByName(key);
-                    if (!child) {
-                        child = node.createItemWithName(key);
-                    }
-                    setValue(child, item);
+function setList(node, obj) {
+    const data = obj.children || {};
+    if (!data)
+        return;
+
+    for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+            //todo sort key first
+            const item = data[key];
+            if (item) {
+                let child = node.getItemByName(key);
+                if (!child) {
+                    child = node.createItemWithName(key);
                 }
+                setValue(child, item);
             }
         }
     }
 }
 
-function copyFields(target, source) {
-    //todo deep copy
-    for (const prop in source) {
-        if (source[prop]) {
-            target[prop] = source[prop];
-        }
-    }
-}
+function setLeaf(node, obj) {
+    const data = obj.value;
 
-function setLeaf(node, data) {
     if (node.setText) { //big decimal node
         if (data !== null) {
             node.setText(`${data}`);
@@ -154,6 +165,15 @@ function setLeaf(node, data) {
             node.setValue(value);
         } catch (e) {
             node.setValue(data);
+        }
+    }
+}
+
+function copyFields(target, source) {
+    //todo deep copy
+    for (const prop in source) {
+        if (source[prop]) {
+            target[prop] = source[prop];
         }
     }
 }
