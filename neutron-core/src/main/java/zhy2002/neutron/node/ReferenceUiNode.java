@@ -4,6 +4,7 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
@@ -43,6 +44,16 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
         }
 
         super.resetValue();
+    }
+
+    @Override
+    protected void clearNodeIdentity() {
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            setValue(nodeIdentity.getValue());
+        }
+
+        super.clearNodeIdentity();
     }
 
     @Override

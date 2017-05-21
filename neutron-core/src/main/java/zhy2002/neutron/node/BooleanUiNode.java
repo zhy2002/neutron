@@ -6,6 +6,7 @@ import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.BooleanOption;
+import zhy2002.neutron.data.NodeIdentity;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
@@ -41,6 +42,16 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
     @Override
     public void setValue(Boolean value) {
         setStateValue(VALUE_PROPERTY, value);
+    }
+
+    @Override
+    protected void clearNodeIdentity() {
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            setValue(nodeIdentity.getValue());
+        }
+
+        super.clearNodeIdentity();
     }
 
     public Boolean getFixedValue() {

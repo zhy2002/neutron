@@ -162,8 +162,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return name;
     }
 
-    NodeIdentity getNodeIdentity() {
+    protected NodeIdentity getNodeIdentity() {
         return nodeIdentity;
+    }
+
+    protected void clearNodeIdentity() {
+        this.nodeIdentity = null;
     }
 
     /**
@@ -471,7 +475,6 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         for (UiNodeLifeCycleListener listener : lifeCycleListeners) {
             listener.exitLoad();
         }
-        nodeIdentity = null;
         this.nodeStatus = NodeStatusEnum.Loaded;
     }
 
@@ -630,14 +633,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         RefreshUiNodeEvent refreshUiNodeEvent = new RefreshUiNodeEvent(this, reason);
         EngineEventModeEnum currentMode = getContext().getEventMode();
         getContext().setEventMode(EngineEventModeEnum.Post);
-        if (!currentMode.equals(EngineEventModeEnum.Post)) {
-            try {
-                getContext().processEvent(refreshUiNodeEvent);
-            } finally {
-                getContext().setEventMode(currentMode);
-            }
+        try {
+            getContext().processEvent(refreshUiNodeEvent);
+        } finally {
+            getContext().setEventMode(currentMode);
         }
-
     }
 
     @JsMethod

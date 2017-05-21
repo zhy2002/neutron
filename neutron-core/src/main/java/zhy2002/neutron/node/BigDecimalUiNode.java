@@ -8,6 +8,7 @@ import zhy2002.neutron.ValueParser;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.BigDecimalOption;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
@@ -133,6 +134,20 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     @Override
     public void setValue(BigDecimal value) {
         super.setStateValue(VALUE_PROPERTY, value);
+    }
+
+    @Override
+    protected void clearNodeIdentity() {
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            Object obj = nodeIdentity.getValue();
+            if (obj != null) {
+                String text = String.valueOf(obj);
+                setText(text);
+            }
+        }
+
+        super.clearNodeIdentity();
     }
 
     public boolean isValueValid() {

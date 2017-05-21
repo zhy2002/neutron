@@ -7,6 +7,7 @@ import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -36,6 +37,16 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     @Override
     protected PropertyMetadata<String> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
+    }
+
+    @Override
+    protected void clearNodeIdentity() {
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            setValue(nodeIdentity.getValue());
+        }
+
+        super.clearNodeIdentity();
     }
 
     //region node properties

@@ -1,5 +1,9 @@
 todo 
 ----------------- 
+bugs 
+- load value with NodeIdentity
+- navigate to path of unsaved node cause 404 error
+ 
 use rxjs
 load portion by portion (e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy)
 do not directly reference context and nodes (implement web worker)

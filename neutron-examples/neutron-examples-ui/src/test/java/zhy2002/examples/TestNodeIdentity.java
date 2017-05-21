@@ -30,6 +30,11 @@ public class TestNodeIdentity implements NodeIdentity {
     }
 
     @Override
+    public <T> T getValue() {
+        return null;
+    }
+
+    @Override
     public NodeIdentityMap getNodeIdentityMap() {
         return nodeIdentityMap;
     }

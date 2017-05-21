@@ -51,7 +51,6 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         return contextId;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -130,19 +129,40 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         if (root == null) {
             root = createRootNode();
             root.addToParent();
+            root.setLoading(true);
             root.load();
             flushPendingChanges();
+            root.setLoading(false);
         }
         return this.root;
     }
 
+    @Override
+    public boolean isLoaded() {
+        return changeUiNodeEvents == null;
+    }
+
     private void flushPendingChanges() {
+        //load all the items
         beginSession();
         while (!changeUiNodeEvents.isEmpty()) {
             processEvent(changeUiNodeEvents.pollFirst());
         }
         commitSession();
+        //load all the values
+        loadPendingValues(root);
+        //refresh and done
+        getRootNode().refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
         changeUiNodeEvents = null;
+    }
+
+    private void loadPendingValues(UiNode<?> node) {
+        if (node instanceof ParentUiNode) {
+            for (UiNode<?> child : ((ParentUiNode<?>) node).getChildren()) {
+                loadPendingValues(child);
+            }
+        }
+        node.clearNodeIdentity();
     }
 
     /**
@@ -235,8 +255,13 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @Override
     public final void addPendingChangeEvent(ChangeUiNodeEvent event) {
-        if (changeUiNodeEvents == null)
-            throw new UiNodeEventException("Can only call this method before root is loaded.");
+        if (changeUiNodeEvents == null) {
+            if (getRootNode().getNodeStatus() == NodeStatusEnum.Unloaded) {
+                changeUiNodeEvents = new ArrayDeque<>();
+            } else {
+                throw new UiNodeEventException("Can only call this method before root is loaded.");
+            }
+        }
 
         changeUiNodeEvents.addLast(event);
     }

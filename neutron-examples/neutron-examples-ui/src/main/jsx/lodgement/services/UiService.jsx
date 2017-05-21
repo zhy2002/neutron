@@ -42,6 +42,10 @@ class JsNodeIdentity {
         return this.name;
     }
 
+    getValue() {
+        return this.node.value;
+    }
+
     getNodeIdentityMap() {
         if (!this.childIdentityMap) {
             this.childIdentityMap = new JsNodeIdentityMap(this.node.children);
@@ -138,10 +142,10 @@ UiService.createApplicationNode = () => {
 function loadData(model, node, path) {
     const context = model.getContext();
     context.beginSession();
-    model.setLoading(true);
-    CommonUtil.setValue(model, node);
-    model.setLoading(false);
-    context.commitSession();
+    // model.setLoading(true);
+    // CommonUtil.setValue(model, node);
+    //model.setLoading(false);
+    // context.commitSession();
     if (typeof path === 'string') {
         model.getContext().beginSession();
         model.selectDescendant(path); //this handles ...[?selected=tabName]
