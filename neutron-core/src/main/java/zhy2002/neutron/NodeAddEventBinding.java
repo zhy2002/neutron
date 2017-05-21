@@ -17,6 +17,14 @@ public final class NodeAddEventBinding<E extends NodeAddEvent<?>> extends Abstra
     }
 
     public NodeAddEventBinding(
+            UiNodeEventFilter<E> filter,
+            @NotNull UiNodeEventHandler<E> handler,
+            Class<E> eventCLass
+    ) {
+        this(filter, handler, eventCLass, null);
+    }
+
+    public NodeAddEventBinding(
             @NotNull UiNodeEventHandler<E> handler,
             Class<E> eventClass
     ) {

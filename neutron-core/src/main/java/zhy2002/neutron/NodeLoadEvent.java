@@ -17,8 +17,10 @@ public abstract class NodeLoadEvent<N extends UiNode<?>>
     public void apply() {
         UiNode<?> origin = getOrigin();
         if (origin.getNodeStatus() == NodeStatusEnum.Unloaded) {
-            getOrigin().loadDirectly();
-            getOrigin().refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
+            origin.loadDirectly();
+            if (!(origin instanceof RootUiNode)) {
+                origin.refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
+            }
         }
     }
 

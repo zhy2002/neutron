@@ -136,12 +136,18 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         return this.root;
     }
 
+    @Override
+    public boolean isLoaded() {
+        return changeUiNodeEvents == null;
+    }
+
     private void flushPendingChanges() {
         beginSession();
         while (!changeUiNodeEvents.isEmpty()) {
             processEvent(changeUiNodeEvents.pollFirst());
         }
         commitSession();
+        getRootNode().refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
         changeUiNodeEvents = null;
     }
 
@@ -235,8 +241,13 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
 
     @Override
     public final void addPendingChangeEvent(ChangeUiNodeEvent event) {
-        if (changeUiNodeEvents == null)
-            throw new UiNodeEventException("Can only call this method before root is loaded.");
+        if (changeUiNodeEvents == null) {
+            if (getRootNode().getNodeStatus() == NodeStatusEnum.Unloaded) {
+                changeUiNodeEvents = new ArrayDeque<>();
+            } else {
+                throw new UiNodeEventException("Can only call this method before root is loaded.");
+            }
+        }
 
         changeUiNodeEvents.addLast(event);
     }

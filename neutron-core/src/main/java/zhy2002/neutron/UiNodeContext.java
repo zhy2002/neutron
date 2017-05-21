@@ -61,4 +61,6 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
     void resetDirty();
 
     void addPendingChangeEvent(ChangeUiNodeEvent event);
+
+    boolean isLoaded();
 }
