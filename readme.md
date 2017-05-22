@@ -5,7 +5,6 @@ load portion by portion (e.g. data on a screen is not loaded when it is not visi
 do not directly reference context and nodes (implement web worker)
 1. rolling commit - only keep N cycles in the current session
 2. load initial values (as a part of node load) 
-  - load value only or the full state?
 11. Generate per-profile constants and assets
 * Class level config  
 * state metadata (type and stuff)  
@@ -278,8 +277,6 @@ todo:
 eliminate classRegistry
 
 
-
-
 ////////////////////////////////////
 valueTypeName -> default baseTypeName: LeafUiNode
 commonTypes -> abstractNode: true
@@ -305,25 +302,24 @@ Other Incomes (0)
 <pre>
 person general page: 
 age and number of dependants
-name of trust field
 next of kin field
 other title field
 </pre>
 
 <pre>
-
+dob year defaults to 18 years ago
 </pre>
 
 <pre>
-
+director reference list add new related person button
 </pre>
 
 <pre>
-
+name of trust field readonly field set in another tab
 </pre>
 
 <pre>
-
+unit tests with jest
 </pre>
 
 <pre>

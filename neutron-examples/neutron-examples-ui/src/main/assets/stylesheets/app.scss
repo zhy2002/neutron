@@ -1,7 +1,10 @@
+//region import font awesome
 $fa-font-path: '~font-awesome/fonts/';
 @import '~font-awesome/scss/font-awesome';
 @import '~font-awesome-animation/src/font-awesome-animation';
-//customize bootstrap
+//endregion
+
+//region customize and import bootstrap
 $screen-xs: 1px;
 $screen-sm: 2px;
 $screen-md: 800px;
@@ -12,12 +15,49 @@ $table-bg: #f5f5f5;
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import '~bootswatch/paper/bootswatch';
+//endregion
+
+//region style for 3rd party components
 @import '~react-datepicker/src/stylesheets/datepicker';
+//endregion
+
+//region adjust react date picker size: https://github.com/Hacker0x01/react-datepicker/issues/624
+.react-datepicker {
+  font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+  padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+  top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+  margin: 0.5rem !important;
+}
+
+.react-datepicker__year-select {
+  width: 55px;
+}
+
+//endregion
 
 $missing-value-bg: rgba(100, 100, 200, 0.33);
 $missing-value-border-color: rgba(100, 100, 200, 0.88);
 $missing-value-placeholder-color: #999;
 $has-error-placeholder-color: #d0d0d0;
+
+html, body {
+  height: 100%;
+}
+
+//region override bootstrap styles
 
 .form-group-sm {
   position: relative;
@@ -44,14 +84,6 @@ $has-error-placeholder-color: #d0d0d0;
   }
 }
 
-li.nav-dropdown-component.selected {
-  & > a {
-    color: white;
-    font-weight: 500;
-    background-color: #308FD8;
-  }
-}
-
 [contenteditable].form-control, [type=email].form-control, [type=password].form-control, [type=tel].form-control, [type=text].form-control, input.form-control, input[type=email], input[type=number], input[type=password], input[type=text], textarea, textarea.form-control {
   font-size: 12px;
 }
@@ -60,9 +92,48 @@ a[tabindex] {
   cursor: pointer;
 }
 
+.list-group-item {
+  label.layout-helper {
+    display: none;
+  }
+
+  .form-group {
+    padding-bottom: 0;
+  }
+}
+
 button.link {
   background: none;
   border: none;
+}
+
+//endregion
+
+//region helpers
+
+.force-wrap {
+  word-break: break-all;
+}
+
+.fill-all {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+//endregion
+
+//region lodgement components
+
+li.nav-dropdown-component.selected {
+  & > a {
+    color: white;
+    font-weight: 500;
+    background-color: #308FD8;
+  }
 }
 
 .panel-component {
@@ -70,7 +141,10 @@ button.link {
     > a {
       display: block;
       float: left;
-      font-size: 1.5em;
+
+      .glyphicon {
+        font-size: 1.5em;
+      }
     }
 
     > .panel-title {
@@ -89,10 +163,6 @@ button.link {
 .json-container {
   max-height: 75vh;
   overflow-y: auto;
-}
-
-.force-wrap {
-  word-break: break-all;
 }
 
 .radio-input-component {
@@ -136,47 +206,15 @@ button.link {
   }
 }
 
-//region adjust react date picker size: https://github.com/Hacker0x01/react-datepicker/issues/624
-.react-datepicker {
-  font-size: 1.3rem !important;
-}
-
-.react-datepicker__current-month {
-  font-size: 1.5rem !important;
-}
-
-.react-datepicker__header {
-  padding-top: 6px !important;
-}
-
-.react-datepicker__navigation {
-  top: 13px !important;
-}
-
-.react-datepicker__day-name, .react-datepicker__day {
-  margin: 0.5rem !important;
-}
-
-.react-datepicker__year-select {
-  width: 55px;
-}
-
-//endregion
-
 .remove-panel-component {
   h5 {
     margin-top: 0;
+    font-size: 1.4em;
   }
 
   .close-icon-component {
     float: right;
     font-size: 125%;
-  }
-}
-
-.list-group-item {
-  .form-group {
-    padding-bottom: 0;
   }
 }
 
@@ -243,15 +281,6 @@ button.link {
   .country {
     width: 40%;
   }
-}
-
-.fill-all {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
 }
 
 .person-summary-component {
@@ -336,28 +365,6 @@ button.link {
   }
 }
 
-.missing-value {
-  input, select, .radio-container {
-    background-color: $missing-value-bg;
-    border-color: $missing-value-border-color;
-  }
-
-  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: $missing-value-placeholder-color;
-  }
-  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: $missing-value-placeholder-color;
-    opacity: 1;
-  }
-  ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: $missing-value-placeholder-color;
-    opacity: 1;
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $missing-value-placeholder-color;
-  }
-}
-
 .checkbox {
   > label.missing-value {
     background-color: $missing-value-bg;
@@ -377,35 +384,6 @@ button.link {
   }
 }
 
-.has-error {
-
-  &:hover {
-    .error-message.tooltip {
-      opacity: 1;
-    }
-  }
-
-  input, select, .radio-container, &.checkbox {
-    background-color: #ef9a9a;
-  }
-
-  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: $has-error-placeholder-color;
-  }
-  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: $has-error-placeholder-color;
-    opacity: 1;
-  }
-  ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: $has-error-placeholder-color;
-    opacity: 1;
-  }
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $has-error-placeholder-color;
-  }
-
-}
-
 .select-account-holder-list-component {
   label.layout-helper {
     display: none;
@@ -418,12 +396,6 @@ button.link {
   .form-group.form-group-sm.checkbox-input-component {
     margin: 0;
     padding-bottom: 0;
-  }
-}
-
-.list-group-item {
-  label.layout-helper {
-    display: none;
   }
 }
 
@@ -613,11 +585,11 @@ button.link {
     }
 
     .application-tabs-component {
-      padding-bottom: 1em;
+      padding-bottom: 5px;
       margin-top: 5px;
 
       .model-tabs-component {
-        background-color: rgba(100, 100, 200, .33);
+        background-color: rgba(100, 100, 200, .3);
       }
 
       .nav > li > a {
@@ -676,6 +648,11 @@ button.link {
         color: $brand-primary;
       }
     }
+
+    .main-content-component {
+      padding-top: 1.4em;
+      background-color: mintcream;
+    }
   }
 }
 
@@ -711,30 +688,63 @@ button.link {
   }
 }
 
-//
-//$scrollbarWidth: 10px;
-//
-////region Top Level Components
-//
-//html, body {
-//  height: 100%;
-//}
-//
-//.lodgement-component, .loading-spinner-component {
-//  position: absolute;
-//  top: 0;
-//  left: 0;
-//  right: 0;
-//  bottom: 0;
-//  min-width: 800px;
-//}
-//
-//.loading-spinner-component {
-//  background-color: #000;
-//  opacity: 0.5;
-//  z-index: 2147483647;
-//}
-//
+//endregion
+
+//region status change
+
+.missing-value {
+  input, select, .radio-container {
+    background-color: $missing-value-bg;
+    border-color: $missing-value-border-color;
+  }
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: $missing-value-placeholder-color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $missing-value-placeholder-color;
+    opacity: 1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $missing-value-placeholder-color;
+    opacity: 1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $missing-value-placeholder-color;
+  }
+}
+
+.has-error {
+
+  &:hover {
+    .error-message.tooltip {
+      opacity: 1;
+    }
+  }
+
+  input, select, .radio-container, &.checkbox {
+    background-color: #ef9a9a;
+  }
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: $has-error-placeholder-color;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $has-error-placeholder-color;
+    opacity: 1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $has-error-placeholder-color;
+    opacity: 1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $has-error-placeholder-color;
+  }
+
+}
+
+//endregion
+
 //.lodgement-header-component {
 //  margin-bottom: 0;
 //  border-bottom: none;
@@ -1060,19 +1070,13 @@ button.link {
 //  margin-bottom: 0;
 //}
 //
-//.main-content-component {
-//  padding-top: 1em;
-//}
-//
 
+//
 //
 //.load-more-strip {
 //  text-align: center;
 //  color: #045FB4;
 //  font-size: 18px;
 //}
-//
-
-//
 //
 ////endregion
