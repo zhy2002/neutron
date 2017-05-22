@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import CommonUtil from './CommonUtil';
-import EventService from '../../bootstrap3/common/EventService';
+import EventService from '../../neutron/EventService';
 
 
 const baseUrl = 'http://localhost:9200';

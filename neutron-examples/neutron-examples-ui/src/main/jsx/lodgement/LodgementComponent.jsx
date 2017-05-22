@@ -1,6 +1,6 @@
 import React from 'react';
 import NotificationSystem from 'react-notification-system';
-import EventService from '../bootstrap3/common/EventService';
+import EventService from '../neutron/EventService';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import LodgementFooterComponent from './LodgementFooterComponent';

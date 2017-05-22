@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
-import EventService from '../../bootstrap3/common/EventService';
+import EventService from '../../neutron/EventService';
 import CommonUtil from '../services/CommonUtil';
 import StorageService from '../services/StorageService';
 

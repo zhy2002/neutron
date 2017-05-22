@@ -1,6 +1,6 @@
 import CommonUtil from './CommonUtil';
 import LodgementService from './LodgementService';
-import EventService from '../../bootstrap3/common/EventService';
+import EventService from '../../neutron/EventService';
 
 
 let currentHash = ''; //the hash that represents the application state (without leading '#')

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import EventService from '../../bootstrap3/common/EventService';
+import EventService from '../../neutron/EventService';
 import StorageService from './StorageService';
 import CommonUtil from './CommonUtil';
 

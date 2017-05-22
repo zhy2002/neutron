@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EventService from '../../bootstrap3/common/EventService';
+import EventService from '../../neutron/EventService';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ApplicationHeaderComponent from './ApplicationHeaderComponent';
 import ApplicationContentComponent from './ApplicationContentComponent';

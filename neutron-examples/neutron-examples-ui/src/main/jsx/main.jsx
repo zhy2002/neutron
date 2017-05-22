@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../assets/stylesheets/app.scss';
 import LodgementComponent from './lodgement/LodgementComponent';
-import EventService from './bootstrap3/common/EventService';
+import EventService from './neutron/EventService';
 
 
 const appContainerDomElement = document.getElementById('app');
