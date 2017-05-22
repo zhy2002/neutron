@@ -1,4 +1,6 @@
 import React from 'react';
+import NotificationSystem from 'react-notification-system';
+import EventService from '../bootstrap3/common/EventService';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import LodgementFooterComponent from './LodgementFooterComponent';
@@ -23,6 +25,18 @@ export default class LodgementComponent extends React.PureComponent {
                 console.debug(e);
             }
         };
+
+        this.setNotificationSystem = (ref) => {
+            this.notificationSystem = ref;
+        };
+
+        EventService.subscribe('show_notification', (config) => {
+            if (this.notificationSystem) {
+                this.notificationSystem.addNotification(config);
+            } else {
+                console.warn('Notification system is not initialized.');
+            }
+        });
 
         this.state = LodgementService.getState();
     }
@@ -55,6 +69,7 @@ export default class LodgementComponent extends React.PureComponent {
                 }
                 <LodgementFooterComponent />
                 <LodgementSpinnerComponent />
+                <NotificationSystem ref={this.setNotificationSystem}/>
             </div>
         );
     }

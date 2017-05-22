@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import CommonUtil from './CommonUtil';
+import EventService from '../../bootstrap3/common/EventService';
 
 
 const baseUrl = 'http://localhost:9200';
@@ -10,9 +11,16 @@ class StorageService {
 
 const errorHandler = (error) => {
     CommonUtil.setIsLoading(false);
-    console.log(error);
     setTimeout(() => {
-        alert(error);
+        console.log(error);
+        EventService.fire(
+            'show_notification',
+            {
+                message: error.toString(),
+                position: 'tc',
+                level: 'error'
+            }
+        );
     }, 100);
     return window.Promise.reject(error);
 };

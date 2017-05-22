@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
+import EventService from '../../bootstrap3/common/EventService';
 import CommonUtil from '../services/CommonUtil';
 import StorageService from '../services/StorageService';
 
@@ -28,7 +29,14 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
                 (response) => {
                     console.log(response);
                     this.model.getContext().resetDirty();
-                    alert('saved!');
+                    EventService.fire(
+                        'show_notification',
+                        {
+                            message: 'Application is saved.',
+                            position: 'tc',
+                            level: 'success'
+                        }
+                    );
                 }
             );
         };
