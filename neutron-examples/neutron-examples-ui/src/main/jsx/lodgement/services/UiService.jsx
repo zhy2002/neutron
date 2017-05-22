@@ -1,4 +1,5 @@
 import moment from 'moment';
+import EventService from '../../bootstrap3/common/EventService';
 import StorageService from './StorageService';
 import CommonUtil from './CommonUtil';
 
@@ -142,14 +143,13 @@ UiService.createApplicationNode = () => {
 function loadData(model, node, path) {
     const context = model.getContext();
     context.beginSession();
-    // model.setLoading(true);
-    // CommonUtil.setValue(model, node);
-    //model.setLoading(false);
-    // context.commitSession();
     if (typeof path === 'string') {
         model.getContext().beginSession();
-        model.selectDescendant(path); //this handles ...[?selected=tabName]
+        const success = model.selectDescendant(path); //this handles ...[?selected=tabName]
         model.getContext().commitSession();
+        if (!success) {
+            CommonUtil.defer(50).then(() => EventService.fire('state_partially_synced'));
+        }
     }
     return CommonUtil.defer(model);
 }

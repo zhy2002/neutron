@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EventService from '../../bootstrap3/common/EventService';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ApplicationHeaderComponent from './ApplicationHeaderComponent';
 import ApplicationContentComponent from './ApplicationContentComponent';
 import ApplicationErrorsComponent from '../app_data/ApplicationErrorsComponent';
+import LocationService from '../services/LocationService';
 
 
 export default class ApplicationComponent extends NeutronComponent {
@@ -19,6 +21,12 @@ export default class ApplicationComponent extends NeutronComponent {
             this.contentTop = height + 1;
             this.setState({contentTop: this.contentTop});
         };
+
+        EventService.subscribe('application_content_change', () => {
+            if (this.state.currentModel) {
+                LocationService.syncHashToState(this.state.currentModel);
+            }
+        });
     }
 
     getCurrentModel() {

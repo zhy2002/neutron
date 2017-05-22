@@ -17,7 +17,11 @@ export default class LodgementComponent extends React.PureComponent {
         super(props);
 
         this.onHashChanged = () => {
-            this.setState(LodgementService.getState());
+            try {
+                this.setState(LodgementService.getState());
+            } catch (e) {
+                console.debug(e);
+            }
         };
 
         this.state = LodgementService.getState();

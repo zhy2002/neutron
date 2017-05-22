@@ -8,7 +8,6 @@ import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.exception.ChildAlreadyExistException;
 import zhy2002.neutron.exception.ParentMismatchException;
-import zhy2002.neutron.util.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -135,13 +134,15 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     }
 
     @JsMethod
-    public void selectDescendant(String path) {
+    public boolean selectDescendant(String path) {
+        int level = 0;
         if (path == null) {
-            return;
+            return false;
         }
 
         logger.info("selecting path: " + path);
 
+        //parsing
         final String[] select = new String[1];
         int queryStringStart = path.indexOf("?");
         if (queryStringStart >= 0) {
@@ -155,7 +156,6 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 }
             });
         }
-
         UiNode<?> parent = this;
         String[] names = path.split("/");
         List<String> allNames = new ArrayList<>(Arrays.asList(names));
@@ -163,6 +163,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
             allNames.add(select[0]);
         }
 
+        //selection
         for (String name : allNames) {
             if (parent instanceof ListUiNode<?, ?>) {
                 ListUiNode<?, ?> list = (ListUiNode<?, ?>) parent;
@@ -171,6 +172,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 if (child == null)
                     break;
                 list.setSelectedIndex(child.getIndex());
+                level++;
             } else if (parent instanceof ObjectUiNode<?>) {
                 ObjectUiNode<?> obj = (ObjectUiNode<?>) parent;
                 UiNode<?> child = obj.getChild(name);
@@ -178,12 +180,14 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
                 if (child == null)
                     break;
                 obj.setSelectedName(child.getName());
+                level++;
             } else {
                 break;
             }
         }
 
-        getContext().getRootNode().setContentLevel(names.length);
+        getContext().getRootNode().setContentLevel(Math.min(level, names.length));
+        return level >= names.length;
     }
 
     final void increaseDirtyDescendantCount() {

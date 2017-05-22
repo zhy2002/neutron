@@ -421,6 +421,12 @@ button.link {
   }
 }
 
+.list-group-item {
+  label.layout-helper {
+    display: none;
+  }
+}
+
 .ownership-list-component {
 
   label.layout-helper {
@@ -591,7 +597,7 @@ button.link {
 
     table.application-table {
       font-size: 12px;
-      
+
       tr {
         p {
           margin-bottom: 0;
@@ -990,20 +996,6 @@ button.link {
 //  }
 //}
 //
-
-//
-
-//
-//
-//.error-message {
-//}
-//
-
-//
-//.application-list-component tbody tr {
-//}
-//
-
 //
 //.panel-component {
 //  .panel-heading {

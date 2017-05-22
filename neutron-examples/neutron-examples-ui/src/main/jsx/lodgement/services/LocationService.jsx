@@ -1,9 +1,16 @@
 import CommonUtil from './CommonUtil';
 import LodgementService from './LodgementService';
+import EventService from '../../bootstrap3/common/EventService';
 
 
 let currentHash = ''; //the hash that represents the application state (without leading '#')
 let restored = false; //if the view specified in hash is loaded
+let statePartiallySynced = false;
+
+
+EventService.subscribe('state_partially_synced', () => {
+    statePartiallySynced = true;
+});
 
 function restoreLodgementState(newHash/*format: appId/path_to_content_node[?selected=tabName]*/) {
     const index = newHash.indexOf('/');
@@ -37,12 +44,17 @@ export default class LocationService {
         }
 
         restored = false;
+
         if (newHash.startsWith('/app/') && newHash.length > 5) {
             CommonUtil.setIsLoading(true);
-            CommonUtil.delay(50).then(
-                () => restoreLodgementState(newHash.substr(5)).then(
+            statePartiallySynced = false;
+            CommonUtil.delay(50).then(() => restoreLodgementState(newHash.substr(5))
+                .then(
                     () => {
                         restored = true;
+                        if (statePartiallySynced) { //could not fully sync sate to hash - maybe rename this event
+                            EventService.fire('application_content_change');
+                        }
                         CommonUtil.setIsLoading(false);
                     }
                 )
