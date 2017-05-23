@@ -1,47 +1,17 @@
 import Promise from 'promise';
-import moment from 'moment';
+import StaticService from './StaticService';
 
-let loadingCount = 0;
 
+//todo make this generic
 const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
 
 function isExcluded(nodeName) {
     return excludedNodeNames.indexOf(nodeName) >= 0;
 }
 
-function delay(interval = 0) {
-    return new Promise(
-        (resolve) => {
-            setTimeout(resolve, interval);
-        }
-    );
-}
-
-function defer(data) {
-    return new Promise(
-        (resolve) => {
-            setTimeout(() => resolve(data), 50);
-        }
-    );
-}
-
 function toLocalId(uniqueId) {
     const index = uniqueId.indexOf('-');
     return uniqueId.substring(index + 1);
-}
-
-function setIsLoading(isLoading) {
-    const items = document.getElementsByClassName('loading-spinner-component');
-    if (items.length === 0)
-        return;
-    loadingCount += isLoading ? 1 : -1;
-    const spinner = items.item(0);
-    if (loadingCount === 1) {
-        spinner.classList.remove('hide');
-    } else if (loadingCount === 0) {
-        spinner.classList.add('hide');
-    }
-    console.debug(`IsLoading: ${isLoading}`);
 }
 
 function extractValue(node) {
@@ -178,31 +148,29 @@ function copyFields(target, source) {
     }
 }
 
-function replaceDigit(c, i, a) {
-    return i && c !== '.' && ((a.length - i) % 3 === 0) ? `,${c}` : c;
+export default class CommonUtil extends StaticService {
+
+    static extractValue(node) {
+        return extractValue(node);
+    }
+
+    static setValue(node, obj) {
+        setValue(node, obj);
+    }
+
+    static defer(data) {
+        return new Promise(
+            (resolve) => {
+                setTimeout(() => resolve(data), 50);
+            }
+        );
+    }
+
+    static delay(interval = 0) {
+        return new Promise(
+            (resolve) => {
+                setTimeout(resolve, interval);
+            }
+        );
+    }
 }
-
-function formatCurrency(n, symbol) {
-    if (n === null || n === undefined)
-        return '';
-    const s = symbol || '$';
-    return s + n.toFixed(2).replace(/./g, replaceDigit);
-}
-
-function formatDate(date) {
-    if (!date)
-        return '';
-
-    return moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
-}
-
-export default class CommonUtil {
-}
-
-CommonUtil.extractValue = extractValue;
-CommonUtil.setValue = setValue;
-CommonUtil.setIsLoading = setIsLoading;
-CommonUtil.delay = delay;
-CommonUtil.defer = defer;
-CommonUtil.formatCurrency = formatCurrency;
-CommonUtil.formatDate = formatDate;

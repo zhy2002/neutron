@@ -1,13 +1,12 @@
 import React from 'react';
 import NotificationSystem from 'react-notification-system';
 import EventService from '../neutron/EventService';
+import LodgementService from './services/LodgementService';
+import LocationService from './services/LocationService';
 import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import LodgementFooterComponent from './LodgementFooterComponent';
 import LodgementSpinnerComponent from './LodgementSpinnerComponent';
-import LodgementService from './services/LodgementService';
-import LocationService from './services/LocationService';
-import UiService from './services/UiService';
 
 
 /**
@@ -18,7 +17,7 @@ export default class LodgementComponent extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.onHashChanged = () => {
+        this.onStateChange = () => {
             try {
                 this.setState(LodgementService.getState());
             } catch (e) {
@@ -42,13 +41,13 @@ export default class LodgementComponent extends React.PureComponent {
     }
 
     componentDidMount() {
-        LodgementService.addHashChangeHandler(this.onHashChanged);
+        EventService.subscribe('lodgement_state_change', this.onStateChange);
         LocationService.syncStateToHash();
-        UiService.refreshApplicationList();
+        LodgementService.refreshApplicationList();
     }
 
     componentWillUnmount() {
-        LodgementService.removeHashChangeHandler(this.onHashChanged);
+        EventService.unsubscribe('lodgement_state_change', this.onStateChange);
     }
 
     render() {

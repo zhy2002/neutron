@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ResizeAware from 'react-resize-aware';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
-import CommonUtil from '../services/CommonUtil';
+import FormattingService from '../../neutron/FormattingService';
 import LocationService from '../services/LocationService';
 import LodgementService from '../services/LodgementService';
 
@@ -65,10 +65,10 @@ export default class ApplicationListComponent extends NeutronComponent {
                         </a>
                     </td>
                     <td width="10%">{data.username}</td>
-                    <td width="9%" className="text-right">{CommonUtil.formatCurrency(data.amount)}</td>
+                    <td width="9%" className="text-right">{FormattingService.formatCurrency(data.amount)}</td>
                     <td width="8%">{data.status}</td>
-                    <td width="12%">{CommonUtil.formatDate(data.created)}</td>
-                    <td width="12%">{CommonUtil.formatDate(data.updated)}</td>
+                    <td width="12%">{FormattingService.formatDate(data.created)}</td>
+                    <td width="12%">{FormattingService.formatDate(data.updated)}</td>
                     <td width="12%"/>
                 </tr>
             );

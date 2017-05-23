@@ -1,6 +1,8 @@
-import CommonUtil from './CommonUtil';
-import LodgementService from './LodgementService';
+import CommonUtil from '../../neutron/CommonUtil';
 import EventService from '../../neutron/EventService';
+import StaticService from '../../neutron/StaticService';
+import LodgementService from './LodgementService';
+import UiService from '../../neutron/UiService';
 
 
 let currentHash = ''; //the hash that represents the application state (without leading '#')
@@ -25,7 +27,10 @@ function restoreLodgementState(newHash/*format: appId/path_to_content_node[?sele
     );
 }
 
-export default class LocationService {
+/**
+ * Code that manages the syncing of application state and window location hash.
+ */
+export default class LocationService extends StaticService {
 
     /**
      * Update the application state to reflect the hash in address bar.
@@ -46,7 +51,7 @@ export default class LocationService {
         restored = false;
 
         if (newHash.startsWith('/app/') && newHash.length > 5) {
-            CommonUtil.setIsLoading(true);
+            UiService.setIsLoading(true);
             statePartiallySynced = false;
             CommonUtil.delay(50).then(() => restoreLodgementState(newHash.substr(5))
                 .then(
@@ -55,7 +60,7 @@ export default class LocationService {
                         if (statePartiallySynced) { //could not fully sync sate to hash - maybe rename this event
                             EventService.fire('application_content_change');
                         }
-                        CommonUtil.setIsLoading(false);
+                        UiService.setIsLoading(false);
                     }
                 )
             );
@@ -97,5 +102,4 @@ export default class LocationService {
         }
         return true;
     }
-
 }

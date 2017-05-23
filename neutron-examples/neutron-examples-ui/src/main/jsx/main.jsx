@@ -5,6 +5,8 @@ import LodgementComponent from './lodgement/LodgementComponent';
 import EventService from './neutron/EventService';
 
 
+//these events are used by some components to detect
+//if a click or keyup event has occurred outside of them.
 const appContainerDomElement = document.getElementById('app');
 appContainerDomElement.addEventListener('click', (e) => {
     EventService.fire('root_click', e.target);
@@ -13,14 +15,9 @@ appContainerDomElement.addEventListener('keyup', (e) => {
     EventService.fire('root_keyup', e.target);
 });
 
-let appRendered = false;
-
 /**
- * Called in GWT to start up root React component.
+ * Called by GWT when GWT modules are loaded.
  */
 window.startLodgement = () => {
-    if (appRendered)
-        return;
     ReactDOM.render(<LodgementComponent/>, appContainerDomElement);
-    appRendered = true;
 };

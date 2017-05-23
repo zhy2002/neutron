@@ -1,48 +1,27 @@
 import axios from 'axios';
 import moment from 'moment';
-import CommonUtil from './CommonUtil';
+import CommonUtil from '../../neutron/CommonUtil';
 import EventService from '../../neutron/EventService';
+import StaticService from '../../neutron/StaticService';
 
 
 const baseUrl = 'http://localhost:9200';
 
-class StorageService {
-}
-
 const errorHandler = (error) => {
-    CommonUtil.setIsLoading(false);
-    setTimeout(() => {
-        console.log(error);
-        EventService.fire(
-            'show_notification',
-            {
-                message: error.toString(),
-                position: 'tc',
-                level: 'error'
-            }
-        );
-    }, 100);
+    console.log('An error occurred in Storage Service:', error);
+    EventService.fire(
+        {
+            name: 'show_notification',
+            delay: 100
+        },
+        {
+            message: error.toString(),
+            position: 'tc',
+            level: 'error'
+        }
+    );
     return window.Promise.reject(error);
 };
-
-StorageService.getApplicationSummaries = () => {
-    CommonUtil.setIsLoading(true);
-    return axios.get(
-        `${baseUrl}/lodgement/application/_search?q=*&_source_exclude=node&size=100&sort=updated:desc`
-    ).then(
-        (response) => {
-            CommonUtil.setIsLoading(false);
-            return response.data;
-        },
-        errorHandler
-    );
-};
-
-StorageService.getApplication = id =>
-    axios.get(`${baseUrl}/lodgement/application/${id}?pretty`).then(
-        response => response.data['_source'].node,
-        errorHandler
-    );
 
 function getSummary(data, model) {
     const node = data.children;
@@ -60,22 +39,37 @@ function getSummary(data, model) {
     };
 }
 
-StorageService.saveApplication = (model) => {
-    CommonUtil.setIsLoading(true);
-    const now = moment().format();
-    model.getDateUpdatedNode().setValue(now);
-    const node = CommonUtil.extractValue(model);
-    const id = node.children.id.value;
-    const summary = getSummary(node, model);
-    return axios.put(
-        `${baseUrl}/lodgement/application/${id}`, summary
-    ).then(
-        (response) => {
-            CommonUtil.setIsLoading(false);
-            return CommonUtil.defer(response);
-        },
-        errorHandler
-    );
-};
+export default class StorageService extends StaticService {
 
-export default StorageService;
+    static saveApplication(model) {
+        const now = moment().format();
+        model.getDateUpdatedNode().setValue(now);
+        const node = CommonUtil.extractValue(model);
+        const id = node.children.id.value;
+        const summary = getSummary(node, model);
+        return axios.put(
+            `${baseUrl}/lodgement/application/${id}`, summary
+        ).then(
+            response => CommonUtil.defer(response),
+            errorHandler
+        );
+    }
+
+    static getApplicationSummaries() {
+        return axios.get(
+            `${baseUrl}/lodgement/application/_search?q=*&_source_exclude=node&size=100&sort=updated:desc`
+        ).then(
+            response => response.data,
+            errorHandler
+        );
+    }
+
+    static getApplication(id) {
+        return axios.get(
+            `${baseUrl}/lodgement/application/${id}?pretty`
+        ).then(
+            response => response.data['_source'].node,
+            errorHandler
+        );
+    }
+}

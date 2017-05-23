@@ -3,7 +3,7 @@ import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 import AddListComponent from '../common/AddListComponent';
 import PersonSummaryComponent from './PersonSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
-import CommonUtil from '../../services/CommonUtil';
+import CommonUtil from '../../../neutron/CommonUtil';
 
 
 export default class PersonListComponent extends ListNeutronComponent {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UiService from '../services/UiService';
+import LodgementService from '../services/LodgementService';
+
 
 export default class AppManagerToolbarComponent extends React.PureComponent {
 
@@ -8,7 +9,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
         super(props);
 
         this.onRefresh = () => {
-            UiService.refreshApplicationList();
+            LodgementService.refreshApplicationList();
         };
 
         this.notImplemented = () => {

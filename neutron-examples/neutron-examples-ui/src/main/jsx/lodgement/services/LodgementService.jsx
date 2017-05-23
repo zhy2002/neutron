@@ -1,7 +1,9 @@
-import UiService from './UiService';
-import CommonUtil from './CommonUtil';
+import moment from 'moment';
+import UiService from '../../neutron/UiService';
+import EventService from '../../neutron/EventService';
+import StaticService from '../../neutron/StaticService';
+import CommonUtil from '../../neutron/CommonUtil';
 import StorageService from './StorageService';
-
 
 let lodgementNode = null;
 let openApps = [];
@@ -9,12 +11,22 @@ let selectedIndex = 0;
 let headerHeight = NaN;
 let footerHeight = NaN;
 let currentAppId = null;
-
-const hashChangeHandlers = []; //notify state is changed
 const appTabOffset = 1; //the first is app manager tab
 
 function notifyStateChange() {
-    hashChangeHandlers.forEach(h => h());
+    EventService.fire('lodgement_state_change');
+}
+
+function createLodgementNode() {
+    return window.GWT.LodgementNodeFactory.create();
+}
+
+function getLodgementNode() {
+    if (lodgementNode === null) {
+        lodgementNode = createLodgementNode();
+    }
+
+    return lodgementNode;
 }
 
 function createAppTab(newApp) {
@@ -29,17 +41,47 @@ function createAppTab(newApp) {
     return CommonUtil.defer(newApp);
 }
 
+//todo pass the lender to create application for.
+function createApplicationNode() {
+    const model = window.GWT.ApplicationNodeFactory.create();
+
+    model.getIdNode().setValue(model.getContext().getContextId());
+
+    const user = UiService.getCurrentUser();
+    model.getOwningUserNode().setValue(user.username);
+
+    model.getStatusNode().setValue('In Progress');
+
+    model.getLenderNode().setValue('NAB');
+
+    const now = moment().format();
+    model.getDateCreatedNode().setValue(now);
+
+    return CommonUtil.defer(model);
+}
+
+function cloneApplicationNode(node, path) {
+    node.children.id.value = null;
+    const nodeDataStore = UiService.createNodeDataStore(node);
+    const model = window.GWT.ApplicationNodeFactory.restore(nodeDataStore);
+    node.children.id.value = model.getContext().getContextId();
+    return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
+}
+
+function restoreApplicationNode(node, path) {
+    //todo open for different lenders
+    const nodeDataStore = UiService.createNodeDataStore(node);
+    const model = window.GWT.ApplicationNodeFactory.restore(nodeDataStore);
+    return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
+}
+
 /**
  * A wrapper of global application states.
  */
-export default class LodgementService {
-
-    constructor() {
-        throw new Error('Cannot instantiate LodgementService');
-    }
+export default class LodgementService extends StaticService {
 
     static newApp() {
-        return UiService.createApplicationNode().then(createAppTab);
+        return createApplicationNode().then(createAppTab);
     }
 
     static openApp(appId, path) {
@@ -67,13 +109,13 @@ export default class LodgementService {
         }
 
         //load existing app
-        CommonUtil.setIsLoading(true);
+        UiService.setIsLoading(true);
         return StorageService.getApplication(id)
-            .then(node => UiService.restoreApplicationNode(node, path))
+            .then(node => restoreApplicationNode(node, path))
             .then(createAppTab)
             .then(
                 (model) => {
-                    CommonUtil.setIsLoading(false);
+                    UiService.setIsLoading(false);
                     return CommonUtil.defer(model);
                 }
             );
@@ -94,7 +136,7 @@ export default class LodgementService {
 
         CommonUtil.setIsLoading(true);
         return StorageService.getApplication(id)
-            .then(node => UiService.cloneApplicationNode(node, path))
+            .then(node => cloneApplicationNode(node, path))
             .then(createAppTab)
             .then(
                 (model) => {
@@ -123,6 +165,17 @@ export default class LodgementService {
         }
     }
 
+    static refreshApplicationList() {
+        return StorageService.getApplicationSummaries().then(
+            (data) => {
+                const appListNode = lodgementNode.getAppManagerNode().getApplicationListNode();
+                appListNode.data = data;
+                appListNode.totalCount = data.hits.total;
+                appListNode.setUpdated(true);
+            }
+        );
+    }
+
     static updateHeaderHeight(height) {
         headerHeight = height;
         notifyStateChange();
@@ -135,7 +188,7 @@ export default class LodgementService {
 
     static getState() {
         if (lodgementNode === null) {
-            lodgementNode = UiService.getLodgementNode();
+            lodgementNode = getLodgementNode();
             console.debug('loaded lodgement node');
         }
         return {
@@ -149,17 +202,6 @@ export default class LodgementService {
 
     static setCurrentAppId(id) {
         currentAppId = id;
-    }
-
-    static addHashChangeHandler(func) {
-        hashChangeHandlers.push(func);
-    }
-
-    static removeHashChangeHandler(func) {
-        const index = hashChangeHandlers.indexOf(func);
-        if (index >= 0) {
-            hashChangeHandlers.splice(index, 1);
-        }
     }
 
 }

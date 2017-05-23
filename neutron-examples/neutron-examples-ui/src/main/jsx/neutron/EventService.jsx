@@ -1,13 +1,11 @@
+import StaticService from './StaticService';
+
 const map = {};
 
 /**
  * A simple global event service implementation.
  */
-export default class EventService {
-
-    constructor() {
-        throw new Error('EventService class is static.');
-    }
+export default class EventService extends StaticService {
 
     static subscribe(eventName, listener) {
         if (!map[eventName]) {
