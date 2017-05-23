@@ -13,35 +13,30 @@ export default class TextAreaComponent extends InputComponent {
             this.model.setValue(event.target.value);
             this.flush();
         };
+
+        this.identifierClass = 'text-area-component';
     }
 
-    render() {
+    renderContent() {
         const model = this.model;
         const conditionalProps = {};
         if (this.props.hideLabel) {
             conditionalProps.placeholder = this.state.label;
         }
+
         return (
-            <div className={super.renderContainerClass('text-area-component')}>
-                {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
-                <textarea
-                    type="text"
-                    className="form-control"
-                    id={model.getUniqueId()}
-                    value={this.state.value}
-                    onChange={this.updateValue}
-                    disabled={this.state.disabled}
-                    readOnly={this.props.readonly || this.state.readonly}
-                    rows={this.props.rows}
-                    cols={this.props.cols}
-                    {...conditionalProps}
-                />
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
-            </div>
+            <textarea
+                type="text"
+                className="form-control"
+                id={model.getUniqueId()}
+                value={this.state.value}
+                onChange={this.updateValue}
+                disabled={this.state.disabled}
+                readOnly={this.props.readonly || this.state.readonly}
+                rows={this.props.rows}
+                cols={this.props.cols}
+                {...conditionalProps}
+            />
         );
     }
 }

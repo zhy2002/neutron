@@ -50,6 +50,8 @@ export default class TelephoneComponent extends InputComponent {
         this.handleBlur = () => {
             suppressIncompleteValidation(false);
         };
+
+        this.identifierClass = 'telephone-component';
     }
 
     extractNewState() {
@@ -77,7 +79,7 @@ export default class TelephoneComponent extends InputComponent {
         return newState;
     }
 
-    render() {
+    renderContent() {
         const model = this.model;
         const countryInputId = `${model.getUniqueId()}-country`;
         const areaInputId = `${model.getUniqueId()}-area`;
@@ -87,61 +89,55 @@ export default class TelephoneComponent extends InputComponent {
         }
         return (
             <div
+                className="telephone-container clearfix"
                 id={model.getUniqueId()}
                 tabIndex="0"
-                className={`form-group form-group-sm telephone-component${this.state.componentClass}`}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
             >
-                <label htmlFor={countryInputId}>{this.state.label}</label>
-                <div className="clearfix">
-                    <input
-                        id={countryInputId}
-                        type="text"
-                        className="form-control country-code"
-                        placeholder="Country"
-                        value={this.state.countryCode}
-                        onChange={this.updateCountryCode}
-                        readOnly={this.state.countryCodeReadonly}
-                        list={`${countryInputId}-list`}
-                    />
-                    <datalist id={`${countryInputId}-list`}>
-                        <option value="+61"/>
-                        <option value="+1"/>
-                        <option value="+44"/>
-                        <option value="+64"/>
-                        <option value="+86"/>
+                <input
+                    id={countryInputId}
+                    type="text"
+                    className="form-control country-code"
+                    placeholder="Country"
+                    value={this.state.countryCode}
+                    onChange={this.updateCountryCode}
+                    readOnly={this.state.countryCodeReadonly}
+                    list={`${countryInputId}-list`}
+                />
+                <datalist id={`${countryInputId}-list`}>
+                    <option value="+61"/>
+                    <option value="+1"/>
+                    <option value="+44"/>
+                    <option value="+64"/>
+                    <option value="+86"/>
+                </datalist>
+                <input
+                    id={areaInputId}
+                    type="text"
+                    className="form-control area-code"
+                    placeholder="Area"
+                    value={this.state.areaCode}
+                    onChange={this.updateAreaCode}
+                    {...conditionalAreaProps}
+                />
+                {
+                    this.state.countryCode === '+61' &&
+                    <datalist id={`${areaInputId}-list`}>
+                        <option value="02"/>
+                        <option value="03"/>
+                        <option value="04"/>
+                        <option value="07"/>
+                        <option value="08"/>
                     </datalist>
-                    <input
-                        id={areaInputId}
-                        type="text"
-                        className="form-control area-code"
-                        placeholder="Area"
-                        value={this.state.areaCode}
-                        onChange={this.updateAreaCode}
-                        {...conditionalAreaProps}
-                    />
-                    {
-                        this.state.countryCode === '+61' &&
-                        <datalist id={`${areaInputId}-list`}>
-                            <option value="02"/>
-                            <option value="03"/>
-                            <option value="04"/>
-                            <option value="07"/>
-                            <option value="08"/>
-                        </datalist>
-                    }
-                    <input
-                        type="text"
-                        className="form-control phone-number"
-                        placeholder="Phone Number"
-                        value={this.state.phoneNumber}
-                        onChange={this.updatePhoneNumber}
-                    />
-                </div>
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
                 }
+                <input
+                    type="text"
+                    className="form-control phone-number"
+                    placeholder="Phone Number"
+                    value={this.state.phoneNumber}
+                    onChange={this.updatePhoneNumber}
+                />
             </div>
         );
     }

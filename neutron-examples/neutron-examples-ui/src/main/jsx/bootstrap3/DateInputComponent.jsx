@@ -12,6 +12,8 @@ export default class DateInputComponent extends InputComponent {
         this.updateValue = (value) => {
             this.model.setValue(value ? value.format() : '');
         };
+
+        this.identifierClass = 'date-input-component';
     }
 
     getUiValue() {
@@ -20,21 +22,20 @@ export default class DateInputComponent extends InputComponent {
         return value ? moment(value) : null;
     }
 
-    render() {
+    renderContent() {
         const model = this.props.model;
         return (
-            <div className={super.renderContainerClass('date-input-component')}>
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                <DatePicker
-                    className="form-control"
-                    onChange={this.updateValue}
-                    selected={this.state.value}
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    disabled={this.state.disabled}
-                />
-            </div>
+            <DatePicker
+                id={model.getUniqueId()}
+                className="form-control"
+                onChange={this.updateValue}
+                selected={this.state.value}
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                disabled={this.state.disabled}
+                readonly={this.state.readonly}
+            />
         );
     }
 }

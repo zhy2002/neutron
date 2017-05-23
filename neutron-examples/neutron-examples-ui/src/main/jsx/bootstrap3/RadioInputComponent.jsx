@@ -9,6 +9,8 @@ export default class RadioInputComponent extends InputComponent {
         this.updateValue = (value) => {
             this.model.setValue(value);
         };
+
+        this.identifierClass = 'radio-input-component';
     }
 
     extractNewState() {
@@ -25,8 +27,6 @@ export default class RadioInputComponent extends InputComponent {
                 new GWT.SelectOption(false, 'No')
             ];
         }
-        console.log('options:');
-        console.log(options);
         return options;
     }
 
@@ -58,23 +58,11 @@ export default class RadioInputComponent extends InputComponent {
         return options;
     }
 
-    render() {
+    renderContent() {
         const model = this.props.model;
         return (
-            <div
-                className={
-                    super.renderContainerClass(`radio-input-component ${this.state.disabled ? 'disabled' : ''}`)
-                }
-            >
-                {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
-                <div id={model.getUniqueId()} tabIndex="0" className="radio-container">
-                    {this.renderOptions()}
-                </div>
-                {this.state.errorMessage &&
-                <div className="error-message text-warning">{this.state.errorMessage}</div>
-                }
+            <div id={model.getUniqueId()} tabIndex="0" className="radio-container">
+                {this.renderOptions()}
             </div>
         );
     }

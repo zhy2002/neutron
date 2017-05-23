@@ -1,6 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'throttle-debounce/debounce';
 import NeutronComponent from './NeutronComponent';
+import ErrorMessageComponent from './ErrorMessageComponent';
 
 export default class InputComponent extends NeutronComponent {
 
@@ -28,13 +30,24 @@ export default class InputComponent extends NeutronComponent {
                 context.setCycleMode(GWT.CycleModeEnum.Debouncing);
             }
         };
+
+        this.identifierClass = '';
     }
 
     extractNewState() {
         const newState = super.extractNewState();
+
         newState.value = this.getUiValue();
         newState.disabled = this.model.isEffectivelyDisabled();
-        newState.readonly = this.props.readonly || this.model.isReadonly();
+        newState.readonly = this.props.readonly || this.model.isEffectivelyReadonly();
+        newState.hideLabel = this.props.hideLabel;
+
+        if (newState.disabled) {
+            newState.componentClass += ' disabled';
+        } else if (newState.readOnly) {
+            newState.componentClass += ' readonly';
+        }
+
         return newState;
     }
 
@@ -50,18 +63,22 @@ export default class InputComponent extends NeutronComponent {
         return this.model.getOptions();
     }
 
-    renderContainerClass(clazz) {
-        let containerClass = 'form-group form-group-sm';
-        if (this.state.componentClass) {
-            containerClass = `${containerClass} ${this.state.componentClass}`;
-        }
-        if (this.props.containerClass) {
-            containerClass = `${containerClass} ${this.props.containerClass}`;
-        }
-        if (clazz) {
-            containerClass = `${containerClass} ${clazz}`;
-        }
-        return containerClass;
+    renderContent() {
+        return `content of ${this.identifierClass}`;
+    }
+
+    render() {
+        const model = this.model;
+        const clazz = `form-group form-group-sm ${this.identifierClass} ${this.props.containerClass}`;
+        return (
+            <div className={`${clazz} ${this.state.componentClass}`}>
+                {!this.state.hideLabel &&
+                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
+                }
+                {this.renderContent()}
+                <ErrorMessageComponent message={this.state.errorMessage}/>
+            </div>
+        );
     }
 }
 

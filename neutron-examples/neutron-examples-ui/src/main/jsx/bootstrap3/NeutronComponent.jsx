@@ -69,6 +69,7 @@ export default class NeutronComponent extends React.PureComponent {
     extractNewState() {
         const newState = {};
 
+        //error message
         newState.errorMessage = '';
         const errorList = this.model.getValidationErrorList();
         if (errorList) {
@@ -78,16 +79,22 @@ export default class NeutronComponent extends React.PureComponent {
             }
         }
 
+        //component class
         let componentClass = '';
         if (newState.errorMessage) {
             componentClass = ' has-error';
         } else if (this.model.getRequired() && !this.model.hasValue() && !this.model.isEffectivelyDisabled()) {
             componentClass = ' missing-value';
         }
+        const visibility = this.model.getVisibility();
+        if (visibility === 'none') {
+            componentClass += ' hide';
+        } else if (visibility === 'hidden') {
+            componentClass += ' invisible';
+        }
         newState.componentClass = componentClass;
-        newState.disabled = this.model.isEffectivelyDisabled();
-        newState.visible = this.model.getVisibility() === 'visible';
 
+        //label
         if (this.props.label) {
             newState.label = this.props.label;
         } else {

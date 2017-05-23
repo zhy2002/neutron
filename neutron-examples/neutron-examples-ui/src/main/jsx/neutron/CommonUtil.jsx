@@ -168,10 +168,13 @@ export default class CommonUtil extends StaticService {
     }
 
     static toFieldName(nodeName) {
-        let fieldName = nodeName;
-        if (fieldName.endsWith('Node')) {
-            fieldName = fieldName.substr(0, fieldName.length - 4);
+        return CommonUtil.removeTrailing(nodeName, 'Node');
+    }
+
+    static removeTrailing(str, tail) {
+        if (str && str.endsWith(tail)) {
+            return str.substr(0, str.length - tail.length);
         }
-        return fieldName;
+        return str;
     }
 }

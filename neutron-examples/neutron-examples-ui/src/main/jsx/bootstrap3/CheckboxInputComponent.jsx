@@ -1,6 +1,6 @@
 import React from 'react';
 import InputComponent from './InputComponent';
-import ErrorMessageComponent from './ErrorMessageComponent';
+import CommonUtil from '../neutron/CommonUtil';
 
 
 export default class CheckboxInputComponent extends InputComponent {
@@ -12,27 +12,33 @@ export default class CheckboxInputComponent extends InputComponent {
             console.log(event.target.checked);
             this.model.setValue(event.target.checked);
         };
+
+        this.identifierClass = 'checkbox checkbox-input-component';
     }
 
-    render() {
-        return (
-            <div className={super.renderContainerClass('checkbox checkbox-input-component')}>
-                <label className="layout-helper">&nbsp;</label>
-                <label className="checkbox-container">
-                    <input
-                        id={this.id}
-                        type="checkbox"
-                        onChange={this.updateValue}
-                        checked={this.state.value}
-                        disabled={this.state.disabled}
-                    />
-                    {!this.props.hideLabel &&
-                        this.state.label
-                    }
-                </label>
-                <ErrorMessageComponent message={this.state.errorMessage} />
-            </div>
-        );
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.hideLabel = true;
+        return newState;
+    }
+
+    renderContent() {
+        return [
+            <label className="layout-helper">&nbsp;</label>,
+            <label className="checkbox-container">
+                <input
+                    id={this.id}
+                    type="checkbox"
+                    onChange={this.updateValue}
+                    checked={this.state.value}
+                    disabled={this.state.disabled}
+                    readOnly={this.state.readonly}
+                />
+                {!this.props.hideLabel &&
+                CommonUtil.removeTrailing(this.state.label, ' Flag')
+                }
+            </label>
+        ];
     }
 
 }

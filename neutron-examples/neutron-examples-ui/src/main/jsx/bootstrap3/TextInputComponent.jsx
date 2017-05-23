@@ -4,7 +4,6 @@ import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
 import AutoCloseContainer from './AutoCloseContainer';
-import ErrorMessageComponent from './ErrorMessageComponent';
 
 const baseUrl = 'http://localhost:9200';
 const reservedChars = '+-=&|><!(){}[]^"~*?:\\/';
@@ -151,6 +150,8 @@ export default class TextInputComponent extends InputComponent {
                 activeOptionIndex: -1
             });
         };
+
+        this.identifierClass = 'text-input-component';
     }
 
     extractNewState() {
@@ -206,7 +207,7 @@ export default class TextInputComponent extends InputComponent {
         );
     }
 
-    render() {
+    renderContent() {
         const model = this.model;
         const conditionalProps = {};
         if (this.props.hideLabel) {
@@ -216,25 +217,19 @@ export default class TextInputComponent extends InputComponent {
             conditionalProps.onKeyDown = this.handleKeyDown;
             conditionalProps.onFocus = this.handleFocus;
         }
-        return (
-            <div className={super.renderContainerClass('text-input-component')}>
-                {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
-                <input
-                    type="text"
-                    className="form-control"
-                    id={model.getUniqueId()}
-                    value={this.state.value}
-                    onChange={this.updateValue}
-                    disabled={this.state.disabled}
-                    readOnly={this.state.readonly}
-                    {...conditionalProps}
-                />
-                {this.renderOptions()}
-                <ErrorMessageComponent message={this.state.errorMessage} />
-            </div>
-        );
+        return [
+            <input
+                type="text"
+                className="form-control"
+                id={model.getUniqueId()}
+                value={this.state.value}
+                onChange={this.updateValue}
+                disabled={this.state.disabled}
+                readOnly={this.state.readonly}
+                {...conditionalProps}
+            />,
+            this.renderOptions()
+        ];
     }
 }
 

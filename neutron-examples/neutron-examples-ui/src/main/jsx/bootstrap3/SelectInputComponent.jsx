@@ -1,6 +1,5 @@
 import React from 'react';
 import InputComponent from './InputComponent';
-import ErrorMessageComponent from './ErrorMessageComponent';
 
 export default class SelectInputComponent extends InputComponent {
 
@@ -11,6 +10,8 @@ export default class SelectInputComponent extends InputComponent {
             const index = parseInt(event.target.value, 10);
             this.model.setValue(this.state.list[index].getValue());
         };
+
+        this.identifierClass = 'select-input-component';
     }
 
     extractNewState() {
@@ -51,24 +52,18 @@ export default class SelectInputComponent extends InputComponent {
         return index;
     }
 
-    render() {
+    renderContent() {
         const model = this.props.model;
         return (
-            <div className={super.renderContainerClass('select-input-component')}>
-                {!this.props.noLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
-                <select
-                    id={model.getUniqueId()}
-                    className="form-control"
-                    value={`${this.valueIndex()}`}
-                    onChange={this.updateValue}
-                    disabled={this.state.readonly || this.state.disabled}
-                >
-                    {this.renderOptions()}
-                </select>
-                <ErrorMessageComponent message={this.state.errorMessage} />
-            </div>
+            <select
+                id={model.getUniqueId()}
+                className="form-control"
+                value={`${this.valueIndex()}`}
+                onChange={this.updateValue}
+                disabled={this.state.readonly || this.state.disabled}
+            >
+                {this.renderOptions()}
+            </select>
         );
     }
 }

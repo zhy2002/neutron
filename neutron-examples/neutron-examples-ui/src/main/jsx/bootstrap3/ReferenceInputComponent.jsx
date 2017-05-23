@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 import ModalDialogComponent from './ModalDialogComponent';
 import NodeLabelComponent from './NodeLabelComponent';
-import ErrorMessageComponent from './ErrorMessageComponent';
 
 
 export default class ReferenceInputComponent extends InputComponent {
@@ -29,6 +28,8 @@ export default class ReferenceInputComponent extends InputComponent {
                 showModal: true
             });
         };
+
+        this.identifierClass = 'reference-input-component';
     }
 
     renderOptions() {
@@ -55,47 +56,41 @@ export default class ReferenceInputComponent extends InputComponent {
         return result;
     }
 
-    render() {
+    renderContent() {
         const model = this.model;
 
-        return (
-            <div className={super.renderContainerClass('reference-input-component')}>
-                {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
+        return [
+            <div className="reference-container">
+                {this.model.getReferencedNode() &&
+                <NodeLabelComponent model={this.model.getReferencedNode()}/>
                 }
-                <div className="reference-container">
-                    {this.model.getReferencedNode() &&
-                    <NodeLabelComponent model={this.model.getReferencedNode()}/>
-                    }
-                    <button
-                        id={model.getUniqueId()}
-                        className="btn btn-sm btn-primary"
-                        disabled={this.state.disabled || this.state.readonly}
-                        onClick={this.showList}
-                    >
-                        Select
-                    </button>
-                </div>
-                <ErrorMessageComponent message={this.state.errorMessage} />
-                <ModalDialogComponent
-                    show={this.state.showModal}
-                    title={this.state.label}
-                    onClose={this.closeList}
+                <button
+                    id={model.getUniqueId()}
+                    className="btn btn-sm btn-primary"
+                    disabled={this.state.disabled || this.state.readonly}
+                    onClick={this.showList}
                 >
-                    <div>
-                        <ul className="list-group">
-                            {this.renderOptions()}
-                        </ul>
-                    </div>
-                    <button
-                        onClick={this.clearValue}
-                        className="btn btn-sm btn-danger"
-                    >
-                        Clear
-                    </button>
-                </ModalDialogComponent>
-            </div>
-        );
+                    Select
+                </button>
+            </div>,
+            <ModalDialogComponent
+                show={this.state.showModal}
+                title={this.state.label}
+                onClose={this.closeList}
+            >
+                <div>
+                    <ul className="list-group">
+                        {this.renderOptions()}
+                    </ul>
+                </div>
+                <button
+                    onClick={this.clearValue}
+                    className="btn btn-sm btn-danger"
+                >
+                    Clear
+                </button>
+            </ModalDialogComponent>
+        ];
     }
 }
 

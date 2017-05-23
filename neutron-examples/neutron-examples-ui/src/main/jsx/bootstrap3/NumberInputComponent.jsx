@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
-import ErrorMessageComponent from './ErrorMessageComponent';
 
 
 export default class NumberInputComponent extends InputComponent {
@@ -14,6 +13,8 @@ export default class NumberInputComponent extends InputComponent {
             this.model.setText(event.target.value);
             this.flush();
         };
+
+        this.identifierClass = 'number-input-component';
     }
 
     getUiValue() {
@@ -42,7 +43,7 @@ export default class NumberInputComponent extends InputComponent {
         );
     }
 
-    renderInputGroup() {
+    renderContent() {
         const model = this.model;
         if (!model.getCurrencyInfo && !model.getSuffixSymbol) {
             return this.renderInput();
@@ -61,18 +62,6 @@ export default class NumberInputComponent extends InputComponent {
         );
     }
 
-    render() {
-        const model = this.model;
-        return (
-            <div className={super.renderContainerClass('number-input-component')}>
-                {!this.props.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
-                {this.renderInputGroup()}
-                <ErrorMessageComponent message={this.state.errorMessage} />
-            </div>
-        );
-    }
 }
 
 NumberInputComponent.propTypes = {

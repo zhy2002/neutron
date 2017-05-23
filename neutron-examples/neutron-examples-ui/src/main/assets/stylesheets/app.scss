@@ -344,7 +344,13 @@ li.nav-dropdown-component.selected {
 }
 
 .checkbox-input-component {
+  margin-top: 6px;
   padding-bottom: 10px;
+
+  > label.missing-value {
+    background-color: $missing-value-bg;
+    border-color: $missing-value-border-color;
+  }
 
   .checkbox-container {
     display: block;
@@ -362,13 +368,6 @@ li.nav-dropdown-component.selected {
 
   .btn-sm {
     min-width: 95px;
-  }
-}
-
-.checkbox {
-  > label.missing-value {
-    background-color: $missing-value-bg;
-    border-color: $missing-value-border-color;
   }
 }
 
