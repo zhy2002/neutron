@@ -2,41 +2,35 @@ import Promise from 'promise';
 import StaticService from './StaticService';
 
 
-//todo make this generic
-const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
-
-function isExcluded(nodeName) {
-    return excludedNodeNames.indexOf(nodeName) >= 0;
-}
-
 function toLocalId(uniqueId) {
     const index = uniqueId.indexOf('-');
     return uniqueId.substring(index + 1);
 }
 
-function extractValue(node) {
+function extractValue(node, excluded) {
     if (!node)
         return null;
 
     if (node.getChildCount) {
-        return extractObject(node);
+        return extractObject(node, excluded);
     } else if (node.getItemCount) {
         return extractList(node);
     }
     return extractLeaf(node);
 }
 
-function extractObject(node) {
+function extractObject(node, excluded) {
+    const excludedNodeNames = excluded || [];
+
     const result = {};
     const children = node.getChildren();
     children.forEach((child) => {
-        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded && !isExcluded(child.getName())) {
-            let fieldName = child.getName();
-            //todo duplicate of clean up function
-            if (fieldName.endsWith('Node')) {
-                fieldName = fieldName.substr(0, fieldName.length - 4);
+        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded) {
+            const nodeName = child.getName();
+            if (excludedNodeNames.indexOf(nodeName) < 0) {
+                const fieldName = CommonUtil.toFieldName(nodeName);
+                result[fieldName] = extractValue(child);
             }
-            result[fieldName] = extractValue(child);
         }
     });
     return {
@@ -71,12 +65,12 @@ function extractLeaf(node) {
     };
 }
 
-function setValue(node, obj) {
+function setValue(node, obj, excluded) {
     if (!obj)
         return;
 
     if (node.getChildCount) {
-        setObject(node, obj);
+        setObject(node, obj, excluded);
     } else if (node.getItemCount) {
         setList(node, obj);
     } else if (node.setValue) {
@@ -84,16 +78,15 @@ function setValue(node, obj) {
     }
 }
 
-function setObject(node, obj) {
+function setObject(node, obj, excluded) {
     const data = obj.children || {};
+    const excludedNodeNames = excluded || [];
     const children = node.getChildren();
 
     children.forEach((child) => {
-        if (!isExcluded(child.getName())) {
-            let fieldName = child.getName();
-            if (fieldName.endsWith('Node')) {
-                fieldName = fieldName.substr(0, fieldName.length - 4);
-            }
+        const nodeName = child.getName();
+        if (excludedNodeNames.indexOf(nodeName) < 0) {
+            const fieldName = CommonUtil.toFieldName(nodeName);
             if (data[fieldName]) {
                 setValue(child, data[fieldName]);
             }
@@ -150,8 +143,8 @@ function copyFields(target, source) {
 
 export default class CommonUtil extends StaticService {
 
-    static extractValue(node) {
-        return extractValue(node);
+    static extractValue(node, excluded) {
+        return extractValue(node, excluded);
     }
 
     static setValue(node, obj) {
@@ -172,5 +165,13 @@ export default class CommonUtil extends StaticService {
                 setTimeout(resolve, interval);
             }
         );
+    }
+
+    static toFieldName(nodeName) {
+        let fieldName = nodeName;
+        if (fieldName.endsWith('Node')) {
+            fieldName = fieldName.substr(0, fieldName.length - 4);
+        }
+        return fieldName;
     }
 }

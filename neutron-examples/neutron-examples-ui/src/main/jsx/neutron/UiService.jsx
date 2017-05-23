@@ -7,14 +7,6 @@ const demoUser = {
     username: 'Demo User'
 };
 
-function toFieldName(nodeName) {
-    let fieldName = nodeName;
-    if (fieldName.endsWith('Node')) {
-        fieldName = fieldName.substr(0, fieldName.length - 4);
-    }
-    return fieldName;
-}
-
 function* propertyIterator(obj, cache) {
     for (const name in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, name)) {
@@ -67,7 +59,7 @@ class JsNodeIdentityMap {
     }
 
     get(nodeName) {
-        const name = toFieldName(nodeName);
+        const name = CommonUtil.toFieldName(nodeName);
         if (!(name in this.map)) {
             const node = this.children[name];
             if (node) {

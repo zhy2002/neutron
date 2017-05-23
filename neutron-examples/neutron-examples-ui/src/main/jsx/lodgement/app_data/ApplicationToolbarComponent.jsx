@@ -2,7 +2,6 @@ import React from 'react';
 import NeutronComponent from '../../bootstrap3/NeutronComponent';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import EventService from '../../neutron/EventService';
-import CommonUtil from '../../neutron/CommonUtil';
 import StorageService from '../services/StorageService';
 
 
@@ -51,7 +50,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
     }
 
     getModelValueJson() {
-        const obj = CommonUtil.extractValue(this.model);
+        const obj = StorageService.extractApplicationValue(this.model);
         const json = JSON.stringify(obj);
         console.log('extracted object:');
         console.log(json);

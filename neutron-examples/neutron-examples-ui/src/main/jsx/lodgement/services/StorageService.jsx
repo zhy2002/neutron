@@ -7,6 +7,9 @@ import StaticService from '../../neutron/StaticService';
 
 const baseUrl = 'http://localhost:9200';
 
+//todo move this to node property
+const excludedNodeNames = ['addressRefListNode', 'errorListNode'];
+
 const errorHandler = (error) => {
     console.log('An error occurred in Storage Service:', error);
     EventService.fire(
@@ -41,10 +44,14 @@ function getSummary(data, model) {
 
 export default class StorageService extends StaticService {
 
+    static extractApplicationValue(model) {
+        return CommonUtil.extractValue(model, excludedNodeNames);
+    }
+
     static saveApplication(model) {
         const now = moment().format();
         model.getDateUpdatedNode().setValue(now);
-        const node = CommonUtil.extractValue(model);
+        const node = StorageService.extractApplicationValue(model);
         const id = node.children.id.value;
         const summary = getSummary(node, model);
         return axios.put(
