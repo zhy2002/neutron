@@ -86,6 +86,7 @@ export default class NeutronComponent extends React.PureComponent {
         }
         newState.componentClass = componentClass;
         newState.disabled = this.model.isEffectivelyDisabled();
+        newState.visible = this.model.getVisibility() === 'visible';
 
         if (this.props.label) {
             newState.label = this.props.label;

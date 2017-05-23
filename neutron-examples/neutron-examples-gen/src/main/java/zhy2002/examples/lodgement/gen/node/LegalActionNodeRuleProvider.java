@@ -24,7 +24,7 @@ public class LegalActionNodeRuleProvider implements RuleProvider<LegalActionNode
     public void initializeState(LegalActionNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setValue("Yes");
+        node.setValue("No");
     }
 
 
