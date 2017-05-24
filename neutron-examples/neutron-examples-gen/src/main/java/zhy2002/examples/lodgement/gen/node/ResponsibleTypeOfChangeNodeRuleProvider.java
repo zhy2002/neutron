@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ResponsibleTypeOfChangeNodeScope
 public class ResponsibleTypeOfChangeNodeRuleProvider implements RuleProvider<ResponsibleTypeOfChangeNode> {
@@ -24,7 +22,6 @@ public class ResponsibleTypeOfChangeNodeRuleProvider implements RuleProvider<Res
     public void initializeState(ResponsibleTypeOfChangeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE);
     }
 
 

@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ResponsibleRepaymentDifficultyNodeScope
 public class ResponsibleRepaymentDifficultyNodeRuleProvider implements RuleProvider<ResponsibleRepaymentDifficultyNode> {
@@ -24,7 +22,6 @@ public class ResponsibleRepaymentDifficultyNodeRuleProvider implements RuleProvi
     public void initializeState(ResponsibleRepaymentDifficultyNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

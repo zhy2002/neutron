@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @PropertyPurseNodeScope
 public class PropertyPurseNodeRuleProvider implements RuleProvider<PropertyPurseNode> {
@@ -24,7 +22,6 @@ public class PropertyPurseNodeRuleProvider implements RuleProvider<PropertyPurse
     public void initializeState(PropertyPurseNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

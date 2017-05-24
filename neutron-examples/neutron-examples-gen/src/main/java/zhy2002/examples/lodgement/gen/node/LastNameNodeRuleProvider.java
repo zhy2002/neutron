@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @LastNameNodeScope
 public class LastNameNodeRuleProvider implements RuleProvider<LastNameNode> {
@@ -24,9 +22,6 @@ public class LastNameNodeRuleProvider implements RuleProvider<LastNameNode> {
     public void initializeState(LastNameNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setPattern(ApplicationNodeConstants.NAME_PATTERN);
-        node.setMaxLength(20);
     }
 
 

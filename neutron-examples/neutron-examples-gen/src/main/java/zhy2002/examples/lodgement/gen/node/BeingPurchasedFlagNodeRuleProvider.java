@@ -27,15 +27,11 @@ public class BeingPurchasedFlagNodeRuleProvider implements RuleProvider<BeingPur
         node.setValue(null);
     }
 
-    @Inject
-    Provider<BeingPurchasedFlagChangeRule> beingPurchasedFlagChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        BeingPurchasedFlagChangeRule beingPurchasedFlagChangeRule = beingPurchasedFlagChangeRuleProvider.get();
-        createdRules.add(beingPurchasedFlagChangeRule);
     }
 
 }

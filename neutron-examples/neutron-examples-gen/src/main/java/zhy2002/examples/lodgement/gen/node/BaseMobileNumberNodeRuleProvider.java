@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 
 public class BaseMobileNumberNodeRuleProvider implements RuleProvider<BaseMobileNumberNode<?>> {
@@ -24,8 +22,6 @@ public class BaseMobileNumberNodeRuleProvider implements RuleProvider<BaseMobile
     public void initializeState(BaseMobileNumberNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setPattern("^(\\+\\d{1,3}[- ]?)?\\d{10}$");
-        node.setPatternMessage("Invalid mobile number.");
     }
 
 

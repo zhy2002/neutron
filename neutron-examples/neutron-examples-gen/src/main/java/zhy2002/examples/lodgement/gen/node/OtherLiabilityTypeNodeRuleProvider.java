@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @OtherLiabilityTypeNodeScope
 public class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLiabilityTypeNode> {
@@ -24,8 +22,6 @@ public class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLia
     public void initializeState(OtherLiabilityTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.OTHER_LIABILITY_TYPE);
-        node.setRequired(true);
     }
 
 

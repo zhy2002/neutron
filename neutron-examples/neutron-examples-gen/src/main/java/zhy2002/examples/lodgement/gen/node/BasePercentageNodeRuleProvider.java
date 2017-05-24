@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 
 public class BasePercentageNodeRuleProvider implements RuleProvider<BasePercentageNode<?>> {
@@ -24,8 +22,6 @@ public class BasePercentageNodeRuleProvider implements RuleProvider<BasePercenta
     public void initializeState(BasePercentageNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setMinValue(new BigDecimal("0"));
-        node.setMaxValue(new BigDecimal("100"));
     }
 
 

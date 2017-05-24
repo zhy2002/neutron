@@ -24,35 +24,11 @@ public class OwnershipListNodeRuleProvider implements RuleProvider<OwnershipList
 
     }
 
-    @Inject
-    Provider<AddExistingApplicantsRule> addExistingApplicantsRuleProvider;
-    @Inject
-    Provider<AddNewPersonApplicantRule> addNewPersonApplicantRuleProvider;
-    @Inject
-    Provider<AddNewCompanyApplicantRule> addNewCompanyApplicantRuleProvider;
-    @Inject
-    Provider<OwnershipRequiredValidationRule> ownershipRequiredValidationRuleProvider;
-    @Inject
-    Provider<UpdateTotalOwnershipRule> updateTotalOwnershipRuleProvider;
-    @Inject
-    Provider<DistributePercentageRule> distributePercentageRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        AddExistingApplicantsRule addExistingApplicantsRule = addExistingApplicantsRuleProvider.get();
-        createdRules.add(addExistingApplicantsRule);
-        AddNewPersonApplicantRule addNewPersonApplicantRule = addNewPersonApplicantRuleProvider.get();
-        createdRules.add(addNewPersonApplicantRule);
-        AddNewCompanyApplicantRule addNewCompanyApplicantRule = addNewCompanyApplicantRuleProvider.get();
-        createdRules.add(addNewCompanyApplicantRule);
-        OwnershipRequiredValidationRule ownershipRequiredValidationRule = ownershipRequiredValidationRuleProvider.get();
-        createdRules.add(ownershipRequiredValidationRule);
-        UpdateTotalOwnershipRule updateTotalOwnershipRule = updateTotalOwnershipRuleProvider.get();
-        createdRules.add(updateTotalOwnershipRule);
-        DistributePercentageRule distributePercentageRule = distributePercentageRuleProvider.get();
-        createdRules.add(distributePercentageRule);
     }
 
 }

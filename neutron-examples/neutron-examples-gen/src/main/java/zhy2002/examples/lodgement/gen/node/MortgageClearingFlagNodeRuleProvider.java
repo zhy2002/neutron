@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @MortgageClearingFlagNodeScope
 public class MortgageClearingFlagNodeRuleProvider implements RuleProvider<MortgageClearingFlagNode> {
@@ -24,7 +22,6 @@ public class MortgageClearingFlagNodeRuleProvider implements RuleProvider<Mortga
     public void initializeState(MortgageClearingFlagNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

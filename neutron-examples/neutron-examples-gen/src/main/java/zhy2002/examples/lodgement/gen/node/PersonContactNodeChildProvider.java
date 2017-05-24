@@ -229,7 +229,6 @@ public class PersonContactNodeChildProvider {
 
         @Override
         public void initializeState(PersonAddressNode node) {
-            node.setRequired(true);
         }
 
 

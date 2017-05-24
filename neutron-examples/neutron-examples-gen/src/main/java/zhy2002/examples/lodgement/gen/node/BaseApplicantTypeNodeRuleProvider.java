@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 
 public class BaseApplicantTypeNodeRuleProvider implements RuleProvider<BaseApplicantTypeNode<?>> {
@@ -24,9 +22,6 @@ public class BaseApplicantTypeNodeRuleProvider implements RuleProvider<BaseAppli
     public void initializeState(BaseApplicantTypeNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.APPLICANT_TYPE);
-        node.setRequired(true);
-        node.setValue("A");
     }
 
 

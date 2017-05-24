@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @MovedToCurrentAddressNodeScope
 public class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<MovedToCurrentAddressNode> {
@@ -24,22 +22,13 @@ public class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<Moved
     public void initializeState(MovedToCurrentAddressNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
-    @Inject
-    Provider<ToCurrentNoEarlierThanToPreviousRule> toCurrentNoEarlierThanToPreviousRuleProvider;
-    @Inject
-    Provider<ToCurrentNoEarlierThanFromPreviousRule> toCurrentNoEarlierThanFromPreviousRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        ToCurrentNoEarlierThanToPreviousRule toCurrentNoEarlierThanToPreviousRule = toCurrentNoEarlierThanToPreviousRuleProvider.get();
-        createdRules.add(toCurrentNoEarlierThanToPreviousRule);
-        ToCurrentNoEarlierThanFromPreviousRule toCurrentNoEarlierThanFromPreviousRule = toCurrentNoEarlierThanFromPreviousRuleProvider.get();
-        createdRules.add(toCurrentNoEarlierThanFromPreviousRule);
     }
 
 }

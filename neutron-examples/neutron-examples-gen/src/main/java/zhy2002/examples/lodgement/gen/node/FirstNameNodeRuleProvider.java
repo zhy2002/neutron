@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @FirstNameNodeScope
 public class FirstNameNodeRuleProvider implements RuleProvider<FirstNameNode> {
@@ -24,22 +22,13 @@ public class FirstNameNodeRuleProvider implements RuleProvider<FirstNameNode> {
     public void initializeState(FirstNameNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setPattern(ApplicationNodeConstants.NAME_PATTERN);
-        node.setMaxLength(20);
-        node.setInvalidChars("#");
-        node.setInvalidCharsMessage("Username cannot contain '#'.");
     }
 
-    @Inject
-    Provider<InvalidCharPreChangeRule> invalidCharPreChangeRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        InvalidCharPreChangeRule invalidCharPreChangeRule = invalidCharPreChangeRuleProvider.get();
-        createdRules.add(invalidCharPreChangeRule);
     }
 
 }

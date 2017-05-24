@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @OtherIncomeAddBackTypeNodeScope
 public class OtherIncomeAddBackTypeNodeRuleProvider implements RuleProvider<OtherIncomeAddBackTypeNode> {
@@ -24,7 +22,6 @@ public class OtherIncomeAddBackTypeNodeRuleProvider implements RuleProvider<Othe
     public void initializeState(OtherIncomeAddBackTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE);
     }
 
 

@@ -24,16 +24,11 @@ public class OtherLiabilityClearingFlagNodeRuleProvider implements RuleProvider<
 
     }
 
-    @Inject
-    Provider<BooleanEnableSiblingRule> booleanEnableSiblingRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("otherLiabilityBreakCostNode");
-        createdRules.add(booleanEnableSiblingRule);
     }
 
 }

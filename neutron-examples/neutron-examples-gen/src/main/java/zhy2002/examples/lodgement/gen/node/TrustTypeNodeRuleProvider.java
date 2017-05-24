@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @TrustTypeNodeScope
 public class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
@@ -24,18 +22,13 @@ public class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
     public void initializeState(TrustTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TRUST_TYPE);
     }
 
-    @Inject
-    Provider<TrustTypeChangedRule> trustTypeChangedRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        TrustTypeChangedRule trustTypeChangedRule = trustTypeChangedRuleProvider.get();
-        createdRules.add(trustTypeChangedRule);
     }
 
 }

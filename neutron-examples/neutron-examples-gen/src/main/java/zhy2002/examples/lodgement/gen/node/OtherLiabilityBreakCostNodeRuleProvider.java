@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @OtherLiabilityBreakCostNodeScope
 public class OtherLiabilityBreakCostNodeRuleProvider implements RuleProvider<OtherLiabilityBreakCostNode> {
@@ -24,7 +22,6 @@ public class OtherLiabilityBreakCostNodeRuleProvider implements RuleProvider<Oth
     public void initializeState(OtherLiabilityBreakCostNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

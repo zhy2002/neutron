@@ -25,7 +25,6 @@ public class PrimarySecurityFlagNodeRuleProvider implements RuleProvider<Primary
         parentRuleProvider.initializeState(node);
 
         node.setValue(null);
-        node.setDisabled(true);
     }
 
 

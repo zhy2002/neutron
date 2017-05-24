@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ProductLendingPurposeNodeScope
 public class ProductLendingPurposeNodeRuleProvider implements RuleProvider<ProductLendingPurposeNode> {
@@ -24,7 +22,6 @@ public class ProductLendingPurposeNodeRuleProvider implements RuleProvider<Produ
     public void initializeState(ProductLendingPurposeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.NAB_LENDING_PURPOSE);
     }
 
 

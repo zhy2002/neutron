@@ -4,7 +4,6 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
-import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;

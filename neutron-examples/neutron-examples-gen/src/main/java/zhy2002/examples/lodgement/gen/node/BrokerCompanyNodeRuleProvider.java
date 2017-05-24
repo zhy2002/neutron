@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @BrokerCompanyNodeScope
 public class BrokerCompanyNodeRuleProvider implements RuleProvider<BrokerCompanyNode> {
@@ -24,7 +22,6 @@ public class BrokerCompanyNodeRuleProvider implements RuleProvider<BrokerCompany
     public void initializeState(BrokerCompanyNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

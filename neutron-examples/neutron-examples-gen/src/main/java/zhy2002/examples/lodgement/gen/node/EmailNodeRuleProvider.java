@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 
 public class EmailNodeRuleProvider implements RuleProvider<EmailNode<?>> {
@@ -24,7 +22,6 @@ public class EmailNodeRuleProvider implements RuleProvider<EmailNode<?>> {
     public void initializeState(EmailNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setPattern("\\w+@\\w+\\.[\\w.]+");
     }
 
 

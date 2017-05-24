@@ -25,7 +25,6 @@ public class ApplicationNodeRuleProvider implements RuleProvider<ApplicationNode
         parentRuleProvider.initializeState(node);
 
         node.setSelectedName("personListNode");
-        node.setNodeLabel("NAB");
     }
 
     @Inject

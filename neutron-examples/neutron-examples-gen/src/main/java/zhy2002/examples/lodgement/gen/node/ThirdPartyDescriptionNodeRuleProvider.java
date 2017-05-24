@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ThirdPartyDescriptionNodeScope
 public class ThirdPartyDescriptionNodeRuleProvider implements RuleProvider<ThirdPartyDescriptionNode> {
@@ -24,8 +22,6 @@ public class ThirdPartyDescriptionNodeRuleProvider implements RuleProvider<Third
     public void initializeState(ThirdPartyDescriptionNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.NEXT_KIN_TYPE);
     }
 
 

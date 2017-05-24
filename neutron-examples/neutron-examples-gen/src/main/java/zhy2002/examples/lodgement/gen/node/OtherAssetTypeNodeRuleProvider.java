@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @OtherAssetTypeNodeScope
 public class OtherAssetTypeNodeRuleProvider implements RuleProvider<OtherAssetTypeNode> {
@@ -24,8 +22,6 @@ public class OtherAssetTypeNodeRuleProvider implements RuleProvider<OtherAssetTy
     public void initializeState(OtherAssetTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.OTHER_ASSET_TYPE);
-        node.setRequired(true);
     }
 
 

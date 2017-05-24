@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @StudentTypeNodeScope
 public class StudentTypeNodeRuleProvider implements RuleProvider<StudentTypeNode> {
@@ -24,7 +22,6 @@ public class StudentTypeNodeRuleProvider implements RuleProvider<StudentTypeNode
     public void initializeState(StudentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.STUDENT_TYPE);
     }
 
 

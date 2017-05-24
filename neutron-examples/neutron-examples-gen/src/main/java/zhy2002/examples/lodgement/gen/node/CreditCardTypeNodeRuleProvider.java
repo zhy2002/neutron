@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @CreditCardTypeNodeScope
 public class CreditCardTypeNodeRuleProvider implements RuleProvider<CreditCardTypeNode> {
@@ -24,8 +22,6 @@ public class CreditCardTypeNodeRuleProvider implements RuleProvider<CreditCardTy
     public void initializeState(CreditCardTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.CREDIT_CARD_TYPE);
-        node.setRequired(true);
     }
 
 

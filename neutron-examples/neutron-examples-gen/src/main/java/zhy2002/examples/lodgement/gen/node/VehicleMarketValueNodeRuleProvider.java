@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @VehicleMarketValueNodeScope
 public class VehicleMarketValueNodeRuleProvider implements RuleProvider<VehicleMarketValueNode> {
@@ -24,7 +22,6 @@ public class VehicleMarketValueNodeRuleProvider implements RuleProvider<VehicleM
     public void initializeState(VehicleMarketValueNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

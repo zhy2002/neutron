@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @EmploymentTypeNodeScope
 public class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTypeNode> {
@@ -24,19 +22,13 @@ public class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTy
     public void initializeState(EmploymentTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_TYPE);
-        node.setValue("payeEmployedNode");
     }
 
-    @Inject
-    Provider<EmploymentTypeChangedRule> employmentTypeChangedRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        EmploymentTypeChangedRule employmentTypeChangedRule = employmentTypeChangedRuleProvider.get();
-        createdRules.add(employmentTypeChangedRule);
     }
 
 }

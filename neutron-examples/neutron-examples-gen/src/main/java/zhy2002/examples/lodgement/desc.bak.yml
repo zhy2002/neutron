@@ -7,6 +7,7 @@ rootType:
   - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1, trackingMode: Always}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
+  - {propertyName: nodeLabel, value: '"NAB"'}
   rules:
   - {typeName: MergeValidationErrorsRule, existing: true}
   - {typeName: ShowErrorListRule}
@@ -61,6 +62,9 @@ rootType:
   - typeName: PersonListNode
     baseTypeName: ListUiNode
     itemTypeName: PersonNode
+    init:
+    - {propertyName: selectedIndex, value: 0}
+    - {propertyName: nodeLabel, value: '"Person Applicant"'}
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
@@ -96,33 +100,69 @@ rootType:
         childTypes:
         - typeName: TitleNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: TitleGenderMatchRule, baseTypeName: ValidationRule}
 
         - typeName: FirstNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
+          - {propertyName: invalidChars, value: "\"#\""}
+          - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
+          rules:
+          - {typeName: InvalidCharPreChangeRule, existing: true}
 
         - typeName: LastNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+          - {propertyName: maxLength, value: 20}
 
         - typeName: GenderNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.GENDER_TYPE'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: DateOfBirthNode
           baseTypeName: DobNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: PrimaryApplicantFlagNode
           baseTypeName: BooleanUiNode
+          rules:
+          - {typeName: AtLeastOnePrimaryApplicantRule, baseTypeName: ValidationRule}
+          - {typeName: AtMostOnePrimaryApplicantRule, baseTypeName: ValidationRule}
 
         - typeName: DriversLicenseNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: pattern, value: '"\\d{8,8}"'}
+          - {propertyName: patternMessage, value: '"Must be 8 digits"'}
 
         - typeName: PersonApplicantTypeNode
           baseTypeName: BaseApplicantTypeNode
 
         - typeName: ApplicationTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE'}
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ChangeApplicationTypeRule}
 
         - typeName: MaritalStatusNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.MARITAL_STATUS'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: PermanentResidentFlagNode
           baseTypeName: BooleanUiNode
@@ -132,19 +172,29 @@ rootType:
 
         - typeName: FirstHomeBuyerFlagNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: HousingStatusNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.HOUSING_STATUS'}
+          - {propertyName: required, value: 'true'}
 
       - typeName: PersonContactNode
         baseTypeName: ObjectUiNode
+        rules:
+          - {typeName: HomeOrWorkPhoneRequiredRule}
         children:
         - {typeName: PersonTelephoneNode, name: homePhoneNode}
         - {typeName: PersonTelephoneNode, name: workPhoneNode}
         - {typeName: PersonTelephoneNode, name: faxNumberNode}
         - {typeName: PersonMobileNumberNode}
         - {typeName: PersonEmailNode}
-        - {typeName: PersonAddressNode, name: currentAddressNode}
+        - typeName: PersonAddressNode
+          name: currentAddressNode
+          init:
+          - {propertyName: required, value: 'true'}
         - {typeName: MovedToCurrentAddressNode}
         - {typeName: PersonAddressNode, name: postalAddressNode}
         - {typeName: PersonAddressNode, name: previousAddressNode}
@@ -153,38 +203,61 @@ rootType:
         childTypes:
         - typeName: PersonTelephoneNode
           baseTypeName: TelephoneNode
+          init:
+          - {propertyName: emptyValue, value: 'new Telephone("+61")'}
 
         - typeName: PersonMobileNumberNode
           baseTypeName: BaseMobileNumberNode
 
         - typeName: PersonEmailNode
           baseTypeName: EmailNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: PersonAddressNode
           baseTypeName: AddressNode
 
         - typeName: MovedToCurrentAddressNode
           baseTypeName: MonthYearNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ToCurrentNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
+          - {typeName: ToCurrentNoEarlierThanFromPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
 
         - typeName: MovedToPreviousAddressNode
           baseTypeName: MonthYearNode
 
         - typeName: MovedFromPreviousAddressNode
           baseTypeName: MonthYearNode
+          rules:
+          - {typeName: FromPreviousNoEarlierThanToPreviousRule, baseTypeName: MonthYearNoEarlierThanRule}
 
       - typeName: CurrentEmploymentListNode
         baseTypeName: ListUiNode
         itemTypeName: CurrentEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Current Employment"'}
+        - {propertyName: minItemCount, value: 1}
+        rules:
+        - {typeName: MinItemCountValidationRule, existing: true}
         childTypes:
         - typeName: CurrentEmploymentNode
           baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
+          - {propertyName: currentRecord, value: Boolean.TRUE}
 
       - typeName: PreviousEmploymentListNode
         baseTypeName: ListUiNode
         itemTypeName: PreviousEmploymentNode
+        init:
+        - {propertyName: nodeLabel, value: '"Previous Employment"'}
         childTypes:
         - typeName: PreviousEmploymentNode
           baseTypeName: EmploymentNode
+          init:
+          - {propertyName: nodeLabel, value: '"Employment"'}
 
       - typeName: PersonTrustNode
         baseTypeName: BaseTrustNode
@@ -240,33 +313,49 @@ rootType:
 
         - typeName: CompanyApplicationTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegisteredNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyTypeNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyDescriptionNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyIndustryNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyAbnNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyAcnNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyAbrnNode
           baseTypeName: StringUiNode
 
         - typeName: CompanyRegistrationDateNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegistrationStateNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.AUSTRALIAN_STATES'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: CompanySelectDirectorNode
           baseTypeName: SelectRelatedPersonListNode
@@ -354,12 +443,16 @@ rootType:
           childTypes:
           - typeName: SavingsTypeNode
             baseTypeName: StringUiNode
-
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE}
+            - {propertyName: required, value: 'true'}
           - typeName: SavingsInstitutionNameNode
             baseTypeName: StringUiNode
 
           - typeName: SavingsBalanceNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: SavingsBsbNoNode
             baseTypeName: StringUiNode
@@ -369,6 +462,8 @@ rootType:
 
           - typeName: SavingsAccountNameNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: SavingsOwnershipListNode
             baseTypeName: OwnershipListNode
@@ -387,12 +482,19 @@ rootType:
           childTypes:
           - typeName: VehicleModelNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: VehicleYearNode
             baseTypeName: BigDecimalUiNode
+            init:
+            - {propertyName: required, value: 'true'}
+            - {propertyName: options, value: ApplicationNodeConstants.getYearType()}
 
           - typeName: VehicleMarketValueNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: VehicleOwnershipListNode
             baseTypeName: OwnershipListNode
@@ -411,12 +513,17 @@ rootType:
           childTypes:
           - typeName: OtherAssetTypeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_ASSET_TYPE}
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherAssetDescriptionNode
             baseTypeName: StringUiNode
 
           - typeName: OtherAssetMarketValueNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherAssetOwnershipListNode
             baseTypeName: OwnershipListNode
@@ -446,27 +553,46 @@ rootType:
           childTypes:
           - typeName: CreditCardTypeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.CREDIT_CARD_TYPE}
+            - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardAmountOwingNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardLimitAmountNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
+            - {propertyName: minValue, value: new BigDecimal("0.01")}
 
           - typeName: CreditCardMonthlyRepaymentNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"creditCardBreakCostNode"'}
 
           - typeName: CreditCardBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: CreditCardLenderNameNode
             baseTypeName: StringUiNode
 
           - typeName: CreditCardOwnershipListNode
             baseTypeName: OwnershipListNode
+            init:
+            - {propertyName: required, value: 'true'}
 
       - typeName: LoanListNode
         baseTypeName: ListUiNode
@@ -486,21 +612,37 @@ rootType:
           childTypes:
           - typeName: LoanTypeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanOwingAmountNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanLimitAmountNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanMonthlyRepaymentNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"loanBreakCostNode"'}
 
           - typeName: LoanBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: LoanLenderNameNode
             baseTypeName: StringUiNode
@@ -526,24 +668,41 @@ rootType:
           childTypes:
           - typeName: OtherLiabilityTypeNode
             baseTypeName: StringUiNode
+            properties:
+            init:
+            - {propertyName: options, value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE}
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityDescriptionNode
             baseTypeName: StringUiNode
 
           - typeName: OtherLiabilityLimitAmountNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityAmountOwningNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityMonthlyRepaymentNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityClearingFlagNode
             baseTypeName: BooleanUiNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"otherLiabilityBreakCostNode"'}
 
           - typeName: OtherLiabilityBreakCostNode
             baseTypeName: BaseCurrencyNode
+            init:
+            - {propertyName: required, value: 'true'}
 
           - typeName: OtherLiabilityOwnershipListNode
             baseTypeName: OwnershipListNode
@@ -562,28 +721,43 @@ rootType:
         childTypes:
         - typeName: ExpenseTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.EXPENSE_TYPE}
+          - {propertyName: required, value: 'true'}
 
         - typeName: ExpenseDescriptionNode
           baseTypeName: StringUiNode
 
         - typeName: ExpenseMonthlyRepaymentNode
           baseTypeName: BaseCurrencyNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ExpenseOwnershipListNode
           baseTypeName: OwnershipListNode
 
     - typeName: TotalAssetNode
       baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
 
     - typeName: TotalLiabilityNode
       baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
 
     - typeName: TotalExpenseNode
       baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: minValue, value: new BigDecimal("0")}
 
   - typeName: RealEstateListNode
     baseTypeName: ListUiNode
     itemTypeName: RealEstateNode
+    init:
+    - {propertyName: minItemCount, value: 1}
+    rules:
+    - {typeName: AutoCreateListItemRule, existing: true}
     childTypes:
     - typeName: RealEstateNode
       baseTypeName: ObjectUiNode
@@ -608,21 +782,34 @@ rootType:
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: required, value: true}
+          rules:
+          - {typeName: UsedAsSecurityFlagChangeRule}
 
         - typeName: BeingPurchasedFlagNode
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          rules:
+          - {typeName: BeingPurchasedFlagChangeRule}
 
         - typeName: OwnedOutrightFlagNode
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: required, value: true}
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"existingMortgageListNode"'}
+            - {propertyName: enablingValue, value: false}
 
         - typeName: PrimarySecurityFlagNode
           baseTypeName: BooleanUiNode
           init:
           - {propertyName: value, value: 'null'}
+          - {propertyName: disabled, value: true}
 
         - typeName: ApprovalInPrincipleFlagNode
           baseTypeName: BooleanUiNode
@@ -655,39 +842,63 @@ rootType:
 
             - typeName: MortgqageUnpaidBalanceNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageLimitAmountNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageMonthlyRepaymentNode
               baseTypeName: BaseCurrencyNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageBorrowerRateNode
               baseTypeName: BasePercentageNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageLoanTypeNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
+              - {propertyName: options, value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
 
             - typeName: MortgageLoanTermExpiryDateNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageInterestOnlyExpiryDateNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageClearingFlagNode
               baseTypeName: BooleanUiNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageBreakFeeNode
               baseTypeName: BaseCurrencyNode
 
             - typeName: MortgageChargePositionNode
               baseTypeName: StringUiNode
+              init:
+              - {propertyName: required, value: true}
+              - {propertyName: options, value: ApplicationNodeConstants.LENDER_CHARGE_POSITION}
 
             - typeName: MortgageTermRemainingPeriodNode
               baseTypeName: MonthYearNode
+              init:
+              - {propertyName: required, value: true}
 
             - typeName: MortgageInterestOnlyRemainingPeriodNode
               baseTypeName: MonthYearNode
+              init:
+              - {propertyName: required, value: true}
 
       - typeName:  PropertyNode
         baseTypeName: ObjectUiNode
@@ -705,6 +916,11 @@ rootType:
         childTypes:
         - typeName: RentedFlagNode
           baseTypeName: BooleanUiNode
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"propertyWeeklyRentNode"'}
 
         - typeName: PropertyWeeklyRentNode
           baseTypeName: BigDecimalUiNode
@@ -714,6 +930,8 @@ rootType:
 
         - typeName: EstimatedMarketValueNode
           baseTypeName: BigDecimalUiNode
+          init:
+          - {propertyName: required, value: true}
 
         - typeName: ContractPriceNode
           baseTypeName: BigDecimalUiNode
@@ -723,12 +941,20 @@ rootType:
 
         - typeName: PropertyTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_TYPE'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertySubTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertyPurseNode
           baseTypeName: BooleanUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: PropertyOwnershipListNode
           baseTypeName: OwnershipListNode
@@ -747,9 +973,19 @@ rootType:
         childTypes:
         - typeName: AccessContactTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"accessCompanyNameNode"'}
+            - {propertyName: enablingValue, value: '"Selling Agent"'}
 
         - typeName: AccessContactTitleNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
 
         - typeName: AccessContactFirstNameNode
           baseTypeName: StringUiNode
@@ -762,6 +998,9 @@ rootType:
 
         - typeName: AccessTelephoneNode
           baseTypeName: TelephoneNode
+          init:
+          - {propertyName: countryCodeReadonly, value: Boolean.TRUE}
+          - {propertyName: value, value: 'ApplicationNodeConstants.AUS_DEFAULT'}
 
         - typeName: AccessOtherDescriptionNode
           baseTypeName: StringUiNode
@@ -788,6 +1027,8 @@ rootType:
         baseTypeName: ObjectUiNode
         init:
         - {propertyName: selectedName, value: '"productDescriptionNode"'}
+        rules:
+        - {typeName: UpdateProductNodeLabelRule, baseTypeName: UpdateItemNodeLabelRule}
         children:
         - {typeName: ProductDescriptionNode}
         - {typeName: ProductFeaturesNode}
@@ -813,15 +1054,25 @@ rootType:
           childTypes:
           - typeName: ProductGroupNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
+            rules:
+            - {typeName: ProductGroupChangedRule}
 
           - typeName: ProductNameNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME'}
 
           - typeName: ProductLoanPrimaryPurposeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE'}
 
           - typeName: ProductLendingPurposeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE'}
 
           - typeName: ProductRequestedAmountNode
             baseTypeName: BaseCurrencyNode
@@ -831,6 +1082,8 @@ rootType:
 
           - typeName: ProductPaymentTypeNode
             baseTypeName: StringUiNode
+            init:
+            - {propertyName: options, value: 'ApplicationNodeConstants.PAYMENT_TYPE'}
 
           - typeName: ProductInterestOnlyTermNode
             baseTypeName: BigDecimalUiNode
@@ -931,12 +1184,26 @@ rootType:
         childTypes:
         - typeName: ContributionTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE}
+          - {propertyName: required, value: 'true'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"contributionDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
 
         - typeName: ContributionDescriptionNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ContributionAmountNode
           baseTypeName: BaseCurrencyNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: ProductFeeListNode
       baseTypeName: ListUiNode
@@ -952,15 +1219,32 @@ rootType:
         childTypes:
         - typeName: FeeTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.PRODUCT_FEE_TYPE}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"feeDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
 
         - typeName: FeeDescriptionNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: FeePayFromNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.FEE_FROM_TYPE}
 
         - typeName: FeeAmountNode
           baseTypeName: BaseCurrencyNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: ProductLoanTypeNode
       baseTypeName: StringUiNode
@@ -1014,18 +1298,37 @@ rootType:
         childTypes:
         - typeName: ThirdPartyTypeNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.THIRD_PARTY_TYPE}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"thirdPartyDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Next of Kin"'}
 
         - typeName: ThirdPartyDescriptionNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
+          - {propertyName: options, value: ApplicationNodeConstants.NEXT_KIN_TYPE}
 
         - typeName: ThirdPartyTitleNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyFirstNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyLastNameNode
           baseTypeName: StringUiNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyDobNode
           baseTypeName: DobNode
@@ -1038,6 +1341,8 @@ rootType:
 
         - typeName: ThirdPartyWorkPhoneNode
           baseTypeName: TelephoneNode
+          init:
+          - {propertyName: required, value: 'true'}
 
         - typeName: ThirdPartyEmailNode
           baseTypeName: StringUiNode
@@ -1048,7 +1353,10 @@ rootType:
     - {typeName: BrokerFirstNameNode}
     - {typeName: BrokerLastNameNode}
     - {typeName: BrokerCompanyNode}
-    - {typeName: BrokerTelephoneNode, name: contactNumberNode}
+    - typeName: BrokerTelephoneNode
+      name: contactNumberNode
+      init:
+      - {propertyName: required, value: 'true'}
     - {typeName: BrokerTelephoneNode, name: faxNumberNode}
     - {typeName: BrokerMobileNumberNode, name: mobileNumberNode}
     - {typeName: BrokerEmailNode}
@@ -1057,27 +1365,41 @@ rootType:
     childTypes:
     - typeName: BrokerFirstNameNode
       baseTypeName: NameNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: BrokerLastNameNode
       baseTypeName: NameNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: BrokerCompanyNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: BrokerTelephoneNode
       baseTypeName: TelephoneNode
+      init:
+      - {propertyName: countryCodeReadonly, value: Boolean.TRUE}
+      - {propertyName: value, value: 'ApplicationNodeConstants.AUS_DEFAULT'}
 
     - typeName: BrokerMobileNumberNode
       baseTypeName: BaseMobileNumberNode
 
     - typeName: BrokerEmailNode
       baseTypeName: EmailNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: BrokerAddressNode
       baseTypeName: AddressNode
 
     - typeName: LenderIssuedBrokerNumberNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
+      - {propertyName: pattern, value: '"\\d+"'}
 
   - typeName: ErrorListNode
     baseTypeName: ListUiNode
@@ -1127,42 +1449,71 @@ commonTypes:
 
   - typeName: SuburbNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
 
   - typeName: PostcodeNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: pattern, value: '"\\d{4,4}"'}
 
   - typeName: CountryNode
     baseTypeName: BaseCountryNode
+    init:
+    - {propertyName: required, value: 'true'}
 
 - typeName: MonthYearNode
   baseTypeName: ObjectUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
+  rules:
+  - {typeName: MonthYearNotInFutureRule, baseTypeName: ValidationRule}
+  - {typeName: ObjectValueRequiredValidationRule, existing: true}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}
   childTypes:
   - typeName: MonthNode
     baseTypeName: BigDecimalUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.MONTH_TYPE}
 
   - typeName: YearNode
     baseTypeName: BigDecimalUiNode
+    init:
+    - {propertyName: required, value: 'true'}
+    - {propertyName: options, value: ApplicationNodeConstants.getYearType()}
 
 - typeName: EmailNode
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
 
 - typeName: NameNode
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
+  - {propertyName: maxLength, value: 25}
+  - {propertyName: lengthMessage, value: '"Cannot exceed 25 characters."'}
+  - {propertyName: invalidChars, value: "\"#\""}
+  - {propertyName: invalidCharsMessage, value: "\"Name cannot contain '#'.\""}
+  rules:
+  - {typeName: InvalidCharPreChangeRule, existing: true}
 
 - typeName: BaseMobileNumberNode
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: pattern, value: '"^(\\+\\d{1,3}[- ]?)?\\d{10}$"'}
+  - {propertyName: patternMessage, value: '"Invalid mobile number."'}
 
 - typeName: BaseCurrencyNode
   baseTypeName: BigDecimalUiNode
@@ -1170,11 +1521,16 @@ commonTypes:
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0.01")}
 
 - typeName: BasePercentageNode
   baseTypeName: BigDecimalUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: minValue, value: new BigDecimal("0")}
+  - {propertyName: maxValue, value: new BigDecimal("100")}
   properties:
   - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.PERCENTAGE}
 
@@ -1194,7 +1550,12 @@ commonTypes:
   childTypes:
   - typeName: EmploymentTypeNode
     baseTypeName: StringUiNode
-
+    properties:
+    init:
+    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE'}
+    - {propertyName: value, value: '"payeEmployedNode"'}
+    rules:
+    - {typeName: EmploymentTypeChangedRule}
   - typeName: PayeEmployedNode
     baseTypeName: EmployedNode
     children:
@@ -1202,6 +1563,8 @@ commonTypes:
     childTypes:
     - typeName: GrossYearlySalaryNode
       baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: SelfEmployedNode
     baseTypeName: EmployedNode
@@ -1215,14 +1578,19 @@ commonTypes:
 
     - typeName: ProfitThisYearNode
       baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: ProfitPreviousYearNode
       baseTypeName: BigDecimalUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: EmployedNode
     baseTypeName: ObjectUiNode
     abstractNode: true
     rules:
+    - {typeName: DoNotLoadEndedDateForCurrentRecordRule}
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}
@@ -1235,24 +1603,41 @@ commonTypes:
     childTypes:
     - typeName: EmploymentStatusNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS'}
+      - {propertyName: required, value: 'true'}
 
     - typeName: OccupationNode
       baseTypeName: BaseOccupationNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: EmployerNameNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: EmployerAddressNode
       baseTypeName: AddressNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: EmployerPhoneNode
       baseTypeName: TelephoneNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: EmploymentStartedNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: EmploymentEndedNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
+      rules:
+      - {typeName: EmploymentEndedNoEarlierThanEmploymentStartedRule, baseTypeName: MonthYearNoEarlierThanRule}
 
   - typeName: UnemployedNode
     baseTypeName: ObjectUiNode
@@ -1265,18 +1650,28 @@ commonTypes:
     childTypes:
     - typeName: UnemployedOnBenefitFlagNode
       baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: StudentFlagNode
       baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: StudentTypeNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE'}
 
     - typeName: HouseDutiesFlagNode
       baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: UnemployedSinceNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
   - typeName: RetiredEmploymentNode
     baseTypeName: ObjectUiNode
@@ -1286,9 +1681,13 @@ commonTypes:
     childTypes:
     - typeName: RetiredOnBenefitFlagNode
       baseTypeName: YesNoOptionNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: RetiredSinceNode
       baseTypeName: MonthYearNode
+      init:
+      - {propertyName: required, value: 'true'}
 
 - typeName: BaseOccupationNode
   baseTypeName: StringUiNode
@@ -1299,11 +1698,15 @@ commonTypes:
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE'}
 
 - typeName: BaseCountryNode
   baseTypeName: StringUiNode
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
+  init:
+  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE}
 
 - typeName: DobNode
   baseTypeName: StringUiNode
@@ -1312,12 +1715,24 @@ commonTypes:
   properties:
   - {name: minAge, typeName: Integer}
   - {name: maxAge, typeName: Integer}
+  init:
+  - {propertyName: minAge, value: 18}
+  - {propertyName: maxAge, value: 100}
+  rules:
+  - {typeName: DobRangeValidationRule, baseTypeName: ValidationRule}
 
 - typeName: SelectRelatedPersonListNode
   baseTypeName: ListUiNode
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: SelectRelatedPersonNode
+  init:
+  - {propertyName: keepItemsOnReset, value: 'true'}
+  rules:
+  - {typeName: AddExistingPeopleRule}
+  - {typeName: AddNewPersonRule}
+  - {typeName: AddNewThirdPartyApplicantRule}
+  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
   childTypes:
   - typeName: SelectRelatedPersonNode
     baseTypeName: ObjectUiNode
@@ -1327,6 +1742,8 @@ commonTypes:
     childTypes:
     - typeName: RelatedPersonReferenceNode
       baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
 
     - typeName: SelectRelatedPersonFlagNode
       baseTypeName: BooleanUiNode
@@ -1335,6 +1752,10 @@ commonTypes:
   baseTypeName: ListUiNode
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
+  rules:
+  - {typeName: AddExistingHoldersRule}
+  - {typeName: AddNewPersonHolderRule}
+  - {typeName: AddNewCompanyHolderRule}
   itemTypeName: SelectAccountHolderNode
   childTypes:
   - typeName: SelectAccountHolderNode
@@ -1357,6 +1778,13 @@ commonTypes:
   parentBaseTypeName: ObjectUiNode<?>
   properties:
   - {name: totalOwnership, typeName: BigDecimal}
+  rules:
+  - {typeName: AddExistingApplicantsRule}
+  - {typeName: AddNewPersonApplicantRule}
+  - {typeName: AddNewCompanyApplicantRule}
+  - {typeName: OwnershipRequiredValidationRule, baseTypeName: ValidationRule}
+  - {typeName: UpdateTotalOwnershipRule}
+  - {typeName: DistributePercentageRule}
   itemTypeName: OwnershipNode
   childTypes:
   - typeName: OwnershipNode
@@ -1373,6 +1801,8 @@ commonTypes:
 
     - typeName: OwnershipPercentageNode
       baseTypeName: BasePercentageNode
+      init:
+      - {propertyName: value, value: 'new BigDecimal("0")'}
 
     - typeName: AverageFlagNode
       baseTypeName: BooleanUiNode
@@ -1387,23 +1817,35 @@ commonTypes:
   - {typeName: ResponsibleSignificantChangeFlagNode}
   - {typeName: ResponsibleRepaymentDifficultyNode}
   childTypes:
-  - typeName: ResponsibleSignificantChangeFlagNode
-    baseTypeName: YesNoOptionNode
+        - typeName: ResponsibleSignificantChangeFlagNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
+          rules:
+          - {typeName: ResponsibleSignificantChangeRule}
 
-  - typeName: ResponsibleTypeOfChangeNode
-    baseTypeName: StringUiNode
+        - typeName: ResponsibleTypeOfChangeNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE}
 
-  - typeName: ResponsibleMitigationMethodNode
-    baseTypeName: StringUiNode
+        - typeName: ResponsibleMitigationMethodNode
+          baseTypeName: StringUiNode
+          init:
+          - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE}
 
-  - typeName: ResponsibleRepaymentDifficultyNode
-    baseTypeName: YesNoOptionNode
+        - typeName: ResponsibleRepaymentDifficultyNode
+          baseTypeName: YesNoOptionNode
+          init:
+          - {propertyName: required, value: 'true'}
 
 - typeName: BaseOtherIncomeListNode
   baseTypeName: ListUiNode
   abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: OtherIncomeNode
+  init:
+  - {propertyName: nodeLabel, value: '"Other Incomes"'}
   childTypes:
   - typeName: OtherIncomeNode
     baseTypeName: ObjectUiNode
@@ -1416,12 +1858,19 @@ commonTypes:
     childTypes:
     - typeName: OtherIncomeTypeNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: required, value: 'true'}
 
     - typeName: OtherIncomeAddBackTypeNode
       baseTypeName: StringUiNode
+      init:
+      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE}
 
     - typeName: OtherIncomeAmountNode
       baseTypeName: BaseCurrencyNode
+      init:
+      - {propertyName: required, value: 'true'}
+      - {propertyName: minValue, value: new BigDecimal("0.01")}
 
     - typeName: OtherIncomePreviousYearNode
       baseTypeName: BooleanUiNode
@@ -1441,12 +1890,22 @@ commonTypes:
   childTypes:
   - typeName: CreditCheckFlagNode
     baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
 
   - typeName: ThirdPartyDisclosureFlagNode
     baseTypeName: BooleanUiNode
+    init:
+    - {propertyName: fixedValue, value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
 
   - typeName: LegalActionNode
     baseTypeName: YesNoOptionNode
+    init:
+    - {propertyName: value, value: '"No"'}
 
   - typeName: CreditHistoryListNode
     baseTypeName: ListUiNode
@@ -1474,6 +1933,10 @@ commonTypes:
   childTypes:
   - typeName: TrustTypeNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE}
+    rules:
+    - {typeName: TrustTypeChangedRule}
 
   - typeName: TrustNameNode
     baseTypeName: StringUiNode
@@ -1483,6 +1946,8 @@ commonTypes:
 
   - typeName: TrustCountryNode
     baseTypeName: BaseCountryNode
+    init:
+    - {propertyName: required, value: 'true'}
 
   - typeName: TrustAddressNode
     baseTypeName: AddressNode
@@ -1513,3 +1978,7 @@ commonTypes:
   abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   baseTypeName: StringUiNode
+  init:
+  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE'}
+  - {propertyName: required, value: 'true'}
+  - {propertyName: value, value: '"A"'}

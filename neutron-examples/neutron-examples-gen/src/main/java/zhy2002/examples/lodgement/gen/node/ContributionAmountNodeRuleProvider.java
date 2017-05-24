@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ContributionAmountNodeScope
 public class ContributionAmountNodeRuleProvider implements RuleProvider<ContributionAmountNode> {
@@ -24,8 +22,6 @@ public class ContributionAmountNodeRuleProvider implements RuleProvider<Contribu
     public void initializeState(ContributionAmountNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setMinValue(new BigDecimal("0.01"));
     }
 
 

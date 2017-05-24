@@ -24,15 +24,11 @@ public class MovedFromPreviousAddressNodeRuleProvider implements RuleProvider<Mo
 
     }
 
-    @Inject
-    Provider<FromPreviousNoEarlierThanToPreviousRule> fromPreviousNoEarlierThanToPreviousRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        FromPreviousNoEarlierThanToPreviousRule fromPreviousNoEarlierThanToPreviousRule = fromPreviousNoEarlierThanToPreviousRuleProvider.get();
-        createdRules.add(fromPreviousNoEarlierThanToPreviousRule);
     }
 
 }

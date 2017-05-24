@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @PersonListNodeScope
 public class PersonListNodeRuleProvider implements RuleProvider<PersonListNode> {
@@ -24,8 +22,6 @@ public class PersonListNodeRuleProvider implements RuleProvider<PersonListNode> 
     public void initializeState(PersonListNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setSelectedIndex(0);
-        node.setNodeLabel("Person Applicant");
     }
 
 

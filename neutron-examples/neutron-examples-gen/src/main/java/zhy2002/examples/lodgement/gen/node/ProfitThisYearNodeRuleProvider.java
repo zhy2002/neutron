@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ProfitThisYearNodeScope
 public class ProfitThisYearNodeRuleProvider implements RuleProvider<ProfitThisYearNode> {
@@ -24,7 +22,6 @@ public class ProfitThisYearNodeRuleProvider implements RuleProvider<ProfitThisYe
     public void initializeState(ProfitThisYearNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

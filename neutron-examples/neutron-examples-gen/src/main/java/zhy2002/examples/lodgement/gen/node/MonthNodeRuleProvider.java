@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @MonthNodeScope
 public class MonthNodeRuleProvider implements RuleProvider<MonthNode> {
@@ -24,8 +22,6 @@ public class MonthNodeRuleProvider implements RuleProvider<MonthNode> {
     public void initializeState(MonthNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.MONTH_TYPE);
     }
 
 

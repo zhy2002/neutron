@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @FirstHomeBuyerFlagNodeScope
 public class FirstHomeBuyerFlagNodeRuleProvider implements RuleProvider<FirstHomeBuyerFlagNode> {
@@ -24,7 +22,6 @@ public class FirstHomeBuyerFlagNodeRuleProvider implements RuleProvider<FirstHom
     public void initializeState(FirstHomeBuyerFlagNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

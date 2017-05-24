@@ -177,7 +177,6 @@ public class SubmissionNodeChildProvider {
 
         @Override
         public void initializeState(BrokerTelephoneNode node) {
-            node.setRequired(true);
         }
 
 

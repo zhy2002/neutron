@@ -25,20 +25,13 @@ public class OwnedOutrightFlagNodeRuleProvider implements RuleProvider<OwnedOutr
         parentRuleProvider.initializeState(node);
 
         node.setValue(null);
-        node.setRequired(true);
     }
 
-    @Inject
-    Provider<BooleanEnableSiblingRule> booleanEnableSiblingRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("existingMortgageListNode");
-        booleanEnableSiblingRule.setEnablingValue(false);
-        createdRules.add(booleanEnableSiblingRule);
     }
 
 }

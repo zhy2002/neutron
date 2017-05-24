@@ -24,15 +24,11 @@ public class EmployedNodeRuleProvider implements RuleProvider<EmployedNode> {
 
     }
 
-    @Inject
-    Provider<DoNotLoadEndedDateForCurrentRecordRule> doNotLoadEndedDateForCurrentRecordRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        DoNotLoadEndedDateForCurrentRecordRule doNotLoadEndedDateForCurrentRecordRule = doNotLoadEndedDateForCurrentRecordRuleProvider.get();
-        createdRules.add(doNotLoadEndedDateForCurrentRecordRule);
     }
 
 }

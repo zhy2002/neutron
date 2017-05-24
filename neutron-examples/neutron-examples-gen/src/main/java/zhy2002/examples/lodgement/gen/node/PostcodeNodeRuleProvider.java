@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @PostcodeNodeScope
 public class PostcodeNodeRuleProvider implements RuleProvider<PostcodeNode> {
@@ -24,8 +22,6 @@ public class PostcodeNodeRuleProvider implements RuleProvider<PostcodeNode> {
     public void initializeState(PostcodeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setPattern("\\d{4,4}");
     }
 
 

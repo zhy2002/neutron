@@ -24,19 +24,11 @@ public class PrimaryApplicantFlagNodeRuleProvider implements RuleProvider<Primar
 
     }
 
-    @Inject
-    Provider<AtLeastOnePrimaryApplicantRule> atLeastOnePrimaryApplicantRuleProvider;
-    @Inject
-    Provider<AtMostOnePrimaryApplicantRule> atMostOnePrimaryApplicantRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        AtLeastOnePrimaryApplicantRule atLeastOnePrimaryApplicantRule = atLeastOnePrimaryApplicantRuleProvider.get();
-        createdRules.add(atLeastOnePrimaryApplicantRule);
-        AtMostOnePrimaryApplicantRule atMostOnePrimaryApplicantRule = atMostOnePrimaryApplicantRuleProvider.get();
-        createdRules.add(atMostOnePrimaryApplicantRule);
     }
 
 }

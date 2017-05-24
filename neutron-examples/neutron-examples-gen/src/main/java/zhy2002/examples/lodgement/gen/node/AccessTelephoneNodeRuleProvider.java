@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @AccessTelephoneNodeScope
 public class AccessTelephoneNodeRuleProvider implements RuleProvider<AccessTelephoneNode> {
@@ -24,8 +22,6 @@ public class AccessTelephoneNodeRuleProvider implements RuleProvider<AccessTelep
     public void initializeState(AccessTelephoneNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setCountryCodeReadonly(Boolean.TRUE);
-        node.setValue(ApplicationNodeConstants.AUS_DEFAULT);
     }
 
 

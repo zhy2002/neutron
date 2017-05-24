@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @MortgageLoanTypeNodeScope
 public class MortgageLoanTypeNodeRuleProvider implements RuleProvider<MortgageLoanTypeNode> {
@@ -24,8 +22,6 @@ public class MortgageLoanTypeNodeRuleProvider implements RuleProvider<MortgageLo
     public void initializeState(MortgageLoanTypeNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
-        node.setOptions(ApplicationNodeConstants.LIABILITY_LOAN_TYPE);
     }
 
 

@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @MortgageMonthlyRepaymentNodeScope
 public class MortgageMonthlyRepaymentNodeRuleProvider implements RuleProvider<MortgageMonthlyRepaymentNode> {
@@ -24,7 +22,6 @@ public class MortgageMonthlyRepaymentNodeRuleProvider implements RuleProvider<Mo
     public void initializeState(MortgageMonthlyRepaymentNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

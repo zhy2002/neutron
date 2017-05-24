@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @UnemployedSinceNodeScope
 public class UnemployedSinceNodeRuleProvider implements RuleProvider<UnemployedSinceNode> {
@@ -24,7 +22,6 @@ public class UnemployedSinceNodeRuleProvider implements RuleProvider<UnemployedS
     public void initializeState(UnemployedSinceNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

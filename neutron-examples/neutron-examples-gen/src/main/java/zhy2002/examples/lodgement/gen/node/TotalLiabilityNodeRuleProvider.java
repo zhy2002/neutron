@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @TotalLiabilityNodeScope
 public class TotalLiabilityNodeRuleProvider implements RuleProvider<TotalLiabilityNode> {
@@ -24,7 +22,6 @@ public class TotalLiabilityNodeRuleProvider implements RuleProvider<TotalLiabili
     public void initializeState(TotalLiabilityNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setMinValue(new BigDecimal("0"));
     }
 
 

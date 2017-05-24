@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @RetiredOnBenefitFlagNodeScope
 public class RetiredOnBenefitFlagNodeRuleProvider implements RuleProvider<RetiredOnBenefitFlagNode> {
@@ -24,7 +22,6 @@ public class RetiredOnBenefitFlagNodeRuleProvider implements RuleProvider<Retire
     public void initializeState(RetiredOnBenefitFlagNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

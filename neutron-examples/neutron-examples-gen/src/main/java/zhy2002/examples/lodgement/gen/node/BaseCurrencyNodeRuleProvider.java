@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 
 public class BaseCurrencyNodeRuleProvider implements RuleProvider<BaseCurrencyNode<?>> {
@@ -24,7 +22,6 @@ public class BaseCurrencyNodeRuleProvider implements RuleProvider<BaseCurrencyNo
     public void initializeState(BaseCurrencyNode<?> node) {
         parentRuleProvider.initializeState(node);
 
-        node.setMinValue(new BigDecimal("0.01"));
     }
 
 

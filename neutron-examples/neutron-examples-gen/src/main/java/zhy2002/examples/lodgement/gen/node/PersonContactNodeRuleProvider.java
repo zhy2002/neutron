@@ -24,15 +24,11 @@ public class PersonContactNodeRuleProvider implements RuleProvider<PersonContact
 
     }
 
-    @Inject
-    Provider<HomeOrWorkPhoneRequiredRule> homeOrWorkPhoneRequiredRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        HomeOrWorkPhoneRequiredRule homeOrWorkPhoneRequiredRule = homeOrWorkPhoneRequiredRuleProvider.get();
-        createdRules.add(homeOrWorkPhoneRequiredRule);
     }
 
 }

@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ResponsibleMitigationMethodNodeScope
 public class ResponsibleMitigationMethodNodeRuleProvider implements RuleProvider<ResponsibleMitigationMethodNode> {
@@ -24,7 +22,6 @@ public class ResponsibleMitigationMethodNodeRuleProvider implements RuleProvider
     public void initializeState(ResponsibleMitigationMethodNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE);
     }
 
 

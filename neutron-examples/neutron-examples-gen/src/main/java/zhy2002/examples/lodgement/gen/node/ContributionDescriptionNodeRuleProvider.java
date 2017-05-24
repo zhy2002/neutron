@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ContributionDescriptionNodeScope
 public class ContributionDescriptionNodeRuleProvider implements RuleProvider<ContributionDescriptionNode> {
@@ -24,7 +22,6 @@ public class ContributionDescriptionNodeRuleProvider implements RuleProvider<Con
     public void initializeState(ContributionDescriptionNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRequired(true);
     }
 
 

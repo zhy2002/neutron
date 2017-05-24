@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @PersonTelephoneNodeScope
 public class PersonTelephoneNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
@@ -24,7 +22,6 @@ public class PersonTelephoneNodeRuleProvider implements RuleProvider<PersonTelep
     public void initializeState(PersonTelephoneNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setEmptyValue(new Telephone("+61"));
     }
 
 

@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @EmploymentStatusNodeScope
 public class EmploymentStatusNodeRuleProvider implements RuleProvider<EmploymentStatusNode> {
@@ -24,8 +22,6 @@ public class EmploymentStatusNodeRuleProvider implements RuleProvider<Employment
     public void initializeState(EmploymentStatusNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.EMPLOYMENT_STATUS);
-        node.setRequired(true);
     }
 
 

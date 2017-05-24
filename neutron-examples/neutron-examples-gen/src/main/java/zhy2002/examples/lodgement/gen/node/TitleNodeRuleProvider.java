@@ -7,8 +7,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @TitleNodeScope
 public class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
@@ -24,19 +22,13 @@ public class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
     public void initializeState(TitleNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setOptions(ApplicationNodeConstants.TITLE_TYPE);
-        node.setRequired(true);
     }
 
-    @Inject
-    Provider<TitleGenderMatchRule> titleGenderMatchRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        TitleGenderMatchRule titleGenderMatchRule = titleGenderMatchRuleProvider.get();
-        createdRules.add(titleGenderMatchRule);
     }
 
 }
