@@ -38,7 +38,12 @@ public class ProductRateLockFlagNodeModule {
     }
 
     @Provides @ProductRateLockFlagNodeScope
-    Map<String, RuleProvider<ProductRateLockFlagNode>> provideInstanceProviders(
+    RuleProvider<ProductRateLockFlagNode> provideRuleProvider(Provider<ProductRateLockFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductRateLockFlagNodeScope
+    Map<String, RuleProvider<ProductRateLockFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductRateLockFlagNodeRuleProvider> productRateLockFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductRateLockFlagNode>> result = new HashMap<>();

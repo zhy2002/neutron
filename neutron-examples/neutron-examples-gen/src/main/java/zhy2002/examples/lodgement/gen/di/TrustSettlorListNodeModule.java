@@ -42,7 +42,12 @@ public class TrustSettlorListNodeModule {
     }
 
     @Provides @TrustSettlorListNodeScope
-    Map<String, RuleProvider<TrustSettlorListNode>> provideInstanceProviders(
+    RuleProvider<TrustSettlorListNode> provideRuleProvider(Provider<TrustSettlorListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @TrustSettlorListNodeScope
+    Map<String, RuleProvider<TrustSettlorListNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustSettlorListNodeRuleProvider> trustSettlorListNodeRuleProvider
     ) {
         Map<String, RuleProvider<TrustSettlorListNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class PropertyTypeNodeModule {
     }
 
     @Provides @PropertyTypeNodeScope
-    Map<String, RuleProvider<PropertyTypeNode>> provideInstanceProviders(
+    RuleProvider<PropertyTypeNode> provideRuleProvider(Provider<PropertyTypeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PropertyTypeNodeScope
+    Map<String, RuleProvider<PropertyTypeNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyTypeNodeRuleProvider> propertyTypeNodeRuleProvider
     ) {
         Map<String, RuleProvider<PropertyTypeNode>> result = new HashMap<>();

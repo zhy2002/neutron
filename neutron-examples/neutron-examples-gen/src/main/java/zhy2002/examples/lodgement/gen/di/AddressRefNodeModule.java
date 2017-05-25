@@ -36,4 +36,9 @@ public class AddressRefNodeModule {
         return owner.getParent();
     }
 
+    @Provides @AddressRefNodeScope
+    RuleProvider<AddressRefNode> provideRuleProvider(Provider<AddressRefNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

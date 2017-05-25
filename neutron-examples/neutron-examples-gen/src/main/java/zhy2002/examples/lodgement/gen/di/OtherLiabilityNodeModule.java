@@ -36,4 +36,9 @@ public class OtherLiabilityNodeModule {
         return owner.getParent();
     }
 
+    @Provides @OtherLiabilityNodeScope
+    RuleProvider<OtherLiabilityNode> provideRuleProvider(Provider<OtherLiabilityNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

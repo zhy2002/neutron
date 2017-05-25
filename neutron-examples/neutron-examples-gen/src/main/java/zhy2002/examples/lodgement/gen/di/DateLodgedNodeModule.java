@@ -38,7 +38,12 @@ public class DateLodgedNodeModule {
     }
 
     @Provides @DateLodgedNodeScope
-    Map<String, RuleProvider<DateLodgedNode>> provideInstanceProviders(
+    RuleProvider<DateLodgedNode> provideRuleProvider(Provider<DateLodgedNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @DateLodgedNodeScope
+    Map<String, RuleProvider<DateLodgedNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.DateLodgedNodeRuleProvider> dateLodgedNodeRuleProvider
     ) {
         Map<String, RuleProvider<DateLodgedNode>> result = new HashMap<>();

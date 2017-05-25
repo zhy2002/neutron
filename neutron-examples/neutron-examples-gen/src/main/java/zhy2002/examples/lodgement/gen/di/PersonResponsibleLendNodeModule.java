@@ -42,7 +42,12 @@ public class PersonResponsibleLendNodeModule {
     }
 
     @Provides @PersonResponsibleLendNodeScope
-    Map<String, RuleProvider<PersonResponsibleLendNode>> provideInstanceProviders(
+    RuleProvider<PersonResponsibleLendNode> provideRuleProvider(Provider<PersonResponsibleLendNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PersonResponsibleLendNodeScope
+    Map<String, RuleProvider<PersonResponsibleLendNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonResponsibleLendNodeRuleProvider> personResponsibleLendNodeRuleProvider
     ) {
         Map<String, RuleProvider<PersonResponsibleLendNode>> result = new HashMap<>();

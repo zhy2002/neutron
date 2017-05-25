@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @MotorVehicleNodeScope
 @Subcomponent(modules = {MotorVehicleNodeModule.class})
 public interface MotorVehicleNodeComponent {
 
-    MotorVehicleNodeRuleProvider getMotorVehicleNodeRuleProvider();
+    RuleProvider<MotorVehicleNode> getMotorVehicleNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

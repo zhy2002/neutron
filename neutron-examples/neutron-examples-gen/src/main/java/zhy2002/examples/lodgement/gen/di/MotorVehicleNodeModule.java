@@ -36,4 +36,9 @@ public class MotorVehicleNodeModule {
         return owner.getParent();
     }
 
+    @Provides @MotorVehicleNodeScope
+    RuleProvider<MotorVehicleNode> provideRuleProvider(Provider<MotorVehicleNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -42,7 +42,12 @@ public class PersonPrivacyNodeModule {
     }
 
     @Provides @PersonPrivacyNodeScope
-    Map<String, RuleProvider<PersonPrivacyNode>> provideInstanceProviders(
+    RuleProvider<PersonPrivacyNode> provideRuleProvider(Provider<PersonPrivacyNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PersonPrivacyNodeScope
+    Map<String, RuleProvider<PersonPrivacyNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonPrivacyNodeRuleProvider> personPrivacyNodeRuleProvider
     ) {
         Map<String, RuleProvider<PersonPrivacyNode>> result = new HashMap<>();

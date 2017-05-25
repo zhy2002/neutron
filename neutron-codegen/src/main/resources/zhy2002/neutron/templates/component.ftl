@@ -1,9 +1,8 @@
 package ${targetPackage}.gen.di;
 import dagger.Subcomponent;
-import ${targetPackage}.gen.*;
 import ${targetPackage}.gen.node.*;
-<#if !abstractNode && parentType.children ??>
 import zhy2002.neutron.RuleProvider;
+<#if !abstractNode && parentType.children ??>
 import java.util.*;
 </#if>
 
@@ -11,8 +10,8 @@ import java.util.*;
 @Subcomponent(modules = {${typeName}Module.class})
 public interface ${typeName}Component {
 
-    ${typeName}RuleProvider get${typeName}RuleProvider();
-<#if !abstractNode && parentType.children ??>
+    RuleProvider<${typeName}> get${typeName}RuleProvider();
+<#if parentType.children ??>
     Map<String, RuleProvider<${typeName}>> getInstanceRuleProviders();
 </#if>
 

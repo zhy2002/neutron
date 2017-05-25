@@ -38,7 +38,12 @@ public class ProductLendingPurposeNodeModule {
     }
 
     @Provides @ProductLendingPurposeNodeScope
-    Map<String, RuleProvider<ProductLendingPurposeNode>> provideInstanceProviders(
+    RuleProvider<ProductLendingPurposeNode> provideRuleProvider(Provider<ProductLendingPurposeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductLendingPurposeNodeScope
+    Map<String, RuleProvider<ProductLendingPurposeNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductLendingPurposeNodeRuleProvider> productLendingPurposeNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductLendingPurposeNode>> result = new HashMap<>();

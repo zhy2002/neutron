@@ -38,7 +38,12 @@ public class RepeatPasswordNodeModule {
     }
 
     @Provides @RepeatPasswordNodeScope
-    Map<String, RuleProvider<RepeatPasswordNode>> provideInstanceProviders(
+    RuleProvider<RepeatPasswordNode> provideRuleProvider(Provider<RepeatPasswordNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @RepeatPasswordNodeScope
+    Map<String, RuleProvider<RepeatPasswordNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.RepeatPasswordNodeRuleProvider> repeatPasswordNodeRuleProvider
     ) {
         Map<String, RuleProvider<RepeatPasswordNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class ErrorListNodeModule {
     }
 
     @Provides @ErrorListNodeScope
-    Map<String, RuleProvider<ErrorListNode>> provideInstanceProviders(
+    RuleProvider<ErrorListNode> provideRuleProvider(Provider<ErrorListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ErrorListNodeScope
+    Map<String, RuleProvider<ErrorListNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.ErrorListNodeRuleProvider> errorListNodeRuleProvider
     ) {
         Map<String, RuleProvider<ErrorListNode>> result = new HashMap<>();

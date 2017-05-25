@@ -36,4 +36,9 @@ public class CreditHistoryNodeModule {
         return owner.getParent();
     }
 
+    @Provides @CreditHistoryNodeScope
+    RuleProvider<CreditHistoryNode> provideRuleProvider(Provider<CreditHistoryNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

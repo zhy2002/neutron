@@ -38,7 +38,12 @@ public class ProductExpressConsentFlagNodeModule {
     }
 
     @Provides @ProductExpressConsentFlagNodeScope
-    Map<String, RuleProvider<ProductExpressConsentFlagNode>> provideInstanceProviders(
+    RuleProvider<ProductExpressConsentFlagNode> provideRuleProvider(Provider<ProductExpressConsentFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductExpressConsentFlagNodeScope
+    Map<String, RuleProvider<ProductExpressConsentFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductExpressConsentFlagNodeRuleProvider> productExpressConsentFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductExpressConsentFlagNode>> result = new HashMap<>();

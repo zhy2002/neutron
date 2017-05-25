@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @ErrorNodeScope
 @Subcomponent(modules = {ErrorNodeModule.class})
 public interface ErrorNodeComponent {
 
-    ErrorNodeRuleProvider getErrorNodeRuleProvider();
+    RuleProvider<ErrorNode> getErrorNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

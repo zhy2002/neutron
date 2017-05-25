@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @OtherIncomeNodeScope
 @Subcomponent(modules = {OtherIncomeNodeModule.class})
 public interface OtherIncomeNodeComponent {
 
-    OtherIncomeNodeRuleProvider getOtherIncomeNodeRuleProvider();
+    RuleProvider<OtherIncomeNode> getOtherIncomeNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

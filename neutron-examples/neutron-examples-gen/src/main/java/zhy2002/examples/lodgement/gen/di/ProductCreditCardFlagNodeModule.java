@@ -38,7 +38,12 @@ public class ProductCreditCardFlagNodeModule {
     }
 
     @Provides @ProductCreditCardFlagNodeScope
-    Map<String, RuleProvider<ProductCreditCardFlagNode>> provideInstanceProviders(
+    RuleProvider<ProductCreditCardFlagNode> provideRuleProvider(Provider<ProductCreditCardFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductCreditCardFlagNodeScope
+    Map<String, RuleProvider<ProductCreditCardFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductCreditCardFlagNodeRuleProvider> productCreditCardFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductCreditCardFlagNode>> result = new HashMap<>();

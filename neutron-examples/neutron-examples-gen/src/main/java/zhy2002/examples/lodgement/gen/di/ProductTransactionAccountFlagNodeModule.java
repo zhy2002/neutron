@@ -38,7 +38,12 @@ public class ProductTransactionAccountFlagNodeModule {
     }
 
     @Provides @ProductTransactionAccountFlagNodeScope
-    Map<String, RuleProvider<ProductTransactionAccountFlagNode>> provideInstanceProviders(
+    RuleProvider<ProductTransactionAccountFlagNode> provideRuleProvider(Provider<ProductTransactionAccountFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductTransactionAccountFlagNodeScope
+    Map<String, RuleProvider<ProductTransactionAccountFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductTransactionAccountFlagNodeRuleProvider> productTransactionAccountFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductTransactionAccountFlagNode>> result = new HashMap<>();

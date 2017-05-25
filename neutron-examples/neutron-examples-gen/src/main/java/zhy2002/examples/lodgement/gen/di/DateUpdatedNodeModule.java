@@ -38,7 +38,12 @@ public class DateUpdatedNodeModule {
     }
 
     @Provides @DateUpdatedNodeScope
-    Map<String, RuleProvider<DateUpdatedNode>> provideInstanceProviders(
+    RuleProvider<DateUpdatedNode> provideRuleProvider(Provider<DateUpdatedNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @DateUpdatedNodeScope
+    Map<String, RuleProvider<DateUpdatedNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.DateUpdatedNodeRuleProvider> dateUpdatedNodeRuleProvider
     ) {
         Map<String, RuleProvider<DateUpdatedNode>> result = new HashMap<>();

@@ -42,7 +42,12 @@ public class MovedToPreviousAddressNodeModule {
     }
 
     @Provides @MovedToPreviousAddressNodeScope
-    Map<String, RuleProvider<MovedToPreviousAddressNode>> provideInstanceProviders(
+    RuleProvider<MovedToPreviousAddressNode> provideRuleProvider(Provider<MovedToPreviousAddressNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MovedToPreviousAddressNodeScope
+    Map<String, RuleProvider<MovedToPreviousAddressNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.MovedToPreviousAddressNodeRuleProvider> movedToPreviousAddressNodeRuleProvider
     ) {
         Map<String, RuleProvider<MovedToPreviousAddressNode>> result = new HashMap<>();

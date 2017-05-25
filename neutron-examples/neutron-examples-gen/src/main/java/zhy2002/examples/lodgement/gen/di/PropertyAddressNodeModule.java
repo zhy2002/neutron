@@ -42,7 +42,12 @@ public class PropertyAddressNodeModule {
     }
 
     @Provides @PropertyAddressNodeScope
-    Map<String, RuleProvider<PropertyAddressNode>> provideInstanceProviders(
+    RuleProvider<PropertyAddressNode> provideRuleProvider(Provider<PropertyAddressNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PropertyAddressNodeScope
+    Map<String, RuleProvider<PropertyAddressNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyAddressNodeRuleProvider> propertyAddressNodeRuleProvider
     ) {
         Map<String, RuleProvider<PropertyAddressNode>> result = new HashMap<>();

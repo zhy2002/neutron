@@ -38,7 +38,12 @@ public class SuburbNodeModule {
     }
 
     @Provides @SuburbNodeScope
-    Map<String, RuleProvider<SuburbNode>> provideInstanceProviders(
+    RuleProvider<SuburbNode> provideRuleProvider(Provider<SuburbNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SuburbNodeScope
+    Map<String, RuleProvider<SuburbNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.SuburbNodeRuleProvider> suburbNodeRuleProvider
     ) {
         Map<String, RuleProvider<SuburbNode>> result = new HashMap<>();

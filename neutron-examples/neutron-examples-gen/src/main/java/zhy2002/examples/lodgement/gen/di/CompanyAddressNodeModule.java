@@ -42,7 +42,12 @@ public class CompanyAddressNodeModule {
     }
 
     @Provides @CompanyAddressNodeScope
-    Map<String, RuleProvider<CompanyAddressNode>> provideInstanceProviders(
+    RuleProvider<CompanyAddressNode> provideRuleProvider(Provider<CompanyAddressNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CompanyAddressNodeScope
+    Map<String, RuleProvider<CompanyAddressNode>> provideInstanceProviderMap(
         Provider<CompanyContactNodeChildProvider.RegisteredAddressNodeRuleProvider> registeredAddressNodeRuleProvider
         ,Provider<CompanyContactNodeChildProvider.PostalAddressNodeRuleProvider> postalAddressNodeRuleProvider
         ,Provider<CompanyContactNodeChildProvider.TradingAddressNodeRuleProvider> tradingAddressNodeRuleProvider

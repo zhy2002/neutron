@@ -36,4 +36,9 @@ public class LodgementNodeModule {
         return owner;
     }
 
+    @Provides @LodgementNodeScope
+    RuleProvider<LodgementNode> provideRuleProvider(Provider<LodgementNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

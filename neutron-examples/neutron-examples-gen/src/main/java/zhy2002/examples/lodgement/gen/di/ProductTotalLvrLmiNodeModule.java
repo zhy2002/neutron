@@ -42,7 +42,12 @@ public class ProductTotalLvrLmiNodeModule {
     }
 
     @Provides @ProductTotalLvrLmiNodeScope
-    Map<String, RuleProvider<ProductTotalLvrLmiNode>> provideInstanceProviders(
+    RuleProvider<ProductTotalLvrLmiNode> provideRuleProvider(Provider<ProductTotalLvrLmiNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductTotalLvrLmiNodeScope
+    Map<String, RuleProvider<ProductTotalLvrLmiNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductTotalLvrLmiNodeRuleProvider> productTotalLvrLmiNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductTotalLvrLmiNode>> result = new HashMap<>();

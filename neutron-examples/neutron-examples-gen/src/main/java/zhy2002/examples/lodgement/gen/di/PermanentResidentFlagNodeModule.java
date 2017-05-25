@@ -38,7 +38,12 @@ public class PermanentResidentFlagNodeModule {
     }
 
     @Provides @PermanentResidentFlagNodeScope
-    Map<String, RuleProvider<PermanentResidentFlagNode>> provideInstanceProviders(
+    RuleProvider<PermanentResidentFlagNode> provideRuleProvider(Provider<PermanentResidentFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PermanentResidentFlagNodeScope
+    Map<String, RuleProvider<PermanentResidentFlagNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.PermanentResidentFlagNodeRuleProvider> permanentResidentFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<PermanentResidentFlagNode>> result = new HashMap<>();

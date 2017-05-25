@@ -38,7 +38,12 @@ public class ProductCustomerContributionListNodeModule {
     }
 
     @Provides @ProductCustomerContributionListNodeScope
-    Map<String, RuleProvider<ProductCustomerContributionListNode>> provideInstanceProviders(
+    RuleProvider<ProductCustomerContributionListNode> provideRuleProvider(Provider<ProductCustomerContributionListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductCustomerContributionListNodeScope
+    Map<String, RuleProvider<ProductCustomerContributionListNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductCustomerContributionListNodeRuleProvider> productCustomerContributionListNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductCustomerContributionListNode>> result = new HashMap<>();

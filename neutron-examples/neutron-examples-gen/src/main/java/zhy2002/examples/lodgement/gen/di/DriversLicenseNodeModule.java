@@ -38,7 +38,12 @@ public class DriversLicenseNodeModule {
     }
 
     @Provides @DriversLicenseNodeScope
-    Map<String, RuleProvider<DriversLicenseNode>> provideInstanceProviders(
+    RuleProvider<DriversLicenseNode> provideRuleProvider(Provider<DriversLicenseNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @DriversLicenseNodeScope
+    Map<String, RuleProvider<DriversLicenseNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.DriversLicenseNodeRuleProvider> driversLicenseNodeRuleProvider
     ) {
         Map<String, RuleProvider<DriversLicenseNode>> result = new HashMap<>();

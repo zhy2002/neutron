@@ -42,7 +42,12 @@ public class UnemployedOnBenefitFlagNodeModule {
     }
 
     @Provides @UnemployedOnBenefitFlagNodeScope
-    Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> provideInstanceProviders(
+    RuleProvider<UnemployedOnBenefitFlagNode> provideRuleProvider(Provider<UnemployedOnBenefitFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @UnemployedOnBenefitFlagNodeScope
+    Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.UnemployedOnBenefitFlagNodeRuleProvider> unemployedOnBenefitFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class OtherLiabilityDescriptionNodeModule {
     }
 
     @Provides @OtherLiabilityDescriptionNodeScope
-    Map<String, RuleProvider<OtherLiabilityDescriptionNode>> provideInstanceProviders(
+    RuleProvider<OtherLiabilityDescriptionNode> provideRuleProvider(Provider<OtherLiabilityDescriptionNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherLiabilityDescriptionNodeScope
+    Map<String, RuleProvider<OtherLiabilityDescriptionNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityDescriptionNodeRuleProvider> otherLiabilityDescriptionNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherLiabilityDescriptionNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class FinancialPositionNodeModule {
     }
 
     @Provides @FinancialPositionNodeScope
-    Map<String, RuleProvider<FinancialPositionNode>> provideInstanceProviders(
+    RuleProvider<FinancialPositionNode> provideRuleProvider(Provider<FinancialPositionNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @FinancialPositionNodeScope
+    Map<String, RuleProvider<FinancialPositionNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.FinancialPositionNodeRuleProvider> financialPositionNodeRuleProvider
     ) {
         Map<String, RuleProvider<FinancialPositionNode>> result = new HashMap<>();

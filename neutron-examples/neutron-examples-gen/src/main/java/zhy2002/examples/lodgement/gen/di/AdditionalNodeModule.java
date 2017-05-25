@@ -38,7 +38,12 @@ public class AdditionalNodeModule {
     }
 
     @Provides @AdditionalNodeScope
-    Map<String, RuleProvider<AdditionalNode>> provideInstanceProviders(
+    RuleProvider<AdditionalNode> provideRuleProvider(Provider<AdditionalNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AdditionalNodeScope
+    Map<String, RuleProvider<AdditionalNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.AdditionalNodeRuleProvider> additionalNodeRuleProvider
     ) {
         Map<String, RuleProvider<AdditionalNode>> result = new HashMap<>();

@@ -42,7 +42,12 @@ public class CreditCardOwnershipListNodeModule {
     }
 
     @Provides @CreditCardOwnershipListNodeScope
-    Map<String, RuleProvider<CreditCardOwnershipListNode>> provideInstanceProviders(
+    RuleProvider<CreditCardOwnershipListNode> provideRuleProvider(Provider<CreditCardOwnershipListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CreditCardOwnershipListNodeScope
+    Map<String, RuleProvider<CreditCardOwnershipListNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {
         Map<String, RuleProvider<CreditCardOwnershipListNode>> result = new HashMap<>();

@@ -36,4 +36,9 @@ public class RegisterNodeModule {
         return owner;
     }
 
+    @Provides @RegisterNodeScope
+    RuleProvider<RegisterNode> provideRuleProvider(Provider<RegisterNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

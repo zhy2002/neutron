@@ -38,7 +38,12 @@ public class OtherLiabilityClearingFlagNodeModule {
     }
 
     @Provides @OtherLiabilityClearingFlagNodeScope
-    Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> provideInstanceProviders(
+    RuleProvider<OtherLiabilityClearingFlagNode> provideRuleProvider(Provider<OtherLiabilityClearingFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherLiabilityClearingFlagNodeScope
+    Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityClearingFlagNodeRuleProvider> otherLiabilityClearingFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> result = new HashMap<>();

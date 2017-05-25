@@ -38,7 +38,12 @@ public class ProductFixedTermNodeModule {
     }
 
     @Provides @ProductFixedTermNodeScope
-    Map<String, RuleProvider<ProductFixedTermNode>> provideInstanceProviders(
+    RuleProvider<ProductFixedTermNode> provideRuleProvider(Provider<ProductFixedTermNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductFixedTermNodeScope
+    Map<String, RuleProvider<ProductFixedTermNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductFixedTermNodeRuleProvider> productFixedTermNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductFixedTermNode>> result = new HashMap<>();

@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {UnemployedNodeModule.class})
 public interface UnemployedNodeComponent {
 
-    UnemployedNodeRuleProvider getUnemployedNodeRuleProvider();
+    RuleProvider<UnemployedNode> getUnemployedNodeRuleProvider();
     Map<String, RuleProvider<UnemployedNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

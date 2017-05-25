@@ -38,7 +38,12 @@ public class EstimatedMarketValueNodeModule {
     }
 
     @Provides @EstimatedMarketValueNodeScope
-    Map<String, RuleProvider<EstimatedMarketValueNode>> provideInstanceProviders(
+    RuleProvider<EstimatedMarketValueNode> provideRuleProvider(Provider<EstimatedMarketValueNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @EstimatedMarketValueNodeScope
+    Map<String, RuleProvider<EstimatedMarketValueNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.EstimatedMarketValueNodeRuleProvider> estimatedMarketValueNodeRuleProvider
     ) {
         Map<String, RuleProvider<EstimatedMarketValueNode>> result = new HashMap<>();

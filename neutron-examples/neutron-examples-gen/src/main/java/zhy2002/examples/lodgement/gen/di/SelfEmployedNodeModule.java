@@ -42,7 +42,12 @@ public class SelfEmployedNodeModule {
     }
 
     @Provides @SelfEmployedNodeScope
-    Map<String, RuleProvider<SelfEmployedNode>> provideInstanceProviders(
+    RuleProvider<SelfEmployedNode> provideRuleProvider(Provider<SelfEmployedNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SelfEmployedNodeScope
+    Map<String, RuleProvider<SelfEmployedNode>> provideInstanceProviderMap(
         Provider<EmploymentNodeChildProvider.SelfEmployedNodeRuleProvider> selfEmployedNodeRuleProvider
     ) {
         Map<String, RuleProvider<SelfEmployedNode>> result = new HashMap<>();

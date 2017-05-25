@@ -38,7 +38,12 @@ public class AccountHolderReferenceNodeModule {
     }
 
     @Provides @AccountHolderReferenceNodeScope
-    Map<String, RuleProvider<AccountHolderReferenceNode>> provideInstanceProviders(
+    RuleProvider<AccountHolderReferenceNode> provideRuleProvider(Provider<AccountHolderReferenceNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AccountHolderReferenceNodeScope
+    Map<String, RuleProvider<AccountHolderReferenceNode>> provideInstanceProviderMap(
         Provider<SelectAccountHolderNodeChildProvider.AccountHolderReferenceNodeRuleProvider> accountHolderReferenceNodeRuleProvider
     ) {
         Map<String, RuleProvider<AccountHolderReferenceNode>> result = new HashMap<>();

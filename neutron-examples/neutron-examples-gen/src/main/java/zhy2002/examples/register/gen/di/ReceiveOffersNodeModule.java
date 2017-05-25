@@ -38,7 +38,12 @@ public class ReceiveOffersNodeModule {
     }
 
     @Provides @ReceiveOffersNodeScope
-    Map<String, RuleProvider<ReceiveOffersNode>> provideInstanceProviders(
+    RuleProvider<ReceiveOffersNode> provideRuleProvider(Provider<ReceiveOffersNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ReceiveOffersNodeScope
+    Map<String, RuleProvider<ReceiveOffersNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.ReceiveOffersNodeRuleProvider> receiveOffersNodeRuleProvider
     ) {
         Map<String, RuleProvider<ReceiveOffersNode>> result = new HashMap<>();

@@ -36,4 +36,9 @@ public class OtherIncomeNodeModule {
         return owner.getParent();
     }
 
+    @Provides @OtherIncomeNodeScope
+    RuleProvider<OtherIncomeNode> provideRuleProvider(Provider<OtherIncomeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

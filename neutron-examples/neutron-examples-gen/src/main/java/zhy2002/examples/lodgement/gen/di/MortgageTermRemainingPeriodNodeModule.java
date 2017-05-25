@@ -42,7 +42,12 @@ public class MortgageTermRemainingPeriodNodeModule {
     }
 
     @Provides @MortgageTermRemainingPeriodNodeScope
-    Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> provideInstanceProviders(
+    RuleProvider<MortgageTermRemainingPeriodNode> provideRuleProvider(Provider<MortgageTermRemainingPeriodNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgageTermRemainingPeriodNodeScope
+    Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageTermRemainingPeriodNodeRuleProvider> mortgageTermRemainingPeriodNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> result = new HashMap<>();

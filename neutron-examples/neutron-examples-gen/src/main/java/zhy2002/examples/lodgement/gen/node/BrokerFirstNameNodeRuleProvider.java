@@ -1,12 +1,10 @@
 package zhy2002.examples.lodgement.gen.node;
 
+import java.util.*;
+import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import java.util.*;
 import zhy2002.examples.lodgement.gen.di.*;
-import javax.inject.*;
-import zhy2002.examples.lodgement.gen.rule.*;
-import zhy2002.neutron.rule.*;
 
 @BrokerFirstNameNodeScope
 public class BrokerFirstNameNodeRuleProvider implements RuleProvider<BrokerFirstNameNode> {
@@ -23,7 +21,6 @@ public class BrokerFirstNameNodeRuleProvider implements RuleProvider<BrokerFirst
         parentRuleProvider.initializeState(node);
 
     }
-
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

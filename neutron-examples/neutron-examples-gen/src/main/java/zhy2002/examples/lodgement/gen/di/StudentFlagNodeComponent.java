@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {StudentFlagNodeModule.class})
 public interface StudentFlagNodeComponent {
 
-    StudentFlagNodeRuleProvider getStudentFlagNodeRuleProvider();
+    RuleProvider<StudentFlagNode> getStudentFlagNodeRuleProvider();
     Map<String, RuleProvider<StudentFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

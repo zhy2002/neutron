@@ -38,7 +38,12 @@ public class ResponsibleMitigationMethodNodeModule {
     }
 
     @Provides @ResponsibleMitigationMethodNodeScope
-    Map<String, RuleProvider<ResponsibleMitigationMethodNode>> provideInstanceProviders(
+    RuleProvider<ResponsibleMitigationMethodNode> provideRuleProvider(Provider<ResponsibleMitigationMethodNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ResponsibleMitigationMethodNodeScope
+    Map<String, RuleProvider<ResponsibleMitigationMethodNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider> responsibleMitigationMethodNodeRuleProvider
     ) {
         Map<String, RuleProvider<ResponsibleMitigationMethodNode>> result = new HashMap<>();

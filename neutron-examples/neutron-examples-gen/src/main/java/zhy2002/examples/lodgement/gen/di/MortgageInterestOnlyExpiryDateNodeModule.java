@@ -38,7 +38,12 @@ public class MortgageInterestOnlyExpiryDateNodeModule {
     }
 
     @Provides @MortgageInterestOnlyExpiryDateNodeScope
-    Map<String, RuleProvider<MortgageInterestOnlyExpiryDateNode>> provideInstanceProviders(
+    RuleProvider<MortgageInterestOnlyExpiryDateNode> provideRuleProvider(Provider<MortgageInterestOnlyExpiryDateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgageInterestOnlyExpiryDateNodeScope
+    Map<String, RuleProvider<MortgageInterestOnlyExpiryDateNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageInterestOnlyExpiryDateNodeRuleProvider> mortgageInterestOnlyExpiryDateNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgageInterestOnlyExpiryDateNode>> result = new HashMap<>();

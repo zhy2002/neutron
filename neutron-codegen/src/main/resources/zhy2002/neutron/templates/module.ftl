@@ -32,9 +32,14 @@ public class ${typeName}Module {
     }
 
 </#if>
+    @Provides @${typeName}Scope
+    RuleProvider<${typeName}> provideRuleProvider(Provider<${typeName}RuleProvider> provider) {
+        return provider.get();
+    }
+
 <#if !abstractNode && parentType.children ??>
     @Provides @${typeName}Scope
-    Map<String, RuleProvider<${typeName}>> provideInstanceProviders(
+    Map<String, RuleProvider<${typeName}>> provideInstanceProviderMap(
     <#assign firstItem = true />
     <#list parentType.children as child>
         <#if child.typeName == typeName>

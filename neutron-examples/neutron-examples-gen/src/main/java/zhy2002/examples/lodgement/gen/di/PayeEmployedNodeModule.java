@@ -42,7 +42,12 @@ public class PayeEmployedNodeModule {
     }
 
     @Provides @PayeEmployedNodeScope
-    Map<String, RuleProvider<PayeEmployedNode>> provideInstanceProviders(
+    RuleProvider<PayeEmployedNode> provideRuleProvider(Provider<PayeEmployedNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PayeEmployedNodeScope
+    Map<String, RuleProvider<PayeEmployedNode>> provideInstanceProviderMap(
         Provider<EmploymentNodeChildProvider.PayeEmployedNodeRuleProvider> payeEmployedNodeRuleProvider
     ) {
         Map<String, RuleProvider<PayeEmployedNode>> result = new HashMap<>();

@@ -1,6 +1,5 @@
 package zhy2002.examples.register.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {PhoneInfoNodeModule.class})
 public interface PhoneInfoNodeComponent {
 
-    PhoneInfoNodeRuleProvider getPhoneInfoNodeRuleProvider();
+    RuleProvider<PhoneInfoNode> getPhoneInfoNodeRuleProvider();
     Map<String, RuleProvider<PhoneInfoNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

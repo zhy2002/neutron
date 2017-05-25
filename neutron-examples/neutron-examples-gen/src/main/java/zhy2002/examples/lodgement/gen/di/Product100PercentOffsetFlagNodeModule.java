@@ -38,7 +38,12 @@ public class Product100PercentOffsetFlagNodeModule {
     }
 
     @Provides @Product100PercentOffsetFlagNodeScope
-    Map<String, RuleProvider<Product100PercentOffsetFlagNode>> provideInstanceProviders(
+    RuleProvider<Product100PercentOffsetFlagNode> provideRuleProvider(Provider<Product100PercentOffsetFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @Product100PercentOffsetFlagNodeScope
+    Map<String, RuleProvider<Product100PercentOffsetFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.Product100PercentOffsetFlagNodeRuleProvider> product100PercentOffsetFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<Product100PercentOffsetFlagNode>> result = new HashMap<>();

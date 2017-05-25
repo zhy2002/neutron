@@ -36,4 +36,9 @@ public class SelectAccountHolderNodeModule {
         return owner.getParent();
     }
 
+    @Provides @SelectAccountHolderNodeScope
+    RuleProvider<SelectAccountHolderNode> provideRuleProvider(Provider<SelectAccountHolderNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -42,7 +42,12 @@ public class OtherLiabilityLimitAmountNodeModule {
     }
 
     @Provides @OtherLiabilityLimitAmountNodeScope
-    Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> provideInstanceProviders(
+    RuleProvider<OtherLiabilityLimitAmountNode> provideRuleProvider(Provider<OtherLiabilityLimitAmountNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherLiabilityLimitAmountNodeScope
+    Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityLimitAmountNodeRuleProvider> otherLiabilityLimitAmountNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> result = new HashMap<>();

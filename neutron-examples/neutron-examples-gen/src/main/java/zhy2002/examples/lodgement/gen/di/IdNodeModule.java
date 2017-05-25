@@ -38,7 +38,12 @@ public class IdNodeModule {
     }
 
     @Provides @IdNodeScope
-    Map<String, RuleProvider<IdNode>> provideInstanceProviders(
+    RuleProvider<IdNode> provideRuleProvider(Provider<IdNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @IdNodeScope
+    Map<String, RuleProvider<IdNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.IdNodeRuleProvider> idNodeRuleProvider
     ) {
         Map<String, RuleProvider<IdNode>> result = new HashMap<>();

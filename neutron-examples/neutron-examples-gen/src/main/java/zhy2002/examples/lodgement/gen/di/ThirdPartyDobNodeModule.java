@@ -42,7 +42,12 @@ public class ThirdPartyDobNodeModule {
     }
 
     @Provides @ThirdPartyDobNodeScope
-    Map<String, RuleProvider<ThirdPartyDobNode>> provideInstanceProviders(
+    RuleProvider<ThirdPartyDobNode> provideRuleProvider(Provider<ThirdPartyDobNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ThirdPartyDobNodeScope
+    Map<String, RuleProvider<ThirdPartyDobNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyDobNodeRuleProvider> thirdPartyDobNodeRuleProvider
     ) {
         Map<String, RuleProvider<ThirdPartyDobNode>> result = new HashMap<>();

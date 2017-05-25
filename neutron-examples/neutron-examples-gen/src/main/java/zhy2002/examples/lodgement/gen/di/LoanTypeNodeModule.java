@@ -38,7 +38,12 @@ public class LoanTypeNodeModule {
     }
 
     @Provides @LoanTypeNodeScope
-    Map<String, RuleProvider<LoanTypeNode>> provideInstanceProviders(
+    RuleProvider<LoanTypeNode> provideRuleProvider(Provider<LoanTypeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @LoanTypeNodeScope
+    Map<String, RuleProvider<LoanTypeNode>> provideInstanceProviderMap(
         Provider<LoanNodeChildProvider.LoanTypeNodeRuleProvider> loanTypeNodeRuleProvider
     ) {
         Map<String, RuleProvider<LoanTypeNode>> result = new HashMap<>();

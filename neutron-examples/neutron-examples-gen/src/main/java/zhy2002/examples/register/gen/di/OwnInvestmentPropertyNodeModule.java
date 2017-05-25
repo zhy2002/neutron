@@ -38,7 +38,12 @@ public class OwnInvestmentPropertyNodeModule {
     }
 
     @Provides @OwnInvestmentPropertyNodeScope
-    Map<String, RuleProvider<OwnInvestmentPropertyNode>> provideInstanceProviders(
+    RuleProvider<OwnInvestmentPropertyNode> provideRuleProvider(Provider<OwnInvestmentPropertyNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OwnInvestmentPropertyNodeScope
+    Map<String, RuleProvider<OwnInvestmentPropertyNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.OwnInvestmentPropertyNodeRuleProvider> ownInvestmentPropertyNodeRuleProvider
     ) {
         Map<String, RuleProvider<OwnInvestmentPropertyNode>> result = new HashMap<>();

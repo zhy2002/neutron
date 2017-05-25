@@ -38,7 +38,12 @@ public class BrokerTelephoneNodeModule {
     }
 
     @Provides @BrokerTelephoneNodeScope
-    Map<String, RuleProvider<BrokerTelephoneNode>> provideInstanceProviders(
+    RuleProvider<BrokerTelephoneNode> provideRuleProvider(Provider<BrokerTelephoneNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @BrokerTelephoneNodeScope
+    Map<String, RuleProvider<BrokerTelephoneNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.ContactNumberNodeRuleProvider> contactNumberNodeRuleProvider
         ,Provider<SubmissionNodeChildProvider.FaxNumberNodeRuleProvider> faxNumberNodeRuleProvider
     ) {

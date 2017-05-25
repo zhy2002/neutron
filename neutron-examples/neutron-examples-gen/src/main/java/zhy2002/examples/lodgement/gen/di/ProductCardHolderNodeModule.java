@@ -38,7 +38,12 @@ public class ProductCardHolderNodeModule {
     }
 
     @Provides @ProductCardHolderNodeScope
-    Map<String, RuleProvider<ProductCardHolderNode>> provideInstanceProviders(
+    RuleProvider<ProductCardHolderNode> provideRuleProvider(Provider<ProductCardHolderNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductCardHolderNodeScope
+    Map<String, RuleProvider<ProductCardHolderNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductPrimaryCardHolderNodeRuleProvider> productPrimaryCardHolderNodeRuleProvider
         ,Provider<ProductFeaturesNodeChildProvider.ProductAdditionalCardHolderNodeRuleProvider> productAdditionalCardHolderNodeRuleProvider
     ) {

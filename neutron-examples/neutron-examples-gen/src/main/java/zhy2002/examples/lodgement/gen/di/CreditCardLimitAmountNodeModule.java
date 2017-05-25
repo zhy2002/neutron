@@ -42,7 +42,12 @@ public class CreditCardLimitAmountNodeModule {
     }
 
     @Provides @CreditCardLimitAmountNodeScope
-    Map<String, RuleProvider<CreditCardLimitAmountNode>> provideInstanceProviders(
+    RuleProvider<CreditCardLimitAmountNode> provideRuleProvider(Provider<CreditCardLimitAmountNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CreditCardLimitAmountNodeScope
+    Map<String, RuleProvider<CreditCardLimitAmountNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardLimitAmountNodeRuleProvider> creditCardLimitAmountNodeRuleProvider
     ) {
         Map<String, RuleProvider<CreditCardLimitAmountNode>> result = new HashMap<>();

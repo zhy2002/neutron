@@ -38,7 +38,12 @@ public class PropertyPurseNodeModule {
     }
 
     @Provides @PropertyPurseNodeScope
-    Map<String, RuleProvider<PropertyPurseNode>> provideInstanceProviders(
+    RuleProvider<PropertyPurseNode> provideRuleProvider(Provider<PropertyPurseNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PropertyPurseNodeScope
+    Map<String, RuleProvider<PropertyPurseNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyPurseNodeRuleProvider> propertyPurseNodeRuleProvider
     ) {
         Map<String, RuleProvider<PropertyPurseNode>> result = new HashMap<>();

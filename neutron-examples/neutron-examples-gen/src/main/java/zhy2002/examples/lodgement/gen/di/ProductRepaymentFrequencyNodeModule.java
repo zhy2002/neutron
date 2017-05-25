@@ -38,7 +38,12 @@ public class ProductRepaymentFrequencyNodeModule {
     }
 
     @Provides @ProductRepaymentFrequencyNodeScope
-    Map<String, RuleProvider<ProductRepaymentFrequencyNode>> provideInstanceProviders(
+    RuleProvider<ProductRepaymentFrequencyNode> provideRuleProvider(Provider<ProductRepaymentFrequencyNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductRepaymentFrequencyNodeScope
+    Map<String, RuleProvider<ProductRepaymentFrequencyNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductRepaymentFrequencyNodeRuleProvider> productRepaymentFrequencyNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductRepaymentFrequencyNode>> result = new HashMap<>();

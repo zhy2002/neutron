@@ -38,7 +38,12 @@ public class MotorVehicleListNodeModule {
     }
 
     @Provides @MotorVehicleListNodeScope
-    Map<String, RuleProvider<MotorVehicleListNode>> provideInstanceProviders(
+    RuleProvider<MotorVehicleListNode> provideRuleProvider(Provider<MotorVehicleListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MotorVehicleListNodeScope
+    Map<String, RuleProvider<MotorVehicleListNode>> provideInstanceProviderMap(
         Provider<AssetsNodeChildProvider.MotorVehicleListNodeRuleProvider> motorVehicleListNodeRuleProvider
     ) {
         Map<String, RuleProvider<MotorVehicleListNode>> result = new HashMap<>();

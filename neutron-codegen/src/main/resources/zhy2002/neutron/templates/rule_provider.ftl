@@ -1,12 +1,16 @@
 package ${targetPackage}.gen.node;
 
+import java.util.*;
+import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import java.util.*;
-import ${targetPackage}.gen.di.*;
-import javax.inject.*;
-import ${targetPackage}.gen.rule.*;
+<#if rules??>
 import zhy2002.neutron.rule.*;
+</#if>
+import ${targetPackage}.gen.di.*;
+<#if rules??>
+import ${targetPackage}.gen.rule.*;
+</#if>
 <#if init??>
 import ${targetPackage}.data.*;
 import java.math.*;
@@ -43,8 +47,8 @@ public class ${typeName}RuleProvider implements RuleProvider<${genericTypeName}>
     @Inject
     Provider<${rule.typeName}> ${rule.typeName?uncap_first}Provider;
     </#list>
-</#if>
 
+</#if>
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);

@@ -38,7 +38,12 @@ public class RelatedPartyListNodeModule {
     }
 
     @Provides @RelatedPartyListNodeScope
-    Map<String, RuleProvider<RelatedPartyListNode>> provideInstanceProviders(
+    RuleProvider<RelatedPartyListNode> provideRuleProvider(Provider<RelatedPartyListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @RelatedPartyListNodeScope
+    Map<String, RuleProvider<RelatedPartyListNode>> provideInstanceProviderMap(
         Provider<AdditionalNodeChildProvider.RelatedPartyListNodeRuleProvider> relatedPartyListNodeRuleProvider
     ) {
         Map<String, RuleProvider<RelatedPartyListNode>> result = new HashMap<>();

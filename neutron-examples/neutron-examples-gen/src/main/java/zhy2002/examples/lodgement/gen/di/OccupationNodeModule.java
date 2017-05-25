@@ -42,7 +42,12 @@ public class OccupationNodeModule {
     }
 
     @Provides @OccupationNodeScope
-    Map<String, RuleProvider<OccupationNode>> provideInstanceProviders(
+    RuleProvider<OccupationNode> provideRuleProvider(Provider<OccupationNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OccupationNodeScope
+    Map<String, RuleProvider<OccupationNode>> provideInstanceProviderMap(
         Provider<EmployedNodeChildProvider.OccupationNodeRuleProvider> occupationNodeRuleProvider
     ) {
         Map<String, RuleProvider<OccupationNode>> result = new HashMap<>();

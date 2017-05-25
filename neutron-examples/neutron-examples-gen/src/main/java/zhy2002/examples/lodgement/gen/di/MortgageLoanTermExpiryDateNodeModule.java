@@ -38,7 +38,12 @@ public class MortgageLoanTermExpiryDateNodeModule {
     }
 
     @Provides @MortgageLoanTermExpiryDateNodeScope
-    Map<String, RuleProvider<MortgageLoanTermExpiryDateNode>> provideInstanceProviders(
+    RuleProvider<MortgageLoanTermExpiryDateNode> provideRuleProvider(Provider<MortgageLoanTermExpiryDateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgageLoanTermExpiryDateNodeScope
+    Map<String, RuleProvider<MortgageLoanTermExpiryDateNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageLoanTermExpiryDateNodeRuleProvider> mortgageLoanTermExpiryDateNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgageLoanTermExpiryDateNode>> result = new HashMap<>();

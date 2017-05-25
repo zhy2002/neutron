@@ -42,7 +42,12 @@ public class VehicleMarketValueNodeModule {
     }
 
     @Provides @VehicleMarketValueNodeScope
-    Map<String, RuleProvider<VehicleMarketValueNode>> provideInstanceProviders(
+    RuleProvider<VehicleMarketValueNode> provideRuleProvider(Provider<VehicleMarketValueNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @VehicleMarketValueNodeScope
+    Map<String, RuleProvider<VehicleMarketValueNode>> provideInstanceProviderMap(
         Provider<MotorVehicleNodeChildProvider.VehicleMarketValueNodeRuleProvider> vehicleMarketValueNodeRuleProvider
     ) {
         Map<String, RuleProvider<VehicleMarketValueNode>> result = new HashMap<>();

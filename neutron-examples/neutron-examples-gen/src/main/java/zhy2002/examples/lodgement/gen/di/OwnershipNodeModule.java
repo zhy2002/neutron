@@ -36,4 +36,9 @@ public class OwnershipNodeModule {
         return owner.getParent();
     }
 
+    @Provides @OwnershipNodeScope
+    RuleProvider<OwnershipNode> provideRuleProvider(Provider<OwnershipNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

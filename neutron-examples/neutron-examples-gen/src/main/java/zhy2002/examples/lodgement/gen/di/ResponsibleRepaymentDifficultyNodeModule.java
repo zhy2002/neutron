@@ -42,7 +42,12 @@ public class ResponsibleRepaymentDifficultyNodeModule {
     }
 
     @Provides @ResponsibleRepaymentDifficultyNodeScope
-    Map<String, RuleProvider<ResponsibleRepaymentDifficultyNode>> provideInstanceProviders(
+    RuleProvider<ResponsibleRepaymentDifficultyNode> provideRuleProvider(Provider<ResponsibleRepaymentDifficultyNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ResponsibleRepaymentDifficultyNodeScope
+    Map<String, RuleProvider<ResponsibleRepaymentDifficultyNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleRepaymentDifficultyNodeRuleProvider> responsibleRepaymentDifficultyNodeRuleProvider
     ) {
         Map<String, RuleProvider<ResponsibleRepaymentDifficultyNode>> result = new HashMap<>();

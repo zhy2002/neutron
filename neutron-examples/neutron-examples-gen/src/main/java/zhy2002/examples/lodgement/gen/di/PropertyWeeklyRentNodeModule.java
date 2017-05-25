@@ -38,7 +38,12 @@ public class PropertyWeeklyRentNodeModule {
     }
 
     @Provides @PropertyWeeklyRentNodeScope
-    Map<String, RuleProvider<PropertyWeeklyRentNode>> provideInstanceProviders(
+    RuleProvider<PropertyWeeklyRentNode> provideRuleProvider(Provider<PropertyWeeklyRentNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PropertyWeeklyRentNodeScope
+    Map<String, RuleProvider<PropertyWeeklyRentNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyWeeklyRentNodeRuleProvider> propertyWeeklyRentNodeRuleProvider
     ) {
         Map<String, RuleProvider<PropertyWeeklyRentNode>> result = new HashMap<>();

@@ -36,4 +36,9 @@ public class SavingsAccountNodeModule {
         return owner.getParent();
     }
 
+    @Provides @SavingsAccountNodeScope
+    RuleProvider<SavingsAccountNode> provideRuleProvider(Provider<SavingsAccountNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

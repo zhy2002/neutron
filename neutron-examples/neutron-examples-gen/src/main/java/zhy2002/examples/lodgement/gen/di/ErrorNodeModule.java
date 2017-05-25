@@ -36,4 +36,9 @@ public class ErrorNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ErrorNodeScope
+    RuleProvider<ErrorNode> provideRuleProvider(Provider<ErrorNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

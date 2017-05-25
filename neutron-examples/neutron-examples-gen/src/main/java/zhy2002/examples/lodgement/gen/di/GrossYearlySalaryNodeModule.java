@@ -42,7 +42,12 @@ public class GrossYearlySalaryNodeModule {
     }
 
     @Provides @GrossYearlySalaryNodeScope
-    Map<String, RuleProvider<GrossYearlySalaryNode>> provideInstanceProviders(
+    RuleProvider<GrossYearlySalaryNode> provideRuleProvider(Provider<GrossYearlySalaryNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @GrossYearlySalaryNodeScope
+    Map<String, RuleProvider<GrossYearlySalaryNode>> provideInstanceProviderMap(
         Provider<PayeEmployedNodeChildProvider.GrossYearlySalaryNodeRuleProvider> grossYearlySalaryNodeRuleProvider
     ) {
         Map<String, RuleProvider<GrossYearlySalaryNode>> result = new HashMap<>();

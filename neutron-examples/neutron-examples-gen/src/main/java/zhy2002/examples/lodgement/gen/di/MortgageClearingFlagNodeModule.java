@@ -38,7 +38,12 @@ public class MortgageClearingFlagNodeModule {
     }
 
     @Provides @MortgageClearingFlagNodeScope
-    Map<String, RuleProvider<MortgageClearingFlagNode>> provideInstanceProviders(
+    RuleProvider<MortgageClearingFlagNode> provideRuleProvider(Provider<MortgageClearingFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgageClearingFlagNodeScope
+    Map<String, RuleProvider<MortgageClearingFlagNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageClearingFlagNodeRuleProvider> mortgageClearingFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgageClearingFlagNode>> result = new HashMap<>();

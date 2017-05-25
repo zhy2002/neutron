@@ -42,7 +42,12 @@ public class OtherAssetMarketValueNodeModule {
     }
 
     @Provides @OtherAssetMarketValueNodeScope
-    Map<String, RuleProvider<OtherAssetMarketValueNode>> provideInstanceProviders(
+    RuleProvider<OtherAssetMarketValueNode> provideRuleProvider(Provider<OtherAssetMarketValueNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherAssetMarketValueNodeScope
+    Map<String, RuleProvider<OtherAssetMarketValueNode>> provideInstanceProviderMap(
         Provider<OtherAssetNodeChildProvider.OtherAssetMarketValueNodeRuleProvider> otherAssetMarketValueNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherAssetMarketValueNode>> result = new HashMap<>();

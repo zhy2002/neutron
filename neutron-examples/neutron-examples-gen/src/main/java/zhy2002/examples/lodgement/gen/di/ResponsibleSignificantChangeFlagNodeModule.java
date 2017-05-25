@@ -42,7 +42,12 @@ public class ResponsibleSignificantChangeFlagNodeModule {
     }
 
     @Provides @ResponsibleSignificantChangeFlagNodeScope
-    Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> provideInstanceProviders(
+    RuleProvider<ResponsibleSignificantChangeFlagNode> provideRuleProvider(Provider<ResponsibleSignificantChangeFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ResponsibleSignificantChangeFlagNodeScope
+    Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleSignificantChangeFlagNodeRuleProvider> responsibleSignificantChangeFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> result = new HashMap<>();

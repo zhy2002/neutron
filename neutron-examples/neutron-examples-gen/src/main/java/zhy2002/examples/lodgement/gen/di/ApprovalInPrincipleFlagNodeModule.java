@@ -38,7 +38,12 @@ public class ApprovalInPrincipleFlagNodeModule {
     }
 
     @Provides @ApprovalInPrincipleFlagNodeScope
-    Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> provideInstanceProviders(
+    RuleProvider<ApprovalInPrincipleFlagNode> provideRuleProvider(Provider<ApprovalInPrincipleFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ApprovalInPrincipleFlagNodeScope
+    Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.ApprovalInPrincipleFlagNodeRuleProvider> approvalInPrincipleFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class TrustRegistrationDateNodeModule {
     }
 
     @Provides @TrustRegistrationDateNodeScope
-    Map<String, RuleProvider<TrustRegistrationDateNode>> provideInstanceProviders(
+    RuleProvider<TrustRegistrationDateNode> provideRuleProvider(Provider<TrustRegistrationDateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @TrustRegistrationDateNodeScope
+    Map<String, RuleProvider<TrustRegistrationDateNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustRegistrationDateNodeRuleProvider> trustRegistrationDateNodeRuleProvider
     ) {
         Map<String, RuleProvider<TrustRegistrationDateNode>> result = new HashMap<>();

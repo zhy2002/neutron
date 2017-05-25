@@ -42,7 +42,12 @@ public class OwnershipPercentageNodeModule {
     }
 
     @Provides @OwnershipPercentageNodeScope
-    Map<String, RuleProvider<OwnershipPercentageNode>> provideInstanceProviders(
+    RuleProvider<OwnershipPercentageNode> provideRuleProvider(Provider<OwnershipPercentageNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OwnershipPercentageNodeScope
+    Map<String, RuleProvider<OwnershipPercentageNode>> provideInstanceProviderMap(
         Provider<OwnershipNodeChildProvider.OwnershipPercentageNodeRuleProvider> ownershipPercentageNodeRuleProvider
     ) {
         Map<String, RuleProvider<OwnershipPercentageNode>> result = new HashMap<>();

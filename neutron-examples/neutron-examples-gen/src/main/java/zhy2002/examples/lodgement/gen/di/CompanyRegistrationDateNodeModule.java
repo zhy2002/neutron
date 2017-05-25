@@ -38,7 +38,12 @@ public class CompanyRegistrationDateNodeModule {
     }
 
     @Provides @CompanyRegistrationDateNodeScope
-    Map<String, RuleProvider<CompanyRegistrationDateNode>> provideInstanceProviders(
+    RuleProvider<CompanyRegistrationDateNode> provideRuleProvider(Provider<CompanyRegistrationDateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CompanyRegistrationDateNodeScope
+    Map<String, RuleProvider<CompanyRegistrationDateNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyRegistrationDateNodeRuleProvider> companyRegistrationDateNodeRuleProvider
     ) {
         Map<String, RuleProvider<CompanyRegistrationDateNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class ProfitThisYearNodeModule {
     }
 
     @Provides @ProfitThisYearNodeScope
-    Map<String, RuleProvider<ProfitThisYearNode>> provideInstanceProviders(
+    RuleProvider<ProfitThisYearNode> provideRuleProvider(Provider<ProfitThisYearNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProfitThisYearNodeScope
+    Map<String, RuleProvider<ProfitThisYearNode>> provideInstanceProviderMap(
         Provider<SelfEmployedNodeChildProvider.ProfitThisYearNodeRuleProvider> profitThisYearNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProfitThisYearNode>> result = new HashMap<>();

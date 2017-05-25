@@ -36,4 +36,9 @@ public class LoanNodeModule {
         return owner.getParent();
     }
 
+    @Provides @LoanNodeScope
+    RuleProvider<LoanNode> provideRuleProvider(Provider<LoanNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

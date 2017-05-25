@@ -42,7 +42,12 @@ public class CreditCardBreakCostNodeModule {
     }
 
     @Provides @CreditCardBreakCostNodeScope
-    Map<String, RuleProvider<CreditCardBreakCostNode>> provideInstanceProviders(
+    RuleProvider<CreditCardBreakCostNode> provideRuleProvider(Provider<CreditCardBreakCostNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CreditCardBreakCostNodeScope
+    Map<String, RuleProvider<CreditCardBreakCostNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardBreakCostNodeRuleProvider> creditCardBreakCostNodeRuleProvider
     ) {
         Map<String, RuleProvider<CreditCardBreakCostNode>> result = new HashMap<>();

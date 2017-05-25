@@ -42,7 +42,12 @@ public class LegalActionNodeModule {
     }
 
     @Provides @LegalActionNodeScope
-    Map<String, RuleProvider<LegalActionNode>> provideInstanceProviders(
+    RuleProvider<LegalActionNode> provideRuleProvider(Provider<LegalActionNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @LegalActionNodeScope
+    Map<String, RuleProvider<LegalActionNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.LegalActionNodeRuleProvider> legalActionNodeRuleProvider
     ) {
         Map<String, RuleProvider<LegalActionNode>> result = new HashMap<>();

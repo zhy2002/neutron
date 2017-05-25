@@ -38,7 +38,12 @@ public class AgeNodeModule {
     }
 
     @Provides @AgeNodeScope
-    Map<String, RuleProvider<AgeNode>> provideInstanceProviders(
+    RuleProvider<AgeNode> provideRuleProvider(Provider<AgeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AgeNodeScope
+    Map<String, RuleProvider<AgeNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.AgeNodeRuleProvider> ageNodeRuleProvider
     ) {
         Map<String, RuleProvider<AgeNode>> result = new HashMap<>();

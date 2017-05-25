@@ -38,7 +38,12 @@ public class FirstHomeBuyerFlagNodeModule {
     }
 
     @Provides @FirstHomeBuyerFlagNodeScope
-    Map<String, RuleProvider<FirstHomeBuyerFlagNode>> provideInstanceProviders(
+    RuleProvider<FirstHomeBuyerFlagNode> provideRuleProvider(Provider<FirstHomeBuyerFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @FirstHomeBuyerFlagNodeScope
+    Map<String, RuleProvider<FirstHomeBuyerFlagNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.FirstHomeBuyerFlagNodeRuleProvider> firstHomeBuyerFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<FirstHomeBuyerFlagNode>> result = new HashMap<>();

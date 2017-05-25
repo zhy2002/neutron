@@ -38,7 +38,12 @@ public class SelectRelatedPersonFlagNodeModule {
     }
 
     @Provides @SelectRelatedPersonFlagNodeScope
-    Map<String, RuleProvider<SelectRelatedPersonFlagNode>> provideInstanceProviders(
+    RuleProvider<SelectRelatedPersonFlagNode> provideRuleProvider(Provider<SelectRelatedPersonFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SelectRelatedPersonFlagNodeScope
+    Map<String, RuleProvider<SelectRelatedPersonFlagNode>> provideInstanceProviderMap(
         Provider<SelectRelatedPersonNodeChildProvider.SelectRelatedPersonFlagNodeRuleProvider> selectRelatedPersonFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<SelectRelatedPersonFlagNode>> result = new HashMap<>();

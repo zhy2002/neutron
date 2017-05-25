@@ -38,7 +38,12 @@ public class UsageNodeModule {
     }
 
     @Provides @UsageNodeScope
-    Map<String, RuleProvider<UsageNode>> provideInstanceProviders(
+    RuleProvider<UsageNode> provideRuleProvider(Provider<UsageNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @UsageNodeScope
+    Map<String, RuleProvider<UsageNode>> provideInstanceProviderMap(
         Provider<RealEstateNodeChildProvider.UsageNodeRuleProvider> usageNodeRuleProvider
     ) {
         Map<String, RuleProvider<UsageNode>> result = new HashMap<>();

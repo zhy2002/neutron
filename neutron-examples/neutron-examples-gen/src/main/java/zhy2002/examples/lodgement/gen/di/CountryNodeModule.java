@@ -42,7 +42,12 @@ public class CountryNodeModule {
     }
 
     @Provides @CountryNodeScope
-    Map<String, RuleProvider<CountryNode>> provideInstanceProviders(
+    RuleProvider<CountryNode> provideRuleProvider(Provider<CountryNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CountryNodeScope
+    Map<String, RuleProvider<CountryNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.CountryNodeRuleProvider> countryNodeRuleProvider
     ) {
         Map<String, RuleProvider<CountryNode>> result = new HashMap<>();

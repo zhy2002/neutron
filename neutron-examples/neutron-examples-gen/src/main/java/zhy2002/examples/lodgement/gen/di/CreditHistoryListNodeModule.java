@@ -38,7 +38,12 @@ public class CreditHistoryListNodeModule {
     }
 
     @Provides @CreditHistoryListNodeScope
-    Map<String, RuleProvider<CreditHistoryListNode>> provideInstanceProviders(
+    RuleProvider<CreditHistoryListNode> provideRuleProvider(Provider<CreditHistoryListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CreditHistoryListNodeScope
+    Map<String, RuleProvider<CreditHistoryListNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.CreditHistoryListNodeRuleProvider> creditHistoryListNodeRuleProvider
     ) {
         Map<String, RuleProvider<CreditHistoryListNode>> result = new HashMap<>();

@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @CreditHistoryNodeScope
 @Subcomponent(modules = {CreditHistoryNodeModule.class})
 public interface CreditHistoryNodeComponent {
 
-    CreditHistoryNodeRuleProvider getCreditHistoryNodeRuleProvider();
+    RuleProvider<CreditHistoryNode> getCreditHistoryNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

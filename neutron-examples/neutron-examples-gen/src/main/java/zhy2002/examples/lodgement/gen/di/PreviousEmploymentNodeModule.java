@@ -40,4 +40,9 @@ public class PreviousEmploymentNodeModule {
         return owner.getParent();
     }
 
+    @Provides @PreviousEmploymentNodeScope
+    RuleProvider<PreviousEmploymentNode> provideRuleProvider(Provider<PreviousEmploymentNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @SelectAccountHolderNodeScope
 @Subcomponent(modules = {SelectAccountHolderNodeModule.class})
 public interface SelectAccountHolderNodeComponent {
 
-    SelectAccountHolderNodeRuleProvider getSelectAccountHolderNodeRuleProvider();
+    RuleProvider<SelectAccountHolderNode> getSelectAccountHolderNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

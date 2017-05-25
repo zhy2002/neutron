@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @PreviousEmploymentNodeScope
 @Subcomponent(modules = {PreviousEmploymentNodeModule.class})
 public interface PreviousEmploymentNodeComponent {
 
-    PreviousEmploymentNodeRuleProvider getPreviousEmploymentNodeRuleProvider();
+    RuleProvider<PreviousEmploymentNode> getPreviousEmploymentNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

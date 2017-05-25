@@ -42,7 +42,12 @@ public class ThirdPartyAddressNodeModule {
     }
 
     @Provides @ThirdPartyAddressNodeScope
-    Map<String, RuleProvider<ThirdPartyAddressNode>> provideInstanceProviders(
+    RuleProvider<ThirdPartyAddressNode> provideRuleProvider(Provider<ThirdPartyAddressNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ThirdPartyAddressNodeScope
+    Map<String, RuleProvider<ThirdPartyAddressNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyAddressNodeRuleProvider> thirdPartyAddressNodeRuleProvider
     ) {
         Map<String, RuleProvider<ThirdPartyAddressNode>> result = new HashMap<>();

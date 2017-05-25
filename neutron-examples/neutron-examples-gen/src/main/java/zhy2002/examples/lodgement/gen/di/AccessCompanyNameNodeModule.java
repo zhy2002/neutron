@@ -38,7 +38,12 @@ public class AccessCompanyNameNodeModule {
     }
 
     @Provides @AccessCompanyNameNodeScope
-    Map<String, RuleProvider<AccessCompanyNameNode>> provideInstanceProviders(
+    RuleProvider<AccessCompanyNameNode> provideRuleProvider(Provider<AccessCompanyNameNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AccessCompanyNameNodeScope
+    Map<String, RuleProvider<AccessCompanyNameNode>> provideInstanceProviderMap(
         Provider<AccessNodeChildProvider.AccessCompanyNameNodeRuleProvider> accessCompanyNameNodeRuleProvider
     ) {
         Map<String, RuleProvider<AccessCompanyNameNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class LastNameNodeModule {
     }
 
     @Provides @LastNameNodeScope
-    Map<String, RuleProvider<LastNameNode>> provideInstanceProviders(
+    RuleProvider<LastNameNode> provideRuleProvider(Provider<LastNameNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @LastNameNodeScope
+    Map<String, RuleProvider<LastNameNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.LastNameNodeRuleProvider> lastNameNodeRuleProvider
     ) {
         Map<String, RuleProvider<LastNameNode>> result = new HashMap<>();

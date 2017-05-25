@@ -36,4 +36,9 @@ public class ExpenseNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ExpenseNodeScope
+    RuleProvider<ExpenseNode> provideRuleProvider(Provider<ExpenseNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

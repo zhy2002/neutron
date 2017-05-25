@@ -36,4 +36,9 @@ public class ProductFeeNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ProductFeeNodeScope
+    RuleProvider<ProductFeeNode> provideRuleProvider(Provider<ProductFeeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

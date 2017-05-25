@@ -38,7 +38,12 @@ public class TrustBeneficiaryClassListNodeModule {
     }
 
     @Provides @TrustBeneficiaryClassListNodeScope
-    Map<String, RuleProvider<TrustBeneficiaryClassListNode>> provideInstanceProviders(
+    RuleProvider<TrustBeneficiaryClassListNode> provideRuleProvider(Provider<TrustBeneficiaryClassListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @TrustBeneficiaryClassListNodeScope
+    Map<String, RuleProvider<TrustBeneficiaryClassListNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustBeneficiaryClassListNodeRuleProvider> trustBeneficiaryClassListNodeRuleProvider
     ) {
         Map<String, RuleProvider<TrustBeneficiaryClassListNode>> result = new HashMap<>();

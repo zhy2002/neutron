@@ -38,7 +38,12 @@ public class ProductTotalLoanTermNodeModule {
     }
 
     @Provides @ProductTotalLoanTermNodeScope
-    Map<String, RuleProvider<ProductTotalLoanTermNode>> provideInstanceProviders(
+    RuleProvider<ProductTotalLoanTermNode> provideRuleProvider(Provider<ProductTotalLoanTermNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductTotalLoanTermNodeScope
+    Map<String, RuleProvider<ProductTotalLoanTermNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductTotalLoanTermNodeRuleProvider> productTotalLoanTermNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductTotalLoanTermNode>> result = new HashMap<>();

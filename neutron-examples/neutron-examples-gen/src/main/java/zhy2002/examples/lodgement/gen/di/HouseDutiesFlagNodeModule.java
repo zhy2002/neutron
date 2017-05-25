@@ -42,7 +42,12 @@ public class HouseDutiesFlagNodeModule {
     }
 
     @Provides @HouseDutiesFlagNodeScope
-    Map<String, RuleProvider<HouseDutiesFlagNode>> provideInstanceProviders(
+    RuleProvider<HouseDutiesFlagNode> provideRuleProvider(Provider<HouseDutiesFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @HouseDutiesFlagNodeScope
+    Map<String, RuleProvider<HouseDutiesFlagNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.HouseDutiesFlagNodeRuleProvider> houseDutiesFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<HouseDutiesFlagNode>> result = new HashMap<>();

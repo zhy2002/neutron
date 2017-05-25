@@ -36,4 +36,9 @@ public class TrustBeneficiaryClassNodeModule {
         return owner.getParent();
     }
 
+    @Provides @TrustBeneficiaryClassNodeScope
+    RuleProvider<TrustBeneficiaryClassNode> provideRuleProvider(Provider<TrustBeneficiaryClassNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -36,4 +36,9 @@ public class OtherAssetNodeModule {
         return owner.getParent();
     }
 
+    @Provides @OtherAssetNodeScope
+    RuleProvider<OtherAssetNode> provideRuleProvider(Provider<OtherAssetNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

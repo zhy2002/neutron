@@ -42,7 +42,12 @@ public class CompanyTrustNodeModule {
     }
 
     @Provides @CompanyTrustNodeScope
-    Map<String, RuleProvider<CompanyTrustNode>> provideInstanceProviders(
+    RuleProvider<CompanyTrustNode> provideRuleProvider(Provider<CompanyTrustNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CompanyTrustNodeScope
+    Map<String, RuleProvider<CompanyTrustNode>> provideInstanceProviderMap(
         Provider<CompanyNodeChildProvider.CompanyTrustNodeRuleProvider> companyTrustNodeRuleProvider
     ) {
         Map<String, RuleProvider<CompanyTrustNode>> result = new HashMap<>();

@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {CompanyResponsibleLendNodeModule.class})
 public interface CompanyResponsibleLendNodeComponent {
 
-    CompanyResponsibleLendNodeRuleProvider getCompanyResponsibleLendNodeRuleProvider();
+    RuleProvider<CompanyResponsibleLendNode> getCompanyResponsibleLendNodeRuleProvider();
     Map<String, RuleProvider<CompanyResponsibleLendNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

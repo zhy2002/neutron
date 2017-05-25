@@ -42,7 +42,12 @@ public class RetiredOnBenefitFlagNodeModule {
     }
 
     @Provides @RetiredOnBenefitFlagNodeScope
-    Map<String, RuleProvider<RetiredOnBenefitFlagNode>> provideInstanceProviders(
+    RuleProvider<RetiredOnBenefitFlagNode> provideRuleProvider(Provider<RetiredOnBenefitFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @RetiredOnBenefitFlagNodeScope
+    Map<String, RuleProvider<RetiredOnBenefitFlagNode>> provideInstanceProviderMap(
         Provider<RetiredEmploymentNodeChildProvider.RetiredOnBenefitFlagNodeRuleProvider> retiredOnBenefitFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<RetiredOnBenefitFlagNode>> result = new HashMap<>();

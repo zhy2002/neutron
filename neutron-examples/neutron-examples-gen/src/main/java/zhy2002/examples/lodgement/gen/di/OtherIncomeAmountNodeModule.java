@@ -42,7 +42,12 @@ public class OtherIncomeAmountNodeModule {
     }
 
     @Provides @OtherIncomeAmountNodeScope
-    Map<String, RuleProvider<OtherIncomeAmountNode>> provideInstanceProviders(
+    RuleProvider<OtherIncomeAmountNode> provideRuleProvider(Provider<OtherIncomeAmountNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherIncomeAmountNodeScope
+    Map<String, RuleProvider<OtherIncomeAmountNode>> provideInstanceProviderMap(
         Provider<OtherIncomeNodeChildProvider.OtherIncomeAmountNodeRuleProvider> otherIncomeAmountNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherIncomeAmountNode>> result = new HashMap<>();

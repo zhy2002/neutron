@@ -38,7 +38,12 @@ public class DefenseServiceFlagNodeModule {
     }
 
     @Provides @DefenseServiceFlagNodeScope
-    Map<String, RuleProvider<DefenseServiceFlagNode>> provideInstanceProviders(
+    RuleProvider<DefenseServiceFlagNode> provideRuleProvider(Provider<DefenseServiceFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @DefenseServiceFlagNodeScope
+    Map<String, RuleProvider<DefenseServiceFlagNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.DefenseServiceFlagNodeRuleProvider> defenseServiceFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<DefenseServiceFlagNode>> result = new HashMap<>();

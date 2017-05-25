@@ -1,6 +1,5 @@
 package zhy2002.examples.register.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {EmailNodeModule.class})
 public interface EmailNodeComponent {
 
-    EmailNodeRuleProvider getEmailNodeRuleProvider();
+    RuleProvider<EmailNode> getEmailNodeRuleProvider();
     Map<String, RuleProvider<EmailNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

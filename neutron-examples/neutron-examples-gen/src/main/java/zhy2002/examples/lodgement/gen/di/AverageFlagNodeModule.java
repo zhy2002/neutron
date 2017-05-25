@@ -38,7 +38,12 @@ public class AverageFlagNodeModule {
     }
 
     @Provides @AverageFlagNodeScope
-    Map<String, RuleProvider<AverageFlagNode>> provideInstanceProviders(
+    RuleProvider<AverageFlagNode> provideRuleProvider(Provider<AverageFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AverageFlagNodeScope
+    Map<String, RuleProvider<AverageFlagNode>> provideInstanceProviderMap(
         Provider<OwnershipNodeChildProvider.AverageFlagNodeRuleProvider> averageFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<AverageFlagNode>> result = new HashMap<>();

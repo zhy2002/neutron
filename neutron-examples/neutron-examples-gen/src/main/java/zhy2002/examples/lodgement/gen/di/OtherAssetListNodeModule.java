@@ -38,7 +38,12 @@ public class OtherAssetListNodeModule {
     }
 
     @Provides @OtherAssetListNodeScope
-    Map<String, RuleProvider<OtherAssetListNode>> provideInstanceProviders(
+    RuleProvider<OtherAssetListNode> provideRuleProvider(Provider<OtherAssetListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OtherAssetListNodeScope
+    Map<String, RuleProvider<OtherAssetListNode>> provideInstanceProviderMap(
         Provider<AssetsNodeChildProvider.OtherAssetListNodeRuleProvider> otherAssetListNodeRuleProvider
     ) {
         Map<String, RuleProvider<OtherAssetListNode>> result = new HashMap<>();

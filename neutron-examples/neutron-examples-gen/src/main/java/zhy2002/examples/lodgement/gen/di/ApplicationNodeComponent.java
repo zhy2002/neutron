@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @ApplicationNodeScope
 @Subcomponent(modules = {ApplicationNodeModule.class})
 public interface ApplicationNodeComponent {
 
-    ApplicationNodeRuleProvider getApplicationNodeRuleProvider();
+    RuleProvider<ApplicationNode> getApplicationNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

@@ -38,7 +38,12 @@ public class ThirdPartyCompanyNameNodeModule {
     }
 
     @Provides @ThirdPartyCompanyNameNodeScope
-    Map<String, RuleProvider<ThirdPartyCompanyNameNode>> provideInstanceProviders(
+    RuleProvider<ThirdPartyCompanyNameNode> provideRuleProvider(Provider<ThirdPartyCompanyNameNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ThirdPartyCompanyNameNodeScope
+    Map<String, RuleProvider<ThirdPartyCompanyNameNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyCompanyNameNodeRuleProvider> thirdPartyCompanyNameNodeRuleProvider
     ) {
         Map<String, RuleProvider<ThirdPartyCompanyNameNode>> result = new HashMap<>();

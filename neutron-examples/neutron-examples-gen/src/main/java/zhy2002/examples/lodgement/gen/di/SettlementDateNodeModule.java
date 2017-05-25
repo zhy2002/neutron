@@ -38,7 +38,12 @@ public class SettlementDateNodeModule {
     }
 
     @Provides @SettlementDateNodeScope
-    Map<String, RuleProvider<SettlementDateNode>> provideInstanceProviders(
+    RuleProvider<SettlementDateNode> provideRuleProvider(Provider<SettlementDateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SettlementDateNodeScope
+    Map<String, RuleProvider<SettlementDateNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.SettlementDateNodeRuleProvider> settlementDateNodeRuleProvider
     ) {
         Map<String, RuleProvider<SettlementDateNode>> result = new HashMap<>();

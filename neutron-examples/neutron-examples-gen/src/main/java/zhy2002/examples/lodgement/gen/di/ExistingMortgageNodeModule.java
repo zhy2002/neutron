@@ -36,4 +36,9 @@ public class ExistingMortgageNodeModule {
         return owner.getParent();
     }
 
+    @Provides @ExistingMortgageNodeScope
+    RuleProvider<ExistingMortgageNode> provideRuleProvider(Provider<ExistingMortgageNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -42,7 +42,12 @@ public class DateOfBirthNodeModule {
     }
 
     @Provides @DateOfBirthNodeScope
-    Map<String, RuleProvider<DateOfBirthNode>> provideInstanceProviders(
+    RuleProvider<DateOfBirthNode> provideRuleProvider(Provider<DateOfBirthNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @DateOfBirthNodeScope
+    Map<String, RuleProvider<DateOfBirthNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.DateOfBirthNodeRuleProvider> dateOfBirthNodeRuleProvider
     ) {
         Map<String, RuleProvider<DateOfBirthNode>> result = new HashMap<>();

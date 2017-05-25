@@ -38,7 +38,12 @@ public class EmployerPhoneNodeModule {
     }
 
     @Provides @EmployerPhoneNodeScope
-    Map<String, RuleProvider<EmployerPhoneNode>> provideInstanceProviders(
+    RuleProvider<EmployerPhoneNode> provideRuleProvider(Provider<EmployerPhoneNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @EmployerPhoneNodeScope
+    Map<String, RuleProvider<EmployerPhoneNode>> provideInstanceProviderMap(
         Provider<EmployedNodeChildProvider.EmployerPhoneNodeRuleProvider> employerPhoneNodeRuleProvider
     ) {
         Map<String, RuleProvider<EmployerPhoneNode>> result = new HashMap<>();

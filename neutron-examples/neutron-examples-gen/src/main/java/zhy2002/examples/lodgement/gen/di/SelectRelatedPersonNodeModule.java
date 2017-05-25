@@ -36,4 +36,9 @@ public class SelectRelatedPersonNodeModule {
         return owner.getParent();
     }
 
+    @Provides @SelectRelatedPersonNodeScope
+    RuleProvider<SelectRelatedPersonNode> provideRuleProvider(Provider<SelectRelatedPersonNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

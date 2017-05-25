@@ -38,7 +38,12 @@ public class ResponsibleTypeOfChangeNodeModule {
     }
 
     @Provides @ResponsibleTypeOfChangeNodeScope
-    Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> provideInstanceProviders(
+    RuleProvider<ResponsibleTypeOfChangeNode> provideRuleProvider(Provider<ResponsibleTypeOfChangeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ResponsibleTypeOfChangeNodeScope
+    Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleTypeOfChangeNodeRuleProvider> responsibleTypeOfChangeNodeRuleProvider
     ) {
         Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> result = new HashMap<>();

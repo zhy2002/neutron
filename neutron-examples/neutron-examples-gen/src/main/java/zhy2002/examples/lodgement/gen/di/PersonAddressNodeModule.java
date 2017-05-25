@@ -42,7 +42,12 @@ public class PersonAddressNodeModule {
     }
 
     @Provides @PersonAddressNodeScope
-    Map<String, RuleProvider<PersonAddressNode>> provideInstanceProviders(
+    RuleProvider<PersonAddressNode> provideRuleProvider(Provider<PersonAddressNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PersonAddressNodeScope
+    Map<String, RuleProvider<PersonAddressNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider> currentAddressNodeRuleProvider
         ,Provider<PersonContactNodeChildProvider.PostalAddressNodeRuleProvider> postalAddressNodeRuleProvider
         ,Provider<PersonContactNodeChildProvider.PreviousAddressNodeRuleProvider> previousAddressNodeRuleProvider

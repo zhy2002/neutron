@@ -38,7 +38,12 @@ public class CreditCheckFlagNodeModule {
     }
 
     @Provides @CreditCheckFlagNodeScope
-    Map<String, RuleProvider<CreditCheckFlagNode>> provideInstanceProviders(
+    RuleProvider<CreditCheckFlagNode> provideRuleProvider(Provider<CreditCheckFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CreditCheckFlagNodeScope
+    Map<String, RuleProvider<CreditCheckFlagNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.CreditCheckFlagNodeRuleProvider> creditCheckFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<CreditCheckFlagNode>> result = new HashMap<>();

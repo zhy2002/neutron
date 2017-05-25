@@ -38,7 +38,12 @@ public class ThirdPartyDisclosureFlagNodeModule {
     }
 
     @Provides @ThirdPartyDisclosureFlagNodeScope
-    Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> provideInstanceProviders(
+    RuleProvider<ThirdPartyDisclosureFlagNode> provideRuleProvider(Provider<ThirdPartyDisclosureFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ThirdPartyDisclosureFlagNodeScope
+    Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider> thirdPartyDisclosureFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> result = new HashMap<>();

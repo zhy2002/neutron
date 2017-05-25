@@ -42,7 +42,12 @@ public class CompanySelectDirectorNodeModule {
     }
 
     @Provides @CompanySelectDirectorNodeScope
-    Map<String, RuleProvider<CompanySelectDirectorNode>> provideInstanceProviders(
+    RuleProvider<CompanySelectDirectorNode> provideRuleProvider(Provider<CompanySelectDirectorNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CompanySelectDirectorNodeScope
+    Map<String, RuleProvider<CompanySelectDirectorNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanySelectDirectorNodeRuleProvider> companySelectDirectorNodeRuleProvider
     ) {
         Map<String, RuleProvider<CompanySelectDirectorNode>> result = new HashMap<>();

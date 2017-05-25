@@ -38,7 +38,12 @@ public class OwnedOutrightFlagNodeModule {
     }
 
     @Provides @OwnedOutrightFlagNodeScope
-    Map<String, RuleProvider<OwnedOutrightFlagNode>> provideInstanceProviders(
+    RuleProvider<OwnedOutrightFlagNode> provideRuleProvider(Provider<OwnedOutrightFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @OwnedOutrightFlagNodeScope
+    Map<String, RuleProvider<OwnedOutrightFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.OwnedOutrightFlagNodeRuleProvider> ownedOutrightFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<OwnedOutrightFlagNode>> result = new HashMap<>();

@@ -19,4 +19,44 @@
         <gwt-jar>true</gwt-jar>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>zhy2002.neutron</groupId>
+            <artifactId>neutron-examples-gen</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-codegen</artifactId>
+                <executions>
+                    <execution>
+                        <id>lodgement</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>profile</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${project.basedir}/../neutron-examples-gen/zhy2002/examples/lodgement/desc.yml
+                            </nodeFile>
+                            <ruleFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/nab.yml
+                            </ruleFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/nab/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
 </project>

@@ -36,4 +36,9 @@ public class ApplicationNodeModule {
         return owner;
     }
 
+    @Provides @ApplicationNodeScope
+    RuleProvider<ApplicationNode> provideRuleProvider(Provider<ApplicationNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -38,7 +38,12 @@ public class ProductOptOutReasonNodeModule {
     }
 
     @Provides @ProductOptOutReasonNodeScope
-    Map<String, RuleProvider<ProductOptOutReasonNode>> provideInstanceProviders(
+    RuleProvider<ProductOptOutReasonNode> provideRuleProvider(Provider<ProductOptOutReasonNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductOptOutReasonNodeScope
+    Map<String, RuleProvider<ProductOptOutReasonNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductOptOutReasonNodeRuleProvider> productOptOutReasonNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductOptOutReasonNode>> result = new HashMap<>();

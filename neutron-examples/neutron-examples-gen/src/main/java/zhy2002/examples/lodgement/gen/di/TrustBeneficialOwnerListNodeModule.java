@@ -42,7 +42,12 @@ public class TrustBeneficialOwnerListNodeModule {
     }
 
     @Provides @TrustBeneficialOwnerListNodeScope
-    Map<String, RuleProvider<TrustBeneficialOwnerListNode>> provideInstanceProviders(
+    RuleProvider<TrustBeneficialOwnerListNode> provideRuleProvider(Provider<TrustBeneficialOwnerListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @TrustBeneficialOwnerListNodeScope
+    Map<String, RuleProvider<TrustBeneficialOwnerListNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustBeneficialOwnerListNodeRuleProvider> trustBeneficialOwnerListNodeRuleProvider
     ) {
         Map<String, RuleProvider<TrustBeneficialOwnerListNode>> result = new HashMap<>();

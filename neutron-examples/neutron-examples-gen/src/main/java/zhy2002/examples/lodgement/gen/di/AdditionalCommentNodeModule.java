@@ -38,7 +38,12 @@ public class AdditionalCommentNodeModule {
     }
 
     @Provides @AdditionalCommentNodeScope
-    Map<String, RuleProvider<AdditionalCommentNode>> provideInstanceProviders(
+    RuleProvider<AdditionalCommentNode> provideRuleProvider(Provider<AdditionalCommentNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AdditionalCommentNodeScope
+    Map<String, RuleProvider<AdditionalCommentNode>> provideInstanceProviderMap(
         Provider<AdditionalNodeChildProvider.AdditionalCommentNodeRuleProvider> additionalCommentNodeRuleProvider
     ) {
         Map<String, RuleProvider<AdditionalCommentNode>> result = new HashMap<>();

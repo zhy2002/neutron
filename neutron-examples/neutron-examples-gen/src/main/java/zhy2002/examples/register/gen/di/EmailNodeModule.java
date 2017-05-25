@@ -38,7 +38,12 @@ public class EmailNodeModule {
     }
 
     @Provides @EmailNodeScope
-    Map<String, RuleProvider<EmailNode>> provideInstanceProviders(
+    RuleProvider<EmailNode> provideRuleProvider(Provider<EmailNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @EmailNodeScope
+    Map<String, RuleProvider<EmailNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.EmailNodeRuleProvider> emailNodeRuleProvider
     ) {
         Map<String, RuleProvider<EmailNode>> result = new HashMap<>();

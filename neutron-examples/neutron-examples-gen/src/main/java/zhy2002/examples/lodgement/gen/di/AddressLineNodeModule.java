@@ -38,7 +38,12 @@ public class AddressLineNodeModule {
     }
 
     @Provides @AddressLineNodeScope
-    Map<String, RuleProvider<AddressLineNode>> provideInstanceProviders(
+    RuleProvider<AddressLineNode> provideRuleProvider(Provider<AddressLineNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AddressLineNodeScope
+    Map<String, RuleProvider<AddressLineNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.AddressLineNodeRuleProvider> addressLineNodeRuleProvider
     ) {
         Map<String, RuleProvider<AddressLineNode>> result = new HashMap<>();

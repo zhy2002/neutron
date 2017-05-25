@@ -1,12 +1,12 @@
 package zhy2002.examples.register.gen.node;
 
+import java.util.*;
+import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import java.util.*;
-import zhy2002.examples.register.gen.di.*;
-import javax.inject.*;
-import zhy2002.examples.register.gen.rule.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.examples.register.gen.di.*;
+import zhy2002.examples.register.gen.rule.*;
 
 @PasswordNodeScope
 public class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {

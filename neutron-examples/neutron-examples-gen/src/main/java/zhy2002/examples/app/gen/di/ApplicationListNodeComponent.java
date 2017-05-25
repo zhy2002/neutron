@@ -1,6 +1,5 @@
 package zhy2002.examples.app.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.app.gen.*;
 import zhy2002.examples.app.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {ApplicationListNodeModule.class})
 public interface ApplicationListNodeComponent {
 
-    ApplicationListNodeRuleProvider getApplicationListNodeRuleProvider();
+    RuleProvider<ApplicationListNode> getApplicationListNodeRuleProvider();
     Map<String, RuleProvider<ApplicationListNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

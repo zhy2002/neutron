@@ -38,7 +38,12 @@ public class ApplicationListNodeModule {
     }
 
     @Provides @ApplicationListNodeScope
-    Map<String, RuleProvider<ApplicationListNode>> provideInstanceProviders(
+    RuleProvider<ApplicationListNode> provideRuleProvider(Provider<ApplicationListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ApplicationListNodeScope
+    Map<String, RuleProvider<ApplicationListNode>> provideInstanceProviderMap(
         Provider<AppManagerNodeChildProvider.ApplicationListNodeRuleProvider> applicationListNodeRuleProvider
     ) {
         Map<String, RuleProvider<ApplicationListNode>> result = new HashMap<>();

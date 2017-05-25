@@ -42,7 +42,12 @@ public class CompanySelectBeneficialOwnerNodeModule {
     }
 
     @Provides @CompanySelectBeneficialOwnerNodeScope
-    Map<String, RuleProvider<CompanySelectBeneficialOwnerNode>> provideInstanceProviders(
+    RuleProvider<CompanySelectBeneficialOwnerNode> provideRuleProvider(Provider<CompanySelectBeneficialOwnerNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @CompanySelectBeneficialOwnerNodeScope
+    Map<String, RuleProvider<CompanySelectBeneficialOwnerNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanySelectBeneficialOwnerNodeRuleProvider> companySelectBeneficialOwnerNodeRuleProvider
     ) {
         Map<String, RuleProvider<CompanySelectBeneficialOwnerNode>> result = new HashMap<>();

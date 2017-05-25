@@ -38,7 +38,12 @@ public class MortgageChargePositionNodeModule {
     }
 
     @Provides @MortgageChargePositionNodeScope
-    Map<String, RuleProvider<MortgageChargePositionNode>> provideInstanceProviders(
+    RuleProvider<MortgageChargePositionNode> provideRuleProvider(Provider<MortgageChargePositionNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgageChargePositionNodeScope
+    Map<String, RuleProvider<MortgageChargePositionNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageChargePositionNodeRuleProvider> mortgageChargePositionNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgageChargePositionNode>> result = new HashMap<>();

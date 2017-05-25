@@ -38,7 +38,12 @@ public class ProductInterestOnlyTermNodeModule {
     }
 
     @Provides @ProductInterestOnlyTermNodeScope
-    Map<String, RuleProvider<ProductInterestOnlyTermNode>> provideInstanceProviders(
+    RuleProvider<ProductInterestOnlyTermNode> provideRuleProvider(Provider<ProductInterestOnlyTermNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductInterestOnlyTermNodeScope
+    Map<String, RuleProvider<ProductInterestOnlyTermNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductInterestOnlyTermNodeRuleProvider> productInterestOnlyTermNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductInterestOnlyTermNode>> result = new HashMap<>();

@@ -42,7 +42,12 @@ public class PersonApplicantTypeNodeModule {
     }
 
     @Provides @PersonApplicantTypeNodeScope
-    Map<String, RuleProvider<PersonApplicantTypeNode>> provideInstanceProviders(
+    RuleProvider<PersonApplicantTypeNode> provideRuleProvider(Provider<PersonApplicantTypeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PersonApplicantTypeNodeScope
+    Map<String, RuleProvider<PersonApplicantTypeNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.PersonApplicantTypeNodeRuleProvider> personApplicantTypeNodeRuleProvider
     ) {
         Map<String, RuleProvider<PersonApplicantTypeNode>> result = new HashMap<>();

@@ -1,13 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.RuleProvider;
 
 @TrustBeneficiaryClassNodeScope
 @Subcomponent(modules = {TrustBeneficiaryClassNodeModule.class})
 public interface TrustBeneficiaryClassNodeComponent {
 
-    TrustBeneficiaryClassNodeRuleProvider getTrustBeneficiaryClassNodeRuleProvider();
+    RuleProvider<TrustBeneficiaryClassNode> getTrustBeneficiaryClassNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

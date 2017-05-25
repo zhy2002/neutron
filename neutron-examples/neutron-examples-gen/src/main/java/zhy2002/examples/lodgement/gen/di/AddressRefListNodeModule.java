@@ -38,7 +38,12 @@ public class AddressRefListNodeModule {
     }
 
     @Provides @AddressRefListNodeScope
-    Map<String, RuleProvider<AddressRefListNode>> provideInstanceProviders(
+    RuleProvider<AddressRefListNode> provideRuleProvider(Provider<AddressRefListNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @AddressRefListNodeScope
+    Map<String, RuleProvider<AddressRefListNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.AddressRefListNodeRuleProvider> addressRefListNodeRuleProvider
     ) {
         Map<String, RuleProvider<AddressRefListNode>> result = new HashMap<>();

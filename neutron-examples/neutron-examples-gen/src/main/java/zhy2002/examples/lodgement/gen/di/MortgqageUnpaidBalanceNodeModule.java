@@ -42,7 +42,12 @@ public class MortgqageUnpaidBalanceNodeModule {
     }
 
     @Provides @MortgqageUnpaidBalanceNodeScope
-    Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> provideInstanceProviders(
+    RuleProvider<MortgqageUnpaidBalanceNode> provideRuleProvider(Provider<MortgqageUnpaidBalanceNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MortgqageUnpaidBalanceNodeScope
+    Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgqageUnpaidBalanceNodeRuleProvider> mortgqageUnpaidBalanceNodeRuleProvider
     ) {
         Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> result = new HashMap<>();

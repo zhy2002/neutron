@@ -38,7 +38,12 @@ public class MaritalStatusNodeModule {
     }
 
     @Provides @MaritalStatusNodeScope
-    Map<String, RuleProvider<MaritalStatusNode>> provideInstanceProviders(
+    RuleProvider<MaritalStatusNode> provideRuleProvider(Provider<MaritalStatusNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @MaritalStatusNodeScope
+    Map<String, RuleProvider<MaritalStatusNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.MaritalStatusNodeRuleProvider> maritalStatusNodeRuleProvider
     ) {
         Map<String, RuleProvider<MaritalStatusNode>> result = new HashMap<>();

@@ -38,7 +38,12 @@ public class SubmissionNodeModule {
     }
 
     @Provides @SubmissionNodeScope
-    Map<String, RuleProvider<SubmissionNode>> provideInstanceProviders(
+    RuleProvider<SubmissionNode> provideRuleProvider(Provider<SubmissionNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SubmissionNodeScope
+    Map<String, RuleProvider<SubmissionNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.SubmissionNodeRuleProvider> submissionNodeRuleProvider
     ) {
         Map<String, RuleProvider<SubmissionNode>> result = new HashMap<>();

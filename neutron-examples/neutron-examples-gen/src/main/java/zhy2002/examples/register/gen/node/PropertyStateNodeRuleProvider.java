@@ -1,12 +1,10 @@
 package zhy2002.examples.register.gen.node;
 
+import java.util.*;
+import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
-import java.util.*;
 import zhy2002.examples.register.gen.di.*;
-import javax.inject.*;
-import zhy2002.examples.register.gen.rule.*;
-import zhy2002.neutron.rule.*;
 import zhy2002.examples.register.data.*;
 import java.math.*;
 
@@ -28,7 +26,6 @@ public class PropertyStateNodeRuleProvider implements RuleProvider<PropertyState
         node.setRequiredMessage("Property state is required.");
         node.setOptions(RegisterNodeConstants.STATES);
     }
-
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {

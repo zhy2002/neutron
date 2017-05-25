@@ -38,7 +38,12 @@ public class ContributionTypeNodeModule {
     }
 
     @Provides @ContributionTypeNodeScope
-    Map<String, RuleProvider<ContributionTypeNode>> provideInstanceProviders(
+    RuleProvider<ContributionTypeNode> provideRuleProvider(Provider<ContributionTypeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ContributionTypeNodeScope
+    Map<String, RuleProvider<ContributionTypeNode>> provideInstanceProviderMap(
         Provider<ProductCustomerContributionNodeChildProvider.ContributionTypeNodeRuleProvider> contributionTypeNodeRuleProvider
     ) {
         Map<String, RuleProvider<ContributionTypeNode>> result = new HashMap<>();

@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.Subcomponent;
-import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 @Subcomponent(modules = {DateUpdatedNodeModule.class})
 public interface DateUpdatedNodeComponent {
 
-    DateUpdatedNodeRuleProvider getDateUpdatedNodeRuleProvider();
+    RuleProvider<DateUpdatedNode> getDateUpdatedNodeRuleProvider();
     Map<String, RuleProvider<DateUpdatedNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder

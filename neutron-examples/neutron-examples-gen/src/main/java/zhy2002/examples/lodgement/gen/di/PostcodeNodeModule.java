@@ -38,7 +38,12 @@ public class PostcodeNodeModule {
     }
 
     @Provides @PostcodeNodeScope
-    Map<String, RuleProvider<PostcodeNode>> provideInstanceProviders(
+    RuleProvider<PostcodeNode> provideRuleProvider(Provider<PostcodeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PostcodeNodeScope
+    Map<String, RuleProvider<PostcodeNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.PostcodeNodeRuleProvider> postcodeNodeRuleProvider
     ) {
         Map<String, RuleProvider<PostcodeNode>> result = new HashMap<>();

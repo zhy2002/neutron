@@ -42,7 +42,12 @@ public class BrokerEmailNodeModule {
     }
 
     @Provides @BrokerEmailNodeScope
-    Map<String, RuleProvider<BrokerEmailNode>> provideInstanceProviders(
+    RuleProvider<BrokerEmailNode> provideRuleProvider(Provider<BrokerEmailNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @BrokerEmailNodeScope
+    Map<String, RuleProvider<BrokerEmailNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerEmailNodeRuleProvider> brokerEmailNodeRuleProvider
     ) {
         Map<String, RuleProvider<BrokerEmailNode>> result = new HashMap<>();

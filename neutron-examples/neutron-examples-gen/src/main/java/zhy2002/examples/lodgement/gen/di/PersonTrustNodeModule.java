@@ -42,7 +42,12 @@ public class PersonTrustNodeModule {
     }
 
     @Provides @PersonTrustNodeScope
-    Map<String, RuleProvider<PersonTrustNode>> provideInstanceProviders(
+    RuleProvider<PersonTrustNode> provideRuleProvider(Provider<PersonTrustNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @PersonTrustNodeScope
+    Map<String, RuleProvider<PersonTrustNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonTrustNodeRuleProvider> personTrustNodeRuleProvider
     ) {
         Map<String, RuleProvider<PersonTrustNode>> result = new HashMap<>();

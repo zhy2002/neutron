@@ -36,4 +36,9 @@ public class RealEstateNodeModule {
         return owner.getParent();
     }
 
+    @Provides @RealEstateNodeScope
+    RuleProvider<RealEstateNode> provideRuleProvider(Provider<RealEstateNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

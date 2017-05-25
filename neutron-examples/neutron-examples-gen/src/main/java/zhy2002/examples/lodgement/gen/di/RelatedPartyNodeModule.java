@@ -36,4 +36,9 @@ public class RelatedPartyNodeModule {
         return owner.getParent();
     }
 
+    @Provides @RelatedPartyNodeScope
+    RuleProvider<RelatedPartyNode> provideRuleProvider(Provider<RelatedPartyNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }

@@ -38,7 +38,12 @@ public class SavingsInstitutionNameNodeModule {
     }
 
     @Provides @SavingsInstitutionNameNodeScope
-    Map<String, RuleProvider<SavingsInstitutionNameNode>> provideInstanceProviders(
+    RuleProvider<SavingsInstitutionNameNode> provideRuleProvider(Provider<SavingsInstitutionNameNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @SavingsInstitutionNameNodeScope
+    Map<String, RuleProvider<SavingsInstitutionNameNode>> provideInstanceProviderMap(
         Provider<SavingsAccountNodeChildProvider.SavingsInstitutionNameNodeRuleProvider> savingsInstitutionNameNodeRuleProvider
     ) {
         Map<String, RuleProvider<SavingsInstitutionNameNode>> result = new HashMap<>();

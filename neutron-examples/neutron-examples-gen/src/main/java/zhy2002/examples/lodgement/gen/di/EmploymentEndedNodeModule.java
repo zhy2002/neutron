@@ -42,7 +42,12 @@ public class EmploymentEndedNodeModule {
     }
 
     @Provides @EmploymentEndedNodeScope
-    Map<String, RuleProvider<EmploymentEndedNode>> provideInstanceProviders(
+    RuleProvider<EmploymentEndedNode> provideRuleProvider(Provider<EmploymentEndedNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @EmploymentEndedNodeScope
+    Map<String, RuleProvider<EmploymentEndedNode>> provideInstanceProviderMap(
         Provider<EmployedNodeChildProvider.EmploymentEndedNodeRuleProvider> employmentEndedNodeRuleProvider
     ) {
         Map<String, RuleProvider<EmploymentEndedNode>> result = new HashMap<>();

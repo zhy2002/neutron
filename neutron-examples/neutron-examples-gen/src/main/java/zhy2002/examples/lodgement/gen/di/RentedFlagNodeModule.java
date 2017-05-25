@@ -38,7 +38,12 @@ public class RentedFlagNodeModule {
     }
 
     @Provides @RentedFlagNodeScope
-    Map<String, RuleProvider<RentedFlagNode>> provideInstanceProviders(
+    RuleProvider<RentedFlagNode> provideRuleProvider(Provider<RentedFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @RentedFlagNodeScope
+    Map<String, RuleProvider<RentedFlagNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.RentedFlagNodeRuleProvider> rentedFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<RentedFlagNode>> result = new HashMap<>();

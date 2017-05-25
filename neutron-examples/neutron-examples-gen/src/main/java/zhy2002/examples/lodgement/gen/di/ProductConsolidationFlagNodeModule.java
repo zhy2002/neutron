@@ -38,7 +38,12 @@ public class ProductConsolidationFlagNodeModule {
     }
 
     @Provides @ProductConsolidationFlagNodeScope
-    Map<String, RuleProvider<ProductConsolidationFlagNode>> provideInstanceProviders(
+    RuleProvider<ProductConsolidationFlagNode> provideRuleProvider(Provider<ProductConsolidationFlagNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @ProductConsolidationFlagNodeScope
+    Map<String, RuleProvider<ProductConsolidationFlagNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductConsolidationFlagNodeRuleProvider> productConsolidationFlagNodeRuleProvider
     ) {
         Map<String, RuleProvider<ProductConsolidationFlagNode>> result = new HashMap<>();

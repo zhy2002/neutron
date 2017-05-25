@@ -42,7 +42,12 @@ public class BrokerLastNameNodeModule {
     }
 
     @Provides @BrokerLastNameNodeScope
-    Map<String, RuleProvider<BrokerLastNameNode>> provideInstanceProviders(
+    RuleProvider<BrokerLastNameNode> provideRuleProvider(Provider<BrokerLastNameNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @BrokerLastNameNodeScope
+    Map<String, RuleProvider<BrokerLastNameNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerLastNameNodeRuleProvider> brokerLastNameNodeRuleProvider
     ) {
         Map<String, RuleProvider<BrokerLastNameNode>> result = new HashMap<>();

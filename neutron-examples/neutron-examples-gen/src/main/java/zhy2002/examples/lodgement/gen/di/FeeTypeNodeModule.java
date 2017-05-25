@@ -38,7 +38,12 @@ public class FeeTypeNodeModule {
     }
 
     @Provides @FeeTypeNodeScope
-    Map<String, RuleProvider<FeeTypeNode>> provideInstanceProviders(
+    RuleProvider<FeeTypeNode> provideRuleProvider(Provider<FeeTypeNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
+    @Provides @FeeTypeNodeScope
+    Map<String, RuleProvider<FeeTypeNode>> provideInstanceProviderMap(
         Provider<ProductFeeNodeChildProvider.FeeTypeNodeRuleProvider> feeTypeNodeRuleProvider
     ) {
         Map<String, RuleProvider<FeeTypeNode>> result = new HashMap<>();

@@ -36,4 +36,9 @@ public class CreditCardNodeModule {
         return owner.getParent();
     }
 
+    @Provides @CreditCardNodeScope
+    RuleProvider<CreditCardNode> provideRuleProvider(Provider<CreditCardNodeRuleProvider> provider) {
+        return provider.get();
+    }
+
 }
