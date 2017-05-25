@@ -319,8 +319,6 @@ rootType:
         baseTypeName: BaseResponsibleLendNode
 
   - typeName: FinancialPositionNode
-    rules:
-    - {typeName: FinancialPositionChangedRule}
     baseTypeName: ObjectUiNode
     children:
     - {typeName: AssetsNode}
@@ -998,8 +996,6 @@ rootType:
       childTypes:
       - typeName: RelatedPartyNode
         baseTypeName: ObjectUiNode
-        rules:
-        - {typeName: UpdateRelatedPartyNodeLabelRule, baseTypeName: UpdateItemNodeLabelRule}
         children:
         - {typeName: ThirdPartyTypeNode}
         - {typeName: ThirdPartyDescriptionNode}
@@ -1100,9 +1096,6 @@ commonTypes:
   properties:
   - {name: countryCodeReadonly, typeName: Boolean, default: Boolean.FALSE}
   - {name: suppressTelephoneCompleteRule, typeName: Boolean, default: Boolean.FALSE}
-  rules:
-  - {typeName: TelephoneCompleteRule, baseTypeName: ValidationRule}
-  - {typeName: AustralianTelephoneRule, baseTypeName: ValidationRule}
 
 - typeName: AddressNode
   baseTypeName: ObjectUiNode

@@ -9,6 +9,7 @@
         <module>neutron-examples-gen</module>
         <module>neutron-examples-ui</module>
         <module>neutron-examples-dep</module>
+        <module>neutron-examples-pro</module>
     </modules>
 
     <parent>

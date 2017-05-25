@@ -24,15 +24,11 @@ public class FinancialPositionNodeRuleProvider implements RuleProvider<Financial
 
     }
 
-    @Inject
-    Provider<FinancialPositionChangedRule> financialPositionChangedRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
-        FinancialPositionChangedRule financialPositionChangedRule = financialPositionChangedRuleProvider.get();
-        createdRules.add(financialPositionChangedRule);
     }
 
 }

@@ -16,7 +16,7 @@ export default class SelectInputComponent extends InputComponent {
 
     extractNewState() {
         const newState = super.extractNewState();
-        newState.list = super.getValueOptions();
+        newState.list = super.getValueOptions() || [];
         return newState;
     }
 
