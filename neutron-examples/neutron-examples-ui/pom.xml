@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>zhy2002.neutron</groupId>
-            <artifactId>neutron-examples-gen</artifactId>
+            <artifactId>neutron-examples-pro</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -36,7 +36,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
                 <configuration>
-                    <runTarget>bootstrap3.html</runTarget>
+                    <runTarget>index.html</runTarget>
                     <modules>
                         <module>zhy2002.Lodgement</module>
                     </modules>
