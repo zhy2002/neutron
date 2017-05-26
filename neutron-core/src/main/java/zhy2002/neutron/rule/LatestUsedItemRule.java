@@ -1,4 +1,4 @@
-package zhy2002.examples.lodgement.rule;
+package zhy2002.neutron.rule;
 
 import com.google.common.base.Strings;
 import zhy2002.neutron.EventBinding;

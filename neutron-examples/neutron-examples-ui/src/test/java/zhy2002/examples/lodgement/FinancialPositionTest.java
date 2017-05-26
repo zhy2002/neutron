@@ -2,11 +2,11 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.node.FinancialPositionNode;
 import zhy2002.examples.lodgement.gen.node.SavingsAccountListNode;
 import zhy2002.examples.lodgement.gen.node.SavingsAccountNode;
+import zhy2002.neutron.interop.JavaMethods;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -18,7 +18,7 @@ public class FinancialPositionTest {
 
     @Before
     public void setup() {
-        applicationNode = ApplicationNodeFactory.create();
+        applicationNode = JavaMethods.createApplicationNode("nab", null);
         financialPositionNode = applicationNode.getFinancialPositionNode();
     }
 

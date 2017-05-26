@@ -1,4 +1,4 @@
-package zhy2002.examples.lodgement.node;
+package zhy2002.examples.lodgement.nab.node;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;

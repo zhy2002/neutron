@@ -1,4 +1,4 @@
-package zhy2002.examples.lodgement.util;
+package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.AddressNode;

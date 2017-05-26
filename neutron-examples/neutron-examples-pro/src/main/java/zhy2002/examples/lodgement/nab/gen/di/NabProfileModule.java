@@ -1,17 +1,18 @@
-package zhy2002.examples.lodgement.di;
+package zhy2002.examples.lodgement.nab.gen.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
-import zhy2002.examples.lodgement.gen.di.*;
-import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.gen.rule.*;
-import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
-import zhy2002.examples.lodgement.node.ApplicationNodeContextImpl;
-import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
-import zhy2002.examples.lodgement.node.LodgementValidationErrorListAdaptor;
-import zhy2002.examples.lodgement.rule.*;
+import zhy2002.examples.lodgement.gen.di.LegalActionNodeScope;
+import zhy2002.examples.lodgement.gen.di.ManifestModule;
+import zhy2002.examples.lodgement.gen.node.AddressRefListNode;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.ApplicationNodeChildProvider;
+import zhy2002.examples.lodgement.gen.node.LegalActionNodeRuleProvider;
+import zhy2002.examples.lodgement.nab.node.AddressRefListNodeImpl;
+import zhy2002.examples.lodgement.nab.node.ApplicationNodeContextImpl;
+import zhy2002.examples.lodgement.nab.node.ApplicationNodeImpl;
+import zhy2002.examples.lodgement.nab.node.LodgementValidationErrorListAdaptor;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.ValidationErrorListAdaptor;
 import zhy2002.neutron.rule.StringEnableSiblingRule;
@@ -22,7 +23,7 @@ import javax.inject.Singleton;
 import java.util.List;
 
 @Module(includes = {ManifestModule.class})
-public abstract class DefaultProfileModule {
+public abstract class NabProfileModule {
 
     @Binds
     @Singleton
@@ -33,22 +34,13 @@ public abstract class DefaultProfileModule {
     abstract ApplicationNode provideApplicationNode(ApplicationNodeImpl impl);
 
     @Binds
-    abstract UpdateAddressRefListRule provideUpdateAddressRefListRule(UpdateAddressRefListRuleImpl impl);
-
-    @Binds
-    abstract ChangeFocusErrorRule provideChangeFocusErrorRule(ChangeFocusErrorRuleImpl impl);
-
-    @Binds
     abstract ValidationErrorListAdaptor provideValidationErrorListAdaptor(LodgementValidationErrorListAdaptor impl);
 
     @Binds
-    abstract ShowErrorListRule provideShowErrorListRule(ShowErrorListRuleImpl impl);
+    abstract ApplicationNodeChildProvider provideApplicationNodeChildProvider(ApplicationNodeChildProviderImpl impl);
 
     @Binds
     abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
-
-    @Binds
-    abstract ApplicationNodeChildProvider provideApplicationNodeChildProvider(ApplicationNodeChildProviderImpl impl);
 
 }
 

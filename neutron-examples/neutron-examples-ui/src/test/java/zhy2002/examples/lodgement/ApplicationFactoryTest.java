@@ -3,12 +3,13 @@ package zhy2002.examples.lodgement;
 import org.junit.Test;
 import zhy2002.examples.TestNodeIdentity;
 import zhy2002.examples.TestNodeIdentityMap;
-import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.node.PersonListNode;
 import zhy2002.examples.lodgement.gen.node.PersonNode;
 import zhy2002.neutron.NodeStatusEnum;
 import zhy2002.neutron.data.NodeDataStore;
+import zhy2002.neutron.interop.JavaMethods;
+import zhy2002.neutron.interop.JsMethods;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -18,8 +19,7 @@ public class ApplicationFactoryTest {
 
     @Test
     public void shouldNotThrowExceptionWhenNodeDataStoreIsNull() {
-        ApplicationNode result = ApplicationNodeFactory.restore(null);
-
+        ApplicationNode result = JavaMethods.createApplicationNode("nab", null);
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getPersonListNode().getUniqueId(), containsString("-"));
     }
@@ -30,7 +30,7 @@ public class ApplicationFactoryTest {
         String rootId = "root_id";
 
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
-        ApplicationNode result = ApplicationNodeFactory.restore(new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getUniqueId(), containsString(testContextId));
@@ -55,7 +55,7 @@ public class ApplicationFactoryTest {
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", null));
         rootChildren.add(new TestNodeIdentity("additionalNodeId", "additionalNode", additionalNodeChildren));
 
-        ApplicationNode result = ApplicationNodeFactory.restore(new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getIdNode().getUniqueId(), containsString(rootChildren.get("idNode").getLocalId()));
         assertThat(result.getStatusNode().getUniqueId(), containsString(rootChildren.get("statusNode").getLocalId()));
@@ -80,7 +80,7 @@ public class ApplicationFactoryTest {
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", personListChildren));
 
-        ApplicationNode result = ApplicationNodeFactory.restore(new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         PersonListNode personListNode = result.getPersonListNode();
         assertThat(personListNode.getItemCount(), equalTo(2));

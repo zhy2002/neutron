@@ -2,8 +2,8 @@ package zhy2002.examples.lodgement;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.examples.lodgement.di.ApplicationNodeFactory;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.interop.JavaMethods;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,7 +17,7 @@ public class RealEstateNodeTest {
 
     @Before
     public void setup() {
-        applicationNode = ApplicationNodeFactory.create();
+        applicationNode = JavaMethods.createApplicationNode("nab", null);
         realEstateListNode = applicationNode.getRealEstateListNode();
     }
 

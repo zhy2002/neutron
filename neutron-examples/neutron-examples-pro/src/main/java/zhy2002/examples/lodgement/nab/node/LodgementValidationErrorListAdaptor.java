@@ -1,4 +1,4 @@
-package zhy2002.examples.lodgement.node;
+package zhy2002.examples.lodgement.nab.node;
 
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.gen.node.ErrorListNode;

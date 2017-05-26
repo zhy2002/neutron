@@ -1,7 +1,7 @@
 package zhy2002.examples.lodgement;
 
 import com.google.gwt.core.client.EntryPoint;
-import zhy2002.examples.lodgement.interop.Window;
+import zhy2002.neutron.interop.JsMethods;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +12,7 @@ public class LodgementEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        logger.log(Level.INFO, "GWT module will call Window.startLodgement.");
-        Window.startLodgement();
+        logger.log(Level.INFO, "GWT module will call JsMethods.startLodgement.");
+        JsMethods.startLodgement();
     }
 }
