@@ -7,24 +7,23 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- * The Maven plugin to run in the project that uses Neutron.
+ * Maven mojo for profile code generation.
  */
 @Mojo(name = "generate-domain")
 public class DomainGenMojo extends AbstractMojo {
 
-    @Parameter(property = "definitionFile", required = true)
-    private String definitionFile;
+    @Parameter(property = "nodeFile", required = true)
+    private String nodeFile;
     @Parameter(property = "targetDirectory", required = true)
     private String targetDirectory;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        getLog().debug("Running Neutron domain code generation...");
+        getLog().debug("- node file:" + nodeFile);
+        getLog().debug("- target directory:" + targetDirectory);
 
-        System.out.println("Running Neutron code gen...");
-        System.out.println("definition file:" + definitionFile);
-        System.out.println("target directory:" + targetDirectory);
-
-        new CodeGenerator().generateDomain(definitionFile, targetDirectory);
+        new CodeGenerator().generateDomain(nodeFile, targetDirectory);
     }
 
 }

@@ -5,59 +5,16 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Load all the ftl templates used in code gen.
+ * Helper class that can load the ftl templates used in code generation.
  */
-class TemplateBundle {
+public class TemplateBundle {
 
-    private final Template nodeTemplate;
-    private final Template nodeLoadEventTemplate;
-    private final Template nodeUnloadEventTemplate;
-    private final Template nodeAddEventTemplate;
-    private final Template nodeRemoveEventTemplate;
-    private final Template changeEventTemplate;
-    private final Template ruleTemplate;
-    private final Template ruleProviderTemplate;
-    private final Template registryTemplate;
-    private final Template contextTemplate;
-    private final Template itemFactoryTemplate;
-    private final Template childFactoryTemplate;
-    private final Template scopeTemplate;
-    private final Template moduleTemplate;
-    private final Template componentTemplate;
-    private final Template manifestModuleTemplate;
-    private final Template rulePackageTemplate;
-    private final Template profileModuleTemplate;
-    private final Template profileRuleProviderTemplate;
-
-    TemplateBundle() {
-        Configuration configuration = createTemplateConfiguration();
-        try {
-            nodeTemplate = configuration.getTemplate("node.ftl");
-            nodeLoadEventTemplate = configuration.getTemplate("load_event.ftl");
-            nodeUnloadEventTemplate = configuration.getTemplate("unload_event.ftl");
-            nodeAddEventTemplate = configuration.getTemplate("add_event.ftl");
-            nodeRemoveEventTemplate = configuration.getTemplate("remove_event.ftl");
-            changeEventTemplate = configuration.getTemplate("change_event.ftl");
-            ruleTemplate = configuration.getTemplate("rule.ftl");
-            ruleProviderTemplate = configuration.getTemplate("rule_provider.ftl");
-            registryTemplate = configuration.getTemplate("registry.ftl");
-            contextTemplate = configuration.getTemplate("context.ftl");
-            itemFactoryTemplate = configuration.getTemplate("item_factory.ftl");
-            childFactoryTemplate = configuration.getTemplate("child_factory.ftl");
-            scopeTemplate = configuration.getTemplate("scope.ftl");
-            moduleTemplate = configuration.getTemplate("module.ftl");
-            componentTemplate = configuration.getTemplate("component.ftl");
-            manifestModuleTemplate = configuration.getTemplate("manifest_module.ftl");
-            rulePackageTemplate = configuration.getTemplate("rule_package.ftl");
-            profileModuleTemplate = configuration.getTemplate("profile_module.ftl");
-            profileRuleProviderTemplate = configuration.getTemplate("profile_rule_provider.ftl");
-
-        } catch (IOException ex) {
-            throw new RuntimeException("Failed to load one or more templates.", ex);
-        }
-    }
+    private final Configuration configuration = createTemplateConfiguration();
+    private final Map<String, Template> cache = new HashMap<>();
 
     private Configuration createTemplateConfiguration() {
         try {
@@ -68,83 +25,96 @@ class TemplateBundle {
             cfg.setLogTemplateExceptions(false);
             return cfg;
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to createProperty template configuration.", ex);
+            throw new RuntimeException("Failed to create template configuration.", ex);
         }
     }
 
+    private Template getTemplate(String name) {
+        if (!cache.containsKey(name)) {
+            try {
+                Template template = configuration.getTemplate(name);
+                cache.put(name, template);
+            } catch (IOException ex) {
+                throw new RuntimeException("Failed to load template: " + name, ex);
+            }
+        }
+        return cache.get(name);
+    }
+
     Template getNodeTemplate() {
-        return nodeTemplate;
+        return getTemplate("node.ftl");
     }
 
     Template getNodeLoadEventTemplate() {
-        return nodeLoadEventTemplate;
+        return getTemplate("load_event.ftl");
     }
 
     Template getNodeUnloadEventTemplate() {
-        return nodeUnloadEventTemplate;
+        return getTemplate("unload_event.ftl");
     }
 
     Template getNodeAddEventTemplate() {
-        return nodeAddEventTemplate;
+        return getTemplate("add_event.ftl");
     }
 
     Template getNodeRemoveEventTemplate() {
-        return nodeRemoveEventTemplate;
+        return getTemplate("remove_event.ftl");
     }
 
     Template getChangeEventTemplate() {
-        return changeEventTemplate;
+        return getTemplate("change_event.ftl");
     }
 
     Template getRuleTemplate() {
-        return ruleTemplate;
+        return getTemplate("rule.ftl");
     }
 
     Template getRuleProviderTemplate() {
-        return ruleProviderTemplate;
+        return getTemplate("rule_provider.ftl");
     }
 
     Template getRegistryTemplate() {
-        return registryTemplate;
+        return getTemplate("registry.ftl");
     }
 
     Template getContextTemplate() {
-        return contextTemplate;
+        return getTemplate("context.ftl");
     }
 
     Template getItemFactoryTemplate() {
-        return itemFactoryTemplate;
+        return getTemplate("item_factory.ftl");
     }
 
     Template getChildFactoryTemplate() {
-        return childFactoryTemplate;
+        return getTemplate("child_factory.ftl");
     }
 
     Template getScopeTemplate() {
-        return scopeTemplate;
+        return getTemplate("scope.ftl");
     }
 
     Template getModuleTemplate() {
-        return moduleTemplate;
+        return getTemplate("module.ftl");
     }
 
     Template getComponentTemplate() {
-        return componentTemplate;
+        return getTemplate("component.ftl");
     }
 
     Template getManifestModuleTemplate() {
-        return manifestModuleTemplate;
+        return getTemplate("manifest_module.ftl");
     }
 
     Template getRulePackageTemplate() {
-        return rulePackageTemplate;
+        return getTemplate("rule_package.ftl");
     }
 
-    public Template getProfileModuleTemplate() {
-        return profileModuleTemplate;
+    Template getProfileModuleTemplate() {
+        return getTemplate("profile_module.ftl");
     }
 
-    public Template getProfileRuleProviderTemplate() {
-        return profileRuleProviderTemplate;
+    Template getProfileRuleProviderTemplate() {
+        return getTemplate("profile_rule_provider.ftl");
     }
+
 }

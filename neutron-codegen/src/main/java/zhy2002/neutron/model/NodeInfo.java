@@ -1,7 +1,7 @@
 package zhy2002.neutron.model;
 
 
-import zhy2002.neutron.CodeGenUtil;
+import zhy2002.neutron.service.CodeGenUtil;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

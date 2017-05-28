@@ -41,9 +41,9 @@
                             <goal>generate-domain</goal>
                         </goals>
                         <configuration>
-                            <definitionFile>
+                            <nodeFile>
                                 ${project.build.sourceDirectory}/zhy2002/examples/register/desc.yml
-                            </definitionFile>
+                            </nodeFile>
                             <targetDirectory>
                                 ${project.build.sourceDirectory}/zhy2002/examples/register/gen
                             </targetDirectory>
@@ -56,9 +56,9 @@
                             <goal>generate-domain</goal>
                         </goals>
                         <configuration>
-                            <definitionFile>
+                            <nodeFile>
                                 ${project.build.sourceDirectory}/zhy2002/examples/lodgement/desc.yml
-                            </definitionFile>
+                            </nodeFile>
                             <targetDirectory>
                                 ${project.build.sourceDirectory}/zhy2002/examples/lodgement/gen
                             </targetDirectory>
@@ -71,9 +71,9 @@
                             <goal>generate-domain</goal>
                         </goals>
                         <configuration>
-                            <definitionFile>
+                            <nodeFile>
                                 ${project.build.sourceDirectory}/zhy2002/examples/app/desc.yml
-                            </definitionFile>
+                            </nodeFile>
                             <targetDirectory>
                                 ${project.build.sourceDirectory}/zhy2002/examples/app/gen
                             </targetDirectory>

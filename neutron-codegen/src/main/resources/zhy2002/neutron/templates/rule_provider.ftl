@@ -1,9 +1,10 @@
-package ${targetPackage}.gen.node;
+package ${targetPackage}.gen.di;
 
 import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import ${targetPackage}.gen.node.${typeName};
 <#if rules??>
 import zhy2002.neutron.rule.*;
 </#if>

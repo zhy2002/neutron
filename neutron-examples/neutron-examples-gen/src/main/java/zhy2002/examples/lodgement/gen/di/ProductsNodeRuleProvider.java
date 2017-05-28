@@ -1,0 +1,32 @@
+package zhy2002.examples.lodgement.gen.di;
+
+import java.util.*;
+import javax.inject.*;
+import zhy2002.neutron.*;
+import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.node.ProductsNode;
+import zhy2002.examples.lodgement.gen.di.*;
+
+@ProductsNodeScope
+public class ProductsNodeRuleProvider implements RuleProvider<ProductsNode> {
+
+    @Inject
+    ObjectUiNodeRuleProvider parentRuleProvider;
+
+    @Inject
+    public ProductsNodeRuleProvider() {
+    }
+
+    @Override
+    public void initializeState(ProductsNode node) {
+        parentRuleProvider.initializeState(node);
+
+    }
+
+    @Override
+    public void createRules(List<UiNodeRule<?>> createdRules) {
+        parentRuleProvider.createRules(createdRules);
+
+    }
+
+}
