@@ -1,1 +1,1 @@
-package ${targetPackage}.gen.rule;
+package ${targetPackage}.<#if typeName?length gt 0>${typeName?lower_case}.</#if>gen.rule;

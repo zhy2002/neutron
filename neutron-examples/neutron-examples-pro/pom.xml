@@ -38,14 +38,14 @@
                         <id>lodgement</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>profile</goal>
+                            <goal>generate-profile</goal>
                         </goals>
                         <configuration>
                             <nodeFile>
-                                ${project.basedir}/../neutron-examples-gen/zhy2002/examples/lodgement/desc.yml
+                                ${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml
                             </nodeFile>
                             <ruleFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/nab.yml
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/nab/nab.yml
                             </ruleFile>
                             <targetDirectory>
                                 ${project.build.sourceDirectory}/zhy2002/examples/lodgement/nab/gen

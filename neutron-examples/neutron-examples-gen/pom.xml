@@ -38,7 +38,7 @@
                         <id>gen-register</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>generate-domain</goal>
                         </goals>
                         <configuration>
                             <definitionFile>
@@ -53,7 +53,7 @@
                         <id>lodgement</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>generate-domain</goal>
                         </goals>
                         <configuration>
                             <definitionFile>
@@ -68,7 +68,7 @@
                         <id>app</id>
                         <phase>generate-sources</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>generate-domain</goal>
                         </goals>
                         <configuration>
                             <definitionFile>

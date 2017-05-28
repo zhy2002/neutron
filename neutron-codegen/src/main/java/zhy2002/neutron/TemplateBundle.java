@@ -28,6 +28,8 @@ class TemplateBundle {
     private final Template componentTemplate;
     private final Template manifestModuleTemplate;
     private final Template rulePackageTemplate;
+    private final Template profileModuleTemplate;
+    private final Template profileRuleProviderTemplate;
 
     TemplateBundle() {
         Configuration configuration = createTemplateConfiguration();
@@ -49,6 +51,8 @@ class TemplateBundle {
             componentTemplate = configuration.getTemplate("component.ftl");
             manifestModuleTemplate = configuration.getTemplate("manifest_module.ftl");
             rulePackageTemplate = configuration.getTemplate("rule_package.ftl");
+            profileModuleTemplate = configuration.getTemplate("profile_module.ftl");
+            profileRuleProviderTemplate = configuration.getTemplate("profile_rule_provider.ftl");
 
         } catch (IOException ex) {
             throw new RuntimeException("Failed to load one or more templates.", ex);
@@ -134,5 +138,13 @@ class TemplateBundle {
 
     Template getRulePackageTemplate() {
         return rulePackageTemplate;
+    }
+
+    public Template getProfileModuleTemplate() {
+        return profileModuleTemplate;
+    }
+
+    public Template getProfileRuleProviderTemplate() {
+        return profileRuleProviderTemplate;
     }
 }

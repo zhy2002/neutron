@@ -1,15 +1,24 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.model.DomainInfo;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Set;
 
 /**
  * Provide static util methods for this module.
  */
 public final class CodeGenUtil {
+
+    private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 
     private CodeGenUtil() {
     }
@@ -67,6 +76,21 @@ public final class CodeGenUtil {
 
     private static boolean isEmpty(String value) {
         return value == null || value.length() == 0;
+    }
+
+    public static void validateMappedData(Object target) {
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Object>> violations = validator.validate(target);
+        if (violations.size() > 0) {
+            StringBuilder messageBuilder = new StringBuilder();
+            for (ConstraintViolation<Object> violation : violations) {
+                messageBuilder.append(violation.getPropertyPath());
+                messageBuilder.append(":");
+                messageBuilder.append(violation.getMessage());
+                messageBuilder.append(System.lineSeparator());
+            }
+            throw new RuntimeException(messageBuilder.toString());
+        }
     }
 
 }

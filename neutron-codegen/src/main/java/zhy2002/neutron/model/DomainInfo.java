@@ -1,5 +1,7 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.CodeGenUtil;
+
 import javax.validation.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -11,7 +13,6 @@ import java.util.logging.Logger;
 public class DomainInfo extends CodeGenInfo {
 
     private static final Logger logger = Logger.getLogger("DomainInfo");
-    private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private static final NodeInfo GENERIC_NODE_INFO;
     private static final NodeInfo VOID_NODE_INFO;
 
@@ -25,6 +26,10 @@ public class DomainInfo extends CodeGenInfo {
         VOID_NODE_INFO.setGenericTypeName("VoidUiNode");
     }
 
+    public DomainInfo() {
+        setTypeName("");
+    }
+
     //region mapped data
 
     @NotNull
@@ -34,10 +39,6 @@ public class DomainInfo extends CodeGenInfo {
     private NodeInfo rootType;
     @Valid
     private List<NodeInfo> commonTypes = new ArrayList<>();
-
-    public DomainInfo() {
-        setTypeName("");
-    }
 
     public String getTargetPackage() {
         return targetPackage;
@@ -79,7 +80,7 @@ public class DomainInfo extends CodeGenInfo {
 
     @Override
     public void initialize() {
-        validateMappedData();
+        CodeGenUtil.validateMappedData(this);
 
         setDomainInfo(this);
         initializeCommonTypes();
@@ -146,21 +147,6 @@ public class DomainInfo extends CodeGenInfo {
         });
 
         getAllNodes().forEach(NodeInfo::resolveBaseTypes);
-    }
-
-    private void validateMappedData() {
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<DomainInfo>> violations = validator.validate(this);
-        if (violations.size() > 0) {
-            StringBuilder messageBuilder = new StringBuilder();
-            for (ConstraintViolation<DomainInfo> violation : violations) {
-                messageBuilder.append(violation.getPropertyPath());
-                messageBuilder.append(":");
-                messageBuilder.append(violation.getMessage());
-                messageBuilder.append(System.lineSeparator());
-            }
-            throw new RuntimeException(messageBuilder.toString());
-        }
     }
 
     void addErrorMessageLine(String line) {

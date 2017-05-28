@@ -1320,6 +1320,8 @@ commonTypes:
     childTypes:
     - typeName: RelatedPersonReferenceNode
       baseTypeName: ReferenceUiNode
+      init:
+      - {propertyName: removeEmpty, value: true}
 
     - typeName: SelectRelatedPersonFlagNode
       baseTypeName: BooleanUiNode

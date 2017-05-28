@@ -5,6 +5,8 @@ import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import zhy2002.examples.lodgement.data.*;
+import java.math.*;
 
 @RelatedPersonReferenceNodeScope
 public class RelatedPersonReferenceNodeRuleProvider implements RuleProvider<RelatedPersonReferenceNode> {
@@ -20,6 +22,7 @@ public class RelatedPersonReferenceNodeRuleProvider implements RuleProvider<Rela
     public void initializeState(RelatedPersonReferenceNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setRemoveEmpty(true);
     }
 
     @Override

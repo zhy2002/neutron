@@ -215,7 +215,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         return new ${valueTypeName}(value);
     }
 
-    final void setEmptyValue(${valueTypeName} value) {
+    public void setEmptyValue(${valueTypeName} value) {
         super.setStateValue(EMPTY_VALUE_PROPERTY, value);
     }
 

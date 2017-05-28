@@ -7,13 +7,15 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- * The Maven plugin to run in the project that uses Neutron.
+ * Generate a profile.
  */
-@Mojo(name = "generate")
-public class CodeGenMojo extends AbstractMojo {
+@Mojo(name = "generate-profile")
+public class ProfileGenMojo extends AbstractMojo {
 
-    @Parameter(property = "definitionFile", required = true)
-    private String definitionFile;
+    @Parameter(property = "nodeFile", required = true)
+    private String nodeFile;
+    @Parameter(property = "ruleFile", required = true)
+    private String ruleFile;
     @Parameter(property = "targetDirectory", required = true)
     private String targetDirectory;
 
@@ -21,10 +23,10 @@ public class CodeGenMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         System.out.println("Running Neutron code gen...");
-        System.out.println("definition file:" + definitionFile);
+        System.out.println("node file:" + nodeFile);
+        System.out.println("rule file:" + ruleFile);
         System.out.println("target directory:" + targetDirectory);
 
-        new CodeGenerator().generate(definitionFile, targetDirectory);
+        new CodeGenerator().generateProfile(nodeFile, ruleFile, targetDirectory);
     }
-
 }

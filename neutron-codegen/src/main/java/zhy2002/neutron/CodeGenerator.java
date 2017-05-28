@@ -18,12 +18,11 @@ import java.nio.file.Paths;
  */
 class CodeGenerator {
 
-    void generate(String definitionFile, String targetDirectory) {
-
+    void generateDomain(String definitionFile, String targetDirectory) {
         DomainInfo domainInfo = loadDomainInfo(definitionFile);
         TemplateBundle templateBundle = new TemplateBundle();
         CodeGenUtil.clearDirectory(targetDirectory);
-        generateAllFiles(domainInfo, templateBundle, targetDirectory);
+        generateDomainFiles(domainInfo, templateBundle, targetDirectory);
     }
 
     private static DomainInfo loadDomainInfo(String defFile) {
@@ -36,8 +35,7 @@ class CodeGenerator {
         }
     }
 
-    private static void generateAllFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {
-
+    private static void generateDomainFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {
         for (NodeInfo nodeInfo : domainInfo.getAllNodes()) {
             generateNodeFiles(nodeInfo, templateBundle, targetDirectory);
         }
@@ -103,13 +101,17 @@ class CodeGenerator {
     }
 
     private static void generateFile(String targetDirectory, CodeGenInfo data, Template nodeTemplate, String relativePath, String typeSuffix) {
+        generateFile(targetDirectory, data, nodeTemplate, relativePath, "", typeSuffix);
+    }
+
+    private static void generateFile(String targetDirectory, CodeGenInfo data, Template nodeTemplate, String relativePath, String typePrefix, String typeSuffix) {
         try {
             Path directory = Paths.get(targetDirectory, relativePath);
             if (!Files.exists(directory)) {
                 Files.createDirectories(directory);
             }
 
-            String fileName = data.getTypeName() + typeSuffix + ".java";
+            String fileName = typePrefix + (data instanceof ProfileInfo ? "" : data.getTypeName()) + typeSuffix + ".java";
             Path filePath = directory.resolve(fileName);
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath.toFile())) {
                 nodeTemplate.process(data, new OutputStreamWriter(fileOutputStream));
@@ -118,4 +120,39 @@ class CodeGenerator {
             throw new RuntimeException("Error generating " + data.getTypeName() + typeSuffix, ex);
         }
     }
+
+    void generateProfile(String nodeFile, String ruleFile, String targetDirectory) {
+        DomainInfo domainInfo = loadDomainInfo(nodeFile);
+        ProfileInfo profileInfo = loadProfileInfo(ruleFile, domainInfo);
+        TemplateBundle templateBundle = new TemplateBundle();
+        CodeGenUtil.clearDirectory(targetDirectory);
+        generateProfileFiles(profileInfo, templateBundle, targetDirectory);
+    }
+
+    private ProfileInfo loadProfileInfo(String ruleFile, DomainInfo domainInfo) {
+        try {
+            ProfileInfo profileInfo = new Yaml().loadAs(new FileInputStream(ruleFile), ProfileInfo.class);
+            profileInfo.setDomainInfo(domainInfo);
+            profileInfo.initialize();
+            return profileInfo;
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static void generateProfileFiles(ProfileInfo profileInfo, TemplateBundle templateBundle, String targetDirectory) {
+        generateFile(targetDirectory, profileInfo, templateBundle.getProfileModuleTemplate(), "di", profileInfo.getTypeName(), "ProfileModule");
+        generateFile(targetDirectory, profileInfo, templateBundle.getRulePackageTemplate(), "rule", "package-info");
+
+        for (NodeProfileInfo nodeProfileInfo : profileInfo.getConfiguredNodes()) {
+            generateFile(targetDirectory, nodeProfileInfo, templateBundle.getProfileRuleProviderTemplate(), "di", profileInfo.getTypeName(), "RuleProvider");
+        }
+
+        for (ChildInfo childInfo : profileInfo.getConfiguredChildren()) {
+            //todo
+        }
+
+    }
+
+
 }

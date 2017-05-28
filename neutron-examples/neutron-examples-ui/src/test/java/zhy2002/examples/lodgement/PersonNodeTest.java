@@ -40,15 +40,15 @@ public class PersonNodeTest {
     public void addressRefListIsUpdatedWhenAnAddressNodeIsAdded() {
         applicationNode.getSubmissionNode().unloadDirectly();
 
-        AddressRefListNode AddressRefListNode = applicationNode.getAddressRefListNode();
-        assertThat(AddressRefListNode.getItemCount(), equalTo(5));
+        AddressRefListNode addressRefListNode = applicationNode.getAddressRefListNode();
+        assertThat(addressRefListNode.getItemCount(), equalTo(5));
 
         personNode.getParent().removeByIndex(0);
-        assertThat(AddressRefListNode.getItemCount(), equalTo(1)); //first one is automatically added
+        assertThat(addressRefListNode.getItemCount(), equalTo(1)); //first one is automatically added
 
         personNode.getParent().createItem();
         personNode.getParent().createItem();
-        assertThat(AddressRefListNode.getItemCount(), equalTo(9));
+        assertThat(addressRefListNode.getItemCount(), equalTo(9));
     }
 
     @Test
@@ -67,16 +67,16 @@ public class PersonNodeTest {
     public void creditHistoryListIsEnabledByLegalActionEqYes() {
         PersonPrivacyNode privacyNode = personNode.getPersonPrivacyNode();
         CreditHistoryListNode creditHistoryListNode = privacyNode.getCreditHistoryListNode();
-        assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
-        creditHistoryListNode.createItem();
+        assertThat(creditHistoryListNode.isDisabled(), equalTo(true));
 
         LegalActionNode legalActionNode = privacyNode.getLegalActionNode();
+        legalActionNode.setValue("Yes");
+        assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
+
+        creditHistoryListNode.createItem();
         legalActionNode.setValue("No");
         assertThat(creditHistoryListNode.isDisabled(), equalTo(true));
         assertThat(creditHistoryListNode.getItemCount(), equalTo(0));
-
-        legalActionNode.setValue("Yes");
-        assertThat(creditHistoryListNode.isDisabled(), equalTo(false));
     }
 
     @Test

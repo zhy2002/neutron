@@ -63,7 +63,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         return new Telephone(value);
     }
 
-    final void setEmptyValue(Telephone value) {
+    public void setEmptyValue(Telephone value) {
         super.setStateValue(EMPTY_VALUE_PROPERTY, value);
     }
 
