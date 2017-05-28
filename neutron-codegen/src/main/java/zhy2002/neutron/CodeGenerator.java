@@ -35,7 +35,7 @@ class CodeGenerator {
         }
 
         codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
-        codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "ClassRegistry");
+        codeGenerationService.generateFile(targetDirectory, "event", domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "EventRegistry");
         codeGenerationService.generateFile(targetDirectory, "rule", domainInfo, templateBundle.getRulePackageTemplate(), "package-info");
         codeGenerationService.generateFile(targetDirectory, "di", domainInfo, templateBundle.getManifestModuleTemplate(), "ManifestModule");
     }

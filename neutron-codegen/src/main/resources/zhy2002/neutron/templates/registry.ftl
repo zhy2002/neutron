@@ -1,4 +1,4 @@
-package ${targetPackage}.gen;
+package ${targetPackage}.gen.event;
 
 import ${targetPackage}.gen.event.*;
 import ${targetPackage}.gen.node.*;
@@ -7,10 +7,10 @@ import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.*;
 
 @Singleton
-public class ${typeName}ClassRegistry extends EventRegistryImpl {
+public class ${typeName}EventRegistry extends EventRegistryImpl {
 
     @Inject
-    ${typeName}ClassRegistry() {
+    ${typeName}EventRegistry() {
         loadStateChangeEventFactories();
     }
 

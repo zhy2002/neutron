@@ -1,6 +1,5 @@
 package zhy2002.neutron.model;
 
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;

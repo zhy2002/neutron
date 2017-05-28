@@ -16,7 +16,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyTest {
+public class FreemarkerTest {
 
     private Configuration cfg;
 

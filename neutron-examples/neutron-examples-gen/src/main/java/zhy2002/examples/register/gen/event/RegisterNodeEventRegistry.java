@@ -1,4 +1,4 @@
-package zhy2002.examples.register.gen;
+package zhy2002.examples.register.gen.event;
 
 import zhy2002.examples.register.gen.event.*;
 import zhy2002.examples.register.gen.node.*;
@@ -7,10 +7,10 @@ import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.*;
 
 @Singleton
-public class RegisterNodeClassRegistry extends EventRegistryImpl {
+public class RegisterNodeEventRegistry extends EventRegistryImpl {
 
     @Inject
-    RegisterNodeClassRegistry() {
+    RegisterNodeEventRegistry() {
         loadStateChangeEventFactories();
     }
 

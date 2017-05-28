@@ -3,7 +3,7 @@ package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.gen.node.MonthYearNode;
 import zhy2002.examples.lodgement.gen.node.MovedFromPreviousAddressNode;
-import zhy2002.neutron.MonthYearNoEarlierThanRule;
+import zhy2002.examples.lodgement.rule.MonthYearNoEarlierThanRule;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
