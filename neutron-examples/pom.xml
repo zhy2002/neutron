@@ -10,6 +10,7 @@
         <module>neutron-examples-ui</module>
         <module>neutron-examples-dep</module>
         <module>neutron-examples-pro</module>
+        <module>neutron-examples-impl</module>
     </modules>
 
     <parent>
@@ -26,6 +27,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-examples-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>zhy2002.neutron</groupId>
                 <artifactId>neutron-examples-pro</artifactId>

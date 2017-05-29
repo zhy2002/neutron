@@ -1,7 +1,8 @@
 package zhy2002.examples.lodgement;
 
 import com.google.gwt.core.client.EntryPoint;
-import zhy2002.neutron.interop.JsMethods;
+import zhy2002.examples.interop.JsMethods;
+
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

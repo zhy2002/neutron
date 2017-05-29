@@ -42,7 +42,7 @@ function createAppTab(newApp) {
 }
 
 //todo pass the lender to create application for.
-function createApplicationNode(profileName = 'Nab') {
+function createApplicationNode(profileName) {
     const model = window.GWT.createApplicationNode(profileName, null);
 
     model.getIdNode().setValue(model.getContext().getContextId());
@@ -78,8 +78,8 @@ function restoreApplicationNode(node, path, profileName = 'Nab') {
  */
 export default class LodgementService extends StaticService {
 
-    static newApp() {
-        return createApplicationNode().then(createAppTab);
+    static newApp(profileName = 'Nab') {
+        return createApplicationNode(profileName).then(createAppTab);
     }
 
     static openApp(appId, path) {
@@ -119,7 +119,7 @@ export default class LodgementService extends StaticService {
             );
     }
 
-    static cloneApp(appId, path) {
+    static cloneApp(appId, path, profile = 'Nab') {
         let id = null;
         if (typeof appId === 'string') {
             id = appId;

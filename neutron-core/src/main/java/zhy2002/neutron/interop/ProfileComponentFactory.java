@@ -23,7 +23,7 @@ public final class ProfileComponentFactory<C extends UiNodeContext<?>> {
     private final Map<String, Function<NodeDataStore, ProfileComponent<C>>> map = new HashMap<>();
 
     @JsIgnore
-    void put(String profileName, Function<NodeDataStore, ProfileComponent<C>> createFunc) {
+    public void put(String profileName, Function<NodeDataStore, ProfileComponent<C>> createFunc) {
         map.put(profileName, createFunc);
     }
 
@@ -33,5 +33,11 @@ public final class ProfileComponentFactory<C extends UiNodeContext<?>> {
             return null;
 
         return creator.apply(store);
+    }
+
+    public String[] getAllProfileNames() {
+        String[] names = new String[map.size()];
+        map.keySet().toArray(names);
+        return names;
     }
 }

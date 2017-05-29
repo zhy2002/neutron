@@ -1,0 +1,1 @@
+package zhy2002.examples.lodgement.bankb.gen.rule;
