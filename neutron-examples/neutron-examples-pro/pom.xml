@@ -35,7 +35,7 @@
                 <artifactId>neutron-codegen</artifactId>
                 <executions>
                     <execution>
-                        <id>lodgement</id>
+                        <id>lodgement-nab</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate-profile</goal>
@@ -52,6 +52,60 @@
                             </targetDirectory>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>lodgement-cba</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-profile</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml
+                            </nodeFile>
+                            <ruleFile>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/cba/cba.yml
+                            </ruleFile>
+                            <targetDirectory>
+                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/cba/gen
+                            </targetDirectory>
+                        </configuration>
+                    </execution>
+                    <!--<execution>-->
+                        <!--<id>lodgement-anz</id>-->
+                        <!--<phase>generate-sources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate-profile</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<nodeFile>-->
+                                <!--${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml-->
+                            <!--</nodeFile>-->
+                            <!--<ruleFile>-->
+                                <!--${project.build.sourceDirectory}/zhy2002/examples/lodgement/anz/anz.yml-->
+                            <!--</ruleFile>-->
+                            <!--<targetDirectory>-->
+                                <!--${project.build.sourceDirectory}/zhy2002/examples/lodgement/anz/gen-->
+                            <!--</targetDirectory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>lodgement-westpac</id>-->
+                        <!--<phase>generate-sources</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate-profile</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<nodeFile>-->
+                                <!--${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml-->
+                            <!--</nodeFile>-->
+                            <!--<ruleFile>-->
+                                <!--${project.build.sourceDirectory}/zhy2002/examples/lodgement/westpac/westpac.yml-->
+                            <!--</ruleFile>-->
+                            <!--<targetDirectory>-->
+                                <!--${project.build.sourceDirectory}/zhy2002/examples/lodgement/westpac/gen-->
+                            <!--</targetDirectory>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
 

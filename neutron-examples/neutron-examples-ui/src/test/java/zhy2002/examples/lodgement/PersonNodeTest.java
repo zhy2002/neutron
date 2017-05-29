@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.TestUtil;
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.nab.node.AddressRefListNodeImpl;
+import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.NodeStatusEnum;
 import zhy2002.neutron.UiNode;

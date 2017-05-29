@@ -2,8 +2,8 @@ package zhy2002.neutron.interop;
 
 import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
-import zhy2002.examples.lodgement.di.DaggerCbaProfileComponent;
-import zhy2002.examples.lodgement.di.DaggerNabProfileComponent;
+import zhy2002.examples.lodgement.cba.di.DaggerCbaProfileComponent;
+import zhy2002.examples.lodgement.nab.di.DaggerNabProfileComponent;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.neutron.data.NodeDataStore;
