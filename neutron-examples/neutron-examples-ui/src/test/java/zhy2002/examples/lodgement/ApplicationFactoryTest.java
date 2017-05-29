@@ -19,7 +19,7 @@ public class ApplicationFactoryTest {
 
     @Test
     public void shouldNotThrowExceptionWhenNodeDataStoreIsNull() {
-        ApplicationNode result = JavaMethods.createApplicationNode("nab", null);
+        ApplicationNode result = JavaMethods.createApplicationNode("Nab", null);
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getPersonListNode().getUniqueId(), containsString("-"));
     }
@@ -30,7 +30,7 @@ public class ApplicationFactoryTest {
         String rootId = "root_id";
 
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
-        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("Nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getUniqueId(), containsString(testContextId));
@@ -55,7 +55,7 @@ public class ApplicationFactoryTest {
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", null));
         rootChildren.add(new TestNodeIdentity("additionalNodeId", "additionalNode", additionalNodeChildren));
 
-        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("Nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getIdNode().getUniqueId(), containsString(rootChildren.get("idNode").getLocalId()));
         assertThat(result.getStatusNode().getUniqueId(), containsString(rootChildren.get("statusNode").getLocalId()));
@@ -80,7 +80,7 @@ public class ApplicationFactoryTest {
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", personListChildren));
 
-        ApplicationNode result = JavaMethods.createApplicationNode("nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = JavaMethods.createApplicationNode("Nab", new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         PersonListNode personListNode = result.getPersonListNode();
         assertThat(personListNode.getItemCount(), equalTo(2));

@@ -18,7 +18,7 @@ public class FinancialPositionTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode("nab", null);
+        applicationNode = JavaMethods.createApplicationNode("Nab", null);
         financialPositionNode = applicationNode.getFinancialPositionNode();
     }
 

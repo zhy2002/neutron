@@ -17,7 +17,7 @@ public class RealEstateNodeTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode("nab", null);
+        applicationNode = JavaMethods.createApplicationNode("Nab", null);
         realEstateListNode = applicationNode.getRealEstateListNode();
     }
 

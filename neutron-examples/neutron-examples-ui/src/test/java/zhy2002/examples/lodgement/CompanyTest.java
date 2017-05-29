@@ -16,7 +16,7 @@ public class CompanyTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode("nab", null);
+        applicationNode = JavaMethods.createApplicationNode("Nab", null);
         companyListNode = applicationNode.getCompanyListNode();
     }
 

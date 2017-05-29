@@ -28,7 +28,7 @@ public class PersonNodeTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode("nab", null);
+        applicationNode = JavaMethods.createApplicationNode("Nab", null);
         context = applicationNode.getContext();
         PersonListNode personListNode = applicationNode.getPersonListNode();
         personNode = personListNode.createItem();

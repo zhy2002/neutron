@@ -42,8 +42,8 @@ function createAppTab(newApp) {
 }
 
 //todo pass the lender to create application for.
-function createApplicationNode() {
-    const model = window.GWT.ApplicationNodeFactory.create();
+function createApplicationNode(profileName = 'Nab') {
+    const model = window.GWT.createApplicationNode(profileName, null);
 
     model.getIdNode().setValue(model.getContext().getContextId());
 
@@ -52,26 +52,24 @@ function createApplicationNode() {
 
     model.getStatusNode().setValue('In Progress');
 
-    model.getLenderNode().setValue('NAB');
-
     const now = moment().format();
     model.getDateCreatedNode().setValue(now);
 
     return CommonUtil.defer(model);
 }
 
-function cloneApplicationNode(node, path) {
+function cloneApplicationNode(node, path, profileName = 'Nab') {
     node.children.id.value = null;
     const nodeDataStore = UiService.createNodeDataStore(node);
-    const model = window.GWT.ApplicationNodeFactory.restore(nodeDataStore);
+    const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
     node.children.id.value = model.getContext().getContextId();
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 
-function restoreApplicationNode(node, path) {
+function restoreApplicationNode(node, path, profileName = 'Nab') {
     //todo open for different lenders
     const nodeDataStore = UiService.createNodeDataStore(node);
-    const model = window.GWT.ApplicationNodeFactory.restore(nodeDataStore);
+    const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 
