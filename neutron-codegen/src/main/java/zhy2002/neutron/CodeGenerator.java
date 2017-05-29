@@ -5,6 +5,11 @@ import zhy2002.neutron.service.CodeGenUtil;
 import zhy2002.neutron.service.CodeGenerationService;
 import zhy2002.neutron.service.ResourceLoaderService;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 /**
  * The Neutron code generator. One instance is used per execution.
  * Code gen = model + template.
@@ -21,12 +26,20 @@ class CodeGenerator {
         generateDomainFiles(domainInfo, templateBundle, targetDirectory);
     }
 
-    void generateProfile(String nodeFile, String ruleFile, String targetDirectory) {
+    void generateProfiles(String nodeFile, List<String> ruleFiles) {
         DomainInfo domainInfo = resourceLoaderService.loadDomainInfo(nodeFile);
-        ProfileInfo profileInfo = resourceLoaderService.loadProfileInfo(ruleFile, domainInfo);
         TemplateBundle templateBundle = resourceLoaderService.loadTemplateBundle();
-        CodeGenUtil.clearDirectory(targetDirectory);
-        generateProfileFiles(profileInfo, templateBundle, targetDirectory);
+
+        for(String ruleFile : ruleFiles) {
+            File file = new File(ruleFile);
+            if (!file.exists())
+                throw new RuntimeException("Cannot find profile description file: " + ruleFile);
+            ProfileInfo profileInfo = resourceLoaderService.loadProfileInfo(ruleFile, domainInfo);
+            String targetDirectory = Paths.get(file.getParent(), "gen").toString();
+            CodeGenUtil.clearDirectory(targetDirectory);
+            generateProfileFiles(profileInfo, templateBundle, targetDirectory);
+        }
+
     }
 
     private void generateDomainFiles(DomainInfo domainInfo, TemplateBundle templateBundle, String targetDirectory) {

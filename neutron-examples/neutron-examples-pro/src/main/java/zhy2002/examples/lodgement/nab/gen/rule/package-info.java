@@ -1,1 +1,0 @@
-package zhy2002.examples.lodgement.nab.gen.rule;

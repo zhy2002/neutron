@@ -6,6 +6,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.util.List;
+
 /**
  * Maven mojo for profile code generation.
  */
@@ -17,27 +19,19 @@ public class ProfileGenMojo extends AbstractMojo {
      */
     @Parameter(property = "nodeFile", required = true)
     private String nodeFile;
-
     /**
-     * The profile description file.
+     * The profile description files.
+     * Code will be generated in a sibling folder named 'gen'.
      */
     @Parameter(property = "ruleFile", required = true)
-    private String ruleFile;
-    /**
-     * The path of the directory where generated code is put.
-     * By convention the directory name is
-     * 'DOMAIN_ROOT/PROFILE_NAME/gen'.
-     */
-    @Parameter(property = "targetDirectory", required = true)
-    private String targetDirectory;
+    private List<String> ruleFiles;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().debug("Running Neutron profile code generation...");
         getLog().debug("- node file:" + nodeFile);
-        getLog().debug("- rule file:" + ruleFile);
-        getLog().debug("- target directory:" + targetDirectory);
+        getLog().debug("- rule file:" + ruleFiles);
 
-        new CodeGenerator().generateProfile(nodeFile, ruleFile, targetDirectory);
+        new CodeGenerator().generateProfiles(nodeFile, ruleFiles);
     }
 }

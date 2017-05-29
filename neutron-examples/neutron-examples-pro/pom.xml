@@ -33,7 +33,7 @@
                 <artifactId>neutron-codegen</artifactId>
                 <executions>
                     <execution>
-                        <id>banka</id>
+                        <id>generate-profiles</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate-profile</goal>
@@ -42,48 +42,17 @@
                             <nodeFile>
                                 ${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml
                             </nodeFile>
-                            <ruleFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/banka/banka.yml
-                            </ruleFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/banka/gen
-                            </targetDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>bankb</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate-profile</goal>
-                        </goals>
-                        <configuration>
-                            <nodeFile>
-                                ${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml
-                            </nodeFile>
-                            <ruleFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankb/bankb.yml
-                            </ruleFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankb/gen
-                            </targetDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>bankc</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate-profile</goal>
-                        </goals>
-                        <configuration>
-                            <nodeFile>
-                                ${basedir}/../neutron-examples-gen/src/main/java/zhy2002/examples/lodgement/desc.yml
-                            </nodeFile>
-                            <ruleFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankc/bankc.yml
-                            </ruleFile>
-                            <targetDirectory>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankc/gen
-                            </targetDirectory>
+                            <ruleFiles>
+                                <ruleFile>
+                                    ${project.build.sourceDirectory}/zhy2002/examples/lodgement/banka/banka.yml
+                                </ruleFile>
+                                <ruleFile>
+                                    ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankb/bankb.yml
+                                </ruleFile>
+                                <ruleFile>
+                                    ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankc/bankc.yml
+                                </ruleFile>
+                            </ruleFiles>
                         </configuration>
                     </execution>
                 </executions>
