@@ -18,6 +18,9 @@ public abstract class BankBProfileModule {
     abstract PersonListNodeRuleProvider providePersonListNodeRuleProvider(BankBPersonListNodeRuleProvider impl);
 
     @Binds
+    abstract PersonNodeRuleProvider providePersonNodeRuleProvider(BankBPersonNodeRuleProvider impl);
+
+    @Binds
     abstract TitleNodeRuleProvider provideTitleNodeRuleProvider(BankBTitleNodeRuleProvider impl);
 
     @Binds
@@ -81,6 +84,9 @@ public abstract class BankBProfileModule {
 
     @Binds
     abstract PreviousEmploymentNodeRuleProvider providePreviousEmploymentNodeRuleProvider(BankBPreviousEmploymentNodeRuleProvider impl);
+
+    @Binds
+    abstract CompanyNodeRuleProvider provideCompanyNodeRuleProvider(BankBCompanyNodeRuleProvider impl);
 
     @Binds
     abstract CompanyApplicationTypeNodeRuleProvider provideCompanyApplicationTypeNodeRuleProvider(BankBCompanyApplicationTypeNodeRuleProvider impl);

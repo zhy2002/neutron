@@ -7,6 +7,7 @@ import LodgementHeaderComponent from './LodgementHeaderComponent';
 import LodgementContentComponent from './LodgementContentComponent';
 import LodgementFooterComponent from './LodgementFooterComponent';
 import LodgementSpinnerComponent from './LodgementSpinnerComponent';
+import LenderListComponent from './LenderListComponent';
 
 
 /**
@@ -37,6 +38,28 @@ export default class LodgementComponent extends React.PureComponent {
             }
         });
 
+        this.showLenderList = ({resolve, reject}) => {
+            this.setState({
+                showLenderList: true,
+                handleSelectLender: (lender) => {
+                    resolve(lender);
+                    this.setState({
+                        showLenderList: false,
+                        handleSelectLender: null,
+                        handleCancelSelectLender: null
+                    });
+                },
+                handleCancelSelectLender: () => {
+                    reject();
+                    this.setState({
+                        showLenderList: false,
+                        handleSelectLender: null,
+                        handleCancelSelectLender: null
+                    });
+                }
+            });
+        };
+
         this.state = LodgementService.getState();
     }
 
@@ -44,10 +67,12 @@ export default class LodgementComponent extends React.PureComponent {
         EventService.subscribe('lodgement_state_change', this.onStateChange);
         LocationService.syncStateToHash();
         LodgementService.refreshApplicationList();
+        EventService.subscribe('show_lender_list', this.showLenderList);
     }
 
     componentWillUnmount() {
         EventService.unsubscribe('lodgement_state_change', this.onStateChange);
+        EventService.unsubscribe('show_lender_list', this.showLenderList);
     }
 
     render() {
@@ -69,6 +94,13 @@ export default class LodgementComponent extends React.PureComponent {
                 <LodgementFooterComponent />
                 <LodgementSpinnerComponent />
                 <NotificationSystem ref={this.setNotificationSystem}/>
+                {
+                    this.state.showLenderList &&
+                    <LenderListComponent
+                        onSelect={this.state.handleSelectLender}
+                        onQuit={this.state.handleCancelSelectLender}
+                    />
+                }
             </div>
         );
     }

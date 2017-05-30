@@ -666,6 +666,15 @@ li.nav-dropdown-component.selected {
   background-color: $brand-primary;
 }
 
+.lender-list-component {
+  width: 200px;
+  margin: 100px auto;
+
+  .list-group-item:hover {
+
+  }
+}
+
 .loading-spinner-component {
   position: absolute;
   top: 0;

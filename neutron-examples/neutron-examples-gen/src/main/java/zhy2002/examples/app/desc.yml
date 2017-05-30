@@ -7,6 +7,8 @@ rootType:
   childTypes:
   - typeName: AppManagerNode
     baseTypeName: ObjectUiNode
+    init:
+    - {propertyName: nodeLabel, value: '"Form Manager"'}
     children:
     - {typeName: ApplicationListNode}
     childTypes:

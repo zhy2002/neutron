@@ -46,6 +46,7 @@ function createApplicationNode(profileName) {
     const model = window.GWT.createApplicationNode(profileName, null);
 
     model.getIdNode().setValue(model.getContext().getContextId());
+    model.getLenderNode().setValue(profileName);
 
     const user = UiService.getCurrentUser();
     model.getOwningUserNode().setValue(user.username);
@@ -58,7 +59,7 @@ function createApplicationNode(profileName) {
     return CommonUtil.defer(model);
 }
 
-function cloneApplicationNode(node, path, profileName = 'Nab') {
+function cloneApplicationNode(node, path, profileName) {
     node.children.id.value = null;
     const nodeDataStore = UiService.createNodeDataStore(node);
     const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
@@ -66,11 +67,17 @@ function cloneApplicationNode(node, path, profileName = 'Nab') {
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 
-function restoreApplicationNode(node, path, profileName = 'Nab') {
-    //todo open for different lenders
+function restoreApplicationNode(node, path) {
     const nodeDataStore = UiService.createNodeDataStore(node);
+    const profileName = node.children.lender.value;
     const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
+}
+
+function showLenderList() {
+    return new Promise((resolve, reject) => {
+        EventService.fire('show_lender_list', {resolve, reject});
+    });
 }
 
 /**
@@ -78,8 +85,8 @@ function restoreApplicationNode(node, path, profileName = 'Nab') {
  */
 export default class LodgementService extends StaticService {
 
-    static newApp(profileName = 'Nab') {
-        return createApplicationNode(profileName).then(createAppTab);
+    static newApp() {
+        return showLenderList().then(profileName => createApplicationNode(profileName).then(createAppTab));
     }
 
     static openApp(appId, path) {
@@ -119,7 +126,7 @@ export default class LodgementService extends StaticService {
             );
     }
 
-    static cloneApp(appId, path, profile = 'Nab') {
+    static cloneApp(appId, path, profile = 'BankB') {
         let id = null;
         if (typeof appId === 'string') {
             id = appId;
@@ -134,7 +141,7 @@ export default class LodgementService extends StaticService {
 
         CommonUtil.setIsLoading(true);
         return StorageService.getApplication(id)
-            .then(node => cloneApplicationNode(node, path))
+            .then(node => cloneApplicationNode(node, path, profile))
             .then(createAppTab)
             .then(
                 (model) => {

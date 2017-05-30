@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import zhy2002.examples.app.data.*;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;

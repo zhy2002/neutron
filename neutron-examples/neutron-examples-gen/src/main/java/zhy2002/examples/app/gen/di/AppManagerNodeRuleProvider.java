@@ -6,6 +6,8 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.examples.app.gen.node.AppManagerNode;
 import zhy2002.examples.app.gen.di.*;
+import zhy2002.examples.app.data.*;
+import java.math.*;
 
 @AppManagerNodeScope
 public class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> {
@@ -21,6 +23,7 @@ public class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> 
     public void initializeState(AppManagerNode node) {
         parentRuleProvider.initializeState(node);
 
+        node.setNodeLabel("Form Manager");
     }
 
     @Override

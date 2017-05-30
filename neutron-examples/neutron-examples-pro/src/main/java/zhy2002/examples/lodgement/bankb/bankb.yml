@@ -37,6 +37,8 @@ rootType:
     - {propertyName: nodeLabel, value: '"Person Applicant"'}
     childTypes:
     - typeName: PersonNode
+      rules:
+      - {typeName: UpdatePersonNodeLabelRule}
       children:
       - {typeName: PersonGeneralNode}
       - {typeName: PersonContactNode}
@@ -69,7 +71,7 @@ rootType:
           - {propertyName: options, value: 'ApplicationNodeConstants.TITLE_TYPE'}
           - {propertyName: required, value: 'true'}
           rules:
-          - {typeName: TitleGenderMatchRule, existing: true}
+          - {typeName: TitleGenderMatchRule}
 
         - typeName: FirstNameNode
           init:
@@ -79,7 +81,7 @@ rootType:
           - {propertyName: invalidChars, value: "\"#\""}
           - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
           rules:
-          - {typeName: InvalidCharPreChangeRule, existing: true}
+          - {typeName: InvalidCharPreChangeRule}
 
         - typeName: LastNameNode
           init:
@@ -199,6 +201,8 @@ rootType:
   - typeName: CompanyListNode
     childTypes:
     - typeName: CompanyNode
+      rules:
+      - {typeName: UpdateCompanyNodeLabelRule}
       children:
       - {typeName: CompanyGeneralNode}
       - {typeName: CompanyContactNode}
