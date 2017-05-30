@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.config.UiNodeMetadata;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.data.ValidationError;
 import zhy2002.neutron.data.ValidationErrorList;
@@ -840,6 +841,12 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
 //endregion
+
+    public final <T> T getClassConfigValue(String key) {
+        Class<?> clazz = this.getConcreteClass();
+        UiNodeMetadata metadata = MetadataRegistry.getClassMetadata(clazz);
+        return metadata.getConfigValue(key);
+    }
 
     //Internal rule are defined in the owning node class.
     //These rules are always added and are never referenced by client code.

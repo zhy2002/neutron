@@ -9,6 +9,7 @@ import java.util.Map;
 public class UiNodeMetadata {
 
     private final Class<?> clazz;
+    private final Map<String, Object> config = new HashMap<>();
     private final Map<String, PropertyMetadata<?>> propertyMetadataMap = new HashMap<>();
 
     //todo chain super node metadata
@@ -29,4 +30,17 @@ public class UiNodeMetadata {
         propertyMetadataMap.put(propertyMetadata.getName(), propertyMetadata);
     }
 
+    @SuppressWarnings("unchecked")
+    public final <T> T getConfigValue(String key) {
+        Object value = config.get(key);
+        return (T)value;
+    }
+
+    public final void setConfigValue(String key, Object value) {
+        if (value == null) {
+            config.remove(key);
+        } else {
+            config.put(key, value);
+        }
+    }
 }

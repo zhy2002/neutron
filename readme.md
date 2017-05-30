@@ -221,9 +221,7 @@ Finished
 * init or fix value event
 * warning rules and suppressed warning
 * proper error handling and logging
-= event trigger opportunity is up to the ui implementor
-* Class level config
-* state metadata (type and stuff)  
+= event trigger opportunity is up to the ui implementor 
 * state property namespace or distinction between system property and user property   
 * GWT Interop: https://docs.google.com/document/d/10fmlEYIHcyead_4R1S5wKGs1t2I7Fnp_PaNaa7XTEk0/edit#
 
@@ -240,8 +238,6 @@ rule	rule in the profile	rule implementation
 di	super type	get instance by super type	
 classRegistry	(predefined) related type	get instance by related type	
 
-todo: 
-eliminate classRegistry
 
 ////////////////////////////////////
 valueTypeName -> default baseTypeName: LeafUiNode
@@ -249,12 +245,6 @@ commonTypes -> abstractNode: true
 baseTypeName: LeafUiNode -> parentBaseTypeName: ParentUiNode<?>
 children is not null -> baseTypeName: ObjectUiNode
 baseTypeName: ObjectUiNode -> parentBaseTypeName: ParentUiNode<?>
-
-
-node state
-generic event binding
-field length
-trust ref list
 
 <pre>
 dob year defaults to 18 years ago
