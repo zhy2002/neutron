@@ -1,5 +1,5 @@
 package zhy2002.examples.lodgement.gen.node;
-
+/* template name: child_factory.ftl */
 import zhy2002.neutron.*;
 import dagger.MembersInjector;
 import javax.inject.*;

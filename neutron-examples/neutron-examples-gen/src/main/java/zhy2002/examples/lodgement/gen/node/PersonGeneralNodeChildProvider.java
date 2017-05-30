@@ -1,5 +1,5 @@
 package zhy2002.examples.lodgement.gen.node;
-
+/* template name: child_factory.ftl */
 import zhy2002.neutron.*;
 import dagger.MembersInjector;
 import javax.inject.*;
@@ -9,6 +9,7 @@ import java.util.*;
 
 interface PersonGeneralNodeChildFactory {
     TitleNode createTitleNode();
+    OtherTitleNode createOtherTitleNode();
     FirstNameNode createFirstNameNode();
     LastNameNode createLastNameNode();
     GenderNode createGenderNode();
@@ -19,6 +20,8 @@ interface PersonGeneralNodeChildFactory {
     MaritalStatusNode createMaritalStatusNode();
     PermanentResidentFlagNode createPermanentResidentFlagNode();
     SpouseNode createSpouseNode();
+    NextOfKinNode createNextOfKinNode();
+    AgeOfDependantsNode createAgeOfDependantsNode();
     FirstHomeBuyerFlagNode createFirstHomeBuyerFlagNode();
     HousingStatusNode createHousingStatusNode();
     ApplicationTypeNode createApplicationTypeNode();
@@ -31,6 +34,8 @@ public class PersonGeneralNodeChildProvider {
     @Inject
     MembersInjector<MaritalStatusNode> maritalStatusNodeInjector;
     @Inject
+    MembersInjector<OtherTitleNode> otherTitleNodeInjector;
+    @Inject
     MembersInjector<FirstNameNode> firstNameNodeInjector;
     @Inject
     MembersInjector<DateOfBirthNode> dateOfBirthNodeInjector;
@@ -40,6 +45,8 @@ public class PersonGeneralNodeChildProvider {
     MembersInjector<DriversLicenseNode> driversLicenseNodeInjector;
     @Inject
     MembersInjector<HousingStatusNode> housingStatusNodeInjector;
+    @Inject
+    MembersInjector<NextOfKinNode> nextOfKinNodeInjector;
     @Inject
     MembersInjector<GenderNode> genderNodeInjector;
     @Inject
@@ -54,6 +61,8 @@ public class PersonGeneralNodeChildProvider {
     MembersInjector<SpouseNode> spouseNodeInjector;
     @Inject
     MembersInjector<PersonApplicantTypeNode> personApplicantTypeNodeInjector;
+    @Inject
+    MembersInjector<AgeOfDependantsNode> ageOfDependantsNodeInjector;
 
     @Inject
     protected PersonGeneralNodeChildProvider () {}
@@ -64,6 +73,10 @@ public class PersonGeneralNodeChildProvider {
 
     protected MembersInjector<MaritalStatusNode> getMaritalStatusNodeInjector() {
         return this.maritalStatusNodeInjector;
+    }
+
+    protected MembersInjector<OtherTitleNode> getOtherTitleNodeInjector() {
+        return this.otherTitleNodeInjector;
     }
 
     protected MembersInjector<FirstNameNode> getFirstNameNodeInjector() {
@@ -84,6 +97,10 @@ public class PersonGeneralNodeChildProvider {
 
     protected MembersInjector<HousingStatusNode> getHousingStatusNodeInjector() {
         return this.housingStatusNodeInjector;
+    }
+
+    protected MembersInjector<NextOfKinNode> getNextOfKinNodeInjector() {
+        return this.nextOfKinNodeInjector;
     }
 
     protected MembersInjector<GenderNode> getGenderNodeInjector() {
@@ -114,6 +131,10 @@ public class PersonGeneralNodeChildProvider {
         return this.personApplicantTypeNodeInjector;
     }
 
+    protected MembersInjector<AgeOfDependantsNode> getAgeOfDependantsNodeInjector() {
+        return this.ageOfDependantsNodeInjector;
+    }
+
     protected TitleNode newTitleNode(
         PersonGeneralNode parent,
         String name
@@ -134,6 +155,34 @@ public class PersonGeneralNodeChildProvider {
 
         @Override
         public void initializeState(TitleNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected OtherTitleNode newOtherTitleNode(
+        PersonGeneralNode parent,
+        String name
+    ) {
+        return new OtherTitleNode(parent, name);
+    }
+
+    protected void configureOtherTitleNode(OtherTitleNode node) {
+    }
+
+    @OtherTitleNodeScope
+    public static class OtherTitleNodeRuleProvider implements RuleProvider<OtherTitleNode> {
+
+        @Inject
+        public OtherTitleNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(OtherTitleNode node) {
         }
 
 
@@ -422,6 +471,62 @@ public class PersonGeneralNodeChildProvider {
         }
     }
 
+    protected NextOfKinNode newNextOfKinNode(
+        PersonGeneralNode parent,
+        String name
+    ) {
+        return new NextOfKinNode(parent, name);
+    }
+
+    protected void configureNextOfKinNode(NextOfKinNode node) {
+    }
+
+    @NextOfKinNodeScope
+    public static class NextOfKinNodeRuleProvider implements RuleProvider<NextOfKinNode> {
+
+        @Inject
+        public NextOfKinNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(NextOfKinNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
+    protected AgeOfDependantsNode newAgeOfDependantsNode(
+        PersonGeneralNode parent,
+        String name
+    ) {
+        return new AgeOfDependantsNode(parent, name);
+    }
+
+    protected void configureAgeOfDependantsNode(AgeOfDependantsNode node) {
+    }
+
+    @AgeOfDependantsNodeScope
+    public static class AgeOfDependantsNodeRuleProvider implements RuleProvider<AgeOfDependantsNode> {
+
+        @Inject
+        public AgeOfDependantsNodeRuleProvider() {
+
+        }
+
+        @Override
+        public void initializeState(AgeOfDependantsNode node) {
+        }
+
+
+        @Override
+        public void createRules(List<UiNodeRule<?>> createdRules) {
+        }
+    }
+
     protected FirstHomeBuyerFlagNode newFirstHomeBuyerFlagNode(
         PersonGeneralNode parent,
         String name
@@ -527,6 +632,14 @@ public class PersonGeneralNodeChildProvider {
         }
 
         @Override
+        public OtherTitleNode createOtherTitleNode() {
+            OtherTitleNode node = newOtherTitleNode(parent, "otherTitleNode");
+            otherTitleNodeInjector.injectMembers(node);
+            configureOtherTitleNode(node);
+            return node;
+        }
+
+        @Override
         public FirstNameNode createFirstNameNode() {
             FirstNameNode node = newFirstNameNode(parent, "firstNameNode");
             firstNameNodeInjector.injectMembers(node);
@@ -603,6 +716,22 @@ public class PersonGeneralNodeChildProvider {
             SpouseNode node = newSpouseNode(parent, "spouseNode");
             spouseNodeInjector.injectMembers(node);
             configureSpouseNode(node);
+            return node;
+        }
+
+        @Override
+        public NextOfKinNode createNextOfKinNode() {
+            NextOfKinNode node = newNextOfKinNode(parent, "nextOfKinNode");
+            nextOfKinNodeInjector.injectMembers(node);
+            configureNextOfKinNode(node);
+            return node;
+        }
+
+        @Override
+        public AgeOfDependantsNode createAgeOfDependantsNode() {
+            AgeOfDependantsNode node = newAgeOfDependantsNode(parent, "ageOfDependantsNode");
+            ageOfDependantsNodeInjector.injectMembers(node);
+            configureAgeOfDependantsNode(node);
             return node;
         }
 

@@ -63,6 +63,11 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     }
 
     @JsMethod
+    public OtherTitleNode getOtherTitleNode() {
+        return (OtherTitleNode)getChildByName("otherTitleNode");
+    }
+
+    @JsMethod
     public FirstNameNode getFirstNameNode() {
         return (FirstNameNode)getChildByName("firstNameNode");
     }
@@ -113,6 +118,16 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     }
 
     @JsMethod
+    public NextOfKinNode getNextOfKinNode() {
+        return (NextOfKinNode)getChildByName("nextOfKinNode");
+    }
+
+    @JsMethod
+    public AgeOfDependantsNode getAgeOfDependantsNode() {
+        return (AgeOfDependantsNode)getChildByName("ageOfDependantsNode");
+    }
+
+    @JsMethod
     public FirstHomeBuyerFlagNode getFirstHomeBuyerFlagNode() {
         return (FirstHomeBuyerFlagNode)getChildByName("firstHomeBuyerFlagNode");
     }
@@ -132,6 +147,8 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("titleNode");
         children.add(childFactory.createTitleNode());
+        setChildNodeIdentity("otherTitleNode");
+        children.add(childFactory.createOtherTitleNode());
         setChildNodeIdentity("firstNameNode");
         children.add(childFactory.createFirstNameNode());
         setChildNodeIdentity("lastNameNode");
@@ -152,6 +169,10 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         children.add(childFactory.createPermanentResidentFlagNode());
         setChildNodeIdentity("spouseNode");
         children.add(childFactory.createSpouseNode());
+        setChildNodeIdentity("nextOfKinNode");
+        children.add(childFactory.createNextOfKinNode());
+        setChildNodeIdentity("ageOfDependantsNode");
+        children.add(childFactory.createAgeOfDependantsNode());
         setChildNodeIdentity("firstHomeBuyerFlagNode");
         children.add(childFactory.createFirstHomeBuyerFlagNode());
         setChildNodeIdentity("housingStatusNode");

@@ -8,8 +8,8 @@ rootType:
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
   rules:
-  - {typeName: MergeValidationErrorsRule, existing: true}
-  - {typeName: ShowErrorListRule}
+  - {typeName: MergeValidationErrorsRule}
+  - {typeName: ShowErrorListRule, existing: false}
   children:
   - {typeName: IdNode}
   - {typeName: StatusNode}
@@ -80,6 +80,7 @@ rootType:
         baseTypeName: ObjectUiNode
         children:
         - {typeName: TitleNode}
+        - {typeName: OtherTitleNode}
         - {typeName: FirstNameNode}
         - {typeName: LastNameNode}
         - {typeName: GenderNode}
@@ -90,11 +91,16 @@ rootType:
         - {typeName: MaritalStatusNode}
         - {typeName: PermanentResidentFlagNode}
         - {typeName: SpouseNode}
+        - {typeName: NextOfKinNode}
+        - {typeName: AgeOfDependantsNode}
         - {typeName: FirstHomeBuyerFlagNode}
         - {typeName: HousingStatusNode}
         - {typeName: ApplicationTypeNode}
         childTypes:
         - typeName: TitleNode
+          baseTypeName: StringUiNode
+
+        - typeName: OtherTitleNode
           baseTypeName: StringUiNode
 
         - typeName: FirstNameNode
@@ -129,6 +135,12 @@ rootType:
 
         - typeName: SpouseNode
           baseTypeName: ReferenceUiNode
+
+        - typeName: NextOfKinNode
+          baseTypeName: ReferenceUiNode
+
+        - typeName: AgeOfDependantsNode
+          baseTypeName: ObjectUiNode
 
         - typeName: FirstHomeBuyerFlagNode
           baseTypeName: BooleanUiNode
@@ -1081,7 +1093,7 @@ rootType:
     properties:
     - {name: focus, typeName: String, trackingMode: Always}
     rules:
-    - {typeName: ChangeFocusErrorRule}
+    - {typeName: ChangeFocusErrorRule, existing: false}
     childTypes:
     - typeName: ErrorNode
       baseTypeName: ValidationErrorUiNode
@@ -1108,10 +1120,10 @@ commonTypes:
   - {typeName: PostcodeNode}
   - {typeName: CountryNode}
   rules:
-  - {typeName: UpdateAddressRefListRule}
-  - {typeName: ObjectValueRequiredValidationRule, existing: true}
-  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
-  - {typeName: MaintainReadonlyAncestorCountRule, existing: true}
+  - {typeName: UpdateAddressRefListRule, existing: false}
+  - {typeName: ObjectValueRequiredValidationRule}
+  - {typeName: MaintainDisabledAncestorCountRule}
+  - {typeName: MaintainReadonlyAncestorCountRule}
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode

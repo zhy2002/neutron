@@ -117,4 +117,7 @@ public class TemplateBundle {
         return getTemplate("profile_rule_provider.ftl");
     }
 
+    Template getProfileChildProviderTemplate() {
+        return getTemplate("profile_child_factory.ftl");
+    }
 }

@@ -112,7 +112,7 @@ rootType:
           - {propertyName: options, value: 'ApplicationNodeConstants.APPLICATION_TYPE'}
           - {propertyName: required, value: 'true'}
           rules:
-          - {typeName: ChangeApplicationTypeRule}
+          - {typeName: ChangeApplicationTypeRule, existing: true}
 
         - typeName: MaritalStatusNode
           init:
@@ -132,7 +132,7 @@ rootType:
 
       - typeName: PersonContactNode
         rules:
-          - {typeName: HomeOrWorkPhoneRequiredRule}
+          - {typeName: HomeOrWorkPhoneRequiredRule, existing: true}
         children:
         - {typeName: PersonTelephoneNode, name: homePhoneNode}
         - {typeName: PersonTelephoneNode, name: workPhoneNode}
@@ -584,13 +584,13 @@ rootType:
           - {propertyName: value, value: 'null'}
           - {propertyName: required, value: true}
           rules:
-          - {typeName: UsedAsSecurityFlagChangeRule}
+          - {typeName: UsedAsSecurityFlagChangeRule, existing: true}
 
         - typeName: BeingPurchasedFlagNode
           init:
           - {propertyName: value, value: 'null'}
           rules:
-          - {typeName: BeingPurchasedFlagChangeRule}
+          - {typeName: BeingPurchasedFlagChangeRule, existing: true}
 
         - typeName: OwnedOutrightFlagNode
           init:
@@ -803,7 +803,7 @@ rootType:
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
             rules:
-            - {typeName: ProductGroupChangedRule}
+            - {typeName: ProductGroupChangedRule, existing: true}
 
           - typeName: ProductNameNode
             init:

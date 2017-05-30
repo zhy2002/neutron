@@ -284,7 +284,6 @@ baseTypeName: LeafUiNode -> parentBaseTypeName: ParentUiNode<?>
 children is not null -> baseTypeName: ObjectUiNode
 baseTypeName: ObjectUiNode -> parentBaseTypeName: ParentUiNode<?>
 
-
 cascade list
 node state
 generic event binding
@@ -297,13 +296,6 @@ trust ref list
 add to person summary:
 Employment Incomes (0)
 Other Incomes (0)
-</pre>
-
-<pre>
-person general page: 
-age and number of dependants
-next of kin field
-other title field
 </pre>
 
 <pre>

@@ -1,5 +1,5 @@
 cd neutron-examples
-cd neutron-examples-gen
+cd neutron-examples-pro
 call mvn generate-sources compile
 cd ..
 cd neutron-examples-ui

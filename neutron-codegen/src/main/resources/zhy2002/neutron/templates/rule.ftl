@@ -1,5 +1,5 @@
-package ${targetPackage}.gen.rule;
-
+package ${targetPackage}.<#if profileInfo??>${profileInfo.typeName?lower_case}.</#if>gen.rule;
+/* template name: rule.ftl */
 import zhy2002.neutron.*;
 import ${targetPackage}.gen.node.*;
 

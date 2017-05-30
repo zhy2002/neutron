@@ -6,7 +6,7 @@ import java.util.List;
 public class RuleInfo extends CodeGenInfo {
 
     private String baseTypeName;
-    private boolean existing;
+    private boolean existing = true;
     @Valid
     private List<InitInfo> init;
 
@@ -37,6 +37,7 @@ public class RuleInfo extends CodeGenInfo {
     ////////////////////////////////////////////////////////
 
     private NodeInfo ownerType;
+    private ProfileInfo profileInfo;
 
     @Override
     void initialize() {
@@ -51,5 +52,13 @@ public class RuleInfo extends CodeGenInfo {
 
     void setOwnerType(NodeInfo ownerType) {
         this.ownerType = ownerType;
+    }
+
+    public ProfileInfo getProfileInfo() {
+        return profileInfo;
+    }
+
+    public void setProfileInfo(ProfileInfo profileInfo) {
+        this.profileInfo = profileInfo;
     }
 }

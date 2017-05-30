@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.di;
-
+/* template name: rule_provider.ftl */
 import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;

@@ -1,5 +1,7 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.service.CodeGenUtil;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -70,10 +72,28 @@ public class NodeProfileInfo extends CodeGenInfo {
 
     @Override
     void initialize() {
+        initializeRules(rules);
 
+        if (getChildren() != null) {
+            for (ChildInfo childInfo : getChildren()) {
+                if (childInfo.getName() == null) {
+                    childInfo.setName(CodeGenUtil.firstCharLower(childInfo.getTypeName()));
+                }
+                initializeRules(childInfo.getRules());
+            }
+        }
     }
 
-
+    private void initializeRules(List<RuleInfo> rules) {
+        if (rules != null) {
+            for (RuleInfo ruleInfo : rules) {
+                ruleInfo.setDomainInfo(getDomainInfo());
+                ruleInfo.setProfileInfo(getProfileInfo());
+                ruleInfo.setOwnerType(getNodeInfo());
+                ruleInfo.initialize();
+            }
+        }
+    }
 
 
 }

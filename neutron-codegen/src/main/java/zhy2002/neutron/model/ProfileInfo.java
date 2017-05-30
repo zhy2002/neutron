@@ -43,6 +43,7 @@ public class ProfileInfo extends CodeGenInfo {
     private final Map<String, NodeInfo> nodeInfoMap = new HashMap<>();
     private final List<NodeProfileInfo> configuredNodes = new ArrayList<>();
     private final List<ChildInfo> configuredChildren = new ArrayList<>();
+    private boolean hasChildProvider = false;
 
     @Override
     public void setDomainInfo(DomainInfo domainInfo) {
@@ -73,6 +74,7 @@ public class ProfileInfo extends CodeGenInfo {
         nodeProfileInfo.setProfileInfo(this);
         nodeProfileInfo.setNodeInfo(nodeInfoMap.get(nodeProfileInfo.getTypeName()));
         nodeProfileInfo.setDomainInfo(getDomainInfo());
+        nodeProfileInfo.initialize();
 
         if (nodeProfileInfo.getInit() != null || nodeProfileInfo.getRules() != null) {
             configuredNodes.add(nodeProfileInfo);
@@ -99,5 +101,13 @@ public class ProfileInfo extends CodeGenInfo {
 
     public List<ChildInfo> getConfiguredChildren() {
         return configuredChildren;
+    }
+
+    public boolean isHasChildProvider() {
+        return hasChildProvider;
+    }
+
+    public void setHasChildProvider(boolean hasChildProvider) {
+        this.hasChildProvider = hasChildProvider;
     }
 }

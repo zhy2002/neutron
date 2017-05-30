@@ -1,5 +1,5 @@
 package zhy2002.examples.lodgement.banka.gen.di;
-
+/* template name: profile_rule_provider.ftl */
 import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;

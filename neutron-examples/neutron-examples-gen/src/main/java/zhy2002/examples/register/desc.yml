@@ -24,7 +24,7 @@ rootType:
   - {typeName: ErrorListNode}
 
   rules:
-  - {typeName: SetHasErrorRule}
+  - {typeName: SetHasErrorRule, existing: false}
   - {typeName: MergeValidationErrorsRule, existing: true}
 
   childTypes:
@@ -36,8 +36,8 @@ rootType:
     - {propertyName: lengthMessage, value: "\"Username must have at least four characters.\""}
     - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
     rules:
-    - {typeName: DefaultEmailByUsernameRule}
-    - {typeName: InvalidCharPreChangeRule, existing: true}
+    - {typeName: DefaultEmailByUsernameRule, existing: false}
+    - {typeName: InvalidCharPreChangeRule}
 
   - typeName: EmailNode
     baseTypeName: StringUiNode
@@ -48,19 +48,19 @@ rootType:
     - {propertyName: patternMessage, value: '"Email format is invalid."'}
     - {propertyName: requiredMessage, value: '"Email is required."'}
     rules:
-    - {typeName: EmailChangeReasonRule}
+    - {typeName: EmailChangeReasonRule, existing: false}
 
   - typeName: PasswordNode
     baseTypeName: StringUiNode
     properties:
     - {name: message, typeName: String}
     rules:
-    - {typeName: PasswordIsStrongRule, baseTypeName: ValidationRule}
+    - {typeName: PasswordIsStrongRule, baseTypeName: ValidationRule, existing: false}
 
   - typeName: RepeatPasswordNode
     baseTypeName: StringUiNode
     rules:
-    - {typeName: RepeatPasswordRule, baseTypeName: ValidationRule}
+    - {typeName: RepeatPasswordRule, baseTypeName: ValidationRule, existing: false}
 
   - typeName: AgeNode
     baseTypeName: BigDecimalUiNode
@@ -69,7 +69,7 @@ rootType:
     - {propertyName: maxValue, value: new BigDecimal("120")}
     - {propertyName: rangeMessage, value: '"Age must be between 0 and 120."'}
     rules:
-    - {typeName: UpdatePlanRule}
+    - {typeName: UpdatePlanRule, existing: false}
 
   - typeName: PlanNode
     baseTypeName: StringUiNode
@@ -79,12 +79,12 @@ rootType:
   - typeName: ReceiveOffersNode
     baseTypeName: BooleanUiNode
     rules:
-    - {typeName: EmailIsRequiredWhenReceiveOffersRule}
+    - {typeName: EmailIsRequiredWhenReceiveOffersRule, existing: false}
 
   - typeName: OwnInvestmentPropertyNode
     baseTypeName: BooleanUiNode
     rules:
-    - {typeName: LoadInvestmentPropertyRule}
+    - {typeName: LoadInvestmentPropertyRule, existing: false}
 
   - typeName: PropertyDetailsNode
     baseTypeName: ObjectUiNode
@@ -112,7 +112,7 @@ rootType:
     - {typeName: AreaCodeNode}
     - {typeName: PhoneNumberNode}
     rules:
-    - {typeName: PhoneInfoAllOrNothingRule}
+    - {typeName: PhoneInfoAllOrNothingRule, existing: false}
     childTypes:
     - typeName: PhoneInfoFieldNode
       baseTypeName: StringUiNode

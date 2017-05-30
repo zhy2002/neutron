@@ -584,13 +584,13 @@ rootType:
           - {propertyName: value, value: 'null'}
           - {propertyName: required, value: true}
           rules:
-          - {typeName: UsedAsSecurityFlagChangeRule}
+          - {typeName: UsedAsSecurityFlagChangeRule, existing: true}
 
         - typeName: BeingPurchasedFlagNode
           init:
           - {propertyName: value, value: 'null'}
           rules:
-          - {typeName: BeingPurchasedFlagChangeRule}
+          - {typeName: BeingPurchasedFlagChangeRule, existing: true}
 
         - typeName: OwnedOutrightFlagNode
           init:
@@ -803,7 +803,7 @@ rootType:
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
             rules:
-            - {typeName: ProductGroupChangedRule}
+            - {typeName: ProductGroupChangedRule, existing: true}
 
           - typeName: ProductNameNode
             init:
@@ -1135,7 +1135,7 @@ commonTypes:
     - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE'}
     - {propertyName: value, value: '"payeEmployedNode"'}
     rules:
-    - {typeName: EmploymentTypeChangedRule}
+    - {typeName: EmploymentTypeChangedRule, existing: true}
 
   - typeName: PayeEmployedNode
     children:
@@ -1162,7 +1162,7 @@ commonTypes:
 
   - typeName: EmployedNode
     rules:
-    - {typeName: DoNotLoadEndedDateForCurrentRecordRule}
+    - {typeName: DoNotLoadEndedDateForCurrentRecordRule, existing: true}
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}
@@ -1325,7 +1325,7 @@ commonTypes:
     init:
     - {propertyName: required, value: 'true'}
     rules:
-    - {typeName: ResponsibleSignificantChangeRule}
+    - {typeName: ResponsibleSignificantChangeRule, existing: true}
 
   - typeName: ResponsibleTypeOfChangeNode
     init:
@@ -1412,7 +1412,7 @@ commonTypes:
     init:
     - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE}
     rules:
-    - {typeName: TrustTypeChangedRule}
+    - {typeName: TrustTypeChangedRule, existing: true}
 
   - typeName: TrustNameNode
   - typeName: TrustRegistrationDateNode

@@ -6,7 +6,6 @@ import zhy2002.neutron.service.CodeGenerationService;
 import zhy2002.neutron.service.ResourceLoaderService;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -30,7 +29,7 @@ class CodeGenerator {
         DomainInfo domainInfo = resourceLoaderService.loadDomainInfo(nodeFile);
         TemplateBundle templateBundle = resourceLoaderService.loadTemplateBundle();
 
-        for(String ruleFile : ruleFiles) {
+        for (String ruleFile : ruleFiles) {
             File file = new File(ruleFile);
             if (!file.exists())
                 throw new RuntimeException("Cannot find profile description file: " + ruleFile);
@@ -102,17 +101,43 @@ class CodeGenerator {
     }
 
     private void generateProfileFiles(ProfileInfo profileInfo, TemplateBundle templateBundle, String targetDirectory) {
-        codeGenerationService.generateFile(targetDirectory, "rule", profileInfo, templateBundle.getRulePackageTemplate(), "package-info");
-        //todo generate rules
-
-        codeGenerationService.generateFile(targetDirectory, "di", profileInfo, templateBundle.getProfileModuleTemplate(), "", "ProfileModule");
         for (NodeProfileInfo nodeProfileInfo : profileInfo.getConfiguredNodes()) {
             codeGenerationService.generateFile(targetDirectory, "di", nodeProfileInfo, templateBundle.getProfileRuleProviderTemplate(), profileInfo.getTypeName(), "RuleProvider");
+            if (shouldGenerateChildProvider(nodeProfileInfo)) {
+                profileInfo.setHasChildProvider(true);
+                codeGenerationService.generateFile(targetDirectory, "node", nodeProfileInfo, templateBundle.getProfileChildProviderTemplate(), profileInfo.getTypeName(), "ChildProvider");
+            }
+            if (nodeProfileInfo.getRules() != null) {
+                for (RuleInfo ruleInfo : nodeProfileInfo.getRules()) {
+                    if (!ruleInfo.isExisting()) {
+                        codeGenerationService.generateFile(targetDirectory, "rule", ruleInfo, templateBundle.getRuleTemplate());
+                    }
+                }
+            }
         }
 
         for (ChildInfo childInfo : profileInfo.getConfiguredChildren()) {
-            //todo generate child rule provider
+            if (childInfo.getRules() != null) {
+                for (RuleInfo ruleInfo : childInfo.getRules()) {
+                    if (!ruleInfo.isExisting()) {
+                        codeGenerationService.generateFile(targetDirectory, "rule", ruleInfo, templateBundle.getRuleTemplate());
+                    }
+                }
+            }
         }
+
+        codeGenerationService.generateFile(targetDirectory, "rule", profileInfo, templateBundle.getRulePackageTemplate(), "package-info");
+        codeGenerationService.generateFile(targetDirectory, "di", profileInfo, templateBundle.getProfileModuleTemplate(), "", "ProfileModule");
+    }
+
+    private boolean shouldGenerateChildProvider(NodeProfileInfo nodeProfileInfo) {
+        if (nodeProfileInfo.getChildren() == null)
+            return false;
+        for (ChildInfo childInfo : nodeProfileInfo.getChildren()) {
+            if (childInfo.getInit() != null || childInfo.getRules() != null)
+                return true;
+        }
+        return false;
     }
 
 }
