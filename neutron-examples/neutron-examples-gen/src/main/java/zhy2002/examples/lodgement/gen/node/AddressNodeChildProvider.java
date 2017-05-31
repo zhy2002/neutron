@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface AddressNodeChildFactory {
@@ -54,7 +55,7 @@ public class AddressNodeChildProvider {
     protected void configureAddressLineNode(AddressLineNode node) {
     }
 
-    @AddressLineNodeScope
+    @ComponentScope
     public static class AddressLineNodeRuleProvider implements RuleProvider<AddressLineNode> {
 
         @Inject
@@ -82,7 +83,7 @@ public class AddressNodeChildProvider {
     protected void configureSuburbNode(SuburbNode node) {
     }
 
-    @SuburbNodeScope
+    @ComponentScope
     public static class SuburbNodeRuleProvider implements RuleProvider<SuburbNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class AddressNodeChildProvider {
     protected void configurePostcodeNode(PostcodeNode node) {
     }
 
-    @PostcodeNodeScope
+    @ComponentScope
     public static class PostcodeNodeRuleProvider implements RuleProvider<PostcodeNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class AddressNodeChildProvider {
     protected void configureCountryNode(CountryNode node) {
     }
 
-    @CountryNodeScope
+    @ComponentScope
     public static class CountryNodeRuleProvider implements RuleProvider<CountryNode> {
 
         @Inject

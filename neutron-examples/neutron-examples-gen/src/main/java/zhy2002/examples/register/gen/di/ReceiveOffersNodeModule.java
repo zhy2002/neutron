@@ -17,32 +17,32 @@ public class ReceiveOffersNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ReceiveOffersNodeScope @Owner ReceiveOffersNode provideReceiveOffersNode() {
+    @Provides @ComponentScope @Owner ReceiveOffersNode provideReceiveOffersNode() {
         return owner;
     }
 
-    @Provides @ReceiveOffersNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ReceiveOffersNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ReceiveOffersNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ReceiveOffersNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @ReceiveOffersNodeScope
+    @Provides @ComponentScope
     RuleProvider<ReceiveOffersNode> provideRuleProvider(Provider<ReceiveOffersNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ReceiveOffersNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ReceiveOffersNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.ReceiveOffersNodeRuleProvider> receiveOffersNodeRuleProvider
     ) {

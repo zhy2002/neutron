@@ -17,32 +17,32 @@ public class Product100PercentOffsetFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope @Owner Product100PercentOffsetFlagNode provideProduct100PercentOffsetFlagNode() {
+    @Provides @ComponentScope @Owner Product100PercentOffsetFlagNode provideProduct100PercentOffsetFlagNode() {
         return owner;
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<Product100PercentOffsetFlagNode> provideRuleProvider(Provider<Product100PercentOffsetFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @Product100PercentOffsetFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<Product100PercentOffsetFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.Product100PercentOffsetFlagNodeRuleProvider> product100PercentOffsetFlagNodeRuleProvider
     ) {

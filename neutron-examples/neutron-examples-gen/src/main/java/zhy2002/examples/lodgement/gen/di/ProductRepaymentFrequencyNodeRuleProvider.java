@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.ProductRepaymentFrequencyNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@ProductRepaymentFrequencyNodeScope
+@ComponentScope
 public class ProductRepaymentFrequencyNodeRuleProvider implements RuleProvider<ProductRepaymentFrequencyNode> {
 
     @Inject

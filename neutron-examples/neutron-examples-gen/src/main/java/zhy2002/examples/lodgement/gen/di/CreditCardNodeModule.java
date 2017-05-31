@@ -16,27 +16,27 @@ public class CreditCardNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardNodeScope @Owner CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope @Owner CreditCardNode provideCreditCardNode() {
         return owner;
     }
 
-    @Provides @CreditCardNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardNodeScope CreditCardListNode provideCreditCardListNode() {
+    @Provides @ComponentScope CreditCardListNode provideCreditCardListNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardNode> provideRuleProvider(Provider<CreditCardNodeRuleProvider> provider) {
         return provider.get();
     }

@@ -17,32 +17,32 @@ public class PersonListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonListNodeScope @Owner PersonListNode providePersonListNode() {
+    @Provides @ComponentScope @Owner PersonListNode providePersonListNode() {
         return owner;
     }
 
-    @Provides @PersonListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @PersonListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonListNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonListNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonListNode> provideRuleProvider(Provider<PersonListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonListNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.PersonListNodeRuleProvider> personListNodeRuleProvider
     ) {

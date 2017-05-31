@@ -17,36 +17,36 @@ public class CompanySelectBeneficialOwnerNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope @Owner CompanySelectBeneficialOwnerNode provideCompanySelectBeneficialOwnerNode() {
+    @Provides @ComponentScope @Owner CompanySelectBeneficialOwnerNode provideCompanySelectBeneficialOwnerNode() {
         return owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
+    @Provides @ComponentScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanySelectBeneficialOwnerNode> provideRuleProvider(Provider<CompanySelectBeneficialOwnerNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanySelectBeneficialOwnerNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanySelectBeneficialOwnerNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanySelectBeneficialOwnerNodeRuleProvider> companySelectBeneficialOwnerNodeRuleProvider
     ) {

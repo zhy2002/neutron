@@ -17,32 +17,32 @@ public class ProductRateLockFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductRateLockFlagNodeScope @Owner ProductRateLockFlagNode provideProductRateLockFlagNode() {
+    @Provides @ComponentScope @Owner ProductRateLockFlagNode provideProductRateLockFlagNode() {
         return owner;
     }
 
-    @Provides @ProductRateLockFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductRateLockFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductRateLockFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductRateLockFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductRateLockFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductRateLockFlagNode> provideRuleProvider(Provider<ProductRateLockFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductRateLockFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductRateLockFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductRateLockFlagNodeRuleProvider> productRateLockFlagNodeRuleProvider
     ) {

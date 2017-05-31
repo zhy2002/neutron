@@ -17,32 +17,32 @@ public class ProductCardHolderNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCardHolderNodeScope @Owner ProductCardHolderNode provideProductCardHolderNode() {
+    @Provides @ComponentScope @Owner ProductCardHolderNode provideProductCardHolderNode() {
         return owner;
     }
 
-    @Provides @ProductCardHolderNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHolderNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHolderNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHolderNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCardHolderNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCardHolderNode> provideRuleProvider(Provider<ProductCardHolderNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCardHolderNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCardHolderNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductPrimaryCardHolderNodeRuleProvider> productPrimaryCardHolderNodeRuleProvider
         ,Provider<ProductFeaturesNodeChildProvider.ProductAdditionalCardHolderNodeRuleProvider> productAdditionalCardHolderNodeRuleProvider

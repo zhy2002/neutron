@@ -3,6 +3,7 @@ package ${targetPackage}.${profileInfo.typeName?lower_case}.gen.di;
 import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.di.*;
 import ${targetPackage}.gen.node.*;
 <#if init??>
@@ -17,7 +18,7 @@ import ${targetPackage}.shared.*;
 </#if>
 
 
-<#if !nodeInfo.abstractNode>@${typeName}Scope</#if>
+<#if !nodeInfo.abstractNode>@ComponentScope</#if>
 public class ${profileInfo.typeName}${typeName}RuleProvider extends ${typeName}RuleProvider {
 
     @Inject

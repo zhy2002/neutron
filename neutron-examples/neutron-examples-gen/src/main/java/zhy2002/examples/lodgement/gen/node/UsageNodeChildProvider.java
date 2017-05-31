@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface UsageNodeChildFactory {
@@ -68,7 +69,7 @@ public class UsageNodeChildProvider {
     protected void configureUsedAsSecurityFlagNode(UsedAsSecurityFlagNode node) {
     }
 
-    @UsedAsSecurityFlagNodeScope
+    @ComponentScope
     public static class UsedAsSecurityFlagNodeRuleProvider implements RuleProvider<UsedAsSecurityFlagNode> {
 
         @Inject
@@ -96,7 +97,7 @@ public class UsageNodeChildProvider {
     protected void configureBeingPurchasedFlagNode(BeingPurchasedFlagNode node) {
     }
 
-    @BeingPurchasedFlagNodeScope
+    @ComponentScope
     public static class BeingPurchasedFlagNodeRuleProvider implements RuleProvider<BeingPurchasedFlagNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class UsageNodeChildProvider {
     protected void configureOwnedOutrightFlagNode(OwnedOutrightFlagNode node) {
     }
 
-    @OwnedOutrightFlagNodeScope
+    @ComponentScope
     public static class OwnedOutrightFlagNodeRuleProvider implements RuleProvider<OwnedOutrightFlagNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class UsageNodeChildProvider {
     protected void configurePrimarySecurityFlagNode(PrimarySecurityFlagNode node) {
     }
 
-    @PrimarySecurityFlagNodeScope
+    @ComponentScope
     public static class PrimarySecurityFlagNodeRuleProvider implements RuleProvider<PrimarySecurityFlagNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class UsageNodeChildProvider {
     protected void configureApprovalInPrincipleFlagNode(ApprovalInPrincipleFlagNode node) {
     }
 
-    @ApprovalInPrincipleFlagNodeScope
+    @ComponentScope
     public static class ApprovalInPrincipleFlagNodeRuleProvider implements RuleProvider<ApprovalInPrincipleFlagNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class UsageNodeChildProvider {
     protected void configureExistingMortgageListNode(ExistingMortgageListNode node) {
     }
 
-    @ExistingMortgageListNodeScope
+    @ComponentScope
     public static class ExistingMortgageListNodeRuleProvider implements RuleProvider<ExistingMortgageListNode> {
 
         @Inject

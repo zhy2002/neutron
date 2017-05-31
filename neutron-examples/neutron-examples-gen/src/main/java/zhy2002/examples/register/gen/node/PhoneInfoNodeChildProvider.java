@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PhoneInfoNodeChildFactory {
@@ -53,7 +54,7 @@ public class PhoneInfoNodeChildProvider {
     protected void configureCountryCodeNode(CountryCodeNode node) {
     }
 
-    @CountryCodeNodeScope
+    @ComponentScope
     public static class CountryCodeNodeRuleProvider implements RuleProvider<CountryCodeNode> {
 
         @Inject
@@ -81,7 +82,7 @@ public class PhoneInfoNodeChildProvider {
     protected void configureAreaCodeNode(AreaCodeNode node) {
     }
 
-    @AreaCodeNodeScope
+    @ComponentScope
     public static class AreaCodeNodeRuleProvider implements RuleProvider<AreaCodeNode> {
 
         @Inject
@@ -109,7 +110,7 @@ public class PhoneInfoNodeChildProvider {
     protected void configurePhoneNumberNode(PhoneNumberNode node) {
     }
 
-    @PhoneNumberNodeScope
+    @ComponentScope
     public static class PhoneNumberNodeRuleProvider implements RuleProvider<PhoneNumberNode> {
 
         @Inject

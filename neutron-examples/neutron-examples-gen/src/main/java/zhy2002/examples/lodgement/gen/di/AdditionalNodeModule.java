@@ -17,32 +17,32 @@ public class AdditionalNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AdditionalNodeScope @Owner AdditionalNode provideAdditionalNode() {
+    @Provides @ComponentScope @Owner AdditionalNode provideAdditionalNode() {
         return owner;
     }
 
-    @Provides @AdditionalNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @AdditionalNodeScope
+    @Provides @ComponentScope
     RuleProvider<AdditionalNode> provideRuleProvider(Provider<AdditionalNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AdditionalNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AdditionalNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.AdditionalNodeRuleProvider> additionalNodeRuleProvider
     ) {

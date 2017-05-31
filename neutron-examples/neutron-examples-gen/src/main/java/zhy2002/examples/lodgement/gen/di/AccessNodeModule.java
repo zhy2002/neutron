@@ -17,32 +17,32 @@ public class AccessNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccessNodeScope @Owner AccessNode provideAccessNode() {
+    @Provides @ComponentScope @Owner AccessNode provideAccessNode() {
         return owner;
     }
 
-    @Provides @AccessNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @AccessNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AccessNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccessNodeScope RealEstateNode provideRealEstateNode() {
+    @Provides @ComponentScope RealEstateNode provideRealEstateNode() {
         return owner.getParent();
     }
 
-    @Provides @AccessNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccessNode> provideRuleProvider(Provider<AccessNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccessNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccessNode>> provideInstanceProviderMap(
         Provider<RealEstateNodeChildProvider.AccessNodeRuleProvider> accessNodeRuleProvider
     ) {

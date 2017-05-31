@@ -4,12 +4,13 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.PrimarySecurityFlagNode;
 import zhy2002.examples.lodgement.gen.di.*;
 import zhy2002.examples.lodgement.data.*;
 import java.math.*;
 
-@PrimarySecurityFlagNodeScope
+@ComponentScope
 public class PrimarySecurityFlagNodeRuleProvider implements RuleProvider<PrimarySecurityFlagNode> {
 
     @Inject

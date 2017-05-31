@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface RegisterNodeChildFactory {
@@ -104,7 +105,7 @@ public class RegisterNodeChildProvider {
     protected void configureUsernameNode(UsernameNode node) {
     }
 
-    @UsernameNodeScope
+    @ComponentScope
     public static class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
 
         @Inject
@@ -132,7 +133,7 @@ public class RegisterNodeChildProvider {
     protected void configureEmailNode(EmailNode node) {
     }
 
-    @EmailNodeScope
+    @ComponentScope
     public static class EmailNodeRuleProvider implements RuleProvider<EmailNode> {
 
         @Inject
@@ -160,7 +161,7 @@ public class RegisterNodeChildProvider {
     protected void configurePasswordNode(PasswordNode node) {
     }
 
-    @PasswordNodeScope
+    @ComponentScope
     public static class PasswordNodeRuleProvider implements RuleProvider<PasswordNode> {
 
         @Inject
@@ -188,7 +189,7 @@ public class RegisterNodeChildProvider {
     protected void configureRepeatPasswordNode(RepeatPasswordNode node) {
     }
 
-    @RepeatPasswordNodeScope
+    @ComponentScope
     public static class RepeatPasswordNodeRuleProvider implements RuleProvider<RepeatPasswordNode> {
 
         @Inject
@@ -216,7 +217,7 @@ public class RegisterNodeChildProvider {
     protected void configureAgeNode(AgeNode node) {
     }
 
-    @AgeNodeScope
+    @ComponentScope
     public static class AgeNodeRuleProvider implements RuleProvider<AgeNode> {
 
         @Inject
@@ -244,7 +245,7 @@ public class RegisterNodeChildProvider {
     protected void configurePlanNode(PlanNode node) {
     }
 
-    @PlanNodeScope
+    @ComponentScope
     public static class PlanNodeRuleProvider implements RuleProvider<PlanNode> {
 
         @Inject
@@ -272,7 +273,7 @@ public class RegisterNodeChildProvider {
     protected void configureReceiveOffersNode(ReceiveOffersNode node) {
     }
 
-    @ReceiveOffersNodeScope
+    @ComponentScope
     public static class ReceiveOffersNodeRuleProvider implements RuleProvider<ReceiveOffersNode> {
 
         @Inject
@@ -300,7 +301,7 @@ public class RegisterNodeChildProvider {
     protected void configureOwnInvestmentPropertyNode(OwnInvestmentPropertyNode node) {
     }
 
-    @OwnInvestmentPropertyNodeScope
+    @ComponentScope
     public static class OwnInvestmentPropertyNodeRuleProvider implements RuleProvider<OwnInvestmentPropertyNode> {
 
         @Inject
@@ -328,7 +329,7 @@ public class RegisterNodeChildProvider {
     protected void configureResidentialPropertyNode(PropertyDetailsNode node) {
     }
 
-    @PropertyDetailsNodeScope
+    @ComponentScope
     public static class ResidentialPropertyNodeRuleProvider implements RuleProvider<PropertyDetailsNode> {
 
         @Inject
@@ -356,7 +357,7 @@ public class RegisterNodeChildProvider {
     protected void configureInvestmentPropertyNode(PropertyDetailsNode node) {
     }
 
-    @PropertyDetailsNodeScope
+    @ComponentScope
     public static class InvestmentPropertyNodeRuleProvider implements RuleProvider<PropertyDetailsNode> {
 
         @Inject
@@ -385,7 +386,7 @@ public class RegisterNodeChildProvider {
     protected void configureHomePhoneNode(PhoneInfoNode node) {
     }
 
-    @PhoneInfoNodeScope
+    @ComponentScope
     public static class HomePhoneNodeRuleProvider implements RuleProvider<PhoneInfoNode> {
 
         @Inject
@@ -413,7 +414,7 @@ public class RegisterNodeChildProvider {
     protected void configureErrorListNode(ErrorListNode node) {
     }
 
-    @ErrorListNodeScope
+    @ComponentScope
     public static class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
 
         @Inject

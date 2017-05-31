@@ -1,12 +1,13 @@
 package ${targetPackage}.gen.di;
 import dagger.Subcomponent;
+import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 <#if !abstractNode && parentType.children ??>
 import java.util.*;
 </#if>
 
-@${typeName}Scope
+@ComponentScope
 @Subcomponent(modules = {${typeName}Module.class})
 public interface ${typeName}Component {
 

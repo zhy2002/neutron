@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface CompanyContactNodeChildFactory {
@@ -72,7 +73,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyContactFirstNameNode(CompanyContactFirstNameNode node) {
     }
 
-    @CompanyContactFirstNameNodeScope
+    @ComponentScope
     public static class CompanyContactFirstNameNodeRuleProvider implements RuleProvider<CompanyContactFirstNameNode> {
 
         @Inject
@@ -100,7 +101,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyContactLastNameNode(CompanyContactLastNameNode node) {
     }
 
-    @CompanyContactLastNameNodeScope
+    @ComponentScope
     public static class CompanyContactLastNameNodeRuleProvider implements RuleProvider<CompanyContactLastNameNode> {
 
         @Inject
@@ -128,7 +129,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureWorkPhoneNode(CompanyTelephoneNode node) {
     }
 
-    @CompanyTelephoneNodeScope
+    @ComponentScope
     public static class WorkPhoneNodeRuleProvider implements RuleProvider<CompanyTelephoneNode> {
 
         @Inject
@@ -156,7 +157,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureFaxNumberNode(CompanyTelephoneNode node) {
     }
 
-    @CompanyTelephoneNodeScope
+    @ComponentScope
     public static class FaxNumberNodeRuleProvider implements RuleProvider<CompanyTelephoneNode> {
 
         @Inject
@@ -184,7 +185,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyMobileNumberNode(CompanyMobileNumberNode node) {
     }
 
-    @CompanyMobileNumberNodeScope
+    @ComponentScope
     public static class CompanyMobileNumberNodeRuleProvider implements RuleProvider<CompanyMobileNumberNode> {
 
         @Inject
@@ -212,7 +213,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureCompanyEmailNode(CompanyEmailNode node) {
     }
 
-    @CompanyEmailNodeScope
+    @ComponentScope
     public static class CompanyEmailNodeRuleProvider implements RuleProvider<CompanyEmailNode> {
 
         @Inject
@@ -240,7 +241,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureRegisteredAddressNode(CompanyAddressNode node) {
     }
 
-    @CompanyAddressNodeScope
+    @ComponentScope
     public static class RegisteredAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
 
         @Inject
@@ -268,7 +269,7 @@ public class CompanyContactNodeChildProvider {
     protected void configurePostalAddressNode(CompanyAddressNode node) {
     }
 
-    @CompanyAddressNodeScope
+    @ComponentScope
     public static class PostalAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
 
         @Inject
@@ -296,7 +297,7 @@ public class CompanyContactNodeChildProvider {
     protected void configureTradingAddressNode(CompanyAddressNode node) {
     }
 
-    @CompanyAddressNodeScope
+    @ComponentScope
     public static class TradingAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
 
         @Inject
@@ -324,7 +325,7 @@ public class CompanyContactNodeChildProvider {
     protected void configurePrincipalPlaceAddressNode(CompanyAddressNode node) {
     }
 
-    @CompanyAddressNodeScope
+    @ComponentScope
     public static class PrincipalPlaceAddressNodeRuleProvider implements RuleProvider<CompanyAddressNode> {
 
         @Inject

@@ -17,36 +17,36 @@ public class CreditCardMonthlyRepaymentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope @Owner CreditCardMonthlyRepaymentNode provideCreditCardMonthlyRepaymentNode() {
+    @Provides @ComponentScope @Owner CreditCardMonthlyRepaymentNode provideCreditCardMonthlyRepaymentNode() {
         return owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardMonthlyRepaymentNode> provideRuleProvider(Provider<CreditCardMonthlyRepaymentNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCardMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCardMonthlyRepaymentNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardMonthlyRepaymentNodeRuleProvider> creditCardMonthlyRepaymentNodeRuleProvider
     ) {

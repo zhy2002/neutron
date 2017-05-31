@@ -17,32 +17,32 @@ public class ProductRewardsProgramNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductRewardsProgramNodeScope @Owner ProductRewardsProgramNode provideProductRewardsProgramNode() {
+    @Provides @ComponentScope @Owner ProductRewardsProgramNode provideProductRewardsProgramNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsProgramNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsProgramNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsProgramNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsProgramNodeScope ProductCardHolderNode provideProductCardHolderNode() {
+    @Provides @ComponentScope ProductCardHolderNode provideProductCardHolderNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductRewardsProgramNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductRewardsProgramNode> provideRuleProvider(Provider<ProductRewardsProgramNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductRewardsProgramNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductRewardsProgramNode>> provideInstanceProviderMap(
         Provider<ProductCardHolderNodeChildProvider.ProductRewardsProgramNodeRuleProvider> productRewardsProgramNodeRuleProvider
     ) {

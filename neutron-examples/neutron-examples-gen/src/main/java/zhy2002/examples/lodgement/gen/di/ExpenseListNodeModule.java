@@ -17,32 +17,32 @@ public class ExpenseListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ExpenseListNodeScope @Owner ExpenseListNode provideExpenseListNode() {
+    @Provides @ComponentScope @Owner ExpenseListNode provideExpenseListNode() {
         return owner;
     }
 
-    @Provides @ExpenseListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseListNodeScope FinancialPositionNode provideFinancialPositionNode() {
+    @Provides @ComponentScope FinancialPositionNode provideFinancialPositionNode() {
         return owner.getParent();
     }
 
-    @Provides @ExpenseListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ExpenseListNode> provideRuleProvider(Provider<ExpenseListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ExpenseListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ExpenseListNode>> provideInstanceProviderMap(
         Provider<FinancialPositionNodeChildProvider.ExpenseListNodeRuleProvider> expenseListNodeRuleProvider
     ) {

@@ -17,36 +17,36 @@ public class ThirdPartyDobNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope @Owner ThirdPartyDobNode provideThirdPartyDobNode() {
+    @Provides @ComponentScope @Owner ThirdPartyDobNode provideThirdPartyDobNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope @Owner DobNode<?> provideDobNode() {
+    @Provides @ComponentScope @Owner DobNode<?> provideDobNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDobNodeScope RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope RelatedPartyNode provideRelatedPartyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyDobNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyDobNode> provideRuleProvider(Provider<ThirdPartyDobNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyDobNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyDobNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyDobNodeRuleProvider> thirdPartyDobNodeRuleProvider
     ) {

@@ -17,36 +17,36 @@ public class DateOfBirthNodeModule {
         this.owner = owner;
     }
 
-    @Provides @DateOfBirthNodeScope @Owner DateOfBirthNode provideDateOfBirthNode() {
+    @Provides @ComponentScope @Owner DateOfBirthNode provideDateOfBirthNode() {
         return owner;
     }
 
-    @Provides @DateOfBirthNodeScope @Owner DobNode<?> provideDobNode() {
+    @Provides @ComponentScope @Owner DobNode<?> provideDobNode() {
         return owner;
     }
 
-    @Provides @DateOfBirthNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @DateOfBirthNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @DateOfBirthNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @DateOfBirthNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @DateOfBirthNodeScope
+    @Provides @ComponentScope
     RuleProvider<DateOfBirthNode> provideRuleProvider(Provider<DateOfBirthNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @DateOfBirthNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<DateOfBirthNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.DateOfBirthNodeRuleProvider> dateOfBirthNodeRuleProvider
     ) {

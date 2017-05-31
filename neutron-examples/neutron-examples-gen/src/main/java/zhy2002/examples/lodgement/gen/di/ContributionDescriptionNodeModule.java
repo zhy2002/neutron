@@ -17,32 +17,32 @@ public class ContributionDescriptionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ContributionDescriptionNodeScope @Owner ContributionDescriptionNode provideContributionDescriptionNode() {
+    @Provides @ComponentScope @Owner ContributionDescriptionNode provideContributionDescriptionNode() {
         return owner;
     }
 
-    @Provides @ContributionDescriptionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ContributionDescriptionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ContributionDescriptionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ContributionDescriptionNodeScope ProductCustomerContributionNode provideProductCustomerContributionNode() {
+    @Provides @ComponentScope ProductCustomerContributionNode provideProductCustomerContributionNode() {
         return owner.getParent();
     }
 
-    @Provides @ContributionDescriptionNodeScope
+    @Provides @ComponentScope
     RuleProvider<ContributionDescriptionNode> provideRuleProvider(Provider<ContributionDescriptionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ContributionDescriptionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ContributionDescriptionNode>> provideInstanceProviderMap(
         Provider<ProductCustomerContributionNodeChildProvider.ContributionDescriptionNodeRuleProvider> contributionDescriptionNodeRuleProvider
     ) {

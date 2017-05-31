@@ -17,32 +17,32 @@ public class OtherIncomePreviousYearNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope @Owner OtherIncomePreviousYearNode provideOtherIncomePreviousYearNode() {
+    @Provides @ComponentScope @Owner OtherIncomePreviousYearNode provideOtherIncomePreviousYearNode() {
         return owner;
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope OtherIncomeNode provideOtherIncomeNode() {
+    @Provides @ComponentScope OtherIncomeNode provideOtherIncomeNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherIncomePreviousYearNode> provideRuleProvider(Provider<OtherIncomePreviousYearNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherIncomePreviousYearNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherIncomePreviousYearNode>> provideInstanceProviderMap(
         Provider<OtherIncomeNodeChildProvider.OtherIncomePreviousYearNodeRuleProvider> otherIncomePreviousYearNodeRuleProvider
     ) {

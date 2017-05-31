@@ -17,32 +17,32 @@ public class MortgageLoanTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageLoanTypeNodeScope @Owner MortgageLoanTypeNode provideMortgageLoanTypeNode() {
+    @Provides @ComponentScope @Owner MortgageLoanTypeNode provideMortgageLoanTypeNode() {
         return owner;
     }
 
-    @Provides @MortgageLoanTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @MortgageLoanTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageLoanTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageLoanTypeNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageLoanTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageLoanTypeNode> provideRuleProvider(Provider<MortgageLoanTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageLoanTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageLoanTypeNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageLoanTypeNodeRuleProvider> mortgageLoanTypeNodeRuleProvider
     ) {

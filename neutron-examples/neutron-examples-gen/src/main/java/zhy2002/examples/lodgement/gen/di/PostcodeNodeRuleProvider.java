@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.PostcodeNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@PostcodeNodeScope
+@ComponentScope
 public class PostcodeNodeRuleProvider implements RuleProvider<PostcodeNode> {
 
     @Inject

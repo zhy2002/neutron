@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface RelatedPartyNodeChildFactory {
@@ -96,7 +97,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyTypeNode(ThirdPartyTypeNode node) {
     }
 
-    @ThirdPartyTypeNodeScope
+    @ComponentScope
     public static class ThirdPartyTypeNodeRuleProvider implements RuleProvider<ThirdPartyTypeNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyDescriptionNode(ThirdPartyDescriptionNode node) {
     }
 
-    @ThirdPartyDescriptionNodeScope
+    @ComponentScope
     public static class ThirdPartyDescriptionNodeRuleProvider implements RuleProvider<ThirdPartyDescriptionNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyTitleNode(ThirdPartyTitleNode node) {
     }
 
-    @ThirdPartyTitleNodeScope
+    @ComponentScope
     public static class ThirdPartyTitleNodeRuleProvider implements RuleProvider<ThirdPartyTitleNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyFirstNameNode(ThirdPartyFirstNameNode node) {
     }
 
-    @ThirdPartyFirstNameNodeScope
+    @ComponentScope
     public static class ThirdPartyFirstNameNodeRuleProvider implements RuleProvider<ThirdPartyFirstNameNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyLastNameNode(ThirdPartyLastNameNode node) {
     }
 
-    @ThirdPartyLastNameNodeScope
+    @ComponentScope
     public static class ThirdPartyLastNameNodeRuleProvider implements RuleProvider<ThirdPartyLastNameNode> {
 
         @Inject
@@ -236,7 +237,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyDobNode(ThirdPartyDobNode node) {
     }
 
-    @ThirdPartyDobNodeScope
+    @ComponentScope
     public static class ThirdPartyDobNodeRuleProvider implements RuleProvider<ThirdPartyDobNode> {
 
         @Inject
@@ -264,7 +265,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyCompanyNameNode(ThirdPartyCompanyNameNode node) {
     }
 
-    @ThirdPartyCompanyNameNodeScope
+    @ComponentScope
     public static class ThirdPartyCompanyNameNodeRuleProvider implements RuleProvider<ThirdPartyCompanyNameNode> {
 
         @Inject
@@ -292,7 +293,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyAddressNode(ThirdPartyAddressNode node) {
     }
 
-    @ThirdPartyAddressNodeScope
+    @ComponentScope
     public static class ThirdPartyAddressNodeRuleProvider implements RuleProvider<ThirdPartyAddressNode> {
 
         @Inject
@@ -320,7 +321,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyWorkPhoneNode(ThirdPartyWorkPhoneNode node) {
     }
 
-    @ThirdPartyWorkPhoneNodeScope
+    @ComponentScope
     public static class ThirdPartyWorkPhoneNodeRuleProvider implements RuleProvider<ThirdPartyWorkPhoneNode> {
 
         @Inject
@@ -348,7 +349,7 @@ public class RelatedPartyNodeChildProvider {
     protected void configureThirdPartyEmailNode(ThirdPartyEmailNode node) {
     }
 
-    @ThirdPartyEmailNodeScope
+    @ComponentScope
     public static class ThirdPartyEmailNodeRuleProvider implements RuleProvider<ThirdPartyEmailNode> {
 
         @Inject

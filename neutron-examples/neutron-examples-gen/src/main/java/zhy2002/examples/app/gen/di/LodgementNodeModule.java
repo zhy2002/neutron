@@ -16,27 +16,27 @@ public class LodgementNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LodgementNodeScope @Owner LodgementNode provideLodgementNode() {
+    @Provides @ComponentScope @Owner LodgementNode provideLodgementNode() {
         return owner;
     }
 
-    @Provides @LodgementNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+    @Provides @ComponentScope @Owner RootUiNode<?> provideRootUiNode() {
         return owner;
     }
 
-    @Provides @LodgementNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @LodgementNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @LodgementNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LodgementNodeScope
+    @Provides @ComponentScope
     RuleProvider<LodgementNode> provideRuleProvider(Provider<LodgementNodeRuleProvider> provider) {
         return provider.get();
     }

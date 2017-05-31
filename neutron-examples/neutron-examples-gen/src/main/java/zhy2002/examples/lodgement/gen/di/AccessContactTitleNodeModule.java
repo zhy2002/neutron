@@ -17,32 +17,32 @@ public class AccessContactTitleNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccessContactTitleNodeScope @Owner AccessContactTitleNode provideAccessContactTitleNode() {
+    @Provides @ComponentScope @Owner AccessContactTitleNode provideAccessContactTitleNode() {
         return owner;
     }
 
-    @Provides @AccessContactTitleNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AccessContactTitleNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AccessContactTitleNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccessContactTitleNodeScope AccessNode provideAccessNode() {
+    @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }
 
-    @Provides @AccessContactTitleNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccessContactTitleNode> provideRuleProvider(Provider<AccessContactTitleNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccessContactTitleNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccessContactTitleNode>> provideInstanceProviderMap(
         Provider<AccessNodeChildProvider.AccessContactTitleNodeRuleProvider> accessContactTitleNodeRuleProvider
     ) {

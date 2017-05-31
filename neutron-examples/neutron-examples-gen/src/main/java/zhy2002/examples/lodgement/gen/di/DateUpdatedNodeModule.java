@@ -17,32 +17,32 @@ public class DateUpdatedNodeModule {
         this.owner = owner;
     }
 
-    @Provides @DateUpdatedNodeScope @Owner DateUpdatedNode provideDateUpdatedNode() {
+    @Provides @ComponentScope @Owner DateUpdatedNode provideDateUpdatedNode() {
         return owner;
     }
 
-    @Provides @DateUpdatedNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @DateUpdatedNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @DateUpdatedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @DateUpdatedNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @DateUpdatedNodeScope
+    @Provides @ComponentScope
     RuleProvider<DateUpdatedNode> provideRuleProvider(Provider<DateUpdatedNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @DateUpdatedNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<DateUpdatedNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.DateUpdatedNodeRuleProvider> dateUpdatedNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class RepeatPasswordNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RepeatPasswordNodeScope @Owner RepeatPasswordNode provideRepeatPasswordNode() {
+    @Provides @ComponentScope @Owner RepeatPasswordNode provideRepeatPasswordNode() {
         return owner;
     }
 
-    @Provides @RepeatPasswordNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @RepeatPasswordNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @RepeatPasswordNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RepeatPasswordNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @RepeatPasswordNodeScope
+    @Provides @ComponentScope
     RuleProvider<RepeatPasswordNode> provideRuleProvider(Provider<RepeatPasswordNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @RepeatPasswordNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<RepeatPasswordNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.RepeatPasswordNodeRuleProvider> repeatPasswordNodeRuleProvider
     ) {

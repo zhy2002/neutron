@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface SubmissionNodeChildFactory {
@@ -83,7 +84,7 @@ public class SubmissionNodeChildProvider {
     protected void configureBrokerFirstNameNode(BrokerFirstNameNode node) {
     }
 
-    @BrokerFirstNameNodeScope
+    @ComponentScope
     public static class BrokerFirstNameNodeRuleProvider implements RuleProvider<BrokerFirstNameNode> {
 
         @Inject
@@ -111,7 +112,7 @@ public class SubmissionNodeChildProvider {
     protected void configureBrokerLastNameNode(BrokerLastNameNode node) {
     }
 
-    @BrokerLastNameNodeScope
+    @ComponentScope
     public static class BrokerLastNameNodeRuleProvider implements RuleProvider<BrokerLastNameNode> {
 
         @Inject
@@ -139,7 +140,7 @@ public class SubmissionNodeChildProvider {
     protected void configureBrokerCompanyNode(BrokerCompanyNode node) {
     }
 
-    @BrokerCompanyNodeScope
+    @ComponentScope
     public static class BrokerCompanyNodeRuleProvider implements RuleProvider<BrokerCompanyNode> {
 
         @Inject
@@ -167,7 +168,7 @@ public class SubmissionNodeChildProvider {
     protected void configureContactNumberNode(BrokerTelephoneNode node) {
     }
 
-    @BrokerTelephoneNodeScope
+    @ComponentScope
     public static class ContactNumberNodeRuleProvider implements RuleProvider<BrokerTelephoneNode> {
 
         @Inject
@@ -195,7 +196,7 @@ public class SubmissionNodeChildProvider {
     protected void configureFaxNumberNode(BrokerTelephoneNode node) {
     }
 
-    @BrokerTelephoneNodeScope
+    @ComponentScope
     public static class FaxNumberNodeRuleProvider implements RuleProvider<BrokerTelephoneNode> {
 
         @Inject
@@ -223,7 +224,7 @@ public class SubmissionNodeChildProvider {
     protected void configureMobileNumberNode(BrokerMobileNumberNode node) {
     }
 
-    @BrokerMobileNumberNodeScope
+    @ComponentScope
     public static class MobileNumberNodeRuleProvider implements RuleProvider<BrokerMobileNumberNode> {
 
         @Inject
@@ -251,7 +252,7 @@ public class SubmissionNodeChildProvider {
     protected void configureBrokerEmailNode(BrokerEmailNode node) {
     }
 
-    @BrokerEmailNodeScope
+    @ComponentScope
     public static class BrokerEmailNodeRuleProvider implements RuleProvider<BrokerEmailNode> {
 
         @Inject
@@ -279,7 +280,7 @@ public class SubmissionNodeChildProvider {
     protected void configureBrokerAddressNode(BrokerAddressNode node) {
     }
 
-    @BrokerAddressNodeScope
+    @ComponentScope
     public static class BrokerAddressNodeRuleProvider implements RuleProvider<BrokerAddressNode> {
 
         @Inject
@@ -307,7 +308,7 @@ public class SubmissionNodeChildProvider {
     protected void configureLenderIssuedBrokerNumberNode(LenderIssuedBrokerNumberNode node) {
     }
 
-    @LenderIssuedBrokerNumberNodeScope
+    @ComponentScope
     public static class LenderIssuedBrokerNumberNodeRuleProvider implements RuleProvider<LenderIssuedBrokerNumberNode> {
 
         @Inject

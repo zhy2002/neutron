@@ -4,12 +4,13 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.app.gen.node.AppManagerNode;
 import zhy2002.examples.app.gen.di.*;
 import zhy2002.examples.app.data.*;
 import java.math.*;
 
-@AppManagerNodeScope
+@ComponentScope
 public class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> {
 
     @Inject

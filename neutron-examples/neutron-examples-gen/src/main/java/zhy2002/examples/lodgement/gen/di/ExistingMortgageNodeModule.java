@@ -16,27 +16,27 @@ public class ExistingMortgageNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ExistingMortgageNodeScope @Owner ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope @Owner ExistingMortgageNode provideExistingMortgageNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageNodeScope ExistingMortgageListNode provideExistingMortgageListNode() {
+    @Provides @ComponentScope ExistingMortgageListNode provideExistingMortgageListNode() {
         return owner.getParent();
     }
 
-    @Provides @ExistingMortgageNodeScope
+    @Provides @ComponentScope
     RuleProvider<ExistingMortgageNode> provideRuleProvider(Provider<ExistingMortgageNodeRuleProvider> provider) {
         return provider.get();
     }

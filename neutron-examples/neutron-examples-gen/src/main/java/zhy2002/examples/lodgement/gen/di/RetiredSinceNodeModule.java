@@ -17,36 +17,36 @@ public class RetiredSinceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner RetiredSinceNode provideRetiredSinceNode() {
+    @Provides @ComponentScope @Owner RetiredSinceNode provideRetiredSinceNode() {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RetiredSinceNodeScope RetiredEmploymentNode provideRetiredEmploymentNode() {
+    @Provides @ComponentScope RetiredEmploymentNode provideRetiredEmploymentNode() {
         return owner.getParent();
     }
 
-    @Provides @RetiredSinceNodeScope
+    @Provides @ComponentScope
     RuleProvider<RetiredSinceNode> provideRuleProvider(Provider<RetiredSinceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @RetiredSinceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<RetiredSinceNode>> provideInstanceProviderMap(
         Provider<RetiredEmploymentNodeChildProvider.RetiredSinceNodeRuleProvider> retiredSinceNodeRuleProvider
     ) {

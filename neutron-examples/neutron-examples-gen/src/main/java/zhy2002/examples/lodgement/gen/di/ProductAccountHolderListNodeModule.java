@@ -17,36 +17,36 @@ public class ProductAccountHolderListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope @Owner ProductAccountHolderListNode provideProductAccountHolderListNode() {
+    @Provides @ComponentScope @Owner ProductAccountHolderListNode provideProductAccountHolderListNode() {
         return owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope @Owner SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
+    @Provides @ComponentScope @Owner SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
         return owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductAccountHolderListNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductAccountHolderListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductAccountHolderListNode> provideRuleProvider(Provider<ProductAccountHolderListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductAccountHolderListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductAccountHolderListNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductAccountHolderListNodeRuleProvider> productAccountHolderListNodeRuleProvider
     ) {

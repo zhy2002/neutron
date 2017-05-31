@@ -4,12 +4,13 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.register.gen.node.PropertyStateNode;
 import zhy2002.examples.register.gen.di.*;
 import zhy2002.examples.register.data.*;
 import java.math.*;
 
-@PropertyStateNodeScope
+@ComponentScope
 public class PropertyStateNodeRuleProvider implements RuleProvider<PropertyStateNode> {
 
     @Inject

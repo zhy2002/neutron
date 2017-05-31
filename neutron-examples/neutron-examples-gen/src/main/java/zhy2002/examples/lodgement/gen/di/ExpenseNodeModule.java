@@ -16,27 +16,27 @@ public class ExpenseNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ExpenseNodeScope @Owner ExpenseNode provideExpenseNode() {
+    @Provides @ComponentScope @Owner ExpenseNode provideExpenseNode() {
         return owner;
     }
 
-    @Provides @ExpenseNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseNodeScope ExpenseListNode provideExpenseListNode() {
+    @Provides @ComponentScope ExpenseListNode provideExpenseListNode() {
         return owner.getParent();
     }
 
-    @Provides @ExpenseNodeScope
+    @Provides @ComponentScope
     RuleProvider<ExpenseNode> provideRuleProvider(Provider<ExpenseNodeRuleProvider> provider) {
         return provider.get();
     }

@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.VehicleOwnershipListNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@VehicleOwnershipListNodeScope
+@ComponentScope
 public class VehicleOwnershipListNodeRuleProvider implements RuleProvider<VehicleOwnershipListNode> {
 
     @Inject

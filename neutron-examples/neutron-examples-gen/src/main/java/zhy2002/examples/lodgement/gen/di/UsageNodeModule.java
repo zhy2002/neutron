@@ -17,32 +17,32 @@ public class UsageNodeModule {
         this.owner = owner;
     }
 
-    @Provides @UsageNodeScope @Owner UsageNode provideUsageNode() {
+    @Provides @ComponentScope @Owner UsageNode provideUsageNode() {
         return owner;
     }
 
-    @Provides @UsageNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @UsageNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @UsageNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @UsageNodeScope RealEstateNode provideRealEstateNode() {
+    @Provides @ComponentScope RealEstateNode provideRealEstateNode() {
         return owner.getParent();
     }
 
-    @Provides @UsageNodeScope
+    @Provides @ComponentScope
     RuleProvider<UsageNode> provideRuleProvider(Provider<UsageNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @UsageNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<UsageNode>> provideInstanceProviderMap(
         Provider<RealEstateNodeChildProvider.UsageNodeRuleProvider> usageNodeRuleProvider
     ) {

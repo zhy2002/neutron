@@ -17,36 +17,36 @@ public class PersonApplicantTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope @Owner PersonApplicantTypeNode providePersonApplicantTypeNode() {
+    @Provides @ComponentScope @Owner PersonApplicantTypeNode providePersonApplicantTypeNode() {
         return owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope @Owner BaseApplicantTypeNode<?> provideBaseApplicantTypeNode() {
+    @Provides @ComponentScope @Owner BaseApplicantTypeNode<?> provideBaseApplicantTypeNode() {
         return owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonApplicantTypeNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonApplicantTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonApplicantTypeNode> provideRuleProvider(Provider<PersonApplicantTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonApplicantTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonApplicantTypeNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.PersonApplicantTypeNodeRuleProvider> personApplicantTypeNodeRuleProvider
     ) {

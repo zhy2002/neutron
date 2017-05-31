@@ -17,32 +17,32 @@ public class ProductLoanTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductLoanTypeNodeScope @Owner ProductLoanTypeNode provideProductLoanTypeNode() {
+    @Provides @ComponentScope @Owner ProductLoanTypeNode provideProductLoanTypeNode() {
         return owner;
     }
 
-    @Provides @ProductLoanTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductLoanTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductLoanTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductLoanTypeNodeScope ProductsNode provideProductsNode() {
+    @Provides @ComponentScope ProductsNode provideProductsNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductLoanTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductLoanTypeNode> provideRuleProvider(Provider<ProductLoanTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductLoanTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductLoanTypeNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductLoanTypeNodeRuleProvider> productLoanTypeNodeRuleProvider
     ) {

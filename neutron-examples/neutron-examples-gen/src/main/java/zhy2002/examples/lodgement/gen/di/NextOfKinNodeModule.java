@@ -17,32 +17,32 @@ public class NextOfKinNodeModule {
         this.owner = owner;
     }
 
-    @Provides @NextOfKinNodeScope @Owner NextOfKinNode provideNextOfKinNode() {
+    @Provides @ComponentScope @Owner NextOfKinNode provideNextOfKinNode() {
         return owner;
     }
 
-    @Provides @NextOfKinNodeScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
+    @Provides @ComponentScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
         return owner;
     }
 
-    @Provides @NextOfKinNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @NextOfKinNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @NextOfKinNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @NextOfKinNodeScope
+    @Provides @ComponentScope
     RuleProvider<NextOfKinNode> provideRuleProvider(Provider<NextOfKinNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @NextOfKinNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<NextOfKinNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.NextOfKinNodeRuleProvider> nextOfKinNodeRuleProvider
     ) {

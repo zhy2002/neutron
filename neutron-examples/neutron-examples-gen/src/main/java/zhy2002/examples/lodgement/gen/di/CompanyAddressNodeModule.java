@@ -17,36 +17,36 @@ public class CompanyAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyAddressNodeScope @Owner CompanyAddressNode provideCompanyAddressNode() {
+    @Provides @ComponentScope @Owner CompanyAddressNode provideCompanyAddressNode() {
         return owner;
     }
 
-    @Provides @CompanyAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @CompanyAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAddressNodeScope CompanyContactNode provideCompanyContactNode() {
+    @Provides @ComponentScope CompanyContactNode provideCompanyContactNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyAddressNode> provideRuleProvider(Provider<CompanyAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyAddressNode>> provideInstanceProviderMap(
         Provider<CompanyContactNodeChildProvider.RegisteredAddressNodeRuleProvider> registeredAddressNodeRuleProvider
         ,Provider<CompanyContactNodeChildProvider.PostalAddressNodeRuleProvider> postalAddressNodeRuleProvider

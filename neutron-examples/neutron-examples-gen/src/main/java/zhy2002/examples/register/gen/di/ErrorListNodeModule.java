@@ -17,32 +17,32 @@ public class ErrorListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ErrorListNodeScope @Owner ErrorListNode provideErrorListNode() {
+    @Provides @ComponentScope @Owner ErrorListNode provideErrorListNode() {
         return owner;
     }
 
-    @Provides @ErrorListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ErrorListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ErrorListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ErrorListNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @ErrorListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ErrorListNode> provideRuleProvider(Provider<ErrorListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ErrorListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ErrorListNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.ErrorListNodeRuleProvider> errorListNodeRuleProvider
     ) {

@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.shared;
 
-import zhy2002.examples.lodgement.gen.di.CompanyNodeScope;
 import zhy2002.examples.lodgement.gen.node.CompanyNode;
 import zhy2002.examples.lodgement.gen.node.CompanyRegisteredNameNode;
 import zhy2002.neutron.UiNodeEvent;
@@ -10,7 +9,7 @@ import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
-@CompanyNodeScope
+
 public class UpdateCompanyNodeLabelRule extends UpdateItemNodeLabelRule<CompanyNode> {
 
     @Inject

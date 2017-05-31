@@ -4,6 +4,7 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.register.gen.node.UsernameNode;
 import zhy2002.neutron.rule.*;
 import zhy2002.examples.register.gen.di.*;
@@ -11,7 +12,7 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.data.*;
 import java.math.*;
 
-@UsernameNodeScope
+@ComponentScope
 public class UsernameNodeRuleProvider implements RuleProvider<UsernameNode> {
 
     @Inject

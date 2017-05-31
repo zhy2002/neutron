@@ -16,27 +16,27 @@ public class OtherLiabilityNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityNodeScope @Owner OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityNode provideOtherLiabilityNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityNodeScope OtherLiabilityListNode provideOtherLiabilityListNode() {
+    @Provides @ComponentScope OtherLiabilityListNode provideOtherLiabilityListNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityNode> provideRuleProvider(Provider<OtherLiabilityNodeRuleProvider> provider) {
         return provider.get();
     }

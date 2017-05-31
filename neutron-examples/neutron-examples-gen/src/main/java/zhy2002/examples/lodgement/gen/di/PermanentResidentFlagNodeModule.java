@@ -17,32 +17,32 @@ public class PermanentResidentFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PermanentResidentFlagNodeScope @Owner PermanentResidentFlagNode providePermanentResidentFlagNode() {
+    @Provides @ComponentScope @Owner PermanentResidentFlagNode providePermanentResidentFlagNode() {
         return owner;
     }
 
-    @Provides @PermanentResidentFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @PermanentResidentFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PermanentResidentFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PermanentResidentFlagNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @PermanentResidentFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<PermanentResidentFlagNode> provideRuleProvider(Provider<PermanentResidentFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PermanentResidentFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PermanentResidentFlagNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.PermanentResidentFlagNodeRuleProvider> permanentResidentFlagNodeRuleProvider
     ) {

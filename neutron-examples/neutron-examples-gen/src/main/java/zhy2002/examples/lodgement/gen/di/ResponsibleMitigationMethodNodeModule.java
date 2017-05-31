@@ -17,32 +17,32 @@ public class ResponsibleMitigationMethodNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope @Owner ResponsibleMitigationMethodNode provideResponsibleMitigationMethodNode() {
+    @Provides @ComponentScope @Owner ResponsibleMitigationMethodNode provideResponsibleMitigationMethodNode() {
         return owner;
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+    @Provides @ComponentScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner.getParent();
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope
+    @Provides @ComponentScope
     RuleProvider<ResponsibleMitigationMethodNode> provideRuleProvider(Provider<ResponsibleMitigationMethodNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ResponsibleMitigationMethodNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ResponsibleMitigationMethodNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider> responsibleMitigationMethodNodeRuleProvider
     ) {

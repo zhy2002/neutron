@@ -17,36 +17,36 @@ public class ResponsibleRepaymentDifficultyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope @Owner ResponsibleRepaymentDifficultyNode provideResponsibleRepaymentDifficultyNode() {
+    @Provides @ComponentScope @Owner ResponsibleRepaymentDifficultyNode provideResponsibleRepaymentDifficultyNode() {
         return owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+    @Provides @ComponentScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner.getParent();
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope
+    @Provides @ComponentScope
     RuleProvider<ResponsibleRepaymentDifficultyNode> provideRuleProvider(Provider<ResponsibleRepaymentDifficultyNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ResponsibleRepaymentDifficultyNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ResponsibleRepaymentDifficultyNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleRepaymentDifficultyNodeRuleProvider> responsibleRepaymentDifficultyNodeRuleProvider
     ) {

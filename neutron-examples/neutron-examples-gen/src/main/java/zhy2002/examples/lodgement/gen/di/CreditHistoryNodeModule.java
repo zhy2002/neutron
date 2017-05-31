@@ -16,27 +16,27 @@ public class CreditHistoryNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditHistoryNodeScope @Owner CreditHistoryNode provideCreditHistoryNode() {
+    @Provides @ComponentScope @Owner CreditHistoryNode provideCreditHistoryNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryNodeScope CreditHistoryListNode provideCreditHistoryListNode() {
+    @Provides @ComponentScope CreditHistoryListNode provideCreditHistoryListNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditHistoryNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditHistoryNode> provideRuleProvider(Provider<CreditHistoryNodeRuleProvider> provider) {
         return provider.get();
     }

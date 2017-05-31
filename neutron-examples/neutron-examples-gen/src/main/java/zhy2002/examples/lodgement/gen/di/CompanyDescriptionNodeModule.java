@@ -17,32 +17,32 @@ public class CompanyDescriptionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyDescriptionNodeScope @Owner CompanyDescriptionNode provideCompanyDescriptionNode() {
+    @Provides @ComponentScope @Owner CompanyDescriptionNode provideCompanyDescriptionNode() {
         return owner;
     }
 
-    @Provides @CompanyDescriptionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyDescriptionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyDescriptionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyDescriptionNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyDescriptionNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyDescriptionNode> provideRuleProvider(Provider<CompanyDescriptionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyDescriptionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyDescriptionNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyDescriptionNodeRuleProvider> companyDescriptionNodeRuleProvider
     ) {

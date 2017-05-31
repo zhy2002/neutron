@@ -17,36 +17,36 @@ public class MortgageBorrowerRateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope @Owner MortgageBorrowerRateNode provideMortgageBorrowerRateNode() {
+    @Provides @ComponentScope @Owner MortgageBorrowerRateNode provideMortgageBorrowerRateNode() {
         return owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
+    @Provides @ComponentScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
         return owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageBorrowerRateNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageBorrowerRateNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageBorrowerRateNode> provideRuleProvider(Provider<MortgageBorrowerRateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageBorrowerRateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageBorrowerRateNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageBorrowerRateNodeRuleProvider> mortgageBorrowerRateNodeRuleProvider
     ) {

@@ -16,27 +16,27 @@ public class ProductCustomerContributionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCustomerContributionNodeScope @Owner ProductCustomerContributionNode provideProductCustomerContributionNode() {
+    @Provides @ComponentScope @Owner ProductCustomerContributionNode provideProductCustomerContributionNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionNodeScope ProductCustomerContributionListNode provideProductCustomerContributionListNode() {
+    @Provides @ComponentScope ProductCustomerContributionListNode provideProductCustomerContributionListNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCustomerContributionNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCustomerContributionNode> provideRuleProvider(Provider<ProductCustomerContributionNodeRuleProvider> provider) {
         return provider.get();
     }

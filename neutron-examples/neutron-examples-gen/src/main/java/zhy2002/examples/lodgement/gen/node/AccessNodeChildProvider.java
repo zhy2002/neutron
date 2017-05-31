@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface AccessNodeChildFactory {
@@ -75,7 +76,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactTypeNode(AccessContactTypeNode node) {
     }
 
-    @AccessContactTypeNodeScope
+    @ComponentScope
     public static class AccessContactTypeNodeRuleProvider implements RuleProvider<AccessContactTypeNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactTitleNode(AccessContactTitleNode node) {
     }
 
-    @AccessContactTitleNodeScope
+    @ComponentScope
     public static class AccessContactTitleNodeRuleProvider implements RuleProvider<AccessContactTitleNode> {
 
         @Inject
@@ -131,7 +132,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactFirstNameNode(AccessContactFirstNameNode node) {
     }
 
-    @AccessContactFirstNameNodeScope
+    @ComponentScope
     public static class AccessContactFirstNameNodeRuleProvider implements RuleProvider<AccessContactFirstNameNode> {
 
         @Inject
@@ -159,7 +160,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessContactLastNameNode(AccessContactLastNameNode node) {
     }
 
-    @AccessContactLastNameNodeScope
+    @ComponentScope
     public static class AccessContactLastNameNodeRuleProvider implements RuleProvider<AccessContactLastNameNode> {
 
         @Inject
@@ -187,7 +188,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessCompanyNameNode(AccessCompanyNameNode node) {
     }
 
-    @AccessCompanyNameNodeScope
+    @ComponentScope
     public static class AccessCompanyNameNodeRuleProvider implements RuleProvider<AccessCompanyNameNode> {
 
         @Inject
@@ -215,7 +216,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessTelephoneNode(AccessTelephoneNode node) {
     }
 
-    @AccessTelephoneNodeScope
+    @ComponentScope
     public static class AccessTelephoneNodeRuleProvider implements RuleProvider<AccessTelephoneNode> {
 
         @Inject
@@ -243,7 +244,7 @@ public class AccessNodeChildProvider {
     protected void configureAccessOtherDescriptionNode(AccessOtherDescriptionNode node) {
     }
 
-    @AccessOtherDescriptionNodeScope
+    @ComponentScope
     public static class AccessOtherDescriptionNodeRuleProvider implements RuleProvider<AccessOtherDescriptionNode> {
 
         @Inject

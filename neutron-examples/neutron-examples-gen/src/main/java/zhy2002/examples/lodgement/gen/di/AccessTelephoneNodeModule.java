@@ -17,32 +17,32 @@ public class AccessTelephoneNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccessTelephoneNodeScope @Owner AccessTelephoneNode provideAccessTelephoneNode() {
+    @Provides @ComponentScope @Owner AccessTelephoneNode provideAccessTelephoneNode() {
         return owner;
     }
 
-    @Provides @AccessTelephoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
+    @Provides @ComponentScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 
-    @Provides @AccessTelephoneNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AccessTelephoneNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccessTelephoneNodeScope AccessNode provideAccessNode() {
+    @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }
 
-    @Provides @AccessTelephoneNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccessTelephoneNode> provideRuleProvider(Provider<AccessTelephoneNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccessTelephoneNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccessTelephoneNode>> provideInstanceProviderMap(
         Provider<AccessNodeChildProvider.AccessTelephoneNodeRuleProvider> accessTelephoneNodeRuleProvider
     ) {

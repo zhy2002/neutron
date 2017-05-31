@@ -17,32 +17,32 @@ public class ProductRewardsMembershipNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductRewardsMembershipNodeScope @Owner ProductRewardsMembershipNode provideProductRewardsMembershipNode() {
+    @Provides @ComponentScope @Owner ProductRewardsMembershipNode provideProductRewardsMembershipNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsMembershipNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsMembershipNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsMembershipNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductRewardsMembershipNodeScope ProductCardHolderNode provideProductCardHolderNode() {
+    @Provides @ComponentScope ProductCardHolderNode provideProductCardHolderNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductRewardsMembershipNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductRewardsMembershipNode> provideRuleProvider(Provider<ProductRewardsMembershipNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductRewardsMembershipNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductRewardsMembershipNode>> provideInstanceProviderMap(
         Provider<ProductCardHolderNodeChildProvider.ProductRewardsMembershipNodeRuleProvider> productRewardsMembershipNodeRuleProvider
     ) {

@@ -17,36 +17,36 @@ public class GrossYearlySalaryNodeModule {
         this.owner = owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope @Owner GrossYearlySalaryNode provideGrossYearlySalaryNode() {
+    @Provides @ComponentScope @Owner GrossYearlySalaryNode provideGrossYearlySalaryNode() {
         return owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @GrossYearlySalaryNodeScope PayeEmployedNode providePayeEmployedNode() {
+    @Provides @ComponentScope PayeEmployedNode providePayeEmployedNode() {
         return owner.getParent();
     }
 
-    @Provides @GrossYearlySalaryNodeScope
+    @Provides @ComponentScope
     RuleProvider<GrossYearlySalaryNode> provideRuleProvider(Provider<GrossYearlySalaryNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @GrossYearlySalaryNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<GrossYearlySalaryNode>> provideInstanceProviderMap(
         Provider<PayeEmployedNodeChildProvider.GrossYearlySalaryNodeRuleProvider> grossYearlySalaryNodeRuleProvider
     ) {

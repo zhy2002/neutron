@@ -17,32 +17,32 @@ public class BeingPurchasedFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BeingPurchasedFlagNodeScope @Owner BeingPurchasedFlagNode provideBeingPurchasedFlagNode() {
+    @Provides @ComponentScope @Owner BeingPurchasedFlagNode provideBeingPurchasedFlagNode() {
         return owner;
     }
 
-    @Provides @BeingPurchasedFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @BeingPurchasedFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BeingPurchasedFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BeingPurchasedFlagNodeScope UsageNode provideUsageNode() {
+    @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }
 
-    @Provides @BeingPurchasedFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<BeingPurchasedFlagNode> provideRuleProvider(Provider<BeingPurchasedFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BeingPurchasedFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BeingPurchasedFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.BeingPurchasedFlagNodeRuleProvider> beingPurchasedFlagNodeRuleProvider
     ) {

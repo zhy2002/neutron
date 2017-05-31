@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface AdditionalNodeChildFactory {
@@ -40,7 +41,7 @@ public class AdditionalNodeChildProvider {
     protected void configureAdditionalCommentNode(AdditionalCommentNode node) {
     }
 
-    @AdditionalCommentNodeScope
+    @ComponentScope
     public static class AdditionalCommentNodeRuleProvider implements RuleProvider<AdditionalCommentNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class AdditionalNodeChildProvider {
     protected void configureRelatedPartyListNode(RelatedPartyListNode node) {
     }
 
-    @RelatedPartyListNodeScope
+    @ComponentScope
     public static class RelatedPartyListNodeRuleProvider implements RuleProvider<RelatedPartyListNode> {
 
         @Inject

@@ -17,36 +17,36 @@ public class PayeEmployedNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PayeEmployedNodeScope @Owner PayeEmployedNode providePayeEmployedNode() {
+    @Provides @ComponentScope @Owner PayeEmployedNode providePayeEmployedNode() {
         return owner;
     }
 
-    @Provides @PayeEmployedNodeScope @Owner EmployedNode provideEmployedNode() {
+    @Provides @ComponentScope @Owner EmployedNode provideEmployedNode() {
         return owner;
     }
 
-    @Provides @PayeEmployedNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PayeEmployedNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PayeEmployedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PayeEmployedNodeScope EmploymentNode<?> provideEmploymentNode() {
+    @Provides @ComponentScope EmploymentNode<?> provideEmploymentNode() {
         return owner.getParent();
     }
 
-    @Provides @PayeEmployedNodeScope
+    @Provides @ComponentScope
     RuleProvider<PayeEmployedNode> provideRuleProvider(Provider<PayeEmployedNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PayeEmployedNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PayeEmployedNode>> provideInstanceProviderMap(
         Provider<EmploymentNodeChildProvider.PayeEmployedNodeRuleProvider> payeEmployedNodeRuleProvider
     ) {

@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface CreditCardNodeChildFactory {
@@ -82,7 +83,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardTypeNode(CreditCardTypeNode node) {
     }
 
-    @CreditCardTypeNodeScope
+    @ComponentScope
     public static class CreditCardTypeNodeRuleProvider implements RuleProvider<CreditCardTypeNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardAmountOwingNode(CreditCardAmountOwingNode node) {
     }
 
-    @CreditCardAmountOwingNodeScope
+    @ComponentScope
     public static class CreditCardAmountOwingNodeRuleProvider implements RuleProvider<CreditCardAmountOwingNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardLimitAmountNode(CreditCardLimitAmountNode node) {
     }
 
-    @CreditCardLimitAmountNodeScope
+    @ComponentScope
     public static class CreditCardLimitAmountNodeRuleProvider implements RuleProvider<CreditCardLimitAmountNode> {
 
         @Inject
@@ -166,7 +167,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardMonthlyRepaymentNode(CreditCardMonthlyRepaymentNode node) {
     }
 
-    @CreditCardMonthlyRepaymentNodeScope
+    @ComponentScope
     public static class CreditCardMonthlyRepaymentNodeRuleProvider implements RuleProvider<CreditCardMonthlyRepaymentNode> {
 
         @Inject
@@ -194,7 +195,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardClearingFlagNode(CreditCardClearingFlagNode node) {
     }
 
-    @CreditCardClearingFlagNodeScope
+    @ComponentScope
     public static class CreditCardClearingFlagNodeRuleProvider implements RuleProvider<CreditCardClearingFlagNode> {
 
         @Inject
@@ -222,7 +223,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardBreakCostNode(CreditCardBreakCostNode node) {
     }
 
-    @CreditCardBreakCostNodeScope
+    @ComponentScope
     public static class CreditCardBreakCostNodeRuleProvider implements RuleProvider<CreditCardBreakCostNode> {
 
         @Inject
@@ -250,7 +251,7 @@ public class CreditCardNodeChildProvider {
     protected void configureCreditCardLenderNameNode(CreditCardLenderNameNode node) {
     }
 
-    @CreditCardLenderNameNodeScope
+    @ComponentScope
     public static class CreditCardLenderNameNodeRuleProvider implements RuleProvider<CreditCardLenderNameNode> {
 
         @Inject
@@ -278,7 +279,7 @@ public class CreditCardNodeChildProvider {
     protected void configureOwnershipListNode(CreditCardOwnershipListNode node) {
     }
 
-    @CreditCardOwnershipListNodeScope
+    @ComponentScope
     public static class OwnershipListNodeRuleProvider implements RuleProvider<CreditCardOwnershipListNode> {
 
         @Inject

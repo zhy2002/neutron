@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface OtherLiabilityNodeChildFactory {
@@ -82,7 +83,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityTypeNode(OtherLiabilityTypeNode node) {
     }
 
-    @OtherLiabilityTypeNodeScope
+    @ComponentScope
     public static class OtherLiabilityTypeNodeRuleProvider implements RuleProvider<OtherLiabilityTypeNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityDescriptionNode(OtherLiabilityDescriptionNode node) {
     }
 
-    @OtherLiabilityDescriptionNodeScope
+    @ComponentScope
     public static class OtherLiabilityDescriptionNodeRuleProvider implements RuleProvider<OtherLiabilityDescriptionNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityLimitAmountNode(OtherLiabilityLimitAmountNode node) {
     }
 
-    @OtherLiabilityLimitAmountNodeScope
+    @ComponentScope
     public static class OtherLiabilityLimitAmountNodeRuleProvider implements RuleProvider<OtherLiabilityLimitAmountNode> {
 
         @Inject
@@ -166,7 +167,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityAmountOwningNode(OtherLiabilityAmountOwningNode node) {
     }
 
-    @OtherLiabilityAmountOwningNodeScope
+    @ComponentScope
     public static class OtherLiabilityAmountOwningNodeRuleProvider implements RuleProvider<OtherLiabilityAmountOwningNode> {
 
         @Inject
@@ -194,7 +195,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityMonthlyRepaymentNode(OtherLiabilityMonthlyRepaymentNode node) {
     }
 
-    @OtherLiabilityMonthlyRepaymentNodeScope
+    @ComponentScope
     public static class OtherLiabilityMonthlyRepaymentNodeRuleProvider implements RuleProvider<OtherLiabilityMonthlyRepaymentNode> {
 
         @Inject
@@ -222,7 +223,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityClearingFlagNode(OtherLiabilityClearingFlagNode node) {
     }
 
-    @OtherLiabilityClearingFlagNodeScope
+    @ComponentScope
     public static class OtherLiabilityClearingFlagNodeRuleProvider implements RuleProvider<OtherLiabilityClearingFlagNode> {
 
         @Inject
@@ -250,7 +251,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOtherLiabilityBreakCostNode(OtherLiabilityBreakCostNode node) {
     }
 
-    @OtherLiabilityBreakCostNodeScope
+    @ComponentScope
     public static class OtherLiabilityBreakCostNodeRuleProvider implements RuleProvider<OtherLiabilityBreakCostNode> {
 
         @Inject
@@ -278,7 +279,7 @@ public class OtherLiabilityNodeChildProvider {
     protected void configureOwnershipListNode(OtherLiabilityOwnershipListNode node) {
     }
 
-    @OtherLiabilityOwnershipListNodeScope
+    @ComponentScope
     public static class OwnershipListNodeRuleProvider implements RuleProvider<OtherLiabilityOwnershipListNode> {
 
         @Inject

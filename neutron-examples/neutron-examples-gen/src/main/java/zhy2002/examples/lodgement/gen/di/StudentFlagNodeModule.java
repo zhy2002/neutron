@@ -17,36 +17,36 @@ public class StudentFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @StudentFlagNodeScope @Owner StudentFlagNode provideStudentFlagNode() {
+    @Provides @ComponentScope @Owner StudentFlagNode provideStudentFlagNode() {
         return owner;
     }
 
-    @Provides @StudentFlagNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @StudentFlagNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @StudentFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @StudentFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @StudentFlagNodeScope UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }
 
-    @Provides @StudentFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<StudentFlagNode> provideRuleProvider(Provider<StudentFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @StudentFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<StudentFlagNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.StudentFlagNodeRuleProvider> studentFlagNodeRuleProvider
     ) {

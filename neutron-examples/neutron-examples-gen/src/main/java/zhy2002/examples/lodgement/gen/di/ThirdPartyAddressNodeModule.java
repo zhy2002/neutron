@@ -17,36 +17,36 @@ public class ThirdPartyAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope @Owner ThirdPartyAddressNode provideThirdPartyAddressNode() {
+    @Provides @ComponentScope @Owner ThirdPartyAddressNode provideThirdPartyAddressNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyAddressNodeScope RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope RelatedPartyNode provideRelatedPartyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyAddressNode> provideRuleProvider(Provider<ThirdPartyAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyAddressNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyAddressNodeRuleProvider> thirdPartyAddressNodeRuleProvider
     ) {

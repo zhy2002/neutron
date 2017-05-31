@@ -17,32 +17,32 @@ public class EmploymentTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @EmploymentTypeNodeScope @Owner EmploymentTypeNode provideEmploymentTypeNode() {
+    @Provides @ComponentScope @Owner EmploymentTypeNode provideEmploymentTypeNode() {
         return owner;
     }
 
-    @Provides @EmploymentTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @EmploymentTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @EmploymentTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @EmploymentTypeNodeScope EmploymentNode<?> provideEmploymentNode() {
+    @Provides @ComponentScope EmploymentNode<?> provideEmploymentNode() {
         return owner.getParent();
     }
 
-    @Provides @EmploymentTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<EmploymentTypeNode> provideRuleProvider(Provider<EmploymentTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @EmploymentTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<EmploymentTypeNode>> provideInstanceProviderMap(
         Provider<EmploymentNodeChildProvider.EmploymentTypeNodeRuleProvider> employmentTypeNodeRuleProvider
     ) {

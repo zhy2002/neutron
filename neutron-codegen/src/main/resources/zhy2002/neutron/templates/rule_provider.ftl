@@ -4,6 +4,7 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.node.${typeName};
 <#if rules??>
 import zhy2002.neutron.rule.*;
@@ -17,7 +18,7 @@ import ${targetPackage}.data.*;
 import java.math.*;
 </#if>
 
-<#if !abstractNode>@${typeName}Scope</#if>
+<#if !abstractNode>@ComponentScope</#if>
 public class ${typeName}RuleProvider implements RuleProvider<${genericTypeName}> {
 
     @Inject

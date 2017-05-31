@@ -17,32 +17,32 @@ public class CreditCardTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardTypeNodeScope @Owner CreditCardTypeNode provideCreditCardTypeNode() {
+    @Provides @ComponentScope @Owner CreditCardTypeNode provideCreditCardTypeNode() {
         return owner;
     }
 
-    @Provides @CreditCardTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardTypeNodeScope CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardTypeNode> provideRuleProvider(Provider<CreditCardTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCardTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCardTypeNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardTypeNodeRuleProvider> creditCardTypeNodeRuleProvider
     ) {

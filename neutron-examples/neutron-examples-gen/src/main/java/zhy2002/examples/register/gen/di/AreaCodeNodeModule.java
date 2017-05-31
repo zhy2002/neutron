@@ -17,36 +17,36 @@ public class AreaCodeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AreaCodeNodeScope @Owner AreaCodeNode provideAreaCodeNode() {
+    @Provides @ComponentScope @Owner AreaCodeNode provideAreaCodeNode() {
         return owner;
     }
 
-    @Provides @AreaCodeNodeScope @Owner PhoneInfoFieldNode providePhoneInfoFieldNode() {
+    @Provides @ComponentScope @Owner PhoneInfoFieldNode providePhoneInfoFieldNode() {
         return owner;
     }
 
-    @Provides @AreaCodeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AreaCodeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AreaCodeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AreaCodeNodeScope PhoneInfoNode providePhoneInfoNode() {
+    @Provides @ComponentScope PhoneInfoNode providePhoneInfoNode() {
         return owner.getParent();
     }
 
-    @Provides @AreaCodeNodeScope
+    @Provides @ComponentScope
     RuleProvider<AreaCodeNode> provideRuleProvider(Provider<AreaCodeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AreaCodeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AreaCodeNode>> provideInstanceProviderMap(
         Provider<PhoneInfoNodeChildProvider.AreaCodeNodeRuleProvider> areaCodeNodeRuleProvider
     ) {

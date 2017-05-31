@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface RealEstateNodeChildFactory {
@@ -47,7 +48,7 @@ public class RealEstateNodeChildProvider {
     protected void configureUsageNode(UsageNode node) {
     }
 
-    @UsageNodeScope
+    @ComponentScope
     public static class UsageNodeRuleProvider implements RuleProvider<UsageNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class RealEstateNodeChildProvider {
     protected void configurePropertyNode(PropertyNode node) {
     }
 
-    @PropertyNodeScope
+    @ComponentScope
     public static class PropertyNodeRuleProvider implements RuleProvider<PropertyNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class RealEstateNodeChildProvider {
     protected void configureAccessNode(AccessNode node) {
     }
 
-    @AccessNodeScope
+    @ComponentScope
     public static class AccessNodeRuleProvider implements RuleProvider<AccessNode> {
 
         @Inject

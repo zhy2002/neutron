@@ -17,36 +17,36 @@ public class LegalActionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LegalActionNodeScope @Owner LegalActionNode provideLegalActionNode() {
+    @Provides @ComponentScope @Owner LegalActionNode provideLegalActionNode() {
         return owner;
     }
 
-    @Provides @LegalActionNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @LegalActionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @LegalActionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @LegalActionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LegalActionNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+    @Provides @ComponentScope BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner.getParent();
     }
 
-    @Provides @LegalActionNodeScope
+    @Provides @ComponentScope
     RuleProvider<LegalActionNode> provideRuleProvider(Provider<LegalActionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @LegalActionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<LegalActionNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.LegalActionNodeRuleProvider> legalActionNodeRuleProvider
     ) {

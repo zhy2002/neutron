@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.TotalExpenseNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@TotalExpenseNodeScope
+@ComponentScope
 public class TotalExpenseNodeRuleProvider implements RuleProvider<TotalExpenseNode> {
 
     @Inject

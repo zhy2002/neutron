@@ -17,36 +17,36 @@ public class CompanyEmailNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyEmailNodeScope @Owner CompanyEmailNode provideCompanyEmailNode() {
+    @Provides @ComponentScope @Owner CompanyEmailNode provideCompanyEmailNode() {
         return owner;
     }
 
-    @Provides @CompanyEmailNodeScope @Owner EmailNode<?> provideEmailNode() {
+    @Provides @ComponentScope @Owner EmailNode<?> provideEmailNode() {
         return owner;
     }
 
-    @Provides @CompanyEmailNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyEmailNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyEmailNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyEmailNodeScope CompanyContactNode provideCompanyContactNode() {
+    @Provides @ComponentScope CompanyContactNode provideCompanyContactNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyEmailNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyEmailNode> provideRuleProvider(Provider<CompanyEmailNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyEmailNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyEmailNode>> provideInstanceProviderMap(
         Provider<CompanyContactNodeChildProvider.CompanyEmailNodeRuleProvider> companyEmailNodeRuleProvider
     ) {

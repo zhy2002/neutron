@@ -17,32 +17,32 @@ public class PropertyWeeklyRentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PropertyWeeklyRentNodeScope @Owner PropertyWeeklyRentNode providePropertyWeeklyRentNode() {
+    @Provides @ComponentScope @Owner PropertyWeeklyRentNode providePropertyWeeklyRentNode() {
         return owner;
     }
 
-    @Provides @PropertyWeeklyRentNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @PropertyWeeklyRentNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PropertyWeeklyRentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PropertyWeeklyRentNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @PropertyWeeklyRentNodeScope
+    @Provides @ComponentScope
     RuleProvider<PropertyWeeklyRentNode> provideRuleProvider(Provider<PropertyWeeklyRentNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PropertyWeeklyRentNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PropertyWeeklyRentNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyWeeklyRentNodeRuleProvider> propertyWeeklyRentNodeRuleProvider
     ) {

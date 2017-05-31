@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface CompanyNodeChildFactory {
@@ -68,7 +69,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyGeneralNode(CompanyGeneralNode node) {
     }
 
-    @CompanyGeneralNodeScope
+    @ComponentScope
     public static class CompanyGeneralNodeRuleProvider implements RuleProvider<CompanyGeneralNode> {
 
         @Inject
@@ -96,7 +97,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyContactNode(CompanyContactNode node) {
     }
 
-    @CompanyContactNodeScope
+    @ComponentScope
     public static class CompanyContactNodeRuleProvider implements RuleProvider<CompanyContactNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyTrustNode(CompanyTrustNode node) {
     }
 
-    @CompanyTrustNodeScope
+    @ComponentScope
     public static class CompanyTrustNodeRuleProvider implements RuleProvider<CompanyTrustNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyPrivacyNode(CompanyPrivacyNode node) {
     }
 
-    @CompanyPrivacyNodeScope
+    @ComponentScope
     public static class CompanyPrivacyNodeRuleProvider implements RuleProvider<CompanyPrivacyNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyOtherIncomeListNode(CompanyOtherIncomeListNode node) {
     }
 
-    @CompanyOtherIncomeListNodeScope
+    @ComponentScope
     public static class CompanyOtherIncomeListNodeRuleProvider implements RuleProvider<CompanyOtherIncomeListNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class CompanyNodeChildProvider {
     protected void configureCompanyResponsibleLendNode(CompanyResponsibleLendNode node) {
     }
 
-    @CompanyResponsibleLendNodeScope
+    @ComponentScope
     public static class CompanyResponsibleLendNodeRuleProvider implements RuleProvider<CompanyResponsibleLendNode> {
 
         @Inject

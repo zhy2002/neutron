@@ -4,12 +4,13 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.register.gen.node.CountryCodeNode;
 import zhy2002.examples.register.gen.di.*;
 import zhy2002.examples.register.data.*;
 import java.math.*;
 
-@CountryCodeNodeScope
+@ComponentScope
 public class CountryCodeNodeRuleProvider implements RuleProvider<CountryCodeNode> {
 
     @Inject

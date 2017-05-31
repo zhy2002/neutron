@@ -16,27 +16,27 @@ public class TrustBeneficiaryClassNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope @Owner TrustBeneficiaryClassNode provideTrustBeneficiaryClassNode() {
+    @Provides @ComponentScope @Owner TrustBeneficiaryClassNode provideTrustBeneficiaryClassNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
+    @Provides @ComponentScope TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustBeneficiaryClassNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustBeneficiaryClassNode> provideRuleProvider(Provider<TrustBeneficiaryClassNodeRuleProvider> provider) {
         return provider.get();
     }

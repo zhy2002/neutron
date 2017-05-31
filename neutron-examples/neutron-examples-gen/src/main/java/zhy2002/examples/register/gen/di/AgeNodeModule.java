@@ -17,32 +17,32 @@ public class AgeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AgeNodeScope @Owner AgeNode provideAgeNode() {
+    @Provides @ComponentScope @Owner AgeNode provideAgeNode() {
         return owner;
     }
 
-    @Provides @AgeNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @AgeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AgeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AgeNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @AgeNodeScope
+    @Provides @ComponentScope
     RuleProvider<AgeNode> provideRuleProvider(Provider<AgeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AgeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AgeNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.AgeNodeRuleProvider> ageNodeRuleProvider
     ) {

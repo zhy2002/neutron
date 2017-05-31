@@ -17,32 +17,32 @@ public class PlanNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PlanNodeScope @Owner PlanNode providePlanNode() {
+    @Provides @ComponentScope @Owner PlanNode providePlanNode() {
         return owner;
     }
 
-    @Provides @PlanNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PlanNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PlanNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PlanNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @PlanNodeScope
+    @Provides @ComponentScope
     RuleProvider<PlanNode> provideRuleProvider(Provider<PlanNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PlanNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PlanNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.PlanNodeRuleProvider> planNodeRuleProvider
     ) {

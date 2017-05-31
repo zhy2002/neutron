@@ -17,32 +17,32 @@ public class AddressLineNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AddressLineNodeScope @Owner AddressLineNode provideAddressLineNode() {
+    @Provides @ComponentScope @Owner AddressLineNode provideAddressLineNode() {
         return owner;
     }
 
-    @Provides @AddressLineNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AddressLineNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AddressLineNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AddressLineNodeScope AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope AddressNode<?> provideAddressNode() {
         return owner.getParent();
     }
 
-    @Provides @AddressLineNodeScope
+    @Provides @ComponentScope
     RuleProvider<AddressLineNode> provideRuleProvider(Provider<AddressLineNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AddressLineNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AddressLineNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.AddressLineNodeRuleProvider> addressLineNodeRuleProvider
     ) {

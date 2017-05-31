@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface OtherIncomeNodeChildFactory {
@@ -61,7 +62,7 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeAddBackTypeNode(OtherIncomeAddBackTypeNode node) {
     }
 
-    @OtherIncomeAddBackTypeNodeScope
+    @ComponentScope
     public static class OtherIncomeAddBackTypeNodeRuleProvider implements RuleProvider<OtherIncomeAddBackTypeNode> {
 
         @Inject
@@ -89,7 +90,7 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeAmountNode(OtherIncomeAmountNode node) {
     }
 
-    @OtherIncomeAmountNodeScope
+    @ComponentScope
     public static class OtherIncomeAmountNodeRuleProvider implements RuleProvider<OtherIncomeAmountNode> {
 
         @Inject
@@ -117,7 +118,7 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeDescriptionNode(OtherIncomeDescriptionNode node) {
     }
 
-    @OtherIncomeDescriptionNodeScope
+    @ComponentScope
     public static class OtherIncomeDescriptionNodeRuleProvider implements RuleProvider<OtherIncomeDescriptionNode> {
 
         @Inject
@@ -145,7 +146,7 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomePreviousYearNode(OtherIncomePreviousYearNode node) {
     }
 
-    @OtherIncomePreviousYearNodeScope
+    @ComponentScope
     public static class OtherIncomePreviousYearNodeRuleProvider implements RuleProvider<OtherIncomePreviousYearNode> {
 
         @Inject
@@ -173,7 +174,7 @@ public class OtherIncomeNodeChildProvider {
     protected void configureOtherIncomeTypeNode(OtherIncomeTypeNode node) {
     }
 
-    @OtherIncomeTypeNodeScope
+    @ComponentScope
     public static class OtherIncomeTypeNodeRuleProvider implements RuleProvider<OtherIncomeTypeNode> {
 
         @Inject

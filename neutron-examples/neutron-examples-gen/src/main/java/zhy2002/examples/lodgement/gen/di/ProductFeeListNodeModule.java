@@ -17,32 +17,32 @@ public class ProductFeeListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductFeeListNodeScope @Owner ProductFeeListNode provideProductFeeListNode() {
+    @Provides @ComponentScope @Owner ProductFeeListNode provideProductFeeListNode() {
         return owner;
     }
 
-    @Provides @ProductFeeListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeListNodeScope ProductsNode provideProductsNode() {
+    @Provides @ComponentScope ProductsNode provideProductsNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductFeeListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductFeeListNode> provideRuleProvider(Provider<ProductFeeListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductFeeListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductFeeListNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductFeeListNodeRuleProvider> productFeeListNodeRuleProvider
     ) {

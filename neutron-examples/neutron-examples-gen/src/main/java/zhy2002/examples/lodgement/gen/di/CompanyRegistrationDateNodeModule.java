@@ -17,32 +17,32 @@ public class CompanyRegistrationDateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyRegistrationDateNodeScope @Owner CompanyRegistrationDateNode provideCompanyRegistrationDateNode() {
+    @Provides @ComponentScope @Owner CompanyRegistrationDateNode provideCompanyRegistrationDateNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationDateNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationDateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationDateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationDateNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyRegistrationDateNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyRegistrationDateNode> provideRuleProvider(Provider<CompanyRegistrationDateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyRegistrationDateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyRegistrationDateNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyRegistrationDateNodeRuleProvider> companyRegistrationDateNodeRuleProvider
     ) {

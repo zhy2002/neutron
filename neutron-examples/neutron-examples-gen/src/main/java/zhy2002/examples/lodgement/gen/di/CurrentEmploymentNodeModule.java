@@ -16,31 +16,31 @@ public class CurrentEmploymentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope @Owner CurrentEmploymentNode provideCurrentEmploymentNode() {
+    @Provides @ComponentScope @Owner CurrentEmploymentNode provideCurrentEmploymentNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope @Owner EmploymentNode<?> provideEmploymentNode() {
+    @Provides @ComponentScope @Owner EmploymentNode<?> provideEmploymentNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentNodeScope CurrentEmploymentListNode provideCurrentEmploymentListNode() {
+    @Provides @ComponentScope CurrentEmploymentListNode provideCurrentEmploymentListNode() {
         return owner.getParent();
     }
 
-    @Provides @CurrentEmploymentNodeScope
+    @Provides @ComponentScope
     RuleProvider<CurrentEmploymentNode> provideRuleProvider(Provider<CurrentEmploymentNodeRuleProvider> provider) {
         return provider.get();
     }

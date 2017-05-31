@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.DateLodgedNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@DateLodgedNodeScope
+@ComponentScope
 public class DateLodgedNodeRuleProvider implements RuleProvider<DateLodgedNode> {
 
     @Inject

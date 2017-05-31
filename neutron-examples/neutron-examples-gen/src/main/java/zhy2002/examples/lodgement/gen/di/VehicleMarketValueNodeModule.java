@@ -17,36 +17,36 @@ public class VehicleMarketValueNodeModule {
         this.owner = owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope @Owner VehicleMarketValueNode provideVehicleMarketValueNode() {
+    @Provides @ComponentScope @Owner VehicleMarketValueNode provideVehicleMarketValueNode() {
         return owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @VehicleMarketValueNodeScope MotorVehicleNode provideMotorVehicleNode() {
+    @Provides @ComponentScope MotorVehicleNode provideMotorVehicleNode() {
         return owner.getParent();
     }
 
-    @Provides @VehicleMarketValueNodeScope
+    @Provides @ComponentScope
     RuleProvider<VehicleMarketValueNode> provideRuleProvider(Provider<VehicleMarketValueNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @VehicleMarketValueNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<VehicleMarketValueNode>> provideInstanceProviderMap(
         Provider<MotorVehicleNodeChildProvider.VehicleMarketValueNodeRuleProvider> vehicleMarketValueNodeRuleProvider
     ) {

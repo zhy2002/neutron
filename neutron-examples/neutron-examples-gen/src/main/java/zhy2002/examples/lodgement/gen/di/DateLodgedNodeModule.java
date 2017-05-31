@@ -17,32 +17,32 @@ public class DateLodgedNodeModule {
         this.owner = owner;
     }
 
-    @Provides @DateLodgedNodeScope @Owner DateLodgedNode provideDateLodgedNode() {
+    @Provides @ComponentScope @Owner DateLodgedNode provideDateLodgedNode() {
         return owner;
     }
 
-    @Provides @DateLodgedNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @DateLodgedNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @DateLodgedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @DateLodgedNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @DateLodgedNodeScope
+    @Provides @ComponentScope
     RuleProvider<DateLodgedNode> provideRuleProvider(Provider<DateLodgedNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @DateLodgedNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<DateLodgedNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.DateLodgedNodeRuleProvider> dateLodgedNodeRuleProvider
     ) {

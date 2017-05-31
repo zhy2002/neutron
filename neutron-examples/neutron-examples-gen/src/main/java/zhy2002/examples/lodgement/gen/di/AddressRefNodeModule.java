@@ -16,27 +16,27 @@ public class AddressRefNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AddressRefNodeScope @Owner AddressRefNode provideAddressRefNode() {
+    @Provides @ComponentScope @Owner AddressRefNode provideAddressRefNode() {
         return owner;
     }
 
-    @Provides @AddressRefNodeScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
+    @Provides @ComponentScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefNodeScope AddressRefListNode provideAddressRefListNode() {
+    @Provides @ComponentScope AddressRefListNode provideAddressRefListNode() {
         return owner.getParent();
     }
 
-    @Provides @AddressRefNodeScope
+    @Provides @ComponentScope
     RuleProvider<AddressRefNode> provideRuleProvider(Provider<AddressRefNodeRuleProvider> provider) {
         return provider.get();
     }

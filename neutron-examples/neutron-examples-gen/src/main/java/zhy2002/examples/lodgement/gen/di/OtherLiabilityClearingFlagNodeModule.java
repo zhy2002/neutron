@@ -17,32 +17,32 @@ public class OtherLiabilityClearingFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope @Owner OtherLiabilityClearingFlagNode provideOtherLiabilityClearingFlagNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityClearingFlagNode provideOtherLiabilityClearingFlagNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope OtherLiabilityNode provideOtherLiabilityNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityClearingFlagNode> provideRuleProvider(Provider<OtherLiabilityClearingFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherLiabilityClearingFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityClearingFlagNodeRuleProvider> otherLiabilityClearingFlagNodeRuleProvider
     ) {

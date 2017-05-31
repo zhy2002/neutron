@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.bankb.gen.node;
 /* template name: profile_child_factory.ftl */
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.ComponentScope;
 import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
@@ -10,7 +11,7 @@ import java.util.*;
 
 public class BankBPersonContactNodeChildProvider {
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class HomePhoneNodeRuleProvider extends PersonContactNodeChildProvider.HomePhoneNodeRuleProvider {
 
         @Inject
@@ -32,7 +33,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class WorkPhoneNodeRuleProvider extends PersonContactNodeChildProvider.WorkPhoneNodeRuleProvider {
 
         @Inject
@@ -54,7 +55,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class FaxNumberNodeRuleProvider extends PersonContactNodeChildProvider.FaxNumberNodeRuleProvider {
 
         @Inject
@@ -76,7 +77,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonMobileNumberNodeScope
+    @ComponentScope
     public static class PersonMobileNumberNodeRuleProvider extends PersonContactNodeChildProvider.PersonMobileNumberNodeRuleProvider {
 
         @Inject
@@ -98,7 +99,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonEmailNodeScope
+    @ComponentScope
     public static class PersonEmailNodeRuleProvider extends PersonContactNodeChildProvider.PersonEmailNodeRuleProvider {
 
         @Inject
@@ -120,7 +121,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class CurrentAddressNodeRuleProvider extends PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider {
 
         @Inject
@@ -143,7 +144,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @MovedToCurrentAddressNodeScope
+    @ComponentScope
     public static class MovedToCurrentAddressNodeRuleProvider extends PersonContactNodeChildProvider.MovedToCurrentAddressNodeRuleProvider {
 
         @Inject
@@ -165,7 +166,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class PostalAddressNodeRuleProvider extends PersonContactNodeChildProvider.PostalAddressNodeRuleProvider {
 
         @Inject
@@ -187,7 +188,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class PreviousAddressNodeRuleProvider extends PersonContactNodeChildProvider.PreviousAddressNodeRuleProvider {
 
         @Inject
@@ -209,7 +210,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @MovedToPreviousAddressNodeScope
+    @ComponentScope
     public static class MovedToPreviousAddressNodeRuleProvider extends PersonContactNodeChildProvider.MovedToPreviousAddressNodeRuleProvider {
 
         @Inject
@@ -231,7 +232,7 @@ public class BankBPersonContactNodeChildProvider {
     }
 
 
-    @MovedFromPreviousAddressNodeScope
+    @ComponentScope
     public static class MovedFromPreviousAddressNodeRuleProvider extends PersonContactNodeChildProvider.MovedFromPreviousAddressNodeRuleProvider {
 
         @Inject

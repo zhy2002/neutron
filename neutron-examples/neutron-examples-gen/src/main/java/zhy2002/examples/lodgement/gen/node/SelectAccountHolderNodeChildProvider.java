@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface SelectAccountHolderNodeChildFactory {
@@ -40,7 +41,7 @@ public class SelectAccountHolderNodeChildProvider {
     protected void configureAccountHolderReferenceNode(AccountHolderReferenceNode node) {
     }
 
-    @AccountHolderReferenceNodeScope
+    @ComponentScope
     public static class AccountHolderReferenceNodeRuleProvider implements RuleProvider<AccountHolderReferenceNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class SelectAccountHolderNodeChildProvider {
     protected void configureSelectAccountHolderFlagNode(SelectAccountHolderFlagNode node) {
     }
 
-    @SelectAccountHolderFlagNodeScope
+    @ComponentScope
     public static class SelectAccountHolderFlagNodeRuleProvider implements RuleProvider<SelectAccountHolderFlagNode> {
 
         @Inject

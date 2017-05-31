@@ -17,32 +17,32 @@ public class ProductTransactionAccountFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope @Owner ProductTransactionAccountFlagNode provideProductTransactionAccountFlagNode() {
+    @Provides @ComponentScope @Owner ProductTransactionAccountFlagNode provideProductTransactionAccountFlagNode() {
         return owner;
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductTransactionAccountFlagNode> provideRuleProvider(Provider<ProductTransactionAccountFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductTransactionAccountFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductTransactionAccountFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductTransactionAccountFlagNodeRuleProvider> productTransactionAccountFlagNodeRuleProvider
     ) {

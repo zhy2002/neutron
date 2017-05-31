@@ -17,32 +17,32 @@ public class DefenseServiceFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @DefenseServiceFlagNodeScope @Owner DefenseServiceFlagNode provideDefenseServiceFlagNode() {
+    @Provides @ComponentScope @Owner DefenseServiceFlagNode provideDefenseServiceFlagNode() {
         return owner;
     }
 
-    @Provides @DefenseServiceFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @DefenseServiceFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @DefenseServiceFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @DefenseServiceFlagNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @DefenseServiceFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<DefenseServiceFlagNode> provideRuleProvider(Provider<DefenseServiceFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @DefenseServiceFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<DefenseServiceFlagNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.DefenseServiceFlagNodeRuleProvider> defenseServiceFlagNodeRuleProvider
     ) {

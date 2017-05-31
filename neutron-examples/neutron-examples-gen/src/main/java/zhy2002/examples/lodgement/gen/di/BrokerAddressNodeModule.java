@@ -17,36 +17,36 @@ public class BrokerAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerAddressNodeScope @Owner BrokerAddressNode provideBrokerAddressNode() {
+    @Provides @ComponentScope @Owner BrokerAddressNode provideBrokerAddressNode() {
         return owner;
     }
 
-    @Provides @BrokerAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @BrokerAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @BrokerAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @BrokerAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerAddressNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerAddressNode> provideRuleProvider(Provider<BrokerAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerAddressNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerAddressNodeRuleProvider> brokerAddressNodeRuleProvider
     ) {

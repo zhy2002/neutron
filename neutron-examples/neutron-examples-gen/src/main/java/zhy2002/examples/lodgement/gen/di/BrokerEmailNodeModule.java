@@ -17,36 +17,36 @@ public class BrokerEmailNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerEmailNodeScope @Owner BrokerEmailNode provideBrokerEmailNode() {
+    @Provides @ComponentScope @Owner BrokerEmailNode provideBrokerEmailNode() {
         return owner;
     }
 
-    @Provides @BrokerEmailNodeScope @Owner EmailNode<?> provideEmailNode() {
+    @Provides @ComponentScope @Owner EmailNode<?> provideEmailNode() {
         return owner;
     }
 
-    @Provides @BrokerEmailNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @BrokerEmailNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BrokerEmailNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerEmailNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerEmailNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerEmailNode> provideRuleProvider(Provider<BrokerEmailNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerEmailNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerEmailNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerEmailNodeRuleProvider> brokerEmailNodeRuleProvider
     ) {

@@ -17,36 +17,36 @@ public class HouseDutiesFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope @Owner HouseDutiesFlagNode provideHouseDutiesFlagNode() {
+    @Provides @ComponentScope @Owner HouseDutiesFlagNode provideHouseDutiesFlagNode() {
         return owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @HouseDutiesFlagNodeScope UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }
 
-    @Provides @HouseDutiesFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<HouseDutiesFlagNode> provideRuleProvider(Provider<HouseDutiesFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @HouseDutiesFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<HouseDutiesFlagNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.HouseDutiesFlagNodeRuleProvider> houseDutiesFlagNodeRuleProvider
     ) {

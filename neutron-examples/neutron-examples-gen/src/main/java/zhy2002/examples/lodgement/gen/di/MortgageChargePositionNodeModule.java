@@ -17,32 +17,32 @@ public class MortgageChargePositionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageChargePositionNodeScope @Owner MortgageChargePositionNode provideMortgageChargePositionNode() {
+    @Provides @ComponentScope @Owner MortgageChargePositionNode provideMortgageChargePositionNode() {
         return owner;
     }
 
-    @Provides @MortgageChargePositionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @MortgageChargePositionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageChargePositionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageChargePositionNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageChargePositionNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageChargePositionNode> provideRuleProvider(Provider<MortgageChargePositionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageChargePositionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageChargePositionNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageChargePositionNodeRuleProvider> mortgageChargePositionNodeRuleProvider
     ) {

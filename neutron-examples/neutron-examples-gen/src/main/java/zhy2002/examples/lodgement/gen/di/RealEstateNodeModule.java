@@ -16,27 +16,27 @@ public class RealEstateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RealEstateNodeScope @Owner RealEstateNode provideRealEstateNode() {
+    @Provides @ComponentScope @Owner RealEstateNode provideRealEstateNode() {
         return owner;
     }
 
-    @Provides @RealEstateNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @RealEstateNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @RealEstateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RealEstateNodeScope RealEstateListNode provideRealEstateListNode() {
+    @Provides @ComponentScope RealEstateListNode provideRealEstateListNode() {
         return owner.getParent();
     }
 
-    @Provides @RealEstateNodeScope
+    @Provides @ComponentScope
     RuleProvider<RealEstateNode> provideRuleProvider(Provider<RealEstateNodeRuleProvider> provider) {
         return provider.get();
     }

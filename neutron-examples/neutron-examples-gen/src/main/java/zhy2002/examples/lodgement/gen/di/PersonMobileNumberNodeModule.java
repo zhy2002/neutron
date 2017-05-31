@@ -17,36 +17,36 @@ public class PersonMobileNumberNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope @Owner PersonMobileNumberNode providePersonMobileNumberNode() {
+    @Provides @ComponentScope @Owner PersonMobileNumberNode providePersonMobileNumberNode() {
         return owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope @Owner BaseMobileNumberNode<?> provideBaseMobileNumberNode() {
+    @Provides @ComponentScope @Owner BaseMobileNumberNode<?> provideBaseMobileNumberNode() {
         return owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonMobileNumberNodeScope PersonContactNode providePersonContactNode() {
+    @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonMobileNumberNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonMobileNumberNode> provideRuleProvider(Provider<PersonMobileNumberNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonMobileNumberNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonMobileNumberNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.PersonMobileNumberNodeRuleProvider> personMobileNumberNodeRuleProvider
     ) {

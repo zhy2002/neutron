@@ -17,32 +17,32 @@ public class CreditHistoryListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditHistoryListNodeScope @Owner CreditHistoryListNode provideCreditHistoryListNode() {
+    @Provides @ComponentScope @Owner CreditHistoryListNode provideCreditHistoryListNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditHistoryListNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+    @Provides @ComponentScope BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditHistoryListNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditHistoryListNode> provideRuleProvider(Provider<CreditHistoryListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditHistoryListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditHistoryListNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.CreditHistoryListNodeRuleProvider> creditHistoryListNodeRuleProvider
     ) {

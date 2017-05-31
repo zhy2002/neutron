@@ -21,24 +21,24 @@ public class ${typeName}Module {
 
 <#--make the owner node as injectable for all base types-->
 <#list baseTypes as baseType>
-    @Provides @${typeName}Scope @Owner ${baseType.genericTypeName} provide${baseType.typeName}() {
+    @Provides @ComponentScope @Owner ${baseType.genericTypeName} provide${baseType.typeName}() {
         return owner;
     }
 
 </#list>
 <#if parentType.typeName != "VoidUiNode">
-    @Provides @${typeName}Scope ${parentType.genericTypeName} provide${parentType.typeName}() {
+    @Provides @ComponentScope ${parentType.genericTypeName} provide${parentType.typeName}() {
         return owner.getParent();
     }
 
 </#if>
-    @Provides @${typeName}Scope
+    @Provides @ComponentScope
     RuleProvider<${typeName}> provideRuleProvider(Provider<${typeName}RuleProvider> provider) {
         return provider.get();
     }
 
 <#if !abstractNode && parentType.children ??>
-    @Provides @${typeName}Scope
+    @Provides @ComponentScope
     Map<String, RuleProvider<${typeName}>> provideInstanceProviderMap(
     <#assign firstItem = true />
     <#list parentType.children as child>

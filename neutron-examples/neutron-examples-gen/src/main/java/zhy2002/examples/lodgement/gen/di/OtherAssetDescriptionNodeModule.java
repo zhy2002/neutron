@@ -17,32 +17,32 @@ public class OtherAssetDescriptionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherAssetDescriptionNodeScope @Owner OtherAssetDescriptionNode provideOtherAssetDescriptionNode() {
+    @Provides @ComponentScope @Owner OtherAssetDescriptionNode provideOtherAssetDescriptionNode() {
         return owner;
     }
 
-    @Provides @OtherAssetDescriptionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetDescriptionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetDescriptionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetDescriptionNodeScope OtherAssetNode provideOtherAssetNode() {
+    @Provides @ComponentScope OtherAssetNode provideOtherAssetNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherAssetDescriptionNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherAssetDescriptionNode> provideRuleProvider(Provider<OtherAssetDescriptionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherAssetDescriptionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherAssetDescriptionNode>> provideInstanceProviderMap(
         Provider<OtherAssetNodeChildProvider.OtherAssetDescriptionNodeRuleProvider> otherAssetDescriptionNodeRuleProvider
     ) {

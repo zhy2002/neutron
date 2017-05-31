@@ -17,32 +17,32 @@ public class SelectRelatedPersonFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope @Owner SelectRelatedPersonFlagNode provideSelectRelatedPersonFlagNode() {
+    @Provides @ComponentScope @Owner SelectRelatedPersonFlagNode provideSelectRelatedPersonFlagNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope SelectRelatedPersonNode provideSelectRelatedPersonNode() {
+    @Provides @ComponentScope SelectRelatedPersonNode provideSelectRelatedPersonNode() {
         return owner.getParent();
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<SelectRelatedPersonFlagNode> provideRuleProvider(Provider<SelectRelatedPersonFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SelectRelatedPersonFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SelectRelatedPersonFlagNode>> provideInstanceProviderMap(
         Provider<SelectRelatedPersonNodeChildProvider.SelectRelatedPersonFlagNodeRuleProvider> selectRelatedPersonFlagNodeRuleProvider
     ) {

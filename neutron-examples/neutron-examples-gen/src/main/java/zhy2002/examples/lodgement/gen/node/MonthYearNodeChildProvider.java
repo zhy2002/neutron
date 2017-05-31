@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface MonthYearNodeChildFactory {
@@ -40,7 +41,7 @@ public class MonthYearNodeChildProvider {
     protected void configureMonthNode(MonthNode node) {
     }
 
-    @MonthNodeScope
+    @ComponentScope
     public static class MonthNodeRuleProvider implements RuleProvider<MonthNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class MonthYearNodeChildProvider {
     protected void configureYearNode(YearNode node) {
     }
 
-    @YearNodeScope
+    @ComponentScope
     public static class YearNodeRuleProvider implements RuleProvider<YearNode> {
 
         @Inject

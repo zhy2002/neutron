@@ -17,32 +17,32 @@ public class ProductCreditCardTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCreditCardTypeNodeScope @Owner ProductCreditCardTypeNode provideProductCreditCardTypeNode() {
+    @Provides @ComponentScope @Owner ProductCreditCardTypeNode provideProductCreditCardTypeNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardTypeNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCreditCardTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCreditCardTypeNode> provideRuleProvider(Provider<ProductCreditCardTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCreditCardTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCreditCardTypeNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductCreditCardTypeNodeRuleProvider> productCreditCardTypeNodeRuleProvider
     ) {

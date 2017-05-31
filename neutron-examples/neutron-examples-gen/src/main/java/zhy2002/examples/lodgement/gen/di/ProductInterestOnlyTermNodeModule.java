@@ -17,32 +17,32 @@ public class ProductInterestOnlyTermNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope @Owner ProductInterestOnlyTermNode provideProductInterestOnlyTermNode() {
+    @Provides @ComponentScope @Owner ProductInterestOnlyTermNode provideProductInterestOnlyTermNode() {
         return owner;
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductInterestOnlyTermNode> provideRuleProvider(Provider<ProductInterestOnlyTermNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductInterestOnlyTermNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductInterestOnlyTermNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductInterestOnlyTermNodeRuleProvider> productInterestOnlyTermNodeRuleProvider
     ) {

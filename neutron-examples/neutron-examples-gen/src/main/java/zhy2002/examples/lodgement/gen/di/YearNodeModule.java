@@ -17,32 +17,32 @@ public class YearNodeModule {
         this.owner = owner;
     }
 
-    @Provides @YearNodeScope @Owner YearNode provideYearNode() {
+    @Provides @ComponentScope @Owner YearNode provideYearNode() {
         return owner;
     }
 
-    @Provides @YearNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @YearNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @YearNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @YearNodeScope MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope MonthYearNode<?> provideMonthYearNode() {
         return owner.getParent();
     }
 
-    @Provides @YearNodeScope
+    @Provides @ComponentScope
     RuleProvider<YearNode> provideRuleProvider(Provider<YearNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @YearNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<YearNode>> provideInstanceProviderMap(
         Provider<MonthYearNodeChildProvider.YearNodeRuleProvider> yearNodeRuleProvider
     ) {

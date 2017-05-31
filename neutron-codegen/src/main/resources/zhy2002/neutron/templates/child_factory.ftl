@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import ${targetPackage}.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ${typeName}ChildFactory {
@@ -40,7 +41,7 @@ public class ${typeName}ChildProvider {
     protected void configure${child.name?cap_first}(${child.typeName} node) {
     }
 
-    @${child.typeName}Scope
+    @ComponentScope
     public static class ${child.name?cap_first}RuleProvider implements RuleProvider<${child.typeName}> {
 
         @Inject

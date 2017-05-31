@@ -17,32 +17,32 @@ public class OwnInvestmentPropertyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope @Owner OwnInvestmentPropertyNode provideOwnInvestmentPropertyNode() {
+    @Provides @ComponentScope @Owner OwnInvestmentPropertyNode provideOwnInvestmentPropertyNode() {
         return owner;
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope
+    @Provides @ComponentScope
     RuleProvider<OwnInvestmentPropertyNode> provideRuleProvider(Provider<OwnInvestmentPropertyNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OwnInvestmentPropertyNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OwnInvestmentPropertyNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.OwnInvestmentPropertyNodeRuleProvider> ownInvestmentPropertyNodeRuleProvider
     ) {

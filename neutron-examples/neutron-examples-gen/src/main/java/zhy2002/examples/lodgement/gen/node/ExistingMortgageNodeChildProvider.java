@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ExistingMortgageNodeChildFactory {
@@ -117,7 +118,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLenderInstitutionNode(MortgageLenderInstitutionNode node) {
     }
 
-    @MortgageLenderInstitutionNodeScope
+    @ComponentScope
     public static class MortgageLenderInstitutionNodeRuleProvider implements RuleProvider<MortgageLenderInstitutionNode> {
 
         @Inject
@@ -145,7 +146,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgqageUnpaidBalanceNode(MortgqageUnpaidBalanceNode node) {
     }
 
-    @MortgqageUnpaidBalanceNodeScope
+    @ComponentScope
     public static class MortgqageUnpaidBalanceNodeRuleProvider implements RuleProvider<MortgqageUnpaidBalanceNode> {
 
         @Inject
@@ -173,7 +174,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLimitAmountNode(MortgageLimitAmountNode node) {
     }
 
-    @MortgageLimitAmountNodeScope
+    @ComponentScope
     public static class MortgageLimitAmountNodeRuleProvider implements RuleProvider<MortgageLimitAmountNode> {
 
         @Inject
@@ -201,7 +202,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageMonthlyRepaymentNode(MortgageMonthlyRepaymentNode node) {
     }
 
-    @MortgageMonthlyRepaymentNodeScope
+    @ComponentScope
     public static class MortgageMonthlyRepaymentNodeRuleProvider implements RuleProvider<MortgageMonthlyRepaymentNode> {
 
         @Inject
@@ -229,7 +230,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageBorrowerRateNode(MortgageBorrowerRateNode node) {
     }
 
-    @MortgageBorrowerRateNodeScope
+    @ComponentScope
     public static class MortgageBorrowerRateNodeRuleProvider implements RuleProvider<MortgageBorrowerRateNode> {
 
         @Inject
@@ -257,7 +258,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLoanTypeNode(MortgageLoanTypeNode node) {
     }
 
-    @MortgageLoanTypeNodeScope
+    @ComponentScope
     public static class MortgageLoanTypeNodeRuleProvider implements RuleProvider<MortgageLoanTypeNode> {
 
         @Inject
@@ -285,7 +286,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageLoanTermExpiryDateNode(MortgageLoanTermExpiryDateNode node) {
     }
 
-    @MortgageLoanTermExpiryDateNodeScope
+    @ComponentScope
     public static class MortgageLoanTermExpiryDateNodeRuleProvider implements RuleProvider<MortgageLoanTermExpiryDateNode> {
 
         @Inject
@@ -313,7 +314,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageInterestOnlyExpiryDateNode(MortgageInterestOnlyExpiryDateNode node) {
     }
 
-    @MortgageInterestOnlyExpiryDateNodeScope
+    @ComponentScope
     public static class MortgageInterestOnlyExpiryDateNodeRuleProvider implements RuleProvider<MortgageInterestOnlyExpiryDateNode> {
 
         @Inject
@@ -341,7 +342,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageClearingFlagNode(MortgageClearingFlagNode node) {
     }
 
-    @MortgageClearingFlagNodeScope
+    @ComponentScope
     public static class MortgageClearingFlagNodeRuleProvider implements RuleProvider<MortgageClearingFlagNode> {
 
         @Inject
@@ -369,7 +370,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageBreakFeeNode(MortgageBreakFeeNode node) {
     }
 
-    @MortgageBreakFeeNodeScope
+    @ComponentScope
     public static class MortgageBreakFeeNodeRuleProvider implements RuleProvider<MortgageBreakFeeNode> {
 
         @Inject
@@ -397,7 +398,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageChargePositionNode(MortgageChargePositionNode node) {
     }
 
-    @MortgageChargePositionNodeScope
+    @ComponentScope
     public static class MortgageChargePositionNodeRuleProvider implements RuleProvider<MortgageChargePositionNode> {
 
         @Inject
@@ -425,7 +426,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageTermRemainingPeriodNode(MortgageTermRemainingPeriodNode node) {
     }
 
-    @MortgageTermRemainingPeriodNodeScope
+    @ComponentScope
     public static class MortgageTermRemainingPeriodNodeRuleProvider implements RuleProvider<MortgageTermRemainingPeriodNode> {
 
         @Inject
@@ -453,7 +454,7 @@ public class ExistingMortgageNodeChildProvider {
     protected void configureMortgageInterestOnlyRemainingPeriodNode(MortgageInterestOnlyRemainingPeriodNode node) {
     }
 
-    @MortgageInterestOnlyRemainingPeriodNodeScope
+    @ComponentScope
     public static class MortgageInterestOnlyRemainingPeriodNodeRuleProvider implements RuleProvider<MortgageInterestOnlyRemainingPeriodNode> {
 
         @Inject

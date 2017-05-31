@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.SavingsAccountNameNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@SavingsAccountNameNodeScope
+@ComponentScope
 public class SavingsAccountNameNodeRuleProvider implements RuleProvider<SavingsAccountNameNode> {
 
     @Inject

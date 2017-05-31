@@ -17,32 +17,32 @@ public class StudentTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @StudentTypeNodeScope @Owner StudentTypeNode provideStudentTypeNode() {
+    @Provides @ComponentScope @Owner StudentTypeNode provideStudentTypeNode() {
         return owner;
     }
 
-    @Provides @StudentTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @StudentTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @StudentTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @StudentTypeNodeScope UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }
 
-    @Provides @StudentTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<StudentTypeNode> provideRuleProvider(Provider<StudentTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @StudentTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<StudentTypeNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.StudentTypeNodeRuleProvider> studentTypeNodeRuleProvider
     ) {

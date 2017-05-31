@@ -17,32 +17,32 @@ public class ThirdPartyDisclosureFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope @Owner ThirdPartyDisclosureFlagNode provideThirdPartyDisclosureFlagNode() {
+    @Provides @ComponentScope @Owner ThirdPartyDisclosureFlagNode provideThirdPartyDisclosureFlagNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+    @Provides @ComponentScope BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyDisclosureFlagNode> provideRuleProvider(Provider<ThirdPartyDisclosureFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyDisclosureFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider> thirdPartyDisclosureFlagNodeRuleProvider
     ) {

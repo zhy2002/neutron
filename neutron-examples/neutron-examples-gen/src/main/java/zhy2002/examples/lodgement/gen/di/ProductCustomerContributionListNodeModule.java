@@ -17,32 +17,32 @@ public class ProductCustomerContributionListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCustomerContributionListNodeScope @Owner ProductCustomerContributionListNode provideProductCustomerContributionListNode() {
+    @Provides @ComponentScope @Owner ProductCustomerContributionListNode provideProductCustomerContributionListNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCustomerContributionListNodeScope ProductsNode provideProductsNode() {
+    @Provides @ComponentScope ProductsNode provideProductsNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCustomerContributionListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCustomerContributionListNode> provideRuleProvider(Provider<ProductCustomerContributionListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCustomerContributionListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCustomerContributionListNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductCustomerContributionListNodeRuleProvider> productCustomerContributionListNodeRuleProvider
     ) {

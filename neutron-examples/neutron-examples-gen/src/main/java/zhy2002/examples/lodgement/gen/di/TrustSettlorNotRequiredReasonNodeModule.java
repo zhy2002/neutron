@@ -17,32 +17,32 @@ public class TrustSettlorNotRequiredReasonNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope @Owner TrustSettlorNotRequiredReasonNode provideTrustSettlorNotRequiredReasonNode() {
+    @Provides @ComponentScope @Owner TrustSettlorNotRequiredReasonNode provideTrustSettlorNotRequiredReasonNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustSettlorNotRequiredReasonNode> provideRuleProvider(Provider<TrustSettlorNotRequiredReasonNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustSettlorNotRequiredReasonNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustSettlorNotRequiredReasonNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustSettlorNotRequiredReasonNodeRuleProvider> trustSettlorNotRequiredReasonNodeRuleProvider
     ) {

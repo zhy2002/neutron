@@ -17,32 +17,32 @@ public class RentedFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RentedFlagNodeScope @Owner RentedFlagNode provideRentedFlagNode() {
+    @Provides @ComponentScope @Owner RentedFlagNode provideRentedFlagNode() {
         return owner;
     }
 
-    @Provides @RentedFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @RentedFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @RentedFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RentedFlagNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @RentedFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<RentedFlagNode> provideRuleProvider(Provider<RentedFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @RentedFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<RentedFlagNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.RentedFlagNodeRuleProvider> rentedFlagNodeRuleProvider
     ) {

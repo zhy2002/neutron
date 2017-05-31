@@ -17,32 +17,32 @@ public class CompanyAbnNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyAbnNodeScope @Owner CompanyAbnNode provideCompanyAbnNode() {
+    @Provides @ComponentScope @Owner CompanyAbnNode provideCompanyAbnNode() {
         return owner;
     }
 
-    @Provides @CompanyAbnNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAbnNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAbnNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyAbnNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyAbnNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyAbnNode> provideRuleProvider(Provider<CompanyAbnNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyAbnNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyAbnNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyAbnNodeRuleProvider> companyAbnNodeRuleProvider
     ) {

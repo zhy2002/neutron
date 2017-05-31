@@ -17,32 +17,32 @@ public class TrustBeneficiaryClassListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope @Owner TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
+    @Provides @ComponentScope @Owner TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustBeneficiaryClassListNode> provideRuleProvider(Provider<TrustBeneficiaryClassListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustBeneficiaryClassListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustBeneficiaryClassListNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustBeneficiaryClassListNodeRuleProvider> trustBeneficiaryClassListNodeRuleProvider
     ) {

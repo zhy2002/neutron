@@ -17,32 +17,32 @@ public class AssetsNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AssetsNodeScope @Owner AssetsNode provideAssetsNode() {
+    @Provides @ComponentScope @Owner AssetsNode provideAssetsNode() {
         return owner;
     }
 
-    @Provides @AssetsNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @AssetsNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AssetsNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AssetsNodeScope FinancialPositionNode provideFinancialPositionNode() {
+    @Provides @ComponentScope FinancialPositionNode provideFinancialPositionNode() {
         return owner.getParent();
     }
 
-    @Provides @AssetsNodeScope
+    @Provides @ComponentScope
     RuleProvider<AssetsNode> provideRuleProvider(Provider<AssetsNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AssetsNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AssetsNode>> provideInstanceProviderMap(
         Provider<FinancialPositionNodeChildProvider.AssetsNodeRuleProvider> assetsNodeRuleProvider
     ) {

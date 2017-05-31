@@ -17,32 +17,32 @@ public class PostcodeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PostcodeNodeScope @Owner PostcodeNode providePostcodeNode() {
+    @Provides @ComponentScope @Owner PostcodeNode providePostcodeNode() {
         return owner;
     }
 
-    @Provides @PostcodeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PostcodeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PostcodeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PostcodeNodeScope AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope AddressNode<?> provideAddressNode() {
         return owner.getParent();
     }
 
-    @Provides @PostcodeNodeScope
+    @Provides @ComponentScope
     RuleProvider<PostcodeNode> provideRuleProvider(Provider<PostcodeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PostcodeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PostcodeNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.PostcodeNodeRuleProvider> postcodeNodeRuleProvider
     ) {

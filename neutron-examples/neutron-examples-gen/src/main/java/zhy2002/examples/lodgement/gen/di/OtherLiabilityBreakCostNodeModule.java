@@ -17,36 +17,36 @@ public class OtherLiabilityBreakCostNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope @Owner OtherLiabilityBreakCostNode provideOtherLiabilityBreakCostNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityBreakCostNode provideOtherLiabilityBreakCostNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope OtherLiabilityNode provideOtherLiabilityNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityBreakCostNode> provideRuleProvider(Provider<OtherLiabilityBreakCostNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherLiabilityBreakCostNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherLiabilityBreakCostNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityBreakCostNodeRuleProvider> otherLiabilityBreakCostNodeRuleProvider
     ) {

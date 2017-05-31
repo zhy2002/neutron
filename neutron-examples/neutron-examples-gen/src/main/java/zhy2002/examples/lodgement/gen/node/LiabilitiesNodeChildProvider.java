@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface LiabilitiesNodeChildFactory {
@@ -47,7 +48,7 @@ public class LiabilitiesNodeChildProvider {
     protected void configureCreditCardListNode(CreditCardListNode node) {
     }
 
-    @CreditCardListNodeScope
+    @ComponentScope
     public static class CreditCardListNodeRuleProvider implements RuleProvider<CreditCardListNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class LiabilitiesNodeChildProvider {
     protected void configureLoanListNode(LoanListNode node) {
     }
 
-    @LoanListNodeScope
+    @ComponentScope
     public static class LoanListNodeRuleProvider implements RuleProvider<LoanListNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class LiabilitiesNodeChildProvider {
     protected void configureOtherLiabilityListNode(OtherLiabilityListNode node) {
     }
 
-    @OtherLiabilityListNodeScope
+    @ComponentScope
     public static class OtherLiabilityListNodeRuleProvider implements RuleProvider<OtherLiabilityListNode> {
 
         @Inject

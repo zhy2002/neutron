@@ -17,32 +17,32 @@ public class IdNodeModule {
         this.owner = owner;
     }
 
-    @Provides @IdNodeScope @Owner IdNode provideIdNode() {
+    @Provides @ComponentScope @Owner IdNode provideIdNode() {
         return owner;
     }
 
-    @Provides @IdNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @IdNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @IdNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @IdNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @IdNodeScope
+    @Provides @ComponentScope
     RuleProvider<IdNode> provideRuleProvider(Provider<IdNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @IdNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<IdNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.IdNodeRuleProvider> idNodeRuleProvider
     ) {

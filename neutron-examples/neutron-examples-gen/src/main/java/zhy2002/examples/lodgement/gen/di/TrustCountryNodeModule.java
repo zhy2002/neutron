@@ -17,36 +17,36 @@ public class TrustCountryNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustCountryNodeScope @Owner TrustCountryNode provideTrustCountryNode() {
+    @Provides @ComponentScope @Owner TrustCountryNode provideTrustCountryNode() {
         return owner;
     }
 
-    @Provides @TrustCountryNodeScope @Owner BaseCountryNode<?> provideBaseCountryNode() {
+    @Provides @ComponentScope @Owner BaseCountryNode<?> provideBaseCountryNode() {
         return owner;
     }
 
-    @Provides @TrustCountryNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustCountryNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustCountryNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustCountryNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustCountryNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustCountryNode> provideRuleProvider(Provider<TrustCountryNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustCountryNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustCountryNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustCountryNodeRuleProvider> trustCountryNodeRuleProvider
     ) {

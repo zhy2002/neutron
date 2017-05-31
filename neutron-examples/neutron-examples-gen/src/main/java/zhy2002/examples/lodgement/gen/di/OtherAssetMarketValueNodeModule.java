@@ -17,36 +17,36 @@ public class OtherAssetMarketValueNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope @Owner OtherAssetMarketValueNode provideOtherAssetMarketValueNode() {
+    @Provides @ComponentScope @Owner OtherAssetMarketValueNode provideOtherAssetMarketValueNode() {
         return owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetMarketValueNodeScope OtherAssetNode provideOtherAssetNode() {
+    @Provides @ComponentScope OtherAssetNode provideOtherAssetNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherAssetMarketValueNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherAssetMarketValueNode> provideRuleProvider(Provider<OtherAssetMarketValueNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherAssetMarketValueNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherAssetMarketValueNode>> provideInstanceProviderMap(
         Provider<OtherAssetNodeChildProvider.OtherAssetMarketValueNodeRuleProvider> otherAssetMarketValueNodeRuleProvider
     ) {

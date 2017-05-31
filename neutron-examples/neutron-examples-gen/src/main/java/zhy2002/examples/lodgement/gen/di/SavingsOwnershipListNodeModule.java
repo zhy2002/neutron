@@ -17,36 +17,36 @@ public class SavingsOwnershipListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner SavingsOwnershipListNode provideSavingsOwnershipListNode() {
+    @Provides @ComponentScope @Owner SavingsOwnershipListNode provideSavingsOwnershipListNode() {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SavingsOwnershipListNodeScope SavingsAccountNode provideSavingsAccountNode() {
+    @Provides @ComponentScope SavingsAccountNode provideSavingsAccountNode() {
         return owner.getParent();
     }
 
-    @Provides @SavingsOwnershipListNodeScope
+    @Provides @ComponentScope
     RuleProvider<SavingsOwnershipListNode> provideRuleProvider(Provider<SavingsOwnershipListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SavingsOwnershipListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SavingsOwnershipListNode>> provideInstanceProviderMap(
         Provider<SavingsAccountNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {

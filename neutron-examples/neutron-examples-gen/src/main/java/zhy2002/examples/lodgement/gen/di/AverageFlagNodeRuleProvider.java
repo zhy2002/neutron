@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.AverageFlagNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@AverageFlagNodeScope
+@ComponentScope
 public class AverageFlagNodeRuleProvider implements RuleProvider<AverageFlagNode> {
 
     @Inject

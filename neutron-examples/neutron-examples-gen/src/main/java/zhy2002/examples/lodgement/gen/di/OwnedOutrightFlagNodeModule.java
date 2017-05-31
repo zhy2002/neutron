@@ -17,32 +17,32 @@ public class OwnedOutrightFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OwnedOutrightFlagNodeScope @Owner OwnedOutrightFlagNode provideOwnedOutrightFlagNode() {
+    @Provides @ComponentScope @Owner OwnedOutrightFlagNode provideOwnedOutrightFlagNode() {
         return owner;
     }
 
-    @Provides @OwnedOutrightFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @OwnedOutrightFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OwnedOutrightFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OwnedOutrightFlagNodeScope UsageNode provideUsageNode() {
+    @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }
 
-    @Provides @OwnedOutrightFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<OwnedOutrightFlagNode> provideRuleProvider(Provider<OwnedOutrightFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OwnedOutrightFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OwnedOutrightFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.OwnedOutrightFlagNodeRuleProvider> ownedOutrightFlagNodeRuleProvider
     ) {

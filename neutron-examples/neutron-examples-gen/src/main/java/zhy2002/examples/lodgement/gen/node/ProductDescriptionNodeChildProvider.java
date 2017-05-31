@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ProductDescriptionNodeChildFactory {
@@ -131,7 +132,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductGroupNode(ProductGroupNode node) {
     }
 
-    @ProductGroupNodeScope
+    @ComponentScope
     public static class ProductGroupNodeRuleProvider implements RuleProvider<ProductGroupNode> {
 
         @Inject
@@ -159,7 +160,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductNameNode(ProductNameNode node) {
     }
 
-    @ProductNameNodeScope
+    @ComponentScope
     public static class ProductNameNodeRuleProvider implements RuleProvider<ProductNameNode> {
 
         @Inject
@@ -187,7 +188,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductLoanPrimaryPurposeNode(ProductLoanPrimaryPurposeNode node) {
     }
 
-    @ProductLoanPrimaryPurposeNodeScope
+    @ComponentScope
     public static class ProductLoanPrimaryPurposeNodeRuleProvider implements RuleProvider<ProductLoanPrimaryPurposeNode> {
 
         @Inject
@@ -215,7 +216,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductLendingPurposeNode(ProductLendingPurposeNode node) {
     }
 
-    @ProductLendingPurposeNodeScope
+    @ComponentScope
     public static class ProductLendingPurposeNodeRuleProvider implements RuleProvider<ProductLendingPurposeNode> {
 
         @Inject
@@ -243,7 +244,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductRequestedAmountNode(ProductRequestedAmountNode node) {
     }
 
-    @ProductRequestedAmountNodeScope
+    @ComponentScope
     public static class ProductRequestedAmountNodeRuleProvider implements RuleProvider<ProductRequestedAmountNode> {
 
         @Inject
@@ -271,7 +272,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductTotalLoanTermNode(ProductTotalLoanTermNode node) {
     }
 
-    @ProductTotalLoanTermNodeScope
+    @ComponentScope
     public static class ProductTotalLoanTermNodeRuleProvider implements RuleProvider<ProductTotalLoanTermNode> {
 
         @Inject
@@ -299,7 +300,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductPaymentTypeNode(ProductPaymentTypeNode node) {
     }
 
-    @ProductPaymentTypeNodeScope
+    @ComponentScope
     public static class ProductPaymentTypeNodeRuleProvider implements RuleProvider<ProductPaymentTypeNode> {
 
         @Inject
@@ -327,7 +328,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductInterestOnlyTermNode(ProductInterestOnlyTermNode node) {
     }
 
-    @ProductInterestOnlyTermNodeScope
+    @ComponentScope
     public static class ProductInterestOnlyTermNodeRuleProvider implements RuleProvider<ProductInterestOnlyTermNode> {
 
         @Inject
@@ -355,7 +356,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductFixedTermNode(ProductFixedTermNode node) {
     }
 
-    @ProductFixedTermNodeScope
+    @ComponentScope
     public static class ProductFixedTermNodeRuleProvider implements RuleProvider<ProductFixedTermNode> {
 
         @Inject
@@ -383,7 +384,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductConstructionApplicationFlagNode(ProductConstructionApplicationFlagNode node) {
     }
 
-    @ProductConstructionApplicationFlagNodeScope
+    @ComponentScope
     public static class ProductConstructionApplicationFlagNodeRuleProvider implements RuleProvider<ProductConstructionApplicationFlagNode> {
 
         @Inject
@@ -411,7 +412,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductCostRecuctionFlagNode(ProductCostRecuctionFlagNode node) {
     }
 
-    @ProductCostRecuctionFlagNodeScope
+    @ComponentScope
     public static class ProductCostRecuctionFlagNodeRuleProvider implements RuleProvider<ProductCostRecuctionFlagNode> {
 
         @Inject
@@ -439,7 +440,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductConsolidationFlagNode(ProductConsolidationFlagNode node) {
     }
 
-    @ProductConsolidationFlagNodeScope
+    @ComponentScope
     public static class ProductConsolidationFlagNodeRuleProvider implements RuleProvider<ProductConsolidationFlagNode> {
 
         @Inject
@@ -467,7 +468,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductDissatisfactionFlagNode(ProductDissatisfactionFlagNode node) {
     }
 
-    @ProductDissatisfactionFlagNodeScope
+    @ComponentScope
     public static class ProductDissatisfactionFlagNodeRuleProvider implements RuleProvider<ProductDissatisfactionFlagNode> {
 
         @Inject
@@ -495,7 +496,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductSpecificFeaturesFlagNode(ProductSpecificFeaturesFlagNode node) {
     }
 
-    @ProductSpecificFeaturesFlagNodeScope
+    @ComponentScope
     public static class ProductSpecificFeaturesFlagNodeRuleProvider implements RuleProvider<ProductSpecificFeaturesFlagNode> {
 
         @Inject
@@ -523,7 +524,7 @@ public class ProductDescriptionNodeChildProvider {
     protected void configureProductAccountHolderListNode(ProductAccountHolderListNode node) {
     }
 
-    @ProductAccountHolderListNodeScope
+    @ComponentScope
     public static class ProductAccountHolderListNodeRuleProvider implements RuleProvider<ProductAccountHolderListNode> {
 
         @Inject

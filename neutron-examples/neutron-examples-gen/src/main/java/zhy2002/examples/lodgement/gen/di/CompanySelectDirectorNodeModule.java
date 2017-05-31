@@ -17,36 +17,36 @@ public class CompanySelectDirectorNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope @Owner CompanySelectDirectorNode provideCompanySelectDirectorNode() {
+    @Provides @ComponentScope @Owner CompanySelectDirectorNode provideCompanySelectDirectorNode() {
         return owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
+    @Provides @ComponentScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanySelectDirectorNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanySelectDirectorNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanySelectDirectorNode> provideRuleProvider(Provider<CompanySelectDirectorNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanySelectDirectorNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanySelectDirectorNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanySelectDirectorNodeRuleProvider> companySelectDirectorNodeRuleProvider
     ) {

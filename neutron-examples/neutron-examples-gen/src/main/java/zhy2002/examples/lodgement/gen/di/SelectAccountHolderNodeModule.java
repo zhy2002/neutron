@@ -16,27 +16,27 @@ public class SelectAccountHolderNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SelectAccountHolderNodeScope @Owner SelectAccountHolderNode provideSelectAccountHolderNode() {
+    @Provides @ComponentScope @Owner SelectAccountHolderNode provideSelectAccountHolderNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderNodeScope SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
+    @Provides @ComponentScope SelectAccountHolderListNode<?> provideSelectAccountHolderListNode() {
         return owner.getParent();
     }
 
-    @Provides @SelectAccountHolderNodeScope
+    @Provides @ComponentScope
     RuleProvider<SelectAccountHolderNode> provideRuleProvider(Provider<SelectAccountHolderNodeRuleProvider> provider) {
         return provider.get();
     }

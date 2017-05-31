@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ProductFeeNodeChildFactory {
@@ -54,7 +55,7 @@ public class ProductFeeNodeChildProvider {
     protected void configureFeeTypeNode(FeeTypeNode node) {
     }
 
-    @FeeTypeNodeScope
+    @ComponentScope
     public static class FeeTypeNodeRuleProvider implements RuleProvider<FeeTypeNode> {
 
         @Inject
@@ -82,7 +83,7 @@ public class ProductFeeNodeChildProvider {
     protected void configureFeeDescriptionNode(FeeDescriptionNode node) {
     }
 
-    @FeeDescriptionNodeScope
+    @ComponentScope
     public static class FeeDescriptionNodeRuleProvider implements RuleProvider<FeeDescriptionNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class ProductFeeNodeChildProvider {
     protected void configureFeePayFromNode(FeePayFromNode node) {
     }
 
-    @FeePayFromNodeScope
+    @ComponentScope
     public static class FeePayFromNodeRuleProvider implements RuleProvider<FeePayFromNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class ProductFeeNodeChildProvider {
     protected void configureFeeAmountNode(FeeAmountNode node) {
     }
 
-    @FeeAmountNodeScope
+    @ComponentScope
     public static class FeeAmountNodeRuleProvider implements RuleProvider<FeeAmountNode> {
 
         @Inject

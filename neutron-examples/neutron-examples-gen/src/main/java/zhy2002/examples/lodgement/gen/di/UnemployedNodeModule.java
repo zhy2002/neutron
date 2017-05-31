@@ -17,32 +17,32 @@ public class UnemployedNodeModule {
         this.owner = owner;
     }
 
-    @Provides @UnemployedNodeScope @Owner UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope @Owner UnemployedNode provideUnemployedNode() {
         return owner;
     }
 
-    @Provides @UnemployedNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedNodeScope EmploymentNode<?> provideEmploymentNode() {
+    @Provides @ComponentScope EmploymentNode<?> provideEmploymentNode() {
         return owner.getParent();
     }
 
-    @Provides @UnemployedNodeScope
+    @Provides @ComponentScope
     RuleProvider<UnemployedNode> provideRuleProvider(Provider<UnemployedNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @UnemployedNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<UnemployedNode>> provideInstanceProviderMap(
         Provider<EmploymentNodeChildProvider.UnemployedNodeRuleProvider> unemployedNodeRuleProvider
     ) {

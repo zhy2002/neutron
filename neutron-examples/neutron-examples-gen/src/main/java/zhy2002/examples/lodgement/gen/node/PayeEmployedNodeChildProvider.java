@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PayeEmployedNodeChildFactory {
@@ -33,7 +34,7 @@ public class PayeEmployedNodeChildProvider {
     protected void configureGrossYearlySalaryNode(GrossYearlySalaryNode node) {
     }
 
-    @GrossYearlySalaryNodeScope
+    @ComponentScope
     public static class GrossYearlySalaryNodeRuleProvider implements RuleProvider<GrossYearlySalaryNode> {
 
         @Inject

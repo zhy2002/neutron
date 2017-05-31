@@ -16,27 +16,27 @@ public class PersonNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonNodeScope @Owner PersonNode providePersonNode() {
+    @Provides @ComponentScope @Owner PersonNode providePersonNode() {
         return owner;
     }
 
-    @Provides @PersonNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PersonNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonNodeScope PersonListNode providePersonListNode() {
+    @Provides @ComponentScope PersonListNode providePersonListNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonNode> provideRuleProvider(Provider<PersonNodeRuleProvider> provider) {
         return provider.get();
     }

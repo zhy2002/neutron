@@ -17,36 +17,36 @@ public class BrokerMobileNumberNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope @Owner BrokerMobileNumberNode provideBrokerMobileNumberNode() {
+    @Provides @ComponentScope @Owner BrokerMobileNumberNode provideBrokerMobileNumberNode() {
         return owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope @Owner BaseMobileNumberNode<?> provideBaseMobileNumberNode() {
+    @Provides @ComponentScope @Owner BaseMobileNumberNode<?> provideBaseMobileNumberNode() {
         return owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerMobileNumberNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerMobileNumberNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerMobileNumberNode> provideRuleProvider(Provider<BrokerMobileNumberNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerMobileNumberNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerMobileNumberNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.MobileNumberNodeRuleProvider> mobileNumberNodeRuleProvider
     ) {

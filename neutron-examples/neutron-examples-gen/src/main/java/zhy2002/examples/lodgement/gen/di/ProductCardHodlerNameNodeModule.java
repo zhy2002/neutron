@@ -17,32 +17,32 @@ public class ProductCardHodlerNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCardHodlerNameNodeScope @Owner ProductCardHodlerNameNode provideProductCardHodlerNameNode() {
+    @Provides @ComponentScope @Owner ProductCardHodlerNameNode provideProductCardHodlerNameNode() {
         return owner;
     }
 
-    @Provides @ProductCardHodlerNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHodlerNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHodlerNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCardHodlerNameNodeScope ProductCardHolderNode provideProductCardHolderNode() {
+    @Provides @ComponentScope ProductCardHolderNode provideProductCardHolderNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCardHodlerNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCardHodlerNameNode> provideRuleProvider(Provider<ProductCardHodlerNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCardHodlerNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCardHodlerNameNode>> provideInstanceProviderMap(
         Provider<ProductCardHolderNodeChildProvider.ProductCardHodlerNameNodeRuleProvider> productCardHodlerNameNodeRuleProvider
     ) {

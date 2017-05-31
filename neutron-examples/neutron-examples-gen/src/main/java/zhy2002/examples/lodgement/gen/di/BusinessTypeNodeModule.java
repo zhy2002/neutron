@@ -17,32 +17,32 @@ public class BusinessTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BusinessTypeNodeScope @Owner BusinessTypeNode provideBusinessTypeNode() {
+    @Provides @ComponentScope @Owner BusinessTypeNode provideBusinessTypeNode() {
         return owner;
     }
 
-    @Provides @BusinessTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @BusinessTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BusinessTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BusinessTypeNodeScope SelfEmployedNode provideSelfEmployedNode() {
+    @Provides @ComponentScope SelfEmployedNode provideSelfEmployedNode() {
         return owner.getParent();
     }
 
-    @Provides @BusinessTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<BusinessTypeNode> provideRuleProvider(Provider<BusinessTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BusinessTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BusinessTypeNode>> provideInstanceProviderMap(
         Provider<SelfEmployedNodeChildProvider.BusinessTypeNodeRuleProvider> businessTypeNodeRuleProvider
     ) {

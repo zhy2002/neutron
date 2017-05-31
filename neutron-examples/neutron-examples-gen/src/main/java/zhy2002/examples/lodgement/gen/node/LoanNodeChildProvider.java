@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface LoanNodeChildFactory {
@@ -82,7 +83,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanTypeNode(LoanTypeNode node) {
     }
 
-    @LoanTypeNodeScope
+    @ComponentScope
     public static class LoanTypeNodeRuleProvider implements RuleProvider<LoanTypeNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanLenderNameNode(LoanLenderNameNode node) {
     }
 
-    @LoanLenderNameNodeScope
+    @ComponentScope
     public static class LoanLenderNameNodeRuleProvider implements RuleProvider<LoanLenderNameNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanLimitAmountNode(LoanLimitAmountNode node) {
     }
 
-    @LoanLimitAmountNodeScope
+    @ComponentScope
     public static class LoanLimitAmountNodeRuleProvider implements RuleProvider<LoanLimitAmountNode> {
 
         @Inject
@@ -166,7 +167,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanOwingAmountNode(LoanOwingAmountNode node) {
     }
 
-    @LoanOwingAmountNodeScope
+    @ComponentScope
     public static class LoanOwingAmountNodeRuleProvider implements RuleProvider<LoanOwingAmountNode> {
 
         @Inject
@@ -194,7 +195,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanMonthlyRepaymentNode(LoanMonthlyRepaymentNode node) {
     }
 
-    @LoanMonthlyRepaymentNodeScope
+    @ComponentScope
     public static class LoanMonthlyRepaymentNodeRuleProvider implements RuleProvider<LoanMonthlyRepaymentNode> {
 
         @Inject
@@ -222,7 +223,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanClearingFlagNode(LoanClearingFlagNode node) {
     }
 
-    @LoanClearingFlagNodeScope
+    @ComponentScope
     public static class LoanClearingFlagNodeRuleProvider implements RuleProvider<LoanClearingFlagNode> {
 
         @Inject
@@ -250,7 +251,7 @@ public class LoanNodeChildProvider {
     protected void configureLoanBreakCostNode(LoanBreakCostNode node) {
     }
 
-    @LoanBreakCostNodeScope
+    @ComponentScope
     public static class LoanBreakCostNodeRuleProvider implements RuleProvider<LoanBreakCostNode> {
 
         @Inject
@@ -278,7 +279,7 @@ public class LoanNodeChildProvider {
     protected void configureOwnershipListNode(LoanOwnershipListNode node) {
     }
 
-    @LoanOwnershipListNodeScope
+    @ComponentScope
     public static class OwnershipListNodeRuleProvider implements RuleProvider<LoanOwnershipListNode> {
 
         @Inject

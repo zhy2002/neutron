@@ -16,27 +16,27 @@ public class CompanyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyNodeScope @Owner CompanyNode provideCompanyNode() {
+    @Provides @ComponentScope @Owner CompanyNode provideCompanyNode() {
         return owner;
     }
 
-    @Provides @CompanyNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CompanyNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyNodeScope CompanyListNode provideCompanyListNode() {
+    @Provides @ComponentScope CompanyListNode provideCompanyListNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyNode> provideRuleProvider(Provider<CompanyNodeRuleProvider> provider) {
         return provider.get();
     }

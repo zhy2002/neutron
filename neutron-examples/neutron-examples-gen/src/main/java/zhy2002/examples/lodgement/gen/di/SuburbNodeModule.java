@@ -17,32 +17,32 @@ public class SuburbNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SuburbNodeScope @Owner SuburbNode provideSuburbNode() {
+    @Provides @ComponentScope @Owner SuburbNode provideSuburbNode() {
         return owner;
     }
 
-    @Provides @SuburbNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @SuburbNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SuburbNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SuburbNodeScope AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope AddressNode<?> provideAddressNode() {
         return owner.getParent();
     }
 
-    @Provides @SuburbNodeScope
+    @Provides @ComponentScope
     RuleProvider<SuburbNode> provideRuleProvider(Provider<SuburbNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SuburbNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SuburbNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.SuburbNodeRuleProvider> suburbNodeRuleProvider
     ) {

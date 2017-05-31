@@ -17,32 +17,32 @@ public class ResponsibleTypeOfChangeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope @Owner ResponsibleTypeOfChangeNode provideResponsibleTypeOfChangeNode() {
+    @Provides @ComponentScope @Owner ResponsibleTypeOfChangeNode provideResponsibleTypeOfChangeNode() {
         return owner;
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+    @Provides @ComponentScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner.getParent();
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ResponsibleTypeOfChangeNode> provideRuleProvider(Provider<ResponsibleTypeOfChangeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ResponsibleTypeOfChangeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleTypeOfChangeNodeRuleProvider> responsibleTypeOfChangeNodeRuleProvider
     ) {

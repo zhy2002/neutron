@@ -17,32 +17,32 @@ public class ThirdPartyWorkPhoneNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope @Owner ThirdPartyWorkPhoneNode provideThirdPartyWorkPhoneNode() {
+    @Provides @ComponentScope @Owner ThirdPartyWorkPhoneNode provideThirdPartyWorkPhoneNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
+    @Provides @ComponentScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope RelatedPartyNode provideRelatedPartyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyWorkPhoneNode> provideRuleProvider(Provider<ThirdPartyWorkPhoneNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyWorkPhoneNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyWorkPhoneNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyWorkPhoneNodeRuleProvider> thirdPartyWorkPhoneNodeRuleProvider
     ) {

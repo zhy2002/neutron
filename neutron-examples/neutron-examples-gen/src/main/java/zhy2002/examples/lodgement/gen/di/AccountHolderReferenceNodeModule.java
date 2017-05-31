@@ -17,32 +17,32 @@ public class AccountHolderReferenceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccountHolderReferenceNodeScope @Owner AccountHolderReferenceNode provideAccountHolderReferenceNode() {
+    @Provides @ComponentScope @Owner AccountHolderReferenceNode provideAccountHolderReferenceNode() {
         return owner;
     }
 
-    @Provides @AccountHolderReferenceNodeScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
+    @Provides @ComponentScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
         return owner;
     }
 
-    @Provides @AccountHolderReferenceNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AccountHolderReferenceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccountHolderReferenceNodeScope SelectAccountHolderNode provideSelectAccountHolderNode() {
+    @Provides @ComponentScope SelectAccountHolderNode provideSelectAccountHolderNode() {
         return owner.getParent();
     }
 
-    @Provides @AccountHolderReferenceNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccountHolderReferenceNode> provideRuleProvider(Provider<AccountHolderReferenceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccountHolderReferenceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccountHolderReferenceNode>> provideInstanceProviderMap(
         Provider<SelectAccountHolderNodeChildProvider.AccountHolderReferenceNodeRuleProvider> accountHolderReferenceNodeRuleProvider
     ) {

@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface AppManagerNodeChildFactory {
@@ -33,7 +34,7 @@ public class AppManagerNodeChildProvider {
     protected void configureApplicationListNode(ApplicationListNode node) {
     }
 
-    @ApplicationListNodeScope
+    @ComponentScope
     public static class ApplicationListNodeRuleProvider implements RuleProvider<ApplicationListNode> {
 
         @Inject

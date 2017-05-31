@@ -17,32 +17,32 @@ public class AccessOtherDescriptionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccessOtherDescriptionNodeScope @Owner AccessOtherDescriptionNode provideAccessOtherDescriptionNode() {
+    @Provides @ComponentScope @Owner AccessOtherDescriptionNode provideAccessOtherDescriptionNode() {
         return owner;
     }
 
-    @Provides @AccessOtherDescriptionNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AccessOtherDescriptionNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AccessOtherDescriptionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccessOtherDescriptionNodeScope AccessNode provideAccessNode() {
+    @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }
 
-    @Provides @AccessOtherDescriptionNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccessOtherDescriptionNode> provideRuleProvider(Provider<AccessOtherDescriptionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccessOtherDescriptionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccessOtherDescriptionNode>> provideInstanceProviderMap(
         Provider<AccessNodeChildProvider.AccessOtherDescriptionNodeRuleProvider> accessOtherDescriptionNodeRuleProvider
     ) {

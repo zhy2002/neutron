@@ -17,32 +17,32 @@ public class FirstNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @FirstNameNodeScope @Owner FirstNameNode provideFirstNameNode() {
+    @Provides @ComponentScope @Owner FirstNameNode provideFirstNameNode() {
         return owner;
     }
 
-    @Provides @FirstNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @FirstNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @FirstNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @FirstNameNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @FirstNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<FirstNameNode> provideRuleProvider(Provider<FirstNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @FirstNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<FirstNameNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.FirstNameNodeRuleProvider> firstNameNodeRuleProvider
     ) {

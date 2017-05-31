@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface UnemployedNodeChildFactory {
@@ -61,7 +62,7 @@ public class UnemployedNodeChildProvider {
     protected void configureUnemployedOnBenefitFlagNode(UnemployedOnBenefitFlagNode node) {
     }
 
-    @UnemployedOnBenefitFlagNodeScope
+    @ComponentScope
     public static class UnemployedOnBenefitFlagNodeRuleProvider implements RuleProvider<UnemployedOnBenefitFlagNode> {
 
         @Inject
@@ -89,7 +90,7 @@ public class UnemployedNodeChildProvider {
     protected void configureStudentFlagNode(StudentFlagNode node) {
     }
 
-    @StudentFlagNodeScope
+    @ComponentScope
     public static class StudentFlagNodeRuleProvider implements RuleProvider<StudentFlagNode> {
 
         @Inject
@@ -117,7 +118,7 @@ public class UnemployedNodeChildProvider {
     protected void configureStudentTypeNode(StudentTypeNode node) {
     }
 
-    @StudentTypeNodeScope
+    @ComponentScope
     public static class StudentTypeNodeRuleProvider implements RuleProvider<StudentTypeNode> {
 
         @Inject
@@ -145,7 +146,7 @@ public class UnemployedNodeChildProvider {
     protected void configureHouseDutiesFlagNode(HouseDutiesFlagNode node) {
     }
 
-    @HouseDutiesFlagNodeScope
+    @ComponentScope
     public static class HouseDutiesFlagNodeRuleProvider implements RuleProvider<HouseDutiesFlagNode> {
 
         @Inject
@@ -173,7 +174,7 @@ public class UnemployedNodeChildProvider {
     protected void configureUnemployedSinceNode(UnemployedSinceNode node) {
     }
 
-    @UnemployedSinceNodeScope
+    @ComponentScope
     public static class UnemployedSinceNodeRuleProvider implements RuleProvider<UnemployedSinceNode> {
 
         @Inject

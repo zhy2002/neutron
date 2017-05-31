@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ProductCardHolderNodeChildFactory {
@@ -47,7 +48,7 @@ public class ProductCardHolderNodeChildProvider {
     protected void configureProductCardHodlerNameNode(ProductCardHodlerNameNode node) {
     }
 
-    @ProductCardHodlerNameNodeScope
+    @ComponentScope
     public static class ProductCardHodlerNameNodeRuleProvider implements RuleProvider<ProductCardHodlerNameNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class ProductCardHolderNodeChildProvider {
     protected void configureProductRewardsProgramNode(ProductRewardsProgramNode node) {
     }
 
-    @ProductRewardsProgramNodeScope
+    @ComponentScope
     public static class ProductRewardsProgramNodeRuleProvider implements RuleProvider<ProductRewardsProgramNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class ProductCardHolderNodeChildProvider {
     protected void configureProductRewardsMembershipNode(ProductRewardsMembershipNode node) {
     }
 
-    @ProductRewardsMembershipNodeScope
+    @ComponentScope
     public static class ProductRewardsMembershipNodeRuleProvider implements RuleProvider<ProductRewardsMembershipNode> {
 
         @Inject

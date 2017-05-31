@@ -17,36 +17,36 @@ public class PersonEmailNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonEmailNodeScope @Owner PersonEmailNode providePersonEmailNode() {
+    @Provides @ComponentScope @Owner PersonEmailNode providePersonEmailNode() {
         return owner;
     }
 
-    @Provides @PersonEmailNodeScope @Owner EmailNode<?> provideEmailNode() {
+    @Provides @ComponentScope @Owner EmailNode<?> provideEmailNode() {
         return owner;
     }
 
-    @Provides @PersonEmailNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PersonEmailNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PersonEmailNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonEmailNodeScope PersonContactNode providePersonContactNode() {
+    @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonEmailNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonEmailNode> provideRuleProvider(Provider<PersonEmailNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonEmailNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonEmailNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.PersonEmailNodeRuleProvider> personEmailNodeRuleProvider
     ) {

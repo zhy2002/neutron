@@ -17,36 +17,36 @@ public class EmployerAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner EmployerAddressNode provideEmployerAddressNode() {
+    @Provides @ComponentScope @Owner EmployerAddressNode provideEmployerAddressNode() {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @EmployerAddressNodeScope EmployedNode provideEmployedNode() {
+    @Provides @ComponentScope EmployedNode provideEmployedNode() {
         return owner.getParent();
     }
 
-    @Provides @EmployerAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<EmployerAddressNode> provideRuleProvider(Provider<EmployerAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @EmployerAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<EmployerAddressNode>> provideInstanceProviderMap(
         Provider<EmployedNodeChildProvider.EmployerAddressNodeRuleProvider> employerAddressNodeRuleProvider
     ) {

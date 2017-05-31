@@ -17,32 +17,32 @@ public class CompanyRegistrationStateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyRegistrationStateNodeScope @Owner CompanyRegistrationStateNode provideCompanyRegistrationStateNode() {
+    @Provides @ComponentScope @Owner CompanyRegistrationStateNode provideCompanyRegistrationStateNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationStateNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationStateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationStateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyRegistrationStateNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyRegistrationStateNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyRegistrationStateNode> provideRuleProvider(Provider<CompanyRegistrationStateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyRegistrationStateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyRegistrationStateNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyRegistrationStateNodeRuleProvider> companyRegistrationStateNodeRuleProvider
     ) {

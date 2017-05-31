@@ -17,32 +17,32 @@ public class TrustIndustryNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustIndustryNodeScope @Owner TrustIndustryNode provideTrustIndustryNode() {
+    @Provides @ComponentScope @Owner TrustIndustryNode provideTrustIndustryNode() {
         return owner;
     }
 
-    @Provides @TrustIndustryNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustIndustryNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustIndustryNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustIndustryNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustIndustryNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustIndustryNode> provideRuleProvider(Provider<TrustIndustryNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustIndustryNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustIndustryNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustIndustryNodeRuleProvider> trustIndustryNodeRuleProvider
     ) {

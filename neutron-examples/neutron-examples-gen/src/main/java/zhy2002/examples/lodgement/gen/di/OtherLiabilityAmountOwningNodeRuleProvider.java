@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.OtherLiabilityAmountOwningNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@OtherLiabilityAmountOwningNodeScope
+@ComponentScope
 public class OtherLiabilityAmountOwningNodeRuleProvider implements RuleProvider<OtherLiabilityAmountOwningNode> {
 
     @Inject

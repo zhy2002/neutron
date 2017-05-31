@@ -17,32 +17,32 @@ public class DriversLicenseNodeModule {
         this.owner = owner;
     }
 
-    @Provides @DriversLicenseNodeScope @Owner DriversLicenseNode provideDriversLicenseNode() {
+    @Provides @ComponentScope @Owner DriversLicenseNode provideDriversLicenseNode() {
         return owner;
     }
 
-    @Provides @DriversLicenseNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @DriversLicenseNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @DriversLicenseNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @DriversLicenseNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @DriversLicenseNodeScope
+    @Provides @ComponentScope
     RuleProvider<DriversLicenseNode> provideRuleProvider(Provider<DriversLicenseNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @DriversLicenseNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<DriversLicenseNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.DriversLicenseNodeRuleProvider> driversLicenseNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class TrustTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustTypeNodeScope @Owner TrustTypeNode provideTrustTypeNode() {
+    @Provides @ComponentScope @Owner TrustTypeNode provideTrustTypeNode() {
         return owner;
     }
 
-    @Provides @TrustTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustTypeNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustTypeNode> provideRuleProvider(Provider<TrustTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustTypeNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustTypeNodeRuleProvider> trustTypeNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class VehicleYearNodeModule {
         this.owner = owner;
     }
 
-    @Provides @VehicleYearNodeScope @Owner VehicleYearNode provideVehicleYearNode() {
+    @Provides @ComponentScope @Owner VehicleYearNode provideVehicleYearNode() {
         return owner;
     }
 
-    @Provides @VehicleYearNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @VehicleYearNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @VehicleYearNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @VehicleYearNodeScope MotorVehicleNode provideMotorVehicleNode() {
+    @Provides @ComponentScope MotorVehicleNode provideMotorVehicleNode() {
         return owner.getParent();
     }
 
-    @Provides @VehicleYearNodeScope
+    @Provides @ComponentScope
     RuleProvider<VehicleYearNode> provideRuleProvider(Provider<VehicleYearNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @VehicleYearNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<VehicleYearNode>> provideInstanceProviderMap(
         Provider<MotorVehicleNodeChildProvider.VehicleYearNodeRuleProvider> vehicleYearNodeRuleProvider
     ) {

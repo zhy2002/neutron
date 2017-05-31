@@ -17,36 +17,36 @@ public class SavingsBalanceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SavingsBalanceNodeScope @Owner SavingsBalanceNode provideSavingsBalanceNode() {
+    @Provides @ComponentScope @Owner SavingsBalanceNode provideSavingsBalanceNode() {
         return owner;
     }
 
-    @Provides @SavingsBalanceNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @SavingsBalanceNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @SavingsBalanceNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SavingsBalanceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SavingsBalanceNodeScope SavingsAccountNode provideSavingsAccountNode() {
+    @Provides @ComponentScope SavingsAccountNode provideSavingsAccountNode() {
         return owner.getParent();
     }
 
-    @Provides @SavingsBalanceNodeScope
+    @Provides @ComponentScope
     RuleProvider<SavingsBalanceNode> provideRuleProvider(Provider<SavingsBalanceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SavingsBalanceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SavingsBalanceNode>> provideInstanceProviderMap(
         Provider<SavingsAccountNodeChildProvider.SavingsBalanceNodeRuleProvider> savingsBalanceNodeRuleProvider
     ) {

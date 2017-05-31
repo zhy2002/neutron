@@ -17,36 +17,36 @@ public class MovedToPreviousAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner MovedToPreviousAddressNode provideMovedToPreviousAddressNode() {
+    @Provides @ComponentScope @Owner MovedToPreviousAddressNode provideMovedToPreviousAddressNode() {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MovedToPreviousAddressNodeScope PersonContactNode providePersonContactNode() {
+    @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }
 
-    @Provides @MovedToPreviousAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<MovedToPreviousAddressNode> provideRuleProvider(Provider<MovedToPreviousAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MovedToPreviousAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MovedToPreviousAddressNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.MovedToPreviousAddressNodeRuleProvider> movedToPreviousAddressNodeRuleProvider
     ) {

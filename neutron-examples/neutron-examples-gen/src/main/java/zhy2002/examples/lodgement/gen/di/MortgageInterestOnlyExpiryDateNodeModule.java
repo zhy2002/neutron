@@ -17,32 +17,32 @@ public class MortgageInterestOnlyExpiryDateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope @Owner MortgageInterestOnlyExpiryDateNode provideMortgageInterestOnlyExpiryDateNode() {
+    @Provides @ComponentScope @Owner MortgageInterestOnlyExpiryDateNode provideMortgageInterestOnlyExpiryDateNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageInterestOnlyExpiryDateNode> provideRuleProvider(Provider<MortgageInterestOnlyExpiryDateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageInterestOnlyExpiryDateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageInterestOnlyExpiryDateNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageInterestOnlyExpiryDateNodeRuleProvider> mortgageInterestOnlyExpiryDateNodeRuleProvider
     ) {

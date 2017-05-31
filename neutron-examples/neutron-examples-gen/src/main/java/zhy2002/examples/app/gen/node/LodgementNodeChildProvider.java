@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface LodgementNodeChildFactory {
@@ -33,7 +34,7 @@ public class LodgementNodeChildProvider {
     protected void configureAppManagerNode(AppManagerNode node) {
     }
 
-    @AppManagerNodeScope
+    @ComponentScope
     public static class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> {
 
         @Inject

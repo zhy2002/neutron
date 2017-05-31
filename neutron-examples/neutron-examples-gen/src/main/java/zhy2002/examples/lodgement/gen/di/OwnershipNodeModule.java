@@ -16,27 +16,27 @@ public class OwnershipNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OwnershipNodeScope @Owner OwnershipNode provideOwnershipNode() {
+    @Provides @ComponentScope @Owner OwnershipNode provideOwnershipNode() {
         return owner;
     }
 
-    @Provides @OwnershipNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipNodeScope OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope OwnershipListNode<?> provideOwnershipListNode() {
         return owner.getParent();
     }
 
-    @Provides @OwnershipNodeScope
+    @Provides @ComponentScope
     RuleProvider<OwnershipNode> provideRuleProvider(Provider<OwnershipNodeRuleProvider> provider) {
         return provider.get();
     }

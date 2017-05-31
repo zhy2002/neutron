@@ -17,32 +17,32 @@ public class EstimatedMarketValueNodeModule {
         this.owner = owner;
     }
 
-    @Provides @EstimatedMarketValueNodeScope @Owner EstimatedMarketValueNode provideEstimatedMarketValueNode() {
+    @Provides @ComponentScope @Owner EstimatedMarketValueNode provideEstimatedMarketValueNode() {
         return owner;
     }
 
-    @Provides @EstimatedMarketValueNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @EstimatedMarketValueNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @EstimatedMarketValueNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @EstimatedMarketValueNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @EstimatedMarketValueNodeScope
+    @Provides @ComponentScope
     RuleProvider<EstimatedMarketValueNode> provideRuleProvider(Provider<EstimatedMarketValueNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @EstimatedMarketValueNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<EstimatedMarketValueNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.EstimatedMarketValueNodeRuleProvider> estimatedMarketValueNodeRuleProvider
     ) {

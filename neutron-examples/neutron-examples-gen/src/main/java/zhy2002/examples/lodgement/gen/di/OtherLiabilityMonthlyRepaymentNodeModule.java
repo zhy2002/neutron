@@ -17,36 +17,36 @@ public class OtherLiabilityMonthlyRepaymentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope @Owner OtherLiabilityMonthlyRepaymentNode provideOtherLiabilityMonthlyRepaymentNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityMonthlyRepaymentNode provideOtherLiabilityMonthlyRepaymentNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope OtherLiabilityNode provideOtherLiabilityNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityMonthlyRepaymentNode> provideRuleProvider(Provider<OtherLiabilityMonthlyRepaymentNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherLiabilityMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherLiabilityMonthlyRepaymentNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityMonthlyRepaymentNodeRuleProvider> otherLiabilityMonthlyRepaymentNodeRuleProvider
     ) {

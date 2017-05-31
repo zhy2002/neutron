@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface FinancialPositionNodeChildFactory {
@@ -68,7 +69,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureAssetsNode(AssetsNode node) {
     }
 
-    @AssetsNodeScope
+    @ComponentScope
     public static class AssetsNodeRuleProvider implements RuleProvider<AssetsNode> {
 
         @Inject
@@ -96,7 +97,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureLiabilitiesNode(LiabilitiesNode node) {
     }
 
-    @LiabilitiesNodeScope
+    @ComponentScope
     public static class LiabilitiesNodeRuleProvider implements RuleProvider<LiabilitiesNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureExpenseListNode(ExpenseListNode node) {
     }
 
-    @ExpenseListNodeScope
+    @ComponentScope
     public static class ExpenseListNodeRuleProvider implements RuleProvider<ExpenseListNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureTotalAssetNode(TotalAssetNode node) {
     }
 
-    @TotalAssetNodeScope
+    @ComponentScope
     public static class TotalAssetNodeRuleProvider implements RuleProvider<TotalAssetNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureTotalLiabilityNode(TotalLiabilityNode node) {
     }
 
-    @TotalLiabilityNodeScope
+    @ComponentScope
     public static class TotalLiabilityNodeRuleProvider implements RuleProvider<TotalLiabilityNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class FinancialPositionNodeChildProvider {
     protected void configureTotalExpenseNode(TotalExpenseNode node) {
     }
 
-    @TotalExpenseNodeScope
+    @ComponentScope
     public static class TotalExpenseNodeRuleProvider implements RuleProvider<TotalExpenseNode> {
 
         @Inject

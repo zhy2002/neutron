@@ -16,27 +16,27 @@ public class ProductNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductNodeScope @Owner ProductNode provideProductNode() {
+    @Provides @ComponentScope @Owner ProductNode provideProductNode() {
         return owner;
     }
 
-    @Provides @ProductNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ProductNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductNodeScope ProductListNode provideProductListNode() {
+    @Provides @ComponentScope ProductListNode provideProductListNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductNode> provideRuleProvider(Provider<ProductNodeRuleProvider> provider) {
         return provider.get();
     }

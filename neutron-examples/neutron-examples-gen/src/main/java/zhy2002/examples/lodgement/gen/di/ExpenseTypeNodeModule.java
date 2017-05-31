@@ -17,32 +17,32 @@ public class ExpenseTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ExpenseTypeNodeScope @Owner ExpenseTypeNode provideExpenseTypeNode() {
+    @Provides @ComponentScope @Owner ExpenseTypeNode provideExpenseTypeNode() {
         return owner;
     }
 
-    @Provides @ExpenseTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ExpenseTypeNodeScope ExpenseNode provideExpenseNode() {
+    @Provides @ComponentScope ExpenseNode provideExpenseNode() {
         return owner.getParent();
     }
 
-    @Provides @ExpenseTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ExpenseTypeNode> provideRuleProvider(Provider<ExpenseTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ExpenseTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ExpenseTypeNode>> provideInstanceProviderMap(
         Provider<ExpenseNodeChildProvider.ExpenseTypeNodeRuleProvider> expenseTypeNodeRuleProvider
     ) {

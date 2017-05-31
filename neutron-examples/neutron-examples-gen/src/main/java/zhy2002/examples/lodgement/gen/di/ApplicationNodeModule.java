@@ -16,27 +16,27 @@ public class ApplicationNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ApplicationNodeScope @Owner ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope @Owner ApplicationNode provideApplicationNode() {
         return owner;
     }
 
-    @Provides @ApplicationNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+    @Provides @ComponentScope @Owner RootUiNode<?> provideRootUiNode() {
         return owner;
     }
 
-    @Provides @ApplicationNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ApplicationNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ApplicationNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ApplicationNodeScope
+    @Provides @ComponentScope
     RuleProvider<ApplicationNode> provideRuleProvider(Provider<ApplicationNodeRuleProvider> provider) {
         return provider.get();
     }

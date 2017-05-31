@@ -17,32 +17,32 @@ public class GenderNodeModule {
         this.owner = owner;
     }
 
-    @Provides @GenderNodeScope @Owner GenderNode provideGenderNode() {
+    @Provides @ComponentScope @Owner GenderNode provideGenderNode() {
         return owner;
     }
 
-    @Provides @GenderNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @GenderNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @GenderNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @GenderNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @GenderNodeScope
+    @Provides @ComponentScope
     RuleProvider<GenderNode> provideRuleProvider(Provider<GenderNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @GenderNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<GenderNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.GenderNodeRuleProvider> genderNodeRuleProvider
     ) {

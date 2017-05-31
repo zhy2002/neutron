@@ -17,36 +17,36 @@ public class ProductCreditCardLimitNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope @Owner ProductCreditCardLimitNode provideProductCreditCardLimitNode() {
+    @Provides @ComponentScope @Owner ProductCreditCardLimitNode provideProductCreditCardLimitNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCreditCardLimitNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCreditCardLimitNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCreditCardLimitNode> provideRuleProvider(Provider<ProductCreditCardLimitNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCreditCardLimitNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCreditCardLimitNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductCreditCardLimitNodeRuleProvider> productCreditCardLimitNodeRuleProvider
     ) {

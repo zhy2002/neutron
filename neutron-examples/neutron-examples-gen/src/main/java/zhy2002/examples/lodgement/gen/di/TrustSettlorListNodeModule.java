@@ -17,36 +17,36 @@ public class TrustSettlorListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner TrustSettlorListNode provideTrustSettlorListNode() {
+    @Provides @ComponentScope @Owner TrustSettlorListNode provideTrustSettlorListNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
+    @Provides @ComponentScope @Owner SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustSettlorListNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustSettlorListNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustSettlorListNode> provideRuleProvider(Provider<TrustSettlorListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustSettlorListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustSettlorListNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustSettlorListNodeRuleProvider> trustSettlorListNodeRuleProvider
     ) {

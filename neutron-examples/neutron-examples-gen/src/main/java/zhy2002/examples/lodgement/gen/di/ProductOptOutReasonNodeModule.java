@@ -17,32 +17,32 @@ public class ProductOptOutReasonNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductOptOutReasonNodeScope @Owner ProductOptOutReasonNode provideProductOptOutReasonNode() {
+    @Provides @ComponentScope @Owner ProductOptOutReasonNode provideProductOptOutReasonNode() {
         return owner;
     }
 
-    @Provides @ProductOptOutReasonNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductOptOutReasonNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductOptOutReasonNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductOptOutReasonNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductOptOutReasonNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductOptOutReasonNode> provideRuleProvider(Provider<ProductOptOutReasonNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductOptOutReasonNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductOptOutReasonNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductOptOutReasonNodeRuleProvider> productOptOutReasonNodeRuleProvider
     ) {

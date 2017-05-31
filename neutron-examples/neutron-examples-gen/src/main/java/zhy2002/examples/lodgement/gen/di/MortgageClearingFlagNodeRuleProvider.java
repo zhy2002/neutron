@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.MortgageClearingFlagNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@MortgageClearingFlagNodeScope
+@ComponentScope
 public class MortgageClearingFlagNodeRuleProvider implements RuleProvider<MortgageClearingFlagNode> {
 
     @Inject

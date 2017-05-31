@@ -17,36 +17,36 @@ public class CreditCardOwnershipListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope @Owner CreditCardOwnershipListNode provideCreditCardOwnershipListNode() {
+    @Provides @ComponentScope @Owner CreditCardOwnershipListNode provideCreditCardOwnershipListNode() {
         return owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
         return owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardOwnershipListNodeScope CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardOwnershipListNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardOwnershipListNode> provideRuleProvider(Provider<CreditCardOwnershipListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCardOwnershipListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCardOwnershipListNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {

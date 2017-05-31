@@ -17,32 +17,32 @@ public class SelectAccountHolderFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope @Owner SelectAccountHolderFlagNode provideSelectAccountHolderFlagNode() {
+    @Provides @ComponentScope @Owner SelectAccountHolderFlagNode provideSelectAccountHolderFlagNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope SelectAccountHolderNode provideSelectAccountHolderNode() {
+    @Provides @ComponentScope SelectAccountHolderNode provideSelectAccountHolderNode() {
         return owner.getParent();
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<SelectAccountHolderFlagNode> provideRuleProvider(Provider<SelectAccountHolderFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SelectAccountHolderFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SelectAccountHolderFlagNode>> provideInstanceProviderMap(
         Provider<SelectAccountHolderNodeChildProvider.SelectAccountHolderFlagNodeRuleProvider> selectAccountHolderFlagNodeRuleProvider
     ) {

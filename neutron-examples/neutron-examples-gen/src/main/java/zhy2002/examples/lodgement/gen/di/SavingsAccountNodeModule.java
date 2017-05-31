@@ -16,27 +16,27 @@ public class SavingsAccountNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SavingsAccountNodeScope @Owner SavingsAccountNode provideSavingsAccountNode() {
+    @Provides @ComponentScope @Owner SavingsAccountNode provideSavingsAccountNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNodeScope SavingsAccountListNode provideSavingsAccountListNode() {
+    @Provides @ComponentScope SavingsAccountListNode provideSavingsAccountListNode() {
         return owner.getParent();
     }
 
-    @Provides @SavingsAccountNodeScope
+    @Provides @ComponentScope
     RuleProvider<SavingsAccountNode> provideRuleProvider(Provider<SavingsAccountNodeRuleProvider> provider) {
         return provider.get();
     }

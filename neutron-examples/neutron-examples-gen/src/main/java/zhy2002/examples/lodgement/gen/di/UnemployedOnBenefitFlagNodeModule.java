@@ -17,36 +17,36 @@ public class UnemployedOnBenefitFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope @Owner UnemployedOnBenefitFlagNode provideUnemployedOnBenefitFlagNode() {
+    @Provides @ComponentScope @Owner UnemployedOnBenefitFlagNode provideUnemployedOnBenefitFlagNode() {
         return owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<UnemployedOnBenefitFlagNode> provideRuleProvider(Provider<UnemployedOnBenefitFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @UnemployedOnBenefitFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.UnemployedOnBenefitFlagNodeRuleProvider> unemployedOnBenefitFlagNodeRuleProvider
     ) {

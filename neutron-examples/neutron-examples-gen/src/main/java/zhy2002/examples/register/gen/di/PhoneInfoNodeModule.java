@@ -17,32 +17,32 @@ public class PhoneInfoNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PhoneInfoNodeScope @Owner PhoneInfoNode providePhoneInfoNode() {
+    @Provides @ComponentScope @Owner PhoneInfoNode providePhoneInfoNode() {
         return owner;
     }
 
-    @Provides @PhoneInfoNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PhoneInfoNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PhoneInfoNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PhoneInfoNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @PhoneInfoNodeScope
+    @Provides @ComponentScope
     RuleProvider<PhoneInfoNode> provideRuleProvider(Provider<PhoneInfoNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PhoneInfoNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PhoneInfoNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.HomePhoneNodeRuleProvider> homePhoneNodeRuleProvider
     ) {

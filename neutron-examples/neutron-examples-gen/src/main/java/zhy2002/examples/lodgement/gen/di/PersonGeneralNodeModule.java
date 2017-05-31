@@ -17,32 +17,32 @@ public class PersonGeneralNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonGeneralNodeScope @Owner PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope @Owner PersonGeneralNode providePersonGeneralNode() {
         return owner;
     }
 
-    @Provides @PersonGeneralNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PersonGeneralNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonGeneralNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonGeneralNodeScope PersonNode providePersonNode() {
+    @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonGeneralNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonGeneralNode> provideRuleProvider(Provider<PersonGeneralNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonGeneralNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonGeneralNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonGeneralNodeRuleProvider> personGeneralNodeRuleProvider
     ) {

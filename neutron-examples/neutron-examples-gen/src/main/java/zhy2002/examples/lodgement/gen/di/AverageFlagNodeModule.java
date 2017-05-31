@@ -17,32 +17,32 @@ public class AverageFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AverageFlagNodeScope @Owner AverageFlagNode provideAverageFlagNode() {
+    @Provides @ComponentScope @Owner AverageFlagNode provideAverageFlagNode() {
         return owner;
     }
 
-    @Provides @AverageFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @AverageFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AverageFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AverageFlagNodeScope OwnershipNode provideOwnershipNode() {
+    @Provides @ComponentScope OwnershipNode provideOwnershipNode() {
         return owner.getParent();
     }
 
-    @Provides @AverageFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<AverageFlagNode> provideRuleProvider(Provider<AverageFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AverageFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AverageFlagNode>> provideInstanceProviderMap(
         Provider<OwnershipNodeChildProvider.AverageFlagNodeRuleProvider> averageFlagNodeRuleProvider
     ) {

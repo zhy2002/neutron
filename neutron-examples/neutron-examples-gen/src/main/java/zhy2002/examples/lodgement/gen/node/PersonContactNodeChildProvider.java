@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PersonContactNodeChildFactory {
@@ -79,7 +80,7 @@ public class PersonContactNodeChildProvider {
     protected void configureHomePhoneNode(PersonTelephoneNode node) {
     }
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class HomePhoneNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
 
         @Inject
@@ -107,7 +108,7 @@ public class PersonContactNodeChildProvider {
     protected void configureWorkPhoneNode(PersonTelephoneNode node) {
     }
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class WorkPhoneNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
 
         @Inject
@@ -135,7 +136,7 @@ public class PersonContactNodeChildProvider {
     protected void configureFaxNumberNode(PersonTelephoneNode node) {
     }
 
-    @PersonTelephoneNodeScope
+    @ComponentScope
     public static class FaxNumberNodeRuleProvider implements RuleProvider<PersonTelephoneNode> {
 
         @Inject
@@ -163,7 +164,7 @@ public class PersonContactNodeChildProvider {
     protected void configurePersonMobileNumberNode(PersonMobileNumberNode node) {
     }
 
-    @PersonMobileNumberNodeScope
+    @ComponentScope
     public static class PersonMobileNumberNodeRuleProvider implements RuleProvider<PersonMobileNumberNode> {
 
         @Inject
@@ -191,7 +192,7 @@ public class PersonContactNodeChildProvider {
     protected void configurePersonEmailNode(PersonEmailNode node) {
     }
 
-    @PersonEmailNodeScope
+    @ComponentScope
     public static class PersonEmailNodeRuleProvider implements RuleProvider<PersonEmailNode> {
 
         @Inject
@@ -219,7 +220,7 @@ public class PersonContactNodeChildProvider {
     protected void configureCurrentAddressNode(PersonAddressNode node) {
     }
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class CurrentAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
 
         @Inject
@@ -247,7 +248,7 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedToCurrentAddressNode(MovedToCurrentAddressNode node) {
     }
 
-    @MovedToCurrentAddressNodeScope
+    @ComponentScope
     public static class MovedToCurrentAddressNodeRuleProvider implements RuleProvider<MovedToCurrentAddressNode> {
 
         @Inject
@@ -275,7 +276,7 @@ public class PersonContactNodeChildProvider {
     protected void configurePostalAddressNode(PersonAddressNode node) {
     }
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class PostalAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
 
         @Inject
@@ -303,7 +304,7 @@ public class PersonContactNodeChildProvider {
     protected void configurePreviousAddressNode(PersonAddressNode node) {
     }
 
-    @PersonAddressNodeScope
+    @ComponentScope
     public static class PreviousAddressNodeRuleProvider implements RuleProvider<PersonAddressNode> {
 
         @Inject
@@ -331,7 +332,7 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedToPreviousAddressNode(MovedToPreviousAddressNode node) {
     }
 
-    @MovedToPreviousAddressNodeScope
+    @ComponentScope
     public static class MovedToPreviousAddressNodeRuleProvider implements RuleProvider<MovedToPreviousAddressNode> {
 
         @Inject
@@ -359,7 +360,7 @@ public class PersonContactNodeChildProvider {
     protected void configureMovedFromPreviousAddressNode(MovedFromPreviousAddressNode node) {
     }
 
-    @MovedFromPreviousAddressNodeScope
+    @ComponentScope
     public static class MovedFromPreviousAddressNodeRuleProvider implements RuleProvider<MovedFromPreviousAddressNode> {
 
         @Inject

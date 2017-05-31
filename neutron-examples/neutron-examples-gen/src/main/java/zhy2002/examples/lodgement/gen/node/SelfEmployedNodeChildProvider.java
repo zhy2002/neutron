@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface SelfEmployedNodeChildFactory {
@@ -47,7 +48,7 @@ public class SelfEmployedNodeChildProvider {
     protected void configureBusinessTypeNode(BusinessTypeNode node) {
     }
 
-    @BusinessTypeNodeScope
+    @ComponentScope
     public static class BusinessTypeNodeRuleProvider implements RuleProvider<BusinessTypeNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class SelfEmployedNodeChildProvider {
     protected void configureProfitThisYearNode(ProfitThisYearNode node) {
     }
 
-    @ProfitThisYearNodeScope
+    @ComponentScope
     public static class ProfitThisYearNodeRuleProvider implements RuleProvider<ProfitThisYearNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class SelfEmployedNodeChildProvider {
     protected void configureProfitPreviousYearNode(ProfitPreviousYearNode node) {
     }
 
-    @ProfitPreviousYearNodeScope
+    @ComponentScope
     public static class ProfitPreviousYearNodeRuleProvider implements RuleProvider<ProfitPreviousYearNode> {
 
         @Inject

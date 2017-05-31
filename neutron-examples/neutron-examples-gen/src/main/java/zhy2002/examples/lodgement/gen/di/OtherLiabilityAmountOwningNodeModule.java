@@ -17,36 +17,36 @@ public class OtherLiabilityAmountOwningNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope @Owner OtherLiabilityAmountOwningNode provideOtherLiabilityAmountOwningNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityAmountOwningNode provideOtherLiabilityAmountOwningNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope OtherLiabilityNode provideOtherLiabilityNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityAmountOwningNode> provideRuleProvider(Provider<OtherLiabilityAmountOwningNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherLiabilityAmountOwningNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherLiabilityAmountOwningNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OtherLiabilityAmountOwningNodeRuleProvider> otherLiabilityAmountOwningNodeRuleProvider
     ) {

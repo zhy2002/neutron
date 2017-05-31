@@ -16,27 +16,27 @@ public class OtherIncomeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherIncomeNodeScope @Owner OtherIncomeNode provideOtherIncomeNode() {
+    @Provides @ComponentScope @Owner OtherIncomeNode provideOtherIncomeNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeNodeScope BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
+    @Provides @ComponentScope BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherIncomeNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherIncomeNode> provideRuleProvider(Provider<OtherIncomeNodeRuleProvider> provider) {
         return provider.get();
     }

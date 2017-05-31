@@ -17,32 +17,32 @@ public class EmailNodeModule {
         this.owner = owner;
     }
 
-    @Provides @EmailNodeScope @Owner EmailNode provideEmailNode() {
+    @Provides @ComponentScope @Owner EmailNode provideEmailNode() {
         return owner;
     }
 
-    @Provides @EmailNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @EmailNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @EmailNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @EmailNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @EmailNodeScope
+    @Provides @ComponentScope
     RuleProvider<EmailNode> provideRuleProvider(Provider<EmailNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @EmailNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<EmailNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.EmailNodeRuleProvider> emailNodeRuleProvider
     ) {

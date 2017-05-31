@@ -17,36 +17,36 @@ public class OccupationNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OccupationNodeScope @Owner OccupationNode provideOccupationNode() {
+    @Provides @ComponentScope @Owner OccupationNode provideOccupationNode() {
         return owner;
     }
 
-    @Provides @OccupationNodeScope @Owner BaseOccupationNode<?> provideBaseOccupationNode() {
+    @Provides @ComponentScope @Owner BaseOccupationNode<?> provideBaseOccupationNode() {
         return owner;
     }
 
-    @Provides @OccupationNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @OccupationNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OccupationNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OccupationNodeScope EmployedNode provideEmployedNode() {
+    @Provides @ComponentScope EmployedNode provideEmployedNode() {
         return owner.getParent();
     }
 
-    @Provides @OccupationNodeScope
+    @Provides @ComponentScope
     RuleProvider<OccupationNode> provideRuleProvider(Provider<OccupationNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OccupationNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OccupationNode>> provideInstanceProviderMap(
         Provider<EmployedNodeChildProvider.OccupationNodeRuleProvider> occupationNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class CompanyApplicationTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyApplicationTypeNodeScope @Owner CompanyApplicationTypeNode provideCompanyApplicationTypeNode() {
+    @Provides @ComponentScope @Owner CompanyApplicationTypeNode provideCompanyApplicationTypeNode() {
         return owner;
     }
 
-    @Provides @CompanyApplicationTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyApplicationTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyApplicationTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyApplicationTypeNodeScope CompanyGeneralNode provideCompanyGeneralNode() {
+    @Provides @ComponentScope CompanyGeneralNode provideCompanyGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyApplicationTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyApplicationTypeNode> provideRuleProvider(Provider<CompanyApplicationTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyApplicationTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyApplicationTypeNode>> provideInstanceProviderMap(
         Provider<CompanyGeneralNodeChildProvider.CompanyApplicationTypeNodeRuleProvider> companyApplicationTypeNodeRuleProvider
     ) {

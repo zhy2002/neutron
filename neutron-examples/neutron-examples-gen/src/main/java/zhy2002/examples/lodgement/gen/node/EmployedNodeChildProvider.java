@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface EmployedNodeChildFactory {
@@ -75,7 +76,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmploymentStatusNode(EmploymentStatusNode node) {
     }
 
-    @EmploymentStatusNodeScope
+    @ComponentScope
     public static class EmploymentStatusNodeRuleProvider implements RuleProvider<EmploymentStatusNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class EmployedNodeChildProvider {
     protected void configureOccupationNode(OccupationNode node) {
     }
 
-    @OccupationNodeScope
+    @ComponentScope
     public static class OccupationNodeRuleProvider implements RuleProvider<OccupationNode> {
 
         @Inject
@@ -131,7 +132,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmployerNameNode(EmployerNameNode node) {
     }
 
-    @EmployerNameNodeScope
+    @ComponentScope
     public static class EmployerNameNodeRuleProvider implements RuleProvider<EmployerNameNode> {
 
         @Inject
@@ -159,7 +160,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmployerAddressNode(EmployerAddressNode node) {
     }
 
-    @EmployerAddressNodeScope
+    @ComponentScope
     public static class EmployerAddressNodeRuleProvider implements RuleProvider<EmployerAddressNode> {
 
         @Inject
@@ -187,7 +188,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmployerPhoneNode(EmployerPhoneNode node) {
     }
 
-    @EmployerPhoneNodeScope
+    @ComponentScope
     public static class EmployerPhoneNodeRuleProvider implements RuleProvider<EmployerPhoneNode> {
 
         @Inject
@@ -215,7 +216,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmploymentStartedNode(EmploymentStartedNode node) {
     }
 
-    @EmploymentStartedNodeScope
+    @ComponentScope
     public static class EmploymentStartedNodeRuleProvider implements RuleProvider<EmploymentStartedNode> {
 
         @Inject
@@ -243,7 +244,7 @@ public class EmployedNodeChildProvider {
     protected void configureEmploymentEndedNode(EmploymentEndedNode node) {
     }
 
-    @EmploymentEndedNodeScope
+    @ComponentScope
     public static class EmploymentEndedNodeRuleProvider implements RuleProvider<EmploymentEndedNode> {
 
         @Inject

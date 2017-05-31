@@ -17,32 +17,32 @@ public class SavingsAccountNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SavingsAccountNameNodeScope @Owner SavingsAccountNameNode provideSavingsAccountNameNode() {
+    @Provides @ComponentScope @Owner SavingsAccountNameNode provideSavingsAccountNameNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SavingsAccountNameNodeScope SavingsAccountNode provideSavingsAccountNode() {
+    @Provides @ComponentScope SavingsAccountNode provideSavingsAccountNode() {
         return owner.getParent();
     }
 
-    @Provides @SavingsAccountNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<SavingsAccountNameNode> provideRuleProvider(Provider<SavingsAccountNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SavingsAccountNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SavingsAccountNameNode>> provideInstanceProviderMap(
         Provider<SavingsAccountNodeChildProvider.SavingsAccountNameNodeRuleProvider> savingsAccountNameNodeRuleProvider
     ) {

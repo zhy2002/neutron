@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface MotorVehicleNodeChildFactory {
@@ -54,7 +55,7 @@ public class MotorVehicleNodeChildProvider {
     protected void configureVehicleModelNode(VehicleModelNode node) {
     }
 
-    @VehicleModelNodeScope
+    @ComponentScope
     public static class VehicleModelNodeRuleProvider implements RuleProvider<VehicleModelNode> {
 
         @Inject
@@ -82,7 +83,7 @@ public class MotorVehicleNodeChildProvider {
     protected void configureVehicleYearNode(VehicleYearNode node) {
     }
 
-    @VehicleYearNodeScope
+    @ComponentScope
     public static class VehicleYearNodeRuleProvider implements RuleProvider<VehicleYearNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class MotorVehicleNodeChildProvider {
     protected void configureVehicleMarketValueNode(VehicleMarketValueNode node) {
     }
 
-    @VehicleMarketValueNodeScope
+    @ComponentScope
     public static class VehicleMarketValueNodeRuleProvider implements RuleProvider<VehicleMarketValueNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class MotorVehicleNodeChildProvider {
     protected void configureOwnershipListNode(VehicleOwnershipListNode node) {
     }
 
-    @VehicleOwnershipListNodeScope
+    @ComponentScope
     public static class OwnershipListNodeRuleProvider implements RuleProvider<VehicleOwnershipListNode> {
 
         @Inject

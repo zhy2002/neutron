@@ -17,32 +17,32 @@ public class AccessCompanyNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AccessCompanyNameNodeScope @Owner AccessCompanyNameNode provideAccessCompanyNameNode() {
+    @Provides @ComponentScope @Owner AccessCompanyNameNode provideAccessCompanyNameNode() {
         return owner;
     }
 
-    @Provides @AccessCompanyNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AccessCompanyNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AccessCompanyNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AccessCompanyNameNodeScope AccessNode provideAccessNode() {
+    @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }
 
-    @Provides @AccessCompanyNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<AccessCompanyNameNode> provideRuleProvider(Provider<AccessCompanyNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AccessCompanyNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AccessCompanyNameNode>> provideInstanceProviderMap(
         Provider<AccessNodeChildProvider.AccessCompanyNameNodeRuleProvider> accessCompanyNameNodeRuleProvider
     ) {

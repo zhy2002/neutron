@@ -17,36 +17,36 @@ public class MortgageTermRemainingPeriodNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope @Owner MortgageTermRemainingPeriodNode provideMortgageTermRemainingPeriodNode() {
+    @Provides @ComponentScope @Owner MortgageTermRemainingPeriodNode provideMortgageTermRemainingPeriodNode() {
         return owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageTermRemainingPeriodNode> provideRuleProvider(Provider<MortgageTermRemainingPeriodNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageTermRemainingPeriodNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageTermRemainingPeriodNodeRuleProvider> mortgageTermRemainingPeriodNodeRuleProvider
     ) {

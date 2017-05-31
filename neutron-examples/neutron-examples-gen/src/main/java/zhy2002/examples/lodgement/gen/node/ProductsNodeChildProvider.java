@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ProductsNodeChildFactory {
@@ -96,7 +97,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductListNode(ProductListNode node) {
     }
 
-    @ProductListNodeScope
+    @ComponentScope
     public static class ProductListNodeRuleProvider implements RuleProvider<ProductListNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductCustomerContributionListNode(ProductCustomerContributionListNode node) {
     }
 
-    @ProductCustomerContributionListNodeScope
+    @ComponentScope
     public static class ProductCustomerContributionListNodeRuleProvider implements RuleProvider<ProductCustomerContributionListNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductFeeListNode(ProductFeeListNode node) {
     }
 
-    @ProductFeeListNodeScope
+    @ComponentScope
     public static class ProductFeeListNodeRuleProvider implements RuleProvider<ProductFeeListNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductLoanTypeNode(ProductLoanTypeNode node) {
     }
 
-    @ProductLoanTypeNodeScope
+    @ComponentScope
     public static class ProductLoanTypeNodeRuleProvider implements RuleProvider<ProductLoanTypeNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class ProductsNodeChildProvider {
     protected void configureSettlementDateNode(SettlementDateNode node) {
     }
 
-    @SettlementDateNodeScope
+    @ComponentScope
     public static class SettlementDateNodeRuleProvider implements RuleProvider<SettlementDateNode> {
 
         @Inject
@@ -236,7 +237,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalLoanAmountNode(ProductTotalLoanAmountNode node) {
     }
 
-    @ProductTotalLoanAmountNodeScope
+    @ComponentScope
     public static class ProductTotalLoanAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanAmountNode> {
 
         @Inject
@@ -264,7 +265,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalSecurityAmountNode(ProductTotalSecurityAmountNode node) {
     }
 
-    @ProductTotalSecurityAmountNodeScope
+    @ComponentScope
     public static class ProductTotalSecurityAmountNodeRuleProvider implements RuleProvider<ProductTotalSecurityAmountNode> {
 
         @Inject
@@ -292,7 +293,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalLoanLmiAmountNode(ProductTotalLoanLmiAmountNode node) {
     }
 
-    @ProductTotalLoanLmiAmountNodeScope
+    @ComponentScope
     public static class ProductTotalLoanLmiAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanLmiAmountNode> {
 
         @Inject
@@ -320,7 +321,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalLvrNode(ProductTotalLvrNode node) {
     }
 
-    @ProductTotalLvrNodeScope
+    @ComponentScope
     public static class ProductTotalLvrNodeRuleProvider implements RuleProvider<ProductTotalLvrNode> {
 
         @Inject
@@ -348,7 +349,7 @@ public class ProductsNodeChildProvider {
     protected void configureProductTotalLvrLmiNode(ProductTotalLvrLmiNode node) {
     }
 
-    @ProductTotalLvrLmiNodeScope
+    @ComponentScope
     public static class ProductTotalLvrLmiNodeRuleProvider implements RuleProvider<ProductTotalLvrLmiNode> {
 
         @Inject

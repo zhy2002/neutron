@@ -17,36 +17,36 @@ public class OwnershipPercentageNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope @Owner OwnershipPercentageNode provideOwnershipPercentageNode() {
+    @Provides @ComponentScope @Owner OwnershipPercentageNode provideOwnershipPercentageNode() {
         return owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
+    @Provides @ComponentScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
         return owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OwnershipPercentageNodeScope OwnershipNode provideOwnershipNode() {
+    @Provides @ComponentScope OwnershipNode provideOwnershipNode() {
         return owner.getParent();
     }
 
-    @Provides @OwnershipPercentageNodeScope
+    @Provides @ComponentScope
     RuleProvider<OwnershipPercentageNode> provideRuleProvider(Provider<OwnershipPercentageNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OwnershipPercentageNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OwnershipPercentageNode>> provideInstanceProviderMap(
         Provider<OwnershipNodeChildProvider.OwnershipPercentageNodeRuleProvider> ownershipPercentageNodeRuleProvider
     ) {

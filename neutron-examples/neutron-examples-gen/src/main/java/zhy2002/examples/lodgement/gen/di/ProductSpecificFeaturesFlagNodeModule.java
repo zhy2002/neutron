@@ -17,32 +17,32 @@ public class ProductSpecificFeaturesFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope @Owner ProductSpecificFeaturesFlagNode provideProductSpecificFeaturesFlagNode() {
+    @Provides @ComponentScope @Owner ProductSpecificFeaturesFlagNode provideProductSpecificFeaturesFlagNode() {
         return owner;
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductSpecificFeaturesFlagNode> provideRuleProvider(Provider<ProductSpecificFeaturesFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductSpecificFeaturesFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductSpecificFeaturesFlagNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductSpecificFeaturesFlagNodeRuleProvider> productSpecificFeaturesFlagNodeRuleProvider
     ) {

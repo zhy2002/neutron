@@ -16,27 +16,27 @@ public class ErrorNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ErrorNodeScope @Owner ErrorNode provideErrorNode() {
+    @Provides @ComponentScope @Owner ErrorNode provideErrorNode() {
         return owner;
     }
 
-    @Provides @ErrorNodeScope @Owner ValidationErrorUiNode<?> provideValidationErrorUiNode() {
+    @Provides @ComponentScope @Owner ValidationErrorUiNode<?> provideValidationErrorUiNode() {
         return owner;
     }
 
-    @Provides @ErrorNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ErrorNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ErrorNodeScope ErrorListNode provideErrorListNode() {
+    @Provides @ComponentScope ErrorListNode provideErrorListNode() {
         return owner.getParent();
     }
 
-    @Provides @ErrorNodeScope
+    @Provides @ComponentScope
     RuleProvider<ErrorNode> provideRuleProvider(Provider<ErrorNodeRuleProvider> provider) {
         return provider.get();
     }

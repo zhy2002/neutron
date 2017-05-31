@@ -17,32 +17,32 @@ public class CurrentEmploymentListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CurrentEmploymentListNodeScope @Owner CurrentEmploymentListNode provideCurrentEmploymentListNode() {
+    @Provides @ComponentScope @Owner CurrentEmploymentListNode provideCurrentEmploymentListNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CurrentEmploymentListNodeScope PersonNode providePersonNode() {
+    @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }
 
-    @Provides @CurrentEmploymentListNodeScope
+    @Provides @ComponentScope
     RuleProvider<CurrentEmploymentListNode> provideRuleProvider(Provider<CurrentEmploymentListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CurrentEmploymentListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CurrentEmploymentListNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.CurrentEmploymentListNodeRuleProvider> currentEmploymentListNodeRuleProvider
     ) {

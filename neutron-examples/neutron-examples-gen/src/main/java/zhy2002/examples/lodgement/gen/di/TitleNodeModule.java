@@ -17,32 +17,32 @@ public class TitleNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TitleNodeScope @Owner TitleNode provideTitleNode() {
+    @Provides @ComponentScope @Owner TitleNode provideTitleNode() {
         return owner;
     }
 
-    @Provides @TitleNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TitleNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TitleNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TitleNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @TitleNodeScope
+    @Provides @ComponentScope
     RuleProvider<TitleNode> provideRuleProvider(Provider<TitleNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TitleNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TitleNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.TitleNodeRuleProvider> titleNodeRuleProvider
     ) {

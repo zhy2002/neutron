@@ -1,9 +1,10 @@
 package zhy2002.examples.register.gen.di;
 import dagger.Subcomponent;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 
-@ErrorNodeScope
+@ComponentScope
 @Subcomponent(modules = {ErrorNodeModule.class})
 public interface ErrorNodeComponent {
 

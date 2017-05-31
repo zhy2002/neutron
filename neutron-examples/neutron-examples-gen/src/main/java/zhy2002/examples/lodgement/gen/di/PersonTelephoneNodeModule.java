@@ -17,32 +17,32 @@ public class PersonTelephoneNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonTelephoneNodeScope @Owner PersonTelephoneNode providePersonTelephoneNode() {
+    @Provides @ComponentScope @Owner PersonTelephoneNode providePersonTelephoneNode() {
         return owner;
     }
 
-    @Provides @PersonTelephoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
+    @Provides @ComponentScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 
-    @Provides @PersonTelephoneNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PersonTelephoneNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonTelephoneNodeScope PersonContactNode providePersonContactNode() {
+    @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonTelephoneNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonTelephoneNode> provideRuleProvider(Provider<PersonTelephoneNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonTelephoneNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonTelephoneNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.HomePhoneNodeRuleProvider> homePhoneNodeRuleProvider
         ,Provider<PersonContactNodeChildProvider.WorkPhoneNodeRuleProvider> workPhoneNodeRuleProvider

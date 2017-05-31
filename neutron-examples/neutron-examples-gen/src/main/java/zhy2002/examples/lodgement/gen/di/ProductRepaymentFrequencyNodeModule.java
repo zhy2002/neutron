@@ -17,32 +17,32 @@ public class ProductRepaymentFrequencyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope @Owner ProductRepaymentFrequencyNode provideProductRepaymentFrequencyNode() {
+    @Provides @ComponentScope @Owner ProductRepaymentFrequencyNode provideProductRepaymentFrequencyNode() {
         return owner;
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductRepaymentFrequencyNode> provideRuleProvider(Provider<ProductRepaymentFrequencyNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductRepaymentFrequencyNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductRepaymentFrequencyNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductRepaymentFrequencyNodeRuleProvider> productRepaymentFrequencyNodeRuleProvider
     ) {

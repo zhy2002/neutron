@@ -17,36 +17,36 @@ public class OtherLiabilityOwnershipListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope @Owner OtherLiabilityOwnershipListNode provideOtherLiabilityOwnershipListNode() {
+    @Provides @ComponentScope @Owner OtherLiabilityOwnershipListNode provideOtherLiabilityOwnershipListNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope OtherLiabilityNode provideOtherLiabilityNode() {
+    @Provides @ComponentScope OtherLiabilityNode provideOtherLiabilityNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherLiabilityOwnershipListNode> provideRuleProvider(Provider<OtherLiabilityOwnershipListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherLiabilityOwnershipListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherLiabilityOwnershipListNode>> provideInstanceProviderMap(
         Provider<OtherLiabilityNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {

@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface BasePrivacyNodeChildFactory {
@@ -54,7 +55,7 @@ public class BasePrivacyNodeChildProvider {
     protected void configureCreditCheckFlagNode(CreditCheckFlagNode node) {
     }
 
-    @CreditCheckFlagNodeScope
+    @ComponentScope
     public static class CreditCheckFlagNodeRuleProvider implements RuleProvider<CreditCheckFlagNode> {
 
         @Inject
@@ -82,7 +83,7 @@ public class BasePrivacyNodeChildProvider {
     protected void configureThirdPartyDisclosureFlagNode(ThirdPartyDisclosureFlagNode node) {
     }
 
-    @ThirdPartyDisclosureFlagNodeScope
+    @ComponentScope
     public static class ThirdPartyDisclosureFlagNodeRuleProvider implements RuleProvider<ThirdPartyDisclosureFlagNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class BasePrivacyNodeChildProvider {
     protected void configureLegalActionNode(LegalActionNode node) {
     }
 
-    @LegalActionNodeScope
+    @ComponentScope
     public static class LegalActionNodeRuleProvider implements RuleProvider<LegalActionNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class BasePrivacyNodeChildProvider {
     protected void configureCreditHistoryListNode(CreditHistoryListNode node) {
     }
 
-    @CreditHistoryListNodeScope
+    @ComponentScope
     public static class CreditHistoryListNodeRuleProvider implements RuleProvider<CreditHistoryListNode> {
 
         @Inject

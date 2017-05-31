@@ -17,32 +17,32 @@ public class FirstHomeBuyerFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope @Owner FirstHomeBuyerFlagNode provideFirstHomeBuyerFlagNode() {
+    @Provides @ComponentScope @Owner FirstHomeBuyerFlagNode provideFirstHomeBuyerFlagNode() {
         return owner;
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<FirstHomeBuyerFlagNode> provideRuleProvider(Provider<FirstHomeBuyerFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @FirstHomeBuyerFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<FirstHomeBuyerFlagNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.FirstHomeBuyerFlagNodeRuleProvider> firstHomeBuyerFlagNodeRuleProvider
     ) {

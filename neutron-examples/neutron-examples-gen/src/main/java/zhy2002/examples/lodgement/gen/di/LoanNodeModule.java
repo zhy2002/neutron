@@ -16,27 +16,27 @@ public class LoanNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LoanNodeScope @Owner LoanNode provideLoanNode() {
+    @Provides @ComponentScope @Owner LoanNode provideLoanNode() {
         return owner;
     }
 
-    @Provides @LoanNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @LoanNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @LoanNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LoanNodeScope LoanListNode provideLoanListNode() {
+    @Provides @ComponentScope LoanListNode provideLoanListNode() {
         return owner.getParent();
     }
 
-    @Provides @LoanNodeScope
+    @Provides @ComponentScope
     RuleProvider<LoanNode> provideRuleProvider(Provider<LoanNodeRuleProvider> provider) {
         return provider.get();
     }

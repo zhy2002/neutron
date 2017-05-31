@@ -17,32 +17,32 @@ public class MaritalStatusNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MaritalStatusNodeScope @Owner MaritalStatusNode provideMaritalStatusNode() {
+    @Provides @ComponentScope @Owner MaritalStatusNode provideMaritalStatusNode() {
         return owner;
     }
 
-    @Provides @MaritalStatusNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @MaritalStatusNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MaritalStatusNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MaritalStatusNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @MaritalStatusNodeScope
+    @Provides @ComponentScope
     RuleProvider<MaritalStatusNode> provideRuleProvider(Provider<MaritalStatusNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MaritalStatusNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MaritalStatusNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.MaritalStatusNodeRuleProvider> maritalStatusNodeRuleProvider
     ) {

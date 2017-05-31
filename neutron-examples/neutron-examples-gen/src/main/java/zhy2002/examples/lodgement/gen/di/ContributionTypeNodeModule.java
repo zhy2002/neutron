@@ -17,32 +17,32 @@ public class ContributionTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ContributionTypeNodeScope @Owner ContributionTypeNode provideContributionTypeNode() {
+    @Provides @ComponentScope @Owner ContributionTypeNode provideContributionTypeNode() {
         return owner;
     }
 
-    @Provides @ContributionTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ContributionTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ContributionTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ContributionTypeNodeScope ProductCustomerContributionNode provideProductCustomerContributionNode() {
+    @Provides @ComponentScope ProductCustomerContributionNode provideProductCustomerContributionNode() {
         return owner.getParent();
     }
 
-    @Provides @ContributionTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ContributionTypeNode> provideRuleProvider(Provider<ContributionTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ContributionTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ContributionTypeNode>> provideInstanceProviderMap(
         Provider<ProductCustomerContributionNodeChildProvider.ContributionTypeNodeRuleProvider> contributionTypeNodeRuleProvider
     ) {

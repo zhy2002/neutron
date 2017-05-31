@@ -16,31 +16,31 @@ public class PreviousEmploymentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner PreviousEmploymentNode providePreviousEmploymentNode() {
+    @Provides @ComponentScope @Owner PreviousEmploymentNode providePreviousEmploymentNode() {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner EmploymentNode<?> provideEmploymentNode() {
+    @Provides @ComponentScope @Owner EmploymentNode<?> provideEmploymentNode() {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PreviousEmploymentNodeScope PreviousEmploymentListNode providePreviousEmploymentListNode() {
+    @Provides @ComponentScope PreviousEmploymentListNode providePreviousEmploymentListNode() {
         return owner.getParent();
     }
 
-    @Provides @PreviousEmploymentNodeScope
+    @Provides @ComponentScope
     RuleProvider<PreviousEmploymentNode> provideRuleProvider(Provider<PreviousEmploymentNodeRuleProvider> provider) {
         return provider.get();
     }

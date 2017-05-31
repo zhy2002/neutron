@@ -17,32 +17,32 @@ public class LoanClearingFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LoanClearingFlagNodeScope @Owner LoanClearingFlagNode provideLoanClearingFlagNode() {
+    @Provides @ComponentScope @Owner LoanClearingFlagNode provideLoanClearingFlagNode() {
         return owner;
     }
 
-    @Provides @LoanClearingFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @LoanClearingFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @LoanClearingFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LoanClearingFlagNodeScope LoanNode provideLoanNode() {
+    @Provides @ComponentScope LoanNode provideLoanNode() {
         return owner.getParent();
     }
 
-    @Provides @LoanClearingFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<LoanClearingFlagNode> provideRuleProvider(Provider<LoanClearingFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @LoanClearingFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<LoanClearingFlagNode>> provideInstanceProviderMap(
         Provider<LoanNodeChildProvider.LoanClearingFlagNodeRuleProvider> loanClearingFlagNodeRuleProvider
     ) {

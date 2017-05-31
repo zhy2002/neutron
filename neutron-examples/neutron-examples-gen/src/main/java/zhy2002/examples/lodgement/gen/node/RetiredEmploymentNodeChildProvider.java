@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface RetiredEmploymentNodeChildFactory {
@@ -40,7 +41,7 @@ public class RetiredEmploymentNodeChildProvider {
     protected void configureRetiredOnBenefitFlagNode(RetiredOnBenefitFlagNode node) {
     }
 
-    @RetiredOnBenefitFlagNodeScope
+    @ComponentScope
     public static class RetiredOnBenefitFlagNodeRuleProvider implements RuleProvider<RetiredOnBenefitFlagNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class RetiredEmploymentNodeChildProvider {
     protected void configureRetiredSinceNode(RetiredSinceNode node) {
     }
 
-    @RetiredSinceNodeScope
+    @ComponentScope
     public static class RetiredSinceNodeRuleProvider implements RuleProvider<RetiredSinceNode> {
 
         @Inject

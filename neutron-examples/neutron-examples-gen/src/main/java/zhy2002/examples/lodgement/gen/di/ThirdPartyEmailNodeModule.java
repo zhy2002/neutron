@@ -17,32 +17,32 @@ public class ThirdPartyEmailNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyEmailNodeScope @Owner ThirdPartyEmailNode provideThirdPartyEmailNode() {
+    @Provides @ComponentScope @Owner ThirdPartyEmailNode provideThirdPartyEmailNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyEmailNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyEmailNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyEmailNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyEmailNodeScope RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope RelatedPartyNode provideRelatedPartyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyEmailNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyEmailNode> provideRuleProvider(Provider<ThirdPartyEmailNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyEmailNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyEmailNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyEmailNodeRuleProvider> thirdPartyEmailNodeRuleProvider
     ) {

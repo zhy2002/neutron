@@ -17,36 +17,36 @@ public class OtherIncomeAmountNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope @Owner OtherIncomeAmountNode provideOtherIncomeAmountNode() {
+    @Provides @ComponentScope @Owner OtherIncomeAmountNode provideOtherIncomeAmountNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAmountNodeScope OtherIncomeNode provideOtherIncomeNode() {
+    @Provides @ComponentScope OtherIncomeNode provideOtherIncomeNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherIncomeAmountNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherIncomeAmountNode> provideRuleProvider(Provider<OtherIncomeAmountNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherIncomeAmountNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherIncomeAmountNode>> provideInstanceProviderMap(
         Provider<OtherIncomeNodeChildProvider.OtherIncomeAmountNodeRuleProvider> otherIncomeAmountNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class TrustRegistrationDateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TrustRegistrationDateNodeScope @Owner TrustRegistrationDateNode provideTrustRegistrationDateNode() {
+    @Provides @ComponentScope @Owner TrustRegistrationDateNode provideTrustRegistrationDateNode() {
         return owner;
     }
 
-    @Provides @TrustRegistrationDateNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @TrustRegistrationDateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TrustRegistrationDateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TrustRegistrationDateNodeScope BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope BaseTrustNode<?> provideBaseTrustNode() {
         return owner.getParent();
     }
 
-    @Provides @TrustRegistrationDateNodeScope
+    @Provides @ComponentScope
     RuleProvider<TrustRegistrationDateNode> provideRuleProvider(Provider<TrustRegistrationDateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TrustRegistrationDateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TrustRegistrationDateNode>> provideInstanceProviderMap(
         Provider<BaseTrustNodeChildProvider.TrustRegistrationDateNodeRuleProvider> trustRegistrationDateNodeRuleProvider
     ) {

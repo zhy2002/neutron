@@ -17,32 +17,32 @@ public class AppManagerNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AppManagerNodeScope @Owner AppManagerNode provideAppManagerNode() {
+    @Provides @ComponentScope @Owner AppManagerNode provideAppManagerNode() {
         return owner;
     }
 
-    @Provides @AppManagerNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @AppManagerNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AppManagerNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AppManagerNodeScope LodgementNode provideLodgementNode() {
+    @Provides @ComponentScope LodgementNode provideLodgementNode() {
         return owner.getParent();
     }
 
-    @Provides @AppManagerNodeScope
+    @Provides @ComponentScope
     RuleProvider<AppManagerNode> provideRuleProvider(Provider<AppManagerNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AppManagerNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AppManagerNode>> provideInstanceProviderMap(
         Provider<LodgementNodeChildProvider.AppManagerNodeRuleProvider> appManagerNodeRuleProvider
     ) {

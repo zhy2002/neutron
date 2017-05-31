@@ -17,32 +17,32 @@ public class CreditCardLenderNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardLenderNameNodeScope @Owner CreditCardLenderNameNode provideCreditCardLenderNameNode() {
+    @Provides @ComponentScope @Owner CreditCardLenderNameNode provideCreditCardLenderNameNode() {
         return owner;
     }
 
-    @Provides @CreditCardLenderNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardLenderNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardLenderNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardLenderNameNodeScope CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardLenderNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardLenderNameNode> provideRuleProvider(Provider<CreditCardLenderNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCardLenderNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCardLenderNameNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardLenderNameNodeRuleProvider> creditCardLenderNameNodeRuleProvider
     ) {

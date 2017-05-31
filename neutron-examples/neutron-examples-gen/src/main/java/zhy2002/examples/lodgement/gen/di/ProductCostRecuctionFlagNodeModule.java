@@ -17,32 +17,32 @@ public class ProductCostRecuctionFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope @Owner ProductCostRecuctionFlagNode provideProductCostRecuctionFlagNode() {
+    @Provides @ComponentScope @Owner ProductCostRecuctionFlagNode provideProductCostRecuctionFlagNode() {
         return owner;
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductCostRecuctionFlagNode> provideRuleProvider(Provider<ProductCostRecuctionFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductCostRecuctionFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductCostRecuctionFlagNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductCostRecuctionFlagNodeRuleProvider> productCostRecuctionFlagNodeRuleProvider
     ) {

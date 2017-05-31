@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.shared;
 
-import zhy2002.examples.lodgement.gen.di.RelatedPartyNodeScope;
 import zhy2002.examples.lodgement.gen.node.RelatedPartyNode;
 import zhy2002.examples.lodgement.gen.node.ThirdPartyFirstNameNode;
 import zhy2002.examples.lodgement.gen.node.ThirdPartyLastNameNode;
@@ -11,7 +10,7 @@ import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
-@RelatedPartyNodeScope
+
 public class UpdateRelatedPartyNodeLabelRule extends UpdateItemNodeLabelRule<RelatedPartyNode> {
 
     @Inject

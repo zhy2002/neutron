@@ -17,32 +17,32 @@ public class LenderIssuedBrokerNumberNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope @Owner LenderIssuedBrokerNumberNode provideLenderIssuedBrokerNumberNode() {
+    @Provides @ComponentScope @Owner LenderIssuedBrokerNumberNode provideLenderIssuedBrokerNumberNode() {
         return owner;
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope
+    @Provides @ComponentScope
     RuleProvider<LenderIssuedBrokerNumberNode> provideRuleProvider(Provider<LenderIssuedBrokerNumberNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @LenderIssuedBrokerNumberNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<LenderIssuedBrokerNumberNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.LenderIssuedBrokerNumberNodeRuleProvider> lenderIssuedBrokerNumberNodeRuleProvider
     ) {

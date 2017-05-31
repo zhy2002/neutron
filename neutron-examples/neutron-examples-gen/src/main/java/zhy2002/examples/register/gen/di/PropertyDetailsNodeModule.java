@@ -17,32 +17,32 @@ public class PropertyDetailsNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PropertyDetailsNodeScope @Owner PropertyDetailsNode providePropertyDetailsNode() {
+    @Provides @ComponentScope @Owner PropertyDetailsNode providePropertyDetailsNode() {
         return owner;
     }
 
-    @Provides @PropertyDetailsNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PropertyDetailsNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PropertyDetailsNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PropertyDetailsNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @PropertyDetailsNodeScope
+    @Provides @ComponentScope
     RuleProvider<PropertyDetailsNode> provideRuleProvider(Provider<PropertyDetailsNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PropertyDetailsNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PropertyDetailsNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.ResidentialPropertyNodeRuleProvider> residentialPropertyNodeRuleProvider
         ,Provider<RegisterNodeChildProvider.InvestmentPropertyNodeRuleProvider> investmentPropertyNodeRuleProvider

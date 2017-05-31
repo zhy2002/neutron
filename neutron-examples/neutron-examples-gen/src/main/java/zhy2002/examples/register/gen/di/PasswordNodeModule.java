@@ -17,32 +17,32 @@ public class PasswordNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PasswordNodeScope @Owner PasswordNode providePasswordNode() {
+    @Provides @ComponentScope @Owner PasswordNode providePasswordNode() {
         return owner;
     }
 
-    @Provides @PasswordNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PasswordNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PasswordNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PasswordNodeScope RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }
 
-    @Provides @PasswordNodeScope
+    @Provides @ComponentScope
     RuleProvider<PasswordNode> provideRuleProvider(Provider<PasswordNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PasswordNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PasswordNode>> provideInstanceProviderMap(
         Provider<RegisterNodeChildProvider.PasswordNodeRuleProvider> passwordNodeRuleProvider
     ) {

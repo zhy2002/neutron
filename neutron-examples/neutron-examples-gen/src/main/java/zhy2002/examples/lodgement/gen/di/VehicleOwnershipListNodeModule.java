@@ -17,36 +17,36 @@ public class VehicleOwnershipListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope @Owner VehicleOwnershipListNode provideVehicleOwnershipListNode() {
+    @Provides @ComponentScope @Owner VehicleOwnershipListNode provideVehicleOwnershipListNode() {
         return owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
         return owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @VehicleOwnershipListNodeScope MotorVehicleNode provideMotorVehicleNode() {
+    @Provides @ComponentScope MotorVehicleNode provideMotorVehicleNode() {
         return owner.getParent();
     }
 
-    @Provides @VehicleOwnershipListNodeScope
+    @Provides @ComponentScope
     RuleProvider<VehicleOwnershipListNode> provideRuleProvider(Provider<VehicleOwnershipListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @VehicleOwnershipListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<VehicleOwnershipListNode>> provideInstanceProviderMap(
         Provider<MotorVehicleNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {

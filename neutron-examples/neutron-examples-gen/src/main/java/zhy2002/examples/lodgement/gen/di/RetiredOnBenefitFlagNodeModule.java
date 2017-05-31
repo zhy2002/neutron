@@ -17,36 +17,36 @@ public class RetiredOnBenefitFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope @Owner RetiredOnBenefitFlagNode provideRetiredOnBenefitFlagNode() {
+    @Provides @ComponentScope @Owner RetiredOnBenefitFlagNode provideRetiredOnBenefitFlagNode() {
         return owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope RetiredEmploymentNode provideRetiredEmploymentNode() {
+    @Provides @ComponentScope RetiredEmploymentNode provideRetiredEmploymentNode() {
         return owner.getParent();
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<RetiredOnBenefitFlagNode> provideRuleProvider(Provider<RetiredOnBenefitFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @RetiredOnBenefitFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<RetiredOnBenefitFlagNode>> provideInstanceProviderMap(
         Provider<RetiredEmploymentNodeChildProvider.RetiredOnBenefitFlagNodeRuleProvider> retiredOnBenefitFlagNodeRuleProvider
     ) {

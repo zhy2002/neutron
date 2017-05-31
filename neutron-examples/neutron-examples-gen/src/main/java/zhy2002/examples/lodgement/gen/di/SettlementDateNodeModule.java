@@ -17,32 +17,32 @@ public class SettlementDateNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SettlementDateNodeScope @Owner SettlementDateNode provideSettlementDateNode() {
+    @Provides @ComponentScope @Owner SettlementDateNode provideSettlementDateNode() {
         return owner;
     }
 
-    @Provides @SettlementDateNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @SettlementDateNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @SettlementDateNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SettlementDateNodeScope ProductsNode provideProductsNode() {
+    @Provides @ComponentScope ProductsNode provideProductsNode() {
         return owner.getParent();
     }
 
-    @Provides @SettlementDateNodeScope
+    @Provides @ComponentScope
     RuleProvider<SettlementDateNode> provideRuleProvider(Provider<SettlementDateNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SettlementDateNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SettlementDateNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.SettlementDateNodeRuleProvider> settlementDateNodeRuleProvider
     ) {

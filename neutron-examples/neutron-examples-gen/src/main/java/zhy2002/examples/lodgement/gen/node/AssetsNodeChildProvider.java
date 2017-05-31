@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface AssetsNodeChildFactory {
@@ -47,7 +48,7 @@ public class AssetsNodeChildProvider {
     protected void configureSavingsAccountListNode(SavingsAccountListNode node) {
     }
 
-    @SavingsAccountListNodeScope
+    @ComponentScope
     public static class SavingsAccountListNodeRuleProvider implements RuleProvider<SavingsAccountListNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class AssetsNodeChildProvider {
     protected void configureMotorVehicleListNode(MotorVehicleListNode node) {
     }
 
-    @MotorVehicleListNodeScope
+    @ComponentScope
     public static class MotorVehicleListNodeRuleProvider implements RuleProvider<MotorVehicleListNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class AssetsNodeChildProvider {
     protected void configureOtherAssetListNode(OtherAssetListNode node) {
     }
 
-    @OtherAssetListNodeScope
+    @ComponentScope
     public static class OtherAssetListNodeRuleProvider implements RuleProvider<OtherAssetListNode> {
 
         @Inject

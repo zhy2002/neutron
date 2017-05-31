@@ -17,32 +17,32 @@ public class ProductPaymentTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductPaymentTypeNodeScope @Owner ProductPaymentTypeNode provideProductPaymentTypeNode() {
+    @Provides @ComponentScope @Owner ProductPaymentTypeNode provideProductPaymentTypeNode() {
         return owner;
     }
 
-    @Provides @ProductPaymentTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductPaymentTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductPaymentTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductPaymentTypeNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductPaymentTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductPaymentTypeNode> provideRuleProvider(Provider<ProductPaymentTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductPaymentTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductPaymentTypeNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductPaymentTypeNodeRuleProvider> productPaymentTypeNodeRuleProvider
     ) {

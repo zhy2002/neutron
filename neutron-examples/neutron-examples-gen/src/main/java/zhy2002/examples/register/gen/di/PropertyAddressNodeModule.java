@@ -17,32 +17,32 @@ public class PropertyAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner PropertyAddressNode providePropertyAddressNode() {
+    @Provides @ComponentScope @Owner PropertyAddressNode providePropertyAddressNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope PropertyDetailsNode providePropertyDetailsNode() {
+    @Provides @ComponentScope PropertyDetailsNode providePropertyDetailsNode() {
         return owner.getParent();
     }
 
-    @Provides @PropertyAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<PropertyAddressNode> provideRuleProvider(Provider<PropertyAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PropertyAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PropertyAddressNode>> provideInstanceProviderMap(
         Provider<PropertyDetailsNodeChildProvider.PropertyAddressNodeRuleProvider> propertyAddressNodeRuleProvider
     ) {

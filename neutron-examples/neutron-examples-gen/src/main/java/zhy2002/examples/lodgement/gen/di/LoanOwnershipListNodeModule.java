@@ -17,36 +17,36 @@ public class LoanOwnershipListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope @Owner LoanOwnershipListNode provideLoanOwnershipListNode() {
+    @Provides @ComponentScope @Owner LoanOwnershipListNode provideLoanOwnershipListNode() {
         return owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
+    @Provides @ComponentScope @Owner OwnershipListNode<?> provideOwnershipListNode() {
         return owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LoanOwnershipListNodeScope LoanNode provideLoanNode() {
+    @Provides @ComponentScope LoanNode provideLoanNode() {
         return owner.getParent();
     }
 
-    @Provides @LoanOwnershipListNodeScope
+    @Provides @ComponentScope
     RuleProvider<LoanOwnershipListNode> provideRuleProvider(Provider<LoanOwnershipListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @LoanOwnershipListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<LoanOwnershipListNode>> provideInstanceProviderMap(
         Provider<LoanNodeChildProvider.OwnershipListNodeRuleProvider> ownershipListNodeRuleProvider
     ) {

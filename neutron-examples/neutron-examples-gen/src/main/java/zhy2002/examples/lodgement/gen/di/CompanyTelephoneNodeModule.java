@@ -17,32 +17,32 @@ public class CompanyTelephoneNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyTelephoneNodeScope @Owner CompanyTelephoneNode provideCompanyTelephoneNode() {
+    @Provides @ComponentScope @Owner CompanyTelephoneNode provideCompanyTelephoneNode() {
         return owner;
     }
 
-    @Provides @CompanyTelephoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
+    @Provides @ComponentScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 
-    @Provides @CompanyTelephoneNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyTelephoneNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyTelephoneNodeScope CompanyContactNode provideCompanyContactNode() {
+    @Provides @ComponentScope CompanyContactNode provideCompanyContactNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyTelephoneNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyTelephoneNode> provideRuleProvider(Provider<CompanyTelephoneNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyTelephoneNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyTelephoneNode>> provideInstanceProviderMap(
         Provider<CompanyContactNodeChildProvider.WorkPhoneNodeRuleProvider> workPhoneNodeRuleProvider
         ,Provider<CompanyContactNodeChildProvider.FaxNumberNodeRuleProvider> faxNumberNodeRuleProvider

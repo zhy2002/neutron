@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface SelectRelatedPersonNodeChildFactory {
@@ -40,7 +41,7 @@ public class SelectRelatedPersonNodeChildProvider {
     protected void configureRelatedPersonReferenceNode(RelatedPersonReferenceNode node) {
     }
 
-    @RelatedPersonReferenceNodeScope
+    @ComponentScope
     public static class RelatedPersonReferenceNodeRuleProvider implements RuleProvider<RelatedPersonReferenceNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class SelectRelatedPersonNodeChildProvider {
     protected void configureSelectRelatedPersonFlagNode(SelectRelatedPersonFlagNode node) {
     }
 
-    @SelectRelatedPersonFlagNodeScope
+    @ComponentScope
     public static class SelectRelatedPersonFlagNodeRuleProvider implements RuleProvider<SelectRelatedPersonFlagNode> {
 
         @Inject

@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface CompanyGeneralNodeChildFactory {
@@ -124,7 +125,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyApplicantTypeNode(CompanyApplicantTypeNode node) {
     }
 
-    @CompanyApplicantTypeNodeScope
+    @ComponentScope
     public static class CompanyApplicantTypeNodeRuleProvider implements RuleProvider<CompanyApplicantTypeNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyPrimaryApplicantFlagNode(CompanyPrimaryApplicantFlagNode node) {
     }
 
-    @CompanyPrimaryApplicantFlagNodeScope
+    @ComponentScope
     public static class CompanyPrimaryApplicantFlagNodeRuleProvider implements RuleProvider<CompanyPrimaryApplicantFlagNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyApplicationTypeNode(CompanyApplicationTypeNode node) {
     }
 
-    @CompanyApplicationTypeNodeScope
+    @ComponentScope
     public static class CompanyApplicationTypeNodeRuleProvider implements RuleProvider<CompanyApplicationTypeNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyRegisteredNameNode(CompanyRegisteredNameNode node) {
     }
 
-    @CompanyRegisteredNameNodeScope
+    @ComponentScope
     public static class CompanyRegisteredNameNodeRuleProvider implements RuleProvider<CompanyRegisteredNameNode> {
 
         @Inject
@@ -236,7 +237,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyTypeNode(CompanyTypeNode node) {
     }
 
-    @CompanyTypeNodeScope
+    @ComponentScope
     public static class CompanyTypeNodeRuleProvider implements RuleProvider<CompanyTypeNode> {
 
         @Inject
@@ -264,7 +265,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyDescriptionNode(CompanyDescriptionNode node) {
     }
 
-    @CompanyDescriptionNodeScope
+    @ComponentScope
     public static class CompanyDescriptionNodeRuleProvider implements RuleProvider<CompanyDescriptionNode> {
 
         @Inject
@@ -292,7 +293,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyIndustryNode(CompanyIndustryNode node) {
     }
 
-    @CompanyIndustryNodeScope
+    @ComponentScope
     public static class CompanyIndustryNodeRuleProvider implements RuleProvider<CompanyIndustryNode> {
 
         @Inject
@@ -320,7 +321,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyAbnNode(CompanyAbnNode node) {
     }
 
-    @CompanyAbnNodeScope
+    @ComponentScope
     public static class CompanyAbnNodeRuleProvider implements RuleProvider<CompanyAbnNode> {
 
         @Inject
@@ -348,7 +349,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyAcnNode(CompanyAcnNode node) {
     }
 
-    @CompanyAcnNodeScope
+    @ComponentScope
     public static class CompanyAcnNodeRuleProvider implements RuleProvider<CompanyAcnNode> {
 
         @Inject
@@ -376,7 +377,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyAbrnNode(CompanyAbrnNode node) {
     }
 
-    @CompanyAbrnNodeScope
+    @ComponentScope
     public static class CompanyAbrnNodeRuleProvider implements RuleProvider<CompanyAbrnNode> {
 
         @Inject
@@ -404,7 +405,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyRegistrationDateNode(CompanyRegistrationDateNode node) {
     }
 
-    @CompanyRegistrationDateNodeScope
+    @ComponentScope
     public static class CompanyRegistrationDateNodeRuleProvider implements RuleProvider<CompanyRegistrationDateNode> {
 
         @Inject
@@ -432,7 +433,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanyRegistrationStateNode(CompanyRegistrationStateNode node) {
     }
 
-    @CompanyRegistrationStateNodeScope
+    @ComponentScope
     public static class CompanyRegistrationStateNodeRuleProvider implements RuleProvider<CompanyRegistrationStateNode> {
 
         @Inject
@@ -460,7 +461,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanySelectDirectorNode(CompanySelectDirectorNode node) {
     }
 
-    @CompanySelectDirectorNodeScope
+    @ComponentScope
     public static class CompanySelectDirectorNodeRuleProvider implements RuleProvider<CompanySelectDirectorNode> {
 
         @Inject
@@ -488,7 +489,7 @@ public class CompanyGeneralNodeChildProvider {
     protected void configureCompanySelectBeneficialOwnerNode(CompanySelectBeneficialOwnerNode node) {
     }
 
-    @CompanySelectBeneficialOwnerNodeScope
+    @ComponentScope
     public static class CompanySelectBeneficialOwnerNodeRuleProvider implements RuleProvider<CompanySelectBeneficialOwnerNode> {
 
         @Inject

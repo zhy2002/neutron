@@ -17,32 +17,32 @@ public class ProfitThisYearNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProfitThisYearNodeScope @Owner ProfitThisYearNode provideProfitThisYearNode() {
+    @Provides @ComponentScope @Owner ProfitThisYearNode provideProfitThisYearNode() {
         return owner;
     }
 
-    @Provides @ProfitThisYearNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @ProfitThisYearNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProfitThisYearNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProfitThisYearNodeScope SelfEmployedNode provideSelfEmployedNode() {
+    @Provides @ComponentScope SelfEmployedNode provideSelfEmployedNode() {
         return owner.getParent();
     }
 
-    @Provides @ProfitThisYearNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProfitThisYearNode> provideRuleProvider(Provider<ProfitThisYearNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProfitThisYearNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProfitThisYearNode>> provideInstanceProviderMap(
         Provider<SelfEmployedNodeChildProvider.ProfitThisYearNodeRuleProvider> profitThisYearNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class StatusNodeModule {
         this.owner = owner;
     }
 
-    @Provides @StatusNodeScope @Owner StatusNode provideStatusNode() {
+    @Provides @ComponentScope @Owner StatusNode provideStatusNode() {
         return owner;
     }
 
-    @Provides @StatusNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @StatusNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @StatusNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @StatusNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @StatusNodeScope
+    @Provides @ComponentScope
     RuleProvider<StatusNode> provideRuleProvider(Provider<StatusNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @StatusNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<StatusNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.StatusNodeRuleProvider> statusNodeRuleProvider
     ) {

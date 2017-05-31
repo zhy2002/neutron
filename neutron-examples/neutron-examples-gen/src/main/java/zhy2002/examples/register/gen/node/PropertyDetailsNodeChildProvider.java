@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PropertyDetailsNodeChildFactory {
@@ -40,7 +41,7 @@ public class PropertyDetailsNodeChildProvider {
     protected void configurePropertyAddressNode(PropertyAddressNode node) {
     }
 
-    @PropertyAddressNodeScope
+    @ComponentScope
     public static class PropertyAddressNodeRuleProvider implements RuleProvider<PropertyAddressNode> {
 
         @Inject
@@ -68,7 +69,7 @@ public class PropertyDetailsNodeChildProvider {
     protected void configurePropertyStateNode(PropertyStateNode node) {
     }
 
-    @PropertyStateNodeScope
+    @ComponentScope
     public static class PropertyStateNodeRuleProvider implements RuleProvider<PropertyStateNode> {
 
         @Inject

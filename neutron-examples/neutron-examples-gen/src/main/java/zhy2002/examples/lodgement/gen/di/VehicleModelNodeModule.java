@@ -17,32 +17,32 @@ public class VehicleModelNodeModule {
         this.owner = owner;
     }
 
-    @Provides @VehicleModelNodeScope @Owner VehicleModelNode provideVehicleModelNode() {
+    @Provides @ComponentScope @Owner VehicleModelNode provideVehicleModelNode() {
         return owner;
     }
 
-    @Provides @VehicleModelNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @VehicleModelNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @VehicleModelNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @VehicleModelNodeScope MotorVehicleNode provideMotorVehicleNode() {
+    @Provides @ComponentScope MotorVehicleNode provideMotorVehicleNode() {
         return owner.getParent();
     }
 
-    @Provides @VehicleModelNodeScope
+    @Provides @ComponentScope
     RuleProvider<VehicleModelNode> provideRuleProvider(Provider<VehicleModelNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @VehicleModelNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<VehicleModelNode>> provideInstanceProviderMap(
         Provider<MotorVehicleNodeChildProvider.VehicleModelNodeRuleProvider> vehicleModelNodeRuleProvider
     ) {

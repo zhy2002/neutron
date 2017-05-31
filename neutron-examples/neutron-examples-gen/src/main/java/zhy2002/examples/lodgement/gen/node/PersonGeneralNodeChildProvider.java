@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PersonGeneralNodeChildFactory {
@@ -145,7 +146,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureTitleNode(TitleNode node) {
     }
 
-    @TitleNodeScope
+    @ComponentScope
     public static class TitleNodeRuleProvider implements RuleProvider<TitleNode> {
 
         @Inject
@@ -173,7 +174,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureOtherTitleNode(OtherTitleNode node) {
     }
 
-    @OtherTitleNodeScope
+    @ComponentScope
     public static class OtherTitleNodeRuleProvider implements RuleProvider<OtherTitleNode> {
 
         @Inject
@@ -201,7 +202,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureFirstNameNode(FirstNameNode node) {
     }
 
-    @FirstNameNodeScope
+    @ComponentScope
     public static class FirstNameNodeRuleProvider implements RuleProvider<FirstNameNode> {
 
         @Inject
@@ -229,7 +230,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureLastNameNode(LastNameNode node) {
     }
 
-    @LastNameNodeScope
+    @ComponentScope
     public static class LastNameNodeRuleProvider implements RuleProvider<LastNameNode> {
 
         @Inject
@@ -257,7 +258,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureGenderNode(GenderNode node) {
     }
 
-    @GenderNodeScope
+    @ComponentScope
     public static class GenderNodeRuleProvider implements RuleProvider<GenderNode> {
 
         @Inject
@@ -285,7 +286,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureDateOfBirthNode(DateOfBirthNode node) {
     }
 
-    @DateOfBirthNodeScope
+    @ComponentScope
     public static class DateOfBirthNodeRuleProvider implements RuleProvider<DateOfBirthNode> {
 
         @Inject
@@ -313,7 +314,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configurePrimaryApplicantFlagNode(PrimaryApplicantFlagNode node) {
     }
 
-    @PrimaryApplicantFlagNodeScope
+    @ComponentScope
     public static class PrimaryApplicantFlagNodeRuleProvider implements RuleProvider<PrimaryApplicantFlagNode> {
 
         @Inject
@@ -341,7 +342,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureDriversLicenseNode(DriversLicenseNode node) {
     }
 
-    @DriversLicenseNodeScope
+    @ComponentScope
     public static class DriversLicenseNodeRuleProvider implements RuleProvider<DriversLicenseNode> {
 
         @Inject
@@ -369,7 +370,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configurePersonApplicantTypeNode(PersonApplicantTypeNode node) {
     }
 
-    @PersonApplicantTypeNodeScope
+    @ComponentScope
     public static class PersonApplicantTypeNodeRuleProvider implements RuleProvider<PersonApplicantTypeNode> {
 
         @Inject
@@ -397,7 +398,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureMaritalStatusNode(MaritalStatusNode node) {
     }
 
-    @MaritalStatusNodeScope
+    @ComponentScope
     public static class MaritalStatusNodeRuleProvider implements RuleProvider<MaritalStatusNode> {
 
         @Inject
@@ -425,7 +426,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configurePermanentResidentFlagNode(PermanentResidentFlagNode node) {
     }
 
-    @PermanentResidentFlagNodeScope
+    @ComponentScope
     public static class PermanentResidentFlagNodeRuleProvider implements RuleProvider<PermanentResidentFlagNode> {
 
         @Inject
@@ -453,7 +454,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureSpouseNode(SpouseNode node) {
     }
 
-    @SpouseNodeScope
+    @ComponentScope
     public static class SpouseNodeRuleProvider implements RuleProvider<SpouseNode> {
 
         @Inject
@@ -481,7 +482,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureNextOfKinNode(NextOfKinNode node) {
     }
 
-    @NextOfKinNodeScope
+    @ComponentScope
     public static class NextOfKinNodeRuleProvider implements RuleProvider<NextOfKinNode> {
 
         @Inject
@@ -509,7 +510,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureAgeOfDependantsNode(AgeOfDependantsNode node) {
     }
 
-    @AgeOfDependantsNodeScope
+    @ComponentScope
     public static class AgeOfDependantsNodeRuleProvider implements RuleProvider<AgeOfDependantsNode> {
 
         @Inject
@@ -537,7 +538,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureFirstHomeBuyerFlagNode(FirstHomeBuyerFlagNode node) {
     }
 
-    @FirstHomeBuyerFlagNodeScope
+    @ComponentScope
     public static class FirstHomeBuyerFlagNodeRuleProvider implements RuleProvider<FirstHomeBuyerFlagNode> {
 
         @Inject
@@ -565,7 +566,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureHousingStatusNode(HousingStatusNode node) {
     }
 
-    @HousingStatusNodeScope
+    @ComponentScope
     public static class HousingStatusNodeRuleProvider implements RuleProvider<HousingStatusNode> {
 
         @Inject
@@ -593,7 +594,7 @@ public class PersonGeneralNodeChildProvider {
     protected void configureApplicationTypeNode(ApplicationTypeNode node) {
     }
 
-    @ApplicationTypeNodeScope
+    @ComponentScope
     public static class ApplicationTypeNodeRuleProvider implements RuleProvider<ApplicationTypeNode> {
 
         @Inject

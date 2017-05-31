@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface OwnershipNodeChildFactory {
@@ -47,7 +48,7 @@ public class OwnershipNodeChildProvider {
     protected void configureApplicantReferenceNode(ApplicantReferenceNode node) {
     }
 
-    @ApplicantReferenceNodeScope
+    @ComponentScope
     public static class ApplicantReferenceNodeRuleProvider implements RuleProvider<ApplicantReferenceNode> {
 
         @Inject
@@ -75,7 +76,7 @@ public class OwnershipNodeChildProvider {
     protected void configureOwnershipPercentageNode(OwnershipPercentageNode node) {
     }
 
-    @OwnershipPercentageNodeScope
+    @ComponentScope
     public static class OwnershipPercentageNodeRuleProvider implements RuleProvider<OwnershipPercentageNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class OwnershipNodeChildProvider {
     protected void configureAverageFlagNode(AverageFlagNode node) {
     }
 
-    @AverageFlagNodeScope
+    @ComponentScope
     public static class AverageFlagNodeRuleProvider implements RuleProvider<AverageFlagNode> {
 
         @Inject

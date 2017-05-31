@@ -17,32 +17,32 @@ public class PrimarySecurityFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PrimarySecurityFlagNodeScope @Owner PrimarySecurityFlagNode providePrimarySecurityFlagNode() {
+    @Provides @ComponentScope @Owner PrimarySecurityFlagNode providePrimarySecurityFlagNode() {
         return owner;
     }
 
-    @Provides @PrimarySecurityFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @PrimarySecurityFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PrimarySecurityFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PrimarySecurityFlagNodeScope UsageNode provideUsageNode() {
+    @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }
 
-    @Provides @PrimarySecurityFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<PrimarySecurityFlagNode> provideRuleProvider(Provider<PrimarySecurityFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PrimarySecurityFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PrimarySecurityFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.PrimarySecurityFlagNodeRuleProvider> primarySecurityFlagNodeRuleProvider
     ) {

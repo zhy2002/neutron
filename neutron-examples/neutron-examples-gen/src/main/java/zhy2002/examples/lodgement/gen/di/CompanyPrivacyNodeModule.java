@@ -17,36 +17,36 @@ public class CompanyPrivacyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope @Owner CompanyPrivacyNode provideCompanyPrivacyNode() {
+    @Provides @ComponentScope @Owner CompanyPrivacyNode provideCompanyPrivacyNode() {
         return owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope @Owner BasePrivacyNode<?> provideBasePrivacyNode() {
+    @Provides @ComponentScope @Owner BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyPrivacyNodeScope CompanyNode provideCompanyNode() {
+    @Provides @ComponentScope CompanyNode provideCompanyNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyPrivacyNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyPrivacyNode> provideRuleProvider(Provider<CompanyPrivacyNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyPrivacyNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyPrivacyNode>> provideInstanceProviderMap(
         Provider<CompanyNodeChildProvider.CompanyPrivacyNodeRuleProvider> companyPrivacyNodeRuleProvider
     ) {

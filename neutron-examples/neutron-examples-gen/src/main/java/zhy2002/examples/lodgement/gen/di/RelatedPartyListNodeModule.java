@@ -17,32 +17,32 @@ public class RelatedPartyListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RelatedPartyListNodeScope @Owner RelatedPartyListNode provideRelatedPartyListNode() {
+    @Provides @ComponentScope @Owner RelatedPartyListNode provideRelatedPartyListNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyListNodeScope AdditionalNode provideAdditionalNode() {
+    @Provides @ComponentScope AdditionalNode provideAdditionalNode() {
         return owner.getParent();
     }
 
-    @Provides @RelatedPartyListNodeScope
+    @Provides @ComponentScope
     RuleProvider<RelatedPartyListNode> provideRuleProvider(Provider<RelatedPartyListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @RelatedPartyListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<RelatedPartyListNode>> provideInstanceProviderMap(
         Provider<AdditionalNodeChildProvider.RelatedPartyListNodeRuleProvider> relatedPartyListNodeRuleProvider
     ) {

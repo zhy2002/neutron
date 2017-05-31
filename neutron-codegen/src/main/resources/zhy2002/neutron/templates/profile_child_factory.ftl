@@ -1,6 +1,7 @@
 package ${targetPackage}.${profileInfo.typeName?lower_case}.gen.node;
 /* template name: profile_child_factory.ftl */
 import zhy2002.neutron.*;
+import zhy2002.neutron.di.ComponentScope;
 import dagger.MembersInjector;
 import javax.inject.*;
 import ${targetPackage}.gen.node.*;
@@ -11,7 +12,7 @@ import java.util.*;
 public class ${profileInfo.typeName}${typeName}ChildProvider {
 <#list children as child>
 
-    @${child.typeName}Scope
+    @ComponentScope
     public static class ${child.name?cap_first}RuleProvider extends ${typeName}ChildProvider.${child.name?cap_first}RuleProvider {
 
         @Inject

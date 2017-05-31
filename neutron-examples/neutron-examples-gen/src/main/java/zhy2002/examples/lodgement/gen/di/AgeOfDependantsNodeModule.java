@@ -17,32 +17,32 @@ public class AgeOfDependantsNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AgeOfDependantsNodeScope @Owner AgeOfDependantsNode provideAgeOfDependantsNode() {
+    @Provides @ComponentScope @Owner AgeOfDependantsNode provideAgeOfDependantsNode() {
         return owner;
     }
 
-    @Provides @AgeOfDependantsNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @AgeOfDependantsNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AgeOfDependantsNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AgeOfDependantsNodeScope PersonGeneralNode providePersonGeneralNode() {
+    @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {
         return owner.getParent();
     }
 
-    @Provides @AgeOfDependantsNodeScope
+    @Provides @ComponentScope
     RuleProvider<AgeOfDependantsNode> provideRuleProvider(Provider<AgeOfDependantsNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AgeOfDependantsNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AgeOfDependantsNode>> provideInstanceProviderMap(
         Provider<PersonGeneralNodeChildProvider.AgeOfDependantsNodeRuleProvider> ageOfDependantsNodeRuleProvider
     ) {

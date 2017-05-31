@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface BaseTrustNodeChildFactory {
@@ -103,7 +104,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustNameNode(TrustNameNode node) {
     }
 
-    @TrustNameNodeScope
+    @ComponentScope
     public static class TrustNameNodeRuleProvider implements RuleProvider<TrustNameNode> {
 
         @Inject
@@ -131,7 +132,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustRegistrationDateNode(TrustRegistrationDateNode node) {
     }
 
-    @TrustRegistrationDateNodeScope
+    @ComponentScope
     public static class TrustRegistrationDateNodeRuleProvider implements RuleProvider<TrustRegistrationDateNode> {
 
         @Inject
@@ -159,7 +160,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustTypeNode(TrustTypeNode node) {
     }
 
-    @TrustTypeNodeScope
+    @ComponentScope
     public static class TrustTypeNodeRuleProvider implements RuleProvider<TrustTypeNode> {
 
         @Inject
@@ -187,7 +188,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustCountryNode(TrustCountryNode node) {
     }
 
-    @TrustCountryNodeScope
+    @ComponentScope
     public static class TrustCountryNodeRuleProvider implements RuleProvider<TrustCountryNode> {
 
         @Inject
@@ -215,7 +216,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustAddressNode(TrustAddressNode node) {
     }
 
-    @TrustAddressNodeScope
+    @ComponentScope
     public static class TrustAddressNodeRuleProvider implements RuleProvider<TrustAddressNode> {
 
         @Inject
@@ -243,7 +244,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustIndustryNode(TrustIndustryNode node) {
     }
 
-    @TrustIndustryNodeScope
+    @ComponentScope
     public static class TrustIndustryNodeRuleProvider implements RuleProvider<TrustIndustryNode> {
 
         @Inject
@@ -271,7 +272,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustSettlorNotRequiredReasonNode(TrustSettlorNotRequiredReasonNode node) {
     }
 
-    @TrustSettlorNotRequiredReasonNodeScope
+    @ComponentScope
     public static class TrustSettlorNotRequiredReasonNodeRuleProvider implements RuleProvider<TrustSettlorNotRequiredReasonNode> {
 
         @Inject
@@ -299,7 +300,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustBeneficiaryListNode(TrustBeneficiaryListNode node) {
     }
 
-    @TrustBeneficiaryListNodeScope
+    @ComponentScope
     public static class TrustBeneficiaryListNodeRuleProvider implements RuleProvider<TrustBeneficiaryListNode> {
 
         @Inject
@@ -327,7 +328,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustSettlorListNode(TrustSettlorListNode node) {
     }
 
-    @TrustSettlorListNodeScope
+    @ComponentScope
     public static class TrustSettlorListNodeRuleProvider implements RuleProvider<TrustSettlorListNode> {
 
         @Inject
@@ -355,7 +356,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustBeneficialOwnerListNode(TrustBeneficialOwnerListNode node) {
     }
 
-    @TrustBeneficialOwnerListNodeScope
+    @ComponentScope
     public static class TrustBeneficialOwnerListNodeRuleProvider implements RuleProvider<TrustBeneficialOwnerListNode> {
 
         @Inject
@@ -383,7 +384,7 @@ public class BaseTrustNodeChildProvider {
     protected void configureTrustBeneficiaryClassListNode(TrustBeneficiaryClassListNode node) {
     }
 
-    @TrustBeneficiaryClassListNodeScope
+    @ComponentScope
     public static class TrustBeneficiaryClassListNodeRuleProvider implements RuleProvider<TrustBeneficiaryClassListNode> {
 
         @Inject

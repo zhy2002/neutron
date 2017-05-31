@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface BaseResponsibleLendNodeChildFactory {
@@ -54,7 +55,7 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleTypeOfChangeNode(ResponsibleTypeOfChangeNode node) {
     }
 
-    @ResponsibleTypeOfChangeNodeScope
+    @ComponentScope
     public static class ResponsibleTypeOfChangeNodeRuleProvider implements RuleProvider<ResponsibleTypeOfChangeNode> {
 
         @Inject
@@ -82,7 +83,7 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleMitigationMethodNode(ResponsibleMitigationMethodNode node) {
     }
 
-    @ResponsibleMitigationMethodNodeScope
+    @ComponentScope
     public static class ResponsibleMitigationMethodNodeRuleProvider implements RuleProvider<ResponsibleMitigationMethodNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleSignificantChangeFlagNode(ResponsibleSignificantChangeFlagNode node) {
     }
 
-    @ResponsibleSignificantChangeFlagNodeScope
+    @ComponentScope
     public static class ResponsibleSignificantChangeFlagNodeRuleProvider implements RuleProvider<ResponsibleSignificantChangeFlagNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class BaseResponsibleLendNodeChildProvider {
     protected void configureResponsibleRepaymentDifficultyNode(ResponsibleRepaymentDifficultyNode node) {
     }
 
-    @ResponsibleRepaymentDifficultyNodeScope
+    @ComponentScope
     public static class ResponsibleRepaymentDifficultyNodeRuleProvider implements RuleProvider<ResponsibleRepaymentDifficultyNode> {
 
         @Inject

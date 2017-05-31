@@ -17,36 +17,36 @@ public class BrokerLastNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerLastNameNodeScope @Owner BrokerLastNameNode provideBrokerLastNameNode() {
+    @Provides @ComponentScope @Owner BrokerLastNameNode provideBrokerLastNameNode() {
         return owner;
     }
 
-    @Provides @BrokerLastNameNodeScope @Owner NameNode<?> provideNameNode() {
+    @Provides @ComponentScope @Owner NameNode<?> provideNameNode() {
         return owner;
     }
 
-    @Provides @BrokerLastNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @BrokerLastNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BrokerLastNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerLastNameNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerLastNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerLastNameNode> provideRuleProvider(Provider<BrokerLastNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerLastNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerLastNameNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerLastNameNodeRuleProvider> brokerLastNameNodeRuleProvider
     ) {

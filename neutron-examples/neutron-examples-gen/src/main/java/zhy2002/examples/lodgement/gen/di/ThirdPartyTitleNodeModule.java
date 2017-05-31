@@ -17,32 +17,32 @@ public class ThirdPartyTitleNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ThirdPartyTitleNodeScope @Owner ThirdPartyTitleNode provideThirdPartyTitleNode() {
+    @Provides @ComponentScope @Owner ThirdPartyTitleNode provideThirdPartyTitleNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyTitleNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyTitleNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyTitleNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ThirdPartyTitleNodeScope RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope RelatedPartyNode provideRelatedPartyNode() {
         return owner.getParent();
     }
 
-    @Provides @ThirdPartyTitleNodeScope
+    @Provides @ComponentScope
     RuleProvider<ThirdPartyTitleNode> provideRuleProvider(Provider<ThirdPartyTitleNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ThirdPartyTitleNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ThirdPartyTitleNode>> provideInstanceProviderMap(
         Provider<RelatedPartyNodeChildProvider.ThirdPartyTitleNodeRuleProvider> thirdPartyTitleNodeRuleProvider
     ) {

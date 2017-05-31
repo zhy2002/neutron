@@ -17,32 +17,32 @@ public class PropertyPurseNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PropertyPurseNodeScope @Owner PropertyPurseNode providePropertyPurseNode() {
+    @Provides @ComponentScope @Owner PropertyPurseNode providePropertyPurseNode() {
         return owner;
     }
 
-    @Provides @PropertyPurseNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @PropertyPurseNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @PropertyPurseNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PropertyPurseNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @PropertyPurseNodeScope
+    @Provides @ComponentScope
     RuleProvider<PropertyPurseNode> provideRuleProvider(Provider<PropertyPurseNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PropertyPurseNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PropertyPurseNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyPurseNodeRuleProvider> propertyPurseNodeRuleProvider
     ) {

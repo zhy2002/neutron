@@ -17,36 +17,36 @@ public class TotalAssetNodeModule {
         this.owner = owner;
     }
 
-    @Provides @TotalAssetNodeScope @Owner TotalAssetNode provideTotalAssetNode() {
+    @Provides @ComponentScope @Owner TotalAssetNode provideTotalAssetNode() {
         return owner;
     }
 
-    @Provides @TotalAssetNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @TotalAssetNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @TotalAssetNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @TotalAssetNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @TotalAssetNodeScope FinancialPositionNode provideFinancialPositionNode() {
+    @Provides @ComponentScope FinancialPositionNode provideFinancialPositionNode() {
         return owner.getParent();
     }
 
-    @Provides @TotalAssetNodeScope
+    @Provides @ComponentScope
     RuleProvider<TotalAssetNode> provideRuleProvider(Provider<TotalAssetNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @TotalAssetNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<TotalAssetNode>> provideInstanceProviderMap(
         Provider<FinancialPositionNodeChildProvider.TotalAssetNodeRuleProvider> totalAssetNodeRuleProvider
     ) {

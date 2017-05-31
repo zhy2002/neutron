@@ -17,32 +17,32 @@ public class ApplicantReferenceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ApplicantReferenceNodeScope @Owner ApplicantReferenceNode provideApplicantReferenceNode() {
+    @Provides @ComponentScope @Owner ApplicantReferenceNode provideApplicantReferenceNode() {
         return owner;
     }
 
-    @Provides @ApplicantReferenceNodeScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
+    @Provides @ComponentScope @Owner ReferenceUiNode<?> provideReferenceUiNode() {
         return owner;
     }
 
-    @Provides @ApplicantReferenceNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ApplicantReferenceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ApplicantReferenceNodeScope OwnershipNode provideOwnershipNode() {
+    @Provides @ComponentScope OwnershipNode provideOwnershipNode() {
         return owner.getParent();
     }
 
-    @Provides @ApplicantReferenceNodeScope
+    @Provides @ComponentScope
     RuleProvider<ApplicantReferenceNode> provideRuleProvider(Provider<ApplicantReferenceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ApplicantReferenceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ApplicantReferenceNode>> provideInstanceProviderMap(
         Provider<OwnershipNodeChildProvider.ApplicantReferenceNodeRuleProvider> applicantReferenceNodeRuleProvider
     ) {

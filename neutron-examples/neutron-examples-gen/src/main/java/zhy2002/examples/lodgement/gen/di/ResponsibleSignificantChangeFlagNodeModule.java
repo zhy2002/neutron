@@ -17,36 +17,36 @@ public class ResponsibleSignificantChangeFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope @Owner ResponsibleSignificantChangeFlagNode provideResponsibleSignificantChangeFlagNode() {
+    @Provides @ComponentScope @Owner ResponsibleSignificantChangeFlagNode provideResponsibleSignificantChangeFlagNode() {
         return owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
+    @Provides @ComponentScope @Owner YesNoOptionNode<?> provideYesNoOptionNode() {
         return owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+    @Provides @ComponentScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner.getParent();
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ResponsibleSignificantChangeFlagNode> provideRuleProvider(Provider<ResponsibleSignificantChangeFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ResponsibleSignificantChangeFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> provideInstanceProviderMap(
         Provider<BaseResponsibleLendNodeChildProvider.ResponsibleSignificantChangeFlagNodeRuleProvider> responsibleSignificantChangeFlagNodeRuleProvider
     ) {

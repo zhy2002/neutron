@@ -17,32 +17,32 @@ public class ContractPriceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ContractPriceNodeScope @Owner ContractPriceNode provideContractPriceNode() {
+    @Provides @ComponentScope @Owner ContractPriceNode provideContractPriceNode() {
         return owner;
     }
 
-    @Provides @ContractPriceNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @ContractPriceNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ContractPriceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ContractPriceNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @ContractPriceNodeScope
+    @Provides @ComponentScope
     RuleProvider<ContractPriceNode> provideRuleProvider(Provider<ContractPriceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ContractPriceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ContractPriceNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.ContractPriceNodeRuleProvider> contractPriceNodeRuleProvider
     ) {

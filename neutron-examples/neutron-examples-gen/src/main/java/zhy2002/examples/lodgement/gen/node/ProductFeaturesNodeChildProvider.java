@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ProductFeaturesNodeChildFactory {
@@ -104,7 +105,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductPackageNameNode(ProductPackageNameNode node) {
     }
 
-    @ProductPackageNameNodeScope
+    @ComponentScope
     public static class ProductPackageNameNodeRuleProvider implements RuleProvider<ProductPackageNameNode> {
 
         @Inject
@@ -132,7 +133,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductRepaymentFrequencyNode(ProductRepaymentFrequencyNode node) {
     }
 
-    @ProductRepaymentFrequencyNodeScope
+    @ComponentScope
     public static class ProductRepaymentFrequencyNodeRuleProvider implements RuleProvider<ProductRepaymentFrequencyNode> {
 
         @Inject
@@ -160,7 +161,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductRateLockFlagNode(ProductRateLockFlagNode node) {
     }
 
-    @ProductRateLockFlagNodeScope
+    @ComponentScope
     public static class ProductRateLockFlagNodeRuleProvider implements RuleProvider<ProductRateLockFlagNode> {
 
         @Inject
@@ -188,7 +189,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductTransactionAccountFlagNode(ProductTransactionAccountFlagNode node) {
     }
 
-    @ProductTransactionAccountFlagNodeScope
+    @ComponentScope
     public static class ProductTransactionAccountFlagNodeRuleProvider implements RuleProvider<ProductTransactionAccountFlagNode> {
 
         @Inject
@@ -216,7 +217,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductOptOutReasonNode(ProductOptOutReasonNode node) {
     }
 
-    @ProductOptOutReasonNodeScope
+    @ComponentScope
     public static class ProductOptOutReasonNodeRuleProvider implements RuleProvider<ProductOptOutReasonNode> {
 
         @Inject
@@ -244,7 +245,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductCreditCardFlagNode(ProductCreditCardFlagNode node) {
     }
 
-    @ProductCreditCardFlagNodeScope
+    @ComponentScope
     public static class ProductCreditCardFlagNodeRuleProvider implements RuleProvider<ProductCreditCardFlagNode> {
 
         @Inject
@@ -272,7 +273,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductCreditCardTypeNode(ProductCreditCardTypeNode node) {
     }
 
-    @ProductCreditCardTypeNodeScope
+    @ComponentScope
     public static class ProductCreditCardTypeNodeRuleProvider implements RuleProvider<ProductCreditCardTypeNode> {
 
         @Inject
@@ -300,7 +301,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductCreditCardLimitNode(ProductCreditCardLimitNode node) {
     }
 
-    @ProductCreditCardLimitNodeScope
+    @ComponentScope
     public static class ProductCreditCardLimitNodeRuleProvider implements RuleProvider<ProductCreditCardLimitNode> {
 
         @Inject
@@ -328,7 +329,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductExpressConsentFlagNode(ProductExpressConsentFlagNode node) {
     }
 
-    @ProductExpressConsentFlagNodeScope
+    @ComponentScope
     public static class ProductExpressConsentFlagNodeRuleProvider implements RuleProvider<ProductExpressConsentFlagNode> {
 
         @Inject
@@ -356,7 +357,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProduct100PercentOffsetFlagNode(Product100PercentOffsetFlagNode node) {
     }
 
-    @Product100PercentOffsetFlagNodeScope
+    @ComponentScope
     public static class Product100PercentOffsetFlagNodeRuleProvider implements RuleProvider<Product100PercentOffsetFlagNode> {
 
         @Inject
@@ -384,7 +385,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductPrimaryCardHolderNode(ProductCardHolderNode node) {
     }
 
-    @ProductCardHolderNodeScope
+    @ComponentScope
     public static class ProductPrimaryCardHolderNodeRuleProvider implements RuleProvider<ProductCardHolderNode> {
 
         @Inject
@@ -412,7 +413,7 @@ public class ProductFeaturesNodeChildProvider {
     protected void configureProductAdditionalCardHolderNode(ProductCardHolderNode node) {
     }
 
-    @ProductCardHolderNodeScope
+    @ComponentScope
     public static class ProductAdditionalCardHolderNodeRuleProvider implements RuleProvider<ProductCardHolderNode> {
 
         @Inject

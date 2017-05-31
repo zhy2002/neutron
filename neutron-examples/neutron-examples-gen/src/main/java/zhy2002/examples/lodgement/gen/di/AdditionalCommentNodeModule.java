@@ -17,32 +17,32 @@ public class AdditionalCommentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AdditionalCommentNodeScope @Owner AdditionalCommentNode provideAdditionalCommentNode() {
+    @Provides @ComponentScope @Owner AdditionalCommentNode provideAdditionalCommentNode() {
         return owner;
     }
 
-    @Provides @AdditionalCommentNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalCommentNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalCommentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AdditionalCommentNodeScope AdditionalNode provideAdditionalNode() {
+    @Provides @ComponentScope AdditionalNode provideAdditionalNode() {
         return owner.getParent();
     }
 
-    @Provides @AdditionalCommentNodeScope
+    @Provides @ComponentScope
     RuleProvider<AdditionalCommentNode> provideRuleProvider(Provider<AdditionalCommentNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AdditionalCommentNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AdditionalCommentNode>> provideInstanceProviderMap(
         Provider<AdditionalNodeChildProvider.AdditionalCommentNodeRuleProvider> additionalCommentNodeRuleProvider
     ) {

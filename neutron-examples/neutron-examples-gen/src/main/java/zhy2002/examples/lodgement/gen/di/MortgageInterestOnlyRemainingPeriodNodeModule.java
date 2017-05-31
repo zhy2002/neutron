@@ -17,36 +17,36 @@ public class MortgageInterestOnlyRemainingPeriodNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner MortgageInterestOnlyRemainingPeriodNode provideMortgageInterestOnlyRemainingPeriodNode() {
+    @Provides @ComponentScope @Owner MortgageInterestOnlyRemainingPeriodNode provideMortgageInterestOnlyRemainingPeriodNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageInterestOnlyRemainingPeriodNode> provideRuleProvider(Provider<MortgageInterestOnlyRemainingPeriodNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageInterestOnlyRemainingPeriodNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageInterestOnlyRemainingPeriodNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageInterestOnlyRemainingPeriodNodeRuleProvider> mortgageInterestOnlyRemainingPeriodNodeRuleProvider
     ) {

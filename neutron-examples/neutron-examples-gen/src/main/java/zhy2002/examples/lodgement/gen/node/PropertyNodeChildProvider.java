@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PropertyNodeChildFactory {
@@ -96,7 +97,7 @@ public class PropertyNodeChildProvider {
     protected void configureRentedFlagNode(RentedFlagNode node) {
     }
 
-    @RentedFlagNodeScope
+    @ComponentScope
     public static class RentedFlagNodeRuleProvider implements RuleProvider<RentedFlagNode> {
 
         @Inject
@@ -124,7 +125,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyWeeklyRentNode(PropertyWeeklyRentNode node) {
     }
 
-    @PropertyWeeklyRentNodeScope
+    @ComponentScope
     public static class PropertyWeeklyRentNodeRuleProvider implements RuleProvider<PropertyWeeklyRentNode> {
 
         @Inject
@@ -152,7 +153,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyAddressNode(PropertyAddressNode node) {
     }
 
-    @PropertyAddressNodeScope
+    @ComponentScope
     public static class PropertyAddressNodeRuleProvider implements RuleProvider<PropertyAddressNode> {
 
         @Inject
@@ -180,7 +181,7 @@ public class PropertyNodeChildProvider {
     protected void configureEstimatedMarketValueNode(EstimatedMarketValueNode node) {
     }
 
-    @EstimatedMarketValueNodeScope
+    @ComponentScope
     public static class EstimatedMarketValueNodeRuleProvider implements RuleProvider<EstimatedMarketValueNode> {
 
         @Inject
@@ -208,7 +209,7 @@ public class PropertyNodeChildProvider {
     protected void configureContractPriceNode(ContractPriceNode node) {
     }
 
-    @ContractPriceNodeScope
+    @ComponentScope
     public static class ContractPriceNodeRuleProvider implements RuleProvider<ContractPriceNode> {
 
         @Inject
@@ -236,7 +237,7 @@ public class PropertyNodeChildProvider {
     protected void configureDefenseServiceFlagNode(DefenseServiceFlagNode node) {
     }
 
-    @DefenseServiceFlagNodeScope
+    @ComponentScope
     public static class DefenseServiceFlagNodeRuleProvider implements RuleProvider<DefenseServiceFlagNode> {
 
         @Inject
@@ -264,7 +265,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyTypeNode(PropertyTypeNode node) {
     }
 
-    @PropertyTypeNodeScope
+    @ComponentScope
     public static class PropertyTypeNodeRuleProvider implements RuleProvider<PropertyTypeNode> {
 
         @Inject
@@ -292,7 +293,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertySubTypeNode(PropertySubTypeNode node) {
     }
 
-    @PropertySubTypeNodeScope
+    @ComponentScope
     public static class PropertySubTypeNodeRuleProvider implements RuleProvider<PropertySubTypeNode> {
 
         @Inject
@@ -320,7 +321,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyPurseNode(PropertyPurseNode node) {
     }
 
-    @PropertyPurseNodeScope
+    @ComponentScope
     public static class PropertyPurseNodeRuleProvider implements RuleProvider<PropertyPurseNode> {
 
         @Inject
@@ -348,7 +349,7 @@ public class PropertyNodeChildProvider {
     protected void configurePropertyOwnershipListNode(PropertyOwnershipListNode node) {
     }
 
-    @PropertyOwnershipListNodeScope
+    @ComponentScope
     public static class PropertyOwnershipListNodeRuleProvider implements RuleProvider<PropertyOwnershipListNode> {
 
         @Inject

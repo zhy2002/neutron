@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface PersonNodeChildFactory {
@@ -82,7 +83,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonGeneralNode(PersonGeneralNode node) {
     }
 
-    @PersonGeneralNodeScope
+    @ComponentScope
     public static class PersonGeneralNodeRuleProvider implements RuleProvider<PersonGeneralNode> {
 
         @Inject
@@ -110,7 +111,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonContactNode(PersonContactNode node) {
     }
 
-    @PersonContactNodeScope
+    @ComponentScope
     public static class PersonContactNodeRuleProvider implements RuleProvider<PersonContactNode> {
 
         @Inject
@@ -138,7 +139,7 @@ public class PersonNodeChildProvider {
     protected void configureCurrentEmploymentListNode(CurrentEmploymentListNode node) {
     }
 
-    @CurrentEmploymentListNodeScope
+    @ComponentScope
     public static class CurrentEmploymentListNodeRuleProvider implements RuleProvider<CurrentEmploymentListNode> {
 
         @Inject
@@ -166,7 +167,7 @@ public class PersonNodeChildProvider {
     protected void configurePreviousEmploymentListNode(PreviousEmploymentListNode node) {
     }
 
-    @PreviousEmploymentListNodeScope
+    @ComponentScope
     public static class PreviousEmploymentListNodeRuleProvider implements RuleProvider<PreviousEmploymentListNode> {
 
         @Inject
@@ -194,7 +195,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonTrustNode(PersonTrustNode node) {
     }
 
-    @PersonTrustNodeScope
+    @ComponentScope
     public static class PersonTrustNodeRuleProvider implements RuleProvider<PersonTrustNode> {
 
         @Inject
@@ -222,7 +223,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonPrivacyNode(PersonPrivacyNode node) {
     }
 
-    @PersonPrivacyNodeScope
+    @ComponentScope
     public static class PersonPrivacyNodeRuleProvider implements RuleProvider<PersonPrivacyNode> {
 
         @Inject
@@ -250,7 +251,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonOtherIncomeListNode(PersonOtherIncomeListNode node) {
     }
 
-    @PersonOtherIncomeListNodeScope
+    @ComponentScope
     public static class PersonOtherIncomeListNodeRuleProvider implements RuleProvider<PersonOtherIncomeListNode> {
 
         @Inject
@@ -278,7 +279,7 @@ public class PersonNodeChildProvider {
     protected void configurePersonResponsibleLendNode(PersonResponsibleLendNode node) {
     }
 
-    @PersonResponsibleLendNodeScope
+    @ComponentScope
     public static class PersonResponsibleLendNodeRuleProvider implements RuleProvider<PersonResponsibleLendNode> {
 
         @Inject

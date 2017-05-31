@@ -17,36 +17,36 @@ public class CountryNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CountryNodeScope @Owner CountryNode provideCountryNode() {
+    @Provides @ComponentScope @Owner CountryNode provideCountryNode() {
         return owner;
     }
 
-    @Provides @CountryNodeScope @Owner BaseCountryNode<?> provideBaseCountryNode() {
+    @Provides @ComponentScope @Owner BaseCountryNode<?> provideBaseCountryNode() {
         return owner;
     }
 
-    @Provides @CountryNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CountryNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CountryNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CountryNodeScope AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope AddressNode<?> provideAddressNode() {
         return owner.getParent();
     }
 
-    @Provides @CountryNodeScope
+    @Provides @ComponentScope
     RuleProvider<CountryNode> provideRuleProvider(Provider<CountryNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CountryNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CountryNode>> provideInstanceProviderMap(
         Provider<AddressNodeChildProvider.CountryNodeRuleProvider> countryNodeRuleProvider
     ) {

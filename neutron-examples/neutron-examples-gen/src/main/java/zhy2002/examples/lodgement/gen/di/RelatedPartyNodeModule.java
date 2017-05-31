@@ -16,27 +16,27 @@ public class RelatedPartyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RelatedPartyNodeScope @Owner RelatedPartyNode provideRelatedPartyNode() {
+    @Provides @ComponentScope @Owner RelatedPartyNode provideRelatedPartyNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RelatedPartyNodeScope RelatedPartyListNode provideRelatedPartyListNode() {
+    @Provides @ComponentScope RelatedPartyListNode provideRelatedPartyListNode() {
         return owner.getParent();
     }
 
-    @Provides @RelatedPartyNodeScope
+    @Provides @ComponentScope
     RuleProvider<RelatedPartyNode> provideRuleProvider(Provider<RelatedPartyNodeRuleProvider> provider) {
         return provider.get();
     }

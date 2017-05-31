@@ -17,32 +17,32 @@ public class SubmissionNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SubmissionNodeScope @Owner SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope @Owner SubmissionNode provideSubmissionNode() {
         return owner;
     }
 
-    @Provides @SubmissionNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @SubmissionNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @SubmissionNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SubmissionNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @SubmissionNodeScope
+    @Provides @ComponentScope
     RuleProvider<SubmissionNode> provideRuleProvider(Provider<SubmissionNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @SubmissionNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<SubmissionNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.SubmissionNodeRuleProvider> submissionNodeRuleProvider
     ) {

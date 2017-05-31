@@ -17,32 +17,32 @@ public class LiabilitiesNodeModule {
         this.owner = owner;
     }
 
-    @Provides @LiabilitiesNodeScope @Owner LiabilitiesNode provideLiabilitiesNode() {
+    @Provides @ComponentScope @Owner LiabilitiesNode provideLiabilitiesNode() {
         return owner;
     }
 
-    @Provides @LiabilitiesNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @LiabilitiesNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @LiabilitiesNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @LiabilitiesNodeScope FinancialPositionNode provideFinancialPositionNode() {
+    @Provides @ComponentScope FinancialPositionNode provideFinancialPositionNode() {
         return owner.getParent();
     }
 
-    @Provides @LiabilitiesNodeScope
+    @Provides @ComponentScope
     RuleProvider<LiabilitiesNode> provideRuleProvider(Provider<LiabilitiesNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @LiabilitiesNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<LiabilitiesNode>> provideInstanceProviderMap(
         Provider<FinancialPositionNodeChildProvider.LiabilitiesNodeRuleProvider> liabilitiesNodeRuleProvider
     ) {

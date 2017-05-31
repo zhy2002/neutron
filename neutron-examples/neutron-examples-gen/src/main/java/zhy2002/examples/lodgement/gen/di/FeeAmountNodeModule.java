@@ -17,36 +17,36 @@ public class FeeAmountNodeModule {
         this.owner = owner;
     }
 
-    @Provides @FeeAmountNodeScope @Owner FeeAmountNode provideFeeAmountNode() {
+    @Provides @ComponentScope @Owner FeeAmountNode provideFeeAmountNode() {
         return owner;
     }
 
-    @Provides @FeeAmountNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @FeeAmountNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @FeeAmountNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @FeeAmountNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @FeeAmountNodeScope ProductFeeNode provideProductFeeNode() {
+    @Provides @ComponentScope ProductFeeNode provideProductFeeNode() {
         return owner.getParent();
     }
 
-    @Provides @FeeAmountNodeScope
+    @Provides @ComponentScope
     RuleProvider<FeeAmountNode> provideRuleProvider(Provider<FeeAmountNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @FeeAmountNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<FeeAmountNode>> provideInstanceProviderMap(
         Provider<ProductFeeNodeChildProvider.FeeAmountNodeRuleProvider> feeAmountNodeRuleProvider
     ) {

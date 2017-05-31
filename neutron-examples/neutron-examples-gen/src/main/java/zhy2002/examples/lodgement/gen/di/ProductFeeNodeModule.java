@@ -16,27 +16,27 @@ public class ProductFeeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductFeeNodeScope @Owner ProductFeeNode provideProductFeeNode() {
+    @Provides @ComponentScope @Owner ProductFeeNode provideProductFeeNode() {
         return owner;
     }
 
-    @Provides @ProductFeeNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductFeeNodeScope ProductFeeListNode provideProductFeeListNode() {
+    @Provides @ComponentScope ProductFeeListNode provideProductFeeListNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductFeeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductFeeNode> provideRuleProvider(Provider<ProductFeeNodeRuleProvider> provider) {
         return provider.get();
     }

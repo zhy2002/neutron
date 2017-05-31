@@ -17,32 +17,32 @@ public class ApprovalInPrincipleFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope @Owner ApprovalInPrincipleFlagNode provideApprovalInPrincipleFlagNode() {
+    @Provides @ComponentScope @Owner ApprovalInPrincipleFlagNode provideApprovalInPrincipleFlagNode() {
         return owner;
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope UsageNode provideUsageNode() {
+    @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ApprovalInPrincipleFlagNode> provideRuleProvider(Provider<ApprovalInPrincipleFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ApprovalInPrincipleFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.ApprovalInPrincipleFlagNodeRuleProvider> approvalInPrincipleFlagNodeRuleProvider
     ) {

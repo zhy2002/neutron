@@ -17,32 +17,32 @@ public class ProductExpressConsentFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope @Owner ProductExpressConsentFlagNode provideProductExpressConsentFlagNode() {
+    @Provides @ComponentScope @Owner ProductExpressConsentFlagNode provideProductExpressConsentFlagNode() {
         return owner;
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope ProductFeaturesNode provideProductFeaturesNode() {
+    @Provides @ComponentScope ProductFeaturesNode provideProductFeaturesNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductExpressConsentFlagNode> provideRuleProvider(Provider<ProductExpressConsentFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductExpressConsentFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductExpressConsentFlagNode>> provideInstanceProviderMap(
         Provider<ProductFeaturesNodeChildProvider.ProductExpressConsentFlagNodeRuleProvider> productExpressConsentFlagNodeRuleProvider
     ) {

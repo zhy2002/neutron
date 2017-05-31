@@ -17,36 +17,36 @@ public class ProductTotalLvrLmiNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope @Owner ProductTotalLvrLmiNode provideProductTotalLvrLmiNode() {
+    @Provides @ComponentScope @Owner ProductTotalLvrLmiNode provideProductTotalLvrLmiNode() {
         return owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
+    @Provides @ComponentScope @Owner BasePercentageNode<?> provideBasePercentageNode() {
         return owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope ProductsNode provideProductsNode() {
+    @Provides @ComponentScope ProductsNode provideProductsNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductTotalLvrLmiNode> provideRuleProvider(Provider<ProductTotalLvrLmiNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductTotalLvrLmiNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductTotalLvrLmiNode>> provideInstanceProviderMap(
         Provider<ProductsNodeChildProvider.ProductTotalLvrLmiNodeRuleProvider> productTotalLvrLmiNodeRuleProvider
     ) {

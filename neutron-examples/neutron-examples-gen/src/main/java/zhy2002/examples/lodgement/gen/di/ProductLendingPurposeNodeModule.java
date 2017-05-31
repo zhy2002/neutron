@@ -17,32 +17,32 @@ public class ProductLendingPurposeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductLendingPurposeNodeScope @Owner ProductLendingPurposeNode provideProductLendingPurposeNode() {
+    @Provides @ComponentScope @Owner ProductLendingPurposeNode provideProductLendingPurposeNode() {
         return owner;
     }
 
-    @Provides @ProductLendingPurposeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @ProductLendingPurposeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductLendingPurposeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductLendingPurposeNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductLendingPurposeNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductLendingPurposeNode> provideRuleProvider(Provider<ProductLendingPurposeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductLendingPurposeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductLendingPurposeNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductLendingPurposeNodeRuleProvider> productLendingPurposeNodeRuleProvider
     ) {

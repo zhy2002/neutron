@@ -17,32 +17,32 @@ public class CreditCheckFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCheckFlagNodeScope @Owner CreditCheckFlagNode provideCreditCheckFlagNode() {
+    @Provides @ComponentScope @Owner CreditCheckFlagNode provideCreditCheckFlagNode() {
         return owner;
     }
 
-    @Provides @CreditCheckFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @CreditCheckFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditCheckFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCheckFlagNodeScope BasePrivacyNode<?> provideBasePrivacyNode() {
+    @Provides @ComponentScope BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCheckFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCheckFlagNode> provideRuleProvider(Provider<CreditCheckFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCheckFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCheckFlagNode>> provideInstanceProviderMap(
         Provider<BasePrivacyNodeChildProvider.CreditCheckFlagNodeRuleProvider> creditCheckFlagNodeRuleProvider
     ) {

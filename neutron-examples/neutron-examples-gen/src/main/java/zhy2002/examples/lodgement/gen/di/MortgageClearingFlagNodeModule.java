@@ -17,32 +17,32 @@ public class MortgageClearingFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageClearingFlagNodeScope @Owner MortgageClearingFlagNode provideMortgageClearingFlagNode() {
+    @Provides @ComponentScope @Owner MortgageClearingFlagNode provideMortgageClearingFlagNode() {
         return owner;
     }
 
-    @Provides @MortgageClearingFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @MortgageClearingFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageClearingFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageClearingFlagNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageClearingFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageClearingFlagNode> provideRuleProvider(Provider<MortgageClearingFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageClearingFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageClearingFlagNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageClearingFlagNodeRuleProvider> mortgageClearingFlagNodeRuleProvider
     ) {

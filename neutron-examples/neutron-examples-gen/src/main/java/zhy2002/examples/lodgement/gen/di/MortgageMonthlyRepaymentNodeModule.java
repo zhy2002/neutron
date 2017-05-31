@@ -17,36 +17,36 @@ public class MortgageMonthlyRepaymentNodeModule {
         this.owner = owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope @Owner MortgageMonthlyRepaymentNode provideMortgageMonthlyRepaymentNode() {
+    @Provides @ComponentScope @Owner MortgageMonthlyRepaymentNode provideMortgageMonthlyRepaymentNode() {
         return owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
+    @Provides @ComponentScope @Owner BaseCurrencyNode<?> provideBaseCurrencyNode() {
         return owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
+    @Provides @ComponentScope @Owner BigDecimalUiNode<?> provideBigDecimalUiNode() {
         return owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope ExistingMortgageNode provideExistingMortgageNode() {
+    @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     RuleProvider<MortgageMonthlyRepaymentNode> provideRuleProvider(Provider<MortgageMonthlyRepaymentNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @MortgageMonthlyRepaymentNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<MortgageMonthlyRepaymentNode>> provideInstanceProviderMap(
         Provider<ExistingMortgageNodeChildProvider.MortgageMonthlyRepaymentNodeRuleProvider> mortgageMonthlyRepaymentNodeRuleProvider
     ) {

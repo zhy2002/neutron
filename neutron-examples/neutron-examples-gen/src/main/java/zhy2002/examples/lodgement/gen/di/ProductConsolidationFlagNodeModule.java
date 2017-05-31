@@ -17,32 +17,32 @@ public class ProductConsolidationFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ProductConsolidationFlagNodeScope @Owner ProductConsolidationFlagNode provideProductConsolidationFlagNode() {
+    @Provides @ComponentScope @Owner ProductConsolidationFlagNode provideProductConsolidationFlagNode() {
         return owner;
     }
 
-    @Provides @ProductConsolidationFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @ProductConsolidationFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @ProductConsolidationFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ProductConsolidationFlagNodeScope ProductDescriptionNode provideProductDescriptionNode() {
+    @Provides @ComponentScope ProductDescriptionNode provideProductDescriptionNode() {
         return owner.getParent();
     }
 
-    @Provides @ProductConsolidationFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<ProductConsolidationFlagNode> provideRuleProvider(Provider<ProductConsolidationFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ProductConsolidationFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ProductConsolidationFlagNode>> provideInstanceProviderMap(
         Provider<ProductDescriptionNodeChildProvider.ProductConsolidationFlagNodeRuleProvider> productConsolidationFlagNodeRuleProvider
     ) {

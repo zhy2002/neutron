@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface EmploymentNodeChildFactory {
@@ -67,7 +68,7 @@ public class EmploymentNodeChildProvider {
     protected void configureEmploymentTypeNode(EmploymentTypeNode node) {
     }
 
-    @EmploymentTypeNodeScope
+    @ComponentScope
     public static class EmploymentTypeNodeRuleProvider implements RuleProvider<EmploymentTypeNode> {
 
         @Inject
@@ -95,7 +96,7 @@ public class EmploymentNodeChildProvider {
     protected void configurePayeEmployedNode(PayeEmployedNode node) {
     }
 
-    @PayeEmployedNodeScope
+    @ComponentScope
     public static class PayeEmployedNodeRuleProvider implements RuleProvider<PayeEmployedNode> {
 
         @Inject
@@ -123,7 +124,7 @@ public class EmploymentNodeChildProvider {
     protected void configureSelfEmployedNode(SelfEmployedNode node) {
     }
 
-    @SelfEmployedNodeScope
+    @ComponentScope
     public static class SelfEmployedNodeRuleProvider implements RuleProvider<SelfEmployedNode> {
 
         @Inject
@@ -151,7 +152,7 @@ public class EmploymentNodeChildProvider {
     protected void configureUnemployedNode(UnemployedNode node) {
     }
 
-    @UnemployedNodeScope
+    @ComponentScope
     public static class UnemployedNodeRuleProvider implements RuleProvider<UnemployedNode> {
 
         @Inject
@@ -179,7 +180,7 @@ public class EmploymentNodeChildProvider {
     protected void configureRetiredEmploymentNode(RetiredEmploymentNode node) {
     }
 
-    @RetiredEmploymentNodeScope
+    @ComponentScope
     public static class RetiredEmploymentNodeRuleProvider implements RuleProvider<RetiredEmploymentNode> {
 
         @Inject

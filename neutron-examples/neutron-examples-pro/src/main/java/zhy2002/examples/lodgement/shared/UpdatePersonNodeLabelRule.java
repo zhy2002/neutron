@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.shared;
 
-import zhy2002.examples.lodgement.gen.di.PersonNodeScope;
 import zhy2002.examples.lodgement.gen.node.FirstNameNode;
 import zhy2002.examples.lodgement.gen.node.LastNameNode;
 import zhy2002.examples.lodgement.gen.node.PersonNode;
@@ -12,7 +11,7 @@ import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
-@PersonNodeScope
+
 public class UpdatePersonNodeLabelRule extends UpdateItemNodeLabelRule<PersonNode> {
 
     @Inject

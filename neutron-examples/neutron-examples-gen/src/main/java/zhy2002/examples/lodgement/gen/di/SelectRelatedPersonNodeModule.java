@@ -16,27 +16,27 @@ public class SelectRelatedPersonNodeModule {
         this.owner = owner;
     }
 
-    @Provides @SelectRelatedPersonNodeScope @Owner SelectRelatedPersonNode provideSelectRelatedPersonNode() {
+    @Provides @ComponentScope @Owner SelectRelatedPersonNode provideSelectRelatedPersonNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @SelectRelatedPersonNodeScope SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
+    @Provides @ComponentScope SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner.getParent();
     }
 
-    @Provides @SelectRelatedPersonNodeScope
+    @Provides @ComponentScope
     RuleProvider<SelectRelatedPersonNode> provideRuleProvider(Provider<SelectRelatedPersonNodeRuleProvider> provider) {
         return provider.get();
     }

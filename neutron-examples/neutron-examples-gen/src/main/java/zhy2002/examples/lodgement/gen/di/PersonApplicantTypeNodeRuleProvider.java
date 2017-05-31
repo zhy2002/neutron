@@ -4,10 +4,11 @@ import java.util.*;
 import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.PersonApplicantTypeNode;
 import zhy2002.examples.lodgement.gen.di.*;
 
-@PersonApplicantTypeNodeScope
+@ComponentScope
 public class PersonApplicantTypeNodeRuleProvider implements RuleProvider<PersonApplicantTypeNode> {
 
     @Inject

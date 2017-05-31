@@ -17,36 +17,36 @@ public class CompanyTrustNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyTrustNodeScope @Owner CompanyTrustNode provideCompanyTrustNode() {
+    @Provides @ComponentScope @Owner CompanyTrustNode provideCompanyTrustNode() {
         return owner;
     }
 
-    @Provides @CompanyTrustNodeScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
         return owner;
     }
 
-    @Provides @CompanyTrustNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @CompanyTrustNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanyTrustNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyTrustNodeScope CompanyNode provideCompanyNode() {
+    @Provides @ComponentScope CompanyNode provideCompanyNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyTrustNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyTrustNode> provideRuleProvider(Provider<CompanyTrustNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyTrustNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyTrustNode>> provideInstanceProviderMap(
         Provider<CompanyNodeChildProvider.CompanyTrustNodeRuleProvider> companyTrustNodeRuleProvider
     ) {

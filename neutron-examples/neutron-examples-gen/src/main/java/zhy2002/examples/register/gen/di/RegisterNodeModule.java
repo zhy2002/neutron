@@ -16,27 +16,27 @@ public class RegisterNodeModule {
         this.owner = owner;
     }
 
-    @Provides @RegisterNodeScope @Owner RegisterNode provideRegisterNode() {
+    @Provides @ComponentScope @Owner RegisterNode provideRegisterNode() {
         return owner;
     }
 
-    @Provides @RegisterNodeScope @Owner RootUiNode<?> provideRootUiNode() {
+    @Provides @ComponentScope @Owner RootUiNode<?> provideRootUiNode() {
         return owner;
     }
 
-    @Provides @RegisterNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @RegisterNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @RegisterNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @RegisterNodeScope
+    @Provides @ComponentScope
     RuleProvider<RegisterNode> provideRuleProvider(Provider<RegisterNodeRuleProvider> provider) {
         return provider.get();
     }

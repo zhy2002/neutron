@@ -17,36 +17,36 @@ public class PropertyAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner PropertyAddressNode providePropertyAddressNode() {
+    @Provides @ComponentScope @Owner PropertyAddressNode providePropertyAddressNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PropertyAddressNodeScope PropertyNode providePropertyNode() {
+    @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }
 
-    @Provides @PropertyAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<PropertyAddressNode> provideRuleProvider(Provider<PropertyAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PropertyAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PropertyAddressNode>> provideInstanceProviderMap(
         Provider<PropertyNodeChildProvider.PropertyAddressNodeRuleProvider> propertyAddressNodeRuleProvider
     ) {

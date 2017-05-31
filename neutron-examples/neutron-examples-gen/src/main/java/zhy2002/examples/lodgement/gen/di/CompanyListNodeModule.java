@@ -17,32 +17,32 @@ public class CompanyListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyListNodeScope @Owner CompanyListNode provideCompanyListNode() {
+    @Provides @ComponentScope @Owner CompanyListNode provideCompanyListNode() {
         return owner;
     }
 
-    @Provides @CompanyListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @CompanyListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @CompanyListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyListNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyListNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyListNode> provideRuleProvider(Provider<CompanyListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyListNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.CompanyListNodeRuleProvider> companyListNodeRuleProvider
     ) {

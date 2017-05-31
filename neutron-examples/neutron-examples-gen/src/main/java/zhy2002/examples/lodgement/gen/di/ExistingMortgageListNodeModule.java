@@ -17,32 +17,32 @@ public class ExistingMortgageListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @ExistingMortgageListNodeScope @Owner ExistingMortgageListNode provideExistingMortgageListNode() {
+    @Provides @ComponentScope @Owner ExistingMortgageListNode provideExistingMortgageListNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @ExistingMortgageListNodeScope UsageNode provideUsageNode() {
+    @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }
 
-    @Provides @ExistingMortgageListNodeScope
+    @Provides @ComponentScope
     RuleProvider<ExistingMortgageListNode> provideRuleProvider(Provider<ExistingMortgageListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @ExistingMortgageListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<ExistingMortgageListNode>> provideInstanceProviderMap(
         Provider<UsageNodeChildProvider.ExistingMortgageListNodeRuleProvider> existingMortgageListNodeRuleProvider
     ) {

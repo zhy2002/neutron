@@ -17,36 +17,36 @@ public class PersonAddressNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonAddressNodeScope @Owner PersonAddressNode providePersonAddressNode() {
+    @Provides @ComponentScope @Owner PersonAddressNode providePersonAddressNode() {
         return owner;
     }
 
-    @Provides @PersonAddressNodeScope @Owner AddressNode<?> provideAddressNode() {
+    @Provides @ComponentScope @Owner AddressNode<?> provideAddressNode() {
         return owner;
     }
 
-    @Provides @PersonAddressNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PersonAddressNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonAddressNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonAddressNodeScope PersonContactNode providePersonContactNode() {
+    @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonAddressNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonAddressNode> provideRuleProvider(Provider<PersonAddressNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonAddressNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonAddressNode>> provideInstanceProviderMap(
         Provider<PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider> currentAddressNodeRuleProvider
         ,Provider<PersonContactNodeChildProvider.PostalAddressNodeRuleProvider> postalAddressNodeRuleProvider

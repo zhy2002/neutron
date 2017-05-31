@@ -17,32 +17,32 @@ public class OtherIncomeAddBackTypeNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope @Owner OtherIncomeAddBackTypeNode provideOtherIncomeAddBackTypeNode() {
+    @Provides @ComponentScope @Owner OtherIncomeAddBackTypeNode provideOtherIncomeAddBackTypeNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope OtherIncomeNode provideOtherIncomeNode() {
+    @Provides @ComponentScope OtherIncomeNode provideOtherIncomeNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherIncomeAddBackTypeNode> provideRuleProvider(Provider<OtherIncomeAddBackTypeNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @OtherIncomeAddBackTypeNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<OtherIncomeAddBackTypeNode>> provideInstanceProviderMap(
         Provider<OtherIncomeNodeChildProvider.OtherIncomeAddBackTypeNodeRuleProvider> otherIncomeAddBackTypeNodeRuleProvider
     ) {

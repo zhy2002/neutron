@@ -17,32 +17,32 @@ public class CompanyContactLastNameNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CompanyContactLastNameNodeScope @Owner CompanyContactLastNameNode provideCompanyContactLastNameNode() {
+    @Provides @ComponentScope @Owner CompanyContactLastNameNode provideCompanyContactLastNameNode() {
         return owner;
     }
 
-    @Provides @CompanyContactLastNameNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @CompanyContactLastNameNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CompanyContactLastNameNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CompanyContactLastNameNodeScope CompanyContactNode provideCompanyContactNode() {
+    @Provides @ComponentScope CompanyContactNode provideCompanyContactNode() {
         return owner.getParent();
     }
 
-    @Provides @CompanyContactLastNameNodeScope
+    @Provides @ComponentScope
     RuleProvider<CompanyContactLastNameNode> provideRuleProvider(Provider<CompanyContactLastNameNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CompanyContactLastNameNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CompanyContactLastNameNode>> provideInstanceProviderMap(
         Provider<CompanyContactNodeChildProvider.CompanyContactLastNameNodeRuleProvider> companyContactLastNameNodeRuleProvider
     ) {

@@ -17,32 +17,32 @@ public class BrokerTelephoneNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerTelephoneNodeScope @Owner BrokerTelephoneNode provideBrokerTelephoneNode() {
+    @Provides @ComponentScope @Owner BrokerTelephoneNode provideBrokerTelephoneNode() {
         return owner;
     }
 
-    @Provides @BrokerTelephoneNodeScope @Owner TelephoneNode<?> provideTelephoneNode() {
+    @Provides @ComponentScope @Owner TelephoneNode<?> provideTelephoneNode() {
         return owner;
     }
 
-    @Provides @BrokerTelephoneNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BrokerTelephoneNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerTelephoneNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerTelephoneNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerTelephoneNode> provideRuleProvider(Provider<BrokerTelephoneNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerTelephoneNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerTelephoneNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.ContactNumberNodeRuleProvider> contactNumberNodeRuleProvider
         ,Provider<SubmissionNodeChildProvider.FaxNumberNodeRuleProvider> faxNumberNodeRuleProvider

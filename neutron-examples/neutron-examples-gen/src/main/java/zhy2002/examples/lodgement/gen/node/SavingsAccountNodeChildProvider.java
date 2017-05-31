@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface SavingsAccountNodeChildFactory {
@@ -75,7 +76,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsTypeNode(SavingsTypeNode node) {
     }
 
-    @SavingsTypeNodeScope
+    @ComponentScope
     public static class SavingsTypeNodeRuleProvider implements RuleProvider<SavingsTypeNode> {
 
         @Inject
@@ -103,7 +104,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsInstitutionNameNode(SavingsInstitutionNameNode node) {
     }
 
-    @SavingsInstitutionNameNodeScope
+    @ComponentScope
     public static class SavingsInstitutionNameNodeRuleProvider implements RuleProvider<SavingsInstitutionNameNode> {
 
         @Inject
@@ -131,7 +132,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsBalanceNode(SavingsBalanceNode node) {
     }
 
-    @SavingsBalanceNodeScope
+    @ComponentScope
     public static class SavingsBalanceNodeRuleProvider implements RuleProvider<SavingsBalanceNode> {
 
         @Inject
@@ -159,7 +160,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsBsbNoNode(SavingsBsbNoNode node) {
     }
 
-    @SavingsBsbNoNodeScope
+    @ComponentScope
     public static class SavingsBsbNoNodeRuleProvider implements RuleProvider<SavingsBsbNoNode> {
 
         @Inject
@@ -187,7 +188,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsAccountNoNode(SavingsAccountNoNode node) {
     }
 
-    @SavingsAccountNoNodeScope
+    @ComponentScope
     public static class SavingsAccountNoNodeRuleProvider implements RuleProvider<SavingsAccountNoNode> {
 
         @Inject
@@ -215,7 +216,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureSavingsAccountNameNode(SavingsAccountNameNode node) {
     }
 
-    @SavingsAccountNameNodeScope
+    @ComponentScope
     public static class SavingsAccountNameNodeRuleProvider implements RuleProvider<SavingsAccountNameNode> {
 
         @Inject
@@ -243,7 +244,7 @@ public class SavingsAccountNodeChildProvider {
     protected void configureOwnershipListNode(SavingsOwnershipListNode node) {
     }
 
-    @SavingsOwnershipListNodeScope
+    @ComponentScope
     public static class OwnershipListNodeRuleProvider implements RuleProvider<SavingsOwnershipListNode> {
 
         @Inject

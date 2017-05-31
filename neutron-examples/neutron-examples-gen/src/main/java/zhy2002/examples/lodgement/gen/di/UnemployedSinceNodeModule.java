@@ -17,36 +17,36 @@ public class UnemployedSinceNodeModule {
         this.owner = owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner UnemployedSinceNode provideUnemployedSinceNode() {
+    @Provides @ComponentScope @Owner UnemployedSinceNode provideUnemployedSinceNode() {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner MonthYearNode<?> provideMonthYearNode() {
+    @Provides @ComponentScope @Owner MonthYearNode<?> provideMonthYearNode() {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @UnemployedSinceNodeScope UnemployedNode provideUnemployedNode() {
+    @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }
 
-    @Provides @UnemployedSinceNodeScope
+    @Provides @ComponentScope
     RuleProvider<UnemployedSinceNode> provideRuleProvider(Provider<UnemployedSinceNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @UnemployedSinceNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<UnemployedSinceNode>> provideInstanceProviderMap(
         Provider<UnemployedNodeChildProvider.UnemployedSinceNodeRuleProvider> unemployedSinceNodeRuleProvider
     ) {

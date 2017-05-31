@@ -17,32 +17,32 @@ public class AddressRefListNodeModule {
         this.owner = owner;
     }
 
-    @Provides @AddressRefListNodeScope @Owner AddressRefListNode provideAddressRefListNode() {
+    @Provides @ComponentScope @Owner AddressRefListNode provideAddressRefListNode() {
         return owner;
     }
 
-    @Provides @AddressRefListNodeScope @Owner ListUiNode<?,?> provideListUiNode() {
+    @Provides @ComponentScope @Owner ListUiNode<?,?> provideListUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefListNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefListNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @AddressRefListNodeScope ApplicationNode provideApplicationNode() {
+    @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }
 
-    @Provides @AddressRefListNodeScope
+    @Provides @ComponentScope
     RuleProvider<AddressRefListNode> provideRuleProvider(Provider<AddressRefListNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @AddressRefListNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<AddressRefListNode>> provideInstanceProviderMap(
         Provider<ApplicationNodeChildProvider.AddressRefListNodeRuleProvider> addressRefListNodeRuleProvider
     ) {

@@ -17,36 +17,36 @@ public class PersonResponsibleLendNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope @Owner PersonResponsibleLendNode providePersonResponsibleLendNode() {
+    @Provides @ComponentScope @Owner PersonResponsibleLendNode providePersonResponsibleLendNode() {
         return owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope @Owner BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
+    @Provides @ComponentScope @Owner BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonResponsibleLendNodeScope PersonNode providePersonNode() {
+    @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonResponsibleLendNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonResponsibleLendNode> provideRuleProvider(Provider<PersonResponsibleLendNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonResponsibleLendNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonResponsibleLendNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonResponsibleLendNodeRuleProvider> personResponsibleLendNodeRuleProvider
     ) {

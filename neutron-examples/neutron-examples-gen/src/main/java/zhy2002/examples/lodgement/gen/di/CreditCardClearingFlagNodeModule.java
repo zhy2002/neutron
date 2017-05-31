@@ -17,32 +17,32 @@ public class CreditCardClearingFlagNodeModule {
         this.owner = owner;
     }
 
-    @Provides @CreditCardClearingFlagNodeScope @Owner CreditCardClearingFlagNode provideCreditCardClearingFlagNode() {
+    @Provides @ComponentScope @Owner CreditCardClearingFlagNode provideCreditCardClearingFlagNode() {
         return owner;
     }
 
-    @Provides @CreditCardClearingFlagNodeScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
+    @Provides @ComponentScope @Owner BooleanUiNode<?> provideBooleanUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardClearingFlagNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardClearingFlagNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @CreditCardClearingFlagNodeScope CreditCardNode provideCreditCardNode() {
+    @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }
 
-    @Provides @CreditCardClearingFlagNodeScope
+    @Provides @ComponentScope
     RuleProvider<CreditCardClearingFlagNode> provideRuleProvider(Provider<CreditCardClearingFlagNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @CreditCardClearingFlagNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<CreditCardClearingFlagNode>> provideInstanceProviderMap(
         Provider<CreditCardNodeChildProvider.CreditCardClearingFlagNodeRuleProvider> creditCardClearingFlagNodeRuleProvider
     ) {

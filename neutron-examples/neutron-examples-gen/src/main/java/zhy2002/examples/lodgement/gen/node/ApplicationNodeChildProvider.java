@@ -5,6 +5,7 @@ import dagger.MembersInjector;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.*;
+import zhy2002.neutron.di.ComponentScope;
 
 
 interface ApplicationNodeChildFactory {
@@ -138,7 +139,7 @@ public class ApplicationNodeChildProvider {
     protected void configureIdNode(IdNode node) {
     }
 
-    @IdNodeScope
+    @ComponentScope
     public static class IdNodeRuleProvider implements RuleProvider<IdNode> {
 
         @Inject
@@ -166,7 +167,7 @@ public class ApplicationNodeChildProvider {
     protected void configureStatusNode(StatusNode node) {
     }
 
-    @StatusNodeScope
+    @ComponentScope
     public static class StatusNodeRuleProvider implements RuleProvider<StatusNode> {
 
         @Inject
@@ -194,7 +195,7 @@ public class ApplicationNodeChildProvider {
     protected void configureOwningUserNode(OwningUserNode node) {
     }
 
-    @OwningUserNodeScope
+    @ComponentScope
     public static class OwningUserNodeRuleProvider implements RuleProvider<OwningUserNode> {
 
         @Inject
@@ -222,7 +223,7 @@ public class ApplicationNodeChildProvider {
     protected void configureLenderNode(LenderNode node) {
     }
 
-    @LenderNodeScope
+    @ComponentScope
     public static class LenderNodeRuleProvider implements RuleProvider<LenderNode> {
 
         @Inject
@@ -250,7 +251,7 @@ public class ApplicationNodeChildProvider {
     protected void configureDateCreatedNode(DateCreatedNode node) {
     }
 
-    @DateCreatedNodeScope
+    @ComponentScope
     public static class DateCreatedNodeRuleProvider implements RuleProvider<DateCreatedNode> {
 
         @Inject
@@ -278,7 +279,7 @@ public class ApplicationNodeChildProvider {
     protected void configureDateUpdatedNode(DateUpdatedNode node) {
     }
 
-    @DateUpdatedNodeScope
+    @ComponentScope
     public static class DateUpdatedNodeRuleProvider implements RuleProvider<DateUpdatedNode> {
 
         @Inject
@@ -306,7 +307,7 @@ public class ApplicationNodeChildProvider {
     protected void configureDateLodgedNode(DateLodgedNode node) {
     }
 
-    @DateLodgedNodeScope
+    @ComponentScope
     public static class DateLodgedNodeRuleProvider implements RuleProvider<DateLodgedNode> {
 
         @Inject
@@ -334,7 +335,7 @@ public class ApplicationNodeChildProvider {
     protected void configureAddressRefListNode(AddressRefListNode node) {
     }
 
-    @AddressRefListNodeScope
+    @ComponentScope
     public static class AddressRefListNodeRuleProvider implements RuleProvider<AddressRefListNode> {
 
         @Inject
@@ -362,7 +363,7 @@ public class ApplicationNodeChildProvider {
     protected void configurePersonListNode(PersonListNode node) {
     }
 
-    @PersonListNodeScope
+    @ComponentScope
     public static class PersonListNodeRuleProvider implements RuleProvider<PersonListNode> {
 
         @Inject
@@ -390,7 +391,7 @@ public class ApplicationNodeChildProvider {
     protected void configureCompanyListNode(CompanyListNode node) {
     }
 
-    @CompanyListNodeScope
+    @ComponentScope
     public static class CompanyListNodeRuleProvider implements RuleProvider<CompanyListNode> {
 
         @Inject
@@ -418,7 +419,7 @@ public class ApplicationNodeChildProvider {
     protected void configureFinancialPositionNode(FinancialPositionNode node) {
     }
 
-    @FinancialPositionNodeScope
+    @ComponentScope
     public static class FinancialPositionNodeRuleProvider implements RuleProvider<FinancialPositionNode> {
 
         @Inject
@@ -446,7 +447,7 @@ public class ApplicationNodeChildProvider {
     protected void configureRealEstateListNode(RealEstateListNode node) {
     }
 
-    @RealEstateListNodeScope
+    @ComponentScope
     public static class RealEstateListNodeRuleProvider implements RuleProvider<RealEstateListNode> {
 
         @Inject
@@ -474,7 +475,7 @@ public class ApplicationNodeChildProvider {
     protected void configureProductsNode(ProductsNode node) {
     }
 
-    @ProductsNodeScope
+    @ComponentScope
     public static class ProductsNodeRuleProvider implements RuleProvider<ProductsNode> {
 
         @Inject
@@ -502,7 +503,7 @@ public class ApplicationNodeChildProvider {
     protected void configureAdditionalNode(AdditionalNode node) {
     }
 
-    @AdditionalNodeScope
+    @ComponentScope
     public static class AdditionalNodeRuleProvider implements RuleProvider<AdditionalNode> {
 
         @Inject
@@ -530,7 +531,7 @@ public class ApplicationNodeChildProvider {
     protected void configureSubmissionNode(SubmissionNode node) {
     }
 
-    @SubmissionNodeScope
+    @ComponentScope
     public static class SubmissionNodeRuleProvider implements RuleProvider<SubmissionNode> {
 
         @Inject
@@ -558,7 +559,7 @@ public class ApplicationNodeChildProvider {
     protected void configureErrorListNode(ErrorListNode node) {
     }
 
-    @ErrorListNodeScope
+    @ComponentScope
     public static class ErrorListNodeRuleProvider implements RuleProvider<ErrorListNode> {
 
         @Inject

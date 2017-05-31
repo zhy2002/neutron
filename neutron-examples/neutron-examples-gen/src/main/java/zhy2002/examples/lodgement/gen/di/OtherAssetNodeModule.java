@@ -16,27 +16,27 @@ public class OtherAssetNodeModule {
         this.owner = owner;
     }
 
-    @Provides @OtherAssetNodeScope @Owner OtherAssetNode provideOtherAssetNode() {
+    @Provides @ComponentScope @Owner OtherAssetNode provideOtherAssetNode() {
         return owner;
     }
 
-    @Provides @OtherAssetNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @OtherAssetNodeScope OtherAssetListNode provideOtherAssetListNode() {
+    @Provides @ComponentScope OtherAssetListNode provideOtherAssetListNode() {
         return owner.getParent();
     }
 
-    @Provides @OtherAssetNodeScope
+    @Provides @ComponentScope
     RuleProvider<OtherAssetNode> provideRuleProvider(Provider<OtherAssetNodeRuleProvider> provider) {
         return provider.get();
     }

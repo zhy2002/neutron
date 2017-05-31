@@ -17,36 +17,36 @@ public class PersonTrustNodeModule {
         this.owner = owner;
     }
 
-    @Provides @PersonTrustNodeScope @Owner PersonTrustNode providePersonTrustNode() {
+    @Provides @ComponentScope @Owner PersonTrustNode providePersonTrustNode() {
         return owner;
     }
 
-    @Provides @PersonTrustNodeScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
+    @Provides @ComponentScope @Owner BaseTrustNode<?> provideBaseTrustNode() {
         return owner;
     }
 
-    @Provides @PersonTrustNodeScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
         return owner;
     }
 
-    @Provides @PersonTrustNodeScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
         return owner;
     }
 
-    @Provides @PersonTrustNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @PersonTrustNodeScope PersonNode providePersonNode() {
+    @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }
 
-    @Provides @PersonTrustNodeScope
+    @Provides @ComponentScope
     RuleProvider<PersonTrustNode> provideRuleProvider(Provider<PersonTrustNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @PersonTrustNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<PersonTrustNode>> provideInstanceProviderMap(
         Provider<PersonNodeChildProvider.PersonTrustNodeRuleProvider> personTrustNodeRuleProvider
     ) {

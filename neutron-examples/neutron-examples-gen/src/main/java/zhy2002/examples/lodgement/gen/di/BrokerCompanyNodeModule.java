@@ -17,32 +17,32 @@ public class BrokerCompanyNodeModule {
         this.owner = owner;
     }
 
-    @Provides @BrokerCompanyNodeScope @Owner BrokerCompanyNode provideBrokerCompanyNode() {
+    @Provides @ComponentScope @Owner BrokerCompanyNode provideBrokerCompanyNode() {
         return owner;
     }
 
-    @Provides @BrokerCompanyNodeScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
         return owner;
     }
 
-    @Provides @BrokerCompanyNodeScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 
-    @Provides @BrokerCompanyNodeScope @Owner UiNode<?> provideUiNode() {
+    @Provides @ComponentScope @Owner UiNode<?> provideUiNode() {
         return owner;
     }
 
-    @Provides @BrokerCompanyNodeScope SubmissionNode provideSubmissionNode() {
+    @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }
 
-    @Provides @BrokerCompanyNodeScope
+    @Provides @ComponentScope
     RuleProvider<BrokerCompanyNode> provideRuleProvider(Provider<BrokerCompanyNodeRuleProvider> provider) {
         return provider.get();
     }
 
-    @Provides @BrokerCompanyNodeScope
+    @Provides @ComponentScope
     Map<String, RuleProvider<BrokerCompanyNode>> provideInstanceProviderMap(
         Provider<SubmissionNodeChildProvider.BrokerCompanyNodeRuleProvider> brokerCompanyNodeRuleProvider
     ) {
