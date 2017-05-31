@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.Configuration;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.node.VoidUiNode;
 
@@ -63,4 +64,7 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
     void addPendingChangeEvent(ChangeUiNodeEvent event);
 
     boolean isLoaded();
+
+    Configuration getConfiguration();
+
 }

@@ -1,11 +1,13 @@
 Todo 
 -----------------  
-- add context level default loadWithParent instead of fixed default value of true
+- add HOCs as an alternative to Neutron base components
+- hierarchical di
+  - define an expression language which allows a node to ask its parent for objects meeting certain criteria
+  - notification will NOT be provided when the injected instance is changed
 - i18n support
   - runtime configurable culture specific parser/formatter chain
   - React i18n
 - move logic from JSX to AppManagerNode
-- add HOCs as an alternative to Neutron base components
 - add JEST tests
 - align JSX code with RxJS patterns
 - align JSX code with Redux patterns
@@ -44,9 +46,6 @@ Todo (long term)
 - calculate state diff
 - versioned domain and profile
 - migrate from GWT to Kotlin
-- hierarchical di
-  - define an expression language which allows a node to ask its parent for objects meeting certain criteria
-  - notification will NOT be provided when the injected instance is changed
 - property DSL to replace yaml.
 
 Design
@@ -203,7 +202,7 @@ Finished
 
 23 send = process everything immediately & post = current behaviour where changes are added to a queue first.
  
- 
+24 add context level default loadWithParent instead of fixed default value of true
     
 ### Garbage
 

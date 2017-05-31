@@ -214,7 +214,7 @@ rootType:
       - typeName: CompanyGeneralNode
         children:
         - {typeName: CompanyApplicantTypeNode}
-        - {typeName: CompanyPrimaryA pplicantFlagNode}
+        - {typeName: CompanyPrimaryApplicantFlagNode}
         - {typeName: CompanyApplicationTypeNode}
         - {typeName: CompanyRegisteredNameNode}
         - {typeName: CompanyTypeNode}

@@ -1,6 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.Configuration;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
@@ -29,6 +30,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * Afterwards this is always null.
      */
     private NodeIdentity nodeIdentity;
+    private Configuration configuration;
     private Deque<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayDeque<>();
 
     @Inject
@@ -39,6 +41,11 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     NodeFinder nodeFinder;
     @Inject
     NodeReferenceRegistry nodeReferenceRegistry;
+
+    @Inject
+    protected void injectConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
     @Inject
     void injectNodeDataStore(NodeDataStore nodeDataStore) {
@@ -92,6 +99,11 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     @JsMethod
     public final void resetDirty() {
         getRootNode().refreshWithReason(NeutronConstants.RESET_DIRTY_REFRESH_REASON);
+    }
+
+    @Override
+    public Configuration getConfiguration() {
+        return configuration;
     }
 
     //region node construction

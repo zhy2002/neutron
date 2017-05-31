@@ -18,8 +18,9 @@ public final class PropertyMetadata<T> {
     private final T defaultValue;
     private final ChangeTrackingModeEnum changeTrackingMode;
     private final ChangeModeEnum changeMode;
+    private final boolean configurable;
 
-    PropertyMetadata(Class<?> definingClass, String name, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum changeTrackingMode, ChangeModeEnum changeMode) {
+    PropertyMetadata(Class<?> definingClass, String name, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum changeTrackingMode, ChangeModeEnum changeMode, boolean configurable) {
         this.definingClass = definingClass;
         this.name = name;
         this.stateKey = ValueUtil.camelToConstantLower(name);
@@ -27,6 +28,7 @@ public final class PropertyMetadata<T> {
         this.defaultValue = defaultValue;
         this.changeTrackingMode = changeTrackingMode;
         this.changeMode = changeMode;
+        this.configurable = configurable;
     }
 
     @NotNull
@@ -61,5 +63,9 @@ public final class PropertyMetadata<T> {
     @NotNull
     public ChangeModeEnum getChangeMode() {
         return changeMode;
+    }
+
+    public boolean isConfigurable() {
+        return configurable;
     }
 }

@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsType;
 
 import javax.validation.constraints.NotNull;
@@ -8,9 +9,9 @@ import javax.validation.constraints.NotNull;
  * Implementor of this interface is responsible for propagation changes in the form of a UiNodeEvent
  * through the UiNode tree.
  */
-@JsType
 public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
 
+    @JsIgnore
     void processEvent(UiNodeEvent event);
 
     void beginSession();

@@ -21,7 +21,7 @@ public abstract class ${typeName}ProfileModule {
         <#list node.children as child>
             <#if child.rules?? || child.init??>
     @Binds
-    abstract ${node.typeName}ChildProvider.${child.name?cap_first}RuleProvider provide${typeName}${child.name}RuleProvider(
+    abstract ${node.typeName}ChildProvider.${child.name?cap_first}RuleProvider provide${typeName}${node.typeName}${child.name?cap_first}RuleProvider(
         ${typeName}${node.typeName}ChildProvider.${child.name?cap_first}RuleProvider impl
     );
 

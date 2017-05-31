@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * This class offers static methods to createProperty property metadata.
+ * todo add a builder for PropertyMetadata.
  */
 public class MetadataRegistry {
 
@@ -39,6 +40,10 @@ public class MetadataRegistry {
     }
 
     public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode) {
+        return createProperty(definingClass, propertyName, valueClass, defaultValue, tracingMode, changeMode, false);
+    }
+
+    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode, boolean configurable) {
 
         if (tracingMode == null) {
             tracingMode = getDefaultChangeTrackingMode(valueClass);
@@ -54,7 +59,8 @@ public class MetadataRegistry {
                 valueClass,
                 defaultValue,
                 tracingMode,
-                changeMode
+                changeMode,
+                configurable
         );
         UiNodeMetadata nodeMetadata = getClassMetadata(definingClass);
         nodeMetadata.addPropertyMetadata(propertyMetadata);

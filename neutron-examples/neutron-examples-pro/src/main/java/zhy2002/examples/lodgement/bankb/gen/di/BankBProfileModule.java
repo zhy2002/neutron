@@ -57,7 +57,7 @@ public abstract class BankBProfileModule {
     abstract PersonContactNodeRuleProvider providePersonContactNodeRuleProvider(BankBPersonContactNodeRuleProvider impl);
 
     @Binds
-    abstract PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider provideBankBcurrentAddressNodeRuleProvider(
+    abstract PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider provideBankBPersonContactNodeCurrentAddressNodeRuleProvider(
         BankBPersonContactNodeChildProvider.CurrentAddressNodeRuleProvider impl
     );
 

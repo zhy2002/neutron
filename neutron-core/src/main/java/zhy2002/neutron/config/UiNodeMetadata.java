@@ -5,16 +5,15 @@ import java.util.Map;
 
 /**
  * A class that stores node type level metadata.
+ * Metadata is comprised of compile time constants.
  */
 public class UiNodeMetadata {
 
     private final Class<?> clazz;
-    private final Map<String, Object> config = new HashMap<>();
+
     private final Map<String, PropertyMetadata<?>> propertyMetadataMap = new HashMap<>();
 
-    //todo chain super node metadata
-
-    public UiNodeMetadata(Class<?> clazz) {
+    UiNodeMetadata(Class<?> clazz) {
         this.clazz = clazz;
     }
 
@@ -30,17 +29,4 @@ public class UiNodeMetadata {
         propertyMetadataMap.put(propertyMetadata.getName(), propertyMetadata);
     }
 
-    @SuppressWarnings("unchecked")
-    public final <T> T getConfigValue(String key) {
-        Object value = config.get(key);
-        return (T)value;
-    }
-
-    public final void setConfigValue(String key, Object value) {
-        if (value == null) {
-            config.remove(key);
-        } else {
-            config.put(key, value);
-        }
-    }
 }
