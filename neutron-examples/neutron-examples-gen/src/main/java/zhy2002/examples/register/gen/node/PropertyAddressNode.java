@@ -9,13 +9,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
+    private PropertyAddressNodeComponent component;
+
+    public PropertyAddressNode(@NotNull PropertyDetailsNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyAddressNode.class;
     }
-
-    private PropertyAddressNodeComponent component;
 
     @Inject
     void createComponent(PropertyAddressNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
 
     private RuleProvider<PropertyAddressNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PropertyAddressNode(@NotNull PropertyDetailsNode parent, String name) {
-        super(parent, name);
     }
 
 }

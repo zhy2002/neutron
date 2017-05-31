@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode> {
+    private MortgageClearingFlagNodeComponent component;
+
+    public MortgageClearingFlagNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgageClearingFlagNode.class;
     }
-
-    private MortgageClearingFlagNodeComponent component;
 
     @Inject
     void createComponent(MortgageClearingFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode
 
     private RuleProvider<MortgageClearingFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgageClearingFlagNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }

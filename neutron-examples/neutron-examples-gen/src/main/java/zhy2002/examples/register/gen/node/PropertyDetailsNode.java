@@ -16,12 +16,12 @@ import java.util.List;
 import zhy2002.examples.register.gen.event.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
-
+    public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
     private PropertyDetailsNodeChildFactory childFactory;
+    private PropertyDetailsNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(PropertyDetailsNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public PropertyDetailsNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -29,7 +29,10 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         return PropertyDetailsNode.class;
     }
 
-    private PropertyDetailsNodeComponent component;
+    @Inject
+    void receiveNodeProvider(PropertyDetailsNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(PropertyDetailsNodeComponent.Builder builder) {
@@ -65,13 +68,6 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     protected final NodeUnloadEvent<PropertyDetailsNode> createNodeUnloadEvent() {
         return new PropertyDetailsNodeUnloadEvent(this);
     }
-
-
-    public PropertyDetailsNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
 
     @JsMethod
     public String getTooltip() {

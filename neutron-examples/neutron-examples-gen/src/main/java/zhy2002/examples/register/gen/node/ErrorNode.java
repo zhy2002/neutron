@@ -9,13 +9,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
+    private ErrorNodeComponent component;
+
+    public ErrorNode(@NotNull ErrorListNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ErrorNode.class;
     }
-
-    private ErrorNodeComponent component;
 
     @Inject
     void createComponent(ErrorNodeComponent.Builder builder) {
@@ -34,11 +37,6 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public ErrorNode(@NotNull ErrorListNode parent, String name) {
-        super(parent, name);
     }
 
 }

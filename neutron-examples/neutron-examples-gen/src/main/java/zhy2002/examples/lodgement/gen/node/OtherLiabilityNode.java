@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
-
     private OtherLiabilityNodeChildFactory childFactory;
+    private OtherLiabilityNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(OtherLiabilityNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public OtherLiabilityNode(@NotNull OtherLiabilityListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         return OtherLiabilityNode.class;
     }
 
-    private OtherLiabilityNodeComponent component;
+    @Inject
+    void receiveNodeProvider(OtherLiabilityNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(OtherLiabilityNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public OtherLiabilityNode(@NotNull OtherLiabilityListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

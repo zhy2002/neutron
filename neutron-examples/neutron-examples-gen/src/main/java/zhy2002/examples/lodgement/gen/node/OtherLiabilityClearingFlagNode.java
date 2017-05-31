@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode> {
+    private OtherLiabilityClearingFlagNodeComponent component;
+
+    public OtherLiabilityClearingFlagNode(@NotNull OtherLiabilityNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherLiabilityClearingFlagNode.class;
     }
-
-    private OtherLiabilityClearingFlagNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityClearingFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
 
     private RuleProvider<OtherLiabilityClearingFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherLiabilityClearingFlagNode(@NotNull OtherLiabilityNode parent, String name) {
-        super(parent, name);
     }
 
 }

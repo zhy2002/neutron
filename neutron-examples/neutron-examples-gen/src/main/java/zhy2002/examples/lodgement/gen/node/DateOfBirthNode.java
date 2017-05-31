@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
+    private DateOfBirthNodeComponent component;
+
+    public DateOfBirthNode(@NotNull PersonGeneralNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return DateOfBirthNode.class;
     }
-
-    private DateOfBirthNodeComponent component;
 
     @Inject
     void createComponent(DateOfBirthNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
 
     private RuleProvider<DateOfBirthNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public DateOfBirthNode(@NotNull PersonGeneralNode parent, String name) {
-        super(parent, name);
     }
 
 }

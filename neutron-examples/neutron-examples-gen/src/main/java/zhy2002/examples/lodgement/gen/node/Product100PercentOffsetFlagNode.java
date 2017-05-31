@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeaturesNode> {
+    private Product100PercentOffsetFlagNodeComponent component;
+
+    public Product100PercentOffsetFlagNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return Product100PercentOffsetFlagNode.class;
     }
-
-    private Product100PercentOffsetFlagNodeComponent component;
 
     @Inject
     void createComponent(Product100PercentOffsetFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
 
     private RuleProvider<Product100PercentOffsetFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public Product100PercentOffsetFlagNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

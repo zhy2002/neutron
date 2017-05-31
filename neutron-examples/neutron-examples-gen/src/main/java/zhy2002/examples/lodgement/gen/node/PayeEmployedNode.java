@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PayeEmployedNode extends EmployedNode {
-
     private PayeEmployedNodeChildFactory childFactory;
+    private PayeEmployedNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(PayeEmployedNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public PayeEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class PayeEmployedNode extends EmployedNode {
         return PayeEmployedNode.class;
     }
 
-    private PayeEmployedNodeComponent component;
+    @Inject
+    void receiveNodeProvider(PayeEmployedNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(PayeEmployedNodeComponent.Builder builder) {
@@ -50,11 +52,6 @@ public class PayeEmployedNode extends EmployedNode {
 
     private RuleProvider<PayeEmployedNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PayeEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

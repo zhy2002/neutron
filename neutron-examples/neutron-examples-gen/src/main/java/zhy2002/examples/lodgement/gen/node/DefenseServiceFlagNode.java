@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
+    private DefenseServiceFlagNodeComponent component;
+
+    public DefenseServiceFlagNode(@NotNull PropertyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return DefenseServiceFlagNode.class;
     }
-
-    private DefenseServiceFlagNodeComponent component;
 
     @Inject
     void createComponent(DefenseServiceFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
 
     private RuleProvider<DefenseServiceFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public DefenseServiceFlagNode(@NotNull PropertyNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
+    private SavingsTypeNodeComponent component;
+
+    public SavingsTypeNode(@NotNull SavingsAccountNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return SavingsTypeNode.class;
     }
-
-    private SavingsTypeNodeComponent component;
 
     @Inject
     void createComponent(SavingsTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
 
     private RuleProvider<SavingsTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public SavingsTypeNode(@NotNull SavingsAccountNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class FeeTypeNode extends StringUiNode<ProductFeeNode> {
+    private FeeTypeNodeComponent component;
+
+    public FeeTypeNode(@NotNull ProductFeeNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return FeeTypeNode.class;
     }
-
-    private FeeTypeNodeComponent component;
 
     @Inject
     void createComponent(FeeTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class FeeTypeNode extends StringUiNode<ProductFeeNode> {
 
     private RuleProvider<FeeTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public FeeTypeNode(@NotNull ProductFeeNode parent, String name) {
-        super(parent, name);
     }
 
 }

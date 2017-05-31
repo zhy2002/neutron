@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeaturesNode> {
+    private ProductCreditCardLimitNodeComponent component;
+
+    public ProductCreditCardLimitNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductCreditCardLimitNode.class;
     }
-
-    private ProductCreditCardLimitNodeComponent component;
 
     @Inject
     void createComponent(ProductCreditCardLimitNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeatures
 
     private RuleProvider<ProductCreditCardLimitNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductCreditCardLimitNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

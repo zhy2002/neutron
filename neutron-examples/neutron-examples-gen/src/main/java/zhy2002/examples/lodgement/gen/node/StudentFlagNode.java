@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class StudentFlagNode extends YesNoOptionNode<UnemployedNode> {
+    private StudentFlagNodeComponent component;
+
+    public StudentFlagNode(@NotNull UnemployedNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return StudentFlagNode.class;
     }
-
-    private StudentFlagNodeComponent component;
 
     @Inject
     void createComponent(StudentFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class StudentFlagNode extends YesNoOptionNode<UnemployedNode> {
 
     private RuleProvider<StudentFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public StudentFlagNode(@NotNull UnemployedNode parent, String name) {
-        super(parent, name);
     }
 
 }

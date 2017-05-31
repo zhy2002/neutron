@@ -14,12 +14,12 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
-
+    public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);
     private ErrorListNodeItemFactory itemFactory;
+    private ErrorListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public ErrorListNode(@NotNull ApplicationNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -27,7 +27,10 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         return ErrorListNode.class;
     }
 
-    private ErrorListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ErrorListNodeComponent.Builder builder) {
@@ -54,11 +57,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
-
-    public ErrorListNode(@NotNull ApplicationNode parent, String name) {
-        super(parent, name);
-    }
-
     @Override
     public Class<ErrorNode> getItemClass() {
         return ErrorNode.class;
@@ -74,8 +72,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }
-
-    public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);
 
     @JsMethod
     public String getFocus() {

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PropertyPurseNode extends BooleanUiNode<PropertyNode> {
+    private PropertyPurseNodeComponent component;
+
+    public PropertyPurseNode(@NotNull PropertyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyPurseNode.class;
     }
-
-    private PropertyPurseNodeComponent component;
 
     @Inject
     void createComponent(PropertyPurseNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class PropertyPurseNode extends BooleanUiNode<PropertyNode> {
 
     private RuleProvider<PropertyPurseNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PropertyPurseNode(@NotNull PropertyNode parent, String name) {
-        super(parent, name);
     }
 
 }

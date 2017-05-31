@@ -9,13 +9,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
+    private RepeatPasswordNodeComponent component;
+
+    public RepeatPasswordNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return RepeatPasswordNode.class;
     }
-
-    private RepeatPasswordNodeComponent component;
 
     @Inject
     void createComponent(RepeatPasswordNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
     private RuleProvider<RepeatPasswordNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public RepeatPasswordNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
 }

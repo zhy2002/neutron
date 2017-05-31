@@ -10,13 +10,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AddressLineNode extends StringUiNode<AddressNode<?>> {
+    private AddressLineNodeComponent component;
+
+    public AddressLineNode(@NotNull AddressNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AddressLineNode.class;
     }
-
-    private AddressLineNodeComponent component;
 
     @Inject
     void createComponent(AddressLineNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>> {
 
     private RuleProvider<AddressLineNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AddressLineNode(@NotNull AddressNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
-
     private OwnershipNodeChildFactory childFactory;
+    private OwnershipNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(OwnershipNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public OwnershipNode(@NotNull OwnershipListNode<?> parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         return OwnershipNode.class;
     }
 
-    private OwnershipNodeComponent component;
+    @Inject
+    void receiveNodeProvider(OwnershipNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(OwnershipNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public OwnershipNode(@NotNull OwnershipListNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

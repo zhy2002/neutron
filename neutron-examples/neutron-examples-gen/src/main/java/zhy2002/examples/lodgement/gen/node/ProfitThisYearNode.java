@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
+    private ProfitThisYearNodeComponent component;
+
+    public ProfitThisYearNode(@NotNull SelfEmployedNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProfitThisYearNode.class;
     }
-
-    private ProfitThisYearNodeComponent component;
 
     @Inject
     void createComponent(ProfitThisYearNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
 
     private RuleProvider<ProfitThisYearNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProfitThisYearNode(@NotNull SelfEmployedNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -14,13 +14,17 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
+    public static final PropertyMetadata<Boolean> UPDATED_PROPERTY = MetadataRegistry.createProperty(ApplicationListNode.class, "updated", Boolean.class, ChangeTrackingModeEnum.Always);
+    private ApplicationListNodeComponent component;
+
+    public ApplicationListNode(@NotNull AppManagerNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ApplicationListNode.class;
     }
-
-    private ApplicationListNodeComponent component;
 
     @Inject
     void createComponent(ApplicationListNodeComponent.Builder builder) {
@@ -46,13 +50,6 @@ public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
     private RuleProvider<ApplicationListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
-
-
-    public ApplicationListNode(@NotNull AppManagerNode parent, String name) {
-        super(parent, name);
-    }
-
-    public static final PropertyMetadata<Boolean> UPDATED_PROPERTY = MetadataRegistry.createProperty(ApplicationListNode.class, "updated", Boolean.class, ChangeTrackingModeEnum.Always);
 
     @JsMethod
     public Boolean getUpdated() {

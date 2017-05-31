@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHolderNode> {
+    private SelectAccountHolderFlagNodeComponent component;
+
+    public SelectAccountHolderFlagNode(@NotNull SelectAccountHolderNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return SelectAccountHolderFlagNode.class;
     }
-
-    private SelectAccountHolderFlagNodeComponent component;
 
     @Inject
     void createComponent(SelectAccountHolderFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHold
 
     private RuleProvider<SelectAccountHolderFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public SelectAccountHolderFlagNode(@NotNull SelectAccountHolderNode parent, String name) {
-        super(parent, name);
     }
 
 }

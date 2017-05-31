@@ -89,10 +89,6 @@ public class TemplateBundle {
         return getTemplate("child_factory.ftl");
     }
 
-    Template getScopeTemplate() {
-        return getTemplate("scope.ftl");
-    }
-
     Template getModuleTemplate() {
         return getTemplate("module.ftl");
     }

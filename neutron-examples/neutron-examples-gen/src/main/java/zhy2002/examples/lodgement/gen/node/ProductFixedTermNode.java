@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
+    private ProductFixedTermNodeComponent component;
+
+    public ProductFixedTermNode(@NotNull ProductDescriptionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductFixedTermNode.class;
     }
-
-    private ProductFixedTermNodeComponent component;
 
     @Inject
     void createComponent(ProductFixedTermNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNod
 
     private RuleProvider<ProductFixedTermNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductFixedTermNode(@NotNull ProductDescriptionNode parent, String name) {
-        super(parent, name);
     }
 
 }

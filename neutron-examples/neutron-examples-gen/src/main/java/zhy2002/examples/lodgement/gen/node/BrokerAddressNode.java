@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BrokerAddressNode extends AddressNode<SubmissionNode> {
+    private BrokerAddressNodeComponent component;
+
+    public BrokerAddressNode(@NotNull SubmissionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return BrokerAddressNode.class;
     }
-
-    private BrokerAddressNodeComponent component;
 
     @Inject
     void createComponent(BrokerAddressNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class BrokerAddressNode extends AddressNode<SubmissionNode> {
 
     private RuleProvider<BrokerAddressNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public BrokerAddressNode(@NotNull SubmissionNode parent, String name) {
-        super(parent, name);
     }
 
 }

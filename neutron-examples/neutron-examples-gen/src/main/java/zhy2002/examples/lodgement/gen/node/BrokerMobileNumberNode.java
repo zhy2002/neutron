@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode> {
+    private BrokerMobileNumberNodeComponent component;
+
+    public BrokerMobileNumberNode(@NotNull SubmissionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return BrokerMobileNumberNode.class;
     }
-
-    private BrokerMobileNumberNodeComponent component;
 
     @Inject
     void createComponent(BrokerMobileNumberNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode>
 
     private RuleProvider<BrokerMobileNumberNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public BrokerMobileNumberNode(@NotNull SubmissionNode parent, String name) {
-        super(parent, name);
     }
 
 }

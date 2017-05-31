@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
-
     private CreditCardNodeChildFactory childFactory;
+    private CreditCardNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(CreditCardNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public CreditCardNode(@NotNull CreditCardListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         return CreditCardNode.class;
     }
 
-    private CreditCardNodeComponent component;
+    @Inject
+    void receiveNodeProvider(CreditCardNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(CreditCardNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public CreditCardNode(@NotNull CreditCardListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

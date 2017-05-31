@@ -9,12 +9,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNode> {
-
     private AddressRefListNodeItemFactory itemFactory;
+    private AddressRefListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(AddressRefListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public AddressRefListNode(@NotNull ApplicationNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
         return AddressRefListNode.class;
     }
 
-    private AddressRefListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(AddressRefListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(AddressRefListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
 
     private RuleProvider<AddressRefListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AddressRefListNode(@NotNull ApplicationNode parent, String name) {
-        super(parent, name);
     }
 
     @Override

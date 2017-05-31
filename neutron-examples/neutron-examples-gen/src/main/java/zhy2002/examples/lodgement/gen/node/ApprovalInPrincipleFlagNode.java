@@ -10,13 +10,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode> {
+    private ApprovalInPrincipleFlagNodeComponent component;
+
+    public ApprovalInPrincipleFlagNode(@NotNull UsageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ApprovalInPrincipleFlagNode.class;
     }
-
-    private ApprovalInPrincipleFlagNodeComponent component;
 
     @Inject
     void createComponent(ApprovalInPrincipleFlagNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode> {
 
     private RuleProvider<ApprovalInPrincipleFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ApprovalInPrincipleFlagNode(@NotNull UsageNode parent, String name) {
-        super(parent, name);
     }
 
 }

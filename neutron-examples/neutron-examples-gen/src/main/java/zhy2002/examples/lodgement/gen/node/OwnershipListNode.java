@@ -12,17 +12,17 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
-
+    public static final PropertyMetadata<BigDecimal> TOTAL_OWNERSHIP_PROPERTY = MetadataRegistry.createProperty(OwnershipListNode.class, "totalOwnership", BigDecimal.class);
     private OwnershipListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(OwnershipListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
-    }
 
 
     public OwnershipListNode(@NotNull P parent, String name) {
         super(parent, name);
+    }
+
+    @Inject
+    void receiveNodeProvider(OwnershipListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
     }
 
     @Override
@@ -40,8 +40,6 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
     public NodeRemoveEvent<OwnershipNode> createItemRemoveEvent(OwnershipNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }
-
-    public static final PropertyMetadata<BigDecimal> TOTAL_OWNERSHIP_PROPERTY = MetadataRegistry.createProperty(OwnershipListNode.class, "totalOwnership", BigDecimal.class);
 
     @JsMethod
     public BigDecimal getTotalOwnership() {

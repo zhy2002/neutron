@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode> {
+    private CurrentEmploymentNodeComponent component;
+
+    public CurrentEmploymentNode(@NotNull CurrentEmploymentListNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CurrentEmploymentNode.class;
     }
-
-    private CurrentEmploymentNodeComponent component;
 
     @Inject
     void createComponent(CurrentEmploymentNodeComponent.Builder builder) {
@@ -34,11 +37,6 @@ public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListN
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public CurrentEmploymentNode(@NotNull CurrentEmploymentListNode parent, String name) {
-        super(parent, name);
     }
 
 }

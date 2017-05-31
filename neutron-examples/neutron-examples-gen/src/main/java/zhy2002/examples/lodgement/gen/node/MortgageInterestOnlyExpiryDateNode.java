@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMortgageNode> {
+    private MortgageInterestOnlyExpiryDateNodeComponent component;
+
+    public MortgageInterestOnlyExpiryDateNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgageInterestOnlyExpiryDateNode.class;
     }
-
-    private MortgageInterestOnlyExpiryDateNodeComponent component;
 
     @Inject
     void createComponent(MortgageInterestOnlyExpiryDateNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMor
 
     private RuleProvider<MortgageInterestOnlyExpiryDateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgageInterestOnlyExpiryDateNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }

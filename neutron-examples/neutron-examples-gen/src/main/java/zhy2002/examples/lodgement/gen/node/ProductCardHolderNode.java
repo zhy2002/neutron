@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
-
     private ProductCardHolderNodeChildFactory childFactory;
+    private ProductCardHolderNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ProductCardHolderNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public ProductCardHolderNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         return ProductCardHolderNode.class;
     }
 
-    private ProductCardHolderNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ProductCardHolderNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ProductCardHolderNodeComponent.Builder builder) {
@@ -50,11 +52,6 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
 
     private RuleProvider<ProductCardHolderNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductCardHolderNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

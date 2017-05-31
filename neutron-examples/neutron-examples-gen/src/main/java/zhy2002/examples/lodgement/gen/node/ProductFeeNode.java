@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
-
     private ProductFeeNodeChildFactory childFactory;
+    private ProductFeeNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ProductFeeNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public ProductFeeNode(@NotNull ProductFeeListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
         return ProductFeeNode.class;
     }
 
-    private ProductFeeNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ProductFeeNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ProductFeeNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public ProductFeeNode(@NotNull ProductFeeListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

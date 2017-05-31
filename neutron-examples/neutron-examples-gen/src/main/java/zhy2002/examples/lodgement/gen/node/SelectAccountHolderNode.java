@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderListNode<?>> {
-
     private SelectAccountHolderNodeChildFactory childFactory;
+    private SelectAccountHolderNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(SelectAccountHolderNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public SelectAccountHolderNode(@NotNull SelectAccountHolderListNode<?> parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         return SelectAccountHolderNode.class;
     }
 
-    private SelectAccountHolderNodeComponent component;
+    @Inject
+    void receiveNodeProvider(SelectAccountHolderNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(SelectAccountHolderNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public SelectAccountHolderNode(@NotNull SelectAccountHolderListNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
+    private VehicleMarketValueNodeComponent component;
+
+    public VehicleMarketValueNode(@NotNull MotorVehicleNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return VehicleMarketValueNode.class;
     }
-
-    private VehicleMarketValueNodeComponent component;
 
     @Inject
     void createComponent(VehicleMarketValueNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
 
     private RuleProvider<VehicleMarketValueNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public VehicleMarketValueNode(@NotNull MotorVehicleNode parent, String name) {
-        super(parent, name);
     }
 
 }

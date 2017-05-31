@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ResponsibleSignificantChangeFlagNode extends YesNoOptionNode<BaseResponsibleLendNode<?>> {
+    private ResponsibleSignificantChangeFlagNodeComponent component;
+
+    public ResponsibleSignificantChangeFlagNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ResponsibleSignificantChangeFlagNode.class;
     }
-
-    private ResponsibleSignificantChangeFlagNodeComponent component;
 
     @Inject
     void createComponent(ResponsibleSignificantChangeFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ResponsibleSignificantChangeFlagNode extends YesNoOptionNode<BaseRe
 
     private RuleProvider<ResponsibleSignificantChangeFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ResponsibleSignificantChangeFlagNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -10,17 +10,15 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-
     private BaseTrustNodeChildFactory childFactory;
+
+    public BaseTrustNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(BaseTrustNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
-    }
-
-
-    public BaseTrustNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

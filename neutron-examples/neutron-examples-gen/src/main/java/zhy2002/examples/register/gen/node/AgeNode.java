@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class AgeNode extends BigDecimalUiNode<RegisterNode> {
+    private AgeNodeComponent component;
+
+    public AgeNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AgeNode.class;
     }
-
-    private AgeNodeComponent component;
 
     @Inject
     void createComponent(AgeNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
     private RuleProvider<AgeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AgeNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
+    private PropertyWeeklyRentNodeComponent component;
+
+    public PropertyWeeklyRentNode(@NotNull PropertyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyWeeklyRentNode.class;
     }
-
-    private PropertyWeeklyRentNodeComponent component;
 
     @Inject
     void createComponent(PropertyWeeklyRentNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
 
     private RuleProvider<PropertyWeeklyRentNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PropertyWeeklyRentNode(@NotNull PropertyNode parent, String name) {
-        super(parent, name);
     }
 
 }

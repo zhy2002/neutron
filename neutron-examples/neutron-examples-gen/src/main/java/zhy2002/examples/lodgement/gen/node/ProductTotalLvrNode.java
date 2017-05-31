@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductTotalLvrNode extends BasePercentageNode<ProductsNode> {
+    private ProductTotalLvrNodeComponent component;
+
+    public ProductTotalLvrNode(@NotNull ProductsNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductTotalLvrNode.class;
     }
-
-    private ProductTotalLvrNodeComponent component;
 
     @Inject
     void createComponent(ProductTotalLvrNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductTotalLvrNode extends BasePercentageNode<ProductsNode> {
 
     private RuleProvider<ProductTotalLvrNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductTotalLvrNode(@NotNull ProductsNode parent, String name) {
-        super(parent, name);
     }
 
 }

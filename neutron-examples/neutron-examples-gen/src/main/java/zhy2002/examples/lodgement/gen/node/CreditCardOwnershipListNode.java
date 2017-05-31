@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardOwnershipListNode extends OwnershipListNode<CreditCardNode> {
+    private CreditCardOwnershipListNodeComponent component;
+
+    public CreditCardOwnershipListNode(@NotNull CreditCardNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardOwnershipListNode.class;
     }
-
-    private CreditCardOwnershipListNodeComponent component;
 
     @Inject
     void createComponent(CreditCardOwnershipListNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CreditCardOwnershipListNode extends OwnershipListNode<CreditCardNod
 
     private RuleProvider<CreditCardOwnershipListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditCardOwnershipListNode(@NotNull CreditCardNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,12 +9,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
-
     private CreditHistoryListNodeItemFactory itemFactory;
+    private CreditHistoryListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(CreditHistoryListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public CreditHistoryListNode(@NotNull BasePrivacyNode<?> parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         return CreditHistoryListNode.class;
     }
 
-    private CreditHistoryListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(CreditHistoryListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(CreditHistoryListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
 
     private RuleProvider<CreditHistoryListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditHistoryListNode(@NotNull BasePrivacyNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

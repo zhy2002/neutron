@@ -10,13 +10,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHolderNode> {
+    private AccountHolderReferenceNodeComponent component;
+
+    public AccountHolderReferenceNode(@NotNull SelectAccountHolderNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AccountHolderReferenceNode.class;
     }
-
-    private AccountHolderReferenceNodeComponent component;
 
     @Inject
     void createComponent(AccountHolderReferenceNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
 
     private RuleProvider<AccountHolderReferenceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AccountHolderReferenceNode(@NotNull SelectAccountHolderNode parent, String name) {
-        super(parent, name);
     }
 
 }

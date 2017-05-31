@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode> {
+    private MovedToPreviousAddressNodeComponent component;
+
+    public MovedToPreviousAddressNode(@NotNull PersonContactNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MovedToPreviousAddressNode.class;
     }
-
-    private MovedToPreviousAddressNodeComponent component;
 
     @Inject
     void createComponent(MovedToPreviousAddressNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MovedToPreviousAddressNode extends MonthYearNode<PersonContactNode>
 
     private RuleProvider<MovedToPreviousAddressNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MovedToPreviousAddressNode(@NotNull PersonContactNode parent, String name) {
-        super(parent, name);
     }
 
 }

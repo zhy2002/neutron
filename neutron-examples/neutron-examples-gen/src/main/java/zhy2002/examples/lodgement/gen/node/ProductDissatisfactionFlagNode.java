@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescriptionNode> {
+    private ProductDissatisfactionFlagNodeComponent component;
+
+    public ProductDissatisfactionFlagNode(@NotNull ProductDescriptionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductDissatisfactionFlagNode.class;
     }
-
-    private ProductDissatisfactionFlagNodeComponent component;
 
     @Inject
     void createComponent(ProductDissatisfactionFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescrip
 
     private RuleProvider<ProductDissatisfactionFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductDissatisfactionFlagNode(@NotNull ProductDescriptionNode parent, String name) {
-        super(parent, name);
     }
 
 }

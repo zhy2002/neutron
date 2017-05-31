@@ -9,13 +9,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
+    private OwnInvestmentPropertyNodeComponent component;
+
+    public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OwnInvestmentPropertyNode.class;
     }
-
-    private OwnInvestmentPropertyNodeComponent component;
 
     @Inject
     void createComponent(OwnInvestmentPropertyNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
 
     private RuleProvider<OwnInvestmentPropertyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
 }

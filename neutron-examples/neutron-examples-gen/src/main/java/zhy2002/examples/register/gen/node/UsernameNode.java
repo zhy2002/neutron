@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class UsernameNode extends StringUiNode<RegisterNode> {
+    private UsernameNodeComponent component;
+
+    public UsernameNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return UsernameNode.class;
     }
-
-    private UsernameNodeComponent component;
 
     @Inject
     void createComponent(UsernameNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
 
     private RuleProvider<UsernameNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public UsernameNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
 }

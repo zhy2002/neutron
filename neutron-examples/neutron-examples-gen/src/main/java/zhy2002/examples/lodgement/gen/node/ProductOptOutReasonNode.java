@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
+    private ProductOptOutReasonNodeComponent component;
+
+    public ProductOptOutReasonNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductOptOutReasonNode.class;
     }
-
-    private ProductOptOutReasonNodeComponent component;
 
     @Inject
     void createComponent(ProductOptOutReasonNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
 
     private RuleProvider<ProductOptOutReasonNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductOptOutReasonNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

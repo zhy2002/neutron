@@ -10,17 +10,15 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
-
     private EmployedNodeChildFactory childFactory;
+
+    public EmployedNode(@NotNull EmploymentNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(EmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
-    }
-
-
-    public EmployedNode(@NotNull EmploymentNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

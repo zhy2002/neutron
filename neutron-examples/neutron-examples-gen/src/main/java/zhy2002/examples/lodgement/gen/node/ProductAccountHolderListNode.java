@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductAccountHolderListNode extends SelectAccountHolderListNode<ProductDescriptionNode> {
+    private ProductAccountHolderListNodeComponent component;
+
+    public ProductAccountHolderListNode(@NotNull ProductDescriptionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductAccountHolderListNode.class;
     }
-
-    private ProductAccountHolderListNodeComponent component;
 
     @Inject
     void createComponent(ProductAccountHolderListNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
 
     private RuleProvider<ProductAccountHolderListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductAccountHolderListNode(@NotNull ProductDescriptionNode parent, String name) {
-        super(parent, name);
     }
 
 }

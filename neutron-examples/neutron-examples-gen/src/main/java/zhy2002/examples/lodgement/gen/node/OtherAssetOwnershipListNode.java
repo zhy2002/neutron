@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherAssetOwnershipListNode extends OwnershipListNode<OtherAssetNode> {
+    private OtherAssetOwnershipListNodeComponent component;
+
+    public OtherAssetOwnershipListNode(@NotNull OtherAssetNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherAssetOwnershipListNode.class;
     }
-
-    private OtherAssetOwnershipListNodeComponent component;
 
     @Inject
     void createComponent(OtherAssetOwnershipListNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherAssetOwnershipListNode extends OwnershipListNode<OtherAssetNod
 
     private RuleProvider<OtherAssetOwnershipListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherAssetOwnershipListNode(@NotNull OtherAssetNode parent, String name) {
-        super(parent, name);
     }
 
 }

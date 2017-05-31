@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductTotalLoanAmountNode extends BaseCurrencyNode<ProductsNode> {
+    private ProductTotalLoanAmountNodeComponent component;
+
+    public ProductTotalLoanAmountNode(@NotNull ProductsNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductTotalLoanAmountNode.class;
     }
-
-    private ProductTotalLoanAmountNodeComponent component;
 
     @Inject
     void createComponent(ProductTotalLoanAmountNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductTotalLoanAmountNode extends BaseCurrencyNode<ProductsNode> {
 
     private RuleProvider<ProductTotalLoanAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductTotalLoanAmountNode(@NotNull ProductsNode parent, String name) {
-        super(parent, name);
     }
 
 }

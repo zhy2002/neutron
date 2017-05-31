@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
+    private CreditCardTypeNodeComponent component;
+
+    public CreditCardTypeNode(@NotNull CreditCardNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardTypeNode.class;
     }
-
-    private CreditCardTypeNodeComponent component;
 
     @Inject
     void createComponent(CreditCardTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
 
     private RuleProvider<CreditCardTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditCardTypeNode(@NotNull CreditCardNode parent, String name) {
-        super(parent, name);
     }
 
 }

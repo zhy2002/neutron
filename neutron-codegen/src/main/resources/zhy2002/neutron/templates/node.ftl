@@ -44,7 +44,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     <#if parentTypeName??><${parentTypeName}></#if>
 </#if>
 </#compress> {
+<#if !abstractNode>
+    @Override
+    public final Class<?> getConcreteClass() {
+    return ${typeName}.class;
+    }
 
+</#if>
 <#if children?? && children?size gt 0 || itemTypeName??>
     private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
 
@@ -55,11 +61,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 
 </#if>
 <#if !abstractNode>
-    @Override
-    public final Class<?> getConcreteClass() {
-        return ${typeName}.class;
-    }
-
     private ${typeName}Component component;
 
     @Inject

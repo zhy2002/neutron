@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
-
     private CompanyGeneralNodeChildFactory childFactory;
+    private CompanyGeneralNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(CompanyGeneralNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public CompanyGeneralNode(@NotNull CompanyNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
         return CompanyGeneralNode.class;
     }
 
-    private CompanyGeneralNodeComponent component;
+    @Inject
+    void receiveNodeProvider(CompanyGeneralNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(CompanyGeneralNodeComponent.Builder builder) {
@@ -50,11 +52,6 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
 
     private RuleProvider<CompanyGeneralNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CompanyGeneralNode(@NotNull CompanyNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

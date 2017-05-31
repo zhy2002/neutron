@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiabilityNode> {
+    private OtherLiabilityBreakCostNodeComponent component;
+
+    public OtherLiabilityBreakCostNode(@NotNull OtherLiabilityNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherLiabilityBreakCostNode.class;
     }
-
-    private OtherLiabilityBreakCostNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityBreakCostNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiability
 
     private RuleProvider<OtherLiabilityBreakCostNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherLiabilityBreakCostNode(@NotNull OtherLiabilityNode parent, String name) {
-        super(parent, name);
     }
 
 }

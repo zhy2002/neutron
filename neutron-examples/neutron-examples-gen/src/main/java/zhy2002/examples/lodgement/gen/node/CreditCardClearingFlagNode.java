@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode> {
+    private CreditCardClearingFlagNodeComponent component;
+
+    public CreditCardClearingFlagNode(@NotNull CreditCardNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCardClearingFlagNode.class;
     }
-
-    private CreditCardClearingFlagNodeComponent component;
 
     @Inject
     void createComponent(CreditCardClearingFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode> {
 
     private RuleProvider<CreditCardClearingFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditCardClearingFlagNode(@NotNull CreditCardNode parent, String name) {
-        super(parent, name);
     }
 
 }

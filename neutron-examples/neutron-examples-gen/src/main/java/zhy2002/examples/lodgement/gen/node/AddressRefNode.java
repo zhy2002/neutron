@@ -10,13 +10,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
+    private AddressRefNodeComponent component;
+
+    public AddressRefNode(@NotNull AddressRefListNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AddressRefNode.class;
     }
-
-    private AddressRefNodeComponent component;
 
     @Inject
     void createComponent(AddressRefNodeComponent.Builder builder) {
@@ -35,11 +38,6 @@ public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public AddressRefNode(@NotNull AddressRefListNode parent, String name) {
-        super(parent, name);
     }
 
 }

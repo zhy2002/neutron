@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode> {
+    private ProductCreditCardTypeNodeComponent component;
+
+    public ProductCreditCardTypeNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductCreditCardTypeNode.class;
     }
-
-    private ProductCreditCardTypeNodeComponent component;
 
     @Inject
     void createComponent(ProductCreditCardTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode>
 
     private RuleProvider<ProductCreditCardTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductCreditCardTypeNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

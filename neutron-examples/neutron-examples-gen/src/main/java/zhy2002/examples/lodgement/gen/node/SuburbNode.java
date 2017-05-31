@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SuburbNode extends StringUiNode<AddressNode<?>> {
+    private SuburbNodeComponent component;
+
+    public SuburbNode(@NotNull AddressNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return SuburbNode.class;
     }
-
-    private SuburbNodeComponent component;
 
     @Inject
     void createComponent(SuburbNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
 
     private RuleProvider<SuburbNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public SuburbNode(@NotNull AddressNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

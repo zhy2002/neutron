@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode> {
-
     private ExistingMortgageNodeChildFactory childFactory;
+    private ExistingMortgageNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ExistingMortgageNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public ExistingMortgageNode(@NotNull ExistingMortgageListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
         return ExistingMortgageNode.class;
     }
 
-    private ExistingMortgageNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ExistingMortgageNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ExistingMortgageNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public ExistingMortgageNode(@NotNull ExistingMortgageListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

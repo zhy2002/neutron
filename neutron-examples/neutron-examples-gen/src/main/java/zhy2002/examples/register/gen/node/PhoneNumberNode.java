@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PhoneNumberNode extends PhoneInfoFieldNode {
+    private PhoneNumberNodeComponent component;
+
+    public PhoneNumberNode(@NotNull PhoneInfoNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PhoneNumberNode.class;
     }
-
-    private PhoneNumberNodeComponent component;
 
     @Inject
     void createComponent(PhoneNumberNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class PhoneNumberNode extends PhoneInfoFieldNode {
 
     private RuleProvider<PhoneNumberNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PhoneNumberNode(@NotNull PhoneInfoNode parent, String name) {
-        super(parent, name);
     }
 
 }

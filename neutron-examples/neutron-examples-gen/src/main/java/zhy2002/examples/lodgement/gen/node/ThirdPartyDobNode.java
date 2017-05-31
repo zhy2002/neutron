@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
+    private ThirdPartyDobNodeComponent component;
+
+    public ThirdPartyDobNode(@NotNull RelatedPartyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ThirdPartyDobNode.class;
     }
-
-    private ThirdPartyDobNodeComponent component;
 
     @Inject
     void createComponent(ThirdPartyDobNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
 
     private RuleProvider<ThirdPartyDobNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ThirdPartyDobNode(@NotNull RelatedPartyNode parent, String name) {
-        super(parent, name);
     }
 
 }

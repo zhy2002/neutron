@@ -7,17 +7,15 @@ import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
-
     private SelectAccountHolderListNodeItemFactory itemFactory;
+
+    public SelectAccountHolderListNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(SelectAccountHolderListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
-    }
-
-
-    public SelectAccountHolderListNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @Override

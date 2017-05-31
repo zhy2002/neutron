@@ -9,12 +9,11 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
-
     private ErrorListNodeItemFactory itemFactory;
+    private ErrorListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public ErrorListNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
         return ErrorListNode.class;
     }
 
-    private ErrorListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ErrorListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
 
     private RuleProvider<ErrorListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ErrorListNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
     @Override

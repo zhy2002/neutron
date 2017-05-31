@@ -10,17 +10,15 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-
     private MonthYearNodeChildFactory childFactory;
+
+    public MonthYearNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(MonthYearNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
-    }
-
-
-    public MonthYearNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

@@ -10,13 +10,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
+    private OwnedOutrightFlagNodeComponent component;
+
+    public OwnedOutrightFlagNode(@NotNull UsageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OwnedOutrightFlagNode.class;
     }
-
-    private OwnedOutrightFlagNodeComponent component;
 
     @Inject
     void createComponent(OwnedOutrightFlagNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
 
     private RuleProvider<OwnedOutrightFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OwnedOutrightFlagNode(@NotNull UsageNode parent, String name) {
-        super(parent, name);
     }
 
 }

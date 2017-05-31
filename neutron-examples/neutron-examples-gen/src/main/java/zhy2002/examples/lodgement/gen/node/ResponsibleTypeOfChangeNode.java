@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLendNode<?>> {
+    private ResponsibleTypeOfChangeNodeComponent component;
+
+    public ResponsibleTypeOfChangeNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ResponsibleTypeOfChangeNode.class;
     }
-
-    private ResponsibleTypeOfChangeNodeComponent component;
 
     @Inject
     void createComponent(ResponsibleTypeOfChangeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLen
 
     private RuleProvider<ResponsibleTypeOfChangeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ResponsibleTypeOfChangeNode(@NotNull BaseResponsibleLendNode<?> parent, String name) {
-        super(parent, name);
     }
 
 }

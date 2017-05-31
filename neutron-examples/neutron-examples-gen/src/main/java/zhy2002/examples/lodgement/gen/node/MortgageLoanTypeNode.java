@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
+    private MortgageLoanTypeNodeComponent component;
+
+    public MortgageLoanTypeNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgageLoanTypeNode.class;
     }
-
-    private MortgageLoanTypeNodeComponent component;
 
     @Inject
     void createComponent(MortgageLoanTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
 
     private RuleProvider<MortgageLoanTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgageLoanTypeNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }

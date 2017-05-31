@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgqageUnpaidBalanceNode extends BaseCurrencyNode<ExistingMortgageNode> {
+    private MortgqageUnpaidBalanceNodeComponent component;
+
+    public MortgqageUnpaidBalanceNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgqageUnpaidBalanceNode.class;
     }
-
-    private MortgqageUnpaidBalanceNodeComponent component;
 
     @Inject
     void createComponent(MortgqageUnpaidBalanceNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgqageUnpaidBalanceNode extends BaseCurrencyNode<ExistingMortgag
 
     private RuleProvider<MortgqageUnpaidBalanceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgqageUnpaidBalanceNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CountryNode extends BaseCountryNode<AddressNode<?>> {
+    private CountryNodeComponent component;
+
+    public CountryNode(@NotNull AddressNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CountryNode.class;
     }
-
-    private CountryNodeComponent component;
 
     @Inject
     void createComponent(CountryNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CountryNode extends BaseCountryNode<AddressNode<?>> {
 
     private RuleProvider<CountryNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CountryNode(@NotNull AddressNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

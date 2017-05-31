@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
+    private ContractPriceNodeComponent component;
+
+    public ContractPriceNode(@NotNull PropertyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ContractPriceNode.class;
     }
-
-    private ContractPriceNodeComponent component;
 
     @Inject
     void createComponent(ContractPriceNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
 
     private RuleProvider<ContractPriceNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ContractPriceNode(@NotNull PropertyNode parent, String name) {
-        super(parent, name);
     }
 
 }

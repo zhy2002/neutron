@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageBorrowerRateNode extends BasePercentageNode<ExistingMortgageNode> {
+    private MortgageBorrowerRateNodeComponent component;
+
+    public MortgageBorrowerRateNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgageBorrowerRateNode.class;
     }
-
-    private MortgageBorrowerRateNodeComponent component;
 
     @Inject
     void createComponent(MortgageBorrowerRateNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgageBorrowerRateNode extends BasePercentageNode<ExistingMortgag
 
     private RuleProvider<MortgageBorrowerRateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgageBorrowerRateNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }

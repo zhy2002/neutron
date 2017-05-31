@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
+    private CreditCheckFlagNodeComponent component;
+
+    public CreditCheckFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CreditCheckFlagNode.class;
     }
-
-    private CreditCheckFlagNodeComponent component;
 
     @Inject
     void createComponent(CreditCheckFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
 
     private RuleProvider<CreditCheckFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditCheckFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
-        super(parent, name);
     }
 
 }

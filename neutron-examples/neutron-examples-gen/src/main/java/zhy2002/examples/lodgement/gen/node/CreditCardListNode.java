@@ -9,12 +9,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
-
     private CreditCardListNodeItemFactory itemFactory;
+    private CreditCardListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(CreditCardListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public CreditCardListNode(@NotNull LiabilitiesNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
         return CreditCardListNode.class;
     }
 
-    private CreditCardListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(CreditCardListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(CreditCardListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
 
     private RuleProvider<CreditCardListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CreditCardListNode(@NotNull LiabilitiesNode parent, String name) {
-        super(parent, name);
     }
 
     @Override

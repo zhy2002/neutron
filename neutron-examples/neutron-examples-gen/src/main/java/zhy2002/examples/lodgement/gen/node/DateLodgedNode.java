@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class DateLodgedNode extends StringUiNode<ApplicationNode> {
+    private DateLodgedNodeComponent component;
+
+    public DateLodgedNode(@NotNull ApplicationNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return DateLodgedNode.class;
     }
-
-    private DateLodgedNodeComponent component;
 
     @Inject
     void createComponent(DateLodgedNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class DateLodgedNode extends StringUiNode<ApplicationNode> {
 
     private RuleProvider<DateLodgedNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public DateLodgedNode(@NotNull ApplicationNode parent, String name) {
-        super(parent, name);
     }
 
 }

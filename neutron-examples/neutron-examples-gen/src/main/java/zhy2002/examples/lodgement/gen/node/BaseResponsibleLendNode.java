@@ -10,17 +10,15 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-
     private BaseResponsibleLendNodeChildFactory childFactory;
+
+    public BaseResponsibleLendNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(BaseResponsibleLendNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
-    }
-
-
-    public BaseResponsibleLendNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

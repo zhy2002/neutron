@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class CountryCodeNode extends PhoneInfoFieldNode {
+    private CountryCodeNodeComponent component;
+
+    public CountryCodeNode(@NotNull PhoneInfoNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CountryCodeNode.class;
     }
-
-    private CountryCodeNodeComponent component;
 
     @Inject
     void createComponent(CountryCodeNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class CountryCodeNode extends PhoneInfoFieldNode {
 
     private RuleProvider<CountryCodeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CountryCodeNode(@NotNull PhoneInfoNode parent, String name) {
-        super(parent, name);
     }
 
 }

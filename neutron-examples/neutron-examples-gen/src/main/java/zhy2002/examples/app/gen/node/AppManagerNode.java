@@ -13,12 +13,11 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
-
     private AppManagerNodeChildFactory childFactory;
+    private AppManagerNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(AppManagerNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public AppManagerNode(@NotNull LodgementNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -26,7 +25,10 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
         return AppManagerNode.class;
     }
 
-    private AppManagerNodeComponent component;
+    @Inject
+    void receiveNodeProvider(AppManagerNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(AppManagerNodeComponent.Builder builder) {
@@ -51,11 +53,6 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
     private RuleProvider<AppManagerNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AppManagerNode(@NotNull LodgementNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

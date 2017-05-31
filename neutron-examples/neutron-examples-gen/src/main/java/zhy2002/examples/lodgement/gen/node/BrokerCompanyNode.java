@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BrokerCompanyNode extends StringUiNode<SubmissionNode> {
+    private BrokerCompanyNodeComponent component;
+
+    public BrokerCompanyNode(@NotNull SubmissionNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return BrokerCompanyNode.class;
     }
-
-    private BrokerCompanyNodeComponent component;
 
     @Inject
     void createComponent(BrokerCompanyNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class BrokerCompanyNode extends StringUiNode<SubmissionNode> {
 
     private RuleProvider<BrokerCompanyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public BrokerCompanyNode(@NotNull SubmissionNode parent, String name) {
-        super(parent, name);
     }
 
 }

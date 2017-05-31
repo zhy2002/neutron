@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductRepaymentFrequencyNode extends StringUiNode<ProductFeaturesNode> {
+    private ProductRepaymentFrequencyNodeComponent component;
+
+    public ProductRepaymentFrequencyNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductRepaymentFrequencyNode.class;
     }
-
-    private ProductRepaymentFrequencyNodeComponent component;
 
     @Inject
     void createComponent(ProductRepaymentFrequencyNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductRepaymentFrequencyNode extends StringUiNode<ProductFeaturesN
 
     private RuleProvider<ProductRepaymentFrequencyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductRepaymentFrequencyNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

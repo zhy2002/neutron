@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
+    private BusinessTypeNodeComponent component;
+
+    public BusinessTypeNode(@NotNull SelfEmployedNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return BusinessTypeNode.class;
     }
-
-    private BusinessTypeNodeComponent component;
 
     @Inject
     void createComponent(BusinessTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
 
     private RuleProvider<BusinessTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public BusinessTypeNode(@NotNull SelfEmployedNode parent, String name) {
-        super(parent, name);
     }
 
 }

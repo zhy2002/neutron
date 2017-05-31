@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
+    private AccessOtherDescriptionNodeComponent component;
+
+    public AccessOtherDescriptionNode(@NotNull AccessNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AccessOtherDescriptionNode.class;
     }
-
-    private AccessOtherDescriptionNodeComponent component;
 
     @Inject
     void createComponent(AccessOtherDescriptionNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
 
     private RuleProvider<AccessOtherDescriptionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AccessOtherDescriptionNode(@NotNull AccessNode parent, String name) {
-        super(parent, name);
     }
 
 }

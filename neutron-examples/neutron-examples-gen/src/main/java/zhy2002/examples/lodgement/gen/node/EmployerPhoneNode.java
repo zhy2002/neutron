@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class EmployerPhoneNode extends TelephoneNode<EmployedNode> {
+    private EmployerPhoneNodeComponent component;
+
+    public EmployerPhoneNode(@NotNull EmployedNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return EmployerPhoneNode.class;
     }
-
-    private EmployerPhoneNodeComponent component;
 
     @Inject
     void createComponent(EmployerPhoneNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class EmployerPhoneNode extends TelephoneNode<EmployedNode> {
 
     private RuleProvider<EmployerPhoneNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public EmployerPhoneNode(@NotNull EmployedNode parent, String name) {
-        super(parent, name);
     }
 
 }

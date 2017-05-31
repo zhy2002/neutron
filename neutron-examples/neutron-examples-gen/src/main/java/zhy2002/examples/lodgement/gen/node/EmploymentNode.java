@@ -13,20 +13,18 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-
+    public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
     private EmploymentNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(EmploymentNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
 
 
     public EmploymentNode(@NotNull P parent, String name) {
         super(parent, name);
     }
 
-    public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
+    @Inject
+    void receiveNodeProvider(EmploymentNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @JsMethod
     public Boolean getCurrentRecord() {

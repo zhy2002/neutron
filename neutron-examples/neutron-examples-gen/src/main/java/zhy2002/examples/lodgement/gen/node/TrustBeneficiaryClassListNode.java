@@ -9,12 +9,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
-
     private TrustBeneficiaryClassListNodeItemFactory itemFactory;
+    private TrustBeneficiaryClassListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(TrustBeneficiaryClassListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public TrustBeneficiaryClassListNode(@NotNull BaseTrustNode<?> parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         return TrustBeneficiaryClassListNode.class;
     }
 
-    private TrustBeneficiaryClassListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(TrustBeneficiaryClassListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(TrustBeneficiaryClassListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
 
     private RuleProvider<TrustBeneficiaryClassListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public TrustBeneficiaryClassListNode(@NotNull BaseTrustNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

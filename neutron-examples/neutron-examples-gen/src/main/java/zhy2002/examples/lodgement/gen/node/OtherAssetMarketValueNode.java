@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> {
+    private OtherAssetMarketValueNodeComponent component;
+
+    public OtherAssetMarketValueNode(@NotNull OtherAssetNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherAssetMarketValueNode.class;
     }
-
-    private OtherAssetMarketValueNodeComponent component;
 
     @Inject
     void createComponent(OtherAssetMarketValueNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> 
 
     private RuleProvider<OtherAssetMarketValueNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherAssetMarketValueNode(@NotNull OtherAssetNode parent, String name) {
-        super(parent, name);
     }
 
 }

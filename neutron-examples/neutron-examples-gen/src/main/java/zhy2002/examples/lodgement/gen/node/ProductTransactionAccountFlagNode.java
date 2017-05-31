@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeaturesNode> {
+    private ProductTransactionAccountFlagNodeComponent component;
+
+    public ProductTransactionAccountFlagNode(@NotNull ProductFeaturesNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ProductTransactionAccountFlagNode.class;
     }
-
-    private ProductTransactionAccountFlagNodeComponent component;
 
     @Inject
     void createComponent(ProductTransactionAccountFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeat
 
     private RuleProvider<ProductTransactionAccountFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ProductTransactionAccountFlagNode(@NotNull ProductFeaturesNode parent, String name) {
-        super(parent, name);
     }
 
 }

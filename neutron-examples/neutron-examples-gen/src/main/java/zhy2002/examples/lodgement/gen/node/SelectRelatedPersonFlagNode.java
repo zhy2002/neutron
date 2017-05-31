@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPersonNode> {
+    private SelectRelatedPersonFlagNodeComponent component;
+
+    public SelectRelatedPersonFlagNode(@NotNull SelectRelatedPersonNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return SelectRelatedPersonFlagNode.class;
     }
-
-    private SelectRelatedPersonFlagNodeComponent component;
 
     @Inject
     void createComponent(SelectRelatedPersonFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPers
 
     private RuleProvider<SelectRelatedPersonFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public SelectRelatedPersonFlagNode(@NotNull SelectRelatedPersonNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class AreaCodeNode extends PhoneInfoFieldNode {
+    private AreaCodeNodeComponent component;
+
+    public AreaCodeNode(@NotNull PhoneInfoNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AreaCodeNode.class;
     }
-
-    private AreaCodeNodeComponent component;
 
     @Inject
     void createComponent(AreaCodeNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class AreaCodeNode extends PhoneInfoFieldNode {
 
     private RuleProvider<AreaCodeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AreaCodeNode(@NotNull PhoneInfoNode parent, String name) {
-        super(parent, name);
     }
 
 }

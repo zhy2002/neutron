@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNode<CompanyGeneralNode> {
+    private CompanySelectBeneficialOwnerNodeComponent component;
+
+    public CompanySelectBeneficialOwnerNode(@NotNull CompanyGeneralNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CompanySelectBeneficialOwnerNode.class;
     }
-
-    private CompanySelectBeneficialOwnerNodeComponent component;
 
     @Inject
     void createComponent(CompanySelectBeneficialOwnerNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNod
 
     private RuleProvider<CompanySelectBeneficialOwnerNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public CompanySelectBeneficialOwnerNode(@NotNull CompanyGeneralNode parent, String name) {
-        super(parent, name);
     }
 
 }

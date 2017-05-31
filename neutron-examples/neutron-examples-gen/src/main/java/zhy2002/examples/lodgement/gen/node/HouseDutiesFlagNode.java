@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
+    private HouseDutiesFlagNodeComponent component;
+
+    public HouseDutiesFlagNode(@NotNull UnemployedNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return HouseDutiesFlagNode.class;
     }
-
-    private HouseDutiesFlagNodeComponent component;
 
     @Inject
     void createComponent(HouseDutiesFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
 
     private RuleProvider<HouseDutiesFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public HouseDutiesFlagNode(@NotNull UnemployedNode parent, String name) {
-        super(parent, name);
     }
 
 }

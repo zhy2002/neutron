@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustBeneficialOwnerListNode extends SelectRelatedPersonListNode<BaseTrustNode<?>> {
+    private TrustBeneficialOwnerListNodeComponent component;
+
+    public TrustBeneficialOwnerListNode(@NotNull BaseTrustNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return TrustBeneficialOwnerListNode.class;
     }
-
-    private TrustBeneficialOwnerListNodeComponent component;
 
     @Inject
     void createComponent(TrustBeneficialOwnerListNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class TrustBeneficialOwnerListNode extends SelectRelatedPersonListNode<Ba
 
     private RuleProvider<TrustBeneficialOwnerListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public TrustBeneficialOwnerListNode(@NotNull BaseTrustNode<?> parent, String name) {
-        super(parent, name);
     }
 
 }

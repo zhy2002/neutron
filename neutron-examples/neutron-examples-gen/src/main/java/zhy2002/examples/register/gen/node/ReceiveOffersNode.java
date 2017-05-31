@@ -9,13 +9,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
+    private ReceiveOffersNodeComponent component;
+
+    public ReceiveOffersNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ReceiveOffersNode.class;
     }
-
-    private ReceiveOffersNodeComponent component;
 
     @Inject
     void createComponent(ReceiveOffersNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
     private RuleProvider<ReceiveOffersNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ReceiveOffersNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
     }
 
 }

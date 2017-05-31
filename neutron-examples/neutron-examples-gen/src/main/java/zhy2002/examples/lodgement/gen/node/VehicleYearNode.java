@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
+    private VehicleYearNodeComponent component;
+
+    public VehicleYearNode(@NotNull MotorVehicleNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return VehicleYearNode.class;
     }
-
-    private VehicleYearNodeComponent component;
 
     @Inject
     void createComponent(VehicleYearNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
 
     private RuleProvider<VehicleYearNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public VehicleYearNode(@NotNull MotorVehicleNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -7,17 +7,15 @@ import javax.validation.constraints.NotNull;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OtherIncomeNode> {
-
     private BaseOtherIncomeListNodeItemFactory itemFactory;
+
+    public BaseOtherIncomeListNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(BaseOtherIncomeListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
-    }
-
-
-    public BaseOtherIncomeListNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @Override

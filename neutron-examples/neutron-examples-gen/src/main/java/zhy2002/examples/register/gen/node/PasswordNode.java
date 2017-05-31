@@ -14,13 +14,17 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PasswordNode extends StringUiNode<RegisterNode> {
+    public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);
+    private PasswordNodeComponent component;
+
+    public PasswordNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PasswordNode.class;
     }
-
-    private PasswordNodeComponent component;
 
     @Inject
     void createComponent(PasswordNodeComponent.Builder builder) {
@@ -46,13 +50,6 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     private RuleProvider<PasswordNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
-
-
-    public PasswordNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);
 
     @JsMethod
     public String getMessage() {

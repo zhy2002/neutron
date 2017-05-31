@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustTypeNode extends StringUiNode<BaseTrustNode<?>> {
+    private TrustTypeNodeComponent component;
+
+    public TrustTypeNode(@NotNull BaseTrustNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return TrustTypeNode.class;
     }
-
-    private TrustTypeNodeComponent component;
 
     @Inject
     void createComponent(TrustTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class TrustTypeNode extends StringUiNode<BaseTrustNode<?>> {
 
     private RuleProvider<TrustTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public TrustTypeNode(@NotNull BaseTrustNode<?> parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
+    private EstimatedMarketValueNodeComponent component;
+
+    public EstimatedMarketValueNode(@NotNull PropertyNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return EstimatedMarketValueNode.class;
     }
-
-    private EstimatedMarketValueNodeComponent component;
 
     @Inject
     void createComponent(EstimatedMarketValueNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
 
     private RuleProvider<EstimatedMarketValueNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public EstimatedMarketValueNode(@NotNull PropertyNode parent, String name) {
-        super(parent, name);
     }
 
 }

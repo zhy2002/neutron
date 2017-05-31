@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
-
     private ExpenseNodeChildFactory childFactory;
+    private ExpenseNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ExpenseNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public ExpenseNode(@NotNull ExpenseListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         return ExpenseNode.class;
     }
 
-    private ExpenseNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ExpenseNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ExpenseNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public ExpenseNode(@NotNull ExpenseListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

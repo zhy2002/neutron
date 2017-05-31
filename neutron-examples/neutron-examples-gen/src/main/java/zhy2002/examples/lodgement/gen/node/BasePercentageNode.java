@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BasePercentageNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P> {
 
+    public static final PropertyMetadata<UnitSymbol> SUFFIX_SYMBOL_PROPERTY = MetadataRegistry.createProperty(BasePercentageNode.class, "suffixSymbol", UnitSymbol.class, ApplicationNodeConstants.PERCENTAGE);
 
     public BasePercentageNode(@NotNull P parent, String name) {
         super(parent, name);
     }
-
-    public static final PropertyMetadata<UnitSymbol> SUFFIX_SYMBOL_PROPERTY = MetadataRegistry.createProperty(BasePercentageNode.class, "suffixSymbol", UnitSymbol.class, ApplicationNodeConstants.PERCENTAGE);
 
     @JsMethod
     public UnitSymbol getSuffixSymbol() {

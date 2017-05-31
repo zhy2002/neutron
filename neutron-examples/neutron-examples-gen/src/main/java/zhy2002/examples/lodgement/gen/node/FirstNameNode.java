@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class FirstNameNode extends StringUiNode<PersonGeneralNode> {
+    private FirstNameNodeComponent component;
+
+    public FirstNameNode(@NotNull PersonGeneralNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return FirstNameNode.class;
     }
-
-    private FirstNameNodeComponent component;
 
     @Inject
     void createComponent(FirstNameNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class FirstNameNode extends StringUiNode<PersonGeneralNode> {
 
     private RuleProvider<FirstNameNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public FirstNameNode(@NotNull PersonGeneralNode parent, String name) {
-        super(parent, name);
     }
 
 }

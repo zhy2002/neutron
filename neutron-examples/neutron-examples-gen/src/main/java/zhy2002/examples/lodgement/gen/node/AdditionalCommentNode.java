@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
+    private AdditionalCommentNodeComponent component;
+
+    public AdditionalCommentNode(@NotNull AdditionalNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AdditionalCommentNode.class;
     }
-
-    private AdditionalCommentNodeComponent component;
 
     @Inject
     void createComponent(AdditionalCommentNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
 
     private RuleProvider<AdditionalCommentNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AdditionalCommentNode(@NotNull AdditionalNode parent, String name) {
-        super(parent, name);
     }
 
 }

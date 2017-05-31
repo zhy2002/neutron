@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ExpenseMonthlyRepaymentNode extends BaseCurrencyNode<ExpenseNode> {
+    private ExpenseMonthlyRepaymentNodeComponent component;
+
+    public ExpenseMonthlyRepaymentNode(@NotNull ExpenseNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return ExpenseMonthlyRepaymentNode.class;
     }
-
-    private ExpenseMonthlyRepaymentNodeComponent component;
 
     @Inject
     void createComponent(ExpenseMonthlyRepaymentNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class ExpenseMonthlyRepaymentNode extends BaseCurrencyNode<ExpenseNode> {
 
     private RuleProvider<ExpenseMonthlyRepaymentNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ExpenseMonthlyRepaymentNode(@NotNull ExpenseNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabilityNode> {
+    private OtherLiabilityLimitAmountNodeComponent component;
+
+    public OtherLiabilityLimitAmountNode(@NotNull OtherLiabilityNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherLiabilityLimitAmountNode.class;
     }
-
-    private OtherLiabilityLimitAmountNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityLimitAmountNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherLiabilityLimitAmountNode extends BaseCurrencyNode<OtherLiabili
 
     private RuleProvider<OtherLiabilityLimitAmountNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherLiabilityLimitAmountNode(@NotNull OtherLiabilityNode parent, String name) {
-        super(parent, name);
     }
 
 }

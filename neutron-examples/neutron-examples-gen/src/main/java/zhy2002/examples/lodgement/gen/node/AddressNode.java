@@ -10,17 +10,15 @@ import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-
     private AddressNodeChildFactory childFactory;
+
+    public AddressNode(@NotNull P parent, String name) {
+        super(parent, name);
+    }
 
     @Inject
     void receiveNodeProvider(AddressNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
-    }
-
-
-    public AddressNode(@NotNull P parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

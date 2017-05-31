@@ -10,13 +10,16 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
+    private PropertyStateNodeComponent component;
+
+    public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PropertyStateNode.class;
     }
-
-    private PropertyStateNodeComponent component;
 
     @Inject
     void createComponent(PropertyStateNodeComponent.Builder builder) {
@@ -41,11 +44,6 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
 
     private RuleProvider<PropertyStateNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
-        super(parent, name);
     }
 
 }

@@ -14,13 +14,17 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class EmailNode extends StringUiNode<RegisterNode> {
+    public static final PropertyMetadata<String> TRIGGERED_BY_PROPERTY = MetadataRegistry.createProperty(EmailNode.class, "triggeredBy", String.class);
+    private EmailNodeComponent component;
+
+    public EmailNode(@NotNull RegisterNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return EmailNode.class;
     }
-
-    private EmailNodeComponent component;
 
     @Inject
     void createComponent(EmailNodeComponent.Builder builder) {
@@ -46,13 +50,6 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     private RuleProvider<EmailNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
-
-
-    public EmailNode(@NotNull RegisterNode parent, String name) {
-        super(parent, name);
-    }
-
-    public static final PropertyMetadata<String> TRIGGERED_BY_PROPERTY = MetadataRegistry.createProperty(EmailNode.class, "triggeredBy", String.class);
 
     @JsMethod
     public String getTriggeredBy() {

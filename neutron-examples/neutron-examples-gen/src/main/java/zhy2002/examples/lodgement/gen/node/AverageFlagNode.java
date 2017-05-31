@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
+    private AverageFlagNodeComponent component;
+
+    public AverageFlagNode(@NotNull OwnershipNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return AverageFlagNode.class;
     }
-
-    private AverageFlagNodeComponent component;
 
     @Inject
     void createComponent(AverageFlagNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
 
     private RuleProvider<AverageFlagNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public AverageFlagNode(@NotNull OwnershipNode parent, String name) {
-        super(parent, name);
     }
 
 }

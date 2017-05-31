@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
+    private OtherIncomeAddBackTypeNodeComponent component;
+
+    public OtherIncomeAddBackTypeNode(@NotNull OtherIncomeNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return OtherIncomeAddBackTypeNode.class;
     }
-
-    private OtherIncomeAddBackTypeNodeComponent component;
 
     @Inject
     void createComponent(OtherIncomeAddBackTypeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
 
     private RuleProvider<OtherIncomeAddBackTypeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public OtherIncomeAddBackTypeNode(@NotNull OtherIncomeNode parent, String name) {
-        super(parent, name);
     }
 
 }

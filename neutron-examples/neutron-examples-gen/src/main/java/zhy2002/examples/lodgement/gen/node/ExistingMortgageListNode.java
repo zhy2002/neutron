@@ -9,12 +9,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortgageNode> {
-
     private ExistingMortgageListNodeItemFactory itemFactory;
+    private ExistingMortgageListNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(ExistingMortgageListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
+    public ExistingMortgageListNode(@NotNull UsageNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -22,7 +21,10 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
         return ExistingMortgageListNode.class;
     }
 
-    private ExistingMortgageListNodeComponent component;
+    @Inject
+    void receiveNodeProvider(ExistingMortgageListNodeItemProvider provider) {
+        itemFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(ExistingMortgageListNodeComponent.Builder builder) {
@@ -47,11 +49,6 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
 
     private RuleProvider<ExistingMortgageListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public ExistingMortgageListNode(@NotNull UsageNode parent, String name) {
-        super(parent, name);
     }
 
     @Override

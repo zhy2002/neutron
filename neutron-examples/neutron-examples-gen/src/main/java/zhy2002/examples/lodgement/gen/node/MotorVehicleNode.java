@@ -12,12 +12,11 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
-
     private MotorVehicleNodeChildFactory childFactory;
+    private MotorVehicleNodeComponent component;
 
-    @Inject
-    void receiveNodeProvider(MotorVehicleNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public MotorVehicleNode(@NotNull MotorVehicleListNode parent, String name) {
+        super(parent, name);
     }
 
     @Override
@@ -25,7 +24,10 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         return MotorVehicleNode.class;
     }
 
-    private MotorVehicleNodeComponent component;
+    @Inject
+    void receiveNodeProvider(MotorVehicleNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(MotorVehicleNodeComponent.Builder builder) {
@@ -44,11 +46,6 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public MotorVehicleNode(@NotNull MotorVehicleListNode parent, String name) {
-        super(parent, name);
     }
 
     @JsMethod

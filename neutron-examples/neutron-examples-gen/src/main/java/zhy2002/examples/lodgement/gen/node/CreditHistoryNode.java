@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
+    private CreditHistoryNodeComponent component;
+
+    public CreditHistoryNode(@NotNull CreditHistoryListNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return CreditHistoryNode.class;
     }
-
-    private CreditHistoryNodeComponent component;
 
     @Inject
     void createComponent(CreditHistoryNodeComponent.Builder builder) {
@@ -34,11 +37,6 @@ public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
-    }
-
-
-    public CreditHistoryNode(@NotNull CreditHistoryListNode parent, String name) {
-        super(parent, name);
     }
 
 }

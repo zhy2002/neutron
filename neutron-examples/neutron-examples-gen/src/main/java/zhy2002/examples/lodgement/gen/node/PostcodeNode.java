@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PostcodeNode extends StringUiNode<AddressNode<?>> {
+    private PostcodeNodeComponent component;
+
+    public PostcodeNode(@NotNull AddressNode<?> parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PostcodeNode.class;
     }
-
-    private PostcodeNodeComponent component;
 
     @Inject
     void createComponent(PostcodeNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class PostcodeNode extends StringUiNode<AddressNode<?>> {
 
     private RuleProvider<PostcodeNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PostcodeNode(@NotNull AddressNode<?> parent, String name) {
-        super(parent, name);
     }
 
     @Override

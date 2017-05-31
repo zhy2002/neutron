@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNode> {
+    private PersonResponsibleLendNodeComponent component;
+
+    public PersonResponsibleLendNode(@NotNull PersonNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return PersonResponsibleLendNode.class;
     }
-
-    private PersonResponsibleLendNodeComponent component;
 
     @Inject
     void createComponent(PersonResponsibleLendNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNod
 
     private RuleProvider<PersonResponsibleLendNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public PersonResponsibleLendNode(@NotNull PersonNode parent, String name) {
-        super(parent, name);
     }
 
 }

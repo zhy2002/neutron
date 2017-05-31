@@ -15,12 +15,12 @@ import zhy2002.examples.app.gen.event.*;
 
 @Singleton
 public class LodgementNode extends RootUiNode<VoidUiNode> {
-
     private LodgementNodeChildFactory childFactory;
+    private LodgementNodeComponent component;
 
     @Inject
-    void receiveNodeProvider(LodgementNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
+    public LodgementNode(@NotNull LodgementNodeContext context) {
+        super(context);
     }
 
     @Override
@@ -28,7 +28,10 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
         return LodgementNode.class;
     }
 
-    private LodgementNodeComponent component;
+    @Inject
+    void receiveNodeProvider(LodgementNodeChildProvider provider) {
+        childFactory = provider.createFactory(this);
+    }
 
     @Inject
     void createComponent(LodgementNodeComponent.Builder builder) {
@@ -57,12 +60,6 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
     @Override
     protected final NodeUnloadEvent<LodgementNode> createNodeUnloadEvent() {
         return new LodgementNodeUnloadEvent(this);
-    }
-
-
-    @Inject
-    public LodgementNode(@NotNull LodgementNodeContext context) {
-        super(context);
     }
 
     @JsMethod

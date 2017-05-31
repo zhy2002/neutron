@@ -9,13 +9,16 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageTermRemainingPeriodNode extends MonthYearNode<ExistingMortgageNode> {
+    private MortgageTermRemainingPeriodNodeComponent component;
+
+    public MortgageTermRemainingPeriodNode(@NotNull ExistingMortgageNode parent, String name) {
+        super(parent, name);
+    }
 
     @Override
     public final Class<?> getConcreteClass() {
         return MortgageTermRemainingPeriodNode.class;
     }
-
-    private MortgageTermRemainingPeriodNodeComponent component;
 
     @Inject
     void createComponent(MortgageTermRemainingPeriodNodeComponent.Builder builder) {
@@ -40,11 +43,6 @@ public class MortgageTermRemainingPeriodNode extends MonthYearNode<ExistingMortg
 
     private RuleProvider<MortgageTermRemainingPeriodNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-
-    public MortgageTermRemainingPeriodNode(@NotNull ExistingMortgageNode parent, String name) {
-        super(parent, name);
     }
 
 }
