@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
 
     @Inject
@@ -117,21 +118,21 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
         setChildNodeIdentity("companyContactLastNameNode");
         children.add(getComponent().createCompanyContactLastNameNode());
         setChildNodeIdentity("workPhoneNode");
-        children.add(getComponent().createWorkPhoneNode());
+        children.add(getComponent().createCompanyTelephoneNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(getComponent().createFaxNumberNode());
+        children.add(getComponent().createCompanyTelephoneNode());
         setChildNodeIdentity("companyMobileNumberNode");
         children.add(getComponent().createCompanyMobileNumberNode());
         setChildNodeIdentity("companyEmailNode");
         children.add(getComponent().createCompanyEmailNode());
         setChildNodeIdentity("registeredAddressNode");
-        children.add(getComponent().createRegisteredAddressNode());
+        children.add(getComponent().createCompanyAddressNode());
         setChildNodeIdentity("postalAddressNode");
-        children.add(getComponent().createPostalAddressNode());
+        children.add(getComponent().createCompanyAddressNode());
         setChildNodeIdentity("tradingAddressNode");
-        children.add(getComponent().createTradingAddressNode());
+        children.add(getComponent().createCompanyAddressNode());
         setChildNodeIdentity("principalPlaceAddressNode");
-        children.add(getComponent().createPrincipalPlaceAddressNode());
+        children.add(getComponent().createCompanyAddressNode());
         setChildNodeIdentity(null);
         return children;
     }

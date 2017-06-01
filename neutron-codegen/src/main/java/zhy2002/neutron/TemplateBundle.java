@@ -81,10 +81,6 @@ public class TemplateBundle {
         return getTemplate("context.ftl");
     }
 
-    Template getItemFactoryTemplate() {
-        return getTemplate("item_factory.ftl");
-    }
-
     Template getChildFactoryTemplate() {
         return getTemplate("child_factory.ftl");
     }

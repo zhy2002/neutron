@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {SavingsAccountListNodeModule.class})
 public interface SavingsAccountListNodeComponent {
 
+    SavingsAccountNode createSavingsAccountNode();
 
     RuleProvider<SavingsAccountListNode> getSavingsAccountListNodeRuleProvider();
     Map<String, RuleProvider<SavingsAccountListNode>> getInstanceRuleProviders();

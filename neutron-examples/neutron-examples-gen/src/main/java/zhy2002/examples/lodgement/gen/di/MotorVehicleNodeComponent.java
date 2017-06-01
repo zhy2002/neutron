@@ -11,7 +11,7 @@ public interface MotorVehicleNodeComponent {
     VehicleModelNode createVehicleModelNode();
     VehicleYearNode createVehicleYearNode();
     VehicleMarketValueNode createVehicleMarketValueNode();
-    VehicleOwnershipListNode createOwnershipListNode();
+    VehicleOwnershipListNode createVehicleOwnershipListNode();
 
     RuleProvider<MotorVehicleNode> getMotorVehicleNodeRuleProvider();
 

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MotorVehicleListNodeModule.class})
 public interface MotorVehicleListNodeComponent {
 
+    MotorVehicleNode createMotorVehicleNode();
 
     RuleProvider<MotorVehicleListNode> getMotorVehicleListNodeRuleProvider();
     Map<String, RuleProvider<MotorVehicleListNode>> getInstanceRuleProviders();

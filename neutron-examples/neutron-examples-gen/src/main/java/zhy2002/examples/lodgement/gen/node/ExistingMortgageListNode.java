@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortgageNode> {
 
@@ -19,13 +21,6 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
     @Override
     public final Class<?> getConcreteClass() {
     return ExistingMortgageListNode.class;
-    }
-
-    private ExistingMortgageListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(ExistingMortgageListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final ExistingMortgageListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
     @Override
     public NodeAddEvent<ExistingMortgageNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        ExistingMortgageNode item = getComponent().createExistingMortgageNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new ExistingMortgageNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<ExistingMortgageNode> createItemRemoveEvent(ExistingMortgageNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<ExistingMortgageNode> createItemRemoveEvent(ExistingMortgageNode item) {
+        return new ExistingMortgageNodeRemoveEvent(item);
     }
 
 }

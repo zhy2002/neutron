@@ -14,7 +14,7 @@ public interface SavingsAccountNodeComponent {
     SavingsBsbNoNode createSavingsBsbNoNode();
     SavingsAccountNoNode createSavingsAccountNoNode();
     SavingsAccountNameNode createSavingsAccountNameNode();
-    SavingsOwnershipListNode createOwnershipListNode();
+    SavingsOwnershipListNode createSavingsOwnershipListNode();
 
     RuleProvider<SavingsAccountNode> getSavingsAccountNodeRuleProvider();
 

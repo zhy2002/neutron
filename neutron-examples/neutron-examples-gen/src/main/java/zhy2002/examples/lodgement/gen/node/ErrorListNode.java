@@ -13,6 +13,8 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
 
@@ -24,13 +26,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     @Override
     public final Class<?> getConcreteClass() {
     return ErrorListNode.class;
-    }
-
-    private ErrorListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final ErrorListNodeComponent getComponent() {
@@ -73,12 +68,15 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     @Override
     public NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        ErrorNode item = getComponent().createErrorNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new ErrorNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
+        return new ErrorNodeRemoveEvent(item);
     }
 
     public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);

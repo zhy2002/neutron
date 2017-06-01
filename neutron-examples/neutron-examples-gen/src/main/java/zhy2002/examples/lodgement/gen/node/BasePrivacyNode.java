@@ -10,6 +10,7 @@ import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
+
 public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
     public BasePrivacyNode(P parent, String name) {

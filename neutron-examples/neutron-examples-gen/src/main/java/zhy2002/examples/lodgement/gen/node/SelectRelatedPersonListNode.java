@@ -2,9 +2,12 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SelectRelatedPersonListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectRelatedPersonNode> {
 
@@ -12,12 +15,7 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
         super(parent, name);
     }
 
-    private SelectRelatedPersonListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(SelectRelatedPersonListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
-    }
+    protected abstract SelectRelatedPersonListNodeComponent getComponent();
 
 
     @Override
@@ -28,12 +26,15 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
     @Override
     public NodeAddEvent<SelectRelatedPersonNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        SelectRelatedPersonNode item = getComponent().createSelectRelatedPersonNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new SelectRelatedPersonNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<SelectRelatedPersonNode> createItemRemoveEvent(SelectRelatedPersonNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<SelectRelatedPersonNode> createItemRemoveEvent(SelectRelatedPersonNode item) {
+        return new SelectRelatedPersonNodeRemoveEvent(item);
     }
 
 }

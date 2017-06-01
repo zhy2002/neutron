@@ -18,6 +18,7 @@ public interface PersonGeneralNodeComponent {
     PrimaryApplicantFlagNode createPrimaryApplicantFlagNode();
     DriversLicenseNode createDriversLicenseNode();
     PersonApplicantTypeNode createPersonApplicantTypeNode();
+    ApplicationTypeNode createApplicationTypeNode();
     MaritalStatusNode createMaritalStatusNode();
     PermanentResidentFlagNode createPermanentResidentFlagNode();
     SpouseNode createSpouseNode();
@@ -25,7 +26,6 @@ public interface PersonGeneralNodeComponent {
     AgeOfDependantsNode createAgeOfDependantsNode();
     FirstHomeBuyerFlagNode createFirstHomeBuyerFlagNode();
     HousingStatusNode createHousingStatusNode();
-    ApplicationTypeNode createApplicationTypeNode();
 
     RuleProvider<PersonGeneralNode> getPersonGeneralNodeRuleProvider();
     Map<String, RuleProvider<PersonGeneralNode>> getInstanceRuleProviders();

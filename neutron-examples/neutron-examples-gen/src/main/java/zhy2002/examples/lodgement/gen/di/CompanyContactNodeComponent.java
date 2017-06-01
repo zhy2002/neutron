@@ -11,14 +11,10 @@ public interface CompanyContactNodeComponent {
 
     CompanyContactFirstNameNode createCompanyContactFirstNameNode();
     CompanyContactLastNameNode createCompanyContactLastNameNode();
-    CompanyTelephoneNode createWorkPhoneNode();
-    CompanyTelephoneNode createFaxNumberNode();
+    CompanyTelephoneNode createCompanyTelephoneNode();
     CompanyMobileNumberNode createCompanyMobileNumberNode();
     CompanyEmailNode createCompanyEmailNode();
-    CompanyAddressNode createRegisteredAddressNode();
-    CompanyAddressNode createPostalAddressNode();
-    CompanyAddressNode createTradingAddressNode();
-    CompanyAddressNode createPrincipalPlaceAddressNode();
+    CompanyAddressNode createCompanyAddressNode();
 
     RuleProvider<CompanyContactNode> getCompanyContactNodeRuleProvider();
     Map<String, RuleProvider<CompanyContactNode>> getInstanceRuleProviders();

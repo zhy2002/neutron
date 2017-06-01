@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class PersonContactNode extends ObjectUiNode<PersonNode> {
 
     @Inject
@@ -118,23 +119,23 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("homePhoneNode");
-        children.add(getComponent().createHomePhoneNode());
+        children.add(getComponent().createPersonTelephoneNode());
         setChildNodeIdentity("workPhoneNode");
-        children.add(getComponent().createWorkPhoneNode());
+        children.add(getComponent().createPersonTelephoneNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(getComponent().createFaxNumberNode());
+        children.add(getComponent().createPersonTelephoneNode());
         setChildNodeIdentity("personMobileNumberNode");
         children.add(getComponent().createPersonMobileNumberNode());
         setChildNodeIdentity("personEmailNode");
         children.add(getComponent().createPersonEmailNode());
         setChildNodeIdentity("currentAddressNode");
-        children.add(getComponent().createCurrentAddressNode());
+        children.add(getComponent().createPersonAddressNode());
         setChildNodeIdentity("movedToCurrentAddressNode");
         children.add(getComponent().createMovedToCurrentAddressNode());
         setChildNodeIdentity("postalAddressNode");
-        children.add(getComponent().createPostalAddressNode());
+        children.add(getComponent().createPersonAddressNode());
         setChildNodeIdentity("previousAddressNode");
-        children.add(getComponent().createPreviousAddressNode());
+        children.add(getComponent().createPersonAddressNode());
         setChildNodeIdentity("movedToPreviousAddressNode");
         children.add(getComponent().createMovedToPreviousAddressNode());
         setChildNodeIdentity("movedFromPreviousAddressNode");

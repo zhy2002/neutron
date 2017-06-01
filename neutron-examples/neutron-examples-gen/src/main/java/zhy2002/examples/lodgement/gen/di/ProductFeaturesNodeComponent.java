@@ -19,8 +19,7 @@ public interface ProductFeaturesNodeComponent {
     ProductCreditCardLimitNode createProductCreditCardLimitNode();
     ProductExpressConsentFlagNode createProductExpressConsentFlagNode();
     Product100PercentOffsetFlagNode createProduct100PercentOffsetFlagNode();
-    ProductCardHolderNode createProductPrimaryCardHolderNode();
-    ProductCardHolderNode createProductAdditionalCardHolderNode();
+    ProductCardHolderNode createProductCardHolderNode();
 
     RuleProvider<ProductFeaturesNode> getProductFeaturesNodeRuleProvider();
     Map<String, RuleProvider<ProductFeaturesNode>> getInstanceRuleProviders();

@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
 
@@ -19,13 +21,6 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
     @Override
     public final Class<?> getConcreteClass() {
     return LoanListNode.class;
-    }
-
-    private LoanListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(LoanListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final LoanListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
     @Override
     public NodeAddEvent<LoanNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        LoanNode item = getComponent().createLoanNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new LoanNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<LoanNode> createItemRemoveEvent(LoanNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<LoanNode> createItemRemoveEvent(LoanNode item) {
+        return new LoanNodeRemoveEvent(item);
     }
 
 }

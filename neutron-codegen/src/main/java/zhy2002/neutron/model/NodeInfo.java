@@ -494,6 +494,6 @@ public class NodeInfo extends CodeGenInfo {
     }
 
     public boolean getHasComponent() {
-        return !isAbstractNode() || getChildren() != null && getChildren().size() > 0;
+        return !isAbstractNode() || getChildren() != null && getChildren().size() > 0 || getItemTypeName() != null;
     }
 }

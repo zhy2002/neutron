@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {TrustSettlorListNodeModule.class})
-public interface TrustSettlorListNodeComponent {
+public interface TrustSettlorListNodeComponent extends SelectRelatedPersonListNodeComponent {
 
 
     RuleProvider<TrustSettlorListNode> getTrustSettlorListNodeRuleProvider();

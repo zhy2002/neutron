@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode> {
 
@@ -19,13 +21,6 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
     @Override
     public final Class<?> getConcreteClass() {
     return MotorVehicleListNode.class;
-    }
-
-    private MotorVehicleListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(MotorVehicleListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final MotorVehicleListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
     @Override
     public NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        MotorVehicleNode item = getComponent().createMotorVehicleNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new MotorVehicleNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<MotorVehicleNode> createItemRemoveEvent(MotorVehicleNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<MotorVehicleNode> createItemRemoveEvent(MotorVehicleNode item) {
+        return new MotorVehicleNodeRemoveEvent(item);
     }
 
 }

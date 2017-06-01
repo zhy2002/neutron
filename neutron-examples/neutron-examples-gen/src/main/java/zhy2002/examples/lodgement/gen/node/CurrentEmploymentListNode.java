@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmploymentNode> {
 
@@ -19,13 +21,6 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
     @Override
     public final Class<?> getConcreteClass() {
     return CurrentEmploymentListNode.class;
-    }
-
-    private CurrentEmploymentListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(CurrentEmploymentListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final CurrentEmploymentListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
     @Override
     public NodeAddEvent<CurrentEmploymentNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        CurrentEmploymentNode item = getComponent().createCurrentEmploymentNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new CurrentEmploymentNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<CurrentEmploymentNode> createItemRemoveEvent(CurrentEmploymentNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<CurrentEmploymentNode> createItemRemoveEvent(CurrentEmploymentNode item) {
+        return new CurrentEmploymentNodeRemoveEvent(item);
     }
 
 }

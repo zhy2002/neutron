@@ -38,6 +38,10 @@ import ${targetPackage}.gen.*;
 <#if unloadable>
 import ${targetPackage}.gen.event.*;
 </#if>
+<#if itemTypeName??>
+import ${targetPackage}.gen.event.*;
+</#if>
+
 
 <#if parentType.typeName == 'VoidUiNode'>
 @Singleton
@@ -74,15 +78,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @Override
     public final Class<?> getConcreteClass() {
     return ${typeName}.class;
-    }
-
-</#if>
-<#if itemTypeName??>
-    private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
-
-    @Inject
-    void receiveNodeProvider(${typeName}<#if itemTypeName??>Item<#else>Child</#if>Provider provider) {
-        <#if itemTypeName??>item<#else>child</#if>Factory = provider.createFactory(this);
     }
 
 </#if>
@@ -153,12 +148,15 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @Override
     public NodeAddEvent<${itemTypeName}> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        ${itemTypeName} item = getComponent().create${itemTypeName}();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new ${itemTypeName}AddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<${itemTypeName}> createItemRemoveEvent(${itemTypeName} item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<${itemTypeName}> createItemRemoveEvent(${itemTypeName} item) {
+        return new ${itemTypeName}RemoveEvent(item);
     }
 
 </#if>
@@ -230,7 +228,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         List<UiNode<?>> children = super.createChildren();
     <#list children as child>
         setChildNodeIdentity("${child.name}");
-        children.add(getComponent().create${child.name?cap_first}());
+        children.add(getComponent().create${child.typeName}());
     </#list>
         setChildNodeIdentity(null);
         return children;

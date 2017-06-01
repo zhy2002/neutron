@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
 
     @Inject
@@ -83,7 +84,7 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         setChildNodeIdentity("vehicleMarketValueNode");
         children.add(getComponent().createVehicleMarketValueNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(getComponent().createOwnershipListNode());
+        children.add(getComponent().createVehicleOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

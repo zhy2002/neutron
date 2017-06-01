@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ExistingMortgageListNodeModule.class})
 public interface ExistingMortgageListNodeComponent {
 
+    ExistingMortgageNode createExistingMortgageNode();
 
     RuleProvider<ExistingMortgageListNode> getExistingMortgageListNodeRuleProvider();
     Map<String, RuleProvider<ExistingMortgageListNode>> getInstanceRuleProviders();

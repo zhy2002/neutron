@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNode> {
 
@@ -19,13 +21,6 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
     @Override
     public final Class<?> getConcreteClass() {
     return AddressRefListNode.class;
-    }
-
-    private AddressRefListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(AddressRefListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final AddressRefListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
     @Override
     public NodeAddEvent<AddressRefNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        AddressRefNode item = getComponent().createAddressRefNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new AddressRefNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<AddressRefNode> createItemRemoveEvent(AddressRefNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<AddressRefNode> createItemRemoveEvent(AddressRefNode item) {
+        return new AddressRefNodeRemoveEvent(item);
     }
 
 }

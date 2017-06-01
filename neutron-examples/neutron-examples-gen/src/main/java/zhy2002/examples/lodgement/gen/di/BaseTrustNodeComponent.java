@@ -6,13 +6,13 @@ import zhy2002.neutron.RuleProvider;
 
 public interface BaseTrustNodeComponent {
 
+    TrustTypeNode createTrustTypeNode();
     TrustNameNode createTrustNameNode();
     TrustRegistrationDateNode createTrustRegistrationDateNode();
-    TrustTypeNode createTrustTypeNode();
     TrustCountryNode createTrustCountryNode();
     TrustAddressNode createTrustAddressNode();
-    TrustIndustryNode createTrustIndustryNode();
     TrustSettlorNotRequiredReasonNode createTrustSettlorNotRequiredReasonNode();
+    TrustIndustryNode createTrustIndustryNode();
     TrustBeneficiaryListNode createTrustBeneficiaryListNode();
     TrustSettlorListNode createTrustSettlorListNode();
     TrustBeneficialOwnerListNode createTrustBeneficialOwnerListNode();

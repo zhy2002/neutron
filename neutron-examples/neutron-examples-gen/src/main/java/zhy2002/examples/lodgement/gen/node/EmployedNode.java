@@ -10,6 +10,7 @@ import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
+
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
     public EmployedNode(EmploymentNode<?> parent, String name) {

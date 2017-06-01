@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityNode> {
 
@@ -19,13 +21,6 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
     @Override
     public final Class<?> getConcreteClass() {
     return OtherLiabilityListNode.class;
-    }
-
-    private OtherLiabilityListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(OtherLiabilityListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final OtherLiabilityListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
     @Override
     public NodeAddEvent<OtherLiabilityNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        OtherLiabilityNode item = getComponent().createOtherLiabilityNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new OtherLiabilityNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<OtherLiabilityNode> createItemRemoveEvent(OtherLiabilityNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<OtherLiabilityNode> createItemRemoveEvent(OtherLiabilityNode item) {
+        return new OtherLiabilityNodeRemoveEvent(item);
     }
 
 }

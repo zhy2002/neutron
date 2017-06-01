@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
 
     @Inject
@@ -111,7 +112,7 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         setChildNodeIdentity("creditCardLenderNameNode");
         children.add(getComponent().createCreditCardLenderNameNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(getComponent().createOwnershipListNode());
+        children.add(getComponent().createCreditCardOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

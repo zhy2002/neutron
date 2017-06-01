@@ -14,6 +14,7 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
+
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
     @Inject

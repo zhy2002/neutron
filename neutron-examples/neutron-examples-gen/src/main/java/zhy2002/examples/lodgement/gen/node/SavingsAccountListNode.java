@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountNode> {
 
@@ -19,13 +21,6 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     @Override
     public final Class<?> getConcreteClass() {
     return SavingsAccountListNode.class;
-    }
-
-    private SavingsAccountListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(SavingsAccountListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final SavingsAccountListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     @Override
     public NodeAddEvent<SavingsAccountNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        SavingsAccountNode item = getComponent().createSavingsAccountNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new SavingsAccountNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<SavingsAccountNode> createItemRemoveEvent(SavingsAccountNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<SavingsAccountNode> createItemRemoveEvent(SavingsAccountNode item) {
+        return new SavingsAccountNodeRemoveEvent(item);
     }
 
 }

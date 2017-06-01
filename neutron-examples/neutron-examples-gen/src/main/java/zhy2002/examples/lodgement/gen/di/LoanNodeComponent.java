@@ -9,13 +9,13 @@ import zhy2002.neutron.RuleProvider;
 public interface LoanNodeComponent {
 
     LoanTypeNode createLoanTypeNode();
-    LoanLenderNameNode createLoanLenderNameNode();
-    LoanLimitAmountNode createLoanLimitAmountNode();
     LoanOwingAmountNode createLoanOwingAmountNode();
+    LoanLimitAmountNode createLoanLimitAmountNode();
     LoanMonthlyRepaymentNode createLoanMonthlyRepaymentNode();
     LoanClearingFlagNode createLoanClearingFlagNode();
     LoanBreakCostNode createLoanBreakCostNode();
-    LoanOwnershipListNode createOwnershipListNode();
+    LoanLenderNameNode createLoanLenderNameNode();
+    LoanOwnershipListNode createLoanOwnershipListNode();
 
     RuleProvider<LoanNode> getLoanNodeRuleProvider();
 

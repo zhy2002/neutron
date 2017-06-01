@@ -16,9 +16,8 @@ public interface RegisterNodeComponent {
     PlanNode createPlanNode();
     ReceiveOffersNode createReceiveOffersNode();
     OwnInvestmentPropertyNode createOwnInvestmentPropertyNode();
-    PropertyDetailsNode createResidentialPropertyNode();
-    PropertyDetailsNode createInvestmentPropertyNode();
-    PhoneInfoNode createHomePhoneNode();
+    PropertyDetailsNode createPropertyDetailsNode();
+    PhoneInfoNode createPhoneInfoNode();
     ErrorListNode createErrorListNode();
 
     RuleProvider<RegisterNode> getRegisterNodeRuleProvider();

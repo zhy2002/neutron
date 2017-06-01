@@ -17,6 +17,7 @@ import java.util.List;
 import zhy2002.examples.register.gen.*;
 import zhy2002.examples.register.gen.event.*;
 
+
 @Singleton
 public class RegisterNode extends RootUiNode<VoidUiNode> {
 
@@ -161,11 +162,11 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
         setChildNodeIdentity("ownInvestmentPropertyNode");
         children.add(getComponent().createOwnInvestmentPropertyNode());
         setChildNodeIdentity("residentialPropertyNode");
-        children.add(getComponent().createResidentialPropertyNode());
+        children.add(getComponent().createPropertyDetailsNode());
         setChildNodeIdentity("investmentPropertyNode");
-        children.add(getComponent().createInvestmentPropertyNode());
+        children.add(getComponent().createPropertyDetailsNode());
         setChildNodeIdentity("homePhoneNode");
-        children.add(getComponent().createHomePhoneNode());
+        children.add(getComponent().createPhoneInfoNode());
         setChildNodeIdentity("errorListNode");
         children.add(getComponent().createErrorListNode());
         setChildNodeIdentity(null);

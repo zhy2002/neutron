@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
+import zhy2002.examples.register.gen.event.*;
+
 
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
 
@@ -19,13 +21,6 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
     @Override
     public final Class<?> getConcreteClass() {
     return ErrorListNode.class;
-    }
-
-    private ErrorListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(ErrorListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final ErrorListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
     @Override
     public NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        ErrorNode item = getComponent().createErrorNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new ErrorNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
+        return new ErrorNodeRemoveEvent(item);
     }
 
 }

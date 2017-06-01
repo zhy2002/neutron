@@ -8,11 +8,11 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {OtherIncomeNodeModule.class})
 public interface OtherIncomeNodeComponent {
 
+    OtherIncomeTypeNode createOtherIncomeTypeNode();
     OtherIncomeAddBackTypeNode createOtherIncomeAddBackTypeNode();
     OtherIncomeAmountNode createOtherIncomeAmountNode();
-    OtherIncomeDescriptionNode createOtherIncomeDescriptionNode();
     OtherIncomePreviousYearNode createOtherIncomePreviousYearNode();
-    OtherIncomeTypeNode createOtherIncomeTypeNode();
+    OtherIncomeDescriptionNode createOtherIncomeDescriptionNode();
 
     RuleProvider<OtherIncomeNode> getOtherIncomeNodeRuleProvider();
 

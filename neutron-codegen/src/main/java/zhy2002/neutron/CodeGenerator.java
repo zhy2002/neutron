@@ -55,9 +55,7 @@ class CodeGenerator {
     private void generateNodeFiles(NodeInfo nodeInfo, TemplateBundle templateBundle, String targetDirectory) {
 
         codeGenerationService.generateFile(targetDirectory, "node", nodeInfo, templateBundle.getNodeTemplate());
-        if (nodeInfo.getItemTypeName() != null) {
-            codeGenerationService.generateFile(targetDirectory, "node", nodeInfo, templateBundle.getItemFactoryTemplate(), "", "ItemProvider");
-        } else if (nodeInfo.getChildren() != null && nodeInfo.getChildren().size() > 0) {
+        if (nodeInfo.getChildren() != null && nodeInfo.getChildren().size() > 0) {
             codeGenerationService.generateFile(targetDirectory, "node", nodeInfo, templateBundle.getChildFactoryTemplate(), "", "ChildProvider");
         }
 

@@ -14,6 +14,7 @@ import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
+
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
 
     @Inject

@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {ProductAccountHolderListNodeModule.class})
-public interface ProductAccountHolderListNodeComponent {
+public interface ProductAccountHolderListNodeComponent extends SelectAccountHolderListNodeComponent {
 
 
     RuleProvider<ProductAccountHolderListNode> getProductAccountHolderListNodeRuleProvider();

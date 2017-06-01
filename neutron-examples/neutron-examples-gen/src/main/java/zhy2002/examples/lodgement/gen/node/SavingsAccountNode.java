@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
 
     @Inject
@@ -104,7 +105,7 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
         setChildNodeIdentity("savingsAccountNameNode");
         children.add(getComponent().createSavingsAccountNameNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(getComponent().createOwnershipListNode());
+        children.add(getComponent().createSavingsOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

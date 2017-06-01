@@ -16,6 +16,7 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 import zhy2002.examples.register.gen.event.*;
 
+
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
     @Inject

@@ -12,9 +12,8 @@ public interface SubmissionNodeComponent {
     BrokerFirstNameNode createBrokerFirstNameNode();
     BrokerLastNameNode createBrokerLastNameNode();
     BrokerCompanyNode createBrokerCompanyNode();
-    BrokerTelephoneNode createContactNumberNode();
-    BrokerTelephoneNode createFaxNumberNode();
-    BrokerMobileNumberNode createMobileNumberNode();
+    BrokerTelephoneNode createBrokerTelephoneNode();
+    BrokerMobileNumberNode createBrokerMobileNumberNode();
     BrokerEmailNode createBrokerEmailNode();
     BrokerAddressNode createBrokerAddressNode();
     LenderIssuedBrokerNumberNode createLenderIssuedBrokerNumberNode();

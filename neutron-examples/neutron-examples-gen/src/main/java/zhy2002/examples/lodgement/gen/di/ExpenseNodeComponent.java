@@ -11,7 +11,7 @@ public interface ExpenseNodeComponent {
     ExpenseTypeNode createExpenseTypeNode();
     ExpenseDescriptionNode createExpenseDescriptionNode();
     ExpenseMonthlyRepaymentNode createExpenseMonthlyRepaymentNode();
-    ExpenseOwnershipListNode createOwnershipListNode();
+    ExpenseOwnershipListNode createExpenseOwnershipListNode();
 
     RuleProvider<ExpenseNode> getExpenseNodeRuleProvider();
 

@@ -11,7 +11,7 @@ public interface OtherAssetNodeComponent {
     OtherAssetTypeNode createOtherAssetTypeNode();
     OtherAssetDescriptionNode createOtherAssetDescriptionNode();
     OtherAssetMarketValueNode createOtherAssetMarketValueNode();
-    OtherAssetOwnershipListNode createOwnershipListNode();
+    OtherAssetOwnershipListNode createOtherAssetOwnershipListNode();
 
     RuleProvider<OtherAssetNode> getOtherAssetNodeRuleProvider();
 

@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
     @Inject
@@ -114,11 +115,11 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
         setChildNodeIdentity("brokerCompanyNode");
         children.add(getComponent().createBrokerCompanyNode());
         setChildNodeIdentity("contactNumberNode");
-        children.add(getComponent().createContactNumberNode());
+        children.add(getComponent().createBrokerTelephoneNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(getComponent().createFaxNumberNode());
+        children.add(getComponent().createBrokerTelephoneNode());
         setChildNodeIdentity("mobileNumberNode");
-        children.add(getComponent().createMobileNumberNode());
+        children.add(getComponent().createBrokerMobileNumberNode());
         setChildNodeIdentity("brokerEmailNode");
         children.add(getComponent().createBrokerEmailNode());
         setChildNodeIdentity("brokerAddressNode");

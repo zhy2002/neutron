@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNode> {
 
@@ -19,13 +21,6 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
     @Override
     public final Class<?> getConcreteClass() {
     return RealEstateListNode.class;
-    }
-
-    private RealEstateListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(RealEstateListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final RealEstateListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
     @Override
     public NodeAddEvent<RealEstateNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        RealEstateNode item = getComponent().createRealEstateNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new RealEstateNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<RealEstateNode> createItemRemoveEvent(RealEstateNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<RealEstateNode> createItemRemoveEvent(RealEstateNode item) {
+        return new RealEstateNodeRemoveEvent(item);
     }
 
 }

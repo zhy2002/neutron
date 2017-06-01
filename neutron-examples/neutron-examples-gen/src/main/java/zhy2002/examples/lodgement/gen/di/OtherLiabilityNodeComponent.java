@@ -15,7 +15,7 @@ public interface OtherLiabilityNodeComponent {
     OtherLiabilityMonthlyRepaymentNode createOtherLiabilityMonthlyRepaymentNode();
     OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode();
     OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode();
-    OtherLiabilityOwnershipListNode createOwnershipListNode();
+    OtherLiabilityOwnershipListNode createOtherLiabilityOwnershipListNode();
 
     RuleProvider<OtherLiabilityNode> getOtherLiabilityNodeRuleProvider();
 

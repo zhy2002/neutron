@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OwnershipListNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -10,6 +11,8 @@ import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
 
@@ -17,12 +20,7 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         super(parent, name);
     }
 
-    private OwnershipListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(OwnershipListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
-    }
+    protected abstract OwnershipListNodeComponent getComponent();
 
 
     @Override
@@ -33,12 +31,15 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
     @Override
     public NodeAddEvent<OwnershipNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        OwnershipNode item = getComponent().createOwnershipNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new OwnershipNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<OwnershipNode> createItemRemoveEvent(OwnershipNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<OwnershipNode> createItemRemoveEvent(OwnershipNode item) {
+        return new OwnershipNodeRemoveEvent(item);
     }
 
     public static final PropertyMetadata<BigDecimal> TOTAL_OWNERSHIP_PROPERTY = MetadataRegistry.createProperty(OwnershipListNode.class, "totalOwnership", BigDecimal.class);

@@ -2,9 +2,12 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SelectAccountHolderListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
 
@@ -12,12 +15,7 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
         super(parent, name);
     }
 
-    private SelectAccountHolderListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(SelectAccountHolderListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
-    }
+    protected abstract SelectAccountHolderListNodeComponent getComponent();
 
 
     @Override
@@ -28,12 +26,15 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
     @Override
     public NodeAddEvent<SelectAccountHolderNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        SelectAccountHolderNode item = getComponent().createSelectAccountHolderNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new SelectAccountHolderNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<SelectAccountHolderNode> createItemRemoveEvent(SelectAccountHolderNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<SelectAccountHolderNode> createItemRemoveEvent(SelectAccountHolderNode item) {
+        return new SelectAccountHolderNodeRemoveEvent(item);
     }
 
 }

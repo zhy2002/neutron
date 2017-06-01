@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PreviousEmploymentListNodeModule.class})
 public interface PreviousEmploymentListNodeComponent {
 
+    PreviousEmploymentNode createPreviousEmploymentNode();
 
     RuleProvider<PreviousEmploymentListNode> getPreviousEmploymentListNodeRuleProvider();
     Map<String, RuleProvider<PreviousEmploymentListNode>> getInstanceRuleProviders();

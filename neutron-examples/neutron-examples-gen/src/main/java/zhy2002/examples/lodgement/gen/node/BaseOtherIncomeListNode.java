@@ -2,9 +2,12 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BaseOtherIncomeListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OtherIncomeNode> {
 
@@ -12,12 +15,7 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
         super(parent, name);
     }
 
-    private BaseOtherIncomeListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(BaseOtherIncomeListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
-    }
+    protected abstract BaseOtherIncomeListNodeComponent getComponent();
 
 
     @Override
@@ -28,12 +26,15 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
     @Override
     public NodeAddEvent<OtherIncomeNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        OtherIncomeNode item = getComponent().createOtherIncomeNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new OtherIncomeNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<OtherIncomeNode> createItemRemoveEvent(OtherIncomeNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<OtherIncomeNode> createItemRemoveEvent(OtherIncomeNode item) {
+        return new OtherIncomeNodeRemoveEvent(item);
     }
 
 }

@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
 
     @Inject
@@ -111,7 +112,7 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         setChildNodeIdentity("otherLiabilityBreakCostNode");
         children.add(getComponent().createOtherLiabilityBreakCostNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(getComponent().createOwnershipListNode());
+        children.add(getComponent().createOtherLiabilityOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

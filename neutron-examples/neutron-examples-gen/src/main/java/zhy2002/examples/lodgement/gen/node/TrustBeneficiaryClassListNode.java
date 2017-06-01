@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
 
@@ -19,13 +21,6 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
     @Override
     public final Class<?> getConcreteClass() {
     return TrustBeneficiaryClassListNode.class;
-    }
-
-    private TrustBeneficiaryClassListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(TrustBeneficiaryClassListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final TrustBeneficiaryClassListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
     @Override
     public NodeAddEvent<TrustBeneficiaryClassNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        TrustBeneficiaryClassNode item = getComponent().createTrustBeneficiaryClassNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new TrustBeneficiaryClassNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<TrustBeneficiaryClassNode> createItemRemoveEvent(TrustBeneficiaryClassNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<TrustBeneficiaryClassNode> createItemRemoveEvent(TrustBeneficiaryClassNode item) {
+        return new TrustBeneficiaryClassNodeRemoveEvent(item);
     }
 
 }

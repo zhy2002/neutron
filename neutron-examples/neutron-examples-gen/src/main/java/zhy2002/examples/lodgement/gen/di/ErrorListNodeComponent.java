@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ErrorListNodeModule.class})
 public interface ErrorListNodeComponent {
 
+    ErrorNode createErrorNode();
 
     RuleProvider<ErrorListNode> getErrorListNodeRuleProvider();
     Map<String, RuleProvider<ErrorListNode>> getInstanceRuleProviders();

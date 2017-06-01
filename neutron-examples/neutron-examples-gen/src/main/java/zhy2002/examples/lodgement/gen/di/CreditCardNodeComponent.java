@@ -15,7 +15,7 @@ public interface CreditCardNodeComponent {
     CreditCardClearingFlagNode createCreditCardClearingFlagNode();
     CreditCardBreakCostNode createCreditCardBreakCostNode();
     CreditCardLenderNameNode createCreditCardLenderNameNode();
-    CreditCardOwnershipListNode createOwnershipListNode();
+    CreditCardOwnershipListNode createCreditCardOwnershipListNode();
 
     RuleProvider<CreditCardNode> getCreditCardNodeRuleProvider();
 

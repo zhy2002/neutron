@@ -17,6 +17,7 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.*;
 import zhy2002.examples.lodgement.gen.event.*;
 
+
 @Singleton
 public class ApplicationNode extends RootUiNode<VoidUiNode> {
 

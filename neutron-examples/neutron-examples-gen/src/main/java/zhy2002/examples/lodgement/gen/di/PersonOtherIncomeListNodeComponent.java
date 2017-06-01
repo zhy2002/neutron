@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {PersonOtherIncomeListNodeModule.class})
-public interface PersonOtherIncomeListNodeComponent {
+public interface PersonOtherIncomeListNodeComponent extends BaseOtherIncomeListNodeComponent {
 
 
     RuleProvider<PersonOtherIncomeListNode> getPersonOtherIncomeListNodeRuleProvider();

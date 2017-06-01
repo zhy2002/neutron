@@ -12,6 +12,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
+
 public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
 
     @Inject
@@ -143,9 +144,9 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
         setChildNodeIdentity("product100PercentOffsetFlagNode");
         children.add(getComponent().createProduct100PercentOffsetFlagNode());
         setChildNodeIdentity("productPrimaryCardHolderNode");
-        children.add(getComponent().createProductPrimaryCardHolderNode());
+        children.add(getComponent().createProductCardHolderNode());
         setChildNodeIdentity("productAdditionalCardHolderNode");
-        children.add(getComponent().createProductAdditionalCardHolderNode());
+        children.add(getComponent().createProductCardHolderNode());
         setChildNodeIdentity(null);
         return children;
     }

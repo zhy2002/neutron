@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {OtherLiabilityOwnershipListNodeModule.class})
-public interface OtherLiabilityOwnershipListNodeComponent {
+public interface OtherLiabilityOwnershipListNodeComponent extends OwnershipListNodeComponent {
 
 
     RuleProvider<OtherLiabilityOwnershipListNode> getOtherLiabilityOwnershipListNodeRuleProvider();

@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {CreditCardOwnershipListNodeModule.class})
-public interface CreditCardOwnershipListNodeComponent {
+public interface CreditCardOwnershipListNodeComponent extends OwnershipListNodeComponent {
 
 
     RuleProvider<CreditCardOwnershipListNode> getCreditCardOwnershipListNodeRuleProvider();

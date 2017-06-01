@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> {
 
@@ -19,13 +21,6 @@ public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> 
     @Override
     public final Class<?> getConcreteClass() {
     return ProductFeeListNode.class;
-    }
-
-    private ProductFeeListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(ProductFeeListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final ProductFeeListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> 
     @Override
     public NodeAddEvent<ProductFeeNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        ProductFeeNode item = getComponent().createProductFeeNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new ProductFeeNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<ProductFeeNode> createItemRemoveEvent(ProductFeeNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<ProductFeeNode> createItemRemoveEvent(ProductFeeNode item) {
+        return new ProductFeeNodeRemoveEvent(item);
     }
 
 }

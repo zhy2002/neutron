@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
 
@@ -19,13 +21,6 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
     @Override
     public final Class<?> getConcreteClass() {
     return CreditHistoryListNode.class;
-    }
-
-    private CreditHistoryListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(CreditHistoryListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final CreditHistoryListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
     @Override
     public NodeAddEvent<CreditHistoryNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        CreditHistoryNode item = getComponent().createCreditHistoryNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new CreditHistoryNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<CreditHistoryNode> createItemRemoveEvent(CreditHistoryNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<CreditHistoryNode> createItemRemoveEvent(CreditHistoryNode item) {
+        return new CreditHistoryNodeRemoveEvent(item);
     }
 
 }

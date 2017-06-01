@@ -6,9 +6,9 @@ import zhy2002.neutron.RuleProvider;
 
 public interface BaseResponsibleLendNodeComponent {
 
+    ResponsibleSignificantChangeFlagNode createResponsibleSignificantChangeFlagNode();
     ResponsibleTypeOfChangeNode createResponsibleTypeOfChangeNode();
     ResponsibleMitigationMethodNode createResponsibleMitigationMethodNode();
-    ResponsibleSignificantChangeFlagNode createResponsibleSignificantChangeFlagNode();
     ResponsibleRepaymentDifficultyNode createResponsibleRepaymentDifficultyNode();
 
 }

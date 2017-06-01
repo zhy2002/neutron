@@ -7,7 +7,7 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {CompanySelectDirectorNodeModule.class})
-public interface CompanySelectDirectorNodeComponent {
+public interface CompanySelectDirectorNodeComponent extends SelectRelatedPersonListNodeComponent {
 
 
     RuleProvider<CompanySelectDirectorNode> getCompanySelectDirectorNodeRuleProvider();

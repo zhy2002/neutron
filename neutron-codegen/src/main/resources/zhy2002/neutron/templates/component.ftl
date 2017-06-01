@@ -13,10 +13,12 @@ import java.util.*;
 </#if>
 public interface ${typeName}Component <#if baseType?? && baseType.hasComponent>extends ${baseType.typeName}Component </#if>{
 
-<#if children??>
-<#list children as child>
-    ${child.typeName} create${child.name?cap_first}();
-</#list>
+<#if childTypes??>
+    <#list childTypes as childType>
+    <#if !childType.abstractNode>
+    ${childType.typeName} create${childType.typeName}();
+    </#if>
+    </#list>
 </#if>
 
 <#if !abstractNode>

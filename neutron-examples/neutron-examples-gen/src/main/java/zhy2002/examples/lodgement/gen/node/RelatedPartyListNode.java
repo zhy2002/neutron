@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedPartyNode> {
 
@@ -19,13 +21,6 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
     @Override
     public final Class<?> getConcreteClass() {
     return RelatedPartyListNode.class;
-    }
-
-    private RelatedPartyListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(RelatedPartyListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final RelatedPartyListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
     @Override
     public NodeAddEvent<RelatedPartyNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        RelatedPartyNode item = getComponent().createRelatedPartyNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new RelatedPartyNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<RelatedPartyNode> createItemRemoveEvent(RelatedPartyNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<RelatedPartyNode> createItemRemoveEvent(RelatedPartyNode item) {
+        return new RelatedPartyNodeRemoveEvent(item);
     }
 
 }

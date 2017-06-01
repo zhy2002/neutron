@@ -9,6 +9,7 @@ import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
+
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
     @Inject

@@ -8,6 +8,8 @@ import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
+import zhy2002.examples.lodgement.gen.event.*;
+
 
 public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
 
@@ -19,13 +21,6 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
     @Override
     public final Class<?> getConcreteClass() {
     return CompanyListNode.class;
-    }
-
-    private CompanyListNodeItemFactory itemFactory;
-
-    @Inject
-    void receiveNodeProvider(CompanyListNodeItemProvider provider) {
-        itemFactory = provider.createFactory(this);
     }
 
     protected final CompanyListNodeComponent getComponent() {
@@ -68,12 +63,15 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
     @Override
     public NodeAddEvent<CompanyNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        return itemFactory.createItemAddEvent(name);
+        getContext().setNameOfNodeBeingCreated(name);
+        CompanyNode item = getComponent().createCompanyNode();
+        getContext().setNameOfNodeBeingCreated(null);
+        return new CompanyNodeAddEvent(item);
     }
 
     @Override
-    public NodeRemoveEvent<CompanyNode> createItemRemoveEvent(CompanyNode item) {
-        return itemFactory.createItemRemoveEvent(item);
+    public final NodeRemoveEvent<CompanyNode> createItemRemoveEvent(CompanyNode item) {
+        return new CompanyNodeRemoveEvent(item);
     }
 
 }
