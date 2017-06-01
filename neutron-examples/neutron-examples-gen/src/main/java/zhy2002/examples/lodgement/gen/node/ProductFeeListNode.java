@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> {
 
     @Inject
-    public ProductFeeListNode(@Owner ProductsNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductFeeListNode(@Owner ProductsNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class ProductFeeListNode extends ListUiNode<ProductsNode,ProductFeeNode> 
     @Override
     public NodeAddEvent<ProductFeeNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         ProductFeeNode item = getComponent().createProductFeeNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new ProductFeeNodeAddEvent(item);
     }
 

@@ -33,8 +33,8 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     private ValueFormatter<BigDecimal> formatter;
     private boolean hasValue;
 
-    protected BigDecimalUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected BigDecimalUiNode(@NotNull P parent) {
+        super(parent);
 
         this.setText("");
     }

@@ -16,8 +16,8 @@ import java.util.List;
 public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
 
     @Inject
-    public OtherAssetNode(@Owner OtherAssetListNode parent, @ChildName String name) {
-        super(parent, name);
+    public OtherAssetNode(@Owner OtherAssetListNode parent) {
+        super(parent);
     }
 
     @Override

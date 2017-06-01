@@ -13,8 +13,8 @@ import java.util.List;
 public class DateCreatedNode extends StringUiNode<ApplicationNode> {
 
     @Inject
-    public DateCreatedNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public DateCreatedNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override

@@ -13,8 +13,8 @@ import java.util.Arrays;
 
 public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Boolean> {
 
-    protected BooleanUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected BooleanUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     @Override

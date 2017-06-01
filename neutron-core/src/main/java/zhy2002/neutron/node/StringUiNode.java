@@ -18,8 +18,8 @@ import java.util.Arrays;
  */
 public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
-    protected StringUiNode(P parent, String name) {
-        super(parent, name);
+    protected StringUiNode(P parent) {
+        super(parent);
 
         this.setMaxLength(255);
     }

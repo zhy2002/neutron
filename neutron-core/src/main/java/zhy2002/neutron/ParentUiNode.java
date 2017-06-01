@@ -31,8 +31,8 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
      */
     private final Map<String, UiNode<?>> childrenMap = new HashMap<>();
 
-    protected ParentUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected ParentUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     protected ParentUiNode(@NotNull UiNodeContext<?> context) {
@@ -211,6 +211,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
     //region node properties
 
     public static final PropertyMetadata<Integer> DESCENDANT_DIRTY_COUNT_PROPERTY = MetadataRegistry.createProperty(ParentUiNode.class, "descendantDirtyCount", Integer.class, 0);
+    public static final PropertyMetadata<String> NAME_OF_CHILD_BEING_CREATED_PROPERTY = MetadataRegistry.createProperty(ParentUiNode.class, "nameOfChildBeingCreated", String.class, null, ChangeModeEnum.DIRECT);
 
     int getDirtyDescendantCount() {
         return getStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY);
@@ -218,6 +219,14 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
 
     void setDirtyDescendantCount(int count) {
         setStateValue(DESCENDANT_DIRTY_COUNT_PROPERTY, count);
+    }
+
+    String getNameOfChildBeingCreated() {
+        return getStateValue(NAME_OF_CHILD_BEING_CREATED_PROPERTY);
+    }
+
+    protected void setNameOfChildBeingCreated(String name) {
+        setStateValue(NAME_OF_CHILD_BEING_CREATED_PROPERTY, name);
     }
 
     //endregion

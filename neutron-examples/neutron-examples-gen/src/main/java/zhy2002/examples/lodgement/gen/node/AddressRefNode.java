@@ -14,8 +14,8 @@ import java.util.List;
 public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
 
     @Inject
-    public AddressRefNode(@Owner AddressRefListNode parent, @ChildName String name) {
-        super(parent, name);
+    public AddressRefNode(@Owner AddressRefListNode parent) {
+        super(parent);
     }
 
     @Override

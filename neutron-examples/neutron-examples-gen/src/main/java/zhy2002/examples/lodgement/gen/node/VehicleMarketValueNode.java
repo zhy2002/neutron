@@ -13,8 +13,8 @@ import java.util.List;
 public class VehicleMarketValueNode extends BaseCurrencyNode<MotorVehicleNode> {
 
     @Inject
-    public VehicleMarketValueNode(@Owner MotorVehicleNode parent, @ChildName String name) {
-        super(parent, name);
+    public VehicleMarketValueNode(@Owner MotorVehicleNode parent) {
+        super(parent);
     }
 
     @Override

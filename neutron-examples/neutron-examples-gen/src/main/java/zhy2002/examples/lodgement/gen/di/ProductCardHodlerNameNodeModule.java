@@ -33,10 +33,6 @@ public class ProductCardHodlerNameNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ProductCardHolderNode provideProductCardHolderNode() {
         return owner.getParent();
     }

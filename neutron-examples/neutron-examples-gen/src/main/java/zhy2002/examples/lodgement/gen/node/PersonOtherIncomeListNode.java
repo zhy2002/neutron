@@ -13,8 +13,8 @@ import java.util.List;
 public class PersonOtherIncomeListNode extends BaseOtherIncomeListNode<PersonNode> {
 
     @Inject
-    public PersonOtherIncomeListNode(@Owner PersonNode parent, @ChildName String name) {
-        super(parent, name);
+    public PersonOtherIncomeListNode(@Owner PersonNode parent) {
+        super(parent);
     }
 
     @Override

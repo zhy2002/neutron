@@ -13,8 +13,8 @@ import java.util.List;
 public class AverageFlagNode extends BooleanUiNode<OwnershipNode> {
 
     @Inject
-    public AverageFlagNode(@Owner OwnershipNode parent, @ChildName String name) {
-        super(parent, name);
+    public AverageFlagNode(@Owner OwnershipNode parent) {
+        super(parent);
     }
 
     @Override

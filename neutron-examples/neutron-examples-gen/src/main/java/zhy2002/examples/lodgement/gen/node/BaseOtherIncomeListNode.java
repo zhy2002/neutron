@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OtherIncomeNode> {
 
-    public BaseOtherIncomeListNode(P parent, String name) {
-        super(parent, name);
+    public BaseOtherIncomeListNode(P parent) {
+        super(parent);
     }
 
     protected abstract BaseOtherIncomeListNodeComponent getComponent();
@@ -26,9 +26,9 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
     @Override
     public NodeAddEvent<OtherIncomeNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         OtherIncomeNode item = getComponent().createOtherIncomeNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new OtherIncomeNodeAddEvent(item);
     }
 

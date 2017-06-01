@@ -16,8 +16,8 @@ import java.util.List;
 public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
 
     @Inject
-    public OtherIncomeNode(@Owner BaseOtherIncomeListNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public OtherIncomeNode(@Owner BaseOtherIncomeListNode<?> parent) {
+        super(parent);
     }
 
     @Override

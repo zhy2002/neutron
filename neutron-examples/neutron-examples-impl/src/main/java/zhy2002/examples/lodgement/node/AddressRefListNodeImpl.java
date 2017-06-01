@@ -4,7 +4,6 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.shared.NodeUtil;
-import zhy2002.neutron.di.ChildName;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
@@ -16,8 +15,8 @@ import java.util.Set;
 public class AddressRefListNodeImpl extends AddressRefListNode {
 
     @Inject
-    public AddressRefListNodeImpl(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public AddressRefListNodeImpl(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @JsMethod

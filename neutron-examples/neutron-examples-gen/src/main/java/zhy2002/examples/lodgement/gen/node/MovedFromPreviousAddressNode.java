@@ -13,8 +13,8 @@ import java.util.List;
 public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode> {
 
     @Inject
-    public MovedFromPreviousAddressNode(@Owner PersonContactNode parent, @ChildName String name) {
-        super(parent, name);
+    public MovedFromPreviousAddressNode(@Owner PersonContactNode parent) {
+        super(parent);
     }
 
     @Override

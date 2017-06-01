@@ -14,8 +14,8 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
 
     private static ValidationError EMPTY_VALUE = new ValidationError();
 
-    public ValidationErrorUiNode(P parent, String name) {
-        super(parent, name);
+    public ValidationErrorUiNode(P parent) {
+        super(parent);
     }
 
     @JsMethod

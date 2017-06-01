@@ -14,8 +14,8 @@ import java.util.List;
 public class UsernameNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public UsernameNode(@Owner RegisterNode parent, @ChildName String name) {
-        super(parent, name);
+    public UsernameNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

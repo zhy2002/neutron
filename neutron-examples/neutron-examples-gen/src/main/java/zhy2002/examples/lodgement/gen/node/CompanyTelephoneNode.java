@@ -13,8 +13,8 @@ import java.util.List;
 public class CompanyTelephoneNode extends TelephoneNode<CompanyContactNode> {
 
     @Inject
-    public CompanyTelephoneNode(@Owner CompanyContactNode parent, @ChildName String name) {
-        super(parent, name);
+    public CompanyTelephoneNode(@Owner CompanyContactNode parent) {
+        super(parent);
     }
 
     @Override

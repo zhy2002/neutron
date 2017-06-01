@@ -13,8 +13,8 @@ import java.util.List;
 public class CountryNode extends BaseCountryNode<AddressNode<?>> {
 
     @Inject
-    public CountryNode(@Owner AddressNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public CountryNode(@Owner AddressNode<?> parent) {
+        super(parent);
     }
 
     @Override

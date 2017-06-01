@@ -13,8 +13,8 @@ import java.util.List;
 public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
 
     @Inject
-    public CompanyTrustNode(@Owner CompanyNode parent, @ChildName String name) {
-        super(parent, name);
+    public CompanyTrustNode(@Owner CompanyNode parent) {
+        super(parent);
     }
 
     @Override

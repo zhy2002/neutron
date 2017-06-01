@@ -13,8 +13,8 @@ import java.util.List;
 public class PersonPrivacyNode extends BasePrivacyNode<PersonNode> {
 
     @Inject
-    public PersonPrivacyNode(@Owner PersonNode parent, @ChildName String name) {
-        super(parent, name);
+    public PersonPrivacyNode(@Owner PersonNode parent) {
+        super(parent);
     }
 
     @Override

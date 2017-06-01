@@ -33,10 +33,6 @@ public class ResponsibleMitigationMethodNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope BaseResponsibleLendNode<?> provideBaseResponsibleLendNode() {
         return owner.getParent();
     }

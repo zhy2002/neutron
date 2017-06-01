@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseApplicantTypeNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    public BaseApplicantTypeNode(P parent, String name) {
-        super(parent, name);
+    public BaseApplicantTypeNode(P parent) {
+        super(parent);
     }
 
 

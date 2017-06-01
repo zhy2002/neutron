@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedPartyNode> {
 
     @Inject
-    public RelatedPartyListNode(@Owner AdditionalNode parent, @ChildName String name) {
-        super(parent, name);
+    public RelatedPartyListNode(@Owner AdditionalNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
     @Override
     public NodeAddEvent<RelatedPartyNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         RelatedPartyNode item = getComponent().createRelatedPartyNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new RelatedPartyNodeAddEvent(item);
     }
 

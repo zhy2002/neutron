@@ -16,8 +16,8 @@ import java.util.List;
 public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
     @Inject
-    public RelatedPartyNode(@Owner RelatedPartyListNode parent, @ChildName String name) {
-        super(parent, name);
+    public RelatedPartyNode(@Owner RelatedPartyListNode parent) {
+        super(parent);
     }
 
     @Override

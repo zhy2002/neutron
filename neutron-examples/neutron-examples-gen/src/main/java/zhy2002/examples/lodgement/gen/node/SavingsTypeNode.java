@@ -13,8 +13,8 @@ import java.util.List;
 public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
 
     @Inject
-    public SavingsTypeNode(@Owner SavingsAccountNode parent, @ChildName String name) {
-        super(parent, name);
+    public SavingsTypeNode(@Owner SavingsAccountNode parent) {
+        super(parent);
     }
 
     @Override

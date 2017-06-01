@@ -16,8 +16,8 @@ import java.util.List;
 public class ProductsNode extends ObjectUiNode<ApplicationNode> {
 
     @Inject
-    public ProductsNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductsNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override

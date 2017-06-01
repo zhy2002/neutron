@@ -13,8 +13,8 @@ import java.util.List;
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
 
     @Inject
-    public OwnInvestmentPropertyNode(@Owner RegisterNode parent, @ChildName String name) {
-        super(parent, name);
+    public OwnInvestmentPropertyNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

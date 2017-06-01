@@ -32,10 +32,6 @@ public class TrustBeneficiaryClassNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope TrustBeneficiaryClassListNode provideTrustBeneficiaryClassListNode() {
         return owner.getParent();
     }

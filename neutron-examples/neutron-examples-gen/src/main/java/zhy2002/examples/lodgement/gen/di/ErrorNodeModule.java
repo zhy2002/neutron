@@ -32,10 +32,6 @@ public class ErrorNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ErrorListNode provideErrorListNode() {
         return owner.getParent();
     }

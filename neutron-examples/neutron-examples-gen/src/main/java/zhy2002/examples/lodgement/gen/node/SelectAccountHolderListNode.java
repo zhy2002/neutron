@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
 
-    public SelectAccountHolderListNode(P parent, String name) {
-        super(parent, name);
+    public SelectAccountHolderListNode(P parent) {
+        super(parent);
     }
 
     protected abstract SelectAccountHolderListNodeComponent getComponent();
@@ -26,9 +26,9 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
     @Override
     public NodeAddEvent<SelectAccountHolderNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         SelectAccountHolderNode item = getComponent().createSelectAccountHolderNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new SelectAccountHolderNodeAddEvent(item);
     }
 

@@ -16,8 +16,8 @@ import java.util.List;
 public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode> {
 
     @Inject
-    public ExistingMortgageNode(@Owner ExistingMortgageListNode parent, @ChildName String name) {
-        super(parent, name);
+    public ExistingMortgageNode(@Owner ExistingMortgageListNode parent) {
+        super(parent);
     }
 
     @Override

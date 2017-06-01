@@ -13,8 +13,8 @@ import java.util.List;
 public class PropertyPurseNode extends BooleanUiNode<PropertyNode> {
 
     @Inject
-    public PropertyPurseNode(@Owner PropertyNode parent, @ChildName String name) {
-        super(parent, name);
+    public PropertyPurseNode(@Owner PropertyNode parent) {
+        super(parent);
     }
 
     @Override

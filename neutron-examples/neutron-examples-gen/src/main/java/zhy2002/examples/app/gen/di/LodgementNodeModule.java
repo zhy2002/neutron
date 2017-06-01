@@ -36,10 +36,6 @@ public class LodgementNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope
     RuleProvider<LodgementNode> provideRuleProvider(Provider<LodgementNodeRuleProvider> provider) {
         return provider.get();

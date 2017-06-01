@@ -16,8 +16,8 @@ import java.util.List;
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
 
     @Inject
-    public OwnershipNode(@Owner OwnershipListNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public OwnershipNode(@Owner OwnershipListNode<?> parent) {
+        super(parent);
     }
 
     @Override

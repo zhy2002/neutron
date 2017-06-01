@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortgageNode> {
 
     @Inject
-    public ExistingMortgageListNode(@Owner UsageNode parent, @ChildName String name) {
-        super(parent, name);
+    public ExistingMortgageListNode(@Owner UsageNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
     @Override
     public NodeAddEvent<ExistingMortgageNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         ExistingMortgageNode item = getComponent().createExistingMortgageNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new ExistingMortgageNodeAddEvent(item);
     }
 

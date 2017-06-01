@@ -13,8 +13,8 @@ import java.util.List;
 public class SuburbNode extends StringUiNode<AddressNode<?>> {
 
     @Inject
-    public SuburbNode(@Owner AddressNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public SuburbNode(@Owner AddressNode<?> parent) {
+        super(parent);
     }
 
     @Override

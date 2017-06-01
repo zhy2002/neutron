@@ -13,8 +13,8 @@ import java.util.List;
 public class OccupationNode extends BaseOccupationNode<EmployedNode> {
 
     @Inject
-    public OccupationNode(@Owner EmployedNode parent, @ChildName String name) {
-        super(parent, name);
+    public OccupationNode(@Owner EmployedNode parent) {
+        super(parent);
     }
 
     @Override

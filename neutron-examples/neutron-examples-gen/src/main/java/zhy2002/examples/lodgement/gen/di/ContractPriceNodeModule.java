@@ -33,10 +33,6 @@ public class ContractPriceNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }

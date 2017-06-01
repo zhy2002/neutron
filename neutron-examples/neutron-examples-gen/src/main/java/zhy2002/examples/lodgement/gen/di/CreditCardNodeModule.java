@@ -32,10 +32,6 @@ public class CreditCardNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope CreditCardListNode provideCreditCardListNode() {
         return owner.getParent();
     }

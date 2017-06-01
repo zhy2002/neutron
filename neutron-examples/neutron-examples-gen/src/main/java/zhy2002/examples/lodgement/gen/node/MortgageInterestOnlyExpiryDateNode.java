@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageInterestOnlyExpiryDateNode extends StringUiNode<ExistingMortgageNode> {
 
     @Inject
-    public MortgageInterestOnlyExpiryDateNode(@Owner ExistingMortgageNode parent, @ChildName String name) {
-        super(parent, name);
+    public MortgageInterestOnlyExpiryDateNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

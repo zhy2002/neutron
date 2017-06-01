@@ -14,8 +14,8 @@ import java.util.List;
 public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
 
     @Inject
-    public BeingPurchasedFlagNode(@Owner UsageNode parent, @ChildName String name) {
-        super(parent, name);
+    public BeingPurchasedFlagNode(@Owner UsageNode parent) {
+        super(parent);
     }
 
     @Override

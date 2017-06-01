@@ -108,8 +108,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @param parent the parent node.
      * @param name   unique name within parent.
      */
-    protected UiNode(@NotNull P parent, @NotNull String name) {
-        this(parent, parent.getContext(), name);
+    protected UiNode(@NotNull P parent) {
+        this(parent, parent.getContext());
     }
 
     /**
@@ -118,13 +118,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * @param context the context instance.
      */
     protected UiNode(@NotNull UiNodeContext<?> context) {
-        this(null, context, "");
+        this(null, context);
     }
 
-    private UiNode(P parent, UiNodeContext<?> context, String name) {
+    private UiNode(P parent, UiNodeContext<?> context) {
         this.parent = parent;
         this.context = context;
-        this.name = name;
+        this.name = parent == null ? "" : parent.getNameOfChildBeingCreated();
+        //todo get nodeIdentity directly from parent as well
         this.nodeIdentity = context.getNodeIdentity();
         if (this.nodeIdentity == null) {
             this.uniqueId = context.generateNodeId();

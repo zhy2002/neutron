@@ -13,8 +13,8 @@ import java.util.List;
 public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
 
     @Inject
-    public AdditionalCommentNode(@Owner AdditionalNode parent, @ChildName String name) {
-        super(parent, name);
+    public AdditionalCommentNode(@Owner AdditionalNode parent) {
+        super(parent);
     }
 
     @Override

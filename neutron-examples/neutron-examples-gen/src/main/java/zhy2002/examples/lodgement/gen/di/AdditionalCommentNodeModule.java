@@ -33,10 +33,6 @@ public class AdditionalCommentNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope AdditionalNode provideAdditionalNode() {
         return owner.getParent();
     }

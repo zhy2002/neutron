@@ -36,10 +36,6 @@ public class ApplicationNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope
     RuleProvider<ApplicationNode> provideRuleProvider(Provider<ApplicationNodeRuleProvider> provider) {
         return provider.get();

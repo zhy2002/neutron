@@ -33,10 +33,6 @@ public class AccessCompanyNameNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }

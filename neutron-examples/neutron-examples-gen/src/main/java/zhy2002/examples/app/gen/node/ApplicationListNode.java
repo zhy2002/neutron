@@ -18,8 +18,8 @@ import java.util.List;
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
 
     @Inject
-    public ApplicationListNode(@Owner AppManagerNode parent, @ChildName String name) {
-        super(parent, name);
+    public ApplicationListNode(@Owner AppManagerNode parent) {
+        super(parent);
     }
 
     @Override

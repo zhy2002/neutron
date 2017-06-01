@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseOccupationNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    public BaseOccupationNode(P parent, String name) {
-        super(parent, name);
+    public BaseOccupationNode(P parent) {
+        super(parent);
     }
 
 

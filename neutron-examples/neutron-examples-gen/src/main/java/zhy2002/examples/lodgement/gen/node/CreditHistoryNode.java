@@ -13,8 +13,8 @@ import java.util.List;
 public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
 
     @Inject
-    public CreditHistoryNode(@Owner CreditHistoryListNode parent, @ChildName String name) {
-        super(parent, name);
+    public CreditHistoryNode(@Owner CreditHistoryListNode parent) {
+        super(parent);
     }
 
     @Override

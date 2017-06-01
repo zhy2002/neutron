@@ -13,8 +13,8 @@ import java.util.List;
 public class StatusNode extends StringUiNode<ApplicationNode> {
 
     @Inject
-    public StatusNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public StatusNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override

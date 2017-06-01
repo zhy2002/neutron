@@ -17,8 +17,8 @@ import java.util.Collection;
 
 public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
-    protected ReferenceUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected ReferenceUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     @JsMethod

@@ -13,8 +13,8 @@ import java.util.List;
 public class BrokerMobileNumberNode extends BaseMobileNumberNode<SubmissionNode> {
 
     @Inject
-    public BrokerMobileNumberNode(@Owner SubmissionNode parent, @ChildName String name) {
-        super(parent, name);
+    public BrokerMobileNumberNode(@Owner SubmissionNode parent) {
+        super(parent);
     }
 
     @Override

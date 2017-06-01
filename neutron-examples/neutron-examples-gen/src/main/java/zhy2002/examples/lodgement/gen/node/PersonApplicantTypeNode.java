@@ -13,8 +13,8 @@ import java.util.List;
 public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneralNode> {
 
     @Inject
-    public PersonApplicantTypeNode(@Owner PersonGeneralNode parent, @ChildName String name) {
-        super(parent, name);
+    public PersonApplicantTypeNode(@Owner PersonGeneralNode parent) {
+        super(parent);
     }
 
     @Override

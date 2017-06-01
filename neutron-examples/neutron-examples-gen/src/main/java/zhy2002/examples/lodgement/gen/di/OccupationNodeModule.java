@@ -37,10 +37,6 @@ public class OccupationNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope EmployedNode provideEmployedNode() {
         return owner.getParent();
     }

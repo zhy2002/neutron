@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNode> {
 
     @Inject
-    public AddressRefListNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public AddressRefListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
     @Override
     public NodeAddEvent<AddressRefNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         AddressRefNode item = getComponent().createAddressRefNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new AddressRefNodeAddEvent(item);
     }
 

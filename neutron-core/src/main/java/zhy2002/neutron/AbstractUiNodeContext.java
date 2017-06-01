@@ -74,15 +74,6 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     }
 
     @Override
-    public String getNameOfNodeBeingCreated() {
-        return nameOfNodeBeingCreated;
-    }
-
-    public void setNameOfNodeBeingCreated(String nameOfNodeBeingCreated) {
-        this.nameOfNodeBeingCreated = nameOfNodeBeingCreated;
-    }
-
-    @Override
     public NodeIdentity getNodeIdentity() {
         return nodeIdentity;
     }

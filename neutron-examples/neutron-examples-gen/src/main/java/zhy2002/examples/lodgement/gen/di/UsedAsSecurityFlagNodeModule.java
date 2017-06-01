@@ -33,10 +33,6 @@ public class UsedAsSecurityFlagNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }

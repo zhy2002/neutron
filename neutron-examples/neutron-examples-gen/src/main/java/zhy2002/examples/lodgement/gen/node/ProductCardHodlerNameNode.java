@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductCardHodlerNameNode extends StringUiNode<ProductCardHolderNode> {
 
     @Inject
-    public ProductCardHodlerNameNode(@Owner ProductCardHolderNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductCardHodlerNameNode(@Owner ProductCardHolderNode parent) {
+        super(parent);
     }
 
     @Override

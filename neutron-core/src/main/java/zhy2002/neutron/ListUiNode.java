@@ -34,8 +34,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
      *
      * @param parent the parent ObjectUiNode.
      */
-    protected ListUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected ListUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     /**

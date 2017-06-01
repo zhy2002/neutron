@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeaturesNode> {
 
     @Inject
-    public ProductCreditCardLimitNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductCreditCardLimitNode(@Owner ProductFeaturesNode parent) {
+        super(parent);
     }
 
     @Override

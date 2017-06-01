@@ -13,8 +13,8 @@ import java.util.List;
 public class LoanClearingFlagNode extends BooleanUiNode<LoanNode> {
 
     @Inject
-    public LoanClearingFlagNode(@Owner LoanNode parent, @ChildName String name) {
-        super(parent, name);
+    public LoanClearingFlagNode(@Owner LoanNode parent) {
+        super(parent);
     }
 
     @Override

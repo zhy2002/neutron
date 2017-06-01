@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
 
     @Inject
-    public CreditCardListNode(@Owner LiabilitiesNode parent, @ChildName String name) {
-        super(parent, name);
+    public CreditCardListNode(@Owner LiabilitiesNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
     @Override
     public NodeAddEvent<CreditCardNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         CreditCardNode item = getComponent().createCreditCardNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new CreditCardNodeAddEvent(item);
     }
 

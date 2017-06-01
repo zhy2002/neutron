@@ -13,8 +13,8 @@ import java.util.List;
 public class VehicleYearNode extends BigDecimalUiNode<MotorVehicleNode> {
 
     @Inject
-    public VehicleYearNode(@Owner MotorVehicleNode parent, @ChildName String name) {
-        super(parent, name);
+    public VehicleYearNode(@Owner MotorVehicleNode parent) {
+        super(parent);
     }
 
     @Override

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone> {
 
-    public TelephoneNode(P parent, String name) {
-        super(parent, name);
+    public TelephoneNode(P parent) {
+        super(parent);
     }
 
 

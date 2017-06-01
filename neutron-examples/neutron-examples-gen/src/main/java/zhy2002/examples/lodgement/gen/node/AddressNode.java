@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    public AddressNode(P parent, String name) {
-        super(parent, name);
+    public AddressNode(P parent) {
+        super(parent);
     }
 
     protected abstract AddressNodeComponent getComponent();

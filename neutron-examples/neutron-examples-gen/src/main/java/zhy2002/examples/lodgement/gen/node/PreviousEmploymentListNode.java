@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEmploymentNode> {
 
     @Inject
-    public PreviousEmploymentListNode(@Owner PersonNode parent, @ChildName String name) {
-        super(parent, name);
+    public PreviousEmploymentListNode(@Owner PersonNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class PreviousEmploymentListNode extends ListUiNode<PersonNode,PreviousEm
     @Override
     public NodeAddEvent<PreviousEmploymentNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         PreviousEmploymentNode item = getComponent().createPreviousEmploymentNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new PreviousEmploymentNodeAddEvent(item);
     }
 

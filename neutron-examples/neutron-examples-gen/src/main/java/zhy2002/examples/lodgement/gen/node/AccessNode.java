@@ -16,8 +16,8 @@ import java.util.List;
 public class AccessNode extends ObjectUiNode<RealEstateNode> {
 
     @Inject
-    public AccessNode(@Owner RealEstateNode parent, @ChildName String name) {
-        super(parent, name);
+    public AccessNode(@Owner RealEstateNode parent) {
+        super(parent);
     }
 
     @Override

@@ -37,10 +37,6 @@ public class LegalActionNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope BasePrivacyNode<?> provideBasePrivacyNode() {
         return owner.getParent();
     }

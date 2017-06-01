@@ -37,10 +37,6 @@ public class CreditCardLimitAmountNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }

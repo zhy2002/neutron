@@ -13,8 +13,8 @@ import java.util.List;
 public class ThirdPartyFirstNameNode extends StringUiNode<RelatedPartyNode> {
 
     @Inject
-    public ThirdPartyFirstNameNode(@Owner RelatedPartyNode parent, @ChildName String name) {
-        super(parent, name);
+    public ThirdPartyFirstNameNode(@Owner RelatedPartyNode parent) {
+        super(parent);
     }
 
     @Override

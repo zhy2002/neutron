@@ -19,8 +19,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
 
     @Inject
-    public ErrorListNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public ErrorListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override
@@ -68,9 +68,9 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     @Override
     public NodeAddEvent<ErrorNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         ErrorNode item = getComponent().createErrorNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new ErrorNodeAddEvent(item);
     }
 

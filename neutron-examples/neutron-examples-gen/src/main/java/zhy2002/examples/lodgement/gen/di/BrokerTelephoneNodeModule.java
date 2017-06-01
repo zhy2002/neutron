@@ -33,10 +33,6 @@ public class BrokerTelephoneNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }

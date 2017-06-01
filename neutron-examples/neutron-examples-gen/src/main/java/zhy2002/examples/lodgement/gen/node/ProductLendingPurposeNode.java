@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductLendingPurposeNode extends StringUiNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductLendingPurposeNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductLendingPurposeNode(@Owner ProductDescriptionNode parent) {
+        super(parent);
     }
 
     @Override

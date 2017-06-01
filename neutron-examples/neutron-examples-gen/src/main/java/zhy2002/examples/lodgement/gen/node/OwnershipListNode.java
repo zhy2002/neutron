@@ -16,8 +16,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
 
-    public OwnershipListNode(P parent, String name) {
-        super(parent, name);
+    public OwnershipListNode(P parent) {
+        super(parent);
     }
 
     protected abstract OwnershipListNodeComponent getComponent();
@@ -31,9 +31,9 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
     @Override
     public NodeAddEvent<OwnershipNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         OwnershipNode item = getComponent().createOwnershipNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new OwnershipNodeAddEvent(item);
     }
 

@@ -33,10 +33,6 @@ public class DateLodgedNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }

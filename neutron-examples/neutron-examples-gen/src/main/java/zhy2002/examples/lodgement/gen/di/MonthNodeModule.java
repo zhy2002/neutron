@@ -33,10 +33,6 @@ public class MonthNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope MonthYearNode<?> provideMonthYearNode() {
         return owner.getParent();
     }

@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeaturesNode> {
 
     @Inject
-    public ProductTransactionAccountFlagNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductTransactionAccountFlagNode(@Owner ProductFeaturesNode parent) {
+        super(parent);
     }
 
     @Override

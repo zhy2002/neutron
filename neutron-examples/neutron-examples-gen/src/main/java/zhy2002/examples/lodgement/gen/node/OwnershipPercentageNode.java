@@ -13,8 +13,8 @@ import java.util.List;
 public class OwnershipPercentageNode extends BasePercentageNode<OwnershipNode> {
 
     @Inject
-    public OwnershipPercentageNode(@Owner OwnershipNode parent, @ChildName String name) {
-        super(parent, name);
+    public OwnershipPercentageNode(@Owner OwnershipNode parent) {
+        super(parent);
     }
 
     @Override

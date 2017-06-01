@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
 
     @Inject
-    public TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
     @Override
     public NodeAddEvent<TrustBeneficiaryClassNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         TrustBeneficiaryClassNode item = getComponent().createTrustBeneficiaryClassNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new TrustBeneficiaryClassNodeAddEvent(item);
     }
 

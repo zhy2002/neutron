@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectRelatedPersonNode> {
 
-    public SelectRelatedPersonListNode(P parent, String name) {
-        super(parent, name);
+    public SelectRelatedPersonListNode(P parent) {
+        super(parent);
     }
 
     protected abstract SelectRelatedPersonListNodeComponent getComponent();
@@ -26,9 +26,9 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
     @Override
     public NodeAddEvent<SelectRelatedPersonNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         SelectRelatedPersonNode item = getComponent().createSelectRelatedPersonNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new SelectRelatedPersonNodeAddEvent(item);
     }
 

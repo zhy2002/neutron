@@ -14,8 +14,8 @@ import java.util.List;
 public class UsedAsSecurityFlagNode extends BooleanUiNode<UsageNode> {
 
     @Inject
-    public UsedAsSecurityFlagNode(@Owner UsageNode parent, @ChildName String name) {
-        super(parent, name);
+    public UsedAsSecurityFlagNode(@Owner UsageNode parent) {
+        super(parent);
     }
 
     @Override

@@ -13,8 +13,8 @@ import java.util.List;
 public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
 
     @Inject
-    public ThirdPartyAddressNode(@Owner RelatedPartyNode parent, @ChildName String name) {
-        super(parent, name);
+    public ThirdPartyAddressNode(@Owner RelatedPartyNode parent) {
+        super(parent);
     }
 
     @Override

@@ -32,10 +32,6 @@ public class RealEstateNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope RealEstateListNode provideRealEstateListNode() {
         return owner.getParent();
     }

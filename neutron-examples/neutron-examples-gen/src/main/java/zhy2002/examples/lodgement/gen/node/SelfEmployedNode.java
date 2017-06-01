@@ -16,8 +16,8 @@ import java.util.List;
 public class SelfEmployedNode extends EmployedNode {
 
     @Inject
-    public SelfEmployedNode(@Owner EmploymentNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public SelfEmployedNode(@Owner EmploymentNode<?> parent) {
+        super(parent);
     }
 
     @Override

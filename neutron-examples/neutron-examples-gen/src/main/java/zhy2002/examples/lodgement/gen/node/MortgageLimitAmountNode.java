@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageLimitAmountNode extends BaseCurrencyNode<ExistingMortgageNode> {
 
     @Inject
-    public MortgageLimitAmountNode(@Owner ExistingMortgageNode parent, @ChildName String name) {
-        super(parent, name);
+    public MortgageLimitAmountNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

@@ -32,10 +32,6 @@ public class SavingsAccountNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope SavingsAccountListNode provideSavingsAccountListNode() {
         return owner.getParent();
     }

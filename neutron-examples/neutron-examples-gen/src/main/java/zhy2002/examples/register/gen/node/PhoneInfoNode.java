@@ -16,8 +16,8 @@ import java.util.List;
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
 
     @Inject
-    public PhoneInfoNode(@Owner RegisterNode parent, @ChildName String name) {
-        super(parent, name);
+    public PhoneInfoNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

@@ -33,10 +33,6 @@ public class PrimarySecurityFlagNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope UsageNode provideUsageNode() {
         return owner.getParent();
     }

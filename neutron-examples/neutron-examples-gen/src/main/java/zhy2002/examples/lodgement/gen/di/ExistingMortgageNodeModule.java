@@ -32,10 +32,6 @@ public class ExistingMortgageNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ExistingMortgageListNode provideExistingMortgageListNode() {
         return owner.getParent();
     }

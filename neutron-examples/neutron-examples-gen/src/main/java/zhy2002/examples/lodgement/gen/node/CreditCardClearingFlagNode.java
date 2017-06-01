@@ -13,8 +13,8 @@ import java.util.List;
 public class CreditCardClearingFlagNode extends BooleanUiNode<CreditCardNode> {
 
     @Inject
-    public CreditCardClearingFlagNode(@Owner CreditCardNode parent, @ChildName String name) {
-        super(parent, name);
+    public CreditCardClearingFlagNode(@Owner CreditCardNode parent) {
+        super(parent);
     }
 
     @Override

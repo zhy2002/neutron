@@ -36,10 +36,6 @@ public class RegisterNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope
     RuleProvider<RegisterNode> provideRuleProvider(Provider<RegisterNodeRuleProvider> provider) {
         return provider.get();

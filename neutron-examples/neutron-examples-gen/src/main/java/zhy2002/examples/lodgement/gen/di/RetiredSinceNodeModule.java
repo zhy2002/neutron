@@ -37,10 +37,6 @@ public class RetiredSinceNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope RetiredEmploymentNode provideRetiredEmploymentNode() {
         return owner.getParent();
     }

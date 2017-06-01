@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductTotalLoanLmiAmountNode extends BaseCurrencyNode<ProductsNode> {
 
     @Inject
-    public ProductTotalLoanLmiAmountNode(@Owner ProductsNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductTotalLoanLmiAmountNode(@Owner ProductsNode parent) {
+        super(parent);
     }
 
     @Override

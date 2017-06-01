@@ -37,10 +37,6 @@ public class PersonEmailNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }

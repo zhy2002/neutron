@@ -20,8 +20,8 @@ import zhy2002.examples.register.gen.event.*;
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
     @Inject
-    public PropertyDetailsNode(@Owner RegisterNode parent, @ChildName String name) {
-        super(parent, name);
+    public PropertyDetailsNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

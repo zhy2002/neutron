@@ -13,8 +13,8 @@ import java.util.List;
 public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
 
     @Inject
-    public MonthNode(@Owner MonthYearNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public MonthNode(@Owner MonthYearNode<?> parent) {
+        super(parent);
     }
 
     @Override

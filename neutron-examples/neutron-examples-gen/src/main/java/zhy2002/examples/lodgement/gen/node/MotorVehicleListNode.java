@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode> {
 
     @Inject
-    public MotorVehicleListNode(@Owner AssetsNode parent, @ChildName String name) {
-        super(parent, name);
+    public MotorVehicleListNode(@Owner AssetsNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
     @Override
     public NodeAddEvent<MotorVehicleNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         MotorVehicleNode item = getComponent().createMotorVehicleNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new MotorVehicleNodeAddEvent(item);
     }
 

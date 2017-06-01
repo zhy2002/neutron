@@ -13,8 +13,8 @@ import java.util.List;
 public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiabilityNode> {
 
     @Inject
-    public OtherLiabilityBreakCostNode(@Owner OtherLiabilityNode parent, @ChildName String name) {
-        super(parent, name);
+    public OtherLiabilityBreakCostNode(@Owner OtherLiabilityNode parent) {
+        super(parent);
     }
 
     @Override

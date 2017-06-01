@@ -13,8 +13,8 @@ import java.util.List;
 public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResponsibleLendNode<?>> {
 
     @Inject
-    public ResponsibleRepaymentDifficultyNode(@Owner BaseResponsibleLendNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public ResponsibleRepaymentDifficultyNode(@Owner BaseResponsibleLendNode<?> parent) {
+        super(parent);
     }
 
     @Override

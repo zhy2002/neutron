@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageMonthlyRepaymentNode extends BaseCurrencyNode<ExistingMortgageNode> {
 
     @Inject
-    public MortgageMonthlyRepaymentNode(@Owner ExistingMortgageNode parent, @ChildName String name) {
-        super(parent, name);
+    public MortgageMonthlyRepaymentNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

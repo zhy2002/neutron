@@ -19,8 +19,8 @@ import java.util.Objects;
  */
 public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P> {
 
-    protected LeafUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected LeafUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     public abstract T getValue();

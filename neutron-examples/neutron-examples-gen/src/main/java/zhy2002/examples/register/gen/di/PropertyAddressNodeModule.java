@@ -33,10 +33,6 @@ public class PropertyAddressNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope PropertyDetailsNode providePropertyDetailsNode() {
         return owner.getParent();
     }

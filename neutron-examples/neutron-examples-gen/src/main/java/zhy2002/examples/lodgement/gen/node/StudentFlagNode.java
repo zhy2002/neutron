@@ -13,8 +13,8 @@ import java.util.List;
 public class StudentFlagNode extends YesNoOptionNode<UnemployedNode> {
 
     @Inject
-    public StudentFlagNode(@Owner UnemployedNode parent, @ChildName String name) {
-        super(parent, name);
+    public StudentFlagNode(@Owner UnemployedNode parent) {
+        super(parent);
     }
 
     @Override

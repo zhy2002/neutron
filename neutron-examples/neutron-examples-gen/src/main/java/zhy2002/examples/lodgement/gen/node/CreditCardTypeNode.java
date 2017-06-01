@@ -13,8 +13,8 @@ import java.util.List;
 public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
 
     @Inject
-    public CreditCardTypeNode(@Owner CreditCardNode parent, @ChildName String name) {
-        super(parent, name);
+    public CreditCardTypeNode(@Owner CreditCardNode parent) {
+        super(parent);
     }
 
     @Override

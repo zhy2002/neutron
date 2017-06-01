@@ -37,10 +37,6 @@ public class FeeAmountNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ProductFeeNode provideProductFeeNode() {
         return owner.getParent();
     }

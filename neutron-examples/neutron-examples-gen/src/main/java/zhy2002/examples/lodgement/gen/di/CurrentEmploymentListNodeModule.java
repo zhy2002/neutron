@@ -33,10 +33,6 @@ public class CurrentEmploymentListNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }

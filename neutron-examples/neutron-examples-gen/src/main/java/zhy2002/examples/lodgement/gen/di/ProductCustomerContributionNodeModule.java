@@ -32,10 +32,6 @@ public class ProductCustomerContributionNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ProductCustomerContributionListNode provideProductCustomerContributionListNode() {
         return owner.getParent();
     }

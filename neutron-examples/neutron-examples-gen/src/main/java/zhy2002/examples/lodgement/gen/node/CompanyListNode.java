@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
 
     @Inject
-    public CompanyListNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public CompanyListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class CompanyListNode extends ListUiNode<ApplicationNode,CompanyNode> {
     @Override
     public NodeAddEvent<CompanyNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         CompanyNode item = getComponent().createCompanyNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new CompanyNodeAddEvent(item);
     }
 

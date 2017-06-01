@@ -32,10 +32,6 @@ public class ExpenseNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope ExpenseListNode provideExpenseListNode() {
         return owner.getParent();
     }

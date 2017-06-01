@@ -13,8 +13,8 @@ import java.util.List;
 public class OtherAssetDescriptionNode extends StringUiNode<OtherAssetNode> {
 
     @Inject
-    public OtherAssetDescriptionNode(@Owner OtherAssetNode parent, @ChildName String name) {
-        super(parent, name);
+    public OtherAssetDescriptionNode(@Owner OtherAssetNode parent) {
+        super(parent);
     }
 
     @Override

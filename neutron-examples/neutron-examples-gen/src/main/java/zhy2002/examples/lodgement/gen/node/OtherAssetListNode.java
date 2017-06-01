@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
 
     @Inject
-    public OtherAssetListNode(@Owner AssetsNode parent, @ChildName String name) {
-        super(parent, name);
+    public OtherAssetListNode(@Owner AssetsNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
     @Override
     public NodeAddEvent<OtherAssetNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         OtherAssetNode item = getComponent().createOtherAssetNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new OtherAssetNodeAddEvent(item);
     }
 

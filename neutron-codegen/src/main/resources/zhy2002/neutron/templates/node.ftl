@@ -63,13 +63,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 <#else>
     <#if abstractNode>
-    public ${typeName}(${parentType.genericTypeName} parent, String name) {
-        super(parent, name);
+    public ${typeName}(${parentType.genericTypeName} parent) {
+        super(parent);
     }
     <#else>
     @Inject
-    public ${typeName}(@Owner ${parentType.genericTypeName} parent, @ChildName String name) {
-        super(parent, name);
+    public ${typeName}(@Owner ${parentType.genericTypeName} parent) {
+        super(parent);
     }
     </#if>
 </#if>
@@ -148,9 +148,9 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @Override
     public NodeAddEvent<${itemTypeName}> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         ${itemTypeName} item = getComponent().create${itemTypeName}();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new ${itemTypeName}AddEvent(item);
     }
 

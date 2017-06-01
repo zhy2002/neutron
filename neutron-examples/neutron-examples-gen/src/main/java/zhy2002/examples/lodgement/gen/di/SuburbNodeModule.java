@@ -33,10 +33,6 @@ public class SuburbNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope AddressNode<?> provideAddressNode() {
         return owner.getParent();
     }

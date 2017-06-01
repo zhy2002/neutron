@@ -13,8 +13,8 @@ import java.util.List;
 public class PermanentResidentFlagNode extends BooleanUiNode<PersonGeneralNode> {
 
     @Inject
-    public PermanentResidentFlagNode(@Owner PersonGeneralNode parent, @ChildName String name) {
-        super(parent, name);
+    public PermanentResidentFlagNode(@Owner PersonGeneralNode parent) {
+        super(parent);
     }
 
     @Override

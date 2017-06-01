@@ -13,8 +13,8 @@ import java.util.List;
 public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
 
     @Inject
-    public ErrorNode(@Owner ErrorListNode parent, @ChildName String name) {
-        super(parent, name);
+    public ErrorNode(@Owner ErrorListNode parent) {
+        super(parent);
     }
 
     @Override

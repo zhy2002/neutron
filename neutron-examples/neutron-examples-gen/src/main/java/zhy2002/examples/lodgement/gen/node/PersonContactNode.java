@@ -16,8 +16,8 @@ import java.util.List;
 public class PersonContactNode extends ObjectUiNode<PersonNode> {
 
     @Inject
-    public PersonContactNode(@Owner PersonNode parent, @ChildName String name) {
-        super(parent, name);
+    public PersonContactNode(@Owner PersonNode parent) {
+        super(parent);
     }
 
     @Override

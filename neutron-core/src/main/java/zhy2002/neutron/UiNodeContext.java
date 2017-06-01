@@ -23,10 +23,6 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
 
     void setNodeIdentity(NodeIdentity nodeIdentity);
 
-    String getNameOfNodeBeingCreated();
-
-    void setNameOfNodeBeingCreated(String nameOfNodeBeingCreated);
-
     /**
      * Get the root ui node of this context.
      *

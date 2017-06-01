@@ -32,10 +32,6 @@ public class CreditHistoryNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope CreditHistoryListNode provideCreditHistoryListNode() {
         return owner.getParent();
     }

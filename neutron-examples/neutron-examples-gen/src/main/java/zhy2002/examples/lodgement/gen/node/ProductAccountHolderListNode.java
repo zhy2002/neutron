@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductAccountHolderListNode extends SelectAccountHolderListNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductAccountHolderListNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductAccountHolderListNode(@Owner ProductDescriptionNode parent) {
+        super(parent);
     }
 
     @Override

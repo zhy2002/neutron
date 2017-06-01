@@ -13,8 +13,8 @@ import java.util.List;
 public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
 
     @Inject
-    public AccessOtherDescriptionNode(@Owner AccessNode parent, @ChildName String name) {
-        super(parent, name);
+    public AccessOtherDescriptionNode(@Owner AccessNode parent) {
+        super(parent);
     }
 
     @Override

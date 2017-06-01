@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
 
     @Inject
-    public CreditHistoryListNode(@Owner BasePrivacyNode<?> parent, @ChildName String name) {
-        super(parent, name);
+    public CreditHistoryListNode(@Owner BasePrivacyNode<?> parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
     @Override
     public NodeAddEvent<CreditHistoryNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         CreditHistoryNode item = getComponent().createCreditHistoryNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new CreditHistoryNodeAddEvent(item);
     }
 

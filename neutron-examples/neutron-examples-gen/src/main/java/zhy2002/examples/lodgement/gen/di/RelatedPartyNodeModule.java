@@ -32,10 +32,6 @@ public class RelatedPartyNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope RelatedPartyListNode provideRelatedPartyListNode() {
         return owner.getParent();
     }

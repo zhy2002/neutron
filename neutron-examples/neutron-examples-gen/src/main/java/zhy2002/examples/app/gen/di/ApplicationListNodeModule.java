@@ -33,10 +33,6 @@ public class ApplicationListNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope AppManagerNode provideAppManagerNode() {
         return owner.getParent();
     }

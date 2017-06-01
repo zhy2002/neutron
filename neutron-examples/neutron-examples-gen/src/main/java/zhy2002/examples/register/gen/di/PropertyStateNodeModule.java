@@ -33,10 +33,6 @@ public class PropertyStateNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope PropertyDetailsNode providePropertyDetailsNode() {
         return owner.getParent();
     }

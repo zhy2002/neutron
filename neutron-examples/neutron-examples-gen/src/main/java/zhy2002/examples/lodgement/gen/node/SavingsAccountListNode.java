@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountNode> {
 
     @Inject
-    public SavingsAccountListNode(@Owner AssetsNode parent, @ChildName String name) {
-        super(parent, name);
+    public SavingsAccountListNode(@Owner AssetsNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     @Override
     public NodeAddEvent<SavingsAccountNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         SavingsAccountNode item = getComponent().createSavingsAccountNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new SavingsAccountNodeAddEvent(item);
     }
 

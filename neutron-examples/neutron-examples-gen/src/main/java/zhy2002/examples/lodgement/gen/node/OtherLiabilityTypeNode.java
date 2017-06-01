@@ -13,8 +13,8 @@ import java.util.List;
 public class OtherLiabilityTypeNode extends StringUiNode<OtherLiabilityNode> {
 
     @Inject
-    public OtherLiabilityTypeNode(@Owner OtherLiabilityNode parent, @ChildName String name) {
-        super(parent, name);
+    public OtherLiabilityTypeNode(@Owner OtherLiabilityNode parent) {
+        super(parent);
     }
 
     @Override

@@ -13,8 +13,8 @@ import java.util.List;
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public RepeatPasswordNode(@Owner RegisterNode parent, @ChildName String name) {
-        super(parent, name);
+    public RepeatPasswordNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

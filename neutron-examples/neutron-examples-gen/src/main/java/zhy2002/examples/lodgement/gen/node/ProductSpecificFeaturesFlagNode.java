@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductSpecificFeaturesFlagNode extends BooleanUiNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductSpecificFeaturesFlagNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
-        super(parent, name);
+    public ProductSpecificFeaturesFlagNode(@Owner ProductDescriptionNode parent) {
+        super(parent);
     }
 
     @Override

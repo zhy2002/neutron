@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNode> {
 
     @Inject
-    public RealEstateListNode(@Owner ApplicationNode parent, @ChildName String name) {
-        super(parent, name);
+    public RealEstateListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override
@@ -63,9 +63,9 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
     @Override
     public NodeAddEvent<RealEstateNode> createItemAddEvent(String name) {
         ensureSequenceNumber(name);
-        getContext().setNameOfNodeBeingCreated(name);
+        setNameOfChildBeingCreated(name);
         RealEstateNode item = getComponent().createRealEstateNode();
-        getContext().setNameOfNodeBeingCreated(null);
+        setNameOfChildBeingCreated(null);
         return new RealEstateNodeAddEvent(item);
     }
 

@@ -17,8 +17,8 @@ import java.util.List;
 public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
 
     @Inject
-    public RealEstateNode(@Owner RealEstateListNode parent, @ChildName String name) {
-        super(parent, name);
+    public RealEstateNode(@Owner RealEstateListNode parent) {
+        super(parent);
     }
 
     @Override

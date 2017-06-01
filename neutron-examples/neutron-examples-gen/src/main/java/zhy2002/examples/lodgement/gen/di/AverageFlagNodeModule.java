@@ -33,10 +33,6 @@ public class AverageFlagNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope OwnershipNode provideOwnershipNode() {
         return owner.getParent();
     }

@@ -32,10 +32,6 @@ public class OtherIncomeNodeModule {
         return owner;
     }
 
-    @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNameOfNodeBeingCreated();
-    }
-
     @Provides @ComponentScope BaseOtherIncomeListNode<?> provideBaseOtherIncomeListNode() {
         return owner.getParent();
     }

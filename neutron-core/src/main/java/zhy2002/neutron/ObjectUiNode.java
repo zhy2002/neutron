@@ -17,8 +17,8 @@ import java.util.*;
  */
 public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNode<P> {
 
-    protected ObjectUiNode(@NotNull P parent, @NotNull String name) {
-        super(parent, name);
+    protected ObjectUiNode(@NotNull P parent) {
+        super(parent);
     }
 
     protected ObjectUiNode(@NotNull UiNodeContext<?> context) {
@@ -102,7 +102,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
             childNodeIdentity = nodeIdentity.getNodeIdentityMap().get(childName);
         }
         getContext().setNodeIdentity(childNodeIdentity);
-        getContext().setNameOfNodeBeingCreated(childName);
+        setNameOfChildBeingCreated(childName);
     }
 
     //endregion
