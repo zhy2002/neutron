@@ -24,15 +24,6 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
     return AccessNode.class;
     }
 
-    private AccessNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(AccessNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final AccessNodeComponent getComponent() {
         return component;
     }

@@ -24,15 +24,6 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
     return ProductCardHolderNode.class;
     }
 
-    private ProductCardHolderNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(ProductCardHolderNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final ProductCardHolderNodeComponent getComponent() {
         return component;
     }

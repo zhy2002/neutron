@@ -8,94 +8,8 @@ import java.util.*;
 import zhy2002.neutron.di.ComponentScope;
 
 
-interface ProductsNodeChildFactory {
-    ProductListNode createProductListNode();
-    ProductCustomerContributionListNode createProductCustomerContributionListNode();
-    ProductFeeListNode createProductFeeListNode();
-    ProductLoanTypeNode createProductLoanTypeNode();
-    SettlementDateNode createSettlementDateNode();
-    ProductTotalLoanAmountNode createProductTotalLoanAmountNode();
-    ProductTotalSecurityAmountNode createProductTotalSecurityAmountNode();
-    ProductTotalLoanLmiAmountNode createProductTotalLoanLmiAmountNode();
-    ProductTotalLvrNode createProductTotalLvrNode();
-    ProductTotalLvrLmiNode createProductTotalLvrLmiNode();
-}
-
-@Singleton
 public class ProductsNodeChildProvider {
-    @Inject
-    MembersInjector<SettlementDateNode> settlementDateNodeInjector;
-    @Inject
-    MembersInjector<ProductFeeListNode> productFeeListNodeInjector;
-    @Inject
-    MembersInjector<ProductTotalSecurityAmountNode> productTotalSecurityAmountNodeInjector;
-    @Inject
-    MembersInjector<ProductCustomerContributionListNode> productCustomerContributionListNodeInjector;
-    @Inject
-    MembersInjector<ProductLoanTypeNode> productLoanTypeNodeInjector;
-    @Inject
-    MembersInjector<ProductTotalLoanAmountNode> productTotalLoanAmountNodeInjector;
-    @Inject
-    MembersInjector<ProductTotalLvrLmiNode> productTotalLvrLmiNodeInjector;
-    @Inject
-    MembersInjector<ProductListNode> productListNodeInjector;
-    @Inject
-    MembersInjector<ProductTotalLoanLmiAmountNode> productTotalLoanLmiAmountNodeInjector;
-    @Inject
-    MembersInjector<ProductTotalLvrNode> productTotalLvrNodeInjector;
 
-    @Inject
-    protected ProductsNodeChildProvider () {}
-
-    protected MembersInjector<SettlementDateNode> getSettlementDateNodeInjector() {
-        return this.settlementDateNodeInjector;
-    }
-
-    protected MembersInjector<ProductFeeListNode> getProductFeeListNodeInjector() {
-        return this.productFeeListNodeInjector;
-    }
-
-    protected MembersInjector<ProductTotalSecurityAmountNode> getProductTotalSecurityAmountNodeInjector() {
-        return this.productTotalSecurityAmountNodeInjector;
-    }
-
-    protected MembersInjector<ProductCustomerContributionListNode> getProductCustomerContributionListNodeInjector() {
-        return this.productCustomerContributionListNodeInjector;
-    }
-
-    protected MembersInjector<ProductLoanTypeNode> getProductLoanTypeNodeInjector() {
-        return this.productLoanTypeNodeInjector;
-    }
-
-    protected MembersInjector<ProductTotalLoanAmountNode> getProductTotalLoanAmountNodeInjector() {
-        return this.productTotalLoanAmountNodeInjector;
-    }
-
-    protected MembersInjector<ProductTotalLvrLmiNode> getProductTotalLvrLmiNodeInjector() {
-        return this.productTotalLvrLmiNodeInjector;
-    }
-
-    protected MembersInjector<ProductListNode> getProductListNodeInjector() {
-        return this.productListNodeInjector;
-    }
-
-    protected MembersInjector<ProductTotalLoanLmiAmountNode> getProductTotalLoanLmiAmountNodeInjector() {
-        return this.productTotalLoanLmiAmountNodeInjector;
-    }
-
-    protected MembersInjector<ProductTotalLvrNode> getProductTotalLvrNodeInjector() {
-        return this.productTotalLvrNodeInjector;
-    }
-
-    protected ProductListNode newProductListNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductListNode(parent, name);
-    }
-
-    protected void configureProductListNode(ProductListNode node) {
-    }
 
     @ComponentScope
     public static class ProductListNodeRuleProvider implements RuleProvider<ProductListNode> {
@@ -115,15 +29,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductCustomerContributionListNode newProductCustomerContributionListNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductCustomerContributionListNode(parent, name);
-    }
-
-    protected void configureProductCustomerContributionListNode(ProductCustomerContributionListNode node) {
-    }
 
     @ComponentScope
     public static class ProductCustomerContributionListNodeRuleProvider implements RuleProvider<ProductCustomerContributionListNode> {
@@ -143,15 +48,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductFeeListNode newProductFeeListNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductFeeListNode(parent, name);
-    }
-
-    protected void configureProductFeeListNode(ProductFeeListNode node) {
-    }
 
     @ComponentScope
     public static class ProductFeeListNodeRuleProvider implements RuleProvider<ProductFeeListNode> {
@@ -171,15 +67,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductLoanTypeNode newProductLoanTypeNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductLoanTypeNode(parent, name);
-    }
-
-    protected void configureProductLoanTypeNode(ProductLoanTypeNode node) {
-    }
 
     @ComponentScope
     public static class ProductLoanTypeNodeRuleProvider implements RuleProvider<ProductLoanTypeNode> {
@@ -199,15 +86,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected SettlementDateNode newSettlementDateNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new SettlementDateNode(parent, name);
-    }
-
-    protected void configureSettlementDateNode(SettlementDateNode node) {
-    }
 
     @ComponentScope
     public static class SettlementDateNodeRuleProvider implements RuleProvider<SettlementDateNode> {
@@ -227,15 +105,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductTotalLoanAmountNode newProductTotalLoanAmountNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductTotalLoanAmountNode(parent, name);
-    }
-
-    protected void configureProductTotalLoanAmountNode(ProductTotalLoanAmountNode node) {
-    }
 
     @ComponentScope
     public static class ProductTotalLoanAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanAmountNode> {
@@ -255,15 +124,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductTotalSecurityAmountNode newProductTotalSecurityAmountNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductTotalSecurityAmountNode(parent, name);
-    }
-
-    protected void configureProductTotalSecurityAmountNode(ProductTotalSecurityAmountNode node) {
-    }
 
     @ComponentScope
     public static class ProductTotalSecurityAmountNodeRuleProvider implements RuleProvider<ProductTotalSecurityAmountNode> {
@@ -283,15 +143,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductTotalLoanLmiAmountNode newProductTotalLoanLmiAmountNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductTotalLoanLmiAmountNode(parent, name);
-    }
-
-    protected void configureProductTotalLoanLmiAmountNode(ProductTotalLoanLmiAmountNode node) {
-    }
 
     @ComponentScope
     public static class ProductTotalLoanLmiAmountNodeRuleProvider implements RuleProvider<ProductTotalLoanLmiAmountNode> {
@@ -311,15 +162,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductTotalLvrNode newProductTotalLvrNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductTotalLvrNode(parent, name);
-    }
-
-    protected void configureProductTotalLvrNode(ProductTotalLvrNode node) {
-    }
 
     @ComponentScope
     public static class ProductTotalLvrNodeRuleProvider implements RuleProvider<ProductTotalLvrNode> {
@@ -339,15 +181,6 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    protected ProductTotalLvrLmiNode newProductTotalLvrLmiNode(
-        ProductsNode parent,
-        String name
-    ) {
-        return new ProductTotalLvrLmiNode(parent, name);
-    }
-
-    protected void configureProductTotalLvrLmiNode(ProductTotalLvrLmiNode node) {
-    }
 
     @ComponentScope
     public static class ProductTotalLvrLmiNodeRuleProvider implements RuleProvider<ProductTotalLvrLmiNode> {
@@ -367,97 +200,4 @@ public class ProductsNodeChildProvider {
         }
     }
 
-    ProductsNodeChildFactory createFactory(ProductsNode parent) {
-        return new ProductsNodeChildFactoryImpl(parent);
-    }
-
-    private class ProductsNodeChildFactoryImpl implements ProductsNodeChildFactory {
-
-        private final ProductsNode parent;
-        
-        private ProductsNodeChildFactoryImpl(ProductsNode parent) {
-            this.parent = parent;
-        }
-
-        @Override
-        public ProductListNode createProductListNode() {
-            ProductListNode node = newProductListNode(parent, "productListNode");
-            productListNodeInjector.injectMembers(node);
-            configureProductListNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductCustomerContributionListNode createProductCustomerContributionListNode() {
-            ProductCustomerContributionListNode node = newProductCustomerContributionListNode(parent, "productCustomerContributionListNode");
-            productCustomerContributionListNodeInjector.injectMembers(node);
-            configureProductCustomerContributionListNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductFeeListNode createProductFeeListNode() {
-            ProductFeeListNode node = newProductFeeListNode(parent, "productFeeListNode");
-            productFeeListNodeInjector.injectMembers(node);
-            configureProductFeeListNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductLoanTypeNode createProductLoanTypeNode() {
-            ProductLoanTypeNode node = newProductLoanTypeNode(parent, "productLoanTypeNode");
-            productLoanTypeNodeInjector.injectMembers(node);
-            configureProductLoanTypeNode(node);
-            return node;
-        }
-
-        @Override
-        public SettlementDateNode createSettlementDateNode() {
-            SettlementDateNode node = newSettlementDateNode(parent, "settlementDateNode");
-            settlementDateNodeInjector.injectMembers(node);
-            configureSettlementDateNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductTotalLoanAmountNode createProductTotalLoanAmountNode() {
-            ProductTotalLoanAmountNode node = newProductTotalLoanAmountNode(parent, "productTotalLoanAmountNode");
-            productTotalLoanAmountNodeInjector.injectMembers(node);
-            configureProductTotalLoanAmountNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductTotalSecurityAmountNode createProductTotalSecurityAmountNode() {
-            ProductTotalSecurityAmountNode node = newProductTotalSecurityAmountNode(parent, "productTotalSecurityAmountNode");
-            productTotalSecurityAmountNodeInjector.injectMembers(node);
-            configureProductTotalSecurityAmountNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductTotalLoanLmiAmountNode createProductTotalLoanLmiAmountNode() {
-            ProductTotalLoanLmiAmountNode node = newProductTotalLoanLmiAmountNode(parent, "productTotalLoanLmiAmountNode");
-            productTotalLoanLmiAmountNodeInjector.injectMembers(node);
-            configureProductTotalLoanLmiAmountNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductTotalLvrNode createProductTotalLvrNode() {
-            ProductTotalLvrNode node = newProductTotalLvrNode(parent, "productTotalLvrNode");
-            productTotalLvrNodeInjector.injectMembers(node);
-            configureProductTotalLvrNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductTotalLvrLmiNode createProductTotalLvrLmiNode() {
-            ProductTotalLvrLmiNode node = newProductTotalLvrLmiNode(parent, "productTotalLvrLmiNode");
-            productTotalLvrLmiNodeInjector.injectMembers(node);
-            configureProductTotalLvrLmiNode(node);
-            return node;
-        }
-
-    }
 }

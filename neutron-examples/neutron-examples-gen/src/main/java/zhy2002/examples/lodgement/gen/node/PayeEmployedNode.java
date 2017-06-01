@@ -24,15 +24,6 @@ public class PayeEmployedNode extends EmployedNode {
     return PayeEmployedNode.class;
     }
 
-    private PayeEmployedNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(PayeEmployedNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final PayeEmployedNodeComponent getComponent() {
         return component;
     }

@@ -16,15 +16,6 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
         super(parent, name);
     }
 
-    private BasePrivacyNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(BasePrivacyNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract BasePrivacyNodeComponent getComponent();
 
 

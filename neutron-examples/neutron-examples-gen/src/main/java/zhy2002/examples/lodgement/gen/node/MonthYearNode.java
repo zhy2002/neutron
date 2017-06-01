@@ -16,15 +16,6 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
         super(parent, name);
     }
 
-    private MonthYearNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(MonthYearNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract MonthYearNodeComponent getComponent();
 
 

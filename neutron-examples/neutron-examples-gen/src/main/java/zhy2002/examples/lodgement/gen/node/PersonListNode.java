@@ -28,8 +28,6 @@ public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final PersonListNodeComponent getComponent() {
         return component;
     }

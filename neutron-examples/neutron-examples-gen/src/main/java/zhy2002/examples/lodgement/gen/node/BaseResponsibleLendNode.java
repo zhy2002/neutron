@@ -16,15 +16,6 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
         super(parent, name);
     }
 
-    private BaseResponsibleLendNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(BaseResponsibleLendNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract BaseResponsibleLendNodeComponent getComponent();
 
 

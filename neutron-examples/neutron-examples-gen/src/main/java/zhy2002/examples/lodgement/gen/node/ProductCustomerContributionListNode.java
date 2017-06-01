@@ -28,8 +28,6 @@ public class ProductCustomerContributionListNode extends ListUiNode<ProductsNode
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final ProductCustomerContributionListNodeComponent getComponent() {
         return component;
     }

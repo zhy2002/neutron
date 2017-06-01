@@ -24,15 +24,6 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
     return UnemployedNode.class;
     }
 
-    private UnemployedNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(UnemployedNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final UnemployedNodeComponent getComponent() {
         return component;
     }

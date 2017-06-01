@@ -28,8 +28,6 @@ public class OtherAssetListNode extends ListUiNode<AssetsNode,OtherAssetNode> {
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final OtherAssetListNodeComponent getComponent() {
         return component;
     }

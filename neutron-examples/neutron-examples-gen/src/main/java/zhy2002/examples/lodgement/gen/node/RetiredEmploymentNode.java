@@ -24,15 +24,6 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
     return RetiredEmploymentNode.class;
     }
 
-    private RetiredEmploymentNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(RetiredEmploymentNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final RetiredEmploymentNodeComponent getComponent() {
         return component;
     }

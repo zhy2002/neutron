@@ -28,8 +28,6 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final SavingsAccountListNodeComponent getComponent() {
         return component;
     }

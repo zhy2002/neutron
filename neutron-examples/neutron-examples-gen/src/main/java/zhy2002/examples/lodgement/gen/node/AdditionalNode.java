@@ -24,15 +24,6 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
     return AdditionalNode.class;
     }
 
-    private AdditionalNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(AdditionalNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final AdditionalNodeComponent getComponent() {
         return component;
     }

@@ -20,8 +20,6 @@ public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> ext
     }
 
 
-
-
     @Override
     public Class<SelectAccountHolderNode> getItemClass() {
         return SelectAccountHolderNode.class;

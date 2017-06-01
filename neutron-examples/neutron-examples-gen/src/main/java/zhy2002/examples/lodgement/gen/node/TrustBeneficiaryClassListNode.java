@@ -28,8 +28,6 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final TrustBeneficiaryClassListNodeComponent getComponent() {
         return component;
     }

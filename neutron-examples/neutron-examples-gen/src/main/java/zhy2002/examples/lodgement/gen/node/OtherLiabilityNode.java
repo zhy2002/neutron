@@ -24,15 +24,6 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     return OtherLiabilityNode.class;
     }
 
-    private OtherLiabilityNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(OtherLiabilityNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final OtherLiabilityNodeComponent getComponent() {
         return component;
     }

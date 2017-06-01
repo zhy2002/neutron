@@ -28,8 +28,6 @@ public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedParty
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final RelatedPartyListNodeComponent getComponent() {
         return component;
     }

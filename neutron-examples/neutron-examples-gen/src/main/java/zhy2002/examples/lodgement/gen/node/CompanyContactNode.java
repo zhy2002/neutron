@@ -24,15 +24,6 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
     return CompanyContactNode.class;
     }
 
-    private CompanyContactNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(CompanyContactNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final CompanyContactNodeComponent getComponent() {
         return component;
     }

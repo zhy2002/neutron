@@ -33,8 +33,6 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final ErrorListNodeComponent getComponent() {
         return component;
     }

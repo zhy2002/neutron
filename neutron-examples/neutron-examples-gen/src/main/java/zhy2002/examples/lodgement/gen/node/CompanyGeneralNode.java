@@ -24,15 +24,6 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
     return CompanyGeneralNode.class;
     }
 
-    private CompanyGeneralNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(CompanyGeneralNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final CompanyGeneralNodeComponent getComponent() {
         return component;
     }

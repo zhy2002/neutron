@@ -77,15 +77,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
 </#if>
-<#if children?? && children?size gt 0 || itemTypeName??>
+<#if itemTypeName??>
     private ${typeName}<#if itemTypeName??>Item<#else>Child</#if>Factory <#if itemTypeName??>item<#else>child</#if>Factory;
 
     @Inject
     void receiveNodeProvider(${typeName}<#if itemTypeName??>Item<#else>Child</#if>Provider provider) {
         <#if itemTypeName??>item<#else>child</#if>Factory = provider.createFactory(this);
     }
-
-
 
 </#if>
 <#if hasComponent>

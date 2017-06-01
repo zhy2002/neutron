@@ -16,15 +16,6 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
         super(parent, name);
     }
 
-    private EmployedNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(EmployedNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract EmployedNodeComponent getComponent();
 
 

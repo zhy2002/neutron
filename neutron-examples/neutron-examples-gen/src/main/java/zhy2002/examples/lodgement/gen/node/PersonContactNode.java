@@ -24,15 +24,6 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
     return PersonContactNode.class;
     }
 
-    private PersonContactNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(PersonContactNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final PersonContactNodeComponent getComponent() {
         return component;
     }

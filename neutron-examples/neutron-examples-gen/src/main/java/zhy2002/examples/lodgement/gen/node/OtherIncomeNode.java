@@ -24,15 +24,6 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
     return OtherIncomeNode.class;
     }
 
-    private OtherIncomeNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(OtherIncomeNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final OtherIncomeNodeComponent getComponent() {
         return component;
     }

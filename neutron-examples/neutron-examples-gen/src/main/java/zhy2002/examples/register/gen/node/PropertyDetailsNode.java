@@ -28,15 +28,6 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     return PropertyDetailsNode.class;
     }
 
-    private PropertyDetailsNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(PropertyDetailsNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final PropertyDetailsNodeComponent getComponent() {
         return component;
     }

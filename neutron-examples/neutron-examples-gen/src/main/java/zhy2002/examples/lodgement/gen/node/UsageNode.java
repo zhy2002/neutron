@@ -24,15 +24,6 @@ public class UsageNode extends ObjectUiNode<RealEstateNode> {
     return UsageNode.class;
     }
 
-    private UsageNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(UsageNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final UsageNodeComponent getComponent() {
         return component;
     }

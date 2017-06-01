@@ -28,8 +28,6 @@ public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNod
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final AddressRefListNodeComponent getComponent() {
         return component;
     }

@@ -16,15 +16,6 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         super(parent, name);
     }
 
-    private AddressNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(AddressNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract AddressNodeComponent getComponent();
 
 

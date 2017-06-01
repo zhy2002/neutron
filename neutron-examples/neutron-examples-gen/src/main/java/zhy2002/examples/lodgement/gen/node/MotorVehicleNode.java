@@ -24,15 +24,6 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     return MotorVehicleNode.class;
     }
 
-    private MotorVehicleNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(MotorVehicleNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final MotorVehicleNodeComponent getComponent() {
         return component;
     }

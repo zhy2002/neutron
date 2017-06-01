@@ -24,15 +24,6 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
     return LoanNode.class;
     }
 
-    private LoanNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(LoanNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final LoanNodeComponent getComponent() {
         return component;
     }

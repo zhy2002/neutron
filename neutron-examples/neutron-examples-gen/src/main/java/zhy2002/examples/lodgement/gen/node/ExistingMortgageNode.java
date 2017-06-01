@@ -24,15 +24,6 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
     return ExistingMortgageNode.class;
     }
 
-    private ExistingMortgageNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(ExistingMortgageNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final ExistingMortgageNodeComponent getComponent() {
         return component;
     }

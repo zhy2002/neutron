@@ -28,8 +28,6 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final CreditHistoryListNodeComponent getComponent() {
         return component;
     }

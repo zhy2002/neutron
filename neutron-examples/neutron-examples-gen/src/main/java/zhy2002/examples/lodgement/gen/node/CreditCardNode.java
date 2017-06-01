@@ -24,15 +24,6 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     return CreditCardNode.class;
     }
 
-    private CreditCardNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(CreditCardNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final CreditCardNodeComponent getComponent() {
         return component;
     }

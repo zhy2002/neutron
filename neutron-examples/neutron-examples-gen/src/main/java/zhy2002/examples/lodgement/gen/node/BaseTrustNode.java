@@ -16,15 +16,6 @@ public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiN
         super(parent, name);
     }
 
-    private BaseTrustNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(BaseTrustNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected abstract BaseTrustNodeComponent getComponent();
 
 

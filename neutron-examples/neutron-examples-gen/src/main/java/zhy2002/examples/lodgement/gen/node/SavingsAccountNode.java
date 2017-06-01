@@ -24,15 +24,6 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     return SavingsAccountNode.class;
     }
 
-    private SavingsAccountNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SavingsAccountNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final SavingsAccountNodeComponent getComponent() {
         return component;
     }

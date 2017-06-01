@@ -24,15 +24,6 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
     return SelectAccountHolderNode.class;
     }
 
-    private SelectAccountHolderNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SelectAccountHolderNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final SelectAccountHolderNodeComponent getComponent() {
         return component;
     }

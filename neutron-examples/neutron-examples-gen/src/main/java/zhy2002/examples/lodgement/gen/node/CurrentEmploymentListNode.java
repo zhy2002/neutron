@@ -28,8 +28,6 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final CurrentEmploymentListNodeComponent getComponent() {
         return component;
     }

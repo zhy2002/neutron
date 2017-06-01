@@ -27,15 +27,6 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
     return LodgementNode.class;
     }
 
-    private LodgementNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(LodgementNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final LodgementNodeComponent getComponent() {
         return component;
     }

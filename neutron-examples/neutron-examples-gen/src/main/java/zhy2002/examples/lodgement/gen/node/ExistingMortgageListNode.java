@@ -28,8 +28,6 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final ExistingMortgageListNodeComponent getComponent() {
         return component;
     }

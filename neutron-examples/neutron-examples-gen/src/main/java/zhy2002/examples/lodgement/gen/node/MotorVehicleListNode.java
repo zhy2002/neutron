@@ -28,8 +28,6 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final MotorVehicleListNodeComponent getComponent() {
         return component;
     }

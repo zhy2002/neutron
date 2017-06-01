@@ -30,15 +30,6 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     return ApplicationNode.class;
     }
 
-    private ApplicationNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(ApplicationNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final ApplicationNodeComponent getComponent() {
         return component;
     }

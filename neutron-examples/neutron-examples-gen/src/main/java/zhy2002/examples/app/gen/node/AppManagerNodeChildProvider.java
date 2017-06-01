@@ -8,31 +8,8 @@ import java.util.*;
 import zhy2002.neutron.di.ComponentScope;
 
 
-interface AppManagerNodeChildFactory {
-    ApplicationListNode createApplicationListNode();
-}
-
-@Singleton
 public class AppManagerNodeChildProvider {
-    @Inject
-    MembersInjector<ApplicationListNode> applicationListNodeInjector;
 
-    @Inject
-    protected AppManagerNodeChildProvider () {}
-
-    protected MembersInjector<ApplicationListNode> getApplicationListNodeInjector() {
-        return this.applicationListNodeInjector;
-    }
-
-    protected ApplicationListNode newApplicationListNode(
-        AppManagerNode parent,
-        String name
-    ) {
-        return new ApplicationListNode(parent, name);
-    }
-
-    protected void configureApplicationListNode(ApplicationListNode node) {
-    }
 
     @ComponentScope
     public static class ApplicationListNodeRuleProvider implements RuleProvider<ApplicationListNode> {
@@ -52,25 +29,4 @@ public class AppManagerNodeChildProvider {
         }
     }
 
-    AppManagerNodeChildFactory createFactory(AppManagerNode parent) {
-        return new AppManagerNodeChildFactoryImpl(parent);
-    }
-
-    private class AppManagerNodeChildFactoryImpl implements AppManagerNodeChildFactory {
-
-        private final AppManagerNode parent;
-        
-        private AppManagerNodeChildFactoryImpl(AppManagerNode parent) {
-            this.parent = parent;
-        }
-
-        @Override
-        public ApplicationListNode createApplicationListNode() {
-            ApplicationListNode node = newApplicationListNode(parent, "applicationListNode");
-            applicationListNodeInjector.injectMembers(node);
-            configureApplicationListNode(node);
-            return node;
-        }
-
-    }
 }

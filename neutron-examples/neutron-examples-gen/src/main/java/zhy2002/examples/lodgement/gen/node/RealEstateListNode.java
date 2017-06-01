@@ -28,8 +28,6 @@ public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNod
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final RealEstateListNodeComponent getComponent() {
         return component;
     }

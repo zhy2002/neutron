@@ -28,8 +28,6 @@ public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiab
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final OtherLiabilityListNodeComponent getComponent() {
         return component;
     }

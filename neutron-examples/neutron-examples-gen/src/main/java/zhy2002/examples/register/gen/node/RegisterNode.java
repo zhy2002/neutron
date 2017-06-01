@@ -30,15 +30,6 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     return RegisterNode.class;
     }
 
-    private RegisterNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(RegisterNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final RegisterNodeComponent getComponent() {
         return component;
     }

@@ -35,6 +35,7 @@ Todo (low priority)
 - report line number for configuration errors in the yml file.
 - only import necessary packages in the generated files.
 - fix compilation warning messages.
+- save and restore full state (not just value and id) for debugging purpose
 
 Todo (long term)
 -----------------

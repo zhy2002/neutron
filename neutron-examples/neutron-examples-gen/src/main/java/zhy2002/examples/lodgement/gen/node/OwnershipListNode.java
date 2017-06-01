@@ -25,8 +25,6 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
     }
 
 
-
-
     @Override
     public Class<OwnershipNode> getItemClass() {
         return OwnershipNode.class;

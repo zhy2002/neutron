@@ -25,15 +25,6 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
     return ProductNode.class;
     }
 
-    private ProductNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(ProductNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final ProductNodeComponent getComponent() {
         return component;
     }

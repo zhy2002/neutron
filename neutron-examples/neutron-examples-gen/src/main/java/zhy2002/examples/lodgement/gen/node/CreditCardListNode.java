@@ -28,8 +28,6 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final CreditCardListNodeComponent getComponent() {
         return component;
     }

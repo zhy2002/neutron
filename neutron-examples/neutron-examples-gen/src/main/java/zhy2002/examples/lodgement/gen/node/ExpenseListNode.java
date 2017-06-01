@@ -28,8 +28,6 @@ public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNod
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final ExpenseListNodeComponent getComponent() {
         return component;
     }

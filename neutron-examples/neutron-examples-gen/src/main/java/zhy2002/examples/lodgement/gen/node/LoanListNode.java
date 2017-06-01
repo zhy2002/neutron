@@ -28,8 +28,6 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final LoanListNodeComponent getComponent() {
         return component;
     }

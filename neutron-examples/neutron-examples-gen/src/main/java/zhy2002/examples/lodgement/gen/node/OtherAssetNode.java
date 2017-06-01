@@ -24,15 +24,6 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
     return OtherAssetNode.class;
     }
 
-    private OtherAssetNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(OtherAssetNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final OtherAssetNodeComponent getComponent() {
         return component;
     }

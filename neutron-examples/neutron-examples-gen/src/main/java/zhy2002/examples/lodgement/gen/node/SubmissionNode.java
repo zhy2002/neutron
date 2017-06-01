@@ -24,15 +24,6 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     return SubmissionNode.class;
     }
 
-    private SubmissionNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SubmissionNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final SubmissionNodeComponent getComponent() {
         return component;
     }

@@ -28,8 +28,6 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
         itemFactory = provider.createFactory(this);
     }
 
-
-
     protected final ErrorListNodeComponent getComponent() {
         return component;
     }

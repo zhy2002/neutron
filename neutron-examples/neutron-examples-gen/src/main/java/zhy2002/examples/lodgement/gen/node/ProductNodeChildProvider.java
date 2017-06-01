@@ -8,38 +8,8 @@ import java.util.*;
 import zhy2002.neutron.di.ComponentScope;
 
 
-interface ProductNodeChildFactory {
-    ProductDescriptionNode createProductDescriptionNode();
-    ProductFeaturesNode createProductFeaturesNode();
-}
-
-@Singleton
 public class ProductNodeChildProvider {
-    @Inject
-    MembersInjector<ProductDescriptionNode> productDescriptionNodeInjector;
-    @Inject
-    MembersInjector<ProductFeaturesNode> productFeaturesNodeInjector;
 
-    @Inject
-    protected ProductNodeChildProvider () {}
-
-    protected MembersInjector<ProductDescriptionNode> getProductDescriptionNodeInjector() {
-        return this.productDescriptionNodeInjector;
-    }
-
-    protected MembersInjector<ProductFeaturesNode> getProductFeaturesNodeInjector() {
-        return this.productFeaturesNodeInjector;
-    }
-
-    protected ProductDescriptionNode newProductDescriptionNode(
-        ProductNode parent,
-        String name
-    ) {
-        return new ProductDescriptionNode(parent, name);
-    }
-
-    protected void configureProductDescriptionNode(ProductDescriptionNode node) {
-    }
 
     @ComponentScope
     public static class ProductDescriptionNodeRuleProvider implements RuleProvider<ProductDescriptionNode> {
@@ -59,15 +29,6 @@ public class ProductNodeChildProvider {
         }
     }
 
-    protected ProductFeaturesNode newProductFeaturesNode(
-        ProductNode parent,
-        String name
-    ) {
-        return new ProductFeaturesNode(parent, name);
-    }
-
-    protected void configureProductFeaturesNode(ProductFeaturesNode node) {
-    }
 
     @ComponentScope
     public static class ProductFeaturesNodeRuleProvider implements RuleProvider<ProductFeaturesNode> {
@@ -87,33 +48,4 @@ public class ProductNodeChildProvider {
         }
     }
 
-    ProductNodeChildFactory createFactory(ProductNode parent) {
-        return new ProductNodeChildFactoryImpl(parent);
-    }
-
-    private class ProductNodeChildFactoryImpl implements ProductNodeChildFactory {
-
-        private final ProductNode parent;
-        
-        private ProductNodeChildFactoryImpl(ProductNode parent) {
-            this.parent = parent;
-        }
-
-        @Override
-        public ProductDescriptionNode createProductDescriptionNode() {
-            ProductDescriptionNode node = newProductDescriptionNode(parent, "productDescriptionNode");
-            productDescriptionNodeInjector.injectMembers(node);
-            configureProductDescriptionNode(node);
-            return node;
-        }
-
-        @Override
-        public ProductFeaturesNode createProductFeaturesNode() {
-            ProductFeaturesNode node = newProductFeaturesNode(parent, "productFeaturesNode");
-            productFeaturesNodeInjector.injectMembers(node);
-            configureProductFeaturesNode(node);
-            return node;
-        }
-
-    }
 }

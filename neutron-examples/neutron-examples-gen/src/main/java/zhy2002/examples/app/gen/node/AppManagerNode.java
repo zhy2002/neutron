@@ -25,15 +25,6 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
     return AppManagerNode.class;
     }
 
-    private AppManagerNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(AppManagerNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final AppManagerNodeComponent getComponent() {
         return component;
     }

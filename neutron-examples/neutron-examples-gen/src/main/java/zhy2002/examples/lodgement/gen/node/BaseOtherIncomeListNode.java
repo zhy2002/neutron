@@ -20,8 +20,6 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
     }
 
 
-
-
     @Override
     public Class<OtherIncomeNode> getItemClass() {
         return OtherIncomeNode.class;

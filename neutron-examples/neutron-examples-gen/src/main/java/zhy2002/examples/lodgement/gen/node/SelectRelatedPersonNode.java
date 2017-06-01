@@ -24,15 +24,6 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
     return SelectRelatedPersonNode.class;
     }
 
-    private SelectRelatedPersonNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SelectRelatedPersonNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final SelectRelatedPersonNodeComponent getComponent() {
         return component;
     }

@@ -24,15 +24,6 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
     return FinancialPositionNode.class;
     }
 
-    private FinancialPositionNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(FinancialPositionNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final FinancialPositionNodeComponent getComponent() {
         return component;
     }

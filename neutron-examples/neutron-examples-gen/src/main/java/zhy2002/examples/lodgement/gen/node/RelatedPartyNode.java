@@ -24,15 +24,6 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
     return RelatedPartyNode.class;
     }
 
-    private RelatedPartyNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(RelatedPartyNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final RelatedPartyNodeComponent getComponent() {
         return component;
     }

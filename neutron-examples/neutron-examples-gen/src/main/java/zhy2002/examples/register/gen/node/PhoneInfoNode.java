@@ -24,15 +24,6 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
     return PhoneInfoNode.class;
     }
 
-    private PhoneInfoNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(PhoneInfoNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final PhoneInfoNodeComponent getComponent() {
         return component;
     }

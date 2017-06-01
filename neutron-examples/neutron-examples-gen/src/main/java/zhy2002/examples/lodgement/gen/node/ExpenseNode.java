@@ -24,15 +24,6 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
     return ExpenseNode.class;
     }
 
-    private ExpenseNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(ExpenseNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final ExpenseNodeComponent getComponent() {
         return component;
     }

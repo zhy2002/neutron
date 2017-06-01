@@ -20,8 +20,6 @@ public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> ext
     }
 
 
-
-
     @Override
     public Class<SelectRelatedPersonNode> getItemClass() {
         return SelectRelatedPersonNode.class;

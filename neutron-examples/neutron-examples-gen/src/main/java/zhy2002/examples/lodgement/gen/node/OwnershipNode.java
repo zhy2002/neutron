@@ -24,15 +24,6 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
     return OwnershipNode.class;
     }
 
-    private OwnershipNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(OwnershipNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final OwnershipNodeComponent getComponent() {
         return component;
     }

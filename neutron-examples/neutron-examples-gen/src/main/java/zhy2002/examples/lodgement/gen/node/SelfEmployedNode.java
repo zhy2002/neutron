@@ -24,15 +24,6 @@ public class SelfEmployedNode extends EmployedNode {
     return SelfEmployedNode.class;
     }
 
-    private SelfEmployedNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(SelfEmployedNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final SelfEmployedNodeComponent getComponent() {
         return component;
     }

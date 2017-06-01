@@ -25,15 +25,6 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
     return RealEstateNode.class;
     }
 
-    private RealEstateNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(RealEstateNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final RealEstateNodeComponent getComponent() {
         return component;
     }

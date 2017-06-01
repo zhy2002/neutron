@@ -24,15 +24,6 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
     return PropertyNode.class;
     }
 
-    private PropertyNodeChildFactory childFactory;
-
-    @Inject
-    void receiveNodeProvider(PropertyNodeChildProvider provider) {
-        childFactory = provider.createFactory(this);
-    }
-
-
-
     protected final PropertyNodeComponent getComponent() {
         return component;
     }
