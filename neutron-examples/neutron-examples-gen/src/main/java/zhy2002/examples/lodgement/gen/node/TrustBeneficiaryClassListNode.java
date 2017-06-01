@@ -35,24 +35,14 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
         this.component = builder.setTrustBeneficiaryClassListNodeModule(new TrustBeneficiaryClassListNodeModule(this)).build();
     }
 
-    private RuleProvider<TrustBeneficiaryClassListNode> getRuleProvider() {
-        return component.getTrustBeneficiaryClassListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TrustBeneficiaryClassListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

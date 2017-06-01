@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class TrustBeneficiaryListNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<TrustBeneficiaryListNode> provideRuleProvider(Provider<TrustBeneficiaryListNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("TrustBeneficiaryListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<TrustBeneficiaryListNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("TrustBeneficiaryListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<TrustBeneficiaryListNode> provideTypeRuleProvider(TrustBeneficiaryListNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("TrustBeneficiaryListNodeRuleProvider") @IntoMap @StringKey("trustBeneficiaryListNode")
+        RuleProvider<TrustBeneficiaryListNode> provideTrustBeneficiaryListNodeChildRuleProvider(
+            BaseTrustNodeChildProvider.TrustBeneficiaryListNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<TrustBeneficiaryListNode>> provideInstanceProviderMap(
-        Provider<BaseTrustNodeChildProvider.TrustBeneficiaryListNodeRuleProvider> trustBeneficiaryListNodeRuleProvider
+    List<RuleProvider<TrustBeneficiaryListNode>> provideRuleProviders(
+        @Named("TrustBeneficiaryListNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustBeneficiaryListNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<TrustBeneficiaryListNode>> result = new HashMap<>();
-        result.put("trustBeneficiaryListNode", trustBeneficiaryListNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

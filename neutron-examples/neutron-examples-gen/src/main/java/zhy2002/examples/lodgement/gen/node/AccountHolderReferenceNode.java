@@ -35,24 +35,14 @@ public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHol
         this.component = builder.setAccountHolderReferenceNodeModule(new AccountHolderReferenceNodeModule(this)).build();
     }
 
-    private RuleProvider<AccountHolderReferenceNode> getRuleProvider() {
-        return component.getAccountHolderReferenceNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AccountHolderReferenceNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

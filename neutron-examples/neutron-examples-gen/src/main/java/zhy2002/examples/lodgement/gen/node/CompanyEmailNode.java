@@ -34,24 +34,14 @@ public class CompanyEmailNode extends EmailNode<CompanyContactNode> {
         this.component = builder.setCompanyEmailNodeModule(new CompanyEmailNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyEmailNode> getRuleProvider() {
-        return component.getCompanyEmailNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyEmailNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

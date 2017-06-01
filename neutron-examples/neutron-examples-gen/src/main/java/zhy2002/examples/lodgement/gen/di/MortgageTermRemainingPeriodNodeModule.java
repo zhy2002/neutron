@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class MortgageTermRemainingPeriodNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<MortgageTermRemainingPeriodNode> provideRuleProvider(Provider<MortgageTermRemainingPeriodNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("MortgageTermRemainingPeriodNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<MortgageTermRemainingPeriodNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("MortgageTermRemainingPeriodNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<MortgageTermRemainingPeriodNode> provideTypeRuleProvider(MortgageTermRemainingPeriodNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("MortgageTermRemainingPeriodNodeRuleProvider") @IntoMap @StringKey("mortgageTermRemainingPeriodNode")
+        RuleProvider<MortgageTermRemainingPeriodNode> provideMortgageTermRemainingPeriodNodeChildRuleProvider(
+            ExistingMortgageNodeChildProvider.MortgageTermRemainingPeriodNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> provideInstanceProviderMap(
-        Provider<ExistingMortgageNodeChildProvider.MortgageTermRemainingPeriodNodeRuleProvider> mortgageTermRemainingPeriodNodeRuleProvider
+    List<RuleProvider<MortgageTermRemainingPeriodNode>> provideRuleProviders(
+        @Named("MortgageTermRemainingPeriodNodeRuleProvider")  Map<String, Provider<RuleProvider<MortgageTermRemainingPeriodNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> result = new HashMap<>();
-        result.put("mortgageTermRemainingPeriodNode", mortgageTermRemainingPeriodNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

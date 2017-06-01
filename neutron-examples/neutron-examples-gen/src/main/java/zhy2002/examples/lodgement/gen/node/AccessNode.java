@@ -37,24 +37,14 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
         this.component = builder.setAccessNodeModule(new AccessNodeModule(this)).build();
     }
 
-    private RuleProvider<AccessNode> getRuleProvider() {
-        return component.getAccessNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AccessNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

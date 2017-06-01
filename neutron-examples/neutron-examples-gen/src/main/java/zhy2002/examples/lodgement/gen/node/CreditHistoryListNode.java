@@ -35,24 +35,14 @@ public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditH
         this.component = builder.setCreditHistoryListNodeModule(new CreditHistoryListNodeModule(this)).build();
     }
 
-    private RuleProvider<CreditHistoryListNode> getRuleProvider() {
-        return component.getCreditHistoryListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CreditHistoryListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

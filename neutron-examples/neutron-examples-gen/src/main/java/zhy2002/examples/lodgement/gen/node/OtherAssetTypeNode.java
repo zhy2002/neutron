@@ -34,24 +34,14 @@ public class OtherAssetTypeNode extends StringUiNode<OtherAssetNode> {
         this.component = builder.setOtherAssetTypeNodeModule(new OtherAssetTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherAssetTypeNode> getRuleProvider() {
-        return component.getOtherAssetTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<OtherAssetTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

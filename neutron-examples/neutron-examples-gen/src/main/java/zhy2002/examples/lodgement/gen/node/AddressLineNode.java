@@ -35,24 +35,14 @@ public class AddressLineNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setAddressLineNodeModule(new AddressLineNodeModule(this)).build();
     }
 
-    private RuleProvider<AddressLineNode> getRuleProvider() {
-        return component.getAddressLineNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AddressLineNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

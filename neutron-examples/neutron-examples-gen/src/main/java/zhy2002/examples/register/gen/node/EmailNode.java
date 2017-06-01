@@ -39,24 +39,14 @@ public class EmailNode extends StringUiNode<RegisterNode> {
         this.component = builder.setEmailNodeModule(new EmailNodeModule(this)).build();
     }
 
-    private RuleProvider<EmailNode> getRuleProvider() {
-        return component.getEmailNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<EmailNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     public static final PropertyMetadata<String> TRIGGERED_BY_PROPERTY = MetadataRegistry.createProperty(EmailNode.class, "triggeredBy", String.class);

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class MovedToPreviousAddressNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<MovedToPreviousAddressNode> provideRuleProvider(Provider<MovedToPreviousAddressNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("MovedToPreviousAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<MovedToPreviousAddressNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("MovedToPreviousAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<MovedToPreviousAddressNode> provideTypeRuleProvider(MovedToPreviousAddressNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("MovedToPreviousAddressNodeRuleProvider") @IntoMap @StringKey("movedToPreviousAddressNode")
+        RuleProvider<MovedToPreviousAddressNode> provideMovedToPreviousAddressNodeChildRuleProvider(
+            PersonContactNodeChildProvider.MovedToPreviousAddressNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<MovedToPreviousAddressNode>> provideInstanceProviderMap(
-        Provider<PersonContactNodeChildProvider.MovedToPreviousAddressNodeRuleProvider> movedToPreviousAddressNodeRuleProvider
+    List<RuleProvider<MovedToPreviousAddressNode>> provideRuleProviders(
+        @Named("MovedToPreviousAddressNodeRuleProvider")  Map<String, Provider<RuleProvider<MovedToPreviousAddressNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<MovedToPreviousAddressNode>> result = new HashMap<>();
-        result.put("movedToPreviousAddressNode", movedToPreviousAddressNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

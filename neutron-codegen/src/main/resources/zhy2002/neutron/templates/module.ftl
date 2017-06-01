@@ -1,13 +1,14 @@
 package ${targetPackage}.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
-<#if !abstractNode && parentType.children ??>
+<#if !abstractNode && parentType.children ??></#if>
 import java.util.*;
-</#if>
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -32,28 +33,35 @@ public class ${typeName}Module {
     }
 
 </#if>
-    @Provides @ComponentScope
-    RuleProvider<${typeName}> provideRuleProvider(Provider<${typeName}RuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("${typeName}RuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<${typeName}> providePlaceholderRuleProvider() {
+        return null;
     }
 
-<#if !abstractNode && parentType.children ??>
-    @Provides @ComponentScope
-    Map<String, RuleProvider<${typeName}>> provideInstanceProviderMap(
-    <#assign firstItem = true />
-    <#list parentType.children as child>
-        <#if child.typeName == typeName>
-        <#if firstItem><#assign firstItem = false/><#else>,</#if>Provider<${parentType.typeName}ChildProvider.${child.name?cap_first}RuleProvider> ${child.name}RuleProvider
-        </#if>
-    </#list>
-    ) {
-        Map<String, RuleProvider<${typeName}>> result = new HashMap<>();
-    <#list parentType.children as child>
-        <#if child.typeName == typeName>
-        result.put("${child.name}", ${child.name}RuleProvider.get());
-        </#if>
-    </#list>
-        return result;
+    @Provides @Named("${typeName}RuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<${typeName}> provideTypeRuleProvider(${typeName}RuleProvider provider) {
+        return provider;
     }
+
+<#if parentType.children ??>
+    <#list parentType.children as child>
+        <#if child.typeName == typeName>
+        @Provides @Named("${typeName}RuleProvider") @IntoMap @StringKey("${child.name}")
+        RuleProvider<${typeName}> provide${child.name?cap_first}ChildRuleProvider(
+            ${parentType.typeName}ChildProvider.${child.name?cap_first}RuleProvider provider
+        ) {
+            return provider;
+        }
+
+        </#if>
+    </#list>
 </#if>
+
+    @Provides @ComponentScope
+    List<RuleProvider<${typeName}>> provideRuleProviders(
+        @Named("${typeName}RuleProvider")  Map<String, Provider<RuleProvider<${typeName}>>> ruleProviderProviderMap
+    ) {
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
+    }
 }

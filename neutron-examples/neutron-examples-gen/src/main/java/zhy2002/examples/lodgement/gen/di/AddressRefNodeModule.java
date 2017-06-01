@@ -1,10 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -36,9 +39,22 @@ public class AddressRefNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<AddressRefNode> provideRuleProvider(Provider<AddressRefNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("AddressRefNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<AddressRefNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("AddressRefNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<AddressRefNode> provideTypeRuleProvider(AddressRefNodeRuleProvider provider) {
+        return provider;
+    }
+
+
+    @Provides @ComponentScope
+    List<RuleProvider<AddressRefNode>> provideRuleProviders(
+        @Named("AddressRefNodeRuleProvider")  Map<String, Provider<RuleProvider<AddressRefNode>>> ruleProviderProviderMap
+    ) {
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
+    }
 }

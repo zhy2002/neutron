@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductsNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductsNode> provideRuleProvider(Provider<ProductsNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductsNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductsNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductsNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductsNode> provideTypeRuleProvider(ProductsNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductsNodeRuleProvider") @IntoMap @StringKey("productsNode")
+        RuleProvider<ProductsNode> provideProductsNodeChildRuleProvider(
+            ApplicationNodeChildProvider.ProductsNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductsNode>> provideInstanceProviderMap(
-        Provider<ApplicationNodeChildProvider.ProductsNodeRuleProvider> productsNodeRuleProvider
+    List<RuleProvider<ProductsNode>> provideRuleProviders(
+        @Named("ProductsNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductsNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductsNode>> result = new HashMap<>();
-        result.put("productsNode", productsNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

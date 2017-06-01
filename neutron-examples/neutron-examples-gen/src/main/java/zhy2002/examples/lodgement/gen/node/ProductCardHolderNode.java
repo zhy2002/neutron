@@ -37,24 +37,14 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         this.component = builder.setProductCardHolderNodeModule(new ProductCardHolderNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductCardHolderNode> getRuleProvider() {
-        return component.getProductCardHolderNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductCardHolderNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

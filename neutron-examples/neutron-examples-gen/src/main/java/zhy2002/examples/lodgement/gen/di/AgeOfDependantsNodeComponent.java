@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AgeOfDependantsNodeModule.class})
 public interface AgeOfDependantsNodeComponent {
 
+    List<RuleProvider<AgeOfDependantsNode>> provideRuleProviders();
 
-    RuleProvider<AgeOfDependantsNode> getAgeOfDependantsNodeRuleProvider();
-    Map<String, RuleProvider<AgeOfDependantsNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

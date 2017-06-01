@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {CompanyGeneralNodeModule.class})
 public interface CompanyGeneralNodeComponent {
+
+    List<RuleProvider<CompanyGeneralNode>> provideRuleProviders();
 
     CompanyApplicantTypeNode createCompanyApplicantTypeNode();
     CompanyPrimaryApplicantFlagNode createCompanyPrimaryApplicantFlagNode();
@@ -23,9 +26,6 @@ public interface CompanyGeneralNodeComponent {
     CompanyRegistrationStateNode createCompanyRegistrationStateNode();
     CompanySelectDirectorNode createCompanySelectDirectorNode();
     CompanySelectBeneficialOwnerNode createCompanySelectBeneficialOwnerNode();
-
-    RuleProvider<CompanyGeneralNode> getCompanyGeneralNodeRuleProvider();
-    Map<String, RuleProvider<CompanyGeneralNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

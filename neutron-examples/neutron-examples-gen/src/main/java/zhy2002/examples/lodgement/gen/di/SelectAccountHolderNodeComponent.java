@@ -3,15 +3,17 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {SelectAccountHolderNodeModule.class})
 public interface SelectAccountHolderNodeComponent {
 
+    List<RuleProvider<SelectAccountHolderNode>> provideRuleProviders();
+
     AccountHolderReferenceNode createAccountHolderReferenceNode();
     SelectAccountHolderFlagNode createSelectAccountHolderFlagNode();
-
-    RuleProvider<SelectAccountHolderNode> getSelectAccountHolderNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

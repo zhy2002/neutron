@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class Product100PercentOffsetFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<Product100PercentOffsetFlagNode> provideRuleProvider(Provider<Product100PercentOffsetFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("Product100PercentOffsetFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<Product100PercentOffsetFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("Product100PercentOffsetFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<Product100PercentOffsetFlagNode> provideTypeRuleProvider(Product100PercentOffsetFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("Product100PercentOffsetFlagNodeRuleProvider") @IntoMap @StringKey("product100PercentOffsetFlagNode")
+        RuleProvider<Product100PercentOffsetFlagNode> provideProduct100PercentOffsetFlagNodeChildRuleProvider(
+            ProductFeaturesNodeChildProvider.Product100PercentOffsetFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<Product100PercentOffsetFlagNode>> provideInstanceProviderMap(
-        Provider<ProductFeaturesNodeChildProvider.Product100PercentOffsetFlagNodeRuleProvider> product100PercentOffsetFlagNodeRuleProvider
+    List<RuleProvider<Product100PercentOffsetFlagNode>> provideRuleProviders(
+        @Named("Product100PercentOffsetFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<Product100PercentOffsetFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<Product100PercentOffsetFlagNode>> result = new HashMap<>();
-        result.put("product100PercentOffsetFlagNode", product100PercentOffsetFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

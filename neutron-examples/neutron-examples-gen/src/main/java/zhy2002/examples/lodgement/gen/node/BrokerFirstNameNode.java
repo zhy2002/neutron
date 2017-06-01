@@ -34,24 +34,14 @@ public class BrokerFirstNameNode extends NameNode<SubmissionNode> {
         this.component = builder.setBrokerFirstNameNodeModule(new BrokerFirstNameNodeModule(this)).build();
     }
 
-    private RuleProvider<BrokerFirstNameNode> getRuleProvider() {
-        return component.getBrokerFirstNameNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BrokerFirstNameNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

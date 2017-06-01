@@ -1,10 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -36,9 +39,22 @@ public class RealEstateNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<RealEstateNode> provideRuleProvider(Provider<RealEstateNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("RealEstateNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<RealEstateNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("RealEstateNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<RealEstateNode> provideTypeRuleProvider(RealEstateNodeRuleProvider provider) {
+        return provider;
+    }
+
+
+    @Provides @ComponentScope
+    List<RuleProvider<RealEstateNode>> provideRuleProviders(
+        @Named("RealEstateNodeRuleProvider")  Map<String, Provider<RuleProvider<RealEstateNode>>> ruleProviderProviderMap
+    ) {
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
+    }
 }

@@ -35,24 +35,14 @@ public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPer
         this.component = builder.setRelatedPersonReferenceNodeModule(new RelatedPersonReferenceNodeModule(this)).build();
     }
 
-    private RuleProvider<RelatedPersonReferenceNode> getRuleProvider() {
-        return component.getRelatedPersonReferenceNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<RelatedPersonReferenceNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

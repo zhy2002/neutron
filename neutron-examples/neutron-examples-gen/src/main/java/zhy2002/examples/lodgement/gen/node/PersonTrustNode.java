@@ -34,24 +34,14 @@ public class PersonTrustNode extends BaseTrustNode<PersonNode> {
         this.component = builder.setPersonTrustNodeModule(new PersonTrustNodeModule(this)).build();
     }
 
-    private RuleProvider<PersonTrustNode> getRuleProvider() {
-        return component.getPersonTrustNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PersonTrustNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

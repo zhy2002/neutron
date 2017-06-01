@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class RetiredOnBenefitFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<RetiredOnBenefitFlagNode> provideRuleProvider(Provider<RetiredOnBenefitFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("RetiredOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<RetiredOnBenefitFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("RetiredOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<RetiredOnBenefitFlagNode> provideTypeRuleProvider(RetiredOnBenefitFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("RetiredOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey("retiredOnBenefitFlagNode")
+        RuleProvider<RetiredOnBenefitFlagNode> provideRetiredOnBenefitFlagNodeChildRuleProvider(
+            RetiredEmploymentNodeChildProvider.RetiredOnBenefitFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<RetiredOnBenefitFlagNode>> provideInstanceProviderMap(
-        Provider<RetiredEmploymentNodeChildProvider.RetiredOnBenefitFlagNodeRuleProvider> retiredOnBenefitFlagNodeRuleProvider
+    List<RuleProvider<RetiredOnBenefitFlagNode>> provideRuleProviders(
+        @Named("RetiredOnBenefitFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<RetiredOnBenefitFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<RetiredOnBenefitFlagNode>> result = new HashMap<>();
-        result.put("retiredOnBenefitFlagNode", retiredOnBenefitFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

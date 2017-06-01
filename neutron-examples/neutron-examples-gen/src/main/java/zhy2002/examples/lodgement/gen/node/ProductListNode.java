@@ -35,24 +35,14 @@ public class ProductListNode extends ListUiNode<ProductsNode,ProductNode> {
         this.component = builder.setProductListNodeModule(new ProductListNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductListNode> getRuleProvider() {
-        return component.getProductListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

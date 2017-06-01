@@ -34,24 +34,14 @@ public class TotalExpenseNode extends BaseCurrencyNode<FinancialPositionNode> {
         this.component = builder.setTotalExpenseNodeModule(new TotalExpenseNodeModule(this)).build();
     }
 
-    private RuleProvider<TotalExpenseNode> getRuleProvider() {
-        return component.getTotalExpenseNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TotalExpenseNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

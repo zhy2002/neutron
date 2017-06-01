@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PersonGeneralNodeModule.class})
 public interface PersonGeneralNodeComponent {
+
+    List<RuleProvider<PersonGeneralNode>> provideRuleProviders();
 
     TitleNode createTitleNode();
     OtherTitleNode createOtherTitleNode();
@@ -26,9 +29,6 @@ public interface PersonGeneralNodeComponent {
     AgeOfDependantsNode createAgeOfDependantsNode();
     FirstHomeBuyerFlagNode createFirstHomeBuyerFlagNode();
     HousingStatusNode createHousingStatusNode();
-
-    RuleProvider<PersonGeneralNode> getPersonGeneralNodeRuleProvider();
-    Map<String, RuleProvider<PersonGeneralNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

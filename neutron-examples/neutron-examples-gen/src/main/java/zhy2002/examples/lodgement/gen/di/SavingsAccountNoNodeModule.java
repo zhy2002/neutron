@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class SavingsAccountNoNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<SavingsAccountNoNode> provideRuleProvider(Provider<SavingsAccountNoNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("SavingsAccountNoNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<SavingsAccountNoNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("SavingsAccountNoNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<SavingsAccountNoNode> provideTypeRuleProvider(SavingsAccountNoNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("SavingsAccountNoNodeRuleProvider") @IntoMap @StringKey("savingsAccountNoNode")
+        RuleProvider<SavingsAccountNoNode> provideSavingsAccountNoNodeChildRuleProvider(
+            SavingsAccountNodeChildProvider.SavingsAccountNoNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<SavingsAccountNoNode>> provideInstanceProviderMap(
-        Provider<SavingsAccountNodeChildProvider.SavingsAccountNoNodeRuleProvider> savingsAccountNoNodeRuleProvider
+    List<RuleProvider<SavingsAccountNoNode>> provideRuleProviders(
+        @Named("SavingsAccountNoNodeRuleProvider")  Map<String, Provider<RuleProvider<SavingsAccountNoNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<SavingsAccountNoNode>> result = new HashMap<>();
-        result.put("savingsAccountNoNode", savingsAccountNoNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

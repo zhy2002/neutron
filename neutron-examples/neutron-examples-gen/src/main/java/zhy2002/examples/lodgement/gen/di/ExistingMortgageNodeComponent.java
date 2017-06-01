@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {ExistingMortgageNodeModule.class})
 public interface ExistingMortgageNodeComponent {
+
+    List<RuleProvider<ExistingMortgageNode>> provideRuleProviders();
 
     MortgageLenderInstitutionNode createMortgageLenderInstitutionNode();
     MortgqageUnpaidBalanceNode createMortgqageUnpaidBalanceNode();
@@ -21,8 +25,6 @@ public interface ExistingMortgageNodeComponent {
     MortgageChargePositionNode createMortgageChargePositionNode();
     MortgageTermRemainingPeriodNode createMortgageTermRemainingPeriodNode();
     MortgageInterestOnlyRemainingPeriodNode createMortgageInterestOnlyRemainingPeriodNode();
-
-    RuleProvider<ExistingMortgageNode> getExistingMortgageNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

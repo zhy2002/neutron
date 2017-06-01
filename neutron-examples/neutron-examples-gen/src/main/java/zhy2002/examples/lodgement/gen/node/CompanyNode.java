@@ -38,18 +38,14 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
         this.component = builder.setCompanyNodeModule(new CompanyNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyNode> getRuleProvider() {
-        return component.getCompanyNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

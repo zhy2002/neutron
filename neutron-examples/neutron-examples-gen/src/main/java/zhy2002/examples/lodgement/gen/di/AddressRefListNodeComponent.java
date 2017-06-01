@@ -5,14 +5,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AddressRefListNodeModule.class})
 public interface AddressRefListNodeComponent {
 
-    AddressRefNode createAddressRefNode();
+    List<RuleProvider<AddressRefListNode>> provideRuleProviders();
 
-    RuleProvider<AddressRefListNode> getAddressRefListNodeRuleProvider();
-    Map<String, RuleProvider<AddressRefListNode>> getInstanceRuleProviders();
+    AddressRefNode createAddressRefNode();
 
     @Subcomponent.Builder
     interface Builder {

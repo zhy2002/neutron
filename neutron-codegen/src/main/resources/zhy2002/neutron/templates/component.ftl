@@ -3,15 +3,19 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.RuleProvider;
-<#if !abstractNode && parentType.children ??>
+<#if !abstractNode && parentType.children ??></#if>
 import java.util.*;
-</#if>
+
 
 <#if !abstractNode>
 @ComponentScope
 @Subcomponent(modules = {${typeName}Module.class})
 </#if>
 public interface ${typeName}Component <#if baseType?? && baseType.hasComponent>extends ${baseType.typeName}Component </#if>{
+
+<#if !abstractNode>
+    List<RuleProvider<${typeName}>> provideRuleProviders();
+</#if>
 
 <#if childTypes??>
     <#list childTypes as childType>
@@ -22,11 +26,6 @@ public interface ${typeName}Component <#if baseType?? && baseType.hasComponent>e
 </#if>
 
 <#if !abstractNode>
-    RuleProvider<${typeName}> get${typeName}RuleProvider();
-    <#if parentType.children ??>
-    Map<String, RuleProvider<${typeName}>> getInstanceRuleProviders();
-    </#if>
-
     @Subcomponent.Builder
     interface Builder {
 

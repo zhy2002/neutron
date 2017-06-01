@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ResponsibleTypeOfChangeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ResponsibleTypeOfChangeNode> provideRuleProvider(Provider<ResponsibleTypeOfChangeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ResponsibleTypeOfChangeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ResponsibleTypeOfChangeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ResponsibleTypeOfChangeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ResponsibleTypeOfChangeNode> provideTypeRuleProvider(ResponsibleTypeOfChangeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ResponsibleTypeOfChangeNodeRuleProvider") @IntoMap @StringKey("responsibleTypeOfChangeNode")
+        RuleProvider<ResponsibleTypeOfChangeNode> provideResponsibleTypeOfChangeNodeChildRuleProvider(
+            BaseResponsibleLendNodeChildProvider.ResponsibleTypeOfChangeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> provideInstanceProviderMap(
-        Provider<BaseResponsibleLendNodeChildProvider.ResponsibleTypeOfChangeNodeRuleProvider> responsibleTypeOfChangeNodeRuleProvider
+    List<RuleProvider<ResponsibleTypeOfChangeNode>> provideRuleProviders(
+        @Named("ResponsibleTypeOfChangeNodeRuleProvider")  Map<String, Provider<RuleProvider<ResponsibleTypeOfChangeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> result = new HashMap<>();
-        result.put("responsibleTypeOfChangeNode", responsibleTypeOfChangeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

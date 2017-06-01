@@ -34,24 +34,14 @@ public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
         this.component = builder.setAccessTelephoneNodeModule(new AccessTelephoneNodeModule(this)).build();
     }
 
-    private RuleProvider<AccessTelephoneNode> getRuleProvider() {
-        return component.getAccessTelephoneNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AccessTelephoneNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

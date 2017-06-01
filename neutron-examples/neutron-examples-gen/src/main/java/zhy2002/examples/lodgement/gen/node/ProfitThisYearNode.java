@@ -34,24 +34,14 @@ public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
         this.component = builder.setProfitThisYearNodeModule(new ProfitThisYearNodeModule(this)).build();
     }
 
-    private RuleProvider<ProfitThisYearNode> getRuleProvider() {
-        return component.getProfitThisYearNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProfitThisYearNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

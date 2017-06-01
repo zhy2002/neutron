@@ -34,24 +34,14 @@ public class BrokerEmailNode extends EmailNode<SubmissionNode> {
         this.component = builder.setBrokerEmailNodeModule(new BrokerEmailNodeModule(this)).build();
     }
 
-    private RuleProvider<BrokerEmailNode> getRuleProvider() {
-        return component.getBrokerEmailNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BrokerEmailNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

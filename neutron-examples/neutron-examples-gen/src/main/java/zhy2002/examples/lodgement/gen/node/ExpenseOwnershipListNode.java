@@ -34,24 +34,14 @@ public class ExpenseOwnershipListNode extends OwnershipListNode<ExpenseNode> {
         this.component = builder.setExpenseOwnershipListNodeModule(new ExpenseOwnershipListNodeModule(this)).build();
     }
 
-    private RuleProvider<ExpenseOwnershipListNode> getRuleProvider() {
-        return component.getExpenseOwnershipListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ExpenseOwnershipListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

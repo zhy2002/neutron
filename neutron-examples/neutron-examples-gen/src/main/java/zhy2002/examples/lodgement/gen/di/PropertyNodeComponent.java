@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PropertyNodeModule.class})
 public interface PropertyNodeComponent {
+
+    List<RuleProvider<PropertyNode>> provideRuleProviders();
 
     RentedFlagNode createRentedFlagNode();
     PropertyWeeklyRentNode createPropertyWeeklyRentNode();
@@ -19,9 +22,6 @@ public interface PropertyNodeComponent {
     PropertySubTypeNode createPropertySubTypeNode();
     PropertyPurseNode createPropertyPurseNode();
     PropertyOwnershipListNode createPropertyOwnershipListNode();
-
-    RuleProvider<PropertyNode> getPropertyNodeRuleProvider();
-    Map<String, RuleProvider<PropertyNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

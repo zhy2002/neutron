@@ -43,18 +43,14 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
         this.component = builder.setRegisterNodeModule(new RegisterNodeModule(this)).build();
     }
 
-    private RuleProvider<RegisterNode> getRuleProvider() {
-        return component.getRegisterNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

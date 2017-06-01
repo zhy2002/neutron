@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ThirdPartyDisclosureFlagNodeModule.class})
 public interface ThirdPartyDisclosureFlagNodeComponent {
 
+    List<RuleProvider<ThirdPartyDisclosureFlagNode>> provideRuleProviders();
 
-    RuleProvider<ThirdPartyDisclosureFlagNode> getThirdPartyDisclosureFlagNodeRuleProvider();
-    Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

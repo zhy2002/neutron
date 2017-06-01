@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {CountryCodeNodeModule.class})
 public interface CountryCodeNodeComponent {
 
+    List<RuleProvider<CountryCodeNode>> provideRuleProviders();
 
-    RuleProvider<CountryCodeNode> getCountryCodeNodeRuleProvider();
-    Map<String, RuleProvider<CountryCodeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

@@ -37,18 +37,14 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         this.component = builder.setCreditCardNodeModule(new CreditCardNodeModule(this)).build();
     }
 
-    private RuleProvider<CreditCardNode> getRuleProvider() {
-        return component.getCreditCardNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

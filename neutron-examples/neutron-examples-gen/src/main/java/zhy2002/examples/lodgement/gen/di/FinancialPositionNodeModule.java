@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class FinancialPositionNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<FinancialPositionNode> provideRuleProvider(Provider<FinancialPositionNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("FinancialPositionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<FinancialPositionNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("FinancialPositionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<FinancialPositionNode> provideTypeRuleProvider(FinancialPositionNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("FinancialPositionNodeRuleProvider") @IntoMap @StringKey("financialPositionNode")
+        RuleProvider<FinancialPositionNode> provideFinancialPositionNodeChildRuleProvider(
+            ApplicationNodeChildProvider.FinancialPositionNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<FinancialPositionNode>> provideInstanceProviderMap(
-        Provider<ApplicationNodeChildProvider.FinancialPositionNodeRuleProvider> financialPositionNodeRuleProvider
+    List<RuleProvider<FinancialPositionNode>> provideRuleProviders(
+        @Named("FinancialPositionNodeRuleProvider")  Map<String, Provider<RuleProvider<FinancialPositionNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<FinancialPositionNode>> result = new HashMap<>();
-        result.put("financialPositionNode", financialPositionNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

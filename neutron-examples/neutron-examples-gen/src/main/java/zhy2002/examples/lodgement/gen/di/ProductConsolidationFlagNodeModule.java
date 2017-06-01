@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductConsolidationFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductConsolidationFlagNode> provideRuleProvider(Provider<ProductConsolidationFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductConsolidationFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductConsolidationFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductConsolidationFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductConsolidationFlagNode> provideTypeRuleProvider(ProductConsolidationFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductConsolidationFlagNodeRuleProvider") @IntoMap @StringKey("productConsolidationFlagNode")
+        RuleProvider<ProductConsolidationFlagNode> provideProductConsolidationFlagNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductConsolidationFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductConsolidationFlagNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductConsolidationFlagNodeRuleProvider> productConsolidationFlagNodeRuleProvider
+    List<RuleProvider<ProductConsolidationFlagNode>> provideRuleProviders(
+        @Named("ProductConsolidationFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductConsolidationFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductConsolidationFlagNode>> result = new HashMap<>();
-        result.put("productConsolidationFlagNode", productConsolidationFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

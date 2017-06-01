@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductSpecificFeaturesFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductSpecificFeaturesFlagNode> provideRuleProvider(Provider<ProductSpecificFeaturesFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductSpecificFeaturesFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductSpecificFeaturesFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductSpecificFeaturesFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductSpecificFeaturesFlagNode> provideTypeRuleProvider(ProductSpecificFeaturesFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductSpecificFeaturesFlagNodeRuleProvider") @IntoMap @StringKey("productSpecificFeaturesFlagNode")
+        RuleProvider<ProductSpecificFeaturesFlagNode> provideProductSpecificFeaturesFlagNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductSpecificFeaturesFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductSpecificFeaturesFlagNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductSpecificFeaturesFlagNodeRuleProvider> productSpecificFeaturesFlagNodeRuleProvider
+    List<RuleProvider<ProductSpecificFeaturesFlagNode>> provideRuleProviders(
+        @Named("ProductSpecificFeaturesFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductSpecificFeaturesFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductSpecificFeaturesFlagNode>> result = new HashMap<>();
-        result.put("productSpecificFeaturesFlagNode", productSpecificFeaturesFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AverageFlagNodeModule.class})
 public interface AverageFlagNodeComponent {
 
+    List<RuleProvider<AverageFlagNode>> provideRuleProviders();
 
-    RuleProvider<AverageFlagNode> getAverageFlagNodeRuleProvider();
-    Map<String, RuleProvider<AverageFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

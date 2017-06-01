@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {RepeatPasswordNodeModule.class})
 public interface RepeatPasswordNodeComponent {
 
+    List<RuleProvider<RepeatPasswordNode>> provideRuleProviders();
 
-    RuleProvider<RepeatPasswordNode> getRepeatPasswordNodeRuleProvider();
-    Map<String, RuleProvider<RepeatPasswordNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

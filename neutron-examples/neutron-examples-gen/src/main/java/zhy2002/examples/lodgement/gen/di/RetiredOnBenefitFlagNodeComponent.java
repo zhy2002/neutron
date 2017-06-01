@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {RetiredOnBenefitFlagNodeModule.class})
 public interface RetiredOnBenefitFlagNodeComponent {
 
+    List<RuleProvider<RetiredOnBenefitFlagNode>> provideRuleProviders();
 
-    RuleProvider<RetiredOnBenefitFlagNode> getRetiredOnBenefitFlagNodeRuleProvider();
-    Map<String, RuleProvider<RetiredOnBenefitFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

@@ -37,18 +37,14 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         this.component = builder.setOtherAssetNodeModule(new OtherAssetNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherAssetNode> getRuleProvider() {
-        return component.getOtherAssetNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

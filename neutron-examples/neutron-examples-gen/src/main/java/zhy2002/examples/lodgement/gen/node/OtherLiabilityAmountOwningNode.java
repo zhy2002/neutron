@@ -34,24 +34,14 @@ public class OtherLiabilityAmountOwningNode extends BaseCurrencyNode<OtherLiabil
         this.component = builder.setOtherLiabilityAmountOwningNodeModule(new OtherLiabilityAmountOwningNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherLiabilityAmountOwningNode> getRuleProvider() {
-        return component.getOtherLiabilityAmountOwningNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<OtherLiabilityAmountOwningNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

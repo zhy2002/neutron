@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {LoanNodeModule.class})
 public interface LoanNodeComponent {
+
+    List<RuleProvider<LoanNode>> provideRuleProviders();
 
     LoanTypeNode createLoanTypeNode();
     LoanOwingAmountNode createLoanOwingAmountNode();
@@ -16,8 +20,6 @@ public interface LoanNodeComponent {
     LoanBreakCostNode createLoanBreakCostNode();
     LoanLenderNameNode createLoanLenderNameNode();
     LoanOwnershipListNode createLoanOwnershipListNode();
-
-    RuleProvider<LoanNode> getLoanNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

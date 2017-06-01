@@ -34,24 +34,14 @@ public class ProductNameNode extends StringUiNode<ProductDescriptionNode> {
         this.component = builder.setProductNameNodeModule(new ProductNameNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductNameNode> getRuleProvider() {
-        return component.getProductNameNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductNameNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

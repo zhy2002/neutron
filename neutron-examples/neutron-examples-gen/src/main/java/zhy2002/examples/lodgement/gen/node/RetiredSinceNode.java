@@ -34,24 +34,14 @@ public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode> {
         this.component = builder.setRetiredSinceNodeModule(new RetiredSinceNodeModule(this)).build();
     }
 
-    private RuleProvider<RetiredSinceNode> getRuleProvider() {
-        return component.getRetiredSinceNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<RetiredSinceNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

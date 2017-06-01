@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class ProductAccountHolderListNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductAccountHolderListNode> provideRuleProvider(Provider<ProductAccountHolderListNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductAccountHolderListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductAccountHolderListNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductAccountHolderListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductAccountHolderListNode> provideTypeRuleProvider(ProductAccountHolderListNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductAccountHolderListNodeRuleProvider") @IntoMap @StringKey("productAccountHolderListNode")
+        RuleProvider<ProductAccountHolderListNode> provideProductAccountHolderListNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductAccountHolderListNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductAccountHolderListNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductAccountHolderListNodeRuleProvider> productAccountHolderListNodeRuleProvider
+    List<RuleProvider<ProductAccountHolderListNode>> provideRuleProviders(
+        @Named("ProductAccountHolderListNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductAccountHolderListNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductAccountHolderListNode>> result = new HashMap<>();
-        result.put("productAccountHolderListNode", productAccountHolderListNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

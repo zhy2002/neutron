@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class PrimarySecurityFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<PrimarySecurityFlagNode> provideRuleProvider(Provider<PrimarySecurityFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("PrimarySecurityFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<PrimarySecurityFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("PrimarySecurityFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<PrimarySecurityFlagNode> provideTypeRuleProvider(PrimarySecurityFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("PrimarySecurityFlagNodeRuleProvider") @IntoMap @StringKey("primarySecurityFlagNode")
+        RuleProvider<PrimarySecurityFlagNode> providePrimarySecurityFlagNodeChildRuleProvider(
+            UsageNodeChildProvider.PrimarySecurityFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<PrimarySecurityFlagNode>> provideInstanceProviderMap(
-        Provider<UsageNodeChildProvider.PrimarySecurityFlagNodeRuleProvider> primarySecurityFlagNodeRuleProvider
+    List<RuleProvider<PrimarySecurityFlagNode>> provideRuleProviders(
+        @Named("PrimarySecurityFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<PrimarySecurityFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<PrimarySecurityFlagNode>> result = new HashMap<>();
-        result.put("primarySecurityFlagNode", primarySecurityFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

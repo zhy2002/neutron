@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {UsageNodeModule.class})
 public interface UsageNodeComponent {
+
+    List<RuleProvider<UsageNode>> provideRuleProviders();
 
     UsedAsSecurityFlagNode createUsedAsSecurityFlagNode();
     BeingPurchasedFlagNode createBeingPurchasedFlagNode();
@@ -15,9 +18,6 @@ public interface UsageNodeComponent {
     PrimarySecurityFlagNode createPrimarySecurityFlagNode();
     ApprovalInPrincipleFlagNode createApprovalInPrincipleFlagNode();
     ExistingMortgageListNode createExistingMortgageListNode();
-
-    RuleProvider<UsageNode> getUsageNodeRuleProvider();
-    Map<String, RuleProvider<UsageNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

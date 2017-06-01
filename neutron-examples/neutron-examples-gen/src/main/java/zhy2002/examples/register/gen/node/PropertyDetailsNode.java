@@ -41,24 +41,14 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         this.component = builder.setPropertyDetailsNodeModule(new PropertyDetailsNodeModule(this)).build();
     }
 
-    private RuleProvider<PropertyDetailsNode> getRuleProvider() {
-        return component.getPropertyDetailsNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PropertyDetailsNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

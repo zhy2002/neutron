@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ResponsibleMitigationMethodNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ResponsibleMitigationMethodNode> provideRuleProvider(Provider<ResponsibleMitigationMethodNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ResponsibleMitigationMethodNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ResponsibleMitigationMethodNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ResponsibleMitigationMethodNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ResponsibleMitigationMethodNode> provideTypeRuleProvider(ResponsibleMitigationMethodNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ResponsibleMitigationMethodNodeRuleProvider") @IntoMap @StringKey("responsibleMitigationMethodNode")
+        RuleProvider<ResponsibleMitigationMethodNode> provideResponsibleMitigationMethodNodeChildRuleProvider(
+            BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ResponsibleMitigationMethodNode>> provideInstanceProviderMap(
-        Provider<BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider> responsibleMitigationMethodNodeRuleProvider
+    List<RuleProvider<ResponsibleMitigationMethodNode>> provideRuleProviders(
+        @Named("ResponsibleMitigationMethodNodeRuleProvider")  Map<String, Provider<RuleProvider<ResponsibleMitigationMethodNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ResponsibleMitigationMethodNode>> result = new HashMap<>();
-        result.put("responsibleMitigationMethodNode", responsibleMitigationMethodNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AddressLineNodeModule.class})
 public interface AddressLineNodeComponent {
 
+    List<RuleProvider<AddressLineNode>> provideRuleProviders();
 
-    RuleProvider<AddressLineNode> getAddressLineNodeRuleProvider();
-    Map<String, RuleProvider<AddressLineNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

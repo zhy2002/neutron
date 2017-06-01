@@ -22,4 +22,6 @@ public final class NeutronConstants {
     public static final String MIN_LENGTH = "min_length";
     public static final String INDEX = "index";
     public static final String ADD_OR_REMOVE_NODE = "";
+    public static final String PLACEHOLDER_RULE_PROVIDER = "PLACEHOLDER_RULE_PROVIDER";
+    public static final String TYPE_RULE_PROVIDER = "TYPE_RULE_PROVIDER";
 }

@@ -34,24 +34,14 @@ public class BrokerTelephoneNode extends TelephoneNode<SubmissionNode> {
         this.component = builder.setBrokerTelephoneNodeModule(new BrokerTelephoneNodeModule(this)).build();
     }
 
-    private RuleProvider<BrokerTelephoneNode> getRuleProvider() {
-        return component.getBrokerTelephoneNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BrokerTelephoneNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

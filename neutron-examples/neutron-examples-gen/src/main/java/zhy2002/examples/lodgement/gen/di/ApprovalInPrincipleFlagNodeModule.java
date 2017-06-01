@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ApprovalInPrincipleFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ApprovalInPrincipleFlagNode> provideRuleProvider(Provider<ApprovalInPrincipleFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ApprovalInPrincipleFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ApprovalInPrincipleFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ApprovalInPrincipleFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ApprovalInPrincipleFlagNode> provideTypeRuleProvider(ApprovalInPrincipleFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ApprovalInPrincipleFlagNodeRuleProvider") @IntoMap @StringKey("approvalInPrincipleFlagNode")
+        RuleProvider<ApprovalInPrincipleFlagNode> provideApprovalInPrincipleFlagNodeChildRuleProvider(
+            UsageNodeChildProvider.ApprovalInPrincipleFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> provideInstanceProviderMap(
-        Provider<UsageNodeChildProvider.ApprovalInPrincipleFlagNodeRuleProvider> approvalInPrincipleFlagNodeRuleProvider
+    List<RuleProvider<ApprovalInPrincipleFlagNode>> provideRuleProviders(
+        @Named("ApprovalInPrincipleFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ApprovalInPrincipleFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> result = new HashMap<>();
-        result.put("approvalInPrincipleFlagNode", approvalInPrincipleFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class OtherIncomeAddBackTypeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<OtherIncomeAddBackTypeNode> provideRuleProvider(Provider<OtherIncomeAddBackTypeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("OtherIncomeAddBackTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<OtherIncomeAddBackTypeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("OtherIncomeAddBackTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<OtherIncomeAddBackTypeNode> provideTypeRuleProvider(OtherIncomeAddBackTypeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("OtherIncomeAddBackTypeNodeRuleProvider") @IntoMap @StringKey("otherIncomeAddBackTypeNode")
+        RuleProvider<OtherIncomeAddBackTypeNode> provideOtherIncomeAddBackTypeNodeChildRuleProvider(
+            OtherIncomeNodeChildProvider.OtherIncomeAddBackTypeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<OtherIncomeAddBackTypeNode>> provideInstanceProviderMap(
-        Provider<OtherIncomeNodeChildProvider.OtherIncomeAddBackTypeNodeRuleProvider> otherIncomeAddBackTypeNodeRuleProvider
+    List<RuleProvider<OtherIncomeAddBackTypeNode>> provideRuleProviders(
+        @Named("OtherIncomeAddBackTypeNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherIncomeAddBackTypeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<OtherIncomeAddBackTypeNode>> result = new HashMap<>();
-        result.put("otherIncomeAddBackTypeNode", otherIncomeAddBackTypeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

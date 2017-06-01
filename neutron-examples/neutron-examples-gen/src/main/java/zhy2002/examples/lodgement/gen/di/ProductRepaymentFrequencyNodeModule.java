@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductRepaymentFrequencyNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductRepaymentFrequencyNode> provideRuleProvider(Provider<ProductRepaymentFrequencyNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductRepaymentFrequencyNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductRepaymentFrequencyNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductRepaymentFrequencyNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductRepaymentFrequencyNode> provideTypeRuleProvider(ProductRepaymentFrequencyNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductRepaymentFrequencyNodeRuleProvider") @IntoMap @StringKey("productRepaymentFrequencyNode")
+        RuleProvider<ProductRepaymentFrequencyNode> provideProductRepaymentFrequencyNodeChildRuleProvider(
+            ProductFeaturesNodeChildProvider.ProductRepaymentFrequencyNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductRepaymentFrequencyNode>> provideInstanceProviderMap(
-        Provider<ProductFeaturesNodeChildProvider.ProductRepaymentFrequencyNodeRuleProvider> productRepaymentFrequencyNodeRuleProvider
+    List<RuleProvider<ProductRepaymentFrequencyNode>> provideRuleProviders(
+        @Named("ProductRepaymentFrequencyNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductRepaymentFrequencyNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductRepaymentFrequencyNode>> result = new HashMap<>();
-        result.put("productRepaymentFrequencyNode", productRepaymentFrequencyNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

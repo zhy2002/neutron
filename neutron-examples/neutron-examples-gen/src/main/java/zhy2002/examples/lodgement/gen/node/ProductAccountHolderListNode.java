@@ -34,24 +34,14 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
         this.component = builder.setProductAccountHolderListNodeModule(new ProductAccountHolderListNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductAccountHolderListNode> getRuleProvider() {
-        return component.getProductAccountHolderListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductAccountHolderListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

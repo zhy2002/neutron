@@ -37,24 +37,14 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
         this.component = builder.setPersonContactNodeModule(new PersonContactNodeModule(this)).build();
     }
 
-    private RuleProvider<PersonContactNode> getRuleProvider() {
-        return component.getPersonContactNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PersonContactNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

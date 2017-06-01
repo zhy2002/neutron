@@ -34,24 +34,14 @@ public class MortgageBorrowerRateNode extends BasePercentageNode<ExistingMortgag
         this.component = builder.setMortgageBorrowerRateNodeModule(new MortgageBorrowerRateNodeModule(this)).build();
     }
 
-    private RuleProvider<MortgageBorrowerRateNode> getRuleProvider() {
-        return component.getMortgageBorrowerRateNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<MortgageBorrowerRateNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

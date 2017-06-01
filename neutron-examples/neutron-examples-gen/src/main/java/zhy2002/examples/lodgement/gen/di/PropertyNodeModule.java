@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class PropertyNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<PropertyNode> provideRuleProvider(Provider<PropertyNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("PropertyNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<PropertyNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("PropertyNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<PropertyNode> provideTypeRuleProvider(PropertyNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("PropertyNodeRuleProvider") @IntoMap @StringKey("propertyNode")
+        RuleProvider<PropertyNode> providePropertyNodeChildRuleProvider(
+            RealEstateNodeChildProvider.PropertyNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<PropertyNode>> provideInstanceProviderMap(
-        Provider<RealEstateNodeChildProvider.PropertyNodeRuleProvider> propertyNodeRuleProvider
+    List<RuleProvider<PropertyNode>> provideRuleProviders(
+        @Named("PropertyNodeRuleProvider")  Map<String, Provider<RuleProvider<PropertyNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<PropertyNode>> result = new HashMap<>();
-        result.put("propertyNode", propertyNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -34,24 +34,14 @@ public class SettlementDateNode extends StringUiNode<ProductsNode> {
         this.component = builder.setSettlementDateNodeModule(new SettlementDateNodeModule(this)).build();
     }
 
-    private RuleProvider<SettlementDateNode> getRuleProvider() {
-        return component.getSettlementDateNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<SettlementDateNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

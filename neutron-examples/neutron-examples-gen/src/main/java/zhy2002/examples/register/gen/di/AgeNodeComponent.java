@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AgeNodeModule.class})
 public interface AgeNodeComponent {
 
+    List<RuleProvider<AgeNode>> provideRuleProviders();
 
-    RuleProvider<AgeNode> getAgeNodeRuleProvider();
-    Map<String, RuleProvider<AgeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

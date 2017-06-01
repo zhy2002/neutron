@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductListNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductListNode> provideRuleProvider(Provider<ProductListNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductListNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductListNode> provideTypeRuleProvider(ProductListNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductListNodeRuleProvider") @IntoMap @StringKey("productListNode")
+        RuleProvider<ProductListNode> provideProductListNodeChildRuleProvider(
+            ProductsNodeChildProvider.ProductListNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductListNode>> provideInstanceProviderMap(
-        Provider<ProductsNodeChildProvider.ProductListNodeRuleProvider> productListNodeRuleProvider
+    List<RuleProvider<ProductListNode>> provideRuleProviders(
+        @Named("ProductListNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductListNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductListNode>> result = new HashMap<>();
-        result.put("productListNode", productListNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

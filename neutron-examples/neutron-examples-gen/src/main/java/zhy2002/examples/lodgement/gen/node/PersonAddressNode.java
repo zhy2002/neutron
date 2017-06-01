@@ -34,24 +34,14 @@ public class PersonAddressNode extends AddressNode<PersonContactNode> {
         this.component = builder.setPersonAddressNodeModule(new PersonAddressNodeModule(this)).build();
     }
 
-    private RuleProvider<PersonAddressNode> getRuleProvider() {
-        return component.getPersonAddressNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PersonAddressNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -37,18 +37,14 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         this.component = builder.setOtherLiabilityNodeModule(new OtherLiabilityNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherLiabilityNode> getRuleProvider() {
-        return component.getOtherLiabilityNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

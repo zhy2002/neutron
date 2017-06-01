@@ -34,24 +34,14 @@ public class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode>
         this.component = builder.setUnemployedOnBenefitFlagNodeModule(new UnemployedOnBenefitFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<UnemployedOnBenefitFlagNode> getRuleProvider() {
-        return component.getUnemployedOnBenefitFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<UnemployedOnBenefitFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

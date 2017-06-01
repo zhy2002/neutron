@@ -1,11 +1,13 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class PasswordNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<PasswordNode> provideRuleProvider(Provider<PasswordNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("PasswordNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<PasswordNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("PasswordNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<PasswordNode> provideTypeRuleProvider(PasswordNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("PasswordNodeRuleProvider") @IntoMap @StringKey("passwordNode")
+        RuleProvider<PasswordNode> providePasswordNodeChildRuleProvider(
+            RegisterNodeChildProvider.PasswordNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<PasswordNode>> provideInstanceProviderMap(
-        Provider<RegisterNodeChildProvider.PasswordNodeRuleProvider> passwordNodeRuleProvider
+    List<RuleProvider<PasswordNode>> provideRuleProviders(
+        @Named("PasswordNodeRuleProvider")  Map<String, Provider<RuleProvider<PasswordNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<PasswordNode>> result = new HashMap<>();
-        result.put("passwordNode", passwordNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {FeeDescriptionNodeModule.class})
 public interface FeeDescriptionNodeComponent {
 
+    List<RuleProvider<FeeDescriptionNode>> provideRuleProviders();
 
-    RuleProvider<FeeDescriptionNode> getFeeDescriptionNodeRuleProvider();
-    Map<String, RuleProvider<FeeDescriptionNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

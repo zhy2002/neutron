@@ -37,24 +37,14 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
         this.component = builder.setProductFeaturesNodeModule(new ProductFeaturesNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductFeaturesNode> getRuleProvider() {
-        return component.getProductFeaturesNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductFeaturesNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

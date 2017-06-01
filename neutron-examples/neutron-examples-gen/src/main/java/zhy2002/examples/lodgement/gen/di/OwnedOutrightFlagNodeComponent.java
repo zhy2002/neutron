@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {OwnedOutrightFlagNodeModule.class})
 public interface OwnedOutrightFlagNodeComponent {
 
+    List<RuleProvider<OwnedOutrightFlagNode>> provideRuleProviders();
 
-    RuleProvider<OwnedOutrightFlagNode> getOwnedOutrightFlagNodeRuleProvider();
-    Map<String, RuleProvider<OwnedOutrightFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

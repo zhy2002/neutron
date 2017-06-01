@@ -3,17 +3,19 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {OtherAssetNodeModule.class})
 public interface OtherAssetNodeComponent {
 
+    List<RuleProvider<OtherAssetNode>> provideRuleProviders();
+
     OtherAssetTypeNode createOtherAssetTypeNode();
     OtherAssetDescriptionNode createOtherAssetDescriptionNode();
     OtherAssetMarketValueNode createOtherAssetMarketValueNode();
     OtherAssetOwnershipListNode createOtherAssetOwnershipListNode();
-
-    RuleProvider<OtherAssetNode> getOtherAssetNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

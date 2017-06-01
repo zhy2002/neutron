@@ -39,24 +39,14 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
         this.component = builder.setPasswordNodeModule(new PasswordNodeModule(this)).build();
     }
 
-    private RuleProvider<PasswordNode> getRuleProvider() {
-        return component.getPasswordNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PasswordNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);

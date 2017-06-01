@@ -1,11 +1,13 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class EmailNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<EmailNode> provideRuleProvider(Provider<EmailNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("EmailNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<EmailNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("EmailNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<EmailNode> provideTypeRuleProvider(EmailNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("EmailNodeRuleProvider") @IntoMap @StringKey("emailNode")
+        RuleProvider<EmailNode> provideEmailNodeChildRuleProvider(
+            RegisterNodeChildProvider.EmailNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<EmailNode>> provideInstanceProviderMap(
-        Provider<RegisterNodeChildProvider.EmailNodeRuleProvider> emailNodeRuleProvider
+    List<RuleProvider<EmailNode>> provideRuleProviders(
+        @Named("EmailNodeRuleProvider")  Map<String, Provider<RuleProvider<EmailNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<EmailNode>> result = new HashMap<>();
-        result.put("emailNode", emailNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

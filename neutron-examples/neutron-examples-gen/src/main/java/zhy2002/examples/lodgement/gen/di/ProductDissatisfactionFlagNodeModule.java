@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductDissatisfactionFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductDissatisfactionFlagNode> provideRuleProvider(Provider<ProductDissatisfactionFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductDissatisfactionFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductDissatisfactionFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductDissatisfactionFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductDissatisfactionFlagNode> provideTypeRuleProvider(ProductDissatisfactionFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductDissatisfactionFlagNodeRuleProvider") @IntoMap @StringKey("productDissatisfactionFlagNode")
+        RuleProvider<ProductDissatisfactionFlagNode> provideProductDissatisfactionFlagNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductDissatisfactionFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductDissatisfactionFlagNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductDissatisfactionFlagNodeRuleProvider> productDissatisfactionFlagNodeRuleProvider
+    List<RuleProvider<ProductDissatisfactionFlagNode>> provideRuleProviders(
+        @Named("ProductDissatisfactionFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductDissatisfactionFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductDissatisfactionFlagNode>> result = new HashMap<>();
-        result.put("productDissatisfactionFlagNode", productDissatisfactionFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

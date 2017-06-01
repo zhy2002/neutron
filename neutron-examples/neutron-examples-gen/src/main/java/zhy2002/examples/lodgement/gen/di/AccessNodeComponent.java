@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AccessNodeModule.class})
 public interface AccessNodeComponent {
+
+    List<RuleProvider<AccessNode>> provideRuleProviders();
 
     AccessContactTypeNode createAccessContactTypeNode();
     AccessContactTitleNode createAccessContactTitleNode();
@@ -16,9 +19,6 @@ public interface AccessNodeComponent {
     AccessCompanyNameNode createAccessCompanyNameNode();
     AccessTelephoneNode createAccessTelephoneNode();
     AccessOtherDescriptionNode createAccessOtherDescriptionNode();
-
-    RuleProvider<AccessNode> getAccessNodeRuleProvider();
-    Map<String, RuleProvider<AccessNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

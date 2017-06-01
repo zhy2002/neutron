@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ContributionDescriptionNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ContributionDescriptionNode> provideRuleProvider(Provider<ContributionDescriptionNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ContributionDescriptionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ContributionDescriptionNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ContributionDescriptionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ContributionDescriptionNode> provideTypeRuleProvider(ContributionDescriptionNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ContributionDescriptionNodeRuleProvider") @IntoMap @StringKey("contributionDescriptionNode")
+        RuleProvider<ContributionDescriptionNode> provideContributionDescriptionNodeChildRuleProvider(
+            ProductCustomerContributionNodeChildProvider.ContributionDescriptionNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ContributionDescriptionNode>> provideInstanceProviderMap(
-        Provider<ProductCustomerContributionNodeChildProvider.ContributionDescriptionNodeRuleProvider> contributionDescriptionNodeRuleProvider
+    List<RuleProvider<ContributionDescriptionNode>> provideRuleProviders(
+        @Named("ContributionDescriptionNodeRuleProvider")  Map<String, Provider<RuleProvider<ContributionDescriptionNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ContributionDescriptionNode>> result = new HashMap<>();
-        result.put("contributionDescriptionNode", contributionDescriptionNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

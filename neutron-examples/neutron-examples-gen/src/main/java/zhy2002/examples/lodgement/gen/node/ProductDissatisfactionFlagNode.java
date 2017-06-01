@@ -34,24 +34,14 @@ public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescrip
         this.component = builder.setProductDissatisfactionFlagNodeModule(new ProductDissatisfactionFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductDissatisfactionFlagNode> getRuleProvider() {
-        return component.getProductDissatisfactionFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductDissatisfactionFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

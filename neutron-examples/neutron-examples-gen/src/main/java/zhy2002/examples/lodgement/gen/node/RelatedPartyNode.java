@@ -37,18 +37,14 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
         this.component = builder.setRelatedPartyNodeModule(new RelatedPartyNodeModule(this)).build();
     }
 
-    private RuleProvider<RelatedPartyNode> getRuleProvider() {
-        return component.getRelatedPartyNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

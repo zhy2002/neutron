@@ -37,18 +37,14 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         this.component = builder.setLoanNodeModule(new LoanNodeModule(this)).build();
     }
 
-    private RuleProvider<LoanNode> getRuleProvider() {
-        return component.getLoanNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

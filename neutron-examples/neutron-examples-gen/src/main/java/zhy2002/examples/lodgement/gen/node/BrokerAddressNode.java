@@ -34,24 +34,14 @@ public class BrokerAddressNode extends AddressNode<SubmissionNode> {
         this.component = builder.setBrokerAddressNodeModule(new BrokerAddressNodeModule(this)).build();
     }
 
-    private RuleProvider<BrokerAddressNode> getRuleProvider() {
-        return component.getBrokerAddressNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BrokerAddressNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

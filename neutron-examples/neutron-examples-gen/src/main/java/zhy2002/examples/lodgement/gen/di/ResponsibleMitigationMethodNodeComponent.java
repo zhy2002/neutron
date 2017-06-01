@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ResponsibleMitigationMethodNodeModule.class})
 public interface ResponsibleMitigationMethodNodeComponent {
 
+    List<RuleProvider<ResponsibleMitigationMethodNode>> provideRuleProviders();
 
-    RuleProvider<ResponsibleMitigationMethodNode> getResponsibleMitigationMethodNodeRuleProvider();
-    Map<String, RuleProvider<ResponsibleMitigationMethodNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

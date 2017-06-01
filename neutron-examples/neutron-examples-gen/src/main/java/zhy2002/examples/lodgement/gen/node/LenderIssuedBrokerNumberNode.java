@@ -34,24 +34,14 @@ public class LenderIssuedBrokerNumberNode extends StringUiNode<SubmissionNode> {
         this.component = builder.setLenderIssuedBrokerNumberNodeModule(new LenderIssuedBrokerNumberNodeModule(this)).build();
     }
 
-    private RuleProvider<LenderIssuedBrokerNumberNode> getRuleProvider() {
-        return component.getLenderIssuedBrokerNumberNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<LenderIssuedBrokerNumberNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class OtherLiabilityBreakCostNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<OtherLiabilityBreakCostNode> provideRuleProvider(Provider<OtherLiabilityBreakCostNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("OtherLiabilityBreakCostNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityBreakCostNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("OtherLiabilityBreakCostNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityBreakCostNode> provideTypeRuleProvider(OtherLiabilityBreakCostNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("OtherLiabilityBreakCostNodeRuleProvider") @IntoMap @StringKey("otherLiabilityBreakCostNode")
+        RuleProvider<OtherLiabilityBreakCostNode> provideOtherLiabilityBreakCostNodeChildRuleProvider(
+            OtherLiabilityNodeChildProvider.OtherLiabilityBreakCostNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<OtherLiabilityBreakCostNode>> provideInstanceProviderMap(
-        Provider<OtherLiabilityNodeChildProvider.OtherLiabilityBreakCostNodeRuleProvider> otherLiabilityBreakCostNodeRuleProvider
+    List<RuleProvider<OtherLiabilityBreakCostNode>> provideRuleProviders(
+        @Named("OtherLiabilityBreakCostNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherLiabilityBreakCostNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<OtherLiabilityBreakCostNode>> result = new HashMap<>();
-        result.put("otherLiabilityBreakCostNode", otherLiabilityBreakCostNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

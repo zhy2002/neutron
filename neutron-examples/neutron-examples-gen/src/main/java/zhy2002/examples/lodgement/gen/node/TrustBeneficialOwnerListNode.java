@@ -34,24 +34,14 @@ public class TrustBeneficialOwnerListNode extends SelectRelatedPersonListNode<Ba
         this.component = builder.setTrustBeneficialOwnerListNodeModule(new TrustBeneficialOwnerListNodeModule(this)).build();
     }
 
-    private RuleProvider<TrustBeneficialOwnerListNode> getRuleProvider() {
-        return component.getTrustBeneficialOwnerListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TrustBeneficialOwnerListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {OtherLiabilityNodeModule.class})
 public interface OtherLiabilityNodeComponent {
+
+    List<RuleProvider<OtherLiabilityNode>> provideRuleProviders();
 
     OtherLiabilityTypeNode createOtherLiabilityTypeNode();
     OtherLiabilityDescriptionNode createOtherLiabilityDescriptionNode();
@@ -16,8 +20,6 @@ public interface OtherLiabilityNodeComponent {
     OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode();
     OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode();
     OtherLiabilityOwnershipListNode createOtherLiabilityOwnershipListNode();
-
-    RuleProvider<OtherLiabilityNode> getOtherLiabilityNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

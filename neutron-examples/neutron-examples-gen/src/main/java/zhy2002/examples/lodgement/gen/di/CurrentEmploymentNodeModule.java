@@ -1,10 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -40,9 +43,22 @@ public class CurrentEmploymentNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<CurrentEmploymentNode> provideRuleProvider(Provider<CurrentEmploymentNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("CurrentEmploymentNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<CurrentEmploymentNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("CurrentEmploymentNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<CurrentEmploymentNode> provideTypeRuleProvider(CurrentEmploymentNodeRuleProvider provider) {
+        return provider;
+    }
+
+
+    @Provides @ComponentScope
+    List<RuleProvider<CurrentEmploymentNode>> provideRuleProviders(
+        @Named("CurrentEmploymentNodeRuleProvider")  Map<String, Provider<RuleProvider<CurrentEmploymentNode>>> ruleProviderProviderMap
+    ) {
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
+    }
 }

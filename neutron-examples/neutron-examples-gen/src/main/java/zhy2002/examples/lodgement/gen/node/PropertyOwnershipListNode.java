@@ -34,24 +34,14 @@ public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
         this.component = builder.setPropertyOwnershipListNodeModule(new PropertyOwnershipListNodeModule(this)).build();
     }
 
-    private RuleProvider<PropertyOwnershipListNode> getRuleProvider() {
-        return component.getPropertyOwnershipListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PropertyOwnershipListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -37,18 +37,14 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         this.component = builder.setMotorVehicleNodeModule(new MotorVehicleNodeModule(this)).build();
     }
 
-    private RuleProvider<MotorVehicleNode> getRuleProvider() {
-        return component.getMotorVehicleNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

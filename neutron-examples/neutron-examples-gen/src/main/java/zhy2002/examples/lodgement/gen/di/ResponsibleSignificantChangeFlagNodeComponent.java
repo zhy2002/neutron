@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ResponsibleSignificantChangeFlagNodeModule.class})
 public interface ResponsibleSignificantChangeFlagNodeComponent {
 
+    List<RuleProvider<ResponsibleSignificantChangeFlagNode>> provideRuleProviders();
 
-    RuleProvider<ResponsibleSignificantChangeFlagNode> getResponsibleSignificantChangeFlagNodeRuleProvider();
-    Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

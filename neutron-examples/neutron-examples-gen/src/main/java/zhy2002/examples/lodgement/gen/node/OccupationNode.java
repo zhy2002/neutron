@@ -34,24 +34,14 @@ public class OccupationNode extends BaseOccupationNode<EmployedNode> {
         this.component = builder.setOccupationNodeModule(new OccupationNodeModule(this)).build();
     }
 
-    private RuleProvider<OccupationNode> getRuleProvider() {
-        return component.getOccupationNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<OccupationNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

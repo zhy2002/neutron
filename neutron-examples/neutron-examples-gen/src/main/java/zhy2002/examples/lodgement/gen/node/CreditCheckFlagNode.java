@@ -34,24 +34,14 @@ public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
         this.component = builder.setCreditCheckFlagNodeModule(new CreditCheckFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<CreditCheckFlagNode> getRuleProvider() {
-        return component.getCreditCheckFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CreditCheckFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

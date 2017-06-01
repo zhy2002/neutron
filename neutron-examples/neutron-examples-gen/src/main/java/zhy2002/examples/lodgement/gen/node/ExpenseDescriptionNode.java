@@ -34,24 +34,14 @@ public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode> {
         this.component = builder.setExpenseDescriptionNodeModule(new ExpenseDescriptionNodeModule(this)).build();
     }
 
-    private RuleProvider<ExpenseDescriptionNode> getRuleProvider() {
-        return component.getExpenseDescriptionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ExpenseDescriptionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

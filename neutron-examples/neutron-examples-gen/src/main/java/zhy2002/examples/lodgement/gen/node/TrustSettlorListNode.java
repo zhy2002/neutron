@@ -34,24 +34,14 @@ public class TrustSettlorListNode extends SelectRelatedPersonListNode<BaseTrustN
         this.component = builder.setTrustSettlorListNodeModule(new TrustSettlorListNodeModule(this)).build();
     }
 
-    private RuleProvider<TrustSettlorListNode> getRuleProvider() {
-        return component.getTrustSettlorListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TrustSettlorListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

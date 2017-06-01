@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PermanentResidentFlagNodeModule.class})
 public interface PermanentResidentFlagNodeComponent {
 
+    List<RuleProvider<PermanentResidentFlagNode>> provideRuleProviders();
 
-    RuleProvider<PermanentResidentFlagNode> getPermanentResidentFlagNodeRuleProvider();
-    Map<String, RuleProvider<PermanentResidentFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

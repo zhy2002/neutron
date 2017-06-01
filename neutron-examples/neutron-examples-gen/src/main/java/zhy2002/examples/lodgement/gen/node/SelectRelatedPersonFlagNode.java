@@ -34,24 +34,14 @@ public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPers
         this.component = builder.setSelectRelatedPersonFlagNodeModule(new SelectRelatedPersonFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<SelectRelatedPersonFlagNode> getRuleProvider() {
-        return component.getSelectRelatedPersonFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<SelectRelatedPersonFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -37,24 +37,14 @@ public class PayeEmployedNode extends EmployedNode {
         this.component = builder.setPayeEmployedNodeModule(new PayeEmployedNodeModule(this)).build();
     }
 
-    private RuleProvider<PayeEmployedNode> getRuleProvider() {
-        return component.getPayeEmployedNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PayeEmployedNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

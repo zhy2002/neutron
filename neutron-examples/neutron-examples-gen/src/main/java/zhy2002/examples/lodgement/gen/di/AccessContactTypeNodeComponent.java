@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AccessContactTypeNodeModule.class})
 public interface AccessContactTypeNodeComponent {
 
+    List<RuleProvider<AccessContactTypeNode>> provideRuleProviders();
 
-    RuleProvider<AccessContactTypeNode> getAccessContactTypeNodeRuleProvider();
-    Map<String, RuleProvider<AccessContactTypeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

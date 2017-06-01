@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductCreditCardTypeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductCreditCardTypeNode> provideRuleProvider(Provider<ProductCreditCardTypeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductCreditCardTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductCreditCardTypeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductCreditCardTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductCreditCardTypeNode> provideTypeRuleProvider(ProductCreditCardTypeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductCreditCardTypeNodeRuleProvider") @IntoMap @StringKey("productCreditCardTypeNode")
+        RuleProvider<ProductCreditCardTypeNode> provideProductCreditCardTypeNodeChildRuleProvider(
+            ProductFeaturesNodeChildProvider.ProductCreditCardTypeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductCreditCardTypeNode>> provideInstanceProviderMap(
-        Provider<ProductFeaturesNodeChildProvider.ProductCreditCardTypeNodeRuleProvider> productCreditCardTypeNodeRuleProvider
+    List<RuleProvider<ProductCreditCardTypeNode>> provideRuleProviders(
+        @Named("ProductCreditCardTypeNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductCreditCardTypeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductCreditCardTypeNode>> result = new HashMap<>();
-        result.put("productCreditCardTypeNode", productCreditCardTypeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

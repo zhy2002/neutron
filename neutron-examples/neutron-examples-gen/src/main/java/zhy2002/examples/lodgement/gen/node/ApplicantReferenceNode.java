@@ -35,24 +35,14 @@ public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
         this.component = builder.setApplicantReferenceNodeModule(new ApplicantReferenceNodeModule(this)).build();
     }
 
-    private RuleProvider<ApplicantReferenceNode> getRuleProvider() {
-        return component.getApplicantReferenceNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ApplicantReferenceNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

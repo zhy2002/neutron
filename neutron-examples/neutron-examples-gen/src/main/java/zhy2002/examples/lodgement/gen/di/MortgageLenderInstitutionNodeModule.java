@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class MortgageLenderInstitutionNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<MortgageLenderInstitutionNode> provideRuleProvider(Provider<MortgageLenderInstitutionNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("MortgageLenderInstitutionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<MortgageLenderInstitutionNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("MortgageLenderInstitutionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<MortgageLenderInstitutionNode> provideTypeRuleProvider(MortgageLenderInstitutionNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("MortgageLenderInstitutionNodeRuleProvider") @IntoMap @StringKey("mortgageLenderInstitutionNode")
+        RuleProvider<MortgageLenderInstitutionNode> provideMortgageLenderInstitutionNodeChildRuleProvider(
+            ExistingMortgageNodeChildProvider.MortgageLenderInstitutionNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<MortgageLenderInstitutionNode>> provideInstanceProviderMap(
-        Provider<ExistingMortgageNodeChildProvider.MortgageLenderInstitutionNodeRuleProvider> mortgageLenderInstitutionNodeRuleProvider
+    List<RuleProvider<MortgageLenderInstitutionNode>> provideRuleProviders(
+        @Named("MortgageLenderInstitutionNodeRuleProvider")  Map<String, Provider<RuleProvider<MortgageLenderInstitutionNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<MortgageLenderInstitutionNode>> result = new HashMap<>();
-        result.put("mortgageLenderInstitutionNode", mortgageLenderInstitutionNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

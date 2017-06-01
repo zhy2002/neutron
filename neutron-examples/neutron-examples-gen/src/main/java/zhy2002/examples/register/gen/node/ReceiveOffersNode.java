@@ -34,24 +34,14 @@ public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
         this.component = builder.setReceiveOffersNodeModule(new ReceiveOffersNodeModule(this)).build();
     }
 
-    private RuleProvider<ReceiveOffersNode> getRuleProvider() {
-        return component.getReceiveOffersNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ReceiveOffersNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

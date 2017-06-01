@@ -34,24 +34,14 @@ public class BrokerCompanyNode extends StringUiNode<SubmissionNode> {
         this.component = builder.setBrokerCompanyNodeModule(new BrokerCompanyNodeModule(this)).build();
     }
 
-    private RuleProvider<BrokerCompanyNode> getRuleProvider() {
-        return component.getBrokerCompanyNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BrokerCompanyNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

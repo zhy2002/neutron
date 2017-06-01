@@ -34,24 +34,14 @@ public class ProductTotalLvrNode extends BasePercentageNode<ProductsNode> {
         this.component = builder.setProductTotalLvrNodeModule(new ProductTotalLvrNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductTotalLvrNode> getRuleProvider() {
-        return component.getProductTotalLvrNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductTotalLvrNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

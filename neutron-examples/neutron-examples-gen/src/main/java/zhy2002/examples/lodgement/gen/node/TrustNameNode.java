@@ -34,24 +34,14 @@ public class TrustNameNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustNameNodeModule(new TrustNameNodeModule(this)).build();
     }
 
-    private RuleProvider<TrustNameNode> getRuleProvider() {
-        return component.getTrustNameNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TrustNameNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

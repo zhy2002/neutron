@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ProductDescriptionNodeModule.class})
 public interface ProductDescriptionNodeComponent {
+
+    List<RuleProvider<ProductDescriptionNode>> provideRuleProviders();
 
     ProductGroupNode createProductGroupNode();
     ProductNameNode createProductNameNode();
@@ -24,9 +27,6 @@ public interface ProductDescriptionNodeComponent {
     ProductDissatisfactionFlagNode createProductDissatisfactionFlagNode();
     ProductSpecificFeaturesFlagNode createProductSpecificFeaturesFlagNode();
     ProductAccountHolderListNode createProductAccountHolderListNode();
-
-    RuleProvider<ProductDescriptionNode> getProductDescriptionNodeRuleProvider();
-    Map<String, RuleProvider<ProductDescriptionNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

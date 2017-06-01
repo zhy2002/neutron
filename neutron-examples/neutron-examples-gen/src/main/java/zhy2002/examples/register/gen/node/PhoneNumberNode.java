@@ -35,24 +35,14 @@ public class PhoneNumberNode extends PhoneInfoFieldNode {
         this.component = builder.setPhoneNumberNodeModule(new PhoneNumberNodeModule(this)).build();
     }
 
-    private RuleProvider<PhoneNumberNode> getRuleProvider() {
-        return component.getPhoneNumberNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PhoneNumberNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

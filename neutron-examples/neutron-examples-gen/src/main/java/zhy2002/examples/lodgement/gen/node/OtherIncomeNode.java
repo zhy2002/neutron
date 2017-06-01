@@ -37,18 +37,14 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
         this.component = builder.setOtherIncomeNodeModule(new OtherIncomeNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherIncomeNode> getRuleProvider() {
-        return component.getOtherIncomeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

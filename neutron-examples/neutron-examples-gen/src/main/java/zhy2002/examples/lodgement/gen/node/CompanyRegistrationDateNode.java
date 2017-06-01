@@ -34,24 +34,14 @@ public class CompanyRegistrationDateNode extends StringUiNode<CompanyGeneralNode
         this.component = builder.setCompanyRegistrationDateNodeModule(new CompanyRegistrationDateNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyRegistrationDateNode> getRuleProvider() {
-        return component.getCompanyRegistrationDateNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyRegistrationDateNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

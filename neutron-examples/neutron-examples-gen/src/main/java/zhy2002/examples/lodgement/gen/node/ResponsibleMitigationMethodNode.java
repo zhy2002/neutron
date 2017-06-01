@@ -34,24 +34,14 @@ public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibl
         this.component = builder.setResponsibleMitigationMethodNodeModule(new ResponsibleMitigationMethodNodeModule(this)).build();
     }
 
-    private RuleProvider<ResponsibleMitigationMethodNode> getRuleProvider() {
-        return component.getResponsibleMitigationMethodNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ResponsibleMitigationMethodNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

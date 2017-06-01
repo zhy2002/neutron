@@ -34,24 +34,14 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
         this.component = builder.setRepeatPasswordNodeModule(new RepeatPasswordNodeModule(this)).build();
     }
 
-    private RuleProvider<RepeatPasswordNode> getRuleProvider() {
-        return component.getRepeatPasswordNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<RepeatPasswordNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

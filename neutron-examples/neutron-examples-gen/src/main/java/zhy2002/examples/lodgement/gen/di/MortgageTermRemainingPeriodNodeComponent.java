@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {MortgageTermRemainingPeriodNodeModule.class})
 public interface MortgageTermRemainingPeriodNodeComponent extends MonthYearNodeComponent {
 
+    List<RuleProvider<MortgageTermRemainingPeriodNode>> provideRuleProviders();
 
-    RuleProvider<MortgageTermRemainingPeriodNode> getMortgageTermRemainingPeriodNodeRuleProvider();
-    Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

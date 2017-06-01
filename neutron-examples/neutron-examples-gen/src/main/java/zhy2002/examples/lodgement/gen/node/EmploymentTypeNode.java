@@ -34,24 +34,14 @@ public class EmploymentTypeNode extends StringUiNode<EmploymentNode<?>> {
         this.component = builder.setEmploymentTypeNodeModule(new EmploymentTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<EmploymentTypeNode> getRuleProvider() {
-        return component.getEmploymentTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<EmploymentTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

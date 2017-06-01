@@ -34,24 +34,14 @@ public class MortgageInterestOnlyRemainingPeriodNode extends MonthYearNode<Exist
         this.component = builder.setMortgageInterestOnlyRemainingPeriodNodeModule(new MortgageInterestOnlyRemainingPeriodNodeModule(this)).build();
     }
 
-    private RuleProvider<MortgageInterestOnlyRemainingPeriodNode> getRuleProvider() {
-        return component.getMortgageInterestOnlyRemainingPeriodNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<MortgageInterestOnlyRemainingPeriodNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

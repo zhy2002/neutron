@@ -5,14 +5,14 @@ import zhy2002.examples.app.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AppManagerNodeModule.class})
 public interface AppManagerNodeComponent {
 
-    ApplicationListNode createApplicationListNode();
+    List<RuleProvider<AppManagerNode>> provideRuleProviders();
 
-    RuleProvider<AppManagerNode> getAppManagerNodeRuleProvider();
-    Map<String, RuleProvider<AppManagerNode>> getInstanceRuleProviders();
+    ApplicationListNode createApplicationListNode();
 
     @Subcomponent.Builder
     interface Builder {

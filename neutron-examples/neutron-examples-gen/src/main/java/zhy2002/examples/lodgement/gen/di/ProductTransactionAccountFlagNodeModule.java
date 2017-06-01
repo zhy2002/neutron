@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductTransactionAccountFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductTransactionAccountFlagNode> provideRuleProvider(Provider<ProductTransactionAccountFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductTransactionAccountFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductTransactionAccountFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductTransactionAccountFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductTransactionAccountFlagNode> provideTypeRuleProvider(ProductTransactionAccountFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductTransactionAccountFlagNodeRuleProvider") @IntoMap @StringKey("productTransactionAccountFlagNode")
+        RuleProvider<ProductTransactionAccountFlagNode> provideProductTransactionAccountFlagNodeChildRuleProvider(
+            ProductFeaturesNodeChildProvider.ProductTransactionAccountFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductTransactionAccountFlagNode>> provideInstanceProviderMap(
-        Provider<ProductFeaturesNodeChildProvider.ProductTransactionAccountFlagNodeRuleProvider> productTransactionAccountFlagNodeRuleProvider
+    List<RuleProvider<ProductTransactionAccountFlagNode>> provideRuleProviders(
+        @Named("ProductTransactionAccountFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductTransactionAccountFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductTransactionAccountFlagNode>> result = new HashMap<>();
-        result.put("productTransactionAccountFlagNode", productTransactionAccountFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

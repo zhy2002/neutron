@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class RelatedPersonReferenceNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<RelatedPersonReferenceNode> provideRuleProvider(Provider<RelatedPersonReferenceNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("RelatedPersonReferenceNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<RelatedPersonReferenceNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("RelatedPersonReferenceNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<RelatedPersonReferenceNode> provideTypeRuleProvider(RelatedPersonReferenceNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("RelatedPersonReferenceNodeRuleProvider") @IntoMap @StringKey("relatedPersonReferenceNode")
+        RuleProvider<RelatedPersonReferenceNode> provideRelatedPersonReferenceNodeChildRuleProvider(
+            SelectRelatedPersonNodeChildProvider.RelatedPersonReferenceNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<RelatedPersonReferenceNode>> provideInstanceProviderMap(
-        Provider<SelectRelatedPersonNodeChildProvider.RelatedPersonReferenceNodeRuleProvider> relatedPersonReferenceNodeRuleProvider
+    List<RuleProvider<RelatedPersonReferenceNode>> provideRuleProviders(
+        @Named("RelatedPersonReferenceNodeRuleProvider")  Map<String, Provider<RuleProvider<RelatedPersonReferenceNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<RelatedPersonReferenceNode>> result = new HashMap<>();
-        result.put("relatedPersonReferenceNode", relatedPersonReferenceNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

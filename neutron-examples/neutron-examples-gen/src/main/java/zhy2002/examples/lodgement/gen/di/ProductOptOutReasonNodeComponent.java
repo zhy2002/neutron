@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ProductOptOutReasonNodeModule.class})
 public interface ProductOptOutReasonNodeComponent {
 
+    List<RuleProvider<ProductOptOutReasonNode>> provideRuleProviders();
 
-    RuleProvider<ProductOptOutReasonNode> getProductOptOutReasonNodeRuleProvider();
-    Map<String, RuleProvider<ProductOptOutReasonNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class ProductTotalLoanAmountNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductTotalLoanAmountNode> provideRuleProvider(Provider<ProductTotalLoanAmountNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductTotalLoanAmountNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductTotalLoanAmountNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductTotalLoanAmountNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductTotalLoanAmountNode> provideTypeRuleProvider(ProductTotalLoanAmountNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductTotalLoanAmountNodeRuleProvider") @IntoMap @StringKey("productTotalLoanAmountNode")
+        RuleProvider<ProductTotalLoanAmountNode> provideProductTotalLoanAmountNodeChildRuleProvider(
+            ProductsNodeChildProvider.ProductTotalLoanAmountNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductTotalLoanAmountNode>> provideInstanceProviderMap(
-        Provider<ProductsNodeChildProvider.ProductTotalLoanAmountNodeRuleProvider> productTotalLoanAmountNodeRuleProvider
+    List<RuleProvider<ProductTotalLoanAmountNode>> provideRuleProviders(
+        @Named("ProductTotalLoanAmountNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductTotalLoanAmountNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductTotalLoanAmountNode>> result = new HashMap<>();
-        result.put("productTotalLoanAmountNode", productTotalLoanAmountNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

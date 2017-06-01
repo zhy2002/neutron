@@ -34,24 +34,14 @@ public class AdditionalCommentNode extends StringUiNode<AdditionalNode> {
         this.component = builder.setAdditionalCommentNodeModule(new AdditionalCommentNodeModule(this)).build();
     }
 
-    private RuleProvider<AdditionalCommentNode> getRuleProvider() {
-        return component.getAdditionalCommentNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AdditionalCommentNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

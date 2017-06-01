@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {UnemployedSinceNodeModule.class})
 public interface UnemployedSinceNodeComponent extends MonthYearNodeComponent {
 
+    List<RuleProvider<UnemployedSinceNode>> provideRuleProviders();
 
-    RuleProvider<UnemployedSinceNode> getUnemployedSinceNodeRuleProvider();
-    Map<String, RuleProvider<UnemployedSinceNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

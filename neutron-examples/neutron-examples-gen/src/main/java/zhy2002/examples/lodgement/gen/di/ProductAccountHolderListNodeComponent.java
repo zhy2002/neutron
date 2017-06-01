@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ProductAccountHolderListNodeModule.class})
 public interface ProductAccountHolderListNodeComponent extends SelectAccountHolderListNodeComponent {
 
+    List<RuleProvider<ProductAccountHolderListNode>> provideRuleProviders();
 
-    RuleProvider<ProductAccountHolderListNode> getProductAccountHolderListNodeRuleProvider();
-    Map<String, RuleProvider<ProductAccountHolderListNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

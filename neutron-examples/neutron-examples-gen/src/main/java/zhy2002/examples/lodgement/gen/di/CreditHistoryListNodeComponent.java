@@ -5,14 +5,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {CreditHistoryListNodeModule.class})
 public interface CreditHistoryListNodeComponent {
 
-    CreditHistoryNode createCreditHistoryNode();
+    List<RuleProvider<CreditHistoryListNode>> provideRuleProviders();
 
-    RuleProvider<CreditHistoryListNode> getCreditHistoryListNodeRuleProvider();
-    Map<String, RuleProvider<CreditHistoryListNode>> getInstanceRuleProviders();
+    CreditHistoryNode createCreditHistoryNode();
 
     @Subcomponent.Builder
     interface Builder {

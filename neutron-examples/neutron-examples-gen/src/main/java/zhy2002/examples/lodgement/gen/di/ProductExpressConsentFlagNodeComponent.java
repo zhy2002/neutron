@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ProductExpressConsentFlagNodeModule.class})
 public interface ProductExpressConsentFlagNodeComponent {
 
+    List<RuleProvider<ProductExpressConsentFlagNode>> provideRuleProviders();
 
-    RuleProvider<ProductExpressConsentFlagNode> getProductExpressConsentFlagNodeRuleProvider();
-    Map<String, RuleProvider<ProductExpressConsentFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

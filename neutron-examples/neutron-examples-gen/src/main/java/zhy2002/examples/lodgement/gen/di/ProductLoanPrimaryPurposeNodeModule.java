@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductLoanPrimaryPurposeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductLoanPrimaryPurposeNode> provideRuleProvider(Provider<ProductLoanPrimaryPurposeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductLoanPrimaryPurposeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductLoanPrimaryPurposeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductLoanPrimaryPurposeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductLoanPrimaryPurposeNode> provideTypeRuleProvider(ProductLoanPrimaryPurposeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductLoanPrimaryPurposeNodeRuleProvider") @IntoMap @StringKey("productLoanPrimaryPurposeNode")
+        RuleProvider<ProductLoanPrimaryPurposeNode> provideProductLoanPrimaryPurposeNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductLoanPrimaryPurposeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductLoanPrimaryPurposeNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductLoanPrimaryPurposeNodeRuleProvider> productLoanPrimaryPurposeNodeRuleProvider
+    List<RuleProvider<ProductLoanPrimaryPurposeNode>> provideRuleProviders(
+        @Named("ProductLoanPrimaryPurposeNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductLoanPrimaryPurposeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductLoanPrimaryPurposeNode>> result = new HashMap<>();
-        result.put("productLoanPrimaryPurposeNode", productLoanPrimaryPurposeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

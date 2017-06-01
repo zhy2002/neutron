@@ -34,24 +34,14 @@ public class AgeOfDependantsNode extends ObjectUiNode<PersonGeneralNode> {
         this.component = builder.setAgeOfDependantsNodeModule(new AgeOfDependantsNodeModule(this)).build();
     }
 
-    private RuleProvider<AgeOfDependantsNode> getRuleProvider() {
-        return component.getAgeOfDependantsNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<AgeOfDependantsNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

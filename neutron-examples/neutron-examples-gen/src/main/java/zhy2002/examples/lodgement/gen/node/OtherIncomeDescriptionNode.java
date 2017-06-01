@@ -34,24 +34,14 @@ public class OtherIncomeDescriptionNode extends StringUiNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeDescriptionNodeModule(new OtherIncomeDescriptionNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherIncomeDescriptionNode> getRuleProvider() {
-        return component.getOtherIncomeDescriptionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<OtherIncomeDescriptionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

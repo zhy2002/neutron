@@ -35,24 +35,14 @@ public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
         this.component = builder.setLoanListNodeModule(new LoanListNodeModule(this)).build();
     }
 
-    private RuleProvider<LoanListNode> getRuleProvider() {
-        return component.getLoanListNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<LoanListNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

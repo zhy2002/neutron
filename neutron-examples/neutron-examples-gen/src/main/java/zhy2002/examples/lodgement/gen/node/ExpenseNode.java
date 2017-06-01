@@ -37,18 +37,14 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         this.component = builder.setExpenseNodeModule(new ExpenseNodeModule(this)).build();
     }
 
-    private RuleProvider<ExpenseNode> getRuleProvider() {
-        return component.getExpenseNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

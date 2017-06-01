@@ -34,24 +34,14 @@ public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
         this.component = builder.setOtherIncomeAmountNodeModule(new OtherIncomeAmountNodeModule(this)).build();
     }
 
-    private RuleProvider<OtherIncomeAmountNode> getRuleProvider() {
-        return component.getOtherIncomeAmountNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<OtherIncomeAmountNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

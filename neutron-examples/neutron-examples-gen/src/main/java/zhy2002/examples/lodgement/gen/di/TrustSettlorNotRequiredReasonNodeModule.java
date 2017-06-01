@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class TrustSettlorNotRequiredReasonNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<TrustSettlorNotRequiredReasonNode> provideRuleProvider(Provider<TrustSettlorNotRequiredReasonNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("TrustSettlorNotRequiredReasonNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<TrustSettlorNotRequiredReasonNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("TrustSettlorNotRequiredReasonNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<TrustSettlorNotRequiredReasonNode> provideTypeRuleProvider(TrustSettlorNotRequiredReasonNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("TrustSettlorNotRequiredReasonNodeRuleProvider") @IntoMap @StringKey("trustSettlorNotRequiredReasonNode")
+        RuleProvider<TrustSettlorNotRequiredReasonNode> provideTrustSettlorNotRequiredReasonNodeChildRuleProvider(
+            BaseTrustNodeChildProvider.TrustSettlorNotRequiredReasonNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<TrustSettlorNotRequiredReasonNode>> provideInstanceProviderMap(
-        Provider<BaseTrustNodeChildProvider.TrustSettlorNotRequiredReasonNodeRuleProvider> trustSettlorNotRequiredReasonNodeRuleProvider
+    List<RuleProvider<TrustSettlorNotRequiredReasonNode>> provideRuleProviders(
+        @Named("TrustSettlorNotRequiredReasonNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustSettlorNotRequiredReasonNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<TrustSettlorNotRequiredReasonNode>> result = new HashMap<>();
-        result.put("trustSettlorNotRequiredReasonNode", trustSettlorNotRequiredReasonNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

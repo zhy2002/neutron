@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ThirdPartyEmailNodeModule.class})
 public interface ThirdPartyEmailNodeComponent {
 
+    List<RuleProvider<ThirdPartyEmailNode>> provideRuleProviders();
 
-    RuleProvider<ThirdPartyEmailNode> getThirdPartyEmailNodeRuleProvider();
-    Map<String, RuleProvider<ThirdPartyEmailNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

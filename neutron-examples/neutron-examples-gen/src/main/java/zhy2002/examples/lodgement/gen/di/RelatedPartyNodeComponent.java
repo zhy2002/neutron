@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {RelatedPartyNodeModule.class})
 public interface RelatedPartyNodeComponent {
+
+    List<RuleProvider<RelatedPartyNode>> provideRuleProviders();
 
     ThirdPartyTypeNode createThirdPartyTypeNode();
     ThirdPartyDescriptionNode createThirdPartyDescriptionNode();
@@ -18,8 +22,6 @@ public interface RelatedPartyNodeComponent {
     ThirdPartyAddressNode createThirdPartyAddressNode();
     ThirdPartyWorkPhoneNode createThirdPartyWorkPhoneNode();
     ThirdPartyEmailNode createThirdPartyEmailNode();
-
-    RuleProvider<RelatedPartyNode> getRelatedPartyNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

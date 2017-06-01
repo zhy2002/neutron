@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class AccessContactLastNameNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<AccessContactLastNameNode> provideRuleProvider(Provider<AccessContactLastNameNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("AccessContactLastNameNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<AccessContactLastNameNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("AccessContactLastNameNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<AccessContactLastNameNode> provideTypeRuleProvider(AccessContactLastNameNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("AccessContactLastNameNodeRuleProvider") @IntoMap @StringKey("accessContactLastNameNode")
+        RuleProvider<AccessContactLastNameNode> provideAccessContactLastNameNodeChildRuleProvider(
+            AccessNodeChildProvider.AccessContactLastNameNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<AccessContactLastNameNode>> provideInstanceProviderMap(
-        Provider<AccessNodeChildProvider.AccessContactLastNameNodeRuleProvider> accessContactLastNameNodeRuleProvider
+    List<RuleProvider<AccessContactLastNameNode>> provideRuleProviders(
+        @Named("AccessContactLastNameNodeRuleProvider")  Map<String, Provider<RuleProvider<AccessContactLastNameNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<AccessContactLastNameNode>> result = new HashMap<>();
-        result.put("accessContactLastNameNode", accessContactLastNameNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

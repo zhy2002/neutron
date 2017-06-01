@@ -34,24 +34,14 @@ public class DateUpdatedNode extends StringUiNode<ApplicationNode> {
         this.component = builder.setDateUpdatedNodeModule(new DateUpdatedNodeModule(this)).build();
     }
 
-    private RuleProvider<DateUpdatedNode> getRuleProvider() {
-        return component.getDateUpdatedNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<DateUpdatedNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

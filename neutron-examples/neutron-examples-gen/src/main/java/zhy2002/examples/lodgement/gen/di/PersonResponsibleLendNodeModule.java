@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class PersonResponsibleLendNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<PersonResponsibleLendNode> provideRuleProvider(Provider<PersonResponsibleLendNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("PersonResponsibleLendNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<PersonResponsibleLendNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("PersonResponsibleLendNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<PersonResponsibleLendNode> provideTypeRuleProvider(PersonResponsibleLendNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("PersonResponsibleLendNodeRuleProvider") @IntoMap @StringKey("personResponsibleLendNode")
+        RuleProvider<PersonResponsibleLendNode> providePersonResponsibleLendNodeChildRuleProvider(
+            PersonNodeChildProvider.PersonResponsibleLendNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<PersonResponsibleLendNode>> provideInstanceProviderMap(
-        Provider<PersonNodeChildProvider.PersonResponsibleLendNodeRuleProvider> personResponsibleLendNodeRuleProvider
+    List<RuleProvider<PersonResponsibleLendNode>> provideRuleProviders(
+        @Named("PersonResponsibleLendNodeRuleProvider")  Map<String, Provider<RuleProvider<PersonResponsibleLendNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<PersonResponsibleLendNode>> result = new HashMap<>();
-        result.put("personResponsibleLendNode", personResponsibleLendNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

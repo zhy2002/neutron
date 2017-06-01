@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {PersonNodeModule.class})
 public interface PersonNodeComponent {
+
+    List<RuleProvider<PersonNode>> provideRuleProviders();
 
     PersonGeneralNode createPersonGeneralNode();
     PersonContactNode createPersonContactNode();
@@ -16,8 +20,6 @@ public interface PersonNodeComponent {
     PersonPrivacyNode createPersonPrivacyNode();
     PersonOtherIncomeListNode createPersonOtherIncomeListNode();
     PersonResponsibleLendNode createPersonResponsibleLendNode();
-
-    RuleProvider<PersonNode> getPersonNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

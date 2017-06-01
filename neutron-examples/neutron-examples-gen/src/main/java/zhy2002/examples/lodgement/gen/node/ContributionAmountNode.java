@@ -34,24 +34,14 @@ public class ContributionAmountNode extends BaseCurrencyNode<ProductCustomerCont
         this.component = builder.setContributionAmountNodeModule(new ContributionAmountNodeModule(this)).build();
     }
 
-    private RuleProvider<ContributionAmountNode> getRuleProvider() {
-        return component.getContributionAmountNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ContributionAmountNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

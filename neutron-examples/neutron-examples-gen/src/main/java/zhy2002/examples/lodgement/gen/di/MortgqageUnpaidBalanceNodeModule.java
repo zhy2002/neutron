@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class MortgqageUnpaidBalanceNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<MortgqageUnpaidBalanceNode> provideRuleProvider(Provider<MortgqageUnpaidBalanceNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("MortgqageUnpaidBalanceNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<MortgqageUnpaidBalanceNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("MortgqageUnpaidBalanceNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<MortgqageUnpaidBalanceNode> provideTypeRuleProvider(MortgqageUnpaidBalanceNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("MortgqageUnpaidBalanceNodeRuleProvider") @IntoMap @StringKey("mortgqageUnpaidBalanceNode")
+        RuleProvider<MortgqageUnpaidBalanceNode> provideMortgqageUnpaidBalanceNodeChildRuleProvider(
+            ExistingMortgageNodeChildProvider.MortgqageUnpaidBalanceNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> provideInstanceProviderMap(
-        Provider<ExistingMortgageNodeChildProvider.MortgqageUnpaidBalanceNodeRuleProvider> mortgqageUnpaidBalanceNodeRuleProvider
+    List<RuleProvider<MortgqageUnpaidBalanceNode>> provideRuleProviders(
+        @Named("MortgqageUnpaidBalanceNodeRuleProvider")  Map<String, Provider<RuleProvider<MortgqageUnpaidBalanceNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> result = new HashMap<>();
-        result.put("mortgqageUnpaidBalanceNode", mortgqageUnpaidBalanceNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

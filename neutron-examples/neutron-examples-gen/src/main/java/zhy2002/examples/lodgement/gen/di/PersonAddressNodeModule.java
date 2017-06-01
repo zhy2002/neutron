@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,21 +43,43 @@ public class PersonAddressNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<PersonAddressNode> provideRuleProvider(Provider<PersonAddressNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<PersonAddressNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<PersonAddressNode> provideTypeRuleProvider(PersonAddressNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("currentAddressNode")
+        RuleProvider<PersonAddressNode> provideCurrentAddressNodeChildRuleProvider(
+            PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("postalAddressNode")
+        RuleProvider<PersonAddressNode> providePostalAddressNodeChildRuleProvider(
+            PersonContactNodeChildProvider.PostalAddressNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("previousAddressNode")
+        RuleProvider<PersonAddressNode> providePreviousAddressNodeChildRuleProvider(
+            PersonContactNodeChildProvider.PreviousAddressNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<PersonAddressNode>> provideInstanceProviderMap(
-        Provider<PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider> currentAddressNodeRuleProvider
-        ,Provider<PersonContactNodeChildProvider.PostalAddressNodeRuleProvider> postalAddressNodeRuleProvider
-        ,Provider<PersonContactNodeChildProvider.PreviousAddressNodeRuleProvider> previousAddressNodeRuleProvider
+    List<RuleProvider<PersonAddressNode>> provideRuleProviders(
+        @Named("PersonAddressNodeRuleProvider")  Map<String, Provider<RuleProvider<PersonAddressNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<PersonAddressNode>> result = new HashMap<>();
-        result.put("currentAddressNode", currentAddressNodeRuleProvider.get());
-        result.put("postalAddressNode", postalAddressNodeRuleProvider.get());
-        result.put("previousAddressNode", previousAddressNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

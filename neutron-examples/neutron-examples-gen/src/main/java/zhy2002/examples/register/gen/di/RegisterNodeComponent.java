@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {RegisterNodeModule.class})
 public interface RegisterNodeComponent {
+
+    List<RuleProvider<RegisterNode>> provideRuleProviders();
 
     UsernameNode createUsernameNode();
     EmailNode createEmailNode();
@@ -19,8 +23,6 @@ public interface RegisterNodeComponent {
     PropertyDetailsNode createPropertyDetailsNode();
     PhoneInfoNode createPhoneInfoNode();
     ErrorListNode createErrorListNode();
-
-    RuleProvider<RegisterNode> getRegisterNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

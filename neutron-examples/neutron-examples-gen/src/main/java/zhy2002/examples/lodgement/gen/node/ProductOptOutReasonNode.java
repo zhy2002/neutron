@@ -34,24 +34,14 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
         this.component = builder.setProductOptOutReasonNodeModule(new ProductOptOutReasonNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductOptOutReasonNode> getRuleProvider() {
-        return component.getProductOptOutReasonNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductOptOutReasonNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

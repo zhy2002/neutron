@@ -37,24 +37,14 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
         this.component = builder.setSubmissionNodeModule(new SubmissionNodeModule(this)).build();
     }
 
-    private RuleProvider<SubmissionNode> getRuleProvider() {
-        return component.getSubmissionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<SubmissionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

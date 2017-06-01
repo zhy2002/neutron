@@ -3,10 +3,14 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {SavingsAccountNodeModule.class})
 public interface SavingsAccountNodeComponent {
+
+    List<RuleProvider<SavingsAccountNode>> provideRuleProviders();
 
     SavingsTypeNode createSavingsTypeNode();
     SavingsInstitutionNameNode createSavingsInstitutionNameNode();
@@ -15,8 +19,6 @@ public interface SavingsAccountNodeComponent {
     SavingsAccountNoNode createSavingsAccountNoNode();
     SavingsAccountNameNode createSavingsAccountNameNode();
     SavingsOwnershipListNode createSavingsOwnershipListNode();
-
-    RuleProvider<SavingsAccountNode> getSavingsAccountNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

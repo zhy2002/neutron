@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {VehicleYearNodeModule.class})
 public interface VehicleYearNodeComponent {
 
+    List<RuleProvider<VehicleYearNode>> provideRuleProviders();
 
-    RuleProvider<VehicleYearNode> getVehicleYearNodeRuleProvider();
-    Map<String, RuleProvider<VehicleYearNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

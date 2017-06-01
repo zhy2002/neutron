@@ -34,24 +34,14 @@ public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeat
         this.component = builder.setProductTransactionAccountFlagNodeModule(new ProductTransactionAccountFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductTransactionAccountFlagNode> getRuleProvider() {
-        return component.getProductTransactionAccountFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductTransactionAccountFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -34,18 +34,14 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
         this.component = builder.setErrorNodeModule(new ErrorNodeModule(this)).build();
     }
 
-    private RuleProvider<ErrorNode> getRuleProvider() {
-        return component.getErrorNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

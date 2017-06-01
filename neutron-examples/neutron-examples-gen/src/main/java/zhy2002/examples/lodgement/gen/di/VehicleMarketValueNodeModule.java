@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class VehicleMarketValueNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<VehicleMarketValueNode> provideRuleProvider(Provider<VehicleMarketValueNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("VehicleMarketValueNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<VehicleMarketValueNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("VehicleMarketValueNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<VehicleMarketValueNode> provideTypeRuleProvider(VehicleMarketValueNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("VehicleMarketValueNodeRuleProvider") @IntoMap @StringKey("vehicleMarketValueNode")
+        RuleProvider<VehicleMarketValueNode> provideVehicleMarketValueNodeChildRuleProvider(
+            MotorVehicleNodeChildProvider.VehicleMarketValueNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<VehicleMarketValueNode>> provideInstanceProviderMap(
-        Provider<MotorVehicleNodeChildProvider.VehicleMarketValueNodeRuleProvider> vehicleMarketValueNodeRuleProvider
+    List<RuleProvider<VehicleMarketValueNode>> provideRuleProviders(
+        @Named("VehicleMarketValueNodeRuleProvider")  Map<String, Provider<RuleProvider<VehicleMarketValueNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<VehicleMarketValueNode>> result = new HashMap<>();
-        result.put("vehicleMarketValueNode", vehicleMarketValueNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

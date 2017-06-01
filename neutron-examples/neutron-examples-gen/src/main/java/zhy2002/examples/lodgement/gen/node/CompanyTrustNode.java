@@ -34,24 +34,14 @@ public class CompanyTrustNode extends BaseTrustNode<CompanyNode> {
         this.component = builder.setCompanyTrustNodeModule(new CompanyTrustNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyTrustNode> getRuleProvider() {
-        return component.getCompanyTrustNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyTrustNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

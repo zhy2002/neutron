@@ -5,14 +5,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {CreditCardListNodeModule.class})
 public interface CreditCardListNodeComponent {
 
-    CreditCardNode createCreditCardNode();
+    List<RuleProvider<CreditCardListNode>> provideRuleProviders();
 
-    RuleProvider<CreditCardListNode> getCreditCardListNodeRuleProvider();
-    Map<String, RuleProvider<CreditCardListNode>> getInstanceRuleProviders();
+    CreditCardNode createCreditCardNode();
 
     @Subcomponent.Builder
     interface Builder {

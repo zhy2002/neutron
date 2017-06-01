@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ExpenseOwnershipListNodeModule.class})
 public interface ExpenseOwnershipListNodeComponent extends OwnershipListNodeComponent {
 
+    List<RuleProvider<ExpenseOwnershipListNode>> provideRuleProviders();
 
-    RuleProvider<ExpenseOwnershipListNode> getExpenseOwnershipListNodeRuleProvider();
-    Map<String, RuleProvider<ExpenseOwnershipListNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

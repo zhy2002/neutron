@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class UnemployedOnBenefitFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<UnemployedOnBenefitFlagNode> provideRuleProvider(Provider<UnemployedOnBenefitFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("UnemployedOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<UnemployedOnBenefitFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("UnemployedOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<UnemployedOnBenefitFlagNode> provideTypeRuleProvider(UnemployedOnBenefitFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("UnemployedOnBenefitFlagNodeRuleProvider") @IntoMap @StringKey("unemployedOnBenefitFlagNode")
+        RuleProvider<UnemployedOnBenefitFlagNode> provideUnemployedOnBenefitFlagNodeChildRuleProvider(
+            UnemployedNodeChildProvider.UnemployedOnBenefitFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> provideInstanceProviderMap(
-        Provider<UnemployedNodeChildProvider.UnemployedOnBenefitFlagNodeRuleProvider> unemployedOnBenefitFlagNodeRuleProvider
+    List<RuleProvider<UnemployedOnBenefitFlagNode>> provideRuleProviders(
+        @Named("UnemployedOnBenefitFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<UnemployedOnBenefitFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<UnemployedOnBenefitFlagNode>> result = new HashMap<>();
-        result.put("unemployedOnBenefitFlagNode", unemployedOnBenefitFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

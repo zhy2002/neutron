@@ -1,11 +1,13 @@
 package zhy2002.examples.register.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class AgeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<AgeNode> provideRuleProvider(Provider<AgeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("AgeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<AgeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("AgeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<AgeNode> provideTypeRuleProvider(AgeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("AgeNodeRuleProvider") @IntoMap @StringKey("ageNode")
+        RuleProvider<AgeNode> provideAgeNodeChildRuleProvider(
+            RegisterNodeChildProvider.AgeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<AgeNode>> provideInstanceProviderMap(
-        Provider<RegisterNodeChildProvider.AgeNodeRuleProvider> ageNodeRuleProvider
+    List<RuleProvider<AgeNode>> provideRuleProviders(
+        @Named("AgeNodeRuleProvider")  Map<String, Provider<RuleProvider<AgeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<AgeNode>> result = new HashMap<>();
-        result.put("ageNode", ageNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

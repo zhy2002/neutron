@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {SubmissionNodeModule.class})
 public interface SubmissionNodeComponent {
+
+    List<RuleProvider<SubmissionNode>> provideRuleProviders();
 
     BrokerFirstNameNode createBrokerFirstNameNode();
     BrokerLastNameNode createBrokerLastNameNode();
@@ -17,9 +20,6 @@ public interface SubmissionNodeComponent {
     BrokerEmailNode createBrokerEmailNode();
     BrokerAddressNode createBrokerAddressNode();
     LenderIssuedBrokerNumberNode createLenderIssuedBrokerNumberNode();
-
-    RuleProvider<SubmissionNode> getSubmissionNodeRuleProvider();
-    Map<String, RuleProvider<SubmissionNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

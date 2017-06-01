@@ -34,18 +34,14 @@ public class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentLis
         this.component = builder.setPreviousEmploymentNodeModule(new PreviousEmploymentNodeModule(this)).build();
     }
 
-    private RuleProvider<PreviousEmploymentNode> getRuleProvider() {
-        return component.getPreviousEmploymentNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

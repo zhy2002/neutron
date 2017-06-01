@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class BrokerLastNameNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<BrokerLastNameNode> provideRuleProvider(Provider<BrokerLastNameNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("BrokerLastNameNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<BrokerLastNameNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("BrokerLastNameNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<BrokerLastNameNode> provideTypeRuleProvider(BrokerLastNameNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("BrokerLastNameNodeRuleProvider") @IntoMap @StringKey("brokerLastNameNode")
+        RuleProvider<BrokerLastNameNode> provideBrokerLastNameNodeChildRuleProvider(
+            SubmissionNodeChildProvider.BrokerLastNameNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<BrokerLastNameNode>> provideInstanceProviderMap(
-        Provider<SubmissionNodeChildProvider.BrokerLastNameNodeRuleProvider> brokerLastNameNodeRuleProvider
+    List<RuleProvider<BrokerLastNameNode>> provideRuleProviders(
+        @Named("BrokerLastNameNodeRuleProvider")  Map<String, Provider<RuleProvider<BrokerLastNameNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<BrokerLastNameNode>> result = new HashMap<>();
-        result.put("brokerLastNameNode", brokerLastNameNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

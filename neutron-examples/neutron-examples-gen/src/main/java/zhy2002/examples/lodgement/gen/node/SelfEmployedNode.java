@@ -37,24 +37,14 @@ public class SelfEmployedNode extends EmployedNode {
         this.component = builder.setSelfEmployedNodeModule(new SelfEmployedNodeModule(this)).build();
     }
 
-    private RuleProvider<SelfEmployedNode> getRuleProvider() {
-        return component.getSelfEmployedNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<SelfEmployedNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

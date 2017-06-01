@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class OtherLiabilityClearingFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<OtherLiabilityClearingFlagNode> provideRuleProvider(Provider<OtherLiabilityClearingFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("OtherLiabilityClearingFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityClearingFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("OtherLiabilityClearingFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityClearingFlagNode> provideTypeRuleProvider(OtherLiabilityClearingFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("OtherLiabilityClearingFlagNodeRuleProvider") @IntoMap @StringKey("otherLiabilityClearingFlagNode")
+        RuleProvider<OtherLiabilityClearingFlagNode> provideOtherLiabilityClearingFlagNodeChildRuleProvider(
+            OtherLiabilityNodeChildProvider.OtherLiabilityClearingFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> provideInstanceProviderMap(
-        Provider<OtherLiabilityNodeChildProvider.OtherLiabilityClearingFlagNodeRuleProvider> otherLiabilityClearingFlagNodeRuleProvider
+    List<RuleProvider<OtherLiabilityClearingFlagNode>> provideRuleProviders(
+        @Named("OtherLiabilityClearingFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherLiabilityClearingFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> result = new HashMap<>();
-        result.put("otherLiabilityClearingFlagNode", otherLiabilityClearingFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

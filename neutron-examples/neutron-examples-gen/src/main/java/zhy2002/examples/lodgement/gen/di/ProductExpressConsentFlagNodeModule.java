@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductExpressConsentFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductExpressConsentFlagNode> provideRuleProvider(Provider<ProductExpressConsentFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductExpressConsentFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductExpressConsentFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductExpressConsentFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductExpressConsentFlagNode> provideTypeRuleProvider(ProductExpressConsentFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductExpressConsentFlagNodeRuleProvider") @IntoMap @StringKey("productExpressConsentFlagNode")
+        RuleProvider<ProductExpressConsentFlagNode> provideProductExpressConsentFlagNodeChildRuleProvider(
+            ProductFeaturesNodeChildProvider.ProductExpressConsentFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductExpressConsentFlagNode>> provideInstanceProviderMap(
-        Provider<ProductFeaturesNodeChildProvider.ProductExpressConsentFlagNodeRuleProvider> productExpressConsentFlagNodeRuleProvider
+    List<RuleProvider<ProductExpressConsentFlagNode>> provideRuleProviders(
+        @Named("ProductExpressConsentFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductExpressConsentFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductExpressConsentFlagNode>> result = new HashMap<>();
-        result.put("productExpressConsentFlagNode", productExpressConsentFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

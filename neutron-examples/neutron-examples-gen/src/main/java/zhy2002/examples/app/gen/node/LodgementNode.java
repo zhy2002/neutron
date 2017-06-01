@@ -40,18 +40,14 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
         this.component = builder.setLodgementNodeModule(new LodgementNodeModule(this)).build();
     }
 
-    private RuleProvider<LodgementNode> getRuleProvider() {
-        return component.getLodgementNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

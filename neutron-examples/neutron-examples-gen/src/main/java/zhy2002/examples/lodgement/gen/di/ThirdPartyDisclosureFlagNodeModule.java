@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ThirdPartyDisclosureFlagNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ThirdPartyDisclosureFlagNode> provideRuleProvider(Provider<ThirdPartyDisclosureFlagNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ThirdPartyDisclosureFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ThirdPartyDisclosureFlagNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ThirdPartyDisclosureFlagNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ThirdPartyDisclosureFlagNode> provideTypeRuleProvider(ThirdPartyDisclosureFlagNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ThirdPartyDisclosureFlagNodeRuleProvider") @IntoMap @StringKey("thirdPartyDisclosureFlagNode")
+        RuleProvider<ThirdPartyDisclosureFlagNode> provideThirdPartyDisclosureFlagNodeChildRuleProvider(
+            BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> provideInstanceProviderMap(
-        Provider<BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider> thirdPartyDisclosureFlagNodeRuleProvider
+    List<RuleProvider<ThirdPartyDisclosureFlagNode>> provideRuleProviders(
+        @Named("ThirdPartyDisclosureFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ThirdPartyDisclosureFlagNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> result = new HashMap<>();
-        result.put("thirdPartyDisclosureFlagNode", thirdPartyDisclosureFlagNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

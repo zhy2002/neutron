@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class TrustAddressNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<TrustAddressNode> provideRuleProvider(Provider<TrustAddressNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("TrustAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<TrustAddressNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("TrustAddressNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<TrustAddressNode> provideTypeRuleProvider(TrustAddressNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("TrustAddressNodeRuleProvider") @IntoMap @StringKey("trustAddressNode")
+        RuleProvider<TrustAddressNode> provideTrustAddressNodeChildRuleProvider(
+            BaseTrustNodeChildProvider.TrustAddressNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<TrustAddressNode>> provideInstanceProviderMap(
-        Provider<BaseTrustNodeChildProvider.TrustAddressNodeRuleProvider> trustAddressNodeRuleProvider
+    List<RuleProvider<TrustAddressNode>> provideRuleProviders(
+        @Named("TrustAddressNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustAddressNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<TrustAddressNode>> result = new HashMap<>();
-        result.put("trustAddressNode", trustAddressNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class TrustRegistrationDateNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<TrustRegistrationDateNode> provideRuleProvider(Provider<TrustRegistrationDateNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("TrustRegistrationDateNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<TrustRegistrationDateNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("TrustRegistrationDateNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<TrustRegistrationDateNode> provideTypeRuleProvider(TrustRegistrationDateNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("TrustRegistrationDateNodeRuleProvider") @IntoMap @StringKey("trustRegistrationDateNode")
+        RuleProvider<TrustRegistrationDateNode> provideTrustRegistrationDateNodeChildRuleProvider(
+            BaseTrustNodeChildProvider.TrustRegistrationDateNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<TrustRegistrationDateNode>> provideInstanceProviderMap(
-        Provider<BaseTrustNodeChildProvider.TrustRegistrationDateNodeRuleProvider> trustRegistrationDateNodeRuleProvider
+    List<RuleProvider<TrustRegistrationDateNode>> provideRuleProviders(
+        @Named("TrustRegistrationDateNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustRegistrationDateNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<TrustRegistrationDateNode>> result = new HashMap<>();
-        result.put("trustRegistrationDateNode", trustRegistrationDateNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

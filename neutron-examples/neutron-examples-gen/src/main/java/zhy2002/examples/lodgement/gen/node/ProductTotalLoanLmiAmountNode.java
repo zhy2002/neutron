@@ -34,24 +34,14 @@ public class ProductTotalLoanLmiAmountNode extends BaseCurrencyNode<ProductsNode
         this.component = builder.setProductTotalLoanLmiAmountNodeModule(new ProductTotalLoanLmiAmountNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductTotalLoanLmiAmountNode> getRuleProvider() {
-        return component.getProductTotalLoanLmiAmountNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductTotalLoanLmiAmountNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

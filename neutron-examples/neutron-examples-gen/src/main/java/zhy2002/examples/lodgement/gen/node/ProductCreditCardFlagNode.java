@@ -34,24 +34,14 @@ public class ProductCreditCardFlagNode extends BooleanUiNode<ProductFeaturesNode
         this.component = builder.setProductCreditCardFlagNodeModule(new ProductCreditCardFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductCreditCardFlagNode> getRuleProvider() {
-        return component.getProductCreditCardFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductCreditCardFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -37,18 +37,14 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
         this.component = builder.setSavingsAccountNodeModule(new SavingsAccountNodeModule(this)).build();
     }
 
-    private RuleProvider<SavingsAccountNode> getRuleProvider() {
-        return component.getSavingsAccountNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

@@ -34,24 +34,14 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
         this.component = builder.setSuburbNodeModule(new SuburbNodeModule(this)).build();
     }
 
-    private RuleProvider<SuburbNode> getRuleProvider() {
-        return component.getSuburbNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<SuburbNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

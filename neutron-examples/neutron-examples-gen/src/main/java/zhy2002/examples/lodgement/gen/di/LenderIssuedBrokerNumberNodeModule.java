@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class LenderIssuedBrokerNumberNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<LenderIssuedBrokerNumberNode> provideRuleProvider(Provider<LenderIssuedBrokerNumberNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("LenderIssuedBrokerNumberNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<LenderIssuedBrokerNumberNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("LenderIssuedBrokerNumberNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<LenderIssuedBrokerNumberNode> provideTypeRuleProvider(LenderIssuedBrokerNumberNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("LenderIssuedBrokerNumberNodeRuleProvider") @IntoMap @StringKey("lenderIssuedBrokerNumberNode")
+        RuleProvider<LenderIssuedBrokerNumberNode> provideLenderIssuedBrokerNumberNodeChildRuleProvider(
+            SubmissionNodeChildProvider.LenderIssuedBrokerNumberNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<LenderIssuedBrokerNumberNode>> provideInstanceProviderMap(
-        Provider<SubmissionNodeChildProvider.LenderIssuedBrokerNumberNodeRuleProvider> lenderIssuedBrokerNumberNodeRuleProvider
+    List<RuleProvider<LenderIssuedBrokerNumberNode>> provideRuleProviders(
+        @Named("LenderIssuedBrokerNumberNodeRuleProvider")  Map<String, Provider<RuleProvider<LenderIssuedBrokerNumberNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<LenderIssuedBrokerNumberNode>> result = new HashMap<>();
-        result.put("lenderIssuedBrokerNumberNode", lenderIssuedBrokerNumberNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class ProductPaymentTypeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductPaymentTypeNode> provideRuleProvider(Provider<ProductPaymentTypeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductPaymentTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductPaymentTypeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductPaymentTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductPaymentTypeNode> provideTypeRuleProvider(ProductPaymentTypeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("ProductPaymentTypeNodeRuleProvider") @IntoMap @StringKey("productPaymentTypeNode")
+        RuleProvider<ProductPaymentTypeNode> provideProductPaymentTypeNodeChildRuleProvider(
+            ProductDescriptionNodeChildProvider.ProductPaymentTypeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<ProductPaymentTypeNode>> provideInstanceProviderMap(
-        Provider<ProductDescriptionNodeChildProvider.ProductPaymentTypeNodeRuleProvider> productPaymentTypeNodeRuleProvider
+    List<RuleProvider<ProductPaymentTypeNode>> provideRuleProviders(
+        @Named("ProductPaymentTypeNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductPaymentTypeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<ProductPaymentTypeNode>> result = new HashMap<>();
-        result.put("productPaymentTypeNode", productPaymentTypeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

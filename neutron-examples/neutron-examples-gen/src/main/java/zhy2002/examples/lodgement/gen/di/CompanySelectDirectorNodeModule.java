@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class CompanySelectDirectorNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<CompanySelectDirectorNode> provideRuleProvider(Provider<CompanySelectDirectorNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("CompanySelectDirectorNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<CompanySelectDirectorNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("CompanySelectDirectorNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<CompanySelectDirectorNode> provideTypeRuleProvider(CompanySelectDirectorNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("CompanySelectDirectorNodeRuleProvider") @IntoMap @StringKey("companySelectDirectorNode")
+        RuleProvider<CompanySelectDirectorNode> provideCompanySelectDirectorNodeChildRuleProvider(
+            CompanyGeneralNodeChildProvider.CompanySelectDirectorNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<CompanySelectDirectorNode>> provideInstanceProviderMap(
-        Provider<CompanyGeneralNodeChildProvider.CompanySelectDirectorNodeRuleProvider> companySelectDirectorNodeRuleProvider
+    List<RuleProvider<CompanySelectDirectorNode>> provideRuleProviders(
+        @Named("CompanySelectDirectorNodeRuleProvider")  Map<String, Provider<RuleProvider<CompanySelectDirectorNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<CompanySelectDirectorNode>> result = new HashMap<>();
-        result.put("companySelectDirectorNode", companySelectDirectorNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

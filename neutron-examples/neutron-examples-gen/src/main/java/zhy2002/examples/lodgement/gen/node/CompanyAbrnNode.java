@@ -34,24 +34,14 @@ public class CompanyAbrnNode extends StringUiNode<CompanyGeneralNode> {
         this.component = builder.setCompanyAbrnNodeModule(new CompanyAbrnNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyAbrnNode> getRuleProvider() {
-        return component.getCompanyAbrnNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyAbrnNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

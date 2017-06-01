@@ -37,18 +37,14 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         this.component = builder.setSelectAccountHolderNodeModule(new SelectAccountHolderNodeModule(this)).build();
     }
 
-    private RuleProvider<SelectAccountHolderNode> getRuleProvider() {
-        return component.getSelectAccountHolderNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

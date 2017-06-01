@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class CompanyApplicationTypeNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<CompanyApplicationTypeNode> provideRuleProvider(Provider<CompanyApplicationTypeNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("CompanyApplicationTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<CompanyApplicationTypeNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("CompanyApplicationTypeNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<CompanyApplicationTypeNode> provideTypeRuleProvider(CompanyApplicationTypeNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("CompanyApplicationTypeNodeRuleProvider") @IntoMap @StringKey("companyApplicationTypeNode")
+        RuleProvider<CompanyApplicationTypeNode> provideCompanyApplicationTypeNodeChildRuleProvider(
+            CompanyGeneralNodeChildProvider.CompanyApplicationTypeNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<CompanyApplicationTypeNode>> provideInstanceProviderMap(
-        Provider<CompanyGeneralNodeChildProvider.CompanyApplicationTypeNodeRuleProvider> companyApplicationTypeNodeRuleProvider
+    List<RuleProvider<CompanyApplicationTypeNode>> provideRuleProviders(
+        @Named("CompanyApplicationTypeNodeRuleProvider")  Map<String, Provider<RuleProvider<CompanyApplicationTypeNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<CompanyApplicationTypeNode>> result = new HashMap<>();
-        result.put("companyApplicationTypeNode", companyApplicationTypeNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

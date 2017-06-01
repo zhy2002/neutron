@@ -34,24 +34,14 @@ public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
         this.component = builder.setMortgageLoanTypeNodeModule(new MortgageLoanTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<MortgageLoanTypeNode> getRuleProvider() {
-        return component.getMortgageLoanTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<MortgageLoanTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

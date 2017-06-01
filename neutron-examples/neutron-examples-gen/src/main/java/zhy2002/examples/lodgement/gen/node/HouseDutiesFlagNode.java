@@ -34,24 +34,14 @@ public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
         this.component = builder.setHouseDutiesFlagNodeModule(new HouseDutiesFlagNodeModule(this)).build();
     }
 
-    private RuleProvider<HouseDutiesFlagNode> getRuleProvider() {
-        return component.getHouseDutiesFlagNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<HouseDutiesFlagNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

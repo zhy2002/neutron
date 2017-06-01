@@ -43,18 +43,14 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
         this.component = builder.setApplicationNodeModule(new ApplicationNodeModule(this)).build();
     }
 
-    private RuleProvider<ApplicationNode> getRuleProvider() {
-        return component.getApplicationNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     @Override

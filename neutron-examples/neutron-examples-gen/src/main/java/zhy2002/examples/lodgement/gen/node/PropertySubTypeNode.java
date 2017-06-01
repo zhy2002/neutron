@@ -34,24 +34,14 @@ public class PropertySubTypeNode extends StringUiNode<PropertyNode> {
         this.component = builder.setPropertySubTypeNodeModule(new PropertySubTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<PropertySubTypeNode> getRuleProvider() {
-        return component.getPropertySubTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PropertySubTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

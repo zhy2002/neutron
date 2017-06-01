@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {Product100PercentOffsetFlagNodeModule.class})
 public interface Product100PercentOffsetFlagNodeComponent {
 
+    List<RuleProvider<Product100PercentOffsetFlagNode>> provideRuleProviders();
 
-    RuleProvider<Product100PercentOffsetFlagNode> getProduct100PercentOffsetFlagNodeRuleProvider();
-    Map<String, RuleProvider<Product100PercentOffsetFlagNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

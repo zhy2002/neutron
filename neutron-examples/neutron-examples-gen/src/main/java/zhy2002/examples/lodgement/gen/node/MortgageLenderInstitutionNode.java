@@ -34,24 +34,14 @@ public class MortgageLenderInstitutionNode extends StringUiNode<ExistingMortgage
         this.component = builder.setMortgageLenderInstitutionNodeModule(new MortgageLenderInstitutionNodeModule(this)).build();
     }
 
-    private RuleProvider<MortgageLenderInstitutionNode> getRuleProvider() {
-        return component.getMortgageLenderInstitutionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<MortgageLenderInstitutionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

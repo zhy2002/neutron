@@ -35,24 +35,14 @@ public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
         this.component = builder.setPropertyStateNodeModule(new PropertyStateNodeModule(this)).build();
     }
 
-    private RuleProvider<PropertyStateNode> getRuleProvider() {
-        return component.getPropertyStateNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<PropertyStateNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -38,18 +38,14 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
         this.component = builder.setPersonNodeModule(new PersonNodeModule(this)).build();
     }
 
-    private RuleProvider<PersonNode> getRuleProvider() {
-        return component.getPersonNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

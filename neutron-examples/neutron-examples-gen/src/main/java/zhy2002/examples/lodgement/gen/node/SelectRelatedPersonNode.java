@@ -37,18 +37,14 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         this.component = builder.setSelectRelatedPersonNodeModule(new SelectRelatedPersonNodeModule(this)).build();
     }
 
-    private RuleProvider<SelectRelatedPersonNode> getRuleProvider() {
-        return component.getSelectRelatedPersonNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters

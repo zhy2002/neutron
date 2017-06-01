@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {DateLodgedNodeModule.class})
 public interface DateLodgedNodeComponent {
 
+    List<RuleProvider<DateLodgedNode>> provideRuleProviders();
 
-    RuleProvider<DateLodgedNode> getDateLodgedNodeRuleProvider();
-    Map<String, RuleProvider<DateLodgedNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

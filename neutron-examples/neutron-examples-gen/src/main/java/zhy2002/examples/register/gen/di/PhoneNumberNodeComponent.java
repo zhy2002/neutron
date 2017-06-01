@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PhoneNumberNodeModule.class})
 public interface PhoneNumberNodeComponent {
 
+    List<RuleProvider<PhoneNumberNode>> provideRuleProviders();
 
-    RuleProvider<PhoneNumberNode> getPhoneNumberNodeRuleProvider();
-    Map<String, RuleProvider<PhoneNumberNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

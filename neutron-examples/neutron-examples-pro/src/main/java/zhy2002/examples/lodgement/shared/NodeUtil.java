@@ -2,6 +2,13 @@ package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.AddressNode;
+import zhy2002.neutron.RuleProvider;
+import zhy2002.neutron.UiNode;
+
+import javax.inject.Provider;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class NodeUtil {
 
@@ -13,4 +20,5 @@ public class NodeUtil {
         address.setCountry(node.getCountryNode().getValue());
         return address;
     }
+
 }

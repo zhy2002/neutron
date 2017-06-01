@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class CreditCardBreakCostNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<CreditCardBreakCostNode> provideRuleProvider(Provider<CreditCardBreakCostNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("CreditCardBreakCostNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<CreditCardBreakCostNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("CreditCardBreakCostNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<CreditCardBreakCostNode> provideTypeRuleProvider(CreditCardBreakCostNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("CreditCardBreakCostNodeRuleProvider") @IntoMap @StringKey("creditCardBreakCostNode")
+        RuleProvider<CreditCardBreakCostNode> provideCreditCardBreakCostNodeChildRuleProvider(
+            CreditCardNodeChildProvider.CreditCardBreakCostNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<CreditCardBreakCostNode>> provideInstanceProviderMap(
-        Provider<CreditCardNodeChildProvider.CreditCardBreakCostNodeRuleProvider> creditCardBreakCostNodeRuleProvider
+    List<RuleProvider<CreditCardBreakCostNode>> provideRuleProviders(
+        @Named("CreditCardBreakCostNodeRuleProvider")  Map<String, Provider<RuleProvider<CreditCardBreakCostNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<CreditCardBreakCostNode>> result = new HashMap<>();
-        result.put("creditCardBreakCostNode", creditCardBreakCostNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

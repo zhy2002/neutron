@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {RetiredSinceNodeModule.class})
 public interface RetiredSinceNodeComponent extends MonthYearNodeComponent {
 
+    List<RuleProvider<RetiredSinceNode>> provideRuleProviders();
 
-    RuleProvider<RetiredSinceNode> getRetiredSinceNodeRuleProvider();
-    Map<String, RuleProvider<RetiredSinceNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

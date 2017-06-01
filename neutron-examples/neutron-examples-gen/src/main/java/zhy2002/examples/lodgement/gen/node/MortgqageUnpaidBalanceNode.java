@@ -34,24 +34,14 @@ public class MortgqageUnpaidBalanceNode extends BaseCurrencyNode<ExistingMortgag
         this.component = builder.setMortgqageUnpaidBalanceNodeModule(new MortgqageUnpaidBalanceNodeModule(this)).build();
     }
 
-    private RuleProvider<MortgqageUnpaidBalanceNode> getRuleProvider() {
-        return component.getMortgqageUnpaidBalanceNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<MortgqageUnpaidBalanceNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

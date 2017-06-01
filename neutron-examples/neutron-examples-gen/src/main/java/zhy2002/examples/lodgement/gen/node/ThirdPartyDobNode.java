@@ -34,24 +34,14 @@ public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
         this.component = builder.setThirdPartyDobNodeModule(new ThirdPartyDobNodeModule(this)).build();
     }
 
-    private RuleProvider<ThirdPartyDobNode> getRuleProvider() {
-        return component.getThirdPartyDobNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ThirdPartyDobNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -34,24 +34,14 @@ public class TrustIndustryNode extends StringUiNode<BaseTrustNode<?>> {
         this.component = builder.setTrustIndustryNodeModule(new TrustIndustryNodeModule(this)).build();
     }
 
-    private RuleProvider<TrustIndustryNode> getRuleProvider() {
-        return component.getTrustIndustryNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<TrustIndustryNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

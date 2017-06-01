@@ -34,24 +34,14 @@ public class ContributionDescriptionNode extends StringUiNode<ProductCustomerCon
         this.component = builder.setContributionDescriptionNodeModule(new ContributionDescriptionNodeModule(this)).build();
     }
 
-    private RuleProvider<ContributionDescriptionNode> getRuleProvider() {
-        return component.getContributionDescriptionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ContributionDescriptionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -100,32 +100,16 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         this.component = builder.set${typeName}Module(new ${typeName}Module(this)).build();
     }
 
-    private RuleProvider<${typeName}> getRuleProvider() {
-        return component.get${typeName}RuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-    <#if parentType.children ??>
-        getInstanceRuleProvider().initializeState(this);
-    </#if>
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-    <#if parentType.children ??>
-        getInstanceRuleProvider().createRules(createdRules);
-    </#if>
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
-    <#if parentType.children ??>
-    private RuleProvider<${typeName}> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
-    }
-
-    </#if>
     <#if unloadable>
     @Override
     protected final NodeLoadEvent<${typeName}> createNodeLoadEvent() {

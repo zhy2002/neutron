@@ -34,18 +34,14 @@ public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListN
         this.component = builder.setCurrentEmploymentNodeModule(new CurrentEmploymentNodeModule(this)).build();
     }
 
-    private RuleProvider<CurrentEmploymentNode> getRuleProvider() {
-        return component.getCurrentEmploymentNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

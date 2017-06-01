@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -41,17 +43,29 @@ public class OtherLiabilityLimitAmountNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<OtherLiabilityLimitAmountNode> provideRuleProvider(Provider<OtherLiabilityLimitAmountNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("OtherLiabilityLimitAmountNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityLimitAmountNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("OtherLiabilityLimitAmountNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<OtherLiabilityLimitAmountNode> provideTypeRuleProvider(OtherLiabilityLimitAmountNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("OtherLiabilityLimitAmountNodeRuleProvider") @IntoMap @StringKey("otherLiabilityLimitAmountNode")
+        RuleProvider<OtherLiabilityLimitAmountNode> provideOtherLiabilityLimitAmountNodeChildRuleProvider(
+            OtherLiabilityNodeChildProvider.OtherLiabilityLimitAmountNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> provideInstanceProviderMap(
-        Provider<OtherLiabilityNodeChildProvider.OtherLiabilityLimitAmountNodeRuleProvider> otherLiabilityLimitAmountNodeRuleProvider
+    List<RuleProvider<OtherLiabilityLimitAmountNode>> provideRuleProviders(
+        @Named("OtherLiabilityLimitAmountNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherLiabilityLimitAmountNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> result = new HashMap<>();
-        result.put("otherLiabilityLimitAmountNode", otherLiabilityLimitAmountNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

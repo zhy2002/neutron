@@ -34,24 +34,14 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
         this.component = builder.setDateOfBirthNodeModule(new DateOfBirthNodeModule(this)).build();
     }
 
-    private RuleProvider<DateOfBirthNode> getRuleProvider() {
-        return component.getDateOfBirthNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<DateOfBirthNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -34,24 +34,14 @@ public class CompanyRegisteredNameNode extends StringUiNode<CompanyGeneralNode> 
         this.component = builder.setCompanyRegisteredNameNodeModule(new CompanyRegisteredNameNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyRegisteredNameNode> getRuleProvider() {
-        return component.getCompanyRegisteredNameNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyRegisteredNameNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

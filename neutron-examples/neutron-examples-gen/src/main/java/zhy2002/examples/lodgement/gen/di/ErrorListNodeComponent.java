@@ -5,14 +5,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ErrorListNodeModule.class})
 public interface ErrorListNodeComponent {
 
-    ErrorNode createErrorNode();
+    List<RuleProvider<ErrorListNode>> provideRuleProviders();
 
-    RuleProvider<ErrorListNode> getErrorListNodeRuleProvider();
-    Map<String, RuleProvider<ErrorListNode>> getInstanceRuleProviders();
+    ErrorNode createErrorNode();
 
     @Subcomponent.Builder
     interface Builder {

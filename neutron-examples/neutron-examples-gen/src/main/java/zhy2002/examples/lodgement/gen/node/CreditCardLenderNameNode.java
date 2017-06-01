@@ -34,24 +34,14 @@ public class CreditCardLenderNameNode extends StringUiNode<CreditCardNode> {
         this.component = builder.setCreditCardLenderNameNodeModule(new CreditCardLenderNameNodeModule(this)).build();
     }
 
-    private RuleProvider<CreditCardLenderNameNode> getRuleProvider() {
-        return component.getCreditCardLenderNameNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CreditCardLenderNameNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

@@ -34,24 +34,14 @@ public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
         this.component = builder.setBusinessTypeNodeModule(new BusinessTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<BusinessTypeNode> getRuleProvider() {
-        return component.getBusinessTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<BusinessTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

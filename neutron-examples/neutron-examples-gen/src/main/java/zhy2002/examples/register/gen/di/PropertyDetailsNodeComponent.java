@@ -5,15 +5,15 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PropertyDetailsNodeModule.class})
 public interface PropertyDetailsNodeComponent {
 
+    List<RuleProvider<PropertyDetailsNode>> provideRuleProviders();
+
     PropertyAddressNode createPropertyAddressNode();
     PropertyStateNode createPropertyStateNode();
-
-    RuleProvider<PropertyDetailsNode> getPropertyDetailsNodeRuleProvider();
-    Map<String, RuleProvider<PropertyDetailsNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

@@ -34,24 +34,14 @@ public class ProductLoanTypeNode extends StringUiNode<ProductsNode> {
         this.component = builder.setProductLoanTypeNodeModule(new ProductLoanTypeNodeModule(this)).build();
     }
 
-    private RuleProvider<ProductLoanTypeNode> getRuleProvider() {
-        return component.getProductLoanTypeNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<ProductLoanTypeNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

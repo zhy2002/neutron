@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class CreditHistoryListNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<CreditHistoryListNode> provideRuleProvider(Provider<CreditHistoryListNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("CreditHistoryListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<CreditHistoryListNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("CreditHistoryListNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<CreditHistoryListNode> provideTypeRuleProvider(CreditHistoryListNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("CreditHistoryListNodeRuleProvider") @IntoMap @StringKey("creditHistoryListNode")
+        RuleProvider<CreditHistoryListNode> provideCreditHistoryListNodeChildRuleProvider(
+            BasePrivacyNodeChildProvider.CreditHistoryListNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<CreditHistoryListNode>> provideInstanceProviderMap(
-        Provider<BasePrivacyNodeChildProvider.CreditHistoryListNodeRuleProvider> creditHistoryListNodeRuleProvider
+    List<RuleProvider<CreditHistoryListNode>> provideRuleProviders(
+        @Named("CreditHistoryListNodeRuleProvider")  Map<String, Provider<RuleProvider<CreditHistoryListNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<CreditHistoryListNode>> result = new HashMap<>();
-        result.put("creditHistoryListNode", creditHistoryListNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

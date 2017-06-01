@@ -1,10 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -36,9 +39,22 @@ public class ProductCustomerContributionNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<ProductCustomerContributionNode> provideRuleProvider(Provider<ProductCustomerContributionNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("ProductCustomerContributionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<ProductCustomerContributionNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("ProductCustomerContributionNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<ProductCustomerContributionNode> provideTypeRuleProvider(ProductCustomerContributionNodeRuleProvider provider) {
+        return provider;
+    }
+
+
+    @Provides @ComponentScope
+    List<RuleProvider<ProductCustomerContributionNode>> provideRuleProviders(
+        @Named("ProductCustomerContributionNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductCustomerContributionNode>>> ruleProviderProviderMap
+    ) {
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
+    }
 }

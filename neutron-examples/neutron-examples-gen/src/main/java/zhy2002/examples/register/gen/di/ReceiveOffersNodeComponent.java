@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ReceiveOffersNodeModule.class})
 public interface ReceiveOffersNodeComponent {
 
+    List<RuleProvider<ReceiveOffersNode>> provideRuleProviders();
 
-    RuleProvider<ReceiveOffersNode> getReceiveOffersNodeRuleProvider();
-    Map<String, RuleProvider<ReceiveOffersNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

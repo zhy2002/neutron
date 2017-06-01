@@ -3,14 +3,16 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.app.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {LodgementNodeModule.class})
 public interface LodgementNodeComponent {
 
-    AppManagerNode createAppManagerNode();
+    List<RuleProvider<LodgementNode>> provideRuleProviders();
 
-    RuleProvider<LodgementNode> getLodgementNodeRuleProvider();
+    AppManagerNode createAppManagerNode();
 
     @Subcomponent.Builder
     interface Builder {

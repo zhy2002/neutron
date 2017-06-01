@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {PostcodeNodeModule.class})
 public interface PostcodeNodeComponent {
 
+    List<RuleProvider<PostcodeNode>> provideRuleProviders();
 
-    RuleProvider<PostcodeNode> getPostcodeNodeRuleProvider();
-    Map<String, RuleProvider<PostcodeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

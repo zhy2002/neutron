@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {BrokerAddressNodeModule.class})
 public interface BrokerAddressNodeComponent extends AddressNodeComponent {
 
+    List<RuleProvider<BrokerAddressNode>> provideRuleProviders();
 
-    RuleProvider<BrokerAddressNode> getBrokerAddressNodeRuleProvider();
-    Map<String, RuleProvider<BrokerAddressNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

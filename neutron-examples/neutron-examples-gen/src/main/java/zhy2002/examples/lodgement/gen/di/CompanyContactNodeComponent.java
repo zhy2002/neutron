@@ -5,9 +5,12 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {CompanyContactNodeModule.class})
 public interface CompanyContactNodeComponent {
+
+    List<RuleProvider<CompanyContactNode>> provideRuleProviders();
 
     CompanyContactFirstNameNode createCompanyContactFirstNameNode();
     CompanyContactLastNameNode createCompanyContactLastNameNode();
@@ -15,9 +18,6 @@ public interface CompanyContactNodeComponent {
     CompanyMobileNumberNode createCompanyMobileNumberNode();
     CompanyEmailNode createCompanyEmailNode();
     CompanyAddressNode createCompanyAddressNode();
-
-    RuleProvider<CompanyContactNode> getCompanyContactNodeRuleProvider();
-    Map<String, RuleProvider<CompanyContactNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

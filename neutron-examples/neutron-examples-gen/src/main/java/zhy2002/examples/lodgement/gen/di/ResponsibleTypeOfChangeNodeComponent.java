@@ -5,13 +5,13 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {ResponsibleTypeOfChangeNodeModule.class})
 public interface ResponsibleTypeOfChangeNodeComponent {
 
+    List<RuleProvider<ResponsibleTypeOfChangeNode>> provideRuleProviders();
 
-    RuleProvider<ResponsibleTypeOfChangeNode> getResponsibleTypeOfChangeNodeRuleProvider();
-    Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

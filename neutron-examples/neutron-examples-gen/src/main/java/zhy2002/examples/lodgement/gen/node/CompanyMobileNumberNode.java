@@ -34,24 +34,14 @@ public class CompanyMobileNumberNode extends BaseMobileNumberNode<CompanyContact
         this.component = builder.setCompanyMobileNumberNodeModule(new CompanyMobileNumberNodeModule(this)).build();
     }
 
-    private RuleProvider<CompanyMobileNumberNode> getRuleProvider() {
-        return component.getCompanyMobileNumberNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<CompanyMobileNumberNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

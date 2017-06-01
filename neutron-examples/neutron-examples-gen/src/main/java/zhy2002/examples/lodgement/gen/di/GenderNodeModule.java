@@ -1,11 +1,13 @@
 package zhy2002.examples.lodgement.gen.di;
 import dagger.*;
+import dagger.multibindings.*;
 import javax.inject.*;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
+import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
@@ -37,17 +39,29 @@ public class GenderNodeModule {
         return owner.getParent();
     }
 
-    @Provides @ComponentScope
-    RuleProvider<GenderNode> provideRuleProvider(Provider<GenderNodeRuleProvider> provider) {
-        return provider.get();
+    @Provides @Named("GenderNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<GenderNode> providePlaceholderRuleProvider() {
+        return null;
     }
 
+    @Provides @Named("GenderNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<GenderNode> provideTypeRuleProvider(GenderNodeRuleProvider provider) {
+        return provider;
+    }
+
+        @Provides @Named("GenderNodeRuleProvider") @IntoMap @StringKey("genderNode")
+        RuleProvider<GenderNode> provideGenderNodeChildRuleProvider(
+            PersonGeneralNodeChildProvider.GenderNodeRuleProvider provider
+        ) {
+            return provider;
+        }
+
+
     @Provides @ComponentScope
-    Map<String, RuleProvider<GenderNode>> provideInstanceProviderMap(
-        Provider<PersonGeneralNodeChildProvider.GenderNodeRuleProvider> genderNodeRuleProvider
+    List<RuleProvider<GenderNode>> provideRuleProviders(
+        @Named("GenderNodeRuleProvider")  Map<String, Provider<RuleProvider<GenderNode>>> ruleProviderProviderMap
     ) {
-        Map<String, RuleProvider<GenderNode>> result = new HashMap<>();
-        result.put("genderNode", genderNodeRuleProvider.get());
-        return result;
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

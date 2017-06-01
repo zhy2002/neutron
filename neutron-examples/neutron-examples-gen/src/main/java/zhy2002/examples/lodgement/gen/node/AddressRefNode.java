@@ -35,18 +35,14 @@ public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
         this.component = builder.setAddressRefNodeModule(new AddressRefNodeModule(this)).build();
     }
 
-    private RuleProvider<AddressRefNode> getRuleProvider() {
-        return component.getAddressRefNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
 }

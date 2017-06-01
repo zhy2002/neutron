@@ -5,13 +5,13 @@ import zhy2002.examples.register.gen.node.*;
 import zhy2002.neutron.RuleProvider;
 import java.util.*;
 
+
 @ComponentScope
 @Subcomponent(modules = {AreaCodeNodeModule.class})
 public interface AreaCodeNodeComponent {
 
+    List<RuleProvider<AreaCodeNode>> provideRuleProviders();
 
-    RuleProvider<AreaCodeNode> getAreaCodeNodeRuleProvider();
-    Map<String, RuleProvider<AreaCodeNode>> getInstanceRuleProviders();
 
     @Subcomponent.Builder
     interface Builder {

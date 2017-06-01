@@ -3,13 +3,15 @@ import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.RuleProvider;
+import java.util.*;
+
 
 @ComponentScope
 @Subcomponent(modules = {CurrentEmploymentNodeModule.class})
 public interface CurrentEmploymentNodeComponent extends EmploymentNodeComponent {
 
+    List<RuleProvider<CurrentEmploymentNode>> provideRuleProviders();
 
-    RuleProvider<CurrentEmploymentNode> getCurrentEmploymentNodeRuleProvider();
 
     @Subcomponent.Builder
     interface Builder {

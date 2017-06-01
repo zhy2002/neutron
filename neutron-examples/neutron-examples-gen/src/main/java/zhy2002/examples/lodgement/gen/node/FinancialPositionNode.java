@@ -37,24 +37,14 @@ public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
         this.component = builder.setFinancialPositionNodeModule(new FinancialPositionNodeModule(this)).build();
     }
 
-    private RuleProvider<FinancialPositionNode> getRuleProvider() {
-        return component.getFinancialPositionNodeRuleProvider();
-    }
-
     @Override
     protected void initializeState() {
-        getRuleProvider().initializeState(this);
-        getInstanceRuleProvider().initializeState(this);
+        this.component.provideRuleProviders().forEach(provider -> provider.initializeState(this));
     }
 
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
-        getRuleProvider().createRules(createdRules);
-        getInstanceRuleProvider().createRules(createdRules);
-    }
-
-    private RuleProvider<FinancialPositionNode> getInstanceRuleProvider() {
-        return component.getInstanceRuleProviders().get(this.getName());
+        this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
     }
 
     //region children getters
