@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode> {
+
     private ProductPaymentTypeNodeComponent component;
 
-    public ProductPaymentTypeNode(@NotNull ProductDescriptionNode parent, String name) {
+    @Inject
+    public ProductPaymentTypeNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductPaymentTypeNode.class;
+    return ProductPaymentTypeNode.class;
     }
 
     @Inject

@@ -33,6 +33,10 @@ public class MortgageLenderInstitutionNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {
         return owner.getParent();
     }

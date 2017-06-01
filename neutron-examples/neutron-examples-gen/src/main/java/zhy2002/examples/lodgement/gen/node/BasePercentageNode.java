@@ -4,7 +4,7 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -14,7 +14,7 @@ public abstract class BasePercentageNode<P extends ParentUiNode<?>> extends BigD
 
     public static final PropertyMetadata<UnitSymbol> SUFFIX_SYMBOL_PROPERTY = MetadataRegistry.createProperty(BasePercentageNode.class, "suffixSymbol", UnitSymbol.class, ApplicationNodeConstants.PERCENTAGE);
 
-    public BasePercentageNode(@NotNull P parent, String name) {
+    public BasePercentageNode(P parent, String name) {
         super(parent, name);
     }
 

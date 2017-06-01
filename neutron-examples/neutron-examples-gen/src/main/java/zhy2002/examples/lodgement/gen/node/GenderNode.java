@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class GenderNode extends StringUiNode<PersonGeneralNode> {
-    private GenderNodeComponent component;
 
-    public GenderNode(@NotNull PersonGeneralNode parent, String name) {
+    @Inject
+    public GenderNode(@Owner PersonGeneralNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return GenderNode.class;
+    return GenderNode.class;
     }
+
+    private GenderNodeComponent component;
 
     @Inject
     void createComponent(GenderNodeComponent.Builder builder) {

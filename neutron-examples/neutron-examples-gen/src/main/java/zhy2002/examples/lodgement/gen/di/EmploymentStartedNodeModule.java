@@ -37,6 +37,10 @@ public class EmploymentStartedNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope EmployedNode provideEmployedNode() {
         return owner.getParent();
     }

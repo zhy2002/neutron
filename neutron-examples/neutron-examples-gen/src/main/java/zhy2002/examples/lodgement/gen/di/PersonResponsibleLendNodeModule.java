@@ -37,6 +37,10 @@ public class PersonResponsibleLendNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PersonNode providePersonNode() {
         return owner.getParent();
     }

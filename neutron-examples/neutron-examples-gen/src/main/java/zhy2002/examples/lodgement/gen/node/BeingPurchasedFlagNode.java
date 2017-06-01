@@ -3,23 +3,25 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
-    private BeingPurchasedFlagNodeComponent component;
 
-    public BeingPurchasedFlagNode(@NotNull UsageNode parent, String name) {
+    @Inject
+    public BeingPurchasedFlagNode(@Owner UsageNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return BeingPurchasedFlagNode.class;
+    return BeingPurchasedFlagNode.class;
     }
+
+    private BeingPurchasedFlagNodeComponent component;
 
     @Inject
     void createComponent(BeingPurchasedFlagNodeComponent.Builder builder) {

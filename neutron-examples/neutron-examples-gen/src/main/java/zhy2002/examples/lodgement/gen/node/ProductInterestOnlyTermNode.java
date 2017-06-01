@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductInterestOnlyTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
+
     private ProductInterestOnlyTermNodeComponent component;
 
-    public ProductInterestOnlyTermNode(@NotNull ProductDescriptionNode parent, String name) {
+    @Inject
+    public ProductInterestOnlyTermNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductInterestOnlyTermNode.class;
+    return ProductInterestOnlyTermNode.class;
     }
 
     @Inject

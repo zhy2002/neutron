@@ -5,23 +5,25 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
+
     private OwnershipNodeChildFactory childFactory;
     private OwnershipNodeComponent component;
 
-    public OwnershipNode(@NotNull OwnershipListNode<?> parent, String name) {
+    @Inject
+    public OwnershipNode(@Owner OwnershipListNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return OwnershipNode.class;
+    return OwnershipNode.class;
     }
 
     @Inject

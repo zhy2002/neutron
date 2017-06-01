@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AddressLineNode extends StringUiNode<AddressNode<?>> {
+
     private AddressLineNodeComponent component;
 
-    public AddressLineNode(@NotNull AddressNode<?> parent, String name) {
+    @Inject
+    public AddressLineNode(@Owner AddressNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return AddressLineNode.class;
+    return AddressLineNode.class;
     }
 
     @Inject

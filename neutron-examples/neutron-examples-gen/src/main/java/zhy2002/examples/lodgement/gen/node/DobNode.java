@@ -4,7 +4,7 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -14,8 +14,7 @@ public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P>
 
     public static final PropertyMetadata<Integer> MIN_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "minAge", Integer.class);
     public static final PropertyMetadata<Integer> MAX_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "maxAge", Integer.class);
-
-    public DobNode(@NotNull P parent, String name) {
+    public DobNode(P parent, String name) {
         super(parent, name);
     }
 

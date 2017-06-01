@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
-    private ProductCardHolderNodeChildFactory childFactory;
-    private ProductCardHolderNodeComponent component;
 
-    public ProductCardHolderNode(@NotNull ProductFeaturesNode parent, String name) {
+    @Inject
+    public ProductCardHolderNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductCardHolderNode.class;
+    return ProductCardHolderNode.class;
     }
+
+    private ProductCardHolderNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(ProductCardHolderNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private ProductCardHolderNodeComponent component;
 
     @Inject
     void createComponent(ProductCardHolderNodeComponent.Builder builder) {

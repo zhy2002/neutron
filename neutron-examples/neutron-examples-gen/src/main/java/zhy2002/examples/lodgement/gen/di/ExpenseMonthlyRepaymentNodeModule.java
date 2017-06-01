@@ -37,6 +37,10 @@ public class ExpenseMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ExpenseNode provideExpenseNode() {
         return owner.getParent();
     }

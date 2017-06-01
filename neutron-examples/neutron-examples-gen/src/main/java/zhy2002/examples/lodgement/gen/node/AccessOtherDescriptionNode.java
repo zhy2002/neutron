@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AccessOtherDescriptionNode extends StringUiNode<AccessNode> {
-    private AccessOtherDescriptionNodeComponent component;
 
-    public AccessOtherDescriptionNode(@NotNull AccessNode parent, String name) {
+    @Inject
+    public AccessOtherDescriptionNode(@Owner AccessNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return AccessOtherDescriptionNode.class;
+    return AccessOtherDescriptionNode.class;
     }
+
+    private AccessOtherDescriptionNodeComponent component;
 
     @Inject
     void createComponent(AccessOtherDescriptionNodeComponent.Builder builder) {

@@ -3,22 +3,24 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PhoneNumberNode extends PhoneInfoFieldNode {
+
     private PhoneNumberNodeComponent component;
 
-    public PhoneNumberNode(@NotNull PhoneInfoNode parent, String name) {
+    @Inject
+    public PhoneNumberNode(@Owner PhoneInfoNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PhoneNumberNode.class;
+    return PhoneNumberNode.class;
     }
 
     @Inject

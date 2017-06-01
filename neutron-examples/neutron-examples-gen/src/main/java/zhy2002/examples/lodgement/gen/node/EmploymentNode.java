@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
@@ -13,18 +13,19 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-    public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
-    private EmploymentNodeChildFactory childFactory;
 
-
-    public EmploymentNode(@NotNull P parent, String name) {
+    public EmploymentNode(P parent, String name) {
         super(parent, name);
     }
+
+    private EmploymentNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(EmploymentNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
 
     @JsMethod
     public Boolean getCurrentRecord() {

@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.app.data.*;
 import zhy2002.examples.app.gen.rule.*;
@@ -13,16 +13,18 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
+
     private AppManagerNodeChildFactory childFactory;
     private AppManagerNodeComponent component;
 
-    public AppManagerNode(@NotNull LodgementNode parent, String name) {
+    @Inject
+    public AppManagerNode(@Owner LodgementNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return AppManagerNode.class;
+    return AppManagerNode.class;
     }
 
     @Inject

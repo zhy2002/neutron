@@ -33,6 +33,10 @@ public class MotorVehicleListNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope AssetsNode provideAssetsNode() {
         return owner.getParent();
     }

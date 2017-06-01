@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SavingsAccountNoNode extends StringUiNode<SavingsAccountNode> {
-    private SavingsAccountNoNodeComponent component;
 
-    public SavingsAccountNoNode(@NotNull SavingsAccountNode parent, String name) {
+    @Inject
+    public SavingsAccountNoNode(@Owner SavingsAccountNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return SavingsAccountNoNode.class;
+    return SavingsAccountNoNode.class;
     }
+
+    private SavingsAccountNoNodeComponent component;
 
     @Inject
     void createComponent(SavingsAccountNoNodeComponent.Builder builder) {

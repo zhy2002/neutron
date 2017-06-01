@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
+
     private TrustCountryNodeComponent component;
 
-    public TrustCountryNode(@NotNull BaseTrustNode<?> parent, String name) {
+    @Inject
+    public TrustCountryNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return TrustCountryNode.class;
+    return TrustCountryNode.class;
     }
 
     @Inject

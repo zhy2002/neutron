@@ -32,6 +32,10 @@ public class ProductFeeNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ProductFeeListNode provideProductFeeListNode() {
         return owner.getParent();
     }

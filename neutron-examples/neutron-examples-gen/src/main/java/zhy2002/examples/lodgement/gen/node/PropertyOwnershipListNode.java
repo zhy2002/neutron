@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
+
     private PropertyOwnershipListNodeComponent component;
 
-    public PropertyOwnershipListNode(@NotNull PropertyNode parent, String name) {
+    @Inject
+    public PropertyOwnershipListNode(@Owner PropertyNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PropertyOwnershipListNode.class;
+    return PropertyOwnershipListNode.class;
     }
 
     @Inject

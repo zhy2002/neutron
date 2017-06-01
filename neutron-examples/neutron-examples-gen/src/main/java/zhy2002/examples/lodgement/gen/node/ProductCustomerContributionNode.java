@@ -5,23 +5,25 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustomerContributionListNode> {
+
     private ProductCustomerContributionNodeChildFactory childFactory;
     private ProductCustomerContributionNodeComponent component;
 
-    public ProductCustomerContributionNode(@NotNull ProductCustomerContributionListNode parent, String name) {
+    @Inject
+    public ProductCustomerContributionNode(@Owner ProductCustomerContributionListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductCustomerContributionNode.class;
+    return ProductCustomerContributionNode.class;
     }
 
     @Inject

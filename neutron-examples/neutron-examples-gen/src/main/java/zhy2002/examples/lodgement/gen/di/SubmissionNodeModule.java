@@ -33,6 +33,10 @@ public class SubmissionNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ApplicationNode provideApplicationNode() {
         return owner.getParent();
     }

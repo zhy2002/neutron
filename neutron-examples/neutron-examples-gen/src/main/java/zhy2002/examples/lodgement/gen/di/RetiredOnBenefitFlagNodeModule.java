@@ -37,6 +37,10 @@ public class RetiredOnBenefitFlagNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope RetiredEmploymentNode provideRetiredEmploymentNode() {
         return owner.getParent();
     }

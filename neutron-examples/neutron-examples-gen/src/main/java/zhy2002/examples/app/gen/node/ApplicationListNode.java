@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.app.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -14,16 +14,18 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
+
     public static final PropertyMetadata<Boolean> UPDATED_PROPERTY = MetadataRegistry.createProperty(ApplicationListNode.class, "updated", Boolean.class, ChangeTrackingModeEnum.Always);
     private ApplicationListNodeComponent component;
 
-    public ApplicationListNode(@NotNull AppManagerNode parent, String name) {
+    @Inject
+    public ApplicationListNode(@Owner AppManagerNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ApplicationListNode.class;
+    return ApplicationListNode.class;
     }
 
     @Inject

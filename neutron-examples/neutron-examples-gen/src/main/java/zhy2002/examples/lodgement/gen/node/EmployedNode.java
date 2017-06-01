@@ -5,14 +5,15 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
+
     private EmployedNodeChildFactory childFactory;
 
-    public EmployedNode(@NotNull EmploymentNode<?> parent, String name) {
+    public EmployedNode(EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
 

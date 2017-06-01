@@ -32,6 +32,10 @@ public class AddressRefNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope AddressRefListNode provideAddressRefListNode() {
         return owner.getParent();
     }

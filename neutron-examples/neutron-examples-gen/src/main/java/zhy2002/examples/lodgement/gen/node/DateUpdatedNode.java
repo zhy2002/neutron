@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class DateUpdatedNode extends StringUiNode<ApplicationNode> {
+
     private DateUpdatedNodeComponent component;
 
-    public DateUpdatedNode(@NotNull ApplicationNode parent, String name) {
+    @Inject
+    public DateUpdatedNode(@Owner ApplicationNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return DateUpdatedNode.class;
+    return DateUpdatedNode.class;
     }
 
     @Inject

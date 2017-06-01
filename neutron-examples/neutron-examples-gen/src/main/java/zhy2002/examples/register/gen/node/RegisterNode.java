@@ -18,9 +18,6 @@ import zhy2002.examples.register.gen.event.*;
 
 @Singleton
 public class RegisterNode extends RootUiNode<VoidUiNode> {
-    public static final PropertyMetadata<Boolean> HAS_ERROR_PROPERTY = MetadataRegistry.createProperty(RegisterNode.class, "hasError", Boolean.class, Boolean.FALSE);
-    private RegisterNodeChildFactory childFactory;
-    private RegisterNodeComponent component;
 
     @Inject
     public RegisterNode(@NotNull RegisterNodeContext context) {
@@ -29,13 +26,17 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return RegisterNode.class;
+    return RegisterNode.class;
     }
+
+    private RegisterNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(RegisterNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private RegisterNodeComponent component;
 
     @Inject
     void createComponent(RegisterNodeComponent.Builder builder) {
@@ -65,6 +66,8 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     protected final NodeUnloadEvent<RegisterNode> createNodeUnloadEvent() {
         return new RegisterNodeUnloadEvent(this);
     }
+
+    public static final PropertyMetadata<Boolean> HAS_ERROR_PROPERTY = MetadataRegistry.createProperty(RegisterNode.class, "hasError", Boolean.class, Boolean.FALSE);
 
     @JsMethod
     public Boolean getHasError() {

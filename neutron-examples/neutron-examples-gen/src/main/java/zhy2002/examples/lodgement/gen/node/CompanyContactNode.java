@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
-    private CompanyContactNodeChildFactory childFactory;
-    private CompanyContactNodeComponent component;
 
-    public CompanyContactNode(@NotNull CompanyNode parent, String name) {
+    @Inject
+    public CompanyContactNode(@Owner CompanyNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return CompanyContactNode.class;
+    return CompanyContactNode.class;
     }
+
+    private CompanyContactNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(CompanyContactNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private CompanyContactNodeComponent component;
 
     @Inject
     void createComponent(CompanyContactNodeComponent.Builder builder) {

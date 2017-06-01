@@ -32,6 +32,10 @@ public class OwnershipNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope OwnershipListNode<?> provideOwnershipListNode() {
         return owner.getParent();
     }

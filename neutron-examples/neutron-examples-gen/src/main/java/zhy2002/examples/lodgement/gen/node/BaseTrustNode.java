@@ -5,14 +5,15 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
+
     private BaseTrustNodeChildFactory childFactory;
 
-    public BaseTrustNode(@NotNull P parent, String name) {
+    public BaseTrustNode(P parent, String name) {
         super(parent, name);
     }
 

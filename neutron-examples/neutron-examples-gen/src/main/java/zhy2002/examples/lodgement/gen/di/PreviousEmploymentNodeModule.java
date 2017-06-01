@@ -36,6 +36,10 @@ public class PreviousEmploymentNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PreviousEmploymentListNode providePreviousEmploymentListNode() {
         return owner.getParent();
     }

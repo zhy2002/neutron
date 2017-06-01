@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ThirdPartyEmailNode extends StringUiNode<RelatedPartyNode> {
-    private ThirdPartyEmailNodeComponent component;
 
-    public ThirdPartyEmailNode(@NotNull RelatedPartyNode parent, String name) {
+    @Inject
+    public ThirdPartyEmailNode(@Owner RelatedPartyNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ThirdPartyEmailNode.class;
+    return ThirdPartyEmailNode.class;
     }
+
+    private ThirdPartyEmailNodeComponent component;
 
     @Inject
     void createComponent(ThirdPartyEmailNodeComponent.Builder builder) {

@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
-    private ProfitThisYearNodeComponent component;
 
-    public ProfitThisYearNode(@NotNull SelfEmployedNode parent, String name) {
+    @Inject
+    public ProfitThisYearNode(@Owner SelfEmployedNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProfitThisYearNode.class;
+    return ProfitThisYearNode.class;
     }
+
+    private ProfitThisYearNodeComponent component;
 
     @Inject
     void createComponent(ProfitThisYearNodeComponent.Builder builder) {

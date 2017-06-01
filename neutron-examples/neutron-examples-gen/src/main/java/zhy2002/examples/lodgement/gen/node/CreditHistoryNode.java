@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditHistoryNode extends StringUiNode<CreditHistoryListNode> {
-    private CreditHistoryNodeComponent component;
 
-    public CreditHistoryNode(@NotNull CreditHistoryListNode parent, String name) {
+    @Inject
+    public CreditHistoryNode(@Owner CreditHistoryListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return CreditHistoryNode.class;
+    return CreditHistoryNode.class;
     }
+
+    private CreditHistoryNodeComponent component;
 
     @Inject
     void createComponent(CreditHistoryNodeComponent.Builder builder) {

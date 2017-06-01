@@ -18,10 +18,6 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 @Singleton
 public class ApplicationNode extends RootUiNode<VoidUiNode> {
-    public static final PropertyMetadata<Boolean> SHOW_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "showErrorList", Boolean.class, Boolean.FALSE);
-    public static final PropertyMetadata<Integer> CONTENT_LEVEL_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "contentLevel", Integer.class, 1, ChangeTrackingModeEnum.Always);
-    private ApplicationNodeChildFactory childFactory;
-    private ApplicationNodeComponent component;
 
     @Inject
     public ApplicationNode(@NotNull ApplicationNodeContext context) {
@@ -30,13 +26,17 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ApplicationNode.class;
+    return ApplicationNode.class;
     }
+
+    private ApplicationNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(ApplicationNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private ApplicationNodeComponent component;
 
     @Inject
     void createComponent(ApplicationNodeComponent.Builder builder) {
@@ -66,6 +66,9 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     protected final NodeUnloadEvent<ApplicationNode> createNodeUnloadEvent() {
         return new ApplicationNodeUnloadEvent(this);
     }
+
+    public static final PropertyMetadata<Boolean> SHOW_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "showErrorList", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Integer> CONTENT_LEVEL_PROPERTY = MetadataRegistry.createProperty(ApplicationNode.class, "contentLevel", Integer.class, 1, ChangeTrackingModeEnum.Always);
 
     @JsMethod
     public Boolean getShowErrorList() {

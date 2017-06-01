@@ -33,6 +33,10 @@ public class SelectAccountHolderFlagNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope SelectAccountHolderNode provideSelectAccountHolderNode() {
         return owner.getParent();
     }

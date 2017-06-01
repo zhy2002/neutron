@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductTransactionAccountFlagNode extends BooleanUiNode<ProductFeaturesNode> {
+
     private ProductTransactionAccountFlagNodeComponent component;
 
-    public ProductTransactionAccountFlagNode(@NotNull ProductFeaturesNode parent, String name) {
+    @Inject
+    public ProductTransactionAccountFlagNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductTransactionAccountFlagNode.class;
+    return ProductTransactionAccountFlagNode.class;
     }
 
     @Inject

@@ -33,6 +33,10 @@ public class FeeDescriptionNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ProductFeeNode provideProductFeeNode() {
         return owner.getParent();
     }

@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -13,16 +13,18 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PersonNode extends ObjectUiNode<PersonListNode> {
+
     private PersonNodeChildFactory childFactory;
     private PersonNodeComponent component;
 
-    public PersonNode(@NotNull PersonListNode parent, String name) {
+    @Inject
+    public PersonNode(@Owner PersonListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PersonNode.class;
+    return PersonNode.class;
     }
 
     @Inject

@@ -37,6 +37,10 @@ public class OwnershipPercentageNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope OwnershipNode provideOwnershipNode() {
         return owner.getParent();
     }

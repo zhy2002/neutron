@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
-    private AccessTelephoneNodeComponent component;
 
-    public AccessTelephoneNode(@NotNull AccessNode parent, String name) {
+    @Inject
+    public AccessTelephoneNode(@Owner AccessNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return AccessTelephoneNode.class;
+    return AccessTelephoneNode.class;
     }
+
+    private AccessTelephoneNodeComponent component;
 
     @Inject
     void createComponent(AccessTelephoneNodeComponent.Builder builder) {

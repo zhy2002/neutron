@@ -32,6 +32,10 @@ public class PersonNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PersonListNode providePersonListNode() {
         return owner.getParent();
     }

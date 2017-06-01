@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNode<?>> {
-    private TrustSettlorNotRequiredReasonNodeComponent component;
 
-    public TrustSettlorNotRequiredReasonNode(@NotNull BaseTrustNode<?> parent, String name) {
+    @Inject
+    public TrustSettlorNotRequiredReasonNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return TrustSettlorNotRequiredReasonNode.class;
+    return TrustSettlorNotRequiredReasonNode.class;
     }
+
+    private TrustSettlorNotRequiredReasonNodeComponent component;
 
     @Inject
     void createComponent(TrustSettlorNotRequiredReasonNodeComponent.Builder builder) {

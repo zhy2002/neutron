@@ -5,16 +5,17 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-    private BasePrivacyNodeChildFactory childFactory;
 
-    public BasePrivacyNode(@NotNull P parent, String name) {
+    public BasePrivacyNode(P parent, String name) {
         super(parent, name);
     }
+
+    private BasePrivacyNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(BasePrivacyNodeChildProvider provider) {

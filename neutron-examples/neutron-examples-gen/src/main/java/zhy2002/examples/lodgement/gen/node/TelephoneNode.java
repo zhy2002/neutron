@@ -4,7 +4,7 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -16,8 +16,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     public static final PropertyMetadata<Telephone> EMPTY_VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "emptyValue", Telephone.class, new Telephone(), ChangeModeEnum.DIRECT);
     public static final PropertyMetadata<Boolean> COUNTRY_CODE_READONLY_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "countryCodeReadonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> SUPPRESS_TELEPHONE_COMPLETE_RULE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "suppressTelephoneCompleteRule", Boolean.class, Boolean.FALSE);
-
-    public TelephoneNode(@NotNull P parent, String name) {
+    public TelephoneNode(P parent, String name) {
         super(parent, name);
     }
 

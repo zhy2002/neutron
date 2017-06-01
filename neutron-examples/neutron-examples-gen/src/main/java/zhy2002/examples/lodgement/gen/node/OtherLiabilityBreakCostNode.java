@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityBreakCostNode extends BaseCurrencyNode<OtherLiabilityNode> {
+
     private OtherLiabilityBreakCostNodeComponent component;
 
-    public OtherLiabilityBreakCostNode(@NotNull OtherLiabilityNode parent, String name) {
+    @Inject
+    public OtherLiabilityBreakCostNode(@Owner OtherLiabilityNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return OtherLiabilityBreakCostNode.class;
+    return OtherLiabilityBreakCostNode.class;
     }
 
     @Inject

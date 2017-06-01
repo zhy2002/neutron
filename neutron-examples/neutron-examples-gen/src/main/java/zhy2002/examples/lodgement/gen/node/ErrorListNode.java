@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -14,23 +14,25 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
-    public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);
-    private ErrorListNodeItemFactory itemFactory;
-    private ErrorListNodeComponent component;
 
-    public ErrorListNode(@NotNull ApplicationNode parent, String name) {
+    @Inject
+    public ErrorListNode(@Owner ApplicationNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ErrorListNode.class;
+    return ErrorListNode.class;
     }
+
+    private ErrorListNodeItemFactory itemFactory;
 
     @Inject
     void receiveNodeProvider(ErrorListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+    private ErrorListNodeComponent component;
 
     @Inject
     void createComponent(ErrorListNodeComponent.Builder builder) {
@@ -72,6 +74,8 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     public NodeRemoveEvent<ErrorNode> createItemRemoveEvent(ErrorNode item) {
         return itemFactory.createItemRemoveEvent(item);
     }
+
+    public static final PropertyMetadata<String> FOCUS_PROPERTY = MetadataRegistry.createProperty(ErrorListNode.class, "focus", String.class, ChangeTrackingModeEnum.Always);
 
     @JsMethod
     public String getFocus() {

@@ -5,16 +5,17 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
-    private BaseResponsibleLendNodeChildFactory childFactory;
 
-    public BaseResponsibleLendNode(@NotNull P parent, String name) {
+    public BaseResponsibleLendNode(P parent, String name) {
         super(parent, name);
     }
+
+    private BaseResponsibleLendNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(BaseResponsibleLendNodeChildProvider provider) {

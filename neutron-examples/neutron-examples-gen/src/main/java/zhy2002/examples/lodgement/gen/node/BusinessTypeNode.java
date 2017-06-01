@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
+
     private BusinessTypeNodeComponent component;
 
-    public BusinessTypeNode(@NotNull SelfEmployedNode parent, String name) {
+    @Inject
+    public BusinessTypeNode(@Owner SelfEmployedNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return BusinessTypeNode.class;
+    return BusinessTypeNode.class;
     }
 
     @Inject

@@ -26,6 +26,10 @@ public class ${typeName}Module {
     }
 
 </#list>
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
 <#if parentType.typeName != "VoidUiNode">
     @Provides @ComponentScope ${parentType.genericTypeName} provide${parentType.typeName}() {
         return owner.getParent();

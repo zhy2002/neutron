@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
-    private PhoneInfoNodeChildFactory childFactory;
-    private PhoneInfoNodeComponent component;
 
-    public PhoneInfoNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public PhoneInfoNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PhoneInfoNode.class;
+    return PhoneInfoNode.class;
     }
+
+    private PhoneInfoNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(PhoneInfoNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private PhoneInfoNodeComponent component;
 
     @Inject
     void createComponent(PhoneInfoNodeComponent.Builder builder) {

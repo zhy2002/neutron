@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
@@ -14,17 +14,18 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PasswordNode extends StringUiNode<RegisterNode> {
-    public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);
-    private PasswordNodeComponent component;
 
-    public PasswordNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public PasswordNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PasswordNode.class;
+    return PasswordNode.class;
     }
+
+    private PasswordNodeComponent component;
 
     @Inject
     void createComponent(PasswordNodeComponent.Builder builder) {
@@ -50,6 +51,8 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     private RuleProvider<PasswordNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    public static final PropertyMetadata<String> MESSAGE_PROPERTY = MetadataRegistry.createProperty(PasswordNode.class, "message", String.class);
 
     @JsMethod
     public String getMessage() {

@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductTotalSecurityAmountNode extends BaseCurrencyNode<ProductsNode> {
+
     private ProductTotalSecurityAmountNodeComponent component;
 
-    public ProductTotalSecurityAmountNode(@NotNull ProductsNode parent, String name) {
+    @Inject
+    public ProductTotalSecurityAmountNode(@Owner ProductsNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductTotalSecurityAmountNode.class;
+    return ProductTotalSecurityAmountNode.class;
     }
 
     @Inject

@@ -32,6 +32,10 @@ public class OtherLiabilityNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope OtherLiabilityListNode provideOtherLiabilityListNode() {
         return owner.getParent();
     }

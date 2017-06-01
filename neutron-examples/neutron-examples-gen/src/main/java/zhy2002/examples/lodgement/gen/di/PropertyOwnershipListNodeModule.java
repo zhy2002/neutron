@@ -37,6 +37,10 @@ public class PropertyOwnershipListNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PropertyNode providePropertyNode() {
         return owner.getParent();
     }

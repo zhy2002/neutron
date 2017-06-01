@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustSettlorListNode extends SelectRelatedPersonListNode<BaseTrustNode<?>> {
-    private TrustSettlorListNodeComponent component;
 
-    public TrustSettlorListNode(@NotNull BaseTrustNode<?> parent, String name) {
+    @Inject
+    public TrustSettlorListNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return TrustSettlorListNode.class;
+    return TrustSettlorListNode.class;
     }
+
+    private TrustSettlorListNodeComponent component;
 
     @Inject
     void createComponent(TrustSettlorListNodeComponent.Builder builder) {

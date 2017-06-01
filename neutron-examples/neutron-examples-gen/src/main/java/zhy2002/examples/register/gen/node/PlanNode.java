@@ -3,22 +3,24 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PlanNode extends StringUiNode<RegisterNode> {
+
     private PlanNodeComponent component;
 
-    public PlanNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public PlanNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PlanNode.class;
+    return PlanNode.class;
     }
 
     @Inject

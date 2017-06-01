@@ -37,6 +37,10 @@ public class GrossYearlySalaryNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PayeEmployedNode providePayeEmployedNode() {
         return owner.getParent();
     }

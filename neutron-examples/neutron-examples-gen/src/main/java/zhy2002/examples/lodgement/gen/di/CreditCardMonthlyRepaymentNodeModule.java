@@ -37,6 +37,10 @@ public class CreditCardMonthlyRepaymentNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope CreditCardNode provideCreditCardNode() {
         return owner.getParent();
     }

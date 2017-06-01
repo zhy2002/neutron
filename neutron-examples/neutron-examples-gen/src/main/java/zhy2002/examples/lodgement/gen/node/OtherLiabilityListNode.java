@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityNode> {
+
     private OtherLiabilityListNodeItemFactory itemFactory;
     private OtherLiabilityListNodeComponent component;
 
-    public OtherLiabilityListNode(@NotNull LiabilitiesNode parent, String name) {
+    @Inject
+    public OtherLiabilityListNode(@Owner LiabilitiesNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return OtherLiabilityListNode.class;
+    return OtherLiabilityListNode.class;
     }
 
     @Inject

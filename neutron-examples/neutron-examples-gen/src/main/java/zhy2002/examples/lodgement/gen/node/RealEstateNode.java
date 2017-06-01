@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.data.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -13,22 +13,25 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
-    private RealEstateNodeChildFactory childFactory;
-    private RealEstateNodeComponent component;
 
-    public RealEstateNode(@NotNull RealEstateListNode parent, String name) {
+    @Inject
+    public RealEstateNode(@Owner RealEstateListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return RealEstateNode.class;
+    return RealEstateNode.class;
     }
+
+    private RealEstateNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(RealEstateNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private RealEstateNodeComponent component;
 
     @Inject
     void createComponent(RealEstateNodeComponent.Builder builder) {

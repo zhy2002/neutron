@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyNode> {
-    private CompanyResponsibleLendNodeComponent component;
 
-    public CompanyResponsibleLendNode(@NotNull CompanyNode parent, String name) {
+    @Inject
+    public CompanyResponsibleLendNode(@Owner CompanyNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return CompanyResponsibleLendNode.class;
+    return CompanyResponsibleLendNode.class;
     }
+
+    private CompanyResponsibleLendNodeComponent component;
 
     @Inject
     void createComponent(CompanyResponsibleLendNodeComponent.Builder builder) {

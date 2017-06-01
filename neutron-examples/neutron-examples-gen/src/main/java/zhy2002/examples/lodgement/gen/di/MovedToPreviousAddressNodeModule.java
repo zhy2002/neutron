@@ -37,6 +37,10 @@ public class MovedToPreviousAddressNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PersonContactNode providePersonContactNode() {
         return owner.getParent();
     }

@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
+
     private CreditCheckFlagNodeComponent component;
 
-    public CreditCheckFlagNode(@NotNull BasePrivacyNode<?> parent, String name) {
+    @Inject
+    public CreditCheckFlagNode(@Owner BasePrivacyNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return CreditCheckFlagNode.class;
+    return CreditCheckFlagNode.class;
     }
 
     @Inject

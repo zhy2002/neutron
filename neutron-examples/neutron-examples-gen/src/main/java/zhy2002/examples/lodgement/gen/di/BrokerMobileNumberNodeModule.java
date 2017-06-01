@@ -37,6 +37,10 @@ public class BrokerMobileNumberNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope SubmissionNode provideSubmissionNode() {
         return owner.getParent();
     }

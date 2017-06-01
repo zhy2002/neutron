@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BrokerFirstNameNode extends NameNode<SubmissionNode> {
+
     private BrokerFirstNameNodeComponent component;
 
-    public BrokerFirstNameNode(@NotNull SubmissionNode parent, String name) {
+    @Inject
+    public BrokerFirstNameNode(@Owner SubmissionNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return BrokerFirstNameNode.class;
+    return BrokerFirstNameNode.class;
     }
 
     @Inject

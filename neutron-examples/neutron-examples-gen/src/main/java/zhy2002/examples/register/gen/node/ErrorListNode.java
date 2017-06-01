@@ -3,22 +3,24 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
+
     private ErrorListNodeItemFactory itemFactory;
     private ErrorListNodeComponent component;
 
-    public ErrorListNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public ErrorListNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ErrorListNode.class;
+    return ErrorListNode.class;
     }
 
     @Inject

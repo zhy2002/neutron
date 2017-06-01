@@ -33,6 +33,10 @@ public class AgeNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope RegisterNode provideRegisterNode() {
         return owner.getParent();
     }

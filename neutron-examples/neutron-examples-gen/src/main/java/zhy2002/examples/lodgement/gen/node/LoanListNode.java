@@ -3,28 +3,31 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
-    private LoanListNodeItemFactory itemFactory;
-    private LoanListNodeComponent component;
 
-    public LoanListNode(@NotNull LiabilitiesNode parent, String name) {
+    @Inject
+    public LoanListNode(@Owner LiabilitiesNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return LoanListNode.class;
+    return LoanListNode.class;
     }
+
+    private LoanListNodeItemFactory itemFactory;
 
     @Inject
     void receiveNodeProvider(LoanListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+    private LoanListNodeComponent component;
 
     @Inject
     void createComponent(LoanListNodeComponent.Builder builder) {

@@ -37,6 +37,10 @@ public class ContributionAmountNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope ProductCustomerContributionNode provideProductCustomerContributionNode() {
         return owner.getParent();
     }

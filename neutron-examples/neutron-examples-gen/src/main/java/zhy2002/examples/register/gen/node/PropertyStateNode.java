@@ -3,22 +3,24 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
+
     private PropertyStateNodeComponent component;
 
-    public PropertyStateNode(@NotNull PropertyDetailsNode parent, String name) {
+    @Inject
+    public PropertyStateNode(@Owner PropertyDetailsNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PropertyStateNode.class;
+    return PropertyStateNode.class;
     }
 
     @Inject

@@ -32,6 +32,10 @@ public class OtherAssetNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope OtherAssetListNode provideOtherAssetListNode() {
         return owner.getParent();
     }

@@ -33,6 +33,10 @@ public class AccessTelephoneNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope AccessNode provideAccessNode() {
         return owner.getParent();
     }

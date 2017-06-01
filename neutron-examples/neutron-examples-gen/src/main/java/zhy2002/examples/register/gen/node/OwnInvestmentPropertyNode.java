@@ -3,21 +3,23 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class OwnInvestmentPropertyNode extends BooleanUiNode<RegisterNode> {
+
     private OwnInvestmentPropertyNodeComponent component;
 
-    public OwnInvestmentPropertyNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public OwnInvestmentPropertyNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return OwnInvestmentPropertyNode.class;
+    return OwnInvestmentPropertyNode.class;
     }
 
     @Inject

@@ -3,23 +3,25 @@ package zhy2002.examples.register.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.examples.register.gen.rule.*;
 import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class CountryCodeNode extends PhoneInfoFieldNode {
-    private CountryCodeNodeComponent component;
 
-    public CountryCodeNode(@NotNull PhoneInfoNode parent, String name) {
+    @Inject
+    public CountryCodeNode(@Owner PhoneInfoNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return CountryCodeNode.class;
+    return CountryCodeNode.class;
     }
+
+    private CountryCodeNodeComponent component;
 
     @Inject
     void createComponent(CountryCodeNodeComponent.Builder builder) {

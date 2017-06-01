@@ -33,6 +33,10 @@ public class RelatedPartyListNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope AdditionalNode provideAdditionalNode() {
         return owner.getParent();
     }

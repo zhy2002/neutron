@@ -5,23 +5,25 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode> {
+
     private ExistingMortgageNodeChildFactory childFactory;
     private ExistingMortgageNodeComponent component;
 
-    public ExistingMortgageNode(@NotNull ExistingMortgageListNode parent, String name) {
+    @Inject
+    public ExistingMortgageNode(@Owner ExistingMortgageListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ExistingMortgageNode.class;
+    return ExistingMortgageNode.class;
     }
 
     @Inject

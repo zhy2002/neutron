@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
-    private ProductFeeNodeChildFactory childFactory;
-    private ProductFeeNodeComponent component;
 
-    public ProductFeeNode(@NotNull ProductFeeListNode parent, String name) {
+    @Inject
+    public ProductFeeNode(@Owner ProductFeeListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductFeeNode.class;
+    return ProductFeeNode.class;
     }
+
+    private ProductFeeNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(ProductFeeNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private ProductFeeNodeComponent component;
 
     @Inject
     void createComponent(ProductFeeNodeComponent.Builder builder) {

@@ -9,7 +9,11 @@ import java.math.BigDecimal;
 <#if children?? || itemTypeName?? || !abstractNode || rules?? && rules?size gt 0>
 import javax.inject.*;
 </#if>
+<#if parentType.typeName == "VoidUiNode">
 import javax.validation.constraints.NotNull;
+<#else>
+import zhy2002.neutron.di.*;
+</#if>
 <#if children?? && children?size gt 0>
 import java.util.*;
 </#if>
@@ -44,6 +48,25 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     <#if parentTypeName??><${parentTypeName}></#if>
 </#if>
 </#compress> {
+
+<#if parentType.typeName == "VoidUiNode">
+    @Inject
+    public ${typeName}(@NotNull ${typeName}Context context) {
+        super(context);
+    }
+<#else>
+    <#if abstractNode>
+    public ${typeName}(${parentType.genericTypeName} parent, String name) {
+        super(parent, name);
+    }
+    <#else>
+    @Inject
+    public ${typeName}(@Owner ${parentType.genericTypeName} parent, @ChildName String name) {
+        super(parent, name);
+    }
+    </#if>
+</#if>
+
 <#if !abstractNode>
     @Override
     public final Class<?> getConcreteClass() {
@@ -107,17 +130,6 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 
     </#if>
 </#if>
-
-<#if parentType.typeName == "VoidUiNode">
-    @Inject
-    public ${typeName}(@NotNull ${typeName}Context context) {
-        super(context);
-<#else>
-    public ${typeName}(@NotNull ${parentType.genericTypeName} parent, String name) {
-        super(parent, name);
-</#if>
-    }
-
 <#if itemTypeName??>
     @Override
     public Class<${itemTypeName}> getItemClass() {

@@ -33,6 +33,10 @@ public class UsageNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope RealEstateNode provideRealEstateNode() {
         return owner.getParent();
     }

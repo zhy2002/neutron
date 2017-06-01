@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class RetiredSinceNode extends MonthYearNode<RetiredEmploymentNode> {
-    private RetiredSinceNodeComponent component;
 
-    public RetiredSinceNode(@NotNull RetiredEmploymentNode parent, String name) {
+    @Inject
+    public RetiredSinceNode(@Owner RetiredEmploymentNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return RetiredSinceNode.class;
+    return RetiredSinceNode.class;
     }
+
+    private RetiredSinceNodeComponent component;
 
     @Inject
     void createComponent(RetiredSinceNodeComponent.Builder builder) {

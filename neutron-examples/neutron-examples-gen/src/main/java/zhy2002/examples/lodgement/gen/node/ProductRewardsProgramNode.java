@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductRewardsProgramNode extends StringUiNode<ProductCardHolderNode> {
+
     private ProductRewardsProgramNodeComponent component;
 
-    public ProductRewardsProgramNode(@NotNull ProductCardHolderNode parent, String name) {
+    @Inject
+    public ProductRewardsProgramNode(@Owner ProductCardHolderNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ProductRewardsProgramNode.class;
+    return ProductRewardsProgramNode.class;
     }
 
     @Inject

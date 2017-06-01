@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
+
     private ThirdPartyWorkPhoneNodeComponent component;
 
-    public ThirdPartyWorkPhoneNode(@NotNull RelatedPartyNode parent, String name) {
+    @Inject
+    public ThirdPartyWorkPhoneNode(@Owner RelatedPartyNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return ThirdPartyWorkPhoneNode.class;
+    return ThirdPartyWorkPhoneNode.class;
     }
 
     @Inject

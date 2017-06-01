@@ -3,22 +3,24 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class LoanOwingAmountNode extends BaseCurrencyNode<LoanNode> {
-    private LoanOwingAmountNodeComponent component;
 
-    public LoanOwingAmountNode(@NotNull LoanNode parent, String name) {
+    @Inject
+    public LoanOwingAmountNode(@Owner LoanNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return LoanOwingAmountNode.class;
+    return LoanOwingAmountNode.class;
     }
+
+    private LoanOwingAmountNodeComponent component;
 
     @Inject
     void createComponent(LoanOwingAmountNodeComponent.Builder builder) {

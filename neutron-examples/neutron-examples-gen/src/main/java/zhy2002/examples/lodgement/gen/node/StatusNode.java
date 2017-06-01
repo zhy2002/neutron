@@ -3,21 +3,23 @@ package zhy2002.examples.lodgement.gen.node;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class StatusNode extends StringUiNode<ApplicationNode> {
+
     private StatusNodeComponent component;
 
-    public StatusNode(@NotNull ApplicationNode parent, String name) {
+    @Inject
+    public StatusNode(@Owner ApplicationNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return StatusNode.class;
+    return StatusNode.class;
     }
 
     @Inject

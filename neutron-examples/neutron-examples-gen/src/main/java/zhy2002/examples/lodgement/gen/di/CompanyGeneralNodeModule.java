@@ -33,6 +33,10 @@ public class CompanyGeneralNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope CompanyNode provideCompanyNode() {
         return owner.getParent();
     }

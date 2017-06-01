@@ -5,14 +5,15 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
+
     private MonthYearNodeChildFactory childFactory;
 
-    public MonthYearNode(@NotNull P parent, String name) {
+    public MonthYearNode(P parent, String name) {
         super(parent, name);
     }
 

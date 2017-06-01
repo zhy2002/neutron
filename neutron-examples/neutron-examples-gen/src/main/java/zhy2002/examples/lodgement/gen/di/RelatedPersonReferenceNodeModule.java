@@ -33,6 +33,10 @@ public class RelatedPersonReferenceNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope SelectRelatedPersonNode provideSelectRelatedPersonNode() {
         return owner.getParent();
     }

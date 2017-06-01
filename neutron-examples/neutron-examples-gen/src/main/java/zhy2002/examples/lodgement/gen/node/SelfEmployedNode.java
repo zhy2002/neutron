@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SelfEmployedNode extends EmployedNode {
-    private SelfEmployedNodeChildFactory childFactory;
-    private SelfEmployedNodeComponent component;
 
-    public SelfEmployedNode(@NotNull EmploymentNode<?> parent, String name) {
+    @Inject
+    public SelfEmployedNode(@Owner EmploymentNode<?> parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return SelfEmployedNode.class;
+    return SelfEmployedNode.class;
     }
+
+    private SelfEmployedNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(SelfEmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private SelfEmployedNodeComponent component;
 
     @Inject
     void createComponent(SelfEmployedNodeComponent.Builder builder) {

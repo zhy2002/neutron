@@ -5,29 +5,32 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
-    private OtherAssetNodeChildFactory childFactory;
-    private OtherAssetNodeComponent component;
 
-    public OtherAssetNode(@NotNull OtherAssetListNode parent, String name) {
+    @Inject
+    public OtherAssetNode(@Owner OtherAssetListNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return OtherAssetNode.class;
+    return OtherAssetNode.class;
     }
+
+    private OtherAssetNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(OtherAssetNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private OtherAssetNodeComponent component;
 
     @Inject
     void createComponent(OtherAssetNodeComponent.Builder builder) {

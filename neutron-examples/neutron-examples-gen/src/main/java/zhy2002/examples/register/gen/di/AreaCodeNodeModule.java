@@ -37,6 +37,10 @@ public class AreaCodeNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope PhoneInfoNode providePhoneInfoNode() {
         return owner.getParent();
     }

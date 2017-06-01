@@ -33,6 +33,10 @@ public class StudentTypeNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope UnemployedNode provideUnemployedNode() {
         return owner.getParent();
     }

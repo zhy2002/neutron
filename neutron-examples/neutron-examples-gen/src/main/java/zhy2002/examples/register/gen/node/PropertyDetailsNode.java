@@ -5,7 +5,7 @@ import zhy2002.neutron.node.*;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
-import javax.validation.constraints.NotNull;
+import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.register.data.*;
 import zhy2002.neutron.config.MetadataRegistry;
@@ -16,17 +16,19 @@ import java.util.List;
 import zhy2002.examples.register.gen.event.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
+
     public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
     private PropertyDetailsNodeChildFactory childFactory;
     private PropertyDetailsNodeComponent component;
 
-    public PropertyDetailsNode(@NotNull RegisterNode parent, String name) {
+    @Inject
+    public PropertyDetailsNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
     }
 
     @Override
     public final Class<?> getConcreteClass() {
-        return PropertyDetailsNode.class;
+    return PropertyDetailsNode.class;
     }
 
     @Inject

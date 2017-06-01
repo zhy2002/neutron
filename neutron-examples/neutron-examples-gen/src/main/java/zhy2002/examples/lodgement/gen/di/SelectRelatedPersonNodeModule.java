@@ -32,6 +32,10 @@ public class SelectRelatedPersonNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope SelectRelatedPersonListNode<?> provideSelectRelatedPersonListNode() {
         return owner.getParent();
     }

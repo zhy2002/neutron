@@ -36,6 +36,10 @@ public class CurrentEmploymentNodeModule {
         return owner;
     }
 
+    @Provides @ChildName String provideChildName() {
+        return owner.getContext().getNodeIdentity().getName();
+    }
+
     @Provides @ComponentScope CurrentEmploymentListNode provideCurrentEmploymentListNode() {
         return owner.getParent();
     }

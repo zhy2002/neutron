@@ -15,8 +15,6 @@ import zhy2002.examples.app.gen.event.*;
 
 @Singleton
 public class LodgementNode extends RootUiNode<VoidUiNode> {
-    private LodgementNodeChildFactory childFactory;
-    private LodgementNodeComponent component;
 
     @Inject
     public LodgementNode(@NotNull LodgementNodeContext context) {
@@ -25,13 +23,17 @@ public class LodgementNode extends RootUiNode<VoidUiNode> {
 
     @Override
     public final Class<?> getConcreteClass() {
-        return LodgementNode.class;
+    return LodgementNode.class;
     }
+
+    private LodgementNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(LodgementNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+    private LodgementNodeComponent component;
 
     @Inject
     void createComponent(LodgementNodeComponent.Builder builder) {
