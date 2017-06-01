@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {EmailNodeModule.class})
 public interface EmailNodeComponent {
 
+
     RuleProvider<EmailNode> getEmailNodeRuleProvider();
     Map<String, RuleProvider<EmailNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface EmailNodeComponent {
 
         EmailNodeComponent build();
     }
+
 }

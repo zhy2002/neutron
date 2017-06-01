@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ExpenseNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
 
-    private ExpenseNodeChildFactory childFactory;
-    private ExpenseNodeComponent component;
-
     @Inject
     public ExpenseNode(@Owner ExpenseListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
     return ExpenseNode.class;
     }
 
+    private ExpenseNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ExpenseNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ExpenseNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ExpenseNodeComponent component;
 
     @Inject
     void createComponent(ExpenseNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public ExpenseTypeNode getExpenseTypeNode() {
@@ -70,17 +81,18 @@ public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
         return (ExpenseOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("expenseTypeNode");
-        children.add(childFactory.createExpenseTypeNode());
+        children.add(getComponent().createExpenseTypeNode());
         setChildNodeIdentity("expenseDescriptionNode");
-        children.add(childFactory.createExpenseDescriptionNode());
+        children.add(getComponent().createExpenseDescriptionNode());
         setChildNodeIdentity("expenseMonthlyRepaymentNode");
-        children.add(childFactory.createExpenseMonthlyRepaymentNode());
+        children.add(getComponent().createExpenseMonthlyRepaymentNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

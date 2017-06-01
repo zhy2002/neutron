@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {BrokerCompanyNodeModule.class})
 public interface BrokerCompanyNodeComponent {
 
+
     RuleProvider<BrokerCompanyNode> getBrokerCompanyNodeRuleProvider();
     Map<String, RuleProvider<BrokerCompanyNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface BrokerCompanyNodeComponent {
 
         BrokerCompanyNodeComponent build();
     }
+
 }

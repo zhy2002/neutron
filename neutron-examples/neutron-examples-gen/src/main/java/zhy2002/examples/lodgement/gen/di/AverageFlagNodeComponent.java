@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AverageFlagNodeModule.class})
 public interface AverageFlagNodeComponent {
 
+
     RuleProvider<AverageFlagNode> getAverageFlagNodeRuleProvider();
     Map<String, RuleProvider<AverageFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AverageFlagNodeComponent {
 
         AverageFlagNodeComponent build();
     }
+
 }

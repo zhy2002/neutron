@@ -11,4 +11,5 @@ public abstract class BaseApplicantTypeNode<P extends ParentUiNode<?>> extends S
         super(parent, name);
     }
 
+
 }

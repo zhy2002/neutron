@@ -8,6 +8,13 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {CompanyNodeModule.class})
 public interface CompanyNodeComponent {
 
+    CompanyGeneralNode createCompanyGeneralNode();
+    CompanyContactNode createCompanyContactNode();
+    CompanyTrustNode createCompanyTrustNode();
+    CompanyPrivacyNode createCompanyPrivacyNode();
+    CompanyOtherIncomeListNode createCompanyOtherIncomeListNode();
+    CompanyResponsibleLendNode createCompanyResponsibleLendNode();
+
     RuleProvider<CompanyNode> getCompanyNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +24,5 @@ public interface CompanyNodeComponent {
 
         CompanyNodeComponent build();
     }
+
 }

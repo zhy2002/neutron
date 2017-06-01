@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PostcodeNodeModule.class})
 public interface PostcodeNodeComponent {
 
+
     RuleProvider<PostcodeNode> getPostcodeNodeRuleProvider();
     Map<String, RuleProvider<PostcodeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PostcodeNodeComponent {
 
         PostcodeNodeComponent build();
     }
+
 }

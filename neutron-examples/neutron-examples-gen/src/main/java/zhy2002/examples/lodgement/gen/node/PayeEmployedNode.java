@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PayeEmployedNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class PayeEmployedNode extends EmployedNode {
 
-    private PayeEmployedNodeChildFactory childFactory;
-    private PayeEmployedNodeComponent component;
-
     @Inject
     public PayeEmployedNode(@Owner EmploymentNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class PayeEmployedNode extends EmployedNode {
     return PayeEmployedNode.class;
     }
 
+    private PayeEmployedNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(PayeEmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final PayeEmployedNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PayeEmployedNodeComponent component;
 
     @Inject
     void createComponent(PayeEmployedNodeComponent.Builder builder) {
@@ -56,16 +65,19 @@ public class PayeEmployedNode extends EmployedNode {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public GrossYearlySalaryNode getGrossYearlySalaryNode() {
         return (GrossYearlySalaryNode)getChildByName("grossYearlySalaryNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("grossYearlySalaryNode");
-        children.add(childFactory.createGrossYearlySalaryNode());
+        children.add(getComponent().createGrossYearlySalaryNode());
         setChildNodeIdentity(null);
         return children;
     }

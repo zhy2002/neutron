@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {PersonTrustNodeModule.class})
-public interface PersonTrustNodeComponent {
+public interface PersonTrustNodeComponent extends BaseTrustNodeComponent {
+
 
     RuleProvider<PersonTrustNode> getPersonTrustNodeRuleProvider();
     Map<String, RuleProvider<PersonTrustNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface PersonTrustNodeComponent {
 
         PersonTrustNodeComponent build();
     }
+
 }

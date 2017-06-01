@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {EmploymentTypeNodeModule.class})
 public interface EmploymentTypeNodeComponent {
 
+
     RuleProvider<EmploymentTypeNode> getEmploymentTypeNodeRuleProvider();
     Map<String, RuleProvider<EmploymentTypeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface EmploymentTypeNodeComponent {
 
         EmploymentTypeNodeComponent build();
     }
+
 }

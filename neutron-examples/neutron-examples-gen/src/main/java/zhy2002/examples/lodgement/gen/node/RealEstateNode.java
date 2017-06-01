@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.RealEstateNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -31,6 +32,13 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final RealEstateNodeComponent getComponent() {
+        return component;
+    }
+
+
     private RealEstateNodeComponent component;
 
     @Inject
@@ -52,6 +60,8 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public UsageNode getUsageNode() {
         return (UsageNode)getChildByName("usageNode");
@@ -67,15 +77,16 @@ public class RealEstateNode extends ObjectUiNode<RealEstateListNode> {
         return (AccessNode)getChildByName("accessNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("usageNode");
-        children.add(childFactory.createUsageNode());
+        children.add(getComponent().createUsageNode());
         setChildNodeIdentity("propertyNode");
-        children.add(childFactory.createPropertyNode());
+        children.add(getComponent().createPropertyNode());
         setChildNodeIdentity("accessNode");
-        children.add(childFactory.createAccessNode());
+        children.add(getComponent().createAccessNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {RealEstateListNodeModule.class})
 public interface RealEstateListNodeComponent {
 
+
     RuleProvider<RealEstateListNode> getRealEstateListNodeRuleProvider();
     Map<String, RuleProvider<RealEstateListNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface RealEstateListNodeComponent {
 
         RealEstateListNodeComponent build();
     }
+
 }

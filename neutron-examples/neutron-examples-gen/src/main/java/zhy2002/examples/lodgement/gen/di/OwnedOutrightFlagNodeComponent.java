@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OwnedOutrightFlagNodeModule.class})
 public interface OwnedOutrightFlagNodeComponent {
 
+
     RuleProvider<OwnedOutrightFlagNode> getOwnedOutrightFlagNodeRuleProvider();
     Map<String, RuleProvider<OwnedOutrightFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OwnedOutrightFlagNodeComponent {
 
         OwnedOutrightFlagNodeComponent build();
     }
+
 }

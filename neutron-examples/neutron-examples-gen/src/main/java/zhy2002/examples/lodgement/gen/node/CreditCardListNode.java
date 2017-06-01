@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,9 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
-
-    private CreditCardListNodeItemFactory itemFactory;
-    private CreditCardListNodeComponent component;
 
     @Inject
     public CreditCardListNode(@Owner LiabilitiesNode parent, @ChildName String name) {
@@ -23,10 +21,21 @@ public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNod
     return CreditCardListNode.class;
     }
 
+    private CreditCardListNodeItemFactory itemFactory;
+
     @Inject
     void receiveNodeProvider(CreditCardListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final CreditCardListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CreditCardListNodeComponent component;
 
     @Inject
     void createComponent(CreditCardListNodeComponent.Builder builder) {

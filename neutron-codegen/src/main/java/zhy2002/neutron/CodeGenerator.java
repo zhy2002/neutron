@@ -93,9 +93,13 @@ class CodeGenerator {
         }
 
         codeGenerationService.generateFile(targetDirectory, "di", nodeInfo, templateBundle.getRuleProviderTemplate(), "", "RuleProvider");
+
+        if(nodeInfo.getHasComponent()) {
+            codeGenerationService.generateFile(targetDirectory, "di", nodeInfo, templateBundle.getComponentTemplate(), "", "Component");
+        }
+
         if (!nodeInfo.isAbstractNode()) {
             codeGenerationService.generateFile(targetDirectory, "di", nodeInfo, templateBundle.getModuleTemplate(), "", "Module");
-            codeGenerationService.generateFile(targetDirectory, "di", nodeInfo, templateBundle.getComponentTemplate(), "", "Component");
         }
     }
 

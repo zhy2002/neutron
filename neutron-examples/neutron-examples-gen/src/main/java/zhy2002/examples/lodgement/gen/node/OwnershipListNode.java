@@ -24,6 +24,9 @@ public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListU
         itemFactory = provider.createFactory(this);
     }
 
+
+
+
     @Override
     public Class<OwnershipNode> getItemClass() {
         return OwnershipNode.class;

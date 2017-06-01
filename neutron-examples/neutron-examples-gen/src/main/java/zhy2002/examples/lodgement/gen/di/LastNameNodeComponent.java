@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {LastNameNodeModule.class})
 public interface LastNameNodeComponent {
 
+
     RuleProvider<LastNameNode> getLastNameNodeRuleProvider();
     Map<String, RuleProvider<LastNameNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface LastNameNodeComponent {
 
         LastNameNodeComponent build();
     }
+
 }

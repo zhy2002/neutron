@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductCreditCardFlagNodeModule.class})
 public interface ProductCreditCardFlagNodeComponent {
 
+
     RuleProvider<ProductCreditCardFlagNode> getProductCreditCardFlagNodeRuleProvider();
     Map<String, RuleProvider<ProductCreditCardFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductCreditCardFlagNodeComponent {
 
         ProductCreditCardFlagNodeComponent build();
     }
+
 }

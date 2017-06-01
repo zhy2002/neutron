@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CurrentEmploymentListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -26,6 +27,13 @@ public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmpl
     void receiveNodeProvider(CurrentEmploymentListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final CurrentEmploymentListNodeComponent getComponent() {
+        return component;
+    }
+
 
     private CurrentEmploymentListNodeComponent component;
 

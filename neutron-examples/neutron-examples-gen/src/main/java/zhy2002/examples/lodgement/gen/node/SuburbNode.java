@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SuburbNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class SuburbNode extends StringUiNode<AddressNode<?>> {
     public final Class<?> getConcreteClass() {
     return SuburbNode.class;
     }
+
+    protected final SuburbNodeComponent getComponent() {
+        return component;
+    }
+
 
     private SuburbNodeComponent component;
 

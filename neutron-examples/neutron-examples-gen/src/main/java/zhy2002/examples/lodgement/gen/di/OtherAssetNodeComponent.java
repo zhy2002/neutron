@@ -8,6 +8,11 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {OtherAssetNodeModule.class})
 public interface OtherAssetNodeComponent {
 
+    OtherAssetTypeNode createOtherAssetTypeNode();
+    OtherAssetDescriptionNode createOtherAssetDescriptionNode();
+    OtherAssetMarketValueNode createOtherAssetMarketValueNode();
+    OtherAssetOwnershipListNode createOwnershipListNode();
+
     RuleProvider<OtherAssetNode> getOtherAssetNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +22,5 @@ public interface OtherAssetNodeComponent {
 
         OtherAssetNodeComponent build();
     }
+
 }

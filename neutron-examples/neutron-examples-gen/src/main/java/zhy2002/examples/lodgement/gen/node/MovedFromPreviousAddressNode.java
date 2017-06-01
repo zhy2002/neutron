@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MovedFromPreviousAddressNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNode> {
-
-    private MovedFromPreviousAddressNodeComponent component;
 
     @Inject
     public MovedFromPreviousAddressNode(@Owner PersonContactNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class MovedFromPreviousAddressNode extends MonthYearNode<PersonContactNod
     public final Class<?> getConcreteClass() {
     return MovedFromPreviousAddressNode.class;
     }
+
+    protected final MovedFromPreviousAddressNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private MovedFromPreviousAddressNodeComponent component;
 
     @Inject
     void createComponent(MovedFromPreviousAddressNodeComponent.Builder builder) {

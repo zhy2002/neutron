@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ThirdPartyDisclosureFlagNodeModule.class})
 public interface ThirdPartyDisclosureFlagNodeComponent {
 
+
     RuleProvider<ThirdPartyDisclosureFlagNode> getThirdPartyDisclosureFlagNodeRuleProvider();
     Map<String, RuleProvider<ThirdPartyDisclosureFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ThirdPartyDisclosureFlagNodeComponent {
 
         ThirdPartyDisclosureFlagNodeComponent build();
     }
+
 }

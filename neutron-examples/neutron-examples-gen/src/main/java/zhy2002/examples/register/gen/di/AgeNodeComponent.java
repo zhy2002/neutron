@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AgeNodeModule.class})
 public interface AgeNodeComponent {
 
+
     RuleProvider<AgeNode> getAgeNodeRuleProvider();
     Map<String, RuleProvider<AgeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AgeNodeComponent {
 
         AgeNodeComponent build();
     }
+
 }

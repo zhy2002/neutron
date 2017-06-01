@@ -8,6 +8,14 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {SavingsAccountNodeModule.class})
 public interface SavingsAccountNodeComponent {
 
+    SavingsTypeNode createSavingsTypeNode();
+    SavingsInstitutionNameNode createSavingsInstitutionNameNode();
+    SavingsBalanceNode createSavingsBalanceNode();
+    SavingsBsbNoNode createSavingsBsbNoNode();
+    SavingsAccountNoNode createSavingsAccountNoNode();
+    SavingsAccountNameNode createSavingsAccountNameNode();
+    SavingsOwnershipListNode createOwnershipListNode();
+
     RuleProvider<SavingsAccountNode> getSavingsAccountNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +25,5 @@ public interface SavingsAccountNodeComponent {
 
         SavingsAccountNodeComponent build();
     }
+
 }

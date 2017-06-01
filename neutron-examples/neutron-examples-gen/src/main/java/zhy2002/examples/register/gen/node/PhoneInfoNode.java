@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.PhoneInfoNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final PhoneInfoNodeComponent getComponent() {
+        return component;
+    }
+
+
     private PhoneInfoNodeComponent component;
 
     @Inject
@@ -57,6 +65,8 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public CountryCodeNode getCountryCodeNode() {
         return (CountryCodeNode)getChildByName("countryCodeNode");
@@ -72,15 +82,16 @@ public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
         return (PhoneNumberNode)getChildByName("phoneNumberNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("countryCodeNode");
-        children.add(childFactory.createCountryCodeNode());
+        children.add(getComponent().createCountryCodeNode());
         setChildNodeIdentity("areaCodeNode");
-        children.add(childFactory.createAreaCodeNode());
+        children.add(getComponent().createAreaCodeNode());
         setChildNodeIdentity("phoneNumberNode");
-        children.add(childFactory.createPhoneNumberNode());
+        children.add(getComponent().createPhoneNumberNode());
         setChildNodeIdentity(null);
         return children;
     }

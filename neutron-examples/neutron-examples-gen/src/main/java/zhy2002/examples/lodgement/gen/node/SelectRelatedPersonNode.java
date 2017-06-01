@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SelectRelatedPersonNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonListNode<?>> {
 
-    private SelectRelatedPersonNodeChildFactory childFactory;
-    private SelectRelatedPersonNodeComponent component;
-
     @Inject
     public SelectRelatedPersonNode(@Owner SelectRelatedPersonListNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
     return SelectRelatedPersonNode.class;
     }
 
+    private SelectRelatedPersonNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(SelectRelatedPersonNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final SelectRelatedPersonNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private SelectRelatedPersonNodeComponent component;
 
     @Inject
     void createComponent(SelectRelatedPersonNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public RelatedPersonReferenceNode getRelatedPersonReferenceNode() {
         return (RelatedPersonReferenceNode)getChildByName("relatedPersonReferenceNode");
@@ -60,13 +71,14 @@ public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonLis
         return (SelectRelatedPersonFlagNode)getChildByName("selectRelatedPersonFlagNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("relatedPersonReferenceNode");
-        children.add(childFactory.createRelatedPersonReferenceNode());
+        children.add(getComponent().createRelatedPersonReferenceNode());
         setChildNodeIdentity("selectRelatedPersonFlagNode");
-        children.add(childFactory.createSelectRelatedPersonFlagNode());
+        children.add(getComponent().createSelectRelatedPersonFlagNode());
         setChildNodeIdentity(null);
         return children;
     }

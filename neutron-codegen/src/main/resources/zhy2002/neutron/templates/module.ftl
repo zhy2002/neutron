@@ -27,7 +27,7 @@ public class ${typeName}Module {
 
 </#list>
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
 <#if parentType.typeName != "VoidUiNode">

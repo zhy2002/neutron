@@ -8,6 +8,7 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {AddressRefNodeModule.class})
 public interface AddressRefNodeComponent {
 
+
     RuleProvider<AddressRefNode> getAddressRefNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +18,5 @@ public interface AddressRefNodeComponent {
 
         AddressRefNodeComponent build();
     }
+
 }

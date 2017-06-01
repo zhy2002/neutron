@@ -19,6 +19,9 @@ public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends
         itemFactory = provider.createFactory(this);
     }
 
+
+
+
     @Override
     public Class<OtherIncomeNode> getItemClass() {
         return OtherIncomeNode.class;

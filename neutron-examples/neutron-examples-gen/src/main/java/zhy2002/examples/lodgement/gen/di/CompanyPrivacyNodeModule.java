@@ -38,7 +38,7 @@ public class CompanyPrivacyNodeModule {
     }
 
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
     @Provides @ComponentScope CompanyNode provideCompanyNode() {

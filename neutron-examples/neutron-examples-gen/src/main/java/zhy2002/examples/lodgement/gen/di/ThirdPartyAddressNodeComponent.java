@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {ThirdPartyAddressNodeModule.class})
-public interface ThirdPartyAddressNodeComponent {
+public interface ThirdPartyAddressNodeComponent extends AddressNodeComponent {
+
 
     RuleProvider<ThirdPartyAddressNode> getThirdPartyAddressNodeRuleProvider();
     Map<String, RuleProvider<ThirdPartyAddressNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface ThirdPartyAddressNodeComponent {
 
         ThirdPartyAddressNodeComponent build();
     }
+
 }

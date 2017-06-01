@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BeingPurchasedFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
@@ -20,6 +21,11 @@ public class BeingPurchasedFlagNode extends BooleanUiNode<UsageNode> {
     public final Class<?> getConcreteClass() {
     return BeingPurchasedFlagNode.class;
     }
+
+    protected final BeingPurchasedFlagNodeComponent getComponent() {
+        return component;
+    }
+
 
     private BeingPurchasedFlagNodeComponent component;
 

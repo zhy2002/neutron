@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductAccountHolderListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductAccountHolderListNode extends SelectAccountHolderListNode<ProductDescriptionNode> {
-
-    private ProductAccountHolderListNodeComponent component;
 
     @Inject
     public ProductAccountHolderListNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductAccountHolderListNode extends SelectAccountHolderListNode<Pr
     public final Class<?> getConcreteClass() {
     return ProductAccountHolderListNode.class;
     }
+
+    protected final ProductAccountHolderListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductAccountHolderListNodeComponent component;
 
     @Inject
     void createComponent(ProductAccountHolderListNodeComponent.Builder builder) {

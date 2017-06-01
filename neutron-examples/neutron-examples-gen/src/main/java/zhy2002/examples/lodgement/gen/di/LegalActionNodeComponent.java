@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {LegalActionNodeModule.class})
 public interface LegalActionNodeComponent {
 
+
     RuleProvider<LegalActionNode> getLegalActionNodeRuleProvider();
     Map<String, RuleProvider<LegalActionNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface LegalActionNodeComponent {
 
         LegalActionNodeComponent build();
     }
+
 }

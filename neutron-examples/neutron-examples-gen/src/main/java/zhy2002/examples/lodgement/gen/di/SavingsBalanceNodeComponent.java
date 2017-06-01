@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {SavingsBalanceNodeModule.class})
 public interface SavingsBalanceNodeComponent {
 
+
     RuleProvider<SavingsBalanceNode> getSavingsBalanceNodeRuleProvider();
     Map<String, RuleProvider<SavingsBalanceNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface SavingsBalanceNodeComponent {
 
         SavingsBalanceNodeComponent build();
     }
+
 }

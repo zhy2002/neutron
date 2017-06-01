@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {CreditCardMonthlyRepaymentNodeModule.class})
 public interface CreditCardMonthlyRepaymentNodeComponent {
 
+
     RuleProvider<CreditCardMonthlyRepaymentNode> getCreditCardMonthlyRepaymentNodeRuleProvider();
     Map<String, RuleProvider<CreditCardMonthlyRepaymentNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface CreditCardMonthlyRepaymentNodeComponent {
 
         CreditCardMonthlyRepaymentNodeComponent build();
     }
+
 }

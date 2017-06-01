@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MortgqageUnpaidBalanceNodeModule.class})
 public interface MortgqageUnpaidBalanceNodeComponent {
 
+
     RuleProvider<MortgqageUnpaidBalanceNode> getMortgqageUnpaidBalanceNodeRuleProvider();
     Map<String, RuleProvider<MortgqageUnpaidBalanceNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MortgqageUnpaidBalanceNodeComponent {
 
         MortgqageUnpaidBalanceNodeComponent build();
     }
+
 }

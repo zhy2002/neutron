@@ -12,13 +12,15 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone> {
 
+    public TelephoneNode(P parent, String name) {
+        super(parent, name);
+    }
+
+
     public static final PropertyMetadata<Telephone> VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "value", Telephone.class);
     public static final PropertyMetadata<Telephone> EMPTY_VALUE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "emptyValue", Telephone.class, new Telephone(), ChangeModeEnum.DIRECT);
     public static final PropertyMetadata<Boolean> COUNTRY_CODE_READONLY_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "countryCodeReadonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> SUPPRESS_TELEPHONE_COMPLETE_RULE_PROPERTY = MetadataRegistry.createProperty(TelephoneNode.class, "suppressTelephoneCompleteRule", Boolean.class, Boolean.FALSE);
-    public TelephoneNode(P parent, String name) {
-        super(parent, name);
-    }
 
     @JsMethod
     public Boolean getCountryCodeReadonly() {
@@ -61,13 +63,13 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
         return new Telephone(value);
     }
 
+    public void setEmptyValue(Telephone value) {
+        super.setStateValue(EMPTY_VALUE_PROPERTY, value);
+    }
+
     @Override
     public Telephone getEmptyValue() {
         return super.getStateValue(EMPTY_VALUE_PROPERTY);
-    }
-
-    public void setEmptyValue(Telephone value) {
-        super.setStateValue(EMPTY_VALUE_PROPERTY, value);
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OwnInvestmentPropertyNodeModule.class})
 public interface OwnInvestmentPropertyNodeComponent {
 
+
     RuleProvider<OwnInvestmentPropertyNode> getOwnInvestmentPropertyNodeRuleProvider();
     Map<String, RuleProvider<OwnInvestmentPropertyNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OwnInvestmentPropertyNodeComponent {
 
         OwnInvestmentPropertyNodeComponent build();
     }
+
 }

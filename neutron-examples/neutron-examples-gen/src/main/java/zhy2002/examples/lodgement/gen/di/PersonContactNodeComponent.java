@@ -9,6 +9,18 @@ import java.util.*;
 @Subcomponent(modules = {PersonContactNodeModule.class})
 public interface PersonContactNodeComponent {
 
+    PersonTelephoneNode createHomePhoneNode();
+    PersonTelephoneNode createWorkPhoneNode();
+    PersonTelephoneNode createFaxNumberNode();
+    PersonMobileNumberNode createPersonMobileNumberNode();
+    PersonEmailNode createPersonEmailNode();
+    PersonAddressNode createCurrentAddressNode();
+    MovedToCurrentAddressNode createMovedToCurrentAddressNode();
+    PersonAddressNode createPostalAddressNode();
+    PersonAddressNode createPreviousAddressNode();
+    MovedToPreviousAddressNode createMovedToPreviousAddressNode();
+    MovedFromPreviousAddressNode createMovedFromPreviousAddressNode();
+
     RuleProvider<PersonContactNode> getPersonContactNodeRuleProvider();
     Map<String, RuleProvider<PersonContactNode>> getInstanceRuleProviders();
 
@@ -19,4 +31,5 @@ public interface PersonContactNodeComponent {
 
         PersonContactNodeComponent build();
     }
+
 }

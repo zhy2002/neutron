@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PersonNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -14,9 +15,6 @@ import java.util.List;
 
 public class PersonNode extends ObjectUiNode<PersonListNode> {
 
-    private PersonNodeChildFactory childFactory;
-    private PersonNodeComponent component;
-
     @Inject
     public PersonNode(@Owner PersonListNode parent, @ChildName String name) {
         super(parent, name);
@@ -27,10 +25,21 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
     return PersonNode.class;
     }
 
+    private PersonNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(PersonNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final PersonNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PersonNodeComponent component;
 
     @Inject
     void createComponent(PersonNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public PersonGeneralNode getPersonGeneralNode() {
@@ -91,25 +102,26 @@ public class PersonNode extends ObjectUiNode<PersonListNode> {
         return (PersonResponsibleLendNode)getChildByName("personResponsibleLendNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("personGeneralNode");
-        children.add(childFactory.createPersonGeneralNode());
+        children.add(getComponent().createPersonGeneralNode());
         setChildNodeIdentity("personContactNode");
-        children.add(childFactory.createPersonContactNode());
+        children.add(getComponent().createPersonContactNode());
         setChildNodeIdentity("currentEmploymentListNode");
-        children.add(childFactory.createCurrentEmploymentListNode());
+        children.add(getComponent().createCurrentEmploymentListNode());
         setChildNodeIdentity("previousEmploymentListNode");
-        children.add(childFactory.createPreviousEmploymentListNode());
+        children.add(getComponent().createPreviousEmploymentListNode());
         setChildNodeIdentity("personTrustNode");
-        children.add(childFactory.createPersonTrustNode());
+        children.add(getComponent().createPersonTrustNode());
         setChildNodeIdentity("personPrivacyNode");
-        children.add(childFactory.createPersonPrivacyNode());
+        children.add(getComponent().createPersonPrivacyNode());
         setChildNodeIdentity("personOtherIncomeListNode");
-        children.add(childFactory.createPersonOtherIncomeListNode());
+        children.add(getComponent().createPersonOtherIncomeListNode());
         setChildNodeIdentity("personResponsibleLendNode");
-        children.add(childFactory.createPersonResponsibleLendNode());
+        children.add(getComponent().createPersonResponsibleLendNode());
         setChildNodeIdentity(null);
         return children;
     }

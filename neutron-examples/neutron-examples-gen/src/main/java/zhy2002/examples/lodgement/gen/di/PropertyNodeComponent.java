@@ -9,6 +9,17 @@ import java.util.*;
 @Subcomponent(modules = {PropertyNodeModule.class})
 public interface PropertyNodeComponent {
 
+    RentedFlagNode createRentedFlagNode();
+    PropertyWeeklyRentNode createPropertyWeeklyRentNode();
+    PropertyAddressNode createPropertyAddressNode();
+    EstimatedMarketValueNode createEstimatedMarketValueNode();
+    ContractPriceNode createContractPriceNode();
+    DefenseServiceFlagNode createDefenseServiceFlagNode();
+    PropertyTypeNode createPropertyTypeNode();
+    PropertySubTypeNode createPropertySubTypeNode();
+    PropertyPurseNode createPropertyPurseNode();
+    PropertyOwnershipListNode createPropertyOwnershipListNode();
+
     RuleProvider<PropertyNode> getPropertyNodeRuleProvider();
     Map<String, RuleProvider<PropertyNode>> getInstanceRuleProviders();
 
@@ -19,4 +30,5 @@ public interface PropertyNodeComponent {
 
         PropertyNodeComponent build();
     }
+
 }

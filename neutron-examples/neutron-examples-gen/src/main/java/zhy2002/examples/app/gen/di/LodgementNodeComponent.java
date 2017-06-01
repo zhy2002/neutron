@@ -8,6 +8,8 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {LodgementNodeModule.class})
 public interface LodgementNodeComponent {
 
+    AppManagerNode createAppManagerNode();
+
     RuleProvider<LodgementNode> getLodgementNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +19,5 @@ public interface LodgementNodeComponent {
 
         LodgementNodeComponent build();
     }
+
 }

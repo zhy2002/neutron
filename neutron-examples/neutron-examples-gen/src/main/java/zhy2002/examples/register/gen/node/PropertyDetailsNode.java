@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.PropertyDetailsNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -17,10 +18,6 @@ import zhy2002.examples.register.gen.event.*;
 
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
-    public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
-    private PropertyDetailsNodeChildFactory childFactory;
-    private PropertyDetailsNodeComponent component;
-
     @Inject
     public PropertyDetailsNode(@Owner RegisterNode parent, @ChildName String name) {
         super(parent, name);
@@ -31,10 +28,21 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     return PropertyDetailsNode.class;
     }
 
+    private PropertyDetailsNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(PropertyDetailsNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final PropertyDetailsNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PropertyDetailsNodeComponent component;
 
     @Inject
     void createComponent(PropertyDetailsNodeComponent.Builder builder) {
@@ -71,6 +79,8 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         return new PropertyDetailsNodeUnloadEvent(this);
     }
 
+    public static final PropertyMetadata<String> TOOLTIP_PROPERTY = MetadataRegistry.createProperty(PropertyDetailsNode.class, "tooltip", String.class);
+
     @JsMethod
     public String getTooltip() {
         return getStateValue(TOOLTIP_PROPERTY);
@@ -80,6 +90,8 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
     public void setTooltip(String value) {
         setStateValue(TOOLTIP_PROPERTY, value);
     }
+
+    //region children getters
 
     @JsMethod
     public PropertyAddressNode getPropertyAddressNode() {
@@ -91,13 +103,14 @@ public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
         return (PropertyStateNode)getChildByName("propertyStateNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("propertyAddressNode");
-        children.add(childFactory.createPropertyAddressNode());
+        children.add(getComponent().createPropertyAddressNode());
         setChildNodeIdentity("propertyStateNode");
-        children.add(childFactory.createPropertyStateNode());
+        children.add(getComponent().createPropertyStateNode());
         setChildNodeIdentity(null);
         return children;
     }

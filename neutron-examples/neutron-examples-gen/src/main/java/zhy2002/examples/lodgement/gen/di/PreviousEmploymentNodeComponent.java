@@ -6,7 +6,8 @@ import zhy2002.neutron.RuleProvider;
 
 @ComponentScope
 @Subcomponent(modules = {PreviousEmploymentNodeModule.class})
-public interface PreviousEmploymentNodeComponent {
+public interface PreviousEmploymentNodeComponent extends EmploymentNodeComponent {
+
 
     RuleProvider<PreviousEmploymentNode> getPreviousEmploymentNodeRuleProvider();
 
@@ -17,4 +18,5 @@ public interface PreviousEmploymentNodeComponent {
 
         PreviousEmploymentNodeComponent build();
     }
+
 }

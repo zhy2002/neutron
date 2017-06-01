@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductsNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ProductsNode extends ObjectUiNode<ApplicationNode> {
 
-    private ProductsNodeChildFactory childFactory;
-    private ProductsNodeComponent component;
-
     @Inject
     public ProductsNode(@Owner ApplicationNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
     return ProductsNode.class;
     }
 
+    private ProductsNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ProductsNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ProductsNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductsNodeComponent component;
 
     @Inject
     void createComponent(ProductsNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
     private RuleProvider<ProductsNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public ProductListNode getProductListNode() {
@@ -106,29 +117,30 @@ public class ProductsNode extends ObjectUiNode<ApplicationNode> {
         return (ProductTotalLvrLmiNode)getChildByName("productTotalLvrLmiNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("productListNode");
-        children.add(childFactory.createProductListNode());
+        children.add(getComponent().createProductListNode());
         setChildNodeIdentity("productCustomerContributionListNode");
-        children.add(childFactory.createProductCustomerContributionListNode());
+        children.add(getComponent().createProductCustomerContributionListNode());
         setChildNodeIdentity("productFeeListNode");
-        children.add(childFactory.createProductFeeListNode());
+        children.add(getComponent().createProductFeeListNode());
         setChildNodeIdentity("productLoanTypeNode");
-        children.add(childFactory.createProductLoanTypeNode());
+        children.add(getComponent().createProductLoanTypeNode());
         setChildNodeIdentity("settlementDateNode");
-        children.add(childFactory.createSettlementDateNode());
+        children.add(getComponent().createSettlementDateNode());
         setChildNodeIdentity("productTotalLoanAmountNode");
-        children.add(childFactory.createProductTotalLoanAmountNode());
+        children.add(getComponent().createProductTotalLoanAmountNode());
         setChildNodeIdentity("productTotalSecurityAmountNode");
-        children.add(childFactory.createProductTotalSecurityAmountNode());
+        children.add(getComponent().createProductTotalSecurityAmountNode());
         setChildNodeIdentity("productTotalLoanLmiAmountNode");
-        children.add(childFactory.createProductTotalLoanLmiAmountNode());
+        children.add(getComponent().createProductTotalLoanLmiAmountNode());
         setChildNodeIdentity("productTotalLvrNode");
-        children.add(childFactory.createProductTotalLvrNode());
+        children.add(getComponent().createProductTotalLvrNode());
         setChildNodeIdentity("productTotalLvrLmiNode");
-        children.add(childFactory.createProductTotalLvrLmiNode());
+        children.add(getComponent().createProductTotalLvrLmiNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -8,6 +8,9 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {SelectAccountHolderNodeModule.class})
 public interface SelectAccountHolderNodeComponent {
 
+    AccountHolderReferenceNode createAccountHolderReferenceNode();
+    SelectAccountHolderFlagNode createSelectAccountHolderFlagNode();
+
     RuleProvider<SelectAccountHolderNode> getSelectAccountHolderNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +20,5 @@ public interface SelectAccountHolderNodeComponent {
 
         SelectAccountHolderNodeComponent build();
     }
+
 }

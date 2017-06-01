@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MortgageLimitAmountNodeModule.class})
 public interface MortgageLimitAmountNodeComponent {
 
+
     RuleProvider<MortgageLimitAmountNode> getMortgageLimitAmountNodeRuleProvider();
     Map<String, RuleProvider<MortgageLimitAmountNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MortgageLimitAmountNodeComponent {
 
         MortgageLimitAmountNodeComponent build();
     }
+
 }

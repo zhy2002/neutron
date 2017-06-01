@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductFixedTermNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
-
-    private ProductFixedTermNodeComponent component;
 
     @Inject
     public ProductFixedTermNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNod
     public final Class<?> getConcreteClass() {
     return ProductFixedTermNode.class;
     }
+
+    protected final ProductFixedTermNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductFixedTermNodeComponent component;
 
     @Inject
     void createComponent(ProductFixedTermNodeComponent.Builder builder) {

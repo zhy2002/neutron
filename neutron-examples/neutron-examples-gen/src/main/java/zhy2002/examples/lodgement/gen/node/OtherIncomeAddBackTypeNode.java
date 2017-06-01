@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherIncomeAddBackTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
-
-    private OtherIncomeAddBackTypeNodeComponent component;
 
     @Inject
     public OtherIncomeAddBackTypeNode(@Owner OtherIncomeNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
     public final Class<?> getConcreteClass() {
     return OtherIncomeAddBackTypeNode.class;
     }
+
+    protected final OtherIncomeAddBackTypeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OtherIncomeAddBackTypeNodeComponent component;
 
     @Inject
     void createComponent(OtherIncomeAddBackTypeNodeComponent.Builder builder) {

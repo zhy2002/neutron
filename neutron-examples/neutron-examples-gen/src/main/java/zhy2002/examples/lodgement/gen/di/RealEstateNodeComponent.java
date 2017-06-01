@@ -8,6 +8,10 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {RealEstateNodeModule.class})
 public interface RealEstateNodeComponent {
 
+    UsageNode createUsageNode();
+    PropertyNode createPropertyNode();
+    AccessNode createAccessNode();
+
     RuleProvider<RealEstateNode> getRealEstateNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +21,5 @@ public interface RealEstateNodeComponent {
 
         RealEstateNodeComponent build();
     }
+
 }

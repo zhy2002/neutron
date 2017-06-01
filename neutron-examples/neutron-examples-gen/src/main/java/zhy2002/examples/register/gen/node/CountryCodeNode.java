@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.CountryCodeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
@@ -20,6 +21,11 @@ public class CountryCodeNode extends PhoneInfoFieldNode {
     public final Class<?> getConcreteClass() {
     return CountryCodeNode.class;
     }
+
+    protected final CountryCodeNodeComponent getComponent() {
+        return component;
+    }
+
 
     private CountryCodeNodeComponent component;
 

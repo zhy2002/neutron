@@ -9,6 +9,21 @@ import java.util.*;
 @Subcomponent(modules = {CompanyGeneralNodeModule.class})
 public interface CompanyGeneralNodeComponent {
 
+    CompanyApplicantTypeNode createCompanyApplicantTypeNode();
+    CompanyPrimaryApplicantFlagNode createCompanyPrimaryApplicantFlagNode();
+    CompanyApplicationTypeNode createCompanyApplicationTypeNode();
+    CompanyRegisteredNameNode createCompanyRegisteredNameNode();
+    CompanyTypeNode createCompanyTypeNode();
+    CompanyDescriptionNode createCompanyDescriptionNode();
+    CompanyIndustryNode createCompanyIndustryNode();
+    CompanyAbnNode createCompanyAbnNode();
+    CompanyAcnNode createCompanyAcnNode();
+    CompanyAbrnNode createCompanyAbrnNode();
+    CompanyRegistrationDateNode createCompanyRegistrationDateNode();
+    CompanyRegistrationStateNode createCompanyRegistrationStateNode();
+    CompanySelectDirectorNode createCompanySelectDirectorNode();
+    CompanySelectBeneficialOwnerNode createCompanySelectBeneficialOwnerNode();
+
     RuleProvider<CompanyGeneralNode> getCompanyGeneralNodeRuleProvider();
     Map<String, RuleProvider<CompanyGeneralNode>> getInstanceRuleProviders();
 
@@ -19,4 +34,5 @@ public interface CompanyGeneralNodeComponent {
 
         CompanyGeneralNodeComponent build();
     }
+
 }

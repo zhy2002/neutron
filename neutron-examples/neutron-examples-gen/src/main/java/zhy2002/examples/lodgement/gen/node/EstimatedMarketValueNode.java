@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.EstimatedMarketValueNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
-
-    private EstimatedMarketValueNodeComponent component;
 
     @Inject
     public EstimatedMarketValueNode(@Owner PropertyNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class EstimatedMarketValueNode extends BigDecimalUiNode<PropertyNode> {
     public final Class<?> getConcreteClass() {
     return EstimatedMarketValueNode.class;
     }
+
+    protected final EstimatedMarketValueNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private EstimatedMarketValueNodeComponent component;
 
     @Inject
     void createComponent(EstimatedMarketValueNodeComponent.Builder builder) {

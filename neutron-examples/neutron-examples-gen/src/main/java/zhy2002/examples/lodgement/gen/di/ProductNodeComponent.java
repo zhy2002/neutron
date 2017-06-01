@@ -8,6 +8,9 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {ProductNodeModule.class})
 public interface ProductNodeComponent {
 
+    ProductDescriptionNode createProductDescriptionNode();
+    ProductFeaturesNode createProductFeaturesNode();
+
     RuleProvider<ProductNode> getProductNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +20,5 @@ public interface ProductNodeComponent {
 
         ProductNodeComponent build();
     }
+
 }

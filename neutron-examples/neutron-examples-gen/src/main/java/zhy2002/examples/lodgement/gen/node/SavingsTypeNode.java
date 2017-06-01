@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SavingsTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class SavingsTypeNode extends StringUiNode<SavingsAccountNode> {
     public final Class<?> getConcreteClass() {
     return SavingsTypeNode.class;
     }
+
+    protected final SavingsTypeNodeComponent getComponent() {
+        return component;
+    }
+
 
     private SavingsTypeNodeComponent component;
 

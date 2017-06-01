@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ResponsibleTypeOfChangeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLendNode<?>> {
-
-    private ResponsibleTypeOfChangeNodeComponent component;
 
     @Inject
     public ResponsibleTypeOfChangeNode(@Owner BaseResponsibleLendNode<?> parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLen
     public final Class<?> getConcreteClass() {
     return ResponsibleTypeOfChangeNode.class;
     }
+
+    protected final ResponsibleTypeOfChangeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ResponsibleTypeOfChangeNodeComponent component;
 
     @Inject
     void createComponent(ResponsibleTypeOfChangeNodeComponent.Builder builder) {

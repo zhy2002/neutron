@@ -8,16 +8,19 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
 
-    private SelectAccountHolderListNodeItemFactory itemFactory;
-
     public SelectAccountHolderListNode(P parent, String name) {
         super(parent, name);
     }
+
+    private SelectAccountHolderListNodeItemFactory itemFactory;
 
     @Inject
     void receiveNodeProvider(SelectAccountHolderListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
 
     @Override
     public Class<SelectAccountHolderNode> getItemClass() {

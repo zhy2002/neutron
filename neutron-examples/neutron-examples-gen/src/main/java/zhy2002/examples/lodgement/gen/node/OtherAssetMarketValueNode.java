@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherAssetMarketValueNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> 
     public final Class<?> getConcreteClass() {
     return OtherAssetMarketValueNode.class;
     }
+
+    protected final OtherAssetMarketValueNodeComponent getComponent() {
+        return component;
+    }
+
 
     private OtherAssetMarketValueNodeComponent component;
 

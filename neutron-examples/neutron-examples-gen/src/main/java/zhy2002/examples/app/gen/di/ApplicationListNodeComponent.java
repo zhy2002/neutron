@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ApplicationListNodeModule.class})
 public interface ApplicationListNodeComponent {
 
+
     RuleProvider<ApplicationListNode> getApplicationListNodeRuleProvider();
     Map<String, RuleProvider<ApplicationListNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ApplicationListNodeComponent {
 
         ApplicationListNodeComponent build();
     }
+
 }

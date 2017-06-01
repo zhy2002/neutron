@@ -8,6 +8,7 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {ErrorNodeModule.class})
 public interface ErrorNodeComponent {
 
+
     RuleProvider<ErrorNode> getErrorNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +18,5 @@ public interface ErrorNodeComponent {
 
         ErrorNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardOwnershipListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class CreditCardOwnershipListNode extends OwnershipListNode<CreditCardNod
     public final Class<?> getConcreteClass() {
     return CreditCardOwnershipListNode.class;
     }
+
+    protected final CreditCardOwnershipListNodeComponent getComponent() {
+        return component;
+    }
+
 
     private CreditCardOwnershipListNodeComponent component;
 

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ApplicationNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -35,6 +36,13 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     void receiveNodeProvider(ApplicationNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ApplicationNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ApplicationNodeComponent component;
 
@@ -90,6 +98,8 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
     public void setContentLevel(int value) {
         setStateValue(CONTENT_LEVEL_PROPERTY, value);
     }
+
+    //region children getters
 
     @JsMethod
     public IdNode getIdNode() {
@@ -171,41 +181,42 @@ public class ApplicationNode extends RootUiNode<VoidUiNode> {
         return (ErrorListNode)getChildByName("errorListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("idNode");
-        children.add(childFactory.createIdNode());
+        children.add(getComponent().createIdNode());
         setChildNodeIdentity("statusNode");
-        children.add(childFactory.createStatusNode());
+        children.add(getComponent().createStatusNode());
         setChildNodeIdentity("owningUserNode");
-        children.add(childFactory.createOwningUserNode());
+        children.add(getComponent().createOwningUserNode());
         setChildNodeIdentity("lenderNode");
-        children.add(childFactory.createLenderNode());
+        children.add(getComponent().createLenderNode());
         setChildNodeIdentity("dateCreatedNode");
-        children.add(childFactory.createDateCreatedNode());
+        children.add(getComponent().createDateCreatedNode());
         setChildNodeIdentity("dateUpdatedNode");
-        children.add(childFactory.createDateUpdatedNode());
+        children.add(getComponent().createDateUpdatedNode());
         setChildNodeIdentity("dateLodgedNode");
-        children.add(childFactory.createDateLodgedNode());
+        children.add(getComponent().createDateLodgedNode());
         setChildNodeIdentity("addressRefListNode");
-        children.add(childFactory.createAddressRefListNode());
+        children.add(getComponent().createAddressRefListNode());
         setChildNodeIdentity("personListNode");
-        children.add(childFactory.createPersonListNode());
+        children.add(getComponent().createPersonListNode());
         setChildNodeIdentity("companyListNode");
-        children.add(childFactory.createCompanyListNode());
+        children.add(getComponent().createCompanyListNode());
         setChildNodeIdentity("financialPositionNode");
-        children.add(childFactory.createFinancialPositionNode());
+        children.add(getComponent().createFinancialPositionNode());
         setChildNodeIdentity("realEstateListNode");
-        children.add(childFactory.createRealEstateListNode());
+        children.add(getComponent().createRealEstateListNode());
         setChildNodeIdentity("productsNode");
-        children.add(childFactory.createProductsNode());
+        children.add(getComponent().createProductsNode());
         setChildNodeIdentity("additionalNode");
-        children.add(childFactory.createAdditionalNode());
+        children.add(getComponent().createAdditionalNode());
         setChildNodeIdentity("submissionNode");
-        children.add(childFactory.createSubmissionNode());
+        children.add(getComponent().createSubmissionNode());
         setChildNodeIdentity("errorListNode");
-        children.add(childFactory.createErrorListNode());
+        children.add(getComponent().createErrorListNode());
         setChildNodeIdentity(null);
         return children;
     }

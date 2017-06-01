@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ContractPriceNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
-
-    private ContractPriceNodeComponent component;
 
     @Inject
     public ContractPriceNode(@Owner PropertyNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
     public final Class<?> getConcreteClass() {
     return ContractPriceNode.class;
     }
+
+    protected final ContractPriceNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ContractPriceNodeComponent component;
 
     @Inject
     void createComponent(ContractPriceNodeComponent.Builder builder) {

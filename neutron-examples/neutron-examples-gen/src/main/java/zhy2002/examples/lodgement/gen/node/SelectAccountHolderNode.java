@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SelectAccountHolderNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderListNode<?>> {
 
-    private SelectAccountHolderNodeChildFactory childFactory;
-    private SelectAccountHolderNodeComponent component;
-
     @Inject
     public SelectAccountHolderNode(@Owner SelectAccountHolderListNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
     return SelectAccountHolderNode.class;
     }
 
+    private SelectAccountHolderNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(SelectAccountHolderNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final SelectAccountHolderNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private SelectAccountHolderNodeComponent component;
 
     @Inject
     void createComponent(SelectAccountHolderNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public AccountHolderReferenceNode getAccountHolderReferenceNode() {
         return (AccountHolderReferenceNode)getChildByName("accountHolderReferenceNode");
@@ -60,13 +71,14 @@ public class SelectAccountHolderNode extends ObjectUiNode<SelectAccountHolderLis
         return (SelectAccountHolderFlagNode)getChildByName("selectAccountHolderFlagNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("accountHolderReferenceNode");
-        children.add(childFactory.createAccountHolderReferenceNode());
+        children.add(getComponent().createAccountHolderReferenceNode());
         setChildNodeIdentity("selectAccountHolderFlagNode");
-        children.add(childFactory.createSelectAccountHolderFlagNode());
+        children.add(getComponent().createSelectAccountHolderFlagNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ThirdPartyCompanyNameNodeModule.class})
 public interface ThirdPartyCompanyNameNodeComponent {
 
+
     RuleProvider<ThirdPartyCompanyNameNode> getThirdPartyCompanyNameNodeRuleProvider();
     Map<String, RuleProvider<ThirdPartyCompanyNameNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ThirdPartyCompanyNameNodeComponent {
 
         ThirdPartyCompanyNameNodeComponent build();
     }
+
 }

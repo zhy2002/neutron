@@ -9,6 +9,10 @@ import java.util.*;
 @Subcomponent(modules = {LiabilitiesNodeModule.class})
 public interface LiabilitiesNodeComponent {
 
+    CreditCardListNode createCreditCardListNode();
+    LoanListNode createLoanListNode();
+    OtherLiabilityListNode createOtherLiabilityListNode();
+
     RuleProvider<LiabilitiesNode> getLiabilitiesNodeRuleProvider();
     Map<String, RuleProvider<LiabilitiesNode>> getInstanceRuleProviders();
 
@@ -19,4 +23,5 @@ public interface LiabilitiesNodeComponent {
 
         LiabilitiesNodeComponent build();
     }
+
 }

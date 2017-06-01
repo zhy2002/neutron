@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PersonGeneralNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
 
-    private PersonGeneralNodeChildFactory childFactory;
-    private PersonGeneralNodeComponent component;
-
     @Inject
     public PersonGeneralNode(@Owner PersonNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     return PersonGeneralNode.class;
     }
 
+    private PersonGeneralNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(PersonGeneralNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final PersonGeneralNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PersonGeneralNodeComponent component;
 
     @Inject
     void createComponent(PersonGeneralNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
     private RuleProvider<PersonGeneralNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public TitleNode getTitleNode() {
@@ -141,43 +152,44 @@ public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
         return (ApplicationTypeNode)getChildByName("applicationTypeNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("titleNode");
-        children.add(childFactory.createTitleNode());
+        children.add(getComponent().createTitleNode());
         setChildNodeIdentity("otherTitleNode");
-        children.add(childFactory.createOtherTitleNode());
+        children.add(getComponent().createOtherTitleNode());
         setChildNodeIdentity("firstNameNode");
-        children.add(childFactory.createFirstNameNode());
+        children.add(getComponent().createFirstNameNode());
         setChildNodeIdentity("lastNameNode");
-        children.add(childFactory.createLastNameNode());
+        children.add(getComponent().createLastNameNode());
         setChildNodeIdentity("genderNode");
-        children.add(childFactory.createGenderNode());
+        children.add(getComponent().createGenderNode());
         setChildNodeIdentity("dateOfBirthNode");
-        children.add(childFactory.createDateOfBirthNode());
+        children.add(getComponent().createDateOfBirthNode());
         setChildNodeIdentity("primaryApplicantFlagNode");
-        children.add(childFactory.createPrimaryApplicantFlagNode());
+        children.add(getComponent().createPrimaryApplicantFlagNode());
         setChildNodeIdentity("driversLicenseNode");
-        children.add(childFactory.createDriversLicenseNode());
+        children.add(getComponent().createDriversLicenseNode());
         setChildNodeIdentity("personApplicantTypeNode");
-        children.add(childFactory.createPersonApplicantTypeNode());
+        children.add(getComponent().createPersonApplicantTypeNode());
         setChildNodeIdentity("maritalStatusNode");
-        children.add(childFactory.createMaritalStatusNode());
+        children.add(getComponent().createMaritalStatusNode());
         setChildNodeIdentity("permanentResidentFlagNode");
-        children.add(childFactory.createPermanentResidentFlagNode());
+        children.add(getComponent().createPermanentResidentFlagNode());
         setChildNodeIdentity("spouseNode");
-        children.add(childFactory.createSpouseNode());
+        children.add(getComponent().createSpouseNode());
         setChildNodeIdentity("nextOfKinNode");
-        children.add(childFactory.createNextOfKinNode());
+        children.add(getComponent().createNextOfKinNode());
         setChildNodeIdentity("ageOfDependantsNode");
-        children.add(childFactory.createAgeOfDependantsNode());
+        children.add(getComponent().createAgeOfDependantsNode());
         setChildNodeIdentity("firstHomeBuyerFlagNode");
-        children.add(childFactory.createFirstHomeBuyerFlagNode());
+        children.add(getComponent().createFirstHomeBuyerFlagNode());
         setChildNodeIdentity("housingStatusNode");
-        children.add(childFactory.createHousingStatusNode());
+        children.add(getComponent().createHousingStatusNode());
         setChildNodeIdentity("applicationTypeNode");
-        children.add(childFactory.createApplicationTypeNode());
+        children.add(getComponent().createApplicationTypeNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AddressRefListNodeModule.class})
 public interface AddressRefListNodeComponent {
 
+
     RuleProvider<AddressRefListNode> getAddressRefListNodeRuleProvider();
     Map<String, RuleProvider<AddressRefListNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AddressRefListNodeComponent {
 
         AddressRefListNodeComponent build();
     }
+
 }

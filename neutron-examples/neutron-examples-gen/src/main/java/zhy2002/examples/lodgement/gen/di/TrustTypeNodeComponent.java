@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {TrustTypeNodeModule.class})
 public interface TrustTypeNodeComponent {
 
+
     RuleProvider<TrustTypeNode> getTrustTypeNodeRuleProvider();
     Map<String, RuleProvider<TrustTypeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface TrustTypeNodeComponent {
 
         TrustTypeNodeComponent build();
     }
+
 }

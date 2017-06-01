@@ -8,6 +8,11 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {MotorVehicleNodeModule.class})
 public interface MotorVehicleNodeComponent {
 
+    VehicleModelNode createVehicleModelNode();
+    VehicleYearNode createVehicleYearNode();
+    VehicleMarketValueNode createVehicleMarketValueNode();
+    VehicleOwnershipListNode createOwnershipListNode();
+
     RuleProvider<MotorVehicleNode> getMotorVehicleNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +22,5 @@ public interface MotorVehicleNodeComponent {
 
         MotorVehicleNodeComponent build();
     }
+
 }

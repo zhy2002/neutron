@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OtherLiabilityOwnershipListNodeModule.class})
 public interface OtherLiabilityOwnershipListNodeComponent {
 
+
     RuleProvider<OtherLiabilityOwnershipListNode> getOtherLiabilityOwnershipListNodeRuleProvider();
     Map<String, RuleProvider<OtherLiabilityOwnershipListNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OtherLiabilityOwnershipListNodeComponent {
 
         OtherLiabilityOwnershipListNodeComponent build();
     }
+
 }

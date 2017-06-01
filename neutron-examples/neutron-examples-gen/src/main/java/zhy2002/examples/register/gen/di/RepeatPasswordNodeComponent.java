@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {RepeatPasswordNodeModule.class})
 public interface RepeatPasswordNodeComponent {
 
+
     RuleProvider<RepeatPasswordNode> getRepeatPasswordNodeRuleProvider();
     Map<String, RuleProvider<RepeatPasswordNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface RepeatPasswordNodeComponent {
 
         RepeatPasswordNodeComponent build();
     }
+
 }

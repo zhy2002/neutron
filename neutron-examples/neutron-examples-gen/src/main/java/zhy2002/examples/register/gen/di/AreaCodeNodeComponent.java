@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AreaCodeNodeModule.class})
 public interface AreaCodeNodeComponent {
 
+
     RuleProvider<AreaCodeNode> getAreaCodeNodeRuleProvider();
     Map<String, RuleProvider<AreaCodeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AreaCodeNodeComponent {
 
         AreaCodeNodeComponent build();
     }
+
 }

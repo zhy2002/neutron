@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ThirdPartyDisclosureFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
-
-    private ThirdPartyDisclosureFlagNodeComponent component;
 
     @Inject
     public ThirdPartyDisclosureFlagNode(@Owner BasePrivacyNode<?> parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<
     public final Class<?> getConcreteClass() {
     return ThirdPartyDisclosureFlagNode.class;
     }
+
+    protected final ThirdPartyDisclosureFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ThirdPartyDisclosureFlagNodeComponent component;
 
     @Inject
     void createComponent(ThirdPartyDisclosureFlagNodeComponent.Builder builder) {

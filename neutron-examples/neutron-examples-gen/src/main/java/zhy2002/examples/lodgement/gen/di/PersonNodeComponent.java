@@ -8,6 +8,15 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {PersonNodeModule.class})
 public interface PersonNodeComponent {
 
+    PersonGeneralNode createPersonGeneralNode();
+    PersonContactNode createPersonContactNode();
+    CurrentEmploymentListNode createCurrentEmploymentListNode();
+    PreviousEmploymentListNode createPreviousEmploymentListNode();
+    PersonTrustNode createPersonTrustNode();
+    PersonPrivacyNode createPersonPrivacyNode();
+    PersonOtherIncomeListNode createPersonOtherIncomeListNode();
+    PersonResponsibleLendNode createPersonResponsibleLendNode();
+
     RuleProvider<PersonNode> getPersonNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +26,5 @@ public interface PersonNodeComponent {
 
         PersonNodeComponent build();
     }
+
 }

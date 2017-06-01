@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.EmployerNameNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class EmployerNameNode extends StringUiNode<EmployedNode> {
-
-    private EmployerNameNodeComponent component;
 
     @Inject
     public EmployerNameNode(@Owner EmployedNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class EmployerNameNode extends StringUiNode<EmployedNode> {
     public final Class<?> getConcreteClass() {
     return EmployerNameNode.class;
     }
+
+    protected final EmployerNameNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private EmployerNameNodeComponent component;
 
     @Inject
     void createComponent(EmployerNameNodeComponent.Builder builder) {

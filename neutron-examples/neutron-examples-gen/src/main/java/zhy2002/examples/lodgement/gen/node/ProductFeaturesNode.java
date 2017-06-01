@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductFeaturesNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
 
-    private ProductFeaturesNodeChildFactory childFactory;
-    private ProductFeaturesNodeComponent component;
-
     @Inject
     public ProductFeaturesNode(@Owner ProductNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
     return ProductFeaturesNode.class;
     }
 
+    private ProductFeaturesNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ProductFeaturesNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ProductFeaturesNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductFeaturesNodeComponent component;
 
     @Inject
     void createComponent(ProductFeaturesNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
     private RuleProvider<ProductFeaturesNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public ProductPackageNameNode getProductPackageNameNode() {
@@ -116,33 +127,34 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
         return (ProductCardHolderNode)getChildByName("productAdditionalCardHolderNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("productPackageNameNode");
-        children.add(childFactory.createProductPackageNameNode());
+        children.add(getComponent().createProductPackageNameNode());
         setChildNodeIdentity("productRepaymentFrequencyNode");
-        children.add(childFactory.createProductRepaymentFrequencyNode());
+        children.add(getComponent().createProductRepaymentFrequencyNode());
         setChildNodeIdentity("productRateLockFlagNode");
-        children.add(childFactory.createProductRateLockFlagNode());
+        children.add(getComponent().createProductRateLockFlagNode());
         setChildNodeIdentity("productTransactionAccountFlagNode");
-        children.add(childFactory.createProductTransactionAccountFlagNode());
+        children.add(getComponent().createProductTransactionAccountFlagNode());
         setChildNodeIdentity("productOptOutReasonNode");
-        children.add(childFactory.createProductOptOutReasonNode());
+        children.add(getComponent().createProductOptOutReasonNode());
         setChildNodeIdentity("productCreditCardFlagNode");
-        children.add(childFactory.createProductCreditCardFlagNode());
+        children.add(getComponent().createProductCreditCardFlagNode());
         setChildNodeIdentity("productCreditCardTypeNode");
-        children.add(childFactory.createProductCreditCardTypeNode());
+        children.add(getComponent().createProductCreditCardTypeNode());
         setChildNodeIdentity("productCreditCardLimitNode");
-        children.add(childFactory.createProductCreditCardLimitNode());
+        children.add(getComponent().createProductCreditCardLimitNode());
         setChildNodeIdentity("productExpressConsentFlagNode");
-        children.add(childFactory.createProductExpressConsentFlagNode());
+        children.add(getComponent().createProductExpressConsentFlagNode());
         setChildNodeIdentity("product100PercentOffsetFlagNode");
-        children.add(childFactory.createProduct100PercentOffsetFlagNode());
+        children.add(getComponent().createProduct100PercentOffsetFlagNode());
         setChildNodeIdentity("productPrimaryCardHolderNode");
-        children.add(childFactory.createProductPrimaryCardHolderNode());
+        children.add(getComponent().createProductPrimaryCardHolderNode());
         setChildNodeIdentity("productAdditionalCardHolderNode");
-        children.add(childFactory.createProductAdditionalCardHolderNode());
+        children.add(getComponent().createProductAdditionalCardHolderNode());
         setChildNodeIdentity(null);
         return children;
     }

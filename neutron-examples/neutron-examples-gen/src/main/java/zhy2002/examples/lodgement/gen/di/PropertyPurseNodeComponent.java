@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PropertyPurseNodeModule.class})
 public interface PropertyPurseNodeComponent {
 
+
     RuleProvider<PropertyPurseNode> getPropertyPurseNodeRuleProvider();
     Map<String, RuleProvider<PropertyPurseNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PropertyPurseNodeComponent {
 
         PropertyPurseNodeComponent build();
     }
+
 }

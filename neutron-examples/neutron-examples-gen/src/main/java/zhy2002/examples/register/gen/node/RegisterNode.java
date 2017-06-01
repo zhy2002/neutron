@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.RegisterNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -35,6 +36,13 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     void receiveNodeProvider(RegisterNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final RegisterNodeComponent getComponent() {
+        return component;
+    }
+
 
     private RegisterNodeComponent component;
 
@@ -78,6 +86,8 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     public void setHasError(Boolean value) {
         setStateValue(HAS_ERROR_PROPERTY, value);
     }
+
+    //region children getters
 
     @JsMethod
     public UsernameNode getUsernameNode() {
@@ -139,33 +149,34 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
         return (ErrorListNode)getChildByName("errorListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("usernameNode");
-        children.add(childFactory.createUsernameNode());
+        children.add(getComponent().createUsernameNode());
         setChildNodeIdentity("emailNode");
-        children.add(childFactory.createEmailNode());
+        children.add(getComponent().createEmailNode());
         setChildNodeIdentity("passwordNode");
-        children.add(childFactory.createPasswordNode());
+        children.add(getComponent().createPasswordNode());
         setChildNodeIdentity("repeatPasswordNode");
-        children.add(childFactory.createRepeatPasswordNode());
+        children.add(getComponent().createRepeatPasswordNode());
         setChildNodeIdentity("ageNode");
-        children.add(childFactory.createAgeNode());
+        children.add(getComponent().createAgeNode());
         setChildNodeIdentity("planNode");
-        children.add(childFactory.createPlanNode());
+        children.add(getComponent().createPlanNode());
         setChildNodeIdentity("receiveOffersNode");
-        children.add(childFactory.createReceiveOffersNode());
+        children.add(getComponent().createReceiveOffersNode());
         setChildNodeIdentity("ownInvestmentPropertyNode");
-        children.add(childFactory.createOwnInvestmentPropertyNode());
+        children.add(getComponent().createOwnInvestmentPropertyNode());
         setChildNodeIdentity("residentialPropertyNode");
-        children.add(childFactory.createResidentialPropertyNode());
+        children.add(getComponent().createResidentialPropertyNode());
         setChildNodeIdentity("investmentPropertyNode");
-        children.add(childFactory.createInvestmentPropertyNode());
+        children.add(getComponent().createInvestmentPropertyNode());
         setChildNodeIdentity("homePhoneNode");
-        children.add(childFactory.createHomePhoneNode());
+        children.add(getComponent().createHomePhoneNode());
         setChildNodeIdentity("errorListNode");
-        children.add(childFactory.createErrorListNode());
+        children.add(getComponent().createErrorListNode());
         setChildNodeIdentity(null);
         return children;
     }

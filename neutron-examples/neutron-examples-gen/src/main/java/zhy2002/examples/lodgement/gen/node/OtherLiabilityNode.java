@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherLiabilityNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
 
-    private OtherLiabilityNodeChildFactory childFactory;
-    private OtherLiabilityNodeComponent component;
-
     @Inject
     public OtherLiabilityNode(@Owner OtherLiabilityListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     return OtherLiabilityNode.class;
     }
 
+    private OtherLiabilityNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(OtherLiabilityNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final OtherLiabilityNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OtherLiabilityNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public OtherLiabilityTypeNode getOtherLiabilityTypeNode() {
@@ -90,25 +101,26 @@ public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
         return (OtherLiabilityOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("otherLiabilityTypeNode");
-        children.add(childFactory.createOtherLiabilityTypeNode());
+        children.add(getComponent().createOtherLiabilityTypeNode());
         setChildNodeIdentity("otherLiabilityDescriptionNode");
-        children.add(childFactory.createOtherLiabilityDescriptionNode());
+        children.add(getComponent().createOtherLiabilityDescriptionNode());
         setChildNodeIdentity("otherLiabilityLimitAmountNode");
-        children.add(childFactory.createOtherLiabilityLimitAmountNode());
+        children.add(getComponent().createOtherLiabilityLimitAmountNode());
         setChildNodeIdentity("otherLiabilityAmountOwningNode");
-        children.add(childFactory.createOtherLiabilityAmountOwningNode());
+        children.add(getComponent().createOtherLiabilityAmountOwningNode());
         setChildNodeIdentity("otherLiabilityMonthlyRepaymentNode");
-        children.add(childFactory.createOtherLiabilityMonthlyRepaymentNode());
+        children.add(getComponent().createOtherLiabilityMonthlyRepaymentNode());
         setChildNodeIdentity("otherLiabilityClearingFlagNode");
-        children.add(childFactory.createOtherLiabilityClearingFlagNode());
+        children.add(getComponent().createOtherLiabilityClearingFlagNode());
         setChildNodeIdentity("otherLiabilityBreakCostNode");
-        children.add(childFactory.createOtherLiabilityBreakCostNode());
+        children.add(getComponent().createOtherLiabilityBreakCostNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

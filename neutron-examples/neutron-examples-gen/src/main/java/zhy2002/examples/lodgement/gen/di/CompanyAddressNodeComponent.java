@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {CompanyAddressNodeModule.class})
-public interface CompanyAddressNodeComponent {
+public interface CompanyAddressNodeComponent extends AddressNodeComponent {
+
 
     RuleProvider<CompanyAddressNode> getCompanyAddressNodeRuleProvider();
     Map<String, RuleProvider<CompanyAddressNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface CompanyAddressNodeComponent {
 
         CompanyAddressNodeComponent build();
     }
+
 }

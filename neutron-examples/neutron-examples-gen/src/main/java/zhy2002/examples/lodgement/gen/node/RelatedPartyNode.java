@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.RelatedPartyNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
-    private RelatedPartyNodeChildFactory childFactory;
-    private RelatedPartyNodeComponent component;
-
     @Inject
     public RelatedPartyNode(@Owner RelatedPartyListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
     return RelatedPartyNode.class;
     }
 
+    private RelatedPartyNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(RelatedPartyNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final RelatedPartyNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private RelatedPartyNodeComponent component;
 
     @Inject
     void createComponent(RelatedPartyNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public ThirdPartyTypeNode getThirdPartyTypeNode() {
@@ -100,29 +111,30 @@ public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
         return (ThirdPartyEmailNode)getChildByName("thirdPartyEmailNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("thirdPartyTypeNode");
-        children.add(childFactory.createThirdPartyTypeNode());
+        children.add(getComponent().createThirdPartyTypeNode());
         setChildNodeIdentity("thirdPartyDescriptionNode");
-        children.add(childFactory.createThirdPartyDescriptionNode());
+        children.add(getComponent().createThirdPartyDescriptionNode());
         setChildNodeIdentity("thirdPartyTitleNode");
-        children.add(childFactory.createThirdPartyTitleNode());
+        children.add(getComponent().createThirdPartyTitleNode());
         setChildNodeIdentity("thirdPartyFirstNameNode");
-        children.add(childFactory.createThirdPartyFirstNameNode());
+        children.add(getComponent().createThirdPartyFirstNameNode());
         setChildNodeIdentity("thirdPartyLastNameNode");
-        children.add(childFactory.createThirdPartyLastNameNode());
+        children.add(getComponent().createThirdPartyLastNameNode());
         setChildNodeIdentity("thirdPartyDobNode");
-        children.add(childFactory.createThirdPartyDobNode());
+        children.add(getComponent().createThirdPartyDobNode());
         setChildNodeIdentity("thirdPartyCompanyNameNode");
-        children.add(childFactory.createThirdPartyCompanyNameNode());
+        children.add(getComponent().createThirdPartyCompanyNameNode());
         setChildNodeIdentity("thirdPartyAddressNode");
-        children.add(childFactory.createThirdPartyAddressNode());
+        children.add(getComponent().createThirdPartyAddressNode());
         setChildNodeIdentity("thirdPartyWorkPhoneNode");
-        children.add(childFactory.createThirdPartyWorkPhoneNode());
+        children.add(getComponent().createThirdPartyWorkPhoneNode());
         setChildNodeIdentity("thirdPartyEmailNode");
-        children.add(childFactory.createThirdPartyEmailNode());
+        children.add(getComponent().createThirdPartyEmailNode());
         setChildNodeIdentity(null);
         return children;
     }

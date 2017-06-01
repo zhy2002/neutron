@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {CompanyPrivacyNodeModule.class})
-public interface CompanyPrivacyNodeComponent {
+public interface CompanyPrivacyNodeComponent extends BasePrivacyNodeComponent {
+
 
     RuleProvider<CompanyPrivacyNode> getCompanyPrivacyNodeRuleProvider();
     Map<String, RuleProvider<CompanyPrivacyNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface CompanyPrivacyNodeComponent {
 
         CompanyPrivacyNodeComponent build();
     }
+
 }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OtherLiabilityClearingFlagNodeModule.class})
 public interface OtherLiabilityClearingFlagNodeComponent {
 
+
     RuleProvider<OtherLiabilityClearingFlagNode> getOtherLiabilityClearingFlagNodeRuleProvider();
     Map<String, RuleProvider<OtherLiabilityClearingFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OtherLiabilityClearingFlagNodeComponent {
 
         OtherLiabilityClearingFlagNodeComponent build();
     }
+
 }

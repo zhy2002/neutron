@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductInterestOnlyTermNodeModule.class})
 public interface ProductInterestOnlyTermNodeComponent {
 
+
     RuleProvider<ProductInterestOnlyTermNode> getProductInterestOnlyTermNodeRuleProvider();
     Map<String, RuleProvider<ProductInterestOnlyTermNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductInterestOnlyTermNodeComponent {
 
         ProductInterestOnlyTermNodeComponent build();
     }
+
 }

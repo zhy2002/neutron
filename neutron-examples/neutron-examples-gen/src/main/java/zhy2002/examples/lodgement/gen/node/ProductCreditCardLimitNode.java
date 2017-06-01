@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductCreditCardLimitNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeaturesNode> {
-
-    private ProductCreditCardLimitNodeComponent component;
 
     @Inject
     public ProductCreditCardLimitNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductCreditCardLimitNode extends BaseCurrencyNode<ProductFeatures
     public final Class<?> getConcreteClass() {
     return ProductCreditCardLimitNode.class;
     }
+
+    protected final ProductCreditCardLimitNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductCreditCardLimitNodeComponent component;
 
     @Inject
     void createComponent(ProductCreditCardLimitNodeComponent.Builder builder) {

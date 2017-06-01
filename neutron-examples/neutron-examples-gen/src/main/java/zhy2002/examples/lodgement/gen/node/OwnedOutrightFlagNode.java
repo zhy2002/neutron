@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OwnedOutrightFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
@@ -10,8 +11,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
-
-    private OwnedOutrightFlagNodeComponent component;
 
     @Inject
     public OwnedOutrightFlagNode(@Owner UsageNode parent, @ChildName String name) {
@@ -22,6 +21,13 @@ public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
     public final Class<?> getConcreteClass() {
     return OwnedOutrightFlagNode.class;
     }
+
+    protected final OwnedOutrightFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OwnedOutrightFlagNodeComponent component;
 
     @Inject
     void createComponent(OwnedOutrightFlagNodeComponent.Builder builder) {

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardBreakCostNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CreditCardBreakCostNode extends BaseCurrencyNode<CreditCardNode> {
-
-    private CreditCardBreakCostNodeComponent component;
 
     @Inject
     public CreditCardBreakCostNode(@Owner CreditCardNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class CreditCardBreakCostNode extends BaseCurrencyNode<CreditCardNode> {
     public final Class<?> getConcreteClass() {
     return CreditCardBreakCostNode.class;
     }
+
+    protected final CreditCardBreakCostNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CreditCardBreakCostNodeComponent component;
 
     @Inject
     void createComponent(CreditCardBreakCostNodeComponent.Builder builder) {

@@ -8,6 +8,17 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {RelatedPartyNodeModule.class})
 public interface RelatedPartyNodeComponent {
 
+    ThirdPartyTypeNode createThirdPartyTypeNode();
+    ThirdPartyDescriptionNode createThirdPartyDescriptionNode();
+    ThirdPartyTitleNode createThirdPartyTitleNode();
+    ThirdPartyFirstNameNode createThirdPartyFirstNameNode();
+    ThirdPartyLastNameNode createThirdPartyLastNameNode();
+    ThirdPartyDobNode createThirdPartyDobNode();
+    ThirdPartyCompanyNameNode createThirdPartyCompanyNameNode();
+    ThirdPartyAddressNode createThirdPartyAddressNode();
+    ThirdPartyWorkPhoneNode createThirdPartyWorkPhoneNode();
+    ThirdPartyEmailNode createThirdPartyEmailNode();
+
     RuleProvider<RelatedPartyNode> getRelatedPartyNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +28,5 @@ public interface RelatedPartyNodeComponent {
 
         RelatedPartyNodeComponent build();
     }
+
 }

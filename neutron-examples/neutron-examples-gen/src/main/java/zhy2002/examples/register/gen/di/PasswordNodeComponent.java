@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PasswordNodeModule.class})
 public interface PasswordNodeComponent {
 
+
     RuleProvider<PasswordNode> getPasswordNodeRuleProvider();
     Map<String, RuleProvider<PasswordNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PasswordNodeComponent {
 
         PasswordNodeComponent build();
     }
+
 }

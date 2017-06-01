@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.LoanNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class LoanNode extends ObjectUiNode<LoanListNode> {
 
-    private LoanNodeChildFactory childFactory;
-    private LoanNodeComponent component;
-
     @Inject
     public LoanNode(@Owner LoanListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
     return LoanNode.class;
     }
 
+    private LoanNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(LoanNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final LoanNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private LoanNodeComponent component;
 
     @Inject
     void createComponent(LoanNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public LoanTypeNode getLoanTypeNode() {
@@ -90,25 +101,26 @@ public class LoanNode extends ObjectUiNode<LoanListNode> {
         return (LoanOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("loanTypeNode");
-        children.add(childFactory.createLoanTypeNode());
+        children.add(getComponent().createLoanTypeNode());
         setChildNodeIdentity("loanLenderNameNode");
-        children.add(childFactory.createLoanLenderNameNode());
+        children.add(getComponent().createLoanLenderNameNode());
         setChildNodeIdentity("loanLimitAmountNode");
-        children.add(childFactory.createLoanLimitAmountNode());
+        children.add(getComponent().createLoanLimitAmountNode());
         setChildNodeIdentity("loanOwingAmountNode");
-        children.add(childFactory.createLoanOwingAmountNode());
+        children.add(getComponent().createLoanOwingAmountNode());
         setChildNodeIdentity("loanMonthlyRepaymentNode");
-        children.add(childFactory.createLoanMonthlyRepaymentNode());
+        children.add(getComponent().createLoanMonthlyRepaymentNode());
         setChildNodeIdentity("loanClearingFlagNode");
-        children.add(childFactory.createLoanClearingFlagNode());
+        children.add(getComponent().createLoanClearingFlagNode());
         setChildNodeIdentity("loanBreakCostNode");
-        children.add(childFactory.createLoanBreakCostNode());
+        children.add(getComponent().createLoanBreakCostNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

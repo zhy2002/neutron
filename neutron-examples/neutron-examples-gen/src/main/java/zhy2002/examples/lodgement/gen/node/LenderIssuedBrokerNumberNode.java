@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.LenderIssuedBrokerNumberNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class LenderIssuedBrokerNumberNode extends StringUiNode<SubmissionNode> {
     public final Class<?> getConcreteClass() {
     return LenderIssuedBrokerNumberNode.class;
     }
+
+    protected final LenderIssuedBrokerNumberNodeComponent getComponent() {
+        return component;
+    }
+
 
     private LenderIssuedBrokerNumberNodeComponent component;
 

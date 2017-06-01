@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {SelectAccountHolderFlagNodeModule.class})
 public interface SelectAccountHolderFlagNodeComponent {
 
+
     RuleProvider<SelectAccountHolderFlagNode> getSelectAccountHolderFlagNodeRuleProvider();
     Map<String, RuleProvider<SelectAccountHolderFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface SelectAccountHolderFlagNodeComponent {
 
         SelectAccountHolderFlagNodeComponent build();
     }
+
 }

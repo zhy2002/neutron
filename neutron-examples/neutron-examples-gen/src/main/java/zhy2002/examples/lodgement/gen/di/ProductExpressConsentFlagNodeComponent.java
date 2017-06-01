@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductExpressConsentFlagNodeModule.class})
 public interface ProductExpressConsentFlagNodeComponent {
 
+
     RuleProvider<ProductExpressConsentFlagNode> getProductExpressConsentFlagNodeRuleProvider();
     Map<String, RuleProvider<ProductExpressConsentFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductExpressConsentFlagNodeComponent {
 
         ProductExpressConsentFlagNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.RetiredEmploymentNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private RetiredEmploymentNodeChildFactory childFactory;
-    private RetiredEmploymentNodeComponent component;
-
     @Inject
     public RetiredEmploymentNode(@Owner EmploymentNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
     return RetiredEmploymentNode.class;
     }
 
+    private RetiredEmploymentNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(RetiredEmploymentNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final RetiredEmploymentNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private RetiredEmploymentNodeComponent component;
 
     @Inject
     void createComponent(RetiredEmploymentNodeComponent.Builder builder) {
@@ -56,6 +65,8 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public RetiredOnBenefitFlagNode getRetiredOnBenefitFlagNode() {
         return (RetiredOnBenefitFlagNode)getChildByName("retiredOnBenefitFlagNode");
@@ -66,13 +77,14 @@ public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
         return (RetiredSinceNode)getChildByName("retiredSinceNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("retiredOnBenefitFlagNode");
-        children.add(childFactory.createRetiredOnBenefitFlagNode());
+        children.add(getComponent().createRetiredOnBenefitFlagNode());
         setChildNodeIdentity("retiredSinceNode");
-        children.add(childFactory.createRetiredSinceNode());
+        children.add(getComponent().createRetiredSinceNode());
         setChildNodeIdentity(null);
         return children;
     }

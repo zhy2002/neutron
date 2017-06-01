@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductCreditCardLimitNodeModule.class})
 public interface ProductCreditCardLimitNodeComponent {
 
+
     RuleProvider<ProductCreditCardLimitNode> getProductCreditCardLimitNodeRuleProvider();
     Map<String, RuleProvider<ProductCreditCardLimitNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductCreditCardLimitNodeComponent {
 
         ProductCreditCardLimitNodeComponent build();
     }
+
 }

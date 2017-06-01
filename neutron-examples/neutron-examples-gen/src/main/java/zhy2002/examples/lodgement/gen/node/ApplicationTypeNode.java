@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ApplicationTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class ApplicationTypeNode extends StringUiNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return ApplicationTypeNode.class;
     }
+
+    protected final ApplicationTypeNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ApplicationTypeNodeComponent component;
 

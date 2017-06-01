@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CompanySelectBeneficialOwnerNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNode<CompanyGeneralNode> {
-
-    private CompanySelectBeneficialOwnerNodeComponent component;
 
     @Inject
     public CompanySelectBeneficialOwnerNode(@Owner CompanyGeneralNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNod
     public final Class<?> getConcreteClass() {
     return CompanySelectBeneficialOwnerNode.class;
     }
+
+    protected final CompanySelectBeneficialOwnerNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CompanySelectBeneficialOwnerNodeComponent component;
 
     @Inject
     void createComponent(CompanySelectBeneficialOwnerNodeComponent.Builder builder) {

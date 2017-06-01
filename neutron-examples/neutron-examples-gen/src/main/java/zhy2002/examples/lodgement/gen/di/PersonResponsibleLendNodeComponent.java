@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {PersonResponsibleLendNodeModule.class})
-public interface PersonResponsibleLendNodeComponent {
+public interface PersonResponsibleLendNodeComponent extends BaseResponsibleLendNodeComponent {
+
 
     RuleProvider<PersonResponsibleLendNode> getPersonResponsibleLendNodeRuleProvider();
     Map<String, RuleProvider<PersonResponsibleLendNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface PersonResponsibleLendNodeComponent {
 
         PersonResponsibleLendNodeComponent build();
     }
+
 }

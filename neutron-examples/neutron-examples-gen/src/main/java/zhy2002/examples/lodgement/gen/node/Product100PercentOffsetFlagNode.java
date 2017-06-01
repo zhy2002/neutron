@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.Product100PercentOffsetFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeaturesNode> {
-
-    private Product100PercentOffsetFlagNodeComponent component;
 
     @Inject
     public Product100PercentOffsetFlagNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeatur
     public final Class<?> getConcreteClass() {
     return Product100PercentOffsetFlagNode.class;
     }
+
+    protected final Product100PercentOffsetFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private Product100PercentOffsetFlagNodeComponent component;
 
     @Inject
     void createComponent(Product100PercentOffsetFlagNodeComponent.Builder builder) {

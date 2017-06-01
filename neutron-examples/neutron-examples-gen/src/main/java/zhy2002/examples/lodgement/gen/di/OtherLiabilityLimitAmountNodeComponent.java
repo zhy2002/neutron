@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OtherLiabilityLimitAmountNodeModule.class})
 public interface OtherLiabilityLimitAmountNodeComponent {
 
+
     RuleProvider<OtherLiabilityLimitAmountNode> getOtherLiabilityLimitAmountNodeRuleProvider();
     Map<String, RuleProvider<OtherLiabilityLimitAmountNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OtherLiabilityLimitAmountNodeComponent {
 
         OtherLiabilityLimitAmountNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class CreditCardTypeNode extends StringUiNode<CreditCardNode> {
     public final Class<?> getConcreteClass() {
     return CreditCardTypeNode.class;
     }
+
+    protected final CreditCardTypeNodeComponent getComponent() {
+        return component;
+    }
+
 
     private CreditCardTypeNodeComponent component;
 

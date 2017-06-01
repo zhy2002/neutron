@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
 
-    private CreditCardNodeChildFactory childFactory;
-    private CreditCardNodeComponent component;
-
     @Inject
     public CreditCardNode(@Owner CreditCardListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     return CreditCardNode.class;
     }
 
+    private CreditCardNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(CreditCardNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final CreditCardNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CreditCardNodeComponent component;
 
     @Inject
     void createComponent(CreditCardNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public CreditCardTypeNode getCreditCardTypeNode() {
@@ -90,25 +101,26 @@ public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
         return (CreditCardOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("creditCardTypeNode");
-        children.add(childFactory.createCreditCardTypeNode());
+        children.add(getComponent().createCreditCardTypeNode());
         setChildNodeIdentity("creditCardAmountOwingNode");
-        children.add(childFactory.createCreditCardAmountOwingNode());
+        children.add(getComponent().createCreditCardAmountOwingNode());
         setChildNodeIdentity("creditCardLimitAmountNode");
-        children.add(childFactory.createCreditCardLimitAmountNode());
+        children.add(getComponent().createCreditCardLimitAmountNode());
         setChildNodeIdentity("creditCardMonthlyRepaymentNode");
-        children.add(childFactory.createCreditCardMonthlyRepaymentNode());
+        children.add(getComponent().createCreditCardMonthlyRepaymentNode());
         setChildNodeIdentity("creditCardClearingFlagNode");
-        children.add(childFactory.createCreditCardClearingFlagNode());
+        children.add(getComponent().createCreditCardClearingFlagNode());
         setChildNodeIdentity("creditCardBreakCostNode");
-        children.add(childFactory.createCreditCardBreakCostNode());
+        children.add(getComponent().createCreditCardBreakCostNode());
         setChildNodeIdentity("creditCardLenderNameNode");
-        children.add(childFactory.createCreditCardLenderNameNode());
+        children.add(getComponent().createCreditCardLenderNameNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

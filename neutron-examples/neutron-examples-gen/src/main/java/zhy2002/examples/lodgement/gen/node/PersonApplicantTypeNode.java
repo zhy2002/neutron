@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PersonApplicantTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneralNode> {
-
-    private PersonApplicantTypeNodeComponent component;
 
     @Inject
     public PersonApplicantTypeNode(@Owner PersonGeneralNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneral
     public final Class<?> getConcreteClass() {
     return PersonApplicantTypeNode.class;
     }
+
+    protected final PersonApplicantTypeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PersonApplicantTypeNodeComponent component;
 
     @Inject
     void createComponent(PersonApplicantTypeNodeComponent.Builder builder) {

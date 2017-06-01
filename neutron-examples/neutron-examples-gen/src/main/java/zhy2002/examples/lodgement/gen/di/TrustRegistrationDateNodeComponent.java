@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {TrustRegistrationDateNodeModule.class})
 public interface TrustRegistrationDateNodeComponent {
 
+
     RuleProvider<TrustRegistrationDateNode> getTrustRegistrationDateNodeRuleProvider();
     Map<String, RuleProvider<TrustRegistrationDateNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface TrustRegistrationDateNodeComponent {
 
         TrustRegistrationDateNodeComponent build();
     }
+
 }

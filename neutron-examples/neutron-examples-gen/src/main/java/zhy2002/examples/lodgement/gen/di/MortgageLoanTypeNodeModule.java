@@ -34,7 +34,7 @@ public class MortgageLoanTypeNodeModule {
     }
 
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
     @Provides @ComponentScope ExistingMortgageNode provideExistingMortgageNode() {

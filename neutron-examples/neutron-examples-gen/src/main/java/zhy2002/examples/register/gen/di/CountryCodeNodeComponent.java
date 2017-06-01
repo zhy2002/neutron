@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {CountryCodeNodeModule.class})
 public interface CountryCodeNodeComponent {
 
+
     RuleProvider<CountryCodeNode> getCountryCodeNodeRuleProvider();
     Map<String, RuleProvider<CountryCodeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface CountryCodeNodeComponent {
 
         CountryCodeNodeComponent build();
     }
+
 }

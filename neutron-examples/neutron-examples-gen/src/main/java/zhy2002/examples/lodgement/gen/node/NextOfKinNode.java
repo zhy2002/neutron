@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.NextOfKinNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class NextOfKinNode extends ReferenceUiNode<PersonGeneralNode> {
-
-    private NextOfKinNodeComponent component;
 
     @Inject
     public NextOfKinNode(@Owner PersonGeneralNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class NextOfKinNode extends ReferenceUiNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return NextOfKinNode.class;
     }
+
+    protected final NextOfKinNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private NextOfKinNodeComponent component;
 
     @Inject
     void createComponent(NextOfKinNodeComponent.Builder builder) {

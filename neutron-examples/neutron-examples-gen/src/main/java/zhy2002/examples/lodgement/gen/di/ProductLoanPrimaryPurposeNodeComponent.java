@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductLoanPrimaryPurposeNodeModule.class})
 public interface ProductLoanPrimaryPurposeNodeComponent {
 
+
     RuleProvider<ProductLoanPrimaryPurposeNode> getProductLoanPrimaryPurposeNodeRuleProvider();
     Map<String, RuleProvider<ProductLoanPrimaryPurposeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductLoanPrimaryPurposeNodeComponent {
 
         ProductLoanPrimaryPurposeNodeComponent build();
     }
+
 }

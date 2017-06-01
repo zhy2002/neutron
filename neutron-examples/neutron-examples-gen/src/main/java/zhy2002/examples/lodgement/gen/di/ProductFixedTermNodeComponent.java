@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductFixedTermNodeModule.class})
 public interface ProductFixedTermNodeComponent {
 
+
     RuleProvider<ProductFixedTermNode> getProductFixedTermNodeRuleProvider();
     Map<String, RuleProvider<ProductFixedTermNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductFixedTermNodeComponent {
 
         ProductFixedTermNodeComponent build();
     }
+
 }

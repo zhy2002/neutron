@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SelfEmployedNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class SelfEmployedNode extends EmployedNode {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final SelfEmployedNodeComponent getComponent() {
+        return component;
+    }
+
+
     private SelfEmployedNodeComponent component;
 
     @Inject
@@ -57,6 +65,8 @@ public class SelfEmployedNode extends EmployedNode {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public BusinessTypeNode getBusinessTypeNode() {
         return (BusinessTypeNode)getChildByName("businessTypeNode");
@@ -72,15 +82,16 @@ public class SelfEmployedNode extends EmployedNode {
         return (ProfitPreviousYearNode)getChildByName("profitPreviousYearNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("businessTypeNode");
-        children.add(childFactory.createBusinessTypeNode());
+        children.add(getComponent().createBusinessTypeNode());
         setChildNodeIdentity("profitThisYearNode");
-        children.add(childFactory.createProfitThisYearNode());
+        children.add(getComponent().createProfitThisYearNode());
         setChildNodeIdentity("profitPreviousYearNode");
-        children.add(childFactory.createProfitPreviousYearNode());
+        children.add(getComponent().createProfitPreviousYearNode());
         setChildNodeIdentity(null);
         return children;
     }

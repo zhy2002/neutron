@@ -8,6 +8,15 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {CreditCardNodeModule.class})
 public interface CreditCardNodeComponent {
 
+    CreditCardTypeNode createCreditCardTypeNode();
+    CreditCardAmountOwingNode createCreditCardAmountOwingNode();
+    CreditCardLimitAmountNode createCreditCardLimitAmountNode();
+    CreditCardMonthlyRepaymentNode createCreditCardMonthlyRepaymentNode();
+    CreditCardClearingFlagNode createCreditCardClearingFlagNode();
+    CreditCardBreakCostNode createCreditCardBreakCostNode();
+    CreditCardLenderNameNode createCreditCardLenderNameNode();
+    CreditCardOwnershipListNode createOwnershipListNode();
+
     RuleProvider<CreditCardNode> getCreditCardNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +26,5 @@ public interface CreditCardNodeComponent {
 
         CreditCardNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.app.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.app.gen.di.ApplicationListNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -15,9 +16,6 @@ import java.util.List;
 
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
 
-    public static final PropertyMetadata<Boolean> UPDATED_PROPERTY = MetadataRegistry.createProperty(ApplicationListNode.class, "updated", Boolean.class, ChangeTrackingModeEnum.Always);
-    private ApplicationListNodeComponent component;
-
     @Inject
     public ApplicationListNode(@Owner AppManagerNode parent, @ChildName String name) {
         super(parent, name);
@@ -27,6 +25,13 @@ public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
     public final Class<?> getConcreteClass() {
     return ApplicationListNode.class;
     }
+
+    protected final ApplicationListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ApplicationListNodeComponent component;
 
     @Inject
     void createComponent(ApplicationListNodeComponent.Builder builder) {
@@ -52,6 +57,8 @@ public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
     private RuleProvider<ApplicationListNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    public static final PropertyMetadata<Boolean> UPDATED_PROPERTY = MetadataRegistry.createProperty(ApplicationListNode.class, "updated", Boolean.class, ChangeTrackingModeEnum.Always);
 
     @JsMethod
     public Boolean getUpdated() {

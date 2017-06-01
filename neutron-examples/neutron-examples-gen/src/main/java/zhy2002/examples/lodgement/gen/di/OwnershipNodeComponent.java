@@ -8,6 +8,10 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {OwnershipNodeModule.class})
 public interface OwnershipNodeComponent {
 
+    ApplicantReferenceNode createApplicantReferenceNode();
+    OwnershipPercentageNode createOwnershipPercentageNode();
+    AverageFlagNode createAverageFlagNode();
+
     RuleProvider<OwnershipNode> getOwnershipNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +21,5 @@ public interface OwnershipNodeComponent {
 
         OwnershipNodeComponent build();
     }
+
 }

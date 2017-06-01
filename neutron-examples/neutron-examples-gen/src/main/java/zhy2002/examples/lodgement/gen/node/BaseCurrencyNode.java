@@ -16,6 +16,7 @@ public abstract class BaseCurrencyNode<P extends ParentUiNode<?>> extends BigDec
         super(parent, name);
     }
 
+
     public static final PropertyMetadata<CurrencyInfo> CURRENCY_INFO_PROPERTY = MetadataRegistry.createProperty(BaseCurrencyNode.class, "currencyInfo", CurrencyInfo.class, ApplicationNodeConstants.AUD);
 
     @JsMethod

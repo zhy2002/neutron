@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CompanyNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -14,9 +15,6 @@ import java.util.List;
 
 public class CompanyNode extends ObjectUiNode<CompanyListNode> {
 
-    private CompanyNodeChildFactory childFactory;
-    private CompanyNodeComponent component;
-
     @Inject
     public CompanyNode(@Owner CompanyListNode parent, @ChildName String name) {
         super(parent, name);
@@ -27,10 +25,21 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
     return CompanyNode.class;
     }
 
+    private CompanyNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(CompanyNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final CompanyNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CompanyNodeComponent component;
 
     @Inject
     void createComponent(CompanyNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public CompanyGeneralNode getCompanyGeneralNode() {
@@ -81,21 +92,22 @@ public class CompanyNode extends ObjectUiNode<CompanyListNode> {
         return (CompanyResponsibleLendNode)getChildByName("companyResponsibleLendNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("companyGeneralNode");
-        children.add(childFactory.createCompanyGeneralNode());
+        children.add(getComponent().createCompanyGeneralNode());
         setChildNodeIdentity("companyContactNode");
-        children.add(childFactory.createCompanyContactNode());
+        children.add(getComponent().createCompanyContactNode());
         setChildNodeIdentity("companyTrustNode");
-        children.add(childFactory.createCompanyTrustNode());
+        children.add(getComponent().createCompanyTrustNode());
         setChildNodeIdentity("companyPrivacyNode");
-        children.add(childFactory.createCompanyPrivacyNode());
+        children.add(getComponent().createCompanyPrivacyNode());
         setChildNodeIdentity("companyOtherIncomeListNode");
-        children.add(childFactory.createCompanyOtherIncomeListNode());
+        children.add(getComponent().createCompanyOtherIncomeListNode());
         setChildNodeIdentity("companyResponsibleLendNode");
-        children.add(childFactory.createCompanyResponsibleLendNode());
+        children.add(getComponent().createCompanyResponsibleLendNode());
         setChildNodeIdentity(null);
         return children;
     }

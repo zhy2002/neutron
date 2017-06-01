@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PropertyNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final PropertyNodeComponent getComponent() {
+        return component;
+    }
+
+
     private PropertyNodeComponent component;
 
     @Inject
@@ -56,6 +64,8 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
     private RuleProvider<PropertyNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public RentedFlagNode getRentedFlagNode() {
@@ -107,29 +117,30 @@ public class PropertyNode extends ObjectUiNode<RealEstateNode> {
         return (PropertyOwnershipListNode)getChildByName("propertyOwnershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("rentedFlagNode");
-        children.add(childFactory.createRentedFlagNode());
+        children.add(getComponent().createRentedFlagNode());
         setChildNodeIdentity("propertyWeeklyRentNode");
-        children.add(childFactory.createPropertyWeeklyRentNode());
+        children.add(getComponent().createPropertyWeeklyRentNode());
         setChildNodeIdentity("propertyAddressNode");
-        children.add(childFactory.createPropertyAddressNode());
+        children.add(getComponent().createPropertyAddressNode());
         setChildNodeIdentity("estimatedMarketValueNode");
-        children.add(childFactory.createEstimatedMarketValueNode());
+        children.add(getComponent().createEstimatedMarketValueNode());
         setChildNodeIdentity("contractPriceNode");
-        children.add(childFactory.createContractPriceNode());
+        children.add(getComponent().createContractPriceNode());
         setChildNodeIdentity("defenseServiceFlagNode");
-        children.add(childFactory.createDefenseServiceFlagNode());
+        children.add(getComponent().createDefenseServiceFlagNode());
         setChildNodeIdentity("propertyTypeNode");
-        children.add(childFactory.createPropertyTypeNode());
+        children.add(getComponent().createPropertyTypeNode());
         setChildNodeIdentity("propertySubTypeNode");
-        children.add(childFactory.createPropertySubTypeNode());
+        children.add(getComponent().createPropertySubTypeNode());
         setChildNodeIdentity("propertyPurseNode");
-        children.add(childFactory.createPropertyPurseNode());
+        children.add(getComponent().createPropertyPurseNode());
         setChildNodeIdentity("propertyOwnershipListNode");
-        children.add(childFactory.createPropertyOwnershipListNode());
+        children.add(getComponent().createPropertyOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

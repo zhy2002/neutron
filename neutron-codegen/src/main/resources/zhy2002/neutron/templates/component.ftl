@@ -7,14 +7,23 @@ import zhy2002.neutron.RuleProvider;
 import java.util.*;
 </#if>
 
+<#if !abstractNode>
 @ComponentScope
 @Subcomponent(modules = {${typeName}Module.class})
-public interface ${typeName}Component {
-
-    RuleProvider<${typeName}> get${typeName}RuleProvider();
-<#if parentType.children ??>
-    Map<String, RuleProvider<${typeName}>> getInstanceRuleProviders();
 </#if>
+public interface ${typeName}Component <#if baseType?? && baseType.hasComponent>extends ${baseType.typeName}Component </#if>{
+
+<#if children??>
+<#list children as child>
+    ${child.typeName} create${child.name?cap_first}();
+</#list>
+</#if>
+
+<#if !abstractNode>
+    RuleProvider<${typeName}> get${typeName}RuleProvider();
+    <#if parentType.children ??>
+    Map<String, RuleProvider<${typeName}>> getInstanceRuleProviders();
+    </#if>
 
     @Subcomponent.Builder
     interface Builder {
@@ -23,4 +32,6 @@ public interface ${typeName}Component {
 
         ${typeName}Component build();
     }
+
+</#if>
 }

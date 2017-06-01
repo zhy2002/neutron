@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MortgageClearingFlagNodeModule.class})
 public interface MortgageClearingFlagNodeComponent {
 
+
     RuleProvider<MortgageClearingFlagNode> getMortgageClearingFlagNodeRuleProvider();
     Map<String, RuleProvider<MortgageClearingFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MortgageClearingFlagNodeComponent {
 
         MortgageClearingFlagNodeComponent build();
     }
+
 }

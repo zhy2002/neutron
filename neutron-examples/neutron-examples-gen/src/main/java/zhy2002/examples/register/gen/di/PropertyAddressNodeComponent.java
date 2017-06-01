@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PropertyAddressNodeModule.class})
 public interface PropertyAddressNodeComponent {
 
+
     RuleProvider<PropertyAddressNode> getPropertyAddressNodeRuleProvider();
     Map<String, RuleProvider<PropertyAddressNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PropertyAddressNodeComponent {
 
         PropertyAddressNodeComponent build();
     }
+
 }

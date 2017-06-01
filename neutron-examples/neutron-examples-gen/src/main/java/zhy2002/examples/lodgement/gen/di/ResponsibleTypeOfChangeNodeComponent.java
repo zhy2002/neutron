@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ResponsibleTypeOfChangeNodeModule.class})
 public interface ResponsibleTypeOfChangeNodeComponent {
 
+
     RuleProvider<ResponsibleTypeOfChangeNode> getResponsibleTypeOfChangeNodeRuleProvider();
     Map<String, RuleProvider<ResponsibleTypeOfChangeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ResponsibleTypeOfChangeNodeComponent {
 
         ResponsibleTypeOfChangeNodeComponent build();
     }
+
 }

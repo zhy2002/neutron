@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.EmailNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -24,6 +25,11 @@ public class EmailNode extends StringUiNode<RegisterNode> {
     public final Class<?> getConcreteClass() {
     return EmailNode.class;
     }
+
+    protected final EmailNodeComponent getComponent() {
+        return component;
+    }
+
 
     private EmailNodeComponent component;
 

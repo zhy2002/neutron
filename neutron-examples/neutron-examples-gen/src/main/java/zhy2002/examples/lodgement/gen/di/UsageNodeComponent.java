@@ -9,6 +9,13 @@ import java.util.*;
 @Subcomponent(modules = {UsageNodeModule.class})
 public interface UsageNodeComponent {
 
+    UsedAsSecurityFlagNode createUsedAsSecurityFlagNode();
+    BeingPurchasedFlagNode createBeingPurchasedFlagNode();
+    OwnedOutrightFlagNode createOwnedOutrightFlagNode();
+    PrimarySecurityFlagNode createPrimarySecurityFlagNode();
+    ApprovalInPrincipleFlagNode createApprovalInPrincipleFlagNode();
+    ExistingMortgageListNode createExistingMortgageListNode();
+
     RuleProvider<UsageNode> getUsageNodeRuleProvider();
     Map<String, RuleProvider<UsageNode>> getInstanceRuleProviders();
 
@@ -19,4 +26,5 @@ public interface UsageNodeComponent {
 
         UsageNodeComponent build();
     }
+
 }

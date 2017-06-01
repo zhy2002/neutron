@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductOptOutReasonNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
-
-    private ProductOptOutReasonNodeComponent component;
 
     @Inject
     public ProductOptOutReasonNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
     public final Class<?> getConcreteClass() {
     return ProductOptOutReasonNode.class;
     }
+
+    protected final ProductOptOutReasonNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductOptOutReasonNodeComponent component;
 
     @Inject
     void createComponent(ProductOptOutReasonNodeComponent.Builder builder) {

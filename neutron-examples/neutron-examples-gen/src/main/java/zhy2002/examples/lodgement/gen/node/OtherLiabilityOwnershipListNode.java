@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherLiabilityOwnershipListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityOwnershipListNode extends OwnershipListNode<OtherLiabilityNode> {
-
-    private OtherLiabilityOwnershipListNodeComponent component;
 
     @Inject
     public OtherLiabilityOwnershipListNode(@Owner OtherLiabilityNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class OtherLiabilityOwnershipListNode extends OwnershipListNode<OtherLiab
     public final Class<?> getConcreteClass() {
     return OtherLiabilityOwnershipListNode.class;
     }
+
+    protected final OtherLiabilityOwnershipListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OtherLiabilityOwnershipListNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityOwnershipListNodeComponent.Builder builder) {

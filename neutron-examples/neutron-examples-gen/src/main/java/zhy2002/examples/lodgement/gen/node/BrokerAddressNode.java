@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BrokerAddressNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class BrokerAddressNode extends AddressNode<SubmissionNode> {
-
-    private BrokerAddressNodeComponent component;
 
     @Inject
     public BrokerAddressNode(@Owner SubmissionNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class BrokerAddressNode extends AddressNode<SubmissionNode> {
     public final Class<?> getConcreteClass() {
     return BrokerAddressNode.class;
     }
+
+    protected final BrokerAddressNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private BrokerAddressNodeComponent component;
 
     @Inject
     void createComponent(BrokerAddressNodeComponent.Builder builder) {

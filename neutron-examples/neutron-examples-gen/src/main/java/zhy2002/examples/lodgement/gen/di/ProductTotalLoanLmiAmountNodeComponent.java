@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductTotalLoanLmiAmountNodeModule.class})
 public interface ProductTotalLoanLmiAmountNodeComponent {
 
+
     RuleProvider<ProductTotalLoanLmiAmountNode> getProductTotalLoanLmiAmountNodeRuleProvider();
     Map<String, RuleProvider<ProductTotalLoanLmiAmountNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductTotalLoanLmiAmountNodeComponent {
 
         ProductTotalLoanLmiAmountNodeComponent build();
     }
+
 }

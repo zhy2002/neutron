@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductFeeNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final ProductFeeNodeComponent getComponent() {
+        return component;
+    }
+
+
     private ProductFeeNodeComponent component;
 
     @Inject
@@ -51,6 +59,8 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public FeeTypeNode getFeeTypeNode() {
         return (FeeTypeNode)getChildByName("feeTypeNode");
@@ -71,17 +81,18 @@ public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
         return (FeeAmountNode)getChildByName("feeAmountNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("feeTypeNode");
-        children.add(childFactory.createFeeTypeNode());
+        children.add(getComponent().createFeeTypeNode());
         setChildNodeIdentity("feeDescriptionNode");
-        children.add(childFactory.createFeeDescriptionNode());
+        children.add(getComponent().createFeeDescriptionNode());
         setChildNodeIdentity("feePayFromNode");
-        children.add(childFactory.createFeePayFromNode());
+        children.add(getComponent().createFeePayFromNode());
         setChildNodeIdentity("feeAmountNode");
-        children.add(childFactory.createFeeAmountNode());
+        children.add(getComponent().createFeeAmountNode());
         setChildNodeIdentity(null);
         return children;
     }

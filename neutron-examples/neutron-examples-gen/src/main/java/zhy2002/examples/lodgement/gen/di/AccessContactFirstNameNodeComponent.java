@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AccessContactFirstNameNodeModule.class})
 public interface AccessContactFirstNameNodeComponent {
 
+
     RuleProvider<AccessContactFirstNameNode> getAccessContactFirstNameNodeRuleProvider();
     Map<String, RuleProvider<AccessContactFirstNameNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AccessContactFirstNameNodeComponent {
 
         AccessContactFirstNameNodeComponent build();
     }
+
 }

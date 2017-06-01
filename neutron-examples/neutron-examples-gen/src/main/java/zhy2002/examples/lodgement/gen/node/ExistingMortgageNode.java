@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ExistingMortgageNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode> {
 
-    private ExistingMortgageNodeChildFactory childFactory;
-    private ExistingMortgageNodeComponent component;
-
     @Inject
     public ExistingMortgageNode(@Owner ExistingMortgageListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
     return ExistingMortgageNode.class;
     }
 
+    private ExistingMortgageNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ExistingMortgageNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ExistingMortgageNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ExistingMortgageNodeComponent component;
 
     @Inject
     void createComponent(ExistingMortgageNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public MortgageLenderInstitutionNode getMortgageLenderInstitutionNode() {
@@ -115,35 +126,36 @@ public class ExistingMortgageNode extends ObjectUiNode<ExistingMortgageListNode>
         return (MortgageInterestOnlyRemainingPeriodNode)getChildByName("mortgageInterestOnlyRemainingPeriodNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("mortgageLenderInstitutionNode");
-        children.add(childFactory.createMortgageLenderInstitutionNode());
+        children.add(getComponent().createMortgageLenderInstitutionNode());
         setChildNodeIdentity("mortgqageUnpaidBalanceNode");
-        children.add(childFactory.createMortgqageUnpaidBalanceNode());
+        children.add(getComponent().createMortgqageUnpaidBalanceNode());
         setChildNodeIdentity("mortgageLimitAmountNode");
-        children.add(childFactory.createMortgageLimitAmountNode());
+        children.add(getComponent().createMortgageLimitAmountNode());
         setChildNodeIdentity("mortgageMonthlyRepaymentNode");
-        children.add(childFactory.createMortgageMonthlyRepaymentNode());
+        children.add(getComponent().createMortgageMonthlyRepaymentNode());
         setChildNodeIdentity("mortgageBorrowerRateNode");
-        children.add(childFactory.createMortgageBorrowerRateNode());
+        children.add(getComponent().createMortgageBorrowerRateNode());
         setChildNodeIdentity("mortgageLoanTypeNode");
-        children.add(childFactory.createMortgageLoanTypeNode());
+        children.add(getComponent().createMortgageLoanTypeNode());
         setChildNodeIdentity("mortgageLoanTermExpiryDateNode");
-        children.add(childFactory.createMortgageLoanTermExpiryDateNode());
+        children.add(getComponent().createMortgageLoanTermExpiryDateNode());
         setChildNodeIdentity("mortgageInterestOnlyExpiryDateNode");
-        children.add(childFactory.createMortgageInterestOnlyExpiryDateNode());
+        children.add(getComponent().createMortgageInterestOnlyExpiryDateNode());
         setChildNodeIdentity("mortgageClearingFlagNode");
-        children.add(childFactory.createMortgageClearingFlagNode());
+        children.add(getComponent().createMortgageClearingFlagNode());
         setChildNodeIdentity("mortgageBreakFeeNode");
-        children.add(childFactory.createMortgageBreakFeeNode());
+        children.add(getComponent().createMortgageBreakFeeNode());
         setChildNodeIdentity("mortgageChargePositionNode");
-        children.add(childFactory.createMortgageChargePositionNode());
+        children.add(getComponent().createMortgageChargePositionNode());
         setChildNodeIdentity("mortgageTermRemainingPeriodNode");
-        children.add(childFactory.createMortgageTermRemainingPeriodNode());
+        children.add(getComponent().createMortgageTermRemainingPeriodNode());
         setChildNodeIdentity("mortgageInterestOnlyRemainingPeriodNode");
-        children.add(childFactory.createMortgageInterestOnlyRemainingPeriodNode());
+        children.add(getComponent().createMortgageInterestOnlyRemainingPeriodNode());
         setChildNodeIdentity(null);
         return children;
     }

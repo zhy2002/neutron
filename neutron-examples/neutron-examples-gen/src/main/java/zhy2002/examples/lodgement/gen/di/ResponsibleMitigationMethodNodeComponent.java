@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ResponsibleMitigationMethodNodeModule.class})
 public interface ResponsibleMitigationMethodNodeComponent {
 
+
     RuleProvider<ResponsibleMitigationMethodNode> getResponsibleMitigationMethodNodeRuleProvider();
     Map<String, RuleProvider<ResponsibleMitigationMethodNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ResponsibleMitigationMethodNodeComponent {
 
         ResponsibleMitigationMethodNodeComponent build();
     }
+
 }

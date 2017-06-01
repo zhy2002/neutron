@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ThirdPartyAddressNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class ThirdPartyAddressNode extends AddressNode<RelatedPartyNode> {
     public final Class<?> getConcreteClass() {
     return ThirdPartyAddressNode.class;
     }
+
+    protected final ThirdPartyAddressNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ThirdPartyAddressNodeComponent component;
 

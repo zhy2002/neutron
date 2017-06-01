@@ -7,7 +7,11 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {SelfEmployedNodeModule.class})
-public interface SelfEmployedNodeComponent {
+public interface SelfEmployedNodeComponent extends EmployedNodeComponent {
+
+    BusinessTypeNode createBusinessTypeNode();
+    ProfitThisYearNode createProfitThisYearNode();
+    ProfitPreviousYearNode createProfitPreviousYearNode();
 
     RuleProvider<SelfEmployedNode> getSelfEmployedNodeRuleProvider();
     Map<String, RuleProvider<SelfEmployedNode>> getInstanceRuleProviders();
@@ -19,4 +23,5 @@ public interface SelfEmployedNodeComponent {
 
         SelfEmployedNodeComponent build();
     }
+
 }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PrimaryApplicantFlagNodeModule.class})
 public interface PrimaryApplicantFlagNodeComponent {
 
+
     RuleProvider<PrimaryApplicantFlagNode> getPrimaryApplicantFlagNodeRuleProvider();
     Map<String, RuleProvider<PrimaryApplicantFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PrimaryApplicantFlagNodeComponent {
 
         PrimaryApplicantFlagNodeComponent build();
     }
+
 }

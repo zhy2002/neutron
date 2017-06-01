@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AddressNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -11,16 +12,23 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private AddressNodeChildFactory childFactory;
-
     public AddressNode(P parent, String name) {
         super(parent, name);
     }
+
+    private AddressNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(AddressNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract AddressNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public AddressLineNode getAddressLineNode() {
@@ -42,17 +50,18 @@ public abstract class AddressNode<P extends ParentUiNode<?>> extends ObjectUiNod
         return (CountryNode)getChildByName("countryNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("addressLineNode");
-        children.add(childFactory.createAddressLineNode());
+        children.add(getComponent().createAddressLineNode());
         setChildNodeIdentity("suburbNode");
-        children.add(childFactory.createSuburbNode());
+        children.add(getComponent().createSuburbNode());
         setChildNodeIdentity("postcodeNode");
-        children.add(childFactory.createPostcodeNode());
+        children.add(getComponent().createPostcodeNode());
         setChildNodeIdentity("countryNode");
-        children.add(childFactory.createCountryNode());
+        children.add(getComponent().createCountryNode());
         setChildNodeIdentity(null);
         return children;
     }

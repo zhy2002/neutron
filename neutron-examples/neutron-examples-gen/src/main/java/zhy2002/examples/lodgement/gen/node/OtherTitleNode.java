@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherTitleNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class OtherTitleNode extends StringUiNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return OtherTitleNode.class;
     }
+
+    protected final OtherTitleNodeComponent getComponent() {
+        return component;
+    }
+
 
     private OtherTitleNodeComponent component;
 

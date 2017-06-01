@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MotorVehicleNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
 
-    private MotorVehicleNodeChildFactory childFactory;
-    private MotorVehicleNodeComponent component;
-
     @Inject
     public MotorVehicleNode(@Owner MotorVehicleListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     return MotorVehicleNode.class;
     }
 
+    private MotorVehicleNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(MotorVehicleNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final MotorVehicleNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private MotorVehicleNodeComponent component;
 
     @Inject
     void createComponent(MotorVehicleNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public VehicleModelNode getVehicleModelNode() {
@@ -70,17 +81,18 @@ public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
         return (VehicleOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("vehicleModelNode");
-        children.add(childFactory.createVehicleModelNode());
+        children.add(getComponent().createVehicleModelNode());
         setChildNodeIdentity("vehicleYearNode");
-        children.add(childFactory.createVehicleYearNode());
+        children.add(getComponent().createVehicleYearNode());
         setChildNodeIdentity("vehicleMarketValueNode");
-        children.add(childFactory.createVehicleMarketValueNode());
+        children.add(getComponent().createVehicleMarketValueNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AssetsNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final AssetsNodeComponent getComponent() {
+        return component;
+    }
+
+
     private AssetsNodeComponent component;
 
     @Inject
@@ -57,6 +65,8 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public SavingsAccountListNode getSavingsAccountListNode() {
         return (SavingsAccountListNode)getChildByName("savingsAccountListNode");
@@ -72,15 +82,16 @@ public class AssetsNode extends ObjectUiNode<FinancialPositionNode> {
         return (OtherAssetListNode)getChildByName("otherAssetListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("savingsAccountListNode");
-        children.add(childFactory.createSavingsAccountListNode());
+        children.add(getComponent().createSavingsAccountListNode());
         setChildNodeIdentity("motorVehicleListNode");
-        children.add(childFactory.createMotorVehicleListNode());
+        children.add(getComponent().createMotorVehicleListNode());
         setChildNodeIdentity("otherAssetListNode");
-        children.add(childFactory.createOtherAssetListNode());
+        children.add(getComponent().createOtherAssetListNode());
         setChildNodeIdentity(null);
         return children;
     }

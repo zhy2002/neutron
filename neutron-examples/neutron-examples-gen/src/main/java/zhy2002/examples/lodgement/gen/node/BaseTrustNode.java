@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BaseTrustNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -11,16 +12,23 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private BaseTrustNodeChildFactory childFactory;
-
     public BaseTrustNode(P parent, String name) {
         super(parent, name);
     }
+
+    private BaseTrustNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(BaseTrustNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract BaseTrustNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public TrustNameNode getTrustNameNode() {
@@ -77,31 +85,32 @@ public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiN
         return (TrustBeneficiaryClassListNode)getChildByName("trustBeneficiaryClassListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("trustNameNode");
-        children.add(childFactory.createTrustNameNode());
+        children.add(getComponent().createTrustNameNode());
         setChildNodeIdentity("trustRegistrationDateNode");
-        children.add(childFactory.createTrustRegistrationDateNode());
+        children.add(getComponent().createTrustRegistrationDateNode());
         setChildNodeIdentity("trustTypeNode");
-        children.add(childFactory.createTrustTypeNode());
+        children.add(getComponent().createTrustTypeNode());
         setChildNodeIdentity("trustCountryNode");
-        children.add(childFactory.createTrustCountryNode());
+        children.add(getComponent().createTrustCountryNode());
         setChildNodeIdentity("trustAddressNode");
-        children.add(childFactory.createTrustAddressNode());
+        children.add(getComponent().createTrustAddressNode());
         setChildNodeIdentity("trustIndustryNode");
-        children.add(childFactory.createTrustIndustryNode());
+        children.add(getComponent().createTrustIndustryNode());
         setChildNodeIdentity("trustSettlorNotRequiredReasonNode");
-        children.add(childFactory.createTrustSettlorNotRequiredReasonNode());
+        children.add(getComponent().createTrustSettlorNotRequiredReasonNode());
         setChildNodeIdentity("trustBeneficiaryListNode");
-        children.add(childFactory.createTrustBeneficiaryListNode());
+        children.add(getComponent().createTrustBeneficiaryListNode());
         setChildNodeIdentity("trustSettlorListNode");
-        children.add(childFactory.createTrustSettlorListNode());
+        children.add(getComponent().createTrustSettlorListNode());
         setChildNodeIdentity("trustBeneficialOwnerListNode");
-        children.add(childFactory.createTrustBeneficialOwnerListNode());
+        children.add(getComponent().createTrustBeneficialOwnerListNode());
         setChildNodeIdentity("trustBeneficiaryClassListNode");
-        children.add(childFactory.createTrustBeneficiaryClassListNode());
+        children.add(getComponent().createTrustBeneficiaryClassListNode());
         setChildNodeIdentity(null);
         return children;
     }

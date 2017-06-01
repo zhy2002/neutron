@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AddressRefNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
@@ -10,8 +11,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
-
-    private AddressRefNodeComponent component;
 
     @Inject
     public AddressRefNode(@Owner AddressRefListNode parent, @ChildName String name) {
@@ -22,6 +21,13 @@ public class AddressRefNode extends ReferenceUiNode<AddressRefListNode> {
     public final Class<?> getConcreteClass() {
     return AddressRefNode.class;
     }
+
+    protected final AddressRefNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private AddressRefNodeComponent component;
 
     @Inject
     void createComponent(AddressRefNodeComponent.Builder builder) {

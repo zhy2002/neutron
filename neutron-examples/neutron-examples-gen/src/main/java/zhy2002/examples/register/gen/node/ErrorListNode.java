@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.ErrorListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.register.gen.rule.*;
@@ -9,9 +10,6 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
-
-    private ErrorListNodeItemFactory itemFactory;
-    private ErrorListNodeComponent component;
 
     @Inject
     public ErrorListNode(@Owner RegisterNode parent, @ChildName String name) {
@@ -23,10 +21,21 @@ public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
     return ErrorListNode.class;
     }
 
+    private ErrorListNodeItemFactory itemFactory;
+
     @Inject
     void receiveNodeProvider(ErrorListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ErrorListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ErrorListNodeComponent component;
 
     @Inject
     void createComponent(ErrorListNodeComponent.Builder builder) {

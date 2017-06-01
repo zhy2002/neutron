@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BasePrivacyNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -21,6 +22,13 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
     void receiveNodeProvider(BasePrivacyNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract BasePrivacyNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public CreditCheckFlagNode getCreditCheckFlagNode() {
@@ -42,17 +50,18 @@ public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectU
         return (CreditHistoryListNode)getChildByName("creditHistoryListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("creditCheckFlagNode");
-        children.add(childFactory.createCreditCheckFlagNode());
+        children.add(getComponent().createCreditCheckFlagNode());
         setChildNodeIdentity("thirdPartyDisclosureFlagNode");
-        children.add(childFactory.createThirdPartyDisclosureFlagNode());
+        children.add(getComponent().createThirdPartyDisclosureFlagNode());
         setChildNodeIdentity("legalActionNode");
-        children.add(childFactory.createLegalActionNode());
+        children.add(getComponent().createLegalActionNode());
         setChildNodeIdentity("creditHistoryListNode");
-        children.add(childFactory.createCreditHistoryListNode());
+        children.add(getComponent().createCreditHistoryListNode());
         setChildNodeIdentity(null);
         return children;
     }

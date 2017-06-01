@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PersonContactNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final PersonContactNodeComponent getComponent() {
+        return component;
+    }
+
+
     private PersonContactNodeComponent component;
 
     @Inject
@@ -56,6 +64,8 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
     private RuleProvider<PersonContactNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public PersonTelephoneNode getHomePhoneNode() {
@@ -112,31 +122,32 @@ public class PersonContactNode extends ObjectUiNode<PersonNode> {
         return (MovedFromPreviousAddressNode)getChildByName("movedFromPreviousAddressNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("homePhoneNode");
-        children.add(childFactory.createHomePhoneNode());
+        children.add(getComponent().createHomePhoneNode());
         setChildNodeIdentity("workPhoneNode");
-        children.add(childFactory.createWorkPhoneNode());
+        children.add(getComponent().createWorkPhoneNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(childFactory.createFaxNumberNode());
+        children.add(getComponent().createFaxNumberNode());
         setChildNodeIdentity("personMobileNumberNode");
-        children.add(childFactory.createPersonMobileNumberNode());
+        children.add(getComponent().createPersonMobileNumberNode());
         setChildNodeIdentity("personEmailNode");
-        children.add(childFactory.createPersonEmailNode());
+        children.add(getComponent().createPersonEmailNode());
         setChildNodeIdentity("currentAddressNode");
-        children.add(childFactory.createCurrentAddressNode());
+        children.add(getComponent().createCurrentAddressNode());
         setChildNodeIdentity("movedToCurrentAddressNode");
-        children.add(childFactory.createMovedToCurrentAddressNode());
+        children.add(getComponent().createMovedToCurrentAddressNode());
         setChildNodeIdentity("postalAddressNode");
-        children.add(childFactory.createPostalAddressNode());
+        children.add(getComponent().createPostalAddressNode());
         setChildNodeIdentity("previousAddressNode");
-        children.add(childFactory.createPreviousAddressNode());
+        children.add(getComponent().createPreviousAddressNode());
         setChildNodeIdentity("movedToPreviousAddressNode");
-        children.add(childFactory.createMovedToPreviousAddressNode());
+        children.add(getComponent().createMovedToPreviousAddressNode());
         setChildNodeIdentity("movedFromPreviousAddressNode");
-        children.add(childFactory.createMovedFromPreviousAddressNode());
+        children.add(getComponent().createMovedFromPreviousAddressNode());
         setChildNodeIdentity(null);
         return children;
     }

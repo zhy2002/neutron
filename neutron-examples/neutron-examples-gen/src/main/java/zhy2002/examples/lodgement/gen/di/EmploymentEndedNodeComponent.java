@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {EmploymentEndedNodeModule.class})
-public interface EmploymentEndedNodeComponent {
+public interface EmploymentEndedNodeComponent extends MonthYearNodeComponent {
+
 
     RuleProvider<EmploymentEndedNode> getEmploymentEndedNodeRuleProvider();
     Map<String, RuleProvider<EmploymentEndedNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface EmploymentEndedNodeComponent {
 
         EmploymentEndedNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.VehicleOwnershipListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class VehicleOwnershipListNode extends OwnershipListNode<MotorVehicleNode> {
-
-    private VehicleOwnershipListNodeComponent component;
 
     @Inject
     public VehicleOwnershipListNode(@Owner MotorVehicleNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class VehicleOwnershipListNode extends OwnershipListNode<MotorVehicleNode
     public final Class<?> getConcreteClass() {
     return VehicleOwnershipListNode.class;
     }
+
+    protected final VehicleOwnershipListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private VehicleOwnershipListNodeComponent component;
 
     @Inject
     void createComponent(VehicleOwnershipListNodeComponent.Builder builder) {

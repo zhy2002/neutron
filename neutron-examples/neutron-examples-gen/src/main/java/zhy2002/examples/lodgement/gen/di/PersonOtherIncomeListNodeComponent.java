@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PersonOtherIncomeListNodeModule.class})
 public interface PersonOtherIncomeListNodeComponent {
 
+
     RuleProvider<PersonOtherIncomeListNode> getPersonOtherIncomeListNodeRuleProvider();
     Map<String, RuleProvider<PersonOtherIncomeListNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PersonOtherIncomeListNodeComponent {
 
         PersonOtherIncomeListNodeComponent build();
     }
+
 }

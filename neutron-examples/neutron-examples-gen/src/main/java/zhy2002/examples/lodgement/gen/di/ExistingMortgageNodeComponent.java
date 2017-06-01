@@ -8,6 +8,20 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {ExistingMortgageNodeModule.class})
 public interface ExistingMortgageNodeComponent {
 
+    MortgageLenderInstitutionNode createMortgageLenderInstitutionNode();
+    MortgqageUnpaidBalanceNode createMortgqageUnpaidBalanceNode();
+    MortgageLimitAmountNode createMortgageLimitAmountNode();
+    MortgageMonthlyRepaymentNode createMortgageMonthlyRepaymentNode();
+    MortgageBorrowerRateNode createMortgageBorrowerRateNode();
+    MortgageLoanTypeNode createMortgageLoanTypeNode();
+    MortgageLoanTermExpiryDateNode createMortgageLoanTermExpiryDateNode();
+    MortgageInterestOnlyExpiryDateNode createMortgageInterestOnlyExpiryDateNode();
+    MortgageClearingFlagNode createMortgageClearingFlagNode();
+    MortgageBreakFeeNode createMortgageBreakFeeNode();
+    MortgageChargePositionNode createMortgageChargePositionNode();
+    MortgageTermRemainingPeriodNode createMortgageTermRemainingPeriodNode();
+    MortgageInterestOnlyRemainingPeriodNode createMortgageInterestOnlyRemainingPeriodNode();
+
     RuleProvider<ExistingMortgageNode> getExistingMortgageNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +31,5 @@ public interface ExistingMortgageNodeComponent {
 
         ExistingMortgageNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.app.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.app.gen.di.AppManagerNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -14,9 +15,6 @@ import java.util.List;
 
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
-    private AppManagerNodeChildFactory childFactory;
-    private AppManagerNodeComponent component;
-
     @Inject
     public AppManagerNode(@Owner LodgementNode parent, @ChildName String name) {
         super(parent, name);
@@ -27,10 +25,21 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
     return AppManagerNode.class;
     }
 
+    private AppManagerNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(AppManagerNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final AppManagerNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private AppManagerNodeComponent component;
 
     @Inject
     void createComponent(AppManagerNodeComponent.Builder builder) {
@@ -57,16 +66,19 @@ public class AppManagerNode extends ObjectUiNode<LodgementNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public ApplicationListNode getApplicationListNode() {
         return (ApplicationListNode)getChildByName("applicationListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("applicationListNode");
-        children.add(childFactory.createApplicationListNode());
+        children.add(getComponent().createApplicationListNode());
         setChildNodeIdentity(null);
         return children;
     }

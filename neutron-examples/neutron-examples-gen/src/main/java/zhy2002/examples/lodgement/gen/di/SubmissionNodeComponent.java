@@ -9,6 +9,16 @@ import java.util.*;
 @Subcomponent(modules = {SubmissionNodeModule.class})
 public interface SubmissionNodeComponent {
 
+    BrokerFirstNameNode createBrokerFirstNameNode();
+    BrokerLastNameNode createBrokerLastNameNode();
+    BrokerCompanyNode createBrokerCompanyNode();
+    BrokerTelephoneNode createContactNumberNode();
+    BrokerTelephoneNode createFaxNumberNode();
+    BrokerMobileNumberNode createMobileNumberNode();
+    BrokerEmailNode createBrokerEmailNode();
+    BrokerAddressNode createBrokerAddressNode();
+    LenderIssuedBrokerNumberNode createLenderIssuedBrokerNumberNode();
+
     RuleProvider<SubmissionNode> getSubmissionNodeRuleProvider();
     Map<String, RuleProvider<SubmissionNode>> getInstanceRuleProviders();
 
@@ -19,4 +29,5 @@ public interface SubmissionNodeComponent {
 
         SubmissionNodeComponent build();
     }
+
 }

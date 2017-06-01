@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductTotalLvrLmiNodeModule.class})
 public interface ProductTotalLvrLmiNodeComponent {
 
+
     RuleProvider<ProductTotalLvrLmiNode> getProductTotalLvrLmiNodeRuleProvider();
     Map<String, RuleProvider<ProductTotalLvrLmiNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductTotalLvrLmiNodeComponent {
 
         ProductTotalLvrLmiNodeComponent build();
     }
+
 }

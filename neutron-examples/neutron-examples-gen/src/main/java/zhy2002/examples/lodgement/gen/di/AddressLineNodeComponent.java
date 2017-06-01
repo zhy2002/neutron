@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AddressLineNodeModule.class})
 public interface AddressLineNodeComponent {
 
+
     RuleProvider<AddressLineNode> getAddressLineNodeRuleProvider();
     Map<String, RuleProvider<AddressLineNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AddressLineNodeComponent {
 
         AddressLineNodeComponent build();
     }
+
 }

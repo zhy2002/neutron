@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ErrorListNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -31,6 +32,13 @@ public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
     void receiveNodeProvider(ErrorListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ErrorListNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ErrorListNodeComponent component;
 

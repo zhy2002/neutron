@@ -11,4 +11,5 @@ public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringU
         super(parent, name);
     }
 
+
 }

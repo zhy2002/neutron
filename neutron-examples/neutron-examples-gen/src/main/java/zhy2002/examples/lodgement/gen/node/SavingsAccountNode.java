@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SavingsAccountNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
 
-    private SavingsAccountNodeChildFactory childFactory;
-    private SavingsAccountNodeComponent component;
-
     @Inject
     public SavingsAccountNode(@Owner SavingsAccountListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     return SavingsAccountNode.class;
     }
 
+    private SavingsAccountNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(SavingsAccountNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final SavingsAccountNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private SavingsAccountNodeComponent component;
 
     @Inject
     void createComponent(SavingsAccountNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public SavingsTypeNode getSavingsTypeNode() {
@@ -85,23 +96,24 @@ public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
         return (SavingsOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("savingsTypeNode");
-        children.add(childFactory.createSavingsTypeNode());
+        children.add(getComponent().createSavingsTypeNode());
         setChildNodeIdentity("savingsInstitutionNameNode");
-        children.add(childFactory.createSavingsInstitutionNameNode());
+        children.add(getComponent().createSavingsInstitutionNameNode());
         setChildNodeIdentity("savingsBalanceNode");
-        children.add(childFactory.createSavingsBalanceNode());
+        children.add(getComponent().createSavingsBalanceNode());
         setChildNodeIdentity("savingsBsbNoNode");
-        children.add(childFactory.createSavingsBsbNoNode());
+        children.add(getComponent().createSavingsBsbNoNode());
         setChildNodeIdentity("savingsAccountNoNode");
-        children.add(childFactory.createSavingsAccountNoNode());
+        children.add(getComponent().createSavingsAccountNoNode());
         setChildNodeIdentity("savingsAccountNameNode");
-        children.add(childFactory.createSavingsAccountNameNode());
+        children.add(getComponent().createSavingsAccountNameNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

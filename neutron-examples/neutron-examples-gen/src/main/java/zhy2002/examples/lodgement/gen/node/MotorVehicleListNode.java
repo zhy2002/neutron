@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MotorVehicleListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,9 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode> {
-
-    private MotorVehicleListNodeItemFactory itemFactory;
-    private MotorVehicleListNodeComponent component;
 
     @Inject
     public MotorVehicleListNode(@Owner AssetsNode parent, @ChildName String name) {
@@ -23,10 +21,21 @@ public class MotorVehicleListNode extends ListUiNode<AssetsNode,MotorVehicleNode
     return MotorVehicleListNode.class;
     }
 
+    private MotorVehicleListNodeItemFactory itemFactory;
+
     @Inject
     void receiveNodeProvider(MotorVehicleListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final MotorVehicleListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private MotorVehicleListNodeComponent component;
 
     @Inject
     void createComponent(MotorVehicleListNodeComponent.Builder builder) {

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CreditCardLimitAmountNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class CreditCardLimitAmountNode extends BaseCurrencyNode<CreditCardNode> 
     public final Class<?> getConcreteClass() {
     return CreditCardLimitAmountNode.class;
     }
+
+    protected final CreditCardLimitAmountNodeComponent getComponent() {
+        return component;
+    }
+
 
     private CreditCardLimitAmountNodeComponent component;
 

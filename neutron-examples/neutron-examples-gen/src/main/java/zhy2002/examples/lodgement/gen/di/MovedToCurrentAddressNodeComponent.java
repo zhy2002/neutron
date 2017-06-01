@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {MovedToCurrentAddressNodeModule.class})
-public interface MovedToCurrentAddressNodeComponent {
+public interface MovedToCurrentAddressNodeComponent extends MonthYearNodeComponent {
+
 
     RuleProvider<MovedToCurrentAddressNode> getMovedToCurrentAddressNodeRuleProvider();
     Map<String, RuleProvider<MovedToCurrentAddressNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface MovedToCurrentAddressNodeComponent {
 
         MovedToCurrentAddressNodeComponent build();
     }
+
 }

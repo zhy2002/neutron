@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductNameNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class ProductNameNode extends StringUiNode<ProductDescriptionNode> {
     public final Class<?> getConcreteClass() {
     return ProductNameNode.class;
     }
+
+    protected final ProductNameNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ProductNameNodeComponent component;
 

@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.RepeatPasswordNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.register.gen.rule.*;
@@ -19,6 +20,11 @@ public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
     public final Class<?> getConcreteClass() {
     return RepeatPasswordNode.class;
     }
+
+    protected final RepeatPasswordNodeComponent getComponent() {
+        return component;
+    }
+
 
     private RepeatPasswordNodeComponent component;
 

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {FeePayFromNodeModule.class})
 public interface FeePayFromNodeComponent {
 
+
     RuleProvider<FeePayFromNode> getFeePayFromNodeRuleProvider();
     Map<String, RuleProvider<FeePayFromNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface FeePayFromNodeComponent {
 
         FeePayFromNodeComponent build();
     }
+
 }

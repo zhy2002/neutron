@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MonthNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
-
-    private MonthNodeComponent component;
 
     @Inject
     public MonthNode(@Owner MonthYearNode<?> parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class MonthNode extends BigDecimalUiNode<MonthYearNode<?>> {
     public final Class<?> getConcreteClass() {
     return MonthNode.class;
     }
+
+    protected final MonthNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private MonthNodeComponent component;
 
     @Inject
     void createComponent(MonthNodeComponent.Builder builder) {

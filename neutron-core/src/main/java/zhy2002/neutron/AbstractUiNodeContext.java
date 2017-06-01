@@ -30,6 +30,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * Afterwards this is always null.
      */
     private NodeIdentity nodeIdentity;
+    private String nameOfNodeBeingCreated;
     private Configuration configuration;
     private Deque<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayDeque<>();
 
@@ -70,6 +71,15 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     @Override
     public void setNodeIdentity(NodeIdentity nodeIdentity) {
         this.nodeIdentity = nodeIdentity;
+    }
+
+    @Override
+    public String getNameOfNodeBeingCreated() {
+        return nameOfNodeBeingCreated;
+    }
+
+    public void setNameOfNodeBeingCreated(String nameOfNodeBeingCreated) {
+        this.nameOfNodeBeingCreated = nameOfNodeBeingCreated;
     }
 
     @Override

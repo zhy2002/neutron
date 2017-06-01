@@ -9,6 +9,24 @@ import java.util.*;
 @Subcomponent(modules = {PersonGeneralNodeModule.class})
 public interface PersonGeneralNodeComponent {
 
+    TitleNode createTitleNode();
+    OtherTitleNode createOtherTitleNode();
+    FirstNameNode createFirstNameNode();
+    LastNameNode createLastNameNode();
+    GenderNode createGenderNode();
+    DateOfBirthNode createDateOfBirthNode();
+    PrimaryApplicantFlagNode createPrimaryApplicantFlagNode();
+    DriversLicenseNode createDriversLicenseNode();
+    PersonApplicantTypeNode createPersonApplicantTypeNode();
+    MaritalStatusNode createMaritalStatusNode();
+    PermanentResidentFlagNode createPermanentResidentFlagNode();
+    SpouseNode createSpouseNode();
+    NextOfKinNode createNextOfKinNode();
+    AgeOfDependantsNode createAgeOfDependantsNode();
+    FirstHomeBuyerFlagNode createFirstHomeBuyerFlagNode();
+    HousingStatusNode createHousingStatusNode();
+    ApplicationTypeNode createApplicationTypeNode();
+
     RuleProvider<PersonGeneralNode> getPersonGeneralNodeRuleProvider();
     Map<String, RuleProvider<PersonGeneralNode>> getInstanceRuleProviders();
 
@@ -19,4 +37,5 @@ public interface PersonGeneralNodeComponent {
 
         PersonGeneralNodeComponent build();
     }
+
 }

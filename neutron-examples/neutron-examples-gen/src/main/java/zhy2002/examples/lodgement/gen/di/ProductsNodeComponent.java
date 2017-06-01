@@ -9,6 +9,17 @@ import java.util.*;
 @Subcomponent(modules = {ProductsNodeModule.class})
 public interface ProductsNodeComponent {
 
+    ProductListNode createProductListNode();
+    ProductCustomerContributionListNode createProductCustomerContributionListNode();
+    ProductFeeListNode createProductFeeListNode();
+    ProductLoanTypeNode createProductLoanTypeNode();
+    SettlementDateNode createSettlementDateNode();
+    ProductTotalLoanAmountNode createProductTotalLoanAmountNode();
+    ProductTotalSecurityAmountNode createProductTotalSecurityAmountNode();
+    ProductTotalLoanLmiAmountNode createProductTotalLoanLmiAmountNode();
+    ProductTotalLvrNode createProductTotalLvrNode();
+    ProductTotalLvrLmiNode createProductTotalLvrLmiNode();
+
     RuleProvider<ProductsNode> getProductsNodeRuleProvider();
     Map<String, RuleProvider<ProductsNode>> getInstanceRuleProviders();
 
@@ -19,4 +30,5 @@ public interface ProductsNodeComponent {
 
         ProductsNodeComponent build();
     }
+
 }

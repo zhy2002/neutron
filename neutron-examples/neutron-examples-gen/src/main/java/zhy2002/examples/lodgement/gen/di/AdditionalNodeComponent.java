@@ -9,6 +9,9 @@ import java.util.*;
 @Subcomponent(modules = {AdditionalNodeModule.class})
 public interface AdditionalNodeComponent {
 
+    AdditionalCommentNode createAdditionalCommentNode();
+    RelatedPartyListNode createRelatedPartyListNode();
+
     RuleProvider<AdditionalNode> getAdditionalNodeRuleProvider();
     Map<String, RuleProvider<AdditionalNode>> getInstanceRuleProviders();
 
@@ -19,4 +22,5 @@ public interface AdditionalNodeComponent {
 
         AdditionalNodeComponent build();
     }
+
 }

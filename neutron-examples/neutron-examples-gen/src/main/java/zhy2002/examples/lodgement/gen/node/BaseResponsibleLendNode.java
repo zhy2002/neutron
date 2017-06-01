@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.BaseResponsibleLendNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -21,6 +22,13 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
     void receiveNodeProvider(BaseResponsibleLendNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract BaseResponsibleLendNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public ResponsibleTypeOfChangeNode getResponsibleTypeOfChangeNode() {
@@ -42,17 +50,18 @@ public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends
         return (ResponsibleRepaymentDifficultyNode)getChildByName("responsibleRepaymentDifficultyNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("responsibleTypeOfChangeNode");
-        children.add(childFactory.createResponsibleTypeOfChangeNode());
+        children.add(getComponent().createResponsibleTypeOfChangeNode());
         setChildNodeIdentity("responsibleMitigationMethodNode");
-        children.add(childFactory.createResponsibleMitigationMethodNode());
+        children.add(getComponent().createResponsibleMitigationMethodNode());
         setChildNodeIdentity("responsibleSignificantChangeFlagNode");
-        children.add(childFactory.createResponsibleSignificantChangeFlagNode());
+        children.add(getComponent().createResponsibleSignificantChangeFlagNode());
         setChildNodeIdentity("responsibleRepaymentDifficultyNode");
-        children.add(childFactory.createResponsibleRepaymentDifficultyNode());
+        children.add(getComponent().createResponsibleRepaymentDifficultyNode());
         setChildNodeIdentity(null);
         return children;
     }

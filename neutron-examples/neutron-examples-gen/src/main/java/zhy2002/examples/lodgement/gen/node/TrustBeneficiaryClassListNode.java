@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.TrustBeneficiaryClassListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,9 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
-
-    private TrustBeneficiaryClassListNodeItemFactory itemFactory;
-    private TrustBeneficiaryClassListNodeComponent component;
 
     @Inject
     public TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
@@ -23,10 +21,21 @@ public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,T
     return TrustBeneficiaryClassListNode.class;
     }
 
+    private TrustBeneficiaryClassListNodeItemFactory itemFactory;
+
     @Inject
     void receiveNodeProvider(TrustBeneficiaryClassListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final TrustBeneficiaryClassListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private TrustBeneficiaryClassListNodeComponent component;
 
     @Inject
     void createComponent(TrustBeneficiaryClassListNodeComponent.Builder builder) {

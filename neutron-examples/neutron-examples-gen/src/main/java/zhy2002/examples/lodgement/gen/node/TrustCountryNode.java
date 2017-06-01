@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.TrustCountryNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
-
-    private TrustCountryNodeComponent component;
 
     @Inject
     public TrustCountryNode(@Owner BaseTrustNode<?> parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class TrustCountryNode extends BaseCountryNode<BaseTrustNode<?>> {
     public final Class<?> getConcreteClass() {
     return TrustCountryNode.class;
     }
+
+    protected final TrustCountryNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private TrustCountryNodeComponent component;
 
     @Inject
     void createComponent(TrustCountryNodeComponent.Builder builder) {

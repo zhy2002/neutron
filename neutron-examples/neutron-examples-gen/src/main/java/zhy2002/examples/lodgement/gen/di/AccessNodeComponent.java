@@ -9,6 +9,14 @@ import java.util.*;
 @Subcomponent(modules = {AccessNodeModule.class})
 public interface AccessNodeComponent {
 
+    AccessContactTypeNode createAccessContactTypeNode();
+    AccessContactTitleNode createAccessContactTitleNode();
+    AccessContactFirstNameNode createAccessContactFirstNameNode();
+    AccessContactLastNameNode createAccessContactLastNameNode();
+    AccessCompanyNameNode createAccessCompanyNameNode();
+    AccessTelephoneNode createAccessTelephoneNode();
+    AccessOtherDescriptionNode createAccessOtherDescriptionNode();
+
     RuleProvider<AccessNode> getAccessNodeRuleProvider();
     Map<String, RuleProvider<AccessNode>> getInstanceRuleProviders();
 
@@ -19,4 +27,5 @@ public interface AccessNodeComponent {
 
         AccessNodeComponent build();
     }
+
 }

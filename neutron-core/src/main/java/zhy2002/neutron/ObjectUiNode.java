@@ -102,6 +102,7 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
             childNodeIdentity = nodeIdentity.getNodeIdentityMap().get(childName);
         }
         getContext().setNodeIdentity(childNodeIdentity);
+        getContext().setNameOfNodeBeingCreated(childName);
     }
 
     //endregion

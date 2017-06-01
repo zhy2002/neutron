@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherLiabilityClearingFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode> {
-
-    private OtherLiabilityClearingFlagNodeComponent component;
 
     @Inject
     public OtherLiabilityClearingFlagNode(@Owner OtherLiabilityNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiability
     public final Class<?> getConcreteClass() {
     return OtherLiabilityClearingFlagNode.class;
     }
+
+    protected final OtherLiabilityClearingFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OtherLiabilityClearingFlagNodeComponent component;
 
     @Inject
     void createComponent(OtherLiabilityClearingFlagNodeComponent.Builder builder) {

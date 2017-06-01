@@ -11,4 +11,5 @@ public abstract class NameNode<P extends ParentUiNode<?>> extends StringUiNode<P
         super(parent, name);
     }
 
+
 }

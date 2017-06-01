@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {TotalExpenseNodeModule.class})
 public interface TotalExpenseNodeComponent {
 
+
     RuleProvider<TotalExpenseNode> getTotalExpenseNodeRuleProvider();
     Map<String, RuleProvider<TotalExpenseNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface TotalExpenseNodeComponent {
 
         TotalExpenseNodeComponent build();
     }
+
 }

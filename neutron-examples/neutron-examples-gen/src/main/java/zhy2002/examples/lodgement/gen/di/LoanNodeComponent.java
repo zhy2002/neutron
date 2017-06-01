@@ -8,6 +8,15 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {LoanNodeModule.class})
 public interface LoanNodeComponent {
 
+    LoanTypeNode createLoanTypeNode();
+    LoanLenderNameNode createLoanLenderNameNode();
+    LoanLimitAmountNode createLoanLimitAmountNode();
+    LoanOwingAmountNode createLoanOwingAmountNode();
+    LoanMonthlyRepaymentNode createLoanMonthlyRepaymentNode();
+    LoanClearingFlagNode createLoanClearingFlagNode();
+    LoanBreakCostNode createLoanBreakCostNode();
+    LoanOwnershipListNode createOwnershipListNode();
+
     RuleProvider<LoanNode> getLoanNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +26,5 @@ public interface LoanNodeComponent {
 
         LoanNodeComponent build();
     }
+
 }

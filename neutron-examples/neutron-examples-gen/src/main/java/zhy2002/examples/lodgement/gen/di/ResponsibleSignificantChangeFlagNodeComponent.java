@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ResponsibleSignificantChangeFlagNodeModule.class})
 public interface ResponsibleSignificantChangeFlagNodeComponent {
 
+
     RuleProvider<ResponsibleSignificantChangeFlagNode> getResponsibleSignificantChangeFlagNodeRuleProvider();
     Map<String, RuleProvider<ResponsibleSignificantChangeFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ResponsibleSignificantChangeFlagNodeComponent {
 
         ResponsibleSignificantChangeFlagNodeComponent build();
     }
+
 }

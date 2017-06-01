@@ -38,7 +38,7 @@ public class SelfEmployedNodeModule {
     }
 
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
     @Provides @ComponentScope EmploymentNode<?> provideEmploymentNode() {

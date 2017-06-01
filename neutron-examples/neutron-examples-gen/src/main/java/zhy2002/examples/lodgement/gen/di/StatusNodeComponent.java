@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {StatusNodeModule.class})
 public interface StatusNodeComponent {
 
+
     RuleProvider<StatusNode> getStatusNodeRuleProvider();
     Map<String, RuleProvider<StatusNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface StatusNodeComponent {
 
         StatusNodeComponent build();
     }
+
 }

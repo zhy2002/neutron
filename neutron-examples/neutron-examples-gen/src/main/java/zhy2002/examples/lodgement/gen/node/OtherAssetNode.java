@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherAssetNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final OtherAssetNodeComponent getComponent() {
+        return component;
+    }
+
+
     private OtherAssetNodeComponent component;
 
     @Inject
@@ -51,6 +59,8 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public OtherAssetTypeNode getOtherAssetTypeNode() {
         return (OtherAssetTypeNode)getChildByName("otherAssetTypeNode");
@@ -71,17 +81,18 @@ public class OtherAssetNode extends ObjectUiNode<OtherAssetListNode> {
         return (OtherAssetOwnershipListNode)getChildByName("ownershipListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("otherAssetTypeNode");
-        children.add(childFactory.createOtherAssetTypeNode());
+        children.add(getComponent().createOtherAssetTypeNode());
         setChildNodeIdentity("otherAssetDescriptionNode");
-        children.add(childFactory.createOtherAssetDescriptionNode());
+        children.add(getComponent().createOtherAssetDescriptionNode());
         setChildNodeIdentity("otherAssetMarketValueNode");
-        children.add(childFactory.createOtherAssetMarketValueNode());
+        children.add(getComponent().createOtherAssetMarketValueNode());
         setChildNodeIdentity("ownershipListNode");
-        children.add(childFactory.createOwnershipListNode());
+        children.add(getComponent().createOwnershipListNode());
         setChildNodeIdentity(null);
         return children;
     }

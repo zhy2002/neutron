@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PropertyWeeklyRentNodeModule.class})
 public interface PropertyWeeklyRentNodeComponent {
 
+
     RuleProvider<PropertyWeeklyRentNode> getPropertyWeeklyRentNodeRuleProvider();
     Map<String, RuleProvider<PropertyWeeklyRentNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PropertyWeeklyRentNodeComponent {
 
         PropertyWeeklyRentNodeComponent build();
     }
+
 }

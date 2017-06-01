@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AdditionalNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final AdditionalNodeComponent getComponent() {
+        return component;
+    }
+
+
     private AdditionalNodeComponent component;
 
     @Inject
@@ -57,6 +65,8 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public AdditionalCommentNode getAdditionalCommentNode() {
         return (AdditionalCommentNode)getChildByName("additionalCommentNode");
@@ -67,13 +77,14 @@ public class AdditionalNode extends ObjectUiNode<ApplicationNode> {
         return (RelatedPartyListNode)getChildByName("relatedPartyListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("additionalCommentNode");
-        children.add(childFactory.createAdditionalCommentNode());
+        children.add(getComponent().createAdditionalCommentNode());
         setChildNodeIdentity("relatedPartyListNode");
-        children.add(childFactory.createRelatedPartyListNode());
+        children.add(getComponent().createRelatedPartyListNode());
         setChildNodeIdentity(null);
         return children;
     }

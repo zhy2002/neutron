@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MonthYearNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -11,16 +12,23 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    private MonthYearNodeChildFactory childFactory;
-
     public MonthYearNode(P parent, String name) {
         super(parent, name);
     }
+
+    private MonthYearNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(MonthYearNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract MonthYearNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public MonthNode getMonthNode() {
@@ -32,13 +40,14 @@ public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiN
         return (YearNode)getChildByName("yearNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("monthNode");
-        children.add(childFactory.createMonthNode());
+        children.add(getComponent().createMonthNode());
         setChildNodeIdentity("yearNode");
-        children.add(childFactory.createYearNode());
+        children.add(getComponent().createYearNode());
         setChildNodeIdentity(null);
         return children;
     }

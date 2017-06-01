@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.MortgageInterestOnlyRemainingPeriodNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class MortgageInterestOnlyRemainingPeriodNode extends MonthYearNode<ExistingMortgageNode> {
-
-    private MortgageInterestOnlyRemainingPeriodNodeComponent component;
 
     @Inject
     public MortgageInterestOnlyRemainingPeriodNode(@Owner ExistingMortgageNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class MortgageInterestOnlyRemainingPeriodNode extends MonthYearNode<Exist
     public final Class<?> getConcreteClass() {
     return MortgageInterestOnlyRemainingPeriodNode.class;
     }
+
+    protected final MortgageInterestOnlyRemainingPeriodNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private MortgageInterestOnlyRemainingPeriodNodeComponent component;
 
     @Inject
     void createComponent(MortgageInterestOnlyRemainingPeriodNodeComponent.Builder builder) {

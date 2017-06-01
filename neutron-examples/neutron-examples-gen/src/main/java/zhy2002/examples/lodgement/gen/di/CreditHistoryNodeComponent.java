@@ -8,6 +8,7 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {CreditHistoryNodeModule.class})
 public interface CreditHistoryNodeComponent {
 
+
     RuleProvider<CreditHistoryNode> getCreditHistoryNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +18,5 @@ public interface CreditHistoryNodeComponent {
 
         CreditHistoryNodeComponent build();
     }
+
 }

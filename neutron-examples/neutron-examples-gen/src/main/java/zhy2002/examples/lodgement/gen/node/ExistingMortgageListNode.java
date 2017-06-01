@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ExistingMortgageListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -26,6 +27,13 @@ public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortg
     void receiveNodeProvider(ExistingMortgageListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ExistingMortgageListNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ExistingMortgageListNodeComponent component;
 

@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {TrustAddressNodeModule.class})
-public interface TrustAddressNodeComponent {
+public interface TrustAddressNodeComponent extends AddressNodeComponent {
+
 
     RuleProvider<TrustAddressNode> getTrustAddressNodeRuleProvider();
     Map<String, RuleProvider<TrustAddressNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface TrustAddressNodeComponent {
 
         TrustAddressNodeComponent build();
     }
+
 }

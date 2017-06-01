@@ -8,6 +8,11 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {ExpenseNodeModule.class})
 public interface ExpenseNodeComponent {
 
+    ExpenseTypeNode createExpenseTypeNode();
+    ExpenseDescriptionNode createExpenseDescriptionNode();
+    ExpenseMonthlyRepaymentNode createExpenseMonthlyRepaymentNode();
+    ExpenseOwnershipListNode createOwnershipListNode();
+
     RuleProvider<ExpenseNode> getExpenseNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +22,5 @@ public interface ExpenseNodeComponent {
 
         ExpenseNodeComponent build();
     }
+
 }

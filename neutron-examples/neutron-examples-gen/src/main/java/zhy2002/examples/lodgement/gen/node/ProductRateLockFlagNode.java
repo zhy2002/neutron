@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductRateLockFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductRateLockFlagNode extends BooleanUiNode<ProductFeaturesNode> {
-
-    private ProductRateLockFlagNodeComponent component;
 
     @Inject
     public ProductRateLockFlagNode(@Owner ProductFeaturesNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductRateLockFlagNode extends BooleanUiNode<ProductFeaturesNode> 
     public final Class<?> getConcreteClass() {
     return ProductRateLockFlagNode.class;
     }
+
+    protected final ProductRateLockFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductRateLockFlagNodeComponent component;
 
     @Inject
     void createComponent(ProductRateLockFlagNodeComponent.Builder builder) {

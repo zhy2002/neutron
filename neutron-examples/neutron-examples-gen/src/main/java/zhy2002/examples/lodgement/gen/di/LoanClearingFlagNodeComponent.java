@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {LoanClearingFlagNodeModule.class})
 public interface LoanClearingFlagNodeComponent {
 
+
     RuleProvider<LoanClearingFlagNode> getLoanClearingFlagNodeRuleProvider();
     Map<String, RuleProvider<LoanClearingFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface LoanClearingFlagNodeComponent {
 
         LoanClearingFlagNodeComponent build();
     }
+
 }

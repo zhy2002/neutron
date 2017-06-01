@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.EmployedNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -11,16 +12,23 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private EmployedNodeChildFactory childFactory;
-
     public EmployedNode(EmploymentNode<?> parent, String name) {
         super(parent, name);
     }
+
+    private EmployedNodeChildFactory childFactory;
 
     @Inject
     void receiveNodeProvider(EmployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected abstract EmployedNodeComponent getComponent();
+
+
+    //region children getters
 
     @JsMethod
     public EmploymentStatusNode getEmploymentStatusNode() {
@@ -57,23 +65,24 @@ public abstract class EmployedNode extends ObjectUiNode<EmploymentNode<?>> {
         return (EmploymentEndedNode)getChildByName("employmentEndedNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("employmentStatusNode");
-        children.add(childFactory.createEmploymentStatusNode());
+        children.add(getComponent().createEmploymentStatusNode());
         setChildNodeIdentity("occupationNode");
-        children.add(childFactory.createOccupationNode());
+        children.add(getComponent().createOccupationNode());
         setChildNodeIdentity("employerNameNode");
-        children.add(childFactory.createEmployerNameNode());
+        children.add(getComponent().createEmployerNameNode());
         setChildNodeIdentity("employerAddressNode");
-        children.add(childFactory.createEmployerAddressNode());
+        children.add(getComponent().createEmployerAddressNode());
         setChildNodeIdentity("employerPhoneNode");
-        children.add(childFactory.createEmployerPhoneNode());
+        children.add(getComponent().createEmployerPhoneNode());
         setChildNodeIdentity("employmentStartedNode");
-        children.add(childFactory.createEmploymentStartedNode());
+        children.add(getComponent().createEmploymentStartedNode());
         setChildNodeIdentity("employmentEndedNode");
-        children.add(childFactory.createEmploymentEndedNode());
+        children.add(getComponent().createEmploymentEndedNode());
         setChildNodeIdentity(null);
         return children;
     }

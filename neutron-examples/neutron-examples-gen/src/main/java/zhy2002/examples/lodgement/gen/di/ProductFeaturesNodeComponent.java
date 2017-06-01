@@ -9,6 +9,19 @@ import java.util.*;
 @Subcomponent(modules = {ProductFeaturesNodeModule.class})
 public interface ProductFeaturesNodeComponent {
 
+    ProductPackageNameNode createProductPackageNameNode();
+    ProductRepaymentFrequencyNode createProductRepaymentFrequencyNode();
+    ProductRateLockFlagNode createProductRateLockFlagNode();
+    ProductTransactionAccountFlagNode createProductTransactionAccountFlagNode();
+    ProductOptOutReasonNode createProductOptOutReasonNode();
+    ProductCreditCardFlagNode createProductCreditCardFlagNode();
+    ProductCreditCardTypeNode createProductCreditCardTypeNode();
+    ProductCreditCardLimitNode createProductCreditCardLimitNode();
+    ProductExpressConsentFlagNode createProductExpressConsentFlagNode();
+    Product100PercentOffsetFlagNode createProduct100PercentOffsetFlagNode();
+    ProductCardHolderNode createProductPrimaryCardHolderNode();
+    ProductCardHolderNode createProductAdditionalCardHolderNode();
+
     RuleProvider<ProductFeaturesNode> getProductFeaturesNodeRuleProvider();
     Map<String, RuleProvider<ProductFeaturesNode>> getInstanceRuleProviders();
 
@@ -19,4 +32,5 @@ public interface ProductFeaturesNodeComponent {
 
         ProductFeaturesNodeComponent build();
     }
+
 }

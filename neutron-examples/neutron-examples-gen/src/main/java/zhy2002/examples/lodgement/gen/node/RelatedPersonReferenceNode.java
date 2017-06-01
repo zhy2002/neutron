@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.RelatedPersonReferenceNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.data.*;
@@ -10,8 +11,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPersonNode> {
-
-    private RelatedPersonReferenceNodeComponent component;
 
     @Inject
     public RelatedPersonReferenceNode(@Owner SelectRelatedPersonNode parent, @ChildName String name) {
@@ -22,6 +21,13 @@ public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPer
     public final Class<?> getConcreteClass() {
     return RelatedPersonReferenceNode.class;
     }
+
+    protected final RelatedPersonReferenceNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private RelatedPersonReferenceNodeComponent component;
 
     @Inject
     void createComponent(RelatedPersonReferenceNodeComponent.Builder builder) {

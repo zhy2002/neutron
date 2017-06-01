@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductCustomerContributionNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustomerContributionListNode> {
 
-    private ProductCustomerContributionNodeChildFactory childFactory;
-    private ProductCustomerContributionNodeComponent component;
-
     @Inject
     public ProductCustomerContributionNode(@Owner ProductCustomerContributionListNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
     return ProductCustomerContributionNode.class;
     }
 
+    private ProductCustomerContributionNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ProductCustomerContributionNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ProductCustomerContributionNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductCustomerContributionNodeComponent component;
 
     @Inject
     void createComponent(ProductCustomerContributionNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public ContributionTypeNode getContributionTypeNode() {
         return (ContributionTypeNode)getChildByName("contributionTypeNode");
@@ -65,15 +76,16 @@ public class ProductCustomerContributionNode extends ObjectUiNode<ProductCustome
         return (ContributionAmountNode)getChildByName("contributionAmountNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("contributionTypeNode");
-        children.add(childFactory.createContributionTypeNode());
+        children.add(getComponent().createContributionTypeNode());
         setChildNodeIdentity("contributionDescriptionNode");
-        children.add(childFactory.createContributionDescriptionNode());
+        children.add(getComponent().createContributionDescriptionNode());
         setChildNodeIdentity("contributionAmountNode");
-        children.add(childFactory.createContributionAmountNode());
+        children.add(getComponent().createContributionAmountNode());
         setChildNodeIdentity(null);
         return children;
     }

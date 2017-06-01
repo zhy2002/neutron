@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AccessNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class AccessNode extends ObjectUiNode<RealEstateNode> {
 
-    private AccessNodeChildFactory childFactory;
-    private AccessNodeComponent component;
-
     @Inject
     public AccessNode(@Owner RealEstateNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
     return AccessNode.class;
     }
 
+    private AccessNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(AccessNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final AccessNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private AccessNodeComponent component;
 
     @Inject
     void createComponent(AccessNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
     private RuleProvider<AccessNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public AccessContactTypeNode getAccessContactTypeNode() {
@@ -91,23 +102,24 @@ public class AccessNode extends ObjectUiNode<RealEstateNode> {
         return (AccessOtherDescriptionNode)getChildByName("accessOtherDescriptionNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("accessContactTypeNode");
-        children.add(childFactory.createAccessContactTypeNode());
+        children.add(getComponent().createAccessContactTypeNode());
         setChildNodeIdentity("accessContactTitleNode");
-        children.add(childFactory.createAccessContactTitleNode());
+        children.add(getComponent().createAccessContactTitleNode());
         setChildNodeIdentity("accessContactFirstNameNode");
-        children.add(childFactory.createAccessContactFirstNameNode());
+        children.add(getComponent().createAccessContactFirstNameNode());
         setChildNodeIdentity("accessContactLastNameNode");
-        children.add(childFactory.createAccessContactLastNameNode());
+        children.add(getComponent().createAccessContactLastNameNode());
         setChildNodeIdentity("accessCompanyNameNode");
-        children.add(childFactory.createAccessCompanyNameNode());
+        children.add(getComponent().createAccessCompanyNameNode());
         setChildNodeIdentity("accessTelephoneNode");
-        children.add(childFactory.createAccessTelephoneNode());
+        children.add(getComponent().createAccessTelephoneNode());
         setChildNodeIdentity("accessOtherDescriptionNode");
-        children.add(childFactory.createAccessOtherDescriptionNode());
+        children.add(getComponent().createAccessOtherDescriptionNode());
         setChildNodeIdentity(null);
         return children;
     }

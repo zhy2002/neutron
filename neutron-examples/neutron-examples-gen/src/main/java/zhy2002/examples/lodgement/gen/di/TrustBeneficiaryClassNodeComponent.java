@@ -8,6 +8,7 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {TrustBeneficiaryClassNodeModule.class})
 public interface TrustBeneficiaryClassNodeComponent {
 
+
     RuleProvider<TrustBeneficiaryClassNode> getTrustBeneficiaryClassNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +18,5 @@ public interface TrustBeneficiaryClassNodeComponent {
 
         TrustBeneficiaryClassNodeComponent build();
     }
+
 }

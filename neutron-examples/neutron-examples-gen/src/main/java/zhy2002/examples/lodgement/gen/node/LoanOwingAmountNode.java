@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.LoanOwingAmountNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class LoanOwingAmountNode extends BaseCurrencyNode<LoanNode> {
     public final Class<?> getConcreteClass() {
     return LoanOwingAmountNode.class;
     }
+
+    protected final LoanOwingAmountNodeComponent getComponent() {
+        return component;
+    }
+
 
     private LoanOwingAmountNodeComponent component;
 

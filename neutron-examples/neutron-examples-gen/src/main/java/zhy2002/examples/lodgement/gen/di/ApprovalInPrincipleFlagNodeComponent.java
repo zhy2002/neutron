@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ApprovalInPrincipleFlagNodeModule.class})
 public interface ApprovalInPrincipleFlagNodeComponent {
 
+
     RuleProvider<ApprovalInPrincipleFlagNode> getApprovalInPrincipleFlagNodeRuleProvider();
     Map<String, RuleProvider<ApprovalInPrincipleFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ApprovalInPrincipleFlagNodeComponent {
 
         ApprovalInPrincipleFlagNodeComponent build();
     }
+
 }

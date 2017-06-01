@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.UsernameNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
@@ -20,6 +21,11 @@ public class UsernameNode extends StringUiNode<RegisterNode> {
     public final Class<?> getConcreteClass() {
     return UsernameNode.class;
     }
+
+    protected final UsernameNodeComponent getComponent() {
+        return component;
+    }
+
 
     private UsernameNodeComponent component;
 

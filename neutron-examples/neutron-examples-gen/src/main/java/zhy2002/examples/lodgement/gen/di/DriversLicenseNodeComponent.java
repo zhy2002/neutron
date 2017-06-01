@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {DriversLicenseNodeModule.class})
 public interface DriversLicenseNodeComponent {
 
+
     RuleProvider<DriversLicenseNode> getDriversLicenseNodeRuleProvider();
     Map<String, RuleProvider<DriversLicenseNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface DriversLicenseNodeComponent {
 
         DriversLicenseNodeComponent build();
     }
+
 }

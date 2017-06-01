@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductDescriptionNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final ProductDescriptionNodeComponent getComponent() {
+        return component;
+    }
+
+
     private ProductDescriptionNodeComponent component;
 
     @Inject
@@ -56,6 +64,8 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
     private RuleProvider<ProductDescriptionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public ProductGroupNode getProductGroupNode() {
@@ -132,39 +142,40 @@ public class ProductDescriptionNode extends ObjectUiNode<ProductNode> {
         return (ProductAccountHolderListNode)getChildByName("productAccountHolderListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("productGroupNode");
-        children.add(childFactory.createProductGroupNode());
+        children.add(getComponent().createProductGroupNode());
         setChildNodeIdentity("productNameNode");
-        children.add(childFactory.createProductNameNode());
+        children.add(getComponent().createProductNameNode());
         setChildNodeIdentity("productLoanPrimaryPurposeNode");
-        children.add(childFactory.createProductLoanPrimaryPurposeNode());
+        children.add(getComponent().createProductLoanPrimaryPurposeNode());
         setChildNodeIdentity("productLendingPurposeNode");
-        children.add(childFactory.createProductLendingPurposeNode());
+        children.add(getComponent().createProductLendingPurposeNode());
         setChildNodeIdentity("productRequestedAmountNode");
-        children.add(childFactory.createProductRequestedAmountNode());
+        children.add(getComponent().createProductRequestedAmountNode());
         setChildNodeIdentity("productTotalLoanTermNode");
-        children.add(childFactory.createProductTotalLoanTermNode());
+        children.add(getComponent().createProductTotalLoanTermNode());
         setChildNodeIdentity("productPaymentTypeNode");
-        children.add(childFactory.createProductPaymentTypeNode());
+        children.add(getComponent().createProductPaymentTypeNode());
         setChildNodeIdentity("productInterestOnlyTermNode");
-        children.add(childFactory.createProductInterestOnlyTermNode());
+        children.add(getComponent().createProductInterestOnlyTermNode());
         setChildNodeIdentity("productFixedTermNode");
-        children.add(childFactory.createProductFixedTermNode());
+        children.add(getComponent().createProductFixedTermNode());
         setChildNodeIdentity("productConstructionApplicationFlagNode");
-        children.add(childFactory.createProductConstructionApplicationFlagNode());
+        children.add(getComponent().createProductConstructionApplicationFlagNode());
         setChildNodeIdentity("productCostRecuctionFlagNode");
-        children.add(childFactory.createProductCostRecuctionFlagNode());
+        children.add(getComponent().createProductCostRecuctionFlagNode());
         setChildNodeIdentity("productConsolidationFlagNode");
-        children.add(childFactory.createProductConsolidationFlagNode());
+        children.add(getComponent().createProductConsolidationFlagNode());
         setChildNodeIdentity("productDissatisfactionFlagNode");
-        children.add(childFactory.createProductDissatisfactionFlagNode());
+        children.add(getComponent().createProductDissatisfactionFlagNode());
         setChildNodeIdentity("productSpecificFeaturesFlagNode");
-        children.add(childFactory.createProductSpecificFeaturesFlagNode());
+        children.add(getComponent().createProductSpecificFeaturesFlagNode());
         setChildNodeIdentity("productAccountHolderListNode");
-        children.add(childFactory.createProductAccountHolderListNode());
+        children.add(getComponent().createProductAccountHolderListNode());
         setChildNodeIdentity(null);
         return children;
     }

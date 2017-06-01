@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SubmissionNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
-    private SubmissionNodeChildFactory childFactory;
-    private SubmissionNodeComponent component;
-
     @Inject
     public SubmissionNode(@Owner ApplicationNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     return SubmissionNode.class;
     }
 
+    private SubmissionNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(SubmissionNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final SubmissionNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private SubmissionNodeComponent component;
 
     @Inject
     void createComponent(SubmissionNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
     private RuleProvider<SubmissionNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public BrokerFirstNameNode getBrokerFirstNameNode() {
@@ -101,27 +112,28 @@ public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
         return (LenderIssuedBrokerNumberNode)getChildByName("lenderIssuedBrokerNumberNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("brokerFirstNameNode");
-        children.add(childFactory.createBrokerFirstNameNode());
+        children.add(getComponent().createBrokerFirstNameNode());
         setChildNodeIdentity("brokerLastNameNode");
-        children.add(childFactory.createBrokerLastNameNode());
+        children.add(getComponent().createBrokerLastNameNode());
         setChildNodeIdentity("brokerCompanyNode");
-        children.add(childFactory.createBrokerCompanyNode());
+        children.add(getComponent().createBrokerCompanyNode());
         setChildNodeIdentity("contactNumberNode");
-        children.add(childFactory.createContactNumberNode());
+        children.add(getComponent().createContactNumberNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(childFactory.createFaxNumberNode());
+        children.add(getComponent().createFaxNumberNode());
         setChildNodeIdentity("mobileNumberNode");
-        children.add(childFactory.createMobileNumberNode());
+        children.add(getComponent().createMobileNumberNode());
         setChildNodeIdentity("brokerEmailNode");
-        children.add(childFactory.createBrokerEmailNode());
+        children.add(getComponent().createBrokerEmailNode());
         setChildNodeIdentity("brokerAddressNode");
-        children.add(childFactory.createBrokerAddressNode());
+        children.add(getComponent().createBrokerAddressNode());
         setChildNodeIdentity("lenderIssuedBrokerNumberNode");
-        children.add(childFactory.createLenderIssuedBrokerNumberNode());
+        children.add(getComponent().createLenderIssuedBrokerNumberNode());
         setChildNodeIdentity(null);
         return children;
     }

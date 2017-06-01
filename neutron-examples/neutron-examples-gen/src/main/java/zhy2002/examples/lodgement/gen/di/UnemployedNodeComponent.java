@@ -9,6 +9,12 @@ import java.util.*;
 @Subcomponent(modules = {UnemployedNodeModule.class})
 public interface UnemployedNodeComponent {
 
+    UnemployedOnBenefitFlagNode createUnemployedOnBenefitFlagNode();
+    StudentFlagNode createStudentFlagNode();
+    StudentTypeNode createStudentTypeNode();
+    HouseDutiesFlagNode createHouseDutiesFlagNode();
+    UnemployedSinceNode createUnemployedSinceNode();
+
     RuleProvider<UnemployedNode> getUnemployedNodeRuleProvider();
     Map<String, RuleProvider<UnemployedNode>> getInstanceRuleProviders();
 
@@ -19,4 +25,5 @@ public interface UnemployedNodeComponent {
 
         UnemployedNodeComponent build();
     }
+
 }

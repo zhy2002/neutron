@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.DateOfBirthNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
-
-    private DateOfBirthNodeComponent component;
 
     @Inject
     public DateOfBirthNode(@Owner PersonGeneralNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return DateOfBirthNode.class;
     }
+
+    protected final DateOfBirthNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private DateOfBirthNodeComponent component;
 
     @Inject
     void createComponent(DateOfBirthNodeComponent.Builder builder) {

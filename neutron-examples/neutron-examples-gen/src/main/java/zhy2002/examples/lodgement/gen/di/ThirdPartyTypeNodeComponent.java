@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ThirdPartyTypeNodeModule.class})
 public interface ThirdPartyTypeNodeComponent {
 
+
     RuleProvider<ThirdPartyTypeNode> getThirdPartyTypeNodeRuleProvider();
     Map<String, RuleProvider<ThirdPartyTypeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ThirdPartyTypeNodeComponent {
 
         ThirdPartyTypeNodeComponent build();
     }
+
 }

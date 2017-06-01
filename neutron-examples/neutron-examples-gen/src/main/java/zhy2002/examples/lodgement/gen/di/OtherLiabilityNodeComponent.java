@@ -8,6 +8,15 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {OtherLiabilityNodeModule.class})
 public interface OtherLiabilityNodeComponent {
 
+    OtherLiabilityTypeNode createOtherLiabilityTypeNode();
+    OtherLiabilityDescriptionNode createOtherLiabilityDescriptionNode();
+    OtherLiabilityLimitAmountNode createOtherLiabilityLimitAmountNode();
+    OtherLiabilityAmountOwningNode createOtherLiabilityAmountOwningNode();
+    OtherLiabilityMonthlyRepaymentNode createOtherLiabilityMonthlyRepaymentNode();
+    OtherLiabilityClearingFlagNode createOtherLiabilityClearingFlagNode();
+    OtherLiabilityBreakCostNode createOtherLiabilityBreakCostNode();
+    OtherLiabilityOwnershipListNode createOwnershipListNode();
+
     RuleProvider<OtherLiabilityNode> getOtherLiabilityNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +26,5 @@ public interface OtherLiabilityNodeComponent {
 
         OtherLiabilityNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.GrossYearlySalaryNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode> {
-
-    private GrossYearlySalaryNodeComponent component;
 
     @Inject
     public GrossYearlySalaryNode(@Owner PayeEmployedNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode> {
     public final Class<?> getConcreteClass() {
     return GrossYearlySalaryNode.class;
     }
+
+    protected final GrossYearlySalaryNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private GrossYearlySalaryNodeComponent component;
 
     @Inject
     void createComponent(GrossYearlySalaryNodeComponent.Builder builder) {

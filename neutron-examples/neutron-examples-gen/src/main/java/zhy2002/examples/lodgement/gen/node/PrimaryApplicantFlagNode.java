@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PrimaryApplicantFlagNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode> {
-
-    private PrimaryApplicantFlagNodeComponent component;
 
     @Inject
     public PrimaryApplicantFlagNode(@Owner PersonGeneralNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return PrimaryApplicantFlagNode.class;
     }
+
+    protected final PrimaryApplicantFlagNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private PrimaryApplicantFlagNodeComponent component;
 
     @Inject
     void createComponent(PrimaryApplicantFlagNodeComponent.Builder builder) {

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ErrorNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class ErrorNode extends ValidationErrorUiNode<ErrorListNode> {
     public final Class<?> getConcreteClass() {
     return ErrorNode.class;
     }
+
+    protected final ErrorNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ErrorNodeComponent component;
 

@@ -8,16 +8,19 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectRelatedPersonNode> {
 
-    private SelectRelatedPersonListNodeItemFactory itemFactory;
-
     public SelectRelatedPersonListNode(P parent, String name) {
         super(parent, name);
     }
+
+    private SelectRelatedPersonListNodeItemFactory itemFactory;
 
     @Inject
     void receiveNodeProvider(SelectRelatedPersonListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
 
     @Override
     public Class<SelectRelatedPersonNode> getItemClass() {

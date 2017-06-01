@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OtherAssetTypeNodeModule.class})
 public interface OtherAssetTypeNodeComponent {
 
+
     RuleProvider<OtherAssetTypeNode> getOtherAssetTypeNodeRuleProvider();
     Map<String, RuleProvider<OtherAssetTypeNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OtherAssetTypeNodeComponent {
 
         OtherAssetTypeNodeComponent build();
     }
+
 }

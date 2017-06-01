@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {BrokerTelephoneNodeModule.class})
 public interface BrokerTelephoneNodeComponent {
 
+
     RuleProvider<BrokerTelephoneNode> getBrokerTelephoneNodeRuleProvider();
     Map<String, RuleProvider<BrokerTelephoneNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface BrokerTelephoneNodeComponent {
 
         BrokerTelephoneNodeComponent build();
     }
+
 }

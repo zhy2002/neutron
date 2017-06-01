@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.PersonMobileNumberNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class PersonMobileNumberNode extends BaseMobileNumberNode<PersonContactNo
     public final Class<?> getConcreteClass() {
     return PersonMobileNumberNode.class;
     }
+
+    protected final PersonMobileNumberNodeComponent getComponent() {
+        return component;
+    }
+
 
     private PersonMobileNumberNodeComponent component;
 

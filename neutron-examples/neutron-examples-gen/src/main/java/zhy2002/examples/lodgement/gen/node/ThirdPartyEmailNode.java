@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ThirdPartyEmailNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class ThirdPartyEmailNode extends StringUiNode<RelatedPartyNode> {
     public final Class<?> getConcreteClass() {
     return ThirdPartyEmailNode.class;
     }
+
+    protected final ThirdPartyEmailNodeComponent getComponent() {
+        return component;
+    }
+
 
     private ThirdPartyEmailNodeComponent component;
 

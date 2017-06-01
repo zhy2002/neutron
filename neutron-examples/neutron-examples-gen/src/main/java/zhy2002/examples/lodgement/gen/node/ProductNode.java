@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -14,9 +15,6 @@ import java.util.List;
 
 public class ProductNode extends ObjectUiNode<ProductListNode> {
 
-    private ProductNodeChildFactory childFactory;
-    private ProductNodeComponent component;
-
     @Inject
     public ProductNode(@Owner ProductListNode parent, @ChildName String name) {
         super(parent, name);
@@ -27,10 +25,21 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
     return ProductNode.class;
     }
 
+    private ProductNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(ProductNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final ProductNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductNodeComponent component;
 
     @Inject
     void createComponent(ProductNodeComponent.Builder builder) {
@@ -51,6 +60,8 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public ProductDescriptionNode getProductDescriptionNode() {
         return (ProductDescriptionNode)getChildByName("productDescriptionNode");
@@ -61,13 +72,14 @@ public class ProductNode extends ObjectUiNode<ProductListNode> {
         return (ProductFeaturesNode)getChildByName("productFeaturesNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("productDescriptionNode");
-        children.add(childFactory.createProductDescriptionNode());
+        children.add(getComponent().createProductDescriptionNode());
         setChildNodeIdentity("productFeaturesNode");
-        children.add(childFactory.createProductFeaturesNode());
+        children.add(getComponent().createProductFeaturesNode());
         setChildNodeIdentity(null);
         return children;
     }

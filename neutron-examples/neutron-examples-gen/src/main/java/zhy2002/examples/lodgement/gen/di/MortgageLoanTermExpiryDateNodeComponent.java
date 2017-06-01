@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MortgageLoanTermExpiryDateNodeModule.class})
 public interface MortgageLoanTermExpiryDateNodeComponent {
 
+
     RuleProvider<MortgageLoanTermExpiryDateNode> getMortgageLoanTermExpiryDateNodeRuleProvider();
     Map<String, RuleProvider<MortgageLoanTermExpiryDateNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MortgageLoanTermExpiryDateNodeComponent {
 
         MortgageLoanTermExpiryDateNodeComponent build();
     }
+
 }

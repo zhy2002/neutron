@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.EmploymentNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -25,6 +26,11 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected abstract EmploymentNodeComponent getComponent();
+
+
     public static final PropertyMetadata<Boolean> CURRENT_RECORD_PROPERTY = MetadataRegistry.createProperty(EmploymentNode.class, "currentRecord", Boolean.class, Boolean.FALSE);
 
     @JsMethod
@@ -36,6 +42,8 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
     public void setCurrentRecord(Boolean value) {
         setStateValue(CURRENT_RECORD_PROPERTY, value);
     }
+
+    //region children getters
 
     @JsMethod
     public EmploymentTypeNode getEmploymentTypeNode() {
@@ -62,19 +70,20 @@ public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUi
         return (RetiredEmploymentNode)getChildByName("retiredEmploymentNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("employmentTypeNode");
-        children.add(childFactory.createEmploymentTypeNode());
+        children.add(getComponent().createEmploymentTypeNode());
         setChildNodeIdentity("payeEmployedNode");
-        children.add(childFactory.createPayeEmployedNode());
+        children.add(getComponent().createPayeEmployedNode());
         setChildNodeIdentity("selfEmployedNode");
-        children.add(childFactory.createSelfEmployedNode());
+        children.add(getComponent().createSelfEmployedNode());
         setChildNodeIdentity("unemployedNode");
-        children.add(childFactory.createUnemployedNode());
+        children.add(getComponent().createUnemployedNode());
         setChildNodeIdentity("retiredEmploymentNode");
-        children.add(childFactory.createRetiredEmploymentNode());
+        children.add(getComponent().createRetiredEmploymentNode());
         setChildNodeIdentity(null);
         return children;
     }

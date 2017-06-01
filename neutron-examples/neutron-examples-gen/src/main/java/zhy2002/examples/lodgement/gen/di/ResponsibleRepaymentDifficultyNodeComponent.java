@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ResponsibleRepaymentDifficultyNodeModule.class})
 public interface ResponsibleRepaymentDifficultyNodeComponent {
 
+
     RuleProvider<ResponsibleRepaymentDifficultyNode> getResponsibleRepaymentDifficultyNodeRuleProvider();
     Map<String, RuleProvider<ResponsibleRepaymentDifficultyNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ResponsibleRepaymentDifficultyNodeComponent {
 
         ResponsibleRepaymentDifficultyNodeComponent build();
     }
+
 }

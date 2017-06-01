@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {GenderNodeModule.class})
 public interface GenderNodeComponent {
 
+
     RuleProvider<GenderNode> getGenderNodeRuleProvider();
     Map<String, RuleProvider<GenderNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface GenderNodeComponent {
 
         GenderNodeComponent build();
     }
+
 }

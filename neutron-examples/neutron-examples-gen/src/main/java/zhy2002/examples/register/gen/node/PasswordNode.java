@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.PasswordNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -24,6 +25,11 @@ public class PasswordNode extends StringUiNode<RegisterNode> {
     public final Class<?> getConcreteClass() {
     return PasswordNode.class;
     }
+
+    protected final PasswordNodeComponent getComponent() {
+        return component;
+    }
+
 
     private PasswordNodeComponent component;
 

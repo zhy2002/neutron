@@ -8,6 +8,19 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {RegisterNodeModule.class})
 public interface RegisterNodeComponent {
 
+    UsernameNode createUsernameNode();
+    EmailNode createEmailNode();
+    PasswordNode createPasswordNode();
+    RepeatPasswordNode createRepeatPasswordNode();
+    AgeNode createAgeNode();
+    PlanNode createPlanNode();
+    ReceiveOffersNode createReceiveOffersNode();
+    OwnInvestmentPropertyNode createOwnInvestmentPropertyNode();
+    PropertyDetailsNode createResidentialPropertyNode();
+    PropertyDetailsNode createInvestmentPropertyNode();
+    PhoneInfoNode createHomePhoneNode();
+    ErrorListNode createErrorListNode();
+
     RuleProvider<RegisterNode> getRegisterNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +30,5 @@ public interface RegisterNodeComponent {
 
         RegisterNodeComponent build();
     }
+
 }

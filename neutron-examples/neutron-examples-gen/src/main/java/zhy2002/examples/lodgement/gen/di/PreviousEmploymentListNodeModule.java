@@ -34,7 +34,7 @@ public class PreviousEmploymentListNodeModule {
     }
 
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
     @Provides @ComponentScope PersonNode providePersonNode() {

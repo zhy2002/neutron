@@ -12,11 +12,13 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class DobNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    public static final PropertyMetadata<Integer> MIN_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "minAge", Integer.class);
-    public static final PropertyMetadata<Integer> MAX_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "maxAge", Integer.class);
     public DobNode(P parent, String name) {
         super(parent, name);
     }
+
+
+    public static final PropertyMetadata<Integer> MIN_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "minAge", Integer.class);
+    public static final PropertyMetadata<Integer> MAX_AGE_PROPERTY = MetadataRegistry.createProperty(DobNode.class, "maxAge", Integer.class);
 
     @JsMethod
     public Integer getMinAge() {

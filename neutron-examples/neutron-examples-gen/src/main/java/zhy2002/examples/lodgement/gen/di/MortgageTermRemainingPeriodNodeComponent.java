@@ -7,7 +7,8 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {MortgageTermRemainingPeriodNodeModule.class})
-public interface MortgageTermRemainingPeriodNodeComponent {
+public interface MortgageTermRemainingPeriodNodeComponent extends MonthYearNodeComponent {
+
 
     RuleProvider<MortgageTermRemainingPeriodNode> getMortgageTermRemainingPeriodNodeRuleProvider();
     Map<String, RuleProvider<MortgageTermRemainingPeriodNode>> getInstanceRuleProviders();
@@ -19,4 +20,5 @@ public interface MortgageTermRemainingPeriodNodeComponent {
 
         MortgageTermRemainingPeriodNodeComponent build();
     }
+
 }

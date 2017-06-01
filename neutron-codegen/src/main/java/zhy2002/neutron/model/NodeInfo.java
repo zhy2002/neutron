@@ -492,4 +492,8 @@ public class NodeInfo extends CodeGenInfo {
             getDomainInfo().getChangeEventNodes().add(this);
         }
     }
+
+    public boolean getHasComponent() {
+        return !isAbstractNode() || getChildren() != null && getChildren().size() > 0;
+    }
 }

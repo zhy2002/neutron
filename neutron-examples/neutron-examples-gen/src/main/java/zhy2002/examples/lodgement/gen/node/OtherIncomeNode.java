@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OtherIncomeNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
 
-    private OtherIncomeNodeChildFactory childFactory;
-    private OtherIncomeNodeComponent component;
-
     @Inject
     public OtherIncomeNode(@Owner BaseOtherIncomeListNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
     return OtherIncomeNode.class;
     }
 
+    private OtherIncomeNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(OtherIncomeNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final OtherIncomeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OtherIncomeNodeComponent component;
 
     @Inject
     void createComponent(OtherIncomeNodeComponent.Builder builder) {
@@ -49,6 +58,8 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         getRuleProvider().createRules(createdRules);
     }
+
+    //region children getters
 
     @JsMethod
     public OtherIncomeAddBackTypeNode getOtherIncomeAddBackTypeNode() {
@@ -75,19 +86,20 @@ public class OtherIncomeNode extends ObjectUiNode<BaseOtherIncomeListNode<?>> {
         return (OtherIncomeTypeNode)getChildByName("otherIncomeTypeNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("otherIncomeAddBackTypeNode");
-        children.add(childFactory.createOtherIncomeAddBackTypeNode());
+        children.add(getComponent().createOtherIncomeAddBackTypeNode());
         setChildNodeIdentity("otherIncomeAmountNode");
-        children.add(childFactory.createOtherIncomeAmountNode());
+        children.add(getComponent().createOtherIncomeAmountNode());
         setChildNodeIdentity("otherIncomeDescriptionNode");
-        children.add(childFactory.createOtherIncomeDescriptionNode());
+        children.add(getComponent().createOtherIncomeDescriptionNode());
         setChildNodeIdentity("otherIncomePreviousYearNode");
-        children.add(childFactory.createOtherIncomePreviousYearNode());
+        children.add(getComponent().createOtherIncomePreviousYearNode());
         setChildNodeIdentity("otherIncomeTypeNode");
-        children.add(childFactory.createOtherIncomeTypeNode());
+        children.add(getComponent().createOtherIncomeTypeNode());
         setChildNodeIdentity(null);
         return children;
     }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {PermanentResidentFlagNodeModule.class})
 public interface PermanentResidentFlagNodeComponent {
 
+
     RuleProvider<PermanentResidentFlagNode> getPermanentResidentFlagNodeRuleProvider();
     Map<String, RuleProvider<PermanentResidentFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface PermanentResidentFlagNodeComponent {
 
         PermanentResidentFlagNodeComponent build();
     }
+
 }

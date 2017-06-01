@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.OwnershipNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
 
-    private OwnershipNodeChildFactory childFactory;
-    private OwnershipNodeComponent component;
-
     @Inject
     public OwnershipNode(@Owner OwnershipListNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
     return OwnershipNode.class;
     }
 
+    private OwnershipNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(OwnershipNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final OwnershipNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private OwnershipNodeComponent component;
 
     @Inject
     void createComponent(OwnershipNodeComponent.Builder builder) {
@@ -50,6 +59,8 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         getRuleProvider().createRules(createdRules);
     }
 
+    //region children getters
+
     @JsMethod
     public ApplicantReferenceNode getApplicantReferenceNode() {
         return (ApplicantReferenceNode)getChildByName("applicantReferenceNode");
@@ -65,15 +76,16 @@ public class OwnershipNode extends ObjectUiNode<OwnershipListNode<?>> {
         return (AverageFlagNode)getChildByName("averageFlagNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("applicantReferenceNode");
-        children.add(childFactory.createApplicantReferenceNode());
+        children.add(getComponent().createApplicantReferenceNode());
         setChildNodeIdentity("ownershipPercentageNode");
-        children.add(childFactory.createOwnershipPercentageNode());
+        children.add(getComponent().createOwnershipPercentageNode());
         setChildNodeIdentity("averageFlagNode");
-        children.add(childFactory.createAverageFlagNode());
+        children.add(getComponent().createAverageFlagNode());
         setChildNodeIdentity(null);
         return children;
     }

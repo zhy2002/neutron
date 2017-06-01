@@ -8,6 +8,9 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {SelectRelatedPersonNodeModule.class})
 public interface SelectRelatedPersonNodeComponent {
 
+    RelatedPersonReferenceNode createRelatedPersonReferenceNode();
+    SelectRelatedPersonFlagNode createSelectRelatedPersonFlagNode();
+
     RuleProvider<SelectRelatedPersonNode> getSelectRelatedPersonNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +20,5 @@ public interface SelectRelatedPersonNodeComponent {
 
         SelectRelatedPersonNodeComponent build();
     }
+
 }

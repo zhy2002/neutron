@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ReceiveOffersNodeModule.class})
 public interface ReceiveOffersNodeComponent {
 
+
     RuleProvider<ReceiveOffersNode> getReceiveOffersNodeRuleProvider();
     Map<String, RuleProvider<ReceiveOffersNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ReceiveOffersNodeComponent {
 
         ReceiveOffersNodeComponent build();
     }
+
 }

@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductCardHolderNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final ProductCardHolderNodeComponent getComponent() {
+        return component;
+    }
+
+
     private ProductCardHolderNodeComponent component;
 
     @Inject
@@ -57,6 +65,8 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public ProductCardHodlerNameNode getProductCardHodlerNameNode() {
         return (ProductCardHodlerNameNode)getChildByName("productCardHodlerNameNode");
@@ -72,15 +82,16 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
         return (ProductRewardsMembershipNode)getChildByName("productRewardsMembershipNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("productCardHodlerNameNode");
-        children.add(childFactory.createProductCardHodlerNameNode());
+        children.add(getComponent().createProductCardHodlerNameNode());
         setChildNodeIdentity("productRewardsProgramNode");
-        children.add(childFactory.createProductRewardsProgramNode());
+        children.add(getComponent().createProductRewardsProgramNode());
         setChildNodeIdentity("productRewardsMembershipNode");
-        children.add(childFactory.createProductRewardsMembershipNode());
+        children.add(getComponent().createProductRewardsMembershipNode());
         setChildNodeIdentity(null);
         return children;
     }

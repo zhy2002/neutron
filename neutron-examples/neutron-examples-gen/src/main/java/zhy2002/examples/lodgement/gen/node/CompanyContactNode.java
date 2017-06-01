@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CompanyContactNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -30,6 +31,13 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
         childFactory = provider.createFactory(this);
     }
 
+
+
+    protected final CompanyContactNodeComponent getComponent() {
+        return component;
+    }
+
+
     private CompanyContactNodeComponent component;
 
     @Inject
@@ -56,6 +64,8 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
     private RuleProvider<CompanyContactNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public CompanyContactFirstNameNode getCompanyContactFirstNameNode() {
@@ -107,29 +117,30 @@ public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
         return (CompanyAddressNode)getChildByName("principalPlaceAddressNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("companyContactFirstNameNode");
-        children.add(childFactory.createCompanyContactFirstNameNode());
+        children.add(getComponent().createCompanyContactFirstNameNode());
         setChildNodeIdentity("companyContactLastNameNode");
-        children.add(childFactory.createCompanyContactLastNameNode());
+        children.add(getComponent().createCompanyContactLastNameNode());
         setChildNodeIdentity("workPhoneNode");
-        children.add(childFactory.createWorkPhoneNode());
+        children.add(getComponent().createWorkPhoneNode());
         setChildNodeIdentity("faxNumberNode");
-        children.add(childFactory.createFaxNumberNode());
+        children.add(getComponent().createFaxNumberNode());
         setChildNodeIdentity("companyMobileNumberNode");
-        children.add(childFactory.createCompanyMobileNumberNode());
+        children.add(getComponent().createCompanyMobileNumberNode());
         setChildNodeIdentity("companyEmailNode");
-        children.add(childFactory.createCompanyEmailNode());
+        children.add(getComponent().createCompanyEmailNode());
         setChildNodeIdentity("registeredAddressNode");
-        children.add(childFactory.createRegisteredAddressNode());
+        children.add(getComponent().createRegisteredAddressNode());
         setChildNodeIdentity("postalAddressNode");
-        children.add(childFactory.createPostalAddressNode());
+        children.add(getComponent().createPostalAddressNode());
         setChildNodeIdentity("tradingAddressNode");
-        children.add(childFactory.createTradingAddressNode());
+        children.add(getComponent().createTradingAddressNode());
         setChildNodeIdentity("principalPlaceAddressNode");
-        children.add(childFactory.createPrincipalPlaceAddressNode());
+        children.add(getComponent().createPrincipalPlaceAddressNode());
         setChildNodeIdentity(null);
         return children;
     }

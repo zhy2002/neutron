@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MonthNodeModule.class})
 public interface MonthNodeComponent {
 
+
     RuleProvider<MonthNode> getMonthNodeRuleProvider();
     Map<String, RuleProvider<MonthNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MonthNodeComponent {
 
         MonthNodeComponent build();
     }
+
 }

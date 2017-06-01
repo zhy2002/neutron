@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.SavingsAccountListNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,9 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccountNode> {
-
-    private SavingsAccountListNodeItemFactory itemFactory;
-    private SavingsAccountListNodeComponent component;
 
     @Inject
     public SavingsAccountListNode(@Owner AssetsNode parent, @ChildName String name) {
@@ -23,10 +21,21 @@ public class SavingsAccountListNode extends ListUiNode<AssetsNode,SavingsAccount
     return SavingsAccountListNode.class;
     }
 
+    private SavingsAccountListNodeItemFactory itemFactory;
+
     @Inject
     void receiveNodeProvider(SavingsAccountListNodeItemProvider provider) {
         itemFactory = provider.createFactory(this);
     }
+
+
+
+    protected final SavingsAccountListNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private SavingsAccountListNodeComponent component;
 
     @Inject
     void createComponent(SavingsAccountListNodeComponent.Builder builder) {

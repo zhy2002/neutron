@@ -2,6 +2,7 @@ package zhy2002.examples.register.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.register.gen.di.AreaCodeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.register.data.*;
@@ -10,8 +11,6 @@ import zhy2002.examples.register.gen.di.*;
 import java.util.List;
 
 public class AreaCodeNode extends PhoneInfoFieldNode {
-
-    private AreaCodeNodeComponent component;
 
     @Inject
     public AreaCodeNode(@Owner PhoneInfoNode parent, @ChildName String name) {
@@ -22,6 +21,13 @@ public class AreaCodeNode extends PhoneInfoFieldNode {
     public final Class<?> getConcreteClass() {
     return AreaCodeNode.class;
     }
+
+    protected final AreaCodeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private AreaCodeNodeComponent component;
 
     @Inject
     void createComponent(AreaCodeNodeComponent.Builder builder) {

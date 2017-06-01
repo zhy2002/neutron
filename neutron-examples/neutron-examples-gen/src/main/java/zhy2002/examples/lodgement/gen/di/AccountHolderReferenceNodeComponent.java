@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AccountHolderReferenceNodeModule.class})
 public interface AccountHolderReferenceNodeComponent {
 
+
     RuleProvider<AccountHolderReferenceNode> getAccountHolderReferenceNodeRuleProvider();
     Map<String, RuleProvider<AccountHolderReferenceNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AccountHolderReferenceNodeComponent {
 
         AccountHolderReferenceNodeComponent build();
     }
+
 }

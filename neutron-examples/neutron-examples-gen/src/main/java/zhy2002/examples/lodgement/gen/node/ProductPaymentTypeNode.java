@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.ProductPaymentTypeNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode> {
-
-    private ProductPaymentTypeNodeComponent component;
 
     @Inject
     public ProductPaymentTypeNode(@Owner ProductDescriptionNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class ProductPaymentTypeNode extends StringUiNode<ProductDescriptionNode>
     public final Class<?> getConcreteClass() {
     return ProductPaymentTypeNode.class;
     }
+
+    protected final ProductPaymentTypeNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private ProductPaymentTypeNodeComponent component;
 
     @Inject
     void createComponent(ProductPaymentTypeNodeComponent.Builder builder) {

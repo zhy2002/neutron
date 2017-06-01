@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {OwnershipPercentageNodeModule.class})
 public interface OwnershipPercentageNodeComponent {
 
+
     RuleProvider<OwnershipPercentageNode> getOwnershipPercentageNodeRuleProvider();
     Map<String, RuleProvider<OwnershipPercentageNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface OwnershipPercentageNodeComponent {
 
         OwnershipPercentageNodeComponent build();
     }
+
 }

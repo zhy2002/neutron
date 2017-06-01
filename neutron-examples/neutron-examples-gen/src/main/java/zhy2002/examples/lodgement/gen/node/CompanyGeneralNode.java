@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.CompanyGeneralNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
 
-    private CompanyGeneralNodeChildFactory childFactory;
-    private CompanyGeneralNodeComponent component;
-
     @Inject
     public CompanyGeneralNode(@Owner CompanyNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
     return CompanyGeneralNode.class;
     }
 
+    private CompanyGeneralNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(CompanyGeneralNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final CompanyGeneralNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private CompanyGeneralNodeComponent component;
 
     @Inject
     void createComponent(CompanyGeneralNodeComponent.Builder builder) {
@@ -55,6 +64,8 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
     private RuleProvider<CompanyGeneralNode> getInstanceRuleProvider() {
         return component.getInstanceRuleProviders().get(this.getName());
     }
+
+    //region children getters
 
     @JsMethod
     public CompanyApplicantTypeNode getCompanyApplicantTypeNode() {
@@ -126,37 +137,38 @@ public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
         return (CompanySelectBeneficialOwnerNode)getChildByName("companySelectBeneficialOwnerNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("companyApplicantTypeNode");
-        children.add(childFactory.createCompanyApplicantTypeNode());
+        children.add(getComponent().createCompanyApplicantTypeNode());
         setChildNodeIdentity("companyPrimaryApplicantFlagNode");
-        children.add(childFactory.createCompanyPrimaryApplicantFlagNode());
+        children.add(getComponent().createCompanyPrimaryApplicantFlagNode());
         setChildNodeIdentity("companyApplicationTypeNode");
-        children.add(childFactory.createCompanyApplicationTypeNode());
+        children.add(getComponent().createCompanyApplicationTypeNode());
         setChildNodeIdentity("companyRegisteredNameNode");
-        children.add(childFactory.createCompanyRegisteredNameNode());
+        children.add(getComponent().createCompanyRegisteredNameNode());
         setChildNodeIdentity("companyTypeNode");
-        children.add(childFactory.createCompanyTypeNode());
+        children.add(getComponent().createCompanyTypeNode());
         setChildNodeIdentity("companyDescriptionNode");
-        children.add(childFactory.createCompanyDescriptionNode());
+        children.add(getComponent().createCompanyDescriptionNode());
         setChildNodeIdentity("companyIndustryNode");
-        children.add(childFactory.createCompanyIndustryNode());
+        children.add(getComponent().createCompanyIndustryNode());
         setChildNodeIdentity("companyAbnNode");
-        children.add(childFactory.createCompanyAbnNode());
+        children.add(getComponent().createCompanyAbnNode());
         setChildNodeIdentity("companyAcnNode");
-        children.add(childFactory.createCompanyAcnNode());
+        children.add(getComponent().createCompanyAcnNode());
         setChildNodeIdentity("companyAbrnNode");
-        children.add(childFactory.createCompanyAbrnNode());
+        children.add(getComponent().createCompanyAbrnNode());
         setChildNodeIdentity("companyRegistrationDateNode");
-        children.add(childFactory.createCompanyRegistrationDateNode());
+        children.add(getComponent().createCompanyRegistrationDateNode());
         setChildNodeIdentity("companyRegistrationStateNode");
-        children.add(childFactory.createCompanyRegistrationStateNode());
+        children.add(getComponent().createCompanyRegistrationStateNode());
         setChildNodeIdentity("companySelectDirectorNode");
-        children.add(childFactory.createCompanySelectDirectorNode());
+        children.add(getComponent().createCompanySelectDirectorNode());
         setChildNodeIdentity("companySelectBeneficialOwnerNode");
-        children.add(childFactory.createCompanySelectBeneficialOwnerNode());
+        children.add(getComponent().createCompanySelectBeneficialOwnerNode());
         setChildNodeIdentity(null);
         return children;
     }

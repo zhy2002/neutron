@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {NextOfKinNodeModule.class})
 public interface NextOfKinNodeComponent {
 
+
     RuleProvider<NextOfKinNode> getNextOfKinNodeRuleProvider();
     Map<String, RuleProvider<NextOfKinNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface NextOfKinNodeComponent {
 
         NextOfKinNodeComponent build();
     }
+
 }

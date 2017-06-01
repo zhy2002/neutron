@@ -47,6 +47,7 @@ Todo (long term)
 - versioned domain and profile
 - migrate from GWT to Kotlin
 - property DSL to replace yaml.
+- allow bypass validation rules at various levels
 
 Design
 -----------------

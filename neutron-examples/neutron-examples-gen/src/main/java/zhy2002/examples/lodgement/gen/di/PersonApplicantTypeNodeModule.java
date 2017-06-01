@@ -38,7 +38,7 @@ public class PersonApplicantTypeNodeModule {
     }
 
     @Provides @ChildName String provideChildName() {
-        return owner.getContext().getNodeIdentity().getName();
+        return owner.getContext().getNameOfNodeBeingCreated();
     }
 
     @Provides @ComponentScope PersonGeneralNode providePersonGeneralNode() {

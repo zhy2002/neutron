@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.UnemployedNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
-    private UnemployedNodeChildFactory childFactory;
-    private UnemployedNodeComponent component;
-
     @Inject
     public UnemployedNode(@Owner EmploymentNode<?> parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
     return UnemployedNode.class;
     }
 
+    private UnemployedNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(UnemployedNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final UnemployedNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private UnemployedNodeComponent component;
 
     @Inject
     void createComponent(UnemployedNodeComponent.Builder builder) {
@@ -56,6 +65,8 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public UnemployedOnBenefitFlagNode getUnemployedOnBenefitFlagNode() {
         return (UnemployedOnBenefitFlagNode)getChildByName("unemployedOnBenefitFlagNode");
@@ -81,19 +92,20 @@ public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
         return (UnemployedSinceNode)getChildByName("unemployedSinceNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("unemployedOnBenefitFlagNode");
-        children.add(childFactory.createUnemployedOnBenefitFlagNode());
+        children.add(getComponent().createUnemployedOnBenefitFlagNode());
         setChildNodeIdentity("studentFlagNode");
-        children.add(childFactory.createStudentFlagNode());
+        children.add(getComponent().createStudentFlagNode());
         setChildNodeIdentity("studentTypeNode");
-        children.add(childFactory.createStudentTypeNode());
+        children.add(getComponent().createStudentTypeNode());
         setChildNodeIdentity("houseDutiesFlagNode");
-        children.add(childFactory.createHouseDutiesFlagNode());
+        children.add(getComponent().createHouseDutiesFlagNode());
         setChildNodeIdentity("unemployedSinceNode");
-        children.add(childFactory.createUnemployedSinceNode());
+        children.add(getComponent().createUnemployedSinceNode());
         setChildNodeIdentity(null);
         return children;
     }

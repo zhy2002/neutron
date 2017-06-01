@@ -7,7 +7,9 @@ import java.util.*;
 
 @ComponentScope
 @Subcomponent(modules = {PayeEmployedNodeModule.class})
-public interface PayeEmployedNodeComponent {
+public interface PayeEmployedNodeComponent extends EmployedNodeComponent {
+
+    GrossYearlySalaryNode createGrossYearlySalaryNode();
 
     RuleProvider<PayeEmployedNode> getPayeEmployedNodeRuleProvider();
     Map<String, RuleProvider<PayeEmployedNode>> getInstanceRuleProviders();
@@ -19,4 +21,5 @@ public interface PayeEmployedNodeComponent {
 
         PayeEmployedNodeComponent build();
     }
+
 }

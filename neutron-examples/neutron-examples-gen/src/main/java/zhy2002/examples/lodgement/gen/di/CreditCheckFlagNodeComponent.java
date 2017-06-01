@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {CreditCheckFlagNodeModule.class})
 public interface CreditCheckFlagNodeComponent {
 
+
     RuleProvider<CreditCheckFlagNode> getCreditCheckFlagNodeRuleProvider();
     Map<String, RuleProvider<CreditCheckFlagNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface CreditCheckFlagNodeComponent {
 
         CreditCheckFlagNodeComponent build();
     }
+
 }

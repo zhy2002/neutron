@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.LiabilitiesNodeComponent;
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
 import javax.inject.*;
@@ -13,9 +14,6 @@ import java.util.List;
 
 public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
 
-    private LiabilitiesNodeChildFactory childFactory;
-    private LiabilitiesNodeComponent component;
-
     @Inject
     public LiabilitiesNode(@Owner FinancialPositionNode parent, @ChildName String name) {
         super(parent, name);
@@ -26,10 +24,21 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
     return LiabilitiesNode.class;
     }
 
+    private LiabilitiesNodeChildFactory childFactory;
+
     @Inject
     void receiveNodeProvider(LiabilitiesNodeChildProvider provider) {
         childFactory = provider.createFactory(this);
     }
+
+
+
+    protected final LiabilitiesNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private LiabilitiesNodeComponent component;
 
     @Inject
     void createComponent(LiabilitiesNodeComponent.Builder builder) {
@@ -56,6 +65,8 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
         return component.getInstanceRuleProviders().get(this.getName());
     }
 
+    //region children getters
+
     @JsMethod
     public CreditCardListNode getCreditCardListNode() {
         return (CreditCardListNode)getChildByName("creditCardListNode");
@@ -71,15 +82,16 @@ public class LiabilitiesNode extends ObjectUiNode<FinancialPositionNode> {
         return (OtherLiabilityListNode)getChildByName("otherLiabilityListNode");
     }
 
+    //endregion
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
         setChildNodeIdentity("creditCardListNode");
-        children.add(childFactory.createCreditCardListNode());
+        children.add(getComponent().createCreditCardListNode());
         setChildNodeIdentity("loanListNode");
-        children.add(childFactory.createLoanListNode());
+        children.add(getComponent().createLoanListNode());
         setChildNodeIdentity("otherLiabilityListNode");
-        children.add(childFactory.createOtherLiabilityListNode());
+        children.add(getComponent().createOtherLiabilityListNode());
         setChildNodeIdentity(null);
         return children;
     }

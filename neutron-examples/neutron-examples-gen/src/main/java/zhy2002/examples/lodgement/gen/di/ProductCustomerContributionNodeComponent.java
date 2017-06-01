@@ -8,6 +8,10 @@ import zhy2002.neutron.RuleProvider;
 @Subcomponent(modules = {ProductCustomerContributionNodeModule.class})
 public interface ProductCustomerContributionNodeComponent {
 
+    ContributionTypeNode createContributionTypeNode();
+    ContributionDescriptionNode createContributionDescriptionNode();
+    ContributionAmountNode createContributionAmountNode();
+
     RuleProvider<ProductCustomerContributionNode> getProductCustomerContributionNodeRuleProvider();
 
     @Subcomponent.Builder
@@ -17,4 +21,5 @@ public interface ProductCustomerContributionNodeComponent {
 
         ProductCustomerContributionNodeComponent build();
     }
+
 }

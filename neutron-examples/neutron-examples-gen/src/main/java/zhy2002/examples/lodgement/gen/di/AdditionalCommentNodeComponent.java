@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AdditionalCommentNodeModule.class})
 public interface AdditionalCommentNodeComponent {
 
+
     RuleProvider<AdditionalCommentNode> getAdditionalCommentNodeRuleProvider();
     Map<String, RuleProvider<AdditionalCommentNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AdditionalCommentNodeComponent {
 
         AdditionalCommentNodeComponent build();
     }
+
 }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {AccessOtherDescriptionNodeModule.class})
 public interface AccessOtherDescriptionNodeComponent {
 
+
     RuleProvider<AccessOtherDescriptionNode> getAccessOtherDescriptionNodeRuleProvider();
     Map<String, RuleProvider<AccessOtherDescriptionNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface AccessOtherDescriptionNodeComponent {
 
         AccessOtherDescriptionNodeComponent build();
     }
+
 }

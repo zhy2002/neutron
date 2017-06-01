@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.LastNameNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -19,6 +20,11 @@ public class LastNameNode extends StringUiNode<PersonGeneralNode> {
     public final Class<?> getConcreteClass() {
     return LastNameNode.class;
     }
+
+    protected final LastNameNodeComponent getComponent() {
+        return component;
+    }
+
 
     private LastNameNodeComponent component;
 

@@ -2,6 +2,9 @@ package ${targetPackage}.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+<#if hasComponent>
+import ${targetPackage}.gen.di.${typeName}Component;
+</#if>
 <#if valueTypeName?? || properties?? || valueWrappers?? || children??>
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
@@ -82,7 +85,20 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         <#if itemTypeName??>item<#else>child</#if>Factory = provider.createFactory(this);
     }
 
+
+
 </#if>
+<#if hasComponent>
+    <#if abstractNode>
+    protected abstract ${typeName}Component getComponent();
+    <#else>
+    protected final ${typeName}Component getComponent() {
+        return component;
+    }
+    </#if>
+
+</#if>
+
 <#if !abstractNode>
     private ${typeName}Component component;
 
@@ -195,9 +211,12 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     public void set${wrapper.name?cap_first}(${wrapper.typeName} value) {
         getValue().set${wrapper.wrap?cap_first}(value);
     }
+
     </#list>
 </#if>
 <#if children?? && children?size gt 0>
+    //region children getters
+
     <#list children as child>
     @JsMethod
     public ${child.typeName} get${child.name?cap_first}() {
@@ -205,6 +224,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
     </#list>
+    //endregion
 </#if>
 <#if children?? && children?size gt 0>
     @Override
@@ -212,7 +232,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
         List<UiNode<?>> children = super.createChildren();
     <#list children as child>
         setChildNodeIdentity("${child.name}");
-        children.add(childFactory.create${child.name?cap_first}());
+        children.add(getComponent().create${child.name?cap_first}());
     </#list>
         setChildNodeIdentity(null);
         return children;

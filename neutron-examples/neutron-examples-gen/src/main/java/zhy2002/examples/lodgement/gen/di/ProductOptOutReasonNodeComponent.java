@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {ProductOptOutReasonNodeModule.class})
 public interface ProductOptOutReasonNodeComponent {
 
+
     RuleProvider<ProductOptOutReasonNode> getProductOptOutReasonNodeRuleProvider();
     Map<String, RuleProvider<ProductOptOutReasonNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface ProductOptOutReasonNodeComponent {
 
         ProductOptOutReasonNodeComponent build();
     }
+
 }

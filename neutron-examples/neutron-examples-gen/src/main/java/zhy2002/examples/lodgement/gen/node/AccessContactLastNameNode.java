@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.gen.node;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+import zhy2002.examples.lodgement.gen.di.AccessContactLastNameNodeComponent;
 import javax.inject.*;
 import zhy2002.neutron.di.*;
 import zhy2002.examples.lodgement.gen.rule.*;
@@ -9,8 +10,6 @@ import zhy2002.examples.lodgement.gen.di.*;
 import java.util.List;
 
 public class AccessContactLastNameNode extends StringUiNode<AccessNode> {
-
-    private AccessContactLastNameNodeComponent component;
 
     @Inject
     public AccessContactLastNameNode(@Owner AccessNode parent, @ChildName String name) {
@@ -21,6 +20,13 @@ public class AccessContactLastNameNode extends StringUiNode<AccessNode> {
     public final Class<?> getConcreteClass() {
     return AccessContactLastNameNode.class;
     }
+
+    protected final AccessContactLastNameNodeComponent getComponent() {
+        return component;
+    }
+
+
+    private AccessContactLastNameNodeComponent component;
 
     @Inject
     void createComponent(AccessContactLastNameNodeComponent.Builder builder) {

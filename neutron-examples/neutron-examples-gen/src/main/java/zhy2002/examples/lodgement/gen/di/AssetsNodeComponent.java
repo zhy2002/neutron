@@ -9,6 +9,10 @@ import java.util.*;
 @Subcomponent(modules = {AssetsNodeModule.class})
 public interface AssetsNodeComponent {
 
+    SavingsAccountListNode createSavingsAccountListNode();
+    MotorVehicleListNode createMotorVehicleListNode();
+    OtherAssetListNode createOtherAssetListNode();
+
     RuleProvider<AssetsNode> getAssetsNodeRuleProvider();
     Map<String, RuleProvider<AssetsNode>> getInstanceRuleProviders();
 
@@ -19,4 +23,5 @@ public interface AssetsNodeComponent {
 
         AssetsNodeComponent build();
     }
+
 }

@@ -9,6 +9,7 @@ import java.util.*;
 @Subcomponent(modules = {MortgageLenderInstitutionNodeModule.class})
 public interface MortgageLenderInstitutionNodeComponent {
 
+
     RuleProvider<MortgageLenderInstitutionNode> getMortgageLenderInstitutionNodeRuleProvider();
     Map<String, RuleProvider<MortgageLenderInstitutionNode>> getInstanceRuleProviders();
 
@@ -19,4 +20,5 @@ public interface MortgageLenderInstitutionNodeComponent {
 
         MortgageLenderInstitutionNodeComponent build();
     }
+
 }
