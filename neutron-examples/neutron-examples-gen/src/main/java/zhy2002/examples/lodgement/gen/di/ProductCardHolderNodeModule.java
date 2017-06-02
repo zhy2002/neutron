@@ -49,20 +49,6 @@ public class ProductCardHolderNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductCardHolderNodeRuleProvider") @IntoMap @StringKey("productPrimaryCardHolderNode")
-        RuleProvider<ProductCardHolderNode> provideProductPrimaryCardHolderNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductPrimaryCardHolderNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("ProductCardHolderNodeRuleProvider") @IntoMap @StringKey("productAdditionalCardHolderNode")
-        RuleProvider<ProductCardHolderNode> provideProductAdditionalCardHolderNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductAdditionalCardHolderNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductCardHolderNode>> provideRuleProviders(

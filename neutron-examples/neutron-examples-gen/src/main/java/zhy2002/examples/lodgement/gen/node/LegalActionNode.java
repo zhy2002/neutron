@@ -13,8 +13,8 @@ import java.util.List;
 public class LegalActionNode extends YesNoOptionNode<BasePrivacyNode<?>> {
 
     @Inject
-    protected LegalActionNode(@Owner BasePrivacyNode<?> parent) {
-        super(parent);
+    protected LegalActionNode(@Owner BasePrivacyNode<?> parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

@@ -49,13 +49,6 @@ public class NextOfKinNodeModule {
         return provider;
     }
 
-        @Provides @Named("NextOfKinNodeRuleProvider") @IntoMap @StringKey("nextOfKinNode")
-        RuleProvider<NextOfKinNode> provideNextOfKinNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.NextOfKinNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<NextOfKinNode>> provideRuleProviders(

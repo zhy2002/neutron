@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseCountryNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    protected BaseCountryNode(P parent) {
-        super(parent);
+    protected BaseCountryNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

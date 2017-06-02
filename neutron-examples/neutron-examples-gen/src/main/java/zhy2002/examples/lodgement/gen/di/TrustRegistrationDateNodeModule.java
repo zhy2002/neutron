@@ -49,13 +49,6 @@ public class TrustRegistrationDateNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustRegistrationDateNodeRuleProvider") @IntoMap @StringKey("trustRegistrationDateNode")
-        RuleProvider<TrustRegistrationDateNode> provideTrustRegistrationDateNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustRegistrationDateNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustRegistrationDateNode>> provideRuleProviders(

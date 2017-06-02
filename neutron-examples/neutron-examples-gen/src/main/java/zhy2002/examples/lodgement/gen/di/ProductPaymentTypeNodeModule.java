@@ -49,13 +49,6 @@ public class ProductPaymentTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductPaymentTypeNodeRuleProvider") @IntoMap @StringKey("productPaymentTypeNode")
-        RuleProvider<ProductPaymentTypeNode> provideProductPaymentTypeNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductPaymentTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductPaymentTypeNode>> provideRuleProviders(

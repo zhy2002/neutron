@@ -49,13 +49,6 @@ public class ThirdPartyDisclosureFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyDisclosureFlagNodeRuleProvider") @IntoMap @StringKey("thirdPartyDisclosureFlagNode")
-        RuleProvider<ThirdPartyDisclosureFlagNode> provideThirdPartyDisclosureFlagNodeChildRuleProvider(
-            BasePrivacyNodeChildProvider.ThirdPartyDisclosureFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyDisclosureFlagNode>> provideRuleProviders(

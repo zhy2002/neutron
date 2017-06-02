@@ -49,13 +49,6 @@ public class UsageNodeModule {
         return provider;
     }
 
-        @Provides @Named("UsageNodeRuleProvider") @IntoMap @StringKey("usageNode")
-        RuleProvider<UsageNode> provideUsageNodeChildRuleProvider(
-            RealEstateNodeChildProvider.UsageNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<UsageNode>> provideRuleProviders(

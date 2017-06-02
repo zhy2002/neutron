@@ -53,13 +53,6 @@ public class TrustBeneficialOwnerListNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustBeneficialOwnerListNodeRuleProvider") @IntoMap @StringKey("trustBeneficialOwnerListNode")
-        RuleProvider<TrustBeneficialOwnerListNode> provideTrustBeneficialOwnerListNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustBeneficialOwnerListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustBeneficialOwnerListNode>> provideRuleProviders(

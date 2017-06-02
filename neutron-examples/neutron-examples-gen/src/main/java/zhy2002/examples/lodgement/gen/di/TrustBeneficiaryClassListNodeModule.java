@@ -49,13 +49,6 @@ public class TrustBeneficiaryClassListNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustBeneficiaryClassListNodeRuleProvider") @IntoMap @StringKey("trustBeneficiaryClassListNode")
-        RuleProvider<TrustBeneficiaryClassListNode> provideTrustBeneficiaryClassListNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustBeneficiaryClassListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustBeneficiaryClassListNode>> provideRuleProviders(

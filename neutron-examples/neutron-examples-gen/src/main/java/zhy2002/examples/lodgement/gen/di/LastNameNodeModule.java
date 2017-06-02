@@ -49,13 +49,6 @@ public class LastNameNodeModule {
         return provider;
     }
 
-        @Provides @Named("LastNameNodeRuleProvider") @IntoMap @StringKey("lastNameNode")
-        RuleProvider<LastNameNode> provideLastNameNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.LastNameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LastNameNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class PropertyWeeklyRentNodeModule {
         return provider;
     }
 
-        @Provides @Named("PropertyWeeklyRentNodeRuleProvider") @IntoMap @StringKey("propertyWeeklyRentNode")
-        RuleProvider<PropertyWeeklyRentNode> providePropertyWeeklyRentNodeChildRuleProvider(
-            PropertyNodeChildProvider.PropertyWeeklyRentNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PropertyWeeklyRentNode>> provideRuleProviders(

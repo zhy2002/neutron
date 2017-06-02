@@ -49,13 +49,6 @@ public class ProductOptOutReasonNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductOptOutReasonNodeRuleProvider") @IntoMap @StringKey("productOptOutReasonNode")
-        RuleProvider<ProductOptOutReasonNode> provideProductOptOutReasonNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductOptOutReasonNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductOptOutReasonNode>> provideRuleProviders(

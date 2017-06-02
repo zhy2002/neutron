@@ -53,13 +53,6 @@ public class CompanyResponsibleLendNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyResponsibleLendNodeRuleProvider") @IntoMap @StringKey("companyResponsibleLendNode")
-        RuleProvider<CompanyResponsibleLendNode> provideCompanyResponsibleLendNodeChildRuleProvider(
-            CompanyNodeChildProvider.CompanyResponsibleLendNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyResponsibleLendNode>> provideRuleProviders(

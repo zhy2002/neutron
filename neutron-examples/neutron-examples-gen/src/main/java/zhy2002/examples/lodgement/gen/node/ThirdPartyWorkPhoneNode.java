@@ -13,8 +13,8 @@ import java.util.List;
 public class ThirdPartyWorkPhoneNode extends TelephoneNode<RelatedPartyNode> {
 
     @Inject
-    protected ThirdPartyWorkPhoneNode(@Owner RelatedPartyNode parent) {
-        super(parent);
+    protected ThirdPartyWorkPhoneNode(@Owner RelatedPartyNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

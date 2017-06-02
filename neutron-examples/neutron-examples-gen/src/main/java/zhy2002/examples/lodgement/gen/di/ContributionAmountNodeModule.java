@@ -53,13 +53,6 @@ public class ContributionAmountNodeModule {
         return provider;
     }
 
-        @Provides @Named("ContributionAmountNodeRuleProvider") @IntoMap @StringKey("contributionAmountNode")
-        RuleProvider<ContributionAmountNode> provideContributionAmountNodeChildRuleProvider(
-            ProductCustomerContributionNodeChildProvider.ContributionAmountNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ContributionAmountNode>> provideRuleProviders(

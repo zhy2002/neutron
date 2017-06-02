@@ -53,13 +53,6 @@ public class BrokerAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("BrokerAddressNodeRuleProvider") @IntoMap @StringKey("brokerAddressNode")
-        RuleProvider<BrokerAddressNode> provideBrokerAddressNodeChildRuleProvider(
-            SubmissionNodeChildProvider.BrokerAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<BrokerAddressNode>> provideRuleProviders(

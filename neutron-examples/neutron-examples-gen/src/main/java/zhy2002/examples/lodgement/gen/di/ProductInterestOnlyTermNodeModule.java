@@ -49,13 +49,6 @@ public class ProductInterestOnlyTermNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductInterestOnlyTermNodeRuleProvider") @IntoMap @StringKey("productInterestOnlyTermNode")
-        RuleProvider<ProductInterestOnlyTermNode> provideProductInterestOnlyTermNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductInterestOnlyTermNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductInterestOnlyTermNode>> provideRuleProviders(

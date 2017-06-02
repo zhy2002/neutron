@@ -13,8 +13,8 @@ import java.util.List;
 public class CompanyEmailNode extends EmailNode<CompanyContactNode> {
 
     @Inject
-    protected CompanyEmailNode(@Owner CompanyContactNode parent) {
-        super(parent);
+    protected CompanyEmailNode(@Owner CompanyContactNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

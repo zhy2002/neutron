@@ -49,13 +49,6 @@ public class ExistingMortgageListNodeModule {
         return provider;
     }
 
-        @Provides @Named("ExistingMortgageListNodeRuleProvider") @IntoMap @StringKey("existingMortgageListNode")
-        RuleProvider<ExistingMortgageListNode> provideExistingMortgageListNodeChildRuleProvider(
-            UsageNodeChildProvider.ExistingMortgageListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ExistingMortgageListNode>> provideRuleProviders(

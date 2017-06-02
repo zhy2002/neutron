@@ -53,13 +53,6 @@ public class LoanMonthlyRepaymentNodeModule {
         return provider;
     }
 
-        @Provides @Named("LoanMonthlyRepaymentNodeRuleProvider") @IntoMap @StringKey("loanMonthlyRepaymentNode")
-        RuleProvider<LoanMonthlyRepaymentNode> provideLoanMonthlyRepaymentNodeChildRuleProvider(
-            LoanNodeChildProvider.LoanMonthlyRepaymentNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LoanMonthlyRepaymentNode>> provideRuleProviders(

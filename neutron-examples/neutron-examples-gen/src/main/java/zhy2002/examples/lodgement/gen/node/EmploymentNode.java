@@ -16,8 +16,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmploymentNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    protected EmploymentNode(P parent) {
-        super(parent);
+    protected EmploymentNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract EmploymentNodeComponent getComponent();

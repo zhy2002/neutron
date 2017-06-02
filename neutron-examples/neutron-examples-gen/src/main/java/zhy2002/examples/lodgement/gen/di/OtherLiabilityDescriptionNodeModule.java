@@ -49,13 +49,6 @@ public class OtherLiabilityDescriptionNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherLiabilityDescriptionNodeRuleProvider") @IntoMap @StringKey("otherLiabilityDescriptionNode")
-        RuleProvider<OtherLiabilityDescriptionNode> provideOtherLiabilityDescriptionNodeChildRuleProvider(
-            OtherLiabilityNodeChildProvider.OtherLiabilityDescriptionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherLiabilityDescriptionNode>> provideRuleProviders(

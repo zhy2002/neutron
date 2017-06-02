@@ -53,13 +53,6 @@ public class VehicleMarketValueNodeModule {
         return provider;
     }
 
-        @Provides @Named("VehicleMarketValueNodeRuleProvider") @IntoMap @StringKey("vehicleMarketValueNode")
-        RuleProvider<VehicleMarketValueNode> provideVehicleMarketValueNodeChildRuleProvider(
-            MotorVehicleNodeChildProvider.VehicleMarketValueNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<VehicleMarketValueNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class ApprovalInPrincipleFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ApprovalInPrincipleFlagNodeRuleProvider") @IntoMap @StringKey("approvalInPrincipleFlagNode")
-        RuleProvider<ApprovalInPrincipleFlagNode> provideApprovalInPrincipleFlagNodeChildRuleProvider(
-            UsageNodeChildProvider.ApprovalInPrincipleFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ApprovalInPrincipleFlagNode>> provideRuleProviders(

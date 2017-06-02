@@ -49,13 +49,6 @@ public class ProductRateLockFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductRateLockFlagNodeRuleProvider") @IntoMap @StringKey("productRateLockFlagNode")
-        RuleProvider<ProductRateLockFlagNode> provideProductRateLockFlagNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductRateLockFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductRateLockFlagNode>> provideRuleProviders(

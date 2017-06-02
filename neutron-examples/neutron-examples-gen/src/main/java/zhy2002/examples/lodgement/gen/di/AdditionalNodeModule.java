@@ -49,13 +49,6 @@ public class AdditionalNodeModule {
         return provider;
     }
 
-        @Provides @Named("AdditionalNodeRuleProvider") @IntoMap @StringKey("additionalNode")
-        RuleProvider<AdditionalNode> provideAdditionalNodeChildRuleProvider(
-            ApplicationNodeChildProvider.AdditionalNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AdditionalNode>> provideRuleProviders(

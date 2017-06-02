@@ -53,13 +53,6 @@ public class CompanySelectBeneficialOwnerNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanySelectBeneficialOwnerNodeRuleProvider") @IntoMap @StringKey("companySelectBeneficialOwnerNode")
-        RuleProvider<CompanySelectBeneficialOwnerNode> provideCompanySelectBeneficialOwnerNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanySelectBeneficialOwnerNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanySelectBeneficialOwnerNode>> provideRuleProviders(

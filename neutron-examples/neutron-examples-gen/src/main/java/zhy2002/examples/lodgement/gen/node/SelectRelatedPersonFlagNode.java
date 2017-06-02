@@ -13,8 +13,8 @@ import java.util.List;
 public class SelectRelatedPersonFlagNode extends BooleanUiNode<SelectRelatedPersonNode> {
 
     @Inject
-    protected SelectRelatedPersonFlagNode(@Owner SelectRelatedPersonNode parent) {
-        super(parent);
+    protected SelectRelatedPersonFlagNode(@Owner SelectRelatedPersonNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

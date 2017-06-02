@@ -13,8 +13,8 @@ import java.util.List;
 public class OtherAssetMarketValueNode extends BaseCurrencyNode<OtherAssetNode> {
 
     @Inject
-    protected OtherAssetMarketValueNode(@Owner OtherAssetNode parent) {
-        super(parent);
+    protected OtherAssetMarketValueNode(@Owner OtherAssetNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

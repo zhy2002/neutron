@@ -49,13 +49,6 @@ public class PropertyPurseNodeModule {
         return provider;
     }
 
-        @Provides @Named("PropertyPurseNodeRuleProvider") @IntoMap @StringKey("propertyPurseNode")
-        RuleProvider<PropertyPurseNode> providePropertyPurseNodeChildRuleProvider(
-            PropertyNodeChildProvider.PropertyPurseNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PropertyPurseNode>> provideRuleProviders(

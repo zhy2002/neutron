@@ -18,8 +18,8 @@ import java.util.List;
 public class EmailNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    protected EmailNode(@Owner RegisterNode parent) {
-        super(parent);
+    protected EmailNode(@Owner RegisterNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

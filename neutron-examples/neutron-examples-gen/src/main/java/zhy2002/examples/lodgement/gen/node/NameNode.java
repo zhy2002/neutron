@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class NameNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    protected NameNode(P parent) {
-        super(parent);
+    protected NameNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

@@ -49,13 +49,6 @@ public class ExpenseDescriptionNodeModule {
         return provider;
     }
 
-        @Provides @Named("ExpenseDescriptionNodeRuleProvider") @IntoMap @StringKey("expenseDescriptionNode")
-        RuleProvider<ExpenseDescriptionNode> provideExpenseDescriptionNodeChildRuleProvider(
-            ExpenseNodeChildProvider.ExpenseDescriptionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ExpenseDescriptionNode>> provideRuleProviders(

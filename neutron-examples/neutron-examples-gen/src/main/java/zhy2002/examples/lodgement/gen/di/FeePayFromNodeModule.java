@@ -49,13 +49,6 @@ public class FeePayFromNodeModule {
         return provider;
     }
 
-        @Provides @Named("FeePayFromNodeRuleProvider") @IntoMap @StringKey("feePayFromNode")
-        RuleProvider<FeePayFromNode> provideFeePayFromNodeChildRuleProvider(
-            ProductFeeNodeChildProvider.FeePayFromNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<FeePayFromNode>> provideRuleProviders(

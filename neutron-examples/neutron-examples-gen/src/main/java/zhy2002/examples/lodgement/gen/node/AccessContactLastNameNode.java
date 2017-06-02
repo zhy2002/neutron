@@ -13,8 +13,8 @@ import java.util.List;
 public class AccessContactLastNameNode extends StringUiNode<AccessNode> {
 
     @Inject
-    protected AccessContactLastNameNode(@Owner AccessNode parent) {
-        super(parent);
+    protected AccessContactLastNameNode(@Owner AccessNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

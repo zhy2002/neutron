@@ -49,13 +49,6 @@ public class GenderNodeModule {
         return provider;
     }
 
-        @Provides @Named("GenderNodeRuleProvider") @IntoMap @StringKey("genderNode")
-        RuleProvider<GenderNode> provideGenderNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.GenderNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<GenderNode>> provideRuleProviders(

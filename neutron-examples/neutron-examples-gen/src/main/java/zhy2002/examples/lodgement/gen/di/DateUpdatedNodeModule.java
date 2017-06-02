@@ -49,13 +49,6 @@ public class DateUpdatedNodeModule {
         return provider;
     }
 
-        @Provides @Named("DateUpdatedNodeRuleProvider") @IntoMap @StringKey("dateUpdatedNode")
-        RuleProvider<DateUpdatedNode> provideDateUpdatedNodeChildRuleProvider(
-            ApplicationNodeChildProvider.DateUpdatedNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<DateUpdatedNode>> provideRuleProviders(

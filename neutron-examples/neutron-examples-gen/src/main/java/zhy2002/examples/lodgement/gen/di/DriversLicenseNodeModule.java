@@ -49,13 +49,6 @@ public class DriversLicenseNodeModule {
         return provider;
     }
 
-        @Provides @Named("DriversLicenseNodeRuleProvider") @IntoMap @StringKey("driversLicenseNode")
-        RuleProvider<DriversLicenseNode> provideDriversLicenseNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.DriversLicenseNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<DriversLicenseNode>> provideRuleProviders(

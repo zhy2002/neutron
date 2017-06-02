@@ -13,8 +13,8 @@ import java.util.List;
 public class PrimaryApplicantFlagNode extends BooleanUiNode<PersonGeneralNode> {
 
     @Inject
-    protected PrimaryApplicantFlagNode(@Owner PersonGeneralNode parent) {
-        super(parent);
+    protected PrimaryApplicantFlagNode(@Owner PersonGeneralNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

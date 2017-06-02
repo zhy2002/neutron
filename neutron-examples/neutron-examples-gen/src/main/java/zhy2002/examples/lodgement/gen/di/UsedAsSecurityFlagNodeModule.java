@@ -49,13 +49,6 @@ public class UsedAsSecurityFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("UsedAsSecurityFlagNodeRuleProvider") @IntoMap @StringKey("usedAsSecurityFlagNode")
-        RuleProvider<UsedAsSecurityFlagNode> provideUsedAsSecurityFlagNodeChildRuleProvider(
-            UsageNodeChildProvider.UsedAsSecurityFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<UsedAsSecurityFlagNode>> provideRuleProviders(

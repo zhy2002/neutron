@@ -49,13 +49,6 @@ public class VehicleModelNodeModule {
         return provider;
     }
 
-        @Provides @Named("VehicleModelNodeRuleProvider") @IntoMap @StringKey("vehicleModelNode")
-        RuleProvider<VehicleModelNode> provideVehicleModelNodeChildRuleProvider(
-            MotorVehicleNodeChildProvider.VehicleModelNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<VehicleModelNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class ProductConsolidationFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductConsolidationFlagNodeRuleProvider") @IntoMap @StringKey("productConsolidationFlagNode")
-        RuleProvider<ProductConsolidationFlagNode> provideProductConsolidationFlagNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductConsolidationFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductConsolidationFlagNode>> provideRuleProviders(

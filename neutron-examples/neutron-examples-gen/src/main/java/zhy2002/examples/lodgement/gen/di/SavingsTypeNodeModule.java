@@ -49,13 +49,6 @@ public class SavingsTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("SavingsTypeNodeRuleProvider") @IntoMap @StringKey("savingsTypeNode")
-        RuleProvider<SavingsTypeNode> provideSavingsTypeNodeChildRuleProvider(
-            SavingsAccountNodeChildProvider.SavingsTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SavingsTypeNode>> provideRuleProviders(

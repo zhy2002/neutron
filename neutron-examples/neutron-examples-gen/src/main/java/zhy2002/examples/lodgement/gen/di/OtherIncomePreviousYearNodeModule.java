@@ -49,13 +49,6 @@ public class OtherIncomePreviousYearNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherIncomePreviousYearNodeRuleProvider") @IntoMap @StringKey("otherIncomePreviousYearNode")
-        RuleProvider<OtherIncomePreviousYearNode> provideOtherIncomePreviousYearNodeChildRuleProvider(
-            OtherIncomeNodeChildProvider.OtherIncomePreviousYearNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherIncomePreviousYearNode>> provideRuleProviders(

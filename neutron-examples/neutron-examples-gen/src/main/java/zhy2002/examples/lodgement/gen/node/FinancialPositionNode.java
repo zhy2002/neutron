@@ -16,8 +16,8 @@ import java.util.List;
 public class FinancialPositionNode extends ObjectUiNode<ApplicationNode> {
 
     @Inject
-    protected FinancialPositionNode(@Owner ApplicationNode parent) {
-        super(parent);
+    protected FinancialPositionNode(@Owner ApplicationNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

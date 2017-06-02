@@ -16,8 +16,8 @@ import java.util.List;
 public class OtherLiabilityNode extends ObjectUiNode<OtherLiabilityListNode> {
 
     @Inject
-    protected OtherLiabilityNode(@Owner OtherLiabilityListNode parent) {
-        super(parent);
+    protected OtherLiabilityNode(@Owner OtherLiabilityListNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

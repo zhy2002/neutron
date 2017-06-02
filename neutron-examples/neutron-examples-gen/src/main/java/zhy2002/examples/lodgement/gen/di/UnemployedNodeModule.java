@@ -49,13 +49,6 @@ public class UnemployedNodeModule {
         return provider;
     }
 
-        @Provides @Named("UnemployedNodeRuleProvider") @IntoMap @StringKey("unemployedNode")
-        RuleProvider<UnemployedNode> provideUnemployedNodeChildRuleProvider(
-            EmploymentNodeChildProvider.UnemployedNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<UnemployedNode>> provideRuleProviders(

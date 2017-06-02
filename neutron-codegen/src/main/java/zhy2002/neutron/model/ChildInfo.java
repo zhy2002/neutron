@@ -1,14 +1,14 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.service.CodeGenUtil;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class ChildInfo {
+public class ChildInfo extends CodeGenInfo {
 
     private String name;
-    @NotNull
-    private String typeName;
     @Valid
     private List<InitInfo> init;
     @Valid
@@ -20,14 +20,6 @@ public class ChildInfo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
     }
 
     public List<InitInfo> getInit() {
@@ -48,10 +40,18 @@ public class ChildInfo {
 
     ////////////////////////////////////////////////////
 
+    @Override
+    void initialize() {
+        if (getName() == null) {
+            setName(CodeGenUtil.firstCharLower(getTypeName()));
+        }
+    }
+
     /**
      * This should be null for the root type.
      */
     private NodeInfo childType;
+    private NodeInfo parentType;
 
     public NodeInfo getChildType() {
         return childType;
@@ -59,5 +59,17 @@ public class ChildInfo {
 
     void setChildType(NodeInfo childType) {
         this.childType = childType;
+    }
+
+    public NodeInfo getParentType() {
+        return parentType;
+    }
+
+    public void setParentType(NodeInfo parentType) {
+        this.parentType = parentType;
+    }
+
+    public boolean getHasRuleProvider() {
+        return getInit() != null && getInit().size() > 0 || getRules() != null && getRules().size() > 0;
     }
 }

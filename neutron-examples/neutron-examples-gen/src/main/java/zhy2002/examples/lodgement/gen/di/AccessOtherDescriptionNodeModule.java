@@ -49,13 +49,6 @@ public class AccessOtherDescriptionNodeModule {
         return provider;
     }
 
-        @Provides @Named("AccessOtherDescriptionNodeRuleProvider") @IntoMap @StringKey("accessOtherDescriptionNode")
-        RuleProvider<AccessOtherDescriptionNode> provideAccessOtherDescriptionNodeChildRuleProvider(
-            AccessNodeChildProvider.AccessOtherDescriptionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AccessOtherDescriptionNode>> provideRuleProviders(

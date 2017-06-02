@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductTotalLvrLmiNode extends BasePercentageNode<ProductsNode> {
 
     @Inject
-    protected ProductTotalLvrLmiNode(@Owner ProductsNode parent) {
-        super(parent);
+    protected ProductTotalLvrLmiNode(@Owner ProductsNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

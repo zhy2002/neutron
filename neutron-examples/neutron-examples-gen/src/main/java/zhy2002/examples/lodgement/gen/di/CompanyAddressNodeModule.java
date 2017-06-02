@@ -53,34 +53,6 @@ public class CompanyAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyAddressNodeRuleProvider") @IntoMap @StringKey("registeredAddressNode")
-        RuleProvider<CompanyAddressNode> provideRegisteredAddressNodeChildRuleProvider(
-            CompanyContactNodeChildProvider.RegisteredAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("CompanyAddressNodeRuleProvider") @IntoMap @StringKey("postalAddressNode")
-        RuleProvider<CompanyAddressNode> providePostalAddressNodeChildRuleProvider(
-            CompanyContactNodeChildProvider.PostalAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("CompanyAddressNodeRuleProvider") @IntoMap @StringKey("tradingAddressNode")
-        RuleProvider<CompanyAddressNode> provideTradingAddressNodeChildRuleProvider(
-            CompanyContactNodeChildProvider.TradingAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("CompanyAddressNodeRuleProvider") @IntoMap @StringKey("principalPlaceAddressNode")
-        RuleProvider<CompanyAddressNode> providePrincipalPlaceAddressNodeChildRuleProvider(
-            CompanyContactNodeChildProvider.PrincipalPlaceAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyAddressNode>> provideRuleProviders(

@@ -53,13 +53,6 @@ public class EmploymentStartedNodeModule {
         return provider;
     }
 
-        @Provides @Named("EmploymentStartedNodeRuleProvider") @IntoMap @StringKey("employmentStartedNode")
-        RuleProvider<EmploymentStartedNode> provideEmploymentStartedNodeChildRuleProvider(
-            EmployedNodeChildProvider.EmploymentStartedNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<EmploymentStartedNode>> provideRuleProviders(

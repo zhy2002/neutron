@@ -53,13 +53,6 @@ public class PersonResponsibleLendNodeModule {
         return provider;
     }
 
-        @Provides @Named("PersonResponsibleLendNodeRuleProvider") @IntoMap @StringKey("personResponsibleLendNode")
-        RuleProvider<PersonResponsibleLendNode> providePersonResponsibleLendNodeChildRuleProvider(
-            PersonNodeChildProvider.PersonResponsibleLendNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PersonResponsibleLendNode>> provideRuleProviders(

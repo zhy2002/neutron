@@ -49,13 +49,6 @@ public class OtherLiabilityClearingFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherLiabilityClearingFlagNodeRuleProvider") @IntoMap @StringKey("otherLiabilityClearingFlagNode")
-        RuleProvider<OtherLiabilityClearingFlagNode> provideOtherLiabilityClearingFlagNodeChildRuleProvider(
-            OtherLiabilityNodeChildProvider.OtherLiabilityClearingFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherLiabilityClearingFlagNode>> provideRuleProviders(

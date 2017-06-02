@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductFixedTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
 
     @Inject
-    protected ProductFixedTermNode(@Owner ProductDescriptionNode parent) {
-        super(parent);
+    protected ProductFixedTermNode(@Owner ProductDescriptionNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

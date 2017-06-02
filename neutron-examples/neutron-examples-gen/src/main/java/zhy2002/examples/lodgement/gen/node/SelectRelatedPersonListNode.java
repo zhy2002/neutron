@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class SelectRelatedPersonListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectRelatedPersonNode> {
 
-    protected SelectRelatedPersonListNode(P parent) {
-        super(parent);
+    protected SelectRelatedPersonListNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract SelectRelatedPersonListNodeComponent getComponent();

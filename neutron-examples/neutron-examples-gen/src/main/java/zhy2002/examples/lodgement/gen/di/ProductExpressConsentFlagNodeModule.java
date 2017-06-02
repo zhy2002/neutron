@@ -49,13 +49,6 @@ public class ProductExpressConsentFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductExpressConsentFlagNodeRuleProvider") @IntoMap @StringKey("productExpressConsentFlagNode")
-        RuleProvider<ProductExpressConsentFlagNode> provideProductExpressConsentFlagNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductExpressConsentFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductExpressConsentFlagNode>> provideRuleProviders(

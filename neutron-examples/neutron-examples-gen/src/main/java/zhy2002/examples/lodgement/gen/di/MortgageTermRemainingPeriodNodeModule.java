@@ -53,13 +53,6 @@ public class MortgageTermRemainingPeriodNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageTermRemainingPeriodNodeRuleProvider") @IntoMap @StringKey("mortgageTermRemainingPeriodNode")
-        RuleProvider<MortgageTermRemainingPeriodNode> provideMortgageTermRemainingPeriodNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageTermRemainingPeriodNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageTermRemainingPeriodNode>> provideRuleProviders(

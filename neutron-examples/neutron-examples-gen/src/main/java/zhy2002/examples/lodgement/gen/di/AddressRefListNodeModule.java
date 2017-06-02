@@ -49,13 +49,6 @@ public class AddressRefListNodeModule {
         return provider;
     }
 
-        @Provides @Named("AddressRefListNodeRuleProvider") @IntoMap @StringKey("addressRefListNode")
-        RuleProvider<AddressRefListNode> provideAddressRefListNodeChildRuleProvider(
-            ApplicationNodeChildProvider.AddressRefListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AddressRefListNode>> provideRuleProviders(

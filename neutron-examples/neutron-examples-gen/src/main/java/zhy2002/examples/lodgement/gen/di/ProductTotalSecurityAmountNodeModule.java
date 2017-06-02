@@ -53,13 +53,6 @@ public class ProductTotalSecurityAmountNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductTotalSecurityAmountNodeRuleProvider") @IntoMap @StringKey("productTotalSecurityAmountNode")
-        RuleProvider<ProductTotalSecurityAmountNode> provideProductTotalSecurityAmountNodeChildRuleProvider(
-            ProductsNodeChildProvider.ProductTotalSecurityAmountNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductTotalSecurityAmountNode>> provideRuleProviders(

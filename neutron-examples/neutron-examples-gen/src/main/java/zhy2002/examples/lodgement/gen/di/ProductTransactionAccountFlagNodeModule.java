@@ -49,13 +49,6 @@ public class ProductTransactionAccountFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductTransactionAccountFlagNodeRuleProvider") @IntoMap @StringKey("productTransactionAccountFlagNode")
-        RuleProvider<ProductTransactionAccountFlagNode> provideProductTransactionAccountFlagNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductTransactionAccountFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductTransactionAccountFlagNode>> provideRuleProviders(

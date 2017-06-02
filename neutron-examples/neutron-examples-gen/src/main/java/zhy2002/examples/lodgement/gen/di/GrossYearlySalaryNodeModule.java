@@ -53,13 +53,6 @@ public class GrossYearlySalaryNodeModule {
         return provider;
     }
 
-        @Provides @Named("GrossYearlySalaryNodeRuleProvider") @IntoMap @StringKey("grossYearlySalaryNode")
-        RuleProvider<GrossYearlySalaryNode> provideGrossYearlySalaryNodeChildRuleProvider(
-            PayeEmployedNodeChildProvider.GrossYearlySalaryNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<GrossYearlySalaryNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class AgeOfDependantsNodeModule {
         return provider;
     }
 
-        @Provides @Named("AgeOfDependantsNodeRuleProvider") @IntoMap @StringKey("ageOfDependantsNode")
-        RuleProvider<AgeOfDependantsNode> provideAgeOfDependantsNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.AgeOfDependantsNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AgeOfDependantsNode>> provideRuleProviders(

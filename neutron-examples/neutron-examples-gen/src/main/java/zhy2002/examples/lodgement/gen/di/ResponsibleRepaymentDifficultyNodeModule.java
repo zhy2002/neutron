@@ -53,13 +53,6 @@ public class ResponsibleRepaymentDifficultyNodeModule {
         return provider;
     }
 
-        @Provides @Named("ResponsibleRepaymentDifficultyNodeRuleProvider") @IntoMap @StringKey("responsibleRepaymentDifficultyNode")
-        RuleProvider<ResponsibleRepaymentDifficultyNode> provideResponsibleRepaymentDifficultyNodeChildRuleProvider(
-            BaseResponsibleLendNodeChildProvider.ResponsibleRepaymentDifficultyNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ResponsibleRepaymentDifficultyNode>> provideRuleProviders(

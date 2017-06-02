@@ -49,13 +49,6 @@ public class ApplicantReferenceNodeModule {
         return provider;
     }
 
-        @Provides @Named("ApplicantReferenceNodeRuleProvider") @IntoMap @StringKey("applicantReferenceNode")
-        RuleProvider<ApplicantReferenceNode> provideApplicantReferenceNodeChildRuleProvider(
-            OwnershipNodeChildProvider.ApplicantReferenceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ApplicantReferenceNode>> provideRuleProviders(

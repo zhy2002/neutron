@@ -49,13 +49,6 @@ public class OwningUserNodeModule {
         return provider;
     }
 
-        @Provides @Named("OwningUserNodeRuleProvider") @IntoMap @StringKey("owningUserNode")
-        RuleProvider<OwningUserNode> provideOwningUserNodeChildRuleProvider(
-            ApplicationNodeChildProvider.OwningUserNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OwningUserNode>> provideRuleProviders(

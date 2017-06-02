@@ -53,13 +53,6 @@ public class CreditCardBreakCostNodeModule {
         return provider;
     }
 
-        @Provides @Named("CreditCardBreakCostNodeRuleProvider") @IntoMap @StringKey("creditCardBreakCostNode")
-        RuleProvider<CreditCardBreakCostNode> provideCreditCardBreakCostNodeChildRuleProvider(
-            CreditCardNodeChildProvider.CreditCardBreakCostNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CreditCardBreakCostNode>> provideRuleProviders(

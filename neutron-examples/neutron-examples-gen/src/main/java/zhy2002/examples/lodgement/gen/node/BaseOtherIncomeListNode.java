@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class BaseOtherIncomeListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OtherIncomeNode> {
 
-    protected BaseOtherIncomeListNode(P parent) {
-        super(parent);
+    protected BaseOtherIncomeListNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract BaseOtherIncomeListNodeComponent getComponent();

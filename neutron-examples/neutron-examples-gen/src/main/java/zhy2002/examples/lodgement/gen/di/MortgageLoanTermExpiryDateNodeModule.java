@@ -49,13 +49,6 @@ public class MortgageLoanTermExpiryDateNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageLoanTermExpiryDateNodeRuleProvider") @IntoMap @StringKey("mortgageLoanTermExpiryDateNode")
-        RuleProvider<MortgageLoanTermExpiryDateNode> provideMortgageLoanTermExpiryDateNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageLoanTermExpiryDateNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageLoanTermExpiryDateNode>> provideRuleProviders(

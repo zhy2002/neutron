@@ -49,13 +49,6 @@ public class OwnedOutrightFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("OwnedOutrightFlagNodeRuleProvider") @IntoMap @StringKey("ownedOutrightFlagNode")
-        RuleProvider<OwnedOutrightFlagNode> provideOwnedOutrightFlagNodeChildRuleProvider(
-            UsageNodeChildProvider.OwnedOutrightFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OwnedOutrightFlagNode>> provideRuleProviders(

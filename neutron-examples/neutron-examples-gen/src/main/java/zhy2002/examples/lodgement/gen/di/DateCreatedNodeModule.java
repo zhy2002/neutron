@@ -49,13 +49,6 @@ public class DateCreatedNodeModule {
         return provider;
     }
 
-        @Provides @Named("DateCreatedNodeRuleProvider") @IntoMap @StringKey("dateCreatedNode")
-        RuleProvider<DateCreatedNode> provideDateCreatedNodeChildRuleProvider(
-            ApplicationNodeChildProvider.DateCreatedNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<DateCreatedNode>> provideRuleProviders(

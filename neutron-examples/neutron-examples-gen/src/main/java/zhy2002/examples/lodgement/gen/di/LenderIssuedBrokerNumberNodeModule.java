@@ -49,13 +49,6 @@ public class LenderIssuedBrokerNumberNodeModule {
         return provider;
     }
 
-        @Provides @Named("LenderIssuedBrokerNumberNodeRuleProvider") @IntoMap @StringKey("lenderIssuedBrokerNumberNode")
-        RuleProvider<LenderIssuedBrokerNumberNode> provideLenderIssuedBrokerNumberNodeChildRuleProvider(
-            SubmissionNodeChildProvider.LenderIssuedBrokerNumberNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LenderIssuedBrokerNumberNode>> provideRuleProviders(

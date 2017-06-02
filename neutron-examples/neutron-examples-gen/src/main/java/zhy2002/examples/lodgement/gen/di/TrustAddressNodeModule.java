@@ -53,13 +53,6 @@ public class TrustAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustAddressNodeRuleProvider") @IntoMap @StringKey("trustAddressNode")
-        RuleProvider<TrustAddressNode> provideTrustAddressNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustAddressNode>> provideRuleProviders(

@@ -49,20 +49,6 @@ public class BrokerTelephoneNodeModule {
         return provider;
     }
 
-        @Provides @Named("BrokerTelephoneNodeRuleProvider") @IntoMap @StringKey("contactNumberNode")
-        RuleProvider<BrokerTelephoneNode> provideContactNumberNodeChildRuleProvider(
-            SubmissionNodeChildProvider.ContactNumberNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("BrokerTelephoneNodeRuleProvider") @IntoMap @StringKey("faxNumberNode")
-        RuleProvider<BrokerTelephoneNode> provideFaxNumberNodeChildRuleProvider(
-            SubmissionNodeChildProvider.FaxNumberNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<BrokerTelephoneNode>> provideRuleProviders(

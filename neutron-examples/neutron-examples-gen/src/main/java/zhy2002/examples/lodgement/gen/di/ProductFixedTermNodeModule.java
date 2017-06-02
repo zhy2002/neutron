@@ -49,13 +49,6 @@ public class ProductFixedTermNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductFixedTermNodeRuleProvider") @IntoMap @StringKey("productFixedTermNode")
-        RuleProvider<ProductFixedTermNode> provideProductFixedTermNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductFixedTermNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductFixedTermNode>> provideRuleProviders(

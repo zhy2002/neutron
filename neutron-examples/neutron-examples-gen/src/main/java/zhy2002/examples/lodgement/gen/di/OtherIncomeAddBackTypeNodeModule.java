@@ -49,13 +49,6 @@ public class OtherIncomeAddBackTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherIncomeAddBackTypeNodeRuleProvider") @IntoMap @StringKey("otherIncomeAddBackTypeNode")
-        RuleProvider<OtherIncomeAddBackTypeNode> provideOtherIncomeAddBackTypeNodeChildRuleProvider(
-            OtherIncomeNodeChildProvider.OtherIncomeAddBackTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherIncomeAddBackTypeNode>> provideRuleProviders(

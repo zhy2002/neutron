@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CreditHistoryListNode extends ListUiNode<BasePrivacyNode<?>,CreditHistoryNode> {
 
     @Inject
-    protected CreditHistoryListNode(@Owner BasePrivacyNode<?> parent) {
-        super(parent);
+    protected CreditHistoryListNode(@Owner BasePrivacyNode<?> parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

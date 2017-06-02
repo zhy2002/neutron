@@ -18,8 +18,8 @@ import java.util.List;
 public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
 
     @Inject
-    protected ApplicationListNode(@Owner AppManagerNode parent) {
-        super(parent);
+    protected ApplicationListNode(@Owner AppManagerNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

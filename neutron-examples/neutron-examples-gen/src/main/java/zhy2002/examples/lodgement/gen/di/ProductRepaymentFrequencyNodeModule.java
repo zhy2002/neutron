@@ -49,13 +49,6 @@ public class ProductRepaymentFrequencyNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductRepaymentFrequencyNodeRuleProvider") @IntoMap @StringKey("productRepaymentFrequencyNode")
-        RuleProvider<ProductRepaymentFrequencyNode> provideProductRepaymentFrequencyNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductRepaymentFrequencyNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductRepaymentFrequencyNode>> provideRuleProviders(

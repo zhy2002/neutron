@@ -49,13 +49,6 @@ public class TrustNameNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustNameNodeRuleProvider") @IntoMap @StringKey("trustNameNode")
-        RuleProvider<TrustNameNode> provideTrustNameNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustNameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustNameNode>> provideRuleProviders(

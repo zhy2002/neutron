@@ -16,8 +16,8 @@ import java.util.List;
 public class ProductFeeNode extends ObjectUiNode<ProductFeeListNode> {
 
     @Inject
-    protected ProductFeeNode(@Owner ProductFeeListNode parent) {
-        super(parent);
+    protected ProductFeeNode(@Owner ProductFeeListNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

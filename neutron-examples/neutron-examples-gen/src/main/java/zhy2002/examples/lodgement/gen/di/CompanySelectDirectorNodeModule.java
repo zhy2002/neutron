@@ -53,13 +53,6 @@ public class CompanySelectDirectorNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanySelectDirectorNodeRuleProvider") @IntoMap @StringKey("companySelectDirectorNode")
-        RuleProvider<CompanySelectDirectorNode> provideCompanySelectDirectorNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanySelectDirectorNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanySelectDirectorNode>> provideRuleProviders(

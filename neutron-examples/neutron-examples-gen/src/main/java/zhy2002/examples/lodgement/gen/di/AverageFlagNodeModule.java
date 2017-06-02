@@ -49,13 +49,6 @@ public class AverageFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("AverageFlagNodeRuleProvider") @IntoMap @StringKey("averageFlagNode")
-        RuleProvider<AverageFlagNode> provideAverageFlagNodeChildRuleProvider(
-            OwnershipNodeChildProvider.AverageFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AverageFlagNode>> provideRuleProviders(

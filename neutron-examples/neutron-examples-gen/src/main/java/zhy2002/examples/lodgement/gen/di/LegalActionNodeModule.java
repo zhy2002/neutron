@@ -53,13 +53,6 @@ public class LegalActionNodeModule {
         return provider;
     }
 
-        @Provides @Named("LegalActionNodeRuleProvider") @IntoMap @StringKey("legalActionNode")
-        RuleProvider<LegalActionNode> provideLegalActionNodeChildRuleProvider(
-            BasePrivacyNodeChildProvider.LegalActionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LegalActionNode>> provideRuleProviders(

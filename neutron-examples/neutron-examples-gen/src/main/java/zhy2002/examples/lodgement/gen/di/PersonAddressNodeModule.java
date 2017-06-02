@@ -53,27 +53,6 @@ public class PersonAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("currentAddressNode")
-        RuleProvider<PersonAddressNode> provideCurrentAddressNodeChildRuleProvider(
-            PersonContactNodeChildProvider.CurrentAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("postalAddressNode")
-        RuleProvider<PersonAddressNode> providePostalAddressNodeChildRuleProvider(
-            PersonContactNodeChildProvider.PostalAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
-        @Provides @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("previousAddressNode")
-        RuleProvider<PersonAddressNode> providePreviousAddressNodeChildRuleProvider(
-            PersonContactNodeChildProvider.PreviousAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PersonAddressNode>> provideRuleProviders(

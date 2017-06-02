@@ -49,13 +49,6 @@ public class MortgageLenderInstitutionNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageLenderInstitutionNodeRuleProvider") @IntoMap @StringKey("mortgageLenderInstitutionNode")
-        RuleProvider<MortgageLenderInstitutionNode> provideMortgageLenderInstitutionNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageLenderInstitutionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageLenderInstitutionNode>> provideRuleProviders(

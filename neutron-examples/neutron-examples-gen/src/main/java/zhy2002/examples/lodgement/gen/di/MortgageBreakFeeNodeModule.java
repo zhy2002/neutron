@@ -53,13 +53,6 @@ public class MortgageBreakFeeNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageBreakFeeNodeRuleProvider") @IntoMap @StringKey("mortgageBreakFeeNode")
-        RuleProvider<MortgageBreakFeeNode> provideMortgageBreakFeeNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageBreakFeeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageBreakFeeNode>> provideRuleProviders(

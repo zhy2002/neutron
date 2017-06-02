@@ -49,13 +49,6 @@ public class ThirdPartyWorkPhoneNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyWorkPhoneNodeRuleProvider") @IntoMap @StringKey("thirdPartyWorkPhoneNode")
-        RuleProvider<ThirdPartyWorkPhoneNode> provideThirdPartyWorkPhoneNodeChildRuleProvider(
-            RelatedPartyNodeChildProvider.ThirdPartyWorkPhoneNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyWorkPhoneNode>> provideRuleProviders(

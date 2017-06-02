@@ -13,8 +13,8 @@ import java.util.List;
 public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
 
     @Inject
-    protected ThirdPartyDobNode(@Owner RelatedPartyNode parent) {
-        super(parent);
+    protected ThirdPartyDobNode(@Owner RelatedPartyNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

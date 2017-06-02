@@ -49,13 +49,6 @@ public class RepeatPasswordNodeModule {
         return provider;
     }
 
-        @Provides @Named("RepeatPasswordNodeRuleProvider") @IntoMap @StringKey("repeatPasswordNode")
-        RuleProvider<RepeatPasswordNode> provideRepeatPasswordNodeChildRuleProvider(
-            RegisterNodeChildProvider.RepeatPasswordNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<RepeatPasswordNode>> provideRuleProviders(

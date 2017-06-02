@@ -49,13 +49,6 @@ public class StatusNodeModule {
         return provider;
     }
 
-        @Provides @Named("StatusNodeRuleProvider") @IntoMap @StringKey("statusNode")
-        RuleProvider<StatusNode> provideStatusNodeChildRuleProvider(
-            ApplicationNodeChildProvider.StatusNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<StatusNode>> provideRuleProviders(

@@ -16,8 +16,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
 
-    protected OwnershipListNode(P parent) {
-        super(parent);
+    protected OwnershipListNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract OwnershipListNodeComponent getComponent();

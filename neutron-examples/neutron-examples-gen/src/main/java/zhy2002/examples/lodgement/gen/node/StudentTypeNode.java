@@ -13,8 +13,8 @@ import java.util.List;
 public class StudentTypeNode extends StringUiNode<UnemployedNode> {
 
     @Inject
-    protected StudentTypeNode(@Owner UnemployedNode parent) {
-        super(parent);
+    protected StudentTypeNode(@Owner UnemployedNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

@@ -45,6 +45,14 @@ public class TemplateBundle {
         return getTemplate("node.ftl");
     }
 
+    Template getContextTemplate() {
+        return getTemplate("context.ftl");
+    }
+
+    Template getRegistryTemplate() {
+        return getTemplate("registry.ftl");
+    }
+
     Template getNodeLoadEventTemplate() {
         return getTemplate("load_event.ftl");
     }
@@ -65,6 +73,10 @@ public class TemplateBundle {
         return getTemplate("change_event.ftl");
     }
 
+    Template getRulePackageTemplate() {
+        return getTemplate("rule_package.ftl");
+    }
+
     Template getRuleTemplate() {
         return getTemplate("rule.ftl");
     }
@@ -73,43 +85,32 @@ public class TemplateBundle {
         return getTemplate("rule_provider.ftl");
     }
 
-    Template getRegistryTemplate() {
-        return getTemplate("registry.ftl");
+    Template getProfileRuleProviderTemplate() {
+        return getTemplate("profile_rule_provider.ftl");
     }
 
-    Template getContextTemplate() {
-        return getTemplate("context.ftl");
+    Template getChildRuleProviderTemplate() {
+        return getTemplate("child_rule_provider.ftl");
     }
 
-    Template getChildFactoryTemplate() {
-        return getTemplate("child_factory.ftl");
-    }
-
-    Template getModuleTemplate() {
-        return getTemplate("module.ftl");
+    Template getProfileChildRuleProviderTemplate() {
+        return getTemplate("profile_child_rule_provider.ftl");
     }
 
     Template getComponentTemplate() {
         return getTemplate("component.ftl");
     }
 
-    Template getManifestModuleTemplate() {
-        return getTemplate("manifest_module.ftl");
+    Template getModuleTemplate() {
+        return getTemplate("module.ftl");
     }
 
-    Template getRulePackageTemplate() {
-        return getTemplate("rule_package.ftl");
+    Template getManifestModuleTemplate() {
+        return getTemplate("manifest_module.ftl");
     }
 
     Template getProfileModuleTemplate() {
         return getTemplate("profile_module.ftl");
     }
 
-    Template getProfileRuleProviderTemplate() {
-        return getTemplate("profile_rule_provider.ftl");
-    }
-
-    Template getProfileChildProviderTemplate() {
-        return getTemplate("profile_child_factory.ftl");
-    }
 }

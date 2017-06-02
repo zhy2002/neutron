@@ -14,8 +14,8 @@ import java.util.List;
 public class PrimarySecurityFlagNode extends BooleanUiNode<UsageNode> {
 
     @Inject
-    protected PrimarySecurityFlagNode(@Owner UsageNode parent) {
-        super(parent);
+    protected PrimarySecurityFlagNode(@Owner UsageNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

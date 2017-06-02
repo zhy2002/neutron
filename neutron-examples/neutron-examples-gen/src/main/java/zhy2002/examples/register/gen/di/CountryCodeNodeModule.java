@@ -53,13 +53,6 @@ public class CountryCodeNodeModule {
         return provider;
     }
 
-        @Provides @Named("CountryCodeNodeRuleProvider") @IntoMap @StringKey("countryCodeNode")
-        RuleProvider<CountryCodeNode> provideCountryCodeNodeChildRuleProvider(
-            PhoneInfoNodeChildProvider.CountryCodeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CountryCodeNode>> provideRuleProviders(

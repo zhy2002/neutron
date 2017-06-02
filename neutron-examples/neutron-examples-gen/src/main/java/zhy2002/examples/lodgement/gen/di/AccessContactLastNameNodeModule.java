@@ -49,13 +49,6 @@ public class AccessContactLastNameNodeModule {
         return provider;
     }
 
-        @Provides @Named("AccessContactLastNameNodeRuleProvider") @IntoMap @StringKey("accessContactLastNameNode")
-        RuleProvider<AccessContactLastNameNode> provideAccessContactLastNameNodeChildRuleProvider(
-            AccessNodeChildProvider.AccessContactLastNameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AccessContactLastNameNode>> provideRuleProviders(

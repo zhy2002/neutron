@@ -49,13 +49,6 @@ public class VehicleYearNodeModule {
         return provider;
     }
 
-        @Provides @Named("VehicleYearNodeRuleProvider") @IntoMap @StringKey("vehicleYearNode")
-        RuleProvider<VehicleYearNode> provideVehicleYearNodeChildRuleProvider(
-            MotorVehicleNodeChildProvider.VehicleYearNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<VehicleYearNode>> provideRuleProviders(

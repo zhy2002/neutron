@@ -49,13 +49,6 @@ public class PermanentResidentFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("PermanentResidentFlagNodeRuleProvider") @IntoMap @StringKey("permanentResidentFlagNode")
-        RuleProvider<PermanentResidentFlagNode> providePermanentResidentFlagNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.PermanentResidentFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PermanentResidentFlagNode>> provideRuleProviders(

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseResponsibleLendNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    protected BaseResponsibleLendNode(P parent) {
-        super(parent);
+    protected BaseResponsibleLendNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract BaseResponsibleLendNodeComponent getComponent();

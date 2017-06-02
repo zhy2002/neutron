@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class OtherLiabilityListNode extends ListUiNode<LiabilitiesNode,OtherLiabilityNode> {
 
     @Inject
-    protected OtherLiabilityListNode(@Owner LiabilitiesNode parent) {
-        super(parent);
+    protected OtherLiabilityListNode(@Owner LiabilitiesNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

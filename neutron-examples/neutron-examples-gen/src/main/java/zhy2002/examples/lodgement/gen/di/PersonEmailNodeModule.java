@@ -53,13 +53,6 @@ public class PersonEmailNodeModule {
         return provider;
     }
 
-        @Provides @Named("PersonEmailNodeRuleProvider") @IntoMap @StringKey("personEmailNode")
-        RuleProvider<PersonEmailNode> providePersonEmailNodeChildRuleProvider(
-            PersonContactNodeChildProvider.PersonEmailNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PersonEmailNode>> provideRuleProviders(

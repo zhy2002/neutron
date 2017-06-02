@@ -49,13 +49,6 @@ public class ErrorListNodeModule {
         return provider;
     }
 
-        @Provides @Named("ErrorListNodeRuleProvider") @IntoMap @StringKey("errorListNode")
-        RuleProvider<ErrorListNode> provideErrorListNodeChildRuleProvider(
-            RegisterNodeChildProvider.ErrorListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ErrorListNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class AgeNodeModule {
         return provider;
     }
 
-        @Provides @Named("AgeNodeRuleProvider") @IntoMap @StringKey("ageNode")
-        RuleProvider<AgeNode> provideAgeNodeChildRuleProvider(
-            RegisterNodeChildProvider.AgeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AgeNode>> provideRuleProviders(

@@ -53,13 +53,6 @@ public class CountryNodeModule {
         return provider;
     }
 
-        @Provides @Named("CountryNodeRuleProvider") @IntoMap @StringKey("countryNode")
-        RuleProvider<CountryNode> provideCountryNodeChildRuleProvider(
-            AddressNodeChildProvider.CountryNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CountryNode>> provideRuleProviders(

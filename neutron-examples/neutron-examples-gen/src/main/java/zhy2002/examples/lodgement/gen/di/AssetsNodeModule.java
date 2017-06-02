@@ -49,13 +49,6 @@ public class AssetsNodeModule {
         return provider;
     }
 
-        @Provides @Named("AssetsNodeRuleProvider") @IntoMap @StringKey("assetsNode")
-        RuleProvider<AssetsNode> provideAssetsNodeChildRuleProvider(
-            FinancialPositionNodeChildProvider.AssetsNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AssetsNode>> provideRuleProviders(

@@ -11,8 +11,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 
 public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
 
-    protected SelectAccountHolderListNode(P parent) {
-        super(parent);
+    protected SelectAccountHolderListNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract SelectAccountHolderListNodeComponent getComponent();

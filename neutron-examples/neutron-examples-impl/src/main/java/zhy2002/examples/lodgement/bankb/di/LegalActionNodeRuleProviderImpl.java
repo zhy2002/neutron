@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.bankb.di;
 
-import zhy2002.examples.lodgement.bankb.gen.di.BankBLegalActionNodeRuleProvider;
+import zhy2002.examples.lodgement.bankb.gen.node.BankBLegalActionNodeRuleProvider;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.StringEnableSiblingRule;
 

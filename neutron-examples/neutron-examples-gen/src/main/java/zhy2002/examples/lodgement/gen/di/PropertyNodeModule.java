@@ -49,13 +49,6 @@ public class PropertyNodeModule {
         return provider;
     }
 
-        @Provides @Named("PropertyNodeRuleProvider") @IntoMap @StringKey("propertyNode")
-        RuleProvider<PropertyNode> providePropertyNodeChildRuleProvider(
-            RealEstateNodeChildProvider.PropertyNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PropertyNode>> provideRuleProviders(

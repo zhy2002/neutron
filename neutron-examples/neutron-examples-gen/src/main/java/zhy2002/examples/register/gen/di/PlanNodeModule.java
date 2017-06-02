@@ -49,13 +49,6 @@ public class PlanNodeModule {
         return provider;
     }
 
-        @Provides @Named("PlanNodeRuleProvider") @IntoMap @StringKey("planNode")
-        RuleProvider<PlanNode> providePlanNodeChildRuleProvider(
-            RegisterNodeChildProvider.PlanNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PlanNode>> provideRuleProviders(

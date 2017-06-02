@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageLoanTypeNode extends StringUiNode<ExistingMortgageNode> {
 
     @Inject
-    protected MortgageLoanTypeNode(@Owner ExistingMortgageNode parent) {
-        super(parent);
+    protected MortgageLoanTypeNode(@Owner ExistingMortgageNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

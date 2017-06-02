@@ -49,13 +49,6 @@ public class BeingPurchasedFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("BeingPurchasedFlagNodeRuleProvider") @IntoMap @StringKey("beingPurchasedFlagNode")
-        RuleProvider<BeingPurchasedFlagNode> provideBeingPurchasedFlagNodeChildRuleProvider(
-            UsageNodeChildProvider.BeingPurchasedFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<BeingPurchasedFlagNode>> provideRuleProviders(

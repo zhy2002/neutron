@@ -49,13 +49,6 @@ public class BusinessTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("BusinessTypeNodeRuleProvider") @IntoMap @StringKey("businessTypeNode")
-        RuleProvider<BusinessTypeNode> provideBusinessTypeNodeChildRuleProvider(
-            SelfEmployedNodeChildProvider.BusinessTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<BusinessTypeNode>> provideRuleProviders(

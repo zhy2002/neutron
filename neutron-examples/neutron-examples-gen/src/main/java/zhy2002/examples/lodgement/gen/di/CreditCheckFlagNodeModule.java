@@ -49,13 +49,6 @@ public class CreditCheckFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("CreditCheckFlagNodeRuleProvider") @IntoMap @StringKey("creditCheckFlagNode")
-        RuleProvider<CreditCheckFlagNode> provideCreditCheckFlagNodeChildRuleProvider(
-            BasePrivacyNodeChildProvider.CreditCheckFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CreditCheckFlagNode>> provideRuleProviders(

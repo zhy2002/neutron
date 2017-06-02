@@ -14,8 +14,8 @@ import java.util.List;
 public class PropertyStateNode extends StringUiNode<PropertyDetailsNode> {
 
     @Inject
-    protected PropertyStateNode(@Owner PropertyDetailsNode parent) {
-        super(parent);
+    protected PropertyStateNode(@Owner PropertyDetailsNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

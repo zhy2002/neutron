@@ -49,13 +49,6 @@ public class ApplicationListNodeModule {
         return provider;
     }
 
-        @Provides @Named("ApplicationListNodeRuleProvider") @IntoMap @StringKey("applicationListNode")
-        RuleProvider<ApplicationListNode> provideApplicationListNodeChildRuleProvider(
-            AppManagerNodeChildProvider.ApplicationListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ApplicationListNode>> provideRuleProviders(

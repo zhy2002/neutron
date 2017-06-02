@@ -53,13 +53,6 @@ public class OtherAssetOwnershipListNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherAssetOwnershipListNodeRuleProvider") @IntoMap @StringKey("ownershipListNode")
-        RuleProvider<OtherAssetOwnershipListNode> provideOwnershipListNodeChildRuleProvider(
-            OtherAssetNodeChildProvider.OwnershipListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherAssetOwnershipListNode>> provideRuleProviders(

@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class RelatedPartyListNode extends ListUiNode<AdditionalNode,RelatedPartyNode> {
 
     @Inject
-    protected RelatedPartyListNode(@Owner AdditionalNode parent) {
-        super(parent);
+    protected RelatedPartyListNode(@Owner AdditionalNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

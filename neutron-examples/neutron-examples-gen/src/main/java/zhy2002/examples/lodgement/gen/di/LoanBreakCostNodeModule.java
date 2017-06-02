@@ -53,13 +53,6 @@ public class LoanBreakCostNodeModule {
         return provider;
     }
 
-        @Provides @Named("LoanBreakCostNodeRuleProvider") @IntoMap @StringKey("loanBreakCostNode")
-        RuleProvider<LoanBreakCostNode> provideLoanBreakCostNodeChildRuleProvider(
-            LoanNodeChildProvider.LoanBreakCostNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LoanBreakCostNode>> provideRuleProviders(

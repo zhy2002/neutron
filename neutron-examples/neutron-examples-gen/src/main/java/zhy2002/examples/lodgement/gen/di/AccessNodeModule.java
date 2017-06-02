@@ -49,13 +49,6 @@ public class AccessNodeModule {
         return provider;
     }
 
-        @Provides @Named("AccessNodeRuleProvider") @IntoMap @StringKey("accessNode")
-        RuleProvider<AccessNode> provideAccessNodeChildRuleProvider(
-            RealEstateNodeChildProvider.AccessNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AccessNode>> provideRuleProviders(

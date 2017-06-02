@@ -49,13 +49,6 @@ public class PhoneInfoNodeModule {
         return provider;
     }
 
-        @Provides @Named("PhoneInfoNodeRuleProvider") @IntoMap @StringKey("homePhoneNode")
-        RuleProvider<PhoneInfoNode> provideHomePhoneNodeChildRuleProvider(
-            RegisterNodeChildProvider.HomePhoneNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PhoneInfoNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class SettlementDateNodeModule {
         return provider;
     }
 
-        @Provides @Named("SettlementDateNodeRuleProvider") @IntoMap @StringKey("settlementDateNode")
-        RuleProvider<SettlementDateNode> provideSettlementDateNodeChildRuleProvider(
-            ProductsNodeChildProvider.SettlementDateNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SettlementDateNode>> provideRuleProviders(

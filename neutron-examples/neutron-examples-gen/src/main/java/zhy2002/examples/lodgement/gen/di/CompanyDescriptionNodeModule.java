@@ -49,13 +49,6 @@ public class CompanyDescriptionNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyDescriptionNodeRuleProvider") @IntoMap @StringKey("companyDescriptionNode")
-        RuleProvider<CompanyDescriptionNode> provideCompanyDescriptionNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanyDescriptionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyDescriptionNode>> provideRuleProviders(

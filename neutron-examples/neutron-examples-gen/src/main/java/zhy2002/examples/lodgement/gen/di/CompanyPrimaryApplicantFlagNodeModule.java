@@ -49,13 +49,6 @@ public class CompanyPrimaryApplicantFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyPrimaryApplicantFlagNodeRuleProvider") @IntoMap @StringKey("companyPrimaryApplicantFlagNode")
-        RuleProvider<CompanyPrimaryApplicantFlagNode> provideCompanyPrimaryApplicantFlagNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanyPrimaryApplicantFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyPrimaryApplicantFlagNode>> provideRuleProviders(

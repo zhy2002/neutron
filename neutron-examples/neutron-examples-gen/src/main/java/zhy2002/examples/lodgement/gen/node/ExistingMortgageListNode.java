@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortgageNode> {
 
     @Inject
-    protected ExistingMortgageListNode(@Owner UsageNode parent) {
-        super(parent);
+    protected ExistingMortgageListNode(@Owner UsageNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

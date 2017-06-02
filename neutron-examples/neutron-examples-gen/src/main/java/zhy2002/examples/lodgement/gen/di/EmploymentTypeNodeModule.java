@@ -49,13 +49,6 @@ public class EmploymentTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("EmploymentTypeNodeRuleProvider") @IntoMap @StringKey("employmentTypeNode")
-        RuleProvider<EmploymentTypeNode> provideEmploymentTypeNodeChildRuleProvider(
-            EmploymentNodeChildProvider.EmploymentTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<EmploymentTypeNode>> provideRuleProviders(

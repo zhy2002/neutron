@@ -13,8 +13,8 @@ import java.util.List;
 public class ContributionTypeNode extends StringUiNode<ProductCustomerContributionNode> {
 
     @Inject
-    protected ContributionTypeNode(@Owner ProductCustomerContributionNode parent) {
-        super(parent);
+    protected ContributionTypeNode(@Owner ProductCustomerContributionNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

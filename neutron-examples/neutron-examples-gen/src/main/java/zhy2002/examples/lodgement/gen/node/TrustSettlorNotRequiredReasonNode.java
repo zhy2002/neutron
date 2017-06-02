@@ -13,8 +13,8 @@ import java.util.List;
 public class TrustSettlorNotRequiredReasonNode extends StringUiNode<BaseTrustNode<?>> {
 
     @Inject
-    protected TrustSettlorNotRequiredReasonNode(@Owner BaseTrustNode<?> parent) {
-        super(parent);
+    protected TrustSettlorNotRequiredReasonNode(@Owner BaseTrustNode<?> parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

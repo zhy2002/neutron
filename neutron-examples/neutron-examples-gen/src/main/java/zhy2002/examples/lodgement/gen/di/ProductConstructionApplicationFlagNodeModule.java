@@ -49,13 +49,6 @@ public class ProductConstructionApplicationFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductConstructionApplicationFlagNodeRuleProvider") @IntoMap @StringKey("productConstructionApplicationFlagNode")
-        RuleProvider<ProductConstructionApplicationFlagNode> provideProductConstructionApplicationFlagNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductConstructionApplicationFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductConstructionApplicationFlagNode>> provideRuleProviders(

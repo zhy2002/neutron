@@ -49,13 +49,6 @@ public class OtherAssetTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherAssetTypeNodeRuleProvider") @IntoMap @StringKey("otherAssetTypeNode")
-        RuleProvider<OtherAssetTypeNode> provideOtherAssetTypeNodeChildRuleProvider(
-            OtherAssetNodeChildProvider.OtherAssetTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherAssetTypeNode>> provideRuleProviders(

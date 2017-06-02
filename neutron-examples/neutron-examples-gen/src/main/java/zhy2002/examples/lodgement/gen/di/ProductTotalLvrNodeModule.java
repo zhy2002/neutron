@@ -53,13 +53,6 @@ public class ProductTotalLvrNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductTotalLvrNodeRuleProvider") @IntoMap @StringKey("productTotalLvrNode")
-        RuleProvider<ProductTotalLvrNode> provideProductTotalLvrNodeChildRuleProvider(
-            ProductsNodeChildProvider.ProductTotalLvrNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductTotalLvrNode>> provideRuleProviders(

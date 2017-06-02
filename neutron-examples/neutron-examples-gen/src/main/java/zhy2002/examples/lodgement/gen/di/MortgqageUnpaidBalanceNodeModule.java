@@ -53,13 +53,6 @@ public class MortgqageUnpaidBalanceNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgqageUnpaidBalanceNodeRuleProvider") @IntoMap @StringKey("mortgqageUnpaidBalanceNode")
-        RuleProvider<MortgqageUnpaidBalanceNode> provideMortgqageUnpaidBalanceNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgqageUnpaidBalanceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgqageUnpaidBalanceNode>> provideRuleProviders(

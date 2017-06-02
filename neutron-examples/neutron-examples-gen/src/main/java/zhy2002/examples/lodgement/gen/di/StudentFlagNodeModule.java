@@ -53,13 +53,6 @@ public class StudentFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("StudentFlagNodeRuleProvider") @IntoMap @StringKey("studentFlagNode")
-        RuleProvider<StudentFlagNode> provideStudentFlagNodeChildRuleProvider(
-            UnemployedNodeChildProvider.StudentFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<StudentFlagNode>> provideRuleProviders(

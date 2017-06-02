@@ -14,8 +14,8 @@ import java.util.List;
 public class CountryCodeNode extends PhoneInfoFieldNode {
 
     @Inject
-    protected CountryCodeNode(@Owner PhoneInfoNode parent) {
-        super(parent);
+    protected CountryCodeNode(@Owner PhoneInfoNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

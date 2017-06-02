@@ -53,13 +53,6 @@ public class OwnershipPercentageNodeModule {
         return provider;
     }
 
-        @Provides @Named("OwnershipPercentageNodeRuleProvider") @IntoMap @StringKey("ownershipPercentageNode")
-        RuleProvider<OwnershipPercentageNode> provideOwnershipPercentageNodeChildRuleProvider(
-            OwnershipNodeChildProvider.OwnershipPercentageNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OwnershipPercentageNode>> provideRuleProviders(

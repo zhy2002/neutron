@@ -53,13 +53,6 @@ public class MortgageLimitAmountNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageLimitAmountNodeRuleProvider") @IntoMap @StringKey("mortgageLimitAmountNode")
-        RuleProvider<MortgageLimitAmountNode> provideMortgageLimitAmountNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageLimitAmountNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageLimitAmountNode>> provideRuleProviders(

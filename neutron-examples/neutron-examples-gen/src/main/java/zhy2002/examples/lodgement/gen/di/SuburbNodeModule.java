@@ -49,13 +49,6 @@ public class SuburbNodeModule {
         return provider;
     }
 
-        @Provides @Named("SuburbNodeRuleProvider") @IntoMap @StringKey("suburbNode")
-        RuleProvider<SuburbNode> provideSuburbNodeChildRuleProvider(
-            AddressNodeChildProvider.SuburbNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SuburbNode>> provideRuleProviders(

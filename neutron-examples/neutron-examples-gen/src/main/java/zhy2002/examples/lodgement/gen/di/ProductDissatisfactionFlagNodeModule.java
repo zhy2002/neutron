@@ -49,13 +49,6 @@ public class ProductDissatisfactionFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductDissatisfactionFlagNodeRuleProvider") @IntoMap @StringKey("productDissatisfactionFlagNode")
-        RuleProvider<ProductDissatisfactionFlagNode> provideProductDissatisfactionFlagNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductDissatisfactionFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductDissatisfactionFlagNode>> provideRuleProviders(

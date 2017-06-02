@@ -53,13 +53,6 @@ public class TotalAssetNodeModule {
         return provider;
     }
 
-        @Provides @Named("TotalAssetNodeRuleProvider") @IntoMap @StringKey("totalAssetNode")
-        RuleProvider<TotalAssetNode> provideTotalAssetNodeChildRuleProvider(
-            FinancialPositionNodeChildProvider.TotalAssetNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TotalAssetNode>> provideRuleProviders(

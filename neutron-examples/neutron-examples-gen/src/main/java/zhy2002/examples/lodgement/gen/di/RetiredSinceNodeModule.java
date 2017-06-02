@@ -53,13 +53,6 @@ public class RetiredSinceNodeModule {
         return provider;
     }
 
-        @Provides @Named("RetiredSinceNodeRuleProvider") @IntoMap @StringKey("retiredSinceNode")
-        RuleProvider<RetiredSinceNode> provideRetiredSinceNodeChildRuleProvider(
-            RetiredEmploymentNodeChildProvider.RetiredSinceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<RetiredSinceNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class RentedFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("RentedFlagNodeRuleProvider") @IntoMap @StringKey("rentedFlagNode")
-        RuleProvider<RentedFlagNode> provideRentedFlagNodeChildRuleProvider(
-            PropertyNodeChildProvider.RentedFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<RentedFlagNode>> provideRuleProviders(

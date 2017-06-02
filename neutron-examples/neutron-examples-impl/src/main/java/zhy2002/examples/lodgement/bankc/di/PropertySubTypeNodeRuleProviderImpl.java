@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.bankc.di;
 
-import zhy2002.examples.lodgement.bankc.gen.di.BankCPropertySubTypeNodeRuleProvider;
+import zhy2002.examples.lodgement.bankc.gen.node.BankCPropertySubTypeNodeRuleProvider;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.LatestUsedItemRule;
 

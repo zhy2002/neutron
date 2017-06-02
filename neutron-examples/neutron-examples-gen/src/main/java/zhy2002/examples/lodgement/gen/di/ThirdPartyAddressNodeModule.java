@@ -53,13 +53,6 @@ public class ThirdPartyAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyAddressNodeRuleProvider") @IntoMap @StringKey("thirdPartyAddressNode")
-        RuleProvider<ThirdPartyAddressNode> provideThirdPartyAddressNodeChildRuleProvider(
-            RelatedPartyNodeChildProvider.ThirdPartyAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyAddressNode>> provideRuleProviders(

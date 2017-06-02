@@ -49,13 +49,6 @@ public class CreditCardClearingFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("CreditCardClearingFlagNodeRuleProvider") @IntoMap @StringKey("creditCardClearingFlagNode")
-        RuleProvider<CreditCardClearingFlagNode> provideCreditCardClearingFlagNodeChildRuleProvider(
-            CreditCardNodeChildProvider.CreditCardClearingFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CreditCardClearingFlagNode>> provideRuleProviders(

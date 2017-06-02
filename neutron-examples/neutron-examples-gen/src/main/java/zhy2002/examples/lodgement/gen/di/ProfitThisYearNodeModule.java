@@ -49,13 +49,6 @@ public class ProfitThisYearNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProfitThisYearNodeRuleProvider") @IntoMap @StringKey("profitThisYearNode")
-        RuleProvider<ProfitThisYearNode> provideProfitThisYearNodeChildRuleProvider(
-            SelfEmployedNodeChildProvider.ProfitThisYearNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProfitThisYearNode>> provideRuleProviders(

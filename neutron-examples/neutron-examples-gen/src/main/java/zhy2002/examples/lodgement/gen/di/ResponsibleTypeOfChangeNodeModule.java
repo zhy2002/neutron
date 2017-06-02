@@ -49,13 +49,6 @@ public class ResponsibleTypeOfChangeNodeModule {
         return provider;
     }
 
-        @Provides @Named("ResponsibleTypeOfChangeNodeRuleProvider") @IntoMap @StringKey("responsibleTypeOfChangeNode")
-        RuleProvider<ResponsibleTypeOfChangeNode> provideResponsibleTypeOfChangeNodeChildRuleProvider(
-            BaseResponsibleLendNodeChildProvider.ResponsibleTypeOfChangeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ResponsibleTypeOfChangeNode>> provideRuleProviders(

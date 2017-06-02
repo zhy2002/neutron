@@ -13,8 +13,8 @@ import java.util.List;
 public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
 
     @Inject
-    protected AccessTelephoneNode(@Owner AccessNode parent) {
-        super(parent);
+    protected AccessTelephoneNode(@Owner AccessNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

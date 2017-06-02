@@ -49,13 +49,6 @@ public class SubmissionNodeModule {
         return provider;
     }
 
-        @Provides @Named("SubmissionNodeRuleProvider") @IntoMap @StringKey("submissionNode")
-        RuleProvider<SubmissionNode> provideSubmissionNodeChildRuleProvider(
-            ApplicationNodeChildProvider.SubmissionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SubmissionNode>> provideRuleProviders(

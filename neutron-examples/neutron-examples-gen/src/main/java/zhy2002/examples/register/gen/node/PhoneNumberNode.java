@@ -14,8 +14,8 @@ import java.util.List;
 public class PhoneNumberNode extends PhoneInfoFieldNode {
 
     @Inject
-    protected PhoneNumberNode(@Owner PhoneInfoNode parent) {
-        super(parent);
+    protected PhoneNumberNode(@Owner PhoneInfoNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

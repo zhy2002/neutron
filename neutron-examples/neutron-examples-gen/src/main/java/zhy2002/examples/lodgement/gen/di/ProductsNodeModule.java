@@ -49,13 +49,6 @@ public class ProductsNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductsNodeRuleProvider") @IntoMap @StringKey("productsNode")
-        RuleProvider<ProductsNode> provideProductsNodeChildRuleProvider(
-            ApplicationNodeChildProvider.ProductsNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductsNode>> provideRuleProviders(

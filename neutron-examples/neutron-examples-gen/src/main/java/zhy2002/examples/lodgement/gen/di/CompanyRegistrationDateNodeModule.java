@@ -49,13 +49,6 @@ public class CompanyRegistrationDateNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyRegistrationDateNodeRuleProvider") @IntoMap @StringKey("companyRegistrationDateNode")
-        RuleProvider<CompanyRegistrationDateNode> provideCompanyRegistrationDateNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanyRegistrationDateNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyRegistrationDateNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class ThirdPartyEmailNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyEmailNodeRuleProvider") @IntoMap @StringKey("thirdPartyEmailNode")
-        RuleProvider<ThirdPartyEmailNode> provideThirdPartyEmailNodeChildRuleProvider(
-            RelatedPartyNodeChildProvider.ThirdPartyEmailNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyEmailNode>> provideRuleProviders(

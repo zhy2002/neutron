@@ -254,6 +254,7 @@ public class NodeInfo extends CodeGenInfo {
     private CodeGenInfo changeEventInfo;
     private final List<NodeInfo> baseTypes = new ArrayList<>();
     private final Set<String> distinctChildTypeNames = new HashSet<>();
+    private Map<String, ChildInfo> childInfoMap;
 
     @Override
     void initialize() {
@@ -339,13 +340,17 @@ public class NodeInfo extends CodeGenInfo {
         if (getChildren() == null)
             return;
 
+        childInfoMap = new HashMap<>();
+
         for (ChildInfo child : getChildren()) {
-            if (child.getName() == null) {
-                child.setName(CodeGenUtil.firstCharLower(child.getTypeName()));
-            }
+            child.setDomainInfo(getDomainInfo());
+            child.setParentType(this);
+            child.initialize();
+
             if (!distinctChildTypeNames.contains(child.getTypeName())) {
                 addErrorMessage("No childType found with typeName:" + child.getTypeName());
             }
+            childInfoMap.put(child.getName(), child);
         }
     }
 
@@ -491,9 +496,24 @@ public class NodeInfo extends CodeGenInfo {
             setChangeEventInfo(changeEventInfo);
             getDomainInfo().getChangeEventNodes().add(this);
         }
+        if (getChildren() != null) {
+            for (ChildInfo childInfo : getChildren()) {
+                if (childInfo.getHasRuleProvider()) {
+                    getDomainInfo().getConfiguredChildren().add(childInfo);
+                }
+            }
+        }
     }
 
     public boolean getHasComponent() {
         return !isAbstractNode() || getChildren() != null && getChildren().size() > 0 || getItemTypeName() != null;
+    }
+
+    public ChildInfo getChild(String name) {
+        if (childInfoMap != null) {
+            return childInfoMap.get(name);
+        }
+
+        return null;
     }
 }

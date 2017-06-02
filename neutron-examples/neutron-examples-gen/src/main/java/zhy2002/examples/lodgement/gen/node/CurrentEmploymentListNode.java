@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CurrentEmploymentListNode extends ListUiNode<PersonNode,CurrentEmploymentNode> {
 
     @Inject
-    protected CurrentEmploymentListNode(@Owner PersonNode parent) {
-        super(parent);
+    protected CurrentEmploymentListNode(@Owner PersonNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

@@ -49,13 +49,6 @@ public class EmploymentStatusNodeModule {
         return provider;
     }
 
-        @Provides @Named("EmploymentStatusNodeRuleProvider") @IntoMap @StringKey("employmentStatusNode")
-        RuleProvider<EmploymentStatusNode> provideEmploymentStatusNodeChildRuleProvider(
-            EmployedNodeChildProvider.EmploymentStatusNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<EmploymentStatusNode>> provideRuleProviders(

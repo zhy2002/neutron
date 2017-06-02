@@ -49,13 +49,6 @@ public class ContractPriceNodeModule {
         return provider;
     }
 
-        @Provides @Named("ContractPriceNodeRuleProvider") @IntoMap @StringKey("contractPriceNode")
-        RuleProvider<ContractPriceNode> provideContractPriceNodeChildRuleProvider(
-            PropertyNodeChildProvider.ContractPriceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ContractPriceNode>> provideRuleProviders(

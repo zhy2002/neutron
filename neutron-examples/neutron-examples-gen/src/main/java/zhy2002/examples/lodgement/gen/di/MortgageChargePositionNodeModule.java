@@ -49,13 +49,6 @@ public class MortgageChargePositionNodeModule {
         return provider;
     }
 
-        @Provides @Named("MortgageChargePositionNodeRuleProvider") @IntoMap @StringKey("mortgageChargePositionNode")
-        RuleProvider<MortgageChargePositionNode> provideMortgageChargePositionNodeChildRuleProvider(
-            ExistingMortgageNodeChildProvider.MortgageChargePositionNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MortgageChargePositionNode>> provideRuleProviders(

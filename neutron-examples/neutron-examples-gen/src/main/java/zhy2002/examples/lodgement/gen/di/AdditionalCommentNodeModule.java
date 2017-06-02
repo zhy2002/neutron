@@ -49,13 +49,6 @@ public class AdditionalCommentNodeModule {
         return provider;
     }
 
-        @Provides @Named("AdditionalCommentNodeRuleProvider") @IntoMap @StringKey("additionalCommentNode")
-        RuleProvider<AdditionalCommentNode> provideAdditionalCommentNodeChildRuleProvider(
-            AdditionalNodeChildProvider.AdditionalCommentNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AdditionalCommentNode>> provideRuleProviders(

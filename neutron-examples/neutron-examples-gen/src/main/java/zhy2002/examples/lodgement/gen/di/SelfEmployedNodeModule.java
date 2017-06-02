@@ -53,13 +53,6 @@ public class SelfEmployedNodeModule {
         return provider;
     }
 
-        @Provides @Named("SelfEmployedNodeRuleProvider") @IntoMap @StringKey("selfEmployedNode")
-        RuleProvider<SelfEmployedNode> provideSelfEmployedNodeChildRuleProvider(
-            EmploymentNodeChildProvider.SelfEmployedNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SelfEmployedNode>> provideRuleProviders(

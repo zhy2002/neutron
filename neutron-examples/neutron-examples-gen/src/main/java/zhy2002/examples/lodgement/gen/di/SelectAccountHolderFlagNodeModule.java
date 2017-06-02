@@ -49,13 +49,6 @@ public class SelectAccountHolderFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("SelectAccountHolderFlagNodeRuleProvider") @IntoMap @StringKey("selectAccountHolderFlagNode")
-        RuleProvider<SelectAccountHolderFlagNode> provideSelectAccountHolderFlagNodeChildRuleProvider(
-            SelectAccountHolderNodeChildProvider.SelectAccountHolderFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SelectAccountHolderFlagNode>> provideRuleProviders(

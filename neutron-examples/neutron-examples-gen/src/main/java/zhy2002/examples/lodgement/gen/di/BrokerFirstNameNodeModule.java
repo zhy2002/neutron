@@ -53,13 +53,6 @@ public class BrokerFirstNameNodeModule {
         return provider;
     }
 
-        @Provides @Named("BrokerFirstNameNodeRuleProvider") @IntoMap @StringKey("brokerFirstNameNode")
-        RuleProvider<BrokerFirstNameNode> provideBrokerFirstNameNodeChildRuleProvider(
-            SubmissionNodeChildProvider.BrokerFirstNameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<BrokerFirstNameNode>> provideRuleProviders(

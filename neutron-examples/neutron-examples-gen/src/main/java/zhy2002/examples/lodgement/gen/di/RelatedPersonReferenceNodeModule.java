@@ -49,13 +49,6 @@ public class RelatedPersonReferenceNodeModule {
         return provider;
     }
 
-        @Provides @Named("RelatedPersonReferenceNodeRuleProvider") @IntoMap @StringKey("relatedPersonReferenceNode")
-        RuleProvider<RelatedPersonReferenceNode> provideRelatedPersonReferenceNodeChildRuleProvider(
-            SelectRelatedPersonNodeChildProvider.RelatedPersonReferenceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<RelatedPersonReferenceNode>> provideRuleProviders(

@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class MonthYearNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    protected MonthYearNode(P parent) {
-        super(parent);
+    protected MonthYearNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     protected abstract MonthYearNodeComponent getComponent();

@@ -49,13 +49,6 @@ public class StudentTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("StudentTypeNodeRuleProvider") @IntoMap @StringKey("studentTypeNode")
-        RuleProvider<StudentTypeNode> provideStudentTypeNodeChildRuleProvider(
-            UnemployedNodeChildProvider.StudentTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<StudentTypeNode>> provideRuleProviders(

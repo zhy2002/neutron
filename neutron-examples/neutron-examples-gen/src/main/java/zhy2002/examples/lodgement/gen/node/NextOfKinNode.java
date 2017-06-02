@@ -13,8 +13,8 @@ import java.util.List;
 public class NextOfKinNode extends ReferenceUiNode<PersonGeneralNode> {
 
     @Inject
-    protected NextOfKinNode(@Owner PersonGeneralNode parent) {
-        super(parent);
+    protected NextOfKinNode(@Owner PersonGeneralNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

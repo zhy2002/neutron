@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseMobileNumberNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    protected BaseMobileNumberNode(P parent) {
-        super(parent);
+    protected BaseMobileNumberNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

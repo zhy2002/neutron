@@ -2,9 +2,13 @@ package ${targetPackage}.${typeName?lower_case}.gen.di;
 /* template name: profile_module.ftl */
 import dagger.Binds;
 import dagger.Module;
+<#if configuredChildren?size gt 0>
+import dagger.multibindings.*;
+import javax.inject.Named;
+</#if>
 import ${targetPackage}.gen.di.*;
 import ${targetPackage}.gen.node.*;
-<#if hasChildProvider>
+<#if configuredChildren?size gt 0 || allNodes?size gt 0>
 import ${targetPackage}.${typeName?lower_case}.gen.node.*;
 </#if>
 import zhy2002.neutron.*;
@@ -13,20 +17,21 @@ import zhy2002.neutron.rule.*;
 @Module(includes = {ManifestModule.class})
 public abstract class ${typeName}ProfileModule {
 
-<#list configuredNodes as node>
+<#list allNodes as node>
+    <#if node.hasRuleProvider>
     @Binds
     abstract ${node.typeName}RuleProvider provide${node.typeName}RuleProvider(${typeName}${node.typeName}RuleProvider impl);
+    </#if>
+</#list>
 
-    <#if node.children??>
-        <#list node.children as child>
-            <#if child.rules?? || child.init??>
+<#list configuredChildren as child>
+    <#if !child.nodeChildInfo.hasRuleProvider>
+    @Binds @Named("${child.typeName}RuleProvider") @IntoMap @StringKey("${child.name}")
+    abstract RuleProvider<${child.typeName}><#else>
     @Binds
-    abstract ${node.typeName}ChildProvider.${child.name?cap_first}RuleProvider provide${typeName}${node.typeName}${child.name?cap_first}RuleProvider(
-        ${typeName}${node.typeName}ChildProvider.${child.name?cap_first}RuleProvider impl
+    abstract ${child.parentProfileNodeInfo.typeName}Child${child.name?cap_first}RuleProvider</#if> provide${child.typeName}${child.parentProfileNodeInfo.typeName}Child${child.name?cap_first}RuleProvider(
+            ${child.profileInfo.typeName}${child.parentProfileNodeInfo.typeName}Child${child.name?cap_first}RuleProvider impl
     );
 
-            </#if>
-        </#list>
-    </#if>
 </#list>
 }

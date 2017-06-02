@@ -49,13 +49,6 @@ public class PostcodeNodeModule {
         return provider;
     }
 
-        @Provides @Named("PostcodeNodeRuleProvider") @IntoMap @StringKey("postcodeNode")
-        RuleProvider<PostcodeNode> providePostcodeNodeChildRuleProvider(
-            AddressNodeChildProvider.PostcodeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PostcodeNode>> provideRuleProviders(

@@ -14,8 +14,8 @@ import java.util.List;
 public class OwnedOutrightFlagNode extends BooleanUiNode<UsageNode> {
 
     @Inject
-    protected OwnedOutrightFlagNode(@Owner UsageNode parent) {
-        super(parent);
+    protected OwnedOutrightFlagNode(@Owner UsageNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

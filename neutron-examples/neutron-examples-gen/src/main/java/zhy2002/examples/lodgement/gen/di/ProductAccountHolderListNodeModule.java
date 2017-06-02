@@ -53,13 +53,6 @@ public class ProductAccountHolderListNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductAccountHolderListNodeRuleProvider") @IntoMap @StringKey("productAccountHolderListNode")
-        RuleProvider<ProductAccountHolderListNode> provideProductAccountHolderListNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductAccountHolderListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductAccountHolderListNode>> provideRuleProviders(

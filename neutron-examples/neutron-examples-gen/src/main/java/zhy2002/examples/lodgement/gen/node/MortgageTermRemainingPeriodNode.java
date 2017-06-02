@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageTermRemainingPeriodNode extends MonthYearNode<ExistingMortgageNode> {
 
     @Inject
-    protected MortgageTermRemainingPeriodNode(@Owner ExistingMortgageNode parent) {
-        super(parent);
+    protected MortgageTermRemainingPeriodNode(@Owner ExistingMortgageNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

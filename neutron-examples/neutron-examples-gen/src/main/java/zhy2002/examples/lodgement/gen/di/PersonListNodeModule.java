@@ -49,13 +49,6 @@ public class PersonListNodeModule {
         return provider;
     }
 
-        @Provides @Named("PersonListNodeRuleProvider") @IntoMap @StringKey("personListNode")
-        RuleProvider<PersonListNode> providePersonListNodeChildRuleProvider(
-            ApplicationNodeChildProvider.PersonListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PersonListNode>> provideRuleProviders(

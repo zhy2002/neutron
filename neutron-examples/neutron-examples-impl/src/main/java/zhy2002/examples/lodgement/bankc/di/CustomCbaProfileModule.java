@@ -2,7 +2,7 @@ package zhy2002.examples.lodgement.bankc.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.bankc.gen.di.BankCPropertySubTypeNodeRuleProvider;
+import zhy2002.examples.lodgement.bankc.gen.node.BankCPropertySubTypeNodeRuleProvider;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;

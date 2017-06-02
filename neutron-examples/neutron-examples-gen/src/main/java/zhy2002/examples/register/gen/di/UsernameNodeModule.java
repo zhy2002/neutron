@@ -49,13 +49,6 @@ public class UsernameNodeModule {
         return provider;
     }
 
-        @Provides @Named("UsernameNodeRuleProvider") @IntoMap @StringKey("usernameNode")
-        RuleProvider<UsernameNode> provideUsernameNodeChildRuleProvider(
-            RegisterNodeChildProvider.UsernameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<UsernameNode>> provideRuleProviders(

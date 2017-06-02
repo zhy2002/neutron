@@ -49,13 +49,6 @@ public class YearNodeModule {
         return provider;
     }
 
-        @Provides @Named("YearNodeRuleProvider") @IntoMap @StringKey("yearNode")
-        RuleProvider<YearNode> provideYearNodeChildRuleProvider(
-            MonthYearNodeChildProvider.YearNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<YearNode>> provideRuleProviders(

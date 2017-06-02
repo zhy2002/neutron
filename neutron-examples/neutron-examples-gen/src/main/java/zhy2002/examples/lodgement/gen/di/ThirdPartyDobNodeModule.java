@@ -53,13 +53,6 @@ public class ThirdPartyDobNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyDobNodeRuleProvider") @IntoMap @StringKey("thirdPartyDobNode")
-        RuleProvider<ThirdPartyDobNode> provideThirdPartyDobNodeChildRuleProvider(
-            RelatedPartyNodeChildProvider.ThirdPartyDobNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyDobNode>> provideRuleProviders(

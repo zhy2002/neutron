@@ -53,13 +53,6 @@ public class CompanyOtherIncomeListNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyOtherIncomeListNodeRuleProvider") @IntoMap @StringKey("companyOtherIncomeListNode")
-        RuleProvider<CompanyOtherIncomeListNode> provideCompanyOtherIncomeListNodeChildRuleProvider(
-            CompanyNodeChildProvider.CompanyOtherIncomeListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyOtherIncomeListNode>> provideRuleProviders(

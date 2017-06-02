@@ -13,8 +13,8 @@ import java.util.List;
 public class PropertyAddressNode extends StringUiNode<PropertyDetailsNode> {
 
     @Inject
-    protected PropertyAddressNode(@Owner PropertyDetailsNode parent) {
-        super(parent);
+    protected PropertyAddressNode(@Owner PropertyDetailsNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

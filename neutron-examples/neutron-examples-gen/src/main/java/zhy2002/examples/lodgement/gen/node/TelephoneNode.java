@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNode<P,Telephone> {
 
-    protected TelephoneNode(P parent) {
-        super(parent);
+    protected TelephoneNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

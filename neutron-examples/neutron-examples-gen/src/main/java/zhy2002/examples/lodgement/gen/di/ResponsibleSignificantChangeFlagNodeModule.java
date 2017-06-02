@@ -53,13 +53,6 @@ public class ResponsibleSignificantChangeFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ResponsibleSignificantChangeFlagNodeRuleProvider") @IntoMap @StringKey("responsibleSignificantChangeFlagNode")
-        RuleProvider<ResponsibleSignificantChangeFlagNode> provideResponsibleSignificantChangeFlagNodeChildRuleProvider(
-            BaseResponsibleLendNodeChildProvider.ResponsibleSignificantChangeFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ResponsibleSignificantChangeFlagNode>> provideRuleProviders(

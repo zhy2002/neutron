@@ -49,13 +49,6 @@ public class ProductCardHodlerNameNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductCardHodlerNameNodeRuleProvider") @IntoMap @StringKey("productCardHodlerNameNode")
-        RuleProvider<ProductCardHodlerNameNode> provideProductCardHodlerNameNodeChildRuleProvider(
-            ProductCardHolderNodeChildProvider.ProductCardHodlerNameNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductCardHodlerNameNode>> provideRuleProviders(

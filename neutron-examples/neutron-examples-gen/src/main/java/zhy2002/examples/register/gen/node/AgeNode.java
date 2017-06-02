@@ -14,8 +14,8 @@ import java.util.List;
 public class AgeNode extends BigDecimalUiNode<RegisterNode> {
 
     @Inject
-    protected AgeNode(@Owner RegisterNode parent) {
-        super(parent);
+    protected AgeNode(@Owner RegisterNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

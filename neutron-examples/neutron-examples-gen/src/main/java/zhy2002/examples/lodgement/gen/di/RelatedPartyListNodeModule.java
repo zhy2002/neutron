@@ -49,13 +49,6 @@ public class RelatedPartyListNodeModule {
         return provider;
     }
 
-        @Provides @Named("RelatedPartyListNodeRuleProvider") @IntoMap @StringKey("relatedPartyListNode")
-        RuleProvider<RelatedPartyListNode> provideRelatedPartyListNodeChildRuleProvider(
-            AdditionalNodeChildProvider.RelatedPartyListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<RelatedPartyListNode>> provideRuleProviders(

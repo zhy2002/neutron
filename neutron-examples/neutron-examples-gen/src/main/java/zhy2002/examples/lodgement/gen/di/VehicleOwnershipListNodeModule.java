@@ -53,13 +53,6 @@ public class VehicleOwnershipListNodeModule {
         return provider;
     }
 
-        @Provides @Named("VehicleOwnershipListNodeRuleProvider") @IntoMap @StringKey("ownershipListNode")
-        RuleProvider<VehicleOwnershipListNode> provideOwnershipListNodeChildRuleProvider(
-            MotorVehicleNodeChildProvider.OwnershipListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<VehicleOwnershipListNode>> provideRuleProviders(

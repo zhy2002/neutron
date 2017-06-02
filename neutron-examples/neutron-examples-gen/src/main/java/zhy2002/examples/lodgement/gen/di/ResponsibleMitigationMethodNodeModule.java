@@ -49,13 +49,6 @@ public class ResponsibleMitigationMethodNodeModule {
         return provider;
     }
 
-        @Provides @Named("ResponsibleMitigationMethodNodeRuleProvider") @IntoMap @StringKey("responsibleMitigationMethodNode")
-        RuleProvider<ResponsibleMitigationMethodNode> provideResponsibleMitigationMethodNodeChildRuleProvider(
-            BaseResponsibleLendNodeChildProvider.ResponsibleMitigationMethodNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ResponsibleMitigationMethodNode>> provideRuleProviders(

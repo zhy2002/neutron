@@ -53,13 +53,6 @@ public class OccupationNodeModule {
         return provider;
     }
 
-        @Provides @Named("OccupationNodeRuleProvider") @IntoMap @StringKey("occupationNode")
-        RuleProvider<OccupationNode> provideOccupationNodeChildRuleProvider(
-            EmployedNodeChildProvider.OccupationNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OccupationNode>> provideRuleProviders(

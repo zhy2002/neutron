@@ -49,13 +49,6 @@ public class DefenseServiceFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("DefenseServiceFlagNodeRuleProvider") @IntoMap @StringKey("defenseServiceFlagNode")
-        RuleProvider<DefenseServiceFlagNode> provideDefenseServiceFlagNodeChildRuleProvider(
-            PropertyNodeChildProvider.DefenseServiceFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<DefenseServiceFlagNode>> provideRuleProviders(

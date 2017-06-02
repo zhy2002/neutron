@@ -49,13 +49,6 @@ public class ThirdPartyTitleNodeModule {
         return provider;
     }
 
-        @Provides @Named("ThirdPartyTitleNodeRuleProvider") @IntoMap @StringKey("thirdPartyTitleNode")
-        RuleProvider<ThirdPartyTitleNode> provideThirdPartyTitleNodeChildRuleProvider(
-            RelatedPartyNodeChildProvider.ThirdPartyTitleNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ThirdPartyTitleNode>> provideRuleProviders(

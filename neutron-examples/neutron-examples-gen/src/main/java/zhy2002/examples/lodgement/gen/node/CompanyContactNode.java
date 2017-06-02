@@ -16,8 +16,8 @@ import java.util.List;
 public class CompanyContactNode extends ObjectUiNode<CompanyNode> {
 
     @Inject
-    protected CompanyContactNode(@Owner CompanyNode parent) {
-        super(parent);
+    protected CompanyContactNode(@Owner CompanyNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

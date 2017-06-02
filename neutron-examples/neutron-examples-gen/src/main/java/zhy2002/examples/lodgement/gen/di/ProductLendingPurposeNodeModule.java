@@ -49,13 +49,6 @@ public class ProductLendingPurposeNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductLendingPurposeNodeRuleProvider") @IntoMap @StringKey("productLendingPurposeNode")
-        RuleProvider<ProductLendingPurposeNode> provideProductLendingPurposeNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductLendingPurposeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductLendingPurposeNode>> provideRuleProviders(

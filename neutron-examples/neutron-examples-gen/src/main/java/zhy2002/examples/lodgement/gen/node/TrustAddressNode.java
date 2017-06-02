@@ -13,8 +13,8 @@ import java.util.List;
 public class TrustAddressNode extends AddressNode<BaseTrustNode<?>> {
 
     @Inject
-    protected TrustAddressNode(@Owner BaseTrustNode<?> parent) {
-        super(parent);
+    protected TrustAddressNode(@Owner BaseTrustNode<?> parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

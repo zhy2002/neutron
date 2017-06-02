@@ -49,13 +49,6 @@ public class PreviousEmploymentListNodeModule {
         return provider;
     }
 
-        @Provides @Named("PreviousEmploymentListNodeRuleProvider") @IntoMap @StringKey("previousEmploymentListNode")
-        RuleProvider<PreviousEmploymentListNode> providePreviousEmploymentListNodeChildRuleProvider(
-            PersonNodeChildProvider.PreviousEmploymentListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PreviousEmploymentListNode>> provideRuleProviders(

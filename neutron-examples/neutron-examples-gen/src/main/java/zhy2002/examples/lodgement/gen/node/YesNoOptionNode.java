@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class YesNoOptionNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    protected YesNoOptionNode(P parent) {
-        super(parent);
+    protected YesNoOptionNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

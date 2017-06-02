@@ -53,13 +53,6 @@ public class CreditCardOwnershipListNodeModule {
         return provider;
     }
 
-        @Provides @Named("CreditCardOwnershipListNodeRuleProvider") @IntoMap @StringKey("ownershipListNode")
-        RuleProvider<CreditCardOwnershipListNode> provideOwnershipListNodeChildRuleProvider(
-            CreditCardNodeChildProvider.OwnershipListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CreditCardOwnershipListNode>> provideRuleProviders(

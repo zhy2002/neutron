@@ -45,10 +45,10 @@ public class ${typeName}Module {
 
 <#if parentType.children ??>
     <#list parentType.children as child>
-        <#if child.typeName == typeName>
+        <#if child.typeName == typeName && child.hasRuleProvider>
         @Provides @Named("${typeName}RuleProvider") @IntoMap @StringKey("${child.name}")
         RuleProvider<${typeName}> provide${child.name?cap_first}ChildRuleProvider(
-            ${parentType.typeName}ChildProvider.${child.name?cap_first}RuleProvider provider
+            ${parentType.typeName}Child${child.name?cap_first}RuleProvider provider
         ) {
             return provider;
         }

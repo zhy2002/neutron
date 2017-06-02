@@ -53,13 +53,6 @@ public class MovedToCurrentAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("MovedToCurrentAddressNodeRuleProvider") @IntoMap @StringKey("movedToCurrentAddressNode")
-        RuleProvider<MovedToCurrentAddressNode> provideMovedToCurrentAddressNodeChildRuleProvider(
-            PersonContactNodeChildProvider.MovedToCurrentAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MovedToCurrentAddressNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class FirstHomeBuyerFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("FirstHomeBuyerFlagNodeRuleProvider") @IntoMap @StringKey("firstHomeBuyerFlagNode")
-        RuleProvider<FirstHomeBuyerFlagNode> provideFirstHomeBuyerFlagNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.FirstHomeBuyerFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<FirstHomeBuyerFlagNode>> provideRuleProviders(

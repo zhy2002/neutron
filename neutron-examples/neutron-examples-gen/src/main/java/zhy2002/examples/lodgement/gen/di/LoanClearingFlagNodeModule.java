@@ -49,13 +49,6 @@ public class LoanClearingFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("LoanClearingFlagNodeRuleProvider") @IntoMap @StringKey("loanClearingFlagNode")
-        RuleProvider<LoanClearingFlagNode> provideLoanClearingFlagNodeChildRuleProvider(
-            LoanNodeChildProvider.LoanClearingFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<LoanClearingFlagNode>> provideRuleProviders(

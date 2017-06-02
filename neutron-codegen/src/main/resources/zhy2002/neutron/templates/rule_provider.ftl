@@ -1,4 +1,4 @@
-package ${targetPackage}.gen.di;
+package ${targetPackage}.gen.node;
 /* template name: rule_provider.ftl */
 import java.util.*;
 import javax.inject.*;

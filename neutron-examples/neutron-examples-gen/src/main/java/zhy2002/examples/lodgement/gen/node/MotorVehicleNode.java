@@ -16,8 +16,8 @@ import java.util.List;
 public class MotorVehicleNode extends ObjectUiNode<MotorVehicleListNode> {
 
     @Inject
-    protected MotorVehicleNode(@Owner MotorVehicleListNode parent) {
-        super(parent);
+    protected MotorVehicleNode(@Owner MotorVehicleListNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

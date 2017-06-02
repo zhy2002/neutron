@@ -53,13 +53,6 @@ public class PersonTrustNodeModule {
         return provider;
     }
 
-        @Provides @Named("PersonTrustNodeRuleProvider") @IntoMap @StringKey("personTrustNode")
-        RuleProvider<PersonTrustNode> providePersonTrustNodeChildRuleProvider(
-            PersonNodeChildProvider.PersonTrustNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<PersonTrustNode>> provideRuleProviders(

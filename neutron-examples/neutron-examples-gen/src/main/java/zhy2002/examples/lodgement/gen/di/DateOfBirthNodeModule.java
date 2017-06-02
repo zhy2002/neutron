@@ -53,13 +53,6 @@ public class DateOfBirthNodeModule {
         return provider;
     }
 
-        @Provides @Named("DateOfBirthNodeRuleProvider") @IntoMap @StringKey("dateOfBirthNode")
-        RuleProvider<DateOfBirthNode> provideDateOfBirthNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.DateOfBirthNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<DateOfBirthNode>> provideRuleProviders(

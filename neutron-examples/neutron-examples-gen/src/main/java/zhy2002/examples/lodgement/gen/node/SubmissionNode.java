@@ -16,8 +16,8 @@ import java.util.List;
 public class SubmissionNode extends ObjectUiNode<ApplicationNode> {
 
     @Inject
-    protected SubmissionNode(@Owner ApplicationNode parent) {
-        super(parent);
+    protected SubmissionNode(@Owner ApplicationNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

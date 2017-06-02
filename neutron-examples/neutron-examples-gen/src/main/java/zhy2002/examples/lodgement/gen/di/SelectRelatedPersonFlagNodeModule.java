@@ -49,13 +49,6 @@ public class SelectRelatedPersonFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("SelectRelatedPersonFlagNodeRuleProvider") @IntoMap @StringKey("selectRelatedPersonFlagNode")
-        RuleProvider<SelectRelatedPersonFlagNode> provideSelectRelatedPersonFlagNodeChildRuleProvider(
-            SelectRelatedPersonNodeChildProvider.SelectRelatedPersonFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<SelectRelatedPersonFlagNode>> provideRuleProviders(

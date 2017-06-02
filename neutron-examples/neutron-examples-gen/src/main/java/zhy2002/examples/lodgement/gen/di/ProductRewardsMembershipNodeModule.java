@@ -49,13 +49,6 @@ public class ProductRewardsMembershipNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductRewardsMembershipNodeRuleProvider") @IntoMap @StringKey("productRewardsMembershipNode")
-        RuleProvider<ProductRewardsMembershipNode> provideProductRewardsMembershipNodeChildRuleProvider(
-            ProductCardHolderNodeChildProvider.ProductRewardsMembershipNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductRewardsMembershipNode>> provideRuleProviders(

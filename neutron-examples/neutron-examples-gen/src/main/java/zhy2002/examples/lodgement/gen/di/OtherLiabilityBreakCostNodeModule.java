@@ -53,13 +53,6 @@ public class OtherLiabilityBreakCostNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherLiabilityBreakCostNodeRuleProvider") @IntoMap @StringKey("otherLiabilityBreakCostNode")
-        RuleProvider<OtherLiabilityBreakCostNode> provideOtherLiabilityBreakCostNodeChildRuleProvider(
-            OtherLiabilityNodeChildProvider.OtherLiabilityBreakCostNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherLiabilityBreakCostNode>> provideRuleProviders(

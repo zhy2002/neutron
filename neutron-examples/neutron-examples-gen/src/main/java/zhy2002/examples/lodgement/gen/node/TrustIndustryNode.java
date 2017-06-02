@@ -13,8 +13,8 @@ import java.util.List;
 public class TrustIndustryNode extends StringUiNode<BaseTrustNode<?>> {
 
     @Inject
-    protected TrustIndustryNode(@Owner BaseTrustNode<?> parent) {
-        super(parent);
+    protected TrustIndustryNode(@Owner BaseTrustNode<?> parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

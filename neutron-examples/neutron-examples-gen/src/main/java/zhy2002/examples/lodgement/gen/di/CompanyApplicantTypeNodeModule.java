@@ -53,13 +53,6 @@ public class CompanyApplicantTypeNodeModule {
         return provider;
     }
 
-        @Provides @Named("CompanyApplicantTypeNodeRuleProvider") @IntoMap @StringKey("companyApplicantTypeNode")
-        RuleProvider<CompanyApplicantTypeNode> provideCompanyApplicantTypeNodeChildRuleProvider(
-            CompanyGeneralNodeChildProvider.CompanyApplicantTypeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CompanyApplicantTypeNode>> provideRuleProviders(

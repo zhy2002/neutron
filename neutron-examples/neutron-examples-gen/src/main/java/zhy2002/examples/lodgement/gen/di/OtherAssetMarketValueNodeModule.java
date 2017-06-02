@@ -53,13 +53,6 @@ public class OtherAssetMarketValueNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherAssetMarketValueNodeRuleProvider") @IntoMap @StringKey("otherAssetMarketValueNode")
-        RuleProvider<OtherAssetMarketValueNode> provideOtherAssetMarketValueNodeChildRuleProvider(
-            OtherAssetNodeChildProvider.OtherAssetMarketValueNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherAssetMarketValueNode>> provideRuleProviders(

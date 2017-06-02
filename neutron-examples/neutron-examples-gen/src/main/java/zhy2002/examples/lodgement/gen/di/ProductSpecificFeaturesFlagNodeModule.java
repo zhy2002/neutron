@@ -49,13 +49,6 @@ public class ProductSpecificFeaturesFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductSpecificFeaturesFlagNodeRuleProvider") @IntoMap @StringKey("productSpecificFeaturesFlagNode")
-        RuleProvider<ProductSpecificFeaturesFlagNode> provideProductSpecificFeaturesFlagNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductSpecificFeaturesFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductSpecificFeaturesFlagNode>> provideRuleProviders(

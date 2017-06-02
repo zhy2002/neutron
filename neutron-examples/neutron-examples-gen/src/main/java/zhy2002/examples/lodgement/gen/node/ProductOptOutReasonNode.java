@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductOptOutReasonNode extends StringUiNode<ProductFeaturesNode> {
 
     @Inject
-    protected ProductOptOutReasonNode(@Owner ProductFeaturesNode parent) {
-        super(parent);
+    protected ProductOptOutReasonNode(@Owner ProductFeaturesNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

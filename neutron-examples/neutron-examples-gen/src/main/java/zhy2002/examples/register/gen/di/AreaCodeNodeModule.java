@@ -53,13 +53,6 @@ public class AreaCodeNodeModule {
         return provider;
     }
 
-        @Provides @Named("AreaCodeNodeRuleProvider") @IntoMap @StringKey("areaCodeNode")
-        RuleProvider<AreaCodeNode> provideAreaCodeNodeChildRuleProvider(
-            PhoneInfoNodeChildProvider.AreaCodeNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AreaCodeNode>> provideRuleProviders(

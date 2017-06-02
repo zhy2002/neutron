@@ -1,4 +1,4 @@
-package ${targetPackage}.${profileInfo.typeName?lower_case}.gen.di;
+package ${targetPackage}.${profileInfo.typeName?lower_case}.gen.node;
 /* template name: profile_rule_provider.ftl */
 import java.util.*;
 import javax.inject.*;

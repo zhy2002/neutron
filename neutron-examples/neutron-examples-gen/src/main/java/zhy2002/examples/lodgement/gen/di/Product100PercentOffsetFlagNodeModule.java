@@ -49,13 +49,6 @@ public class Product100PercentOffsetFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("Product100PercentOffsetFlagNodeRuleProvider") @IntoMap @StringKey("product100PercentOffsetFlagNode")
-        RuleProvider<Product100PercentOffsetFlagNode> provideProduct100PercentOffsetFlagNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.Product100PercentOffsetFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<Product100PercentOffsetFlagNode>> provideRuleProviders(

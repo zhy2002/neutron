@@ -77,6 +77,7 @@ public class DomainInfo extends CodeGenInfo {
     private final List<NodeInfo> loadEventNodes = new ArrayList<>();
     private final List<NodeInfo> changeEventNodes = new ArrayList<>();
     private final StringBuilder errorMessageBuilder = new StringBuilder();
+    private final List<ChildInfo> configuredChildren = new ArrayList<>();
 
     @Override
     public void initialize() {
@@ -176,5 +177,9 @@ public class DomainInfo extends CodeGenInfo {
 
     public List<NodeInfo> getChangeEventNodes() {
         return changeEventNodes;
+    }
+
+    public List<ChildInfo> getConfiguredChildren() {
+        return configuredChildren;
     }
 }

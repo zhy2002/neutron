@@ -49,13 +49,6 @@ public class ProductCostRecuctionFlagNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductCostRecuctionFlagNodeRuleProvider") @IntoMap @StringKey("productCostRecuctionFlagNode")
-        RuleProvider<ProductCostRecuctionFlagNode> provideProductCostRecuctionFlagNodeChildRuleProvider(
-            ProductDescriptionNodeChildProvider.ProductCostRecuctionFlagNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductCostRecuctionFlagNode>> provideRuleProviders(

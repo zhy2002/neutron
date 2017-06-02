@@ -49,13 +49,6 @@ public class AddressLineNodeModule {
         return provider;
     }
 
-        @Provides @Named("AddressLineNodeRuleProvider") @IntoMap @StringKey("addressLineNode")
-        RuleProvider<AddressLineNode> provideAddressLineNodeChildRuleProvider(
-            AddressNodeChildProvider.AddressLineNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AddressLineNode>> provideRuleProviders(

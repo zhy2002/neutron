@@ -53,13 +53,6 @@ public class EmployerAddressNodeModule {
         return provider;
     }
 
-        @Provides @Named("EmployerAddressNodeRuleProvider") @IntoMap @StringKey("employerAddressNode")
-        RuleProvider<EmployerAddressNode> provideEmployerAddressNodeChildRuleProvider(
-            EmployedNodeChildProvider.EmployerAddressNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<EmployerAddressNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class TrustSettlorNotRequiredReasonNodeModule {
         return provider;
     }
 
-        @Provides @Named("TrustSettlorNotRequiredReasonNodeRuleProvider") @IntoMap @StringKey("trustSettlorNotRequiredReasonNode")
-        RuleProvider<TrustSettlorNotRequiredReasonNode> provideTrustSettlorNotRequiredReasonNodeChildRuleProvider(
-            BaseTrustNodeChildProvider.TrustSettlorNotRequiredReasonNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<TrustSettlorNotRequiredReasonNode>> provideRuleProviders(

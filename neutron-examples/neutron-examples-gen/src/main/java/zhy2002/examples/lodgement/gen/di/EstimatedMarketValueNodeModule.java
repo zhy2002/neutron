@@ -49,13 +49,6 @@ public class EstimatedMarketValueNodeModule {
         return provider;
     }
 
-        @Provides @Named("EstimatedMarketValueNodeRuleProvider") @IntoMap @StringKey("estimatedMarketValueNode")
-        RuleProvider<EstimatedMarketValueNode> provideEstimatedMarketValueNodeChildRuleProvider(
-            PropertyNodeChildProvider.EstimatedMarketValueNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<EstimatedMarketValueNode>> provideRuleProviders(

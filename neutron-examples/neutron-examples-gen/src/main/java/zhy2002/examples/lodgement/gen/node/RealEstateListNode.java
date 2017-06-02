@@ -14,8 +14,8 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class RealEstateListNode extends ListUiNode<ApplicationNode,RealEstateNode> {
 
     @Inject
-    protected RealEstateListNode(@Owner ApplicationNode parent) {
-        super(parent);
+    protected RealEstateListNode(@Owner ApplicationNode parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
     @Override

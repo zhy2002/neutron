@@ -49,13 +49,6 @@ public class AccountHolderReferenceNodeModule {
         return provider;
     }
 
-        @Provides @Named("AccountHolderReferenceNodeRuleProvider") @IntoMap @StringKey("accountHolderReferenceNode")
-        RuleProvider<AccountHolderReferenceNode> provideAccountHolderReferenceNodeChildRuleProvider(
-            SelectAccountHolderNodeChildProvider.AccountHolderReferenceNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<AccountHolderReferenceNode>> provideRuleProviders(

@@ -49,16 +49,9 @@ public class PropertyDetailsNodeModule {
         return provider;
     }
 
-        @Provides @Named("PropertyDetailsNodeRuleProvider") @IntoMap @StringKey("residentialPropertyNode")
-        RuleProvider<PropertyDetailsNode> provideResidentialPropertyNodeChildRuleProvider(
-            RegisterNodeChildProvider.ResidentialPropertyNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
         @Provides @Named("PropertyDetailsNodeRuleProvider") @IntoMap @StringKey("investmentPropertyNode")
         RuleProvider<PropertyDetailsNode> provideInvestmentPropertyNodeChildRuleProvider(
-            RegisterNodeChildProvider.InvestmentPropertyNodeRuleProvider provider
+            RegisterNodeChildInvestmentPropertyNodeRuleProvider provider
         ) {
             return provider;
         }

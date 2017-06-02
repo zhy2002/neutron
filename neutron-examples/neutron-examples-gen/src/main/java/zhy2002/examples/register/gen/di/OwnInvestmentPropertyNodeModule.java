@@ -49,13 +49,6 @@ public class OwnInvestmentPropertyNodeModule {
         return provider;
     }
 
-        @Provides @Named("OwnInvestmentPropertyNodeRuleProvider") @IntoMap @StringKey("ownInvestmentPropertyNode")
-        RuleProvider<OwnInvestmentPropertyNode> provideOwnInvestmentPropertyNodeChildRuleProvider(
-            RegisterNodeChildProvider.OwnInvestmentPropertyNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OwnInvestmentPropertyNode>> provideRuleProviders(

@@ -49,13 +49,6 @@ public class ReceiveOffersNodeModule {
         return provider;
     }
 
-        @Provides @Named("ReceiveOffersNodeRuleProvider") @IntoMap @StringKey("receiveOffersNode")
-        RuleProvider<ReceiveOffersNode> provideReceiveOffersNodeChildRuleProvider(
-            RegisterNodeChildProvider.ReceiveOffersNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ReceiveOffersNode>> provideRuleProviders(

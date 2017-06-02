@@ -49,13 +49,6 @@ public class IdNodeModule {
         return provider;
     }
 
-        @Provides @Named("IdNodeRuleProvider") @IntoMap @StringKey("idNode")
-        RuleProvider<IdNode> provideIdNodeChildRuleProvider(
-            ApplicationNodeChildProvider.IdNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<IdNode>> provideRuleProviders(

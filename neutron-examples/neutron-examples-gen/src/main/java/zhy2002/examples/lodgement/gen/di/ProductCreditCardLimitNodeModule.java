@@ -53,13 +53,6 @@ public class ProductCreditCardLimitNodeModule {
         return provider;
     }
 
-        @Provides @Named("ProductCreditCardLimitNodeRuleProvider") @IntoMap @StringKey("productCreditCardLimitNode")
-        RuleProvider<ProductCreditCardLimitNode> provideProductCreditCardLimitNodeChildRuleProvider(
-            ProductFeaturesNodeChildProvider.ProductCreditCardLimitNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<ProductCreditCardLimitNode>> provideRuleProviders(

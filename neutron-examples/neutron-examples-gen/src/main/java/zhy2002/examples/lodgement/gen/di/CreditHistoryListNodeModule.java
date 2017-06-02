@@ -49,13 +49,6 @@ public class CreditHistoryListNodeModule {
         return provider;
     }
 
-        @Provides @Named("CreditHistoryListNodeRuleProvider") @IntoMap @StringKey("creditHistoryListNode")
-        RuleProvider<CreditHistoryListNode> provideCreditHistoryListNodeChildRuleProvider(
-            BasePrivacyNodeChildProvider.CreditHistoryListNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<CreditHistoryListNode>> provideRuleProviders(

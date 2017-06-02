@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseCurrencyNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P> {
 
-    protected BaseCurrencyNode(P parent) {
-        super(parent);
+    protected BaseCurrencyNode(P parentProfileNodeInfo) {
+        super(parentProfileNodeInfo);
     }
 
 

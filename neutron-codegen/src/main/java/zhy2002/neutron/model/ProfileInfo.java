@@ -18,32 +18,31 @@ public class ProfileInfo extends CodeGenInfo {
     //region mapped data
     @NotNull
     @Valid
-    private NodeProfileInfo rootType;
+    private ProfileNodeInfo rootType;
     @Valid
-    private List<NodeProfileInfo> commonTypes = new ArrayList<>();
+    private List<ProfileNodeInfo> commonTypes = new ArrayList<>();
 
-    public NodeProfileInfo getRootType() {
+    public ProfileNodeInfo getRootType() {
         return rootType;
     }
 
-    public void setRootType(NodeProfileInfo rootType) {
+    public void setRootType(ProfileNodeInfo rootType) {
         this.rootType = rootType;
     }
 
-    public List<NodeProfileInfo> getCommonTypes() {
+    public List<ProfileNodeInfo> getCommonTypes() {
         return commonTypes;
     }
 
-    public void setCommonTypes(List<NodeProfileInfo> commonTypes) {
+    public void setCommonTypes(List<ProfileNodeInfo> commonTypes) {
         this.commonTypes = commonTypes;
     }
 
     //endregion
 
     private final Map<String, NodeInfo> nodeInfoMap = new HashMap<>();
-    private final List<NodeProfileInfo> configuredNodes = new ArrayList<>();
-    private final List<ChildInfo> configuredChildren = new ArrayList<>();
-    private boolean hasChildProvider = false;
+    private final List<ProfileNodeInfo> allNodes = new ArrayList<>();
+    private final List<ProfileChildInfo> configuredChildren = new ArrayList<>();
 
     @Override
     public void setDomainInfo(DomainInfo domainInfo) {
@@ -58,56 +57,48 @@ public class ProfileInfo extends CodeGenInfo {
     public void initialize() {
         CodeGenUtil.validateMappedData(this);
 
-        initializeConfiguredNodes();
+        initializeNodes();
     }
 
-    private void initializeConfiguredNodes() {
-        addConfiguredNodes(getRootType());
+    private void initializeNodes() {
+        addNodes(getRootType());
         if (getCommonTypes() != null) {
-            for (NodeProfileInfo nodeProfileInfo : getCommonTypes()) {
-                addConfiguredNodes(nodeProfileInfo);
+            for (ProfileNodeInfo profileNodeInfo : getCommonTypes()) {
+                addNodes(profileNodeInfo);
             }
         }
     }
 
-    private void addConfiguredNodes(NodeProfileInfo nodeProfileInfo) {
-        nodeProfileInfo.setProfileInfo(this);
-        nodeProfileInfo.setNodeInfo(nodeInfoMap.get(nodeProfileInfo.getTypeName()));
-        nodeProfileInfo.setDomainInfo(getDomainInfo());
-        nodeProfileInfo.initialize();
-
-        if (nodeProfileInfo.getInit() != null || nodeProfileInfo.getRules() != null) {
-            configuredNodes.add(nodeProfileInfo);
+    private void addNodes(ProfileNodeInfo profileNodeInfo) {
+        profileNodeInfo.setProfileInfo(this);
+        profileNodeInfo.setNodeInfo(nodeInfoMap.get(profileNodeInfo.getTypeName()));
+        if (profileNodeInfo.getNodeInfo() == null) {
+            throw new RuntimeException("Node type not declared in the domain: " + profileNodeInfo.getTypeName());
         }
+        profileNodeInfo.setDomainInfo(getDomainInfo());
+        profileNodeInfo.initialize();
+        allNodes.add(profileNodeInfo);
 
-        if (nodeProfileInfo.getChildTypes() != null) {
-            for (NodeProfileInfo info : nodeProfileInfo.getChildTypes()) {
-                addConfiguredNodes(info);
+        if (profileNodeInfo.getChildTypes() != null) {
+            for (ProfileNodeInfo info : profileNodeInfo.getChildTypes()) {
+                addNodes(info);
             }
         }
 
-        if (nodeProfileInfo.getChildren() != null) {
-            for (ChildInfo childInfo : nodeProfileInfo.getChildren()) {
-                if (childInfo.getInit() != null || childInfo.getRules() != null) {
+        if (profileNodeInfo.getChildren() != null) {
+            for (ProfileChildInfo childInfo : profileNodeInfo.getChildren()) {
+                if (childInfo.getHasRuleProvider()) {
                     configuredChildren.add(childInfo);
                 }
             }
         }
     }
 
-    public List<NodeProfileInfo> getConfiguredNodes() {
-        return configuredNodes;
+    public List<ProfileNodeInfo> getAllNodes() {
+        return allNodes;
     }
 
-    public List<ChildInfo> getConfiguredChildren() {
+    public List<ProfileChildInfo> getConfiguredChildren() {
         return configuredChildren;
-    }
-
-    public boolean isHasChildProvider() {
-        return hasChildProvider;
-    }
-
-    public void setHasChildProvider(boolean hasChildProvider) {
-        this.hasChildProvider = hasChildProvider;
     }
 }

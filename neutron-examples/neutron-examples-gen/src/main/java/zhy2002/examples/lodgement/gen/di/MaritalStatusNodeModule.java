@@ -49,13 +49,6 @@ public class MaritalStatusNodeModule {
         return provider;
     }
 
-        @Provides @Named("MaritalStatusNodeRuleProvider") @IntoMap @StringKey("maritalStatusNode")
-        RuleProvider<MaritalStatusNode> provideMaritalStatusNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.MaritalStatusNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<MaritalStatusNode>> provideRuleProviders(

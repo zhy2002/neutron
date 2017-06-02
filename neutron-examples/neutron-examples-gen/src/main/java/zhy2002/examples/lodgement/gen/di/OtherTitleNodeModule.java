@@ -49,13 +49,6 @@ public class OtherTitleNodeModule {
         return provider;
     }
 
-        @Provides @Named("OtherTitleNodeRuleProvider") @IntoMap @StringKey("otherTitleNode")
-        RuleProvider<OtherTitleNode> provideOtherTitleNodeChildRuleProvider(
-            PersonGeneralNodeChildProvider.OtherTitleNodeRuleProvider provider
-        ) {
-            return provider;
-        }
-
 
     @Provides @ComponentScope
     List<RuleProvider<OtherTitleNode>> provideRuleProviders(
