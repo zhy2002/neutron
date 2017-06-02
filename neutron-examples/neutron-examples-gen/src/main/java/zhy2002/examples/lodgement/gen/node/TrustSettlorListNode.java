@@ -13,7 +13,7 @@ import java.util.List;
 public class TrustSettlorListNode extends SelectRelatedPersonListNode<BaseTrustNode<?>> {
 
     @Inject
-    public TrustSettlorListNode(@Owner BaseTrustNode<?> parent) {
+    protected TrustSettlorListNode(@Owner BaseTrustNode<?> parent) {
         super(parent);
     }
 

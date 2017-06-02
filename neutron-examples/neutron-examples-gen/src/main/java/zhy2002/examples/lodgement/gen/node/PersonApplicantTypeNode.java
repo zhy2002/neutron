@@ -13,7 +13,7 @@ import java.util.List;
 public class PersonApplicantTypeNode extends BaseApplicantTypeNode<PersonGeneralNode> {
 
     @Inject
-    public PersonApplicantTypeNode(@Owner PersonGeneralNode parent) {
+    protected PersonApplicantTypeNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

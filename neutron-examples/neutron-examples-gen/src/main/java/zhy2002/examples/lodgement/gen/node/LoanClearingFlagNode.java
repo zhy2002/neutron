@@ -13,7 +13,7 @@ import java.util.List;
 public class LoanClearingFlagNode extends BooleanUiNode<LoanNode> {
 
     @Inject
-    public LoanClearingFlagNode(@Owner LoanNode parent) {
+    protected LoanClearingFlagNode(@Owner LoanNode parent) {
         super(parent);
     }
 

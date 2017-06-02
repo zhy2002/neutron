@@ -13,7 +13,7 @@ import java.util.List;
 public class CountryNode extends BaseCountryNode<AddressNode<?>> {
 
     @Inject
-    public CountryNode(@Owner AddressNode<?> parent) {
+    protected CountryNode(@Owner AddressNode<?> parent) {
         super(parent);
     }
 

@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class AddressRefListNode extends ListUiNode<ApplicationNode,AddressRefNode> {
 
     @Inject
-    public AddressRefListNode(@Owner ApplicationNode parent) {
+    protected AddressRefListNode(@Owner ApplicationNode parent) {
         super(parent);
     }
 

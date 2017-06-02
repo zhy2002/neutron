@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanyResponsibleLendNode extends BaseResponsibleLendNode<CompanyNode> {
 
     @Inject
-    public CompanyResponsibleLendNode(@Owner CompanyNode parent) {
+    protected CompanyResponsibleLendNode(@Owner CompanyNode parent) {
         super(parent);
     }
 

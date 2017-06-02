@@ -13,7 +13,7 @@ import java.util.List;
 public class GrossYearlySalaryNode extends BaseCurrencyNode<PayeEmployedNode> {
 
     @Inject
-    public GrossYearlySalaryNode(@Owner PayeEmployedNode parent) {
+    protected GrossYearlySalaryNode(@Owner PayeEmployedNode parent) {
         super(parent);
     }
 

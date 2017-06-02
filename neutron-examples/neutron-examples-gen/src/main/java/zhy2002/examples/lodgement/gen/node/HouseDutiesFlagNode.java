@@ -13,7 +13,7 @@ import java.util.List;
 public class HouseDutiesFlagNode extends YesNoOptionNode<UnemployedNode> {
 
     @Inject
-    public HouseDutiesFlagNode(@Owner UnemployedNode parent) {
+    protected HouseDutiesFlagNode(@Owner UnemployedNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class ReceiveOffersNode extends BooleanUiNode<RegisterNode> {
 
     @Inject
-    public ReceiveOffersNode(@Owner RegisterNode parent) {
+    protected ReceiveOffersNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class BrokerAddressNode extends AddressNode<SubmissionNode> {
 
     @Inject
-    public BrokerAddressNode(@Owner SubmissionNode parent) {
+    protected BrokerAddressNode(@Owner SubmissionNode parent) {
         super(parent);
     }
 

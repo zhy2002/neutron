@@ -13,7 +13,7 @@ import java.util.List;
 public class SavingsBsbNoNode extends StringUiNode<SavingsAccountNode> {
 
     @Inject
-    public SavingsBsbNoNode(@Owner SavingsAccountNode parent) {
+    protected SavingsBsbNoNode(@Owner SavingsAccountNode parent) {
         super(parent);
     }
 

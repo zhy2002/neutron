@@ -13,7 +13,7 @@ import java.util.List;
 public class CreditCardBreakCostNode extends BaseCurrencyNode<CreditCardNode> {
 
     @Inject
-    public CreditCardBreakCostNode(@Owner CreditCardNode parent) {
+    protected CreditCardBreakCostNode(@Owner CreditCardNode parent) {
         super(parent);
     }
 

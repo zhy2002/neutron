@@ -13,7 +13,7 @@ import java.util.List;
 public class ContractPriceNode extends BigDecimalUiNode<PropertyNode> {
 
     @Inject
-    public ContractPriceNode(@Owner PropertyNode parent) {
+    protected ContractPriceNode(@Owner PropertyNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode> {
 
     @Inject
-    public CompanyApplicationTypeNode(@Owner CompanyGeneralNode parent) {
+    protected CompanyApplicationTypeNode(@Owner CompanyGeneralNode parent) {
         super(parent);
     }
 

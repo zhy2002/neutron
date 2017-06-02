@@ -13,7 +13,7 @@ import java.util.List;
 public class OtherIncomeAddBackTypeNode extends StringUiNode<OtherIncomeNode> {
 
     @Inject
-    public OtherIncomeAddBackTypeNode(@Owner OtherIncomeNode parent) {
+    protected OtherIncomeAddBackTypeNode(@Owner OtherIncomeNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductInterestOnlyTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductInterestOnlyTermNode(@Owner ProductDescriptionNode parent) {
+    protected ProductInterestOnlyTermNode(@Owner ProductDescriptionNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class EmployerAddressNode extends AddressNode<EmployedNode> {
 
     @Inject
-    public EmployerAddressNode(@Owner EmployedNode parent) {
+    protected EmployerAddressNode(@Owner EmployedNode parent) {
         super(parent);
     }
 

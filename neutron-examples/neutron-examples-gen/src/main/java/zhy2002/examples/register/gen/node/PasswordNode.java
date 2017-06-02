@@ -18,7 +18,7 @@ import java.util.List;
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public PasswordNode(@Owner RegisterNode parent) {
+    protected PasswordNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

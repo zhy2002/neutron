@@ -13,7 +13,7 @@ import java.util.List;
 public class ResponsibleTypeOfChangeNode extends StringUiNode<BaseResponsibleLendNode<?>> {
 
     @Inject
-    public ResponsibleTypeOfChangeNode(@Owner BaseResponsibleLendNode<?> parent) {
+    protected ResponsibleTypeOfChangeNode(@Owner BaseResponsibleLendNode<?> parent) {
         super(parent);
     }
 

@@ -20,7 +20,7 @@ import zhy2002.examples.register.gen.event.*;
 public class PropertyDetailsNode extends ObjectUiNode<RegisterNode> {
 
     @Inject
-    public PropertyDetailsNode(@Owner RegisterNode parent) {
+    protected PropertyDetailsNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

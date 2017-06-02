@@ -13,7 +13,7 @@ import java.util.List;
 public class PropertyWeeklyRentNode extends BigDecimalUiNode<PropertyNode> {
 
     @Inject
-    public PropertyWeeklyRentNode(@Owner PropertyNode parent) {
+    protected PropertyWeeklyRentNode(@Owner PropertyNode parent) {
         super(parent);
     }
 

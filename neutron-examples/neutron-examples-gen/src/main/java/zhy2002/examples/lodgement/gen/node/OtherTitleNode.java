@@ -13,7 +13,7 @@ import java.util.List;
 public class OtherTitleNode extends StringUiNode<PersonGeneralNode> {
 
     @Inject
-    public OtherTitleNode(@Owner PersonGeneralNode parent) {
+    protected OtherTitleNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

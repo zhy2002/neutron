@@ -13,7 +13,7 @@ import java.util.List;
 public class DateOfBirthNode extends DobNode<PersonGeneralNode> {
 
     @Inject
-    public DateOfBirthNode(@Owner PersonGeneralNode parent) {
+    protected DateOfBirthNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

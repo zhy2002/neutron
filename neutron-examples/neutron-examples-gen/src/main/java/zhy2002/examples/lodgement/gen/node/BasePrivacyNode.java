@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BasePrivacyNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    public BasePrivacyNode(P parent) {
+    protected BasePrivacyNode(P parent) {
         super(parent);
     }
 

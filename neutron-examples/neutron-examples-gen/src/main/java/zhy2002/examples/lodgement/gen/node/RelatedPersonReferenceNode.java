@@ -14,7 +14,7 @@ import java.util.List;
 public class RelatedPersonReferenceNode extends ReferenceUiNode<SelectRelatedPersonNode> {
 
     @Inject
-    public RelatedPersonReferenceNode(@Owner SelectRelatedPersonNode parent) {
+    protected RelatedPersonReferenceNode(@Owner SelectRelatedPersonNode parent) {
         super(parent);
     }
 

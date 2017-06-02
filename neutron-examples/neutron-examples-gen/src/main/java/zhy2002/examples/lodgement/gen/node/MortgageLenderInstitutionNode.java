@@ -13,7 +13,7 @@ import java.util.List;
 public class MortgageLenderInstitutionNode extends StringUiNode<ExistingMortgageNode> {
 
     @Inject
-    public MortgageLenderInstitutionNode(@Owner ExistingMortgageNode parent) {
+    protected MortgageLenderInstitutionNode(@Owner ExistingMortgageNode parent) {
         super(parent);
     }
 

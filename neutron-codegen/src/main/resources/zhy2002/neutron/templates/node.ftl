@@ -63,12 +63,12 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 <#else>
     <#if abstractNode>
-    public ${typeName}(${parentType.genericTypeName} parent) {
+    protected ${typeName}(${parentType.genericTypeName} parent) {
         super(parent);
     }
     <#else>
     @Inject
-    public ${typeName}(@Owner ${parentType.genericTypeName} parent) {
+    protected ${typeName}(@Owner ${parentType.genericTypeName} parent) {
         super(parent);
     }
     </#if>

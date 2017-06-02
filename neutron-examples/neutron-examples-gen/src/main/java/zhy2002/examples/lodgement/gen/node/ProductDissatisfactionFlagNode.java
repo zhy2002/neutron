@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductDissatisfactionFlagNode extends BooleanUiNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductDissatisfactionFlagNode(@Owner ProductDescriptionNode parent) {
+    protected ProductDissatisfactionFlagNode(@Owner ProductDescriptionNode parent) {
         super(parent);
     }
 

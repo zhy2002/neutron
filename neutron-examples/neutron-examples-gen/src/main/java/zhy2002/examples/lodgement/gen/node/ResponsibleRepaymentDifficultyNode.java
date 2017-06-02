@@ -13,7 +13,7 @@ import java.util.List;
 public class ResponsibleRepaymentDifficultyNode extends YesNoOptionNode<BaseResponsibleLendNode<?>> {
 
     @Inject
-    public ResponsibleRepaymentDifficultyNode(@Owner BaseResponsibleLendNode<?> parent) {
+    protected ResponsibleRepaymentDifficultyNode(@Owner BaseResponsibleLendNode<?> parent) {
         super(parent);
     }
 

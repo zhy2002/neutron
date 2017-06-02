@@ -13,7 +13,7 @@ import java.util.List;
 public class SpouseNode extends ReferenceUiNode<PersonGeneralNode> {
 
     @Inject
-    public SpouseNode(@Owner PersonGeneralNode parent) {
+    protected SpouseNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

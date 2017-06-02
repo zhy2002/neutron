@@ -13,7 +13,7 @@ import java.util.List;
 public class AccessTelephoneNode extends TelephoneNode<AccessNode> {
 
     @Inject
-    public AccessTelephoneNode(@Owner AccessNode parent) {
+    protected AccessTelephoneNode(@Owner AccessNode parent) {
         super(parent);
     }
 

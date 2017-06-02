@@ -13,7 +13,7 @@ import java.util.List;
 public class ProfitThisYearNode extends BigDecimalUiNode<SelfEmployedNode> {
 
     @Inject
-    public ProfitThisYearNode(@Owner SelfEmployedNode parent) {
+    protected ProfitThisYearNode(@Owner SelfEmployedNode parent) {
         super(parent);
     }
 

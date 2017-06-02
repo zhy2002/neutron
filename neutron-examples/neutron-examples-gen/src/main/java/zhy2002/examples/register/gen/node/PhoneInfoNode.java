@@ -16,7 +16,7 @@ import java.util.List;
 public class PhoneInfoNode extends ObjectUiNode<RegisterNode> {
 
     @Inject
-    public PhoneInfoNode(@Owner RegisterNode parent) {
+    protected PhoneInfoNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

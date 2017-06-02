@@ -13,7 +13,7 @@ import java.util.List;
 public class IdNode extends StringUiNode<ApplicationNode> {
 
     @Inject
-    public IdNode(@Owner ApplicationNode parent) {
+    protected IdNode(@Owner ApplicationNode parent) {
         super(parent);
     }
 

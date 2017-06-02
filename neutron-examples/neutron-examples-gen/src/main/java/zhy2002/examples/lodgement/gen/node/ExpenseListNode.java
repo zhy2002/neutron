@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNode> {
 
     @Inject
-    public ExpenseListNode(@Owner FinancialPositionNode parent) {
+    protected ExpenseListNode(@Owner FinancialPositionNode parent) {
         super(parent);
     }
 

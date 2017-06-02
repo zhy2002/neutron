@@ -13,7 +13,7 @@ import java.util.List;
 public class ThirdPartyDobNode extends DobNode<RelatedPartyNode> {
 
     @Inject
-    public ThirdPartyDobNode(@Owner RelatedPartyNode parent) {
+    protected ThirdPartyDobNode(@Owner RelatedPartyNode parent) {
         super(parent);
     }
 

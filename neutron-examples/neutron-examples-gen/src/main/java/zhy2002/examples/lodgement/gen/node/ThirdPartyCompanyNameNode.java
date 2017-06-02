@@ -13,7 +13,7 @@ import java.util.List;
 public class ThirdPartyCompanyNameNode extends StringUiNode<RelatedPartyNode> {
 
     @Inject
-    public ThirdPartyCompanyNameNode(@Owner RelatedPartyNode parent) {
+    protected ThirdPartyCompanyNameNode(@Owner RelatedPartyNode parent) {
         super(parent);
     }
 

@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
 
     @Inject
-    public TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent) {
+    protected TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class TrustRegistrationDateNode extends StringUiNode<BaseTrustNode<?>> {
 
     @Inject
-    public TrustRegistrationDateNode(@Owner BaseTrustNode<?> parent) {
+    protected TrustRegistrationDateNode(@Owner BaseTrustNode<?> parent) {
         super(parent);
     }
 

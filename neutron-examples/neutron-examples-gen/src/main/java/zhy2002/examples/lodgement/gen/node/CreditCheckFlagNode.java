@@ -13,7 +13,7 @@ import java.util.List;
 public class CreditCheckFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
 
     @Inject
-    public CreditCheckFlagNode(@Owner BasePrivacyNode<?> parent) {
+    protected CreditCheckFlagNode(@Owner BasePrivacyNode<?> parent) {
         super(parent);
     }
 

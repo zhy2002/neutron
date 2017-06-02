@@ -13,7 +13,7 @@ import java.util.List;
 public class OtherIncomeAmountNode extends BaseCurrencyNode<OtherIncomeNode> {
 
     @Inject
-    public OtherIncomeAmountNode(@Owner OtherIncomeNode parent) {
+    protected OtherIncomeAmountNode(@Owner OtherIncomeNode parent) {
         super(parent);
     }
 

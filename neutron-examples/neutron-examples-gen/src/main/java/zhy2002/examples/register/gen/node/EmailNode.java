@@ -18,7 +18,7 @@ import java.util.List;
 public class EmailNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public EmailNode(@Owner RegisterNode parent) {
+    protected EmailNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

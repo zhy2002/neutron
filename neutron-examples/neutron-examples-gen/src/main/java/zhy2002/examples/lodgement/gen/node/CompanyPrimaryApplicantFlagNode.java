@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanyPrimaryApplicantFlagNode extends BooleanUiNode<CompanyGeneralNode> {
 
     @Inject
-    public CompanyPrimaryApplicantFlagNode(@Owner CompanyGeneralNode parent) {
+    protected CompanyPrimaryApplicantFlagNode(@Owner CompanyGeneralNode parent) {
         super(parent);
     }
 

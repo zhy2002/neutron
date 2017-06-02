@@ -13,7 +13,7 @@ import java.util.List;
 public class RentedFlagNode extends BooleanUiNode<PropertyNode> {
 
     @Inject
-    public RentedFlagNode(@Owner PropertyNode parent) {
+    protected RentedFlagNode(@Owner PropertyNode parent) {
         super(parent);
     }
 

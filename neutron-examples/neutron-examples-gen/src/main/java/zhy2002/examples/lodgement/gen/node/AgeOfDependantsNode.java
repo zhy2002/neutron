@@ -13,7 +13,7 @@ import java.util.List;
 public class AgeOfDependantsNode extends ObjectUiNode<PersonGeneralNode> {
 
     @Inject
-    public AgeOfDependantsNode(@Owner PersonGeneralNode parent) {
+    protected AgeOfDependantsNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

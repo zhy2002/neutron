@@ -13,7 +13,7 @@ import java.util.List;
 public class CurrentEmploymentNode extends EmploymentNode<CurrentEmploymentListNode> {
 
     @Inject
-    public CurrentEmploymentNode(@Owner CurrentEmploymentListNode parent) {
+    protected CurrentEmploymentNode(@Owner CurrentEmploymentListNode parent) {
         super(parent);
     }
 

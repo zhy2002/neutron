@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductLendingPurposeNode extends StringUiNode<ProductDescriptionNode> {
 
     @Inject
-    public ProductLendingPurposeNode(@Owner ProductDescriptionNode parent) {
+    protected ProductLendingPurposeNode(@Owner ProductDescriptionNode parent) {
         super(parent);
     }
 

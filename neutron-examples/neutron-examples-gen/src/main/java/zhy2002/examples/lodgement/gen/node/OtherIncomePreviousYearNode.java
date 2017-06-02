@@ -13,7 +13,7 @@ import java.util.List;
 public class OtherIncomePreviousYearNode extends BooleanUiNode<OtherIncomeNode> {
 
     @Inject
-    public OtherIncomePreviousYearNode(@Owner OtherIncomeNode parent) {
+    protected OtherIncomePreviousYearNode(@Owner OtherIncomeNode parent) {
         super(parent);
     }
 

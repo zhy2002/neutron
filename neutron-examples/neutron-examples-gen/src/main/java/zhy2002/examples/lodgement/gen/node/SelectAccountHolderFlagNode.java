@@ -13,7 +13,7 @@ import java.util.List;
 public class SelectAccountHolderFlagNode extends BooleanUiNode<SelectAccountHolderNode> {
 
     @Inject
-    public SelectAccountHolderFlagNode(@Owner SelectAccountHolderNode parent) {
+    protected SelectAccountHolderFlagNode(@Owner SelectAccountHolderNode parent) {
         super(parent);
     }
 

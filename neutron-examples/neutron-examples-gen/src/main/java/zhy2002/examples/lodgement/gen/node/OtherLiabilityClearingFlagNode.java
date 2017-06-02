@@ -13,7 +13,7 @@ import java.util.List;
 public class OtherLiabilityClearingFlagNode extends BooleanUiNode<OtherLiabilityNode> {
 
     @Inject
-    public OtherLiabilityClearingFlagNode(@Owner OtherLiabilityNode parent) {
+    protected OtherLiabilityClearingFlagNode(@Owner OtherLiabilityNode parent) {
         super(parent);
     }
 

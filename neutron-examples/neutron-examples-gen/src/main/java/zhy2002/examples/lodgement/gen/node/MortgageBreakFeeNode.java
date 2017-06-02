@@ -13,7 +13,7 @@ import java.util.List;
 public class MortgageBreakFeeNode extends BaseCurrencyNode<ExistingMortgageNode> {
 
     @Inject
-    public MortgageBreakFeeNode(@Owner ExistingMortgageNode parent) {
+    protected MortgageBreakFeeNode(@Owner ExistingMortgageNode parent) {
         super(parent);
     }
 

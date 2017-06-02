@@ -16,7 +16,7 @@ import java.util.List;
 public class PersonGeneralNode extends ObjectUiNode<PersonNode> {
 
     @Inject
-    public PersonGeneralNode(@Owner PersonNode parent) {
+    protected PersonGeneralNode(@Owner PersonNode parent) {
         super(parent);
     }
 

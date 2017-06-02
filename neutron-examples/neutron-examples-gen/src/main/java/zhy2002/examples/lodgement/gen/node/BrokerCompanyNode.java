@@ -13,7 +13,7 @@ import java.util.List;
 public class BrokerCompanyNode extends StringUiNode<SubmissionNode> {
 
     @Inject
-    public BrokerCompanyNode(@Owner SubmissionNode parent) {
+    protected BrokerCompanyNode(@Owner SubmissionNode parent) {
         super(parent);
     }
 

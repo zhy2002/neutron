@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanyRegistrationDateNode extends StringUiNode<CompanyGeneralNode> {
 
     @Inject
-    public CompanyRegistrationDateNode(@Owner CompanyGeneralNode parent) {
+    protected CompanyRegistrationDateNode(@Owner CompanyGeneralNode parent) {
         super(parent);
     }
 

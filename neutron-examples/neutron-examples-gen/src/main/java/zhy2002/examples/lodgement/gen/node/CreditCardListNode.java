@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
 
     @Inject
-    public CreditCardListNode(@Owner LiabilitiesNode parent) {
+    protected CreditCardListNode(@Owner LiabilitiesNode parent) {
         super(parent);
     }
 

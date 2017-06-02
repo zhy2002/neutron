@@ -16,7 +16,7 @@ import java.util.List;
 public class RelatedPartyNode extends ObjectUiNode<RelatedPartyListNode> {
 
     @Inject
-    public RelatedPartyNode(@Owner RelatedPartyListNode parent) {
+    protected RelatedPartyNode(@Owner RelatedPartyListNode parent) {
         super(parent);
     }
 

@@ -16,7 +16,7 @@ import java.util.List;
 public class LoanNode extends ObjectUiNode<LoanListNode> {
 
     @Inject
-    public LoanNode(@Owner LoanListNode parent) {
+    protected LoanNode(@Owner LoanListNode parent) {
         super(parent);
     }
 

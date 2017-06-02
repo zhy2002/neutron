@@ -13,7 +13,7 @@ import java.util.List;
 public class DateLodgedNode extends StringUiNode<ApplicationNode> {
 
     @Inject
-    public DateLodgedNode(@Owner ApplicationNode parent) {
+    protected DateLodgedNode(@Owner ApplicationNode parent) {
         super(parent);
     }
 

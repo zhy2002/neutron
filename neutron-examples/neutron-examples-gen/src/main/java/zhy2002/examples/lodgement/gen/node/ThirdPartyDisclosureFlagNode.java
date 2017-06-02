@@ -13,7 +13,7 @@ import java.util.List;
 public class ThirdPartyDisclosureFlagNode extends BooleanUiNode<BasePrivacyNode<?>> {
 
     @Inject
-    public ThirdPartyDisclosureFlagNode(@Owner BasePrivacyNode<?> parent) {
+    protected ThirdPartyDisclosureFlagNode(@Owner BasePrivacyNode<?> parent) {
         super(parent);
     }
 

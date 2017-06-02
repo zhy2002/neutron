@@ -14,7 +14,7 @@ import java.util.List;
 public class PlanNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public PlanNode(@Owner RegisterNode parent) {
+    protected PlanNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

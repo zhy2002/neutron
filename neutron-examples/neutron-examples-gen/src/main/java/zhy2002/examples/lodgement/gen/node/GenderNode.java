@@ -13,7 +13,7 @@ import java.util.List;
 public class GenderNode extends StringUiNode<PersonGeneralNode> {
 
     @Inject
-    public GenderNode(@Owner PersonGeneralNode parent) {
+    protected GenderNode(@Owner PersonGeneralNode parent) {
         super(parent);
     }
 

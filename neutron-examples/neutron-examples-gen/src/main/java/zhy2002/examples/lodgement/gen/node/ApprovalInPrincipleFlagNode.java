@@ -14,7 +14,7 @@ import java.util.List;
 public class ApprovalInPrincipleFlagNode extends BooleanUiNode<UsageNode> {
 
     @Inject
-    public ApprovalInPrincipleFlagNode(@Owner UsageNode parent) {
+    protected ApprovalInPrincipleFlagNode(@Owner UsageNode parent) {
         super(parent);
     }
 

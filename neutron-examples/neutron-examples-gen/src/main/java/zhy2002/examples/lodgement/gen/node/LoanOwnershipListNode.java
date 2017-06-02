@@ -13,7 +13,7 @@ import java.util.List;
 public class LoanOwnershipListNode extends OwnershipListNode<LoanNode> {
 
     @Inject
-    public LoanOwnershipListNode(@Owner LoanNode parent) {
+    protected LoanOwnershipListNode(@Owner LoanNode parent) {
         super(parent);
     }
 

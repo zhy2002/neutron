@@ -14,7 +14,7 @@ import zhy2002.examples.register.gen.event.*;
 public class ErrorListNode extends ListUiNode<RegisterNode,ErrorNode> {
 
     @Inject
-    public ErrorListNode(@Owner RegisterNode parent) {
+    protected ErrorListNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

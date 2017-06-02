@@ -13,7 +13,7 @@ import java.util.List;
 public class TrustAddressNode extends AddressNode<BaseTrustNode<?>> {
 
     @Inject
-    public TrustAddressNode(@Owner BaseTrustNode<?> parent) {
+    protected TrustAddressNode(@Owner BaseTrustNode<?> parent) {
         super(parent);
     }
 

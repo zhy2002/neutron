@@ -13,7 +13,7 @@ import java.util.List;
 public class BrokerFirstNameNode extends NameNode<SubmissionNode> {
 
     @Inject
-    public BrokerFirstNameNode(@Owner SubmissionNode parent) {
+    protected BrokerFirstNameNode(@Owner SubmissionNode parent) {
         super(parent);
     }
 

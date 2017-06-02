@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class LoanListNode extends ListUiNode<LiabilitiesNode,LoanNode> {
 
     @Inject
-    public LoanListNode(@Owner LiabilitiesNode parent) {
+    protected LoanListNode(@Owner LiabilitiesNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class PersonOtherIncomeListNode extends BaseOtherIncomeListNode<PersonNode> {
 
     @Inject
-    public PersonOtherIncomeListNode(@Owner PersonNode parent) {
+    protected PersonOtherIncomeListNode(@Owner PersonNode parent) {
         super(parent);
     }
 

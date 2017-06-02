@@ -16,7 +16,7 @@ import java.util.List;
 public class SavingsAccountNode extends ObjectUiNode<SavingsAccountListNode> {
 
     @Inject
-    public SavingsAccountNode(@Owner SavingsAccountListNode parent) {
+    protected SavingsAccountNode(@Owner SavingsAccountListNode parent) {
         super(parent);
     }
 

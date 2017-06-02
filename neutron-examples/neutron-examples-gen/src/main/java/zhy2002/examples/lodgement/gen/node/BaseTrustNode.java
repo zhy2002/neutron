@@ -13,7 +13,7 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BaseTrustNode<P extends ParentUiNode<?>> extends ObjectUiNode<P> {
 
-    public BaseTrustNode(P parent) {
+    protected BaseTrustNode(P parent) {
         super(parent);
     }
 

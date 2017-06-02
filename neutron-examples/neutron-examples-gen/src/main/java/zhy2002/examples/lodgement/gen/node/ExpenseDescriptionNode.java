@@ -13,7 +13,7 @@ import java.util.List;
 public class ExpenseDescriptionNode extends StringUiNode<ExpenseNode> {
 
     @Inject
-    public ExpenseDescriptionNode(@Owner ExpenseNode parent) {
+    protected ExpenseDescriptionNode(@Owner ExpenseNode parent) {
         super(parent);
     }
 

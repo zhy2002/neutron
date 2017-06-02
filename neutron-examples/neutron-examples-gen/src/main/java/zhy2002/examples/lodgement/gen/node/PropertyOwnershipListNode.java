@@ -13,7 +13,7 @@ import java.util.List;
 public class PropertyOwnershipListNode extends OwnershipListNode<PropertyNode> {
 
     @Inject
-    public PropertyOwnershipListNode(@Owner PropertyNode parent) {
+    protected PropertyOwnershipListNode(@Owner PropertyNode parent) {
         super(parent);
     }
 

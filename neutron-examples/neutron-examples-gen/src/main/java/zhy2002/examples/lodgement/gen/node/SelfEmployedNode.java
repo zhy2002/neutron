@@ -16,7 +16,7 @@ import java.util.List;
 public class SelfEmployedNode extends EmployedNode {
 
     @Inject
-    public SelfEmployedNode(@Owner EmploymentNode<?> parent) {
+    protected SelfEmployedNode(@Owner EmploymentNode<?> parent) {
         super(parent);
     }
 

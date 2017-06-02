@@ -14,7 +14,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ProductCustomerContributionListNode extends ListUiNode<ProductsNode,ProductCustomerContributionNode> {
 
     @Inject
-    public ProductCustomerContributionListNode(@Owner ProductsNode parent) {
+    protected ProductCustomerContributionListNode(@Owner ProductsNode parent) {
         super(parent);
     }
 

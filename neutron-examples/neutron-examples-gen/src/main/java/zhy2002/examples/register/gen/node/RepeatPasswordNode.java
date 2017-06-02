@@ -13,7 +13,7 @@ import java.util.List;
 public class RepeatPasswordNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    public RepeatPasswordNode(@Owner RegisterNode parent) {
+    protected RepeatPasswordNode(@Owner RegisterNode parent) {
         super(parent);
     }
 

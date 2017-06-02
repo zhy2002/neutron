@@ -16,7 +16,7 @@ import java.util.List;
 public class UnemployedNode extends ObjectUiNode<EmploymentNode<?>> {
 
     @Inject
-    public UnemployedNode(@Owner EmploymentNode<?> parent) {
+    protected UnemployedNode(@Owner EmploymentNode<?> parent) {
         super(parent);
     }
 

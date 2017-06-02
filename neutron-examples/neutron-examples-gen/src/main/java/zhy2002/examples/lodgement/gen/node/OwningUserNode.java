@@ -13,7 +13,7 @@ import java.util.List;
 public class OwningUserNode extends StringUiNode<ApplicationNode> {
 
     @Inject
-    public OwningUserNode(@Owner ApplicationNode parent) {
+    protected OwningUserNode(@Owner ApplicationNode parent) {
         super(parent);
     }
 

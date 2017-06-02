@@ -19,7 +19,7 @@ import zhy2002.examples.lodgement.gen.event.*;
 public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
 
     @Inject
-    public ErrorListNode(@Owner ApplicationNode parent) {
+    protected ErrorListNode(@Owner ApplicationNode parent) {
         super(parent);
     }
 

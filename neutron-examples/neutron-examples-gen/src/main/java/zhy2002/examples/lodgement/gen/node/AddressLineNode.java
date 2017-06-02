@@ -14,7 +14,7 @@ import java.util.List;
 public class AddressLineNode extends StringUiNode<AddressNode<?>> {
 
     @Inject
-    public AddressLineNode(@Owner AddressNode<?> parent) {
+    protected AddressLineNode(@Owner AddressNode<?> parent) {
         super(parent);
     }
 

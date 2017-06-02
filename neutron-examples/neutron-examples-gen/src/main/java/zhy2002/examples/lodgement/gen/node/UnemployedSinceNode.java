@@ -13,7 +13,7 @@ import java.util.List;
 public class UnemployedSinceNode extends MonthYearNode<UnemployedNode> {
 
     @Inject
-    public UnemployedSinceNode(@Owner UnemployedNode parent) {
+    protected UnemployedSinceNode(@Owner UnemployedNode parent) {
         super(parent);
     }
 

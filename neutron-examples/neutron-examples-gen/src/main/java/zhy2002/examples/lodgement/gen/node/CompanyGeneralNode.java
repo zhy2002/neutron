@@ -16,7 +16,7 @@ import java.util.List;
 public class CompanyGeneralNode extends ObjectUiNode<CompanyNode> {
 
     @Inject
-    public CompanyGeneralNode(@Owner CompanyNode parent) {
+    protected CompanyGeneralNode(@Owner CompanyNode parent) {
         super(parent);
     }
 

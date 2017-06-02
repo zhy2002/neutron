@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanySelectDirectorNode extends SelectRelatedPersonListNode<CompanyGeneralNode> {
 
     @Inject
-    public CompanySelectDirectorNode(@Owner CompanyGeneralNode parent) {
+    protected CompanySelectDirectorNode(@Owner CompanyGeneralNode parent) {
         super(parent);
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class AccessContactTypeNode extends StringUiNode<AccessNode> {
 
     @Inject
-    public AccessContactTypeNode(@Owner AccessNode parent) {
+    protected AccessContactTypeNode(@Owner AccessNode parent) {
         super(parent);
     }
 

@@ -8,7 +8,7 @@ import zhy2002.examples.register.gen.rule.*;
 
 public abstract class PhoneInfoFieldNode extends StringUiNode<PhoneInfoNode> {
 
-    public PhoneInfoFieldNode(PhoneInfoNode parent) {
+    protected PhoneInfoFieldNode(PhoneInfoNode parent) {
         super(parent);
     }
 

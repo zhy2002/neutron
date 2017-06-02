@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductCreditCardTypeNode extends StringUiNode<ProductFeaturesNode> {
 
     @Inject
-    public ProductCreditCardTypeNode(@Owner ProductFeaturesNode parent) {
+    protected ProductCreditCardTypeNode(@Owner ProductFeaturesNode parent) {
         super(parent);
     }
 

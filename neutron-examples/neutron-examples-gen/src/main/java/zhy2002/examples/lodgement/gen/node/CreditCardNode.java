@@ -16,7 +16,7 @@ import java.util.List;
 public class CreditCardNode extends ObjectUiNode<CreditCardListNode> {
 
     @Inject
-    public CreditCardNode(@Owner CreditCardListNode parent) {
+    protected CreditCardNode(@Owner CreditCardListNode parent) {
         super(parent);
     }
 

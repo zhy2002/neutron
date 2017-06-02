@@ -13,7 +13,7 @@ import java.util.List;
 public class BusinessTypeNode extends StringUiNode<SelfEmployedNode> {
 
     @Inject
-    public BusinessTypeNode(@Owner SelfEmployedNode parent) {
+    protected BusinessTypeNode(@Owner SelfEmployedNode parent) {
         super(parent);
     }
 

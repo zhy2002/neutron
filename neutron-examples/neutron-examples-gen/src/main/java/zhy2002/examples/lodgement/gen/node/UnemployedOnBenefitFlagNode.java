@@ -13,7 +13,7 @@ import java.util.List;
 public class UnemployedOnBenefitFlagNode extends YesNoOptionNode<UnemployedNode> {
 
     @Inject
-    public UnemployedOnBenefitFlagNode(@Owner UnemployedNode parent) {
+    protected UnemployedOnBenefitFlagNode(@Owner UnemployedNode parent) {
         super(parent);
     }
 
