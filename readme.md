@@ -19,6 +19,7 @@ Todo
   - ???
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation
+- exclude generated files from source control
 
 Todo (low priority)
 -----------------

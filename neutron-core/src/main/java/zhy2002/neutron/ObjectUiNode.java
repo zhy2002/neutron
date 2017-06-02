@@ -1,7 +1,9 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.ContextConfiguration;
 import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.NodeConfiguration;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.di.Owner;
@@ -16,6 +18,8 @@ import java.util.*;
  * A ParentUiNode whose children are exposed as properties.
  */
 public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNode<P> {
+
+    private Set<String> autoLoadedChildNames;
 
     protected ObjectUiNode(@NotNull P parent) {
         super(parent);
@@ -103,6 +107,23 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         }
         getContext().setNodeIdentity(childNodeIdentity);
         setNameOfChildBeingCreated(childName);
+    }
+
+    public final Set<String> getAutoLoadedChildNames() {
+        if (autoLoadedChildNames == null) {
+            autoLoadedChildNames = new HashSet<>();
+            ContextConfiguration configuration = getContext().getConfiguration();
+            Class<?> clazz = getConcreteClass();
+            do {
+                NodeConfiguration config = configuration.getConfig(clazz);
+                Set<String> names = config.getConfigValue("AutoLoadedChildNames");
+                if (names != null) {
+                    autoLoadedChildNames.addAll(names);
+                }
+                clazz = clazz.getSuperclass();
+            } while (clazz != null);
+        }
+        return autoLoadedChildNames;
     }
 
     //endregion

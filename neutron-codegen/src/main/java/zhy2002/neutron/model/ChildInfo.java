@@ -13,6 +13,7 @@ public class ChildInfo extends CodeGenInfo {
     private List<InitInfo> init;
     @Valid
     private List<RuleInfo> rules;
+    private boolean loadWithParent = true;
 
     public String getName() {
         return name;
@@ -36,6 +37,14 @@ public class ChildInfo extends CodeGenInfo {
 
     public void setRules(List<RuleInfo> rules) {
         this.rules = rules;
+    }
+
+    public boolean isLoadWithParent() {
+        return loadWithParent;
+    }
+
+    public void setLoadWithParent(boolean loadWithParent) {
+        this.loadWithParent = loadWithParent;
     }
 
     ////////////////////////////////////////////////////

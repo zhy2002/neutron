@@ -1,7 +1,11 @@
 package zhy2002.examples.lodgement.gen.di;
+
 import dagger.*;
-import zhy2002.examples.lodgement.gen.event.*;
 import zhy2002.neutron.event.EventRegistry;
+import zhy2002.neutron.config.ContextConfigurer;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContextConfigurer;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
+import zhy2002.examples.lodgement.gen.event.*;
 import javax.inject.Singleton;
 import zhy2002.neutron.di.NeutronModule;
 
@@ -336,5 +340,12 @@ public abstract class ManifestModule {
     @Binds
     @Singleton
     abstract EventRegistry provideEventRegistryImpl(ApplicationNodeEventRegistry impl);
+
+
+    @Binds
+    @Singleton
+    abstract ContextConfigurer<ApplicationNodeContext> provideApplicationNodeContextConfigurer(
+        ApplicationNodeContextConfigurer impl
+    );
 
 }

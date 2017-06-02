@@ -7,16 +7,12 @@ import java.util.Map;
 /**
  * A simple container of config values.
  */
-public class Configuration {
+public class NodeConfiguration {
 
     private final Map<String, Object> config = new HashMap<>();
 
     @Inject
-    public Configuration() {}
-
-    public Configuration(Configuration prototype) {
-        config.putAll(prototype.config);
-    }
+    public NodeConfiguration() {}
 
     @SuppressWarnings("unchecked")
     public final <T> T getConfigValue(String key) {

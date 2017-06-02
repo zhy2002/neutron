@@ -1,7 +1,8 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.config.Configuration;
+import zhy2002.neutron.config.ContextConfiguration;
+import zhy2002.neutron.config.ContextConfigurer;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
@@ -14,6 +15,7 @@ import zhy2002.neutron.util.ValueUtil;
 import javax.inject.Inject;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Set;
 
 /**
  * There is one context per node hierarchy.
@@ -30,8 +32,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
      * Afterwards this is always null.
      */
     private NodeIdentity nodeIdentity;
-    private String nameOfNodeBeingCreated;
-    private Configuration configuration;
+    private ContextConfiguration configuration;
     private Deque<ChangeUiNodeEvent> changeUiNodeEvents = new ArrayDeque<>();
 
     @Inject
@@ -44,7 +45,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     NodeReferenceRegistry nodeReferenceRegistry;
 
     @Inject
-    protected void injectConfiguration(Configuration configuration) {
+    protected void injectConfiguration(ContextConfiguration configuration) {
         this.configuration = configuration;
     }
 
@@ -103,7 +104,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     }
 
     @Override
-    public Configuration getConfiguration() {
+    public ContextConfiguration getConfiguration() {
         return configuration;
     }
 

@@ -113,4 +113,11 @@ public class TemplateBundle {
         return getTemplate("profile_module.ftl");
     }
 
+    Template getConfigurerTemplate() {
+        return getTemplate("configurer.ftl");
+    }
+
+    Template getProfileConfigurerTemplate() {
+        return getTemplate("profile_configurer.ftl");
+    }
 }

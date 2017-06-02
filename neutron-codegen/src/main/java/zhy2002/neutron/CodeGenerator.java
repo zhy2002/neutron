@@ -38,6 +38,7 @@ class CodeGenerator {
         }
 
         codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
+        codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getConfigurerTemplate(), "", "ContextConfigurer");
         codeGenerationService.generateFile(targetDirectory, "event", domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "EventRegistry");
         codeGenerationService.generateFile(targetDirectory, "rule", domainInfo, templateBundle.getRulePackageTemplate(), "package-info");
         codeGenerationService.generateFile(targetDirectory, "di", domainInfo, templateBundle.getManifestModuleTemplate(), "ManifestModule");
@@ -106,6 +107,7 @@ class CodeGenerator {
             generateProfileChildFiles(templateBundle, targetDirectory, childInfo);
         }
 
+        codeGenerationService.generateFile(targetDirectory, "", profileInfo.getRootType(), templateBundle.getProfileConfigurerTemplate(), profileInfo.getTypeName(), "ContextConfigurer");
         codeGenerationService.generateFile(targetDirectory, "rule", profileInfo, templateBundle.getRulePackageTemplate(), "package-info");
         codeGenerationService.generateFile(targetDirectory, "di", profileInfo, templateBundle.getProfileModuleTemplate(), "", "ProfileModule");
     }

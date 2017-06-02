@@ -431,6 +431,13 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.nodeStatus = NodeStatusEnum.Unloaded;
         getContext().getNodeFinder().registerNode(this);
 
+        //load initial value from config
+        if (parent instanceof ObjectUiNode) {
+            boolean loadWithParent = ((ObjectUiNode<?>)parent).getAutoLoadedChildNames().contains(getName());
+            if (loadWithParent != getLoadWithParent()) {
+                setLoadWithParent(loadWithParent);
+            }
+        }
         initializeState();
     }
 
