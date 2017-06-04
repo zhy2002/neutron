@@ -13,8 +13,8 @@ import java.util.List;
 public class SavingsBalanceNode extends BaseCurrencyNode<SavingsAccountNode> {
 
     @Inject
-    protected SavingsBalanceNode(@Owner SavingsAccountNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected SavingsBalanceNode(@Owner SavingsAccountNode parent) {
+        super(parent);
     }
 
     @Override

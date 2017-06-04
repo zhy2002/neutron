@@ -15,18 +15,13 @@ public abstract class CodeGenInfo {
         return typeName;
     }
 
-    public void setTypeName(String typeName) {
+    public final void setTypeName(String typeName) {
         this.typeName = typeName;
     }
 
     ////////////////////////////////////////////////////////
 
     private DomainInfo domainInfo;
-
-    /**
-     * Validate the model and get it into a usable state.
-     */
-    abstract void initialize();
 
     public DomainInfo getDomainInfo() {
         return domainInfo;
@@ -42,5 +37,35 @@ public abstract class CodeGenInfo {
 
     public String getContextName() {
         return getDomainInfo().getContextName();
+    }
+
+    public void initialize() {
+        if (domainInfo == null) {
+            raiseError("domainInfo is not set");
+        }
+    }
+
+    void raiseError(String message) {
+        throw new RuntimeException(String.format(
+                "Error in %s with type name %s: %s",
+                this.getClass().getSimpleName(),
+                getTypeName(),
+                message
+        ));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CodeGenInfo that = (CodeGenInfo) o;
+
+        return typeName.equals(that.typeName);
+    }
+
+    @Override
+    public int hashCode() {
+        return typeName.hashCode();
     }
 }

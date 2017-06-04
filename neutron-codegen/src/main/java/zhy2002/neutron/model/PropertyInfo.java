@@ -1,13 +1,15 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.service.CodeGenUtil;
+
 import javax.validation.constraints.NotNull;
 
-public class PropertyInfo {
+public class PropertyInfo implements Initializable {
     @NotNull
     private String name;
+    @NotNull
     private String typeName;
     private String trackingMode;
-    private String externalTypeName;
     private String defaultValue;
 
     public String getName() {
@@ -34,14 +36,6 @@ public class PropertyInfo {
         this.defaultValue = defaultValue;
     }
 
-    public String getExternalTypeName() {
-        return externalTypeName;
-    }
-
-    public void setExternalTypeName(String externalTypeName) {
-        this.externalTypeName = externalTypeName;
-    }
-
     public String getTrackingMode() {
         return trackingMode;
     }
@@ -53,12 +47,19 @@ public class PropertyInfo {
     ////////////////////////////////////////////////////////
 
     private String nameAllCaps;
+    private String stateTypeName;
 
     public String getNameAllCaps() {
         return nameAllCaps;
     }
 
-    public void setNameAllCaps(String nameAllCaps) {
-        this.nameAllCaps = nameAllCaps;
+    public String getStateTypeName() {
+        return stateTypeName;
+    }
+
+    @Override
+    public void initialize() {
+        nameAllCaps = CodeGenUtil.allCaps(getName());
+        stateTypeName = CodeGenUtil.primitiveToWrapperClassName(getTypeName());
     }
 }

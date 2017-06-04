@@ -12,16 +12,15 @@ import zhy2002.neutron.di.NeutronModule;
 
 @Module(includes = {NeutronModule.class},
 subcomponents = {
-    ApplicationListNodeComponent.class,
+    LodgementNodeComponent.class,
     AppManagerNodeComponent.class,
-    LodgementNodeComponent.class
+    ApplicationListNodeComponent.class
 })
 public abstract class ManifestModule {
 
     @Binds
     @Singleton
-    abstract EventRegistry provideEventRegistryImpl(LodgementNodeEventRegistry impl);
-
+    abstract EventRegistry provideEventRegistryImpl(LodgementEventRegistry impl);
 
     @Binds
     @Singleton

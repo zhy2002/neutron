@@ -13,8 +13,8 @@ import java.util.List;
 public class PreviousEmploymentNode extends EmploymentNode<PreviousEmploymentListNode> {
 
     @Inject
-    protected PreviousEmploymentNode(@Owner PreviousEmploymentListNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PreviousEmploymentNode(@Owner PreviousEmploymentListNode parent) {
+        super(parent);
     }
 
     @Override

@@ -17,8 +17,8 @@ import java.util.List;
 public class AppManagerNode extends ObjectUiNode<LodgementNode> {
 
     @Inject
-    protected AppManagerNode(@Owner LodgementNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected AppManagerNode(@Owner LodgementNode parent) {
+        super(parent);
     }
 
     @Override

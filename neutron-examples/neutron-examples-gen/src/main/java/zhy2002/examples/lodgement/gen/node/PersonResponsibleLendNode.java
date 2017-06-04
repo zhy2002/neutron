@@ -13,8 +13,8 @@ import java.util.List;
 public class PersonResponsibleLendNode extends BaseResponsibleLendNode<PersonNode> {
 
     @Inject
-    protected PersonResponsibleLendNode(@Owner PersonNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PersonResponsibleLendNode(@Owner PersonNode parent) {
+        super(parent);
     }
 
     @Override

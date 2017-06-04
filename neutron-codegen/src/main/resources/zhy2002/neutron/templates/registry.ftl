@@ -1,7 +1,5 @@
 package ${targetPackage}.gen.event;
 
-import ${targetPackage}.gen.event.*;
-import ${targetPackage}.gen.node.*;
 import ${targetPackage}.data.*;
 import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.*;
@@ -15,8 +13,8 @@ public class ${typeName}EventRegistry extends EventRegistryImpl {
     }
 
     private void loadStateChangeEventFactories() {
-<#list domainInfo.changeEventNodes as node>
-    super.setStateChangeEventFactory(${node.valueTypeName}.class, ${node.valueTypeName}StateChangeEvent::new);
+<#list changeEvents as event>
+    super.setStateChangeEventFactory(${event.typeName}.class, ${event.typeName}StateChangeEvent::new);
 </#list>
     }
 }

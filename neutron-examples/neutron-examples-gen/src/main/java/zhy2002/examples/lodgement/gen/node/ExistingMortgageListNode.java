@@ -11,11 +11,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class ExistingMortgageListNode extends ListUiNode<UsageNode,ExistingMortgageNode> {
+public class ExistingMortgageListNode extends ListUiNode<UsageNode, ExistingMortgageNode> {
 
     @Inject
-    protected ExistingMortgageListNode(@Owner UsageNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ExistingMortgageListNode(@Owner UsageNode parent) {
+        super(parent);
     }
 
     @Override

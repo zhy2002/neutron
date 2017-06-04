@@ -1,5 +1,7 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.service.CodeGenUtil;
+
 import javax.validation.constraints.NotNull;
 
 public class InitInfo {
@@ -38,10 +40,15 @@ public class InitInfo {
     private String nameAllCaps;
 
     public String getNameAllCaps() {
+        if (nameAllCaps == null) {
+            nameAllCaps = CodeGenUtil.allCaps(getPropertyName());
+        }
         return nameAllCaps;
     }
 
-    public void setNameAllCaps(String nameAllCaps) {
-        this.nameAllCaps = nameAllCaps;
+    void initialize(CodeGenInfo owner) {
+        if (getMode() == null && getValue() == null) {
+            owner.raiseError("Must set at least one of mode or value for property init:" + getPropertyName());
+        }
     }
 }

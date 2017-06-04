@@ -13,8 +13,8 @@ import java.util.List;
 public class DefenseServiceFlagNode extends BooleanUiNode<PropertyNode> {
 
     @Inject
-    protected DefenseServiceFlagNode(@Owner PropertyNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected DefenseServiceFlagNode(@Owner PropertyNode parent) {
+        super(parent);
     }
 
     @Override

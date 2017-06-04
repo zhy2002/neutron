@@ -1,11 +1,14 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.util.ValueUtil;
+
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 public class ProfileNodeInfo extends CodeGenInfo {
-    //region mapped data
 
+    private ProfileInfo profileInfo;
     @Valid
     private List<ProfileChildInfo> children;
     @Valid
@@ -14,7 +17,8 @@ public class ProfileNodeInfo extends CodeGenInfo {
     private List<InitInfo> init;
     @Valid
     private List<RuleInfo> rules;
-    private ProfileInfo profileInfo;
+    @Valid
+    private List<ConfigInfo> config;
 
     public List<ProfileChildInfo> getChildren() {
         return children;
@@ -48,7 +52,15 @@ public class ProfileNodeInfo extends CodeGenInfo {
         this.rules = rules;
     }
 
-    //endregion
+    public List<ConfigInfo> getConfig() {
+        return config;
+    }
+
+    public void setConfig(List<ConfigInfo> config) {
+        this.config = config;
+    }
+
+    ////////////////////////////////////////////////////////
 
     private NodeInfo nodeInfo;
 
@@ -69,28 +81,31 @@ public class ProfileNodeInfo extends CodeGenInfo {
     }
 
     @Override
-    void initialize() {
-        initializeRules(rules);
+    public void initialize() {
+        initializeInit(getInit());
+        initializeRules(getRules());
 
         if (getChildren() != null) {
             for (ProfileChildInfo childInfo : getChildren()) {
                 childInfo.setDomainInfo(getDomainInfo());
                 childInfo.setParentProfileNodeInfo(this);
+                childInfo.setParentType(this.getNodeInfo());
+                childInfo.setChildType(getProfileInfo().getNodeInfo(childInfo.getTypeName()));
                 childInfo.initialize();
-                initializeRules(childInfo.getRules());
             }
         }
     }
 
+    private void initializeInit(List<InitInfo> init) {
+        ValueUtil.ifNull(init, Collections.emptyList()).forEach(item -> item.initialize(this));
+    }
+
     private void initializeRules(List<RuleInfo> rules) {
-        if (rules != null) {
-            for (RuleInfo ruleInfo : rules) {
-                ruleInfo.setDomainInfo(getDomainInfo());
-                ruleInfo.setProfileInfo(getProfileInfo());
-                ruleInfo.setOwnerType(getNodeInfo());
-                ruleInfo.initialize();
-            }
-        }
+        ValueUtil.ifNull(rules, Collections.emptyList()).forEach(rule -> {
+            rule.setDomainInfo(getDomainInfo());
+            rule.setOwnerType(getNodeInfo());
+            rule.initialize();
+        });
     }
 
     public boolean getHasRuleProvider() {

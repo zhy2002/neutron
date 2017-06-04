@@ -1,6 +1,9 @@
 package zhy2002.neutron.model;
 
+import zhy2002.neutron.util.ValueUtil;
+
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 public class RuleInfo extends CodeGenInfo {
@@ -39,13 +42,6 @@ public class RuleInfo extends CodeGenInfo {
     private NodeInfo ownerType;
     private ProfileInfo profileInfo;
 
-    @Override
-    void initialize() {
-        if (getBaseTypeName() == null) {
-            setBaseTypeName("UiNodeRule");
-        }
-    }
-
     public NodeInfo getOwnerType() {
         return ownerType;
     }
@@ -58,7 +54,21 @@ public class RuleInfo extends CodeGenInfo {
         return profileInfo;
     }
 
-    public void setProfileInfo(ProfileInfo profileInfo) {
+    void setProfileInfo(ProfileInfo profileInfo) {
         this.profileInfo = profileInfo;
+    }
+
+    @Override
+    public void initialize() {
+        if (getBaseTypeName() == null) {
+            setBaseTypeName("UiNodeRule");
+        }
+
+        if (ownerType == null) {
+            raiseError("ownerType is not set");
+        }
+
+        ValueUtil.ifNull(getInit(), Collections.emptyList()).forEach(item -> item.initialize(this));
+
     }
 }

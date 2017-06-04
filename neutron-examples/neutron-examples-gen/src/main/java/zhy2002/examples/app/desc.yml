@@ -1,7 +1,8 @@
 targetPackage: zhy2002.examples.app
+typeName: Lodgement
 rootType:
   typeName: LodgementNode
-  baseTypeName: ObjectUiNode
+  baseTypeName: RootUiNode
   children:
   - {typeName: AppManagerNode}
   childTypes:

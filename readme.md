@@ -20,6 +20,7 @@ Todo
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation
 - exclude generated files from source control
+- construct framework nodes via reflection in codegen module.
 
 Todo (low priority)
 -----------------

@@ -18,11 +18,11 @@ public class LodgementNodeContextConfigurer implements ContextConfigurer<Lodgeme
 
         Set<String> names;
         names = new HashSet<>();
-        names.add("applicationListNode");
-        configuration.getConfig(AppManagerNode.class).setConfigValue("AutoLoadedChildNames", names);
-        names = new HashSet<>();
         names.add("appManagerNode");
         configuration.getConfig(LodgementNode.class).setConfigValue("AutoLoadedChildNames", names);
+        names = new HashSet<>();
+        names.add("applicationListNode");
+        configuration.getConfig(AppManagerNode.class).setConfigValue("AutoLoadedChildNames", names);
 
     }
 }

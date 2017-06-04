@@ -1,36 +1,20 @@
 package zhy2002.neutron.model;
 
 import zhy2002.neutron.service.CodeGenUtil;
+import zhy2002.neutron.util.ValueUtil;
 
-import javax.validation.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.*;
-import java.util.logging.Logger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static zhy2002.neutron.model.FrameworkNodes.*;
 
 /**
  * The root model for code gen.
  */
 public class DomainInfo extends CodeGenInfo {
-
-    private static final Logger logger = Logger.getLogger("DomainInfo");
-    private static final NodeInfo GENERIC_NODE_INFO;
-    private static final NodeInfo VOID_NODE_INFO;
-
-    static {
-        GENERIC_NODE_INFO = new NodeInfo();
-        GENERIC_NODE_INFO.setTypeName("P");
-        GENERIC_NODE_INFO.setGenericTypeName("P");
-
-        VOID_NODE_INFO = new NodeInfo();
-        VOID_NODE_INFO.setTypeName("VoidUiNode");
-        VOID_NODE_INFO.setGenericTypeName("VoidUiNode");
-    }
-
-    public DomainInfo() {
-        setTypeName("");
-    }
-
-    //region mapped data
 
     @NotNull
     private String targetPackage;
@@ -39,6 +23,10 @@ public class DomainInfo extends CodeGenInfo {
     private NodeInfo rootType;
     @Valid
     private List<NodeInfo> commonTypes = new ArrayList<>();
+
+    public DomainInfo() {
+        setDomainInfo(this);
+    }
 
     public String getTargetPackage() {
         return targetPackage;
@@ -64,107 +52,19 @@ public class DomainInfo extends CodeGenInfo {
         this.commonTypes = commonTypes;
     }
 
-    //endregion
-
     ////////////////////////////////////////////////////////
 
     /**
      * All generated nodes.
      */
     private final List<NodeInfo> allNodes = new ArrayList<>();
-    private final List<NodeInfo> concreteNodes = new ArrayList<>();
     private final List<NodeInfo> addEventNodes = new ArrayList<>();
     private final List<NodeInfo> loadEventNodes = new ArrayList<>();
-    private final List<NodeInfo> changeEventNodes = new ArrayList<>();
-    private final StringBuilder errorMessageBuilder = new StringBuilder();
+    private final Map<String, ChangeEventInfo> changeEventInfoMap = new HashMap<>();
     private final List<ChildInfo> configuredChildren = new ArrayList<>();
-
-    @Override
-    public void initialize() {
-        CodeGenUtil.validateMappedData(this);
-
-        setDomainInfo(this);
-        initializeCommonTypes();
-        initializeRootType();
-        resolveTypes();
-
-        raiseErrorIfNecessary();
-    }
-
-    private void initializeCommonTypes() {
-        for (NodeInfo nodeInfo : getCommonTypes()) {
-            nodeInfo.setDomainInfo(this);
-            nodeInfo.setParentType(GENERIC_NODE_INFO);
-            nodeInfo.setAbstractNode(true);
-            nodeInfo.initialize();
-        }
-    }
-
-    private void initializeRootType() {
-        getRootType().setDomainInfo(this);
-        getRootType().setParentType(VOID_NODE_INFO);
-        getRootType().setUnloadable(true);
-        getRootType().setBaseTypeName("RootUiNode");
-        if (getRootType().isAbstractNode()) {
-            logger.warning("Root node must be concrete, setting isAbstract to false");
-            getRootType().setAbstractNode(false);
-        }
-
-        getRootType().initialize();
-    }
-
-    private void raiseErrorIfNecessary() {
-        String errorMessage = errorMessageBuilder.toString();
-        if (errorMessage.length() > 0) {
-            throw new RuntimeException(errorMessage);
-        }
-    }
-
-    private void resolveTypes() {
-        Map<String, NodeInfo> map = new HashMap<>();
-        getAllNodes().forEach(node -> map.put(node.getTypeName(), node));
-
-        getAllNodes().forEach(node -> {
-            NodeInfo baseType = map.get(node.getBaseTypeName());
-            if (baseType == null) {
-                node.populateFrameworkTypes();
-            } else {
-                node.setBaseType(baseType);
-            }
-
-            if (node.getChildren() != null) {
-                for (ChildInfo childInfo : node.getChildren()) {
-                    childInfo.setChildType(map.get(childInfo.getTypeName()));
-                    if (childInfo.getRules() != null) {
-                        for (RuleInfo rule : childInfo.getRules()) {
-                            rule.setDomainInfo(getDomainInfo());
-                            rule.setOwnerType(childInfo.getChildType());
-                            rule.initialize();
-                        }
-                    }
-
-                }
-            }
-        });
-
-        getAllNodes().forEach(NodeInfo::resolveBaseTypes);
-    }
-
-    void addErrorMessageLine(String line) {
-        errorMessageBuilder.append(line);
-        errorMessageBuilder.append(System.lineSeparator());
-    }
-
-    public String getContextName() {
-        return getRootType().getTypeName();
-    }
 
     public List<NodeInfo> getAllNodes() {
         return allNodes;
-    }
-
-    public List<NodeInfo> getConcreteNodes() {
-        return concreteNodes;
     }
 
     public List<NodeInfo> getAddEventNodes() {
@@ -175,11 +75,86 @@ public class DomainInfo extends CodeGenInfo {
         return loadEventNodes;
     }
 
-    public List<NodeInfo> getChangeEventNodes() {
-        return changeEventNodes;
+    public Map<String, ChangeEventInfo> getChangeEventInfoMap() {
+        return changeEventInfoMap;
+    }
+
+    public Collection<ChangeEventInfo> getChangeEvents() {
+        return changeEventInfoMap.values();
+    }
+
+    public List<NodeInfo> getConcreteNodes() {
+        return allNodes.stream().filter(nodeInfo -> !nodeInfo.isAbstractNode()).collect(Collectors.toList());
     }
 
     public List<ChildInfo> getConfiguredChildren() {
         return configuredChildren;
+    }
+
+    public String getContextName() {
+        return getRootType().getTypeName();
+    }
+
+    @Override
+    public void initialize() {
+        CodeGenUtil.validateMappedData(this);
+
+        initializeCommonTypes();
+        initializeRootType();
+        resolveReferences();
+        cleanUp();
+    }
+
+    private void initializeCommonTypes() {
+        for (NodeInfo nodeInfo : getCommonTypes()) {
+            nodeInfo.setParentType(GENERIC_NODE_INFO);
+            nodeInfo.setAbstractNode(true);
+            addNodes(nodeInfo);
+        }
+    }
+
+    private void initializeRootType() {
+        NodeInfo nodeInfo = getRootType();
+        if (!nodeInfo.getBaseTypeName().equals(ROOT_NODE_INFO.getTypeName()))
+            raiseError("Root type must extends from RootUiNode");
+        nodeInfo.setParentType(VOID_NODE_INFO);
+        nodeInfo.setAbstractNode(false);
+        nodeInfo.setUnloadable(Boolean.TRUE); //root node must be able to fire load/unload event
+        addNodes(nodeInfo);
+    }
+
+    private void addNodes(NodeInfo nodeInfo) {
+        nodeInfo.setDomainInfo(this);
+        nodeInfo.initialize();
+        getAllNodes().add(nodeInfo);
+
+        if (nodeInfo.isUnloadable()) {
+            getLoadEventNodes().add(nodeInfo);
+        }
+        if (nodeInfo.isListItem()) {
+            getAddEventNodes().add(nodeInfo);
+        }
+        if (nodeInfo.getChangeEventInfo() != null) {
+            getChangeEventInfoMap().put(nodeInfo.getChangeEventInfo().getTypeName(), nodeInfo.getChangeEventInfo());
+        }
+        ValueUtil.ifNull(nodeInfo.getChildTypes(), Collections.emptyList()).forEach(childNodeInfo -> {
+            childNodeInfo.setParentType(nodeInfo);
+            addNodes(childNodeInfo);
+        });
+        ValueUtil.ifNull(nodeInfo.getChildren(), Collections.emptyList()).forEach(childInfo -> {
+            if (childInfo.getHasRuleProvider()) {
+                getConfiguredChildren().add(childInfo);
+            }
+        });
+    }
+
+    private void resolveReferences() {
+        Map<String, NodeInfo> nodeInfoMap = getAllNodes().stream().collect(Collectors.toMap(NodeInfo::getTypeName, Function.identity()));
+        getAllNodes().forEach(nodeInfo -> nodeInfo.resolveBaseType(nodeInfoMap));
+        getAllNodes().forEach(NodeInfo::resolveBaseTypes); //2nd pass
+    }
+
+    private void cleanUp() {
+        getAllNodes().forEach(NodeInfo::cleanUp);
     }
 }

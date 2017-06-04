@@ -18,8 +18,8 @@ import java.util.List;
 public class PasswordNode extends StringUiNode<RegisterNode> {
 
     @Inject
-    protected PasswordNode(@Owner RegisterNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PasswordNode(@Owner RegisterNode parent) {
+        super(parent);
     }
 
     @Override

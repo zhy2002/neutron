@@ -8,8 +8,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class EmailNode<P extends ParentUiNode<?>> extends StringUiNode<P> {
 
-    protected EmailNode(P parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected EmailNode(P parent) {
+        super(parent);
     }
 
 

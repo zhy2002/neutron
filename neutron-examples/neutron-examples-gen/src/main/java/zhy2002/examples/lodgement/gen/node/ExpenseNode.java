@@ -16,8 +16,8 @@ import java.util.List;
 public class ExpenseNode extends ObjectUiNode<ExpenseListNode> {
 
     @Inject
-    protected ExpenseNode(@Owner ExpenseListNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ExpenseNode(@Owner ExpenseListNode parent) {
+        super(parent);
     }
 
     @Override

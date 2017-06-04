@@ -13,8 +13,8 @@ import java.util.List;
 public class ResponsibleSignificantChangeFlagNode extends YesNoOptionNode<BaseResponsibleLendNode<?>> {
 
     @Inject
-    protected ResponsibleSignificantChangeFlagNode(@Owner BaseResponsibleLendNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ResponsibleSignificantChangeFlagNode(@Owner BaseResponsibleLendNode<?> parent) {
+        super(parent);
     }
 
     @Override

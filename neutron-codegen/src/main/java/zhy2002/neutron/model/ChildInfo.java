@@ -1,9 +1,10 @@
 package zhy2002.neutron.model;
 
 import zhy2002.neutron.service.CodeGenUtil;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.List;
 
 public class ChildInfo extends CodeGenInfo {
@@ -49,16 +50,6 @@ public class ChildInfo extends CodeGenInfo {
 
     ////////////////////////////////////////////////////
 
-    @Override
-    void initialize() {
-        if (getName() == null) {
-            setName(CodeGenUtil.firstCharLower(getTypeName()));
-        }
-    }
-
-    /**
-     * This should be null for the root type.
-     */
     private NodeInfo childType;
     private NodeInfo parentType;
 
@@ -74,11 +65,36 @@ public class ChildInfo extends CodeGenInfo {
         return parentType;
     }
 
-    public void setParentType(NodeInfo parentType) {
+    void setParentType(NodeInfo parentType) {
         this.parentType = parentType;
     }
 
     public boolean getHasRuleProvider() {
         return getInit() != null && getInit().size() > 0 || getRules() != null && getRules().size() > 0;
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+
+        if (getName() == null) {
+            setName(CodeGenUtil.firstCharLower(getTypeName()));
+        }
+
+        if (getChildType() == null)
+            raiseError("childType is not set");
+        if (getParentType() == null)
+            raiseError("parentType is not set");
+        if (getChildType().isAbstractNode())
+            raiseError("childType cannot be abstract");
+
+        ValueUtil.ifNull(getInit(), Collections.emptyList()).forEach(item -> item.initialize(this));
+
+        ValueUtil.ifNull(getRules(), Collections.emptyList()).forEach(rule -> {
+            rule.setDomainInfo(getDomainInfo());
+            rule.setOwnerType(getChildType());
+            rule.initialize();
+        });
+
     }
 }

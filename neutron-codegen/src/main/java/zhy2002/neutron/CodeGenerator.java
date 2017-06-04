@@ -37,9 +37,13 @@ class CodeGenerator {
             generateDomainChildFiles(templateBundle, targetDirectory, childInfo);
         }
 
+        for (ChangeEventInfo changeEventInfo : domainInfo.getChangeEventInfoMap().values()) {
+            codeGenerationService.generateFile(targetDirectory, "event", changeEventInfo, templateBundle.getChangeEventTemplate(), "", "StateChangeEvent");
+        }
+
         codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getContextTemplate(), "", "Context");
         codeGenerationService.generateFile(targetDirectory, "", domainInfo.getRootType(), templateBundle.getConfigurerTemplate(), "", "ContextConfigurer");
-        codeGenerationService.generateFile(targetDirectory, "event", domainInfo.getRootType(), templateBundle.getRegistryTemplate(), "", "EventRegistry");
+        codeGenerationService.generateFile(targetDirectory, "event", domainInfo, templateBundle.getRegistryTemplate(), "", "EventRegistry");
         codeGenerationService.generateFile(targetDirectory, "rule", domainInfo, templateBundle.getRulePackageTemplate(), "package-info");
         codeGenerationService.generateFile(targetDirectory, "di", domainInfo, templateBundle.getManifestModuleTemplate(), "ManifestModule");
     }
@@ -55,9 +59,6 @@ class CodeGenerator {
         if (nodeInfo.isListItem()) {
             codeGenerationService.generateFile(targetDirectory, "event", nodeInfo, templateBundle.getNodeAddEventTemplate(), "", "AddEvent");
             codeGenerationService.generateFile(targetDirectory, "event", nodeInfo, templateBundle.getNodeRemoveEventTemplate(), "", "RemoveEvent");
-        }
-        if (nodeInfo.getChangeEventInfo() != null) {
-            codeGenerationService.generateFile(targetDirectory, "event", nodeInfo.getChangeEventInfo(), templateBundle.getChangeEventTemplate(), "", "StateChangeEvent");
         }
 
         codeGenerationService.generateFile(targetDirectory, "node", nodeInfo, templateBundle.getRuleProviderTemplate(), "", "RuleProvider");

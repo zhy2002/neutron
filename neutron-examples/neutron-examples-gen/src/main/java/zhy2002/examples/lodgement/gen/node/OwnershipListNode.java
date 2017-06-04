@@ -14,10 +14,10 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,OwnershipNode> {
+public abstract class OwnershipListNode<P extends ObjectUiNode<?>> extends ListUiNode<P, OwnershipNode> {
 
-    protected OwnershipListNode(P parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected OwnershipListNode(P parent) {
+        super(parent);
     }
 
     protected abstract OwnershipListNodeComponent getComponent();

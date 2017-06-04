@@ -47,12 +47,14 @@ import ${targetPackage}.gen.event.*;
 @Singleton
 </#if>
 public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName??><P extends ${parentBaseTypeName}></#if> extends ${baseTypeName}<#compress>
-<#if valueTypeName??>
-    <<#if parentTypeName??>${parentTypeName},</#if>${valueTypeName}>
-<#elseif itemTypeName??>
-    <<#if parentTypeName??>${parentTypeName},</#if>${itemTypeName}>
-<#else>
-    <#if parentTypeName??><${parentTypeName}></#if>
+<#if baseType.parentBaseTypeName??>
+    <#if valueTypeName??>
+    <${parentType.genericTypeName}, ${valueTypeName}>
+    <#elseif itemTypeName??>
+    <${parentType.genericTypeName}, ${itemTypeName}>
+    <#else>
+    <${parentType.genericTypeName}>
+    </#if>
 </#if>
 </#compress> {
 
@@ -63,13 +65,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 <#else>
     <#if abstractNode>
-    protected ${typeName}(${parentType.genericTypeName} parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ${typeName}(${parentType.genericTypeName} parent) {
+        super(parent);
     }
     <#else>
     @Inject
-    protected ${typeName}(@Owner ${parentType.genericTypeName} parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ${typeName}(@Owner ${parentType.genericTypeName} parent) {
+        super(parent);
     }
     </#if>
 </#if>
@@ -150,17 +152,17 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 <#if properties??>
     <#list properties as prop>
-    public static final PropertyMetadata<${prop.typeName}> ${prop.nameAllCaps}_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "${prop.name}", ${prop.typeName}.class<#if prop.default??>, ${prop.default}</#if><#if prop.trackingMode??>, ChangeTrackingModeEnum.${prop.trackingMode}</#if>);
+    public static final PropertyMetadata<${prop.stateTypeName}> ${prop.nameAllCaps}_PROPERTY = MetadataRegistry.createProperty(${typeName}.class, "${prop.name}", ${prop.stateTypeName}.class<#if prop.default??>, ${prop.default}</#if><#if prop.trackingMode??>, ChangeTrackingModeEnum.${prop.trackingMode}</#if>);
     </#list>
     <#list properties as prop>
 
     @JsMethod
-    public ${prop.externalTypeName} get${prop.name?cap_first}() {
+    public ${prop.typeName} get${prop.name?cap_first}() {
         return getStateValue(${prop.nameAllCaps}_PROPERTY);
     }
 
     @JsMethod
-    public void set${prop.name?cap_first}(${prop.externalTypeName} value) {
+    public void set${prop.name?cap_first}(${prop.typeName} value) {
         setStateValue(${prop.nameAllCaps}_PROPERTY, value);
     }
 

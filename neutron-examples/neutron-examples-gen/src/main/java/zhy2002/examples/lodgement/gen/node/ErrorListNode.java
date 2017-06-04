@@ -16,11 +16,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class ErrorListNode extends ListUiNode<ApplicationNode,ErrorNode> {
+public class ErrorListNode extends ListUiNode<ApplicationNode, ErrorNode> {
 
     @Inject
-    protected ErrorListNode(@Owner ApplicationNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ErrorListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override

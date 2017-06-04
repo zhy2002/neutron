@@ -1,5 +1,8 @@
 package zhy2002.neutron.service;
 
+import com.google.common.collect.ImmutableMap;
+import zhy2002.neutron.util.ValueUtil;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -9,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -17,6 +21,12 @@ import java.util.Set;
 public final class CodeGenUtil {
 
     private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    private static final Map<String, String> primitiveToWrapperClassNameMap = ImmutableMap.of(
+            "char", "Character",
+            "short", "Short",
+            "int", "Integer",
+            "long", "Long"
+    );
 
     private CodeGenUtil() {
     }
@@ -49,21 +59,21 @@ public final class CodeGenUtil {
     }
 
     public static String firstCharLower(String value) {
-        if (isEmpty(value))
+        if (ValueUtil.isEmpty(value))
             return value;
 
         return value.substring(0, 1).toLowerCase() + value.substring(1);
     }
 
     public static String firstCharUpper(String value) {
-        if (isEmpty(value))
+        if (ValueUtil.isEmpty(value))
             return value;
 
         return value.substring(0, 1).toUpperCase() + value.substring(1);
     }
 
     public static String allCaps(String value) {
-        if (isEmpty(value))
+        if (ValueUtil.isEmpty(value))
             return value;
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -77,10 +87,6 @@ public final class CodeGenUtil {
         }
 
         return stringBuilder.toString();
-    }
-
-    private static boolean isEmpty(String value) {
-        return value == null || value.length() == 0;
     }
 
     public static void validateMappedData(Object target) {
@@ -98,4 +104,7 @@ public final class CodeGenUtil {
         }
     }
 
+    public static String primitiveToWrapperClassName(String className) {
+        return primitiveToWrapperClassNameMap.getOrDefault(className, className);
+    }
 }

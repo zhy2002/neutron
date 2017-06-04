@@ -13,8 +13,8 @@ import java.util.List;
 public class OtherAssetOwnershipListNode extends OwnershipListNode<OtherAssetNode> {
 
     @Inject
-    protected OtherAssetOwnershipListNode(@Owner OtherAssetNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected OtherAssetOwnershipListNode(@Owner OtherAssetNode parent) {
+        super(parent);
     }
 
     @Override

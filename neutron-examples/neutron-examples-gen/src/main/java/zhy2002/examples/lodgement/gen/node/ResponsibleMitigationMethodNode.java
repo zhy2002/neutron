@@ -13,8 +13,8 @@ import java.util.List;
 public class ResponsibleMitigationMethodNode extends StringUiNode<BaseResponsibleLendNode<?>> {
 
     @Inject
-    protected ResponsibleMitigationMethodNode(@Owner BaseResponsibleLendNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ResponsibleMitigationMethodNode(@Owner BaseResponsibleLendNode<?> parent) {
+        super(parent);
     }
 
     @Override

@@ -16,8 +16,8 @@ import java.util.List;
 public class RetiredEmploymentNode extends ObjectUiNode<EmploymentNode<?>> {
 
     @Inject
-    protected RetiredEmploymentNode(@Owner EmploymentNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected RetiredEmploymentNode(@Owner EmploymentNode<?> parent) {
+        super(parent);
     }
 
     @Override

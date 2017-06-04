@@ -13,8 +13,8 @@ import java.util.List;
 public class PersonMobileNumberNode extends BaseMobileNumberNode<PersonContactNode> {
 
     @Inject
-    protected PersonMobileNumberNode(@Owner PersonContactNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PersonMobileNumberNode(@Owner PersonContactNode parent) {
+        super(parent);
     }
 
     @Override

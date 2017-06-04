@@ -11,11 +11,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class ExpenseListNode extends ListUiNode<FinancialPositionNode,ExpenseNode> {
+public class ExpenseListNode extends ListUiNode<FinancialPositionNode, ExpenseNode> {
 
     @Inject
-    protected ExpenseListNode(@Owner FinancialPositionNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ExpenseListNode(@Owner FinancialPositionNode parent) {
+        super(parent);
     }
 
     @Override

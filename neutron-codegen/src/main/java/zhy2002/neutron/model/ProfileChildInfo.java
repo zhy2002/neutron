@@ -23,13 +23,14 @@ public class ProfileChildInfo extends ChildInfo {
     }
 
     @Override
-    void initialize() {
+    public void initialize() {
         super.initialize();
 
         setParentType(parentProfileNodeInfo.getNodeInfo());
         nodeChildInfo = parentProfileNodeInfo.getNodeInfo().getChild(getName());
         if (nodeChildInfo == null) {
-            throw new RuntimeException("Child name not declared in domain: " + getName());
+            raiseError("Child name not declared in domain: " + getName());
         }
     }
+
 }

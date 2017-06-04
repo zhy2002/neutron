@@ -11,11 +11,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>,TrustBeneficiaryClassNode> {
+public class TrustBeneficiaryClassListNode extends ListUiNode<BaseTrustNode<?>, TrustBeneficiaryClassNode> {
 
     @Inject
-    protected TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected TrustBeneficiaryClassListNode(@Owner BaseTrustNode<?> parent) {
+        super(parent);
     }
 
     @Override

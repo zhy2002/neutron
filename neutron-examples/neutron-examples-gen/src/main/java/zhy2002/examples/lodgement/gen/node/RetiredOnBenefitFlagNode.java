@@ -13,8 +13,8 @@ import java.util.List;
 public class RetiredOnBenefitFlagNode extends YesNoOptionNode<RetiredEmploymentNode> {
 
     @Inject
-    protected RetiredOnBenefitFlagNode(@Owner RetiredEmploymentNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected RetiredOnBenefitFlagNode(@Owner RetiredEmploymentNode parent) {
+        super(parent);
     }
 
     @Override

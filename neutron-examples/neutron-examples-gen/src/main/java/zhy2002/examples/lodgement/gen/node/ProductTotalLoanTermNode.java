@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductTotalLoanTermNode extends BigDecimalUiNode<ProductDescriptionNode> {
 
     @Inject
-    protected ProductTotalLoanTermNode(@Owner ProductDescriptionNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ProductTotalLoanTermNode(@Owner ProductDescriptionNode parent) {
+        super(parent);
     }
 
     @Override

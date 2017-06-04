@@ -11,11 +11,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class CreditCardListNode extends ListUiNode<LiabilitiesNode,CreditCardNode> {
+public class CreditCardListNode extends ListUiNode<LiabilitiesNode, CreditCardNode> {
 
     @Inject
-    protected CreditCardListNode(@Owner LiabilitiesNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected CreditCardListNode(@Owner LiabilitiesNode parent) {
+        super(parent);
     }
 
     @Override

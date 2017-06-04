@@ -16,8 +16,8 @@ import java.util.List;
 public class PayeEmployedNode extends EmployedNode {
 
     @Inject
-    protected PayeEmployedNode(@Owner EmploymentNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PayeEmployedNode(@Owner EmploymentNode<?> parent) {
+        super(parent);
     }
 
     @Override

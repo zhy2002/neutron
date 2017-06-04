@@ -13,8 +13,8 @@ import java.util.List;
 public class ProductExpressConsentFlagNode extends BooleanUiNode<ProductFeaturesNode> {
 
     @Inject
-    protected ProductExpressConsentFlagNode(@Owner ProductFeaturesNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ProductExpressConsentFlagNode(@Owner ProductFeaturesNode parent) {
+        super(parent);
     }
 
     @Override

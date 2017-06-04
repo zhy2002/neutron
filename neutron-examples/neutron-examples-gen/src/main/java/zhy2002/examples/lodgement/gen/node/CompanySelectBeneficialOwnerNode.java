@@ -13,8 +13,8 @@ import java.util.List;
 public class CompanySelectBeneficialOwnerNode extends SelectRelatedPersonListNode<CompanyGeneralNode> {
 
     @Inject
-    protected CompanySelectBeneficialOwnerNode(@Owner CompanyGeneralNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected CompanySelectBeneficialOwnerNode(@Owner CompanyGeneralNode parent) {
+        super(parent);
     }
 
     @Override

@@ -14,8 +14,8 @@ import java.util.List;
 public class AccountHolderReferenceNode extends ReferenceUiNode<SelectAccountHolderNode> {
 
     @Inject
-    protected AccountHolderReferenceNode(@Owner SelectAccountHolderNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected AccountHolderReferenceNode(@Owner SelectAccountHolderNode parent) {
+        super(parent);
     }
 
     @Override

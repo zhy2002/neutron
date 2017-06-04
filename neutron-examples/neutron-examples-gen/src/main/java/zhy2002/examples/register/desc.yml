@@ -1,7 +1,8 @@
 targetPackage: zhy2002.examples.register
+typeName: Register
 rootType:
   typeName: RegisterNode
-  baseTypeName: ObjectUiNode
+  baseTypeName: RootUiNode
 
   properties:
   - {name: hasError, typeName: Boolean, default: Boolean.FALSE}
@@ -115,8 +116,8 @@ rootType:
     - {typeName: PhoneInfoAllOrNothingRule, existing: false}
     childTypes:
     - typeName: PhoneInfoFieldNode
-      baseTypeName: StringUiNode
       abstractNode: true
+      baseTypeName: StringUiNode
 
     - typeName: CountryCodeNode
       baseTypeName: PhoneInfoFieldNode

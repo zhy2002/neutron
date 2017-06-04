@@ -13,8 +13,8 @@ import java.util.List;
 public class Product100PercentOffsetFlagNode extends BooleanUiNode<ProductFeaturesNode> {
 
     @Inject
-    protected Product100PercentOffsetFlagNode(@Owner ProductFeaturesNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected Product100PercentOffsetFlagNode(@Owner ProductFeaturesNode parent) {
+        super(parent);
     }
 
     @Override

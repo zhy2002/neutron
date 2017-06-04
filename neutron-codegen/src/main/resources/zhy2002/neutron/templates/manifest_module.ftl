@@ -20,8 +20,7 @@ public abstract class ManifestModule {
 
     @Binds
     @Singleton
-    abstract EventRegistry provideEventRegistryImpl(${rootType.typeName}EventRegistry impl);
-
+    abstract EventRegistry provideEventRegistryImpl(${typeName}EventRegistry impl);
 
     @Binds
     @Singleton

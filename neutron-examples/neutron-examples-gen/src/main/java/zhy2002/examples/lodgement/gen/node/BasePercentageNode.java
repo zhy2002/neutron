@@ -13,8 +13,8 @@ import zhy2002.examples.lodgement.gen.rule.*;
 
 public abstract class BasePercentageNode<P extends ParentUiNode<?>> extends BigDecimalUiNode<P> {
 
-    protected BasePercentageNode(P parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected BasePercentageNode(P parent) {
+        super(parent);
     }
 
 

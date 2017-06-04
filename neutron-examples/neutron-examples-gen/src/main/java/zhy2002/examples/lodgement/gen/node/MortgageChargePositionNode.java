@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageChargePositionNode extends StringUiNode<ExistingMortgageNode> {
 
     @Inject
-    protected MortgageChargePositionNode(@Owner ExistingMortgageNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected MortgageChargePositionNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

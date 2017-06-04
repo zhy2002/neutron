@@ -13,8 +13,8 @@ import java.util.List;
 public class EmploymentEndedNode extends MonthYearNode<EmployedNode> {
 
     @Inject
-    protected EmploymentEndedNode(@Owner EmployedNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected EmploymentEndedNode(@Owner EmployedNode parent) {
+        super(parent);
     }
 
     @Override

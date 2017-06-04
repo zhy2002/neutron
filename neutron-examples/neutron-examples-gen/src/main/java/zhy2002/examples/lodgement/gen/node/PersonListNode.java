@@ -11,11 +11,11 @@ import java.util.List;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public class PersonListNode extends ListUiNode<ApplicationNode,PersonNode> {
+public class PersonListNode extends ListUiNode<ApplicationNode, PersonNode> {
 
     @Inject
-    protected PersonListNode(@Owner ApplicationNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected PersonListNode(@Owner ApplicationNode parent) {
+        super(parent);
     }
 
     @Override

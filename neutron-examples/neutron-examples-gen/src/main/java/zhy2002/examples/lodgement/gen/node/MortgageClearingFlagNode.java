@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageClearingFlagNode extends BooleanUiNode<ExistingMortgageNode> {
 
     @Inject
-    protected MortgageClearingFlagNode(@Owner ExistingMortgageNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected MortgageClearingFlagNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

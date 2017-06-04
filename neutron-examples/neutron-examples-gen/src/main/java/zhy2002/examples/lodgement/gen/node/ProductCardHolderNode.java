@@ -16,8 +16,8 @@ import java.util.List;
 public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
 
     @Inject
-    protected ProductCardHolderNode(@Owner ProductFeaturesNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ProductCardHolderNode(@Owner ProductFeaturesNode parent) {
+        super(parent);
     }
 
     @Override

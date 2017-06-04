@@ -18,15 +18,6 @@ public class RegisterNodeContextConfigurer implements ContextConfigurer<Register
 
         Set<String> names;
         names = new HashSet<>();
-        names.add("propertyAddressNode");
-        names.add("propertyStateNode");
-        configuration.getConfig(PropertyDetailsNode.class).setConfigValue("AutoLoadedChildNames", names);
-        names = new HashSet<>();
-        names.add("countryCodeNode");
-        names.add("areaCodeNode");
-        names.add("phoneNumberNode");
-        configuration.getConfig(PhoneInfoNode.class).setConfigValue("AutoLoadedChildNames", names);
-        names = new HashSet<>();
         names.add("usernameNode");
         names.add("emailNode");
         names.add("passwordNode");
@@ -40,6 +31,15 @@ public class RegisterNodeContextConfigurer implements ContextConfigurer<Register
         names.add("homePhoneNode");
         names.add("errorListNode");
         configuration.getConfig(RegisterNode.class).setConfigValue("AutoLoadedChildNames", names);
+        names = new HashSet<>();
+        names.add("propertyAddressNode");
+        names.add("propertyStateNode");
+        configuration.getConfig(PropertyDetailsNode.class).setConfigValue("AutoLoadedChildNames", names);
+        names = new HashSet<>();
+        names.add("countryCodeNode");
+        names.add("areaCodeNode");
+        names.add("phoneNumberNode");
+        configuration.getConfig(PhoneInfoNode.class).setConfigValue("AutoLoadedChildNames", names);
 
     }
 }

@@ -16,8 +16,8 @@ import java.util.List;
 public class SelectRelatedPersonNode extends ObjectUiNode<SelectRelatedPersonListNode<?>> {
 
     @Inject
-    protected SelectRelatedPersonNode(@Owner SelectRelatedPersonListNode<?> parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected SelectRelatedPersonNode(@Owner SelectRelatedPersonListNode<?> parent) {
+        super(parent);
     }
 
     @Override

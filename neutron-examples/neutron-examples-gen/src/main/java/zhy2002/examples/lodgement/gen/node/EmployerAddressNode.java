@@ -13,8 +13,8 @@ import java.util.List;
 public class EmployerAddressNode extends AddressNode<EmployedNode> {
 
     @Inject
-    protected EmployerAddressNode(@Owner EmployedNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected EmployerAddressNode(@Owner EmployedNode parent) {
+        super(parent);
     }
 
     @Override

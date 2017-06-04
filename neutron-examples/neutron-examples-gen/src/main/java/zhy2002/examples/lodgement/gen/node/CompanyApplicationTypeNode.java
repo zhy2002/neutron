@@ -13,8 +13,8 @@ import java.util.List;
 public class CompanyApplicationTypeNode extends StringUiNode<CompanyGeneralNode> {
 
     @Inject
-    protected CompanyApplicationTypeNode(@Owner CompanyGeneralNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected CompanyApplicationTypeNode(@Owner CompanyGeneralNode parent) {
+        super(parent);
     }
 
     @Override

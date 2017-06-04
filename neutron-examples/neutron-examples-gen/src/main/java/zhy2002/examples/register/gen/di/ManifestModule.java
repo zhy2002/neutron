@@ -12,6 +12,7 @@ import zhy2002.neutron.di.NeutronModule;
 
 @Module(includes = {NeutronModule.class},
 subcomponents = {
+    RegisterNodeComponent.class,
     UsernameNodeComponent.class,
     EmailNodeComponent.class,
     PasswordNodeComponent.class,
@@ -20,23 +21,21 @@ subcomponents = {
     PlanNodeComponent.class,
     ReceiveOffersNodeComponent.class,
     OwnInvestmentPropertyNodeComponent.class,
+    PropertyDetailsNodeComponent.class,
     PropertyAddressNodeComponent.class,
     PropertyStateNodeComponent.class,
-    PropertyDetailsNodeComponent.class,
+    PhoneInfoNodeComponent.class,
     CountryCodeNodeComponent.class,
     AreaCodeNodeComponent.class,
     PhoneNumberNodeComponent.class,
-    PhoneInfoNodeComponent.class,
-    ErrorNodeComponent.class,
     ErrorListNodeComponent.class,
-    RegisterNodeComponent.class
+    ErrorNodeComponent.class
 })
 public abstract class ManifestModule {
 
     @Binds
     @Singleton
-    abstract EventRegistry provideEventRegistryImpl(RegisterNodeEventRegistry impl);
-
+    abstract EventRegistry provideEventRegistryImpl(RegisterEventRegistry impl);
 
     @Binds
     @Singleton

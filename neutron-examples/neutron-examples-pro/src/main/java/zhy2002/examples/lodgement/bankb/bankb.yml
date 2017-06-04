@@ -1166,7 +1166,7 @@ commonTypes:
 
   - typeName: EmployedNode
     rules:
-    - {typeName: DoNotLoadEndedDateForCurrentRecordRule, existing: true}
+    - {typeName: DoNotLoadEndedDateForCurrentRecordRule}
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}

@@ -13,8 +13,8 @@ import java.util.List;
 public class MortgageBorrowerRateNode extends BasePercentageNode<ExistingMortgageNode> {
 
     @Inject
-    protected MortgageBorrowerRateNode(@Owner ExistingMortgageNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected MortgageBorrowerRateNode(@Owner ExistingMortgageNode parent) {
+        super(parent);
     }
 
     @Override

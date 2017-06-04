@@ -1,10 +1,11 @@
 targetPackage: zhy2002.examples.lodgement
+typeName: Application
 rootType:
   typeName: ApplicationNode
   baseTypeName: RootUiNode
   properties:
   - {name: showErrorList, typeName: Boolean, default: Boolean.FALSE}
-  - {name: contentLevel, externalTypeName: int, typeName: Integer, default: 1, trackingMode: Always}
+  - {name: contentLevel, typeName: int, default: 1, trackingMode: Always}
   init:
   - {propertyName: selectedName, value: '"personListNode"'}
   rules:
@@ -27,6 +28,8 @@ rootType:
   - {typeName: AdditionalNode}
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
+  config:
+  - {property: 'idNode:loadWithParent', value: 'true'}
   childTypes:
   - typeName: IdNode
     baseTypeName: StringUiNode
@@ -1103,7 +1106,6 @@ commonTypes:
 - typeName: TelephoneNode
   baseTypeName: LeafUiNode
   valueTypeName: Telephone
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: countryCodeReadonly, typeName: Boolean, default: Boolean.FALSE}
@@ -1111,7 +1113,6 @@ commonTypes:
 
 - typeName: AddressNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   children:
@@ -1141,7 +1142,6 @@ commonTypes:
 
 - typeName: MonthYearNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   children:
@@ -1156,36 +1156,30 @@ commonTypes:
 
 - typeName: EmailNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: NameNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: BaseMobileNumberNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: BaseCurrencyNode
   baseTypeName: BigDecimalUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
 
 - typeName: BasePercentageNode
   baseTypeName: BigDecimalUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.PERCENTAGE}
 
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
   properties:
@@ -1297,22 +1291,18 @@ commonTypes:
 
 - typeName: BaseOccupationNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: YesNoOptionNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: BaseCountryNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
 
 - typeName: DobNode
   baseTypeName: StringUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: minAge, typeName: Integer}
@@ -1320,7 +1310,6 @@ commonTypes:
 
 - typeName: SelectRelatedPersonListNode
   baseTypeName: ListUiNode
-  abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: SelectRelatedPersonNode
   childTypes:
@@ -1340,7 +1329,6 @@ commonTypes:
 
 - typeName: SelectAccountHolderListNode
   baseTypeName: ListUiNode
-  abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: SelectAccountHolderNode
   childTypes:
@@ -1360,7 +1348,6 @@ commonTypes:
 
 - typeName: OwnershipListNode
   baseTypeName: ListUiNode
-  abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   properties:
   - {name: totalOwnership, typeName: BigDecimal}
@@ -1386,7 +1373,6 @@ commonTypes:
 
 - typeName: BaseResponsibleLendNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   children:
   - {typeName: ResponsibleTypeOfChangeNode}
@@ -1408,7 +1394,6 @@ commonTypes:
 
 - typeName: BaseOtherIncomeListNode
   baseTypeName: ListUiNode
-  abstractNode: true
   parentBaseTypeName: ObjectUiNode<?>
   itemTypeName: OtherIncomeNode
   childTypes:
@@ -1438,7 +1423,6 @@ commonTypes:
 
 - typeName: BasePrivacyNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   children:
   - {typeName: CreditCheckFlagNode}
@@ -1464,7 +1448,6 @@ commonTypes:
 
 - typeName: BaseTrustNode
   baseTypeName: ObjectUiNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   children:
   - {typeName: TrustNameNode}
@@ -1517,6 +1500,5 @@ commonTypes:
       baseTypeName: StringUiNode
 
 - typeName: BaseApplicantTypeNode
-  abstractNode: true
   parentBaseTypeName: ParentUiNode<?>
   baseTypeName: StringUiNode

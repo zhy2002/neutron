@@ -1,13 +1,11 @@
 package zhy2002.neutron.model;
 
 import zhy2002.neutron.service.CodeGenUtil;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -15,7 +13,6 @@ import java.util.Map;
  */
 public class ProfileInfo extends CodeGenInfo {
 
-    //region mapped data
     @NotNull
     @Valid
     private ProfileNodeInfo rootType;
@@ -38,42 +35,44 @@ public class ProfileInfo extends CodeGenInfo {
         this.commonTypes = commonTypes;
     }
 
-    //endregion
+    ////////////////////////////////////////////////////////
 
     private final Map<String, NodeInfo> nodeInfoMap = new HashMap<>();
     private final List<ProfileNodeInfo> allNodes = new ArrayList<>();
     private final List<ProfileChildInfo> configuredChildren = new ArrayList<>();
 
+    public List<ProfileNodeInfo> getAllNodes() {
+        return allNodes;
+    }
+
+    NodeInfo getNodeInfo(String typeName) {
+        return nodeInfoMap.get(typeName);
+    }
+
+    public List<ProfileChildInfo> getConfiguredChildren() {
+        return configuredChildren;
+    }
+
     @Override
     public void setDomainInfo(DomainInfo domainInfo) {
         super.setDomainInfo(domainInfo);
 
-        domainInfo.getAllNodes().forEach(nodeInfo -> {
-            nodeInfoMap.put(nodeInfo.getTypeName(), nodeInfo);
-        });
+        domainInfo.getAllNodes().forEach(nodeInfo -> nodeInfoMap.put(nodeInfo.getTypeName(), nodeInfo));
     }
 
     @Override
     public void initialize() {
         CodeGenUtil.validateMappedData(this);
 
-        initializeNodes();
-    }
-
-    private void initializeNodes() {
         addNodes(getRootType());
-        if (getCommonTypes() != null) {
-            for (ProfileNodeInfo profileNodeInfo : getCommonTypes()) {
-                addNodes(profileNodeInfo);
-            }
-        }
+        ValueUtil.ifNull(getCommonTypes(), Collections.emptyList()).forEach(this::addNodes);
     }
 
     private void addNodes(ProfileNodeInfo profileNodeInfo) {
         profileNodeInfo.setProfileInfo(this);
-        profileNodeInfo.setNodeInfo(nodeInfoMap.get(profileNodeInfo.getTypeName()));
+        profileNodeInfo.setNodeInfo(getNodeInfo(profileNodeInfo.getTypeName()));
         if (profileNodeInfo.getNodeInfo() == null) {
-            throw new RuntimeException("Node type not declared in the domain: " + profileNodeInfo.getTypeName());
+            raiseError("Node type not declared in the domain: " + profileNodeInfo.getTypeName());
         }
         profileNodeInfo.setDomainInfo(getDomainInfo());
         profileNodeInfo.initialize();
@@ -94,11 +93,4 @@ public class ProfileInfo extends CodeGenInfo {
         }
     }
 
-    public List<ProfileNodeInfo> getAllNodes() {
-        return allNodes;
-    }
-
-    public List<ProfileChildInfo> getConfiguredChildren() {
-        return configuredChildren;
-    }
 }

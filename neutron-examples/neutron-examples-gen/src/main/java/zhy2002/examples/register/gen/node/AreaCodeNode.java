@@ -14,8 +14,8 @@ import java.util.List;
 public class AreaCodeNode extends PhoneInfoFieldNode {
 
     @Inject
-    protected AreaCodeNode(@Owner PhoneInfoNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected AreaCodeNode(@Owner PhoneInfoNode parent) {
+        super(parent);
     }
 
     @Override

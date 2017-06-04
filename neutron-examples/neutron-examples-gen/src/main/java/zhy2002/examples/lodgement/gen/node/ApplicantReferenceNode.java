@@ -14,8 +14,8 @@ import java.util.List;
 public class ApplicantReferenceNode extends ReferenceUiNode<OwnershipNode> {
 
     @Inject
-    protected ApplicantReferenceNode(@Owner OwnershipNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected ApplicantReferenceNode(@Owner OwnershipNode parent) {
+        super(parent);
     }
 
     @Override

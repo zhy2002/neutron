@@ -4,6 +4,7 @@ import com.google.gwt.i18n.shared.DateTimeFormat;
 import zhy2002.neutron.data.StringOption;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,10 @@ public final class ValueUtil {
 
     public static <T> T ifNull(T value, T defaultValue) {
         return value == null ? defaultValue : value;
+    }
+
+    public static <T> List<T> ifNull(List<T> list, List<T> defaultList) {
+        return list == null ? defaultList : list;
     }
 
     public static String nodeNameToLabel(String name) {

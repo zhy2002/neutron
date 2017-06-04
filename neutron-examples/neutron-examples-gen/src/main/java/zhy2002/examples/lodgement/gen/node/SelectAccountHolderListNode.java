@@ -9,10 +9,10 @@ import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.gen.event.*;
 
 
-public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P,SelectAccountHolderNode> {
+public abstract class SelectAccountHolderListNode<P extends ObjectUiNode<?>> extends ListUiNode<P, SelectAccountHolderNode> {
 
-    protected SelectAccountHolderListNode(P parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected SelectAccountHolderListNode(P parent) {
+        super(parent);
     }
 
     protected abstract SelectAccountHolderListNodeComponent getComponent();

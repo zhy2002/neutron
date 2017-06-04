@@ -16,8 +16,8 @@ import java.util.List;
 public class AccessNode extends ObjectUiNode<RealEstateNode> {
 
     @Inject
-    protected AccessNode(@Owner RealEstateNode parentProfileNodeInfo) {
-        super(parentProfileNodeInfo);
+    protected AccessNode(@Owner RealEstateNode parent) {
+        super(parent);
     }
 
     @Override
