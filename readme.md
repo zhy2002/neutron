@@ -1,28 +1,25 @@
 Todo 
 -----------------  
 - add HOCs as an alternative to Neutron base components
+- move logic from JSX to AppManagerNode
 - hierarchical di
   - define an expression language which allows a node to ask its parent for objects meeting certain criteria
   - notification will NOT be provided when the injected instance is changed
 - i18n support
   - runtime configurable culture specific parser/formatter chain
   - React i18n
-- move logic from JSX to AppManagerNode
 - add JEST tests
 - align JSX code with RxJS patterns
 - align JSX code with Redux patterns
 - implement partial load/unload examples
   - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
-- increase dynamism: configure at runtime instead of compile time
-  - add/remove rules at runtime
-  - change default values at runtime
-  - ???
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation
 - exclude generated files from source control
 - construct framework nodes via reflection in codegen module.
 - load config from json
 - support expression in init (as opposed to only constants)
+- add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
 
 Todo (low priority)
 -----------------
@@ -210,6 +207,12 @@ Finished
  
 24 add context level default loadWithParent instead of fixed default value of true
     
+25 increase dynamism: configure at runtime instead of compile time
+  - add/remove rules at runtime
+  - change default values at runtime
+  - ???
+  
+  
 ### Garbage
 
 * preserve value when node is disabled -> conditional state

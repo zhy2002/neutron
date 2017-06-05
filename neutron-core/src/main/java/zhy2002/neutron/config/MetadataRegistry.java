@@ -3,8 +3,6 @@ package zhy2002.neutron.config;
 import zhy2002.neutron.ChangeModeEnum;
 import zhy2002.neutron.ChangeTrackingModeEnum;
 
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,28 +38,38 @@ public class MetadataRegistry {
     }
 
     public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode) {
-        return createProperty(definingClass, propertyName, valueClass, defaultValue, tracingMode, changeMode, false);
+        return createProperty(definingClass, propertyName, valueClass, defaultValue, tracingMode, changeMode, null);
     }
 
-    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode, boolean configurable) {
+    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode, Boolean configurable) {
+        return createProperty(definingClass, propertyName, valueClass, defaultValue, tracingMode, changeMode, null, null);
+    }
 
-        if (tracingMode == null) {
-            tracingMode = getDefaultChangeTrackingMode(valueClass);
-        }
+    public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode, Boolean configurable, Boolean inherited) {
 
-        if (changeMode == null) {
-            changeMode = ChangeModeEnum.CASCADE;
-        }
-
-        PropertyMetadata<T> propertyMetadata = new PropertyMetadata<>(
+        PropertyMetadataBuilder<T> builder = new PropertyMetadataBuilder<T>(
                 definingClass,
                 propertyName,
-                valueClass,
-                defaultValue,
-                tracingMode,
-                changeMode,
-                configurable
+                valueClass
         );
+        if (defaultValue != null) {
+            builder.setDefaultValue(defaultValue);
+        }
+        if (tracingMode != null) {
+            builder.setChangeTrackingMode(tracingMode);
+        }
+        if (changeMode != null) {
+            builder.setChangeMode(changeMode);
+        }
+        if (configurable != null) {
+            builder.setConfigurable(configurable);
+        }
+
+        if (inherited != null) {
+            builder.setInherited(inherited);
+        }
+
+        PropertyMetadata<T> propertyMetadata = builder.build();
         UiNodeMetadata nodeMetadata = getClassMetadata(definingClass);
         nodeMetadata.addPropertyMetadata(propertyMetadata);
         return propertyMetadata;
@@ -69,14 +77,6 @@ public class MetadataRegistry {
 
     public static UiNodeMetadata getClassMetadata(Class<?> definingClass) {
         return uiNodeMetadataMap.computeIfAbsent(definingClass, UiNodeMetadata::new);
-    }
-
-    private static @NotNull
-    ChangeTrackingModeEnum getDefaultChangeTrackingMode(Class<?> valueClass) {
-        if (valueClass == Boolean.class || valueClass == Integer.class || valueClass == BigDecimal.class)
-            return ChangeTrackingModeEnum.Value;
-
-        return ChangeTrackingModeEnum.Reference;
     }
 
 }

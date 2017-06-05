@@ -305,7 +305,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             value = getStateValueDirectly(propertyMetadata.getStateKey());
         }
 
-        if (value == null) {
+        if (value == null && propertyMetadata.isConfigurable()) {
             value = getConfiguration().getConfigValue(propertyMetadata.getName());
         }
 
