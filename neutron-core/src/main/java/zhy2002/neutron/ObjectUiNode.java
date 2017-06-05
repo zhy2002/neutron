@@ -19,8 +19,6 @@ import java.util.*;
  */
 public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNode<P> {
 
-    private Set<String> autoLoadedChildNames;
-
     protected ObjectUiNode(@NotNull P parent) {
         super(parent);
     }
@@ -107,23 +105,6 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         }
         getContext().setNodeIdentity(childNodeIdentity);
         setNameOfChildBeingCreated(childName);
-    }
-
-    public final Set<String> getAutoLoadedChildNames() {
-        if (autoLoadedChildNames == null) {
-            autoLoadedChildNames = new HashSet<>();
-            ContextConfiguration configuration = getContext().getConfiguration();
-            Class<?> clazz = getConcreteClass();
-            do {
-                NodeConfiguration config = configuration.getConfig(clazz);
-                Set<String> names = config.getConfigValue("AutoLoadedChildNames");
-                if (names != null) {
-                    autoLoadedChildNames.addAll(names);
-                }
-                clazz = clazz.getSuperclass();
-            } while (clazz != null);
-        }
-        return autoLoadedChildNames;
     }
 
     //endregion

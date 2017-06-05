@@ -16,7 +16,7 @@ public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
     Lazy<RegisterNode> rootNodeLazy;
 
     @Inject
-    ContextConfigurer<RegisterNodeContext> configurer;
+    Lazy<Set<ContextConfigurer<RegisterNodeContext>>> configurers;
 
     @Inject
     public RegisterNodeContext() {
@@ -26,9 +26,9 @@ public class RegisterNodeContext extends AbstractUiNodeContext<RegisterNode> {
     @Override
     @NotNull
     protected RegisterNode createRootNode() {
-        if (configurer != null) {
-            configurer.configure(this);
-            configurer = null;
+        if (configurers != null) {
+            configurers.get().stream().sorted(Comparator.comparingInt(Ordered::getOrderKey)).forEach(c -> c.configure(this));
+            configurers = null;
         }
         return rootNodeLazy.get();
     }

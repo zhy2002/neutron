@@ -1,6 +1,7 @@
 package zhy2002.examples.register.gen.di;
 
 import dagger.*;
+import dagger.multibindings.IntoSet;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.config.ContextConfigurer;
 import zhy2002.examples.register.gen.RegisterNodeContextConfigurer;
@@ -38,7 +39,7 @@ public abstract class ManifestModule {
     abstract EventRegistry provideEventRegistryImpl(RegisterEventRegistry impl);
 
     @Binds
-    @Singleton
+    @IntoSet
     abstract ContextConfigurer<RegisterNodeContext> provideRegisterNodeContextConfigurer(
         RegisterNodeContextConfigurer impl
     );

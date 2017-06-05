@@ -16,7 +16,7 @@ public class ApplicationNodeContext extends AbstractUiNodeContext<ApplicationNod
     Lazy<ApplicationNode> rootNodeLazy;
 
     @Inject
-    ContextConfigurer<ApplicationNodeContext> configurer;
+    Lazy<Set<ContextConfigurer<ApplicationNodeContext>>> configurers;
 
     @Inject
     public ApplicationNodeContext() {
@@ -26,9 +26,9 @@ public class ApplicationNodeContext extends AbstractUiNodeContext<ApplicationNod
     @Override
     @NotNull
     protected ApplicationNode createRootNode() {
-        if (configurer != null) {
-            configurer.configure(this);
-            configurer = null;
+        if (configurers != null) {
+            configurers.get().stream().sorted(Comparator.comparingInt(Ordered::getOrderKey)).forEach(c -> c.configure(this));
+            configurers = null;
         }
         return rootNodeLazy.get();
     }

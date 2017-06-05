@@ -1,8 +1,8 @@
 typeName: BankB
 rootType:
   typeName: ApplicationNode
-  init:
-  - {propertyName: nodeLabel, value: '"Bank B"'}
+  config:
+  - {property: '@nodeLabel', value: '"Bank B"'}
   children:
   - {typeName: IdNode}
   - {typeName: StatusNode}
@@ -33,8 +33,8 @@ rootType:
     - typeName: AddressRefNode
 
   - typeName: PersonListNode
-    init:
-    - {propertyName: nodeLabel, value: '"Person Applicant"'}
+    config:
+    - {property: '@nodeLabel', value: '"Person Applicant"'}
     childTypes:
     - typeName: PersonNode
       rules:
@@ -236,27 +236,27 @@ rootType:
           - {propertyName: required, value: 'true'}
 
         - typeName: CompanyRegisteredNameNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: CompanyTypeNode
         - typeName: CompanyDescriptionNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: CompanyIndustryNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: CompanyAbnNode
         - typeName: CompanyAcnNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: CompanyAbrnNode
         - typeName: CompanyRegistrationDateNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: CompanyRegistrationStateNode
           init:
@@ -679,8 +679,8 @@ rootType:
               - {propertyName: required, value: true}
 
             - typeName: MortgageInterestOnlyRemainingPeriodNode
-              init:
-              - {propertyName: required, value: true}
+              config:
+              - {property: '@required', value: 'true'}
 
       - typeName:  PropertyNode
         children:
@@ -920,8 +920,8 @@ rootType:
             - {propertyName: enablingValue, value: '"Other"'}
 
         - typeName: FeeDescriptionNode
-          init:
-          - {propertyName: required, value: 'true'}
+          config:
+          - {property: '@required', value: 'true'}
 
         - typeName: FeePayFromNode
           init:
@@ -1146,8 +1146,8 @@ commonTypes:
     - {typeName: GrossYearlySalaryNode}
     childTypes:
     - typeName: GrossYearlySalaryNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
   - typeName: SelfEmployedNode
     children:
@@ -1157,12 +1157,12 @@ commonTypes:
     childTypes:
     - typeName: BusinessTypeNode
     - typeName: ProfitThisYearNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: ProfitPreviousYearNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
   - typeName: EmployedNode
     rules:

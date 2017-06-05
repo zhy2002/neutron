@@ -24,6 +24,6 @@ public final class NeutronConstants {
     public static final String ADD_OR_REMOVE_NODE = "";
     public static final String PLACEHOLDER_RULE_PROVIDER = "PLACEHOLDER_RULE_PROVIDER";
     public static final String TYPE_RULE_PROVIDER = "TYPE_RULE_PROVIDER";
-    public static final int DOMAIN_CONTEXT_CONFIGURER_LEVEL = 100;
-    public static final int PROFILE_CONTEXT_CONFIGURER_LEVEL = 1000;
+    public static final int DOMAIN_CONTEXT_CONFIGURER_ORDER = 100;
+    public static final int PROFILE_CONTEXT_CONFIGURER_ORDER = 1000;
 }

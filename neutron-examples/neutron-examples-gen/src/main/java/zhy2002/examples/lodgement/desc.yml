@@ -28,12 +28,11 @@ rootType:
   - {typeName: AdditionalNode}
   - {typeName: SubmissionNode}
   - {typeName: ErrorListNode}
-  config:
-  - {property: 'idNode:loadWithParent', value: 'true'}
   childTypes:
   - typeName: IdNode
     baseTypeName: StringUiNode
-
+    config:
+    - {property: 'idNode/@loadWithParent', value: 'true'}
   - typeName: StatusNode
     baseTypeName: StringUiNode
 
@@ -58,8 +57,8 @@ rootType:
     childTypes:
     - typeName: AddressRefNode
       baseTypeName: ReferenceUiNode
-      init:
-      - {propertyName: removeEmpty, value: true}
+      config:
+      - {property: 'addressRefNode/@removeEmpty', value: true}
 
   - typeName: PersonListNode
     baseTypeName: ListUiNode
@@ -67,8 +66,8 @@ rootType:
     childTypes:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
-      init:
-      - {propertyName: selectedName, value: '"personGeneralNode"'}
+      config:
+      - {property: 'personNode/@selectedName', value: '"personGeneralNode"'}
       children:
       - {typeName: PersonGeneralNode}
       - {typeName: PersonContactNode}

@@ -2,6 +2,7 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.NodeConfiguration;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.data.ValidationError;
@@ -100,13 +101,14 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      */
     private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
 
+    private final NodeConfiguration configuration;
+
     private boolean allParentsLoaded = false;
 
     /**
      * Construct a child node.
      *
      * @param parent the parent node.
-     * @param name   unique name within parent.
      */
     protected UiNode(@NotNull P parent) {
         this(parent, parent.getContext());
@@ -134,6 +136,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             assert name.equals(nodeIdentity.getName());
         }
         this.nodeStatus = NodeStatusEnum.Detached;
+        this.configuration = initializeConfig();
     }
 
     /**
@@ -302,6 +305,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             value = getStateValueDirectly(propertyMetadata.getStateKey());
         }
 
+        if (value == null) {
+            value = getConfiguration().getConfigValue(propertyMetadata.getName());
+        }
+
         return value == null ? propertyMetadata.getDefaultValue() : value;
     }
 
@@ -431,20 +438,41 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         this.nodeStatus = NodeStatusEnum.Unloaded;
         getContext().getNodeFinder().registerNode(this);
 
-        //load initial value from config
-        if (parent instanceof ObjectUiNode) {
-            boolean loadWithParent = ((ObjectUiNode<?>)parent).getAutoLoadedChildNames().contains(getName());
-            if (loadWithParent != getLoadWithParent()) {
-                setLoadWithParent(loadWithParent);
-            }
-        }
         initializeState();
+    }
+
+    private NodeConfiguration initializeConfig() {
+        NodeConfiguration configuration = new NodeConfiguration(getName());
+        Stack<Class<?>> baseClasses = getBaseClasses();
+        while (!baseClasses.isEmpty()) {
+            NodeConfiguration baseConfig = getContext().getConfiguration().getConfig(baseClasses.pop());
+            configuration.merge(baseConfig);
+        }
+        if (parent != null) {
+            configuration.merge(parent.getConfiguration());
+        }
+        configuration.merge(getContext().getConfiguration().getConfig(getConcreteClass()));
+        return configuration;
+    }
+
+    private Stack<Class<?>> getBaseClasses() {
+        Stack<Class<?>> result = new Stack<>();
+        Class<?> clazz = getConcreteClass().getSuperclass();
+        while (clazz != Object.class) {
+            result.add(clazz);
+            clazz = clazz.getSuperclass();
+        }
+        return result;
     }
 
     /**
      * Override at concrete node level.
      */
     protected abstract void initializeState();
+
+    public NodeConfiguration getConfiguration() {
+        return configuration;
+    }
 
     /**
      * Return to step 1 status.

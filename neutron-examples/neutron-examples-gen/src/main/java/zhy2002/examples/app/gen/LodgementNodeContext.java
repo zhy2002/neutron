@@ -16,7 +16,7 @@ public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
     Lazy<LodgementNode> rootNodeLazy;
 
     @Inject
-    ContextConfigurer<LodgementNodeContext> configurer;
+    Lazy<Set<ContextConfigurer<LodgementNodeContext>>> configurers;
 
     @Inject
     public LodgementNodeContext() {
@@ -26,9 +26,9 @@ public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
     @Override
     @NotNull
     protected LodgementNode createRootNode() {
-        if (configurer != null) {
-            configurer.configure(this);
-            configurer = null;
+        if (configurers != null) {
+            configurers.get().stream().sorted(Comparator.comparingInt(Ordered::getOrderKey)).forEach(c -> c.configure(this));
+            configurers = null;
         }
         return rootNodeLazy.get();
     }

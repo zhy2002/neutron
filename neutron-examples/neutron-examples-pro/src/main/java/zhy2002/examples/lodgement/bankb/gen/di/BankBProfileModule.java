@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.bankb.gen.di;
 /* template name: profile_module.ftl */
 import dagger.Binds;
+import dagger.multibindings.IntoSet;
 import dagger.Module;
 import dagger.multibindings.*;
 import javax.inject.Named;
@@ -9,14 +10,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.bankb.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.neutron.config.ContextConfigurer;
+import zhy2002.examples.lodgement.bankb.gen.*;
+import zhy2002.examples.lodgement.gen.*;
+
 
 @Module(includes = {ManifestModule.class})
 public abstract class BankBProfileModule {
 
-    @Binds
-    abstract ApplicationNodeRuleProvider provideApplicationNodeRuleProvider(BankBApplicationNodeRuleProvider impl);
-    @Binds
-    abstract PersonListNodeRuleProvider providePersonListNodeRuleProvider(BankBPersonListNodeRuleProvider impl);
     @Binds
     abstract PersonNodeRuleProvider providePersonNodeRuleProvider(BankBPersonNodeRuleProvider impl);
     @Binds
@@ -63,16 +64,6 @@ public abstract class BankBProfileModule {
     abstract CompanyNodeRuleProvider provideCompanyNodeRuleProvider(BankBCompanyNodeRuleProvider impl);
     @Binds
     abstract CompanyApplicationTypeNodeRuleProvider provideCompanyApplicationTypeNodeRuleProvider(BankBCompanyApplicationTypeNodeRuleProvider impl);
-    @Binds
-    abstract CompanyRegisteredNameNodeRuleProvider provideCompanyRegisteredNameNodeRuleProvider(BankBCompanyRegisteredNameNodeRuleProvider impl);
-    @Binds
-    abstract CompanyDescriptionNodeRuleProvider provideCompanyDescriptionNodeRuleProvider(BankBCompanyDescriptionNodeRuleProvider impl);
-    @Binds
-    abstract CompanyIndustryNodeRuleProvider provideCompanyIndustryNodeRuleProvider(BankBCompanyIndustryNodeRuleProvider impl);
-    @Binds
-    abstract CompanyAcnNodeRuleProvider provideCompanyAcnNodeRuleProvider(BankBCompanyAcnNodeRuleProvider impl);
-    @Binds
-    abstract CompanyRegistrationDateNodeRuleProvider provideCompanyRegistrationDateNodeRuleProvider(BankBCompanyRegistrationDateNodeRuleProvider impl);
     @Binds
     abstract CompanyRegistrationStateNodeRuleProvider provideCompanyRegistrationStateNodeRuleProvider(BankBCompanyRegistrationStateNodeRuleProvider impl);
     @Binds
@@ -176,8 +167,6 @@ public abstract class BankBProfileModule {
     @Binds
     abstract MortgageTermRemainingPeriodNodeRuleProvider provideMortgageTermRemainingPeriodNodeRuleProvider(BankBMortgageTermRemainingPeriodNodeRuleProvider impl);
     @Binds
-    abstract MortgageInterestOnlyRemainingPeriodNodeRuleProvider provideMortgageInterestOnlyRemainingPeriodNodeRuleProvider(BankBMortgageInterestOnlyRemainingPeriodNodeRuleProvider impl);
-    @Binds
     abstract RentedFlagNodeRuleProvider provideRentedFlagNodeRuleProvider(BankBRentedFlagNodeRuleProvider impl);
     @Binds
     abstract EstimatedMarketValueNodeRuleProvider provideEstimatedMarketValueNodeRuleProvider(BankBEstimatedMarketValueNodeRuleProvider impl);
@@ -213,8 +202,6 @@ public abstract class BankBProfileModule {
     abstract ContributionAmountNodeRuleProvider provideContributionAmountNodeRuleProvider(BankBContributionAmountNodeRuleProvider impl);
     @Binds
     abstract FeeTypeNodeRuleProvider provideFeeTypeNodeRuleProvider(BankBFeeTypeNodeRuleProvider impl);
-    @Binds
-    abstract FeeDescriptionNodeRuleProvider provideFeeDescriptionNodeRuleProvider(BankBFeeDescriptionNodeRuleProvider impl);
     @Binds
     abstract FeePayFromNodeRuleProvider provideFeePayFromNodeRuleProvider(BankBFeePayFromNodeRuleProvider impl);
     @Binds
@@ -273,12 +260,6 @@ public abstract class BankBProfileModule {
     abstract BasePercentageNodeRuleProvider provideBasePercentageNodeRuleProvider(BankBBasePercentageNodeRuleProvider impl);
     @Binds
     abstract EmploymentTypeNodeRuleProvider provideEmploymentTypeNodeRuleProvider(BankBEmploymentTypeNodeRuleProvider impl);
-    @Binds
-    abstract GrossYearlySalaryNodeRuleProvider provideGrossYearlySalaryNodeRuleProvider(BankBGrossYearlySalaryNodeRuleProvider impl);
-    @Binds
-    abstract ProfitThisYearNodeRuleProvider provideProfitThisYearNodeRuleProvider(BankBProfitThisYearNodeRuleProvider impl);
-    @Binds
-    abstract ProfitPreviousYearNodeRuleProvider provideProfitPreviousYearNodeRuleProvider(BankBProfitPreviousYearNodeRuleProvider impl);
     @Binds
     abstract EmployedNodeRuleProvider provideEmployedNodeRuleProvider(BankBEmployedNodeRuleProvider impl);
     @Binds
@@ -362,4 +343,10 @@ public abstract class BankBProfileModule {
             BankBSubmissionNodeChildContactNumberNodeRuleProvider impl
     );
 
+
+    @Binds
+    @IntoSet
+    abstract ContextConfigurer<ApplicationNodeContext> provideBankBApplicationNodeContextConfigurer(
+        BankBApplicationNodeContextConfigurer impl
+    );
 }

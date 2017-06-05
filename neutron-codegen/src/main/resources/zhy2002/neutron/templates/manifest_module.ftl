@@ -1,6 +1,7 @@
 package ${targetPackage}.gen.di;
 
 import dagger.*;
+import dagger.multibindings.IntoSet;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.config.ContextConfigurer;
 import ${targetPackage}.gen.${rootType.typeName}ContextConfigurer;
@@ -23,7 +24,7 @@ public abstract class ManifestModule {
     abstract EventRegistry provideEventRegistryImpl(${typeName}EventRegistry impl);
 
     @Binds
-    @Singleton
+    @IntoSet
     abstract ContextConfigurer<${rootType.typeName}Context> provide${rootType.typeName}ContextConfigurer(
         ${rootType.typeName}ContextConfigurer impl
     );

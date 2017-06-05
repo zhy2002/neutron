@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.bankc.gen.di;
 /* template name: profile_module.ftl */
 import dagger.Binds;
+import dagger.multibindings.IntoSet;
 import dagger.Module;
 import dagger.multibindings.*;
 import javax.inject.Named;
@@ -9,12 +10,14 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.bankc.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.neutron.config.ContextConfigurer;
+import zhy2002.examples.lodgement.bankc.gen.*;
+import zhy2002.examples.lodgement.gen.*;
+
 
 @Module(includes = {ManifestModule.class})
 public abstract class BankCProfileModule {
 
-    @Binds
-    abstract ApplicationNodeRuleProvider provideApplicationNodeRuleProvider(BankCApplicationNodeRuleProvider impl);
     @Binds
     abstract PersonListNodeRuleProvider providePersonListNodeRuleProvider(BankCPersonListNodeRuleProvider impl);
     @Binds
@@ -358,4 +361,10 @@ public abstract class BankCProfileModule {
             BankCSubmissionNodeChildContactNumberNodeRuleProvider impl
     );
 
+
+    @Binds
+    @IntoSet
+    abstract ContextConfigurer<ApplicationNodeContext> provideBankCApplicationNodeContextConfigurer(
+        BankCApplicationNodeContextConfigurer impl
+    );
 }

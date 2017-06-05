@@ -7,7 +7,7 @@ import zhy2002.neutron.UiNodeContext;
  * information to the context configuration.
  * @param <C> the concrete context type.
  */
-public interface ContextConfigurer<C extends UiNodeContext<?>> {
+public interface ContextConfigurer<C extends UiNodeContext<?>> extends Ordered {
 
     void configure(C context);
 }

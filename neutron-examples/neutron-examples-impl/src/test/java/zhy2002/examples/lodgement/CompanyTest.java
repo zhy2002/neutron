@@ -43,4 +43,9 @@ public class CompanyTest {
         assertThat(companyNode.getCompanyTrustNode().isDirty(), equalTo(true));
         assertThat(companyNode.isDirty(), equalTo(true));
     }
+
+    @Test
+    public void applicationNodeLabelIsSet() {
+        assertThat(applicationNode.getNodeLabel(), equalTo("Bank B"));
+    }
 }

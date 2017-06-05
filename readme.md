@@ -21,6 +21,8 @@ Todo
 - implement server side validation
 - exclude generated files from source control
 - construct framework nodes via reflection in codegen module.
+- load config from json
+- 
 
 Todo (low priority)
 -----------------

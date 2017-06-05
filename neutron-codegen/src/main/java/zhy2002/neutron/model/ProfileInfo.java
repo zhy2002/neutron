@@ -18,6 +18,8 @@ public class ProfileInfo extends CodeGenInfo {
     private ProfileNodeInfo rootType;
     @Valid
     private List<ProfileNodeInfo> commonTypes = new ArrayList<>();
+    @Valid
+    private List<ConfigInfo> config;
 
     public ProfileNodeInfo getRootType() {
         return rootType;
@@ -33,6 +35,14 @@ public class ProfileInfo extends CodeGenInfo {
 
     public void setCommonTypes(List<ProfileNodeInfo> commonTypes) {
         this.commonTypes = commonTypes;
+    }
+
+    public List<ConfigInfo> getConfig() {
+        return config;
+    }
+
+    public void setConfig(List<ConfigInfo> config) {
+        this.config = config;
     }
 
     ////////////////////////////////////////////////////////

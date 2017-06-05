@@ -1,6 +1,7 @@
 package zhy2002.examples.lodgement.gen.di;
 
 import dagger.*;
+import dagger.multibindings.IntoSet;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.config.ContextConfigurer;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContextConfigurer;
@@ -342,7 +343,7 @@ public abstract class ManifestModule {
     abstract EventRegistry provideEventRegistryImpl(ApplicationEventRegistry impl);
 
     @Binds
-    @Singleton
+    @IntoSet
     abstract ContextConfigurer<ApplicationNodeContext> provideApplicationNodeContextConfigurer(
         ApplicationNodeContextConfigurer impl
     );

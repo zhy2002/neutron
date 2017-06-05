@@ -1,8 +1,8 @@
 typeName: BankA
 rootType:
   typeName: ApplicationNode
-  init:
-  - {propertyName: nodeLabel, value: '"Bank A"'}
+  config:
+  - {property: '@nodeLabel', value: '"Bank A"'}
   children:
   - {typeName: IdNode}
   - {typeName: StatusNode}

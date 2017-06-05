@@ -1,6 +1,7 @@
 package ${targetPackage}.${typeName?lower_case}.gen.di;
 /* template name: profile_module.ftl */
 import dagger.Binds;
+import dagger.multibindings.IntoSet;
 import dagger.Module;
 <#if configuredChildren?size gt 0>
 import dagger.multibindings.*;
@@ -13,6 +14,10 @@ import ${targetPackage}.${typeName?lower_case}.gen.node.*;
 </#if>
 import zhy2002.neutron.*;
 import zhy2002.neutron.rule.*;
+import zhy2002.neutron.config.ContextConfigurer;
+import ${targetPackage}.${typeName?lower_case}.gen.*;
+import ${targetPackage}.gen.*;
+
 
 @Module(includes = {ManifestModule.class})
 public abstract class ${typeName}ProfileModule {
@@ -34,4 +39,10 @@ public abstract class ${typeName}ProfileModule {
     );
 
 </#list>
+
+    @Binds
+    @IntoSet
+    abstract ContextConfigurer<${rootType.typeName}Context> provide${typeName}${rootType.typeName}ContextConfigurer(
+        ${typeName}${rootType.typeName}ContextConfigurer impl
+    );
 }

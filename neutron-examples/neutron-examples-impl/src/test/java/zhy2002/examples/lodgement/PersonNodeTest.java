@@ -328,4 +328,9 @@ public class PersonNodeTest {
 
     }
 
+    @Test
+    public void otherTitleNodeIsNotLoadedByDefault() {
+        assertThat(personGeneralNode.getOtherTitleNode().getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
+    }
+
 }

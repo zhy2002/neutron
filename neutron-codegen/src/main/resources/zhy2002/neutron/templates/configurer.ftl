@@ -1,8 +1,8 @@
 package ${targetPackage}.gen;
 
 import ${targetPackage}.gen.node.*;
-import zhy2002.neutron.config.ContextConfiguration;
-import zhy2002.neutron.config.ContextConfigurer;
+import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.*;
 import javax.inject.Inject;
 import java.util.*;
 
@@ -13,21 +13,21 @@ public class ${typeName}ContextConfigurer implements ContextConfigurer<${typeNam
     protected ${typeName}ContextConfigurer() {}
 
     @Override
+    public int getOrderKey() {
+        return NeutronConstants.DOMAIN_CONTEXT_CONFIGURER_ORDER;
+    }
+
+    @Override
     public void configure(${typeName}Context context) {
         ContextConfiguration configuration = context.getConfiguration();
 
-        Set<String> names;
 <#list domainInfo.allNodes as node >
-    <#if node.children?? && node.children?size gt 0>
-        names = new HashSet<>();
-    <#list node.children as child>
-        <#if child.loadWithParent>
-        names.add("${child.name}");
-        </#if>
-    </#list>
-        configuration.getConfig(${node.typeName}.class).setConfigValue("AutoLoadedChildNames", names);
+    <#if node.config?? >
+        NodeConfiguration config${node.typeName} = configuration.getConfig(${node.typeName}.class);
+        <#list node.config as item>
+            config${node.typeName}.setConfigValue("${item.property}", ${item.value});
+        </#list>
     </#if>
 </#list>
-
     }
 }

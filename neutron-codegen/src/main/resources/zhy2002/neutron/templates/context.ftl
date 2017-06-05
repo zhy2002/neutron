@@ -16,7 +16,7 @@ public class ${typeName}Context extends AbstractUiNodeContext<${typeName}> {
     Lazy<${typeName}> rootNodeLazy;
 
     @Inject
-    ContextConfigurer<${typeName}Context> configurer;
+    Lazy<Set<ContextConfigurer<${typeName}Context>>> configurers;
 
     @Inject
     public ${typeName}Context() {
@@ -26,9 +26,9 @@ public class ${typeName}Context extends AbstractUiNodeContext<${typeName}> {
     @Override
     @NotNull
     protected ${typeName} createRootNode() {
-        if (configurer != null) {
-            configurer.configure(this);
-            configurer = null;
+        if (configurers != null) {
+            configurers.get().stream().sorted(Comparator.comparingInt(Ordered::getOrderKey)).forEach(c -> c.configure(this));
+            configurers = null;
         }
         return rootNodeLazy.get();
     }
