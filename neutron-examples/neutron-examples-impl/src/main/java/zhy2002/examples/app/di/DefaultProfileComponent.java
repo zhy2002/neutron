@@ -1,14 +1,14 @@
 package zhy2002.examples.app.di;
 
 import dagger.Component;
-import zhy2002.examples.app.gen.LodgementNodeContext;
+import zhy2002.examples.app.gen.GlobalUiStateNodeContext;
 
 import javax.inject.Singleton;
 
 
 @Singleton
-@Component(modules = {DefaultProfileModule.class}) //Please provide this class if it is missing.
+@Component(modules = {DefaultProfileModule.class})
 public interface DefaultProfileComponent {
 
-    LodgementNodeContext provideLodgementNodeContext();
+    GlobalUiStateNodeContext provideGlobalUiStateNodeContext();
 }

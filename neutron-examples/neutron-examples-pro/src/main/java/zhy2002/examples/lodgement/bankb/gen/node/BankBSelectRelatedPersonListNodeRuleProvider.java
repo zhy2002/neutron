@@ -6,8 +6,6 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.di.*;
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 import zhy2002.neutron.rule.*;
 import zhy2002.examples.lodgement.gen.rule.*;
 import zhy2002.examples.lodgement.bankb.gen.rule.*;
@@ -25,7 +23,6 @@ public class BankBSelectRelatedPersonListNodeRuleProvider extends SelectRelatedP
     public void initializeState(SelectRelatedPersonListNode<?> node) {
         super.initializeState(node);
 
-        node.setKeepItemsOnReset(true);
     }
 
     @Inject

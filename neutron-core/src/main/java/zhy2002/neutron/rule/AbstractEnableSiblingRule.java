@@ -1,7 +1,7 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;

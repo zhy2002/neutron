@@ -6,9 +6,9 @@ import ${targetPackage}.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import zhy2002.neutron.config.NeutronConstants;
 <#if !abstractNode && parentType.children ??></#if>
 import java.util.*;
-import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module

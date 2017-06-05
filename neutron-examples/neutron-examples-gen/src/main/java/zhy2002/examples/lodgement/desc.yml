@@ -31,8 +31,7 @@ rootType:
   childTypes:
   - typeName: IdNode
     baseTypeName: StringUiNode
-    config:
-    - {property: 'idNode/@loadWithParent', value: 'true'}
+
   - typeName: StatusNode
     baseTypeName: StringUiNode
 
@@ -58,7 +57,7 @@ rootType:
     - typeName: AddressRefNode
       baseTypeName: ReferenceUiNode
       config:
-      - {property: 'addressRefNode/@removeEmpty', value: true}
+      - {property: '@removeEmpty', value: true}
 
   - typeName: PersonListNode
     baseTypeName: ListUiNode
@@ -67,7 +66,7 @@ rootType:
     - typeName: PersonNode
       baseTypeName: ObjectUiNode
       config:
-      - {property: 'personNode/@selectedName', value: '"personGeneralNode"'}
+      - {property: '@selectedName', value: '"personGeneralNode"'}
       children:
       - {typeName: PersonGeneralNode}
       - {typeName: PersonContactNode}
@@ -1127,8 +1126,8 @@ commonTypes:
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode
-    init:
-    - {propertyName: required, value: 'true'}
+    config:
+    - {property: '@required', value: 'true'}
 
   - typeName: SuburbNode
     baseTypeName: StringUiNode
@@ -1320,8 +1319,8 @@ commonTypes:
     childTypes:
     - typeName: RelatedPersonReferenceNode
       baseTypeName: ReferenceUiNode
-      init:
-      - {propertyName: removeEmpty, value: true}
+      config:
+      - {property: '@removeEmpty', value: true}
 
     - typeName: SelectRelatedPersonFlagNode
       baseTypeName: BooleanUiNode
@@ -1339,8 +1338,8 @@ commonTypes:
     childTypes:
     - typeName: AccountHolderReferenceNode
       baseTypeName: ReferenceUiNode
-      init:
-      - {propertyName: removeEmpty, value: true}
+      config:
+      - {property: '@removeEmpty', value: true}
 
     - typeName: SelectAccountHolderFlagNode
       baseTypeName: BooleanUiNode
@@ -1361,8 +1360,8 @@ commonTypes:
     childTypes:
     - typeName: ApplicantReferenceNode
       baseTypeName: ReferenceUiNode
-      init:
-      - {propertyName: removeEmpty, value: true}
+      config:
+      - {property: '@removeEmpty', value: true}
 
     - typeName: OwnershipPercentageNode
       baseTypeName: BasePercentageNode

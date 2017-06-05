@@ -1113,18 +1113,18 @@ commonTypes:
   - {typeName: InvalidCharPreChangeRule, existing: true}
 
 - typeName: BaseMobileNumberNode
-  init:
-  - {propertyName: pattern, value: '"^(\\+\\d{1,3}[- ]?)?\\d{10}$"'}
-  - {propertyName: patternMessage, value: '"Invalid mobile number."'}
+  config:
+  - {property: '@pattern', value: '"^(\\+\\d{1,3}[- ]?)?\\d{10}$"'}
+  - {property: '@patternMessage', value: '"Invalid mobile number."'}
 
 - typeName: BaseCurrencyNode
-  init:
-  - {propertyName: minValue, value: new BigDecimal("0.01")}
+  config:
+  - {property: '@minValue', value: new BigDecimal("0.01")}
 
 - typeName: BasePercentageNode
-  init:
-  - {propertyName: minValue, value: new BigDecimal("0")}
-  - {propertyName: maxValue, value: new BigDecimal("100")}
+  config:
+  - {property: '@minValue', value: new BigDecimal("0")}
+  - {property: '@maxValue', value: new BigDecimal("100")}
 
 - typeName: EmploymentNode
   children:
@@ -1178,29 +1178,29 @@ commonTypes:
 
     childTypes:
     - typeName: EmploymentStatusNode
-      init:
-      - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS'}
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@options', value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS'}
+      - {property: '@required', value: 'true'}
 
     - typeName: OccupationNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: EmployerNameNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: EmployerAddressNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: EmployerPhoneNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: EmploymentStartedNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: EmploymentEndedNode
       init:
@@ -1217,24 +1217,24 @@ commonTypes:
     - {typeName: UnemployedSinceNode}
     childTypes:
     - typeName: UnemployedOnBenefitFlagNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: StudentFlagNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: StudentTypeNode
-      init:
-      - {propertyName: options, value: 'ApplicationNodeConstants.STUDENT_TYPE'}
+      config:
+      - {property: '@options', value: 'ApplicationNodeConstants.STUDENT_TYPE'}
 
     - typeName: HouseDutiesFlagNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: UnemployedSinceNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
   - typeName: RetiredEmploymentNode
     children:
@@ -1242,21 +1242,21 @@ commonTypes:
     - {typeName: RetiredSinceNode}
     childTypes:
     - typeName: RetiredOnBenefitFlagNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: RetiredSinceNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
 - typeName: BaseOccupationNode
 - typeName: YesNoOptionNode
-  init:
-  - {propertyName: options, value: 'ApplicationNodeConstants.YES_NO_TYPE'}
+  config:
+  - {property: '@options', value: ApplicationNodeConstants.YES_NO_TYPE}
 
 - typeName: BaseCountryNode
-  init:
-  - {propertyName: options, value: ApplicationNodeConstants.COUNTRY_TYPE}
+  config:
+  - {property: '@options', value: ApplicationNodeConstants.COUNTRY_TYPE}
 
 - typeName: DobNode
   init:
@@ -1266,8 +1266,8 @@ commonTypes:
   - {typeName: DobRangeValidationRule, existing: true}
 
 - typeName: SelectRelatedPersonListNode
-  init:
-  - {propertyName: keepItemsOnReset, value: 'true'}
+  config:
+  - {property: '@keepItemsOnReset', value: 'true'}
   rules:
   - {typeName: AddExistingPeopleRule, existing: true}
   - {typeName: AddNewPersonRule, existing: true}
@@ -1313,8 +1313,8 @@ commonTypes:
     childTypes:
     - typeName: ApplicantReferenceNode
     - typeName: OwnershipPercentageNode
-      init:
-      - {propertyName: value, value: 'new BigDecimal("0")'}
+      config:
+      - {property: '@value', value: new BigDecimal("0")}
 
     - typeName: AverageFlagNode
 
@@ -1326,26 +1326,26 @@ commonTypes:
   - {typeName: ResponsibleRepaymentDifficultyNode}
   childTypes:
   - typeName: ResponsibleSignificantChangeFlagNode
-    init:
-    - {propertyName: required, value: 'true'}
+    config:
+    - {property: '@required', value: 'true'}
     rules:
     - {typeName: ResponsibleSignificantChangeRule, existing: true}
 
   - typeName: ResponsibleTypeOfChangeNode
-    init:
-    - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE}
+    config:
+    - {property: '@options', value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE}
 
   - typeName: ResponsibleMitigationMethodNode
-    init:
-    - {propertyName: options, value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE}
+    config:
+    - {property: '@options', value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE}
 
   - typeName: ResponsibleRepaymentDifficultyNode
-    init:
-    - {propertyName: required, value: 'true'}
+    config:
+    - {property: '@required', value: 'true'}
 
 - typeName: BaseOtherIncomeListNode
-  init:
-  - {propertyName: nodeLabel, value: '"Other Incomes"'}
+  config:
+  - {property: '@nodeLabel', value: '"Other Incomes"'}
   childTypes:
   - typeName: OtherIncomeNode
     children:
@@ -1356,17 +1356,17 @@ commonTypes:
     - {typeName: OtherIncomeTypeNode}
     childTypes:
     - typeName: OtherIncomeTypeNode
-      init:
-      - {propertyName: required, value: 'true'}
+      config:
+      - {property: '@required', value: 'true'}
 
     - typeName: OtherIncomeAddBackTypeNode
-      init:
-      - {propertyName: options, value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE}
+      config:
+      - {property: '@options', value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE}
 
     - typeName: OtherIncomeAmountNode
-      init:
-      - {propertyName: required, value: 'true'}
-      - {propertyName: minValue, value: new BigDecimal("0.01")}
+      config:
+      - {property: '@required', value: 'true'}
+      - {property: '@minValue', value: new BigDecimal("0.01")}
 
     - typeName: OtherIncomePreviousYearNode
     - typeName: OtherIncomeDescriptionNode
@@ -1391,8 +1391,8 @@ commonTypes:
     - {typeName: BooleanFixedValueValidationRule, existing: true}
 
   - typeName: LegalActionNode
-    init:
-    - {propertyName: value, value: '"No"'}
+    config:
+    - {property: '@value', value: '"No"'}
 
   - typeName: CreditHistoryListNode
     childTypes:
@@ -1421,8 +1421,8 @@ commonTypes:
   - typeName: TrustNameNode
   - typeName: TrustRegistrationDateNode
   - typeName: TrustCountryNode
-    init:
-    - {propertyName: required, value: 'true'}
+    config:
+    - {property: '@required', value: 'true'}
 
   - typeName: TrustAddressNode
   - typeName: TrustSettlorNotRequiredReasonNode
@@ -1435,7 +1435,7 @@ commonTypes:
     - typeName: TrustBeneficiaryClassNode
 
 - typeName: BaseApplicantTypeNode
-  init:
-  - {propertyName: options, value: 'ApplicationNodeConstants.APPLICANT_TYPE'}
-  - {propertyName: required, value: 'true'}
-  - {propertyName: value, value: '"A"'}
+  config:
+  - {property: '@options', value: 'ApplicationNodeConstants.APPLICANT_TYPE'}
+  - {property: '@required', value: 'true'}
+  - {property: '@value', value: '"A"'}

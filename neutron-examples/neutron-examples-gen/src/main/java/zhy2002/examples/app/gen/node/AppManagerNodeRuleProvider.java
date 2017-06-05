@@ -24,7 +24,7 @@ public class AppManagerNodeRuleProvider implements RuleProvider<AppManagerNode> 
     public void initializeState(AppManagerNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setNodeLabel("Form Manager");
+        node.setNodeLabel("App Manager");
     }
 
     @Override

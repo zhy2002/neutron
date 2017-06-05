@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../assets/stylesheets/app.scss';
-import LodgementComponent from './lodgement/LodgementComponent';
+import FormManagerComponent from './lodgement/FormManagerComponent';
 import EventService from './neutron/EventService';
 
 
@@ -19,5 +19,5 @@ appContainerDomElement.addEventListener('keyup', (e) => {
  * Called by GWT when GWT modules are loaded.
  */
 window.startLodgement = () => {
-    ReactDOM.render(<LodgementComponent/>, appContainerDomElement);
+    ReactDOM.render(<FormManagerComponent/>, appContainerDomElement);
 };

@@ -2,20 +2,18 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.ContextConfiguration;
-import zhy2002.neutron.config.ContextConfigurer;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Set;
 
 /**
  * There is one context per node hierarchy.

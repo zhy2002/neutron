@@ -1,20 +1,33 @@
 targetPackage: zhy2002.examples.app
-typeName: Lodgement
+typeName: GlobalUiState
+# this domain describe from manager global UI state
 rootType:
-  typeName: LodgementNode
+  typeName: GlobalUiStateNode
   baseTypeName: RootUiNode
   children:
+  - {typeName: MenuNode}
   - {typeName: AppManagerNode}
   childTypes:
+  - typeName: MenuNode
+    baseTypeName: ObjectUiNode
+    children:
+    - {typeName: SiteLogoNode}
+    childTypes:
+    - typeName: SiteLogoNode
+      baseTypeName: StringUiNode
+      init:
+      - {propertyName: value, value: '"img/site_logo.png"'}
+
+  # manage loaded applications
   - typeName: AppManagerNode
     baseTypeName: ObjectUiNode
     init:
-    - {propertyName: nodeLabel, value: '"Form Manager"'}
+    - {propertyName: nodeLabel, value: '"App Manager"'}
     children:
     - {typeName: ApplicationListNode}
     childTypes:
     - typeName: ApplicationListNode
       baseTypeName: ObjectUiNode
-      children: []
       properties:
       - {name: updated, typeName: Boolean, trackingMode: Always}
+      children: []

@@ -7,19 +7,20 @@ import java.util.*;
 
 
 @ComponentScope
-@Subcomponent(modules = {LodgementNodeModule.class})
-public interface LodgementNodeComponent {
+@Subcomponent(modules = {GlobalUiStateNodeModule.class})
+public interface GlobalUiStateNodeComponent {
 
-    List<RuleProvider<LodgementNode>> provideRuleProviders();
+    List<RuleProvider<GlobalUiStateNode>> provideRuleProviders();
 
+    MenuNode createMenuNode();
     AppManagerNode createAppManagerNode();
 
     @Subcomponent.Builder
     interface Builder {
 
-        Builder setLodgementNodeModule(LodgementNodeModule module);
+        Builder setGlobalUiStateNodeModule(GlobalUiStateNodeModule module);
 
-        LodgementNodeComponent build();
+        GlobalUiStateNodeComponent build();
     }
 
 }

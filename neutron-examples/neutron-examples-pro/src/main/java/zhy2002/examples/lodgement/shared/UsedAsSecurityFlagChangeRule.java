@@ -8,7 +8,7 @@ import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.Arrays;

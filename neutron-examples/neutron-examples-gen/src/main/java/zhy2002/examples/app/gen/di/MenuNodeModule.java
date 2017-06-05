@@ -6,24 +6,20 @@ import zhy2002.examples.app.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import zhy2002.neutron.config.NeutronConstants;
 import java.util.*;
-import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module
-public class LodgementNodeModule {
+public class MenuNodeModule {
 
-    private final LodgementNode owner;
+    private final MenuNode owner;
 
-    public LodgementNodeModule(LodgementNode owner) {
+    public MenuNodeModule(MenuNode owner) {
         this.owner = owner;
     }
 
-    @Provides @ComponentScope @Owner LodgementNode provideLodgementNode() {
-        return owner;
-    }
-
-    @Provides @ComponentScope @Owner RootUiNode<?> provideRootUiNode() {
+    @Provides @ComponentScope @Owner MenuNode provideMenuNode() {
         return owner;
     }
 
@@ -39,20 +35,24 @@ public class LodgementNodeModule {
         return owner;
     }
 
-    @Provides @Named("LodgementNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
-    RuleProvider<LodgementNode> providePlaceholderRuleProvider() {
+    @Provides @ComponentScope GlobalUiStateNode provideGlobalUiStateNode() {
+        return owner.getParent();
+    }
+
+    @Provides @Named("MenuNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<MenuNode> providePlaceholderRuleProvider() {
         return null;
     }
 
-    @Provides @Named("LodgementNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
-    RuleProvider<LodgementNode> provideTypeRuleProvider(LodgementNodeRuleProvider provider) {
+    @Provides @Named("MenuNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<MenuNode> provideTypeRuleProvider(MenuNodeRuleProvider provider) {
         return provider;
     }
 
 
     @Provides @ComponentScope
-    List<RuleProvider<LodgementNode>> provideRuleProviders(
-        @Named("LodgementNodeRuleProvider")  Map<String, Provider<RuleProvider<LodgementNode>>> ruleProviderProviderMap
+    List<RuleProvider<MenuNode>> provideRuleProviders(
+        @Named("MenuNodeRuleProvider")  Map<String, Provider<RuleProvider<MenuNode>>> ruleProviderProviderMap
     ) {
         String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);

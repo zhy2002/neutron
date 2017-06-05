@@ -5,10 +5,10 @@ import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.*;
 
 @Singleton
-public class LodgementEventRegistry extends EventRegistryImpl {
+public class GlobalUiStateEventRegistry extends EventRegistryImpl {
 
     @Inject
-    LodgementEventRegistry() {
+    GlobalUiStateEventRegistry() {
         loadStateChangeEventFactories();
     }
 

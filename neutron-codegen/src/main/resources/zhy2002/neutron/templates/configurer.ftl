@@ -1,10 +1,11 @@
 package ${targetPackage}.gen;
 
 import ${targetPackage}.gen.node.*;
-import zhy2002.neutron.util.NeutronConstants;
+import ${targetPackage}.data.*;
 import zhy2002.neutron.config.*;
 import javax.inject.Inject;
 import java.util.*;
+import java.math.BigDecimal;
 
 
 public class ${typeName}ContextConfigurer implements ContextConfigurer<${typeName}Context> {

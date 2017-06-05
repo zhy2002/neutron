@@ -1,12 +1,14 @@
 targetPackage: zhy2002.examples.register
 typeName: Register
+# this domain is used for unit tests only
 rootType:
   typeName: RegisterNode
   baseTypeName: RootUiNode
-
   properties:
   - {name: hasError, typeName: Boolean, default: Boolean.FALSE}
-
+  rules:
+  - {typeName: SetHasErrorRule, existing: false}
+  - {typeName: MergeValidationErrorsRule, existing: true}
   children:
   - {typeName: UsernameNode}
   - {typeName: EmailNode}
@@ -17,16 +19,10 @@ rootType:
   - {typeName: ReceiveOffersNode}
   - {typeName: OwnInvestmentPropertyNode}
   - {typeName: PropertyDetailsNode, name: residentialPropertyNode}
-  - typeName: PropertyDetailsNode
-    name: investmentPropertyNode
-    init:
-    - {propertyName: loadWithParent, value: 'false'}
+  - {typeName: PropertyDetailsNode, name: investmentPropertyNode}
   - {typeName: PhoneInfoNode, name: homePhoneNode}
+  - {typeName: PhoneInfoNode, name: workPhoneNode}
   - {typeName: ErrorListNode}
-
-  rules:
-  - {typeName: SetHasErrorRule, existing: false}
-  - {typeName: MergeValidationErrorsRule, existing: true}
 
   childTypes:
   - typeName: UsernameNode
@@ -92,6 +88,8 @@ rootType:
     unloadable: true
     properties:
     - {name: tooltip, typeName: String}
+    config:
+    - {property: 'investmentPropertyNode/@loadWithParent', value: 'false'}
     children:
     - {typeName: PropertyAddressNode}
     - {typeName: PropertyStateNode}
@@ -108,12 +106,12 @@ rootType:
 
   - typeName: PhoneInfoNode
     baseTypeName: ObjectUiNode
+    rules:
+    - {typeName: PhoneInfoAllOrNothingRule, existing: false}
     children:
     - {typeName: CountryCodeNode}
     - {typeName: AreaCodeNode}
     - {typeName: PhoneNumberNode}
-    rules:
-    - {typeName: PhoneInfoAllOrNothingRule, existing: false}
     childTypes:
     - typeName: PhoneInfoFieldNode
       abstractNode: true
@@ -140,5 +138,3 @@ rootType:
     childTypes:
     - typeName: ErrorNode
       baseTypeName: ValidationErrorUiNode
-
-

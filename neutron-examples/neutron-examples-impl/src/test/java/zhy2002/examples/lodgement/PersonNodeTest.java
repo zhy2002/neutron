@@ -333,4 +333,14 @@ public class PersonNodeTest {
         assertThat(personGeneralNode.getOtherTitleNode().getNodeStatus(), equalTo(NodeStatusEnum.Unloaded));
     }
 
+    @Test
+    public void applicationTypeOptionsIsSet() {
+        assertThat(personGeneralNode.getApplicationTypeNode().getOptions(), notNullValue());
+    }
+
+    @Test
+    public void personNodeSelectedNameIsSet() {
+        assertThat(personNode.getSelectedName(), notNullValue());
+    }
+
 }

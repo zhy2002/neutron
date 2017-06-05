@@ -2,7 +2,7 @@ package zhy2002.neutron;
 
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import java.util.Arrays;
 import java.util.Collection;

@@ -6,8 +6,8 @@ import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.*;
+import zhy2002.neutron.config.NeutronConstants;
 import java.util.*;
-import zhy2002.neutron.util.NeutronConstants;
 
 
 @Module

@@ -1,14 +1,8 @@
 import React from 'react';
+import CommonUtil from '../neutron/CommonUtil';
 import DummyNavDropdownComponent from '../bootstrap3/DummyNavDropdownComponent';
 
 export default class LodgementBannerComponent extends React.PureComponent {
-
-    constructor(props) {
-        super(props);
-
-        this.nop = () => {
-        };
-    }
 
     render() {
         return (
@@ -18,10 +12,10 @@ export default class LodgementBannerComponent extends React.PureComponent {
                         <img src="img/site_logo.png" alt="Site Logo" height="50px"/>
                     </div>
                     <ul className="nav navbar-nav navbar-right">
-                        <DummyNavDropdownComponent model={{}} onSelect={this.nop}>
+                        <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
                             Demo User
                         </DummyNavDropdownComponent>
-                        <DummyNavDropdownComponent model={{}} onSelect={this.nop}>
+                        <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
                             <span className="glyphicon glyphicon-user"/>
                         </DummyNavDropdownComponent>
                     </ul>

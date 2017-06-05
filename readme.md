@@ -22,7 +22,7 @@ Todo
 - exclude generated files from source control
 - construct framework nodes via reflection in codegen module.
 - load config from json
-- 
+- support expression in init (as opposed to only constants)
 
 Todo (low priority)
 -----------------

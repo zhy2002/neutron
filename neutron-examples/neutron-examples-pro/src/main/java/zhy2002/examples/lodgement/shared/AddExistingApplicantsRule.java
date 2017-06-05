@@ -5,7 +5,7 @@ import zhy2002.examples.lodgement.gen.node.OwnershipListNode;
 import zhy2002.examples.lodgement.gen.node.OwnershipNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.*;

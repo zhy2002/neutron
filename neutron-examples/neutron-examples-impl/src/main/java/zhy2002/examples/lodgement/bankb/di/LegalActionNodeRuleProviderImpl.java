@@ -1,6 +1,6 @@
 package zhy2002.examples.lodgement.bankb.di;
 
-import zhy2002.examples.lodgement.bankb.gen.node.BankBLegalActionNodeRuleProvider;
+import zhy2002.examples.lodgement.gen.node.LegalActionNodeRuleProvider;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.rule.StringEnableSiblingRule;
 
@@ -9,7 +9,7 @@ import javax.inject.Provider;
 import java.util.List;
 
 
-public class LegalActionNodeRuleProviderImpl extends BankBLegalActionNodeRuleProvider {
+public class LegalActionNodeRuleProviderImpl extends LegalActionNodeRuleProvider {
 
     @Inject
     public LegalActionNodeRuleProviderImpl() {

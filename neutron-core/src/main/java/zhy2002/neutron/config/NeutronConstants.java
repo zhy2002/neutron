@@ -1,4 +1,4 @@
-package zhy2002.neutron.util;
+package zhy2002.neutron.config;
 
 
 /**

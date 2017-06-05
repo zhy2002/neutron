@@ -3,4 +3,4 @@
 package zhy2002.neutron.exception;
 
 import jsinterop.annotations.JsPackage;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;

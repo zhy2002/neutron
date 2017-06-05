@@ -1,16 +1,17 @@
 package zhy2002.examples.app.gen;
 
 import zhy2002.examples.app.gen.node.*;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.examples.app.data.*;
 import zhy2002.neutron.config.*;
 import javax.inject.Inject;
 import java.util.*;
+import java.math.BigDecimal;
 
 
-public class LodgementNodeContextConfigurer implements ContextConfigurer<LodgementNodeContext> {
+public class GlobalUiStateNodeContextConfigurer implements ContextConfigurer<GlobalUiStateNodeContext> {
 
     @Inject
-    protected LodgementNodeContextConfigurer() {}
+    protected GlobalUiStateNodeContextConfigurer() {}
 
     @Override
     public int getOrderKey() {
@@ -18,7 +19,7 @@ public class LodgementNodeContextConfigurer implements ContextConfigurer<Lodgeme
     }
 
     @Override
-    public void configure(LodgementNodeContext context) {
+    public void configure(GlobalUiStateNodeContext context) {
         ContextConfiguration configuration = context.getConfiguration();
 
     }

@@ -1,10 +1,11 @@
 package zhy2002.examples.lodgement.gen;
 
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.examples.lodgement.data.*;
 import zhy2002.neutron.config.*;
 import javax.inject.Inject;
 import java.util.*;
+import java.math.BigDecimal;
 
 
 public class ApplicationNodeContextConfigurer implements ContextConfigurer<ApplicationNodeContext> {
@@ -21,11 +22,17 @@ public class ApplicationNodeContextConfigurer implements ContextConfigurer<Appli
     public void configure(ApplicationNodeContext context) {
         ContextConfiguration configuration = context.getConfiguration();
 
-        NodeConfiguration configIdNode = configuration.getConfig(IdNode.class);
-            configIdNode.setConfigValue("idNode/@loadWithParent", true);
+        NodeConfiguration configAddressLineNode = configuration.getConfig(AddressLineNode.class);
+            configAddressLineNode.setConfigValue(".*/@required", true);
+        NodeConfiguration configRelatedPersonReferenceNode = configuration.getConfig(RelatedPersonReferenceNode.class);
+            configRelatedPersonReferenceNode.setConfigValue(".*/@removeEmpty", true);
+        NodeConfiguration configAccountHolderReferenceNode = configuration.getConfig(AccountHolderReferenceNode.class);
+            configAccountHolderReferenceNode.setConfigValue(".*/@removeEmpty", true);
+        NodeConfiguration configApplicantReferenceNode = configuration.getConfig(ApplicantReferenceNode.class);
+            configApplicantReferenceNode.setConfigValue(".*/@removeEmpty", true);
         NodeConfiguration configAddressRefNode = configuration.getConfig(AddressRefNode.class);
-            configAddressRefNode.setConfigValue("addressRefNode/@removeEmpty", true);
+            configAddressRefNode.setConfigValue(".*/@removeEmpty", true);
         NodeConfiguration configPersonNode = configuration.getConfig(PersonNode.class);
-            configPersonNode.setConfigValue("personNode/@selectedName", "personGeneralNode");
+            configPersonNode.setConfigValue(".*/@selectedName", "personGeneralNode");
     }
 }

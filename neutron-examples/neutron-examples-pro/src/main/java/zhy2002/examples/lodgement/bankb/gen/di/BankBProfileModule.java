@@ -253,47 +253,11 @@ public abstract class BankBProfileModule {
     @Binds
     abstract NameNodeRuleProvider provideNameNodeRuleProvider(BankBNameNodeRuleProvider impl);
     @Binds
-    abstract BaseMobileNumberNodeRuleProvider provideBaseMobileNumberNodeRuleProvider(BankBBaseMobileNumberNodeRuleProvider impl);
-    @Binds
-    abstract BaseCurrencyNodeRuleProvider provideBaseCurrencyNodeRuleProvider(BankBBaseCurrencyNodeRuleProvider impl);
-    @Binds
-    abstract BasePercentageNodeRuleProvider provideBasePercentageNodeRuleProvider(BankBBasePercentageNodeRuleProvider impl);
-    @Binds
     abstract EmploymentTypeNodeRuleProvider provideEmploymentTypeNodeRuleProvider(BankBEmploymentTypeNodeRuleProvider impl);
     @Binds
     abstract EmployedNodeRuleProvider provideEmployedNodeRuleProvider(BankBEmployedNodeRuleProvider impl);
     @Binds
-    abstract EmploymentStatusNodeRuleProvider provideEmploymentStatusNodeRuleProvider(BankBEmploymentStatusNodeRuleProvider impl);
-    @Binds
-    abstract OccupationNodeRuleProvider provideOccupationNodeRuleProvider(BankBOccupationNodeRuleProvider impl);
-    @Binds
-    abstract EmployerNameNodeRuleProvider provideEmployerNameNodeRuleProvider(BankBEmployerNameNodeRuleProvider impl);
-    @Binds
-    abstract EmployerAddressNodeRuleProvider provideEmployerAddressNodeRuleProvider(BankBEmployerAddressNodeRuleProvider impl);
-    @Binds
-    abstract EmployerPhoneNodeRuleProvider provideEmployerPhoneNodeRuleProvider(BankBEmployerPhoneNodeRuleProvider impl);
-    @Binds
-    abstract EmploymentStartedNodeRuleProvider provideEmploymentStartedNodeRuleProvider(BankBEmploymentStartedNodeRuleProvider impl);
-    @Binds
     abstract EmploymentEndedNodeRuleProvider provideEmploymentEndedNodeRuleProvider(BankBEmploymentEndedNodeRuleProvider impl);
-    @Binds
-    abstract UnemployedOnBenefitFlagNodeRuleProvider provideUnemployedOnBenefitFlagNodeRuleProvider(BankBUnemployedOnBenefitFlagNodeRuleProvider impl);
-    @Binds
-    abstract StudentFlagNodeRuleProvider provideStudentFlagNodeRuleProvider(BankBStudentFlagNodeRuleProvider impl);
-    @Binds
-    abstract StudentTypeNodeRuleProvider provideStudentTypeNodeRuleProvider(BankBStudentTypeNodeRuleProvider impl);
-    @Binds
-    abstract HouseDutiesFlagNodeRuleProvider provideHouseDutiesFlagNodeRuleProvider(BankBHouseDutiesFlagNodeRuleProvider impl);
-    @Binds
-    abstract UnemployedSinceNodeRuleProvider provideUnemployedSinceNodeRuleProvider(BankBUnemployedSinceNodeRuleProvider impl);
-    @Binds
-    abstract RetiredOnBenefitFlagNodeRuleProvider provideRetiredOnBenefitFlagNodeRuleProvider(BankBRetiredOnBenefitFlagNodeRuleProvider impl);
-    @Binds
-    abstract RetiredSinceNodeRuleProvider provideRetiredSinceNodeRuleProvider(BankBRetiredSinceNodeRuleProvider impl);
-    @Binds
-    abstract YesNoOptionNodeRuleProvider provideYesNoOptionNodeRuleProvider(BankBYesNoOptionNodeRuleProvider impl);
-    @Binds
-    abstract BaseCountryNodeRuleProvider provideBaseCountryNodeRuleProvider(BankBBaseCountryNodeRuleProvider impl);
     @Binds
     abstract DobNodeRuleProvider provideDobNodeRuleProvider(BankBDobNodeRuleProvider impl);
     @Binds
@@ -303,35 +267,13 @@ public abstract class BankBProfileModule {
     @Binds
     abstract OwnershipListNodeRuleProvider provideOwnershipListNodeRuleProvider(BankBOwnershipListNodeRuleProvider impl);
     @Binds
-    abstract OwnershipPercentageNodeRuleProvider provideOwnershipPercentageNodeRuleProvider(BankBOwnershipPercentageNodeRuleProvider impl);
-    @Binds
     abstract ResponsibleSignificantChangeFlagNodeRuleProvider provideResponsibleSignificantChangeFlagNodeRuleProvider(BankBResponsibleSignificantChangeFlagNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleTypeOfChangeNodeRuleProvider provideResponsibleTypeOfChangeNodeRuleProvider(BankBResponsibleTypeOfChangeNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleMitigationMethodNodeRuleProvider provideResponsibleMitigationMethodNodeRuleProvider(BankBResponsibleMitigationMethodNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleRepaymentDifficultyNodeRuleProvider provideResponsibleRepaymentDifficultyNodeRuleProvider(BankBResponsibleRepaymentDifficultyNodeRuleProvider impl);
-    @Binds
-    abstract BaseOtherIncomeListNodeRuleProvider provideBaseOtherIncomeListNodeRuleProvider(BankBBaseOtherIncomeListNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeTypeNodeRuleProvider provideOtherIncomeTypeNodeRuleProvider(BankBOtherIncomeTypeNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeAddBackTypeNodeRuleProvider provideOtherIncomeAddBackTypeNodeRuleProvider(BankBOtherIncomeAddBackTypeNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeAmountNodeRuleProvider provideOtherIncomeAmountNodeRuleProvider(BankBOtherIncomeAmountNodeRuleProvider impl);
     @Binds
     abstract CreditCheckFlagNodeRuleProvider provideCreditCheckFlagNodeRuleProvider(BankBCreditCheckFlagNodeRuleProvider impl);
     @Binds
     abstract ThirdPartyDisclosureFlagNodeRuleProvider provideThirdPartyDisclosureFlagNodeRuleProvider(BankBThirdPartyDisclosureFlagNodeRuleProvider impl);
     @Binds
-    abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(BankBLegalActionNodeRuleProvider impl);
-    @Binds
     abstract TrustTypeNodeRuleProvider provideTrustTypeNodeRuleProvider(BankBTrustTypeNodeRuleProvider impl);
-    @Binds
-    abstract TrustCountryNodeRuleProvider provideTrustCountryNodeRuleProvider(BankBTrustCountryNodeRuleProvider impl);
-    @Binds
-    abstract BaseApplicantTypeNodeRuleProvider provideBaseApplicantTypeNodeRuleProvider(BankBBaseApplicantTypeNodeRuleProvider impl);
 
     @Binds @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("currentAddressNode")
     abstract RuleProvider<PersonAddressNode> providePersonAddressNodePersonContactNodeChildCurrentAddressNodeRuleProvider(

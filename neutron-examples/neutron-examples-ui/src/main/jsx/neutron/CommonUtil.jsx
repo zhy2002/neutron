@@ -177,4 +177,6 @@ export default class CommonUtil extends StaticService {
         }
         return str;
     }
+
+    static noOp() {}
 }

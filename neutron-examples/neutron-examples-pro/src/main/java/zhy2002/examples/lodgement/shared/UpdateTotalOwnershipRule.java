@@ -7,7 +7,7 @@ import zhy2002.examples.lodgement.gen.node.OwnershipPercentageNode;
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;

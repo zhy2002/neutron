@@ -133,6 +133,11 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
     }
 
     @JsMethod
+    public PhoneInfoNode getWorkPhoneNode() {
+        return (PhoneInfoNode)getChildByName("workPhoneNode");
+    }
+
+    @JsMethod
     public ErrorListNode getErrorListNode() {
         return (ErrorListNode)getChildByName("errorListNode");
     }
@@ -162,6 +167,8 @@ public class RegisterNode extends RootUiNode<VoidUiNode> {
         setChildNodeIdentity("investmentPropertyNode");
         children.add(getComponent().createPropertyDetailsNode());
         setChildNodeIdentity("homePhoneNode");
+        children.add(getComponent().createPhoneInfoNode());
+        setChildNodeIdentity("workPhoneNode");
         children.add(getComponent().createPhoneInfoNode());
         setChildNodeIdentity("errorListNode");
         children.add(getComponent().createErrorListNode());

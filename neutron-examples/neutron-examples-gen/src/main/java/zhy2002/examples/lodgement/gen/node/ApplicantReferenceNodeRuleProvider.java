@@ -7,8 +7,6 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.ApplicantReferenceNode;
 import zhy2002.examples.lodgement.gen.di.*;
-import zhy2002.examples.lodgement.data.*;
-import java.math.*;
 
 @ComponentScope
 public class ApplicantReferenceNodeRuleProvider implements RuleProvider<ApplicantReferenceNode> {
@@ -24,7 +22,6 @@ public class ApplicantReferenceNodeRuleProvider implements RuleProvider<Applican
     public void initializeState(ApplicantReferenceNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setRemoveEmpty(true);
     }
 
     @Override

@@ -2,7 +2,7 @@ package zhy2002.examples.lodgement.bankb.di;
 
 import dagger.Binds;
 import dagger.Module;
-import zhy2002.examples.lodgement.bankb.gen.node.BankBLegalActionNodeRuleProvider;
+import zhy2002.examples.lodgement.gen.node.LegalActionNodeRuleProvider;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
@@ -26,6 +26,6 @@ abstract class CustomBankBProfileModule {
     abstract ShowErrorListRule provideShowErrorListRule(ShowErrorListRuleImpl impl);
 
     @Binds
-    abstract BankBLegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
+    abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(LegalActionNodeRuleProviderImpl impl);
 
 }

@@ -6,4 +6,4 @@ depended upon by the generated domain.
 */
 
 import jsinterop.annotations.JsPackage;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;

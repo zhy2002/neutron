@@ -5,7 +5,7 @@ import jsinterop.annotations.JsType;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.di.ProfileComponent;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import java.util.HashMap;
 import java.util.Map;

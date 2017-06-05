@@ -5,21 +5,21 @@ import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
-import zhy2002.examples.app.gen.node.LodgementNode;
+import zhy2002.examples.app.gen.node.MenuNode;
 import zhy2002.examples.app.gen.di.*;
 
 @ComponentScope
-public class LodgementNodeRuleProvider implements RuleProvider<LodgementNode> {
+public class MenuNodeRuleProvider implements RuleProvider<MenuNode> {
 
     @Inject
-    RootUiNodeRuleProvider parentRuleProvider;
+    ObjectUiNodeRuleProvider parentRuleProvider;
 
     @Inject
-    public LodgementNodeRuleProvider() {
+    public MenuNodeRuleProvider() {
     }
 
     @Override
-    public void initializeState(LodgementNode node) {
+    public void initializeState(MenuNode node) {
         parentRuleProvider.initializeState(node);
 
     }

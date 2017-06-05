@@ -5,7 +5,7 @@ import StaticService from '../../neutron/StaticService';
 import CommonUtil from '../../neutron/CommonUtil';
 import StorageService from './StorageService';
 
-let lodgementNode = null;
+let globalUiStateNode = null;
 let openApps = [];
 let selectedIndex = 0;
 let headerHeight = NaN;
@@ -17,16 +17,16 @@ function notifyStateChange() {
     EventService.fire('lodgement_state_change');
 }
 
-function createLodgementNode() {
-    return window.GWT.LodgementNodeFactory.create();
+function createGlobalUiStateNode() {
+    return window.GWT.GlobalUiStateNodeFactory.create();
 }
 
-function getLodgementNode() {
-    if (lodgementNode === null) {
-        lodgementNode = createLodgementNode();
+function getGlobalUiStateNode() {
+    if (globalUiStateNode === null) {
+        globalUiStateNode = createGlobalUiStateNode();
     }
 
-    return lodgementNode;
+    return globalUiStateNode;
 }
 
 function createAppTab(newApp) {
@@ -173,7 +173,7 @@ export default class LodgementService extends StaticService {
     static refreshApplicationList() {
         return StorageService.getApplicationSummaries().then(
             (data) => {
-                const appListNode = lodgementNode.getAppManagerNode().getApplicationListNode();
+                const appListNode = globalUiStateNode.getAppManagerNode().getApplicationListNode();
                 appListNode.data = data;
                 appListNode.totalCount = data.hits.total;
                 appListNode.setUpdated(true);
@@ -192,12 +192,12 @@ export default class LodgementService extends StaticService {
     }
 
     static getState() {
-        if (lodgementNode === null) {
-            lodgementNode = getLodgementNode();
+        if (globalUiStateNode === null) {
+            globalUiStateNode = getGlobalUiStateNode();
             console.debug('loaded lodgement node');
         }
         return {
-            lodgementNode,
+            globalUiStateNode,
             openApps,
             selectedIndex,
             headerHeight,

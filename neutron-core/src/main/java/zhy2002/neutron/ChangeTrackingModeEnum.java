@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 /**
  * The modes that determine when stage change events occur.

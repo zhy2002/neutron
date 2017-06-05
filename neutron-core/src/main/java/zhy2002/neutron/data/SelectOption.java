@@ -1,7 +1,7 @@
 package zhy2002.neutron.data;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 /**
  * Models an option item in a select element.

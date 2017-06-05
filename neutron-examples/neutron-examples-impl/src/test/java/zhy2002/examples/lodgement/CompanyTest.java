@@ -48,4 +48,5 @@ public class CompanyTest {
     public void applicationNodeLabelIsSet() {
         assertThat(applicationNode.getNodeLabel(), equalTo("Bank B"));
     }
+
 }

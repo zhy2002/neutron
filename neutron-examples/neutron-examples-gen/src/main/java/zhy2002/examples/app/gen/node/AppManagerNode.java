@@ -14,10 +14,10 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 
-public class AppManagerNode extends ObjectUiNode<LodgementNode> {
+public class AppManagerNode extends ObjectUiNode<GlobalUiStateNode> {
 
     @Inject
-    protected AppManagerNode(@Owner LodgementNode parent) {
+    protected AppManagerNode(@Owner GlobalUiStateNode parent) {
         super(parent);
     }
 

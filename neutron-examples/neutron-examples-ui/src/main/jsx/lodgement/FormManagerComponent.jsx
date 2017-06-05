@@ -13,7 +13,7 @@ import LenderListComponent from './LenderListComponent';
 /**
  * Root component of the example application.
  */
-export default class LodgementComponent extends React.PureComponent {
+export default class FormManagerComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -76,11 +76,11 @@ export default class LodgementComponent extends React.PureComponent {
     }
 
     render() {
-        const tabItems = [this.state.lodgementNode.getAppManagerNode(), ...this.state.openApps];
+        const tabItems = [this.state.globalUiStateNode.getAppManagerNode(), ...this.state.openApps];
         const selectedModel = tabItems[this.state.selectedIndex];
 
         return (
-            <div className="lodgement-component">
+            <div className="form-manager-component">
                 <LodgementHeaderComponent tabItems={tabItems} selectedIndex={this.state.selectedIndex}/>
                 {
                     !isNaN(this.state.headerHeight) &&

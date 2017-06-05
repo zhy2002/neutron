@@ -10,7 +10,7 @@ import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.exception.NotImplementedException;
 import zhy2002.neutron.exception.UiNodeException;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;

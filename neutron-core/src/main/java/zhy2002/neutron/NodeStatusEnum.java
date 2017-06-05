@@ -1,7 +1,7 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsType;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 /**
  * The life cycle states of a node.

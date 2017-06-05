@@ -10,22 +10,22 @@ import java.util.*;
 
 
 @Singleton
-public class LodgementNodeContext extends AbstractUiNodeContext<LodgementNode> {
+public class GlobalUiStateNodeContext extends AbstractUiNodeContext<GlobalUiStateNode> {
 
     @Inject
-    Lazy<LodgementNode> rootNodeLazy;
+    Lazy<GlobalUiStateNode> rootNodeLazy;
 
     @Inject
-    Lazy<Set<ContextConfigurer<LodgementNodeContext>>> configurers;
+    Lazy<Set<ContextConfigurer<GlobalUiStateNodeContext>>> configurers;
 
     @Inject
-    public LodgementNodeContext() {
+    public GlobalUiStateNodeContext() {
         super();
     }
 
     @Override
     @NotNull
-    protected LodgementNode createRootNode() {
+    protected GlobalUiStateNode createRootNode() {
         if (configurers != null) {
             configurers.get().stream().sorted(Comparator.comparingInt(Ordered::getOrderKey)).forEach(c -> c.configure(this));
             configurers = null;

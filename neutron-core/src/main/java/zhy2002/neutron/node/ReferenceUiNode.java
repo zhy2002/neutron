@@ -8,7 +8,7 @@ import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.util.NeutronConstants;
+import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
