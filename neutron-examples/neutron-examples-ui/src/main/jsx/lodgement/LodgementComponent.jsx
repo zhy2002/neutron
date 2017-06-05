@@ -13,7 +13,7 @@ import LenderListComponent from './LenderListComponent';
 /**
  * Root component of the example application.
  */
-export default class FormManagerComponent extends React.PureComponent {
+export default class LodgementComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -80,7 +80,7 @@ export default class FormManagerComponent extends React.PureComponent {
         const selectedModel = tabItems[this.state.selectedIndex];
 
         return (
-            <div className="form-manager-component">
+            <div className="lodgement-component">
                 <LodgementHeaderComponent tabItems={tabItems} selectedIndex={this.state.selectedIndex}/>
                 {
                     !isNaN(this.state.headerHeight) &&
