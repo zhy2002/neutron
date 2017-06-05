@@ -15,7 +15,7 @@ export default class CompanyListComponent extends ListNeutronComponent {
         );
 
         if (result.length === 0) {
-            result.push(<div key="no_result" className="alsert alert-info">No company in this application.</div>);
+            result.push(<div key="no_result" className="alert alert-info">No company in this application.</div>);
         }
         return result;
     }

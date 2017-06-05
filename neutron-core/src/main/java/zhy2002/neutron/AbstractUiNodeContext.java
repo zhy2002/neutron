@@ -205,21 +205,25 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         changeEngine.processEvent(event);
     }
 
+    @JsMethod
     @Override
     public final void flush() {
         changeEngine.flush();
     }
 
+    @JsMethod
     @Override
     public final void beginSession() {
         changeEngine.beginSession();
     }
 
+    @JsMethod
     @Override
     public final void rollbackSession() {
         changeEngine.rollbackSession();
     }
 
+    @JsMethod
     @Override
     public final void commitSession() {
         changeEngine.commitSession();
@@ -245,6 +249,7 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         return changeEngine.canRedo();
     }
 
+    @JsMethod
     @Override
     public final boolean isInSession() {
         return changeEngine.isInSession();
