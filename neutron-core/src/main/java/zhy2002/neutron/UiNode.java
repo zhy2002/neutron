@@ -2,6 +2,7 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.NodeConfiguration;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
@@ -10,7 +11,6 @@ import zhy2002.neutron.data.ValidationErrorList;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.exception.NotImplementedException;
 import zhy2002.neutron.exception.UiNodeException;
-import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
@@ -307,6 +307,10 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
         if (value == null && propertyMetadata.isConfigurable()) {
             value = getConfiguration().getConfigValue(propertyMetadata.getName());
+        }
+
+        if (value == null && propertyMetadata.isInherited() && parent != null) {
+            value = parent.getStateValueDirectly(propertyMetadata.getStateKey());
         }
 
         return value == null ? propertyMetadata.getDefaultValue() : value;

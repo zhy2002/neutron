@@ -39,7 +39,7 @@ public final class BindingActivation {
         if (rule != null && rule.getOwner() != null && rule.getOwner().getNodeStatus() == NodeStatusEnum.Loaded) {
 
             if (rule instanceof ValidationRule) {
-                if (rule.getContext().getRootNode().isLoading() || event.getOrigin().isEffectivelyDisabled()) {
+                if (rule.getContext().getRootNode().isLoading() || event.getOrigin().isEffectivelyDisabled() || Boolean.TRUE.equals(event.getOrigin().getDisableValidation())) {
                     return;
                 }
             }
