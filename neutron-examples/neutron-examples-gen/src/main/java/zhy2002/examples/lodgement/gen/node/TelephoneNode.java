@@ -79,7 +79,7 @@ public abstract class TelephoneNode<P extends ParentUiNode<?>> extends LeafUiNod
     }
 
     @Override
-    protected PropertyMetadata<Telephone> getValuePropertyMetadata() {
+    public PropertyMetadata<Telephone> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 

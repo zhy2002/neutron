@@ -1,6 +1,5 @@
 package zhy2002.neutron;
 
-import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.util.ValueUtil;
 
 public abstract class StateChangeEventBinding<E extends StateChangeEvent> extends AbstractEventBinding<E> {
@@ -16,7 +15,7 @@ public abstract class StateChangeEventBinding<E extends StateChangeEvent> extend
                 filter,
                 handler,
                 eventCLass,
-                ValueUtil.ifNull(subject, NeutronConstants.VALUE),
+                subject,
                 ValueUtil.ifNull(phase, PredefinedPhases.Post)
         );
     }

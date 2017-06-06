@@ -67,7 +67,7 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
     }
 
     @Override
-    protected PropertyMetadata<ValidationError> getValuePropertyMetadata() {
+    public PropertyMetadata<ValidationError> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 

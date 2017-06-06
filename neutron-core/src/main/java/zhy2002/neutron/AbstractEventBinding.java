@@ -26,10 +26,13 @@ public abstract class AbstractEventBinding<E extends UiNodeEvent> implements Eve
             @NotNull String subject,
             TickPhase phase
     ) {
+        assert eventClass != null;
+        assert subject != null;
+        assert handler != null;
         this.eventKey = new UiNodeEventKey<>(eventClass, subject);
+        this.handler = handler;
         this.phase = ValueUtil.ifNull(phase, PredefinedPhases.Post);
         this.filter = ValueUtil.ifNull(filter, e -> true);
-        this.handler = handler;
     }
 
     public final UiNodeEventKey<?> getEventKey() {

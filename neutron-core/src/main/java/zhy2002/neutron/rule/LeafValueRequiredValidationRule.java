@@ -27,7 +27,8 @@ public class LeafValueRequiredValidationRule extends ValidationRule<LeafUiNode<?
                 super.createEventBindings(),
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
-                        stateChangeEvent.getClass()
+                        stateChangeEvent.getClass(),
+                        getOwner().getValuePropertyMetadata().getStateKey()
                 ),
                 new BooleanStateChangeEventBinding(
                         e -> Boolean.FALSE.equals(e.getNewValue()),

@@ -702,7 +702,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<Boolean> DISABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disabled", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> REQUIRED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "required", Boolean.class, Boolean.FALSE);
-    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(LeafUiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> DISABLE_VALIDATION_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disableValidation", Boolean.class, null, null, null, null, Boolean.TRUE);
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
     public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
     public static final PropertyMetadata<Integer> READONLY_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "readonlyAncestorCount", Integer.class, 0);
@@ -784,6 +785,16 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
     public final void setReadonlyAncestorCount(int count) {
         setStateValue(READONLY_ANCESTOR_COUNT, count);
+    }
+
+    @JsMethod
+    public Boolean getDisableValidation() {
+        return getStateValue(DISABLE_VALIDATION_PROPERTY);
+    }
+
+    @JsMethod
+    public void setDisableValidation(Boolean value) {
+        setStateValue(DISABLE_VALIDATION_PROPERTY, value);
     }
 
     @JsMethod

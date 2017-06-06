@@ -44,7 +44,8 @@ public class HomeOrWorkPhoneRequiredRule extends UiNodeRule<PersonContactNode> {
         return Collections.singletonList(
                 new GenericStateChangeEventBinding<>(
                         this::updateRequiredPhone,
-                        TelephoneStateChangeEvent.class
+                        TelephoneStateChangeEvent.class,
+                        TelephoneNode.VALUE_PROPERTY.getStateKey()
                 )
         );
     }

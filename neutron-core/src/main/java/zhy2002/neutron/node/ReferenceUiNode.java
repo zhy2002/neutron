@@ -3,12 +3,12 @@ package zhy2002.neutron.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
 import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -57,7 +57,7 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
     }
 
     @Override
-    protected PropertyMetadata<String> getValuePropertyMetadata() {
+    public PropertyMetadata<String> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 
@@ -106,7 +106,8 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
                             NeutronConstants.NODE_LOADED_REFRESH_REASON
                     ),
                     new StringStateChangeEventBinding(
-                            this::updateReference
+                            this::updateReference,
+                            VALUE_PROPERTY.getStateKey()
                     )
             );
         }

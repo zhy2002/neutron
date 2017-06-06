@@ -1,8 +1,8 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,7 +22,7 @@ public abstract class UpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNod
                 ),
                 new IntegerStateChangeEventBinding(
                         this::updateLabel,
-                        NeutronConstants.INDEX
+                        UiNode.INDEX_PROPERTY.getStateKey()
                 ),
                 new RefreshEventBinding(
                         this::updateLabel,

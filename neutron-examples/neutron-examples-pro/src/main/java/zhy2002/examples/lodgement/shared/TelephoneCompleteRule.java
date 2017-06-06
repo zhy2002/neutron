@@ -31,7 +31,8 @@ public class TelephoneCompleteRule extends ValidationRule<TelephoneNode<?>> {
                 super.createEventBindings(),
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
-                        TelephoneStateChangeEvent.class
+                        TelephoneStateChangeEvent.class,
+                        TelephoneNode.VALUE_PROPERTY.getStateKey()
                 ),
                 new BooleanStateChangeEventBinding(
                         e -> validate(),

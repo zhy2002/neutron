@@ -2,10 +2,8 @@ package zhy2002.neutron.config;
 
 import zhy2002.neutron.ChangeModeEnum;
 import zhy2002.neutron.ChangeTrackingModeEnum;
-import zhy2002.neutron.util.ValueUtil;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 /**
  * Metadata for a node property.
@@ -65,7 +63,7 @@ public final class PropertyMetadata<T> {
     ) {
         this.definingClass = definingClass;
         this.name = name;
-        this.stateKey = ValueUtil.camelToConstantLower(name);
+        this.stateKey = definingClass.getSimpleName() + "#" + name;
         this.valueClass = valueClass;
         this.defaultValue = defaultValue;
         this.changeTrackingMode = changeTrackingMode;

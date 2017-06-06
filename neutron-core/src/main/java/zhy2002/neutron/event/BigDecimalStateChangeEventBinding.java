@@ -4,6 +4,8 @@ import zhy2002.neutron.StateChangeEventBinding;
 import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
+import zhy2002.neutron.node.BigDecimalUiNode;
+import zhy2002.neutron.util.ValueUtil;
 
 public class BigDecimalStateChangeEventBinding extends StateChangeEventBinding<BigDecimalStateChangeEvent> {
 
@@ -13,7 +15,7 @@ public class BigDecimalStateChangeEventBinding extends StateChangeEventBinding<B
             String subject,
             TickPhase phase
     ) {
-        super(filter, handler, BigDecimalStateChangeEvent.class, subject, phase);
+        super(filter, handler, BigDecimalStateChangeEvent.class, ValueUtil.ifNull(subject, BigDecimalUiNode.VALUE_PROPERTY.getStateKey()), phase);
     }
 
     public BigDecimalStateChangeEventBinding(

@@ -1,11 +1,11 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.exception.NotImplementedException;
-import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -28,7 +28,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
-    protected abstract PropertyMetadata<T> getValuePropertyMetadata();
+    public abstract PropertyMetadata<T> getValuePropertyMetadata();
 
     @Override
     protected final void addContent() {
@@ -99,7 +99,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     protected void setStateValueDirectly(String key, Object value) {
         super.setStateValueDirectly(key, value);
 
-        if (NeutronConstants.VALUE.equals(key) && getNodeStatus() == NodeStatusEnum.Loaded) {
+        if (getValuePropertyMetadata().getStateKey().equals(key) && getNodeStatus() == NodeStatusEnum.Loaded) {
             setHasValue(hasValue());
         }
     }
@@ -183,6 +183,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateSelfDirty,
                             stateChangeEvent.getClass(),
+                            getOwner().getValuePropertyMetadata().getStateKey(),
                             PredefinedPhases.Pre //need to do this in pre phase to capture original value
                     )
             );

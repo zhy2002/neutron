@@ -111,7 +111,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     }
 
     @Override
-    protected PropertyMetadata<BigDecimal> getValuePropertyMetadata() {
+    public PropertyMetadata<BigDecimal> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 

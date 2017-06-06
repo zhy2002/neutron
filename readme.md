@@ -20,7 +20,9 @@ Todo
 - load config from json
 - support expression in init (as opposed to only constants)
 - add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
-
+  - refresh event directiron? downwards, upwards, both
+  
+  
 Todo (low priority)
 -----------------
 - implement rule priority

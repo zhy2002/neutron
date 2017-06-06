@@ -4,6 +4,8 @@ import zhy2002.neutron.StateChangeEventBinding;
 import zhy2002.neutron.TickPhase;
 import zhy2002.neutron.UiNodeEventFilter;
 import zhy2002.neutron.UiNodeEventHandler;
+import zhy2002.neutron.node.StringUiNode;
+import zhy2002.neutron.util.ValueUtil;
 
 public class StringStateChangeEventBinding extends StateChangeEventBinding<StringStateChangeEvent> {
 
@@ -13,7 +15,7 @@ public class StringStateChangeEventBinding extends StateChangeEventBinding<Strin
             String subject,
             TickPhase phase
     ) {
-        super(filter, handler, StringStateChangeEvent.class, subject, phase);
+        super(filter, handler, StringStateChangeEvent.class, ValueUtil.ifNull(subject, StringUiNode.VALUE_PROPERTY.getStateKey()), phase);
     }
 
     public StringStateChangeEventBinding(

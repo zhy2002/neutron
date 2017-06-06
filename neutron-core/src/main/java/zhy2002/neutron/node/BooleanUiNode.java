@@ -23,7 +23,7 @@ public abstract class BooleanUiNode<P extends ParentUiNode<?>> extends LeafUiNod
     }
 
     @Override
-    protected PropertyMetadata<Boolean> getValuePropertyMetadata() {
+    public PropertyMetadata<Boolean> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 

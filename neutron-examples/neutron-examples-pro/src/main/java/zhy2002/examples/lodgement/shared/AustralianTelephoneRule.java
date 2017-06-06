@@ -31,14 +31,15 @@ public class AustralianTelephoneRule extends ValidationRule<TelephoneNode<?>> {
                 super.createEventBindings(),
                 new GenericStateChangeEventBinding<>(
                         e -> validate(),
-                        TelephoneStateChangeEvent.class
+                        TelephoneStateChangeEvent.class,
+                        TelephoneNode.VALUE_PROPERTY.getStateKey()
                 )
         );
     }
 
     @Override
     protected String getErrorMessage() {
-        Telephone telephone = getOwner().getValue();
+        Telephone telephone = getTelephoneNode().getValue();
         if (telephone == null || !"+61".equals(telephone.getCountryCode()))
             return null;
 

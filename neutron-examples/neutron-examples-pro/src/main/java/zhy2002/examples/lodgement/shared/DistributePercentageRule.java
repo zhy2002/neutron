@@ -5,6 +5,7 @@ import zhy2002.examples.lodgement.gen.node.OwnershipListNode;
 import zhy2002.examples.lodgement.gen.node.OwnershipNode;
 import zhy2002.examples.lodgement.gen.node.OwnershipPercentageNode;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeEvent;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
@@ -43,7 +44,7 @@ public class DistributePercentageRule extends UiNodeRule<OwnershipListNode<?>> {
                 new BooleanStateChangeEventBinding(
                         this::percentageNodeReadOnlySetToTrue,
                         e -> this.recalculate(),
-                        NeutronConstants.READONLY
+                        UiNode.READONLY_PROPERTY.getStateKey()
                 )
         );
     }

@@ -35,7 +35,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
     @Override
-    protected PropertyMetadata<String> getValuePropertyMetadata() {
+    public PropertyMetadata<String> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 

@@ -245,7 +245,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
     @Override
-    protected PropertyMetadata<${valueTypeName}> getValuePropertyMetadata() {
+    public PropertyMetadata<${valueTypeName}> getValuePropertyMetadata() {
         return VALUE_PROPERTY;
     }
 
