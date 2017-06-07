@@ -2,11 +2,6 @@ package zhy2002.neutron;
 
 import zhy2002.neutron.config.NeutronConstants;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-
 /**
  * An event that can only trigger post change rules.
  */
@@ -22,26 +17,7 @@ public class RefreshUiNodeEvent extends UiNodeEvent {
 
     @Override
     public Iterable<BindingActivation> getActivations() {
-        List<BindingActivation> result = new ArrayList<>();
-        UiNode<?> target = getOrigin();
-        Queue<UiNode<?>> queue = new ArrayDeque<>();
-        queue.add(target); //bfs
-        while (!queue.isEmpty()) {
-            target = queue.poll();
-            if (target instanceof ParentUiNode) {
-                ParentUiNode<?> parentUiNode = (ParentUiNode<?>) target;
-                for (int i = 0; i < parentUiNode.getChildCount(); i++) {
-                    queue.add(parentUiNode.getChild(i));
-                }
-            }
-            for (EventBinding binding : target.getAttachedEventBindings(this.getEventKey())) {//todo not right, event inheritance
-                if (binding.canFire(this)) {
-                    BindingActivation activation = new BindingActivation(binding, this);
-                    result.add(activation);
-                }
-            }
-        }
-        return result;
+        return UiNodeDirectionEnum.Down.getActivations(this);
     }
 
 }

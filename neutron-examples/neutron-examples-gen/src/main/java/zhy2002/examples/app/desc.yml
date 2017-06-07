@@ -10,6 +10,9 @@ rootType:
   - {name: footerHeight, typeName: double, default: Double.NaN}
   rules:
   - {typeName: UpdateSelectedTabIndexRule, existing: false}
+  - {typeName: HandleAddOpenAppActionRule, existing: false}
+  actions:
+  - {typeName: AddOpenApp, parameterTypeName: Object}
   children:
   - {typeName: HeaderNode}
   - {typeName: OpenAppsNode}

@@ -1,10 +1,8 @@
 Todo 
 -----------------  
+- add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
+  - refresh event directiron? downwards, upwards, both
 - add HOCs as an alternative to Neutron base components
-- move logic from JSX to AppManagerNode
-- hierarchical di
-  - define an expression language which allows a node to ask its parent for objects meeting certain criteria
-  - notification will NOT be provided when the injected instance is changed
 - i18n support
   - runtime configurable culture specific parser/formatter chain
   - React i18n
@@ -19,9 +17,7 @@ Todo
 - construct framework nodes via reflection in codegen module.
 - load config from json
 - support expression in init (as opposed to only constants)
-- add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
-  - refresh event directiron? downwards, upwards, both
-  
+- watcher for the yaml files and incremental build
   
 Todo (low priority)
 -----------------
@@ -214,7 +210,13 @@ Finished
   - change default values at runtime
   - ???
   
-  
+26 hierarchical di
+  - allow node to inherit property value from parent
+  - <s>define an expression language which allows a node to ask its parent for objects meeting certain criteria</s>
+  - notification will NOT be provided when the injected instance is changed
+
+27 move logic from JSX to AppManagerNode
+
 ### Garbage
 
 * preserve value when node is disabled -> conditional state

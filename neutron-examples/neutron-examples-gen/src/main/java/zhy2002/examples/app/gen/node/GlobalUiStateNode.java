@@ -130,4 +130,8 @@ public class GlobalUiStateNode extends RootUiNode<VoidUiNode> {
         return children;
     }
 
+    @JsMethod
+    public void dispatchAddOpenAppAction(Object parameter) {
+        getContext().processEvent(new AddOpenAppActionEvent(this, parameter));
+    }
 }

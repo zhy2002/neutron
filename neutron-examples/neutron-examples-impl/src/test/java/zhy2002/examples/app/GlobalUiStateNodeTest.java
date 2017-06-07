@@ -70,4 +70,13 @@ public class GlobalUiStateNodeTest {
         assertThat(globalUiStateNodeNode.getSelectedTabIndex(), equalTo(0));
 
     }
+
+    @Test
+    public void addOpenAppActionWorksAsExpected() {
+        Object testObject = new Object();
+        globalUiStateNodeNode.dispatchAddOpenAppAction(testObject);
+
+        assertThat(globalUiStateNodeNode.getOpenAppsNode().getItemCount(), equalTo(1));
+        assertThat(globalUiStateNodeNode.getOpenAppsNode().getItem(0).getValue(), sameInstance(testObject));
+    }
 }

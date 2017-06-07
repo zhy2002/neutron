@@ -3,6 +3,7 @@ package zhy2002.neutron;
 import zhy2002.neutron.config.NeutronConstants;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * The base class for all UiNode events.
@@ -88,6 +89,20 @@ public abstract class UiNodeEvent {
      * @return rule activations to be fired.
      */
     public abstract Iterable<BindingActivation> getActivations();
+
+    void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor) {
+        addBindingActivations(result, anchor, this.getEventKey());
+    }
+
+    void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor, UiNodeEventKey<?> key) {
+        //at the moment rules have to declare the concrete event class they want to listen to.
+        for (EventBinding binding : anchor.getAttachedEventBindings(key)) {
+            if (binding.canFire(this)) {
+                BindingActivation activation = new BindingActivation(binding, this);
+                result.add(activation);
+            }
+        }
+    }
 
     @Override
     public String toString() {

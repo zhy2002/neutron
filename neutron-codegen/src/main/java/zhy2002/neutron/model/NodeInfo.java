@@ -54,6 +54,8 @@ public class NodeInfo extends CodeGenInfo {
     private List<RuleInfo> rules;
     @Valid
     private List<ConfigInfo> config;
+    @Valid
+    private List<ActionInfo> actions;
 
     public String getBaseTypeName() {
         return baseTypeName;
@@ -153,6 +155,14 @@ public class NodeInfo extends CodeGenInfo {
 
     public void setConfig(List<ConfigInfo> config) {
         this.config = config;
+    }
+
+    public List<ActionInfo> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<ActionInfo> actions) {
+        this.actions = actions;
     }
 
     ////////////////////////////////////////////////////////

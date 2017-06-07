@@ -28,6 +28,8 @@ public class GlobalUiStateNodeRuleProvider implements RuleProvider<GlobalUiState
 
     @Inject
     Provider<UpdateSelectedTabIndexRule> updateSelectedTabIndexRuleProvider;
+    @Inject
+    Provider<HandleAddOpenAppActionRule> handleAddOpenAppActionRuleProvider;
 
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
@@ -35,6 +37,8 @@ public class GlobalUiStateNodeRuleProvider implements RuleProvider<GlobalUiState
 
         UpdateSelectedTabIndexRule updateSelectedTabIndexRule = updateSelectedTabIndexRuleProvider.get();
         createdRules.add(updateSelectedTabIndexRule);
+        HandleAddOpenAppActionRule handleAddOpenAppActionRule = handleAddOpenAppActionRuleProvider.get();
+        createdRules.add(handleAddOpenAppActionRule);
     }
 
 }

@@ -13,18 +13,7 @@ function createGlobalUiStateNode() {
 }
 
 function createAppTab(newApp) {
-    const context = globalUiStateNode.getContext();
-    context.beginSession();
-    const oldMode = context.getCycleMode();
-    try {
-        context.setCycleMode(GWT.CycleModeEnum.Batched);
-        const itemNode = globalUiStateNode.getOpenAppsNode().createItem();
-        itemNode.setValue(newApp);
-        context.flush();
-    } finally {
-        context.setCycleMode(oldMode);
-        context.commitSession();
-    }
+    globalUiStateNode.dispatchAddOpenAppAction(newApp);
 
     newApp.getContext().setDirtyCheckEnabled(true);
     console.log('Enabled dirty checking for app');

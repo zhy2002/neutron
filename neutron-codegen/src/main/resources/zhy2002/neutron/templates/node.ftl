@@ -261,4 +261,12 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     }
 
 </#if>
+<#if actions??>
+    <#list actions as action>
+    @JsMethod
+    public void dispatch${action.typeName}Action(${action.parameterTypeName} parameter) {
+        getContext().processEvent(new ${action.typeName}ActionEvent(this, parameter));
+    }
+    </#list>
+</#if>
 }
