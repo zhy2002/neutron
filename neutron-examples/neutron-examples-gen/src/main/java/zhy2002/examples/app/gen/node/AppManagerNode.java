@@ -9,6 +9,8 @@ import javax.inject.*;
 import zhy2002.neutron.di.*;
 import java.util.*;
 import zhy2002.examples.app.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
@@ -46,6 +48,18 @@ public class AppManagerNode extends ObjectUiNode<GlobalUiStateNode> {
     @Override
     protected void createRules(List<UiNodeRule<?>> createdRules) {
         this.component.provideRuleProviders().forEach(provider -> provider.createRules(createdRules));
+    }
+
+    public static final PropertyMetadata<String> CURRENT_APP_ID_PROPERTY = MetadataRegistry.createProperty(AppManagerNode.class, "currentAppId", String.class);
+
+    @JsMethod
+    public String getCurrentAppId() {
+        return getStateValue(CURRENT_APP_ID_PROPERTY);
+    }
+
+    @JsMethod
+    public void setCurrentAppId(String value) {
+        setStateValue(CURRENT_APP_ID_PROPERTY, value);
     }
 
     //region children getters

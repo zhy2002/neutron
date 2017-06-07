@@ -64,6 +64,8 @@ export default class NeutronComponent extends React.PureComponent {
 
     /**
      * Get all the state required for rendering.
+     * Do not access this.props in this methods as it can be stale.
+     * Use this.xxx set in receiveProps instead.
      * @returns {{}} the complete state object for rendering.
      */
     extractNewState() {

@@ -4,10 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.TestUtil;
 import zhy2002.examples.interop.JavaMethods;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.neutron.CycleModeEnum;
+import zhy2002.neutron.UiNodeContext;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.sameInstance;
 
 public class CompanyTest {

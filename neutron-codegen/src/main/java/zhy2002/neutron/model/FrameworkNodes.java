@@ -84,7 +84,7 @@ public class FrameworkNodes {
         VOID_NODE_INFO.setGenericTypeName("VoidUiNode");
         FRAMEWORK_NODE_MAP.put(VOID_NODE_INFO.getTypeName(), VOID_NODE_INFO);
 
-        for (String subLeafTypeName : Arrays.asList("BigDecimalUiNode", "BooleanUiNode", "ReferenceUiNode", "StringUiNode", "ValidationErrorUiNode")) {
+        for (String subLeafTypeName : Arrays.asList("BooleanUiNode", "DoubleUiNode", "BigDecimalUiNode", "ReferenceUiNode", "StringUiNode", "AnyUiNode", "ValidationErrorUiNode")) {
             NodeInfo subLeafNodeInfo = new NodeInfo();
             subLeafNodeInfo.setTypeName(subLeafTypeName);
             subLeafNodeInfo.setGenericTypeName(subLeafTypeName + "<?>");

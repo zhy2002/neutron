@@ -22,10 +22,9 @@ public final class CodeGenUtil {
 
     private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private static final Map<String, String> primitiveToWrapperClassNameMap = ImmutableMap.of(
-            "char", "Character",
-            "short", "Short",
             "int", "Integer",
-            "long", "Long"
+            "long", "Long",
+            "double", "Double"
     );
 
     private CodeGenUtil() {

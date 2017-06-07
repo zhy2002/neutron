@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResizeAware from 'react-resize-aware';
+import NeutronComponent from '../bootstrap3/NeutronComponent';
 import LodgementBannerComponent from './LodgementBannerComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementService from './services/LodgementService';
 
 
-export default class LodgementHeaderComponent extends React.PureComponent {
+export default class LodgementHeaderComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);
@@ -15,6 +16,12 @@ export default class LodgementHeaderComponent extends React.PureComponent {
         this.handleResize = ({height}) => {
             LodgementService.updateHeaderHeight(height);
         };
+    }
+
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.siteLogoUrl = this.model.getSiteLogoPath();
+        return newState;
     }
 
     render() {
@@ -27,7 +34,7 @@ export default class LodgementHeaderComponent extends React.PureComponent {
                 onlyEvent
                 onResize={this.handleResize}
             >
-                <LodgementBannerComponent />
+                <LodgementBannerComponent logoUrl={this.state.siteLogoUrl} />
                 <LodgementTabsComponent
                     tabItems={this.props.tabItems}
                     selectedIndex={this.props.selectedIndex}

@@ -11,15 +11,15 @@ import java.util.*;
 
 
 @Module
-public class MenuNodeModule {
+public class HeaderNodeModule {
 
-    private final MenuNode owner;
+    private final HeaderNode owner;
 
-    public MenuNodeModule(MenuNode owner) {
+    public HeaderNodeModule(HeaderNode owner) {
         this.owner = owner;
     }
 
-    @Provides @ComponentScope @Owner MenuNode provideMenuNode() {
+    @Provides @ComponentScope @Owner HeaderNode provideHeaderNode() {
         return owner;
     }
 
@@ -39,20 +39,20 @@ public class MenuNodeModule {
         return owner.getParent();
     }
 
-    @Provides @Named("MenuNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
-    RuleProvider<MenuNode> providePlaceholderRuleProvider() {
+    @Provides @Named("HeaderNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<HeaderNode> providePlaceholderRuleProvider() {
         return null;
     }
 
-    @Provides @Named("MenuNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
-    RuleProvider<MenuNode> provideTypeRuleProvider(MenuNodeRuleProvider provider) {
+    @Provides @Named("HeaderNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<HeaderNode> provideTypeRuleProvider(HeaderNodeRuleProvider provider) {
         return provider;
     }
 
 
     @Provides @ComponentScope
-    List<RuleProvider<MenuNode>> provideRuleProviders(
-        @Named("MenuNodeRuleProvider")  Map<String, Provider<RuleProvider<MenuNode>>> ruleProviderProviderMap
+    List<RuleProvider<HeaderNode>> provideRuleProviders(
+        @Named("HeaderNodeRuleProvider")  Map<String, Provider<RuleProvider<HeaderNode>>> ruleProviderProviderMap
     ) {
         String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);

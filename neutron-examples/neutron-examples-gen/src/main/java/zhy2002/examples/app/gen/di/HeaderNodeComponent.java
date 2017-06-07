@@ -7,18 +7,18 @@ import java.util.*;
 
 
 @ComponentScope
-@Subcomponent(modules = {SiteLogoNodeModule.class})
-public interface SiteLogoNodeComponent {
+@Subcomponent(modules = {HeaderNodeModule.class})
+public interface HeaderNodeComponent {
 
-    List<RuleProvider<SiteLogoNode>> provideRuleProviders();
+    List<RuleProvider<HeaderNode>> provideRuleProviders();
 
 
     @Subcomponent.Builder
     interface Builder {
 
-        Builder setSiteLogoNodeModule(SiteLogoNodeModule module);
+        Builder setHeaderNodeModule(HeaderNodeModule module);
 
-        SiteLogoNodeComponent build();
+        HeaderNodeComponent build();
     }
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../assets/stylesheets/app.scss';
 import LodgementComponent from './lodgement/LodgementComponent';
+import LodgementService from './lodgement/services/LodgementService';
 import EventService from './neutron/EventService';
 
 
@@ -19,5 +20,6 @@ appContainerDomElement.addEventListener('keyup', (e) => {
  * Called by GWT when GWT modules are loaded.
  */
 window.startLodgement = () => {
-    ReactDOM.render(<LodgementComponent/>, appContainerDomElement);
+    const model = LodgementService.getGlobalUiStateNode();
+    ReactDOM.render(<LodgementComponent model={model} />, appContainerDomElement);
 };

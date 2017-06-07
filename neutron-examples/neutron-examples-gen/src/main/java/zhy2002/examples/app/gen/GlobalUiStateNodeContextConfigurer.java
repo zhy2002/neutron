@@ -22,5 +22,7 @@ public class GlobalUiStateNodeContextConfigurer implements ContextConfigurer<Glo
     public void configure(GlobalUiStateNodeContext context) {
         ContextConfiguration configuration = context.getConfiguration();
 
+        NodeConfiguration configHeaderNode = configuration.getConfig(HeaderNode.class);
+            configHeaderNode.setConfigValue(".*/@siteLogoPath", "img/site_logo.png");
     }
 }

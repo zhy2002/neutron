@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import javax.inject.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import zhy2002.examples.app.data.*;
+import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.examples.app.gen.rule.*;
 import zhy2002.examples.app.gen.di.*;
 import java.util.List;
@@ -60,11 +63,52 @@ public class GlobalUiStateNode extends RootUiNode<VoidUiNode> {
         return new GlobalUiStateNodeUnloadEvent(this);
     }
 
+    public static final PropertyMetadata<Integer> SELECTED_TAB_INDEX_PROPERTY = MetadataRegistry.createProperty(GlobalUiStateNode.class, "selectedTabIndex", Integer.class, 0);
+    public static final PropertyMetadata<Double> HEADER_HEIGHT_PROPERTY = MetadataRegistry.createProperty(GlobalUiStateNode.class, "headerHeight", Double.class, Double.NaN);
+    public static final PropertyMetadata<Double> FOOTER_HEIGHT_PROPERTY = MetadataRegistry.createProperty(GlobalUiStateNode.class, "footerHeight", Double.class, Double.NaN);
+
+    @JsMethod
+    public int getSelectedTabIndex() {
+        return getStateValue(SELECTED_TAB_INDEX_PROPERTY);
+    }
+
+    @JsMethod
+    public void setSelectedTabIndex(int value) {
+        setStateValue(SELECTED_TAB_INDEX_PROPERTY, value);
+    }
+
+
+    @JsMethod
+    public double getHeaderHeight() {
+        return getStateValue(HEADER_HEIGHT_PROPERTY);
+    }
+
+    @JsMethod
+    public void setHeaderHeight(double value) {
+        setStateValue(HEADER_HEIGHT_PROPERTY, value);
+    }
+
+
+    @JsMethod
+    public double getFooterHeight() {
+        return getStateValue(FOOTER_HEIGHT_PROPERTY);
+    }
+
+    @JsMethod
+    public void setFooterHeight(double value) {
+        setStateValue(FOOTER_HEIGHT_PROPERTY, value);
+    }
+
     //region children getters
 
     @JsMethod
-    public MenuNode getMenuNode() {
-        return (MenuNode)getChildByName("menuNode");
+    public HeaderNode getHeaderNode() {
+        return (HeaderNode)getChildByName("headerNode");
+    }
+
+    @JsMethod
+    public OpenAppsNode getOpenAppsNode() {
+        return (OpenAppsNode)getChildByName("openAppsNode");
     }
 
     @JsMethod
@@ -76,8 +120,10 @@ public class GlobalUiStateNode extends RootUiNode<VoidUiNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        setChildNodeIdentity("menuNode");
-        children.add(getComponent().createMenuNode());
+        setChildNodeIdentity("headerNode");
+        children.add(getComponent().createHeaderNode());
+        setChildNodeIdentity("openAppsNode");
+        children.add(getComponent().createOpenAppsNode());
         setChildNodeIdentity("appManagerNode");
         children.add(getComponent().createAppManagerNode());
         setChildNodeIdentity(null);

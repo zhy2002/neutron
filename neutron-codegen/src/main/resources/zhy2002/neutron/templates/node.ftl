@@ -23,7 +23,7 @@ import java.util.*;
 <#if valueTypeName?? || init?? || properties??>
 import ${targetPackage}.data.*;
 </#if>
-<#if properties?? && properties?size gt 0>
+<#if properties?? && properties?size gt 0 || valueTypeName??>
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 </#if>

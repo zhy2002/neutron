@@ -4,23 +4,37 @@ typeName: GlobalUiState
 rootType:
   typeName: GlobalUiStateNode
   baseTypeName: RootUiNode
+  properties:
+  - {name: selectedTabIndex, typeName: int, default: 0}
+  - {name: headerHeight, typeName: double, default: Double.NaN}
+  - {name: footerHeight, typeName: double, default: Double.NaN}
+  rules:
+  - {typeName: UpdateSelectedTabIndexRule, existing: false}
   children:
-  - {typeName: MenuNode}
+  - {typeName: HeaderNode}
+  - {typeName: OpenAppsNode}
   - {typeName: AppManagerNode}
   childTypes:
-  - typeName: MenuNode
+  - typeName: HeaderNode
     baseTypeName: ObjectUiNode
-    children:
-    - {typeName: SiteLogoNode}
+    properties:
+    - {name: siteLogoPath, typeName: String}
+    config:
+    - {property: '@siteLogoPath', value: '"img/site_logo.png"'}
+    children: []
+
+  - typeName: OpenAppsNode
+    baseTypeName: ListUiNode
+    itemTypeName: OpenAppNode
     childTypes:
-    - typeName: SiteLogoNode
-      baseTypeName: StringUiNode
-      init:
-      - {propertyName: value, value: '"img/site_logo.png"'}
+    - typeName: OpenAppNode
+      baseTypeName: AnyUiNode
 
   # manage loaded applications
   - typeName: AppManagerNode
     baseTypeName: ObjectUiNode
+    properties:
+    - {name: currentAppId, typeName: String}
     init:
     - {propertyName: nodeLabel, value: '"App Manager"'}
     children:

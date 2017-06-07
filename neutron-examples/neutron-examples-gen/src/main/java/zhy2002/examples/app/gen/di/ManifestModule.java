@@ -14,8 +14,9 @@ import zhy2002.neutron.di.NeutronModule;
 @Module(includes = {NeutronModule.class},
 subcomponents = {
     GlobalUiStateNodeComponent.class,
-    MenuNodeComponent.class,
-    SiteLogoNodeComponent.class,
+    HeaderNodeComponent.class,
+    OpenAppsNodeComponent.class,
+    OpenAppNodeComponent.class,
     AppManagerNodeComponent.class,
     ApplicationListNodeComponent.class
 })

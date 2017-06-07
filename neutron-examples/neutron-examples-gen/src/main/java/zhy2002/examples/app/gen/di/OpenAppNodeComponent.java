@@ -7,19 +7,18 @@ import java.util.*;
 
 
 @ComponentScope
-@Subcomponent(modules = {MenuNodeModule.class})
-public interface MenuNodeComponent {
+@Subcomponent(modules = {OpenAppNodeModule.class})
+public interface OpenAppNodeComponent {
 
-    List<RuleProvider<MenuNode>> provideRuleProviders();
+    List<RuleProvider<OpenAppNode>> provideRuleProviders();
 
-    SiteLogoNode createSiteLogoNode();
 
     @Subcomponent.Builder
     interface Builder {
 
-        Builder setMenuNodeModule(MenuNodeModule module);
+        Builder setOpenAppNodeModule(OpenAppNodeModule module);
 
-        MenuNodeComponent build();
+        OpenAppNodeComponent build();
     }
 
 }

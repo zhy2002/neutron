@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CommonUtil from '../neutron/CommonUtil';
 import DummyNavDropdownComponent from '../bootstrap3/DummyNavDropdownComponent';
 
@@ -9,7 +10,7 @@ export default class LodgementBannerComponent extends React.PureComponent {
             <nav className="navbar navbar-default lodgement-banner-component">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <img src="img/site_logo.png" alt="Site Logo" height="50px"/>
+                        <img src={this.props.logoUrl} alt="Site Logo" height="50px"/>
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
@@ -24,3 +25,7 @@ export default class LodgementBannerComponent extends React.PureComponent {
         );
     }
 }
+
+LodgementBannerComponent.propTypes = {
+    logoUrl: PropTypes.string.isRequired
+};

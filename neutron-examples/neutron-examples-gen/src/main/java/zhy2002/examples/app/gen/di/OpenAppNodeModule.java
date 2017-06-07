@@ -11,19 +11,19 @@ import java.util.*;
 
 
 @Module
-public class SiteLogoNodeModule {
+public class OpenAppNodeModule {
 
-    private final SiteLogoNode owner;
+    private final OpenAppNode owner;
 
-    public SiteLogoNodeModule(SiteLogoNode owner) {
+    public OpenAppNodeModule(OpenAppNode owner) {
         this.owner = owner;
     }
 
-    @Provides @ComponentScope @Owner SiteLogoNode provideSiteLogoNode() {
+    @Provides @ComponentScope @Owner OpenAppNode provideOpenAppNode() {
         return owner;
     }
 
-    @Provides @ComponentScope @Owner StringUiNode<?> provideStringUiNode() {
+    @Provides @ComponentScope @Owner AnyUiNode<?> provideAnyUiNode() {
         return owner;
     }
 
@@ -35,24 +35,24 @@ public class SiteLogoNodeModule {
         return owner;
     }
 
-    @Provides @ComponentScope MenuNode provideMenuNode() {
+    @Provides @ComponentScope OpenAppsNode provideOpenAppsNode() {
         return owner.getParent();
     }
 
-    @Provides @Named("SiteLogoNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
-    RuleProvider<SiteLogoNode> providePlaceholderRuleProvider() {
+    @Provides @Named("OpenAppNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.PLACEHOLDER_RULE_PROVIDER)
+    RuleProvider<OpenAppNode> providePlaceholderRuleProvider() {
         return null;
     }
 
-    @Provides @Named("SiteLogoNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
-    RuleProvider<SiteLogoNode> provideTypeRuleProvider(SiteLogoNodeRuleProvider provider) {
+    @Provides @Named("OpenAppNodeRuleProvider") @IntoMap @StringKey(NeutronConstants.TYPE_RULE_PROVIDER)
+    RuleProvider<OpenAppNode> provideTypeRuleProvider(OpenAppNodeRuleProvider provider) {
         return provider;
     }
 
 
     @Provides @ComponentScope
-    List<RuleProvider<SiteLogoNode>> provideRuleProviders(
-        @Named("SiteLogoNodeRuleProvider")  Map<String, Provider<RuleProvider<SiteLogoNode>>> ruleProviderProviderMap
+    List<RuleProvider<OpenAppNode>> provideRuleProviders(
+        @Named("OpenAppNodeRuleProvider")  Map<String, Provider<RuleProvider<OpenAppNode>>> ruleProviderProviderMap
     ) {
         String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);

@@ -12,7 +12,8 @@ public interface GlobalUiStateNodeComponent {
 
     List<RuleProvider<GlobalUiStateNode>> provideRuleProviders();
 
-    MenuNode createMenuNode();
+    HeaderNode createHeaderNode();
+    OpenAppsNode createOpenAppsNode();
     AppManagerNode createAppManagerNode();
 
     @Subcomponent.Builder

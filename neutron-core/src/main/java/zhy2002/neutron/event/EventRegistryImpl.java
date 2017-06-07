@@ -21,12 +21,13 @@ public class EventRegistryImpl implements EventRegistry {
     }
 
     private void loadStateChangeEventFactories() {
-        this.setStateChangeEventFactory(String.class, StringStateChangeEvent::new);
         this.setStateChangeEventFactory(Boolean.class, BooleanStateChangeEvent::new);
-        this.setStateChangeEventFactory(BigDecimal.class, BigDecimalStateChangeEvent::new);
-        this.setStateChangeEventFactory(ValidationErrorList.class, ValidationErrorListStateChangeEvent::new);
-        this.setStateChangeEventFactory(Object.class, ObjectStateChangeEvent::new);
         this.setStateChangeEventFactory(Integer.class, IntegerStateChangeEvent::new);
+        this.setStateChangeEventFactory(Double.class, DoubleStateChangeEvent::new);
+        this.setStateChangeEventFactory(BigDecimal.class, BigDecimalStateChangeEvent::new);
+        this.setStateChangeEventFactory(String.class, StringStateChangeEvent::new);
+        this.setStateChangeEventFactory(Object.class, ObjectStateChangeEvent::new);
+        this.setStateChangeEventFactory(ValidationErrorList.class, ValidationErrorListStateChangeEvent::new);
         this.setStateChangeEventFactory(ValidationError.class, ValidationErrorStateChangeEvent::new);
     }
 

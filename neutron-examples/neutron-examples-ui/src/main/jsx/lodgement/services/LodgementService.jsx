@@ -6,38 +6,29 @@ import CommonUtil from '../../neutron/CommonUtil';
 import StorageService from './StorageService';
 
 let globalUiStateNode = null;
-let openApps = [];
-let selectedIndex = 0;
-let headerHeight = NaN;
-let footerHeight = NaN;
-let currentAppId = null;
 const appTabOffset = 1; //the first is app manager tab
-
-function notifyStateChange() {
-    EventService.fire('lodgement_state_change');
-}
 
 function createGlobalUiStateNode() {
     return window.GWT.GlobalUiStateNodeFactory.create();
 }
 
-function getGlobalUiStateNode() {
-    if (globalUiStateNode === null) {
-        globalUiStateNode = createGlobalUiStateNode();
-    }
-
-    return globalUiStateNode;
-}
-
 function createAppTab(newApp) {
-    const newApps = [...openApps, newApp];
-    openApps = newApps;
-    selectedIndex = newApps.length;
+    const context = globalUiStateNode.getContext();
+    context.beginSession();
+    const oldMode = context.getCycleMode();
+    try {
+        context.setCycleMode(GWT.CycleModeEnum.Batched);
+        const itemNode = globalUiStateNode.getOpenAppsNode().createItem();
+        itemNode.setValue(newApp);
+        context.flush();
+    } finally {
+        context.setCycleMode(oldMode);
+        context.commitSession();
+    }
 
     newApp.getContext().setDirtyCheckEnabled(true);
     console.log('Enabled dirty checking for app');
 
-    notifyStateChange();
     return CommonUtil.defer(newApp);
 }
 
@@ -95,7 +86,7 @@ export default class LodgementService extends StaticService {
             id = appId;
         }
         if (!id) {
-            id = currentAppId;
+            id = globalUiStateNode.getAppManagerNode().getCurrentAppId();
             if (!id) {
                 alert('No application is selected.');
                 return CommonUtil.defer(null);
@@ -103,11 +94,12 @@ export default class LodgementService extends StaticService {
         }
 
         //check if app is already opened
+        const openApps = globalUiStateNode.getOpenAppsNode().getChildren().map(c => c.getValue());
         for (let i = 0; i < openApps.length; i++) {
             const app = openApps[i];
             if (app.getIdNode().getValue() === id) {
-                selectedIndex = i + appTabOffset;
-                LodgementService.selectTab(selectedIndex);
+                globalUiStateNode.setSelectedTabIndex(i + appTabOffset);
+                LodgementService.selectTab(i + appTabOffset);
                 console.debug('app is already loaded');
                 return CommonUtil.defer(app);
             }
@@ -132,7 +124,7 @@ export default class LodgementService extends StaticService {
             id = appId;
         }
         if (!id) {
-            id = currentAppId;
+            id = globalUiStateNode.getAppManagerNode().getCurrentAppId();
             if (!id) {
                 alert('No application is selected.');
                 return CommonUtil.defer(null);
@@ -152,8 +144,7 @@ export default class LodgementService extends StaticService {
     }
 
     static selectTab(index) {
-        selectedIndex = index;
-        notifyStateChange();
+        globalUiStateNode.setSelectedTabIndex(index);
     }
 
     static closeTab(tabIndex) {
@@ -161,12 +152,10 @@ export default class LodgementService extends StaticService {
         if (appIndex < 0)
             return;
 
-        if (!openApps[appIndex].isDirty() || window.confirm('You will lose your changes if you close this app.')) {
-            const newApps = openApps.filter((item, i) => i !== appIndex);
-            selectedIndex = Math.min(tabIndex, newApps.length);
-            openApps = newApps;
-
-            notifyStateChange();
+        const openApps = globalUiStateNode.getOpenAppsNode().getChildren();
+        const item = openApps[appIndex];
+        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this app.')) {
+            globalUiStateNode.getOpenAppsNode().removeItem(item);
         }
     }
 
@@ -182,31 +171,23 @@ export default class LodgementService extends StaticService {
     }
 
     static updateHeaderHeight(height) {
-        headerHeight = height;
-        notifyStateChange();
+        globalUiStateNode.setHeaderHeight(height);
     }
 
     static updateFooterHeight(height) {
-        footerHeight = height;
-        notifyStateChange();
+        globalUiStateNode.setFooterHeight(height);
     }
 
-    static getState() {
+    static getGlobalUiStateNode() {
         if (globalUiStateNode === null) {
-            globalUiStateNode = getGlobalUiStateNode();
+            globalUiStateNode = createGlobalUiStateNode();
             console.debug('loaded lodgement node');
         }
-        return {
-            globalUiStateNode,
-            openApps,
-            selectedIndex,
-            headerHeight,
-            footerHeight
-        };
+        return globalUiStateNode;
     }
 
     static setCurrentAppId(id) {
-        currentAppId = id;
+        globalUiStateNode.getAppManagerNode().setCurrentAppId(id);
     }
 
 }

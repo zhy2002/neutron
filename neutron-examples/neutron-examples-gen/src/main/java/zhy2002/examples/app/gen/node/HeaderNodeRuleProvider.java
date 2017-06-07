@@ -5,26 +5,23 @@ import javax.inject.*;
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
-import zhy2002.examples.app.gen.node.SiteLogoNode;
+import zhy2002.examples.app.gen.node.HeaderNode;
 import zhy2002.examples.app.gen.di.*;
-import zhy2002.examples.app.data.*;
-import java.math.*;
 
 @ComponentScope
-public class SiteLogoNodeRuleProvider implements RuleProvider<SiteLogoNode> {
+public class HeaderNodeRuleProvider implements RuleProvider<HeaderNode> {
 
     @Inject
-    StringUiNodeRuleProvider parentRuleProvider;
+    ObjectUiNodeRuleProvider parentRuleProvider;
 
     @Inject
-    public SiteLogoNodeRuleProvider() {
+    public HeaderNodeRuleProvider() {
     }
 
     @Override
-    public void initializeState(SiteLogoNode node) {
+    public void initializeState(HeaderNode node) {
         parentRuleProvider.initializeState(node);
 
-        node.setValue("img/site_logo.png");
     }
 
     @Override
