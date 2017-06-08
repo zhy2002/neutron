@@ -1,16 +1,17 @@
 Todo fix client side - notification changes
 -----------------  
-- add HOCs as an alternative to Neutron base components
+- Use HOCs replace Neutron base components
 - i18n support
   - runtime configurable culture specific parser/formatter chain
+  - formatter chain for all node
+  - parser chain for leaf nodes
   - React i18n
-- add JEST tests
 - align JSX code with RxJS patterns
 - implement partial load/unload examples
   - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
+- add JEST tests
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation/translation
-- exclude generated files from source control
   
 Todo (low priority)
 -----------------
@@ -222,6 +223,8 @@ Finished
 30 align JSX code with Redux patterns
   - property set/action dispatch into node hierarchy
   - property get/notification out of node hierarchy
+
+31 exclude generated files from source control
 
 ### Garbage
 

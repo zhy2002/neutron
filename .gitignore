@@ -60,3 +60,4 @@ origin/
 examples/src/main/webapp/js/index.*
 
 target/
+gen/
