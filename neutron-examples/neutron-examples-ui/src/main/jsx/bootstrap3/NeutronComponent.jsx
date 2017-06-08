@@ -14,7 +14,7 @@ export default class NeutronComponent extends React.PureComponent {
 
     componentWillReceiveProps(nextProps) {
         this.receiveProps(nextProps);
-        this.onUiNodeChanged();
+        this.onNotify();
     }
 
     componentDidUpdate() {
@@ -33,7 +33,7 @@ export default class NeutronComponent extends React.PureComponent {
     /**
      * This is called when the model has been updated.
      */
-    onUiNodeChanged() {
+    onNotify() {
         const newState = this.extractNewState();
         this.setState(newState);
     }

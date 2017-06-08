@@ -1,7 +1,6 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsIgnore;
-import jsinterop.annotations.JsType;
 
 import javax.validation.constraints.NotNull;
 
@@ -42,5 +41,7 @@ public interface UiNodeChangeEngine extends UiNodeChangeEngineStatus {
      * Otherwise process the current cycle.
      */
     void flush();
+
+    void queueNotification(UiNodeNotification uiNodeNotification);
 
 }

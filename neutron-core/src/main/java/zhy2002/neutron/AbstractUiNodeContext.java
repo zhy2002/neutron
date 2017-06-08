@@ -2,12 +2,12 @@ package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.ContextConfiguration;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.data.NodeDataStore;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -268,6 +268,11 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
     @Override
     public final void setEventMode(EngineEventModeEnum mode) {
         changeEngine.setEventMode(mode);
+    }
+
+    @Override
+    public void queueNotification(UiNodeNotification uiNodeNotification) {
+        this.changeEngine.queueNotification(uiNodeNotification);
     }
 
     @Override

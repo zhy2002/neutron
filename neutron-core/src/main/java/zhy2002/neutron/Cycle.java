@@ -1,5 +1,6 @@
 package zhy2002.neutron;
 
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.exception.UiNodeEventException;
 
 import java.util.*;
@@ -39,6 +40,10 @@ public class Cycle implements CycleStatus {
      * UiNode events that are parsed and applied.
      */
     private final Deque<UiNodeEvent> appliedDeque = new ArrayDeque<>();
+    /**
+     * Notifications to be sent out at the end of this cycle.
+     */
+    private final List<UiNodeNotification> notifications = new ArrayList<>();
     /**
      * An object that prioritize rule activations.
      */
@@ -125,24 +130,41 @@ public class Cycle implements CycleStatus {
         }
     }
 
-    void notifyChanges() {
+    void queueNotification(UiNodeNotification uiNodeNotification) {
+        notifications.add(uiNodeNotification);
+    }
+
+    void queueChangeNotifications() {
         Iterator<UiNodeEvent> iterator = appliedDeque.iterator();
-        List<UiNode<?>> changedNodes = new ArrayList<>();
+        Set<UiNode<?>> queued = new HashSet<>();
         while (iterator.hasNext()) {
             UiNodeEvent uiNodeEvent = iterator.next();
             if (uiNodeEvent instanceof NodeAddEvent || uiNodeEvent instanceof NodeRemoveEvent) {
-                changedNodes.add(uiNodeEvent.getOrigin().getParent());
+                UiNode<?> parent = uiNodeEvent.getOrigin().getParent();
+                if (!queued.contains(parent)) {
+                    parent.queueNotification(NeutronConstants.STATE_CHANGE_NOTIFICATION, null);
+                    queued.add(parent);
+                }
             }
             if (uiNodeEvent instanceof ChangeUiNodeEvent) {
-                changedNodes.add(uiNodeEvent.getOrigin());
+                if (!queued.contains(uiNodeEvent.getOrigin())) {
+                    uiNodeEvent.getOrigin().queueNotification(NeutronConstants.STATE_CHANGE_NOTIFICATION, null);
+                    queued.add(uiNodeEvent.getOrigin());
+                }
             }
         }
-        Set<UiNode<?>> notified = new HashSet<>();
-        for (UiNode<?> node : changedNodes) {
-            if (notified.contains(node))
-                continue;
-            node.notifyChange();
-            notified.add(node);
+    }
+
+    void sendNotifications() {
+        //ensure change notification is not sent once
+        Set<UiNode<?>> changeNotificationSent = new HashSet<>();
+        for (UiNodeNotification notification : notifications) {
+            if (NeutronConstants.STATE_CHANGE_NOTIFICATION.equals(notification.getName())) {
+                if (changeNotificationSent.contains(notification.getOrigin()))
+                    continue;
+                changeNotificationSent.add(notification.getOrigin());
+            }
+            notification.send();
         }
     }
 

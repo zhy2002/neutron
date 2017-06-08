@@ -1,9 +1,9 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -20,7 +20,12 @@ public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
         super(owner);
     }
 
-    private final UiNodeChangeListener listener = () -> addItems(null);
+    private final UiNodeChangeListener listener = new UiNodeChangeListener() {
+        @Override
+        protected void onUiNodeChanged() {
+            addItems(null);
+        }
+    };
 
     @Override
     protected void onLoad() {

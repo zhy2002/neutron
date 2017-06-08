@@ -21,4 +21,5 @@ public final class NeutronConstants {
     public static final String TYPE_RULE_PROVIDER = "TYPE_RULE_PROVIDER";
     public static final int DOMAIN_CONTEXT_CONFIGURER_ORDER = 100;
     public static final int PROFILE_CONTEXT_CONFIGURER_ORDER = 1000;
+    public static final String STATE_CHANGE_NOTIFICATION = "STATE_CHANGE_NOTIFICATION";
 }

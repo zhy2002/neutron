@@ -15,7 +15,7 @@ export default class InputComponent extends NeutronComponent {
                 context.flush();
             } catch (e) {
                 console.warn('Rolling back session due to exception.');
-                this.onUiNodeChanged(); //clear debounded values
+                this.onNotify(); //clear debounded values
             }
             context.setCycleMode(context.oldCycleMode);
             delete context.oldCycleMode;

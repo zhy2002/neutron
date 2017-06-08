@@ -1,23 +1,16 @@
-Todo 
+Todo fix client side - notification changes
 -----------------  
-- add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
-  - refresh event directiron? downwards, upwards, both
 - add HOCs as an alternative to Neutron base components
 - i18n support
   - runtime configurable culture specific parser/formatter chain
   - React i18n
 - add JEST tests
 - align JSX code with RxJS patterns
-- align JSX code with Redux patterns
 - implement partial load/unload examples
   - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
 - link to other documents; display linked documents as accordion or auto complete
-- implement server side validation
+- implement server side validation/translation
 - exclude generated files from source control
-- construct framework nodes via reflection in codegen module.
-- load config from json
-- support expression in init (as opposed to only constants)
-- watcher for the yaml files and incremental build
   
 Todo (low priority)
 -----------------
@@ -38,6 +31,10 @@ Todo (low priority)
 
 Todo (long term)
 -----------------
+- construct framework nodes via reflection in codegen module.
+- load config from json
+- support expression in init (as opposed to only constants)
+- watcher for the yaml files and incremental build
 - compute on WebWorker thread
   - do not directly reference context and nodes but send action and receive state via messages
 - split example project and core framework
@@ -47,7 +44,7 @@ Todo (long term)
 - versioned domain and profile
 - migrate from GWT to Kotlin
 - property DSL to replace yaml.
-- allow bypass validation rules at various levels
+
 
 Design
 -----------------
@@ -217,6 +214,15 @@ Finished
 
 27 move logic from JSX to AppManagerNode
 
+28 add a new notification event type which is propagated through the hierarchy but does not represent a change of state.
+  - refresh event directiron? downwards, upwards, both
+
+29 allow bypass validation rules at various levels
+
+30 align JSX code with Redux patterns
+  - property set/action dispatch into node hierarchy
+  - property get/notification out of node hierarchy
+
 ### Garbage
 
 * preserve value when node is disabled -> conditional state
@@ -239,7 +245,6 @@ Finished
 
 ==================================================
 message provider
-profile
 
 mechanism	target	usage	
 childProvider -override new child	named concrete class	"provide node impl
@@ -251,26 +256,6 @@ di	super type	get instance by super type
 classRegistry	(predefined) related type	get instance by related type	
 
 
-////////////////////////////////////
-valueTypeName -> default baseTypeName: LeafUiNode
-commonTypes -> abstractNode: true
-baseTypeName: LeafUiNode -> parentBaseTypeName: ParentUiNode<?>
-children is not null -> baseTypeName: ObjectUiNode
-baseTypeName: ObjectUiNode -> parentBaseTypeName: ParentUiNode<?>
-
 <pre>
 dob year defaults to 18 years ago
 </pre>
-
-
-Functionality Check List
-------------------
-- A field is required - check
-- A field pattern validation - check
-- A field value is validated again another field value - check
-- A field value causes update of another field value - check
-- Field value and display format are different - check
-- One of two fields is mandatory - check
-- Panel appear when a field has a certain value - check
-- rules to apply depends on the value of a field - check
-- prevent certain chars from being typed in - check

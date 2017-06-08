@@ -99,7 +99,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
      * Listeners that are notified when this node changes.
      * At the moment node change means state change, add child or remove child.
      */
-    private final List<UiNodeChangeListener> changeListeners = new ArrayList<>();
+    private final Map<String, List<UiNodeNotificationListener>> notificationListenerMap = new HashMap<>();
 
     private final NodeConfiguration configuration;
 
@@ -385,6 +385,16 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
             notifyChange();
         }
         return oldEvent;
+    }
+
+    private void notifyChange() {
+        logger.info(this.getClass().getSimpleName() + " notifying temporary changes.");
+        List<UiNodeNotificationListener> listeners = notificationListenerMap.get(NeutronConstants.STATE_CHANGE_NOTIFICATION);
+        if (listeners != null) {
+            for (UiNodeNotificationListener listener : listeners) {
+                listener.onNotify(null);
+            }
+        }
     }
 
     final void clearTemporary() {
@@ -681,20 +691,39 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     @JsMethod
+    public final void addNotificationListener(String name, UiNodeNotificationListener listener) {
+        if (!notificationListenerMap.containsKey(name)) {
+            notificationListenerMap.put(name, new ArrayList<>());
+        }
+        notificationListenerMap.get(name).add(listener);
+    }
+
+    @JsMethod
+    public final void removeNotificationListener(String name, UiNodeNotificationListener listener) {
+        if (notificationListenerMap.containsKey(name)) {
+            notificationListenerMap.get(name).remove(listener);
+            if (notificationListenerMap.get(name).size() == 0) {
+                notificationListenerMap.remove(name);
+            }
+        }
+    }
+
+    @JsMethod
     public final void addChangeListener(UiNodeChangeListener listener) {
-        this.changeListeners.add(listener);
+        addNotificationListener(NeutronConstants.STATE_CHANGE_NOTIFICATION, listener);
     }
 
     @JsMethod
     public final void removeChangeListener(UiNodeChangeListener listener) {
-        this.changeListeners.remove(listener);
+        removeNotificationListener(NeutronConstants.STATE_CHANGE_NOTIFICATION, listener);
     }
 
-    final void notifyChange() {
-        logger.warning(this.getClass().getSimpleName() + " notifying change.");
-        for (UiNodeChangeListener listener : changeListeners) {
-            listener.onUiNodeChanged();
-        }
+    public final void queueNotification(String name, Object parameter) {
+        getContext().queueNotification(new UiNodeNotification(this, name, parameter));
+    }
+
+    List<UiNodeNotificationListener> getNotificationListeners(String name) {
+        return ValueUtil.ifNull(notificationListenerMap.get(name), Collections.emptyList());
     }
 
     //endregion

@@ -5,9 +5,7 @@ import zhy2002.neutron.exception.UiNodeException;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * The default implementation.
@@ -310,7 +308,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         if (eventDeque.isEmpty())
             return; //nothing to process
 
-        if (inCycle) {
+        if (isInCycle()) {
             if (eventMode == EngineEventModeEnum.Post)
                 return; //leave it to the outer processCycle
 
@@ -330,6 +328,7 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
                 currentCycle.pollAll(eventDeque);
                 currentCycle.processTick();
             } while (!eventDeque.isEmpty());
+            currentCycle.queueChangeNotifications();
             inCycle = false;
         } catch (UiNodeException ex) {
             //revert to the state when last cycle is complete
@@ -340,7 +339,15 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
             throw ex;
         }
 
-        currentCycle.notifyChanges();
+
+        currentCycle.sendNotifications();
     }
 
+    @Override
+    public void queueNotification(UiNodeNotification uiNodeNotification) {
+        if (!isInCycle())
+            throw new UiNodeException("Cannot queue notification outside of a cycle.");
+
+        cycleDeque.peekLast().queueNotification(uiNodeNotification);
+    }
 }
