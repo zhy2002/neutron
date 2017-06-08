@@ -1,63 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListNeutronComponent from '../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../neutron/NeutronHoc';
 import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
 
-export default class ApplicationErrorsComponent extends ListNeutronComponent {
+class ApplicationErrorsComponent extends React.PureComponent {
+
+    componentDidUpdate() {
+        //now the field to focus is displayed
+        if (this.componentDidUpdateCallback) {
+            this.componentDidUpdateCallback();
+            delete this.componentDidUpdateCallback;
+        }
+    }
 
     focusOnField(errorNode) {
         const errorNodeName = errorNode.getName();
-        this.model.setFocus(errorNodeName);
+        this.props.model.setFocus(errorNodeName);
 
         //set focus to the element after next render
         const source = errorNode.getSource();
         if (source) {
-            this.addCallback(() => {
+            this.componentDidUpdateCallback = () => {
                 console.log(`Trying to set focus to element: ${source.getUniqueId()}`);
                 const dom = document.getElementById(source.getUniqueId());
                 if (dom) {
                     dom.focus();
                 }
-            });
-            this.forceUpdate();
+            };
+            this.forceUpdate(); //trigger componentDidUpdate
         }
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-
-        newState.count = this.model.getItemCount();
-
-        return newState;
-    }
-
     renderErrors() {
-        const errors = [];
-
-        this.model.getChildren().forEach(
-            (item) => {
-                errors.push(
-                    <div key={item.getUniqueId()} className="clearfix alert alert-warning">
-                        <div className="error-path">
-                            {item.getSource() ? item.getSource().getPathLabel() : ''}
-                        </div>
-                        <div className="error-text">
-                            <a tabIndex="0" onClick={() => this.focusOnField(item)}>{item.getMessage()}</a>
-                        </div>
-                    </div>
-                );
-            }
+        return this.props.model.getChildren().map(item =>
+            <div key={item.getUniqueId()} className="clearfix alert alert-warning">
+                <div className="error-path">
+                    {item.getSource() ? item.getSource().getPathLabel() : ''}
+                </div>
+                <div className="error-text">
+                    <a tabIndex="0" onClick={() => this.focusOnField(item)}>{item.getMessage()}</a>
+                </div>
+            </div>
         );
-
-        return errors;
     }
 
     render() {
         return (
-            <div className="application-errors-component">
+            <div className={this.props.componentClass}>
                 <div className="title-bar">
                     <div className="badge-link">
-                        <span className="badge">{this.state.count}</span>
+                        <span className="badge">{this.props.count}</span>
                     </div>
                     <CloseIconComponent onClose={this.props.onClose}/>
                 </div>
@@ -70,6 +62,16 @@ export default class ApplicationErrorsComponent extends ListNeutronComponent {
     }
 }
 
-ApplicationErrorsComponent.propTypes = {
-    onClose: PropTypes.func.isRequired
-};
+ApplicationErrorsComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+
+export default NeutronHoc(
+    ApplicationErrorsComponent,
+    (model) => {
+        const newState = {};
+        newState.count = model.getItemCount();
+        return newState;
+    },
+    {
+        onClose: PropTypes.func.isRequired
+    }
+);

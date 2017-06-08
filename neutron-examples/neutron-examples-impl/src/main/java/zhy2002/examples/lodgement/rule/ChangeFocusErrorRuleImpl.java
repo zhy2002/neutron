@@ -1,7 +1,6 @@
 package zhy2002.examples.lodgement.rule;
 
 
-import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.neutron.*;
@@ -25,7 +24,7 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
         return Collections.singletonList(
                 new StringStateChangeEventBinding(
                         this::updateFocusError,
-                        ApplicationNodeConstants.FOCUS
+                        ErrorListNode.FOCUS_PROPERTY.getStateKey()
                 )
         );
     }

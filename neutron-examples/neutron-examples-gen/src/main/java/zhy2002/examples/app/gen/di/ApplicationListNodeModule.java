@@ -23,11 +23,11 @@ public class ApplicationListNodeModule {
         return owner;
     }
 
-    @Provides @ComponentScope @Owner ObjectUiNode<?> provideObjectUiNode() {
+    @Provides @ComponentScope @Owner AnyUiNode<?> provideAnyUiNode() {
         return owner;
     }
 
-    @Provides @ComponentScope @Owner ParentUiNode<?> provideParentUiNode() {
+    @Provides @ComponentScope @Owner LeafUiNode<?,?> provideLeafUiNode() {
         return owner;
     }
 

@@ -15,7 +15,7 @@ import zhy2002.examples.app.gen.di.*;
 import java.util.List;
 
 
-public class ApplicationListNode extends ObjectUiNode<AppManagerNode> {
+public class ApplicationListNode extends AnyUiNode<AppManagerNode> {
 
     @Inject
     protected ApplicationListNode(@Owner AppManagerNode parent) {

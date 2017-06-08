@@ -178,5 +178,24 @@ export default class CommonUtil extends StaticService {
         return str;
     }
 
-    static noOp() {}
+    static noOp() {
+    }
+
+    static getDisplayName(WrappedComponent) {
+        return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    }
+
+    static pascalToCssName(pascalName) {
+        const chars = [];
+        for (let i = 0; i < pascalName.length; i++) {
+            const ch = pascalName.charAt(i);
+            const lower = ch.toLowerCase();
+            if (i !== 0 && ch !== lower) {
+                chars.push('-');
+            }
+            chars.push(lower);
+        }
+        return chars.join('');
+    }
+
 }

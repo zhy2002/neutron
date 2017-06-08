@@ -21,7 +21,6 @@ function createAppTab(newApp) {
     return CommonUtil.defer(newApp);
 }
 
-//todo pass the lender to create application for.
 function createApplicationNode(profileName) {
     const model = window.GWT.createApplicationNode(profileName, null);
 
@@ -120,13 +119,13 @@ export default class LodgementService extends StaticService {
             }
         }
 
-        CommonUtil.setIsLoading(true);
+        UiService.setIsLoading(true);
         return StorageService.getApplication(id)
             .then(node => cloneApplicationNode(node, path, profile))
             .then(createAppTab)
             .then(
                 (model) => {
-                    CommonUtil.setIsLoading(false);
+                    UiService.setIsLoading(false);
                     return CommonUtil.defer(model);
                 }
             );
@@ -152,9 +151,7 @@ export default class LodgementService extends StaticService {
         return StorageService.getApplicationSummaries().then(
             (data) => {
                 const appListNode = globalUiStateNode.getAppManagerNode().getApplicationListNode();
-                appListNode.data = data;
-                appListNode.totalCount = data.hits.total;
-                appListNode.setUpdated(true);
+                appListNode.setValue(data);
             }
         );
     }

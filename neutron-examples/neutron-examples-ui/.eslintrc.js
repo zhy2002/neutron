@@ -62,6 +62,9 @@ module.exports = {
         "no-restricted-syntax": [
             OFF
         ],
+        "arrow-body-style": [
+            OFF
+        ],
         "react/no-unused-prop-types": [
             OFF
         ],

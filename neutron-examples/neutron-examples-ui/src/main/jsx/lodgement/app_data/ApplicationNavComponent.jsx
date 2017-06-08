@@ -1,61 +1,49 @@
 import React from 'react';
-import NeutronComponent from '../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../neutron/NeutronHoc';
 import NavDropdownComponent from '../../bootstrap3/NavDropdownComponent';
 
-export default class ApplicationNavComponent extends NeutronComponent {
+class ApplicationNavComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.onSelect = (currentModel) => {
-            this.model.setContentNode(currentModel);
+            this.props.model.setContentNode(currentModel);
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.contentNode = this.model.getContentNode();
-        while (newState.contentNode) {
-            if (newState.contentNode.getParent() === this.model)
-                break;
-
-            newState.contentNode = newState.contentNode.getParent();
-        }
-        return newState;
-    }
-
     render() {
-        const model = this.model;
+        const model = this.props.model;
 
         return (
-            <nav className="navbar navbar-inverse application-nav-component">
+            <nav className={`${this.props.componentClass} navbar navbar-inverse`}>
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavDropdownComponent
                             onSelect={this.onSelect}
                             model={model.getPersonListNode()}
-                            selected={this.state.contentNode === model.getPersonListNode()}
+                            selected={this.props.contentNode === model.getPersonListNode()}
                         >
                             <span className="glyphicon glyphicon-user"/> Person
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
                             model={model.getCompanyListNode()}
-                            selected={this.state.contentNode === model.getCompanyListNode()}
+                            selected={this.props.contentNode === model.getCompanyListNode()}
                         >
                             <span className="glyphicon glyphicon-road"/> Company
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
                             model={model.getFinancialPositionNode()}
-                            selected={this.state.contentNode === model.getFinancialPositionNode()}
+                            selected={this.props.contentNode === model.getFinancialPositionNode()}
                         >
                             <span className="glyphicon glyphicon-credit-card"/> Financial Position
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
                             model={model.getRealEstateListNode()}
-                            selected={this.state.contentNode === model.getRealEstateListNode()}
+                            selected={this.props.contentNode === model.getRealEstateListNode()}
                         >
                             <span className="glyphicon glyphicon-home"/> Real Estates
                         </NavDropdownComponent>
@@ -67,7 +55,7 @@ export default class ApplicationNavComponent extends NeutronComponent {
                                 model.getProductsNode().getProductCustomerContributionListNode(),
                                 model.getProductsNode().getProductFeeListNode()
                             ]}
-                            selected={this.state.contentNode === model.getProductsNode()}
+                            selected={this.props.contentNode === model.getProductsNode()}
                         >
                             <span className="glyphicon glyphicon-apple"/> Products
                         </NavDropdownComponent>
@@ -78,14 +66,14 @@ export default class ApplicationNavComponent extends NeutronComponent {
                                 model.getAdditionalNode().getAdditionalCommentNode()
                             ]}
                             childList={model.getAdditionalNode().getRelatedPartyListNode()}
-                            selected={this.state.contentNode === model.getAdditionalNode()}
+                            selected={this.props.contentNode === model.getAdditionalNode()}
                         >
                             <span className="glyphicon glyphicon-cog"/> Additional
                         </NavDropdownComponent>
                         <NavDropdownComponent
                             onSelect={this.onSelect}
                             model={model.getSubmissionNode()}
-                            selected={this.state.contentNode === model.getSubmissionNode()}
+                            selected={this.props.contentNode === model.getSubmissionNode()}
                         >
                             <span className="glyphicon glyphicon-arrow-up"/> Submission
                         </NavDropdownComponent>
@@ -95,3 +83,21 @@ export default class ApplicationNavComponent extends NeutronComponent {
         );
     }
 }
+
+ApplicationNavComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+
+export default NeutronHoc(
+    ApplicationNavComponent,
+    (model) => {
+        const newState = {};
+        //find with child of root node is the ancestor of the content node.
+        newState.contentNode = model.getContentNode();
+        while (newState.contentNode) {
+            if (newState.contentNode.getParent() === model)
+                break;
+
+            newState.contentNode = newState.contentNode.getParent();
+        }
+        return newState;
+    }
+);

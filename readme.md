@@ -6,7 +6,6 @@ Todo fix client side - notification changes
   - formatter chain for all node
   - parser chain for leaf nodes
   - React i18n
-- align JSX code with RxJS patterns
 - implement partial load/unload examples
   - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
 - add JEST tests
@@ -29,6 +28,7 @@ Todo (low priority)
 - only import necessary packages in the generated files.
 - fix compilation warning messages.
 - save and restore full state (not just value and id) for debugging purpose
+- align JSX code with RxJS patterns
 
 Todo (long term)
 -----------------

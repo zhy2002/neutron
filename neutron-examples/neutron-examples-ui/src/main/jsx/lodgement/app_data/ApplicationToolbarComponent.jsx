@@ -1,20 +1,22 @@
 import React from 'react';
-import NeutronComponent from '../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../neutron/NeutronHoc';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import EventService from '../../neutron/EventService';
 import StorageService from '../services/StorageService';
 
 
-export default class ApplicationToolbarComponent extends NeutronComponent {
+class ApplicationToolbarComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
-        this.state.modelJson = null;
+        this.state = {
+            modelJson: null
+        };
 
         this.validate = () => {
             console.log('validating...');
-            this.model.refresh();
+            this.props.model.refresh();
             console.log('validation done.');
         };
 
@@ -24,10 +26,11 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         };
 
         this.saveJson = () => {
-            StorageService.saveApplication(this.model).then(
+            const model = this.props.model;
+            StorageService.saveApplication(model).then(
                 (response) => {
                     console.log(response);
-                    this.model.getContext().resetDirty();
+                    model.getContext().resetDirty();
                     EventService.fire(
                         'show_notification',
                         {
@@ -41,16 +44,21 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         };
 
         this.clearErrors = () => {
-            this.model.resetValidationState();
+            this.props.model.resetValidationState();
         };
 
         this.refresh = () => {
-            alert('todo load all data from db again.');
+            const model = this.props.model;
+            if (model.isDirty() && confirm('Changes in this application will be lost. Continue?')) {
+                StorageService.refreshApplication(model).catch((error) => {
+                    alert(error);
+                });
+            }
         };
     }
 
     getModelValueJson() {
-        const obj = StorageService.extractApplicationValue(this.model);
+        const obj = StorageService.extractApplicationValue(this.props.model);
         const json = JSON.stringify(obj);
         console.log('extracted object:');
         console.log(json);
@@ -59,7 +67,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
 
     render() {
         return (
-            <div className="container-fluid application-toolbar-component">
+            <div className={`${this.props.componentClass} container-fluid`}>
                 <ul className="nav navbar-nav toolbar">
                     <li>
                         <a tabIndex="0" onClick={this.validate}>
@@ -125,3 +133,7 @@ export default class ApplicationToolbarComponent extends NeutronComponent {
         );
     }
 }
+
+ApplicationToolbarComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+
+export default NeutronHoc(ApplicationToolbarComponent);

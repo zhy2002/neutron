@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResizeAware from 'react-resize-aware';
-import NeutronComponent from '../bootstrap3/NeutronComponent';
+import NeutronHoc from '../neutron/NeutronHoc';
 import LodgementBannerComponent from './LodgementBannerComponent';
 import LodgementTabsComponent from './LodgementTabsComponent';
 import LodgementToolbarComponent from './LodgementToolbarComponent';
 import LodgementService from './services/LodgementService';
 
 
-export default class LodgementHeaderComponent extends NeutronComponent {
+class LodgementHeaderComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -18,26 +18,21 @@ export default class LodgementHeaderComponent extends NeutronComponent {
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.siteLogoUrl = this.model.getSiteLogoPath();
-        return newState;
-    }
-
     render() {
-        const selectedModel = this.props.tabItems[this.props.selectedIndex];
+        const props = this.props;
+        const selectedModel = props.tabItems[props.selectedIndex];
 
         return (
             <ResizeAware
-                className="lodgement-header-component"
+                className={props.componentClass}
                 style={{position: 'relative'}}
                 onlyEvent
                 onResize={this.handleResize}
             >
-                <LodgementBannerComponent logoUrl={this.state.siteLogoUrl} />
+                <LodgementBannerComponent logoUrl={props.siteLogoUrl}/>
                 <LodgementTabsComponent
-                    tabItems={this.props.tabItems}
-                    selectedIndex={this.props.selectedIndex}
+                    tabItems={props.tabItems}
+                    selectedIndex={props.selectedIndex}
                     selectTab={LodgementService.selectTab}
                     closeTab={LodgementService.closeTab}
                 />
@@ -52,7 +47,15 @@ export default class LodgementHeaderComponent extends NeutronComponent {
     }
 }
 
-LodgementHeaderComponent.propTypes = {
-    tabItems: PropTypes.array.isRequired,
-    selectedIndex: PropTypes.number.isRequired
-};
+export default NeutronHoc(
+    LodgementHeaderComponent,
+    (model) => {
+        const newState = {};
+        newState.siteLogoUrl = model.getSiteLogoPath();
+        return newState;
+    },
+    {
+        tabItems: PropTypes.array.isRequired,
+        selectedIndex: PropTypes.number.isRequired
+    }
+);

@@ -12,19 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ApplicationNodeConstants {
-    public static final String OPTIONS = "options";
-    public static final String REF = "ref";
-    public static final String TOTAL_OWNERSHIP = "total_ownership";
-    public static final String CURRENCY_INFO = "currency_info";
-    public static final String SUFFIX_SYMBOL = "suffix_symbol";
-    public static final String CURRENT_RECORD = "current_record";
-    public static final String FOCUS = "focus";
-    public static final String MIN_AGE = "min_age";
-    public static final String MAX_AGE = "max_age";
-    public static final String SHOW_ERROR_LIST = "showErrorList";
-    public static final String CONTENT_LEVEL = "contentLevel";
+
     public static final String NAME_PATTERN = "^[a-zA-Z ]+$";
-    public static final String COUNTRY_CODE_READONLY = "country_code_readonly";
 
     public static final Telephone AUS_DEFAULT = new Telephone("+61");
 

@@ -44,7 +44,4 @@ rootType:
     - {typeName: ApplicationListNode}
     childTypes:
     - typeName: ApplicationListNode
-      baseTypeName: ObjectUiNode
-      properties:
-      - {name: updated, typeName: Boolean, trackingMode: Always}
-      children: []
+      baseTypeName: AnyUiNode

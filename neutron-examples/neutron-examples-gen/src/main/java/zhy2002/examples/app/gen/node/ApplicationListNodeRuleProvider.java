@@ -12,7 +12,7 @@ import zhy2002.examples.app.gen.di.*;
 public class ApplicationListNodeRuleProvider implements RuleProvider<ApplicationListNode> {
 
     @Inject
-    ObjectUiNodeRuleProvider parentRuleProvider;
+    AnyUiNodeRuleProvider parentRuleProvider;
 
     @Inject
     public ApplicationListNodeRuleProvider() {
