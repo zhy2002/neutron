@@ -3,7 +3,7 @@ package zhy2002.examples.lodgement.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.neutron.*;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -21,6 +21,15 @@ public class ApplicationNodeImpl extends ApplicationNode {
     @Inject
     ApplicationNodeImpl(@NotNull ApplicationNodeContext context) {
         super(context);
+    }
+
+    @Override
+    protected void clearNodeIdentity() {
+        super.clearNodeIdentity();
+
+        if (ValueUtil.isEmpty(getIdNode().getValue())) {
+            getIdNode().setValue(getContext().getContextId());
+        }
     }
 
     @JsMethod

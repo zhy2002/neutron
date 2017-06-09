@@ -66,4 +66,6 @@ public interface UiNodeContext<R extends RootUiNode<VoidUiNode>> extends CycleSt
     boolean isLoaded();
 
     ContextConfiguration getConfiguration();
+
+    String getContextId();
 }

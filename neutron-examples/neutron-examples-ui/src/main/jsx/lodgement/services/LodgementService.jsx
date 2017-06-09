@@ -42,7 +42,6 @@ function cloneApplicationNode(node, path, profileName) {
     node.children.id.value = null;
     const nodeDataStore = UiService.createNodeDataStore(node);
     const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
-    node.children.id.value = model.getContext().getContextId();
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 
