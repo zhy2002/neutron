@@ -10,7 +10,10 @@ class RelatedPartyListComponent extends React.PureComponent {
         const model = this.props.model;
         return (
             <div className={this.props.componentClass}>
-                <AddListComponent model={model}>
+                <AddListComponent
+                    model={model}
+                    emptyMessage="No related party in this application."
+                >
                     {
                         model.getChildren().map(
                             item => <RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>

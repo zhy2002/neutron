@@ -1005,6 +1005,8 @@ rootType:
 
     - typeName: RelatedPartyListNode
       baseTypeName: ListUiNode
+      rules:
+      - {typeName: SetContentNodeToNewItemRule}
       itemTypeName: RelatedPartyNode
       childTypes:
       - typeName: RelatedPartyNode

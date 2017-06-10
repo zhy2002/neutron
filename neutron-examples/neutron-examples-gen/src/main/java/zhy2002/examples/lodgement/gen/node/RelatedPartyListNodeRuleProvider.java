@@ -6,7 +6,9 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.RelatedPartyListNode;
+import zhy2002.neutron.rule.*;
 import zhy2002.examples.lodgement.gen.di.*;
+import zhy2002.examples.lodgement.gen.rule.*;
 
 @ComponentScope
 public class RelatedPartyListNodeRuleProvider implements RuleProvider<RelatedPartyListNode> {
@@ -24,10 +26,15 @@ public class RelatedPartyListNodeRuleProvider implements RuleProvider<RelatedPar
 
     }
 
+    @Inject
+    Provider<SetContentNodeToNewItemRule> setContentNodeToNewItemRuleProvider;
+
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        SetContentNodeToNewItemRule setContentNodeToNewItemRule = setContentNodeToNewItemRuleProvider.get();
+        createdRules.add(setContentNodeToNewItemRule);
     }
 
 }

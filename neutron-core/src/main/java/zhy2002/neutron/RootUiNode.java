@@ -45,19 +45,25 @@ public abstract class RootUiNode<P extends ParentUiNode<?>> extends ObjectUiNode
         if (descendant == null)
             return;
 
-        CycleModeEnum mode = getContext().getCycleMode();
+        CycleModeEnum mode = null;
+        if (!getContext().isInCycle()) {
+            mode = getContext().getCycleMode();
+        }
         if (mode == CycleModeEnum.Auto) {
             getContext().setCycleMode(CycleModeEnum.Batched);
-        } else {
-            mode = null;
         }
+
         try {
-            getContext().beginSession();
+            if (mode != null) {
+                getContext().beginSession();
+            }
             int level = selectDescendant(descendant);
             if (level > 0) {
                 setContentLevel(level);
             }
-            getContext().commitSession();
+            if (mode != null) {
+                getContext().commitSession();
+            }
         } finally {
             if (mode != null) {
                 getContext().setCycleMode(mode);

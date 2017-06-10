@@ -33,7 +33,11 @@ export default class RemovePanelComponent extends NeutronComponent {
                     <div className="well">
                         <CloseIconComponent onClose={this.removeItem} title="Remove"/>
                         <h5>
-                            <ItemIndexComponent index={this.model.getIndex()} model={this.model.getParent()}/>
+                            <ItemIndexComponent
+                                index={this.model.getIndex()}
+                                label={this.model.getConcreteClassName()}
+                                model={this.model.getParent()}
+                            />
                         </h5>
                         <div>
                             {this.props.children}

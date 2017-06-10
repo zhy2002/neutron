@@ -44,7 +44,13 @@ class AddListComponent extends React.PureComponent {
                             </button>
                         </div>
                         <div className="col-md-10">
-                            {this.props.children}
+                            {React.Children.count(this.props.children) === 0 && this.props.emptyMessage ?
+                                <div key="no_result" className="alert alert-info">
+                                    {this.props.emptyMessage}
+                                </div> :
+                                this.props.children
+                            }
+                            {}
                         </div>
                     </div>
                 </div>
@@ -59,6 +65,7 @@ export default NeutronHoc(
     AddListComponent,
     CommonUtil.mapToEmptyObject,
     {
-        children: PropTypes.any.isRequired
+        children: PropTypes.any.isRequired,
+        emptyMessage: PropTypes.string
     }
 );
