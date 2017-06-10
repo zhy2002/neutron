@@ -1,16 +1,16 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
-export default class SubmissionComponent extends NeutronComponent {
+class SubmissionComponent extends React.PureComponent {
 
     render() {
-        const model = this.model;
+        const model = this.props.model;
         return (
-            <MainContentComponent className="submission-component">
+            <MainContentComponent className={this.props.componentClass}>
                 <div className="row">
                     <div className="col-md-4 col-sm-6">
                         <div className="row">
@@ -68,3 +68,9 @@ export default class SubmissionComponent extends NeutronComponent {
         );
     }
 }
+
+SubmissionComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+
+export default NeutronHoc(
+    SubmissionComponent
+);

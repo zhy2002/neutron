@@ -21,6 +21,10 @@ function NeutronHoc(WrappedComponent,
             newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
         }
 
+        if (model.getChildNames) {
+            newState.childNames = model.getChildNames(); //ensure list is re-rendered
+        }
+
         //error message
         // newState.errorMessage = '';
         // const errorList = model.getValidationErrorList();
@@ -118,6 +122,7 @@ function NeutronHoc(WrappedComponent,
         }
     }
 
+    NeutronWrapper.WrappedComponent = WrappedComponent;
     NeutronWrapper.displayName = `NeutronWrapper(${CommonUtil.getDisplayName(WrappedComponent)})`;
 
     NeutronWrapper.propTypes = Object.assign(

@@ -240,7 +240,8 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         clearSelfDirty();
     }
 
-    private String getChildNames() {
+    @JsMethod
+    public String getChildNames() {
         List<String> names = new ArrayList<>();
         for (int i = 0; i < getItemCount(); i++) {
             UiNode<?> node = getItem(i);

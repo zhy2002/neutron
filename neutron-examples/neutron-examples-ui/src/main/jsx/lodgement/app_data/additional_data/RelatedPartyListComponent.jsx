@@ -1,29 +1,27 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import RelatedPartySummaryComponent from './RelatedPartySummaryComponent';
 
 
-export default class RelatedPartyListComponent extends ListNeutronComponent {
-
-    renderItems() {
-        const result = [];
-        this.model.getChildren().forEach(
-            (item) => {
-                result.push(<RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>);
-            }
-        );
-        return result;
-    }
+class RelatedPartyListComponent extends React.PureComponent {
 
     render() {
+        const model = this.props.model;
         return (
-            <div className="related-party-list-component">
-                <AddListComponent model={this.model}>
-                    {this.renderItems()}
+            <div className={this.props.componentClass}>
+                <AddListComponent model={model}>
+                    {
+                        model.getChildren().map(
+                            item => <RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>
+                        )
+                    }
                 </AddListComponent>
             </div>
         );
     }
-
 }
+
+RelatedPartyListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+
+export default NeutronHoc(RelatedPartyListComponent);

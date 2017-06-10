@@ -198,4 +198,8 @@ export default class CommonUtil extends StaticService {
         return chars.join('');
     }
 
+    static mapToEmptyObject() {
+        return {};
+    }
+
 }

@@ -22,6 +22,9 @@ module.exports = {
             "error",
             "windows"
         ],
+        "eol-last": [
+            OFF
+        ],
         "react/prefer-stateless-function": [
             OFF
         ],
