@@ -34,5 +34,7 @@ public class ApplicationNodeContextConfigurer implements ContextConfigurer<Appli
             configAddressRefNode.setConfigValue(".*/@removeEmpty", true);
         NodeConfiguration configPersonNode = configuration.getConfig(PersonNode.class);
             configPersonNode.setConfigValue(".*/@selectedName", "personGeneralNode");
+        NodeConfiguration configRelatedPartyListNode = configuration.getConfig(RelatedPartyListNode.class);
+            configRelatedPartyListNode.setConfigValue(".*/@nodeLabel", "Related Party");
     }
 }

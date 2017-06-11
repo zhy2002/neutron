@@ -4,27 +4,23 @@ import AddListComponent from '../common/AddListComponent';
 import RelatedPartySummaryComponent from './RelatedPartySummaryComponent';
 
 
-class RelatedPartyListComponent extends React.PureComponent {
-
-    render() {
-        const model = this.props.model;
-        return (
-            <div className={this.props.componentClass}>
-                <AddListComponent
-                    model={model}
-                    emptyMessage="No related party in this application."
-                >
-                    {
-                        model.getChildren().map(
-                            item => <RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>
-                        )
-                    }
-                </AddListComponent>
-            </div>
-        );
-    }
+function RelatedPartyListComponent(props) {
+    const model = props.model;
+    return (
+        <div className={props.componentClass}>
+            <AddListComponent
+                model={model}
+                emptyMessage="No related party in this application."
+            >
+                {
+                    model.getChildren().map(
+                        item => <RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>
+                    )
+                }
+            </AddListComponent>
+        </div>
+    );
 }
 
 RelatedPartyListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 export default NeutronHoc(RelatedPartyListComponent);

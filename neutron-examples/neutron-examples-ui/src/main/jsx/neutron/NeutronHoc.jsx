@@ -21,6 +21,18 @@ function NeutronHoc(WrappedComponent,
             newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
         }
 
+        //label
+        if (props.label) {
+            newState.label = props.label;
+        } else {
+            newState.label = model.getNodeLabel();
+        }
+        if (model.isDirty()) {
+            newState.label = `${newState.label} *`;
+        } else {
+            newState.label = `${newState.label} `;
+        }
+
         if (model.getChildNames) {
             newState.childNames = model.getChildNames(); //ensure list is re-rendered
         }
@@ -50,18 +62,6 @@ function NeutronHoc(WrappedComponent,
         //     componentClass += ' invisible';
         // }
         // newState.componentClass = componentClass;
-
-        //label
-        // if (this.props.label) {
-        //     newState.label = this.props.label;
-        // } else {
-        //     newState.label = this.model.getNodeLabel();
-        // }
-        // if (this.model.isDirty()) {
-        //     newState.label = `${newState.label} *`;
-        // } else {
-        //     newState.label = `${newState.label} `;
-        // }
 
         if (mapModelToProps) {
             return Object.assign(newState, mapModelToProps(model));
@@ -128,7 +128,8 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.propTypes = Object.assign(
         {
             model: PropTypes.object,
-            componentClass: PropTypes.string
+            componentClass: PropTypes.string,
+            label: PropTypes.string
         },
         propTypes
     );
@@ -136,7 +137,8 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.defaultProps = Object.assign(
         {
             model: null,
-            componentClass: ''
+            componentClass: '',
+            label: null
         },
         defaultProps
     );

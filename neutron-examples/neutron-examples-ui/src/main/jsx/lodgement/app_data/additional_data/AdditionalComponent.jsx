@@ -1,17 +1,15 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import RelatedPartyListComponent from './RelatedPartyListComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
-export default class AdditionalComponent extends NeutronComponent {
-
-    render() {
-        const model = this.model;
-
-        return (
-            <MainContentComponent className="additional-component">
-                <RelatedPartyListComponent model={model.getRelatedPartyListNode()}/>
-            </MainContentComponent>
-        );
-    }
+function AdditionalComponent(props) {
+    return (
+        <MainContentComponent className="additional-component">
+            <RelatedPartyListComponent model={props.model.getRelatedPartyListNode()}/>
+        </MainContentComponent>
+    );
 }
+
+AdditionalComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(AdditionalComponent);

@@ -1,34 +1,30 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
 
-export default class RelatedPartySummaryComponent extends NeutronComponent {
-
-    constructor(props) {
-        super(props);
-
-        this.selectItem = () => {
-            this.model.getContext().getRootNode().setContentNode(this.model);
-        };
+function RelatedPartySummaryComponent(props) {
+    function selectItem() {
+        const model = props.model;
+        model.getContext().getRootNode().setContentNode(model);
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.name = this.model.getNodeLabel();
-        return newState;
-    }
-
-    render() {
-        return (
-            <RemovePanelComponent className="related-party-summary-component" model={this.model}>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <a tabIndex="0" onClick={this.selectItem}>
-                            {this.state.name}
-                        </a>
-                    </div>
+    return (
+        <RemovePanelComponent
+            className={props.componentClass}
+            model={props.model}
+        >
+            <div className="row">
+                <div className="col-xs-12">
+                    <a tabIndex="0" onClick={selectItem}>
+                        {props.label}
+                    </a>
                 </div>
-            </RemovePanelComponent>
-        );
-    }
+            </div>
+        </RemovePanelComponent>
+    );
 }
+
+RelatedPartySummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(
+    RelatedPartySummaryComponent
+);

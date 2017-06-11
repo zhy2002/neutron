@@ -6,14 +6,15 @@ export default class ItemIndexComponent extends NeutronComponent {
 
     extractNewState() {
         const newState = super.extractNewState();
-        newState.text = this.model.getItemCount();
+        newState.itemCount = this.model.getItemCount();
+        newState.nodeLabel = this.model.getNodeLabel();
         return newState;
     }
 
     render() {
         return (
             <span className="item-index-component">
-                {this.state.label} ({this.props.index + 1} of {this.state.text})
+                {this.state.nodeLabel} ({this.props.index + 1} of {this.state.itemCount})
             </span>
         );
     }

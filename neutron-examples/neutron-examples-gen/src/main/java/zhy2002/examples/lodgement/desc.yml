@@ -1007,6 +1007,8 @@ rootType:
       baseTypeName: ListUiNode
       rules:
       - {typeName: SetContentNodeToNewItemRule}
+      config:
+      - {property: '@nodeLabel', value: '"Related Party"'}
       itemTypeName: RelatedPartyNode
       childTypes:
       - typeName: RelatedPartyNode

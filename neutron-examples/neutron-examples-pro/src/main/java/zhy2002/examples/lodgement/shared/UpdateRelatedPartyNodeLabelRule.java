@@ -45,7 +45,7 @@ public class UpdateRelatedPartyNodeLabelRule extends UpdateItemNodeLabelRule<Rel
         if (!ValueUtil.isEmpty(firstName) || !ValueUtil.isEmpty(lastName)) {
             getRelatedPartyNode().setNodeLabel(firstName + " " + lastName);
         } else {
-            getRelatedPartyNode().setNodeLabel("[Related Party " + (getRelatedPartyNode().getIndex() + 1) + "]");
+            getRelatedPartyNode().setNodeLabel("[Related Party " + (Integer.parseInt(getRelatedPartyNode().getName()) + 1) + "]");
         }
     }
 }

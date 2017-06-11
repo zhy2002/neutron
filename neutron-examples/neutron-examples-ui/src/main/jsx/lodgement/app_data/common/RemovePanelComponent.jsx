@@ -35,7 +35,6 @@ export default class RemovePanelComponent extends NeutronComponent {
                         <h5>
                             <ItemIndexComponent
                                 index={this.model.getIndex()}
-                                label={this.model.getConcreteClassName()}
                                 model={this.model.getParent()}
                             />
                         </h5>
