@@ -181,12 +181,13 @@ export default class TextInputComponent extends InputComponent {
 
         const activeIndex = this.state.activeOptionIndex;
         return (
-            <AutoCloseContainer className="input-options-panel" onHide={this.handleHide}>
+            <AutoCloseContainer key="options" className="input-options-panel" onHide={this.handleHide}>
                 <div className="list-group">
                     {
                         this.state.options.map(
                             (item, index) =>
                                 <a
+                                    key={item.getValue()}
                                     className={`list-group-item${activeIndex === index ? ' active' : ''}`}
                                     tabIndex={0}
                                     onClick={
@@ -196,7 +197,6 @@ export default class TextInputComponent extends InputComponent {
                                             this.handleHide();
                                         }
                                     }
-                                    key={item.getValue()}
                                 >
                                     {item.getText()}
                                 </a>
@@ -222,6 +222,7 @@ export default class TextInputComponent extends InputComponent {
                 type="text"
                 className="form-control"
                 id={model.getUniqueId()}
+                key="input"
                 value={this.state.value}
                 onChange={this.updateValue}
                 disabled={this.state.disabled}

@@ -1,20 +1,22 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import PanelComponent from '../../../bootstrap3/PanelComponent';
 import NodeValueComponent from '../../../bootstrap3/NodeValueComponent';
 import ModalDialogComponent from '../../../bootstrap3/ModalDialogComponent';
 import MainContentComponent from '../common/MainContentComponent';
 import ProductCustomerContributionEditorComponent from './ProductCustomerContributionEditorComponent';
 
-export default class ProductCustomerContributionListComponent extends ListNeutronComponent {
+class ProductCustomerContributionListComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
-        this.state.editModel = null;
+        this.state = {
+            editModel: null
+        };
 
         this.addItem = () => {
-            const item = this.model.createItem();
+            const item = this.props.model.createItem();
             item.isFresh = true;
             this.setState({
                 editModel: item
@@ -23,7 +25,7 @@ export default class ProductCustomerContributionListComponent extends ListNeutro
 
         this.deleteEditModel = () => {
             if (this.state.editModel) {
-                this.model.removeItem(this.state.editModel);
+                this.props.model.removeItem(this.state.editModel);
                 this.setState({
                     editModel: null
                 });
@@ -49,49 +51,52 @@ export default class ProductCustomerContributionListComponent extends ListNeutro
         };
     }
 
-    renderItems() {
-        const result = [];
-        result.push(
-            <div key="-0-" className="row">
-                <div className="col-md-1">#</div>
-                <div className="col-md-2">Type</div>
-                <div className="col-md-5">Description</div>
-                <div className="col-md-4">Amount</div>
-            </div>
-        );
-
-        const items = this.model.getChildren();
-        items.forEach((item, index) => {
-            if (!item.isFresh) {
-                result.push(
-                    <a
-                        key={item.getUniqueId()}
-                        className="row"
-                        tabIndex="0"
-                        onClick={() => this.selectEditModel(item)}
-                    >
-                        <div className="col-md-1">{index + 1}</div>
-                        <div className="col-md-2">
-                            <NodeValueComponent model={item.getContributionTypeNode()}/>
-                        </div>
-                        <div className="col-md-5">
-                            <NodeValueComponent model={item.getContributionDescriptionNode()}/>
-                        </div>
-                        <div className="col-md-4">
-                            <NodeValueComponent model={item.getContributionAmountNode()}/>
-                        </div>
-                    </a>
-                );
-            }
-        });
-        return result;
-    }
-
     render() {
+        const model = this.props.model;
+
         return (
             <MainContentComponent className="product-customer-contribution-list-component">
                 <PanelComponent title="Contributions" onAdd={this.addItem} className="panel-primary">
-                    {this.renderItems()}
+                    {model.getItemCount() === 0 ?
+                        <div className="alert alert-info">Click &apos;+&apos; to add contribution fees.</div> :
+                        <table className="table table-striped table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="15%">#</th>
+                                <th width="20%">Type</th>
+                                <th width="30%">Description</th>
+                                <th width="20%">Amount</th>
+                                <th width="15%"/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                model.getChildren().filter(item => !item.isFresh).map((item, index) =>
+                                    <tr key={item.getUniqueId()}>
+                                        <th width="15%">{index + 1}</th>
+                                        <th width="20%">
+                                            <NodeValueComponent model={item.getContributionTypeNode()}/>
+                                        </th>
+                                        <th width="30%">
+                                            <NodeValueComponent model={item.getContributionDescriptionNode()}/>
+                                        </th>
+                                        <th width="20%">
+                                            <NodeValueComponent model={item.getContributionAmountNode()}/>
+                                        </th>
+                                        <th width="15%">
+                                            <a
+                                                tabIndex="0"
+                                                onClick={() => this.selectEditModel(item)}
+                                            >
+                                                Edit
+                                            </a>
+                                        </th>
+                                    </tr>
+                                )
+                            }
+                            </tbody>
+                        </table>
+                    }
                 </PanelComponent>
                 <ModalDialogComponent
                     title="Edit Contribution"
@@ -102,11 +107,10 @@ export default class ProductCustomerContributionListComponent extends ListNeutro
                         <ProductCustomerContributionEditorComponent model={this.state.editModel}/>
                     }
                     <div className="row">
-                        <div className="col-sm-offset-4 col-sm-4">
-                            <button className="btn btn-primary" onClick={this.saveEditModel}>Ok</button>
-                            &nbsp;
+                        <div className="col-sm-12 modal-buttons">
+                            <button className="btn btn-sm btn-primary" onClick={this.saveEditModel}>Ok</button>
                             <button
-                                className="btn btn-warning"
+                                className="btn btn-sm btn-warning"
                                 onClick={this.deleteEditModel}
                             >
                                 Delete
@@ -118,3 +122,8 @@ export default class ProductCustomerContributionListComponent extends ListNeutro
         );
     }
 }
+
+ProductCustomerContributionListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(
+    ProductCustomerContributionListComponent
+);

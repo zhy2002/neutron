@@ -39,7 +39,7 @@ public final class BindingActivation {
         if (rule != null && rule.getOwner() != null && rule.getOwner().getNodeStatus() == NodeStatusEnum.Loaded) {
 
             if (rule instanceof ValidationRule) {
-                if (rule.getContext().getRootNode().isLoading() || event.getOrigin().isEffectivelyDisabled() || Boolean.TRUE.equals(event.getOrigin().getDisableValidation())) {
+                if (!shouldFireValidation(rule)) {
                     return;
                 }
             }
@@ -52,5 +52,16 @@ public final class BindingActivation {
     @Override
     public String toString() {
         return "Binding activation of [" + binding + "] for [" + event + "]";
+    }
+
+    private boolean shouldFireValidation(UiNodeRule<?> rule) {
+        if (rule.getContext().getRootNode().isLoading())
+            return false;
+
+        UiNode<?> owner = rule.getOwner();
+        if (owner.isEffectivelyDisabled() || Boolean.TRUE.equals(owner.getDisableValidation()))
+            return false;
+
+        return true;
     }
 }

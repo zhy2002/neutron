@@ -149,6 +149,7 @@ li.nav-dropdown-component.selected {
 
       .glyphicon {
         font-size: 1.5em;
+        color: antiquewhite;
       }
     }
 
@@ -378,6 +379,12 @@ li.nav-dropdown-component.selected {
 
   .btn-sm {
     min-width: 95px;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .modal-buttons {
+    text-align: center;
   }
 }
 

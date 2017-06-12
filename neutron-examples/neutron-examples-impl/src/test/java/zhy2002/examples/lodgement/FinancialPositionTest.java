@@ -4,10 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.TestUtil;
 import zhy2002.examples.interop.JavaMethods;
-import zhy2002.examples.lodgement.gen.node.ApplicationNode;
-import zhy2002.examples.lodgement.gen.node.FinancialPositionNode;
-import zhy2002.examples.lodgement.gen.node.SavingsAccountListNode;
-import zhy2002.examples.lodgement.gen.node.SavingsAccountNode;
+import zhy2002.examples.lodgement.gen.node.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -32,5 +29,20 @@ public class FinancialPositionTest {
         savingsAccountNode.getSavingsBalanceNode().setText("111");
 
         assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+    }
+
+    @Test
+    public void shouldNotValidateDisabledNode() {
+        ProductCustomerContributionListNode contributionListNode = applicationNode.getProductsNode().getProductCustomerContributionListNode();
+        ProductCustomerContributionNode contributionNode = contributionListNode.createItem();
+        assertThat(contributionNode.getContributionDescriptionNode().getValidationErrorList().size(), equalTo(0));
+        assertThat(contributionNode.getContributionDescriptionNode().isDisabled(), equalTo(true));
+
+        contributionNode.getContributionTypeNode().setValue("Cash");
+        contributionNode.getContributionAmountNode().setText("100");
+        contributionNode.refresh();
+        assertThat(contributionNode.getContributionDescriptionNode().isDisabled(), equalTo(true));
+        assertThat(contributionNode.getContributionDescriptionNode().getValidationErrorList().size(), equalTo(0));
+
     }
 }
