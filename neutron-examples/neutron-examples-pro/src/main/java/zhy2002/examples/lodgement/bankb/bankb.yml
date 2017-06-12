@@ -935,6 +935,8 @@ rootType:
 
     - typeName: ProductLoanTypeNode
     - typeName: SettlementDateNode
+      rules:
+      - {typeName: DateNotInPastRule}
     - typeName: ProductTotalLoanAmountNode
     - typeName: ProductTotalSecurityAmountNode
     - typeName: ProductTotalLoanLmiAmountNode

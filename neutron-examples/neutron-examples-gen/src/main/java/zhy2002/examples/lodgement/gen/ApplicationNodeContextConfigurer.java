@@ -34,6 +34,19 @@ public class ApplicationNodeContextConfigurer implements ContextConfigurer<Appli
             configAddressRefNode.setConfigValue(".*/@removeEmpty", true);
         NodeConfiguration configPersonNode = configuration.getConfig(PersonNode.class);
             configPersonNode.setConfigValue(".*/@selectedName", "personGeneralNode");
+        NodeConfiguration configProductLoanTypeNode = configuration.getConfig(ProductLoanTypeNode.class);
+            configProductLoanTypeNode.setConfigValue(".*/@options", ApplicationNodeConstants.PRODUCT_LOAN_TYPE);
+            configProductLoanTypeNode.setConfigValue(".*/@required", true);
+        NodeConfiguration configProductTotalLoanAmountNode = configuration.getConfig(ProductTotalLoanAmountNode.class);
+            configProductTotalLoanAmountNode.setConfigValue(".*/@readonly", true);
+        NodeConfiguration configProductTotalSecurityAmountNode = configuration.getConfig(ProductTotalSecurityAmountNode.class);
+            configProductTotalSecurityAmountNode.setConfigValue(".*/@readonly", true);
+        NodeConfiguration configProductTotalLoanLmiAmountNode = configuration.getConfig(ProductTotalLoanLmiAmountNode.class);
+            configProductTotalLoanLmiAmountNode.setConfigValue(".*/@readonly", true);
+        NodeConfiguration configProductTotalLvrNode = configuration.getConfig(ProductTotalLvrNode.class);
+            configProductTotalLvrNode.setConfigValue(".*/@readonly", true);
+        NodeConfiguration configProductTotalLvrLmiNode = configuration.getConfig(ProductTotalLvrLmiNode.class);
+            configProductTotalLvrLmiNode.setConfigValue(".*/@readonly", true);
         NodeConfiguration configRelatedPartyListNode = configuration.getConfig(RelatedPartyListNode.class);
             configRelatedPartyListNode.setConfigValue(".*/@nodeLabel", "Related Party");
     }

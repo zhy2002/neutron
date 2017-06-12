@@ -1,30 +1,26 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import ProductSummaryComponent from './ProductSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
 
-export default class ProductListComponent extends ListNeutronComponent {
-
-    renderItems() {
-        const result = [];
-        this.model.getChildren().forEach(
-            (item) => {
-                result.push(<ProductSummaryComponent key={item.getUniqueId()} model={item}/>);
-            }
-        );
-        return result;
-    }
-
-    render() {
-        return (
-            <MainContentComponent className="product-list-component">
-                <AddListComponent model={this.model}>
-                    {this.renderItems()}
-                </AddListComponent>
-            </MainContentComponent>
-        );
-    }
-
+function ProductListComponent(props) {
+    return (
+        <MainContentComponent className={props.componentClass}>
+            <AddListComponent model={props.model}>
+                {
+                    props.model.getChildren().map(item =>
+                        <ProductSummaryComponent
+                            key={item.getUniqueId()}
+                            model={item.getProductDescriptionNode()}
+                        />
+                    )
+                }
+            </AddListComponent>
+        </MainContentComponent>
+    );
 }
+
+ProductListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(ProductListComponent);

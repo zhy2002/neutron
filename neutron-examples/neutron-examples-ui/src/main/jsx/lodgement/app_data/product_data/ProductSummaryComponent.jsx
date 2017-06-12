@@ -1,34 +1,46 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
+import ModelLinkComponent from '../../../bootstrap3/ModelLinkComponent';
+import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
+import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import RemovePanelComponent from '../common/RemovePanelComponent';
 
-export default class ProductSummaryComponent extends NeutronComponent {
 
-    constructor(props) {
-        super(props);
+function ProductSummaryComponent(props) {
+    const model = props.model;
+    const parent = model.getParent();
 
-        this.selectItem = () => {
-            this.model.getContext().getRootNode().setContentNode(this.model);
-        };
-    }
+    return (
+        <RemovePanelComponent className={props.componentClass} model={parent}>
+            <div className="row">
+                <div className="col-xs-6">
+                    <ModelLinkComponent model={parent} title="Product Name"/>
+                </div>
+                <div className="col-xs-3">
+                    <NumberInputComponent model={model.getProductRequestedAmountNode()} readonly/>
+                </div>
+                <div className="col-xs-3">
+                    <NumberInputComponent model={model.getProductTotalLoanTermNode()} readonly/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-xs-6">
+                    <SelectInputComponent model={model.getProductLoanPrimaryPurposeNode()} readonly/>
+                </div>
+                <div className="col-xs-6">
+                    <SelectInputComponent model={model.getProductLendingPurposeNode()} readonly/>
+                </div>
+            </div>
+        </RemovePanelComponent>
+    );
+}
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.name = this.model.getNodeLabel();
+ProductSummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(
+    ProductSummaryComponent,
+    (model) => {
+        const newState = {};
+        newState.name = model.getParent().getNodeLabel();
         return newState;
     }
-
-    render() {
-        return (
-            <RemovePanelComponent className="product-summary-component" model={this.model}>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <a tabIndex="0" onClick={this.selectItem}>
-                            {this.state.name}
-                        </a>
-                    </div>
-                </div>
-            </RemovePanelComponent>
-        );
-    }
-}
+);

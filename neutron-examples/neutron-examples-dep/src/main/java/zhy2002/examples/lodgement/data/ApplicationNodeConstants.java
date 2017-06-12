@@ -21,6 +21,14 @@ public class ApplicationNodeConstants {
 
     public static final UnitSymbol PERCENTAGE = new UnitSymbol("Percentage", "%");
 
+    public static final UnitSymbol YEAR = new UnitSymbol("Year", "Year(s)");
+
+    public static final StringOption[] PRODUCT_LOAN_TYPE = {
+            new StringOption(""),
+            new StringOption("NewLoan", "New Loan"),
+            new StringOption("PrincipleIncrease", "Principle Increase")
+    };
+
     public static final StringOption[] TITLE_TYPE = {
             new StringOption(""),
             new StringOption("Mr"),
@@ -90,7 +98,8 @@ public class ApplicationNodeConstants {
 
     public static final StringOption[] NAB_PRIMARY_PURPOSE = {
             new StringOption(""),
-            new StringOption("PRIMARY PURPOSE")
+            new StringOption("OWNER_OCCUPY", "Owner Occupy"),
+            new StringOption("INVESTMENT", "Investment")
     };
 
     public static final StringOption[] PAYMENT_TYPE = {
@@ -99,7 +108,8 @@ public class ApplicationNodeConstants {
 
     public static final StringOption[] NAB_LENDING_PURPOSE = {
             new StringOption(""),
-            new StringOption("LENDING PURPOSE")
+            new StringOption("CONSTRUCTION", "Construction"),
+            new StringOption("PURCHASE", "Purchase")
     };
 
     public static final StringOption[] FEE_FROM_TYPE = {

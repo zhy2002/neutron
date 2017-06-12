@@ -793,6 +793,8 @@ rootType:
     childTypes:
     - typeName: ProductListNode
       baseTypeName: ListUiNode
+      rules:
+      - {typeName: SetContentNodeToNewItemRule}
       itemTypeName: ProductNode
       childTypes:
       - typeName: ProductNode
@@ -839,6 +841,8 @@ rootType:
 
           - typeName: ProductTotalLoanTermNode
             baseTypeName: BigDecimalUiNode
+            properties:
+            - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.YEAR}
 
           - typeName: ProductPaymentTypeNode
             baseTypeName: StringUiNode
@@ -975,24 +979,38 @@ rootType:
 
     - typeName: ProductLoanTypeNode
       baseTypeName: StringUiNode
+      config:
+      - {property: '@options', value: 'ApplicationNodeConstants.PRODUCT_LOAN_TYPE'}
+      - {property: '@required', value: 'true'}
 
     - typeName: SettlementDateNode
+      baseTypeName: StringUiNode
       baseTypeName: StringUiNode
 
     - typeName: ProductTotalLoanAmountNode
       baseTypeName: BaseCurrencyNode
+      config:
+      - {property: '@readonly', value: 'true'}
 
     - typeName: ProductTotalSecurityAmountNode
       baseTypeName: BaseCurrencyNode
+      config:
+      - {property: '@readonly', value: 'true'}
 
     - typeName: ProductTotalLoanLmiAmountNode
       baseTypeName: BaseCurrencyNode
+      config:
+      - {property: '@readonly', value: 'true'}
 
     - typeName: ProductTotalLvrNode
       baseTypeName: BasePercentageNode
+      config:
+      - {property: '@readonly', value: 'true'}
 
     - typeName: ProductTotalLvrLmiNode
       baseTypeName: BasePercentageNode
+      config:
+      - {property: '@readonly', value: 'true'}
 
   - typeName: AdditionalNode
     baseTypeName: ObjectUiNode

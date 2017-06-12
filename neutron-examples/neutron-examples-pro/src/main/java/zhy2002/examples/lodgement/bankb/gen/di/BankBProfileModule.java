@@ -207,6 +207,8 @@ public abstract class BankBProfileModule {
     @Binds
     abstract FeeAmountNodeRuleProvider provideFeeAmountNodeRuleProvider(BankBFeeAmountNodeRuleProvider impl);
     @Binds
+    abstract SettlementDateNodeRuleProvider provideSettlementDateNodeRuleProvider(BankBSettlementDateNodeRuleProvider impl);
+    @Binds
     abstract RelatedPartyNodeRuleProvider provideRelatedPartyNodeRuleProvider(BankBRelatedPartyNodeRuleProvider impl);
     @Binds
     abstract ThirdPartyTypeNodeRuleProvider provideThirdPartyTypeNodeRuleProvider(BankBThirdPartyTypeNodeRuleProvider impl);

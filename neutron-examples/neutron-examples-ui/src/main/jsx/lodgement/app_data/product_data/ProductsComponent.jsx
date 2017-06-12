@@ -1,46 +1,49 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
-import TextInputComponent from '../../../bootstrap3/TextInputComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
+import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
+import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import ProductListComponent from './ProductListComponent';
 
-export default class ProductsComponent extends NeutronComponent {
+function ProductsComponent(props) {
+    const model = props.model;
 
-    render() {
-        const model = this.model;
-
-        return (
-            <div className="products-component container-fluid">
-                <div className="row">
-                    <div className="col-md-3">
-                        <TextInputComponent model={model.getProductLoanTypeNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <NumberInputComponent model={model.getProductTotalSecurityAmountNode()}/>
-                    </div>
-                    <div className="col-md-3"/>
-                    <div className="col-md-3"/>
+    return (
+        <div className="products-component container-fluid">
+            <div className="row">
+                <div className="col-md-3">
+                    <SelectInputComponent model={model.getProductLoanTypeNode()}/>
                 </div>
-                <div className="row">
-                    <div className="col-md-3">
-                        <NumberInputComponent model={model.getProductTotalLoanAmountNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <NumberInputComponent model={model.getProductTotalLoanLmiAmountNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <NumberInputComponent model={model.getProductTotalLvrNode()}/>
-                    </div>
-                    <div className="col-md-3">
-                        <NumberInputComponent model={model.getProductTotalLvrLmiNode()}/>
-                    </div>
+                <div className="col-md-3">
+                    <DateInputComponent model={model.getSettlementDateNode()}/>
                 </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <ProductListComponent model={model.getProductListNode()} />
-                    </div>
+                <div className="col-md-3">
+                    <NumberInputComponent model={model.getProductTotalLvrNode()}/>
+                </div>
+                <div className="col-md-3">
+                    <NumberInputComponent model={model.getProductTotalLvrLmiNode()}/>
                 </div>
             </div>
-        );
-    }
+            <div className="row">
+                <div className="col-md-3"/>
+                <div className="col-md-3">
+                    <NumberInputComponent model={model.getProductTotalLoanAmountNode()}/>
+                </div>
+                <div className="col-md-3">
+                    <NumberInputComponent model={model.getProductTotalSecurityAmountNode()}/>
+                </div>
+                <div className="col-md-3">
+                    <NumberInputComponent model={model.getProductTotalLoanLmiAmountNode()}/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-12">
+                    <ProductListComponent model={model.getProductListNode()}/>
+                </div>
+            </div>
+        </div>
+    );
 }
+
+ProductsComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(ProductsComponent);
