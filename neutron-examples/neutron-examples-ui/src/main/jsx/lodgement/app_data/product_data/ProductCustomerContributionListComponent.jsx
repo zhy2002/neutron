@@ -55,7 +55,7 @@ class ProductCustomerContributionListComponent extends React.PureComponent {
         const model = this.props.model;
 
         return (
-            <MainContentComponent className="product-customer-contribution-list-component">
+            <MainContentComponent className={this.props.componentClass}>
                 <PanelComponent title="Contributions" onAdd={this.addItem} className="panel-primary">
                     {model.getItemCount() === 0 ?
                         <div className="alert alert-info">Click &apos;+&apos; to add contribution fees.</div> :
@@ -64,8 +64,8 @@ class ProductCustomerContributionListComponent extends React.PureComponent {
                             <tr>
                                 <th width="15%">#</th>
                                 <th width="20%">Type</th>
-                                <th width="30%">Description</th>
                                 <th width="20%">Amount</th>
+                                <th width="30%">Description</th>
                                 <th width="15%"/>
                             </tr>
                             </thead>
@@ -73,24 +73,24 @@ class ProductCustomerContributionListComponent extends React.PureComponent {
                             {
                                 model.getChildren().filter(item => !item.isFresh).map((item, index) =>
                                     <tr key={item.getUniqueId()}>
-                                        <th width="15%">{index + 1}</th>
-                                        <th width="20%">
+                                        <td width="15%">{index + 1}</td>
+                                        <td width="20%">
                                             <NodeValueComponent model={item.getContributionTypeNode()}/>
-                                        </th>
-                                        <th width="30%">
-                                            <NodeValueComponent model={item.getContributionDescriptionNode()}/>
-                                        </th>
-                                        <th width="20%">
+                                        </td>
+                                        <td width="20%">
                                             <NodeValueComponent model={item.getContributionAmountNode()}/>
-                                        </th>
-                                        <th width="15%">
+                                        </td>
+                                        <td width="30%">
+                                            <NodeValueComponent model={item.getContributionDescriptionNode()}/>
+                                        </td>
+                                        <td width="15%">
                                             <a
                                                 tabIndex="0"
                                                 onClick={() => this.selectEditModel(item)}
                                             >
                                                 Edit
                                             </a>
-                                        </th>
+                                        </td>
                                     </tr>
                                 )
                             }

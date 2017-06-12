@@ -1,15 +1,21 @@
 import React from 'react';
-import NeutronComponent from './NeutronComponent';
+import NeutronHoc from '../neutron/NeutronHoc';
 
-export default class NodeValueComponent extends NeutronComponent {
-
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.text = `${this.model.getValue()}`;
-        return newState;
-    }
-
-    render() {
-        return <span>{this.state.text}</span>;
-    }
+function NodeValueComponent(props) {
+    return <span>{props.prefix}{props.text}</span>;
 }
+
+NodeValueComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(
+    NodeValueComponent,
+    (model) => {
+        const props = {};
+        props.text = `${model.getValue()}`;
+        if (model.getCurrencyInfo) {
+            props.prefix = model.getCurrencyInfo().getSymbol();
+        } else {
+            props.prefix = '';
+        }
+        return props;
+    }
+);
