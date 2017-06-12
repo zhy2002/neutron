@@ -780,7 +780,7 @@ rootType:
         init:
         - {propertyName: selectedName, value: '"productDescriptionNode"'}
         rules:
-        - {typeName: UpdateProductNodeLabelRule, existing: true}
+        - {typeName: UpdateProductNodeLabelRule}
         children:
         - {typeName: ProductDescriptionNode}
         - {typeName: ProductFeaturesNode}
@@ -806,29 +806,49 @@ rootType:
           - typeName: ProductGroupNode
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
+            - {propertyName: required, value: true}
             rules:
-            - {typeName: ProductGroupChangedRule, existing: true}
+            - {typeName: ProductGroupChangedRule}
 
           - typeName: ProductNameNode
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME'}
+            - {propertyName: required, value: true}
+            rules:
+            - {typeName: ProductNameChangedRule}
 
           - typeName: ProductLoanPrimaryPurposeNode
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE'}
+            - {propertyName: required, value: true}
 
           - typeName: ProductLendingPurposeNode
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE'}
+            - {propertyName: required, value: true}
 
           - typeName: ProductRequestedAmountNode
+            init:
+            - {propertyName: required, value: true}
+
           - typeName: ProductTotalLoanTermNode
+            init:
+            - {propertyName: required, value: true}
+
           - typeName: ProductPaymentTypeNode
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.PAYMENT_TYPE'}
-
+            rules:
+            - {typeName: PaymentTypeChangeRule}
           - typeName: ProductInterestOnlyTermNode
+            config:
+            - {property: '@required', value: true}
+            - {property: '@minValue', value: 'new BigDecimal("1")'}
           - typeName: ProductFixedTermNode
+            config:
+            - {property: '@required', value: true}
+            - {property: '@minValue', value: 'new BigDecimal("1")'}
+            - {property: '@maxValue', value: 'new BigDecimal("5")'}
           - typeName: ProductConstructionApplicationFlagNode
           - typeName: ProductCostRecuctionFlagNode
           - typeName: ProductConsolidationFlagNode
@@ -842,12 +862,13 @@ rootType:
           - {typeName: ProductRepaymentFrequencyNode}
           - {typeName: ProductRateLockFlagNode}
           - {typeName: ProductTransactionAccountFlagNode}
-          - {typeName: ProductOptOutReasonNode}
+          - {typeName: Product100PercentOffsetFlagNode}
+          - {typeName: TransactionAccountOptOutReasonNode}
           - {typeName: ProductCreditCardFlagNode}
+          - {typeName: CreditCardOptOutReasonNode}
           - {typeName: ProductCreditCardTypeNode}
           - {typeName: ProductCreditCardLimitNode}
           - {typeName: ProductExpressConsentFlagNode}
-          - {typeName: Product100PercentOffsetFlagNode}
           - {typeName: ProductCardHolderNode, name: productPrimaryCardHolderNode}
           - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
           childTypes:
@@ -855,12 +876,13 @@ rootType:
           - typeName: ProductRepaymentFrequencyNode
           - typeName: ProductRateLockFlagNode
           - typeName: ProductTransactionAccountFlagNode
-          - typeName: ProductOptOutReasonNode
+          - typeName: Product100PercentOffsetFlagNode
+          - typeName: TransactionAccountOptOutReasonNode
           - typeName: ProductCreditCardFlagNode
+          - typeName: CreditCardOptOutReasonNode
           - typeName: ProductCreditCardTypeNode
           - typeName: ProductCreditCardLimitNode
           - typeName: ProductExpressConsentFlagNode
-          - typeName: Product100PercentOffsetFlagNode
           - typeName: ProductCardHolderNode
             children:
             - {typeName: ProductCardHodlerNameNode}
@@ -1268,13 +1290,6 @@ commonTypes:
   - {typeName: DobRangeValidationRule, existing: true}
 
 - typeName: SelectRelatedPersonListNode
-  config:
-  - {property: '@keepItemsOnReset', value: 'true'}
-  rules:
-  - {typeName: AddExistingPeopleRule, existing: true}
-  - {typeName: AddNewPersonRule, existing: true}
-  - {typeName: AddNewThirdPartyApplicantRule, existing: true}
-  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
   childTypes:
   - typeName: SelectRelatedPersonNode
     children:
@@ -1285,10 +1300,6 @@ commonTypes:
     - typeName: SelectRelatedPersonFlagNode
 
 - typeName: SelectAccountHolderListNode
-  rules:
-  - {typeName: AddExistingHoldersRule, existing: true}
-  - {typeName: AddNewPersonHolderRule, existing: true}
-  - {typeName: AddNewCompanyHolderRule, existing: true}
   childTypes:
   - typeName: SelectAccountHolderNode
     children:
@@ -1300,12 +1311,7 @@ commonTypes:
 
 - typeName: OwnershipListNode
   rules:
-  - {typeName: AddExistingApplicantsRule, existing: true}
-  - {typeName: AddNewPersonApplicantRule, existing: true}
-  - {typeName: AddNewCompanyApplicantRule, existing: true}
-  - {typeName: OwnershipRequiredValidationRule, existing: true}
-  - {typeName: UpdateTotalOwnershipRule, existing: true}
-  - {typeName: DistributePercentageRule, existing: true}
+  - {typeName: OwnershipRequiredValidationRule}
   childTypes:
   - typeName: OwnershipNode
     children:
@@ -1418,7 +1424,7 @@ commonTypes:
     init:
     - {propertyName: options, value: ApplicationNodeConstants.TRUST_TYPE}
     rules:
-    - {typeName: TrustTypeChangedRule, existing: true}
+    - {typeName: TrustTypeChangedRule}
 
   - typeName: TrustNameNode
   - typeName: TrustRegistrationDateNode

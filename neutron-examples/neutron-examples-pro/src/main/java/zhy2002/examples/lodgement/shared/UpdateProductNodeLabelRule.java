@@ -39,7 +39,7 @@ public class UpdateProductNodeLabelRule extends UpdateItemNodeLabelRule<ProductN
         }
 
         if (ValueUtil.isEmpty(value)) {
-            value = "[Product " + (getOwner().getIndex() + 1) + "]";
+            value = "[Product " + (Integer.parseInt(getOwner().getName()) + 1) + "]";
         } else {
             StringOption[] options = productNameNode.getOptions();
             value = ValueUtil.getText(options, value);

@@ -26,6 +26,7 @@ public class BankBProductGroupNodeRuleProvider extends ProductGroupNodeRuleProvi
         super.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.NAB_PRODUCT_GROUP);
+        node.setRequired(true);
     }
 
     @Inject

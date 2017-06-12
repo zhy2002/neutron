@@ -34,7 +34,7 @@ public class UpdateCompanyNodeLabelRule extends UpdateItemNodeLabelRule<CompanyN
         if (!ValueUtil.isEmpty(name)) {
             getOwner().setNodeLabel(name);
         } else {
-            getOwner().setNodeLabel("[Company " + (getOwner().getIndex() + 1) + "]");
+            getOwner().setNodeLabel("[Company " + (Integer.parseInt(getOwner().getName()) + 1) + "]");
         }
     }
 }

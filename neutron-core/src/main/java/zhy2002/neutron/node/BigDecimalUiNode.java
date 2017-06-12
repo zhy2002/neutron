@@ -1,10 +1,7 @@
 package zhy2002.neutron.node;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.LeafUiNode;
-import zhy2002.neutron.ParentUiNode;
-import zhy2002.neutron.ValueFormatter;
-import zhy2002.neutron.ValueParser;
+import zhy2002.neutron.*;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.BigDecimalOption;
@@ -118,9 +115,10 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     //region node properties
 
     public static final PropertyMetadata<BigDecimal> VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "value", BigDecimal.class);
-    public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.FALSE, ChangeTrackingModeEnum.Always);
+    public static final PropertyMetadata<Boolean> INTEGER_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "integerValue", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class);
-    public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value is out of range.");
+    public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value must be in the range of [{min}, {max}].");
     public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
     public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);
 
@@ -156,6 +154,14 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
 
     private void setValueValid(boolean value) {
         super.setStateValue(VALUE_VALID_PROPERTY, value);
+    }
+
+    public boolean isIntegerValue() {
+        return super.getStateValue(INTEGER_VALUE_PROPERTY);
+    }
+
+    private void setIntegerValue(boolean value) {
+        super.setStateValue(INTEGER_VALUE_PROPERTY, value);
     }
 
     @JsMethod

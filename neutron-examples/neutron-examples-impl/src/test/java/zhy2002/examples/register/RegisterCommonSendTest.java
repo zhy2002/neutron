@@ -362,9 +362,11 @@ public class RegisterCommonSendTest {
         assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
         emailNode.setValue("");
+        emailNode.refresh();
         assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(true));
 
         emailNode.setValue("a@a");
+        emailNode.refresh();
         assertThat(hasError(LeafValueRequiredValidationRule.class), equalTo(false));
 
     }
@@ -568,9 +570,11 @@ public class RegisterCommonSendTest {
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(0));
 
         registerNode.getHomePhoneNode().getAreaCodeNode().setValue("");
+        registerNode.getHomePhoneNode().getAreaCodeNode().refresh();
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(1));
 
         registerNode.getHomePhoneNode().getPhoneNumberNode().setValue("");
+        registerNode.getHomePhoneNode().getPhoneNumberNode().refresh();
         assertThat(registerNode.getErrorListNode().getItemCount(), equalTo(2));
     }
 

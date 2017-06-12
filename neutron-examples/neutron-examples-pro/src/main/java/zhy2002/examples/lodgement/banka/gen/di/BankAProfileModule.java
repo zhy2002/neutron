@@ -19,7 +19,7 @@ import zhy2002.examples.lodgement.gen.*;
 public abstract class BankAProfileModule {
 
     @Binds
-    abstract PersonListNodeRuleProvider providePersonListNodeRuleProvider(BankAPersonListNodeRuleProvider impl);
+    abstract PersonNodeRuleProvider providePersonNodeRuleProvider(BankAPersonNodeRuleProvider impl);
     @Binds
     abstract TitleNodeRuleProvider provideTitleNodeRuleProvider(BankATitleNodeRuleProvider impl);
     @Binds
@@ -61,17 +61,9 @@ public abstract class BankAProfileModule {
     @Binds
     abstract PreviousEmploymentNodeRuleProvider providePreviousEmploymentNodeRuleProvider(BankAPreviousEmploymentNodeRuleProvider impl);
     @Binds
+    abstract CompanyNodeRuleProvider provideCompanyNodeRuleProvider(BankACompanyNodeRuleProvider impl);
+    @Binds
     abstract CompanyApplicationTypeNodeRuleProvider provideCompanyApplicationTypeNodeRuleProvider(BankACompanyApplicationTypeNodeRuleProvider impl);
-    @Binds
-    abstract CompanyRegisteredNameNodeRuleProvider provideCompanyRegisteredNameNodeRuleProvider(BankACompanyRegisteredNameNodeRuleProvider impl);
-    @Binds
-    abstract CompanyDescriptionNodeRuleProvider provideCompanyDescriptionNodeRuleProvider(BankACompanyDescriptionNodeRuleProvider impl);
-    @Binds
-    abstract CompanyIndustryNodeRuleProvider provideCompanyIndustryNodeRuleProvider(BankACompanyIndustryNodeRuleProvider impl);
-    @Binds
-    abstract CompanyAcnNodeRuleProvider provideCompanyAcnNodeRuleProvider(BankACompanyAcnNodeRuleProvider impl);
-    @Binds
-    abstract CompanyRegistrationDateNodeRuleProvider provideCompanyRegistrationDateNodeRuleProvider(BankACompanyRegistrationDateNodeRuleProvider impl);
     @Binds
     abstract CompanyRegistrationStateNodeRuleProvider provideCompanyRegistrationStateNodeRuleProvider(BankACompanyRegistrationStateNodeRuleProvider impl);
     @Binds
@@ -175,8 +167,6 @@ public abstract class BankAProfileModule {
     @Binds
     abstract MortgageTermRemainingPeriodNodeRuleProvider provideMortgageTermRemainingPeriodNodeRuleProvider(BankAMortgageTermRemainingPeriodNodeRuleProvider impl);
     @Binds
-    abstract MortgageInterestOnlyRemainingPeriodNodeRuleProvider provideMortgageInterestOnlyRemainingPeriodNodeRuleProvider(BankAMortgageInterestOnlyRemainingPeriodNodeRuleProvider impl);
-    @Binds
     abstract RentedFlagNodeRuleProvider provideRentedFlagNodeRuleProvider(BankARentedFlagNodeRuleProvider impl);
     @Binds
     abstract EstimatedMarketValueNodeRuleProvider provideEstimatedMarketValueNodeRuleProvider(BankAEstimatedMarketValueNodeRuleProvider impl);
@@ -203,6 +193,10 @@ public abstract class BankAProfileModule {
     @Binds
     abstract ProductLendingPurposeNodeRuleProvider provideProductLendingPurposeNodeRuleProvider(BankAProductLendingPurposeNodeRuleProvider impl);
     @Binds
+    abstract ProductRequestedAmountNodeRuleProvider provideProductRequestedAmountNodeRuleProvider(BankAProductRequestedAmountNodeRuleProvider impl);
+    @Binds
+    abstract ProductTotalLoanTermNodeRuleProvider provideProductTotalLoanTermNodeRuleProvider(BankAProductTotalLoanTermNodeRuleProvider impl);
+    @Binds
     abstract ProductPaymentTypeNodeRuleProvider provideProductPaymentTypeNodeRuleProvider(BankAProductPaymentTypeNodeRuleProvider impl);
     @Binds
     abstract ContributionTypeNodeRuleProvider provideContributionTypeNodeRuleProvider(BankAContributionTypeNodeRuleProvider impl);
@@ -213,11 +207,11 @@ public abstract class BankAProfileModule {
     @Binds
     abstract FeeTypeNodeRuleProvider provideFeeTypeNodeRuleProvider(BankAFeeTypeNodeRuleProvider impl);
     @Binds
-    abstract FeeDescriptionNodeRuleProvider provideFeeDescriptionNodeRuleProvider(BankAFeeDescriptionNodeRuleProvider impl);
-    @Binds
     abstract FeePayFromNodeRuleProvider provideFeePayFromNodeRuleProvider(BankAFeePayFromNodeRuleProvider impl);
     @Binds
     abstract FeeAmountNodeRuleProvider provideFeeAmountNodeRuleProvider(BankAFeeAmountNodeRuleProvider impl);
+    @Binds
+    abstract SettlementDateNodeRuleProvider provideSettlementDateNodeRuleProvider(BankASettlementDateNodeRuleProvider impl);
     @Binds
     abstract RelatedPartyNodeRuleProvider provideRelatedPartyNodeRuleProvider(BankARelatedPartyNodeRuleProvider impl);
     @Binds
@@ -265,91 +259,23 @@ public abstract class BankAProfileModule {
     @Binds
     abstract NameNodeRuleProvider provideNameNodeRuleProvider(BankANameNodeRuleProvider impl);
     @Binds
-    abstract BaseMobileNumberNodeRuleProvider provideBaseMobileNumberNodeRuleProvider(BankABaseMobileNumberNodeRuleProvider impl);
-    @Binds
-    abstract BaseCurrencyNodeRuleProvider provideBaseCurrencyNodeRuleProvider(BankABaseCurrencyNodeRuleProvider impl);
-    @Binds
-    abstract BasePercentageNodeRuleProvider provideBasePercentageNodeRuleProvider(BankABasePercentageNodeRuleProvider impl);
-    @Binds
     abstract EmploymentTypeNodeRuleProvider provideEmploymentTypeNodeRuleProvider(BankAEmploymentTypeNodeRuleProvider impl);
-    @Binds
-    abstract GrossYearlySalaryNodeRuleProvider provideGrossYearlySalaryNodeRuleProvider(BankAGrossYearlySalaryNodeRuleProvider impl);
-    @Binds
-    abstract ProfitThisYearNodeRuleProvider provideProfitThisYearNodeRuleProvider(BankAProfitThisYearNodeRuleProvider impl);
-    @Binds
-    abstract ProfitPreviousYearNodeRuleProvider provideProfitPreviousYearNodeRuleProvider(BankAProfitPreviousYearNodeRuleProvider impl);
     @Binds
     abstract EmployedNodeRuleProvider provideEmployedNodeRuleProvider(BankAEmployedNodeRuleProvider impl);
     @Binds
-    abstract EmploymentStatusNodeRuleProvider provideEmploymentStatusNodeRuleProvider(BankAEmploymentStatusNodeRuleProvider impl);
-    @Binds
-    abstract OccupationNodeRuleProvider provideOccupationNodeRuleProvider(BankAOccupationNodeRuleProvider impl);
-    @Binds
-    abstract EmployerNameNodeRuleProvider provideEmployerNameNodeRuleProvider(BankAEmployerNameNodeRuleProvider impl);
-    @Binds
-    abstract EmployerAddressNodeRuleProvider provideEmployerAddressNodeRuleProvider(BankAEmployerAddressNodeRuleProvider impl);
-    @Binds
-    abstract EmployerPhoneNodeRuleProvider provideEmployerPhoneNodeRuleProvider(BankAEmployerPhoneNodeRuleProvider impl);
-    @Binds
-    abstract EmploymentStartedNodeRuleProvider provideEmploymentStartedNodeRuleProvider(BankAEmploymentStartedNodeRuleProvider impl);
-    @Binds
     abstract EmploymentEndedNodeRuleProvider provideEmploymentEndedNodeRuleProvider(BankAEmploymentEndedNodeRuleProvider impl);
-    @Binds
-    abstract UnemployedOnBenefitFlagNodeRuleProvider provideUnemployedOnBenefitFlagNodeRuleProvider(BankAUnemployedOnBenefitFlagNodeRuleProvider impl);
-    @Binds
-    abstract StudentFlagNodeRuleProvider provideStudentFlagNodeRuleProvider(BankAStudentFlagNodeRuleProvider impl);
-    @Binds
-    abstract StudentTypeNodeRuleProvider provideStudentTypeNodeRuleProvider(BankAStudentTypeNodeRuleProvider impl);
-    @Binds
-    abstract HouseDutiesFlagNodeRuleProvider provideHouseDutiesFlagNodeRuleProvider(BankAHouseDutiesFlagNodeRuleProvider impl);
-    @Binds
-    abstract UnemployedSinceNodeRuleProvider provideUnemployedSinceNodeRuleProvider(BankAUnemployedSinceNodeRuleProvider impl);
-    @Binds
-    abstract RetiredOnBenefitFlagNodeRuleProvider provideRetiredOnBenefitFlagNodeRuleProvider(BankARetiredOnBenefitFlagNodeRuleProvider impl);
-    @Binds
-    abstract RetiredSinceNodeRuleProvider provideRetiredSinceNodeRuleProvider(BankARetiredSinceNodeRuleProvider impl);
-    @Binds
-    abstract YesNoOptionNodeRuleProvider provideYesNoOptionNodeRuleProvider(BankAYesNoOptionNodeRuleProvider impl);
-    @Binds
-    abstract BaseCountryNodeRuleProvider provideBaseCountryNodeRuleProvider(BankABaseCountryNodeRuleProvider impl);
     @Binds
     abstract DobNodeRuleProvider provideDobNodeRuleProvider(BankADobNodeRuleProvider impl);
     @Binds
-    abstract SelectRelatedPersonListNodeRuleProvider provideSelectRelatedPersonListNodeRuleProvider(BankASelectRelatedPersonListNodeRuleProvider impl);
-    @Binds
-    abstract SelectAccountHolderListNodeRuleProvider provideSelectAccountHolderListNodeRuleProvider(BankASelectAccountHolderListNodeRuleProvider impl);
-    @Binds
     abstract OwnershipListNodeRuleProvider provideOwnershipListNodeRuleProvider(BankAOwnershipListNodeRuleProvider impl);
     @Binds
-    abstract OwnershipPercentageNodeRuleProvider provideOwnershipPercentageNodeRuleProvider(BankAOwnershipPercentageNodeRuleProvider impl);
-    @Binds
     abstract ResponsibleSignificantChangeFlagNodeRuleProvider provideResponsibleSignificantChangeFlagNodeRuleProvider(BankAResponsibleSignificantChangeFlagNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleTypeOfChangeNodeRuleProvider provideResponsibleTypeOfChangeNodeRuleProvider(BankAResponsibleTypeOfChangeNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleMitigationMethodNodeRuleProvider provideResponsibleMitigationMethodNodeRuleProvider(BankAResponsibleMitigationMethodNodeRuleProvider impl);
-    @Binds
-    abstract ResponsibleRepaymentDifficultyNodeRuleProvider provideResponsibleRepaymentDifficultyNodeRuleProvider(BankAResponsibleRepaymentDifficultyNodeRuleProvider impl);
-    @Binds
-    abstract BaseOtherIncomeListNodeRuleProvider provideBaseOtherIncomeListNodeRuleProvider(BankABaseOtherIncomeListNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeTypeNodeRuleProvider provideOtherIncomeTypeNodeRuleProvider(BankAOtherIncomeTypeNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeAddBackTypeNodeRuleProvider provideOtherIncomeAddBackTypeNodeRuleProvider(BankAOtherIncomeAddBackTypeNodeRuleProvider impl);
-    @Binds
-    abstract OtherIncomeAmountNodeRuleProvider provideOtherIncomeAmountNodeRuleProvider(BankAOtherIncomeAmountNodeRuleProvider impl);
     @Binds
     abstract CreditCheckFlagNodeRuleProvider provideCreditCheckFlagNodeRuleProvider(BankACreditCheckFlagNodeRuleProvider impl);
     @Binds
     abstract ThirdPartyDisclosureFlagNodeRuleProvider provideThirdPartyDisclosureFlagNodeRuleProvider(BankAThirdPartyDisclosureFlagNodeRuleProvider impl);
     @Binds
-    abstract LegalActionNodeRuleProvider provideLegalActionNodeRuleProvider(BankALegalActionNodeRuleProvider impl);
-    @Binds
     abstract TrustTypeNodeRuleProvider provideTrustTypeNodeRuleProvider(BankATrustTypeNodeRuleProvider impl);
-    @Binds
-    abstract TrustCountryNodeRuleProvider provideTrustCountryNodeRuleProvider(BankATrustCountryNodeRuleProvider impl);
-    @Binds
-    abstract BaseApplicantTypeNodeRuleProvider provideBaseApplicantTypeNodeRuleProvider(BankABaseApplicantTypeNodeRuleProvider impl);
 
     @Binds @Named("PersonAddressNodeRuleProvider") @IntoMap @StringKey("currentAddressNode")
     abstract RuleProvider<PersonAddressNode> providePersonAddressNodePersonContactNodeChildCurrentAddressNodeRuleProvider(

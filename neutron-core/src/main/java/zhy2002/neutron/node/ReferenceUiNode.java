@@ -33,17 +33,21 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
 
     @Override
     public void resetValue() {
+        ListUiNode<?, ?> firstListAncestor = getFirstListAncestor();
+        if (firstListAncestor != null && !firstListAncestor.getKeepItemsOnReset()) {
+            super.resetValue();
+        }
+    }
+
+    private ListUiNode<?, ?> getFirstListAncestor() {
         ParentUiNode<?> parent = this.getParent();
         while (parent != null) {
             if (parent instanceof ListUiNode) {
-                if (((ListUiNode) parent).getKeepItemsOnReset()) {
-                    return;
-                }
+                return (ListUiNode<?, ?>) parent;
             }
             parent = parent.getParent();
         }
-
-        super.resetValue();
+        return null;
     }
 
     @Override

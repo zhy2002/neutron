@@ -102,8 +102,13 @@ public class ApplicationNodeConstants {
             new StringOption("INVESTMENT", "Investment")
     };
 
+    public static final StringOption INTEREST_ONLY_OPTION = new StringOption("IO", "Interest Only");
+    public static final StringOption PRINCIPAL_AND_INTEREST_OPTION = new StringOption("PI", "Principal and Interest");
+
     public static final StringOption[] PAYMENT_TYPE = {
-            new StringOption("PAYMENT TYPE")
+            new StringOption(""),
+            INTEREST_ONLY_OPTION,
+            PRINCIPAL_AND_INTEREST_OPTION
     };
 
     public static final StringOption[] NAB_LENDING_PURPOSE = {

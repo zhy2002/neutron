@@ -43,7 +43,7 @@ public class UpdateRealEstateNodeLabelRule extends UpdateItemNodeLabelRule<RealE
         if (label.length() > 0) {
             getOwner().setNodeLabel(label.trim());
         } else {
-            getOwner().setNodeLabel("[Real Estate " + (getOwner().getIndex() + 1) + "]");
+            getOwner().setNodeLabel("[Real Estate " + (Integer.parseInt(getOwner().getName()) + 1) + "]");
         }
     }
 }

@@ -70,13 +70,23 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
     }
 
     @JsMethod
-    public ProductOptOutReasonNode getProductOptOutReasonNode() {
-        return (ProductOptOutReasonNode)getChildByName("productOptOutReasonNode");
+    public Product100PercentOffsetFlagNode getProduct100PercentOffsetFlagNode() {
+        return (Product100PercentOffsetFlagNode)getChildByName("product100PercentOffsetFlagNode");
+    }
+
+    @JsMethod
+    public TransactionAccountOptOutReasonNode getTransactionAccountOptOutReasonNode() {
+        return (TransactionAccountOptOutReasonNode)getChildByName("transactionAccountOptOutReasonNode");
     }
 
     @JsMethod
     public ProductCreditCardFlagNode getProductCreditCardFlagNode() {
         return (ProductCreditCardFlagNode)getChildByName("productCreditCardFlagNode");
+    }
+
+    @JsMethod
+    public CreditCardOptOutReasonNode getCreditCardOptOutReasonNode() {
+        return (CreditCardOptOutReasonNode)getChildByName("creditCardOptOutReasonNode");
     }
 
     @JsMethod
@@ -92,11 +102,6 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
     @JsMethod
     public ProductExpressConsentFlagNode getProductExpressConsentFlagNode() {
         return (ProductExpressConsentFlagNode)getChildByName("productExpressConsentFlagNode");
-    }
-
-    @JsMethod
-    public Product100PercentOffsetFlagNode getProduct100PercentOffsetFlagNode() {
-        return (Product100PercentOffsetFlagNode)getChildByName("product100PercentOffsetFlagNode");
     }
 
     @JsMethod
@@ -121,18 +126,20 @@ public class ProductFeaturesNode extends ObjectUiNode<ProductNode> {
         children.add(getComponent().createProductRateLockFlagNode());
         setChildNodeIdentity("productTransactionAccountFlagNode");
         children.add(getComponent().createProductTransactionAccountFlagNode());
-        setChildNodeIdentity("productOptOutReasonNode");
-        children.add(getComponent().createProductOptOutReasonNode());
+        setChildNodeIdentity("product100PercentOffsetFlagNode");
+        children.add(getComponent().createProduct100PercentOffsetFlagNode());
+        setChildNodeIdentity("transactionAccountOptOutReasonNode");
+        children.add(getComponent().createTransactionAccountOptOutReasonNode());
         setChildNodeIdentity("productCreditCardFlagNode");
         children.add(getComponent().createProductCreditCardFlagNode());
+        setChildNodeIdentity("creditCardOptOutReasonNode");
+        children.add(getComponent().createCreditCardOptOutReasonNode());
         setChildNodeIdentity("productCreditCardTypeNode");
         children.add(getComponent().createProductCreditCardTypeNode());
         setChildNodeIdentity("productCreditCardLimitNode");
         children.add(getComponent().createProductCreditCardLimitNode());
         setChildNodeIdentity("productExpressConsentFlagNode");
         children.add(getComponent().createProductExpressConsentFlagNode());
-        setChildNodeIdentity("product100PercentOffsetFlagNode");
-        children.add(getComponent().createProduct100PercentOffsetFlagNode());
         setChildNodeIdentity("productPrimaryCardHolderNode");
         children.add(getComponent().createProductCardHolderNode());
         setChildNodeIdentity("productAdditionalCardHolderNode");

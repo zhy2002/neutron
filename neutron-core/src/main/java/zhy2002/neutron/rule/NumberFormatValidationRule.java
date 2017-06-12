@@ -4,6 +4,7 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.util.CollectionUtil;
 
@@ -33,12 +34,13 @@ public class NumberFormatValidationRule extends ValidationRule<BigDecimalUiNode<
 
     @Override
     protected String getErrorMessage() {
-        if (isActivated())
+        if (!getOwner().isValueValid())
             return "Not a valid number";
+
+        if (getOwner().isIntegerValue() && getOwner().getText().contains("."))
+            return "Not an integer";
+
         return null;
     }
 
-    private boolean isActivated() {
-        return !getOwner().isValueValid();
-    }
 }

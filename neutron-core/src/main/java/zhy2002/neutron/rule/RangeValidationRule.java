@@ -32,7 +32,9 @@ public class RangeValidationRule extends ValidationRule<BigDecimalUiNode<?>> {
     @Override
     protected String getErrorMessage() {
         if (isActivated())
-            return getOwner().getRangeMessage();
+            return getOwner().getRangeMessage()
+                    .replace("{min}", String.valueOf(getOwner().getMinValue()))
+                    .replace("{max}", String.valueOf(getOwner().getMaxValue()));
         return null;
     }
 

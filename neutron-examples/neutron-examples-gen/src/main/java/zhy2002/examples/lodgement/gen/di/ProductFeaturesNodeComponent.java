@@ -16,12 +16,13 @@ public interface ProductFeaturesNodeComponent {
     ProductRepaymentFrequencyNode createProductRepaymentFrequencyNode();
     ProductRateLockFlagNode createProductRateLockFlagNode();
     ProductTransactionAccountFlagNode createProductTransactionAccountFlagNode();
-    ProductOptOutReasonNode createProductOptOutReasonNode();
+    TransactionAccountOptOutReasonNode createTransactionAccountOptOutReasonNode();
+    Product100PercentOffsetFlagNode createProduct100PercentOffsetFlagNode();
     ProductCreditCardFlagNode createProductCreditCardFlagNode();
+    CreditCardOptOutReasonNode createCreditCardOptOutReasonNode();
     ProductCreditCardTypeNode createProductCreditCardTypeNode();
     ProductCreditCardLimitNode createProductCreditCardLimitNode();
     ProductExpressConsentFlagNode createProductExpressConsentFlagNode();
-    Product100PercentOffsetFlagNode createProduct100PercentOffsetFlagNode();
     ProductCardHolderNode createProductCardHolderNode();
 
     @Subcomponent.Builder

@@ -55,7 +55,7 @@ public class UpdatePersonNodeLabelRule extends UpdateItemNodeLabelRule<PersonNod
                 label = title + " " + label;
             }
         } else {
-            label = "[Person " + (getPersonNode().getIndex() + 1) + "]";
+            label = "[Person " + (Integer.parseInt(getOwner().getName()) + 1) + "]";
         }
         getPersonNode().setNodeLabel(label);
     }

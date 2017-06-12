@@ -22,6 +22,7 @@ public class BankAProductLendingPurposeNodeRuleProvider extends ProductLendingPu
         super.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.NAB_LENDING_PURPOSE);
+        node.setRequired(true);
     }
 
     @Override

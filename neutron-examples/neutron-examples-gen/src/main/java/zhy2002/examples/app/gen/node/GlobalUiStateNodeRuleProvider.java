@@ -7,8 +7,9 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.app.gen.node.GlobalUiStateNode;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.app.gen.di.*;
+import zhy2002.examples.app.rule.*;
 import zhy2002.examples.app.gen.rule.*;
+import zhy2002.examples.app.gen.di.*;
 
 @ComponentScope
 public class GlobalUiStateNodeRuleProvider implements RuleProvider<GlobalUiStateNode> {

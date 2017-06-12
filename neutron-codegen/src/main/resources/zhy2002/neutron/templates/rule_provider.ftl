@@ -8,11 +8,10 @@ import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.node.${typeName};
 <#if rules??>
 import zhy2002.neutron.rule.*;
-</#if>
-import ${targetPackage}.gen.di.*;
-<#if rules??>
+import ${targetPackage}.rule.*;
 import ${targetPackage}.gen.rule.*;
 </#if>
+import ${targetPackage}.gen.di.*;
 <#if init??>
 import ${targetPackage}.data.*;
 import java.math.*;

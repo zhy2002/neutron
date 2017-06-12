@@ -7,10 +7,11 @@ import zhy2002.examples.lodgement.gen.node.ProductNameNode;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
+import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -46,6 +47,11 @@ public class ProductGroupChangedRule extends UiNodeRule<ProductGroupNode> {
 
     private void onChange() {
         String group = getProductGroupNode().getValue();
+        if (ValueUtil.isEmpty(group)) {
+            NodeUtil.disableAllSiblings(getOwner(), true);
+            return;
+        }
+
         StringOption[] productList = ApplicationNodeConstants.NAB_PRODUCT_NAME_MAP.get(group);
         ProductNameNode productNameNode = getProductNameNode();
         if (productList == null) {
@@ -53,9 +59,12 @@ public class ProductGroupChangedRule extends UiNodeRule<ProductGroupNode> {
         }
 
         if (!Arrays.equals(productList, productNameNode.getOptions())) {
+            productNameNode.resetValue();
             productNameNode.setOptions(productList);
-            productNameNode.setValue("");
         }
 
+        productNameNode.setDisabled(false);
     }
+
+
 }

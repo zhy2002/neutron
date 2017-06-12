@@ -193,6 +193,10 @@ public abstract class BankBProfileModule {
     @Binds
     abstract ProductLendingPurposeNodeRuleProvider provideProductLendingPurposeNodeRuleProvider(BankBProductLendingPurposeNodeRuleProvider impl);
     @Binds
+    abstract ProductRequestedAmountNodeRuleProvider provideProductRequestedAmountNodeRuleProvider(BankBProductRequestedAmountNodeRuleProvider impl);
+    @Binds
+    abstract ProductTotalLoanTermNodeRuleProvider provideProductTotalLoanTermNodeRuleProvider(BankBProductTotalLoanTermNodeRuleProvider impl);
+    @Binds
     abstract ProductPaymentTypeNodeRuleProvider provideProductPaymentTypeNodeRuleProvider(BankBProductPaymentTypeNodeRuleProvider impl);
     @Binds
     abstract ContributionTypeNodeRuleProvider provideContributionTypeNodeRuleProvider(BankBContributionTypeNodeRuleProvider impl);
@@ -262,10 +266,6 @@ public abstract class BankBProfileModule {
     abstract EmploymentEndedNodeRuleProvider provideEmploymentEndedNodeRuleProvider(BankBEmploymentEndedNodeRuleProvider impl);
     @Binds
     abstract DobNodeRuleProvider provideDobNodeRuleProvider(BankBDobNodeRuleProvider impl);
-    @Binds
-    abstract SelectRelatedPersonListNodeRuleProvider provideSelectRelatedPersonListNodeRuleProvider(BankBSelectRelatedPersonListNodeRuleProvider impl);
-    @Binds
-    abstract SelectAccountHolderListNodeRuleProvider provideSelectAccountHolderListNodeRuleProvider(BankBSelectAccountHolderListNodeRuleProvider impl);
     @Binds
     abstract OwnershipListNodeRuleProvider provideOwnershipListNodeRuleProvider(BankBOwnershipListNodeRuleProvider impl);
     @Binds

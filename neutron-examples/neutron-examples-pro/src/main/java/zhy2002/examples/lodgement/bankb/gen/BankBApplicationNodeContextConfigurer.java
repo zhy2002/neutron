@@ -51,6 +51,15 @@ public class BankBApplicationNodeContextConfigurer implements ContextConfigurer<
         NodeConfiguration configMortgageInterestOnlyRemainingPeriodNode = configuration.getConfig(MortgageInterestOnlyRemainingPeriodNode.class);
         configMortgageInterestOnlyRemainingPeriodNode.setConfigValue(".*/@required", true);
 
+        NodeConfiguration configProductInterestOnlyTermNode = configuration.getConfig(ProductInterestOnlyTermNode.class);
+        configProductInterestOnlyTermNode.setConfigValue(".*/@required", true);
+        configProductInterestOnlyTermNode.setConfigValue(".*/@minValue", new BigDecimal("1"));
+
+        NodeConfiguration configProductFixedTermNode = configuration.getConfig(ProductFixedTermNode.class);
+        configProductFixedTermNode.setConfigValue(".*/@required", true);
+        configProductFixedTermNode.setConfigValue(".*/@minValue", new BigDecimal("1"));
+        configProductFixedTermNode.setConfigValue(".*/@maxValue", new BigDecimal("5"));
+
         NodeConfiguration configFeeDescriptionNode = configuration.getConfig(FeeDescriptionNode.class);
         configFeeDescriptionNode.setConfigValue(".*/@required", true);
 
@@ -119,9 +128,6 @@ public class BankBApplicationNodeContextConfigurer implements ContextConfigurer<
 
         NodeConfiguration configBaseCountryNode = configuration.getConfig(BaseCountryNode.class);
         configBaseCountryNode.setConfigValue(".*/@options", ApplicationNodeConstants.COUNTRY_TYPE);
-
-        NodeConfiguration configSelectRelatedPersonListNode = configuration.getConfig(SelectRelatedPersonListNode.class);
-        configSelectRelatedPersonListNode.setConfigValue(".*/@keepItemsOnReset", true);
 
         NodeConfiguration configOwnershipPercentageNode = configuration.getConfig(OwnershipPercentageNode.class);
         configOwnershipPercentageNode.setConfigValue(".*/@value", new BigDecimal("0"));

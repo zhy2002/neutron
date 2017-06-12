@@ -1,10 +1,10 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -31,8 +31,12 @@ public class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?
                 ),
                 new RefreshEventBinding(
                         e -> e.getOrigin() == getOwner(),
-                        this::initCount,
+                        e -> this.initCount(),
                         NeutronConstants.NODE_LOADED_REFRESH_REASON
+                ),
+                new GenericNodeAddEventBinding(
+                        e -> e.getOrigin().getParent() == getOwner(),
+                        e -> this.initCount()
                 )
         );
     }
@@ -48,10 +52,12 @@ public class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?
         doUpdate(delta);
     }
 
-    private void initCount(RefreshUiNodeEvent event) {
+    private void initCount() {
+        int delta = getOwner().getDisabledAncestorCount();
         if (getOwner().isDisabled()) {
-            doUpdate(1);
+            delta += 1;
         }
+        doUpdate(delta);
     }
 
     private void doUpdate(int delta) {

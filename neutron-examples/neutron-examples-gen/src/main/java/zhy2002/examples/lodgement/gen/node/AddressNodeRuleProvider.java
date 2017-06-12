@@ -7,8 +7,9 @@ import zhy2002.neutron.node.*;
 import zhy2002.neutron.di.ComponentScope;
 import zhy2002.examples.lodgement.gen.node.AddressNode;
 import zhy2002.neutron.rule.*;
-import zhy2002.examples.lodgement.gen.di.*;
+import zhy2002.examples.lodgement.rule.*;
 import zhy2002.examples.lodgement.gen.rule.*;
+import zhy2002.examples.lodgement.gen.di.*;
 
 
 public class AddressNodeRuleProvider implements RuleProvider<AddressNode<?>> {

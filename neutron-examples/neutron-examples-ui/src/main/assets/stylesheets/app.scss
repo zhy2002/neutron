@@ -102,6 +102,12 @@ a[tabindex] {
   }
 }
 
+.list-group {
+  .form-group.checkbox {
+    margin-bottom: 0;
+  }
+}
+
 button.link {
   background: none;
   border: none;
@@ -404,10 +410,6 @@ li.nav-dropdown-component.selected {
 .select-account-holder-list-component {
   label.layout-helper {
     display: none;
-  }
-
-  div.pull-left {
-    line-height: 35px;
   }
 
   .form-group.form-group-sm.checkbox-input-component {

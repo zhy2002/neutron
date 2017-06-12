@@ -2,13 +2,12 @@ package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.AddressNode;
-import zhy2002.neutron.RuleProvider;
+import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
 
-import javax.inject.Provider;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NodeUtil {
 
@@ -19,6 +18,22 @@ public class NodeUtil {
         address.setPostcode(node.getPostcodeNode().getValue());
         address.setCountry(node.getCountryNode().getValue());
         return address;
+    }
+
+    public static void disableAllSiblings(UiNode<?> node, boolean value, UiNode<?>... except) {
+        ParentUiNode<?> productDescriptionNode = node.getParent();
+        Set<UiNode<?>> exceptNodes = new HashSet<>();
+        exceptNodes.add(node);
+        exceptNodes.addAll(Arrays.asList(except));
+        for (UiNode<?> sibling : productDescriptionNode.getChildren()) {
+            if (exceptNodes.contains(sibling))
+                continue;
+
+            if (value) {
+                sibling.resetValue();
+            }
+            sibling.setDisabled(value);
+        }
     }
 
 }

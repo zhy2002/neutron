@@ -22,6 +22,7 @@ public class BankBProductLoanPrimaryPurposeNodeRuleProvider extends ProductLoanP
         super.initializeState(node);
 
         node.setOptions(ApplicationNodeConstants.NAB_PRIMARY_PURPOSE);
+        node.setRequired(true);
     }
 
     @Override

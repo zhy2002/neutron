@@ -843,15 +843,25 @@ rootType:
             baseTypeName: BigDecimalUiNode
             properties:
             - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.YEAR}
+            config:
+            - {property: '@integerValue', value: true}
 
           - typeName: ProductPaymentTypeNode
             baseTypeName: StringUiNode
 
           - typeName: ProductInterestOnlyTermNode
             baseTypeName: BigDecimalUiNode
+            properties:
+            - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.YEAR}
+            config:
+            - {property: '@integerValue', value: true}
 
           - typeName: ProductFixedTermNode
             baseTypeName: BigDecimalUiNode
+            properties:
+            - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.YEAR}
+            config:
+            - {property: '@integerValue', value: true}
 
           - typeName: ProductConstructionApplicationFlagNode
             baseTypeName: BooleanUiNode
@@ -878,12 +888,13 @@ rootType:
           - {typeName: ProductRepaymentFrequencyNode}
           - {typeName: ProductRateLockFlagNode}
           - {typeName: ProductTransactionAccountFlagNode}
-          - {typeName: ProductOptOutReasonNode}
+          - {typeName: Product100PercentOffsetFlagNode}
+          - {typeName: TransactionAccountOptOutReasonNode}
           - {typeName: ProductCreditCardFlagNode}
+          - {typeName: CreditCardOptOutReasonNode}
           - {typeName: ProductCreditCardTypeNode}
           - {typeName: ProductCreditCardLimitNode}
           - {typeName: ProductExpressConsentFlagNode}
-          - {typeName: Product100PercentOffsetFlagNode}
           - {typeName: ProductCardHolderNode, name: productPrimaryCardHolderNode}
           - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
           childTypes:
@@ -899,11 +910,17 @@ rootType:
           - typeName: ProductTransactionAccountFlagNode
             baseTypeName: BooleanUiNode
 
-          - typeName: ProductOptOutReasonNode
+          - typeName: TransactionAccountOptOutReasonNode
             baseTypeName: StringUiNode
+
+          - typeName: Product100PercentOffsetFlagNode
+            baseTypeName: BooleanUiNode
 
           - typeName: ProductCreditCardFlagNode
             baseTypeName: BooleanUiNode
+
+          - typeName: CreditCardOptOutReasonNode
+            baseTypeName: StringUiNode
 
           - typeName: ProductCreditCardTypeNode
             baseTypeName: StringUiNode
@@ -912,9 +929,6 @@ rootType:
             baseTypeName: BaseCurrencyNode
 
           - typeName: ProductExpressConsentFlagNode
-            baseTypeName: BooleanUiNode
-
-          - typeName: Product100PercentOffsetFlagNode
             baseTypeName: BooleanUiNode
 
           - typeName: ProductCardHolderNode
@@ -1331,6 +1345,13 @@ commonTypes:
 - typeName: SelectRelatedPersonListNode
   baseTypeName: ListUiNode
   parentBaseTypeName: ObjectUiNode<?>
+  config:
+  - {property: '@keepItemsOnReset', value: 'true'}
+  rules:
+  - {typeName: AddExistingPeopleRule, existing: true}
+  - {typeName: AddNewPersonRule, existing: true}
+  - {typeName: AddNewThirdPartyApplicantRule, existing: true}
+  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
   itemTypeName: SelectRelatedPersonNode
   childTypes:
   - typeName: SelectRelatedPersonNode
@@ -1350,6 +1371,13 @@ commonTypes:
 - typeName: SelectAccountHolderListNode
   baseTypeName: ListUiNode
   parentBaseTypeName: ObjectUiNode<?>
+  config:
+  - {property: '@keepItemsOnReset', value: true}
+  rules:
+  - {typeName: MaintainDisabledAncestorCountRule}
+  - {typeName: AddExistingHoldersRule}
+  - {typeName: AddNewPersonHolderRule}
+  - {typeName: AddNewCompanyHolderRule}
   itemTypeName: SelectAccountHolderNode
   childTypes:
   - typeName: SelectAccountHolderNode
@@ -1371,6 +1399,14 @@ commonTypes:
   parentBaseTypeName: ObjectUiNode<?>
   properties:
   - {name: totalOwnership, typeName: BigDecimal}
+  config:
+  - {property: '@keepItemsOnReset', value: true}
+  rules:
+  - {typeName: AddExistingApplicantsRule}
+  - {typeName: AddNewPersonApplicantRule}
+  - {typeName: AddNewCompanyApplicantRule}
+  - {typeName: UpdateTotalOwnershipRule}
+  - {typeName: DistributePercentageRule}
   itemTypeName: OwnershipNode
   childTypes:
   - typeName: OwnershipNode
