@@ -163,8 +163,6 @@ public abstract class AbstractUiNodeContext<R extends RootUiNode<VoidUiNode>> im
         commitSession();
         //load all the values
         loadPendingValues(root);
-        //refresh and done
-        getRootNode().refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
         changeUiNodeEvents = null;
     }
 

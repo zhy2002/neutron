@@ -69,6 +69,14 @@ html, body {
     }
   }
 
+  &.disabled {
+    color: #aaa;
+
+    label.radio-inline {
+      cursor: not-allowed;
+    }
+  }
+
   label {
     font-weight: 500;
   }
@@ -194,14 +202,6 @@ li.nav-dropdown-component.selected {
       top: 2px;
       margin-left: auto;
       margin-right: 0.5em;
-    }
-  }
-
-  &.disabled {
-    color: #aaa;
-
-    label.radio-inline {
-      cursor: not-allowed;
     }
   }
 }

@@ -148,8 +148,6 @@ public class FinancialPositionTest {
 
         productDescriptionNode.getProductGroupNode().setValue("Homeplus");
         assertThat(productDescriptionNode.getProductNameNode().isEffectivelyDisabled(), equalTo(false));
-
     }
-
 
 }

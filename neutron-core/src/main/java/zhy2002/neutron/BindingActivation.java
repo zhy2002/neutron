@@ -44,14 +44,14 @@ public final class BindingActivation {
                 }
             }
 
-            logger.log(Level.INFO, "Firing rule " + rule.getClass().getSimpleName() + " with event " + getEvent() + " from " + getEvent().getOrigin().getClass().getSimpleName());
+            logger.log(Level.INFO, "Firing rule " + rule.getClass().getSimpleName() + " on " + rule.getOwner().getConcreteClassName() + "(" + getEvent() + " from " + getEvent().getOrigin().getClass().getSimpleName() + ")");
             binding.fire(event);
         }
     }
 
     @Override
     public String toString() {
-        return "Binding activation of [" + binding + "] for [" + event + "]";
+        return "Binding activation of [" + binding + ")" + "] for [" + event + "]";
     }
 
     private boolean shouldFireValidation(UiNodeRule<?> rule) {

@@ -31,10 +31,8 @@ public abstract class NodeAddEvent<N extends UiNode<? extends ListUiNode<?, N>>>
     @Override
     public void apply() {
         target.attach();
-        if (target.getParent() != null) {
-            target.refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
-        } //root node refresh is triggered in node context.
-
+        //refresh added node and its descendants
+        target.refreshWithReason(NeutronConstants.NODE_LOADED_REFRESH_REASON);
     }
 
     @SuppressWarnings("unchecked")
