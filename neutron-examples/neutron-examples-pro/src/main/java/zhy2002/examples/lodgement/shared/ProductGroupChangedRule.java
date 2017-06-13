@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.shared;
 
 
 import zhy2002.examples.lodgement.data.ApplicationNodeConstants;
+import zhy2002.examples.lodgement.gen.node.ProductFeaturesNode;
 import zhy2002.examples.lodgement.gen.node.ProductGroupNode;
 import zhy2002.examples.lodgement.gen.node.ProductNameNode;
 import zhy2002.neutron.EventBinding;
@@ -47,8 +48,12 @@ public class ProductGroupChangedRule extends UiNodeRule<ProductGroupNode> {
 
     private void onChange() {
         String group = getProductGroupNode().getValue();
+
         if (ValueUtil.isEmpty(group)) {
             NodeUtil.disableAllSiblings(getOwner(), true);
+            ProductFeaturesNode productFeaturesNode = getOwner().getParent().getParent().getProductFeaturesNode();
+            productFeaturesNode.resetValue();
+            productFeaturesNode.setDisabled(true);
             return;
         }
 

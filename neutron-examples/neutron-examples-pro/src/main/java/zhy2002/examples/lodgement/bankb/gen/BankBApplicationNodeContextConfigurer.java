@@ -60,6 +60,18 @@ public class BankBApplicationNodeContextConfigurer implements ContextConfigurer<
         configProductFixedTermNode.setConfigValue(".*/@minValue", new BigDecimal("1"));
         configProductFixedTermNode.setConfigValue(".*/@maxValue", new BigDecimal("5"));
 
+        NodeConfiguration configProductPackageNameNode = configuration.getConfig(ProductPackageNameNode.class);
+        configProductPackageNameNode.setConfigValue(".*/@options", ApplicationNodeConstants.NAB_PACKAGE_TYPES);
+
+        NodeConfiguration configProductRepaymentFrequencyNode = configuration.getConfig(ProductRepaymentFrequencyNode.class);
+        configProductRepaymentFrequencyNode.setConfigValue(".*/@options", ApplicationNodeConstants.REPAYMENT_FREQUENCY);
+
+        NodeConfiguration configTransactionAccountOptOutReasonNode = configuration.getConfig(TransactionAccountOptOutReasonNode.class);
+        configTransactionAccountOptOutReasonNode.setConfigValue(".*/@options", ApplicationNodeConstants.OPT_OUT_REASON);
+
+        NodeConfiguration configCreditCardOptOutReasonNode = configuration.getConfig(CreditCardOptOutReasonNode.class);
+        configCreditCardOptOutReasonNode.setConfigValue(".*/@options", ApplicationNodeConstants.OPT_OUT_REASON);
+
         NodeConfiguration configFeeDescriptionNode = configuration.getConfig(FeeDescriptionNode.class);
         configFeeDescriptionNode.setConfigValue(".*/@required", true);
 

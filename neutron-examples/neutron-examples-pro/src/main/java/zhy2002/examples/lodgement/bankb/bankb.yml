@@ -873,13 +873,21 @@ rootType:
           - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
           childTypes:
           - typeName: ProductPackageNameNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_PACKAGE_TYPES'}
           - typeName: ProductRepaymentFrequencyNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.REPAYMENT_FREQUENCY'}
           - typeName: ProductRateLockFlagNode
           - typeName: ProductTransactionAccountFlagNode
           - typeName: Product100PercentOffsetFlagNode
           - typeName: TransactionAccountOptOutReasonNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
           - typeName: ProductCreditCardFlagNode
           - typeName: CreditCardOptOutReasonNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
           - typeName: ProductCreditCardTypeNode
           - typeName: ProductCreditCardLimitNode
           - typeName: ProductExpressConsentFlagNode

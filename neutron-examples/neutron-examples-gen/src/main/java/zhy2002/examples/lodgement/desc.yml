@@ -883,6 +883,8 @@ rootType:
 
         - typeName: ProductFeaturesNode
           baseTypeName: ObjectUiNode
+          rules:
+          - {typeName: MaintainDisabledAncestorCountRule}
           children:
           - {typeName: ProductPackageNameNode}
           - {typeName: ProductRepaymentFrequencyNode}
@@ -927,6 +929,8 @@ rootType:
 
           - typeName: ProductCreditCardLimitNode
             baseTypeName: BaseCurrencyNode
+            config:
+            - {property: '@minValue', value: 'new BigDecimal("0")'}
 
           - typeName: ProductExpressConsentFlagNode
             baseTypeName: BooleanUiNode

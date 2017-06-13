@@ -23,6 +23,26 @@ public class ApplicationNodeConstants {
 
     public static final UnitSymbol YEAR = new UnitSymbol("Year", "Year(s)");
 
+    public static final StringOption[] OPT_OUT_REASON = {
+            new StringOption(""),
+            new StringOption("Not Interested"),
+            new StringOption("Not Eligible"),
+            new StringOption("Existing Customer")
+    };
+
+    public static final StringOption[] REPAYMENT_FREQUENCY = {
+            new StringOption(""),
+            new StringOption("Weekly"),
+            new StringOption("Fortnightly"),
+            new StringOption("Monthly")
+    };
+
+    public static final StringOption[] NAB_PACKAGE_TYPES = {
+            new StringOption(""),
+            new StringOption("No Package"),
+            new StringOption("Choice Package")
+    };
+
     public static final StringOption[] PRODUCT_LOAN_TYPE = {
             new StringOption(""),
             new StringOption("NewLoan", "New Loan"),

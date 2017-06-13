@@ -41,8 +41,11 @@ public class ProductNameChangedRule extends UiNodeRule<ProductNameNode> {
     private void onChange() {
         String productName = getOwner().getValue();
         ProductDescriptionNode productDescriptionNode = getOwner().getParent();
+        ProductFeaturesNode productFeaturesNode = productDescriptionNode.getParent().getProductFeaturesNode();
         if (ValueUtil.isEmpty(productName)) {
             NodeUtil.disableAllSiblings(getOwner(), true, productDescriptionNode.getProductGroupNode());
+            productFeaturesNode.resetValue();
+            productFeaturesNode.setDisabled(true);
         } else {
             NodeUtil.disableAllSiblings(getOwner(), false,
                     productDescriptionNode.getProductGroupNode(),
@@ -71,6 +74,13 @@ public class ProductNameChangedRule extends UiNodeRule<ProductNameNode> {
                 interestOnlyTermNode.setMaxValue(new BigDecimal("5"));
             } else {
                 interestOnlyTermNode.setMaxValue(new BigDecimal("3"));
+            }
+
+            productFeaturesNode.setDisabled(false);
+            if (productName.contains("Mortgage")) {
+                productFeaturesNode.getProductCreditCardLimitNode().setMaxValue(new BigDecimal("25000"));
+            } else {
+                productFeaturesNode.getProductCreditCardLimitNode().setMaxValue(new BigDecimal("50000"));
             }
         }
     }

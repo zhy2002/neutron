@@ -46,6 +46,8 @@ public class ApplicationNodeContextConfigurer implements ContextConfigurer<Appli
             configProductInterestOnlyTermNode.setConfigValue(".*/@integerValue", true);
         NodeConfiguration configProductFixedTermNode = configuration.getConfig(ProductFixedTermNode.class);
             configProductFixedTermNode.setConfigValue(".*/@integerValue", true);
+        NodeConfiguration configProductCreditCardLimitNode = configuration.getConfig(ProductCreditCardLimitNode.class);
+            configProductCreditCardLimitNode.setConfigValue(".*/@minValue", new BigDecimal("0"));
         NodeConfiguration configProductLoanTypeNode = configuration.getConfig(ProductLoanTypeNode.class);
             configProductLoanTypeNode.setConfigValue(".*/@options", ApplicationNodeConstants.PRODUCT_LOAN_TYPE);
             configProductLoanTypeNode.setConfigValue(".*/@required", true);
