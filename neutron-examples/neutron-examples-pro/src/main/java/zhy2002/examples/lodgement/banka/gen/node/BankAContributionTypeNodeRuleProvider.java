@@ -36,10 +36,12 @@ public class BankAContributionTypeNodeRuleProvider extends ContributionTypeNodeR
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-        stringEnableSiblingRule.setSiblingName("contributionDescriptionNode");
-        stringEnableSiblingRule.setEnablingValue("Other");
-        createdRules.add(stringEnableSiblingRule);
+        {
+            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+            stringEnableSiblingRule.setSiblingName("contributionDescriptionNode");
+            stringEnableSiblingRule.setEnablingValue("Other");
+            createdRules.add(stringEnableSiblingRule);
+        }
     }
 
 }

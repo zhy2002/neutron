@@ -32,8 +32,10 @@ public class BankBPersonNodeRuleProvider extends PersonNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UpdatePersonNodeLabelRule updatePersonNodeLabelRule = updatePersonNodeLabelRuleProvider.get();
-        createdRules.add(updatePersonNodeLabelRule);
+        {
+            UpdatePersonNodeLabelRule updatePersonNodeLabelRule = updatePersonNodeLabelRuleProvider.get();
+            createdRules.add(updatePersonNodeLabelRule);
+        }
     }
 
 }

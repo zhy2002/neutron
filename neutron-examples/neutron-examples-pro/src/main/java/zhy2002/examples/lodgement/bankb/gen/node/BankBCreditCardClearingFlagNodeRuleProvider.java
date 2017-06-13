@@ -32,9 +32,11 @@ public class BankBCreditCardClearingFlagNodeRuleProvider extends CreditCardClear
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("creditCardBreakCostNode");
-        createdRules.add(booleanEnableSiblingRule);
+        {
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("creditCardBreakCostNode");
+            createdRules.add(booleanEnableSiblingRule);
+        }
     }
 
 }

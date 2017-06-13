@@ -36,8 +36,10 @@ public class BankBUsedAsSecurityFlagNodeRuleProvider extends UsedAsSecurityFlagN
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UsedAsSecurityFlagChangeRule usedAsSecurityFlagChangeRule = usedAsSecurityFlagChangeRuleProvider.get();
-        createdRules.add(usedAsSecurityFlagChangeRule);
+        {
+            UsedAsSecurityFlagChangeRule usedAsSecurityFlagChangeRule = usedAsSecurityFlagChangeRuleProvider.get();
+            createdRules.add(usedAsSecurityFlagChangeRule);
+        }
     }
 
 }

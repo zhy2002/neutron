@@ -35,10 +35,12 @@ public class BankAAccessContactTypeNodeRuleProvider extends AccessContactTypeNod
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-        stringEnableSiblingRule.setSiblingName("accessCompanyNameNode");
-        stringEnableSiblingRule.setEnablingValue("Selling Agent");
-        createdRules.add(stringEnableSiblingRule);
+        {
+            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+            stringEnableSiblingRule.setSiblingName("accessCompanyNameNode");
+            stringEnableSiblingRule.setEnablingValue("Selling Agent");
+            createdRules.add(stringEnableSiblingRule);
+        }
     }
 
 }

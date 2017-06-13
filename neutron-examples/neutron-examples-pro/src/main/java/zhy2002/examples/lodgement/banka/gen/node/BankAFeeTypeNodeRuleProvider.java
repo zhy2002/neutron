@@ -36,10 +36,12 @@ public class BankAFeeTypeNodeRuleProvider extends FeeTypeNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-        stringEnableSiblingRule.setSiblingName("feeDescriptionNode");
-        stringEnableSiblingRule.setEnablingValue("Other");
-        createdRules.add(stringEnableSiblingRule);
+        {
+            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+            stringEnableSiblingRule.setSiblingName("feeDescriptionNode");
+            stringEnableSiblingRule.setEnablingValue("Other");
+            createdRules.add(stringEnableSiblingRule);
+        }
     }
 
 }

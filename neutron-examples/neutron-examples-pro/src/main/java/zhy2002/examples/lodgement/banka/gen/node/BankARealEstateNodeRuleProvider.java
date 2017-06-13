@@ -35,8 +35,10 @@ public class BankARealEstateNodeRuleProvider extends RealEstateNodeRuleProvider 
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UpdateRealEstateNodeLabelRule updateRealEstateNodeLabelRule = updateRealEstateNodeLabelRuleProvider.get();
-        createdRules.add(updateRealEstateNodeLabelRule);
+        {
+            UpdateRealEstateNodeLabelRule updateRealEstateNodeLabelRule = updateRealEstateNodeLabelRuleProvider.get();
+            createdRules.add(updateRealEstateNodeLabelRule);
+        }
     }
 
 }

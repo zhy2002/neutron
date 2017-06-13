@@ -35,8 +35,10 @@ public class BankBProductPaymentTypeNodeRuleProvider extends ProductPaymentTypeN
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        PaymentTypeChangeRule paymentTypeChangeRule = paymentTypeChangeRuleProvider.get();
-        createdRules.add(paymentTypeChangeRule);
+        {
+            PaymentTypeChangeRule paymentTypeChangeRule = paymentTypeChangeRuleProvider.get();
+            createdRules.add(paymentTypeChangeRule);
+        }
     }
 
 }

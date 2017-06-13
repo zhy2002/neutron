@@ -39,8 +39,10 @@ public class BankAFirstNameNodeRuleProvider extends FirstNameNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        InvalidCharPreChangeRule invalidCharPreChangeRule = invalidCharPreChangeRuleProvider.get();
-        createdRules.add(invalidCharPreChangeRule);
+        {
+            InvalidCharPreChangeRule invalidCharPreChangeRule = invalidCharPreChangeRuleProvider.get();
+            createdRules.add(invalidCharPreChangeRule);
+        }
     }
 
 }

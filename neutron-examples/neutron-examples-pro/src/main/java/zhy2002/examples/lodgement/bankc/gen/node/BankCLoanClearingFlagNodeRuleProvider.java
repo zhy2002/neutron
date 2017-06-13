@@ -32,9 +32,11 @@ public class BankCLoanClearingFlagNodeRuleProvider extends LoanClearingFlagNodeR
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("loanBreakCostNode");
-        createdRules.add(booleanEnableSiblingRule);
+        {
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("loanBreakCostNode");
+            createdRules.add(booleanEnableSiblingRule);
+        }
     }
 
 }

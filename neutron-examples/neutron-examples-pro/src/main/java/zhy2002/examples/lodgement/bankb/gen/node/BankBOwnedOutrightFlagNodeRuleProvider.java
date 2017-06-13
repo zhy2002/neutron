@@ -36,10 +36,12 @@ public class BankBOwnedOutrightFlagNodeRuleProvider extends OwnedOutrightFlagNod
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("existingMortgageListNode");
-        booleanEnableSiblingRule.setEnablingValue(false);
-        createdRules.add(booleanEnableSiblingRule);
+        {
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("existingMortgageListNode");
+            booleanEnableSiblingRule.setEnablingValue(false);
+            createdRules.add(booleanEnableSiblingRule);
+        }
     }
 
 }

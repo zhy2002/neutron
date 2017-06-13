@@ -36,10 +36,12 @@ public class BankCThirdPartyTypeNodeRuleProvider extends ThirdPartyTypeNodeRuleP
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
-        stringEnableSiblingRule.setSiblingName("thirdPartyDescriptionNode");
-        stringEnableSiblingRule.setEnablingValue("Next of Kin");
-        createdRules.add(stringEnableSiblingRule);
+        {
+            StringEnableSiblingRule stringEnableSiblingRule = stringEnableSiblingRuleProvider.get();
+            stringEnableSiblingRule.setSiblingName("thirdPartyDescriptionNode");
+            stringEnableSiblingRule.setEnablingValue("Next of Kin");
+            createdRules.add(stringEnableSiblingRule);
+        }
     }
 
 }

@@ -32,8 +32,10 @@ public class BankBCompanyNodeRuleProvider extends CompanyNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UpdateCompanyNodeLabelRule updateCompanyNodeLabelRule = updateCompanyNodeLabelRuleProvider.get();
-        createdRules.add(updateCompanyNodeLabelRule);
+        {
+            UpdateCompanyNodeLabelRule updateCompanyNodeLabelRule = updateCompanyNodeLabelRuleProvider.get();
+            createdRules.add(updateCompanyNodeLabelRule);
+        }
     }
 
 }

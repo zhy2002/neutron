@@ -35,8 +35,10 @@ public class BankCEmploymentEndedNodeRuleProvider extends EmploymentEndedNodeRul
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        EmploymentEndedNoEarlierThanEmploymentStartedRule employmentEndedNoEarlierThanEmploymentStartedRule = employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get();
-        createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRule);
+        {
+            EmploymentEndedNoEarlierThanEmploymentStartedRule employmentEndedNoEarlierThanEmploymentStartedRule = employmentEndedNoEarlierThanEmploymentStartedRuleProvider.get();
+            createdRules.add(employmentEndedNoEarlierThanEmploymentStartedRule);
+        }
     }
 
 }

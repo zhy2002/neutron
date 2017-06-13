@@ -36,8 +36,10 @@ public class BankBTitleNodeRuleProvider extends TitleNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        TitleGenderMatchRule titleGenderMatchRule = titleGenderMatchRuleProvider.get();
-        createdRules.add(titleGenderMatchRule);
+        {
+            TitleGenderMatchRule titleGenderMatchRule = titleGenderMatchRuleProvider.get();
+            createdRules.add(titleGenderMatchRule);
+        }
     }
 
 }

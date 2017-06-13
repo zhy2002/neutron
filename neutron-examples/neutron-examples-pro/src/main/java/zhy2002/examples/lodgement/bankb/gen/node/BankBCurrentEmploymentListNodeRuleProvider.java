@@ -36,8 +36,10 @@ public class BankBCurrentEmploymentListNodeRuleProvider extends CurrentEmploymen
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        MinItemCountValidationRule minItemCountValidationRule = minItemCountValidationRuleProvider.get();
-        createdRules.add(minItemCountValidationRule);
+        {
+            MinItemCountValidationRule minItemCountValidationRule = minItemCountValidationRuleProvider.get();
+            createdRules.add(minItemCountValidationRule);
+        }
     }
 
 }

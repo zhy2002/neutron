@@ -32,8 +32,10 @@ public class BankBPersonContactNodeRuleProvider extends PersonContactNodeRulePro
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        HomeOrWorkPhoneRequiredRule homeOrWorkPhoneRequiredRule = homeOrWorkPhoneRequiredRuleProvider.get();
-        createdRules.add(homeOrWorkPhoneRequiredRule);
+        {
+            HomeOrWorkPhoneRequiredRule homeOrWorkPhoneRequiredRule = homeOrWorkPhoneRequiredRuleProvider.get();
+            createdRules.add(homeOrWorkPhoneRequiredRule);
+        }
     }
 
 }

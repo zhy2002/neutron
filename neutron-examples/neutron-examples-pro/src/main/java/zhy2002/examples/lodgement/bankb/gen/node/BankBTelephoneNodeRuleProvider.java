@@ -34,10 +34,14 @@ public class BankBTelephoneNodeRuleProvider extends TelephoneNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        TelephoneCompleteRule telephoneCompleteRule = telephoneCompleteRuleProvider.get();
-        createdRules.add(telephoneCompleteRule);
-        AustralianTelephoneRule australianTelephoneRule = australianTelephoneRuleProvider.get();
-        createdRules.add(australianTelephoneRule);
+        {
+            TelephoneCompleteRule telephoneCompleteRule = telephoneCompleteRuleProvider.get();
+            createdRules.add(telephoneCompleteRule);
+        }
+        {
+            AustralianTelephoneRule australianTelephoneRule = australianTelephoneRuleProvider.get();
+            createdRules.add(australianTelephoneRule);
+        }
     }
 
 }

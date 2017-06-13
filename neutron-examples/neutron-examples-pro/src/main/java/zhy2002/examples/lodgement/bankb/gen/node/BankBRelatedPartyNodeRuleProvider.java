@@ -32,8 +32,10 @@ public class BankBRelatedPartyNodeRuleProvider extends RelatedPartyNodeRuleProvi
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UpdateRelatedPartyNodeLabelRule updateRelatedPartyNodeLabelRule = updateRelatedPartyNodeLabelRuleProvider.get();
-        createdRules.add(updateRelatedPartyNodeLabelRule);
+        {
+            UpdateRelatedPartyNodeLabelRule updateRelatedPartyNodeLabelRule = updateRelatedPartyNodeLabelRuleProvider.get();
+            createdRules.add(updateRelatedPartyNodeLabelRule);
+        }
     }
 
 }

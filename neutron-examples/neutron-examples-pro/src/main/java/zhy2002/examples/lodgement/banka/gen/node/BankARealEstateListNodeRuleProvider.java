@@ -35,8 +35,10 @@ public class BankARealEstateListNodeRuleProvider extends RealEstateListNodeRuleP
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        AutoCreateListItemRule autoCreateListItemRule = autoCreateListItemRuleProvider.get();
-        createdRules.add(autoCreateListItemRule);
+        {
+            AutoCreateListItemRule autoCreateListItemRule = autoCreateListItemRuleProvider.get();
+            createdRules.add(autoCreateListItemRule);
+        }
     }
 
 }

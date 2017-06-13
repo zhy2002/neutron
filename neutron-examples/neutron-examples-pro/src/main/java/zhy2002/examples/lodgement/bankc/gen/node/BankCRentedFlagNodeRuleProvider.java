@@ -32,9 +32,11 @@ public class BankCRentedFlagNodeRuleProvider extends RentedFlagNodeRuleProvider 
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("propertyWeeklyRentNode");
-        createdRules.add(booleanEnableSiblingRule);
+        {
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("propertyWeeklyRentNode");
+            createdRules.add(booleanEnableSiblingRule);
+        }
     }
 
 }

@@ -37,10 +37,14 @@ public class BankAMovedToCurrentAddressNodeRuleProvider extends MovedToCurrentAd
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        ToCurrentNoEarlierThanToPreviousRule toCurrentNoEarlierThanToPreviousRule = toCurrentNoEarlierThanToPreviousRuleProvider.get();
-        createdRules.add(toCurrentNoEarlierThanToPreviousRule);
-        ToCurrentNoEarlierThanFromPreviousRule toCurrentNoEarlierThanFromPreviousRule = toCurrentNoEarlierThanFromPreviousRuleProvider.get();
-        createdRules.add(toCurrentNoEarlierThanFromPreviousRule);
+        {
+            ToCurrentNoEarlierThanToPreviousRule toCurrentNoEarlierThanToPreviousRule = toCurrentNoEarlierThanToPreviousRuleProvider.get();
+            createdRules.add(toCurrentNoEarlierThanToPreviousRule);
+        }
+        {
+            ToCurrentNoEarlierThanFromPreviousRule toCurrentNoEarlierThanFromPreviousRule = toCurrentNoEarlierThanFromPreviousRuleProvider.get();
+            createdRules.add(toCurrentNoEarlierThanFromPreviousRule);
+        }
     }
 
 }

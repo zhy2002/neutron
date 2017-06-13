@@ -34,10 +34,14 @@ public class BankBMonthYearNodeRuleProvider extends MonthYearNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        MonthYearNotInFutureRule monthYearNotInFutureRule = monthYearNotInFutureRuleProvider.get();
-        createdRules.add(monthYearNotInFutureRule);
-        ObjectValueRequiredValidationRule objectValueRequiredValidationRule = objectValueRequiredValidationRuleProvider.get();
-        createdRules.add(objectValueRequiredValidationRule);
+        {
+            MonthYearNotInFutureRule monthYearNotInFutureRule = monthYearNotInFutureRuleProvider.get();
+            createdRules.add(monthYearNotInFutureRule);
+        }
+        {
+            ObjectValueRequiredValidationRule objectValueRequiredValidationRule = objectValueRequiredValidationRuleProvider.get();
+            createdRules.add(objectValueRequiredValidationRule);
+        }
     }
 
 }

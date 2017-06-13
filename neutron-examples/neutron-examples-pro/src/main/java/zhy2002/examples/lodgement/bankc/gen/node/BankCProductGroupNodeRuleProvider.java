@@ -36,8 +36,10 @@ public class BankCProductGroupNodeRuleProvider extends ProductGroupNodeRuleProvi
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        ProductGroupChangedRule productGroupChangedRule = productGroupChangedRuleProvider.get();
-        createdRules.add(productGroupChangedRule);
+        {
+            ProductGroupChangedRule productGroupChangedRule = productGroupChangedRuleProvider.get();
+            createdRules.add(productGroupChangedRule);
+        }
     }
 
 }

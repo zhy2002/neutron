@@ -32,8 +32,10 @@ public class BankAOwnershipListNodeRuleProvider extends OwnershipListNodeRulePro
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        OwnershipRequiredValidationRule ownershipRequiredValidationRule = ownershipRequiredValidationRuleProvider.get();
-        createdRules.add(ownershipRequiredValidationRule);
+        {
+            OwnershipRequiredValidationRule ownershipRequiredValidationRule = ownershipRequiredValidationRuleProvider.get();
+            createdRules.add(ownershipRequiredValidationRule);
+        }
     }
 
 }

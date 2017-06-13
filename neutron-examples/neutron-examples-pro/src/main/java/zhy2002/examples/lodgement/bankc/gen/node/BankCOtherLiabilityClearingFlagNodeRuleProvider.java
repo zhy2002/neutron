@@ -32,9 +32,11 @@ public class BankCOtherLiabilityClearingFlagNodeRuleProvider extends OtherLiabil
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
-        booleanEnableSiblingRule.setSiblingName("otherLiabilityBreakCostNode");
-        createdRules.add(booleanEnableSiblingRule);
+        {
+            BooleanEnableSiblingRule booleanEnableSiblingRule = booleanEnableSiblingRuleProvider.get();
+            booleanEnableSiblingRule.setSiblingName("otherLiabilityBreakCostNode");
+            createdRules.add(booleanEnableSiblingRule);
+        }
     }
 
 }

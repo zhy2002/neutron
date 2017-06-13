@@ -35,8 +35,10 @@ public class BankABeingPurchasedFlagNodeRuleProvider extends BeingPurchasedFlagN
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BeingPurchasedFlagChangeRule beingPurchasedFlagChangeRule = beingPurchasedFlagChangeRuleProvider.get();
-        createdRules.add(beingPurchasedFlagChangeRule);
+        {
+            BeingPurchasedFlagChangeRule beingPurchasedFlagChangeRule = beingPurchasedFlagChangeRuleProvider.get();
+            createdRules.add(beingPurchasedFlagChangeRule);
+        }
     }
 
 }

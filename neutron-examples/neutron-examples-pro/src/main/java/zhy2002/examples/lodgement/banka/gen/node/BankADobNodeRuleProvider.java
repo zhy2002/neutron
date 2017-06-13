@@ -36,8 +36,10 @@ public class BankADobNodeRuleProvider extends DobNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        DobRangeValidationRule dobRangeValidationRule = dobRangeValidationRuleProvider.get();
-        createdRules.add(dobRangeValidationRule);
+        {
+            DobRangeValidationRule dobRangeValidationRule = dobRangeValidationRuleProvider.get();
+            createdRules.add(dobRangeValidationRule);
+        }
     }
 
 }

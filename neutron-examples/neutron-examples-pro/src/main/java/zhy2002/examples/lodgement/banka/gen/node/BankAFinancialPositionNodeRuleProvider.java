@@ -32,8 +32,10 @@ public class BankAFinancialPositionNodeRuleProvider extends FinancialPositionNod
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        FinancialPositionChangedRule financialPositionChangedRule = financialPositionChangedRuleProvider.get();
-        createdRules.add(financialPositionChangedRule);
+        {
+            FinancialPositionChangedRule financialPositionChangedRule = financialPositionChangedRuleProvider.get();
+            createdRules.add(financialPositionChangedRule);
+        }
     }
 
 }

@@ -199,6 +199,10 @@ public abstract class BankBProfileModule {
     @Binds
     abstract ProductPaymentTypeNodeRuleProvider provideProductPaymentTypeNodeRuleProvider(BankBProductPaymentTypeNodeRuleProvider impl);
     @Binds
+    abstract ProductTransactionAccountFlagNodeRuleProvider provideProductTransactionAccountFlagNodeRuleProvider(BankBProductTransactionAccountFlagNodeRuleProvider impl);
+    @Binds
+    abstract ProductCreditCardFlagNodeRuleProvider provideProductCreditCardFlagNodeRuleProvider(BankBProductCreditCardFlagNodeRuleProvider impl);
+    @Binds
     abstract ContributionTypeNodeRuleProvider provideContributionTypeNodeRuleProvider(BankBContributionTypeNodeRuleProvider impl);
     @Binds
     abstract ContributionDescriptionNodeRuleProvider provideContributionDescriptionNodeRuleProvider(BankBContributionDescriptionNodeRuleProvider impl);

@@ -42,9 +42,9 @@ public class ${profileInfo.typeName}${typeName}RuleProvider extends ${typeName}R
     }
 
 <#if rules??>
-    <#list rules as rule>
+    <#list uniqueRuleTypeNames as ruleTypeName>
     @Inject
-    Provider<${rule.typeName}> ${rule.typeName?uncap_first}Provider;
+    Provider<${ruleTypeName}> ${ruleTypeName?uncap_first}Provider;
     </#list>
 
 </#if>
@@ -54,13 +54,15 @@ public class ${profileInfo.typeName}${typeName}RuleProvider extends ${typeName}R
 
     <#if rules??>
         <#list rules as rule>
-        ${rule.typeName} ${rule.typeName?uncap_first} = ${rule.typeName?uncap_first}Provider.get();
-        <#if rule.init??>
-            <#list rule.init as prop>
-        ${rule.typeName?uncap_first}.set${prop.propertyName?cap_first}(${prop.value});
-            </#list>
-        </#if>
-        createdRules.add(${rule.typeName?uncap_first});
+        {
+            ${rule.typeName} ${rule.typeName?uncap_first} = ${rule.typeName?uncap_first}Provider.get();
+            <#if rule.init??>
+                <#list rule.init as prop>
+            ${rule.typeName?uncap_first}.set${prop.propertyName?cap_first}(${prop.value});
+                </#list>
+            </#if>
+            createdRules.add(${rule.typeName?uncap_first});
+        }
         </#list>
     </#if>
     }

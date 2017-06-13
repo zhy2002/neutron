@@ -36,8 +36,10 @@ public class BankAApplicationTypeNodeRuleProvider extends ApplicationTypeNodeRul
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        ChangeApplicationTypeRule changeApplicationTypeRule = changeApplicationTypeRuleProvider.get();
-        createdRules.add(changeApplicationTypeRule);
+        {
+            ChangeApplicationTypeRule changeApplicationTypeRule = changeApplicationTypeRuleProvider.get();
+            createdRules.add(changeApplicationTypeRule);
+        }
     }
 
 }

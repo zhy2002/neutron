@@ -80,6 +80,12 @@ public class ProfileNodeInfo extends CodeGenInfo {
         this.profileInfo = profileInfo;
     }
 
+    private Set<String> uniqueRuleTypeNames = new HashSet<>();
+
+    public Set<String> getUniqueRuleTypeNames() {
+        return uniqueRuleTypeNames;
+    }
+
     public Set<ChildInfo> getNotAutoLoadedChildren() {
         if (notAutoLoadedChildren == null && nodeInfo.getChildren() != null) {
             Map<String, ChildInfo> map = new HashMap<>();
@@ -118,6 +124,7 @@ public class ProfileNodeInfo extends CodeGenInfo {
             rule.setDomainInfo(getDomainInfo());
             rule.setOwnerType(getNodeInfo());
             rule.initialize();
+            uniqueRuleTypeNames.add(rule.getTypeName());
         });
     }
 

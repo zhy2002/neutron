@@ -36,8 +36,10 @@ public class BankAEmploymentTypeNodeRuleProvider extends EmploymentTypeNodeRuleP
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        EmploymentTypeChangedRule employmentTypeChangedRule = employmentTypeChangedRuleProvider.get();
-        createdRules.add(employmentTypeChangedRule);
+        {
+            EmploymentTypeChangedRule employmentTypeChangedRule = employmentTypeChangedRuleProvider.get();
+            createdRules.add(employmentTypeChangedRule);
+        }
     }
 
 }

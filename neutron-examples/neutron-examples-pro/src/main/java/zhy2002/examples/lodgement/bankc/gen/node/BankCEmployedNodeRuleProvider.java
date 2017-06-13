@@ -32,8 +32,10 @@ public class BankCEmployedNodeRuleProvider extends EmployedNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        DoNotLoadEndedDateForCurrentRecordRule doNotLoadEndedDateForCurrentRecordRule = doNotLoadEndedDateForCurrentRecordRuleProvider.get();
-        createdRules.add(doNotLoadEndedDateForCurrentRecordRule);
+        {
+            DoNotLoadEndedDateForCurrentRecordRule doNotLoadEndedDateForCurrentRecordRule = doNotLoadEndedDateForCurrentRecordRuleProvider.get();
+            createdRules.add(doNotLoadEndedDateForCurrentRecordRule);
+        }
     }
 
 }

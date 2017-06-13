@@ -32,8 +32,10 @@ public class BankCResponsibleSignificantChangeFlagNodeRuleProvider extends Respo
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        ResponsibleSignificantChangeRule responsibleSignificantChangeRule = responsibleSignificantChangeRuleProvider.get();
-        createdRules.add(responsibleSignificantChangeRule);
+        {
+            ResponsibleSignificantChangeRule responsibleSignificantChangeRule = responsibleSignificantChangeRuleProvider.get();
+            createdRules.add(responsibleSignificantChangeRule);
+        }
     }
 
 }

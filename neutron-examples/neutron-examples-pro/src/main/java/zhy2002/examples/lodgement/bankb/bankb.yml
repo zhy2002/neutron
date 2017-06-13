@@ -880,11 +880,41 @@ rootType:
             - {property: '@options', value: 'ApplicationNodeConstants.REPAYMENT_FREQUENCY'}
           - typeName: ProductRateLockFlagNode
           - typeName: ProductTransactionAccountFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"product100PercentOffsetFlagNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"transactionAccountOptOutReasonNode"'}
+              - {propertyName: enablingValue, value: false}
           - typeName: Product100PercentOffsetFlagNode
           - typeName: TransactionAccountOptOutReasonNode
             config:
             - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
           - typeName: ProductCreditCardFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"creditCardOptOutReasonNode"'}
+              - {propertyName: enablingValue, value: false}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productCreditCardTypeNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productCreditCardLimitNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productPrimaryCardHolderNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productAdditionalCardHolderNode"'}
+              - {propertyName: enablingValue, value: true}
           - typeName: CreditCardOptOutReasonNode
             config:
             - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
@@ -915,7 +945,6 @@ rootType:
           - {propertyName: required, value: 'true'}
           rules:
           - typeName: StringEnableSiblingRule
-            existing: true
             init:
             - {propertyName: siblingName, value: '"contributionDescriptionNode"'}
             - {propertyName: enablingValue, value: '"Other"'}

@@ -36,8 +36,10 @@ public class BankBProductNameNodeRuleProvider extends ProductNameNodeRuleProvide
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        ProductNameChangedRule productNameChangedRule = productNameChangedRuleProvider.get();
-        createdRules.add(productNameChangedRule);
+        {
+            ProductNameChangedRule productNameChangedRule = productNameChangedRuleProvider.get();
+            createdRules.add(productNameChangedRule);
+        }
     }
 
 }

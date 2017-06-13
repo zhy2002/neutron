@@ -35,8 +35,10 @@ public class BankCProductNodeRuleProvider extends ProductNodeRuleProvider {
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        UpdateProductNodeLabelRule updateProductNodeLabelRule = updateProductNodeLabelRuleProvider.get();
-        createdRules.add(updateProductNodeLabelRule);
+        {
+            UpdateProductNodeLabelRule updateProductNodeLabelRule = updateProductNodeLabelRuleProvider.get();
+            createdRules.add(updateProductNodeLabelRule);
+        }
     }
 
 }

@@ -35,8 +35,10 @@ public class BankCThirdPartyDisclosureFlagNodeRuleProvider extends ThirdPartyDis
     public void createRules(List<UiNodeRule<?>> createdRules) {
         super.createRules(createdRules);
 
-        BooleanFixedValueValidationRule booleanFixedValueValidationRule = booleanFixedValueValidationRuleProvider.get();
-        createdRules.add(booleanFixedValueValidationRule);
+        {
+            BooleanFixedValueValidationRule booleanFixedValueValidationRule = booleanFixedValueValidationRuleProvider.get();
+            createdRules.add(booleanFixedValueValidationRule);
+        }
     }
 
 }
