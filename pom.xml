@@ -42,6 +42,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.google.jsinterop</groupId>
+                <artifactId>jsinterop-annotations</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.google.dagger</groupId>
                 <artifactId>dagger-gwt</artifactId>
                 <version>${daggerVersion}</version>
@@ -64,6 +70,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
@@ -79,11 +86,24 @@
 
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>gwt-jar</id>
+            <activation>
+                <property>
+                    <name>gwt-jar</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+
+            </build>
+        </profile>
+    </profiles>
     <build>
 
         <pluginManagement>
             <plugins>
-
                 <plugin>
                     <groupId>zhy2002.neutron</groupId>
                     <artifactId>neutron-codegen</artifactId>
@@ -94,26 +114,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.0.0</version>
-                </plugin>
-
-                <!-- GWT Maven Plugin -->
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>gwt-maven-plugin</artifactId>
-                    <version>${gwtVersion}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>compile</goal>
-                                <goal>test</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <extraJvmArgs>-Xmx1300M -Xss2048k</extraJvmArgs>
-                        <generateJsInteropExports>true</generateJsInteropExports>
-                        <strict>true</strict>
-                    </configuration>
                 </plugin>
 
                 <plugin>
@@ -139,7 +139,46 @@
                                 </resources>
                             </configuration>
                         </execution>
+                        <execution>
+                            <id>copy-generated-source</id>
+                            <phase>process-classes</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.build.directory}/generated-sources/annotations
+                                        </directory>
+                                        <includes>
+                                            <include>**/*.*</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
                     </executions>
+                </plugin>
+
+                <!-- GWT Maven Plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>${gwtVersion}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>test</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <extraJvmArgs>-Xmx1300M -Xss2048k</extraJvmArgs>
+                        <generateJsInteropExports>true</generateJsInteropExports>
+                        <strict>true</strict>
+                    </configuration>
                 </plugin>
 
             </plugins>
@@ -155,24 +194,23 @@
                     <forceJavacCompilerUse>true</forceJavacCompilerUse>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.dagger</groupId>
+                            <artifactId>dagger-compiler</artifactId>
+                            <version>${daggerVersion}</version>
+                        </path>
+                        <path>
+                            <groupId>com.google.auto.factory</groupId>
+                            <artifactId>auto-factory</artifactId>
+                            <version>1.0-beta5</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
         </plugins>
 
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>file-repo</id>
-            <layout>default</layout>
-            <url>file:///C:\zhy\mvn</url>
-        </repository>
-        <snapshotRepository>
-            <id>file-repo-snapshot</id>
-            <layout>default</layout>
-            <url>file:///C:\zhy\mvn</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>
