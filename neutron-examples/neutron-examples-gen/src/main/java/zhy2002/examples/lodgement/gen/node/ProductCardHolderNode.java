@@ -50,8 +50,8 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
     //region children getters
 
     @JsMethod
-    public ProductCardHodlerNameNode getProductCardHodlerNameNode() {
-        return (ProductCardHodlerNameNode)getChildByName("productCardHodlerNameNode");
+    public productCardHolderNameNode getProductCardHolderNameNode() {
+        return (productCardHolderNameNode)getChildByName("productCardHolderNameNode");
     }
 
     @JsMethod
@@ -68,8 +68,8 @@ public class ProductCardHolderNode extends ObjectUiNode<ProductFeaturesNode> {
     @Override
     protected List<UiNode<?>> createChildren() {
         List<UiNode<?>> children = super.createChildren();
-        setChildNodeIdentity("productCardHodlerNameNode");
-        children.add(getComponent().createProductCardHodlerNameNode());
+        setChildNodeIdentity("productCardHolderNameNode");
+        children.add(getComponent().createproductCardHolderNameNode());
         setChildNodeIdentity("productRewardsProgramNode");
         children.add(getComponent().createProductRewardsProgramNode());
         setChildNodeIdentity("productRewardsMembershipNode");

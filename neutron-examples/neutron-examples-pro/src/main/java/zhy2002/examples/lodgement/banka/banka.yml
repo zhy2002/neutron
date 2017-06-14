@@ -878,11 +878,11 @@ rootType:
           - typeName: ProductExpressConsentFlagNode
           - typeName: ProductCardHolderNode
             children:
-            - {typeName: ProductCardHodlerNameNode}
+            - {typeName: productCardHolderNameNode}
             - {typeName: ProductRewardsProgramNode}
             - {typeName: ProductRewardsMembershipNode}
             childTypes:
-            - typeName: ProductCardHodlerNameNode
+            - typeName: productCardHolderNameNode
             - typeName: ProductRewardsProgramNode
             - typeName: ProductRewardsMembershipNode
 

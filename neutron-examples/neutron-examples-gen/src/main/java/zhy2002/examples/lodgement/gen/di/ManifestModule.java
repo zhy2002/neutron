@@ -290,7 +290,7 @@ subcomponents = {
     ProductCreditCardLimitNodeComponent.class,
     ProductExpressConsentFlagNodeComponent.class,
     ProductCardHolderNodeComponent.class,
-    ProductCardHodlerNameNodeComponent.class,
+    productCardHolderNameNodeComponent.class,
     ProductRewardsProgramNodeComponent.class,
     ProductRewardsMembershipNodeComponent.class,
     ProductCustomerContributionListNodeComponent.class,

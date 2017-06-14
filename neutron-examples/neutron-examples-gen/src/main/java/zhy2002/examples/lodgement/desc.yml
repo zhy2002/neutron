@@ -938,11 +938,11 @@ rootType:
           - typeName: ProductCardHolderNode
             baseTypeName: ObjectUiNode
             children:
-            - {typeName: ProductCardHodlerNameNode}
+            - {typeName: productCardHolderNameNode}
             - {typeName: ProductRewardsProgramNode}
             - {typeName: ProductRewardsMembershipNode}
             childTypes:
-            - typeName: ProductCardHodlerNameNode
+            - typeName: productCardHolderNameNode
               baseTypeName: StringUiNode
 
             - typeName: ProductRewardsProgramNode

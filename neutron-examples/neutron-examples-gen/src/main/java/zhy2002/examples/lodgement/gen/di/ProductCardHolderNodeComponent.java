@@ -12,7 +12,7 @@ public interface ProductCardHolderNodeComponent {
 
     List<RuleProvider<ProductCardHolderNode>> provideRuleProviders();
 
-    ProductCardHodlerNameNode createProductCardHodlerNameNode();
+    productCardHolderNameNode createproductCardHolderNameNode();
     ProductRewardsProgramNode createProductRewardsProgramNode();
     ProductRewardsMembershipNode createProductRewardsMembershipNode();
 
