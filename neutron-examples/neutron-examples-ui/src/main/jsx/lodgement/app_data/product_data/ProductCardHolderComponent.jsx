@@ -21,7 +21,7 @@ function ProductCardHolderComponent(props) {
                 <SelectInputComponent model={model.getProductRewardsProgramNode()}/>
             </div>
             <div className="col-md-3">
-                <TextInputComponent model={model.ProductRewardsMembershipNode()}/>
+                <TextInputComponent model={model.getProductRewardsMembershipNode()}/>
             </div>
             <div className="col-md-3"/>
         </div>

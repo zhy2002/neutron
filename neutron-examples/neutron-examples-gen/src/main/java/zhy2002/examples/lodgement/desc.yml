@@ -943,7 +943,7 @@ rootType:
             - {typeName: ProductRewardsMembershipNode}
             childTypes:
             - typeName: productCardHolderNameNode
-              baseTypeName: StringUiNode
+              baseTypeName: ReferenceUiNode
 
             - typeName: ProductRewardsProgramNode
               baseTypeName: StringUiNode

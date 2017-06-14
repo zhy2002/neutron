@@ -6,6 +6,7 @@ import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
 import zhy2002.examples.lodgement.gen.node.LegalActionNodeRuleProvider;
 import zhy2002.examples.lodgement.gen.node.ProductPackageNameNode;
+import zhy2002.examples.lodgement.gen.node.ProductRewardsProgramNode;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
@@ -45,6 +46,14 @@ abstract class CustomBankBProfileModule {
     @StringKey("productPackageNameNode-test")
     abstract RuleProvider<ProductPackageNameNode> provideProductPackageNameNodeTestRuleProvider(
             ProductPackageNameNodeTestRuleProvider impl
+    );
+
+    @Binds
+    @Named("ProductRewardsProgramNodeRuleProvider")
+    @IntoMap
+    @StringKey("productRewardsProgramNode-test")
+    abstract RuleProvider<ProductRewardsProgramNode> provideProductRewardsProgramNodeTestRuleProvider(
+            ProductRewardsProgramNodeTestRuleProvider impl
     );
 }
 

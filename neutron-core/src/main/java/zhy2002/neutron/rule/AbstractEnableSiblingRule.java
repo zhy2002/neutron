@@ -14,6 +14,7 @@ public abstract class AbstractEnableSiblingRule<N extends LeafUiNode<?, T>, T> e
 
     private String siblingName;
     private T enablingValue;
+    private T disablingValue;
     private UiNode<?> sibling;
 
     protected AbstractEnableSiblingRule(@NotNull N owner, @NotNull T enablingValue) {
@@ -35,6 +36,16 @@ public abstract class AbstractEnableSiblingRule<N extends LeafUiNode<?, T>, T> e
 
     public final void setEnablingValue(@NotNull T enablingValue) {
         this.enablingValue = enablingValue;
+        this.disablingValue = null;
+    }
+
+    public T getDisablingValue() {
+        return disablingValue;
+    }
+
+    public void setDisablingValue(T disablingValue) {
+        this.disablingValue = disablingValue;
+        this.enablingValue = null;
     }
 
     @Override
@@ -55,7 +66,15 @@ public abstract class AbstractEnableSiblingRule<N extends LeafUiNode<?, T>, T> e
                 return;
         }
 
-        if (getEnablingValue().equals(getOwner().getValue())) {
+        boolean enable;
+        if (getEnablingValue() != null) {
+            enable = getEnablingValue().equals(getOwner().getValue());
+        } else if (getDisablingValue() != null) {
+            enable = !getDisablingValue().equals(getOwner().getValue());
+        } else {
+            return;
+        }
+        if (enable) {
             sibling.setDisabled(false);
         } else {
             sibling.unloadDirectly();

@@ -8,9 +8,28 @@ import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import ProductCardHolderComponent from './ProductCardHolderComponent';
 
+function getOtherPersonApplicants(existingRefs) {
+    return () => {
+        const rootNode = existingRefs[0].getContext().getRootNode();
+        const personListNode = rootNode.getPersonListNode();
+        const existing = existingRefs.map(ref => ref.getReferencedNode());
+        const result = [];
+        for (let i = 0; i < personListNode.getItemCount(); i++) {
+            const person = personListNode.getItem(i);
+            if (existing.indexOf(person) < 0) {
+                result.push(person);
+            }
+        }
+        return result;
+    };
+}
 
 function ProductFeatureComponent(props) {
     const model = props.model;
+    const refModels = [
+        model.getProductPrimaryCardHolderNode().getProductCardHolderNameNode(),
+        model.getProductAdditionalCardHolderNode().getProductCardHolderNameNode()
+    ];
 
     return (
         <MainContentComponent className={props.componentClass}>
@@ -58,8 +77,14 @@ function ProductFeatureComponent(props) {
             </BooleanVisibleRowComponent>
             <BooleanVisibleRowComponent model={model.getProductCreditCardFlagNode()}>
                 <div className="col-md-12">
-                    <ProductCardHolderComponent model={model.getProductPrimaryCardHolderNode()}/>
-                    <ProductCardHolderComponent model={model.getProductAdditionalCardHolderNode()}/>
+                    <ProductCardHolderComponent
+                        model={model.getProductPrimaryCardHolderNode()}
+                        getPersonApplicants={getOtherPersonApplicants(refModels)}
+                    />
+                    <ProductCardHolderComponent
+                        model={model.getProductAdditionalCardHolderNode()}
+                        getPersonApplicants={getOtherPersonApplicants(refModels)}
+                    />
                 </div>
             </BooleanVisibleRowComponent>
         </MainContentComponent>
