@@ -54,7 +54,7 @@ public class TrustIndustryNodeModule {
     List<RuleProvider<TrustIndustryNode>> provideRuleProviders(
         @Named("TrustIndustryNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustIndustryNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

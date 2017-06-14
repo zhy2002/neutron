@@ -58,7 +58,7 @@ public class BrokerMobileNumberNodeModule {
     List<RuleProvider<BrokerMobileNumberNode>> provideRuleProviders(
         @Named("BrokerMobileNumberNodeRuleProvider")  Map<String, Provider<RuleProvider<BrokerMobileNumberNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -54,7 +54,7 @@ public class OtherLiabilityClearingFlagNodeModule {
     List<RuleProvider<OtherLiabilityClearingFlagNode>> provideRuleProviders(
         @Named("OtherLiabilityClearingFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherLiabilityClearingFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

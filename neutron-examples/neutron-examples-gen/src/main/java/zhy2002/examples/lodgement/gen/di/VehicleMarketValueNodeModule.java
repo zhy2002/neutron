@@ -58,7 +58,7 @@ public class VehicleMarketValueNodeModule {
     List<RuleProvider<VehicleMarketValueNode>> provideRuleProviders(
         @Named("VehicleMarketValueNodeRuleProvider")  Map<String, Provider<RuleProvider<VehicleMarketValueNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

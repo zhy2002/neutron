@@ -54,7 +54,7 @@ public class PropertyWeeklyRentNodeModule {
     List<RuleProvider<PropertyWeeklyRentNode>> provideRuleProviders(
         @Named("PropertyWeeklyRentNodeRuleProvider")  Map<String, Provider<RuleProvider<PropertyWeeklyRentNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

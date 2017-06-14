@@ -54,7 +54,7 @@ public class ProductFeaturesNodeModule {
     List<RuleProvider<ProductFeaturesNode>> provideRuleProviders(
         @Named("ProductFeaturesNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductFeaturesNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

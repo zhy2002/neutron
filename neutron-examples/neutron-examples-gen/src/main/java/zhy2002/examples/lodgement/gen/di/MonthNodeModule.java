@@ -54,7 +54,7 @@ public class MonthNodeModule {
     List<RuleProvider<MonthNode>> provideRuleProviders(
         @Named("MonthNodeRuleProvider")  Map<String, Provider<RuleProvider<MonthNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

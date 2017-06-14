@@ -58,7 +58,7 @@ public class OtherAssetMarketValueNodeModule {
     List<RuleProvider<OtherAssetMarketValueNode>> provideRuleProviders(
         @Named("OtherAssetMarketValueNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherAssetMarketValueNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

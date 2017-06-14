@@ -54,7 +54,7 @@ public class AccessTelephoneNodeModule {
     List<RuleProvider<AccessTelephoneNode>> provideRuleProviders(
         @Named("AccessTelephoneNodeRuleProvider")  Map<String, Provider<RuleProvider<AccessTelephoneNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

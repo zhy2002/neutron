@@ -54,7 +54,7 @@ public class CurrentEmploymentListNodeModule {
     List<RuleProvider<CurrentEmploymentListNode>> provideRuleProviders(
         @Named("CurrentEmploymentListNodeRuleProvider")  Map<String, Provider<RuleProvider<CurrentEmploymentListNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

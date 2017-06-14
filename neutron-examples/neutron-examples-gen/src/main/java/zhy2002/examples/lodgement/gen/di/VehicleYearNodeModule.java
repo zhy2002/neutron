@@ -54,7 +54,7 @@ public class VehicleYearNodeModule {
     List<RuleProvider<VehicleYearNode>> provideRuleProviders(
         @Named("VehicleYearNodeRuleProvider")  Map<String, Provider<RuleProvider<VehicleYearNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

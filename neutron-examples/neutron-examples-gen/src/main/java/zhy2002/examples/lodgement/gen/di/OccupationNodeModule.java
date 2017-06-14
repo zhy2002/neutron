@@ -58,7 +58,7 @@ public class OccupationNodeModule {
     List<RuleProvider<OccupationNode>> provideRuleProviders(
         @Named("OccupationNodeRuleProvider")  Map<String, Provider<RuleProvider<OccupationNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

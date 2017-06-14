@@ -54,7 +54,7 @@ public class ExpenseDescriptionNodeModule {
     List<RuleProvider<ExpenseDescriptionNode>> provideRuleProviders(
         @Named("ExpenseDescriptionNodeRuleProvider")  Map<String, Provider<RuleProvider<ExpenseDescriptionNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

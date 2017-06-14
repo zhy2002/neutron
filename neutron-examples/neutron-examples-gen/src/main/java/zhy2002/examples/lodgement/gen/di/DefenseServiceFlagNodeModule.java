@@ -54,7 +54,7 @@ public class DefenseServiceFlagNodeModule {
     List<RuleProvider<DefenseServiceFlagNode>> provideRuleProviders(
         @Named("DefenseServiceFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<DefenseServiceFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

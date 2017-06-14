@@ -58,7 +58,7 @@ public class SavingsOwnershipListNodeModule {
     List<RuleProvider<SavingsOwnershipListNode>> provideRuleProviders(
         @Named("SavingsOwnershipListNodeRuleProvider")  Map<String, Provider<RuleProvider<SavingsOwnershipListNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

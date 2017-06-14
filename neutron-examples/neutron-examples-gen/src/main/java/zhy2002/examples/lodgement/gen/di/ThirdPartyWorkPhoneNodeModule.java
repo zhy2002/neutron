@@ -54,7 +54,7 @@ public class ThirdPartyWorkPhoneNodeModule {
     List<RuleProvider<ThirdPartyWorkPhoneNode>> provideRuleProviders(
         @Named("ThirdPartyWorkPhoneNodeRuleProvider")  Map<String, Provider<RuleProvider<ThirdPartyWorkPhoneNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -54,7 +54,7 @@ public class ProductCardHolderNodeModule {
     List<RuleProvider<ProductCardHolderNode>> provideRuleProviders(
         @Named("ProductCardHolderNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductCardHolderNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

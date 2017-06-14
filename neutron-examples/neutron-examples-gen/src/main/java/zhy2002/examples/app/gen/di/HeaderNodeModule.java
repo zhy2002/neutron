@@ -54,7 +54,7 @@ public class HeaderNodeModule {
     List<RuleProvider<HeaderNode>> provideRuleProviders(
         @Named("HeaderNodeRuleProvider")  Map<String, Provider<RuleProvider<HeaderNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

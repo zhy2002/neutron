@@ -58,7 +58,7 @@ public class SavingsBalanceNodeModule {
     List<RuleProvider<SavingsBalanceNode>> provideRuleProviders(
         @Named("SavingsBalanceNodeRuleProvider")  Map<String, Provider<RuleProvider<SavingsBalanceNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

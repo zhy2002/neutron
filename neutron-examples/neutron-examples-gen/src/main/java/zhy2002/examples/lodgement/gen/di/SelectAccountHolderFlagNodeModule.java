@@ -54,7 +54,7 @@ public class SelectAccountHolderFlagNodeModule {
     List<RuleProvider<SelectAccountHolderFlagNode>> provideRuleProviders(
         @Named("SelectAccountHolderFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<SelectAccountHolderFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

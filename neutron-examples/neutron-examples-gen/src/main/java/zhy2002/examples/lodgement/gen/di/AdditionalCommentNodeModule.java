@@ -54,7 +54,7 @@ public class AdditionalCommentNodeModule {
     List<RuleProvider<AdditionalCommentNode>> provideRuleProviders(
         @Named("AdditionalCommentNodeRuleProvider")  Map<String, Provider<RuleProvider<AdditionalCommentNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

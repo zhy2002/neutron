@@ -54,7 +54,7 @@ public class ThirdPartyEmailNodeModule {
     List<RuleProvider<ThirdPartyEmailNode>> provideRuleProviders(
         @Named("ThirdPartyEmailNodeRuleProvider")  Map<String, Provider<RuleProvider<ThirdPartyEmailNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -58,7 +58,7 @@ public class RetiredOnBenefitFlagNodeModule {
     List<RuleProvider<RetiredOnBenefitFlagNode>> provideRuleProviders(
         @Named("RetiredOnBenefitFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<RetiredOnBenefitFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

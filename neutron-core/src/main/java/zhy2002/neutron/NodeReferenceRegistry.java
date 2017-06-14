@@ -50,7 +50,6 @@ public class NodeReferenceRegistry {
         }
     }
 
-    @SuppressWarnings("unchecked")
     void postRemoveFromParent(UiNode<?> node) {
         Set<ReferenceUiNode<?>> referenceSet = reverseReferenceMap.get(node.getPath());
         if (referenceSet == null)

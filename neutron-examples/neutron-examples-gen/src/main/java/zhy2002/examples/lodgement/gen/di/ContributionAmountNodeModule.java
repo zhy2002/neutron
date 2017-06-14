@@ -58,7 +58,7 @@ public class ContributionAmountNodeModule {
     List<RuleProvider<ContributionAmountNode>> provideRuleProviders(
         @Named("ContributionAmountNodeRuleProvider")  Map<String, Provider<RuleProvider<ContributionAmountNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

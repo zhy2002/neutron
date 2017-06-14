@@ -54,7 +54,7 @@ public class ProductRewardsProgramNodeModule {
     List<RuleProvider<ProductRewardsProgramNode>> provideRuleProviders(
         @Named("ProductRewardsProgramNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductRewardsProgramNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

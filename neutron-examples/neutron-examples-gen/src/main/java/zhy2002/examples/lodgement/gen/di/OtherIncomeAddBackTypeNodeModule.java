@@ -54,7 +54,7 @@ public class OtherIncomeAddBackTypeNodeModule {
     List<RuleProvider<OtherIncomeAddBackTypeNode>> provideRuleProviders(
         @Named("OtherIncomeAddBackTypeNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherIncomeAddBackTypeNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

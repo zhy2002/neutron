@@ -54,7 +54,7 @@ public class ProductRepaymentFrequencyNodeModule {
     List<RuleProvider<ProductRepaymentFrequencyNode>> provideRuleProviders(
         @Named("ProductRepaymentFrequencyNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductRepaymentFrequencyNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

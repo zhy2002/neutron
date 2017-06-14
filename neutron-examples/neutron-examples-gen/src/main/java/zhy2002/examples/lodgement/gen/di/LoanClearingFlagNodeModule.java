@@ -54,7 +54,7 @@ public class LoanClearingFlagNodeModule {
     List<RuleProvider<LoanClearingFlagNode>> provideRuleProviders(
         @Named("LoanClearingFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<LoanClearingFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

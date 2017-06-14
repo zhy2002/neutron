@@ -58,7 +58,7 @@ public class CountryNodeModule {
     List<RuleProvider<CountryNode>> provideRuleProviders(
         @Named("CountryNodeRuleProvider")  Map<String, Provider<RuleProvider<CountryNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

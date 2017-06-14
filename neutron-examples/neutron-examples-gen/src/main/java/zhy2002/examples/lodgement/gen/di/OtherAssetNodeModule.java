@@ -54,7 +54,7 @@ public class OtherAssetNodeModule {
     List<RuleProvider<OtherAssetNode>> provideRuleProviders(
         @Named("OtherAssetNodeRuleProvider")  Map<String, Provider<RuleProvider<OtherAssetNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

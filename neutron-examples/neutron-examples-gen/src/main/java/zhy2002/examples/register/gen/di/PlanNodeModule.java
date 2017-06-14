@@ -54,7 +54,7 @@ public class PlanNodeModule {
     List<RuleProvider<PlanNode>> provideRuleProviders(
         @Named("PlanNodeRuleProvider")  Map<String, Provider<RuleProvider<PlanNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

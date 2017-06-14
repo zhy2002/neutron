@@ -54,7 +54,7 @@ public class AccessContactTitleNodeModule {
     List<RuleProvider<AccessContactTitleNode>> provideRuleProviders(
         @Named("AccessContactTitleNodeRuleProvider")  Map<String, Provider<RuleProvider<AccessContactTitleNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -54,7 +54,7 @@ public class ProductTransactionAccountFlagNodeModule {
     List<RuleProvider<ProductTransactionAccountFlagNode>> provideRuleProviders(
         @Named("ProductTransactionAccountFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductTransactionAccountFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

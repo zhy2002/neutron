@@ -58,7 +58,7 @@ public class PropertyOwnershipListNodeModule {
     List<RuleProvider<PropertyOwnershipListNode>> provideRuleProviders(
         @Named("PropertyOwnershipListNodeRuleProvider")  Map<String, Provider<RuleProvider<PropertyOwnershipListNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

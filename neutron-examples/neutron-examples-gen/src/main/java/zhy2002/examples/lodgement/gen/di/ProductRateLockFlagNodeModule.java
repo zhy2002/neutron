@@ -54,7 +54,7 @@ public class ProductRateLockFlagNodeModule {
     List<RuleProvider<ProductRateLockFlagNode>> provideRuleProviders(
         @Named("ProductRateLockFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductRateLockFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

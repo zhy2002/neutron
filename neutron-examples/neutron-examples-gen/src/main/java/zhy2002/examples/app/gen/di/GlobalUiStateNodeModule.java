@@ -54,7 +54,7 @@ public class GlobalUiStateNodeModule {
     List<RuleProvider<GlobalUiStateNode>> provideRuleProviders(
         @Named("GlobalUiStateNodeRuleProvider")  Map<String, Provider<RuleProvider<GlobalUiStateNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

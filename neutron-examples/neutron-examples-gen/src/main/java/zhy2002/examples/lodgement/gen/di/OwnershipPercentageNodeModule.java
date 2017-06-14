@@ -58,7 +58,7 @@ public class OwnershipPercentageNodeModule {
     List<RuleProvider<OwnershipPercentageNode>> provideRuleProviders(
         @Named("OwnershipPercentageNodeRuleProvider")  Map<String, Provider<RuleProvider<OwnershipPercentageNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

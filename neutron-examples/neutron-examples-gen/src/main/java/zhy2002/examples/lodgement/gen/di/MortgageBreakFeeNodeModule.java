@@ -58,7 +58,7 @@ public class MortgageBreakFeeNodeModule {
     List<RuleProvider<MortgageBreakFeeNode>> provideRuleProviders(
         @Named("MortgageBreakFeeNodeRuleProvider")  Map<String, Provider<RuleProvider<MortgageBreakFeeNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

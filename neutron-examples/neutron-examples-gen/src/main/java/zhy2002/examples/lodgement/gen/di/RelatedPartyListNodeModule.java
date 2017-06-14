@@ -54,7 +54,7 @@ public class RelatedPartyListNodeModule {
     List<RuleProvider<RelatedPartyListNode>> provideRuleProviders(
         @Named("RelatedPartyListNodeRuleProvider")  Map<String, Provider<RuleProvider<RelatedPartyListNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

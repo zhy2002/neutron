@@ -54,7 +54,7 @@ public class Product100PercentOffsetFlagNodeModule {
     List<RuleProvider<Product100PercentOffsetFlagNode>> provideRuleProviders(
         @Named("Product100PercentOffsetFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<Product100PercentOffsetFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

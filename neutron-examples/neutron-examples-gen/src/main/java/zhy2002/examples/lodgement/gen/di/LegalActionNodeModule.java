@@ -58,7 +58,7 @@ public class LegalActionNodeModule {
     List<RuleProvider<LegalActionNode>> provideRuleProviders(
         @Named("LegalActionNodeRuleProvider")  Map<String, Provider<RuleProvider<LegalActionNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -58,7 +58,7 @@ public class MortgageTermRemainingPeriodNodeModule {
     List<RuleProvider<MortgageTermRemainingPeriodNode>> provideRuleProviders(
         @Named("MortgageTermRemainingPeriodNodeRuleProvider")  Map<String, Provider<RuleProvider<MortgageTermRemainingPeriodNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

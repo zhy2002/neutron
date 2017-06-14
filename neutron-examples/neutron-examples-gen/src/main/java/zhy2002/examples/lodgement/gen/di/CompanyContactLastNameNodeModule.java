@@ -54,7 +54,7 @@ public class CompanyContactLastNameNodeModule {
     List<RuleProvider<CompanyContactLastNameNode>> provideRuleProviders(
         @Named("CompanyContactLastNameNodeRuleProvider")  Map<String, Provider<RuleProvider<CompanyContactLastNameNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

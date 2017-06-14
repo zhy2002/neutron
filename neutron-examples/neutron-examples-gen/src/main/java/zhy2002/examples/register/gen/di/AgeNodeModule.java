@@ -54,7 +54,7 @@ public class AgeNodeModule {
     List<RuleProvider<AgeNode>> provideRuleProviders(
         @Named("AgeNodeRuleProvider")  Map<String, Provider<RuleProvider<AgeNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

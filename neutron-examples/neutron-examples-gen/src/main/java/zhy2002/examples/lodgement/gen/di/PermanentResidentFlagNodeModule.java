@@ -54,7 +54,7 @@ public class PermanentResidentFlagNodeModule {
     List<RuleProvider<PermanentResidentFlagNode>> provideRuleProviders(
         @Named("PermanentResidentFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<PermanentResidentFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

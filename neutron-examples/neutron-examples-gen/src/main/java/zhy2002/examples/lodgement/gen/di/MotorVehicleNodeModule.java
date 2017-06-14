@@ -54,7 +54,7 @@ public class MotorVehicleNodeModule {
     List<RuleProvider<MotorVehicleNode>> provideRuleProviders(
         @Named("MotorVehicleNodeRuleProvider")  Map<String, Provider<RuleProvider<MotorVehicleNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -54,7 +54,7 @@ public class ThirdPartyTitleNodeModule {
     List<RuleProvider<ThirdPartyTitleNode>> provideRuleProviders(
         @Named("ThirdPartyTitleNodeRuleProvider")  Map<String, Provider<RuleProvider<ThirdPartyTitleNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

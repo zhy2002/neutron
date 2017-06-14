@@ -54,7 +54,7 @@ public class PostcodeNodeModule {
     List<RuleProvider<PostcodeNode>> provideRuleProviders(
         @Named("PostcodeNodeRuleProvider")  Map<String, Provider<RuleProvider<PostcodeNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

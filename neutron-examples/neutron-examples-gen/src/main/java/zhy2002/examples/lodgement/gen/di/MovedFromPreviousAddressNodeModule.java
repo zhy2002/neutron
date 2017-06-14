@@ -58,7 +58,7 @@ public class MovedFromPreviousAddressNodeModule {
     List<RuleProvider<MovedFromPreviousAddressNode>> provideRuleProviders(
         @Named("MovedFromPreviousAddressNodeRuleProvider")  Map<String, Provider<RuleProvider<MovedFromPreviousAddressNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

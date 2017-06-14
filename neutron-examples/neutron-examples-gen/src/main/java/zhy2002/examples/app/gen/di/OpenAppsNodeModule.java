@@ -54,7 +54,7 @@ public class OpenAppsNodeModule {
     List<RuleProvider<OpenAppsNode>> provideRuleProviders(
         @Named("OpenAppsNodeRuleProvider")  Map<String, Provider<RuleProvider<OpenAppsNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

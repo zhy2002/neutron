@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import MainContentComponent from '../common/MainContentComponent';
+import BooleanVisibleRowComponent from '../common/BooleanVisibleRowComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
@@ -42,25 +43,25 @@ function ProductFeatureComponent(props) {
                 <div className="col-md-4">
                     <SelectInputComponent model={model.getCreditCardOptOutReasonNode()}/>
                 </div>
-                <div className="col-md-4">
-                    <SelectInputComponent model={model.getProductCreditCardTypeNode()}/>
-                </div>
+                <div className="col-md-4"/>
             </div>
-            <div className="row">
+            <BooleanVisibleRowComponent model={model.getProductCreditCardFlagNode()}>
                 <div className="col-md-4">
                     <NumberInputComponent model={model.getProductCreditCardLimitNode()}/>
                 </div>
-                <div className="col-md-4"/>
+                <div className="col-md-4">
+                    <SelectInputComponent model={model.getProductCreditCardTypeNode()}/>
+                </div>
                 <div className="col-md-4">
                     <CheckboxInputComponent model={model.getProductExpressConsentFlagNode()}/>
                 </div>
-            </div>
-            <div className="row">
+            </BooleanVisibleRowComponent>
+            <BooleanVisibleRowComponent model={model.getProductCreditCardFlagNode()}>
                 <div className="col-md-12">
                     <ProductCardHolderComponent model={model.getProductPrimaryCardHolderNode()}/>
                     <ProductCardHolderComponent model={model.getProductAdditionalCardHolderNode()}/>
                 </div>
-            </div>
+            </BooleanVisibleRowComponent>
         </MainContentComponent>
     );
 }

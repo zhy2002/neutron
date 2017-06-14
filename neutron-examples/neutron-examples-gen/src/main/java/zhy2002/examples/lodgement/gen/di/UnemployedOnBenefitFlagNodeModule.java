@@ -58,7 +58,7 @@ public class UnemployedOnBenefitFlagNodeModule {
     List<RuleProvider<UnemployedOnBenefitFlagNode>> provideRuleProviders(
         @Named("UnemployedOnBenefitFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<UnemployedOnBenefitFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

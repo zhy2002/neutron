@@ -58,7 +58,7 @@ public class CreditCardAmountOwingNodeModule {
     List<RuleProvider<CreditCardAmountOwingNode>> provideRuleProviders(
         @Named("CreditCardAmountOwingNodeRuleProvider")  Map<String, Provider<RuleProvider<CreditCardAmountOwingNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

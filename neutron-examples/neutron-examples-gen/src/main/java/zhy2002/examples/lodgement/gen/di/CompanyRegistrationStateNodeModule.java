@@ -54,7 +54,7 @@ public class CompanyRegistrationStateNodeModule {
     List<RuleProvider<CompanyRegistrationStateNode>> provideRuleProviders(
         @Named("CompanyRegistrationStateNodeRuleProvider")  Map<String, Provider<RuleProvider<CompanyRegistrationStateNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

@@ -54,7 +54,7 @@ public class ProductExpressConsentFlagNodeModule {
     List<RuleProvider<ProductExpressConsentFlagNode>> provideRuleProviders(
         @Named("ProductExpressConsentFlagNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductExpressConsentFlagNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

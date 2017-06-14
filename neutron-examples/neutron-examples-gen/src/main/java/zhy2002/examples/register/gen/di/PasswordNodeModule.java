@@ -54,7 +54,7 @@ public class PasswordNodeModule {
     List<RuleProvider<PasswordNode>> provideRuleProviders(
         @Named("PasswordNodeRuleProvider")  Map<String, Provider<RuleProvider<PasswordNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

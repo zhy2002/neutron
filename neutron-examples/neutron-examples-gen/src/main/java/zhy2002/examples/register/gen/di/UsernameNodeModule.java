@@ -54,7 +54,7 @@ public class UsernameNodeModule {
     List<RuleProvider<UsernameNode>> provideRuleProviders(
         @Named("UsernameNodeRuleProvider")  Map<String, Provider<RuleProvider<UsernameNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

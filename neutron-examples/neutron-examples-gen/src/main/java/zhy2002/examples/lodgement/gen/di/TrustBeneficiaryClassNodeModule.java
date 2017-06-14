@@ -54,7 +54,7 @@ public class TrustBeneficiaryClassNodeModule {
     List<RuleProvider<TrustBeneficiaryClassNode>> provideRuleProviders(
         @Named("TrustBeneficiaryClassNodeRuleProvider")  Map<String, Provider<RuleProvider<TrustBeneficiaryClassNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

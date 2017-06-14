@@ -54,7 +54,7 @@ public class ProductInterestOnlyTermNodeModule {
     List<RuleProvider<ProductInterestOnlyTermNode>> provideRuleProviders(
         @Named("ProductInterestOnlyTermNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductInterestOnlyTermNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

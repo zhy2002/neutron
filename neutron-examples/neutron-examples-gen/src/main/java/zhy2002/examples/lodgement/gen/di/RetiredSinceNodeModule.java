@@ -58,7 +58,7 @@ public class RetiredSinceNodeModule {
     List<RuleProvider<RetiredSinceNode>> provideRuleProviders(
         @Named("RetiredSinceNodeRuleProvider")  Map<String, Provider<RuleProvider<RetiredSinceNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }

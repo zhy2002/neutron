@@ -58,7 +58,7 @@ public class ProductTotalLoanLmiAmountNodeModule {
     List<RuleProvider<ProductTotalLoanLmiAmountNode>> provideRuleProviders(
         @Named("ProductTotalLoanLmiAmountNodeRuleProvider")  Map<String, Provider<RuleProvider<ProductTotalLoanLmiAmountNode>>> ruleProviderProviderMap
     ) {
-        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName()};
+        String[] potentialRuleProviderKeys = {NeutronConstants.TYPE_RULE_PROVIDER, owner.getName(), owner.getName() + "-test"};
         return RuleProvider.extractRuleProviders(potentialRuleProviderKeys, ruleProviderProviderMap);
     }
 }
