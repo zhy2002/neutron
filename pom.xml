@@ -86,20 +86,6 @@
 
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>gwt-jar</id>
-            <activation>
-                <property>
-                    <name>gwt-jar</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-
-            </build>
-        </profile>
-    </profiles>
     <build>
 
         <pluginManagement>
@@ -177,6 +163,8 @@
                     <configuration>
                         <extraJvmArgs>-Xmx1300M -Xss2048k</extraJvmArgs>
                         <generateJsInteropExports>true</generateJsInteropExports>
+                        <port>8889</port>
+                        <codeServerPort>9877</codeServerPort>
                         <strict>true</strict>
                     </configuration>
                 </plugin>

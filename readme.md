@@ -1,5 +1,20 @@
-Todo fix client side - notification changes
+Get Started
+-----------------
+- In root directory run:
+<pre>
+mvn clean install
+</pre>
+- Then:
+<pre>
+cd neutron-examples/neutron-examples-ui
+npm install
+npm run build
+</pre>
+- Then setup Run Configuration in IntelliJ IDEA as per <code>doc/config_intellij_idea</code>.
+
+Todo
 -----------------  
+- Handle url change when back/forward browser buttons are clicked.
 - Use HOCs replace Neutron base components
 - i18n support
   - runtime configurable culture specific parser/formatter chain
