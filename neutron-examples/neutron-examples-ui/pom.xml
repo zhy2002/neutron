@@ -37,6 +37,8 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <configuration>
                     <runTarget>index.html</runTarget>
+                    <draftCompile>true</draftCompile>
+                    <optimizationLevel>0</optimizationLevel>
                     <modules>
                         <module>zhy2002.Lodgement</module>
                     </modules>
