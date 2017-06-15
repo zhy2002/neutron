@@ -46,8 +46,7 @@ export default class RadioInputComponent extends InputComponent {
                                     this.updateValue(item.getValue());
                                 }}
                                 checked={item.getValue() === this.state.value}
-                                disabled={this.state.disabled}
-                                readOnly={this.state.readonly}
+                                disabled={this.state.disabled || this.state.readonly}
                             />
                             {item.getText()}
                         </label>

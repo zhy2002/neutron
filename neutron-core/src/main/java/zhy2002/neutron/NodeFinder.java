@@ -33,6 +33,22 @@ public class NodeFinder {
         return (N) mapIdToNode.get(path);
     }
 
+    @SuppressWarnings("unchecked")
+    public <N extends UiNode<?>> N findSibling(UiNode<?> node, String name) {
+        return (N) node.getParent().getChild(name);
+    }
+
+//    @SuppressWarnings("unchecked")
+//    public <N extends UiNode<?>> N findAncestor(UiNode<?> node, Class<N> ancestorType) {
+//        UiNode<?> ancestor = node.getParent();
+//        while (ancestor != null) {
+//            if (ancestorType.isInstance(ancestor))
+//                break;
+//            ancestor = ancestor.getParent();
+//        }
+//        return (N) ancestor;
+//    }
+
     public void registerNode(UiNode<?> node) {
         mapPathToNode.put(node.getPath(), node);
         mapIdToNode.put(node.getUniqueId(), node);

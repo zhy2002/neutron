@@ -1,29 +1,25 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import RealEstateSummaryComponent from './RealEstateSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
 
-export default class RealEstateListComponent extends ListNeutronComponent {
+function RealEstateListComponent(props) {
+    const model = props.model;
 
-    renderItems() {
-        const result = [];
-        this.model.getChildren().forEach(
-            (item) => {
-                result.push(<RealEstateSummaryComponent key={item.getUniqueId()} model={item}/>);
-            }
-        );
-        return result;
-    }
-
-    render() {
-        return (
-            <MainContentComponent className="real-estate-list-component">
-                <AddListComponent model={this.model}>
-                    {this.renderItems()}
-                </AddListComponent>
-            </MainContentComponent>
-        );
-    }
+    return (
+        <MainContentComponent className={props.componentClass}>
+            <AddListComponent model={model}>
+                {
+                    model.getChildren().map(
+                        item => <RealEstateSummaryComponent key={item.getUniqueId()} model={item}/>
+                    )
+                }
+            </AddListComponent>
+        </MainContentComponent>
+    );
 }
+
+RealEstateListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(RealEstateListComponent);

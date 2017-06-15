@@ -44,8 +44,9 @@ export default class InputComponent extends NeutronComponent {
 
         if (newState.disabled) {
             newState.componentClass += ' disabled';
-        } else if (newState.readOnly) {
+        } else if (newState.readonly) {
             newState.componentClass += ' readonly';
+            newState.componentClass = newState.componentClass.replace(' missing-value', '');
         }
 
         return newState;

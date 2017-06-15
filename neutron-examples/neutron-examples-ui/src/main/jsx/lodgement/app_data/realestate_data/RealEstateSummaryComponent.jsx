@@ -1,34 +1,76 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
+import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
+import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import RemovePanelComponent from '../common/RemovePanelComponent';
 
-export default class RealEstateSummaryComponent extends NeutronComponent {
+const OtherRealEstateDetailsComponent = NeutronHoc(
+    (props) => {
+        const model = props.model;
+        const propertyNode = model.getParent().getPropertyNode();
 
-    constructor(props) {
-        super(props);
-
-        this.selectItem = () => {
-            this.model.getContext().getRootNode().setContentNode(this.model);
-        };
-    }
-
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.name = this.model.getNodeLabel();
-        return newState;
-    }
-
-    render() {
         return (
-            <RemovePanelComponent className="real-estate-summary-component" model={this.model}>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <a tabIndex="0" onClick={this.selectItem}>
-                            {this.state.name}
-                        </a>
-                    </div>
+            <div className="row">
+                <div className="col-md-3">
+                    <RadioInputComponent
+                        model={model.getUsedAsSecurityFlagNode()}
+                        readonly
+                    />
                 </div>
-            </RemovePanelComponent>
+                <div className="col-md-3">
+                    <RadioInputComponent
+                        model={model.getOwnedOutrightFlagNode()}
+                        readonly
+                    />
+                </div>
+                {propertyNode &&
+                <div className="col-md-3">
+                    <RadioInputComponent
+                        model={propertyNode.getPropertyPurseNode()}
+                        readonly
+                    />
+                </div>
+                }
+                {propertyNode &&
+                <div className="col-md-3">
+                    <NumberInputComponent
+                        model={propertyNode.getEstimatedMarketValueNode()}
+                        readonly
+                    />
+                </div>
+                }
+            </div>
         );
     }
+);
+
+function RealEstateSummaryComponent(props) {
+    const model = props.model;
+
+    function selectItem() {
+        model.getContext().getRootNode().setContentNode(model);
+    }
+
+    return (
+        <RemovePanelComponent className={props.componentClass} model={model}>
+            <div className="row">
+                <div className="col-xs-12">
+                    <a tabIndex="0" onClick={selectItem}>
+                        {props.name}
+                    </a>
+                </div>
+            </div>
+            <OtherRealEstateDetailsComponent model={model.getUsageNode()}/>
+        </RemovePanelComponent>
+    );
 }
+
+RealEstateSummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(
+    RealEstateSummaryComponent,
+    (model) => {
+        const props = {};
+        props.name = model.getNodeLabel();
+        return props;
+    }
+);

@@ -1,8 +1,8 @@
 package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
-import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 
 import javax.inject.Inject;
@@ -42,15 +42,23 @@ public class AutoCreateListItemRule extends UiNodeRule<ListUiNode<?, ?>> {
     }
 
     @Override
+    protected UiNode<?> findHost() {
+        return getOwner().getContext().getRootNode();
+    }
+
+    @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
-                new RefreshEventBinding(
+                new BooleanStateChangeEventBinding(
+                        e -> Boolean.FALSE.equals(e.getNewValue()),
                         this::addItems,
-                        NeutronConstants.NODE_LOADED_REFRESH_REASON
+                        RootUiNode.LOADING_PROPERTY.getStateKey()
                 ),
                 new IntegerStateChangeEventBinding(
+                        e -> e.getOrigin() == getOwner(),
                         this::addItems,
-                        ListUiNode.MIN_ITEM_COUNT_PROPERTY.getStateKey()
+                        ListUiNode.MIN_ITEM_COUNT_PROPERTY.getStateKey(),
+                        null
                 )
         );
     }
