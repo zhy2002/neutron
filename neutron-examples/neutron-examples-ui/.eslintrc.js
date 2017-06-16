@@ -71,6 +71,9 @@ module.exports = {
         "react/no-unused-prop-types": [
             OFF
         ],
+        "react/prop-types": [
+            OFF
+        ],
         "curly": [
             OFF
         ],

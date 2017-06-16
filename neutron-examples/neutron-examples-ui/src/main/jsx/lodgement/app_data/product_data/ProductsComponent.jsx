@@ -9,7 +9,7 @@ function ProductsComponent(props) {
     const model = props.model;
 
     return (
-        <div className="products-component container-fluid">
+        <div className={`${props.componentClass} container-fluid`}>
             <div className="row">
                 <div className="col-md-3">
                     <SelectInputComponent model={model.getProductLoanTypeNode()}/>
@@ -45,5 +45,4 @@ function ProductsComponent(props) {
     );
 }
 
-ProductsComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductsComponent);

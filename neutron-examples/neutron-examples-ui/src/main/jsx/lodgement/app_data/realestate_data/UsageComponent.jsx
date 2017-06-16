@@ -8,7 +8,7 @@ function UsageComponent(props) {
     const model = props.model;
 
     return (
-        <MainContentComponent className="usage-component">
+        <MainContentComponent className={props.componentClass}>
             <div className="row">
                 <div className="col-md-6">
                     <div className="row">
@@ -75,5 +75,4 @@ function UsageComponent(props) {
     );
 }
 
-UsageComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(UsageComponent);

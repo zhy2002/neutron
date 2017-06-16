@@ -134,6 +134,4 @@ class ApplicationToolbarComponent extends React.PureComponent {
     }
 }
 
-ApplicationToolbarComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 export default NeutronHoc(ApplicationToolbarComponent);

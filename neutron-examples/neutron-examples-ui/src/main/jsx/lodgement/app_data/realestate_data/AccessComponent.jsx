@@ -8,7 +8,7 @@ import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 function AccessComponent(props) {
     const model = props.model;
     return (
-        <MainContentComponent className="access-component">
+        <MainContentComponent className={props.componentClass}>
             <div className="row">
                 <div className="col-md-4">
                     <SelectInputComponent model={model.getAccessContactTypeNode()}/>
@@ -43,5 +43,4 @@ function AccessComponent(props) {
     );
 }
 
-AccessComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(AccessComponent);

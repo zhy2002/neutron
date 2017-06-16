@@ -128,5 +128,4 @@ class ProductFeeListComponent extends React.PureComponent {
     }
 }
 
-ProductFeeListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductFeeListComponent);

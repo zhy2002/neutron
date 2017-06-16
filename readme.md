@@ -14,6 +14,8 @@ npm run build
 
 Todo
 -----------------  
+- error when navigating to a none existent app
+- Error when closing a none active app tab
 - Handle url change when back/forward browser buttons are clicked.
 - Use HOCs replace Neutron base components
 - i18n support

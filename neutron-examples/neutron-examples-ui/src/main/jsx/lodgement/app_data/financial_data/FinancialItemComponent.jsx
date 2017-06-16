@@ -1,33 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
 import OwnershipListComponent from '../common/OwnershipListComponent';
 
 
-export default class FinancialItemComponent extends NeutronComponent {
+class FinancialItemComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.delete = () => {
-            if (window.confirm(`Are you sure you want to remove this ${this.model.getNodeLabel()}`)) {
-                this.model.getParent().removeItem(this.model);
+            const model = this.props.model;
+            if (window.confirm(`Are you sure you want to remove this ${model.getNodeLabel()}`)) {
+                model.getParent().removeItem(model);
             }
         };
     }
 
     render() {
-        const model = this.model;
+        const props = this.props;
+
         return (
-            <div className={`well ${this.props.className}`}>
+            <div className={`${props.componentClass} well ${props.className}`}>
                 <div className="row">
                     <div className="col-md-7">
-                        {this.props.children}
+                        {props.children}
                     </div>
                     <div className="col-md-5">
                         <CloseIconComponent onClose={this.delete}/>
-                        <OwnershipListComponent model={model.getOwnershipListNode()}/>
+                        <OwnershipListComponent model={props.model.getOwnershipListNode()}/>
                     </div>
                 </div>
             </div>
@@ -35,8 +37,11 @@ export default class FinancialItemComponent extends NeutronComponent {
     }
 }
 
-FinancialItemComponent.propTypes = {
-    children: PropTypes.any.isRequired,
-    className: PropTypes.string.isRequired
-};
-
+export default NeutronHoc(
+    FinancialItemComponent,
+    undefined,
+    {
+        children: PropTypes.any.isRequired,
+        className: PropTypes.string.isRequired
+    }
+);

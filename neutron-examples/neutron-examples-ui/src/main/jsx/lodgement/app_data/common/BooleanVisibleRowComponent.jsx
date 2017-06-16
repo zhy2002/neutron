@@ -13,7 +13,6 @@ function BooleanVisibleRowComponent(props) {
     return null;
 }
 
-BooleanVisibleRowComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     BooleanVisibleRowComponent,
     (model) => {

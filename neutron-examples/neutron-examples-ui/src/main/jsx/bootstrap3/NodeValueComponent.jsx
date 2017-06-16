@@ -5,7 +5,6 @@ function NodeValueComponent(props) {
     return <span>{props.prefix}{props.text}</span>;
 }
 
-NodeValueComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     NodeValueComponent,
     (model) => {

@@ -123,7 +123,6 @@ class ProductCustomerContributionListComponent extends React.PureComponent {
     }
 }
 
-ProductCustomerContributionListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     ProductCustomerContributionListComponent
 );

@@ -21,5 +21,4 @@ function RealEstateListComponent(props) {
     );
 }
 
-RealEstateListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(RealEstateListComponent);

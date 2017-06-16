@@ -25,7 +25,7 @@ export default class SimpleListComponent extends ListNeutronComponent {
 
     render() {
         return (
-            <div className="simple-list-component">
+            <div className={`simple-list-component ${this.props.className}`}>
                 <PanelComponent title={this.props.title} onAdd={this.createItem}>
                     {this.renderItems()}
                 </PanelComponent>
@@ -36,5 +36,10 @@ export default class SimpleListComponent extends ListNeutronComponent {
 
 SimpleListComponent.propTypes = {
     title: PropTypes.string.isRequired,
-    createItemComponent: PropTypes.func.isRequired
+    createItemComponent: PropTypes.func.isRequired,
+    className: PropTypes.string
+};
+
+SimpleListComponent.defaultProps = {
+    className: ''
 };

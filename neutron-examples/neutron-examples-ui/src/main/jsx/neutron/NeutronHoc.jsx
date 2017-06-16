@@ -39,32 +39,6 @@ function NeutronHoc(WrappedComponent,
 
         newState.disabled = props.disabled || model.isEffectivelyDisabled();
 
-        //error message
-        // newState.errorMessage = '';
-        // const errorList = model.getValidationErrorList();
-        // if (errorList) {
-        //     for (let i = 0; i < errorList.size(); i++) {
-        //         const item = errorList.get(i);
-        //         newState.errorMessage += `${item.getMessage()} `;
-        //     }
-        // }
-
-        //
-        // //component class
-        // let componentClass = '';
-        // if (newState.errorMessage) {
-        //     componentClass = ' has-error';
-        // } else if (this.model.getRequired() && !this.model.hasValue() && !this.model.isEffectivelyDisabled()) {
-        //     componentClass = ' missing-value';
-        // }
-        // const visibility = model.getVisibility();
-        // if (visibility === 'none') {
-        //     componentClass += ' hide';
-        // } else if (visibility === 'hidden') {
-        //     componentClass += ' invisible';
-        // }
-        // newState.componentClass = componentClass;
-
         if (mapModelToProps) {
             return Object.assign(newState, mapModelToProps(model));
         }
@@ -120,6 +94,7 @@ function NeutronHoc(WrappedComponent,
             if (!this.state.model || this.state.model.getNodeStatus() !== window.GWT.NodeStatusEnum.Loaded)
                 return null;
 
+            //console.log(`rendering ${WrappedComponent.name}`);
             return <WrappedComponent {...this.state} />;
         }
     }
@@ -149,9 +124,5 @@ function NeutronHoc(WrappedComponent,
 
     return NeutronWrapper;
 }
-
-NeutronHoc.suppressMissingPropTypes = () => {
-    return {};
-};
 
 export default NeutronHoc;

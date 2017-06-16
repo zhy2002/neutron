@@ -28,7 +28,6 @@ function ProductCardHolderComponent(props) {
     );
 }
 
-ProductCardHolderComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     ProductCardHolderComponent,
     CommonUtil.mapToEmptyObject,

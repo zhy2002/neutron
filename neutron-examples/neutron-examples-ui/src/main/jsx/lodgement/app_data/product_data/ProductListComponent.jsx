@@ -22,5 +22,4 @@ function ProductListComponent(props) {
     );
 }
 
-ProductListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductListComponent);

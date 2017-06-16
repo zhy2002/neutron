@@ -35,12 +35,4 @@ function ProductSummaryComponent(props) {
     );
 }
 
-ProductSummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-export default NeutronHoc(
-    ProductSummaryComponent,
-    (model) => {
-        const newState = {};
-        newState.name = model.getParent().getNodeLabel();
-        return newState;
-    }
-);
+export default NeutronHoc(ProductSummaryComponent);

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../neutron/NeutronHoc';
-import CommonUtil from '../neutron/CommonUtil';
 
 
 function ModelLinkComponent(props) {
@@ -23,10 +22,9 @@ function ModelLinkComponent(props) {
     );
 }
 
-ModelLinkComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     ModelLinkComponent,
-    CommonUtil.mapToEmptyObject,
+    undefined,
     {
         title: PropTypes.string.isRequired
     }

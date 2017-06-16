@@ -69,8 +69,6 @@ class SubmissionComponent extends React.PureComponent {
     }
 }
 
-SubmissionComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 export default NeutronHoc(
     SubmissionComponent
 );

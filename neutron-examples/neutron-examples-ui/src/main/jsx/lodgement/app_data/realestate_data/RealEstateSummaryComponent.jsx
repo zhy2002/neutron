@@ -7,10 +7,10 @@ import RemovePanelComponent from '../common/RemovePanelComponent';
 const OtherRealEstateDetailsComponent = NeutronHoc(
     (props) => {
         const model = props.model;
-        const propertyNode = model.getParent().getPropertyNode();
+
 
         return (
-            <div className="row">
+            <div className={`${props.componentClass} row`}>
                 <div className="col-md-3">
                     <RadioInputComponent
                         model={model.getUsedAsSecurityFlagNode()}
@@ -23,22 +23,18 @@ const OtherRealEstateDetailsComponent = NeutronHoc(
                         readonly
                     />
                 </div>
-                {propertyNode &&
                 <div className="col-md-3">
                     <RadioInputComponent
-                        model={propertyNode.getPropertyPurseNode()}
+                        model={props.propertyPurposeNode}
                         readonly
                     />
                 </div>
-                }
-                {propertyNode &&
                 <div className="col-md-3">
                     <NumberInputComponent
-                        model={propertyNode.getEstimatedMarketValueNode()}
+                        model={props.marketValueNode}
                         readonly
                     />
                 </div>
-                }
             </div>
         );
     }
@@ -46,6 +42,7 @@ const OtherRealEstateDetailsComponent = NeutronHoc(
 
 function RealEstateSummaryComponent(props) {
     const model = props.model;
+    const propertyNode = model.getPropertyNode();
 
     function selectItem() {
         model.getContext().getRootNode().setContentNode(model);
@@ -60,12 +57,15 @@ function RealEstateSummaryComponent(props) {
                     </a>
                 </div>
             </div>
-            <OtherRealEstateDetailsComponent model={model.getUsageNode()}/>
+            <OtherRealEstateDetailsComponent
+                model={model.getUsageNode()}
+                propertyPurposeNode={propertyNode.getPropertyPurseNode()}
+                marketValueNode={propertyNode.getEstimatedMarketValueNode()}
+            />
         </RemovePanelComponent>
     );
 }
 
-RealEstateSummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     RealEstateSummaryComponent,
     (model) => {

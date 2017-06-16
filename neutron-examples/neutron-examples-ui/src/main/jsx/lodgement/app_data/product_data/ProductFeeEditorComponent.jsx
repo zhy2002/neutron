@@ -36,5 +36,4 @@ function ProductFeeEditorComponent(props) {
     );
 }
 
-ProductFeeEditorComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductFeeEditorComponent);

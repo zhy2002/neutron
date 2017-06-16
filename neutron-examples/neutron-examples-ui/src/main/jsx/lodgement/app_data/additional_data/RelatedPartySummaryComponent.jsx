@@ -24,7 +24,6 @@ function RelatedPartySummaryComponent(props) {
     );
 }
 
-RelatedPartySummaryComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     RelatedPartySummaryComponent
 );

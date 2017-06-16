@@ -91,5 +91,4 @@ function ProductFeatureComponent(props) {
     );
 }
 
-ProductFeatureComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductFeatureComponent);

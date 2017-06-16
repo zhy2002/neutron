@@ -38,7 +38,6 @@ class TabContentComponent extends React.PureComponent {
     }
 }
 
-TabContentComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(
     TabContentComponent,
     (model) => {

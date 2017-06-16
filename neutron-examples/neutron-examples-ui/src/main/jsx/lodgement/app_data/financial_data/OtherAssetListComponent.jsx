@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import SimpleListComponent from '../common/SimpleListComponent';
 import OtherAssetComponent from './OtherAssetComponent';
 
@@ -7,11 +7,15 @@ function createItemComponent(item) {
     return <OtherAssetComponent key={item.getUniqueId()} model={item}/>;
 }
 
-export default class OtherAssetListComponent extends NeutronComponent {
-
-    render() {
-        return (
-            <SimpleListComponent title="Other Assets" model={this.model} createItemComponent={createItemComponent}/>
-        );
-    }
+function OtherAssetListComponent(props) {
+    return (
+        <SimpleListComponent
+            className={props.componentClass}
+            title="Other Assets"
+            model={props.model}
+            createItemComponent={createItemComponent}
+        />
+    );
 }
+
+export default NeutronHoc(OtherAssetListComponent);

@@ -10,7 +10,7 @@ function ExistingMortgageListComponent(props) {
         return null;
 
     return (
-        <AddListComponent model={model}>
+        <AddListComponent className={props.componentClass} model={model}>
             {
                 model.getChildren().map(
                     item => <ExistingMortgageComponent key={item.getUniqueId()} model={item}/>
@@ -20,5 +20,4 @@ function ExistingMortgageListComponent(props) {
     );
 }
 
-ExistingMortgageListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ExistingMortgageListComponent);

@@ -9,7 +9,7 @@ import RemovePanelComponent from '../common/RemovePanelComponent';
 function ExistingMortgageComponent(props) {
     const model = props.model;
     return (
-        <RemovePanelComponent className="existing-mortgage-component" model={model}>
+        <RemovePanelComponent className={props.componentClass} model={model}>
             <div className="row">
                 <div className="col-xs-6">
                     <TextInputComponent model={model.getMortgageLenderInstitutionNode()}/>
@@ -52,5 +52,4 @@ function ExistingMortgageComponent(props) {
     );
 }
 
-ExistingMortgageComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ExistingMortgageComponent);

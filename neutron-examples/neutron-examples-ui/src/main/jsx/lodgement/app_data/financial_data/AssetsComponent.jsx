@@ -1,23 +1,21 @@
 import React from 'react';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import PanelComponent from '../../../bootstrap3/PanelComponent';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import SavingAccountListComponent from './SavingAccountListComponent';
 import MotorVehicleListComponent from './MotorVehicleListComponent';
 import OtherAssetListComponent from './OtherAssetListComponent';
 
-export default class AssetsComponent extends NeutronComponent {
-
-    render() {
-        const model = this.model;
-        return (
-            <div className="assets-component">
-                <PanelComponent title="Assets" className="panel-primary">
-                    <SavingAccountListComponent model={model.getSavingsAccountListNode()}/>
-                    <MotorVehicleListComponent model={model.getMotorVehicleListNode()}/>
-                    <OtherAssetListComponent model={model.getOtherAssetListNode()}/>
-                </PanelComponent>
-            </div>
-        );
-    }
-
+function AssetsComponent(props) {
+    const model = props.model;
+    return (
+        <div className={props.componentClass}>
+            <PanelComponent title="Assets" className="panel-primary">
+                <SavingAccountListComponent model={model.getSavingsAccountListNode()}/>
+                <MotorVehicleListComponent model={model.getMotorVehicleListNode()}/>
+                <OtherAssetListComponent model={model.getOtherAssetListNode()}/>
+            </PanelComponent>
+        </div>
+    );
 }
+
+export default NeutronHoc(AssetsComponent);

@@ -5,11 +5,10 @@ import MainContentComponent from '../common/MainContentComponent';
 
 function AdditionalComponent(props) {
     return (
-        <MainContentComponent className="additional-component">
+        <MainContentComponent className={props.componentClass}>
             <RelatedPartyListComponent model={props.model.getRelatedPartyListNode()}/>
         </MainContentComponent>
     );
 }
 
-AdditionalComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(AdditionalComponent);

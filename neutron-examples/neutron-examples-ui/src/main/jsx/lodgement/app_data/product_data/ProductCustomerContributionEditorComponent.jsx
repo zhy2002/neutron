@@ -31,5 +31,4 @@ function ProductCustomerContributionEditorComponent(props) {
     );
 }
 
-ProductCustomerContributionEditorComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductCustomerContributionEditorComponent);

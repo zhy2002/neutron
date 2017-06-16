@@ -58,12 +58,10 @@ class ApplicationComponent extends React.PureComponent {
     }
 }
 
-ApplicationComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 function getCurrentModel(model) {
     let currentModel = model;
     let contentLevel = model.getContentLevel();
-    while (contentLevel--) {
+    while (contentLevel-- && currentModel) {
         if (currentModel.getSelectedIndex) {
             currentModel = currentModel.getItem(currentModel.getSelectedIndex());
         } else {

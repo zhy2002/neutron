@@ -62,14 +62,12 @@ class ApplicationErrorsComponent extends React.PureComponent {
     }
 }
 
-ApplicationErrorsComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 export default NeutronHoc(
     ApplicationErrorsComponent,
     (model) => {
-        const newState = {};
-        newState.count = model.getItemCount();
-        return newState;
+        const props = {};
+        props.count = model.getItemCount();
+        return props;
     },
     {
         onClose: PropTypes.func.isRequired

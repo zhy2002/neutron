@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import CommonUtil from '../../../neutron/CommonUtil';
 
 
 class AddListComponent extends React.PureComponent {
@@ -28,10 +27,11 @@ class AddListComponent extends React.PureComponent {
     }
 
     render() {
-        const model = this.props.model;
+        const props = this.props;
+        const model = props.model;
 
         return (
-            <div className={`${this.props.componentClass} row`}>
+            <div className={`${props.componentClass} ${props.className} row`}>
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-2">
@@ -44,13 +44,12 @@ class AddListComponent extends React.PureComponent {
                             </button>
                         </div>
                         <div className="col-md-10">
-                            {React.Children.count(this.props.children) === 0 && this.props.emptyMessage ?
+                            {React.Children.count(props.children) === 0 && props.emptyMessage ?
                                 <div key="no_result" className="alert alert-info">
-                                    {this.props.emptyMessage}
+                                    {props.emptyMessage}
                                 </div> :
-                                this.props.children
+                                props.children
                             }
-                            {}
                         </div>
                     </div>
                 </div>
@@ -59,13 +58,16 @@ class AddListComponent extends React.PureComponent {
     }
 }
 
-AddListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
-
 export default NeutronHoc(
     AddListComponent,
-    CommonUtil.mapToEmptyObject,
+    undefined,
     {
         children: PropTypes.any.isRequired,
-        emptyMessage: PropTypes.string
+        emptyMessage: PropTypes.string,
+        className: PropTypes.string
+    },
+    {
+        emptyMessage: null,
+        className: ''
     }
 );

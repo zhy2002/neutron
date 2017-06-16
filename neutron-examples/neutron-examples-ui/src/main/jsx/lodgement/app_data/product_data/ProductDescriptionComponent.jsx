@@ -73,5 +73,4 @@ function ProductDescriptionComponent(props) {
     );
 }
 
-ProductDescriptionComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(ProductDescriptionComponent);

@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import CreditCardComponent from './CreditCardComponent';
 import SimpleListComponent from '../common/SimpleListComponent';
 
@@ -7,11 +7,15 @@ function createItemComponent(item) {
     return <CreditCardComponent key={item.getUniqueId()} model={item}/>;
 }
 
-export default class CreditCardListComponent extends NeutronComponent {
-
-    render() {
-        return (
-            <SimpleListComponent title="Credit Cards" model={this.model} createItemComponent={createItemComponent}/>
-        );
-    }
+function CreditCardListComponent(props) {
+    return (
+        <SimpleListComponent
+            className={props.componentClass}
+            title="Credit Cards"
+            model={props.model}
+            createItemComponent={createItemComponent}
+        />
+    );
 }
+
+export default NeutronHoc(CreditCardListComponent);

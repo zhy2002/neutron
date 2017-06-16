@@ -13,7 +13,7 @@ function PropertyComponent(props) {
     const model = props.model;
 
     return (
-        <MainContentComponent className="property-component">
+        <MainContentComponent className={props.componentClass}>
             <div className="row">
                 <div className="col-md-4">
                     <CheckboxInputComponent model={model.getRentedFlagNode()}/>
@@ -58,5 +58,4 @@ function PropertyComponent(props) {
     );
 }
 
-PropertyComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(PropertyComponent);

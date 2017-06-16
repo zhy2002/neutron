@@ -5,7 +5,7 @@ import MainContentComponent from '../common/MainContentComponent';
 
 function AdditionalCommentComponent(props) {
     return (
-        <MainContentComponent className="additional-comment-component">
+        <MainContentComponent className={props.componentClass}>
             <div className="row">
                 <div className="col-md-8">
                     <TextAreaComponent model={props.model}/>
@@ -15,5 +15,4 @@ function AdditionalCommentComponent(props) {
     );
 }
 
-AdditionalCommentComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
 export default NeutronHoc(AdditionalCommentComponent);

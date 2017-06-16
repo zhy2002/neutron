@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
@@ -7,22 +7,25 @@ import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import FinancialItemComponent from './FinancialItemComponent';
 
 
-export default class CreditCardComponent extends NeutronComponent {
+class CreditCardComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.delete = () => {
-            if (window.confirm(`Are you sure you want to remove this ${this.model.getNodeLabel()}`)) {
-                this.model.getParent().removeItem(this.model);
+            const model = this.props.model;
+
+            if (window.confirm(`Are you sure you want to remove this ${model.getNodeLabel()}`)) {
+                model.getParent().removeItem(model);
             }
         };
     }
 
     render() {
-        const model = this.model;
+        const model = this.props.model;
+
         return (
-            <FinancialItemComponent model={model} className="credit-card-component">
+            <FinancialItemComponent model={model} className={this.props.componentClass}>
                 <div className="row">
                     <div className="col-md-4">
                         <SelectInputComponent model={model.getCreditCardTypeNode()}/>
@@ -54,3 +57,5 @@ export default class CreditCardComponent extends NeutronComponent {
         );
     }
 }
+
+export default NeutronHoc(CreditCardComponent);
