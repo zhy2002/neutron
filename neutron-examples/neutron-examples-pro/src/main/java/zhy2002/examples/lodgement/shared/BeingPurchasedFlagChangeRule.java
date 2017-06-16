@@ -41,7 +41,7 @@ public class BeingPurchasedFlagChangeRule extends UiNodeRule<BeingPurchasedFlagN
             usageNode.getOwnedOutrightFlagNode().setRequired(false);
             usageNode.getOwnedOutrightFlagNode().resetValue();
             usageNode.getOwnedOutrightFlagNode().setDisabled(true);
-        } else if (Boolean.TRUE.equals(value)) {
+        } else if (Boolean.FALSE.equals(value)) {
             usageNode.getOwnedOutrightFlagNode().setRequired(true);
             usageNode.getOwnedOutrightFlagNode().setDisabled(false);
         }

@@ -71,7 +71,7 @@ class PropertyMetadataBuilder<T> {
 
     private static @NotNull
     ChangeTrackingModeEnum getDefaultChangeTrackingMode(Class<?> valueClass) {
-        if (valueClass == Boolean.class || valueClass == Integer.class || valueClass == BigDecimal.class)
+        if (valueClass == Boolean.class || valueClass == String.class || valueClass == Integer.class || valueClass == BigDecimal.class)
             return ChangeTrackingModeEnum.Value;
 
         return ChangeTrackingModeEnum.Reference;

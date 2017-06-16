@@ -37,6 +37,8 @@ function NeutronHoc(WrappedComponent,
             newState.childNames = model.getChildNames(); //ensure list is re-rendered
         }
 
+        newState.disabled = props.disabled || model.isEffectivelyDisabled();
+
         //error message
         // newState.errorMessage = '';
         // const errorList = model.getValidationErrorList();
@@ -129,7 +131,8 @@ function NeutronHoc(WrappedComponent,
         {
             model: PropTypes.object,
             componentClass: PropTypes.string,
-            label: PropTypes.string
+            label: PropTypes.string,
+            disabled: PropTypes.bool
         },
         propTypes
     );
@@ -138,7 +141,8 @@ function NeutronHoc(WrappedComponent,
         {
             model: null,
             componentClass: '',
-            label: null
+            label: null,
+            disabled: false
         },
         defaultProps
     );

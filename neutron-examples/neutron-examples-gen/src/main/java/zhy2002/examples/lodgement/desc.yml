@@ -718,16 +718,16 @@ rootType:
           baseTypeName: BooleanUiNode
 
         - typeName: PropertyWeeklyRentNode
-          baseTypeName: BigDecimalUiNode
+          baseTypeName: BaseCurrencyNode
 
         - typeName: PropertyAddressNode
           baseTypeName: AddressNode
 
         - typeName: EstimatedMarketValueNode
-          baseTypeName: BigDecimalUiNode
+          baseTypeName: BaseCurrencyNode
 
         - typeName: ContractPriceNode
-          baseTypeName: BigDecimalUiNode
+          baseTypeName: BaseCurrencyNode
 
         - typeName: DefenseServiceFlagNode
           baseTypeName: BooleanUiNode

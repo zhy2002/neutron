@@ -32,8 +32,6 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
 
     protected BigDecimalUiNode(@NotNull P parent) {
         super(parent);
-
-        this.setText("");
     }
 
     public ValueParser<BigDecimal> getParser() {
@@ -73,8 +71,8 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
 
         //sync value_text and value states
         if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
-            BigDecimal val = getParser().parse(value.toString());
-            if (val == null && !ValueUtil.isEmpty(value.toString())) {
+            BigDecimal val = value == null ? null : getParser().parse(value.toString());
+            if (val == null && !ValueUtil.isEmpty((String)value)) {
                 setValueValid(false);
             } else {
                 setValueValid(true);
@@ -85,7 +83,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         } else if (VALUE_PROPERTY.getStateKey().equals(key)) {
             if (value == null) {
                 if (getParser().parse(getText()) != null) {
-                    setText("");
+                    setText(null);
                 }
             } else {
                 setValueValid(true);
@@ -115,9 +113,9 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     //region node properties
 
     public static final PropertyMetadata<BigDecimal> VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "value", BigDecimal.class);
-    public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.FALSE, ChangeTrackingModeEnum.Always);
+    public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.TRUE);
     public static final PropertyMetadata<Boolean> INTEGER_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "integerValue", Boolean.class, Boolean.FALSE);
-    public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class);
+    public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class, "");
     public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value must be in the range of [{min}, {max}].");
     public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
     public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);

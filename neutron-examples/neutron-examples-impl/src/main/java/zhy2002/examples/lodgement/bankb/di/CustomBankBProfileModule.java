@@ -4,10 +4,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
-import zhy2002.examples.lodgement.gen.node.LegalActionNodeRuleProvider;
-import zhy2002.examples.lodgement.gen.node.ProductCreditCardTypeNode;
-import zhy2002.examples.lodgement.gen.node.ProductPackageNameNode;
-import zhy2002.examples.lodgement.gen.node.ProductRewardsProgramNode;
+import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
 import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
@@ -58,6 +55,14 @@ abstract class CustomBankBProfileModule {
     @StringKey("productCreditCardTypeNode-test")
     abstract RuleProvider<ProductCreditCardTypeNode> provideProductCreditCardTypeNodeTestRuleProvider(
             ProductCreditCardTypeNodeTestRuleProvider impl
+    );
+
+    @Binds
+    @Named("ContractPriceNodeRuleProvider")
+    @IntoMap
+    @StringKey("contractPriceNode-test")
+    abstract RuleProvider<ContractPriceNode> provideContractPriceNodeTestRuleProvider(
+            ContractPriceNodeTestRuleProvider impl
     );
 }
 

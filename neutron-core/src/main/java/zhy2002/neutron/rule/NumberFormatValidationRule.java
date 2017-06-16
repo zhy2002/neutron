@@ -4,7 +4,6 @@ import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.node.BigDecimalUiNode;
 import zhy2002.neutron.util.CollectionUtil;
 

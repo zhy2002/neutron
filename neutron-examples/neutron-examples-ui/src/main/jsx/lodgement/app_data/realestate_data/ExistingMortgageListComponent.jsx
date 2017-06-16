@@ -1,26 +1,24 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import ExistingMortgageComponent from './ExistingMortgageComponent';
 
-export default class ExistingMortgageListComponent extends ListNeutronComponent {
+function ExistingMortgageListComponent(props) {
+    const model = props.model;
 
-    renderItems() {
-        const items = [];
-        this.model.getChildren().forEach((item) => {
-            items.push(<ExistingMortgageComponent key={item.getUniqueId()} model={item}/>);
-        });
-        return items;
-    }
+    if (props.disabled)
+        return null;
 
-    render() {
-        if (this.state.disabled)
-            return null;
-
-        return (
-            <AddListComponent model={this.model}>
-                {this.renderItems()}
-            </AddListComponent>
-        );
-    }
+    return (
+        <AddListComponent model={model}>
+            {
+                model.getChildren().map(
+                    item => <ExistingMortgageComponent key={item.getUniqueId()} model={item}/>
+                )
+            }
+        </AddListComponent>
+    );
 }
+
+ExistingMortgageListComponent.propTypes = NeutronHoc.suppressMissingPropTypes();
+export default NeutronHoc(ExistingMortgageListComponent);

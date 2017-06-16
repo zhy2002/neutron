@@ -2,6 +2,7 @@ package zhy2002.examples.lodgement.data;
 
 
 import zhy2002.neutron.data.BigDecimalOption;
+import zhy2002.neutron.data.BooleanOption;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.util.ValueUtil;
 
@@ -384,6 +385,11 @@ public class ApplicationNodeConstants {
             new StringOption("Sale Assets"),
             new StringOption("Reduce Expenditure"),
             new StringOption("My Application Reflect These Changes")
+    };
+
+    public static final BooleanOption[] PROPERTY_PURPOSE = {
+            new BooleanOption(Boolean.TRUE, "Owner Occupied"),
+            new BooleanOption(Boolean.FALSE, "Investment")
     };
 
     public static final BigDecimalOption[] MONTH_TYPE = {
