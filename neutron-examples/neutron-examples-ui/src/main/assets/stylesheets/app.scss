@@ -162,6 +162,7 @@ li.nav-dropdown-component.selected {
 .panel-component {
   .panel-heading {
     > a {
+      text-decoration: none;
       display: block;
       float: left;
 
@@ -175,6 +176,16 @@ li.nav-dropdown-component.selected {
     > .panel-title {
       float: left;
       margin-top: 2px;
+    }
+  }
+
+  &.panel-default {
+    .panel-heading {
+      > a {
+        .glyphicon {
+          color: #333;
+        }
+      }
     }
   }
 }
