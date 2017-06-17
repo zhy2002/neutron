@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
@@ -9,29 +9,21 @@ import ReferenceInputComponent from '../../../bootstrap3/ReferenceInputComponent
 import MainContentComponent from '../common/MainContentComponent';
 
 
-export default class PersonGeneralComponent extends NeutronComponent {
+class PersonGeneralComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.getOtherPersonApplicants = () => {
-            const result = [];
-            const me = this.model.getParent();
-            const list = me.getParent();
-            for (let i = 0; i < list.getItemCount(); i++) {
-                const person = list.getItem(i);
-                if (person !== me) {
-                    result.push(person);
-                }
-            }
-            return result;
+            const me = this.props.model.getParent();
+            return me.getParent().getChildren().filter(person => person !== me);
         };
     }
 
     render() {
         const model = this.props.model;
         return (
-            <MainContentComponent className="person-general-component">
+            <MainContentComponent className={this.props.componentClass}>
                 <div className="row">
                     <div className="col-md-6 col-lg-4">
                         <div className="row">
@@ -95,3 +87,5 @@ export default class PersonGeneralComponent extends NeutronComponent {
         );
     }
 }
+
+export default NeutronHoc(PersonGeneralComponent);

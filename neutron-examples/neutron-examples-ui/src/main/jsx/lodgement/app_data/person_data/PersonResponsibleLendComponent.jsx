@@ -1,12 +1,11 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import ResponsibleLendComponent from '../common/ResponsibleLendComponent';
 
-export default class PersonResponsibleLendComponent extends NeutronComponent {
-
-    render() {
-        return (
-            <ResponsibleLendComponent model={this.model}/>
-        );
-    }
+function PersonResponsibleLendComponent(props) {
+    return (
+        <ResponsibleLendComponent model={props.model}/>
+    );
 }
+
+export default NeutronHoc(PersonResponsibleLendComponent);

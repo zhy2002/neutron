@@ -24,7 +24,7 @@ class TabContentComponent extends React.PureComponent {
         const component = this.props.renderTabContent(className, model);
 
         return (
-            <div className={this.props.componentClass}>
+            <div className={`${this.props.componentClass} ${this.props.className}`}>
                 {component ||
                 <div className="container-fluid">
                     <div className="row">
@@ -47,6 +47,10 @@ export default NeutronHoc(
         return props;
     },
     {
-        renderTabContent: PropTypes.func.isRequired
+        renderTabContent: PropTypes.func.isRequired,
+        className: PropTypes.string
+    },
+    {
+        className: ''
     }
 );

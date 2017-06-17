@@ -1,18 +1,19 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import PersonSummaryComponent from './PersonSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
 import CommonUtil from '../../../neutron/CommonUtil';
 
 
-export default class PersonListComponent extends ListNeutronComponent {
+class PersonListComponent extends React.PureComponent {
 
     componentDidMount() {
         CommonUtil.delay().then(
             () => {
-                if (this.model.getItemCount() === 0) {
-                    this.model.createItem();
+                const model = this.props.model;
+                if (model.getItemCount() === 0) {
+                    model.createItem();
                 }
             }
         );
@@ -20,10 +21,10 @@ export default class PersonListComponent extends ListNeutronComponent {
 
     render() {
         return (
-            <MainContentComponent className="person-list-component">
-                <AddListComponent model={this.model}>
+            <MainContentComponent className={this.props.componentClass}>
+                <AddListComponent model={this.props.model}>
                     {
-                        this.model.getChildren().map(
+                        this.props.model.getChildren().map(
                             item => <PersonSummaryComponent key={item.getUniqueId()} model={item}/>
                         )
                     }
@@ -32,3 +33,5 @@ export default class PersonListComponent extends ListNeutronComponent {
         );
     }
 }
+
+export default NeutronHoc(PersonListComponent);

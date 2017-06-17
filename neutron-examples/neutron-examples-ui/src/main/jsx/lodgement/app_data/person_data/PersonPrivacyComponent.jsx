@@ -1,15 +1,14 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import PrivacyComponent from '../common/PrivacyComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
-export default class PersonPrivacyComponent extends NeutronComponent {
-
-    render() {
-        return (
-            <MainContentComponent className="person-privacy-component">
-                <PrivacyComponent model={this.model}/>
-            </MainContentComponent>
-        );
-    }
+function PersonPrivacyComponent(props) {
+    return (
+        <MainContentComponent className={props.componentClass}>
+            <PrivacyComponent model={props.model}/>
+        </MainContentComponent>
+    );
 }
+
+export default NeutronHoc(PersonPrivacyComponent);

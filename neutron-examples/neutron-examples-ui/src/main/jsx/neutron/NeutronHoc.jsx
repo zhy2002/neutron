@@ -94,7 +94,7 @@ function NeutronHoc(WrappedComponent,
             if (!this.state.model || this.state.model.getNodeStatus() !== window.GWT.NodeStatusEnum.Loaded)
                 return null;
 
-            //console.log(`rendering ${WrappedComponent.name}`);
+            //console.warn(`rendering ${WrappedComponent.name}`);
             return <WrappedComponent {...this.state} />;
         }
     }

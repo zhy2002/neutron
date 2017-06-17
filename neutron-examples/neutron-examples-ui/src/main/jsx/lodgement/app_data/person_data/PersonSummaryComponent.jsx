@@ -1,46 +1,39 @@
 import React from 'react';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import BooleanLabelComponent from '../common/BooleanLabelComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
+import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 
 
-export default class PersonSummaryComponent extends NeutronComponent {
+class PersonSummaryComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.selectItem = () => {
-            this.model.getContext().getRootNode().setContentNode(this.model);
+            const model = this.props.model;
+            model.getContext().getRootNode().setContentNode(model);
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.name = this.model.getNodeLabel();
-        const personGeneralNode = this.model.getPersonGeneralNode();
-        if (personGeneralNode) {
-            newState.isPrimary = personGeneralNode.getPrimaryApplicantFlagNode().getValue();
-        }
-        return newState;
-    }
-
     render() {
-        const model = this.model;
+        const model = this.props.model;
         const personGeneralNode = model.getPersonGeneralNode();
 
         return (
             <RemovePanelComponent className="person-summary-component" model={model}>
                 <div className="row">
                     <div className="col-xs-12">
-                        <div className="row person-name" >
+                        <div className="row person-name">
                             <div className="col-xs-12">
                                 <a tabIndex="0" onClick={this.selectItem}>
-                                    {this.state.name}
+                                    <NodeLabelComponent model={model.getPersonGeneralNode()}/>
                                 </a>
-                                {
-                                    this.state.isPrimary &&
-                                    <span> (Primary)</span>
-                                }
+                                <BooleanLabelComponent
+                                    model={personGeneralNode.getPrimaryApplicantFlagNode()}
+                                    trueLabel=" (Primary)"
+                                />
                             </div>
                         </div>
                         <div className="row">
@@ -56,5 +49,6 @@ export default class PersonSummaryComponent extends NeutronComponent {
             </RemovePanelComponent>
         );
     }
-
 }
+
+export default NeutronHoc(PersonSummaryComponent);

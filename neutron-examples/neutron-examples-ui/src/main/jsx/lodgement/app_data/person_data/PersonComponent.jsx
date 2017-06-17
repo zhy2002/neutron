@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TabContentComponent from '../common/TabContentComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
@@ -9,9 +9,10 @@ import PersonPrivacyComponent from './PersonPrivacyComponent';
 import PersonOtherIncomeListComponent from './PersonOtherIncomeListComponent';
 import PersonResponsibleLendComponent from './PersonResponsibleLendComponent';
 
-export default function PersonComponent(props) {
+function PersonComponent(props) {
     return (
         <TabContentComponent
+            className={props.componentClass}
             model={props.model}
             renderTabContent={(className, model) => {
                 if (className === 'PersonGeneralNode') {
@@ -45,6 +46,4 @@ export default function PersonComponent(props) {
     );
 }
 
-PersonComponent.propTypes = {
-    model: PropTypes.object.isRequired
-};
+export default NeutronHoc(PersonComponent);
