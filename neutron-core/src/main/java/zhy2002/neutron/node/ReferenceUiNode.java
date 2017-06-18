@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, String> {
 
@@ -94,6 +95,8 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
 
     static class NodeReferenceChangeRule extends UiNodeRule<ReferenceUiNode<?>> {
 
+        private Logger logger = Logger.getLogger("NodeReferenceChangeRule");
+
         @Inject
         NodeReferenceRegistry nodeReferenceRegistry;
 
@@ -118,6 +121,8 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
 
         private void loadReference(RefreshUiNodeEvent event) {
             nodeReferenceRegistry.update(getOwner(), null, getOwner().getValue());
+            logger.info("Loaded reference node: " + getOwner().getPath());
+
         }
 
         private void updateReference(StringStateChangeEvent event) {

@@ -135,7 +135,7 @@ public abstract class RootUiNode<P extends ParentUiNode<?>> extends ObjectUiNode
         protected Collection<EventBinding> createEventBindings() {
             return Collections.singletonList(
                     new BooleanStateChangeEventBinding(
-                            event -> Boolean.TRUE.equals(event.getNewValue()),
+                            event -> Boolean.TRUE.equals(event.getNewValue()) && !getContext().getRootNode().isLoading(),
                             this::clearValidationErrors,
                             DISABLED_PROPERTY.getStateKey()
                     )

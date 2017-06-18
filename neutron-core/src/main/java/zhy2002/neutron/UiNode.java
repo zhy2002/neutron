@@ -731,29 +731,20 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     //region ui node properties
 
     public static final PropertyMetadata<Boolean> LOAD_WITH_PARENT_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "loadWithParent", Boolean.class, Boolean.TRUE, ChangeModeEnum.DIRECT);
-    public static final PropertyMetadata<Boolean> HAS_VALUE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "hasValue", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> DISABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disabled", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> REQUIRED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "required", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> DISABLE_VALIDATION_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disableValidation", Boolean.class, null, null, null, null, Boolean.TRUE);
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
-    public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0);
-    public static final PropertyMetadata<Integer> READONLY_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "readonlyAncestorCount", Integer.class, 0);
+    public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0, null, ChangeModeEnum.DIRECT, false);
+    public static final PropertyMetadata<Integer> READONLY_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "readonlyAncestorCount", Integer.class, 0, null, ChangeModeEnum.DIRECT, false);
     public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
     public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class);
     public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class);
     public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
     public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
     public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "options", Object.class);
-
-    public final boolean getHasValue() {
-        return getStateValue(HAS_VALUE_PROPERTY);
-    }
-
-    public final void setHasValue(boolean value) {
-        setStateValue(HAS_VALUE_PROPERTY, value);
-    }
 
     @JsMethod
     public final int getIndex() {

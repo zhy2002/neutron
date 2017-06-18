@@ -8,7 +8,7 @@ function SelectAccountHolderListComponent(props) {
     const model = props.model;
     return (
         <div className={props.componentClass}>
-            <p>{this.state.label}</p>
+            <NodeLabelComponent model={model}/>
             <ul className="list-group">
                 {
                     model.getChildren().map(

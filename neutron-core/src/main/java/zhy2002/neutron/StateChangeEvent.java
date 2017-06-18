@@ -43,7 +43,7 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
         getOrigin().setStateValueDirectly(getStateKey(), getOldValue());
     }
 
-    StateChangeEvent<T> passThrough() {
+    final StateChangeEvent<T> passThrough() {
         return getOrigin().applyTemporary(this);
     }
 }

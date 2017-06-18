@@ -1,18 +1,13 @@
 package zhy2002.neutron;
 
 import jsinterop.annotations.JsMethod;
-import zhy2002.neutron.config.ContextConfiguration;
 import zhy2002.neutron.config.MetadataRegistry;
-import zhy2002.neutron.config.NodeConfiguration;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
-import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.event.BooleanStateChangeEvent;
-import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 
-import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A ParentUiNode whose children are exposed as properties.
@@ -52,7 +47,11 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
 
     @Override
     public final boolean hasValue() {
-        return getHasValue();
+        for (int i = 0; i < getChildCount(); i++) {
+            if (getChild(i).hasValue())
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -108,72 +107,4 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
     }
 
     //endregion
-
-    /**
-     * When any child becomes has_value mark this object node as has_value.
-     * If all children becomes not has_value mark this object node as not has_value.
-     */
-    static class UpdateObjectHasValueRule extends UiNodeRule<ObjectUiNode<?>> {
-
-        private final Set<String> noneEmptyChildNames = new HashSet<>();
-
-        @Inject
-        public UpdateObjectHasValueRule(@Owner ObjectUiNode<?> owner) {
-            super(owner);
-        }
-
-        @Override
-        protected Collection<EventBinding> createEventBindings() {
-            return Arrays.asList(
-                    new BooleanStateChangeEventBinding(
-                            event -> event.getOrigin() != null && event.getOrigin().getParent() == getOwner(),
-                            this::updateHasValue,
-                            UiNode.HAS_VALUE_PROPERTY.getStateKey(),
-                            PredefinedPhases.Post
-                    )
-            );
-        }
-
-        @Override
-        protected void onLoad() {
-            super.onLoad();
-
-            if (getOwner().getParent() == null || getOwner().getParent().getNodeStatus() == NodeStatusEnum.Loaded) {
-                if (initHasValue(getOwner()) && getOwner().getParent() instanceof ObjectUiNode) {
-                    getOwner().getParent().setHasValue(true);
-                }
-            }
-        }
-
-        private boolean initHasValue(UiNode<?> node) {
-            if (node instanceof LeafUiNode)
-                return node.hasValue();
-
-            ParentUiNode<?> parent = (ParentUiNode<?>) node;
-            boolean childHasValue = false;
-            for (int i = 0; i < parent.getChildCount(); i++) {
-                UiNode<?> child = parent.getChild(i);
-                if (initHasValue(child)) {
-                    childHasValue = true;
-                    noneEmptyChildNames.add(child.getName());
-                }
-            }
-
-            if (parent instanceof ObjectUiNode) {
-                parent.setStateValueDirectly(HAS_VALUE_PROPERTY.getStateKey(), childHasValue);
-            }
-
-            return parent.hasValue();
-        }
-
-        private void updateHasValue(BooleanStateChangeEvent event) {
-            if (Boolean.TRUE.equals(event.getNewValue())) {
-                noneEmptyChildNames.add(event.getOrigin().getName());
-            } else {
-                noneEmptyChildNames.remove(event.getOrigin().getName());
-            }
-
-            getOwner().setHasValue(!noneEmptyChildNames.isEmpty());
-        }
-    }
 }

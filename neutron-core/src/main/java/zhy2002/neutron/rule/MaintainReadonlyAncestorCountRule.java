@@ -2,13 +2,15 @@ package zhy2002.neutron.rule;
 
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.config.NeutronConstants;
+import zhy2002.neutron.util.TraversalUtil;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Add this rule to a parent if all descendants should be readonly when it is readonly.
@@ -16,6 +18,8 @@ import java.util.*;
  * When this parent node becomes not readonly, decrement readonly ancestor count of all descendants.
  */
 public class MaintainReadonlyAncestorCountRule extends UiNodeRule<ParentUiNode<?>> {
+
+    private static String PROCESSED_FLAG = MaintainReadonlyAncestorCountRule.class.getSimpleName();
 
     @Inject
     protected MaintainReadonlyAncestorCountRule(@Owner ParentUiNode<?> owner) {
@@ -26,14 +30,23 @@ public class MaintainReadonlyAncestorCountRule extends UiNodeRule<ParentUiNode<?
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
                 new BooleanStateChangeEventBinding(
-                        e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
+                        e -> e.getOrigin() == getOwner(),
                         this::updateCount,
                         UiNode.READONLY_PROPERTY.getStateKey()
                 ),
                 new RefreshEventBinding(
                         e -> e.getOrigin() == getOwner(),
-                        this::initCount,
+                        e -> this.initCount(),
                         NeutronConstants.NODE_LOADED_REFRESH_REASON
+                ),
+                new GenericNodeAddEventBinding( //a descendant is added
+                        e -> e.getOrigin() != getOwner(),
+                        e -> {
+                            if (!e.getFlags().contains(PROCESSED_FLAG)) {
+                                this.initCount(e.getOrigin());
+                                e.getFlags().add(PROCESSED_FLAG);
+                            }
+                        }
                 )
         );
     }
@@ -46,25 +59,35 @@ public class MaintainReadonlyAncestorCountRule extends UiNodeRule<ParentUiNode<?
             delta = -1;
         }
 
-        doUpdate(delta);
+        doUpdate(delta, getOwner().getChildren());
     }
 
-    private void initCount(RefreshUiNodeEvent event) {
-        if (getOwner().isReadonly()) {
-            doUpdate(1);
-        }
+    private void initCount() {
+        int delta = getOwner().isReadonly() ? 1 : 0;
+        delta += getOwner().getReadonlyAncestorCount();
+        doUpdate(delta, getOwner().getChildren());
     }
 
-    private void doUpdate(int delta) {
-        Queue<UiNode<?>> nodes = new ArrayDeque<>();
-        nodes.addAll(Arrays.asList(getOwner().getChildren()));
-        while (!nodes.isEmpty()) {
-            UiNode<?> node = nodes.poll();
-            node.setReadonlyAncestorCount(node.getReadonlyAncestorCount() + delta);
-            if (node instanceof ParentUiNode) {
-                ParentUiNode<?> parent = (ParentUiNode<?>) node;
-                nodes.addAll(Arrays.asList(parent.getChildren()));
-            }
-        }
+    private void initCount(UiNode<?> node) {
+        assert node.getParent() != null;
+        int delta = node.getParent().isReadonly() ? 1 : 0;
+        delta += node.getParent().getReadonlyAncestorCount();
+        doUpdate(delta, node);
+    }
+
+    private void doUpdate(final int delta, UiNode<?>... nodes) {
+        if (delta == 0)
+            return;
+
+        TraversalUtil.bfs(
+                node -> {
+                    boolean old = node.isEffectivelyReadonly();
+                    node.setReadonlyAncestorCount(node.getReadonlyAncestorCount() + delta);
+                    if (node.isEffectivelyReadonly() != old) {
+                        node.queueNotification(NeutronConstants.STATE_CHANGE_NOTIFICATION, null);
+                    }
+                },
+                nodes
+        );
     }
 }

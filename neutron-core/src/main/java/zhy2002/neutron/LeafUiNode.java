@@ -96,15 +96,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     }
 
     @Override
-    protected void setStateValueDirectly(String key, Object value) {
-        super.setStateValueDirectly(key, value);
-
-        if (getValuePropertyMetadata().getStateKey().equals(key) && getNodeStatus() == NodeStatusEnum.Loaded) {
-            setHasValue(hasValue());
-        }
-    }
-
-    @Override
     public void resetValue() {
         T initialValue = getPreStateValue(getValuePropertyMetadata());
         setValue(initialValue);

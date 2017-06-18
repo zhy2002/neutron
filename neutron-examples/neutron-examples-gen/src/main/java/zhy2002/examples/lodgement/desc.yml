@@ -941,6 +941,8 @@ rootType:
 
           - typeName: ProductCardHolderNode
             baseTypeName: ObjectUiNode
+            rules:
+            - {typeName: MaintainDisabledAncestorCountRule}
             children:
             - {typeName: productCardHolderNameNode}
             - {typeName: ProductRewardsProgramNode}
@@ -1157,21 +1159,19 @@ commonTypes:
   baseTypeName: ObjectUiNode
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
-  children:
-  - {typeName: AddressLineNode}
-  - {typeName: SuburbNode}
-  - {typeName: PostcodeNode}
-  - {typeName: CountryNode}
   rules:
   - {typeName: UpdateAddressRefListRule, existing: false}
   - {typeName: ObjectValueRequiredValidationRule}
   - {typeName: MaintainDisabledAncestorCountRule}
   - {typeName: MaintainReadonlyAncestorCountRule}
+  children:
+  - {typeName: AddressLineNode}
+  - {typeName: SuburbNode}
+  - {typeName: PostcodeNode}
+  - {typeName: CountryNode}
   childTypes:
   - typeName: AddressLineNode
     baseTypeName: StringUiNode
-    config:
-    - {property: '@required', value: 'true'}
 
   - typeName: SuburbNode
     baseTypeName: StringUiNode
@@ -1186,6 +1186,8 @@ commonTypes:
   baseTypeName: ObjectUiNode
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
+  rules:
+  - {typeName: ObjectValueRequiredValidationRule}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}
@@ -1356,10 +1358,10 @@ commonTypes:
   config:
   - {property: '@keepItemsOnReset', value: 'true'}
   rules:
-  - {typeName: AddExistingPeopleRule, existing: true}
-  - {typeName: AddNewPersonRule, existing: true}
-  - {typeName: AddNewThirdPartyApplicantRule, existing: true}
-  - {typeName: MaintainDisabledAncestorCountRule, existing: true}
+  - {typeName: AddExistingPeopleRule}
+  - {typeName: AddNewPersonRule}
+  - {typeName: AddNewThirdPartyApplicantRule}
+  - {typeName: MaintainDisabledAncestorCountRule}
   itemTypeName: SelectRelatedPersonNode
   childTypes:
   - typeName: SelectRelatedPersonNode

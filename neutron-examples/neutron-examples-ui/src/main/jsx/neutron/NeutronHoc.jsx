@@ -13,31 +13,17 @@ function NeutronHoc(WrappedComponent,
     function extractNewState(props) {
         const newState = Object.assign({}, props); //pass through all
 
+        newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
+
         const model = newState.model;
         if (!model)
             return newState;
-
-        if (!newState.componentClass) {
-            newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
-        }
-
-        //label
-        if (props.label) {
-            newState.label = props.label;
-        } else {
-            newState.label = model.getNodeLabel();
-        }
-        if (model.isDirty()) {
-            newState.label = `${newState.label} *`;
-        } else {
-            newState.label = `${newState.label} `;
-        }
 
         if (model.getChildNames) {
             newState.childNames = model.getChildNames(); //ensure list is re-rendered
         }
 
-        newState.disabled = props.disabled || model.isEffectivelyDisabled();
+        newState.disabled = newState.disabled || model.isEffectivelyDisabled();
 
         if (mapModelToProps) {
             return Object.assign(newState, mapModelToProps(model));
@@ -105,7 +91,6 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.propTypes = Object.assign(
         {
             model: PropTypes.object,
-            componentClass: PropTypes.string,
             label: PropTypes.string,
             disabled: PropTypes.bool
         },
@@ -115,7 +100,6 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.defaultProps = Object.assign(
         {
             model: null,
-            componentClass: '',
             label: null,
             disabled: false
         },

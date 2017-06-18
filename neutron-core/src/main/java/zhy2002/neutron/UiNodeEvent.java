@@ -3,7 +3,9 @@ package zhy2002.neutron;
 import zhy2002.neutron.config.NeutronConstants;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The base class for all UiNode events.
@@ -35,6 +37,8 @@ public abstract class UiNodeEvent {
      * Cache the event key.
      */
     private UiNodeEventKey<?> eventKey;
+
+    private Set<String> flags;
 
     /**
      * Data associated with this event.
@@ -102,6 +106,13 @@ public abstract class UiNodeEvent {
                 result.add(activation);
             }
         }
+    }
+
+    public Set<String> getFlags() {
+        if (flags == null) {
+            flags = new HashSet<>();
+        }
+        return flags;
     }
 
     @Override

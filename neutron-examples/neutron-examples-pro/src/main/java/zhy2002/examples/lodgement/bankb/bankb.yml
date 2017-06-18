@@ -1143,7 +1143,6 @@ commonTypes:
 - typeName: MonthYearNode
   rules:
   - {typeName: MonthYearNotInFutureRule, existing: true}
-  - {typeName: ObjectValueRequiredValidationRule, existing: true}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}

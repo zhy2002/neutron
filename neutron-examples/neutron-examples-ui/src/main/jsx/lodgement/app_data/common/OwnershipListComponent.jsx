@@ -4,9 +4,8 @@ import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 
-function renderItems() {
+function renderItems(model) {
     const result = [];
-    const model = this.model;
     model.getChildren().forEach(
         (node) => {
             const referencedNode = node.getApplicantReferenceNode().getReferencedNode();
@@ -46,11 +45,20 @@ function OwnershipListComponent(props) {
                     <span>Total:</span>
                 </div>
                 <div className="pull-right ownership-percentage-wrapper total-percentage-container">
-                    <NumberInputComponent model={model.getTotalOwnership()} readonly/>
+                    <p>
+                        {props.totalOwnership}%
+                    </p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default NeutronHoc(OwnershipListComponent);
+export default NeutronHoc(
+    OwnershipListComponent,
+    (model) => {
+        const props = {};
+        props.totalOwnership = model.getTotalOwnership() ? model.getTotalOwnership().toString() : 'NA';
+        return props;
+    }
+);

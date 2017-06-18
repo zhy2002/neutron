@@ -5,9 +5,11 @@ import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
+import zhy2002.neutron.util.TraversalUtil;
 
 import javax.inject.Inject;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Add this rule to a parent node if all descendants should be disabled when it is disabled.
@@ -15,6 +17,8 @@ import java.util.*;
  * When this parent node becomes not disabled, decrement disabled ancestor count of all descendants.
  */
 public class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?>> {
+
+    private static String PROCESSED_FLAG = MaintainDisabledAncestorCountRule.class.getSimpleName();
 
     @Inject
     protected MaintainDisabledAncestorCountRule(@Owner ParentUiNode<?> owner) {
@@ -24,19 +28,24 @@ public class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Arrays.asList(
-                new BooleanStateChangeEventBinding(
-                        e -> e.getOrigin() == getOwner() && !Objects.equals(e.getOldValue(), e.getNewValue()),
+                new BooleanStateChangeEventBinding(//owner node is enabled or disabled
+                        e -> e.getOrigin() == getOwner(),
                         this::updateCount,
                         UiNode.DISABLED_PROPERTY.getStateKey()
                 ),
-                new RefreshEventBinding(
+                new RefreshEventBinding( //owner node is loaded
                         e -> e.getOrigin() == getOwner(),
                         e -> this.initCount(),
                         NeutronConstants.NODE_LOADED_REFRESH_REASON
                 ),
-                new GenericNodeAddEventBinding(
-                        e -> e.getOrigin().getParent() == getOwner(),
-                        e -> this.initCount()
+                new GenericNodeAddEventBinding( //a descendant is added
+                        e -> e.getOrigin() != getOwner(),
+                        e -> {
+                            if (!e.getFlags().contains(PROCESSED_FLAG)) {
+                                this.initCount(e.getOrigin());
+                                e.getFlags().add(PROCESSED_FLAG);
+                            }
+                        }
                 )
         );
     }
@@ -48,28 +57,37 @@ public class MaintainDisabledAncestorCountRule extends UiNodeRule<ParentUiNode<?
         } else {
             delta = -1;
         }
-
-        doUpdate(delta);
+        doUpdate(delta, getOwner().getChildren());
     }
 
     private void initCount() {
-        int delta = getOwner().getDisabledAncestorCount();
-        if (getOwner().isDisabled()) {
-            delta += 1;
-        }
-        doUpdate(delta);
+        int delta = getOwner().isDisabled() ? 1 : 0;
+        delta += getOwner().getDisabledAncestorCount();
+        doUpdate(delta, getOwner().getChildren());
     }
 
-    private void doUpdate(int delta) {
-        Queue<UiNode<?>> nodes = new ArrayDeque<>();
-        nodes.addAll(Arrays.asList(getOwner().getChildren()));
-        while (!nodes.isEmpty()) {
-            UiNode<?> node = nodes.poll();
-            node.setDisabledAncestorCount(node.getDisabledAncestorCount() + delta);
-            if (node instanceof ParentUiNode) {
-                ParentUiNode<?> parent = (ParentUiNode<?>) node;
-                nodes.addAll(Arrays.asList(parent.getChildren()));
-            }
+    private void initCount(UiNode<?> node) {
+        assert node.getParent() != null;
+        int delta = node.getParent().getDisabledAncestorCount();
+        if (node.getParent().isDisabled()) {
+            delta += 1;
         }
+        doUpdate(delta, node);
+    }
+
+    private void doUpdate(final int delta, UiNode<?>... nodes) {
+        if (delta == 0)
+            return;
+
+        TraversalUtil.bfs(
+                node -> {
+                    boolean old = node.isEffectivelyDisabled();
+                    node.setDisabledAncestorCount(node.getDisabledAncestorCount() + delta);
+                    if (node.isEffectivelyDisabled() != old) {
+                        node.queueNotification(NeutronConstants.STATE_CHANGE_NOTIFICATION, null);
+                    }
+                },
+                nodes
+        );
     }
 }

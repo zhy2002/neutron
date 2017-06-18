@@ -77,7 +77,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         super.addChild(child);
 
         child.setIndex(getItemCount() - 1);
-        setHasValue(true);
     }
 
     @Override
@@ -89,8 +88,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         for (int i = index; i < getItemCount(); i++) {
             getItem(i).setIndex(i);
         }
-
-        setHasValue(hasValue());
 
         int selectedIndex = getSelectedIndex();
         if (selectedIndex >= getItemCount()) {
