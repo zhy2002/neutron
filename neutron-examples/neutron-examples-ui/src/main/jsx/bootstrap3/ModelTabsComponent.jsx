@@ -1,35 +1,26 @@
 import React from 'react';
-import ListNeutronComponent from './ListNeutronComponent';
+import NeutronHoc from '../neutron/NeutronHoc';
 import NavPillsComponent from './NavPillsComponent';
 
-export default class ModelTabsComponent extends ListNeutronComponent {
+class ModelTabsComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.selectTab = (item) => {
-            this.model.setSelectedName(item.getName());
+            this.props.model.setSelectedName(item.getName());
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-
-        const selectedName = this.model.getSelectedName();
-        newState.selectedItem = this.model.getChildByName(selectedName);
-
-        return newState;
-    }
-
     render() {
-        const model = this.model;
+        const model = this.props.model;
         const tabItems = model.getChildren();
 
         return (
             <div className="model-tabs-component">
                 <NavPillsComponent
                     items={tabItems}
-                    selectedItem={this.state.selectedItem}
+                    selectedItem={this.props.selectedItem}
                     onSelect={this.selectTab}
                     large
                 />
@@ -38,3 +29,12 @@ export default class ModelTabsComponent extends ListNeutronComponent {
     }
 }
 
+export default NeutronHoc(
+    ModelTabsComponent,
+    (model) => {
+        const props = {};
+        const selectedName = model.getSelectedName();
+        props.selectedItem = model.getChildByName(selectedName);
+        return props;
+    }
+);

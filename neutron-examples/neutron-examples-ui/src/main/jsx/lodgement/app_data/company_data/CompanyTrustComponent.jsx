@@ -1,14 +1,13 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TrustComponent from '../common/TrustComponent';
 
-export default class CompanyTrustComponent extends NeutronComponent {
-
-    render() {
-        return (
-            <div className="company-trust-component">
-                <TrustComponent model={this.model}/>
-            </div>
-        );
-    }
+function CompanyTrustComponent(props) {
+    return (
+        <div className={props.componentClass}>
+            <TrustComponent model={props.model}/>
+        </div>
+    );
 }
+
+export default NeutronHoc(CompanyTrustComponent);

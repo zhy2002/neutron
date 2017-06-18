@@ -38,16 +38,26 @@ public class NodeFinder {
         return (N) node.getParent().getChild(name);
     }
 
-//    @SuppressWarnings("unchecked")
-//    public <N extends UiNode<?>> N findAncestor(UiNode<?> node, Class<N> ancestorType) {
-//        UiNode<?> ancestor = node.getParent();
-//        while (ancestor != null) {
-//            if (ancestorType.isInstance(ancestor))
-//                break;
-//            ancestor = ancestor.getParent();
-//        }
-//        return (N) ancestor;
-//    }
+    @SuppressWarnings("unchecked")
+    public <N extends UiNode<?>> N findAncestor(UiNode<?> node, Class<N> ancestorType) {
+        UiNode<?> ancestor = node.getParent();
+        while (ancestor != null) {
+            if (isInstanceOf(ancestor, ancestorType))
+                break;
+            ancestor = ancestor.getParent();
+        }
+        return (N) ancestor;
+    }
+
+    private boolean isInstanceOf(UiNode<?> ancestor, Class<?> ancestorType) {
+        Class<?> clazz = ancestor.getClass();
+        do {
+            if (clazz == ancestorType)
+                return true;
+            clazz = clazz.getSuperclass();
+        } while (clazz != null);
+        return false;
+    }
 
     public void registerNode(UiNode<?> node) {
         mapPathToNode.put(node.getPath(), node);

@@ -1,32 +1,31 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import CompanySummaryComponent from './CompanySummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
-export default class CompanyListComponent extends ListNeutronComponent {
+function renderItems(model) {
+    const result = [];
+    model.getChildren().map(
+        item => <CompanySummaryComponent key={item.getUniqueId()} model={item}/>
+    );
 
-    renderItems() {
-        const result = [];
-        this.model.getChildren().forEach(
-            (item) => {
-                result.push(<CompanySummaryComponent key={item.getUniqueId()} model={item}/>);
-            }
-        );
-
-        if (result.length === 0) {
-            result.push(<div key="no_result" className="alert alert-info">No company in this application.</div>);
-        }
-        return result;
+    if (result.length === 0) {
+        result.push(<div key="no_result" className="alert alert-info">No company in this application.</div>);
     }
-
-    render() {
-        return (
-            <MainContentComponent className="company-list-component">
-                <AddListComponent model={this.model}>
-                    {this.renderItems()}
-                </AddListComponent>
-            </MainContentComponent>
-        );
-    }
+    return result;
 }
+
+function CompanyListComponent(props) {
+    const model = props.model;
+
+    return (
+        <MainContentComponent className={props.componentClass}>
+            <AddListComponent model={model}>
+                {renderItems(model)}
+            </AddListComponent>
+        </MainContentComponent>
+    );
+}
+
+export default NeutronHoc(CompanyListComponent);

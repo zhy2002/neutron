@@ -370,7 +370,8 @@ public class ApplicationNodeConstants {
     public static final StringOption[] COMPANY_OTHER_INCOME_TYPE = {
             new StringOption(""),
             new StringOption("Add Back"),
-            new StringOption("Company Profit Before Tax")
+            new StringOption("Company Profit Before Tax"),
+            new StringOption("Other Income")
     };
 
     public static final StringOption[] OTHER_INCOME_ADD_BACK_TYPE = {

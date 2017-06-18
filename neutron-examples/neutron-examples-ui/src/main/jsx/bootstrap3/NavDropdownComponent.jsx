@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NodeLabelComponent from './NodeLabelComponent';
-import ListNeutronComponent from './ListNeutronComponent';
+import NeutronComponent from './NeutronComponent';
 
 
-export default class NavDropdownComponent extends ListNeutronComponent {
+export default class NavDropdownComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);

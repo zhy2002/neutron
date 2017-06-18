@@ -1,22 +1,23 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
 
-export default class CreditHistoryComponent extends NeutronComponent {
+class CreditHistoryComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.removeItem = () => {
+            const model = this.props.model;
             if (window.confirm('Are you sure you want to delete this employment record?')) {
-                this.model.getParent().removeItem(this.model);
+                model.getParent().removeItem(model);
             }
         };
     }
 
     render() {
-        const model = this.model;
+        const model = this.props.model;
 
         return (
             <div className="row">
@@ -33,3 +34,5 @@ export default class CreditHistoryComponent extends NeutronComponent {
         );
     }
 }
+
+export default NeutronHoc(CreditHistoryComponent);

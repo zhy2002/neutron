@@ -1,46 +1,40 @@
 import React from 'react';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import BooleanLabelComponent from '../common/BooleanLabelComponent';
+import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
 
-export default class CompanySummaryComponent extends NeutronComponent {
+class CompanySummaryComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.selectItem = () => {
-            this.model.getContext().getRootNode().setContentNode(this.model);
+            const model = this.props.model;
+            model.getContext().getRootNode().setContentNode(model);
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.name = this.model.getNodeLabel();
-        const companyGeneralNode = this.model.getCompanyGeneralNode();
-        if (companyGeneralNode) {
-            newState.isPrimary = companyGeneralNode.getCompanyPrimaryApplicantFlagNode().getValue();
-        }
-        return newState;
-    }
-
     render() {
-        const model = this.model;
+        const props = this.props;
+        const model = props.model;
         const companyGeneralNode = model.getCompanyGeneralNode();
 
         return (
-            <RemovePanelComponent className="company-summary-component" model={model}>
+            <RemovePanelComponent className={props.componentClass} model={model}>
                 <div className="row">
                     <div className="col-xs-12">
                         <div className="row company-name">
                             <div className="col-xs-12">
                                 <a tabIndex="0" onClick={this.selectItem}>
-                                    {this.state.name}
+                                    <NodeLabelComponent model={model}/>
                                 </a>
-                                {
-                                    this.state.isPrimary &&
-                                    <span> (Primary)</span>
-                                }
+                                <BooleanLabelComponent
+                                    model={companyGeneralNode}
+                                    trueLabel=" (Primary)"
+                                />
                             </div>
                         </div>
                         <div className="row">
@@ -57,3 +51,5 @@ export default class CompanySummaryComponent extends NeutronComponent {
         );
     }
 }
+
+export default NeutronHoc(CompanySummaryComponent);

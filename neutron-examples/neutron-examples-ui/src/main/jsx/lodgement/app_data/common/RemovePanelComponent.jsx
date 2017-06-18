@@ -1,45 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import ItemIndexComponent from '../../../bootstrap3/ItemIndexComponent';
 import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
 
 
-export default class RemovePanelComponent extends NeutronComponent {
+class RemovePanelComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.removeItem = () => {
+            const model = this.props.model;
             if (window.confirm(
-                    `Are you sure you want to delete this ${this.model.getParent().getNodeLabel()} record?`
+                    `Are you sure you want to delete this ${model.getParent().getNodeLabel()} record?`
                 )
             ) {
-                this.model.getParent().removeItem(this.model);
+                model.getParent().removeItem(model);
             }
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.index = this.model.getIndex();
-        return newState;
-    }
-
     render() {
+        const props = this.props;
+
         return (
-            <div className={`row remove-panel-component ${this.props.className}`}>
+            <div className={`${props.componentClass} row ${props.className}`}>
                 <div className="col-sm-12">
                     <div className="well">
                         <CloseIconComponent onClose={this.removeItem} title="Remove"/>
                         <h5>
                             <ItemIndexComponent
-                                index={this.model.getIndex()}
-                                model={this.model.getParent()}
+                                index={props.index}
+                                model={props.model.getParent()}
                             />
                         </h5>
                         <div>
-                            {this.props.children}
+                            {props.children}
                         </div>
                     </div>
                 </div>
@@ -48,7 +45,15 @@ export default class RemovePanelComponent extends NeutronComponent {
     }
 }
 
-RemovePanelComponent.propTypes = {
-    className: PropTypes.string.isRequired,
-    children: PropTypes.any.isRequired
-};
+export default NeutronHoc(
+    RemovePanelComponent,
+    (model) => {
+        const props = {};
+        props.index = model.getIndex();
+        return props;
+    },
+    {
+        className: PropTypes.string.isRequired,
+        children: PropTypes.any.isRequired
+    }
+);

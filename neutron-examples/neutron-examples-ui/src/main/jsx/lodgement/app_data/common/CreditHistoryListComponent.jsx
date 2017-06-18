@@ -1,9 +1,9 @@
 import React from 'react';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
+import NeutronComponent from '../../../bootstrap3/NeutronComponent';
 import CreditHistoryComponent from './CreditHistoryComponent';
 
 
-export default class CreditHistoryListComponent extends ListNeutronComponent {
+export default class CreditHistoryListComponent extends NeutronComponent {
 
     constructor(props) {
         super(props);

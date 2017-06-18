@@ -64,6 +64,14 @@ abstract class CustomBankBProfileModule {
     abstract RuleProvider<ContractPriceNode> provideContractPriceNodeTestRuleProvider(
             ContractPriceNodeTestRuleProvider impl
     );
+
+    @Binds
+    @Named("OtherIncomeTypeNodeRuleProvider")
+    @IntoMap
+    @StringKey("otherIncomeTypeNode-test")
+    abstract RuleProvider<OtherIncomeTypeNode> provideOtherIncomeTypeNodeTestRuleProvider(
+            OtherIncomeTypeNodeTestRuleProvider impl
+    );
 }
 
 

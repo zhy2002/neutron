@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import PanelComponent from '../../../bootstrap3/PanelComponent';
-import ListNeutronComponent from '../../../bootstrap3/ListNeutronComponent';
 
-class SimpleListComponent extends ListNeutronComponent {
+class SimpleListComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);

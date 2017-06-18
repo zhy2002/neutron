@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TabContentComponent from '../common/TabContentComponent';
 import CompanyTrustComponent from './CompanyTrustComponent';
 import CompanyPrivacyComponent from './CompanyPrivacyComponent';
@@ -8,9 +8,10 @@ import CompanyResponsibleLendComponent from './CompanyResponsibleLendComponent';
 import CompanyOtherIncomeListComponent from './CompanyOtherIncomeListComponent';
 import CompanyContactComponent from './CompanyContactComponent';
 
-export default function CompanyComponent(props) {
+function CompanyComponent(props) {
     return (
         <TabContentComponent
+            className={props.componentClass}
             model={props.model}
             renderTabContent={
                 (className, model) => {
@@ -40,6 +41,4 @@ export default function CompanyComponent(props) {
     );
 }
 
-CompanyComponent.propTypes = {
-    model: PropTypes.object.isRequired
-};
+export default NeutronHoc(CompanyComponent);
