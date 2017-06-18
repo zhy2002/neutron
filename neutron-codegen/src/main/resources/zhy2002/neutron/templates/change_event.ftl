@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.event;
-
+/* template name: change_event.ftl */
 import zhy2002.neutron.*;
 import ${targetPackage}.data.*;
 

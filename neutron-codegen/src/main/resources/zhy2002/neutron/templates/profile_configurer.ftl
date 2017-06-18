@@ -1,5 +1,5 @@
 package ${targetPackage}.${profileInfo.typeName?lower_case}.gen;
-
+/* template name: profile_configurer.ftl */
 import ${targetPackage}.gen.*;
 import ${targetPackage}.data.*;
 import ${targetPackage}.gen.node.*;

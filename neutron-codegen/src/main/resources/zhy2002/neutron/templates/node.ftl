@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.node;
-
+/* template name: node.ftl */
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 <#if hasComponent>

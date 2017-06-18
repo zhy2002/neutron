@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.di;
-
+/* template name: manifest_module.ftl */
 import dagger.*;
 import dagger.multibindings.IntoSet;
 import zhy2002.neutron.event.EventRegistry;

@@ -1,5 +1,5 @@
 package ${targetPackage}.gen;
-
+/* template name: configurer.ftl */
 import ${targetPackage}.gen.node.*;
 import ${targetPackage}.data.*;
 import zhy2002.neutron.config.*;

@@ -1,4 +1,5 @@
 package ${targetPackage}.gen.di;
+/* template name: component.ftl */
 import dagger.Subcomponent;
 import zhy2002.neutron.di.ComponentScope;
 import ${targetPackage}.gen.node.*;

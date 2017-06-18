@@ -559,10 +559,6 @@ rootType:
       - {propertyName: minValue, value: new BigDecimal("0")}
 
   - typeName: RealEstateListNode
-    init:
-    - {propertyName: minItemCount, value: 1}
-    rules:
-    - {typeName: AutoCreateListItemRule, existing: true}
     childTypes:
     - typeName: RealEstateNode
       init:

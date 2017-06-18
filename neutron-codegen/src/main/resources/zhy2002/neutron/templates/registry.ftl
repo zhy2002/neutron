@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.event;
-
+/* template name: registry.ftl */
 import ${targetPackage}.data.*;
 import zhy2002.neutron.event.EventRegistryImpl;
 import javax.inject.*;

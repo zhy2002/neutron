@@ -1,5 +1,5 @@
 package ${targetPackage}.gen.event;
-
+/* template name: add_event.ftl */
 import ${targetPackage}.gen.node.${typeName};
 import zhy2002.neutron.NodeAddEvent;
 

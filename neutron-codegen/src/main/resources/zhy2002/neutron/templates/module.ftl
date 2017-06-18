@@ -1,4 +1,5 @@
 package ${targetPackage}.gen.di;
+/* template name: module.ftl */
 import dagger.*;
 import dagger.multibindings.*;
 import javax.inject.*;

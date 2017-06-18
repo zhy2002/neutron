@@ -1,5 +1,5 @@
 package ${targetPackage}.gen;
-
+/* template name: context.ftl */
 import zhy2002.neutron.*;
 import zhy2002.neutron.config.*;
 import javax.validation.constraints.NotNull;

@@ -594,6 +594,10 @@ rootType:
 
   - typeName: RealEstateListNode
     baseTypeName: ListUiNode
+    config:
+    - {property: '@minItemCount', value: 1}
+    rules:
+    - {typeName: AutoCreateListItemRule}
     itemTypeName: RealEstateNode
     childTypes:
     - typeName: RealEstateNode
