@@ -1,5 +1,7 @@
 package zhy2002.neutron;
 
+import java.util.List;
+
 /**
  * This event is fired when a state property of a node is setInstance.
  */
@@ -41,6 +43,12 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     @Override
     public void revert() {
         getOrigin().setStateValueDirectly(getStateKey(), getOldValue());
+    }
+
+    @Override
+    void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor) {
+        super.addBindingActivations(result, anchor);
+        addBindingActivations(result, anchor, new UiNodeEventKey<>(StateChangeEvent.class, this.getSubject()));
     }
 
     final StateChangeEvent<T> passThrough() {

@@ -121,7 +121,7 @@ public abstract class ReferenceUiNode<P extends ParentUiNode<?>> extends LeafUiN
 
         private void loadReference(RefreshUiNodeEvent event) {
             nodeReferenceRegistry.update(getOwner(), null, getOwner().getValue());
-            logger.info("Loaded reference node: " + getOwner().getPath());
+            logger.fine("Loaded reference node: " + getOwner().getPath());
 
         }
 

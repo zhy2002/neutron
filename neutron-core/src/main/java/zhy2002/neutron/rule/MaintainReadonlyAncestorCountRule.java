@@ -4,6 +4,7 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.*;
 import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.AnyNodeAddEventBinding;
 import zhy2002.neutron.event.BooleanStateChangeEvent;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
 import zhy2002.neutron.util.TraversalUtil;
@@ -39,7 +40,7 @@ public class MaintainReadonlyAncestorCountRule extends UiNodeRule<ParentUiNode<?
                         e -> this.initCount(),
                         NeutronConstants.NODE_LOADED_REFRESH_REASON
                 ),
-                new GenericNodeAddEventBinding( //a descendant is added
+                new AnyNodeAddEventBinding( //a descendant is added
                         e -> e.getOrigin() != getOwner(),
                         e -> {
                             if (!e.getFlags().contains(PROCESSED_FLAG)) {

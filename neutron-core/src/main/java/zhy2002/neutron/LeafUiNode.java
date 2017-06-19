@@ -4,7 +4,6 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.exception.NotImplementedException;
 
 import javax.inject.Inject;
@@ -171,9 +170,9 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
             return Collections.singleton(
                     new GenericStateChangeEventBinding<>(
+                            stateChangeEvent.getClass(),
                             e -> getContext().isDirtyCheckEnabled(),
                             this::updateSelfDirty,
-                            stateChangeEvent.getClass(),
                             getOwner().getValuePropertyMetadata().getStateKey(),
                             PredefinedPhases.Pre //need to do this in pre phase to capture original value
                     )

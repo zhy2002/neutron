@@ -1,10 +1,14 @@
 package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.gen.node.*;
-import zhy2002.neutron.*;
-import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.RefreshEventBinding;
+import zhy2002.neutron.UiNodeEvent;
+import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.config.NeutronConstants;
+import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.AnyNodeRemoveEventBinding;
+import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -30,7 +34,7 @@ public class FinancialPositionChangedRule extends UiNodeRule<FinancialPositionNo
                         this::updateValues,
                         NeutronConstants.NODE_LOADED_REFRESH_REASON
                 ),
-                new GenericNodeRemoveEventBinding(
+                new AnyNodeRemoveEventBinding(
                         this::updateValues
                 )
         );

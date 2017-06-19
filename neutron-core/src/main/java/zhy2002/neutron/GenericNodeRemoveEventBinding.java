@@ -7,24 +7,29 @@ import javax.validation.constraints.NotNull;
 /**
  * Match any NodeRemoveEvent.
  */
-public final class GenericNodeRemoveEventBinding extends AbstractEventBinding<NodeRemoveEvent<?>> {
+public class GenericNodeRemoveEventBinding<E extends NodeRemoveEvent> extends AbstractEventBinding<E> {
 
     public GenericNodeRemoveEventBinding(
-            UiNodeEventFilter<NodeRemoveEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler,
+            Class<E> eventClass,
+            UiNodeEventFilter<E> filter,
+            @NotNull UiNodeEventHandler<E> handler,
             TickPhase phase
     ) {
-        super(filter, handler, NodeRemoveEvent.class, NeutronConstants.ADD_OR_REMOVE_NODE, phase);
+        super(filter, handler, eventClass, NeutronConstants.ADD_OR_REMOVE_NODE, phase);
     }
 
     public GenericNodeRemoveEventBinding(
-            UiNodeEventFilter<NodeRemoveEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler
+            Class<E> eventClass,
+            UiNodeEventFilter<E> filter,
+            @NotNull UiNodeEventHandler<E> handler
     ) {
-        this(filter, handler, null);
+        this(eventClass, filter, handler, null);
     }
 
-    public GenericNodeRemoveEventBinding(@NotNull UiNodeEventHandler<NodeRemoveEvent<?>> handler) {
-        this(null, handler);
+    public GenericNodeRemoveEventBinding(
+            Class<E> eventClass,
+            @NotNull UiNodeEventHandler<E> handler
+    ) {
+        this(eventClass, null, handler);
     }
 }

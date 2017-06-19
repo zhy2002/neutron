@@ -7,6 +7,8 @@ import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.data.NodeIdentityMap;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.AnyNodeAddEventBinding;
+import zhy2002.neutron.event.AnyNodeRemoveEventBinding;
 
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
@@ -340,17 +342,17 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         @Override
         protected Collection<EventBinding> createEventBindings() {
             return Arrays.asList(
-                    new GenericNodeAddEventBinding(
+                    new AnyNodeAddEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             e -> getOwner().markSelfDirty(),
                             PredefinedPhases.Pre
                     ),
-                    new GenericNodeRemoveEventBinding(
+                    new AnyNodeRemoveEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             e -> getOwner().markSelfDirty(),
                             PredefinedPhases.Pre
                     ),
-                    new GenericNodeRemoveEventBinding(
+                    new AnyNodeRemoveEventBinding(
                             this::originatesFromChildrenAndCheckDirty,
                             this::tryClearSelfDirty,
                             PredefinedPhases.Post

@@ -2,6 +2,7 @@ package zhy2002.neutron.rule;
 
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.AnyNodeAddEventBinding;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -20,7 +21,7 @@ public class SetContentNodeToNewItemRule extends UiNodeRule<ListUiNode<?, ?>> {
     @Override
     protected Collection<EventBinding> createEventBindings() {
         return Collections.singleton(
-                new GenericNodeAddEventBinding(
+                new AnyNodeAddEventBinding(
                         e -> e.getOrigin().getParent() == getOwner() && getContext().isLoaded(),
                         this::setAsContentNode
                 )

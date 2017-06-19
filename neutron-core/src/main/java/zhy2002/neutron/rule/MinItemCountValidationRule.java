@@ -1,7 +1,11 @@
 package zhy2002.neutron.rule;
 
-import zhy2002.neutron.*;
+import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.ListUiNode;
+import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.AnyNodeAddEventBinding;
+import zhy2002.neutron.event.AnyNodeRemoveEventBinding;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 
@@ -26,11 +30,11 @@ public class MinItemCountValidationRule extends ValidationRule<ListUiNode<?, ?>>
                         (e) -> validate(),
                         ListUiNode.MIN_ITEM_COUNT_PROPERTY.getStateKey()
                 ),
-                new GenericNodeAddEventBinding(
+                new AnyNodeAddEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),
                         (e) -> validate()
                 ),
-                new GenericNodeRemoveEventBinding(
+                new AnyNodeRemoveEventBinding(
                         (e) -> e.getOrigin().getParent() == getOwner(),
                         (e) -> validate()
                 )

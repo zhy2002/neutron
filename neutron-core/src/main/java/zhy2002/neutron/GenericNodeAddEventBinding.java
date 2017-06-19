@@ -8,23 +8,28 @@ import javax.validation.constraints.NotNull;
 /**
  * Match any NodeAddEvent.
  */
-public final class GenericNodeAddEventBinding extends AbstractEventBinding<NodeAddEvent<?>> {
+public class GenericNodeAddEventBinding<E extends NodeAddEvent> extends AbstractEventBinding<E> {
 
     public GenericNodeAddEventBinding(
-            UiNodeEventFilter<NodeAddEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler,
+            Class<E> eventCLass,
+            UiNodeEventFilter<E> filter,
+            @NotNull UiNodeEventHandler<E> handler,
             TickPhase phase) {
-        super(filter, handler, NodeAddEvent.class, NeutronConstants.ADD_OR_REMOVE_NODE, phase);
+        super(filter, handler, eventCLass, NeutronConstants.ADD_OR_REMOVE_NODE, phase);
     }
 
     public GenericNodeAddEventBinding(
-            UiNodeEventFilter<NodeAddEvent<?>> filter,
-            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler) {
-        this(filter, handler, null);
+            Class<E> eventCLass,
+            UiNodeEventFilter<E> filter,
+            @NotNull UiNodeEventHandler<E> handler
+    ) {
+        this(eventCLass, filter, handler, null);
     }
 
     public GenericNodeAddEventBinding(
-            @NotNull UiNodeEventHandler<NodeAddEvent<?>> handler) {
-        this(null, handler);
+            Class<E> eventCLass,
+            @NotNull UiNodeEventHandler<E> handler
+    ) {
+        this(eventCLass, null, handler);
     }
 }
