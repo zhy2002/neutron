@@ -400,7 +400,7 @@ rootType:
             baseTypeName: StringUiNode
 
           - typeName: VehicleYearNode
-            baseTypeName: BigDecimalUiNode
+            baseTypeName: DoubleUiNode
 
           - typeName: VehicleMarketValueNode
             baseTypeName: BaseCurrencyNode
@@ -1193,10 +1193,10 @@ commonTypes:
   - {typeName: YearNode}
   childTypes:
   - typeName: MonthNode
-    baseTypeName: BigDecimalUiNode
+    baseTypeName: DoubleUiNode
 
   - typeName: YearNode
-    baseTypeName: BigDecimalUiNode
+    baseTypeName: DoubleUiNode
 
 - typeName: EmailNode
   baseTypeName: StringUiNode

@@ -1,6 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
+import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 
 function RelatedPartySummaryComponent(props) {
     function selectItem() {
@@ -16,7 +17,7 @@ function RelatedPartySummaryComponent(props) {
             <div className="row">
                 <div className="col-xs-12">
                     <a tabIndex="0" onClick={selectItem}>
-                        {props.label}
+                        <NodeLabelComponent model={props.model}/>
                     </a>
                 </div>
             </div>

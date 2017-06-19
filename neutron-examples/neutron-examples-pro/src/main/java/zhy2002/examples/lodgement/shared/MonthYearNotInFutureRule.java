@@ -45,11 +45,11 @@ public class MonthYearNotInFutureRule extends ValidationRule<MonthYearNode<?>> {
         Date now = new Date();
         String yearMonth = dateTimeFormat.format(now);
         int index = yearMonth.indexOf("-");
-        BigDecimal nowYear = new BigDecimal(yearMonth.substring(0, index));
-        BigDecimal nowMonth = new BigDecimal(yearMonth.substring(index + 1));
+        Double nowYear = new Double(yearMonth.substring(0, index));
+        Double nowMonth = new Double(yearMonth.substring(index + 1));
 
-        BigDecimal year = getMonthYearNode().getYearNode().getValue();
-        BigDecimal month = getMonthYearNode().getMonthNode().getValue();
+        Double year = getMonthYearNode().getYearNode().getValue();
+        Double month = getMonthYearNode().getMonthNode().getValue();
 
         if (year.compareTo(nowYear) < 0)
             return null;

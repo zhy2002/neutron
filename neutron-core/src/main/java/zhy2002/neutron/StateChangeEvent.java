@@ -48,7 +48,9 @@ public abstract class StateChangeEvent<T> extends ChangeUiNodeEvent {
     @Override
     void addBindingActivations(List<BindingActivation> result, UiNode<?> anchor) {
         super.addBindingActivations(result, anchor);
-        addBindingActivations(result, anchor, new UiNodeEventKey<>(StateChangeEvent.class, this.getSubject()));
+
+        String genericSubject = this.getSubject().substring(this.getSubject().indexOf("#"));
+        addBindingActivations(result, anchor, new UiNodeEventKey<>(StateChangeEvent.class, genericSubject));
     }
 
     final StateChangeEvent<T> passThrough() {

@@ -825,6 +825,8 @@ rootType:
             init:
             - {propertyName: options, value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE'}
             - {propertyName: required, value: true}
+            rules:
+            - {typeName: CheckBuildFirstHomeIsAllowedRule}
 
           - typeName: ProductRequestedAmountNode
             init:

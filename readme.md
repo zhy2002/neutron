@@ -32,6 +32,7 @@ Todo
 Todo (low priority)
 -----------------
 - implement rule priority
+- create layout components
 - rolling commit - only keep N cycles in the current session
 - implement context menu component
 - profiling: reduce memory consumption

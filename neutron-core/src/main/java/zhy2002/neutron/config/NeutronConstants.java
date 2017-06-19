@@ -12,6 +12,7 @@ public final class NeutronConstants {
 
     public static final String JS_NAMESPACE = "GWT";
     public static final String DEFAULT_RULE_GROUP = "";
+    public static final String ANY_VALUE = "#value";
     public static final String ORIGINAL_VALUE = "original_value";
     public static final String DEFAULT_REFRESH_REASON = "";
     public static final String NODE_LOADED_REFRESH_REASON = "NODE_LOADED";

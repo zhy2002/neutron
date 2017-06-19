@@ -5,9 +5,11 @@ import zhy2002.neutron.LeafUiNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.config.MetadataRegistry;
 import zhy2002.neutron.config.PropertyMetadata;
+import zhy2002.neutron.data.DoubleOption;
 import zhy2002.neutron.data.NodeIdentity;
 
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 
 public abstract class DoubleUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, Double> {
 
@@ -52,20 +54,20 @@ public abstract class DoubleUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     }
 
 
-//    @JsMethod
-//    public BooleanOption[] getOptions() {
-//        BooleanOption[] options = (BooleanOption[]) getStateValue(OPTIONS_PROPERTY);
-//        BooleanOption[] result = null;
-//        if (options != null) {
-//            result = Arrays.copyOf(options, options.length);
-//        }
-//        return result;
-//    }
-//
-//    @JsMethod
-//    public void setOptions(BooleanOption[] value) {
-//        setStateValue(OPTIONS_PROPERTY, value);
-//    }
+    @JsMethod
+    public DoubleOption[] getOptions() {
+        DoubleOption[] options = (DoubleOption[]) getStateValue(OPTIONS_PROPERTY);
+        DoubleOption[] result = null;
+        if (options != null) {
+            result = Arrays.copyOf(options, options.length);
+        }
+        return result;
+    }
+
+    @JsMethod
+    public void setOptions(DoubleOption[] value) {
+        setStateValue(OPTIONS_PROPERTY, value);
+    }
 
     //endregion
 }

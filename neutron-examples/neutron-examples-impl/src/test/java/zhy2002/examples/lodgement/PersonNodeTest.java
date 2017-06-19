@@ -200,17 +200,17 @@ public class PersonNodeTest {
 
         MovedToCurrentAddressNode movedToCurrentAddressNode = personContactNode.getMovedToCurrentAddressNode();
         MonthNode monthNode = movedToCurrentAddressNode.getMonthNode();
-        monthNode.setValue(new BigDecimal("12"));
+        monthNode.setValue(new Double("12"));
         assertThat(monthNode.hasValue(), equalTo(true));
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
 
         YearNode yearNode = movedToCurrentAddressNode.getYearNode();
-        yearNode.setValue(new BigDecimal("1999"));
-        assertThat(yearNode.getText(), equalTo("1999"));
+        yearNode.setValue(new Double("1999"));
+        assertThat(yearNode.getValue(), equalTo(new Double("1999")));
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
 
         yearNode.setValue(null);
-        assertThat(yearNode.getText(), equalTo(""));
+        assertThat(yearNode.getValue(), equalTo(Double.NaN));
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
 
     }

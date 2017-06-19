@@ -1,12 +1,11 @@
 package zhy2002.examples.lodgement.data;
 
 
-import zhy2002.neutron.data.BigDecimalOption;
 import zhy2002.neutron.data.BooleanOption;
+import zhy2002.neutron.data.DoubleOption;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.util.ValueUtil;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -134,6 +133,7 @@ public class ApplicationNodeConstants {
 
     public static final StringOption[] NAB_LENDING_PURPOSE = {
             new StringOption(""),
+            new StringOption("BUILD_FIRST", "Build First Home"),
             new StringOption("CONSTRUCTION", "Construction"),
             new StringOption("PURCHASE", "Purchase")
     };
@@ -393,31 +393,31 @@ public class ApplicationNodeConstants {
             new BooleanOption(Boolean.FALSE, "Investment")
     };
 
-    public static final BigDecimalOption[] MONTH_TYPE = {
-            new BigDecimalOption(null, ""),
-            new BigDecimalOption(new BigDecimal("1"), "January"),
-            new BigDecimalOption(new BigDecimal("2"), "February"),
-            new BigDecimalOption(new BigDecimal("3"), "March"),
-            new BigDecimalOption(new BigDecimal("4"), "April"),
-            new BigDecimalOption(new BigDecimal("5"), "May"),
-            new BigDecimalOption(new BigDecimal("6"), "June"),
-            new BigDecimalOption(new BigDecimal("7"), "July"),
-            new BigDecimalOption(new BigDecimal("8"), "August"),
-            new BigDecimalOption(new BigDecimal("9"), "September"),
-            new BigDecimalOption(new BigDecimal("10"), "October"),
-            new BigDecimalOption(new BigDecimal("11"), "November"),
-            new BigDecimalOption(new BigDecimal("12"), "December")
+    public static final DoubleOption[] MONTH_TYPE = {
+            new DoubleOption(null, ""),
+            new DoubleOption(new Double("1"), "January"),
+            new DoubleOption(new Double("2"), "February"),
+            new DoubleOption(new Double("3"), "March"),
+            new DoubleOption(new Double("4"), "April"),
+            new DoubleOption(new Double("5"), "May"),
+            new DoubleOption(new Double("6"), "June"),
+            new DoubleOption(new Double("7"), "July"),
+            new DoubleOption(new Double("8"), "August"),
+            new DoubleOption(new Double("9"), "September"),
+            new DoubleOption(new Double("10"), "October"),
+            new DoubleOption(new Double("11"), "November"),
+            new DoubleOption(new Double("12"), "December")
     };
 
-    public static BigDecimalOption[] getYearType() {
-        List<BigDecimalOption> result = new ArrayList<>();
-        result.add(new BigDecimalOption(null, ""));
+    public static DoubleOption[] getYearType() {
+        List<DoubleOption> result = new ArrayList<>();
+        result.add(new DoubleOption(null, ""));
         int start = ValueUtil.getCurrentYear();
         for (int i = 0; i < 20; i++) {
             String yearValue = String.valueOf(start - i);
-            result.add(new BigDecimalOption(new BigDecimal(yearValue), yearValue));
+            result.add(new DoubleOption(new Double(yearValue), yearValue));
         }
-        return result.toArray(new BigDecimalOption[result.size()]);
+        return result.toArray(new DoubleOption[result.size()]);
     }
 
     static {

@@ -1,6 +1,7 @@
 package zhy2002.neutron.event;
 
 import zhy2002.neutron.*;
+import zhy2002.neutron.config.NeutronConstants;
 
 public class AnyStateChangeEventBinding extends GenericStateChangeEventBinding<StateChangeEvent> {
 
@@ -8,7 +9,8 @@ public class AnyStateChangeEventBinding extends GenericStateChangeEventBinding<S
         super(StateChangeEvent.class, filter, handler, subject, phase);
     }
 
-    public AnyStateChangeEventBinding(Class<StateChangeEvent> eventClass, UiNodeEventHandler<StateChangeEvent> handler, String subject) {
-        super(StateChangeEvent.class, handler, subject);
+    public AnyStateChangeEventBinding(UiNodeEventFilter<StateChangeEvent> filter, UiNodeEventHandler<StateChangeEvent> handler) {
+        this(filter, handler, NeutronConstants.ANY_VALUE, null);
     }
+
 }

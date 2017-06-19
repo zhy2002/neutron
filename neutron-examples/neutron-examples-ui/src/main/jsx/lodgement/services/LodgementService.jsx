@@ -102,6 +102,12 @@ export default class LodgementService extends StaticService {
                     UiService.setIsLoading(false);
                     return CommonUtil.defer(model);
                 }
+            )
+            .catch(
+                (error) => {
+                    UiService.setIsLoading(false);
+                    return Promise.reject(error);
+                }
             );
     }
 

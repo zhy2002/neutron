@@ -7,7 +7,6 @@ import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.event.BigDecimalStateChangeEvent;
 import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -32,10 +31,10 @@ public abstract class MonthYearNoEarlierThanRule<N extends MonthYearNode<?>> ext
     @Override
     protected String getErrorMessage() {
         MonthYearNode<?> otherNode = getOtherMonthYearNode();
-        BigDecimal year1 = otherNode.getYearNode().getValue();
-        BigDecimal month1 = otherNode.getMonthNode().getValue();
-        BigDecimal year2 = getOwner().getYearNode().getValue();
-        BigDecimal month2 = getOwner().getMonthNode().getValue();
+        Double year1 = otherNode.getYearNode().getValue();
+        Double month1 = otherNode.getMonthNode().getValue();
+        Double year2 = getOwner().getYearNode().getValue();
+        Double month2 = getOwner().getMonthNode().getValue();
 
         if (year1 != null && year2 != null) {
             int yearComp = year2.compareTo(year1);

@@ -21,7 +21,7 @@ function restoreLodgementState(newHash/*format: appId/path_to_content_node[?sele
 
     return LodgementService.openApp(appId, path).catch(
         () => {
-            LodgementService.selectTab(0);
+            window.location.hash = '/apps';
             return null;
         }
     );
