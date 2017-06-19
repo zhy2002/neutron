@@ -14,10 +14,7 @@ export default class LodgementBannerComponent extends React.PureComponent {
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
-                            Demo User
-                        </DummyNavDropdownComponent>
-                        <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
-                            <span className="glyphicon glyphicon-user"/>
+                            Demo User &nbsp; <span className="glyphicon glyphicon-user"/>
                         </DummyNavDropdownComponent>
                     </ul>
                 </div>

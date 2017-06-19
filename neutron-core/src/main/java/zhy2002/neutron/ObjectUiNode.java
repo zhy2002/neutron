@@ -45,6 +45,10 @@ public abstract class ObjectUiNode<P extends ParentUiNode<?>> extends ParentUiNo
         super.loadContent();
     }
 
+    /**
+     * Only call this method at compound field level.
+     * @return true if any child has value.
+     */
     @Override
     public final boolean hasValue() {
         for (int i = 0; i < getChildCount(); i++) {

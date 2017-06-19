@@ -28,7 +28,7 @@ class PersonSummaryComponent extends React.PureComponent {
                         <div className="row person-name">
                             <div className="col-xs-12">
                                 <a tabIndex="0" onClick={this.selectItem}>
-                                    <NodeLabelComponent model={model.getPersonGeneralNode()}/>
+                                    <NodeLabelComponent model={model}/>
                                 </a>
                                 <BooleanLabelComponent
                                     model={personGeneralNode.getPrimaryApplicantFlagNode()}

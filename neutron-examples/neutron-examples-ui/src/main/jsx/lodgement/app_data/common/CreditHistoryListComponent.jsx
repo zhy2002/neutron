@@ -1,42 +1,38 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import CreditHistoryComponent from './CreditHistoryComponent';
 
+function renderItems(model) {
+    return model.getChildren().map(
+        item => <CreditHistoryComponent key={item.getUniqueId()} model={item}/>
+    );
+}
 
-export default class CreditHistoryListComponent extends NeutronComponent {
+class CreditHistoryListComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
         this.createNewItem = () => {
-            const item = this.model.createItem();
-            //todo rename to afterUpdate or something.
-            this.addCallback(() => {
-                //todo extract method
+            const item = this.props.model.createItem();
+            this.componentDidUpdateCallback = () => {
                 const dom = document.getElementById(item.getUniqueId());
-                if (dom && item.focus) {
+                if (dom && dom.focus) {
                     dom.focus();
                 }
-            });
+            };
         };
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.count = this.model.getItemCount();
-        return newState;
-    }
-
-    renderItems() {
-        const items = [];
-        this.model.getChildren().forEach((item) => {
-            items.push(<CreditHistoryComponent key={item.getUniqueId()} model={item}/>);
-        });
-        return items;
+    componentDidUpdate() {
+        if (this.componentDidUpdateCallback) {
+            this.componentDidUpdateCallback();
+            delete this.componentDidUpdateCallback;
+        }
     }
 
     render() {
-        if (this.state.disabled)
+        if (this.props.disabled)
             return null;
 
         return (
@@ -48,11 +44,20 @@ export default class CreditHistoryListComponent extends NeutronComponent {
                         </button>
                     </div>
                     <div className="col-xs-10">
-                        Credit Histories ({this.state.count})
+                        Credit Histories ({this.props.count})
                     </div>
                 </div>
-                {this.renderItems()}
+                {renderItems(this.props.model)}
             </div>
         );
     }
 }
+
+export default NeutronHoc(
+    CreditHistoryListComponent,
+    (model) => {
+        const props = {};
+        props.count = model.getItemCount();
+        return props;
+    }
+);
