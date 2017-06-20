@@ -1,7 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
-import BooleanLabelComponent from '../common/BooleanLabelComponent';
 import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
@@ -31,10 +30,6 @@ class CompanySummaryComponent extends React.PureComponent {
                                 <a tabIndex="0" onClick={this.selectItem}>
                                     <NodeLabelComponent model={model}/>
                                 </a>
-                                <BooleanLabelComponent
-                                    model={companyGeneralNode}
-                                    trueLabel=" (Primary)"
-                                />
                             </div>
                         </div>
                         <div className="row">

@@ -9,7 +9,7 @@ function AssetsComponent(props) {
     const model = props.model;
     return (
         <div className={props.componentClass}>
-            <PanelComponent title="Assets" className="panel-primary">
+            <PanelComponent title="Assets" className="panel-primary" expandable>
                 <SavingAccountListComponent model={model.getSavingsAccountListNode()}/>
                 <MotorVehicleListComponent model={model.getMotorVehicleListNode()}/>
                 <OtherAssetListComponent model={model.getOtherAssetListNode()}/>

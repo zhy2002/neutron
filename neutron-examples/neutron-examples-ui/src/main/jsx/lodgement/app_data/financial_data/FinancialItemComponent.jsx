@@ -12,7 +12,7 @@ class FinancialItemComponent extends React.PureComponent {
 
         this.delete = () => {
             const model = this.props.model;
-            if (window.confirm(`Are you sure you want to remove this ${model.getNodeLabel()}`)) {
+            if (window.confirm(`Are you sure you want to delete this ${model.getParent().getNodeLabel()} record?`)) {
                 model.getParent().removeItem(model);
             }
         };

@@ -9,7 +9,7 @@ function LiabilityListComponent(props) {
     const model = props.model;
     return (
         <div className="liability-list-component">
-            <PanelComponent title="Liabilities" className="panel-primary">
+            <PanelComponent title="Liabilities" className="panel-primary" expandable>
                 <CreditCardListComponent model={model.getCreditCardListNode()}/>
                 <LoanListComponent model={model.getLoanListNode()}/>
                 <OtherLiabilityListComponent model={model.getOtherLiabilityListNode()}/>

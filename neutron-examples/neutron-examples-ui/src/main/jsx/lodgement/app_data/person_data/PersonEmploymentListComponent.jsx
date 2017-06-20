@@ -12,7 +12,9 @@ function renderItems(model) {
     if (items.length === 0) {
         items.push(
             <div key="no_result" className="alert alert-info">
-                <span>Click <em>Add</em> to create a record.</span>
+                <span>
+                    Click <em>Add</em> to create a {model.getNodeLabel()} record.
+                </span>
             </div>
         );
     }
