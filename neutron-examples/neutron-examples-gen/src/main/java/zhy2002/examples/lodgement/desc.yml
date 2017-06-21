@@ -1209,18 +1209,26 @@ commonTypes:
 - typeName: BaseMobileNumberNode
   baseTypeName: StringUiNode
   parentBaseTypeName: ParentUiNode<?>
+  config:
+  - {property: '@pattern', value: '"^(\\+\\d{1,3}[- ]?)?\\d{10}$"'}
+  - {property: '@patternMessage', value: '"Mobile number has 10 digits with optional country code."'}
 
 - typeName: BaseCurrencyNode
   baseTypeName: BigDecimalUiNode
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
+  config:
+  - {property: '@minValue', value: new BigDecimal("0.01")}
 
 - typeName: BasePercentageNode
   baseTypeName: BigDecimalUiNode
   parentBaseTypeName: ParentUiNode<?>
   properties:
   - {name: suffixSymbol, typeName: UnitSymbol, default: ApplicationNodeConstants.PERCENTAGE}
+  config:
+  - {property: '@minValue', value: new BigDecimal("0")}
+  - {property: '@maxValue', value: new BigDecimal("100")}
 
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode
