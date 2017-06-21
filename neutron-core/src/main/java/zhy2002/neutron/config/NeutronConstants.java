@@ -1,6 +1,8 @@
 package zhy2002.neutron.config;
 
 
+import zhy2002.neutron.event.StringStateChangeEvent;
+
 /**
  * An enum that provides strong typing for framework state keys.
  */
@@ -23,4 +25,5 @@ public final class NeutronConstants {
     public static final int DOMAIN_CONTEXT_CONFIGURER_ORDER = 100;
     public static final int PROFILE_CONTEXT_CONFIGURER_ORDER = 1000;
     public static final String STATE_CHANGE_NOTIFICATION = "STATE_CHANGE_NOTIFICATION";
+    public static final String ACCEPT_VALUE_ACTION = "AcceptValue";
 }

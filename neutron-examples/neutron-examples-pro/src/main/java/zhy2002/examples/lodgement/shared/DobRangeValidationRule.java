@@ -44,15 +44,20 @@ public class DobRangeValidationRule extends ValidationRule<DobNode<?>> {
         if (!dobNode.hasValue())
             return null;
 
-        String dob = ValueUtil.beforeFirst(dobNode.getValue(), "T");
-        Integer minAge = dobNode.getMinAge();
-        if (smallerThanMinAge(dob, minAge)) {
-            return "Minimum age is " + minAge;
-        }
+        try {
+            String dob = ValueUtil.beforeFirst(dobNode.getValue(), "T");
 
-        Integer maxAge = dobNode.getMaxAge();
-        if (greaterThanMaxAge(dob, maxAge)) {
-            return "Max age is " + maxAge;
+            Integer minAge = dobNode.getMinAge();
+            if (smallerThanMinAge(dob, minAge)) {
+                return "Minimum age is " + minAge;
+            }
+
+            Integer maxAge = dobNode.getMaxAge();
+            if (greaterThanMaxAge(dob, maxAge)) {
+                return "Max age is " + maxAge;
+            }
+        } catch (Throwable ex) {
+            return null;
         }
 
         return null;

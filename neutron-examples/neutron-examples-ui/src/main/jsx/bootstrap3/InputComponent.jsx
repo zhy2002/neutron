@@ -34,10 +34,12 @@ export default class InputComponent extends NeutronComponent {
         this.identifierClass = '';
     }
 
+    onValidate(newState) {
+        newState.value = this.getUiValue();
+    }
+
     extractNewState() {
         const newState = super.extractNewState();
-
-        newState.value = this.getUiValue();
         newState.disabled = this.model.isEffectivelyDisabled();
         newState.readonly = this.props.readonly || this.model.isEffectivelyReadonly();
         newState.hideLabel = this.props.hideLabel;

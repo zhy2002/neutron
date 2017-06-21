@@ -12,7 +12,7 @@ rootType:
   - {typeName: UpdateSelectedTabIndexRule, existing: false}
   - {typeName: HandleAddOpenAppActionRule, existing: false}
   actions:
-  - {typeName: AddOpenApp, parameterTypeName: Object}
+  - {name: AddOpenApp, parameterTypeName: Object}
   children:
   - {typeName: HeaderNode}
   - {typeName: OpenAppsNode}

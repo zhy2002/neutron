@@ -81,6 +81,7 @@ rootType:
           - {propertyName: invalidChars, value: "\"#\""}
           - {propertyName: invalidCharsMessage, value: "\"Username cannot contain '#'.\""}
           rules:
+          - {typeName: FormatNameRule}
           - {typeName: InvalidCharPreChangeRule}
 
         - typeName: LastNameNode
@@ -88,6 +89,8 @@ rootType:
           - {propertyName: required, value: 'true'}
           - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
           - {propertyName: maxLength, value: 20}
+          rules:
+          - {typeName: FormatNameRule}
 
         - typeName: GenderNode
           init:

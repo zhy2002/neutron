@@ -17,18 +17,21 @@ public abstract class NodeActionEvent<T> extends UiNodeEvent {
     @JsIgnore
     protected NodeActionEvent(
             UiNode<?> origin,
+            String subject,
             T parameter
     ) {
-        this(origin, parameter, null);
+        this(origin, subject, parameter, null);
     }
 
     protected NodeActionEvent(
             UiNode<?> origin,
+            String subject,
             T parameter,
             UiNodeDirectionEnum direction
     ) {
-        super(origin, "");
-        assert parameter != null;
+        super(origin, subject);
+        assert subject != null;
+
         this.parameter = parameter;
         this.direction = ValueUtil.ifNull(direction, UiNodeDirectionEnum.Up);
     }

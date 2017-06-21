@@ -44,6 +44,10 @@ export default class TextInputComponent extends InputComponent {
             }
         };
 
+        this.acceptValue = () => {
+            this.model.dispatchAcceptValueAction();
+        };
+
         this.shouldSendRequest = (key) => {
             const lastKey = this.state.lastSearchKey;
             if (key === lastKey)
@@ -217,6 +221,7 @@ export default class TextInputComponent extends InputComponent {
             conditionalProps.onKeyDown = this.handleKeyDown;
             conditionalProps.onFocus = this.handleFocus;
         }
+
         return [
             <input
                 type="text"
@@ -225,6 +230,7 @@ export default class TextInputComponent extends InputComponent {
                 key="input"
                 value={this.state.value}
                 onChange={this.updateValue}
+                onBlur={this.acceptValue}
                 disabled={this.state.disabled}
                 readOnly={this.state.readonly}
                 {...conditionalProps}

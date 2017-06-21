@@ -244,6 +244,8 @@ Finished
 
 31 exclude generated files from source control
 
+32 dob year defaults to 18 years ago
+
 ### Garbage
 
 * preserve value when node is disabled -> conditional state
@@ -277,6 +279,6 @@ di	super type	get instance by super type
 classRegistry	(predefined) related type	get instance by related type	
 
 
-<pre>
-dob year defaults to 18 years ago
-</pre>
+npm i -g npm-check-updates
+npm-check-updates -u
+npm install

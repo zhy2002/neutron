@@ -2,6 +2,9 @@ package ${targetPackage}.gen.node;
 /* template name: node.ftl */
 import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
+<#if actions??>
+import zhy2002.neutron.event.*;
+</#if>
 <#if hasComponent>
 import ${targetPackage}.gen.di.${typeName}Component;
 </#if>
@@ -264,8 +267,8 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 <#if actions??>
     <#list actions as action>
     @JsMethod
-    public void dispatch${action.typeName}Action(${action.parameterTypeName} parameter) {
-        getContext().processEvent(new ${action.typeName}ActionEvent(this, parameter));
+    public void dispatch${action.name}Action(${action.parameterTypeName} parameter) {
+        getContext().processEvent(new ${action.parameterTypeName}ActionEvent(this, "${action.name}", parameter));
     }
     </#list>
 </#if>

@@ -191,7 +191,7 @@ li.nav-dropdown-component.selected {
 }
 
 .date-input-component {
-  > div {
+  > div.react-datepicker__input-container {
     width: 100%;
   }
 }
@@ -405,6 +405,10 @@ li.nav-dropdown-component.selected {
     input[type=checkbox] {
       margin-top: 2px;
     }
+  }
+
+  .tooltip.bottom.error-message {
+    margin-top: 1em;
   }
 }
 

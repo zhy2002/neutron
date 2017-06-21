@@ -4,6 +4,7 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.ObjectActionEvent;
 import zhy2002.neutron.exception.NotImplementedException;
 
 import javax.inject.Inject;
@@ -103,6 +104,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
     @JsMethod
     public T getCopyOfValue() {
         throw new NotImplementedException();
+    }
+
+    @JsMethod
+    public void dispatchAcceptValueAction() {
+        getContext().processEvent(new ObjectActionEvent(this, NeutronConstants.ACCEPT_VALUE_ACTION, null));
     }
 
     /**

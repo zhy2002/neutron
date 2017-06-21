@@ -5,16 +5,16 @@ import javax.validation.constraints.NotNull;
 public class ActionInfo {
 
     @NotNull
-    private String typeName;
+    private String name;
     @NotNull
     private String parameterTypeName;
 
-    public String getTypeName() {
-        return typeName;
+    public String getName() {
+        return name;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getParameterTypeName() {

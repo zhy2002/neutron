@@ -108,4 +108,17 @@ public final class ValueUtil {
         }
         return value;
     }
+
+    public static String capFirst(String value) {
+        if (value == null)
+            return null;
+
+        value = value.trim();
+        if (isEmpty(value))
+            return value;
+
+        value = value.substring(0, 1).toUpperCase() + value.substring(1);
+        return value;
+
+    }
 }

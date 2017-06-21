@@ -38,6 +38,10 @@ export default class NeutronComponent extends React.PureComponent {
         this.setState(newState);
     }
 
+    onValidate() {
+        console.debug(`validating ${this.label}`);
+    }
+
     /**
      * Initialize fields computed from props.
      * Since props is readonly, these fields are readonly as well.
@@ -80,6 +84,7 @@ export default class NeutronComponent extends React.PureComponent {
                 newState.errorMessage += `${item.getMessage()} `;
             }
         }
+        this.onValidate(newState);
 
         //component class
         let componentClass = '';

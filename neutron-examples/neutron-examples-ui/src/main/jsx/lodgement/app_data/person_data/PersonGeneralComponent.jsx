@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
@@ -40,7 +41,10 @@ class PersonGeneralComponent extends React.PureComponent {
                                 <RadioInputComponent model={model.getGenderNode()}/>
                             </div>
                             <div className="col-sm-12">
-                                <DateInputComponent model={model.getDateOfBirthNode()}/>
+                                <DateInputComponent
+                                    model={model.getDateOfBirthNode()}
+                                    openToDate={moment().subtract(18, 'years')}
+                                />
                             </div>
                         </div>
                     </div>

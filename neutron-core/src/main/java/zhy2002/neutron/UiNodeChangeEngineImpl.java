@@ -39,6 +39,8 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
      */
     private final Deque<Cycle> cycleDeque = new ArrayDeque<>();
 
+    private final Deque<UiNodeEvent> actionDeque = new ArrayDeque<>();
+
     @Inject
     public UiNodeChangeEngineImpl() {
     }
@@ -79,6 +81,9 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
         if (isInCycle())
             throw new UiNodeException("Cannot commit during a cycle.");
 
+        while (!actionDeque.isEmpty()) {
+            eventDeque.addLast(actionDeque.pollFirst());
+        }
         processCycle();
         cycleDeque.clear();
         inSession = false;
@@ -259,6 +264,8 @@ public class UiNodeChangeEngineImpl implements UiNodeChangeEngine {
                     if (previousEvent != null) {
                         eventDeque.remove(previousEvent);
                     }
+                } else if (event instanceof NodeActionEvent) {
+                    actionDeque.add(event);
                 }
             }
             eventDeque.add(event);
