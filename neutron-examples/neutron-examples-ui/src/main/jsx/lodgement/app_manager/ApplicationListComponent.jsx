@@ -6,14 +6,12 @@ import LocationService from '../services/LocationService';
 import LodgementService from '../services/LodgementService';
 
 
-function renderItems(props) {
+function renderItems({result}) {
     const items = [];
-    if (!props.result)
-        return items;
 
-    const result = props.result.hits.hits;
-    for (let i = 0; i < result.length; i++) {
-        const data = result[i]['_source'];
+    const array = result && result.hits ? result.hits.hits : [];
+    for (let i = 0; i < array.length; i++) {
+        const data = array[i]['_source'];
         items.push(
             <tr key={data.id}>
                 <td width="4%">

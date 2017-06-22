@@ -12,6 +12,14 @@ npm run build
 </pre>
 - Then setup Run Configuration in IntelliJ IDEA as per <code>doc/config_intellij_idea</code>.
 
+- Enable Elasticsearch mock backend:
+<pre>
+http:
+  cors:
+    enabled: true
+    allow-origin: http://127.0.0.1:8889
+</pre>
+
 Todo
 -----------------  
 - error when navigating to a none existent app
