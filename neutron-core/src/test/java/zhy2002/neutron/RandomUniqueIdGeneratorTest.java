@@ -1,8 +1,9 @@
-package zhy2002.neutron.util;
+package zhy2002.neutron;
 
 
 import org.junit.Before;
 import org.junit.Test;
+import zhy2002.neutron.RandomUniqueIdGenerator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;

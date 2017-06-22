@@ -5,14 +5,14 @@ import zhy2002.examples.lodgement.gen.node.LastNameNode;
 import zhy2002.examples.lodgement.gen.node.PersonNode;
 import zhy2002.examples.lodgement.gen.node.TitleNode;
 import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.UpdateItemNodeLabelRule;
+import zhy2002.neutron.rule.AbstractUpdateItemNodeLabelRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
 
-public class UpdatePersonNodeLabelRule extends UpdateItemNodeLabelRule<PersonNode> {
+public class UpdatePersonNodeLabelRule extends AbstractUpdateItemNodeLabelRule<PersonNode> {
 
     @Inject
     public UpdatePersonNodeLabelRule(@Owner PersonNode owner) {

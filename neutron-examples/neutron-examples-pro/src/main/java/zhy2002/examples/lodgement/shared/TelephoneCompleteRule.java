@@ -4,7 +4,7 @@ import zhy2002.examples.lodgement.data.Telephone;
 import zhy2002.examples.lodgement.gen.event.TelephoneStateChangeEvent;
 import zhy2002.examples.lodgement.gen.node.TelephoneNode;
 import zhy2002.neutron.EventBinding;
-import zhy2002.neutron.GenericStateChangeEventBinding;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.ValidationRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;

@@ -4,14 +4,14 @@ import zhy2002.examples.lodgement.gen.node.RelatedPartyNode;
 import zhy2002.examples.lodgement.gen.node.ThirdPartyFirstNameNode;
 import zhy2002.examples.lodgement.gen.node.ThirdPartyLastNameNode;
 import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.UpdateItemNodeLabelRule;
+import zhy2002.neutron.rule.AbstractUpdateItemNodeLabelRule;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
 
-public class UpdateRelatedPartyNodeLabelRule extends UpdateItemNodeLabelRule<RelatedPartyNode> {
+public class UpdateRelatedPartyNodeLabelRule extends AbstractUpdateItemNodeLabelRule<RelatedPartyNode> {
 
     @Inject
     public UpdateRelatedPartyNodeLabelRule(@Owner RelatedPartyNode owner) {

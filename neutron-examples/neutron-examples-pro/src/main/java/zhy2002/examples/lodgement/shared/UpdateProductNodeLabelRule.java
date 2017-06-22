@@ -4,14 +4,14 @@ package zhy2002.examples.lodgement.shared;
 import zhy2002.examples.lodgement.gen.node.ProductNameNode;
 import zhy2002.examples.lodgement.gen.node.ProductNode;
 import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.UpdateItemNodeLabelRule;
+import zhy2002.neutron.rule.AbstractUpdateItemNodeLabelRule;
 import zhy2002.neutron.data.StringOption;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;
 
-public class UpdateProductNodeLabelRule extends UpdateItemNodeLabelRule<ProductNode> {
+public class UpdateProductNodeLabelRule extends AbstractUpdateItemNodeLabelRule<ProductNode> {
 
     @Inject
     public UpdateProductNodeLabelRule(@Owner ProductNode owner) {

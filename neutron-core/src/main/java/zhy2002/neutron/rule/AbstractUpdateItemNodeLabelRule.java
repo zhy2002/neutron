@@ -1,5 +1,6 @@
-package zhy2002.neutron;
+package zhy2002.neutron.rule;
 
+import zhy2002.neutron.*;
 import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.event.IntegerStateChangeEventBinding;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
@@ -7,9 +8,9 @@ import zhy2002.neutron.event.StringStateChangeEventBinding;
 import java.util.Arrays;
 import java.util.Collection;
 
-public abstract class UpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNodeRule<N> {
+public abstract class AbstractUpdateItemNodeLabelRule<N extends UiNode<?>> extends UiNodeRule<N> {
 
-    public UpdateItemNodeLabelRule(N owner) {
+    public AbstractUpdateItemNodeLabelRule(N owner) {
         super(owner);
     }
 

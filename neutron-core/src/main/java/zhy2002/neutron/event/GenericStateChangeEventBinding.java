@@ -1,5 +1,7 @@
-package zhy2002.neutron;
+package zhy2002.neutron.event;
 
+
+import zhy2002.neutron.*;
 
 /**
  * A binding for the eventClass passed in constructor.

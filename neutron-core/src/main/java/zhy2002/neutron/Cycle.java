@@ -47,7 +47,7 @@ public class Cycle implements CycleStatus {
     /**
      * An object that prioritize rule activations.
      */
-    private final UiNodeRuleAgendaImpl agenda = new UiNodeRuleAgendaImpl();
+    private final UiNodeRuleAgenda agenda = new UiNodeRuleAgendaImpl();
     /**
      * This field tracks the current phase of in tick.
      */

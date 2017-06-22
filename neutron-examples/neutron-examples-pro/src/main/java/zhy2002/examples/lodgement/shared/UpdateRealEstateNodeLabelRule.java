@@ -5,12 +5,12 @@ import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.PropertyAddressNode;
 import zhy2002.examples.lodgement.gen.node.RealEstateNode;
 import zhy2002.neutron.UiNodeEvent;
-import zhy2002.neutron.UpdateItemNodeLabelRule;
+import zhy2002.neutron.rule.AbstractUpdateItemNodeLabelRule;
 import zhy2002.neutron.di.Owner;
 
 import javax.inject.Inject;
 
-public class UpdateRealEstateNodeLabelRule extends UpdateItemNodeLabelRule<RealEstateNode> {
+public class UpdateRealEstateNodeLabelRule extends AbstractUpdateItemNodeLabelRule<RealEstateNode> {
 
     @Inject
     public UpdateRealEstateNodeLabelRule(@Owner RealEstateNode owner) {

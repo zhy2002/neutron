@@ -3,7 +3,7 @@ package zhy2002.neutron.rule;
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.BooleanStateChangeEventBinding;
-import zhy2002.neutron.GenericStateChangeEventBinding;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.util.CollectionUtil;
 
 import javax.inject.Inject;

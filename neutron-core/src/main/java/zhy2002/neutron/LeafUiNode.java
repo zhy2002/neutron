@@ -4,6 +4,7 @@ import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 import zhy2002.neutron.event.ObjectActionEvent;
 import zhy2002.neutron.exception.NotImplementedException;
 

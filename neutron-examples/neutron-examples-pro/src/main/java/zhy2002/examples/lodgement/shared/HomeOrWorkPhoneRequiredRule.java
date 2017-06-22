@@ -7,7 +7,7 @@ import zhy2002.examples.lodgement.gen.node.TelephoneNode;
 import zhy2002.neutron.EventBinding;
 import zhy2002.neutron.UiNodeRule;
 import zhy2002.neutron.di.Owner;
-import zhy2002.neutron.GenericStateChangeEventBinding;
+import zhy2002.neutron.event.GenericStateChangeEventBinding;
 
 import javax.inject.Inject;
 import java.util.Collection;

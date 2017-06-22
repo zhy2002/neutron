@@ -1,5 +1,6 @@
-package zhy2002.neutron;
+package zhy2002.neutron.event;
 
+import zhy2002.neutron.*;
 import zhy2002.neutron.config.NeutronConstants;
 
 import javax.validation.constraints.NotNull;

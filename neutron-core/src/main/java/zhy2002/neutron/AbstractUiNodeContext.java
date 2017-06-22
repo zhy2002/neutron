@@ -8,7 +8,6 @@ import zhy2002.neutron.data.NodeIdentity;
 import zhy2002.neutron.event.EventRegistry;
 import zhy2002.neutron.exception.UiNodeEventException;
 import zhy2002.neutron.node.VoidUiNode;
-import zhy2002.neutron.util.RandomUniqueIdGenerator;
 import zhy2002.neutron.util.ValueUtil;
 
 import javax.inject.Inject;

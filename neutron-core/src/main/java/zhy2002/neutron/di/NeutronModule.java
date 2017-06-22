@@ -5,7 +5,7 @@ import dagger.Module;
 import zhy2002.neutron.UiNodeChangeEngine;
 import zhy2002.neutron.UiNodeChangeEngineImpl;
 import zhy2002.neutron.UniqueIdGenerator;
-import zhy2002.neutron.util.SequentialUniqueIdGenerator;
+import zhy2002.neutron.SequentialUniqueIdGenerator;
 
 import javax.inject.Singleton;
 

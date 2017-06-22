@@ -19,7 +19,7 @@ public abstract class AbstractEventBinding<E extends UiNodeEvent> implements Eve
     private final UiNodeEventFilter<E> filter;
     private final UiNodeEventHandler<E> handler;
 
-    AbstractEventBinding(
+    protected AbstractEventBinding(
             UiNodeEventFilter<E> filter,
             @NotNull UiNodeEventHandler<E> handler,
             @NotNull Class<? extends UiNodeEvent> eventClass,
