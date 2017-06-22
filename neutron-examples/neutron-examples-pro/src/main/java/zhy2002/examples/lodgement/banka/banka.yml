@@ -1139,11 +1139,6 @@ commonTypes:
   - {typeName: RetiredEmploymentNode}
   childTypes:
   - typeName: EmploymentTypeNode
-    init:
-    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE'}
-    - {propertyName: value, value: '"payeEmployedNode"'}
-    rules:
-    - {typeName: EmploymentTypeChangedRule, existing: true}
 
   - typeName: PayeEmployedNode
     children:

@@ -1,15 +1,18 @@
-package zhy2002.examples.lodgement.shared;
+package zhy2002.examples.lodgement.rule;
 
 import zhy2002.examples.lodgement.gen.node.EmploymentNode;
 import zhy2002.examples.lodgement.gen.node.EmploymentTypeNode;
 import zhy2002.neutron.EventBinding;
+import zhy2002.neutron.RefreshEventBinding;
 import zhy2002.neutron.UiNode;
 import zhy2002.neutron.UiNodeRule;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
 import zhy2002.neutron.event.StringStateChangeEventBinding;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.logging.Logger;
@@ -29,19 +32,18 @@ public class EmploymentTypeChangedRule extends UiNodeRule<EmploymentTypeNode> {
 
     @Override
     protected Collection<EventBinding> createEventBindings() {
-        return Collections.singletonList(
+        return Arrays.asList(
                 new StringStateChangeEventBinding(
                         this::changeEmploymentType
+                ),
+                new RefreshEventBinding(
+                        e -> refresh(),
+                        NeutronConstants.NODE_LOADED_REFRESH_REASON
                 )
         );
     }
 
-    //todo this is a temporary solution
-    //replace with load default json or deferred init instead
-    @Override
-    public void addToOwner() {
-        super.addToOwner();
-
+    private void refresh() {
         changeEmploymentType(getOwner().getValue());
     }
 

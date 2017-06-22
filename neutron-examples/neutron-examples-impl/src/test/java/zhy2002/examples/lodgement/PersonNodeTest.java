@@ -197,7 +197,7 @@ public class PersonNodeTest {
 
     @Test
     public void objectNodeIsSetToHasValueWhenChildHasValue() {
-
+        //todo check
         MovedToCurrentAddressNode movedToCurrentAddressNode = personContactNode.getMovedToCurrentAddressNode();
         MonthNode monthNode = movedToCurrentAddressNode.getMonthNode();
         monthNode.setValue(new Double("12"));
@@ -210,9 +210,8 @@ public class PersonNodeTest {
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
 
         yearNode.setValue(null);
-        assertThat(yearNode.getValue(), equalTo(Double.NaN));
+        assertThat(yearNode.getValue(), nullValue());
         assertThat(movedToCurrentAddressNode.hasValue(), equalTo(true));
-
     }
 
     @Test
@@ -343,4 +342,29 @@ public class PersonNodeTest {
         assertThat(personNode.getSelectedName(), notNullValue());
     }
 
+    @Test
+    public void shouldOnlyValidateTheSelectedEmploymentType() {
+        CurrentEmploymentListNode currentEmploymentListNode = personNode.getCurrentEmploymentListNode();
+        CurrentEmploymentNode currentEmploymentNode = currentEmploymentListNode.createItem();
+        currentEmploymentNode.getEmploymentTypeNode().setValue("unemployedNode");
+        assertThat(currentEmploymentNode.getPayeEmployedNode().isDisabled(), equalTo(true));
+        assertThat(currentEmploymentNode.getSelfEmployedNode().isDisabled(), equalTo(true));
+        assertThat(currentEmploymentNode.getRetiredEmploymentNode().isDisabled(), equalTo(true));
+        assertThat(currentEmploymentNode.getUnemployedNode().isDisabled(), equalTo(false));
+
+        PayeEmployedNode payeEmployedNode = currentEmploymentNode.getPayeEmployedNode();
+        assertThat(payeEmployedNode.getGrossYearlySalaryNode().isEffectivelyDisabled(), equalTo(true));
+
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+        UnemployedNode unemployedNode = currentEmploymentNode.getUnemployedNode();
+        unemployedNode.getStudentFlagNode().setValue("No");
+        unemployedNode.getHouseDutiesFlagNode().setValue("No");
+        unemployedNode.getUnemployedOnBenefitFlagNode().setValue("No");
+        unemployedNode.getUnemployedSinceNode().getYearNode().setValue(1999d);
+        unemployedNode.getUnemployedSinceNode().getMonthNode().setValue(3d);
+        currentEmploymentNode.refresh();
+
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
+
+    }
 }

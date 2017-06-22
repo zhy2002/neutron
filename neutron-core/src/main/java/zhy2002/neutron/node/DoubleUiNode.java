@@ -29,7 +29,7 @@ public abstract class DoubleUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     //region node properties
 
-    public static final PropertyMetadata<Double> VALUE_PROPERTY = MetadataRegistry.createProperty(DoubleUiNode.class, "value", Double.class, Double.NaN);
+    public static final PropertyMetadata<Double> VALUE_PROPERTY = MetadataRegistry.createProperty(DoubleUiNode.class, "value", Double.class);
 
     @JsMethod
     @Override

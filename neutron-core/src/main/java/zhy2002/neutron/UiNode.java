@@ -325,7 +325,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
         ChangeTrackingModeEnum changeTrackingMode = propertyMetadata.getChangeTrackingMode();
         boolean process = false;
-        T oldValue = getStateValueDirectly(key);
+        T oldValue = getStateValue(propertyMetadata);
         switch (changeTrackingMode) {
             case Always:
                 process = true;
@@ -785,6 +785,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public final void setDisabledAncestorCount(int count) {
+        assert count >= 0;
         setStateValue(DISABLED_ANCESTOR_COUNT, count);
     }
 
@@ -808,6 +809,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     public final void setReadonlyAncestorCount(int count) {
+        assert count >= 0;
         setStateValue(READONLY_ANCESTOR_COUNT, count);
     }
 

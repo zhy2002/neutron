@@ -41,11 +41,11 @@ public class CompanyTest {
     }
 
     @Test
-    public void newCompanyIsDirty() {
+    public void newCompanyIsNotDirty() {
         applicationNode.getContext().setDirtyCheckEnabled(true);
         CompanyNode companyNode = companyListNode.createItem();
-        assertThat(companyNode.getCompanyTrustNode().isDirty(), equalTo(true));
-        assertThat(companyNode.isDirty(), equalTo(true));
+        assertThat(companyNode.getCompanyTrustNode().isDirty(), equalTo(false));
+        assertThat(companyNode.isDirty(), equalTo(false));
     }
 
     @Test

@@ -1245,6 +1245,11 @@ commonTypes:
   childTypes:
   - typeName: EmploymentTypeNode
     baseTypeName: StringUiNode
+    init:
+    - {propertyName: options, value: 'ApplicationNodeConstants.EMPLOYMENT_TYPE'}
+    - {propertyName: value, value: '"payeEmployedNode"'}
+    rules:
+    - {typeName: EmploymentTypeChangedRule}
 
   - typeName: PayeEmployedNode
     baseTypeName: EmployedNode
@@ -1274,6 +1279,7 @@ commonTypes:
     baseTypeName: ObjectUiNode
     abstractNode: true
     rules:
+    - {typeName: MaintainDisabledAncestorCountRule}
     children:
     - {typeName: EmploymentStatusNode}
     - {typeName: OccupationNode}
@@ -1307,6 +1313,8 @@ commonTypes:
 
   - typeName: UnemployedNode
     baseTypeName: ObjectUiNode
+    rules:
+    - {typeName: MaintainDisabledAncestorCountRule}
     children:
     - {typeName: UnemployedOnBenefitFlagNode}
     - {typeName: StudentFlagNode}
@@ -1331,6 +1339,8 @@ commonTypes:
 
   - typeName: RetiredEmploymentNode
     baseTypeName: ObjectUiNode
+    rules:
+    - {typeName: MaintainDisabledAncestorCountRule}
     children:
     - {typeName: RetiredOnBenefitFlagNode}
     - {typeName: RetiredSinceNode}
@@ -1348,6 +1358,8 @@ commonTypes:
 - typeName: YesNoOptionNode
   baseTypeName: StringUiNode
   parentBaseTypeName: ParentUiNode<?>
+  config:
+  - {property: '@options', value: ApplicationNodeConstants.YES_NO_TYPE}
 
 - typeName: BaseCountryNode
   baseTypeName: StringUiNode
