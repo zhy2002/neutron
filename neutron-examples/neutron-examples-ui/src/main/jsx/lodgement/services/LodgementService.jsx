@@ -12,6 +12,18 @@ function createGlobalUiStateNode() {
     return window.GWT.GlobalUiStateNodeFactory.create();
 }
 
+function isAppOpen(id) {
+    //check if app is already opened
+    const openApps = globalUiStateNode.getOpenAppsNode().getChildren().map(c => c.getValue());
+    for (let i = 0; i < openApps.length; i++) {
+        const app = openApps[i];
+        if (app.getIdNode().getValue() === id) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 function createAppTab(newApp) {
     globalUiStateNode.dispatchAddOpenAppAction(newApp);
 
@@ -85,15 +97,11 @@ export default class LodgementService extends StaticService {
         }
 
         //check if app is already opened
-        const openApps = globalUiStateNode.getOpenAppsNode().getChildren().map(c => c.getValue());
-        for (let i = 0; i < openApps.length; i++) {
-            const app = openApps[i];
-            if (app.getIdNode().getValue() === id) {
-                globalUiStateNode.setSelectedTabIndex(i + appTabOffset);
-                LodgementService.selectTab(i + appTabOffset);
-                console.debug('app is already loaded');
-                return CommonUtil.defer(app);
-            }
+        const appIndex = isAppOpen(id);
+        if (appIndex >= 0) {
+            console.debug('app is already loaded');
+            LodgementService.selectTab(appIndex + appTabOffset);
+            return CommonUtil.defer(null);
         }
 
         //load existing app
@@ -153,6 +161,22 @@ export default class LodgementService extends StaticService {
         if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this app.')) {
             globalUiStateNode.getOpenAppsNode().removeItem(item);
         }
+    }
+
+    static deleteApp() {
+        const id = globalUiStateNode.getAppManagerNode().getCurrentAppId();
+        if (!id) {
+            alert('No application is selected.');
+            return CommonUtil.defer(null);
+        }
+        if (isAppOpen(id) >= 0) {
+            alert('Please close the selected application first.');
+            return CommonUtil.defer(null);
+        }
+        return StorageService.deleteApplication(id).then(() => {
+            //give elastic search time to update.
+            return CommonUtil.delay(500).then(() => LodgementService.refreshApplicationList());
+        });
     }
 
     static refreshApplicationList() {

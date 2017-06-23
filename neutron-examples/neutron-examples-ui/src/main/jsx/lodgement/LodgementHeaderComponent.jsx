@@ -41,6 +41,7 @@ class LodgementHeaderComponent extends React.PureComponent {
                     onNewApp={LodgementService.newApp}
                     onOpenApp={LodgementService.openApp}
                     onCloneApp={LodgementService.cloneApp}
+                    onDeleteApp={LodgementService.deleteApp}
                 />
             </ResizeAware>
         );

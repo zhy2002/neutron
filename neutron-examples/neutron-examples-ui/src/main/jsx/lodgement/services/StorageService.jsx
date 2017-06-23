@@ -79,4 +79,10 @@ export default class StorageService extends StaticService {
             errorHandler
         );
     }
+
+    static deleteApplication(id) {
+        return axios.delete(
+            `${baseUrl}/lodgement/application/${id}?pretty`
+        ).catch(errorHandler);
+    }
 }

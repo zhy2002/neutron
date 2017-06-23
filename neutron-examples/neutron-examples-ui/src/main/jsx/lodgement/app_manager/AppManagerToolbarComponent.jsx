@@ -52,6 +52,16 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                         </a>
                     </li>
                     <li>
+                        <a tabIndex="0" onClick={this.props.onDeleteApp}>
+                            <div>
+                                <span className="glyphicon glyphicon-remove" />
+                            </div>
+                            <div>
+                                <small>Delete</small>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
                         <a tabIndex="0" onClick={this.notImplemented}>
                             <div>
                                 <span className="glyphicon glyphicon-stats"/>
@@ -80,5 +90,6 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
 AppManagerToolbarComponent.propTypes = {
     onNewApp: PropTypes.func.isRequired,
     onOpenApp: PropTypes.func.isRequired,
-    onCloneApp: PropTypes.func.isRequired
+    onCloneApp: PropTypes.func.isRequired,
+    onDeleteApp: PropTypes.func.isRequired
 };
