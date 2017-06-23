@@ -156,7 +156,7 @@ rootType:
         childTypes:
         - typeName: PersonTelephoneNode
           init:
-          - {propertyName: emptyValue, value: 'new Telephone("+61")'}
+          - {propertyName: emptyValue, value: 'new Telephone("+61", "", "")'}
 
         - typeName: PersonMobileNumberNode
         - typeName: PersonEmailNode

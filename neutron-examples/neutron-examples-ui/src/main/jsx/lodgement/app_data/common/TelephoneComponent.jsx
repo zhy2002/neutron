@@ -11,8 +11,8 @@ export default class TelephoneComponent extends InputComponent {
         this.updateCountryCode = (event) => {
             this.ensureDebouncingMode();
             const value = event.target.value;
-            const telephone = this.model.getCopyOfValue();
-            telephone.setCountryCode(value);
+            const telephone = this.model.getValue();
+            telephone.countryCode = value;
             this.model.setValue(telephone);
             this.flush();
         };
@@ -20,17 +20,18 @@ export default class TelephoneComponent extends InputComponent {
         this.updateAreaCode = (event) => {
             this.ensureDebouncingMode();
             const value = event.target.value;
-            const telephone = this.model.getCopyOfValue();
-            telephone.setAreaCode(value);
+            const telephone = this.model.getValue();
+            telephone.areaCode = value;
             this.model.setValue(telephone);
             this.flush();
         };
 
+        //todo fix
         this.updatePhoneNumber = (event) => {
             this.ensureDebouncingMode();
             const value = event.target.value;
-            const telephone = this.model.getCopyOfValue();
-            telephone.setPhoneNumber(value);
+            const telephone = this.model.getValue();
+            telephone.phoneNumber = value;
             this.model.setValue(telephone);
             this.flush();
         };
@@ -63,14 +64,14 @@ export default class TelephoneComponent extends InputComponent {
 
         const telephone = this.model.getValue();
         if (telephone) {
-            if (telephone.getCountryCode()) {
-                newState.countryCode = telephone.getCountryCode();
+            if (telephone.countryCode) {
+                newState.countryCode = telephone.countryCode;
             }
-            if (telephone.getAreaCode()) {
-                newState.areaCode = telephone.getAreaCode();
+            if (telephone.areaCode) {
+                newState.areaCode = telephone.areaCode;
             }
-            if (telephone.getPhoneNumber()) {
-                newState.phoneNumber = telephone.getPhoneNumber();
+            if (telephone.phoneNumber) {
+                newState.phoneNumber = telephone.phoneNumber;
             }
         }
 

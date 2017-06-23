@@ -1167,6 +1167,7 @@ commonTypes:
   children:
   - {typeName: AddressLineNode}
   - {typeName: SuburbNode}
+  - {typeName: AddressStateNode}
   - {typeName: PostcodeNode}
   - {typeName: CountryNode}
   childTypes:
@@ -1174,6 +1175,9 @@ commonTypes:
     baseTypeName: StringUiNode
 
   - typeName: SuburbNode
+    baseTypeName: StringUiNode
+
+  - typeName: AddressStateNode
     baseTypeName: StringUiNode
 
   - typeName: PostcodeNode

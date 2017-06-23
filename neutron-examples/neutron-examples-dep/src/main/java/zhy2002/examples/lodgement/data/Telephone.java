@@ -1,12 +1,14 @@
 package zhy2002.examples.lodgement.data;
 
-import jsinterop.annotations.JsIgnore;
 import jsinterop.annotations.JsProperty;
-import jsinterop.annotations.JsType;
 import zhy2002.neutron.util.ValueUtil;
 
-@JsType
-public class Telephone {
+
+public final class Telephone {
+
+    public static Telephone fromJs(TelephoneJs telephoneJs) {
+        return telephoneJs == null ? null : new Telephone(telephoneJs.getCountryCode(), telephoneJs.getAreaCode(), telephoneJs.getPhoneNumber());
+    }
 
     @JsProperty
     private String countryCode = "";
@@ -15,20 +17,21 @@ public class Telephone {
     @JsProperty
     private String phoneNumber = "";
 
-    @JsIgnore
     public Telephone() {
     }
 
-    @JsIgnore
-    public Telephone(String countryCode) {
-        this.countryCode = countryCode;
+    public Telephone(String countryCode, String areaCode, String phoneNumber) {
+        setCountryCode(countryCode);
+        setAreaCode(areaCode);
+        setPhoneNumber(phoneNumber);
     }
 
-    @JsIgnore
     public Telephone(Telephone original) {
-        this.countryCode = original.countryCode;
-        this.areaCode = original.areaCode;
-        this.phoneNumber = original.phoneNumber;
+        if (original != null) {
+            setCountryCode(original.getCountryCode());
+            setAreaCode(original.getAreaCode());
+            setPhoneNumber(original.getPhoneNumber());
+        }
     }
 
     public String getCountryCode() {

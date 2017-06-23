@@ -30,11 +30,6 @@ public abstract class AnyUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P,
         super.setStateValue(VALUE_PROPERTY, value);
     }
 
-    @Override
-    public Object getCopyOfValue() {
-        throw new NotImplementedException();
-    }
-
     public void setEmptyValue(Object value) {
         super.setStateValue(EMPTY_VALUE_PROPERTY, value);
     }

@@ -49,14 +49,6 @@ public abstract class ValidationErrorUiNode<P extends ParentUiNode<?>> extends L
     }
 
     @Override
-    public ValidationError getCopyOfValue() {
-        ValidationError value = getValue();
-        if (value == null)
-            return new ValidationError();
-        return new ValidationError(value);
-    }
-
-    @Override
     public ValidationError getEmptyValue() {
         return EMPTY_VALUE;
     }

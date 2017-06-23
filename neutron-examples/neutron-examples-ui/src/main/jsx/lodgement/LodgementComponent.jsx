@@ -91,6 +91,7 @@ class LodgementComponent extends React.PureComponent {
                     onSelect={this.state.handleSelectLender}
                     onQuit={this.state.handleCancelSelectLender}
                 />
+                <div className="div-fake-hidden"><i className="fa fa-square-o fa-3x" /></div>
             </div>
         );
     }

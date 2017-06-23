@@ -98,13 +98,10 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     @Override
     public void resetValue() {
+        if (getNodeStatus() != NodeStatusEnum.Loaded)
+            return;
         T initialValue = getPreStateValue(getValuePropertyMetadata());
         setValue(initialValue);
-    }
-
-    @JsMethod
-    public T getCopyOfValue() {
-        throw new NotImplementedException();
     }
 
     @JsMethod

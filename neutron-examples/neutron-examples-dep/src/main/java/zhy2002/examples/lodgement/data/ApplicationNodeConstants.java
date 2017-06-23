@@ -15,7 +15,7 @@ public class ApplicationNodeConstants {
 
     public static final String NAME_PATTERN = "^[a-zA-Z ]+$";
 
-    public static final Telephone AUS_DEFAULT = new Telephone("+61");
+    public static final Telephone AUS_DEFAULT = new Telephone("+61", "", "");
 
     public static final CurrencyInfo AUD = new CurrencyInfo("AUD", "$");
 

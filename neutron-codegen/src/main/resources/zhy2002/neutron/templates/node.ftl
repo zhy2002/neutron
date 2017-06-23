@@ -8,6 +8,9 @@ import zhy2002.neutron.event.*;
 <#if hasComponent>
 import ${targetPackage}.gen.di.${typeName}Component;
 </#if>
+<#if valueTypeName??>
+import zhy2002.neutron.data.NodeIdentity;
+</#if>
 <#if valueTypeName?? || properties?? || valueWrappers?? || children??>
 import jsinterop.annotations.*;
 import java.math.BigDecimal;
@@ -175,7 +178,8 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     @JsMethod
     @Override
     public final ${valueTypeName} getValue() {
-        return super.getStateValue(VALUE_PROPERTY);
+        ${valueTypeName} value = super.getStateValue(VALUE_PROPERTY);
+        return value == null ? null : new ${valueTypeName}(value);
     }
 
     @JsMethod
@@ -203,6 +207,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     //region children getters
 
     <#list children as child>
+    @SuppressWarnings("unusable-by-js")
     @JsMethod
     public ${child.typeName} get${child.name?cap_first}() {
         return (${child.typeName})getChildByName("${child.name}");
@@ -226,11 +231,13 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
 </#if>
 <#if valueTypeName??>
     @Override
-    public ${valueTypeName} getCopyOfValue() {
-        ${valueTypeName} value = getValue();
-        if(value == null)
-            return new ${valueTypeName}();
-        return new ${valueTypeName}(value);
+    protected void clearNodeIdentity() {
+        NodeIdentity nodeIdentity = getNodeIdentity();
+        if (nodeIdentity != null) {
+            setValue(${valueTypeName}.fromJs(nodeIdentity.getValue()));
+        }
+
+        super.clearNodeIdentity();
     }
 
     public void setEmptyValue(${valueTypeName} value) {
