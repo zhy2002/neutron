@@ -2,7 +2,7 @@ import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
-import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
+import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 
 function renderItems(model) {
     const result = [];

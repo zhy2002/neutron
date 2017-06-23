@@ -181,7 +181,7 @@ rootType:
         - {propertyName: nodeLabel, value: '"Current Employment"'}
         - {propertyName: minItemCount, value: 1}
         rules:
-        - {typeName: MinItemCountValidationRule, existing: true}
+        - {typeName: MinItemCountValidationRule}
         childTypes:
         - typeName: CurrentEmploymentNode
           init:
@@ -704,6 +704,9 @@ rootType:
 
         - typeName: PropertyWeeklyRentNode
         - typeName: PropertyAddressNode
+          config:
+          - {property: '@required', value: true}
+
         - typeName: EstimatedMarketValueNode
           init:
           - {propertyName: required, value: true}
@@ -777,6 +780,10 @@ rootType:
     - {typeName: ProductTotalLvrLmiNode}
     childTypes:
     - typeName: ProductListNode
+      init:
+      - {propertyName: minItemCount, value: 1}
+      rules:
+      - {typeName: MinItemCountValidationRule}
       childTypes:
       - typeName: ProductNode
         init:

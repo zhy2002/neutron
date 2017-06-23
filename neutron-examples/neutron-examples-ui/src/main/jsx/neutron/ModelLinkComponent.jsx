@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from '../neutron/NeutronHoc';
+import NeutronHoc from './NeutronHoc';
 
 
 function ModelLinkComponent(props) {
@@ -24,7 +24,11 @@ function ModelLinkComponent(props) {
 
 export default NeutronHoc(
     ModelLinkComponent,
-    undefined,
+    (model) => {
+        const props = {};
+        props.label = model.getNodeLabel();
+        return props;
+    },
     {
         title: PropTypes.string.isRequired
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
-import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
+import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 
 function RelatedPartySummaryComponent(props) {
     function selectItem() {

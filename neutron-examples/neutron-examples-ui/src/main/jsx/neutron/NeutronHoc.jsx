@@ -91,7 +91,6 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.propTypes = Object.assign(
         {
             model: PropTypes.object,
-            label: PropTypes.string,
             disabled: PropTypes.bool
         },
         propTypes
@@ -100,7 +99,6 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.defaultProps = Object.assign(
         {
             model: null,
-            label: null,
             disabled: false
         },
         defaultProps

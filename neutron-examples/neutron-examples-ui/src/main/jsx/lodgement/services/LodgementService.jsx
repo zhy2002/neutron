@@ -67,6 +67,10 @@ export default class LodgementService extends StaticService {
         return showLenderList().then(profileName => createApplicationNode(profileName).then(createAppTab));
     }
 
+    static loadApplicationNode(id, path) {
+        return StorageService.getApplication(id).then(node => restoreApplicationNode(node, path));
+    }
+
     static openApp(appId, path) {
         let id = null;
         if (typeof appId === 'string') {
@@ -94,8 +98,7 @@ export default class LodgementService extends StaticService {
 
         //load existing app
         UiService.setIsLoading(true);
-        return StorageService.getApplication(id)
-            .then(node => restoreApplicationNode(node, path))
+        return LodgementService.loadApplicationNode(id, path)
             .then(createAppTab)
             .then(
                 (model) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronHoc from '../neutron/NeutronHoc';
+import NeutronHoc from './NeutronHoc';
 
 function NodeValueComponent(props) {
     return <span>{props.prefix}{props.text}</span>;

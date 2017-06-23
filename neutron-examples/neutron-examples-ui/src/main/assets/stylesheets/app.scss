@@ -224,6 +224,12 @@ li.nav-dropdown-component.selected {
       margin-right: 0.5em;
     }
   }
+
+  &.disabled .radio-container{
+    input[type=radio] {
+      cursor: not-allowed;
+    }
+  }
 }
 
 .month-year-component {

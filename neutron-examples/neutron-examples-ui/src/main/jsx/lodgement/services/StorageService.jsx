@@ -79,10 +79,4 @@ export default class StorageService extends StaticService {
             errorHandler
         );
     }
-
-    static refreshApplication(model) {
-        console.debug('Refreshing...');
-        console.debug(model);
-        return window.Promise.reject('Not implemented');
-    }
 }

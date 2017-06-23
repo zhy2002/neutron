@@ -15,8 +15,19 @@ class ApplicationToolbarComponent extends React.PureComponent {
         };
 
         this.validate = () => {
+            const model = this.props.model;
             console.log('validating...');
-            this.props.model.refresh();
+            model.refresh();
+            if (!model.getShowErrorList()) {
+                EventService.fire(
+                    'show_notification',
+                    {
+                        message: 'Application is valid.',
+                        position: 'tc',
+                        level: 'success'
+                    }
+                );
+            }
             console.log('validation done.');
         };
 
@@ -49,10 +60,11 @@ class ApplicationToolbarComponent extends React.PureComponent {
 
         this.refresh = () => {
             const model = this.props.model;
-            if (model.isDirty() && confirm('Changes in this application will be lost. Continue?')) {
-                StorageService.refreshApplication(model).catch((error) => {
-                    alert(error);
-                });
+            if (!model.isDirty() || confirm('Changes in this application will be lost. Continue?')) {
+                EventService.fire(
+                    'refresh_application',
+                    model
+                );
             }
         };
     }

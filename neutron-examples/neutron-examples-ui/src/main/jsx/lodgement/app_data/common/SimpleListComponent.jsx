@@ -10,7 +10,7 @@ function renderItems(props) {
     );
     if (items.length === 0) {
         items.push(
-            <AlertInfoComponent>
+            <AlertInfoComponent key="no_result">
                 No record
             </AlertInfoComponent>
         );

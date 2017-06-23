@@ -22,10 +22,10 @@ http:
 
 Todo
 -----------------  
-- error when navigating to a none existent app
 - Error when closing a none active app tab
 - Handle url change when back/forward browser buttons are clicked.
 - Use HOCs replace Neutron base components
+- create layout components
 - i18n support
   - runtime configurable culture specific parser/formatter chain
   - formatter chain for all node
@@ -40,7 +40,6 @@ Todo
 Todo (low priority)
 -----------------
 - implement rule priority
-- create layout components
 - rolling commit - only keep N cycles in the current session
 - implement context menu component
 - profiling: reduce memory consumption
@@ -71,7 +70,6 @@ Todo (long term)
 - versioned domain and profile
 - migrate from GWT to Kotlin
 - property DSL to replace yaml.
-
 
 Design
 -----------------
@@ -253,6 +251,8 @@ Finished
 31 exclude generated files from source control
 
 32 dob year defaults to 18 years ago
+
+33 - error when navigating to a none existent app
 
 ### Garbage
 

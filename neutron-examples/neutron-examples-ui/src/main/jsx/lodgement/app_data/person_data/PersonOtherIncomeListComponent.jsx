@@ -11,7 +11,7 @@ function renderItems(model) {
     );
     if (items.length === 0) {
         items.push(
-            <AlertInfoComponent>
+            <AlertInfoComponent key="no_result">
                 Click <em>Add</em> to create a new other income record.
             </AlertInfoComponent>
         );

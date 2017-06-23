@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NodeLabelComponent from './NodeLabelComponent';
+import NodeLabelComponent from '../neutron/NodeLabelComponent';
 import NeutronComponent from './NeutronComponent';
 
 

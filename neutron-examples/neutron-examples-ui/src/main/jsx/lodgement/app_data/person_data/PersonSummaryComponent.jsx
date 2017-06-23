@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import RemovePanelComponent from '../common/RemovePanelComponent';
 import BooleanLabelComponent from '../common/BooleanLabelComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
-import NodeLabelComponent from '../../../bootstrap3/NodeLabelComponent';
+import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 
 
 class PersonSummaryComponent extends React.PureComponent {

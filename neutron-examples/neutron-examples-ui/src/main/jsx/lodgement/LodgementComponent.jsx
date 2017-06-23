@@ -30,6 +30,13 @@ class LodgementComponent extends React.PureComponent {
             }
         };
 
+        this.refreshApplication = (model) => {
+            const id = model.getIdNode().getValue();
+            LodgementService.loadApplicationNode(id).then((newModel) => {
+                props.model.dispatchAddOpenAppAction(newModel);
+            });
+        };
+
         this.showLenderList = ({resolve, reject}) => {
             this.setState({
                 showLenderList: true,
@@ -58,11 +65,13 @@ class LodgementComponent extends React.PureComponent {
         LodgementService.refreshApplicationList();
         EventService.subscribe('show_notification', this.showNotification);
         EventService.subscribe('show_lender_list', this.showLenderList);
+        EventService.subscribe('refresh_application', this.refreshApplication);
     }
 
     componentWillUnmount() {
         EventService.unsubscribe('show_notification', this.showNotification);
         EventService.unsubscribe('show_lender_list', this.showLenderList);
+        EventService.unsubscribe('refresh_application', this.refreshApplication);
     }
 
     render() {
@@ -91,7 +100,7 @@ class LodgementComponent extends React.PureComponent {
                     onSelect={this.state.handleSelectLender}
                     onQuit={this.state.handleCancelSelectLender}
                 />
-                <div className="div-fake-hidden"><i className="fa fa-square-o fa-3x" /></div>
+                <div className="div-fake-hidden"><i className="fa fa-square-o fa-3x"/></div>
             </div>
         );
     }

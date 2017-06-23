@@ -12,7 +12,7 @@ function renderItems(model) {
 
     if (result.length === 0) {
         result.push(
-            <AlertInfoComponent>
+            <AlertInfoComponent key="no_result">
                 Click <em>Add</em> to create a new company applicant.
             </AlertInfoComponent>
         );

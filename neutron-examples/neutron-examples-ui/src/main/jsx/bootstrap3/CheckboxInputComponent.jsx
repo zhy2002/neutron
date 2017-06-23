@@ -24,8 +24,8 @@ export default class CheckboxInputComponent extends InputComponent {
 
     renderContent() {
         return [
-            <label className="layout-helper">&nbsp;</label>,
-            <label className="checkbox-container">
+            <label key="label" className="layout-helper">&nbsp;</label>,
+            <label key="container" className="checkbox-container">
                 <input
                     id={this.id}
                     type="checkbox"

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NodeLabelComponent from '../bootstrap3/NodeLabelComponent';
+import NodeLabelComponent from '../neutron/NodeLabelComponent';
 import CloseIconComponent from '../bootstrap3/CloseIconComponent';
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 import ModalDialogComponent from './ModalDialogComponent';
-import NodeLabelComponent from './NodeLabelComponent';
+import NodeLabelComponent from '../neutron/NodeLabelComponent';
 
 
 export default class ReferenceInputComponent extends InputComponent {
@@ -60,7 +60,7 @@ export default class ReferenceInputComponent extends InputComponent {
         const model = this.model;
 
         return [
-            <div className="reference-container">
+            <div key="container" className="reference-container">
                 {this.model.getReferencedNode() &&
                 <NodeLabelComponent model={this.model.getReferencedNode()}/>
                 }
@@ -74,6 +74,7 @@ export default class ReferenceInputComponent extends InputComponent {
                 </button>
             </div>,
             <ModalDialogComponent
+                key="dialog"
                 show={this.state.showModal}
                 title={this.state.label}
                 onClose={this.closeList}
