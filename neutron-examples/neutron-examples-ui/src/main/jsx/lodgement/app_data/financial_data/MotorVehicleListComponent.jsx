@@ -1,19 +1,15 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import SimpleListComponent from '../common/SimpleListComponent';
+import SimpleListComponent from '../../../bootstrap3/SimpleListComponent';
 import MotorVehicleComponent from './MotorVehicleComponent';
 
-function createItemComponent(item) {
-    return <MotorVehicleComponent key={item.getUniqueId()} model={item}/>;
-}
 
-function MotorVehicleListComponent(props) {
+function MotorVehicleListComponent({model, componentClass}) {
     return (
         <SimpleListComponent
-            className={props.componentClass}
-            title="Motor Vehicles"
-            model={props.model}
-            createItemComponent={createItemComponent}
+            className={componentClass}
+            model={model}
+            itemComponent={MotorVehicleComponent}
         />
     );
 }

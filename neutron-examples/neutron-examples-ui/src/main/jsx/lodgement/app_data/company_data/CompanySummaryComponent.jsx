@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 

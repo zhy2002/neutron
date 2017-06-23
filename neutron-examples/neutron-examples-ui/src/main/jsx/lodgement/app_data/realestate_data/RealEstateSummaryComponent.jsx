@@ -2,7 +2,7 @@ import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 
 const OtherRealEstateDetailsComponent = NeutronHoc(
     (props) => {

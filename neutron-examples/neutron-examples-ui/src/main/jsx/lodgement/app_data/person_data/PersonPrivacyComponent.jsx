@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import PrivacyComponent from '../common/PrivacyComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 function PersonPrivacyComponent(props) {
     return (

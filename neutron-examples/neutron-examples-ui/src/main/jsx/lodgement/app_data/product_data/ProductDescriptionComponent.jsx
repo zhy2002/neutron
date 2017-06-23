@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 import SelectAccountHolderListComponent from '../common/SelectAccountHolderListComponent';
 
 

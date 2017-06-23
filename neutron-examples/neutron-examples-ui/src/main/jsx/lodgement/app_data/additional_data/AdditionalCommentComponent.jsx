@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import TextAreaComponent from '../../../bootstrap3/TextAreaComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 function AdditionalCommentComponent(props) {
     return (

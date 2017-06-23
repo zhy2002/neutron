@@ -1,8 +1,8 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import PersonOtherIncomeComponent from './PersonOtherIncomeComponent';
-import MainContentComponent from '../common/MainContentComponent';
-import AddListComponent from '../common/AddListComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
+import AddListComponent from '../../../bootstrap3/AddListComponent';
 
 
 function PersonOtherIncomeListComponent({model, componentClass}) {

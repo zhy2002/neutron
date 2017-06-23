@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import PanelComponent from '../../../bootstrap3/PanelComponent';
 import NodeValueComponent from '../../../neutron/NodeValueComponent';
 import ModalDialogComponent from '../../../bootstrap3/ModalDialogComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 import ProductFeeEditorComponent from './ProductFeeEditorComponent';
 
 class ProductFeeListComponent extends React.PureComponent {

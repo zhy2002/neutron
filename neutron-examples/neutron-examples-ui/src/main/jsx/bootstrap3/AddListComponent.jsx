@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from '../../../neutron/NeutronHoc';
-import CommonUtil from '../../../neutron/CommonUtil';
+import NeutronHoc from '../neutron/NeutronHoc';
+import CommonUtil from '../neutron/CommonUtil';
 
 
 class AddListComponent extends React.PureComponent {

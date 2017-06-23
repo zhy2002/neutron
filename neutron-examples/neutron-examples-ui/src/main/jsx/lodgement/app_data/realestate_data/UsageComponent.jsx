@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import ExistingMortgageList from './ExistingMortgageListComponent';
 

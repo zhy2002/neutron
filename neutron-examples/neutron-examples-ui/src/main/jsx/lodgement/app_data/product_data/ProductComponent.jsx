@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TabContentComponent from '../common/TabContentComponent';
+import TabContentComponent from '../../../bootstrap3/TabContentComponent';
 import ProductDescriptionComponent from './ProductDescriptionComponent';
 import ProductFeaturesComponent from './ProductFeaturesComponent';
 

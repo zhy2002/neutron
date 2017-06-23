@@ -4,7 +4,7 @@ import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import PersonEmployedComponent from './PersonEmployedComponent';
 import PersonRetiredComponent from './PersonRetiredComponent';
 import PersonUnemployedComponent from './PersonUnemployedComponent';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 
 
 function PersonEmploymentComponent(props) {

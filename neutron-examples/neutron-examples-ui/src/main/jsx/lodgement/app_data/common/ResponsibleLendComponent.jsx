@@ -2,7 +2,7 @@ import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
-import MainContentComponent from './MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 const significantChangeLabel = 'Are you aware of any significant changes in circumstances'
     + ' that will adversely affect your ability to make contracted loan repayments?';

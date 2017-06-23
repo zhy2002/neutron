@@ -4,7 +4,7 @@ import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 
 function PersonOtherIncomeComponent(props) {
     const model = props.model;

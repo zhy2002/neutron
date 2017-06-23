@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 class SubmissionComponent extends React.PureComponent {
 

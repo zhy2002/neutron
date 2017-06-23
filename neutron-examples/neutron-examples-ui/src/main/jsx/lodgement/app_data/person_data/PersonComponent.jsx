@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import TabContentComponent from '../common/TabContentComponent';
+import TabContentComponent from '../../../bootstrap3/TabContentComponent';
 import PersonGeneralComponent from './PersonGeneralComponent';
 import PersonContactComponent from './PersonContactComponent';
 import PersonEmploymentListComponent from './PersonEmploymentListComponent';

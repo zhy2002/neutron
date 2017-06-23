@@ -210,8 +210,11 @@ export default class CommonUtil extends StaticService {
     static createFocusOnNodeFunc(node) {
         return () => {
             const dom = document.getElementById(node.getUniqueId());
-            if (dom && dom.focus) {
-                dom.focus();
+            if (dom) {
+                dom.scrollIntoView();
+                if (dom.focus) {
+                    dom.focus();
+                }
             }
         };
     }

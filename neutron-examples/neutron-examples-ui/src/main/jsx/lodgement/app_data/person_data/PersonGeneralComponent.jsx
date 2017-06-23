@@ -7,7 +7,7 @@ import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 import ReferenceInputComponent from '../../../bootstrap3/ReferenceInputComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 
 class PersonGeneralComponent extends React.PureComponent {

@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RelatedPartyListComponent from './RelatedPartyListComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 function AdditionalComponent(props) {
     return (

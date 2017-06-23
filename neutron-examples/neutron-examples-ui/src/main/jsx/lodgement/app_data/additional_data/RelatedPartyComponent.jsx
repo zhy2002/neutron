@@ -5,7 +5,7 @@ import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import DateInputComponent from '../../../bootstrap3/DateInputComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 
 function RelatedPartyComponent(props) {

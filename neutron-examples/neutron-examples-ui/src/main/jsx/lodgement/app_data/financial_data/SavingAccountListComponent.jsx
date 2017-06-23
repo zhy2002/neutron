@@ -1,18 +1,15 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import SimpleListComponent from '../common/SimpleListComponent';
+import SimpleListComponent from '../../../bootstrap3/SimpleListComponent';
 import SavingsAccountComponent from './SavingsAccountComponent';
 
-function createItemComponent(item) {
-    return <SavingsAccountComponent key={item.getUniqueId()} model={item}/>;
-}
 
-function SavingAccountListComponent(props) {
+function SavingAccountListComponent({model, componentClass}) {
     return (
         <SimpleListComponent
-            title="Savings Accounts"
-            model={props.model}
-            createItemComponent={createItemComponent}
+            className={componentClass}
+            model={model}
+            itemComponent={SavingsAccountComponent}
         />
     );
 }

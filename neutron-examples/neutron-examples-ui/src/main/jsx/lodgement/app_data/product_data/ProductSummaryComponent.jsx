@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import ModelLinkComponent from '../../../bootstrap3/ModelLinkComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 
 
 function ProductSummaryComponent(props) {

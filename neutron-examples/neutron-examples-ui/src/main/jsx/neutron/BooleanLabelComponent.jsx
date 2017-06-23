@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from '../../../neutron/NeutronHoc';
+import NeutronHoc from './NeutronHoc';
 
 function BooleanLabelComponent(props) {
     if (props.value === true) {

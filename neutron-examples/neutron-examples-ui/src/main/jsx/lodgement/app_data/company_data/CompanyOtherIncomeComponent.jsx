@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
-import RemovePanelComponent from '../common/RemovePanelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
 
 function CompanyOtherIncomeComponent(props) {
     const model = props.model;

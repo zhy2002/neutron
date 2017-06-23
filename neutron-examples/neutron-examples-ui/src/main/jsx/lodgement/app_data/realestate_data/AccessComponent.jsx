@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';

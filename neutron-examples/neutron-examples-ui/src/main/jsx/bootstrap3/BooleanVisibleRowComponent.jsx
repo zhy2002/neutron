@@ -1,5 +1,5 @@
 import React from 'react';
-import NeutronHoc from '../../../neutron/NeutronHoc';
+import NeutronHoc from '../neutron/NeutronHoc';
 
 
 function BooleanVisibleRowComponent(props) {

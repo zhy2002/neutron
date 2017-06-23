@@ -1,8 +1,8 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import AddListComponent from '../common/AddListComponent';
+import AddListComponent from '../../../bootstrap3/AddListComponent';
 import ProductSummaryComponent from './ProductSummaryComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 function mapItemToModel(item) {
     return item.getProductDescriptionNode();

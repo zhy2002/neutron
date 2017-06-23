@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import AddListComponent from '../common/AddListComponent';
+import AddListComponent from '../../../bootstrap3/AddListComponent';
 import ExistingMortgageComponent from './ExistingMortgageComponent';
 
 function ExistingMortgageListComponent({model, disabled, componentClass}) {

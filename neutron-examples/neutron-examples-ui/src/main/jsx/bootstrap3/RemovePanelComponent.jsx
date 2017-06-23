@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from '../../../neutron/NeutronHoc';
-import ItemIndexComponent from '../../../neutron/ItemIndexComponent';
-import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
+import NeutronHoc from '../neutron/NeutronHoc';
+import ItemIndexComponent from '../neutron/ItemIndexComponent';
+import CloseIconComponent from './CloseIconComponent';
 
 
 class RemovePanelComponent extends React.PureComponent {
@@ -25,7 +25,7 @@ class RemovePanelComponent extends React.PureComponent {
         const props = this.props;
 
         return (
-            <div className={`${props.componentClass} row ${props.className}`}>
+            <div id={props.model.getUniqueId()} className={`${props.componentClass} row ${props.className}`}>
                 <div className="col-sm-12">
                     <div className="well">
                         <CloseIconComponent onClose={this.removeItem} title="Remove"/>

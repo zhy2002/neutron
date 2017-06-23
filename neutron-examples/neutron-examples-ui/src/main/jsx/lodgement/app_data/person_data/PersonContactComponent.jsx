@@ -3,7 +3,7 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
 import MonthYearComponent from '../common/MonthYearComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 
 function PersonContactComponent(props) {

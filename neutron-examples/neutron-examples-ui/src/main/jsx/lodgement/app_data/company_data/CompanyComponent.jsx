@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import TabContentComponent from '../common/TabContentComponent';
+import TabContentComponent from '../../../bootstrap3/TabContentComponent';
 import CompanyTrustComponent from './CompanyTrustComponent';
 import CompanyPrivacyComponent from './CompanyPrivacyComponent';
 import CompanyGeneralComponent from './CompanyGeneralComponent';

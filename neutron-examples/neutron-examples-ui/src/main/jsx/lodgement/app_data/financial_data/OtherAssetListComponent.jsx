@@ -1,19 +1,15 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import SimpleListComponent from '../common/SimpleListComponent';
+import SimpleListComponent from '../../../bootstrap3/SimpleListComponent';
 import OtherAssetComponent from './OtherAssetComponent';
 
-function createItemComponent(item) {
-    return <OtherAssetComponent key={item.getUniqueId()} model={item}/>;
-}
 
-function OtherAssetListComponent(props) {
+function OtherAssetListComponent({model, componentClass}) {
     return (
         <SimpleListComponent
-            className={props.componentClass}
-            title="Other Assets"
-            model={props.model}
-            createItemComponent={createItemComponent}
+            className={componentClass}
+            model={model}
+            itemComponent={OtherAssetComponent}
         />
     );
 }

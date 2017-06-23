@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from '../../../neutron/NeutronHoc';
-import LocationService from '../../services/LocationService';
+import NeutronHoc from '../neutron/NeutronHoc';
+import LocationService from '../lodgement/services/LocationService';
 
 
 class TabContentComponent extends React.PureComponent {

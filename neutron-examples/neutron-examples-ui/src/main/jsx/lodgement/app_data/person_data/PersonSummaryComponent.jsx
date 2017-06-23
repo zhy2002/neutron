@@ -1,7 +1,7 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import RemovePanelComponent from '../common/RemovePanelComponent';
-import BooleanLabelComponent from '../common/BooleanLabelComponent';
+import RemovePanelComponent from '../../../bootstrap3/RemovePanelComponent';
+import BooleanLabelComponent from '../../../neutron/BooleanLabelComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 

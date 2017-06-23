@@ -1,8 +1,8 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import PersonEmploymentComponent from './PersonEmploymentComponent';
-import AddListComponent from '../common/AddListComponent';
-import MainContentComponent from '../common/MainContentComponent';
+import AddListComponent from '../../../bootstrap3/AddListComponent';
+import MainContentComponent from '../../../bootstrap3/MainContentComponent';
 
 
 function PersonEmploymentListComponent(props) {
