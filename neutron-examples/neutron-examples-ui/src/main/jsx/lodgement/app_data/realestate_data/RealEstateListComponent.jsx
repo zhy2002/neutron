@@ -5,18 +5,10 @@ import RealEstateSummaryComponent from './RealEstateSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
 
 
-function RealEstateListComponent(props) {
-    const model = props.model;
-
+function RealEstateListComponent({model, componentClass}) {
     return (
-        <MainContentComponent className={props.componentClass}>
-            <AddListComponent model={model}>
-                {
-                    model.getChildren().map(
-                        item => <RealEstateSummaryComponent key={item.getUniqueId()} model={item}/>
-                    )
-                }
-            </AddListComponent>
+        <MainContentComponent className={componentClass}>
+            <AddListComponent model={model} itemComponent={RealEstateSummaryComponent}/>
         </MainContentComponent>
     );
 }

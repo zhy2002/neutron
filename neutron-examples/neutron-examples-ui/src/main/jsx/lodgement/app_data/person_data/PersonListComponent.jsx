@@ -3,23 +3,8 @@ import NeutronHoc from '../../../neutron/NeutronHoc';
 import AddListComponent from '../common/AddListComponent';
 import PersonSummaryComponent from './PersonSummaryComponent';
 import MainContentComponent from '../common/MainContentComponent';
-import AlertInfoComponent from '../common/AlertInfoComponent';
 import CommonUtil from '../../../neutron/CommonUtil';
 
-
-function renderItems(model) {
-    const items = model.getChildren().map(
-        item => <PersonSummaryComponent key={item.getUniqueId()} model={item}/>
-    );
-    if (items.length === 0) {
-        items.push(
-            <AlertInfoComponent key="no_result">
-                Click <em>Add</em> to create a new person applicant.
-            </AlertInfoComponent>
-        );
-    }
-    return items;
-}
 
 class PersonListComponent extends React.PureComponent {
 
@@ -35,12 +20,9 @@ class PersonListComponent extends React.PureComponent {
     }
 
     render() {
-        const model = this.props.model;
         return (
             <MainContentComponent className={this.props.componentClass}>
-                <AddListComponent model={model}>
-                    {renderItems(model)}
-                </AddListComponent>
+                <AddListComponent model={this.props.model} itemComponent={PersonSummaryComponent}/>
             </MainContentComponent>
         );
     }

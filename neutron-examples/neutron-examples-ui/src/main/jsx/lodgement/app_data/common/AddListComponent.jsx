@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../../../neutron/NeutronHoc';
+import CommonUtil from '../../../neutron/CommonUtil';
 
 
 class AddListComponent extends React.PureComponent {
@@ -10,12 +11,7 @@ class AddListComponent extends React.PureComponent {
 
         this.createNewItem = () => {
             const item = this.props.model.createItem();
-            this.componentDidUpdateCallback = () => {
-                const dom = document.getElementById(item.getUniqueId());
-                if (dom && dom.focus) {
-                    dom.focus();
-                }
-            };
+            this.componentDidUpdateCallback = CommonUtil.createFocusOnNodeFunc(item);
         };
     }
 
@@ -28,7 +24,6 @@ class AddListComponent extends React.PureComponent {
 
     render() {
         const props = this.props;
-        const model = props.model;
 
         return (
             <div className={`${props.componentClass} ${props.className} row`}>
@@ -36,7 +31,7 @@ class AddListComponent extends React.PureComponent {
                     <div className="row">
                         <div className="col-md-2">
                             <button
-                                id={model.getUniqueId()}
+                                id={props.model.getUniqueId()}
                                 className="btn btn-sm btn-primary pull-right"
                                 onClick={this.createNewItem}
                             >
@@ -44,11 +39,11 @@ class AddListComponent extends React.PureComponent {
                             </button>
                         </div>
                         <div className="col-md-10">
-                            {React.Children.count(props.children) === 0 && props.emptyMessage ?
+                            {props.count === 0 ?
                                 <div key="no_result" className="alert alert-info">
-                                    {props.emptyMessage}
+                                    Click <em>Add</em> to create a new {props.label} record.
                                 </div> :
-                                props.children
+                                CommonUtil.renderItems(props.model, props.itemComponent, props.mapItemToModel)
                             }
                         </div>
                     </div>
@@ -60,14 +55,19 @@ class AddListComponent extends React.PureComponent {
 
 export default NeutronHoc(
     AddListComponent,
-    undefined,
-    {
-        children: PropTypes.any.isRequired,
-        emptyMessage: PropTypes.string,
-        className: PropTypes.string
+    (model) => {
+        const props = {};
+        props.label = model.getNodeLabel();
+        props.count = model.getItemCount();
+        return props;
     },
     {
-        emptyMessage: null,
-        className: ''
+        itemComponent: PropTypes.any.isRequired,
+        className: PropTypes.string,
+        mapItemToModel: PropTypes.func
+    },
+    {
+        className: '',
+        mapItemToModel: CommonUtil.mapToSelf
     }
 );

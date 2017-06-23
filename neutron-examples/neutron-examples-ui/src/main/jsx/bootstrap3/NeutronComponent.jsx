@@ -7,7 +7,6 @@ export default class NeutronComponent extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.callbackQueue = [];
         this.receiveProps(props);
         this.state = this.extractNewState();
     }
@@ -15,13 +14,6 @@ export default class NeutronComponent extends React.PureComponent {
     componentWillReceiveProps(nextProps) {
         this.receiveProps(nextProps);
         this.onNotify();
-    }
-
-    componentDidUpdate() {
-        while (this.callbackQueue.length > 0) {
-            const func = this.callbackQueue.shift();
-            setTimeout(func, 0);
-        }
     }
 
     componentWillUnmount() {
@@ -118,14 +110,6 @@ export default class NeutronComponent extends React.PureComponent {
         }
 
         return newState;
-    }
-
-    /**
-     * Add a function to be called when this component is rendered.
-     * @param {Function} func a function.
-     */
-    addCallback(func) {
-        this.callbackQueue.push(func);
     }
 }
 

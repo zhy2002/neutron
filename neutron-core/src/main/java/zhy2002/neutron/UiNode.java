@@ -518,6 +518,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
 
         if (preState == null) {
             preState = new HashMap<>(state);
+            preState.remove(INDEX_PROPERTY.getStateKey()); //should be null when node is unloaded.
         }
 
         loadContent();
@@ -562,8 +563,8 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         unloadContent();
         removeContent();
 
-        this.state.clear();
         assert this.preState != null;
+        this.state.clear();
         this.state.putAll(this.preState);
     }
 

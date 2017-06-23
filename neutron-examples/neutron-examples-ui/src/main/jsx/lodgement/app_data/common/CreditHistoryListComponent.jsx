@@ -1,12 +1,8 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
+import CommonUtil from '../../../neutron/CommonUtil';
 import CreditHistoryComponent from './CreditHistoryComponent';
 
-function renderItems(model) {
-    return model.getChildren().map(
-        item => <CreditHistoryComponent key={item.getUniqueId()} model={item}/>
-    );
-}
 
 class CreditHistoryListComponent extends React.PureComponent {
 
@@ -15,12 +11,7 @@ class CreditHistoryListComponent extends React.PureComponent {
 
         this.createNewItem = () => {
             const item = this.props.model.createItem();
-            this.componentDidUpdateCallback = () => {
-                const dom = document.getElementById(item.getUniqueId());
-                if (dom && dom.focus) {
-                    dom.focus();
-                }
-            };
+            this.componentDidUpdateCallback = CommonUtil.createFocusOnNodeFunc(item);
         };
     }
 
@@ -36,7 +27,7 @@ class CreditHistoryListComponent extends React.PureComponent {
             return null;
 
         return (
-            <div className="credit-history-list-component">
+            <div className={this.props.componentClass}>
                 <div className="row">
                     <div className="col-xs-2">
                         <button className="btn btn-sm btn-primary pull-right" onClick={this.createNewItem}>
@@ -44,10 +35,10 @@ class CreditHistoryListComponent extends React.PureComponent {
                         </button>
                     </div>
                     <div className="col-xs-10">
-                        Credit Histories ({this.props.count})
+                        Credit History ({this.props.count})
                     </div>
                 </div>
-                {renderItems(this.props.model)}
+                {CommonUtil.renderItems(this.props.model, CreditHistoryComponent)}
             </div>
         );
     }
@@ -58,6 +49,7 @@ export default NeutronHoc(
     (model) => {
         const props = {};
         props.count = model.getItemCount();
+        props.disabled = model.isEffectivelyDisabled();
         return props;
     }
 );

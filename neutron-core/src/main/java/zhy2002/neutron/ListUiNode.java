@@ -85,9 +85,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
     protected final void removeChild(UiNode<?> child) {
         super.removeChild(child);
 
-        int index = child.getIndex();
-        child.setIndex(null);
-        for (int i = index; i < getItemCount(); i++) {
+        for (int i = 0; i < getItemCount(); i++) {
             getItem(i).setIndex(i);
         }
 

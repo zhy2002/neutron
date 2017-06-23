@@ -1,5 +1,6 @@
 package zhy2002.examples.lodgement;
 
+import org.eclipse.jetty.util.ArrayQueue;
 import org.junit.Before;
 import org.junit.Test;
 import zhy2002.examples.TestUtil;
@@ -8,6 +9,8 @@ import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.UiNodeContext;
+
+import java.util.Queue;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -53,4 +56,14 @@ public class CompanyTest {
         assertThat(applicationNode.getNodeLabel(), equalTo("Bank B"));
     }
 
+    @Test
+    public void itemIndexIsCorrectlyMaintainedWhenItemsAreRemoved() {
+        Queue<CompanyNode> queue = new ArrayQueue<>();
+        for(int i=0; i<5; i++) {
+            queue.add(companyListNode.createItem());
+        }
+        companyListNode.removeItem(queue.poll());
+        companyListNode.removeItem(queue.poll());
+        assertThat(queue.peek().getIndex(), equalTo(0));
+    }
 }

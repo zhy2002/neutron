@@ -1,4 +1,5 @@
 import Promise from 'promise';
+import React from 'react';
 import StaticService from './StaticService';
 
 
@@ -200,6 +201,25 @@ export default class CommonUtil extends StaticService {
 
     static mapToEmptyObject() {
         return {};
+    }
+
+    static mapToSelf(m) {
+        return m;
+    }
+
+    static createFocusOnNodeFunc(node) {
+        return () => {
+            const dom = document.getElementById(node.getUniqueId());
+            if (dom && dom.focus) {
+                dom.focus();
+            }
+        };
+    }
+
+    static renderItems(model, ItemComponent, modelMapper = CommonUtil.mapToSelf) {
+        return model.getChildren().map(
+            item => <ItemComponent key={item.getUniqueId()} model={modelMapper(item)}/>
+        );
     }
 
 }

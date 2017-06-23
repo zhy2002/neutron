@@ -4,21 +4,13 @@ import AddListComponent from '../common/AddListComponent';
 import RelatedPartySummaryComponent from './RelatedPartySummaryComponent';
 
 
-function RelatedPartyListComponent(props) {
-    const model = props.model;
+function RelatedPartyListComponent({model, componentClass}) {
     return (
-        <div className={props.componentClass}>
-            <AddListComponent
-                model={model}
-                emptyMessage="No related party in this application."
-            >
-                {
-                    model.getChildren().map(
-                        item => <RelatedPartySummaryComponent key={item.getUniqueId()} model={item}/>
-                    )
-                }
-            </AddListComponent>
-        </div>
+        <AddListComponent
+            className={componentClass}
+            model={model}
+            itemComponent={RelatedPartySummaryComponent}
+        />
     );
 }
 

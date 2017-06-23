@@ -11,20 +11,17 @@ function NeutronHoc(WrappedComponent,
                     propTypes = {},
                     defaultProps = {}) {
     function extractNewState(props) {
-        const newState = Object.assign({}, props); //pass through all
-
-        newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
-
-        const model = newState.model;
+        const model = props.model;
         if (!model)
-            return newState;
+            return {};
 
+        const newState = Object.assign({}, props); //pass through all
+        if (model.getNodeStatus() === window.GWT.NodeStatusEnum.Loaded) {
+            newState.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name);
+        }
         if (model.getChildNames) {
             newState.childNames = model.getChildNames(); //ensure list is re-rendered
         }
-
-        newState.disabled = newState.disabled || model.isEffectivelyDisabled();
-
         if (mapModelToProps) {
             return Object.assign(newState, mapModelToProps(model));
         }
@@ -77,7 +74,7 @@ function NeutronHoc(WrappedComponent,
         }
 
         render() {
-            if (!this.state.model || this.state.model.getNodeStatus() !== window.GWT.NodeStatusEnum.Loaded)
+            if (!this.state.model || !this.state.componentClass)
                 return null;
 
             //console.warn(`rendering ${WrappedComponent.name}`);
@@ -89,18 +86,12 @@ function NeutronHoc(WrappedComponent,
     NeutronWrapper.displayName = `NeutronWrapper(${CommonUtil.getDisplayName(WrappedComponent)})`;
 
     NeutronWrapper.propTypes = Object.assign(
-        {
-            model: PropTypes.object,
-            disabled: PropTypes.bool
-        },
+        {model: PropTypes.object},
         propTypes
     );
 
     NeutronWrapper.defaultProps = Object.assign(
-        {
-            model: null,
-            disabled: false
-        },
+        {model: null},
         defaultProps
     );
 
