@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AutoCloseContainer from '../bootstrap3/AutoCloseContainer';
+import AutoCloseContainer from '../neutron/AutoCloseContainer';
 import CommonUtil from '../neutron/CommonUtil';
 
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
-import AutoCloseContainer from './AutoCloseContainer';
+import AutoCloseContainer from '../neutron/AutoCloseContainer';
 
 const baseUrl = 'http://localhost:9200';
 const reservedChars = '+-=&|><!(){}[]^"~*?:\\/';

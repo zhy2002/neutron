@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import EventService from '../neutron/EventService';
+import EventService from './EventService';
 
 
 export default class AutoCloseContainer extends React.PureComponent {

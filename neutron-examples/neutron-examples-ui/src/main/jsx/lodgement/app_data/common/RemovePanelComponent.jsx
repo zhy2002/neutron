@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import ItemIndexComponent from '../../../bootstrap3/ItemIndexComponent';
+import ItemIndexComponent from '../../../neutron/ItemIndexComponent';
 import CloseIconComponent from '../../../bootstrap3/CloseIconComponent';
 
 

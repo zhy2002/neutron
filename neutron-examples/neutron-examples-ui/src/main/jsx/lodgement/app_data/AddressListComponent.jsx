@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NodeValueComponent from '../../neutron/NodeValueComponent';
 import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
-import AutoCloseContainer from '../../bootstrap3/AutoCloseContainer';
+import AutoCloseContainer from '../../neutron/AutoCloseContainer';
 
 export default class AddressListComponent extends React.PureComponent {
 

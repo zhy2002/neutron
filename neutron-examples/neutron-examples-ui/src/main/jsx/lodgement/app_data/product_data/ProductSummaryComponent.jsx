@@ -1,6 +1,6 @@
 import React from 'react';
 import NeutronHoc from '../../../neutron/NeutronHoc';
-import ModelLinkComponent from '../../../neutron/ModelLinkComponent';
+import ModelLinkComponent from '../../../bootstrap3/ModelLinkComponent';
 import NumberInputComponent from '../../../bootstrap3/NumberInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import RemovePanelComponent from '../common/RemovePanelComponent';

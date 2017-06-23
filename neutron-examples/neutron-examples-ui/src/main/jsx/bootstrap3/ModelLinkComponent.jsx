@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NeutronHoc from './NeutronHoc';
+import NeutronHoc from '../neutron/NeutronHoc';
 
 
 function ModelLinkComponent(props) {
