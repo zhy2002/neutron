@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NodeLabelComponent from '../neutron/NodeLabelComponent';
-import NeutronComponent from './NeutronComponent';
+import NeutronHoc from '../neutron/NeutronHoc';
 
 
-export default class NavDropdownComponent extends NeutronComponent {
+class NavDropdownComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -34,14 +34,10 @@ export default class NavDropdownComponent extends NeutronComponent {
             if (this.props.childList !== null) {
                 newItem = this.props.childList.createItem();
             } else {
-                newItem = this.model.createItem();
+                newItem = this.props.model.createItem();
             }
             this.selectItem(newItem);
         };
-    }
-
-    isModelList() {
-        return !!this.model.getItemCount || !!this.props.childList;
     }
 
     getClass(model, item) {
@@ -49,13 +45,17 @@ export default class NavDropdownComponent extends NeutronComponent {
             if (model.getSelectedName() === item.getName())
                 return 'active';
         } else if (model === this.props.childList) {
-            if (this.model.getSelectedName() === model.getName() && model.getSelectedIndex() === item.getIndex())
+            if (this.props.model.getSelectedName() === model.getName() && model.getSelectedIndex() === item.getIndex())
                 return 'active';
         } else if (model.getSelectedIndex() === item.getIndex()) {
             return 'active';
         }
 
         return '';
+    }
+
+    isModelList() {
+        return !!this.props.model.getItemCount || !!this.props.childList;
     }
 
     renderItems() {
@@ -118,7 +118,7 @@ export default class NavDropdownComponent extends NeutronComponent {
                     onMouseEnter={this.open}
 
                     onClick={() => {
-                        this.selectItem(this.model);
+                        this.selectItem(this.props.model);
                     }}
                 >
                     {this.props.children}
@@ -133,17 +133,19 @@ export default class NavDropdownComponent extends NeutronComponent {
     }
 }
 
-NavDropdownComponent.propTypes = {
-    onSelect: PropTypes.func.isRequired,
-    children: PropTypes.any.isRequired,
-    childItems: PropTypes.array,
-    childList: PropTypes.object,
-    selected: PropTypes.bool
-};
-
-NavDropdownComponent.defaultProps = {
-    childItems: [],
-    childList: null,
-    selected: false
-};
-
+export default NeutronHoc(
+    NavDropdownComponent,
+    undefined,
+    {
+        onSelect: PropTypes.func.isRequired,
+        children: PropTypes.any.isRequired,
+        childItems: PropTypes.array,
+        childList: PropTypes.object,
+        selected: PropTypes.bool
+    },
+    {
+        childItems: [],
+        childList: null,
+        selected: false
+    }
+);
