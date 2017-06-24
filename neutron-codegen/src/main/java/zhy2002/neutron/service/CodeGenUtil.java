@@ -76,13 +76,17 @@ public final class CodeGenUtil {
             return value;
 
         StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
         for (char ch : value.toCharArray()) {
             if (Character.isUpperCase(ch)) {
-                stringBuilder.append('_');
+                if (!first) {
+                    stringBuilder.append('_');
+                }
                 stringBuilder.append(ch);
             } else {
                 stringBuilder.append(Character.toUpperCase(ch));
             }
+            first = false;
         }
 
         return stringBuilder.toString();

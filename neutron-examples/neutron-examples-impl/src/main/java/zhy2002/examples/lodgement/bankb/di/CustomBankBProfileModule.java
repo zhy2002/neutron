@@ -7,10 +7,8 @@ import dagger.multibindings.StringKey;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
 import zhy2002.examples.lodgement.gen.rule.ShowErrorListRule;
-import zhy2002.examples.lodgement.gen.rule.UpdateAddressRefListRule;
 import zhy2002.examples.lodgement.rule.ChangeFocusErrorRuleImpl;
 import zhy2002.examples.lodgement.rule.ShowErrorListRuleImpl;
-import zhy2002.examples.lodgement.rule.UpdateAddressRefListRuleImpl;
 import zhy2002.neutron.RuleProvider;
 
 import javax.inject.Named;
@@ -20,9 +18,6 @@ import javax.inject.Named;
  */
 @Module
 abstract class CustomBankBProfileModule {
-
-    @Binds
-    abstract UpdateAddressRefListRule provideUpdateAddressRefListRule(UpdateAddressRefListRuleImpl impl);
 
     @Binds
     abstract ChangeFocusErrorRule provideChangeFocusErrorRule(ChangeFocusErrorRuleImpl impl);

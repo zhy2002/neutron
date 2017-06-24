@@ -4,6 +4,7 @@ import zhy2002.neutron.*;
 import zhy2002.neutron.node.*;
 <#if actions??>
 import zhy2002.neutron.event.*;
+import ${targetPackage}.data.*;
 </#if>
 <#if hasComponent>
 import ${targetPackage}.gen.di.${typeName}Component;
@@ -275,7 +276,7 @@ public<#if abstractNode> abstract</#if> class ${typeName}<#if parentBaseTypeName
     <#list actions as action>
     @JsMethod
     public void dispatch${action.name}Action(${action.parameterTypeName} parameter) {
-        getContext().processEvent(new ${action.parameterTypeName}ActionEvent(this, "${action.name}", parameter));
+        getContext().processEvent(new ${action.parameterTypeName}ActionEvent(this, ${contextName}Constants.${action.nameAllCaps}_ACTION, parameter));
     }
     </#list>
 </#if>

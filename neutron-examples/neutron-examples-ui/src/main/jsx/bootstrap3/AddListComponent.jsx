@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NeutronHoc from '../neutron/NeutronHoc';
 import CommonUtil from '../neutron/CommonUtil';
+import AlertInfoComponent from './AlertInfoComponent';
 
 
 class AddListComponent extends React.PureComponent {
@@ -40,9 +41,9 @@ class AddListComponent extends React.PureComponent {
                         </div>
                         <div className="col-md-10">
                             {props.count === 0 ?
-                                <div key="no_result" className="alert alert-info">
+                                <AlertInfoComponent>
                                     Click <em>Add</em> to create a new {props.label} record.
-                                </div> :
+                                </AlertInfoComponent> :
                                 CommonUtil.renderItems(props.model, props.itemComponent, props.mapItemToModel)
                             }
                         </div>

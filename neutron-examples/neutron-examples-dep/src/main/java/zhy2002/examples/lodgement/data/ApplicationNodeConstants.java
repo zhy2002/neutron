@@ -1,6 +1,5 @@
 package zhy2002.examples.lodgement.data;
 
-
 import zhy2002.neutron.data.BooleanOption;
 import zhy2002.neutron.data.DoubleOption;
 import zhy2002.neutron.data.StringOption;
@@ -12,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ApplicationNodeConstants {
+
+    public static final String COPY_ADDRESS_ACTION = "CopyAddress";
 
     public static final String NAME_PATTERN = "^[a-zA-Z ]+$";
 

@@ -1,6 +1,6 @@
 package zhy2002.examples.app.rule;
 
-import zhy2002.examples.app.data.LodgementNodeConstants;
+import zhy2002.examples.app.data.GlobalUiStateNodeConstants;
 import zhy2002.examples.app.gen.node.GlobalUiStateNode;
 import zhy2002.examples.app.gen.node.OpenAppNode;
 import zhy2002.examples.app.gen.node.OpenAppsNode;
@@ -31,7 +31,7 @@ public class HandleAddOpenAppActionRuleImpl extends HandleAddOpenAppActionRule {
                 new NodeActionEventBinding<>(
                         this::handleAction,
                         ObjectActionEvent.class,
-                        LodgementNodeConstants.ADD_OPEN_APP
+                        GlobalUiStateNodeConstants.ADD_OPEN_APP_ACTION
                 )
         );
     }

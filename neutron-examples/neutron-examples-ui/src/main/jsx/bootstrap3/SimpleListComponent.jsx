@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NeutronHoc from '../neutron/NeutronHoc';
 import CommonUtil from '../neutron/CommonUtil';
 import PanelComponent from './PanelComponent';
+import AlertInfoComponent from './AlertInfoComponent';
 
 
 class SimpleListComponent extends React.PureComponent {
@@ -29,7 +30,12 @@ class SimpleListComponent extends React.PureComponent {
         return (
             <div className={`${props.componentClass} ${props.className}`}>
                 <PanelComponent title={props.label} onAdd={this.createItem}>
-                    {CommonUtil.renderItems(props.model, props.itemComponent)}
+                    {props.count === 0 ?
+                        <AlertInfoComponent>
+                            No result
+                        </AlertInfoComponent> :
+                        CommonUtil.renderItems(props.model, props.itemComponent)
+                    }
                 </PanelComponent>
             </div>
         );
@@ -41,6 +47,7 @@ export default NeutronHoc(
     (model) => {
         const props = {};
         props.label = model.getNodeLabel();
+        props.count = model.getItemCount();
         return props;
     },
     {

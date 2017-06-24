@@ -1,49 +1,43 @@
 import React from 'react';
-import NeutronComponent from '../../../bootstrap3/NeutronComponent';
+import NeutronHoc from '../../../neutron/NeutronHoc';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import AddressListComponent from '../../app_data/AddressListComponent';
 
-export default class AddressComponent extends NeutronComponent {
+class AddressComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
-        this.state.showAddressList = false;
+        this.state = {showAddressList: false};
 
         this.showAddressList = () => {
             this.setState({showAddressList: true});
         };
 
         this.hideAddressList = () => {
-            console.debug('hiding address list...');
             this.setState({showAddressList: false});
         };
 
         this.selectAddress = (node) => {
-            const model = this.model;
-            model.getContext().beginSession();
-            model.getAddressLineNode().setValue(node.getAddressLineNode().getValue());
-            model.getSuburbNode().setValue(node.getSuburbNode().getValue());
-            model.getPostcodeNode().setValue(node.getPostcodeNode().getValue());
-            model.getCountryNode().setValue(node.getCountryNode().getValue());
-            model.getContext().commitSession();
+            const model = this.props.model;
+            model.dispatchCopyAddressAction(node);
             this.hideAddressList();
         };
     }
 
     render() {
-        const model = this.model;
+        const {model, componentClass, label, disabled} = this.props;
 
         return (
             <div
-                id={this.id}
+                id={model.getUniqueId()}
                 tabIndex="0"
-                className={`address-component${this.state.componentClass}`}
+                className={`${componentClass}`}
             >
-                <label htmlFor={model.getAddressLineNode().getUniqueId()}>{this.state.label}</label>
-                <button className="link" onClick={this.showAddressList} disabled={this.state.disabled}>
-                     <span className="glyphicon glyphicon-search"/>
+                <label htmlFor={model.getAddressLineNode().getUniqueId()}>{label}</label>
+                <button className="link" onClick={this.showAddressList} disabled={disabled}>
+                    <span className="glyphicon glyphicon-search"/>
                 </button>
                 {this.state.showAddressList &&
                 <AddressListComponent
@@ -63,5 +57,14 @@ export default class AddressComponent extends NeutronComponent {
             </div>
         );
     }
-
 }
+
+export default NeutronHoc(
+    AddressComponent,
+    (model) => {
+        const props = {};
+        props.label = model.getNodeLabel();
+        props.disabled = model.isEffectivelyDisabled();
+        return props;
+    }
+);

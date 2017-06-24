@@ -1159,8 +1159,11 @@ commonTypes:
   baseTypeName: ObjectUiNode
   parentBaseTypeName: ParentUiNode<?>
   localRequired: true
+  actions:
+  - {name: CopyAddress, parameterTypeName: Object}
   rules:
-  - {typeName: UpdateAddressRefListRule, existing: false}
+  - {typeName: UpdateAddressRefListRule}
+  - {typeName: HandleCopyAddressActionRule}
   - {typeName: ObjectValueRequiredValidationRule}
   - {typeName: MaintainDisabledAncestorCountRule}
   - {typeName: MaintainReadonlyAncestorCountRule}
