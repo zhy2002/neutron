@@ -367,4 +367,17 @@ public class PersonNodeTest {
         assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(0));
 
     }
+
+    @Test
+    public void personIsNotDirtyWhenCreated() {
+        assertThat(personNode.isDirty(), equalTo(false));
+        PersonNode anotherPerson = applicationNode.getPersonListNode().createItem();
+        assertThat(personNode.isDirty(), equalTo(false));
+        TrustBeneficialOwnerListNode beneficialOwnerListNode = anotherPerson.getPersonTrustNode().getTrustBeneficialOwnerListNode();
+
+        assertThat(beneficialOwnerListNode.getItemCount(), equalTo(2));
+        assertThat(beneficialOwnerListNode.isDirty(), equalTo(false));
+        assertThat(beneficialOwnerListNode.getItem(0).getRelatedPersonReferenceNode().isDirty(), equalTo(false));
+
+    }
 }

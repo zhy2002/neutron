@@ -418,6 +418,14 @@ li.nav-dropdown-component.selected {
     }
   }
 
+  &.disabled {
+    .checkbox-container {
+      input[type=checkbox] {
+        cursor: not-allowed;
+      }
+    }
+  }
+
   .tooltip.bottom.error-message {
     margin-top: 1em;
   }

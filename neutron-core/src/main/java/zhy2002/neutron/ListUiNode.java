@@ -253,7 +253,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         if (nodeIdentity != null) {
             NodeIdentityMap nodeIdentityMap = nodeIdentity.getNodeIdentityMap();
             assert nodeIdentityMap != null;
-            NodeIdentity item = null;
+            NodeIdentity item;
             while (true) {
                 item = nodeIdentityMap.next();
                 if (item == null)
@@ -274,14 +274,6 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
     public static final PropertyMetadata<Integer> MAX_ITEM_COUNT_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "maxItemCount", Integer.class);
     public static final PropertyMetadata<String> ORIGINAL_CHILD_NAMES_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "originalChildNames", String.class, "", ChangeModeEnum.DIRECT);
     public static final PropertyMetadata<Boolean> KEEP_ITEMS_ON_RESET_PROPERTY = MetadataRegistry.createProperty(ListUiNode.class, "keepItemsOnReset", Boolean.class, Boolean.FALSE, ChangeModeEnum.DIRECT);
-
-    private Boolean getSelfDirty() {
-        return getStateValue(SELF_DIRTY_PROPERTY);
-    }
-
-    private void setSelfDirty(Boolean value) {
-        setStateValue(SELF_DIRTY_PROPERTY, value);
-    }
 
     @JsMethod
     public int getSelectedIndex() {
@@ -359,7 +351,7 @@ public abstract class ListUiNode<P extends ObjectUiNode<?>, N extends UiNode<? e
         }
 
         private boolean originatesFromChildrenAndCheckDirty(UiNodeEvent event) {
-            return getContext().isDirtyCheckEnabled() && event.getOrigin().getParent() == getOwner();
+            return getOwner().isDirtyCheckEnabled() && event.getOrigin().getParent() == getOwner();
         }
 
         private void tryClearSelfDirty(ChangeUiNodeEvent event) {

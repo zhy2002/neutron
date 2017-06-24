@@ -141,19 +141,6 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
         setSelfDirty(null);
     }
 
-    //region node properties
-
-    @NotNull
-    private Boolean getSelfDirty() {
-        return getStateValue(SELF_DIRTY_PROPERTY);
-    }
-
-    private void setSelfDirty(Boolean value) {
-        setStateValue(SELF_DIRTY_PROPERTY, value);
-    }
-
-    //endregion
-
     /**
      * When the value of this leaf node is set, check if the node becomes dirty or not dirty.
      */
@@ -175,7 +162,7 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
             return Collections.singleton(
                     new GenericStateChangeEventBinding<>(
                             stateChangeEvent.getClass(),
-                            e -> getContext().isDirtyCheckEnabled(),
+                            e -> getOwner().isDirtyCheckEnabled(),
                             this::updateSelfDirty,
                             getOwner().getValuePropertyMetadata().getStateKey(),
                             PredefinedPhases.Pre //need to do this in pre phase to capture original value

@@ -727,6 +727,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
         return ValueUtil.ifNull(notificationListenerMap.get(name), Collections.emptyList());
     }
 
+    @JsMethod
+    public boolean isDirtyCheckEnabled() {
+        return getContext().isDirtyCheckEnabled() && isSelfDirtyCheckEnabled();
+    }
+
     //endregion
 
     //region ui node properties
@@ -736,6 +741,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<Boolean> READONLY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "readonly", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> REQUIRED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "required", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<Boolean> SELF_DIRTY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "selfDirty", Boolean.class, Boolean.FALSE);
+    public static final PropertyMetadata<Boolean> SELF_DIRTY_CHECK_ENABLED_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "selfDirtyCheckEnabled", Boolean.class, Boolean.TRUE);
     public static final PropertyMetadata<Boolean> DISABLE_VALIDATION_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "disableValidation", Boolean.class, null, null, null, null, Boolean.TRUE);
     public static final PropertyMetadata<Integer> INDEX_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "index", Integer.class, -1);
     public static final PropertyMetadata<Integer> DISABLED_ANCESTOR_COUNT = MetadataRegistry.createProperty(UiNode.class, "disabledAncestorCount", Integer.class, 0, null, ChangeModeEnum.DIRECT, false);
@@ -828,6 +834,23 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public boolean isDirty() {
         return false;
     }
+
+    protected Boolean getSelfDirty() {
+        return getStateValue(SELF_DIRTY_PROPERTY);
+    }
+
+    protected void setSelfDirty(Boolean value) {
+        setStateValue(SELF_DIRTY_PROPERTY, value);
+    }
+
+    private boolean isSelfDirtyCheckEnabled() {
+        return getStateValue(SELF_DIRTY_CHECK_ENABLED_PROPERTY);
+    }
+
+    private void setSelfDirtyCheckEnabled(boolean value) {
+        setStateValue(SELF_DIRTY_CHECK_ENABLED_PROPERTY, value);
+    }
+
 
     @JsMethod
     public String getNodeLabel() {

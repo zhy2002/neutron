@@ -8,6 +8,10 @@ import zhy2002.examples.app.di.GlobalUiStateNodeFactory;
 import zhy2002.examples.app.gen.node.GlobalUiStateNode;
 import zhy2002.examples.app.gen.node.OpenAppNode;
 import zhy2002.examples.app.gen.node.OpenAppsNode;
+import zhy2002.examples.interop.JavaMethods;
+import zhy2002.examples.lodgement.ApplicationNodeContextImpl;
+import zhy2002.examples.lodgement.gen.ApplicationNodeContext;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.UiNodeContext;
 
@@ -73,7 +77,7 @@ public class GlobalUiStateNodeTest {
 
     @Test
     public void addOpenAppActionWorksAsExpected() {
-        Object testObject = new Object();
+        Object testObject = JavaMethods.createApplicationNode("BankB", null);
         globalUiStateNodeNode.dispatchAddOpenAppAction(testObject);
 
         assertThat(globalUiStateNodeNode.getOpenAppsNode().getItemCount(), equalTo(1));

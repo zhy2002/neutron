@@ -1381,6 +1381,7 @@ commonTypes:
   parentBaseTypeName: ObjectUiNode<?>
   config:
   - {property: '@keepItemsOnReset', value: 'true'}
+  - {property: '@selfDirtyCheckEnabled', value: false}
   rules:
   - {typeName: AddExistingPeopleRule}
   - {typeName: AddNewPersonRule}
@@ -1398,6 +1399,7 @@ commonTypes:
       baseTypeName: ReferenceUiNode
       config:
       - {property: '@removeEmpty', value: true}
+      - {property: '@selfDirtyCheckEnabled', value: false}
 
     - typeName: SelectRelatedPersonFlagNode
       baseTypeName: BooleanUiNode
@@ -1407,6 +1409,7 @@ commonTypes:
   parentBaseTypeName: ObjectUiNode<?>
   config:
   - {property: '@keepItemsOnReset', value: true}
+  - {property: '@selfDirtyCheckEnabled', value: false}
   rules:
   - {typeName: MaintainDisabledAncestorCountRule}
   - {typeName: AddExistingHoldersRule}
@@ -1424,6 +1427,7 @@ commonTypes:
       baseTypeName: ReferenceUiNode
       config:
       - {property: '@removeEmpty', value: true}
+      - {property: '@selfDirtyCheckEnabled', value: false}
 
     - typeName: SelectAccountHolderFlagNode
       baseTypeName: BooleanUiNode
@@ -1435,6 +1439,7 @@ commonTypes:
   - {name: totalOwnership, typeName: BigDecimal}
   config:
   - {property: '@keepItemsOnReset', value: true}
+  - {property: '@selfDirtyCheckEnabled', value: false}
   rules:
   - {typeName: AddExistingApplicantsRule}
   - {typeName: AddNewPersonApplicantRule}
@@ -1454,6 +1459,7 @@ commonTypes:
       baseTypeName: ReferenceUiNode
       config:
       - {property: '@removeEmpty', value: true}
+      - {property: '@selfDirtyCheckEnabled', value: false}
 
     - typeName: OwnershipPercentageNode
       baseTypeName: BasePercentageNode

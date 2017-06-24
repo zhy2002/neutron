@@ -246,7 +246,7 @@ public abstract class ParentUiNode<P extends ParentUiNode<?>> extends UiNode<P> 
         protected Collection<EventBinding> createEventBindings() {
             return Arrays.asList(
                     new BooleanStateChangeEventBinding(
-                            e -> getContext().isDirtyCheckEnabled(),
+                            e -> getOwner().isDirtyCheckEnabled(),
                             this::updateCount,
                             SELF_DIRTY_PROPERTY.getStateKey()
                     )
