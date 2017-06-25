@@ -18,6 +18,6 @@ export default NeutronHoc(
         checkDirty: PropTypes.bool
     },
     {
-        checkDirty: false
+        checkDirty: true
     }
 );

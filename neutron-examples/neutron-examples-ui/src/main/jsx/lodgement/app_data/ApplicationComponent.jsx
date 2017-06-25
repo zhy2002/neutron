@@ -32,7 +32,7 @@ class ApplicationComponent extends React.PureComponent {
     }
 
     render() {
-        const errorClass = this.state.showErrorList ? 'show-error-list' : '';
+        const errorClass = this.props.showErrorList ? 'show-error-list' : '';
         return (
             <div className={`${this.props.componentClass} ${errorClass}`}>
                 <ApplicationHeaderComponent
@@ -44,14 +44,15 @@ class ApplicationComponent extends React.PureComponent {
                     !isNaN(this.state.contentTop) &&
                     <div className="fill-all" style={{top: `${this.state.contentTop}px`}}>
                         <ApplicationContentComponent model={this.props.currentModel}/>
-                        {
-                            this.props.showErrorList &&
-                            <ApplicationErrorsComponent
-                                onClose={this.hideErrorList}
-                                model={this.props.model.getErrorListNode()}
-                            />
-                        }
                     </div>
+                }
+                {
+                    this.props.showErrorList &&
+                    <ApplicationErrorsComponent
+                        top={this.state.contentTop}
+                        onClose={this.hideErrorList}
+                        model={this.props.model.getErrorListNode()}
+                    />
                 }
             </div>
         );

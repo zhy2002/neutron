@@ -46,7 +46,7 @@ class ApplicationErrorsComponent extends React.PureComponent {
 
     render() {
         return (
-            <div className={this.props.componentClass}>
+            <div className={this.props.componentClass} style={{top: `${this.props.top}px`}}>
                 <div className="title-bar">
                     <div className="badge-link">
                         <span className="badge">{this.props.count}</span>
@@ -70,6 +70,7 @@ export default NeutronHoc(
         return props;
     },
     {
-        onClose: PropTypes.func.isRequired
+        onClose: PropTypes.func.isRequired,
+        top: PropTypes.number.isRequired
     }
 );
