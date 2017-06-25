@@ -86,6 +86,7 @@ Design
 
 ### Assumptions
 * effect of rule execution should not depend on order of state change. same state via same rules -> same result state
+* do not bind same node more than once in the same view without specifying an id suffix.
 
 ### Node role
 In the node hierarchy a node can have one of three roles:

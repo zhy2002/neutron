@@ -89,6 +89,9 @@ export default class InputComponent extends React.PureComponent {
             newState.label = this.label;
         } else {
             newState.label = this.model.getNodeLabel();
+            if (this.model.getValueClassSimpleName && this.model.getValueClassSimpleName() === 'Boolean') {
+                newState.label = CommonUtil.removeTrailing(newState.label, ' Flag');
+            }
         }
         if (this.model.isDirty()) {
             newState.label = `${newState.label} *`;

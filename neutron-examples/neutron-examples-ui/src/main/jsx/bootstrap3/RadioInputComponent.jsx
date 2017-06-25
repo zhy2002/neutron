@@ -2,7 +2,7 @@ import React from 'react';
 import InputComponent from './InputComponent';
 
 
-let defaultBooleanOptions = [];
+let defaultBooleanOptions = null;
 
 export default class RadioInputComponent extends InputComponent {
 

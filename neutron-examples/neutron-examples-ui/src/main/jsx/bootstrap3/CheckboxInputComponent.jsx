@@ -1,6 +1,5 @@
 import React from 'react';
 import InputComponent from './InputComponent';
-import CommonUtil from '../neutron/CommonUtil';
 
 
 export default class CheckboxInputComponent extends InputComponent {
@@ -34,7 +33,7 @@ export default class CheckboxInputComponent extends InputComponent {
                     readOnly={this.state.readonly}
                 />
                 {!this.props.hideLabel &&
-                CommonUtil.removeTrailing(this.state.label, ' Flag')
+                this.state.label
                 }
             </label>
         ];
