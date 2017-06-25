@@ -26,7 +26,7 @@ function extractObject(node, excluded) {
     const result = {};
     const children = node.getChildren();
     children.forEach((child) => {
-        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded) {
+        if (child.getNodeStatus() === window.GWT.NodeStatusEnum.Loaded) {
             const nodeName = child.getName();
             if (excludedNodeNames.indexOf(nodeName) < 0) {
                 const fieldName = CommonUtil.toFieldName(nodeName);
@@ -44,7 +44,7 @@ function extractList(node) {
     const result = {};
     const children = node.getChildren();
     children.forEach((child) => {
-        if (child.getNodeStatus() === GWT.NodeStatusEnum.Loaded) {
+        if (child.getNodeStatus() === window.GWT.NodeStatusEnum.Loaded) {
             result[child.getName()] = extractValue(child);
         }
     });

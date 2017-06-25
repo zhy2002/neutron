@@ -9,11 +9,10 @@ export default class CheckboxInputComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
-            console.log(event.target.checked);
             this.model.setValue(event.target.checked);
         };
 
-        this.identifierClass = 'checkbox checkbox-input-component';
+        this.componentClass += ' checkbox';
     }
 
     extractNewState() {
@@ -27,7 +26,7 @@ export default class CheckboxInputComponent extends InputComponent {
             <label key="label" className="layout-helper">&nbsp;</label>,
             <label key="container" className="checkbox-container">
                 <input
-                    id={this.id}
+                    id={this.model.getUniqueId()}
                     type="checkbox"
                     onChange={this.updateValue}
                     checked={this.state.value}

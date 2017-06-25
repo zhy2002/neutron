@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NeutronHoc from './NeutronHoc';
 
-function NodeLabelComponent({label}) {
-    return <span>{label}</span>;
+function NodeLabelComponent({label, dirty, checkDirty}) {
+    return <span>{label} {checkDirty && dirty ? ' *' : ' '}</span>;
 }
 
 export default NeutronHoc(
@@ -10,11 +11,13 @@ export default NeutronHoc(
     (model) => {
         const props = {};
         props.label = model.getNodeLabel();
-        if (model.isDirty()) {
-            props.label += ' *';
-        } else {
-            props.label += '  ';
-        }
+        props.dirty = model.isDirty();
         return props;
+    },
+    {
+        checkDirty: PropTypes.bool
+    },
+    {
+        checkDirty: false
     }
 );

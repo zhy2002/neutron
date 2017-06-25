@@ -36,9 +36,10 @@ export default class TextInputComponent extends InputComponent {
         this.state.lastSearchKey = null;
 
         this.updateValue = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             this.model.setValue(event.target.value);
-            this.flush();
+            context.debouncedExitDebouncingMode();
             if (this.props.searchPath) {
                 this.debouncedSearch();
             }
@@ -79,7 +80,7 @@ export default class TextInputComponent extends InputComponent {
             axios.get(url).then(
                 (response) => {
                     const result = response.data.hits.hits;
-                    const list = new GWT.StringOptionArrayBuilder();
+                    const list = new window.GWT.StringOptionArrayBuilder();
                     result.forEach((item) => {
                         const source = item['_source'];
                         list.addItem(source.value, source.text);
@@ -94,7 +95,7 @@ export default class TextInputComponent extends InputComponent {
             );
         };
 
-        this.debouncedSearch = debounce(350, this.search);
+        this.debouncedSearch = debounce(400, this.search);
 
         this.handleFocus = () => {
             this.search();
@@ -154,8 +155,6 @@ export default class TextInputComponent extends InputComponent {
                 activeOptionIndex: -1
             });
         };
-
-        this.identifierClass = 'text-input-component';
     }
 
     extractNewState() {
@@ -197,7 +196,7 @@ export default class TextInputComponent extends InputComponent {
                                     onClick={
                                         () => {
                                             this.model.setValue(item.getValue());
-                                            this.flushNow();
+                                            this.model.getContext().exitDebouncingMode();
                                             this.handleHide();
                                         }
                                     }

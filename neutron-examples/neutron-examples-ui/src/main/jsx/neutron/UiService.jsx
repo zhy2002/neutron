@@ -87,7 +87,7 @@ class JsNodeIdentityMap {
 export default class UiService extends StaticService {
 
     static createNodeDataStore(node) {
-        return new GWT.NodeDataStore(node.children.id.value, new JsNodeIdentity('', node));
+        return new window.GWT.NodeDataStore(node.children.id.value, new JsNodeIdentity('', node));
     }
 
     static setPath(model, path) {

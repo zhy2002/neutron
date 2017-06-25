@@ -12,6 +12,12 @@ export default class ReferenceInputComponent extends InputComponent {
 
         this.state.showModal = false;
 
+        this.showList = () => {
+            this.setState({
+                showModal: true
+            });
+        };
+
         this.closeList = () => {
             this.setState({
                 showModal: false
@@ -22,38 +28,22 @@ export default class ReferenceInputComponent extends InputComponent {
             this.model.setValue(null);
             this.setState({showModal: false});
         };
-
-        this.showList = () => {
-            this.setState({
-                showModal: true
-            });
-        };
-
-        this.identifierClass = 'reference-input-component';
     }
 
     renderOptions() {
-        const result = [];
-        const nodeArray = this.props.getOptionNodes();
-        for (let i = 0; i < nodeArray.length; i++) {
-            const node = nodeArray[i];
-            result.push(
-                <li key={node.getUniqueId()} className="list-group-item">
-                    <a
-                        tabIndex="0"
-                        onClick={() => {
-                            this.model.setValue(node.getPath());
-                            this.setState({
-                                showModal: false
-                            });
-                        }}
-                    >
-                        {node.getNodeLabel()}
-                    </a>
-                </li>
-            );
-        }
-        return result;
+        return this.props.getOptionNodes().map(node =>
+            <li key={node.getUniqueId()} className="list-group-item">
+                <a
+                    tabIndex="0"
+                    onClick={() => {
+                        this.model.setValue(node.getPath());
+                        this.closeList();
+                    }}
+                >
+                    {node.getNodeLabel()}
+                </a>
+            </li>
+        );
     }
 
     renderContent() {
@@ -61,8 +51,8 @@ export default class ReferenceInputComponent extends InputComponent {
 
         return [
             <div key="container" className="reference-container">
-                {this.model.getReferencedNode() &&
-                <NodeLabelComponent model={this.model.getReferencedNode()}/>
+                {model.getReferencedNode() &&
+                <NodeLabelComponent model={model.getReferencedNode()}/>
                 }
                 <button
                     id={model.getUniqueId()}

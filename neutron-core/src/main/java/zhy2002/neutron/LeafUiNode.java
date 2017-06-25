@@ -29,6 +29,11 @@ public abstract class LeafUiNode<P extends ParentUiNode<?>, T> extends UiNode<P>
 
     public abstract Class<T> getValueClass();
 
+    @JsMethod
+    public String getValueClassSimpleName() {
+        return getValueClass().getSimpleName();
+    }
+
     public abstract PropertyMetadata<T> getValuePropertyMetadata();
 
     @Override

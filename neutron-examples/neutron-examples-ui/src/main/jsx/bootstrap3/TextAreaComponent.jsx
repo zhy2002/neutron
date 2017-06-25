@@ -9,12 +9,11 @@ export default class TextAreaComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             this.model.setValue(event.target.value);
-            this.flush();
+            context.debouncedExitDebouncingMode();
         };
-
-        this.identifierClass = 'text-area-component';
     }
 
     renderContent() {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 
 
@@ -9,12 +8,11 @@ export default class NumberInputComponent extends InputComponent {
         super(props);
 
         this.updateValue = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             this.model.setText(event.target.value);
-            this.flush();
+            context.debouncedExitDebouncingMode();
         };
-
-        this.identifierClass = 'number-input-component';
     }
 
     getUiValue() {
@@ -37,7 +35,7 @@ export default class NumberInputComponent extends InputComponent {
                 value={this.state.value}
                 onChange={this.updateValue}
                 disabled={this.state.disabled}
-                readOnly={this.props.readonly || this.state.readonly}
+                readOnly={this.state.readonly}
                 {...conditionalProps}
             />
         );
@@ -63,11 +61,3 @@ export default class NumberInputComponent extends InputComponent {
     }
 
 }
-
-NumberInputComponent.propTypes = {
-    readonly: PropTypes.bool
-};
-
-NumberInputComponent.defaultProps = {
-    readonly: false
-};

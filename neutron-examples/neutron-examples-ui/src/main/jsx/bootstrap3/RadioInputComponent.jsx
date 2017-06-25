@@ -1,6 +1,9 @@
 import React from 'react';
 import InputComponent from './InputComponent';
 
+
+let defaultBooleanOptions = [];
+
 export default class RadioInputComponent extends InputComponent {
 
     constructor(props) {
@@ -9,8 +12,6 @@ export default class RadioInputComponent extends InputComponent {
         this.updateValue = (value) => {
             this.model.setValue(value);
         };
-
-        this.identifierClass = 'radio-input-component';
     }
 
     extractNewState() {
@@ -21,17 +22,20 @@ export default class RadioInputComponent extends InputComponent {
 
     getValueOptions() {
         let options = super.getValueOptions();
-        if (options === null) { //assume binding to a boolean node
-            options = [
-                new GWT.SelectOption(true, 'Yes'),
-                new GWT.SelectOption(false, 'No')
-            ];
+        if (options === null && this.model.getValueClassSimpleName() === 'Boolean') {
+            if (!defaultBooleanOptions) { //must lazy load to wait for GWT initialization
+                defaultBooleanOptions = [
+                    new window.GWT.SelectOption(true, 'Yes'),
+                    new window.GWT.SelectOption(false, 'No')
+                ];
+            }
+            options = defaultBooleanOptions;
         }
         return options;
     }
 
     renderOptions() {
-        const model = this.props.model;
+        const model = this.model;
         const options = [];
         if (this.state.list) {
             this.state.list.forEach((item, index) => {
@@ -52,18 +56,17 @@ export default class RadioInputComponent extends InputComponent {
                         </label>
                     );
                 }
-            });
+            }); //todo checked='...' does not work for BigDecimal
         }
         return options;
     }
 
     renderContent() {
-        const model = this.props.model;
+        const model = this.model;
         return (
             <div id={model.getUniqueId()} tabIndex="0" className="radio-container">
                 {this.renderOptions()}
             </div>
         );
     }
-
 }

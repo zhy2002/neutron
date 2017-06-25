@@ -1,4 +1,5 @@
 import moment from 'moment';
+import debounce from 'throttle-debounce/debounce';
 import UiService from '../../neutron/UiService';
 import EventService from '../../neutron/EventService';
 import StaticService from '../../neutron/StaticService';
@@ -33,8 +34,36 @@ function createAppTab(newApp) {
     return CommonUtil.defer(newApp);
 }
 
+function newEnhancedApplicationNode(profileName, dataStore) {
+    const model = window.GWT.createApplicationNode(profileName, dataStore);
+    const context = model.getContext();
+
+    context.enterDebouncingMode = () => {
+        if (context.getCycleMode() !== window.GWT.CycleModeEnum.Debouncing) {
+            context.js_oldCycleMode = context.getCycleMode();
+            context.setCycleMode(window.GWT.CycleModeEnum.Debouncing);
+        }
+    };
+
+    context.exitDebouncingMode = () => {
+        try {
+            context.flush();
+        } catch (e) {
+            console.warn(`Rolling back session due to exception: ${e}`);
+        }
+        if (context.js_oldCycleMode) {
+            context.setCycleMode(context.js_oldCycleMode);
+            delete context.js_oldCycleMode;
+        }
+    };
+
+    context.debouncedExitDebouncingMode = debounce(400, context.exitDebouncingMode);
+
+    return model;
+}
+
 function createApplicationNode(profileName) {
-    const model = window.GWT.createApplicationNode(profileName, null);
+    const model = newEnhancedApplicationNode(profileName, null);
 
     model.getIdNode().setValue(model.getContext().getContextId());
     model.getLenderNode().setValue(profileName);
@@ -53,14 +82,14 @@ function createApplicationNode(profileName) {
 function cloneApplicationNode(node, path, profileName) {
     node.children.id.value = null;
     const nodeDataStore = UiService.createNodeDataStore(node);
-    const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
+    const model = newEnhancedApplicationNode(profileName, nodeDataStore);
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 
 function restoreApplicationNode(node, path) {
     const nodeDataStore = UiService.createNodeDataStore(node);
     const profileName = node.children.lender.value;
-    const model = window.GWT.createApplicationNode(profileName, nodeDataStore);
+    const model = newEnhancedApplicationNode(profileName, nodeDataStore);
     return CommonUtil.defer(model).then(m => UiService.setPath(m, path));
 }
 

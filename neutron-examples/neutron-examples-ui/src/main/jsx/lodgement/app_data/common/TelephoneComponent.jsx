@@ -9,31 +9,34 @@ export default class TelephoneComponent extends InputComponent {
         super(props);
 
         this.updateCountryCode = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getValue();
             telephone.countryCode = value;
             this.model.setValue(telephone);
-            this.flush();
+            context.debouncedExitDebouncingMode();
         };
 
         this.updateAreaCode = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getValue();
             telephone.areaCode = value;
             this.model.setValue(telephone);
-            this.flush();
+            context.debouncedExitDebouncingMode();
         };
 
         //todo fix
         this.updatePhoneNumber = (event) => {
-            this.ensureDebouncingMode();
+            const context = this.model.getContext();
+            context.enterDebouncingMode();
             const value = event.target.value;
             const telephone = this.model.getValue();
             telephone.phoneNumber = value;
             this.model.setValue(telephone);
-            this.flush();
+            context.debouncedExitDebouncingMode();
         };
 
         const suppressIncompleteValidation = debounce(
@@ -51,8 +54,6 @@ export default class TelephoneComponent extends InputComponent {
         this.handleBlur = () => {
             suppressIncompleteValidation(false);
         };
-
-        this.identifierClass = 'telephone-component';
     }
 
     extractNewState() {

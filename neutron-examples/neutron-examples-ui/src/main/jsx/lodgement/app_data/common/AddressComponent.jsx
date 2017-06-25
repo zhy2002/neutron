@@ -20,8 +20,7 @@ class AddressComponent extends React.PureComponent {
         };
 
         this.selectAddress = (node) => {
-            const model = this.props.model;
-            model.dispatchCopyAddressAction(node);
+            this.props.model.dispatchCopyAddressAction(node);
             this.hideAddressList();
         };
     }
@@ -49,9 +48,9 @@ class AddressComponent extends React.PureComponent {
                 <div className="grouper">
                     <TextInputComponent hideLabel model={model.getAddressLineNode()}/>
                     <div className="clearfix">
-                        <TextInputComponent model={model.getSuburbNode()} containerClass="suburb"/>
-                        <TextInputComponent model={model.getPostcodeNode()} containerClass="postcode"/>
-                        <SelectInputComponent model={model.getCountryNode()} containerClass="country"/>
+                        <TextInputComponent model={model.getSuburbNode()} className="suburb"/>
+                        <TextInputComponent model={model.getPostcodeNode()} className="postcode"/>
+                        <SelectInputComponent model={model.getCountryNode()} className="country"/>
                     </div>
                 </div>
             </div>

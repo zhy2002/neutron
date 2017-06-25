@@ -1,6 +1,9 @@
 import React from 'react';
 import InputComponent from './InputComponent';
 
+
+const emptyOptions = [];
+
 export default class SelectInputComponent extends InputComponent {
 
     constructor(props) {
@@ -10,41 +13,34 @@ export default class SelectInputComponent extends InputComponent {
             const index = parseInt(event.target.value, 10);
             this.model.setValue(this.state.list[index].getValue());
         };
-
-        this.identifierClass = 'select-input-component';
     }
 
     extractNewState() {
         const newState = super.extractNewState();
-        newState.list = super.getValueOptions() || [];
+        newState.list = super.getValueOptions() || emptyOptions;
         return newState;
     }
 
     renderOptions() {
         const options = [];
-        if (this.state.list) {
-            this.state.list.forEach((item, index) => {
-                let text = item.getText();
-                if (this.props.noLabel && index === 0 && !text && !item.getValue()) {
-                    text = this.state.label;
-                }
-                options.push(
-                    <option key={text} value={`${index}`}>
-                        {text}
-                    </option>
-                );
-            });
-        }
+        this.state.list.forEach((item, index) => {
+            const text = item.getText();
+            options.push(
+                <option key={text} value={`${index}`}>
+                    {text}
+                </option>
+            );
+        });
         return options;
     }
 
     valueIndex() {
         const value = this.state.value;
         const list = this.state.list;
-        let index = 0;
+        let index = 0; //the empty option
         for (let i = 0; i < list.length; i++) {
             const item = list[i];
-            if (item.getValue() === value) {
+            if (item.getValue() === value) { //todo does not work for BigDecimal
                 index = i;
                 break;
             }
@@ -53,10 +49,9 @@ export default class SelectInputComponent extends InputComponent {
     }
 
     renderContent() {
-        const model = this.props.model;
         return (
             <select
-                id={model.getUniqueId()}
+                id={this.model.getUniqueId()}
                 className="form-control"
                 value={`${this.valueIndex()}`}
                 onChange={this.updateValue}

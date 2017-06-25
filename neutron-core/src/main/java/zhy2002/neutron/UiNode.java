@@ -910,6 +910,11 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     }
 
     @JsMethod
+    public Object[] getValidationMessages() {
+        return getValidationErrorList().stream().map(ValidationError::getMessage).toArray();
+    }
+
+    @JsMethod
     public boolean getLoadWithParent() {
         return getStateValue(LOAD_WITH_PARENT_PROPERTY);
     }

@@ -19,16 +19,14 @@ export default class DateInputComponent extends InputComponent {
             this.model.setValue(value ? value.format() : '');
         };
 
-        this.debounceNotify = debounce(350, () => {
+        this.debouncedNotify = debounce(400, () => {
             this.onNotify();
         });
 
         this.updateRawValue = (event) => {
             this.rawValue = event.target.value;
-            this.debounceNotify();
+            this.debouncedNotify();
         };
-
-        this.identifierClass = 'date-input-component';
     }
 
     getUiValue() {
@@ -36,13 +34,14 @@ export default class DateInputComponent extends InputComponent {
         return value ? moment(value) : null;
     }
 
-    onValidate(newState) {
-        super.onValidate(newState);
+    setErrorMessages(newState) {
+        super.setErrorMessages(newState);
+
         if (this.rawValue !== undefined) {
             if (!newState.value && this.rawValue
                 || newState.value && newState.value.format(dateFormat) !== this.rawValue
             ) {
-                newState.errorMessage += 'Invalid date.';
+                newState.errorMessages.push('Invalid date.');
             }
         }
     }

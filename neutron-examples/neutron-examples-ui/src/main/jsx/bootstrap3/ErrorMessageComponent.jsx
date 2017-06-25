@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function ErrorMessageComponent(props) {
-    if (!props.message)
+export default function ErrorMessageComponent({messages}) {
+    if (!messages)
         return null;
 
     return (
         <div className="tooltip bottom error-message " role="tooltip">
             <div className="tooltip-inner text-warning">
-                {props.message}
+                <ul>
+                    {messages.map(message => <li key={message}>{message}</li>)}
+                </ul>
             </div>
             <div className="tooltip-arrow"/>
         </div>
@@ -16,5 +18,5 @@ export default function ErrorMessageComponent(props) {
 }
 
 ErrorMessageComponent.propTypes = {
-    message: PropTypes.string.isRequired
+    messages: PropTypes.array.isRequired
 };

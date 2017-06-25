@@ -1,62 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'throttle-debounce/debounce';
-import NeutronComponent from './NeutronComponent';
 import ErrorMessageComponent from './ErrorMessageComponent';
+import CommonUtil from '../neutron/CommonUtil';
 
-export default class InputComponent extends NeutronComponent {
+
+/**
+ * Base class for all input components.
+ * There is no need to wrap descendant components into NeutronHoc.
+ */
+export default class InputComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
 
-        this.flushNow = () => {
-            const context = this.model.getContext();
-            try {
-                context.flush();
-            } catch (e) {
-                console.warn('Rolling back session due to exception.');
-                this.onNotify(); //clear debounded values
-            }
-            context.setCycleMode(context.oldCycleMode);
-            delete context.oldCycleMode;
-        };
-
-        this.flush = debounce(350, this.flushNow);
-
-        this.ensureDebouncingMode = () => {
-            const context = this.model.getContext();
-            if (context.getCycleMode() !== GWT.CycleModeEnum.Debouncing) {
-                context.oldCycleMode = context.getCycleMode();
-                context.setCycleMode(GWT.CycleModeEnum.Debouncing);
-            }
-        };
-
-        this.identifierClass = '';
+        this.receiveProps(props);
+        this.state = this.extractNewState();
+        this.componentClass = CommonUtil.pascalToCssName(this.constructor.name);
     }
 
-    onValidate(newState) {
-        newState.value = this.getUiValue();
+    componentWillReceiveProps(nextProps) {
+        this.receiveProps(nextProps);
+        this.onNotify();
     }
 
-    extractNewState() {
-        const newState = super.extractNewState();
-        newState.disabled = this.model.isEffectivelyDisabled();
-        newState.readonly = this.props.readonly || this.model.isEffectivelyReadonly();
-        newState.hideLabel = this.props.hideLabel;
-
-        if (newState.disabled) {
-            newState.componentClass += ' disabled';
-        } else if (newState.readonly) {
-            newState.componentClass += ' readonly';
-            newState.componentClass = newState.componentClass.replace(' missing-value', '');
+    componentWillUnmount() {
+        if (this.model) {
+            this.model.removeChangeListener(this);
+            this.model = null;
         }
-
-        return newState;
     }
 
     /**
-     * From model value to ui value.
-     * @returns {*} the model value.
+     * This is called when the model has been updated.
+     */
+    onNotify() {
+        const newState = this.extractNewState();
+        this.setState(newState);
+    }
+
+    setErrorMessages(newState) {
+        newState.errorMessages = this.model.getValidationMessages();
+    }
+
+    /**
+     * From model value to ui state value.
+     * @returns {*} the ui state value.
      */
     getUiValue() {
         return this.model.getValue();
@@ -66,31 +54,110 @@ export default class InputComponent extends NeutronComponent {
         return this.model.getOptions();
     }
 
+    receiveProps({model, label, hideLabel, readonly}) {
+        if (this.model !== model) {
+            if (this.model) {
+                this.model.removeChangeListener(this);
+            }
+            model.addChangeListener(this);
+            this.model = model;
+        }
+
+        this.label = label;
+        this.hideLabel = hideLabel;
+        this.readonly = readonly;
+    }
+
+    /**
+     * Get the complete state required for rendering.
+     * Do not access this.props in this methods as it can be stale.
+     * Use this.xxx set in receiveProps instead.
+     * @returns {{}} the complete state object for rendering.
+     */
+    extractNewState() {
+        const newState = {};
+        if (this.model.getNodeStatus() !== window.GWT.NodeStatusEnum.Loaded) {
+            newState.notLoaded = true;
+            return newState;
+        }
+
+        newState.notLoaded = false;
+        newState.disabled = this.model.isEffectivelyDisabled();
+        newState.readonly = this.readonly || this.model.isEffectivelyReadonly();
+        newState.hideLabel = this.hideLabel;
+        if (this.label) {
+            newState.label = this.label;
+        } else {
+            newState.label = this.model.getNodeLabel();
+        }
+        if (this.model.isDirty()) {
+            newState.label = `${newState.label} *`;
+        } else {
+            newState.label = `${newState.label}  `;
+        }
+        newState.value = this.getUiValue();
+
+        //value error message
+        this.setErrorMessages(newState);
+
+        //state class
+        let stateClass = '';
+        if (newState.errorMessages && newState.errorMessages.length > 0) {
+            stateClass += ' has-error';
+        } else if (this.model.getRequired()
+            && !this.model.hasValue()
+            && !newState.disabled
+            && !newState.readonly
+        ) {
+            stateClass += ' missing-value';
+        }
+        const visibility = this.model.getVisibility();
+        if (visibility === 'none') {
+            stateClass += ' hide';
+        } else if (visibility === 'hidden') {
+            stateClass += ' invisible';
+        }
+        if (newState.disabled) {
+            newState.stateClass += ' disabled';
+        } else if (newState.readonly) {
+            newState.stateClass += ' readonly';
+        }
+        newState.stateClass = stateClass;
+
+        return newState;
+    }
+
     renderContent() {
-        return `content of ${this.identifierClass}`;
+        return `${this.componentClass} should override renderContent method.`;
     }
 
     render() {
-        const model = this.model;
-        const clazz = `form-group form-group-sm ${this.identifierClass} ${this.props.containerClass}`;
+        if (this.state.notLoaded)
+            return null;
+
+        const clazz = `${this.componentClass} form-group form-group-sm ${this.props.className}`;
         return (
-            <div className={`${clazz} ${this.state.componentClass}`}>
+            <div className={`${clazz} ${this.state.stateClass}`}>
                 {!this.state.hideLabel &&
-                <label htmlFor={model.getUniqueId()}>{this.state.label}</label>
-                }
+                <label htmlFor={this.model.getUniqueId()}>{this.state.label}</label>}
                 {this.renderContent()}
-                <ErrorMessageComponent message={this.state.errorMessage}/>
+                <ErrorMessageComponent messages={this.state.errorMessages}/>
             </div>
         );
     }
 }
 
 InputComponent.propTypes = {
-    containerClass: PropTypes.string,
-    readonly: PropTypes.bool
+    model: PropTypes.object.isRequired,
+    label: PropTypes.string,
+    hideLabel: PropTypes.bool,
+    readonly: PropTypes.bool,
+    className: PropTypes.string
 };
 
 InputComponent.defaultProps = {
-    containerClass: '',
-    readonly: false
+    label: null,
+    hideLabel: false,
+    readonly: false,
+    className: ''
 };
