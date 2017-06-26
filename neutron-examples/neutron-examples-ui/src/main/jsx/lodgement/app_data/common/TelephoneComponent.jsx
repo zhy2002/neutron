@@ -39,6 +39,10 @@ export default class TelephoneComponent extends InputComponent {
             context.debouncedExitDebouncingMode();
         };
 
+        this.resetTelephone = () => {
+            this.props.model.resetValue();
+        };
+
         const suppressIncompleteValidation = debounce(
             250,
             false,
@@ -79,6 +83,15 @@ export default class TelephoneComponent extends InputComponent {
         newState.countryCodeReadonly = this.model.getCountryCodeReadonly();
 
         return newState;
+    }
+
+    renderLabel() {
+        const {readonly, disabled} = this.props;
+        return (
+            <button className="link" onClick={this.resetTelephone} disabled={readonly || disabled}>
+                <span className="glyphicon glyphicon-erase"/>
+            </button>
+        );
     }
 
     renderContent() {

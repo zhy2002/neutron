@@ -113,6 +113,14 @@ export default class InputComponent extends React.PureComponent {
         return newState;
     }
 
+    renderLabel() {
+        let result = this;
+        if (window) { //bypass linting error
+            result = null;
+        }
+        return result;
+    }
+
     renderContent() {
         return `${this.componentClass} should override renderContent method.`;
     }
@@ -126,6 +134,7 @@ export default class InputComponent extends React.PureComponent {
             <div className={`${clazz} ${this.state.stateClass}`}>
                 {!this.state.hideLabel &&
                 <label htmlFor={this.model.getUniqueId()}>{this.state.label}</label>}
+                {this.renderLabel()}
                 {this.renderContent()}
                 <ErrorMessageComponent messages={this.state.errorMessages}/>
             </div>

@@ -25,6 +25,10 @@ class AddressComponent extends React.PureComponent {
             this.props.model.dispatchCopyAddressAction(node);
             this.hideAddressList();
         };
+
+        this.resetAddress = () => {
+            this.props.model.resetValue();
+        };
     }
 
     render() {
@@ -41,6 +45,9 @@ class AddressComponent extends React.PureComponent {
                 </label>
                 <button className="link" onClick={this.showAddressList} disabled={readonly || disabled}>
                     <span className="glyphicon glyphicon-search"/>
+                </button>
+                <button className="link" onClick={this.resetAddress} disabled={readonly || disabled}>
+                    <span className="glyphicon glyphicon-erase"/>
                 </button>
                 {this.state.showAddressList &&
                 <AddressListComponent

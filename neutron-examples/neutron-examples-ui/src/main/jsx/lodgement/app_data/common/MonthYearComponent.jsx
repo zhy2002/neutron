@@ -5,7 +5,11 @@ import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import ErrorMessageComponent from '../../../bootstrap3/ErrorMessageComponent';
 
 
-function MonthYearComponent({model, componentClass, stateClass, readonly, errorMessages}) {
+function MonthYearComponent({model, componentClass, stateClass, readonly, disabled, errorMessages}) {
+    function resetMonthYear() {
+        model.resetValue();
+    }
+
     return (
         <div
             id={model.getUniqueId()}
@@ -15,6 +19,9 @@ function MonthYearComponent({model, componentClass, stateClass, readonly, errorM
             <label htmlFor={model.getMonthNode().getUniqueId()}>
                 <NodeLabelComponent model={model}/>
             </label>
+            <button className="link" onClick={resetMonthYear} disabled={readonly || disabled}>
+                <span className="glyphicon glyphicon-erase"/>
+            </button>
             <div className="clearfix">
                 <SelectInputComponent
                     noLabel
