@@ -22,9 +22,7 @@ http:
 
 Todo
 -----------------  
-- Error when closing a none active app tab
 - Handle url change when back/forward browser buttons are clicked.
-- Use HOCs replace Neutron base components
 - create layout components
 - i18n support
   - runtime configurable culture specific parser/formatter chain
@@ -254,6 +252,10 @@ Finished
 32 dob year defaults to 18 years ago
 
 33 - error when navigating to a none existent app
+
+34 - Use HOCs replace Neutron base components
+
+35 - Error when closing a none active app tab
 
 ### Garbage
 

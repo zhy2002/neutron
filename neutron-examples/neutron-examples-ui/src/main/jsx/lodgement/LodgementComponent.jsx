@@ -34,6 +34,7 @@ class LodgementComponent extends React.PureComponent {
             const id = model.getIdNode().getValue();
             LodgementService.loadApplicationNode(id).then((newModel) => {
                 props.model.dispatchAddOpenAppAction(newModel);
+                newModel.getContext().setDirtyCheckEnabled(true);
             });
         };
 
@@ -77,18 +78,18 @@ class LodgementComponent extends React.PureComponent {
     render() {
         const props = this.props;
         const model = props.model;
-        const tabItems = [model.getAppManagerNode(), ...props.openApps];
-        const selectedModel = tabItems[props.selectedTabIndex];
 
         return (
             <div className={props.componentClass}>
                 <LodgementHeaderComponent
                     model={model.getHeaderNode()}
-                    tabItems={tabItems}
+                    appManagerNode={model.getAppManagerNode()}
+                    openAppsNode={model.getOpenAppsNode()}
+                    selectedModel={props.selectedModel}
                     selectedIndex={props.selectedTabIndex}
                 />
                 <LodgementContentComponent
-                    model={selectedModel}
+                    model={props.selectedModel}
                     top={props.headerHeight + 2}
                     bottom={props.footerHeight + 1}
                 />
@@ -109,11 +110,13 @@ class LodgementComponent extends React.PureComponent {
 export default NeutronHoc(
     LodgementComponent,
     (model) => {
-        const newState = {};
-        newState.footerHeight = model.getFooterHeight();
-        newState.headerHeight = model.getHeaderHeight();
-        newState.selectedTabIndex = model.getSelectedTabIndex();
-        newState.openApps = model.getOpenAppsNode().getChildren().map(c => c.getValue());
-        return newState;
+        const props = {};
+        props.footerHeight = model.getFooterHeight();
+        props.headerHeight = model.getHeaderHeight();
+        props.selectedTabIndex = model.getSelectedTabIndex();
+        props.selectedModel = props.selectedTabIndex === 0 ?
+            model.getAppManagerNode() :
+            model.getOpenAppsNode().getItem(props.selectedTabIndex - 1).getValue();
+        return props;
     }
 );

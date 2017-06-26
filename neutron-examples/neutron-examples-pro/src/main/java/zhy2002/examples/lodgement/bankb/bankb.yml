@@ -168,13 +168,13 @@ rootType:
           init:
           - {propertyName: required, value: 'true'}
           rules:
-          - {typeName: ToCurrentNoEarlierThanToPreviousRule, existing: true}
-          - {typeName: ToCurrentNoEarlierThanFromPreviousRule, existing: true}
+          - {typeName: ToCurrentNoEarlierThanToPreviousRule}
+          - {typeName: ToCurrentNoEarlierThanFromPreviousRule}
 
         - typeName: MovedToPreviousAddressNode
         - typeName: MovedFromPreviousAddressNode
           rules:
-          - {typeName: FromPreviousNoEarlierThanToPreviousRule, existing: true}
+          - {typeName: FromPreviousNoEarlierThanToPreviousRule}
 
       - typeName: CurrentEmploymentListNode
         init:
@@ -1154,7 +1154,7 @@ commonTypes:
 
 - typeName: MonthYearNode
   rules:
-  - {typeName: MonthYearNotInFutureRule, existing: true}
+  - {typeName: MonthYearNotInFutureRule}
   children:
   - {typeName: MonthNode}
   - {typeName: YearNode}

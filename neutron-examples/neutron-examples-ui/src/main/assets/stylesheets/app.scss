@@ -225,7 +225,7 @@ li.nav-dropdown-component.selected {
     }
   }
 
-  &.disabled .radio-container{
+  &.disabled .radio-container {
     input[type=radio] {
       cursor: not-allowed;
     }
@@ -233,6 +233,10 @@ li.nav-dropdown-component.selected {
 }
 
 .month-year-component {
+  > label {
+    font-weight: 500;
+  }
+
   .month {
     width: 49%;
     margin-right: 2%;
@@ -327,6 +331,10 @@ li.nav-dropdown-component.selected {
   .glyphicon-search {
     transform: scale(1.1);
     margin-left: 0.5em;
+  }
+
+  > label {
+    font-weight: 500;
   }
 
   .suburb {

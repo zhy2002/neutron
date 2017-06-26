@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CommonUtil from './CommonUtil';
 
-function defaultMapModelToProps() {
-    return {};
-}
 
+/**
+ * Enable wrapped component to understand Neuron node property.
+ */
 function NeutronHoc(WrappedComponent,
-                    mapModelToProps = defaultMapModelToProps,
+                    mapModelToProps = CommonUtil.mapToEmptyObject,
                     propTypes = {},
                     defaultProps = {}) {
     function extractNewState(props) {
@@ -23,7 +23,7 @@ function NeutronHoc(WrappedComponent,
             newState.childNames = model.getChildNames(); //ensure list is re-rendered
         }
         if (mapModelToProps) {
-            return Object.assign(newState, mapModelToProps(model));
+            return Object.assign(newState, mapModelToProps(model, props));
         }
         return newState;
     }

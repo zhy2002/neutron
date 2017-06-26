@@ -1,7 +1,9 @@
 import React from 'react';
-import NeutronHoc from '../../../neutron/NeutronHoc';
+import NeutronCompositeHoc from '../../../neutron/NeutronCompositeHoc';
+import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
+import ErrorMessageComponent from '../../../bootstrap3/ErrorMessageComponent';
 import AddressListComponent from '../../app_data/AddressListComponent';
 
 class AddressComponent extends React.PureComponent {
@@ -26,16 +28,18 @@ class AddressComponent extends React.PureComponent {
     }
 
     render() {
-        const {model, componentClass, label, disabled} = this.props;
+        const {model, componentClass, stateClass, readonly, disabled, errorMessages} = this.props;
 
         return (
             <div
                 id={model.getUniqueId()}
                 tabIndex="0"
-                className={`${componentClass}`}
+                className={`${componentClass} ${stateClass}`}
             >
-                <label htmlFor={model.getAddressLineNode().getUniqueId()}>{label}</label>
-                <button className="link" onClick={this.showAddressList} disabled={disabled}>
+                <label htmlFor={model.getAddressLineNode().getUniqueId()}>
+                    <NodeLabelComponent model={model}/>
+                </label>
+                <button className="link" onClick={this.showAddressList} disabled={readonly || disabled}>
                     <span className="glyphicon glyphicon-search"/>
                 </button>
                 {this.state.showAddressList &&
@@ -46,24 +50,17 @@ class AddressComponent extends React.PureComponent {
                 />
                 }
                 <div className="grouper">
-                    <TextInputComponent hideLabel model={model.getAddressLineNode()}/>
+                    <TextInputComponent hideLabel model={model.getAddressLineNode()} readonly={readonly}/>
                     <div className="clearfix">
-                        <TextInputComponent model={model.getSuburbNode()} className="suburb"/>
-                        <TextInputComponent model={model.getPostcodeNode()} className="postcode"/>
-                        <SelectInputComponent model={model.getCountryNode()} className="country"/>
+                        <TextInputComponent model={model.getSuburbNode()} readonly={readonly} className="suburb"/>
+                        <TextInputComponent model={model.getPostcodeNode()} readonly={readonly} className="postcode"/>
+                        <SelectInputComponent model={model.getCountryNode()} readonly={readonly} className="country"/>
                     </div>
                 </div>
+                <ErrorMessageComponent messages={errorMessages}/>
             </div>
         );
     }
 }
 
-export default NeutronHoc(
-    AddressComponent,
-    (model) => {
-        const props = {};
-        props.label = model.getNodeLabel();
-        props.disabled = model.isEffectivelyDisabled();
-        return props;
-    }
-);
+export default NeutronCompositeHoc(AddressComponent);

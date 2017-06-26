@@ -19,20 +19,20 @@ class LodgementHeaderComponent extends React.PureComponent {
     }
 
     render() {
-        const props = this.props;
-        const selectedModel = props.tabItems[props.selectedIndex];
+        const {componentClass, appManagerNode, openAppsNode, selectedModel, selectedIndex, siteLogoUrl} = this.props;
 
         return (
             <ResizeAware
-                className={props.componentClass}
+                className={componentClass}
                 style={{position: 'relative'}}
                 onlyEvent
                 onResize={this.handleResize}
             >
-                <LodgementBannerComponent logoUrl={props.siteLogoUrl}/>
+                <LodgementBannerComponent logoUrl={siteLogoUrl}/>
                 <LodgementTabsComponent
-                    tabItems={props.tabItems}
-                    selectedIndex={props.selectedIndex}
+                    appManagerNode={appManagerNode}
+                    model={openAppsNode}
+                    selectedIndex={selectedIndex}
                     selectTab={LodgementService.selectTab}
                     closeTab={LodgementService.closeTab}
                 />
@@ -56,7 +56,9 @@ export default NeutronHoc(
         return newState;
     },
     {
-        tabItems: PropTypes.array.isRequired,
+        appManagerNode: PropTypes.object.isRequired,
+        openAppsNode: PropTypes.object.isRequired,
+        selectedModel: PropTypes.object.isRequired,
         selectedIndex: PropTypes.number.isRequired
     }
 );

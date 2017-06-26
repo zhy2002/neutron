@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NeutronHoc from '../neutron/NeutronHoc';
 import NavPillsComponent from '../bootstrap3/NavPillsComponent';
 
-export default function LodgementTabsComponent(props) {
+function LodgementTabsComponent(props) {
     const items = props.tabItems;
 
     return (
@@ -21,9 +22,20 @@ export default function LodgementTabsComponent(props) {
     );
 }
 
-LodgementTabsComponent.propTypes = {
-    selectedIndex: PropTypes.number.isRequired,
-    tabItems: PropTypes.array.isRequired,
-    selectTab: PropTypes.func.isRequired,
-    closeTab: PropTypes.func.isRequired
-};
+export default NeutronHoc(
+    LodgementTabsComponent,
+    (model, receivedProps) => {
+        const props = {};
+        props.tabItems = [
+            receivedProps.appManagerNode,
+            ...model.getChildren().map(c => c.getValue())
+        ];
+        return props;
+    },
+    {
+        selectedIndex: PropTypes.number.isRequired,
+        appManagerNode: PropTypes.object.isRequired,
+        selectTab: PropTypes.func.isRequired,
+        closeTab: PropTypes.func.isRequired
+    }
+);

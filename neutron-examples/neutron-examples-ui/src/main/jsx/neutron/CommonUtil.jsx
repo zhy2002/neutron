@@ -225,4 +225,29 @@ export default class CommonUtil extends StaticService {
         );
     }
 
+    static getNodeStateClasses(model, errorMessages, readonly, disabled) {
+        let stateClass = '';
+        if (errorMessages && errorMessages.length > 0) {
+            stateClass += ' has-error';
+        } else if (model.getRequired()
+            && !model.hasValue()
+            && !disabled
+            && !readonly
+        ) {
+            stateClass += ' missing-value';
+        }
+        const visibility = model.getVisibility();
+        if (visibility === 'none') {
+            stateClass += ' hide';
+        } else if (visibility === 'hidden') {
+            stateClass += ' invisible';
+        }
+        if (disabled) {
+            stateClass += ' disabled';
+        } else if (readonly) {
+            stateClass += ' readonly';
+        }
+        return stateClass;
+    }
+
 }

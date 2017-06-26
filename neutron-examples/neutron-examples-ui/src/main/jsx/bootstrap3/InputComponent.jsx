@@ -103,29 +103,12 @@ export default class InputComponent extends React.PureComponent {
         //value error message
         this.setErrorMessages(newState);
 
-        //state class
-        let stateClass = '';
-        if (newState.errorMessages && newState.errorMessages.length > 0) {
-            stateClass += ' has-error';
-        } else if (this.model.getRequired()
-            && !this.model.hasValue()
-            && !newState.disabled
-            && !newState.readonly
-        ) {
-            stateClass += ' missing-value';
-        }
-        const visibility = this.model.getVisibility();
-        if (visibility === 'none') {
-            stateClass += ' hide';
-        } else if (visibility === 'hidden') {
-            stateClass += ' invisible';
-        }
-        if (newState.disabled) {
-            newState.stateClass += ' disabled';
-        } else if (newState.readonly) {
-            newState.stateClass += ' readonly';
-        }
-        newState.stateClass = stateClass;
+        newState.stateClass = CommonUtil.getNodeStateClasses(
+            this.model,
+            newState.errorMessages,
+            newState.readonly,
+            newState.disabled
+        );
 
         return newState;
     }
@@ -138,7 +121,7 @@ export default class InputComponent extends React.PureComponent {
         if (this.state.notLoaded)
             return null;
 
-        const clazz = `${this.componentClass} form-group form-group-sm ${this.props.className}`;
+        const clazz = `${this.componentClass} ${this.props.className || ''} form-group form-group-sm `;
         return (
             <div className={`${clazz} ${this.state.stateClass}`}>
                 {!this.state.hideLabel &&

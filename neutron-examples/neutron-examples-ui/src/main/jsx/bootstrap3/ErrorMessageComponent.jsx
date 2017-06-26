@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ErrorMessageComponent({messages}) {
-    if (!messages)
+    if (!messages || messages.length === 0)
         return null;
 
     return (

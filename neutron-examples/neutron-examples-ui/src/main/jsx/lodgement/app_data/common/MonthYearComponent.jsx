@@ -1,29 +1,34 @@
 import React from 'react';
-import NeutronHoc from '../../../neutron/NeutronHoc';
+import NeutronCompositeHoc from '../../../neutron/NeutronCompositeHoc';
+import NodeLabelComponent from '../../../neutron/NodeLabelComponent';
 import SelectInputComponent from '../../../bootstrap3/SelectInputComponent';
 import ErrorMessageComponent from '../../../bootstrap3/ErrorMessageComponent';
 
 
-function MonthYearComponent({model, componentClass, label, errorMessages}) {
+function MonthYearComponent({model, componentClass, stateClass, readonly, errorMessages}) {
     return (
         <div
             id={model.getUniqueId()}
             tabIndex="0"
-            className={componentClass}
+            className={`${componentClass} ${stateClass}`}
         >
-            <label htmlFor={model.getMonthNode().getUniqueId()}>{label}</label>
+            <label htmlFor={model.getMonthNode().getUniqueId()}>
+                <NodeLabelComponent model={model}/>
+            </label>
             <div className="clearfix">
                 <SelectInputComponent
                     noLabel
                     label="Select Month"
                     model={model.getMonthNode()}
                     className="month"
+                    readonly={readonly}
                 />
                 <SelectInputComponent
                     noLabel
                     label="Select Year"
                     model={model.getYearNode()}
                     className="year"
+                    readonly={readonly}
                 />
             </div>
             <ErrorMessageComponent messages={errorMessages}/>
@@ -31,12 +36,4 @@ function MonthYearComponent({model, componentClass, label, errorMessages}) {
     );
 }
 
-export default NeutronHoc(
-    MonthYearComponent,
-    (model) => {
-        const props = {};
-        props.label = model.getNodeLabel();
-        props.errorMessages = model.getValidationMessages();
-        return props;
-    }
-);
+export default NeutronCompositeHoc(MonthYearComponent);

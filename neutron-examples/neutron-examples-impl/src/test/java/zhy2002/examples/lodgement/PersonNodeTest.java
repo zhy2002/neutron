@@ -380,4 +380,16 @@ public class PersonNodeTest {
         assertThat(beneficialOwnerListNode.getItem(0).getRelatedPersonReferenceNode().isDirty(), equalTo(false));
 
     }
+
+    @Test
+    public void parentIsDirtyWhenChildIsUpdated() {
+        personContactNode.getContext().setDirtyCheckEnabled(true);
+        MovedToCurrentAddressNode movedToCurrentAddressNode = personContactNode.getMovedToCurrentAddressNode();
+        assertThat(movedToCurrentAddressNode.isDirty(), equalTo(false));
+        assertThat(movedToCurrentAddressNode.getYearNode().isDirty(), equalTo(false));
+
+        movedToCurrentAddressNode.getYearNode().setValue(2017d);
+        assertThat(movedToCurrentAddressNode.getYearNode().isDirty(), equalTo(true));
+        assertThat(movedToCurrentAddressNode.isDirty(), equalTo(true));
+    }
 }
