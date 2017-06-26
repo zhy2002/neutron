@@ -1,9 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'throttle-debounce/debounce';
 import NeutronHoc from '../../neutron/NeutronHoc';
 import CloseIconComponent from '../../bootstrap3/CloseIconComponent';
 
+
 class ApplicationErrorsComponent extends React.PureComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.onNotify = debounce(200, (errorNode) => {
+            const dom = document.getElementById(errorNode.getUniqueId());
+            if (dom) {
+                dom.scrollIntoView();
+            }
+            this.focusOnField(errorNode);
+        });
+        this.componentWillReceiveProps(props);
+    }
+
+    componentDidMount() {
+        this.model.addNotificationListener('INITIAL_ERROR_FOCUS', this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.model !== nextProps.model) {
+            if (this.model) {
+                this.model.removeNotificationListener('INITIAL_ERROR_FOCUS', this);
+            }
+            this.model = nextProps.model;
+        }
+    }
 
     componentDidUpdate() {
         //now the field to focus is displayed
@@ -11,6 +39,10 @@ class ApplicationErrorsComponent extends React.PureComponent {
             this.componentDidUpdateCallback();
             delete this.componentDidUpdateCallback;
         }
+    }
+
+    componentWillUnmount() {
+        this.model.removeNotificationListener('INITIAL_ERROR_FOCUS', this);
     }
 
     focusOnField(errorNode) {
@@ -32,8 +64,12 @@ class ApplicationErrorsComponent extends React.PureComponent {
     }
 
     renderErrors() {
-        return this.props.model.getChildren().map(item =>
-            <div key={item.getUniqueId()} className="clearfix alert alert-warning">
+        return this.props.model.getSortedErrors().map(item =>
+            <div
+                key={item.getUniqueId()}
+                id={item.getUniqueId()}
+                className="clearfix alert alert-warning"
+            >
                 <div className="error-path">
                     {item.getSource() ? item.getSource().getPathLabel() : ''}
                 </div>
@@ -45,6 +81,9 @@ class ApplicationErrorsComponent extends React.PureComponent {
     }
 
     render() {
+        if (!this.props.show)
+            return null;
+
         return (
             <div className={this.props.componentClass} style={{top: `${this.props.top}px`}}>
                 <div className="title-bar">
@@ -70,6 +109,7 @@ export default NeutronHoc(
         return props;
     },
     {
+        show: PropTypes.bool.isRequired,
         onClose: PropTypes.func.isRequired,
         top: PropTypes.number.isRequired
     }

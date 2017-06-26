@@ -2,6 +2,9 @@ package zhy2002.examples.lodgement.shared;
 
 import zhy2002.examples.lodgement.data.Address;
 import zhy2002.examples.lodgement.gen.node.AddressNode;
+import zhy2002.examples.lodgement.gen.node.CompanyListNode;
+import zhy2002.examples.lodgement.gen.node.PersonListNode;
+import zhy2002.examples.lodgement.gen.node.RealEstateListNode;
 import zhy2002.neutron.ParentUiNode;
 import zhy2002.neutron.UiNode;
 
@@ -18,6 +21,10 @@ public class NodeUtil {
         address.setPostcode(node.getPostcodeNode().getValue());
         address.setCountry(node.getCountryNode().getValue());
         return address;
+    }
+
+    public static boolean hasTab(UiNode<?> node) {
+        return node instanceof PersonListNode || node instanceof CompanyListNode || node instanceof RealEstateListNode;
     }
 
     public static void disableAllSiblings(UiNode<?> node, boolean value, UiNode<?>... except) {

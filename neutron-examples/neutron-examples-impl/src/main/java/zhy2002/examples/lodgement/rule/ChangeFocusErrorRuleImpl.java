@@ -1,8 +1,11 @@
 package zhy2002.examples.lodgement.rule;
 
 
-import zhy2002.examples.lodgement.gen.node.*;
+import zhy2002.examples.lodgement.gen.node.ApplicationNode;
+import zhy2002.examples.lodgement.gen.node.ErrorListNode;
+import zhy2002.examples.lodgement.gen.node.ErrorNode;
 import zhy2002.examples.lodgement.gen.rule.ChangeFocusErrorRule;
+import zhy2002.examples.lodgement.shared.NodeUtil;
 import zhy2002.neutron.*;
 import zhy2002.neutron.di.Owner;
 import zhy2002.neutron.event.StringStateChangeEvent;
@@ -55,7 +58,7 @@ public class ChangeFocusErrorRuleImpl extends ChangeFocusErrorRule {
             }
 
             if (parent instanceof ApplicationNode) {
-                if (event.getOrigin() != node && (node instanceof PersonListNode || node instanceof CompanyListNode || node instanceof RealEstateListNode)) {
+                if (event.getOrigin() != node && NodeUtil.hasTab(node)) {
                     ((ApplicationNode) parent).setContentLevel(2);
                 } else {
                     ((ApplicationNode) parent).setContentLevel(1);

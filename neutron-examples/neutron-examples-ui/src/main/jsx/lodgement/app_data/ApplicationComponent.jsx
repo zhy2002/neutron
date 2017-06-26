@@ -47,8 +47,9 @@ class ApplicationComponent extends React.PureComponent {
                     </div>
                 }
                 {
-                    this.props.showErrorList &&
+                    !isNaN(this.state.contentTop) &&
                     <ApplicationErrorsComponent
+                        show={this.props.showErrorList}
                         top={this.state.contentTop}
                         onClose={this.hideErrorList}
                         model={this.props.model.getErrorListNode()}

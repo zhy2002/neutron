@@ -14,6 +14,8 @@ public class ApplicationNodeConstants {
 
     public static final String COPY_ADDRESS_ACTION = "CopyAddress";
 
+    public static final String INITIAL_ERROR_FOCUS = "INITIAL_ERROR_FOCUS";
+
     public static final String NAME_PATTERN = "^[a-zA-Z ]+$";
 
     public static final Telephone AUS_DEFAULT = new Telephone("+61", "", "");

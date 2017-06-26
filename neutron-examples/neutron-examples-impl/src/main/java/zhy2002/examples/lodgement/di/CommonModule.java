@@ -7,8 +7,10 @@ import zhy2002.examples.lodgement.gen.node.AddressRefListNode;
 import zhy2002.examples.lodgement.gen.node.ApplicationNode;
 import zhy2002.examples.lodgement.ApplicationNodeContextImpl;
 import zhy2002.examples.lodgement.LodgementValidationErrorListAdaptor;
+import zhy2002.examples.lodgement.gen.node.ErrorListNode;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
 import zhy2002.examples.lodgement.node.ApplicationNodeImpl;
+import zhy2002.examples.lodgement.node.ErrorListNodeImpl;
 import zhy2002.neutron.ValidationErrorListAdaptor;
 
 import javax.inject.Singleton;
@@ -23,6 +25,9 @@ public abstract class CommonModule {
     @Binds
     @Singleton
     abstract ApplicationNode provideApplicationNode(ApplicationNodeImpl impl);
+
+    @Binds
+    abstract ErrorListNode provideErrorListNode(ErrorListNodeImpl impl);
 
     @Binds
     abstract ValidationErrorListAdaptor provideValidationErrorListAdaptor(LodgementValidationErrorListAdaptor impl);

@@ -29,7 +29,10 @@ export default function NeutronCompositeHoc(WrappedComponent,
             props.readonly,
             props.disabled
         );
-        props.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name); //override componentClass
+
+        if (model.getNodeStatus() === window.GWT.NodeStatusEnum.Loaded) {
+            props.componentClass = CommonUtil.pascalToCssName(WrappedComponent.name); //override componentClass
+        }
 
         return Object.assign(
             props,

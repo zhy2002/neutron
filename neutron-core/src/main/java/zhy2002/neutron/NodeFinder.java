@@ -68,4 +68,14 @@ public class NodeFinder {
         mapPathToNode.remove(node.getPath());
         mapIdToNode.remove(node.getUniqueId());
     }
+
+    public boolean isAncestor(UiNode<?> target, UiNode<?> source) {
+        UiNode<?> ancestor = source.getParent();
+        while (ancestor != null) {
+            if (ancestor == target)
+                return true;
+            ancestor = ancestor.getParent();
+        }
+        return false;
+    }
 }

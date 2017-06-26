@@ -6,6 +6,7 @@ import zhy2002.examples.TestUtil;
 import zhy2002.examples.interop.JavaMethods;
 import zhy2002.examples.lodgement.gen.node.*;
 import zhy2002.examples.lodgement.node.AddressRefListNodeImpl;
+import zhy2002.examples.lodgement.node.ErrorListNodeImpl;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.NodeStatusEnum;
 import zhy2002.neutron.UiNode;
@@ -382,14 +383,18 @@ public class PersonNodeTest {
     }
 
     @Test
-    public void parentIsDirtyWhenChildIsUpdated() {
-        personContactNode.getContext().setDirtyCheckEnabled(true);
-        MovedToCurrentAddressNode movedToCurrentAddressNode = personContactNode.getMovedToCurrentAddressNode();
-        assertThat(movedToCurrentAddressNode.isDirty(), equalTo(false));
-        assertThat(movedToCurrentAddressNode.getYearNode().isDirty(), equalTo(false));
+    public void errorNodesAreSortedCorrectly() {
+        personContactNode.getPersonEmailNode().refresh();
+        personGeneralNode.getDateOfBirthNode().refresh();
+        personGeneralNode.getFirstNameNode().refresh();
+        assertThat(applicationNode.getErrorListNode().getItemCount(), equalTo(3));
 
-        movedToCurrentAddressNode.getYearNode().setValue(2017d);
-        assertThat(movedToCurrentAddressNode.getYearNode().isDirty(), equalTo(true));
-        assertThat(movedToCurrentAddressNode.isDirty(), equalTo(true));
+        ErrorListNodeImpl errorListNode = (ErrorListNodeImpl)applicationNode.getErrorListNode();
+        Object[] errors = errorListNode.getSortedErrors();
+        assertThat(errors.length, equalTo(3));
+        assertThat(((ErrorNode)errors[0]).getSource(), sameInstance(personGeneralNode.getFirstNameNode()));
+        assertThat(((ErrorNode)errors[1]).getSource(), sameInstance(personGeneralNode.getDateOfBirthNode()));
+        assertThat(((ErrorNode)errors[2]).getSource(), sameInstance(personContactNode.getPersonEmailNode()));
+
     }
 }
