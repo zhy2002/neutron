@@ -11,6 +11,17 @@ import LodgementSpinnerComponent from './LodgementSpinnerComponent';
 import LenderListComponent from './LenderListComponent';
 
 
+function getAppPath() {
+    const hash = window.location.hash;
+    if (hash.indexOf('#/app/') === 0) {
+        const path = hash.substr(6);
+        const index = path.indexOf('/');
+        if (index >= 0) {
+            return path.substr(index + 1);
+        }
+    }
+    return undefined;
+}
 class LodgementComponent extends React.PureComponent {
 
     constructor(props) {
@@ -32,9 +43,18 @@ class LodgementComponent extends React.PureComponent {
 
         this.refreshApplication = (model) => {
             const id = model.getIdNode().getValue();
-            LodgementService.loadApplicationNode(id).then((newModel) => {
+
+            LodgementService.loadApplicationNode(id, getAppPath()).then((newModel) => {
                 props.model.dispatchAddOpenAppAction(newModel);
                 newModel.getContext().setDirtyCheckEnabled(true);
+                EventService.fire(
+                    'show_notification',
+                    {
+                        message: 'Application is refreshed.',
+                        position: 'tc',
+                        level: 'success'
+                    }
+                );
             });
         };
 
