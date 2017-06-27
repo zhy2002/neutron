@@ -22,13 +22,12 @@ http:
 
 Todo
 -----------------  
-- Handle url change when back/forward browser buttons are clicked.
-- create layout components
-- i18n support
+- i18n support parser/formatter/array leaf value
   - runtime configurable culture specific parser/formatter chain
   - formatter chain for all node
   - parser chain for leaf nodes
   - React i18n
+- create layout components
 - implement partial load/unload examples
   - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
 - add JEST tests
@@ -256,6 +255,8 @@ Finished
 34 - Use HOCs replace Neutron base components
 
 35 - Error when closing a none active app tab
+
+36 - Handle url change when back/forward browser buttons are clicked.
 
 ### Garbage
 

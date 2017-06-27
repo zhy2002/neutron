@@ -49,7 +49,6 @@ export default class LocationService extends StaticService {
         }
 
         restored = false;
-
         if (newHash.startsWith('/app/') && newHash.length > 5) {
             UiService.setIsLoading(true);
             statePartiallySynced = false;
@@ -57,6 +56,8 @@ export default class LocationService extends StaticService {
                 .then(
                     () => {
                         restored = true;
+                        currentHash = newHash;
+                        console.info(`LocationService: updating state to match hash: #${newHash}`);
                         if (statePartiallySynced) { //could not fully sync sate to hash - maybe rename this event
                             EventService.fire('application_content_change');
                         }
@@ -67,6 +68,8 @@ export default class LocationService extends StaticService {
         } else {
             LodgementService.selectTab(0);
             restored = true;
+            currentHash = newHash;
+            console.info(`LocationService: updating state to match hash: #${newHash}`);
         }
         return restored;
     }
@@ -96,10 +99,12 @@ export default class LocationService extends StaticService {
         }
 
         if (window.location.hash !== `#${hash}`) {
-            console.info(`Updating hash from ${window.location.hash} to #${hash}`);
+            console.info(`LocationService: updating hash to match state from ${window.location.hash} to #${hash}`);
             currentHash = hash;
             window.location.hash = hash;
         }
         return true;
     }
 }
+
+window.addEventListener('hashchange', () => LocationService.syncStateToHash(), false);

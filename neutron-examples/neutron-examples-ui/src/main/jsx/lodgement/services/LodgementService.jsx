@@ -19,10 +19,10 @@ function isAppOpen(id) {
     for (let i = 0; i < openApps.length; i++) {
         const app = openApps[i];
         if (app.getIdNode().getValue() === id) {
-            return i;
+            return {index: i, model: app};
         }
     }
-    return -1;
+    return null;
 }
 
 function createAppTab(newApp) {
@@ -126,10 +126,11 @@ export default class LodgementService extends StaticService {
         }
 
         //check if app is already opened
-        const appIndex = isAppOpen(id);
-        if (appIndex >= 0) {
-            console.debug('app is already loaded');
-            LodgementService.selectTab(appIndex + appTabOffset);
+        const result = isAppOpen(id);
+        if (result && result.index >= 0) {
+            console.debug('app is already loaded.');
+            LodgementService.selectTab(result.index + appTabOffset);
+            UiService.setPath(result.model, path);
             return CommonUtil.defer(null);
         }
 
@@ -198,7 +199,7 @@ export default class LodgementService extends StaticService {
             alert('No application is selected.');
             return CommonUtil.defer(null);
         }
-        if (isAppOpen(id) >= 0) {
+        if (isAppOpen(id)) {
             alert('Please close the selected application first.');
             return CommonUtil.defer(null);
         }
