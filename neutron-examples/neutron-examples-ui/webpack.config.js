@@ -23,10 +23,7 @@ var config = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'stage-0', 'react']
-                }
+                loader: 'babel-loader'
             },
             {
                 test: /\.css$/,
@@ -40,7 +37,7 @@ var config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: true
+                                minimize: false
                             }
                         },
                         'sass-loader'

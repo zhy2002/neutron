@@ -24,15 +24,15 @@ class AddListComponent extends React.PureComponent {
     }
 
     render() {
-        const props = this.props;
+        const {componentClass, className, model, count, label, itemComponent, mapItemToModel} = this.props;
 
         return (
-            <div className={`${props.componentClass} ${props.className} row`}>
+            <div className={`${componentClass} ${className} row`}>
                 <div className="col-md-12">
                     <div className="row">
                         <div className="col-md-2">
                             <button
-                                id={props.model.getUniqueId()}
+                                id={model.getUniqueId()}
                                 className="btn btn-sm btn-primary pull-right"
                                 onClick={this.createNewItem}
                             >
@@ -40,11 +40,11 @@ class AddListComponent extends React.PureComponent {
                             </button>
                         </div>
                         <div className="col-md-10">
-                            {props.count === 0 ?
+                            {count === 0 ?
                                 <AlertInfoComponent>
-                                    Click <em>Add</em> to create a new {props.label} record.
+                                    Click <em>Add</em> to create a new {label} record.
                                 </AlertInfoComponent> :
-                                CommonUtil.renderItems(props.model, props.itemComponent, props.mapItemToModel)
+                                CommonUtil.renderItems(model, itemComponent, mapItemToModel)
                             }
                         </div>
                     </div>

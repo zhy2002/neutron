@@ -104,12 +104,16 @@ function showLenderList() {
  */
 export default class LodgementService extends StaticService {
 
-    static newApp() {
-        return showLenderList().then(profileName => createApplicationNode(profileName).then(createAppTab));
+    static newApplicationNode(profileName, dataStore) {
+        return newEnhancedApplicationNode(profileName, dataStore);
     }
 
     static loadApplicationNode(id, path) {
         return StorageService.getApplication(id).then(node => restoreApplicationNode(node, path));
+    }
+
+    static newApp() {
+        return showLenderList().then(profileName => createApplicationNode(profileName).then(createAppTab));
     }
 
     static openApp(appId, path) {
@@ -177,22 +181,6 @@ export default class LodgementService extends StaticService {
             );
     }
 
-    static selectTab(index) {
-        globalUiStateNode.setSelectedTabIndex(index);
-    }
-
-    static closeTab(tabIndex) {
-        const appIndex = tabIndex - appTabOffset;
-        if (appIndex < 0)
-            return;
-
-        const openApps = globalUiStateNode.getOpenAppsNode().getChildren();
-        const item = openApps[appIndex];
-        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this app.')) {
-            globalUiStateNode.getOpenAppsNode().removeItem(item);
-        }
-    }
-
     static deleteApp() {
         const id = globalUiStateNode.getAppManagerNode().getCurrentAppId();
         if (!id) {
@@ -207,6 +195,22 @@ export default class LodgementService extends StaticService {
             //give elastic search time to update.
             return CommonUtil.delay(500).then(() => LodgementService.refreshApplicationList());
         });
+    }
+
+    static selectTab(index) {
+        globalUiStateNode.setSelectedTabIndex(index);
+    }
+
+    static closeTab(tabIndex) {
+        const appIndex = tabIndex - appTabOffset;
+        if (appIndex < 0)
+            return;
+
+        const openApps = globalUiStateNode.getOpenAppsNode().getChildren();
+        const item = openApps[appIndex];
+        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this app.')) {
+            globalUiStateNode.getOpenAppsNode().removeItem(item);
+        }
     }
 
     static refreshApplicationList() {

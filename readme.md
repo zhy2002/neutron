@@ -28,9 +28,6 @@ Todo
   - parser chain for leaf nodes
   - React i18n
 - create layout components
-- implement partial load/unload examples
-  - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
-- add JEST tests
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation/translation
   
@@ -51,6 +48,8 @@ Todo (low priority)
 - fix compilation warning messages.
 - save and restore full state (not just value and id) for debugging purpose
 - align JSX code with RxJS patterns
+- implement partial load/unload examples
+  - e.g. data on a screen is not loaded when it is not visited - lazy loading of node hierarchy
 
 Todo (long term)
 -----------------
@@ -257,6 +256,8 @@ Finished
 35 - Error when closing a none active app tab
 
 36 - Handle url change when back/forward browser buttons are clicked.
+
+37 - add mocha enzyme for testing react components.
 
 ### Garbage
 
