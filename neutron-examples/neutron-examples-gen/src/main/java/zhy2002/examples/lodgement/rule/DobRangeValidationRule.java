@@ -1,4 +1,4 @@
-package zhy2002.examples.lodgement.shared;
+package zhy2002.examples.lodgement.rule;
 
 import com.google.gwt.i18n.shared.DateTimeFormat;
 import zhy2002.examples.lodgement.gen.node.DobNode;

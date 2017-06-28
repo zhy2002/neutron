@@ -1111,12 +1111,9 @@ commonTypes:
     - {propertyName: options, value: ApplicationNodeConstants.getYearType()}
 
 - typeName: EmailNode
-  init:
-  - {propertyName: pattern, value: '"\\w+@\\w+\\.[\\w.]+"'}
 
 - typeName: NameNode
   init:
-  - {propertyName: pattern, value: ApplicationNodeConstants.NAME_PATTERN}
   - {propertyName: maxLength, value: 25}
   - {propertyName: lengthMessage, value: '"Cannot exceed 25 characters."'}
   - {propertyName: invalidChars, value: "\"#\""}
@@ -1258,11 +1255,6 @@ commonTypes:
   - {property: '@options', value: ApplicationNodeConstants.COUNTRY_TYPE}
 
 - typeName: DobNode
-  init:
-  - {propertyName: minAge, value: 18}
-  - {propertyName: maxAge, value: 100}
-  rules:
-  - {typeName: DobRangeValidationRule, existing: true}
 
 - typeName: SelectRelatedPersonListNode
   childTypes:

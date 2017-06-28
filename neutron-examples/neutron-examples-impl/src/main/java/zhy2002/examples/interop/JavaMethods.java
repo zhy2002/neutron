@@ -56,4 +56,11 @@ public class JavaMethods {
         return profileComponentFactory.getAllProfileNames();
     }
 
+    public static int unboxInteger(Integer integer) {
+        return integer;
+    }
+
+    public static Integer boxInteger(int integer) {
+        return integer;
+    }
 }

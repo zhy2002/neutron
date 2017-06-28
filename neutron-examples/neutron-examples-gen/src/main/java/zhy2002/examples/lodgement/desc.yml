@@ -105,10 +105,10 @@ rootType:
           baseTypeName: StringUiNode
 
         - typeName: FirstNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: LastNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: GenderNode
           baseTypeName: StringUiNode
@@ -302,10 +302,10 @@ rootType:
         - {typeName: CompanyAddressNode, name: principalPlaceAddressNode}
         childTypes:
         - typeName: CompanyContactFirstNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: CompanyContactLastNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: CompanyTelephoneNode
           baseTypeName: TelephoneNode
@@ -767,10 +767,10 @@ rootType:
           baseTypeName: StringUiNode
 
         - typeName: AccessContactFirstNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: AccessContactLastNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: AccessCompanyNameNode
           baseTypeName: StringUiNode
@@ -1077,10 +1077,10 @@ rootType:
           baseTypeName: StringUiNode
 
         - typeName: ThirdPartyFirstNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: ThirdPartyLastNameNode
-          baseTypeName: StringUiNode
+          baseTypeName: NameNode
 
         - typeName: ThirdPartyDobNode
           baseTypeName: DobNode
@@ -1208,10 +1208,16 @@ commonTypes:
 - typeName: EmailNode
   baseTypeName: StringUiNode
   parentBaseTypeName: ParentUiNode<?>
+  config:
+  - {property: '@pattern', value: '"\\w+@\\w+\\.[\\w.]+"'}
+  - {property: '@patternMessage', value: '"Invalid email address"'}
 
 - typeName: NameNode
   baseTypeName: StringUiNode
   parentBaseTypeName: ParentUiNode<?>
+  config:
+  - {property: '@pattern', value: 'ApplicationNodeConstants.NAME_PATTERN'}
+  - {property: '@patternMessage', value: '"Name can only contain alphabetical characters"'}
 
 - typeName: BaseMobileNumberNode
   baseTypeName: StringUiNode
@@ -1380,6 +1386,11 @@ commonTypes:
   properties:
   - {name: minAge, typeName: Integer}
   - {name: maxAge, typeName: Integer}
+  config:
+  - {property: '@minAge', value: 18}
+  - {property: '@maxAge', value: 100}
+  rules:
+  - {typeName: DobRangeValidationRule}
 
 - typeName: SelectRelatedPersonListNode
   baseTypeName: ListUiNode

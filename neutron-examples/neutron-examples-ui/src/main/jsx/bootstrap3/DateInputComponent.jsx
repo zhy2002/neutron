@@ -47,7 +47,14 @@ export default class DateInputComponent extends InputComponent {
         const conditionalProps = {};
         if (this.props.openToDate) {
             conditionalProps.openToDate = this.props.openToDate;
+        } else if (model.getMinAge) {
+            const integer = model.getMinAge();
+            if (integer) {
+                const min = window.GWT.unboxInteger(integer);
+                conditionalProps.openToDate = moment().subtract(min, 'years');
+            }
         }
+
         return (
             <DatePicker
                 id={model.getUniqueId()}

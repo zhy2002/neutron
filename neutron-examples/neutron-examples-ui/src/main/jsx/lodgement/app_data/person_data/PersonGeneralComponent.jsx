@@ -41,10 +41,7 @@ class PersonGeneralComponent extends React.PureComponent {
                                 <RadioInputComponent model={model.getGenderNode()}/>
                             </div>
                             <div className="col-sm-12">
-                                <DateInputComponent
-                                    model={model.getDateOfBirthNode()}
-                                    openToDate={moment().subtract(18, 'years')}
-                                />
+                                <DateInputComponent model={model.getDateOfBirthNode()}/>
                             </div>
                         </div>
                     </div>
