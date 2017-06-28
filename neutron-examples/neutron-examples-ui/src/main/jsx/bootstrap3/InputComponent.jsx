@@ -42,14 +42,6 @@ export default class InputComponent extends React.PureComponent {
         newState.errorMessages = this.model.getValidationMessages();
     }
 
-    /**
-     * From model value to ui state value.
-     * @returns {*} the ui state value.
-     */
-    getUiValue() {
-        return this.model.getValue();
-    }
-
     getValueOptions() {
         return this.model.getOptions();
     }
@@ -98,7 +90,8 @@ export default class InputComponent extends React.PureComponent {
         } else {
             newState.label = `${newState.label}  `;
         }
-        newState.value = this.getUiValue();
+
+        newState.value = this.model.getValue();
 
         //value error message
         this.setErrorMessages(newState);

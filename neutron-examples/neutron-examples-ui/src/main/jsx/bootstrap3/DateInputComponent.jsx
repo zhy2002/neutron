@@ -29,11 +29,6 @@ export default class DateInputComponent extends InputComponent {
         };
     }
 
-    getUiValue() {
-        const value = this.model.getValue();
-        return value ? moment(value) : null;
-    }
-
     setErrorMessages(newState) {
         super.setErrorMessages(newState);
 
@@ -48,6 +43,7 @@ export default class DateInputComponent extends InputComponent {
 
     renderContent() {
         const model = this.props.model;
+        const value = this.state.value ? moment(this.state.value) : null;
         const conditionalProps = {};
         if (this.props.openToDate) {
             conditionalProps.openToDate = this.props.openToDate;
@@ -58,7 +54,7 @@ export default class DateInputComponent extends InputComponent {
                 className="form-control"
                 onChange={this.updateValue}
                 onChangeRaw={this.updateRawValue}
-                selected={this.state.value}
+                selected={value}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"

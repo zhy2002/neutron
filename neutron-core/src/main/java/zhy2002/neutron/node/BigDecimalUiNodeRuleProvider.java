@@ -31,11 +31,16 @@ public class BigDecimalUiNodeRuleProvider implements RuleProvider<BigDecimalUiNo
     @Inject
     Provider<NumberFormatValidationRule> numberFormatValidationRuleProvider;
 
+    @Inject
+    Provider<BigDecimalUiNode.SyncValueTextRule> syncValueTextRuleProvider;
+
     @Override
     public void createRules(List<UiNodeRule<?>> createdRules) {
         parentRuleProvider.createRules(createdRules);
 
+        createdRules.add(syncValueTextRuleProvider.get());
         createdRules.add(rangeValidationRuleProvider.get());
         createdRules.add(numberFormatValidationRuleProvider.get());
+
     }
 }

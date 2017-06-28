@@ -38,7 +38,7 @@ public class UpdateEstimatedMarketValueRule extends UiNodeRule<ContractPriceNode
 
     private void update() {
         EstimatedMarketValueNode marketValueNode = getOwner().getParent().getEstimatedMarketValueNode();
-        if (marketValueNode.hasValue())
+        if (marketValueNode.containsValue())
             return;
 
         BigDecimal value = getOwner().getValue();

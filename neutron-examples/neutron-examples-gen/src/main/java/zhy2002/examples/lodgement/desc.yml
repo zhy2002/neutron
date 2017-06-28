@@ -1227,6 +1227,7 @@ commonTypes:
   - {name: currencyInfo, typeName: CurrencyInfo, default: ApplicationNodeConstants.AUD}
   config:
   - {property: '@minValue', value: new BigDecimal("0.01")}
+  - {property: '@valueDisplayFormat', value: '"default"'}
 
 - typeName: BasePercentageNode
   baseTypeName: BigDecimalUiNode
@@ -1236,6 +1237,7 @@ commonTypes:
   config:
   - {property: '@minValue', value: new BigDecimal("0")}
   - {property: '@maxValue', value: new BigDecimal("100")}
+  - {property: '@valueDisplayFormat', value: '"default"'}
 
 - typeName: EmploymentNode
   baseTypeName: ObjectUiNode

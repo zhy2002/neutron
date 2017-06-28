@@ -47,7 +47,7 @@ public class MetadataRegistry {
 
     public static <T> PropertyMetadata<T> createProperty(Class<?> definingClass, String propertyName, Class<T> valueClass, T defaultValue, ChangeTrackingModeEnum tracingMode, ChangeModeEnum changeMode, Boolean configurable, Boolean inherited) {
 
-        PropertyMetadataBuilder<T> builder = new PropertyMetadataBuilder<T>(
+        PropertyMetadataBuilder<T> builder = new PropertyMetadataBuilder<>(
                 definingClass,
                 propertyName,
                 valueClass

@@ -3,103 +3,48 @@ package zhy2002.neutron.node;
 import jsinterop.annotations.JsMethod;
 import zhy2002.neutron.*;
 import zhy2002.neutron.config.MetadataRegistry;
+import zhy2002.neutron.config.NeutronConstants;
 import zhy2002.neutron.config.PropertyMetadata;
 import zhy2002.neutron.data.BigDecimalOption;
 import zhy2002.neutron.data.NodeIdentity;
+import zhy2002.neutron.di.Owner;
+import zhy2002.neutron.event.BigDecimalStateChangeEvent;
+import zhy2002.neutron.event.BigDecimalStateChangeEventBinding;
+import zhy2002.neutron.event.StringStateChangeEvent;
+import zhy2002.neutron.event.StringStateChangeEventBinding;
 import zhy2002.neutron.util.ValueUtil;
 
+import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Objects;
+import java.util.Collection;
+
 
 /**
  * A LeafUiNode that can contain a number as its value.
  */
 public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUiNode<P, BigDecimal> {
 
-    private static final ValueParser<BigDecimal> DEFAULT_PARSER = (t) -> {
-        if (t != null && t.matches("^\\d+(\\.\\d+)?$"))
-            return new BigDecimal(t);
-        return null;
-    };
-
-    private static final ValueFormatter<BigDecimal> DEFAULT_FORMATTER = (v) -> v == null ? "" : v.toString();
-
-    private ValueParser<BigDecimal> parser;
-    private ValueFormatter<BigDecimal> formatter;
-    private boolean hasValue;
-
     protected BigDecimalUiNode(@NotNull P parent) {
         super(parent);
     }
 
-    public ValueParser<BigDecimal> getParser() {
-        return parser == null ? DEFAULT_PARSER : parser;
-    }
-
-    public void setParser(ValueParser<BigDecimal> parser) {
-        this.parser = parser;
-    }
-
-    public ValueFormatter<BigDecimal> getFormatter() {
-        return formatter == null ? DEFAULT_FORMATTER : formatter;
-    }
-
-    public void setFormatter(ValueFormatter<BigDecimal> formatter) {
-        this.formatter = formatter;
-    }
-
-    @Override
-    public <T> void setStateValue(PropertyMetadata<T> propertyMetadata, T value) {
-        if (!getContext().isInCycle()) {
-            if (VALUE_PROPERTY == propertyMetadata && value == null) {
-                super.setStateValue(VALUE_TEXT_PROPERTY, "");
-                return;
-            }
-        }
-
-        super.setStateValue(propertyMetadata, value);
-    }
-
-    @Override
-    protected void setStateValueDirectly(String key, Object value) {
-        if (VALUE_PROPERTY.getStateKey().equals(key)) {
-            hasValue = value != null;
-        }
-        super.setStateValueDirectly(key, value);
-
-        //sync value_text and value states
-        if (VALUE_TEXT_PROPERTY.getStateKey().equals(key)) {
-            BigDecimal val = value == null ? null : getParser().parse(value.toString());
-            if (val == null && !ValueUtil.isEmpty((String)value)) {
-                setValueValid(false);
-            } else {
-                setValueValid(true);
-            }
-            if (!Objects.equals(val, getValue())) {
-                setValue(val);
-            }
-        } else if (VALUE_PROPERTY.getStateKey().equals(key)) {
-            if (value == null) {
-                if (getParser().parse(getText()) != null) {
-                    setText(null);
-                }
-            } else {
-                setValueValid(true);
-                String text = getFormatter().format((BigDecimal) value);
-                if (!Objects.equals(text, getText())) {
-                    setText(text);
-                }
-            }
-        }
-    }
-
+    /**
+     * @return true if get value is not empty.
+     */
     @Override
     public boolean hasValue() {
-        return hasValue;
+        return super.hasValue() || !ValueUtil.isEmpty(getText());
     }
 
+    public boolean containsValue() {
+        return getStateValueDirectly(VALUE_PROPERTY.getStateKey()) != null;
+    }
+
+    /**
+     * @return true if the returned value is from the state of this node (not inherited or configured).
+     */
     @Override
     public Class<BigDecimal> getValueClass() {
         return BigDecimal.class;
@@ -116,9 +61,11 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     public static final PropertyMetadata<Boolean> VALUE_VALID_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueValid", Boolean.class, Boolean.TRUE);
     public static final PropertyMetadata<Boolean> INTEGER_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "integerValue", Boolean.class, Boolean.FALSE);
     public static final PropertyMetadata<String> VALUE_TEXT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueText", String.class, "");
+    public static final PropertyMetadata<String> VALUE_DISPLAY_FORMAT_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "valueDisplayFormat", String.class);
     public static final PropertyMetadata<String> RANGE_MESSAGE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "rangeMessage", String.class, "Value must be in the range of [{min}, {max}].");
     public static final PropertyMetadata<BigDecimal> MIN_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "minValue", BigDecimal.class);
     public static final PropertyMetadata<BigDecimal> MAX_VALUE_PROPERTY = MetadataRegistry.createProperty(BigDecimalUiNode.class, "maxValue", BigDecimal.class);
+    //todo validate allowed digits
 
     @JsMethod
     @Override
@@ -154,6 +101,7 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         super.setStateValue(VALUE_VALID_PROPERTY, value);
     }
 
+    @JsMethod
     public boolean isIntegerValue() {
         return super.getStateValue(INTEGER_VALUE_PROPERTY);
     }
@@ -170,6 +118,15 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
     @JsMethod
     public void setText(String text) {
         setStateValue(VALUE_TEXT_PROPERTY, text);
+    }
+
+    @JsMethod
+    public String getValueDisplayFormat() {
+        return getStateValue(VALUE_DISPLAY_FORMAT_PROPERTY);
+    }
+
+    public void setValueDisplayFormat(String name) {
+        setStateValue(VALUE_DISPLAY_FORMAT_PROPERTY, name);
     }
 
     public String getRangeMessage() {
@@ -211,4 +168,60 @@ public abstract class BigDecimalUiNode<P extends ParentUiNode<?>> extends LeafUi
         setStateValue(OPTIONS_PROPERTY, value);
     }
     //endregion
+
+    static class SyncValueTextRule extends UiNodeRule<BigDecimalUiNode<?>> {
+
+        private static ValueParser<BigDecimal> parser = new BigDecimalParser();
+
+        @Inject
+        protected SyncValueTextRule(@Owner BigDecimalUiNode<?> owner) {
+            super(owner);
+        }
+
+        @Override
+        protected Collection<EventBinding> createEventBindings() {
+            return Arrays.asList(
+                    new RefreshEventBinding(
+                            this::initialSync,
+                            NeutronConstants.NODE_LOADED_REFRESH_REASON
+                    ),
+                    new BigDecimalStateChangeEventBinding(
+                            e -> {
+                                UiNodeEvent cause = e.getActivation() == null ? null : e.getActivation().getEvent();
+                                return !(cause != null && cause.getOrigin() == getOwner() && cause.getSubject().equals(VALUE_TEXT_PROPERTY.getStateKey()));
+                            },
+                            this::updateText
+                    ),
+                    new StringStateChangeEventBinding(
+                            e -> {
+                                UiNodeEvent cause = e.getActivation() == null ? null : e.getActivation().getEvent();
+                                return !(cause != null && cause.getOrigin() == getOwner() && cause.getSubject().equals(VALUE_PROPERTY.getStateKey()));
+                            },
+                            this::updateValue,
+                            VALUE_TEXT_PROPERTY.getStateKey(),
+                            null
+                    )
+            );
+        }
+
+        private void initialSync(RefreshUiNodeEvent event) {
+            BigDecimal value = getOwner().getValue();
+            String text = getOwner().getText();
+            if (value != null && ValueUtil.isEmpty(text)) {
+                getOwner().setText(parser.format(value));
+            } else if (value == null && !ValueUtil.isEmpty(text)) {
+                getOwner().setValue(parser.parse(text));
+            }
+        }
+
+        private void updateText(BigDecimalStateChangeEvent event) {
+            getOwner().setText(parser.format(event.getNewValue()));
+        }
+
+        private void updateValue(StringStateChangeEvent event) {
+            BigDecimal value = parser.parse(event.getNewValue());
+            getOwner().setValue(value);
+            getOwner().setValueValid(value != null);
+        }
+    }
 }

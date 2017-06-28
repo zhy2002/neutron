@@ -7,10 +7,9 @@ import jsinterop.annotations.JsType;
  *
  * @param <T> value type.
  */
-@FunctionalInterface
-@JsType
+@JsType(isNative = true)
 public interface ValueParser<T> {
-
     T parse(String text);
 
+    String format(T value);
 }

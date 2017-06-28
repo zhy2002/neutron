@@ -1,5 +1,6 @@
 import React from 'react';
 import InputComponent from './InputComponent';
+import FormattingService from '../neutron/FormattingService';
 
 
 export default class NumberInputComponent extends InputComponent {
@@ -13,10 +14,24 @@ export default class NumberInputComponent extends InputComponent {
             this.model.setText(event.target.value);
             context.debouncedExitDebouncingMode();
         };
+
+        this.state.hasFocus = false;
+
+        this.handleFocus = () => {
+            this.setState({hasFocus: true});
+        };
+
+        this.handleBlur = () => {
+            this.setState({hasFocus: false});
+        };
     }
 
-    getUiValue() {
-        return this.model.getText();
+    extractNewState() {
+        const newState = super.extractNewState();
+        newState.valueText = this.model.getText();
+        newState.isInteger = this.model.isIntegerValue();
+        newState.displayFormat = this.model.getValueDisplayFormat();
+        return newState;
     }
 
     renderInput() {
@@ -27,13 +42,20 @@ export default class NumberInputComponent extends InputComponent {
             conditionalProps.placeholder = this.state.label;
         }
 
+        let value = this.state.valueText;
+        if (!this.state.hasFocus && this.state.value && this.state.displayFormat === 'default') {
+            value = FormattingService.formatNumber(value, this.state.isInteger ? 0 : 2);
+        }
+
         return (
             <input
                 type="text"
                 className="form-control"
                 id={model.getUniqueId()}
-                value={this.state.value}
+                value={value}
                 onChange={this.updateValue}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
                 disabled={this.state.disabled}
                 readOnly={this.state.readonly}
                 {...conditionalProps}

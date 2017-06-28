@@ -1,5 +1,6 @@
 package zhy2002.neutron.config;
 
+import jsinterop.annotations.JsMethod;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,16 +17,19 @@ public class NodeConfiguration {
     public NodeConfiguration() {
         this(null); //for type config
     }
+
     public NodeConfiguration(String name) {
         this.name = name; //for instance config
     }
 
+    @JsMethod
     @SuppressWarnings("unchecked")
     public final <T> T getConfigValue(String key) {
         Object value = map.get(key);
         return (T) value;
     }
 
+    @JsMethod
     public final void setConfigValue(String key, Object value) {
         if (value == null) {
             map.remove(key);

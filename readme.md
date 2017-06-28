@@ -53,6 +53,7 @@ Todo (low priority)
 
 Todo (long term)
 -----------------
+- remove dagger 2 because its making the build too slow.
 - construct framework nodes via reflection in codegen module.
 - load config from json
 - support expression in init (as opposed to only constants)

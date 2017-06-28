@@ -530,7 +530,8 @@ li.nav-dropdown-component.selected {
 
   .list-group {
     margin-top: 20px;
-    margin-bottom: 0;
+    margin-bottom: 15px;
+    margin-left: 10px;
   }
 }
 
@@ -692,7 +693,7 @@ li.nav-dropdown-component.selected {
     }
 
     &.show-error-list {
-      .application-content-component {
+      .fill-all {
         width: 70%;
       }
     }
@@ -707,7 +708,6 @@ li.nav-dropdown-component.selected {
       bottom: 0;
       right: 0;
       width: 30%;
-      overflow-y: auto;
 
       .title-bar {
         background-color: $brand-info;
@@ -716,7 +716,12 @@ li.nav-dropdown-component.selected {
         text-align: right;
         border-radius: 5px;
         line-height: 2em;
+        margin-left: 5px;
+        margin-right: 5px;
         margin-bottom: 1em;
+        position: absolute;
+        left: 0;
+        right: 0;
 
         .badge-link {
           float: left;
@@ -728,8 +733,16 @@ li.nav-dropdown-component.selected {
         }
       }
 
+      .content.small {
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        overflow-y: auto;
+      }
       .alert {
         padding: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
         margin-bottom: 1em;
       }
 

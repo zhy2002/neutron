@@ -55,4 +55,5 @@ public class JavaMethods {
     public static String[] getApplicationProfileNames() {
         return profileComponentFactory.getAllProfileNames();
     }
+
 }

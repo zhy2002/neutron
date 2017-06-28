@@ -18,6 +18,13 @@ export default class FormattingService extends StaticService {
         return s + n.toFixed(2).replace(/./g, replaceDigit);
     }
 
+    static formatNumber(n, digits = 2) {
+        if (n === null || n === undefined)
+            return '';
+        const num = typeof n === 'string' ? +n : n;
+        return num.toFixed(digits).replace(/./g, replaceDigit);
+    }
+
     static formatDate(date) {
         if (!date)
             return '';
