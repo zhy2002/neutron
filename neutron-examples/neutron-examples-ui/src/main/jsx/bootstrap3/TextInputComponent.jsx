@@ -4,27 +4,10 @@ import axios from 'axios';
 import debounce from 'throttle-debounce/debounce';
 import InputComponent from './InputComponent';
 import AutoCloseContainer from '../neutron/AutoCloseContainer';
+import CommonUtil from '../neutron/CommonUtil';
+
 
 const baseUrl = 'http://localhost:9200';
-const reservedChars = '+-=&|><!(){}[]^"~*?:\\/';
-
-/**
- * Convert keyword to elastic search literal.
- */
-function encodeKeyword(key) {
-    let result = '';
-    for (let i = 0; i < key.length; i++) {
-        const char = key[i];
-        if (reservedChars.indexOf(char) >= 0) {
-            result += '\\';
-        }
-        result += char;
-    }
-
-    result = result.trim();
-    result = result.replace(/\s+/, ' AND ');
-    return encodeURIComponent(`${result}`);
-}
 
 export default class TextInputComponent extends InputComponent {
 
@@ -69,6 +52,14 @@ export default class TextInputComponent extends InputComponent {
 
         this.search = () => {
             const key = this.state.value;
+            const searchAdaptor = this.props.searchAdaptor;
+            if (!searchAdaptor.shouldSearch(key)) {
+                this.setState({
+                    showOptions: false
+                });
+                return;
+            }
+
             if (!this.shouldSendRequest(key)) {
                 this.setState({
                     showOptions: true
@@ -76,16 +67,12 @@ export default class TextInputComponent extends InputComponent {
                 return;
             }
 
-            const url = baseUrl + this.props.searchPath.replace('{key}', `*${encodeKeyword(key)}*`);
+            const encodedKey = searchAdaptor.encodeKeyword(key);
+            const url = baseUrl + this.props.searchPath.replace('{key}', `${encodedKey}`);
             axios.get(url).then(
                 (response) => {
-                    const result = response.data.hits.hits;
-                    const list = new window.GWT.StringOptionArrayBuilder();
-                    result.forEach((item) => {
-                        const source = item['_source'];
-                        list.addItem(source.value, source.text);
-                    });
-                    this.model.setOptions(list.toArray());
+                    const options = searchAdaptor.buildOptions(key, response);
+                    this.model.setOptions(options);
                     this.setState({
                         showOptions: true,
                         activeOptionIndex: -1,
@@ -240,9 +227,11 @@ export default class TextInputComponent extends InputComponent {
 }
 
 TextInputComponent.propTypes = {
-    searchPath: PropTypes.string
+    searchPath: PropTypes.string,
+    searchAdaptor: PropTypes.object
 };
 
 TextInputComponent.defaultProps = {
-    searchPath: null
+    searchPath: null,
+    searchAdaptor: CommonUtil.defaultSearchAdaptor()
 };

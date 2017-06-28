@@ -1112,9 +1112,10 @@ rootType:
 
     - typeName: BrokerAddressNode
     - typeName: LenderIssuedBrokerNumberNode
-      init:
-      - {propertyName: required, value: 'true'}
-      - {propertyName: pattern, value: '"\\d+"'}
+      config:
+      - {property: '@required', value: 'true'}
+      - {property: '@pattern', value: '"\\d+"'}
+      - {property: '@patternMessage', value: '"Broker Number must be all digits"'}
 
   - typeName: ErrorListNode
     childTypes:

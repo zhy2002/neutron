@@ -31,4 +31,12 @@ export default class FormattingService extends StaticService {
 
         return moment.utc(date).local().format('YYYY-MM-DD HH:mm:ss');
     }
+
+    static afterFirst(src, first) {
+        const index = src.indexOf(first);
+        if (index >= 0) {
+            return src.substr(index + first.length);
+        }
+        return src;
+    }
 }

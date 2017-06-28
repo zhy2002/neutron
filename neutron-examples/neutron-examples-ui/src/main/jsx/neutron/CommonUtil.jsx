@@ -1,6 +1,7 @@
 import Promise from 'promise';
 import React from 'react';
 import StaticService from './StaticService';
+import SearchAdaptor from './SearchAdaptor';
 
 
 function toLocalId(uniqueId) {
@@ -142,6 +143,8 @@ function copyFields(target, source) {
     }
 }
 
+const defaultSearchAdaptor = new SearchAdaptor();
+
 export default class CommonUtil extends StaticService {
 
     static extractValue(node, excluded) {
@@ -180,6 +183,10 @@ export default class CommonUtil extends StaticService {
     }
 
     static noOp() {
+    }
+
+    static defaultSearchAdaptor() {
+        return defaultSearchAdaptor;
     }
 
     static getDisplayName(WrappedComponent) {

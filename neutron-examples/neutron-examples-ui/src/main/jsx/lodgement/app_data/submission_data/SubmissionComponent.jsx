@@ -4,6 +4,8 @@ import TextInputComponent from '../../../bootstrap3/TextInputComponent';
 import TelephoneComponent from '../common/TelephoneComponent';
 import AddressComponent from '../common/AddressComponent';
 import MainContentComponent from '../../../bootstrap3/MainContentComponent';
+import SearchService from '../../../lodgement/services/SearchService';
+
 
 class SubmissionComponent extends React.PureComponent {
 
@@ -52,7 +54,11 @@ class SubmissionComponent extends React.PureComponent {
                         </div>
                         <div className="row">
                             <div className="col-xs-12">
-                                <TextInputComponent model={model.getBrokerEmailNode()}/>
+                                <TextInputComponent
+                                    model={model.getBrokerEmailNode()}
+                                    searchPath="/lodgement/email/_search?q=value:{key}@&size=10&pretty"
+                                    searchAdaptor={SearchService.getEmailSearchAdaptor()}
+                                />
                             </div>
                         </div>
                     </div>

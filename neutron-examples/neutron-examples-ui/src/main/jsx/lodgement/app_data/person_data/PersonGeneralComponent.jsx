@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import NeutronHoc from '../../../neutron/NeutronHoc';
 import RadioInputComponent from '../../../bootstrap3/RadioInputComponent';
 import CheckboxInputComponent from '../../../bootstrap3/CheckboxInputComponent';

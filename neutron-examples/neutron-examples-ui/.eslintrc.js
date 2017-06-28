@@ -25,6 +25,9 @@ module.exports = {
         "eol-last": [
             OFF
         ],
+        "class-methods-use-this": [
+            OFF
+        ],
         "react/prefer-stateless-function": [
             OFF
         ],
