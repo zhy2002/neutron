@@ -22,11 +22,6 @@ http:
 
 Todo
 -----------------  
-- i18n support parser/formatter/array leaf value
-  - runtime configurable culture specific parser/formatter chain
-  - formatter chain for all node
-  - parser chain for leaf nodes
-  - React i18n
 - create layout components
 - link to other documents; display linked documents as accordion or auto complete
 - implement server side validation/translation
@@ -260,6 +255,9 @@ Finished
 
 37 - add mocha enzyme for testing react components.
 
+38 - add i18next
+  
+  
 ### Garbage
 
 * preserve value when node is disabled -> conditional state

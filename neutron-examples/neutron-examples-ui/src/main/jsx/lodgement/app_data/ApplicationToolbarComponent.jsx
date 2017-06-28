@@ -1,4 +1,5 @@
 import React from 'react';
+import {translate} from 'react-i18next';
 import NeutronHoc from '../../neutron/NeutronHoc';
 import ModalDialogComponent from '../../bootstrap3/ModalDialogComponent';
 import EventService from '../../neutron/EventService';
@@ -78,6 +79,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div className={`${this.props.componentClass} container-fluid`}>
                 <ul className="nav navbar-nav toolbar">
@@ -87,7 +89,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-check"/>
                             </div>
                             <div>
-                                <small>Validate</small>
+                                <small>{t('Validate')}</small>
                             </div>
                         </a>
                     </li>
@@ -97,7 +99,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-align-justify"/>
                             </div>
                             <div>
-                                <small>Clear</small>
+                                <small>{t('Clear')}</small>
                             </div>
                         </a>
                     </li>
@@ -107,7 +109,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-open"/>
                             </div>
                             <div>
-                                <small>Get JSON</small>
+                                <small>{t('Get JSON')}</small>
                             </div>
                         </a>
                     </li>
@@ -117,7 +119,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-save-file"/>
                             </div>
                             <div>
-                                <small>Save</small>
+                                <small>{t('Save')}</small>
                             </div>
                         </a>
                     </li>
@@ -127,7 +129,7 @@ class ApplicationToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-refresh"/>
                             </div>
                             <div>
-                                <small>Refresh</small>
+                                <small>{t('Refresh')}</small>
                             </div>
                         </a>
                     </li>
@@ -146,4 +148,4 @@ class ApplicationToolbarComponent extends React.PureComponent {
     }
 }
 
-export default NeutronHoc(ApplicationToolbarComponent);
+export default translate()(NeutronHoc(ApplicationToolbarComponent));

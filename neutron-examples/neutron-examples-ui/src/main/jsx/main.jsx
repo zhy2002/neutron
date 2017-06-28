@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {I18nextProvider} from 'react-i18next';
+import i18n from './i18n';
 import '../assets/stylesheets/app.scss';
 import LodgementComponent from './lodgement/LodgementComponent';
 import LodgementService from './lodgement/services/LodgementService';
@@ -21,5 +23,10 @@ appContainerDomElement.addEventListener('keyup', (e) => {
  */
 window.startLodgement = () => {
     const model = LodgementService.getGlobalUiStateNode();
-    ReactDOM.render(<LodgementComponent model={model} />, appContainerDomElement);
+    ReactDOM.render(
+        <I18nextProvider i18n={i18n}>
+            <LodgementComponent model={model}/>
+        </I18nextProvider>,
+        appContainerDomElement
+    );
 };

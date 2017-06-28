@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {translate} from 'react-i18next';
 import LodgementService from '../services/LodgementService';
 
 
-export default class AppManagerToolbarComponent extends React.PureComponent {
+class AppManagerToolbarComponent extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -18,6 +19,8 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
     }
 
     render() {
+        const {t} = this.props;
+
         return (
             <div className="container-fluid app-manager-toolbar-component">
                 <ul className="nav navbar-nav toolbar">
@@ -27,7 +30,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-plus-sign"/>
                             </div>
                             <div>
-                                <small>Create</small>
+                                <small>{t('Create')}</small>
                             </div>
                         </a>
                     </li>
@@ -37,7 +40,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-open"/>
                             </div>
                             <div>
-                                <small>Open</small>
+                                <small>{t('Open')}</small>
                             </div>
                         </a>
                     </li>
@@ -47,17 +50,17 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-copy"/>
                             </div>
                             <div>
-                                <small>Clone</small>
+                                <small>{t('Clone')}</small>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a tabIndex="0" onClick={this.props.onDeleteApp}>
                             <div>
-                                <span className="glyphicon glyphicon-remove" />
+                                <span className="glyphicon glyphicon-remove"/>
                             </div>
                             <div>
-                                <small>Delete</small>
+                                <small>{t('Delete')}</small>
                             </div>
                         </a>
                     </li>
@@ -67,7 +70,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-stats"/>
                             </div>
                             <div>
-                                <small>Status</small>
+                                <small>{t('Status')}</small>
                             </div>
                         </a>
                     </li>
@@ -77,7 +80,7 @@ export default class AppManagerToolbarComponent extends React.PureComponent {
                                 <span className="glyphicon glyphicon-refresh"/>
                             </div>
                             <div>
-                                <small>Refresh</small>
+                                <small>{t('Refresh')}</small>
                             </div>
                         </a>
                     </li>
@@ -93,3 +96,5 @@ AppManagerToolbarComponent.propTypes = {
     onCloneApp: PropTypes.func.isRequired,
     onDeleteApp: PropTypes.func.isRequired
 };
+
+export default translate()(AppManagerToolbarComponent);

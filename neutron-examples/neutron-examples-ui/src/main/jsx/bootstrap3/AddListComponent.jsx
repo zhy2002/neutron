@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {translate} from 'react-i18next';
 import NeutronHoc from '../neutron/NeutronHoc';
 import CommonUtil from '../neutron/CommonUtil';
 import AlertInfoComponent from './AlertInfoComponent';
@@ -24,7 +25,7 @@ class AddListComponent extends React.PureComponent {
     }
 
     render() {
-        const {componentClass, className, model, count, label, itemComponent, mapItemToModel} = this.props;
+        const {componentClass, className, model, count, label, itemComponent, mapItemToModel, t} = this.props;
 
         return (
             <div className={`${componentClass} ${className} row`}>
@@ -36,7 +37,7 @@ class AddListComponent extends React.PureComponent {
                                 className="btn btn-sm btn-primary pull-right"
                                 onClick={this.createNewItem}
                             >
-                                Add
+                                {t('Add')}
                             </button>
                         </div>
                         <div className="col-md-10">
@@ -54,7 +55,7 @@ class AddListComponent extends React.PureComponent {
     }
 }
 
-export default NeutronHoc(
+const hoc = NeutronHoc(
     AddListComponent,
     (model) => {
         const props = {};
@@ -72,3 +73,5 @@ export default NeutronHoc(
         mapItemToModel: CommonUtil.mapToSelf
     }
 );
+
+export default translate()(hoc);
