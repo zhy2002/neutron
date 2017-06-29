@@ -22,9 +22,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>zhy2002.neutron</groupId>
+            <artifactId>neutron-core</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 </project>

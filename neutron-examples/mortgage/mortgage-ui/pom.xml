@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>zhy2002.neutron.examples</groupId>
+        <artifactId>mortgage</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mortgage-ui</artifactId>
+    <packaging>war</packaging>
+    <description>
+        The UI for example projects.
+        todo extract framework level react components into an NPM package.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>zhy2002.neutron.examples</groupId>
+            <artifactId>mortgage-impl</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->
+        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+
+        <plugins>
+
+            <!-- GWT Maven Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <configuration>
+                    <runTarget>index.html</runTarget>
+                    <draftCompile>true</draftCompile>
+                    <optimizationLevel>0</optimizationLevel>
+                    <modules>
+                        <module>zhy2002.Lodgement</module>
+                    </modules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-source</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>copy-generated-source</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

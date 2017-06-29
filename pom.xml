@@ -34,6 +34,13 @@
             </dependency>
 
             <dependency>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-core</artifactId>
+                <type>test-jar</type>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt</artifactId>
                 <version>${gwtVersion}</version>
@@ -100,6 +107,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.0.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
                 </plugin>
 
                 <plugin>
