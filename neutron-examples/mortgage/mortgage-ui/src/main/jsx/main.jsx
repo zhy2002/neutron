@@ -10,7 +10,7 @@ import EventService from './neutron/EventService';
 
 //these events are used by some components to detect
 //if a click or keyup event has occurred outside of them.
-const appContainerDomElement = document.getElementById('app');
+const appContainerDomElement = document.getElementById('manager');
 appContainerDomElement.addEventListener('click', (e) => {
     EventService.fire('root_click', e.target);
 });

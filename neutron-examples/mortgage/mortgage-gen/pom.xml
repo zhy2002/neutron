@@ -31,26 +31,26 @@
                 <artifactId>neutron-codegen</artifactId>
                 <executions>
                     <execution>
-                        <id>lodgement</id>
+                        <id>application</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate-domain</goal>
                         </goals>
                         <configuration>
                             <nodeFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/lodgement/domain.yml
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/application/domain.yml
                             </nodeFile>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>app</id>
+                        <id>manager</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate-domain</goal>
                         </goals>
                         <configuration>
                             <nodeFile>
-                                ${project.build.sourceDirectory}/zhy2002/examples/app/domain.yml
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/manager/domain.yml
                             </nodeFile>
                         </configuration>
                     </execution>

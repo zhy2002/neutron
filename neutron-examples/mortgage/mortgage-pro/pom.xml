@@ -36,14 +36,14 @@
                         </goals>
                         <configuration>
                             <nodeFile>
-                                ${basedir}/../mortgage-gen/src/main/java/zhy2002/examples/lodgement/domain.yml
+                                ${basedir}/../mortgage-gen/src/main/java/zhy2002/mortgage/application/domain.yml
                             </nodeFile>
                             <ruleFiles>
                                 <ruleFile>
-                                    ${project.build.sourceDirectory}/zhy2002/examples/lodgement/banka/profile.yml
+                                    ${project.build.sourceDirectory}/zhy2002/mortgage/application/banka/profile.yml
                                 </ruleFile>
                                 <ruleFile>
-                                    ${project.build.sourceDirectory}/zhy2002/examples/lodgement/bankb/profile.yml
+                                    ${project.build.sourceDirectory}/zhy2002/mortgage/application/bankb/profile.yml
                                 </ruleFile>
                             </ruleFiles>
                         </configuration>

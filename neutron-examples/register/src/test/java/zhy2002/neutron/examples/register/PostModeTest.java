@@ -1,8 +1,11 @@
 package zhy2002.neutron.examples.register;
 
 import org.junit.Ignore;
+import org.junit.Test;
 import zhy2002.neutron.examples.register.gen.RegisterNodeContext;
 import zhy2002.neutron.EngineEventModeEnum;
+
+import java.util.Set;
 
 /**
  * Post version of SendModeTest.
@@ -21,4 +24,7 @@ public class PostModeTest extends SendModeTest {
      */
     @Ignore
     public void emailIsRequiredIfCleared(){}
+
+
+
 }

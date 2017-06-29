@@ -7,14 +7,14 @@ import CommonUtil from '../../neutron/CommonUtil';
 import StorageService from './StorageService';
 
 let globalUiStateNode = null;
-const appTabOffset = 1; //the first is app manager tab
+const appTabOffset = 1; //the first is manager manager tab
 
 function createGlobalUiStateNode() {
     return window.GWT.GlobalUiStateNodeFactory.create();
 }
 
 function isAppOpen(id) {
-    //check if app is already opened
+    //check if manager is already opened
     const openApps = globalUiStateNode.getOpenAppsNode().getChildren().map(c => c.getValue());
     for (let i = 0; i < openApps.length; i++) {
         const app = openApps[i];
@@ -29,7 +29,7 @@ function createAppTab(newApp) {
     globalUiStateNode.dispatchAddOpenAppAction(newApp);
 
     newApp.getContext().setDirtyCheckEnabled(true);
-    console.log('Enabled dirty checking for app');
+    console.log('Enabled dirty checking for manager');
 
     return CommonUtil.defer(newApp);
 }
@@ -129,16 +129,16 @@ export default class LodgementService extends StaticService {
             }
         }
 
-        //check if app is already opened
+        //check if manager is already opened
         const result = isAppOpen(id);
         if (result && result.index >= 0) {
-            console.debug('app is already loaded.');
+            console.debug('manager is already loaded.');
             LodgementService.selectTab(result.index + appTabOffset);
             UiService.setPath(result.model, path);
             return CommonUtil.defer(null);
         }
 
-        //load existing app
+        //load existing manager
         UiService.setIsLoading(true);
         return LodgementService.loadApplicationNode(id, path)
             .then(createAppTab)
@@ -208,7 +208,7 @@ export default class LodgementService extends StaticService {
 
         const openApps = globalUiStateNode.getOpenAppsNode().getChildren();
         const item = openApps[appIndex];
-        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this app.')) {
+        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this manager.')) {
             globalUiStateNode.getOpenAppsNode().removeItem(item);
         }
     }
@@ -233,7 +233,7 @@ export default class LodgementService extends StaticService {
     static getGlobalUiStateNode() {
         if (globalUiStateNode === null) {
             globalUiStateNode = createGlobalUiStateNode();
-            console.debug('loaded lodgement node');
+            console.debug('loaded application node');
         }
         return globalUiStateNode;
     }

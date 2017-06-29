@@ -13,7 +13,7 @@ import LenderListComponent from './LenderListComponent';
 
 function getAppPath() {
     const hash = window.location.hash;
-    if (hash.indexOf('#/app/') === 0) {
+    if (hash.indexOf('#/manager/') === 0) {
         const path = hash.substr(6);
         const index = path.indexOf('/');
         if (index >= 0) {

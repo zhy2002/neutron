@@ -9,7 +9,7 @@ var config = {
     entry: ['babel-polyfill', './src/main/jsx/main'],
     output: {
         path: path.join(__dirname, 'src/main/webapp/js'),
-        filename: 'app.js'
+        filename: 'manager.js'
     },
     devtool: '#inline-source-map',
     module: {
@@ -51,7 +51,7 @@ var config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("../css/app.css"),
+        new ExtractTextPlugin("../css/manager.css"),
         new CleanWebpackPlugin(['src/main/webapp/css', 'src/main/webapp/fonts', 'src/main/webapp/js'])
     ],
     resolve: {

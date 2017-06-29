@@ -1,4 +1,4 @@
-targetPackage: zhy2002.examples.register
+targetPackage: zhy2002.mortgage.register
 nodeType: CountryCode
 parentType: PhoneInfo
 baseType: PhoneInfoField

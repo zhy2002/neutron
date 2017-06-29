@@ -49,7 +49,7 @@ export default class LocationService extends StaticService {
         }
 
         restored = false;
-        if (newHash.startsWith('/app/') && newHash.length > 5) {
+        if (newHash.startsWith('/manager/') && newHash.length > 5) {
             UiService.setIsLoading(true);
             statePartiallySynced = false;
             CommonUtil.delay(50).then(() => restoreLodgementState(newHash.substr(5))
