@@ -6,7 +6,7 @@ import zhy2002.mortgage.manager.di.GlobalUiStateNodeFactory;
 import zhy2002.mortgage.manager.gen.node.GlobalUiStateNode;
 import zhy2002.mortgage.manager.gen.node.OpenAppNode;
 import zhy2002.mortgage.manager.gen.node.OpenAppsNode;
-import zhy2002.mortgage.interop.JavaMethods;
+import zhy2002.mortgage.application.di.ApplicationNodeFactory;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.test.CountingChangeListener;
@@ -73,7 +73,7 @@ public class GlobalUiStateNodeTest {
 
     @Test
     public void addOpenAppActionWorksAsExpected() {
-        Object testObject = JavaMethods.createApplicationNode("BankB", null);
+        Object testObject = ApplicationNodeFactory.create("BankB", null);
         globalUiStateNodeNode.dispatchAddOpenAppAction(testObject);
 
         assertThat(globalUiStateNodeNode.getOpenAppsNode().getItemCount(), equalTo(1));

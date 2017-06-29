@@ -2,7 +2,7 @@ package zhy2002.mortgage.application;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.mortgage.interop.JavaMethods;
+import zhy2002.mortgage.application.di.ApplicationNodeFactory;
 import zhy2002.mortgage.application.gen.node.*;
 import zhy2002.mortgage.application.node.AddressRefListNodeImpl;
 import zhy2002.mortgage.application.node.ErrorListNodeImpl;
@@ -29,7 +29,7 @@ public class PersonNodeTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode(TestUtil.BANK_B, null);
+        applicationNode = ApplicationNodeFactory.create(TestUtil.BANK_B, null);
         context = applicationNode.getContext();
         PersonListNode personListNode = applicationNode.getPersonListNode();
         personNode = personListNode.createItem();

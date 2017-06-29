@@ -1,4 +1,5 @@
 targetPackage: zhy2002.mortgage.application
+# this domain describe the state of a home loan application
 typeName: Application
 rootType:
   typeName: ApplicationNode

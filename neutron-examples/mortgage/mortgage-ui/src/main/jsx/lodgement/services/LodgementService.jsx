@@ -35,7 +35,7 @@ function createAppTab(newApp) {
 }
 
 function newEnhancedApplicationNode(profileName, dataStore) {
-    const model = window.GWT.createApplicationNode(profileName, dataStore);
+    const model = window.GWT.ApplicationNodeFactory.create(profileName, dataStore);
     const context = model.getContext();
 
     context.enterDebouncingMode = () => {

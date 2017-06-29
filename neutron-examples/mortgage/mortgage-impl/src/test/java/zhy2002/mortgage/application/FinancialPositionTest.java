@@ -2,7 +2,7 @@ package zhy2002.mortgage.application;
 
 import org.junit.Before;
 import org.junit.Test;
-import zhy2002.mortgage.interop.JavaMethods;
+import zhy2002.mortgage.application.di.ApplicationNodeFactory;
 import zhy2002.mortgage.application.gen.node.*;
 import zhy2002.neutron.test.TestUtil;
 
@@ -16,7 +16,7 @@ public class FinancialPositionTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode(TestUtil.BANK_B, null);
+        applicationNode = ApplicationNodeFactory.create(TestUtil.BANK_B, null);
         financialPositionNode = applicationNode.getFinancialPositionNode();
     }
 

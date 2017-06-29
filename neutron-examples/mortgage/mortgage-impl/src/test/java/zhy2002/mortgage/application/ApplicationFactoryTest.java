@@ -1,7 +1,7 @@
 package zhy2002.mortgage.application;
 
 import org.junit.Test;
-import zhy2002.mortgage.interop.JavaMethods;
+import zhy2002.mortgage.application.di.ApplicationNodeFactory;
 import zhy2002.mortgage.application.gen.node.ApplicationNode;
 import zhy2002.mortgage.application.gen.node.PersonListNode;
 import zhy2002.mortgage.application.gen.node.PersonNode;
@@ -19,7 +19,7 @@ public class ApplicationFactoryTest {
 
     @Test
     public void shouldNotThrowExceptionWhenNodeDataStoreIsNull() {
-        ApplicationNode result = JavaMethods.createApplicationNode(TestUtil.BANK_B, null);
+        ApplicationNode result = ApplicationNodeFactory.create(TestUtil.BANK_B, null);
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getPersonListNode().getUniqueId(), containsString("-"));
     }
@@ -30,7 +30,7 @@ public class ApplicationFactoryTest {
         String rootId = "root_id";
 
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
-        ApplicationNode result = JavaMethods.createApplicationNode(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = ApplicationNodeFactory.create(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getNodeStatus(), equalTo(NodeStatusEnum.Loaded));
         assertThat(result.getUniqueId(), containsString(testContextId));
@@ -55,7 +55,7 @@ public class ApplicationFactoryTest {
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", null));
         rootChildren.add(new TestNodeIdentity("additionalNodeId", "additionalNode", additionalNodeChildren));
 
-        ApplicationNode result = JavaMethods.createApplicationNode(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = ApplicationNodeFactory.create(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         assertThat(result.getIdNode().getUniqueId(), containsString(rootChildren.get("idNode").getLocalId()));
         assertThat(result.getStatusNode().getUniqueId(), containsString(rootChildren.get("statusNode").getLocalId()));
@@ -80,7 +80,7 @@ public class ApplicationFactoryTest {
         TestNodeIdentityMap rootChildren = new TestNodeIdentityMap();
         rootChildren.add(new TestNodeIdentity("personListNodeId", "personListNode", personListChildren));
 
-        ApplicationNode result = JavaMethods.createApplicationNode(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
+        ApplicationNode result = ApplicationNodeFactory.create(TestUtil.BANK_B, new NodeDataStore(testContextId, new TestNodeIdentity(rootId, "", rootChildren)));
 
         PersonListNode personListNode = result.getPersonListNode();
         assertThat(personListNode.getItemCount(), equalTo(2));

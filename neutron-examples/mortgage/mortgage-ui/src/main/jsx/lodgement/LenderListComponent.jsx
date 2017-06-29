@@ -10,7 +10,7 @@ export default class LenderListComponent extends React.PureComponent {
         if (!this.props.show)
             return null;
 
-        const names = window.GWT.getApplicationProfileNames();
+        const names = window.GWT.getProfileNames();
         return (
             <AutoCloseContainer className="lender-list-component" onHide={this.props.onQuit}>
                 <div className="list-inline">

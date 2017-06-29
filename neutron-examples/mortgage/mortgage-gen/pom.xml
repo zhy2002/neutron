@@ -54,6 +54,18 @@
                             </nodeFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>login</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-domain</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/login/domain.yml
+                            </nodeFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 

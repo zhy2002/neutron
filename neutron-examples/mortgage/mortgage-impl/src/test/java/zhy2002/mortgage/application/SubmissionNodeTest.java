@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import zhy2002.mortgage.application.gen.node.ApplicationNode;
 import zhy2002.mortgage.application.gen.node.SubmissionNode;
-import zhy2002.mortgage.interop.JavaMethods;
+import zhy2002.mortgage.application.di.ApplicationNodeFactory;
 import zhy2002.neutron.CycleModeEnum;
 import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
@@ -23,7 +23,7 @@ public class SubmissionNodeTest {
 
     @Before
     public void setup() {
-        applicationNode = JavaMethods.createApplicationNode(TestUtil.BANK_B, null);
+        applicationNode = ApplicationNodeFactory.create(TestUtil.BANK_B, null);
         context = applicationNode.getContext();
         submissionNode = applicationNode.getSubmissionNode();
     }

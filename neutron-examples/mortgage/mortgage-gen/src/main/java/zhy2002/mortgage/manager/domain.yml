@@ -1,6 +1,6 @@
 targetPackage: zhy2002.mortgage.manager
+# this domain describe the state of the main page.
 typeName: GlobalUiState
-# this domain describe from manager global UI state
 rootType:
   typeName: GlobalUiStateNode
   baseTypeName: RootUiNode
