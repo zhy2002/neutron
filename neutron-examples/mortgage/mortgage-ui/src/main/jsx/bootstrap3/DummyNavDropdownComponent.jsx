@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import i18next from 'i18next';
 import {translate} from 'react-i18next';
-
+import LodgementService from '../lodgement/services/LodgementService';
 
 function languageChanged(err) {
     if (err) {
@@ -42,6 +42,10 @@ class DummyNavDropdownComponent extends React.PureComponent {
             i18next.changeLanguage('zh', languageChanged);
             this.close();
         };
+
+        this.logout = () => {
+            LodgementService.logout();
+        };
     }
 
     render() {
@@ -59,7 +63,7 @@ class DummyNavDropdownComponent extends React.PureComponent {
                     <li role="separator" className="divider"/>
                     <li><a tabIndex="0">Separated link</a></li>
                     <li role="separator" className="divider"/>
-                    <li><a tabIndex="0">One more separated link</a></li>
+                    <li><a tabIndex="0" onClick={this.logout}>Logout</a></li>
                 </ul>
             </li>
         );

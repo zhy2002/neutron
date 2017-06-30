@@ -24,6 +24,17 @@ function isAppOpen(id) {
     return null;
 }
 
+function hasDirtyApp() {
+    const openApps = globalUiStateNode.getOpenAppsNode().getChildren().map(c => c.getValue());
+    for (let i = 0; i < openApps.length; i++) {
+        const app = openApps[i];
+        if (app.isDirty()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function createAppTab(newApp) {
     globalUiStateNode.dispatchAddOpenAppAction(newApp);
 
@@ -47,7 +58,7 @@ function createApplicationNode(profileName) {
     model.getLenderNode().setValue(profileName);
 
     const user = UiService.getCurrentUser();
-    model.getOwningUserNode().setValue(user.username);
+    model.getOwningUserNode().setValue(user.name);
 
     model.getStatusNode().setValue('In Progress');
 
@@ -218,6 +229,13 @@ export default class LodgementService extends StaticService {
 
     static setCurrentAppId(id) {
         globalUiStateNode.getAppManagerNode().setCurrentAppId(id);
+    }
+
+    static logout() {
+        if (!hasDirtyApp() || window.confirm('You have unsaved application. Do you want to continue?')) {
+            CommonUtil.setCookie('userInfo', null, -1);
+            window.location.href = 'login.html';
+        }
     }
 
 }

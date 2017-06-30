@@ -19,7 +19,14 @@ class LodgementHeaderComponent extends React.PureComponent {
     }
 
     render() {
-        const {componentClass, appManagerNode, openAppsNode, selectedModel, selectedIndex, siteLogoUrl} = this.props;
+        const {
+            componentClass,
+            appManagerNode,
+            openAppsNode,
+            selectedModel,
+            selectedIndex,
+            siteLogoUrl
+        } = this.props;
 
         return (
             <ResizeAware
@@ -28,7 +35,9 @@ class LodgementHeaderComponent extends React.PureComponent {
                 onlyEvent
                 onResize={this.handleResize}
             >
-                <LodgementBannerComponent logoUrl={siteLogoUrl}/>
+                <LodgementBannerComponent
+                    logoUrl={siteLogoUrl}
+                />
                 <LodgementTabsComponent
                     appManagerNode={appManagerNode}
                     model={openAppsNode}

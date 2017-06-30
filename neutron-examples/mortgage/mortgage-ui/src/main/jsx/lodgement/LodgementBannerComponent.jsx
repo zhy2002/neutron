@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CommonUtil from '../neutron/CommonUtil';
+import UiService from '../neutron/UiService';
 import DummyNavDropdownComponent from '../bootstrap3/DummyNavDropdownComponent';
+
 
 export default class LodgementBannerComponent extends React.PureComponent {
 
@@ -14,7 +16,7 @@ export default class LodgementBannerComponent extends React.PureComponent {
                     </div>
                     <ul className="nav navbar-nav navbar-right">
                         <DummyNavDropdownComponent model={{}} onSelect={CommonUtil.noOp}>
-                            Demo User &nbsp; <span className="glyphicon glyphicon-user"/>
+                            {UiService.getCurrentUser().name} &nbsp; <span className="glyphicon glyphicon-user"/>
                         </DummyNavDropdownComponent>
                     </ul>
                 </div>

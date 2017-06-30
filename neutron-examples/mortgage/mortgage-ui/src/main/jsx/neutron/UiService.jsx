@@ -3,9 +3,12 @@ import StaticService from './StaticService';
 import CommonUtil from './CommonUtil';
 
 let loadingCount = 0;
-const demoUser = {
-    username: 'Demo User'
-};
+let demoUser = null;
+
+function getCookieValue(a) {
+    const b = document.cookie.match(`(^|;)\\s*${a}\\s*=\\s*([^;]+)`);
+    return b ? b.pop() : '';
+}
 
 function* propertyIterator(obj, cache) {
     for (const name in obj) {
@@ -121,6 +124,12 @@ export default class UiService extends StaticService {
     }
 
     static getCurrentUser() {
+        if (demoUser === null) {
+            const json = getCookieValue('userInfo');
+            if (!json)
+                return {};
+            demoUser = JSON.parse(json);
+        }
         return demoUser;
     }
 }
