@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './i18n';
-import '../assets/stylesheets/app.scss';
+import '../assets/stylesheets/manager.scss';
 import LodgementComponent from './lodgement/LodgementComponent';
 import LodgementService from './lodgement/services/LodgementService';
 import EventService from './neutron/EventService';
