@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Manager'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.logging.Logging"/>
+    <inherits name="dagger.Dagger"/>
+    <inherits name="com.google.common.collect.Collect"/>
+    <!-- Inherit the default GWT style sheet.  You can change       -->
+    <!-- the theme of your GWT application by uncommenting          -->
+    <!-- any one of the following lines.                            -->
+    <!--<inherits name='com.google.gwt.user.theme.standard.Standard'/>-->
+    <!--<inherits name="com.google.gwt.activity.Activity"/>-->
+    <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+    <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+
+    <!-- Other module inherits                                      -->
+
+    <!-- Specify manager app entry point class.                         -->
+    <entry-point class='zhy2002.mortgage.manager.ManagerEntryPoint'/>
+
+    <!-- Specify the paths for translatable code                    -->
+    <source path='neutron'/>
+    <source path='mortgage/application'/>
+    <source path='mortgage/manager'/>
+    <source path='mortgage/interop'/>
+
+    <super-source path="dagger/super"/>
+
+    <!-- Reduce the time needed for compilation while prototyping -->
+    <set-property name="user.agent" value="safari,gecko1_8"/>
+</module>

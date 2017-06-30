@@ -6,10 +6,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 process.traceDeprecation = true;
 
 var config = {
-    entry: ['babel-polyfill', './src/main/jsx/main'],
+    entry: {
+        login: ['babel-polyfill', './src/main/jsx/login'],
+        manager: ['babel-polyfill', './src/main/jsx/manager']
+    },
     output: {
         path: path.join(__dirname, 'src/main/webapp/js'),
-        filename: 'manager.js'
+        filename: '[name].js'
     },
     devtool: '#inline-source-map',
     module: {
@@ -51,8 +54,8 @@ var config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("../css/manager.css"),
-        new CleanWebpackPlugin(['src/main/webapp/css', 'src/main/webapp/fonts', 'src/main/webapp/js'])
+        new CleanWebpackPlugin(['src/main/webapp/css', 'src/main/webapp/fonts', 'src/main/webapp/js']),
+        new ExtractTextPlugin("../css/[name].css")
     ],
     resolve: {
         extensions: ['.js', '.jsx']

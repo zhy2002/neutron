@@ -44,7 +44,10 @@ public class LengthValidationRule extends ValidationRule<StringUiNode<?>> {
     @Override
     protected String getErrorMessage() {
         if (isActivated())
-            return getOwner().getLengthMessage();
+            return getOwner().getLengthMessage()
+                    .replace("{label}", getOwner().getNodeLabel())
+                    .replace("{max}", String.valueOf(getOwner().getMaxLength()))
+                    .replace("{min}", String.valueOf(getOwner().getMinLength()));
         return null;
     }
 

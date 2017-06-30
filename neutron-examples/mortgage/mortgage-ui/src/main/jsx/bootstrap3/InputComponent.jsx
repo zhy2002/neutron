@@ -46,7 +46,7 @@ export default class InputComponent extends React.PureComponent {
         return this.model.getOptions();
     }
 
-    receiveProps({model, label, hideLabel, readonly}) {
+    receiveProps({model, label, hideLabel, readonly, disabled}) {
         if (this.model !== model) {
             if (this.model) {
                 this.model.removeChangeListener(this);
@@ -58,6 +58,7 @@ export default class InputComponent extends React.PureComponent {
         this.label = label;
         this.hideLabel = hideLabel;
         this.readonly = readonly;
+        this.disabled = disabled;
     }
 
     /**
@@ -74,7 +75,7 @@ export default class InputComponent extends React.PureComponent {
         }
 
         newState.notLoaded = false;
-        newState.disabled = this.model.isEffectivelyDisabled();
+        newState.disabled = this.disabled || this.model.isEffectivelyDisabled();
         newState.readonly = this.readonly || this.model.isEffectivelyReadonly();
         newState.hideLabel = this.hideLabel;
         if (this.label) {
@@ -140,6 +141,7 @@ InputComponent.propTypes = {
     label: PropTypes.string,
     hideLabel: PropTypes.bool,
     readonly: PropTypes.bool,
+    disabled: PropTypes.bool,
     className: PropTypes.string
 };
 
@@ -147,5 +149,6 @@ InputComponent.defaultProps = {
     label: null,
     hideLabel: false,
     readonly: false,
+    disabled: false,
     className: ''
 };

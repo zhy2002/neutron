@@ -76,7 +76,7 @@ class ApplicationListComponent extends React.PureComponent {
     componentDidMount() {
         const props = this.props;
         LocationService.syncHashToState(props.model);
-        console.debug('synced hash to manager list');
+        console.debug('synced hash to app list');
     }
 
     render() {

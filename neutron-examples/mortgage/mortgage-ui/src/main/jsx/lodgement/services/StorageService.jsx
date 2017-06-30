@@ -85,4 +85,26 @@ export default class StorageService extends StaticService {
             `${baseUrl}/lodgement/application/${id}?pretty`
         ).catch(errorHandler);
     }
+
+    static getUser(username) {
+        return axios.post(
+            `${baseUrl}/lodgement/user/_search?pretty`,
+            {
+                query: {
+                    term: {
+                        _id: username
+                    }
+                }
+            })
+            .then((response) => {
+                const data = response.data;
+                if (data && data.hits && data.hits.hits) {
+                    const items = data.hits.hits;
+                    if (items.length > 0) {
+                        return items[0]['_source'];
+                    }
+                }
+                return Promise.reject('not match');
+            });
+    }
 }

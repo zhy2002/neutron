@@ -10,7 +10,7 @@ import EventService from './neutron/EventService';
 
 //these events are used by some components to detect
 //if a click or keyup event has occurred outside of them.
-const appContainerDomElement = document.getElementById('manager');
+const appContainerDomElement = document.getElementById('app');
 appContainerDomElement.addEventListener('click', (e) => {
     EventService.fire('root_click', e.target);
 });
@@ -21,7 +21,7 @@ appContainerDomElement.addEventListener('keyup', (e) => {
 /**
  * Called by GWT when GWT modules are loaded.
  */
-window.startLodgement = () => {
+window.startManager = () => {
     const model = LodgementService.getGlobalUiStateNode();
     ReactDOM.render(
         <I18nextProvider i18n={i18n}>
@@ -29,4 +29,9 @@ window.startLodgement = () => {
         </I18nextProvider>,
         appContainerDomElement
     );
+
+    const spinner = document.getElementById('initial-spinner');
+    if (spinner) {
+        spinner.style.display = 'none';
+    }
 };

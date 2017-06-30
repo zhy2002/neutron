@@ -207,10 +207,9 @@ export default class TextInputComponent extends InputComponent {
             conditionalProps.onKeyDown = this.handleKeyDown;
             conditionalProps.onFocus = this.handleFocus;
         }
-
         return [
             <input
-                type="text"
+                type={this.props.isPassword ? 'password' : 'text'}
                 className="form-control"
                 id={model.getUniqueId()}
                 key="input"
@@ -228,10 +227,12 @@ export default class TextInputComponent extends InputComponent {
 
 TextInputComponent.propTypes = {
     searchPath: PropTypes.string,
-    searchAdaptor: PropTypes.object
+    searchAdaptor: PropTypes.object,
+    isPassword: PropTypes.bool
 };
 
 TextInputComponent.defaultProps = {
     searchPath: null,
-    searchAdaptor: CommonUtil.defaultSearchAdaptor()
+    searchAdaptor: CommonUtil.defaultSearchAdaptor(),
+    isPassword: false
 };

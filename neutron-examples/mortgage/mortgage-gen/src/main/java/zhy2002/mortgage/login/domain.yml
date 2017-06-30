@@ -5,6 +5,10 @@ typeName: Login
 rootType:
   typeName: LoginNode
   baseTypeName: RootUiNode
+  properties:
+  - {name: loginState, typeName: String, default: '""'}
+  rules:
+  - {typeName: UpdateLoginStateRule}
   children:
   - {typeName: UsernameNode}
   - {typeName: PasswordNode}
@@ -13,10 +17,11 @@ rootType:
     baseTypeName: StringUiNode
     config:
     - {property: '@required', value: 'true'}
-    - {property: '@pattern', value: '"\\[a-zA-Z0-9\\-_]+"'}
+    - {property: '@pattern', value: '"^[a-zA-Z0-9_\\-]*$"'}
     - {property: '@patternMessage', value: '"Username can only contain letter, digit, dash or underscore."'}
     - {property: '@minLength', value: '6'}
     - {property: '@maxLength', value: '12'}
+
   - typeName: PasswordNode
     baseTypeName: StringUiNode
     config:

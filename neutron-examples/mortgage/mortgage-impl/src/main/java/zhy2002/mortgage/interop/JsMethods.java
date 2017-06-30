@@ -10,7 +10,9 @@ import static jsinterop.annotations.JsPackage.GLOBAL;
 @JsType(namespace = GLOBAL, name = "window", isNative = true)
 public class JsMethods {
 
-    public static native void startLodgement();
+    public static native void startManager();
+
+    public static native void startLogin();
 
 }
 

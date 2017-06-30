@@ -1,5 +1,4 @@
 import moment from 'moment';
-import debounce from 'throttle-debounce/debounce';
 import UiService from '../../neutron/UiService';
 import EventService from '../../neutron/EventService';
 import StaticService from '../../neutron/StaticService';
@@ -29,7 +28,7 @@ function createAppTab(newApp) {
     globalUiStateNode.dispatchAddOpenAppAction(newApp);
 
     newApp.getContext().setDirtyCheckEnabled(true);
-    console.log('Enabled dirty checking for manager');
+    console.log('Enabled dirty checking for application');
 
     return CommonUtil.defer(newApp);
 }
@@ -37,28 +36,7 @@ function createAppTab(newApp) {
 function newEnhancedApplicationNode(profileName, dataStore) {
     const model = window.GWT.ApplicationNodeFactory.create(profileName, dataStore);
     const context = model.getContext();
-
-    context.enterDebouncingMode = () => {
-        if (context.getCycleMode() !== window.GWT.CycleModeEnum.Debouncing) {
-            context.js_oldCycleMode = context.getCycleMode();
-            context.setCycleMode(window.GWT.CycleModeEnum.Debouncing);
-        }
-    };
-
-    context.exitDebouncingMode = () => {
-        try {
-            context.flush();
-        } catch (e) {
-            console.warn(`Rolling back session due to exception: ${e}`);
-        }
-        if (context.js_oldCycleMode) {
-            context.setCycleMode(context.js_oldCycleMode);
-            delete context.js_oldCycleMode;
-        }
-    };
-
-    context.debouncedExitDebouncingMode = debounce(400, context.exitDebouncingMode);
-
+    CommonUtil.enhanceContext(context);
     return model;
 }
 
@@ -132,7 +110,7 @@ export default class LodgementService extends StaticService {
         //check if manager is already opened
         const result = isAppOpen(id);
         if (result && result.index >= 0) {
-            console.debug('manager is already loaded.');
+            console.debug('application is already loaded.');
             LodgementService.selectTab(result.index + appTabOffset);
             UiService.setPath(result.model, path);
             return CommonUtil.defer(null);
@@ -208,7 +186,7 @@ export default class LodgementService extends StaticService {
 
         const openApps = globalUiStateNode.getOpenAppsNode().getChildren();
         const item = openApps[appIndex];
-        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this manager.')) {
+        if (!item.getValue().isDirty() || window.confirm('You will lose your changes if you close this application.')) {
             globalUiStateNode.getOpenAppsNode().removeItem(item);
         }
     }

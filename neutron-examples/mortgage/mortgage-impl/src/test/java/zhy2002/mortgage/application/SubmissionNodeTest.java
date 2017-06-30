@@ -10,6 +10,8 @@ import zhy2002.neutron.UiNodeContext;
 import zhy2002.neutron.rule.LeafValueRequiredValidationRule;
 import zhy2002.neutron.test.TestUtil;
 
+import java.util.Arrays;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -66,38 +68,6 @@ public class SubmissionNodeTest {
 
     @Test
     public void test() {
-        System.out.println("kkk" + canSplit("544533243242354365465776876646454324324"));
     }
 
-    private static String canSplit(String s) {
-        if (s.charAt(0) != '0') {
-            for (int i = 1; i <= s.length() / 2; i++) {
-                String result = canSplit(s, i);
-                if (result != null)
-                    return result;
-            }
-        }
-        return "No";
-    }
-
-
-
-    private static String canSplit(String s, int len) {
-        String firstStr = s.substring(0, len);
-        long next = Long.parseLong(firstStr) + 1;
-        int startIndex = len;
-        while (startIndex < s.length()) {
-            String nextStr = String.valueOf(next);
-            int endIndex = startIndex + nextStr.length();
-            if (endIndex > s.length())
-                return null;
-            if (nextStr.equals(s.substring(startIndex, endIndex))) {
-                startIndex = endIndex;
-                next++;
-            } else {
-                return null;
-            }
-        }
-        return startIndex == s.length() ? firstStr : null;
-    }
 }

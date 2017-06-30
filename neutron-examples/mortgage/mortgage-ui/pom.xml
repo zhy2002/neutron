@@ -40,7 +40,8 @@
                     <draftCompile>true</draftCompile>
                     <optimizationLevel>0</optimizationLevel>
                     <modules>
-                        <module>zhy2002.Lodgement</module>
+                        <module>zhy2002.Login</module>
+                        <module>zhy2002.Manager</module>
                     </modules>
                 </configuration>
             </plugin>

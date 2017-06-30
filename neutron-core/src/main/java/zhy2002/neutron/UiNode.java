@@ -749,7 +749,7 @@ public abstract class UiNode<P extends ParentUiNode<?>> {
     public static final PropertyMetadata<String> VISIBILITY_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "visibility", String.class, "visible");
     public static final PropertyMetadata<String> NODE_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "nodeLabel", String.class);
     public static final PropertyMetadata<String> PATH_LABEL_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "pathLabel", String.class);
-    public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "Value is required");
+    public static final PropertyMetadata<String> REQUIRED_MESSAGE_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "requiredMessage", String.class, "{label} is mandatory.");
     public static final PropertyMetadata<ValidationErrorList> VALIDATION_ERROR_LIST_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "validationErrorList", ValidationErrorList.class, ValidationErrorList.EMPTY);
     public static final PropertyMetadata<Object> OPTIONS_PROPERTY = MetadataRegistry.createProperty(UiNode.class, "options", Object.class);
 

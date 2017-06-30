@@ -1,0 +1,15 @@
+@import "app"; //todo separate styles
+
+.login-component {
+  width: 500px;
+  height: 340px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -170px;
+  margin-left: -250px;
+  background-color: #f5f5f0;
+  padding: 1.5em;
+  border-radius: 10px;
+
+}

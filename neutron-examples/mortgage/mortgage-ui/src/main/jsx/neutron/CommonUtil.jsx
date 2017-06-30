@@ -1,5 +1,6 @@
 import Promise from 'promise';
 import React from 'react';
+import debounce from 'throttle-debounce/debounce';
 import StaticService from './StaticService';
 import SearchAdaptor from './SearchAdaptor';
 
@@ -255,6 +256,29 @@ export default class CommonUtil extends StaticService {
             stateClass += ' readonly';
         }
         return stateClass;
+    }
+
+    static enhanceContext(context) {
+        context.enterDebouncingMode = () => {
+            if (context.getCycleMode() !== window.GWT.CycleModeEnum.Debouncing) {
+                context.js_oldCycleMode = context.getCycleMode();
+                context.setCycleMode(window.GWT.CycleModeEnum.Debouncing);
+            }
+        };
+
+        context.exitDebouncingMode = () => {
+            try {
+                context.flush();
+            } catch (e) {
+                console.warn(`Rolling back session due to exception: ${e}`);
+            }
+            if (context.js_oldCycleMode) {
+                context.setCycleMode(context.js_oldCycleMode);
+                delete context.js_oldCycleMode;
+            }
+        };
+
+        context.debouncedExitDebouncingMode = debounce(400, context.exitDebouncingMode);
     }
 
 }

@@ -13,7 +13,7 @@ import LenderListComponent from './LenderListComponent';
 
 function getAppPath() {
     const hash = window.location.hash;
-    if (hash.indexOf('#/manager/') === 0) {
+    if (hash.indexOf('#/app/') === 0) {
         const path = hash.substr(6);
         const index = path.indexOf('/');
         if (index >= 0) {
@@ -121,7 +121,6 @@ class LodgementComponent extends React.PureComponent {
                     onSelect={this.state.handleSelectLender}
                     onQuit={this.state.handleCancelSelectLender}
                 />
-                <div className="div-fake-hidden"><i className="fa fa-square-o fa-3x"/></div>
             </div>
         );
     }

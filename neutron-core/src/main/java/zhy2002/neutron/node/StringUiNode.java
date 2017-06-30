@@ -20,8 +20,6 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
 
     protected StringUiNode(P parent) {
         super(parent);
-
-        this.setMaxLength(255);
     }
 
     @Override
@@ -59,7 +57,7 @@ public abstract class StringUiNode<P extends ParentUiNode<?>> extends LeafUiNode
     @JsIgnore
     public static final PropertyMetadata<String> PATTERN_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "patternMessage", String.class, "Pattern is invalid.");
     public static final PropertyMetadata<String> INVALID_CHARS_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "invalidCharsMessage", String.class, "Cannot contain invalid chars.");
-    public static final PropertyMetadata<String> LENGTH_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "lengthMessage", String.class, "Length is invalid.");
+    public static final PropertyMetadata<String> LENGTH_MESSAGE_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "lengthMessage", String.class, "{label} must have {min} to {max} characters.");
     public static final PropertyMetadata<Integer> MIN_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "minLength", Integer.class);
     public static final PropertyMetadata<Integer> MAX_LENGTH_PROPERTY = MetadataRegistry.createProperty(StringUiNode.class, "maxLength", Integer.class, 255);
 
