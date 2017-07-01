@@ -16,12 +16,12 @@ import java.util.Collections;
  */
 public class AddNewPersonApplicantRule extends UiNodeRule<OwnershipListNode<?>> {
 
-    private ApplicationNode applicationNode;
+    @Inject
+    ApplicationNode applicationNode;
 
     @Inject
     public AddNewPersonApplicantRule(@Owner OwnershipListNode<?> owner) {
         super(owner);
-        applicationNode = (ApplicationNode) owner.getContext().getRootNode();
     }
 
     protected OwnershipListNode<?> getOwnershipListNode() {

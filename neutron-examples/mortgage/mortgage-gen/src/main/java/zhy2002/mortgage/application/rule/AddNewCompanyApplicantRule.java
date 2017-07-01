@@ -14,13 +14,12 @@ import java.util.Collections;
 
 public class AddNewCompanyApplicantRule extends UiNodeRule<OwnershipListNode<?>> {
 
-    private ApplicationNode applicationNode;
+    @Inject
+    ApplicationNode applicationNode;
 
     @Inject
     public AddNewCompanyApplicantRule(@Owner OwnershipListNode<?> owner) {
         super(owner);
-
-        applicationNode = (ApplicationNode) owner.getContext().getRootNode();
     }
 
     protected OwnershipListNode<?> getOwnershipListNode() {

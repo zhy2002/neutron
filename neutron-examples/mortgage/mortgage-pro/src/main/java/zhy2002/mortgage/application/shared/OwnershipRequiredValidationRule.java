@@ -22,7 +22,7 @@ public class OwnershipRequiredValidationRule extends ValidationRule<OwnershipLis
         super(owner);
     }
 
-    private BigDecimal ONE_HUNDRED = new BigDecimal("100");
+    private static BigDecimal ONE_HUNDRED = new BigDecimal("100");
 
     @Override
     protected Collection<EventBinding> createEventBindings() {
