@@ -1,0 +1,31 @@
+targetPackage: zhy2002.mortgage.login
+# this domain describe from the sate of the login page.
+typeName: Login
+
+rootType:
+  typeName: LoginNode
+  baseTypeName: RootUiNode
+  properties:
+  - {name: loginState, typeName: String, default: '""'}
+  rules:
+  - {typeName: UpdateLoginStateRule}
+  children:
+  - {typeName: UsernameNode}
+  - {typeName: PasswordNode}
+  childTypes:
+  - typeName: UsernameNode
+    baseTypeName: StringUiNode
+    config:
+    - {property: '@required', value: 'true'}
+    - {property: '@pattern', value: '"^[a-zA-Z0-9_\\-]*$"'}
+    - {property: '@patternMessage', value: '"Username can only contain letter, digit, dash or underscore."'}
+    - {property: '@minLength', value: '6'}
+    - {property: '@maxLength', value: '12'}
+    - {property: '@immediate', value: 'false'}
+
+  - typeName: PasswordNode
+    baseTypeName: StringUiNode
+    config:
+    - {property: '@required', value: 'true'}
+    - {property: '@minLength', value: '6'}
+    - {property: '@maxLength', value: '12'}

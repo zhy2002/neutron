@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>zhy2002.neutron.examples</groupId>
+        <artifactId>mortgage</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>mortgage-gen</artifactId>
+    <description>
+        A jar that contains domain description files.
+        The described classes are generated during the build.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>zhy2002.neutron.examples</groupId>
+            <artifactId>mortgage-dep</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>zhy2002.neutron</groupId>
+            <artifactId>neutron-common</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>zhy2002.neutron</groupId>
+                <artifactId>neutron-codegen</artifactId>
+                <executions>
+                    <execution>
+                        <id>application</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-domain</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/application/domain.yml
+                            </nodeFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>manager</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-domain</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/manager/domain.yml
+                            </nodeFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>login</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-domain</goal>
+                        </goals>
+                        <configuration>
+                            <nodeFile>
+                                ${project.build.sourceDirectory}/zhy2002/mortgage/login/domain.yml
+                            </nodeFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>

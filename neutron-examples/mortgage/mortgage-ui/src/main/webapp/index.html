@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <script type="text/javascript">
+        (function () {
+            function getCookieValue(a) {
+                var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+                return b ? b.pop() : '';
+            }
+
+            function redirectIfNotLogin() {
+                if (!getCookieValue('userInfo')) {
+                    var path = window.location.href;
+                    path = path.substring(path.indexOf('//') + 2);
+                    path = path.substring(path.indexOf('/'));
+                    var returnUrl = encodeURIComponent(path);
+                    window.location = 'login.html?return=' + returnUrl;
+                }
+            }
+
+            redirectIfNotLogin();
+        })();
+
+    </script>
+
+    <link rel="stylesheet" href="css/manager.css">
+    <title>Form Manager - Demo</title>
+</head>
+<body>
+<noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+    </div>
+</noscript>
+
+
+<div id="app"></div>
+<div id="initial-spinner" style="text-align: center; position: absolute; top: 48%; width: 100%;">
+    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+</div>
+
+<script type="text/javascript" src="js/manager.js"></script>
+<script type="text/javascript" src="Manager/Manager.nocache.js"></script>
+</body>
+</html>

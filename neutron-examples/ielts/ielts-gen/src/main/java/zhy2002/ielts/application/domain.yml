@@ -1,0 +1,145 @@
+targetPackage: zhy2002.ielts.application
+
+# this domain describe from the sate of the login page.
+typeName: Application
+
+rootType:
+  typeName: ApplicationNode
+  baseTypeName: RootUiNode
+  childTypes:
+  - typeName: ApplicationStatusNode
+    baseTypeName: StringUiNode
+
+  - typeName: PreferredTestDateNode
+    baseTypeName: DateNode
+  - typeName: SecondPreferredTestDateNode
+    baseTypeName: DateNode
+  - typeName: TestCityNode
+    baseTypeName: StringUiNode
+  - typeName: TitleNode
+    baseTypeName: StringUiNode
+  - typeName: FirstNameNode
+    baseTypeName: NameNode
+  - typeName: LastNameNode
+    baseTypeName: NameNode
+  - typeName: TestTypeNode
+    baseTypeName: StringUiNode
+  - typeName: PostalAddressNode
+    baseTypeName: AddressNode
+  - typeName: TelephoneNode
+    baseTypeName: StringUiNode
+  - typeName: MobileNumberNode
+    baseTypeName: StringUiNode
+  - typeName: EmailNode
+    baseTypeName: StringUiNode
+  - typeName: DateOfBirthNode
+    baseTypeName: DateNode
+  - typeName: GenderNode
+    baseTypeName: StringUiNode
+  - typeName: IdentificationTypeNode
+    baseTypeName: StringUiNode
+  - typeName: IdentificationNumberNode
+    baseTypeName: StringUiNode
+  - typeName: NationalityCodeNode
+    baseTypeName: StringUiNode
+  - typeName: NationalityNameNode
+    baseTypeName: StringUiNode
+  - typeName: FirstLanguageCodeNode
+    baseTypeName: StringUiNode
+  - typeName: FirstLanguageNameNode
+    baseTypeName: StringUiNode
+  - typeName: OccupationSectorNode
+    baseTypeName: StringUiNode
+  - typeName: OtherOccupationSectorNode
+    baseTypeName: StringUiNode
+  - typeName: OccupationLevelNode
+    baseTypeName: StringUiNode
+  - typeName: OtherOccupationLevelNode
+    baseTypeName: StringUiNode
+  - typeName: TestReasonNode
+    baseTypeName: StringUiNode
+  - typeName: OtherTestReasonNode
+    baseTypeName: StringUiNode
+  - typeName: CountryToGoToNode
+    baseTypeName: StringUiNode
+  - typeName: OtherCountryToGoToNode
+    baseTypeName: StringUiNode
+  - typeName: StudyLocationNode
+    baseTypeName: StringUiNode
+  - typeName: EducationLevelNode
+    baseTypeName: StringUiNode
+  - typeName: StudyYearsNode
+    baseTypeName: BigDecimalUiNode
+  - typeName: DisabilityNode
+    baseTypeName: BooleanUiNode
+  - typeName: DisabilityDescriptionNode
+    baseTypeName: StringUiNode
+
+  - typeName: RecognisingOrganisationsNode
+    baseTypeName: ListUiNode
+    itemTypeName: RecognisingOrganisationNode
+    childTypes:
+    - typeName: RecognisingOrganisationNode
+      baseTypeName: ObjectUiNode
+      childTypes:
+      - typeName: DepartmentNameNode
+        baseTypeName: StringUiNode
+      - typeName: InstitutionNameNode
+        baseTypeName: StringUiNode
+      - typeName: CaseNumberNode
+        baseTypeName: StringUiNode
+      - typeName: InstitutionAddressNode
+        baseTypeName: AddressNode
+
+  - typeName: CheckListNode
+    baseTypeName: ObjectUiNode
+    childTypes:
+    - typeName: SignedFormNode
+      baseTypeName: BooleanUiNode
+    - typeName: ProvidedInformationNode
+      baseTypeName: BooleanUiNode
+    - typeName: PaidTestFeeNode
+      baseTypeName: BooleanUiNode
+    - typeName: AttachedCopyOfIdentificationNode
+      baseTypeName: BooleanUiNode
+
+  - typeName: OfficeUseNode
+    baseTypeName: ObjectUiNode
+    childTypes:
+    - typeName: IdCheckedNode
+      baseTypeName: BooleanUiNode
+    - typeName: SchemeNode
+      baseTypeName: StringUiNode
+    - typeName: DateOfPaymentNode
+      baseTypeName: DateNode
+    - typeName: ReceiptNumberNode
+      baseTypeName: StringUiNode
+    - typeName: AdminInitialsNode
+      baseTypeName: StringUiNode
+    - typeName: ConfirmedTestTypeNode
+      baseTypeName: StringUiNode
+
+commonTypes:
+- typeName: DateNode
+  baseTypeName: StringUiNode
+
+- typeName: NameNode
+  baseTypeName: StringUiNode
+
+- typeName: AddressNode
+  baseTypeName: ObjectUiNode
+  childTypes:
+  - typeName: AddressLineNode
+    baseTypeName: StringUiNode
+
+  - typeName: SuburbNode
+    baseTypeName: StringUiNode
+
+  - typeName: AddressStateNode
+    baseTypeName: StringUiNode
+
+  - typeName: PostcodeNode
+    baseTypeName: StringUiNode
+
+  - typeName: CountryNode
+    baseTypeName: StringUiNode

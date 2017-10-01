@@ -1,0 +1,1474 @@
+typeName: BankB
+rootType:
+  typeName: ApplicationNode
+  config:
+  - {property: '@nodeLabel', value: '"Bank B"'}
+  children:
+  - {typeName: IdNode}
+  - {typeName: StatusNode}
+  - {typeName: OwningUserNode}
+  - {typeName: LenderNode}
+  - {typeName: DateCreatedNode}
+  - {typeName: DateUpdatedNode}
+  - {typeName: DateLodgedNode}
+  - {typeName: AddressRefListNode}
+  - {typeName: PersonListNode}
+  - {typeName: CompanyListNode}
+  - {typeName: FinancialPositionNode}
+  - {typeName: RealEstateListNode}
+  - {typeName: ProductsNode}
+  - {typeName: AdditionalNode}
+  - {typeName: SubmissionNode}
+  - {typeName: ErrorListNode}
+  childTypes:
+  - typeName: IdNode
+  - typeName: StatusNode
+  - typeName: OwningUserNode
+  - typeName: LenderNode
+  - typeName: DateCreatedNode
+  - typeName: DateUpdatedNode
+  - typeName: DateLodgedNode
+  - typeName: AddressRefListNode
+    childTypes:
+    - typeName: AddressRefNode
+
+  - typeName: PersonListNode
+    config:
+    - {property: '@nodeLabel', value: '"Person Applicant"'}
+    childTypes:
+    - typeName: PersonNode
+      rules:
+      - {typeName: UpdatePersonNodeLabelRule}
+      children:
+      - {typeName: PersonGeneralNode}
+      - {typeName: PersonContactNode}
+      - {typeName: CurrentEmploymentListNode}
+      - {typeName: PreviousEmploymentListNode}
+      - {typeName: PersonTrustNode}
+      - {typeName: PersonPrivacyNode}
+      - {typeName: PersonOtherIncomeListNode}
+      - {typeName: PersonResponsibleLendNode}
+      childTypes:
+      - typeName: PersonGeneralNode
+        children:
+        - {typeName: TitleNode}
+        - {typeName: FirstNameNode}
+        - {typeName: LastNameNode}
+        - {typeName: GenderNode}
+        - {typeName: DateOfBirthNode}
+        - {typeName: PrimaryApplicantFlagNode}
+        - {typeName: DriversLicenseNode}
+        - {typeName: PersonApplicantTypeNode}
+        - {typeName: MaritalStatusNode}
+        - {typeName: PermanentResidentFlagNode}
+        - {typeName: SpouseNode}
+        - {typeName: FirstHomeBuyerFlagNode}
+        - {typeName: HousingStatusNode}
+        - {typeName: ApplicationTypeNode}
+        childTypes:
+        - typeName: TitleNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.TITLE_TYPE'}
+          - {property: '@required', value: 'true'}
+          rules:
+          - {typeName: TitleGenderMatchRule}
+
+        - typeName: FirstNameNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@pattern', value: ApplicationNodeConstants.NAME_PATTERN}
+          - {property: '@maxLength', value: 20}
+          - {property: '@invalidChars', value: "\"#\""}
+          - {property: '@invalidCharsMessage', value: "\"Username cannot contain '#'.\""}
+          rules:
+          - {typeName: InvalidCharPreChangeRule}
+
+        - typeName: LastNameNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@pattern', value: ApplicationNodeConstants.NAME_PATTERN}
+          - {property: '@maxLength', value: 20}
+          rules:
+          - {typeName: FormatNameRule}
+
+        - typeName: GenderNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.GENDER_TYPE'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: DateOfBirthNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: PrimaryApplicantFlagNode
+          rules:
+          - {typeName: AtLeastOnePrimaryApplicantRule, existing: true}
+          - {typeName: AtMostOnePrimaryApplicantRule, existing: true}
+
+        - typeName: DriversLicenseNode
+          config:
+          - {property: '@pattern', value: '"\\d{8,8}"'}
+          - {property: '@patternMessage', value: '"Must be 8 digits"'}
+
+        - typeName: PersonApplicantTypeNode
+        - typeName: ApplicationTypeNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.APPLICATION_TYPE'}
+          - {property: '@required', value: 'true'}
+          rules:
+          - {typeName: ChangeApplicationTypeRule}
+
+        - typeName: MaritalStatusNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.MARITAL_STATUS'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: PermanentResidentFlagNode
+        - typeName: SpouseNode
+        - typeName: FirstHomeBuyerFlagNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: HousingStatusNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.HOUSING_STATUS'}
+          - {property: '@required', value: 'true'}
+
+      - typeName: PersonContactNode
+        config:
+        - {property: 'currentAddressNode/@required', value: 'true'}
+        rules:
+          - {typeName: HomeOrWorkPhoneRequiredRule}
+        children:
+        - {typeName: PersonTelephoneNode, name: homePhoneNode}
+        - {typeName: PersonTelephoneNode, name: workPhoneNode}
+        - {typeName: PersonTelephoneNode, name: faxNumberNode}
+        - {typeName: PersonMobileNumberNode}
+        - {typeName: PersonEmailNode}
+        - {typeName: PersonAddressNode, name: currentAddressNode}
+        - {typeName: MovedToCurrentAddressNode}
+        - {typeName: PersonAddressNode, name: postalAddressNode}
+        - {typeName: PersonAddressNode, name: previousAddressNode}
+        - {typeName: MovedToPreviousAddressNode}
+        - {typeName: MovedFromPreviousAddressNode}
+        childTypes:
+        - typeName: PersonTelephoneNode
+          config:
+          - {property: '@emptyValue', value: 'new Telephone("+61", "", "")'}
+
+        - typeName: PersonMobileNumberNode
+        - typeName: PersonEmailNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: PersonAddressNode
+        - typeName: MovedToCurrentAddressNode
+          config:
+          - {property: '@required', value: 'true'}
+          rules:
+          - {typeName: ToCurrentNoEarlierThanToPreviousRule}
+          - {typeName: ToCurrentNoEarlierThanFromPreviousRule}
+
+        - typeName: MovedToPreviousAddressNode
+        - typeName: MovedFromPreviousAddressNode
+          rules:
+          - {typeName: FromPreviousNoEarlierThanToPreviousRule}
+
+      - typeName: CurrentEmploymentListNode
+        config:
+        - {property: '@nodeLabel', value: '"Current Employment"'}
+        - {property: '@minItemCount', value: 1}
+        rules:
+        - {typeName: MinItemCountValidationRule}
+        childTypes:
+        - typeName: CurrentEmploymentNode
+          config:
+          - {property: '@nodeLabel', value: '"Employment"'}
+          - {property: '@currentRecord', value: Boolean.TRUE}
+
+      - typeName: PreviousEmploymentListNode
+        config:
+        - {property: '@nodeLabel', value: '"Previous Employment"'}
+        childTypes:
+        - typeName: PreviousEmploymentNode
+          config:
+          - {property: '@nodeLabel', value: '"Employment"'}
+
+      - typeName: PersonTrustNode
+      - typeName: PersonPrivacyNode
+      - typeName: PersonOtherIncomeListNode
+      - typeName: PersonResponsibleLendNode
+
+  - typeName: CompanyListNode
+    childTypes:
+    - typeName: CompanyNode
+      rules:
+      - {typeName: UpdateCompanyNodeLabelRule}
+      children:
+      - {typeName: CompanyGeneralNode}
+      - {typeName: CompanyContactNode}
+      - {typeName: CompanyTrustNode}
+      - {typeName: CompanyPrivacyNode}
+      - {typeName: CompanyOtherIncomeListNode}
+      - {typeName: CompanyResponsibleLendNode}
+      childTypes:
+      - typeName: CompanyGeneralNode
+        children:
+        - {typeName: CompanyApplicantTypeNode}
+        - {typeName: CompanyPrimaryApplicantFlagNode}
+        - {typeName: CompanyApplicationTypeNode}
+        - {typeName: CompanyRegisteredNameNode}
+        - {typeName: CompanyTypeNode}
+        - {typeName: CompanyDescriptionNode}
+        - {typeName: CompanyIndustryNode}
+        - {typeName: CompanyAbnNode}
+        - {typeName: CompanyAcnNode}
+        - {typeName: CompanyAbrnNode}
+        - {typeName: CompanyRegistrationDateNode}
+        - {typeName: CompanyRegistrationStateNode}
+        - {typeName: CompanySelectDirectorNode}
+        - {typeName: CompanySelectBeneficialOwnerNode}
+        childTypes:
+        - typeName: CompanyApplicantTypeNode
+        - typeName: CompanyPrimaryApplicantFlagNode
+        - typeName: CompanyApplicationTypeNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.COMPANY_APPLICATION_TYPE'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyRegisteredNameNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyTypeNode
+        - typeName: CompanyDescriptionNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyIndustryNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyAbnNode
+        - typeName: CompanyAcnNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyAbrnNode
+        - typeName: CompanyRegistrationDateNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanyRegistrationStateNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.AUSTRALIAN_STATES'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: CompanySelectDirectorNode
+        - typeName: CompanySelectBeneficialOwnerNode
+
+      - typeName: CompanyContactNode
+        children:
+        - {typeName: CompanyContactFirstNameNode}
+        - {typeName: CompanyContactLastNameNode}
+        - {typeName: CompanyTelephoneNode, name: workPhoneNode}
+        - {typeName: CompanyTelephoneNode, name: faxNumberNode}
+        - {typeName: CompanyMobileNumberNode}
+        - {typeName: CompanyEmailNode}
+        - {typeName: CompanyAddressNode, name: registeredAddressNode}
+        - {typeName: CompanyAddressNode, name: postalAddressNode}
+        - {typeName: CompanyAddressNode, name: tradingAddressNode}
+        - {typeName: CompanyAddressNode, name: principalPlaceAddressNode}
+        childTypes:
+        - typeName: CompanyContactFirstNameNode
+        - typeName: CompanyContactLastNameNode
+        - typeName: CompanyTelephoneNode
+        - typeName: CompanyMobileNumberNode
+        - typeName: CompanyEmailNode
+        - typeName: CompanyAddressNode
+
+      - typeName: CompanyTrustNode
+      - typeName: CompanyPrivacyNode
+      - typeName: CompanyOtherIncomeListNode
+      - typeName: CompanyResponsibleLendNode
+
+  - typeName: FinancialPositionNode
+    rules:
+    - {typeName: FinancialPositionChangedRule, existing: true}
+
+    children:
+    - {typeName: AssetsNode}
+    - {typeName: LiabilitiesNode}
+    - {typeName: ExpenseListNode}
+    - {typeName: TotalAssetNode}
+    - {typeName: TotalLiabilityNode}
+    - {typeName: TotalExpenseNode}
+    childTypes:
+    - typeName: AssetsNode
+      children:
+      - {typeName: SavingsAccountListNode}
+      - {typeName: MotorVehicleListNode}
+      - {typeName: OtherAssetListNode}
+      childTypes:
+      - typeName: SavingsAccountListNode
+        childTypes:
+        - typeName: SavingsAccountNode
+          children:
+          - {typeName: SavingsTypeNode}
+          - {typeName: SavingsInstitutionNameNode}
+          - {typeName: SavingsBalanceNode}
+          - {typeName: SavingsBsbNoNode}
+          - {typeName: SavingsAccountNoNode}
+          - {typeName: SavingsAccountNameNode}
+          - {typeName: SavingsOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: SavingsTypeNode
+            config:
+            - {property: '@options', value: ApplicationNodeConstants.SAVINGS_ACCOUNT_TYPE}
+            - {property: '@required', value: 'true'}
+
+          - typeName: SavingsInstitutionNameNode
+          - typeName: SavingsBalanceNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: SavingsBsbNoNode
+          - typeName: SavingsAccountNoNode
+          - typeName: SavingsAccountNameNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: SavingsOwnershipListNode
+
+      - typeName: MotorVehicleListNode
+        childTypes:
+        - typeName: MotorVehicleNode
+          children:
+          - {typeName: VehicleModelNode}
+          - {typeName: VehicleYearNode}
+          - {typeName: VehicleMarketValueNode}
+          - {typeName: VehicleOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: VehicleModelNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: VehicleYearNode
+            config:
+            - {property: '@required', value: 'true'}
+            - {property: '@options', value: ApplicationNodeConstants.getYearType()}
+
+          - typeName: VehicleMarketValueNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: VehicleOwnershipListNode
+
+      - typeName: OtherAssetListNode
+        childTypes:
+        - typeName: OtherAssetNode
+          children:
+          - {typeName: OtherAssetTypeNode}
+          - {typeName: OtherAssetDescriptionNode}
+          - {typeName: OtherAssetMarketValueNode}
+          - {typeName: OtherAssetOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: OtherAssetTypeNode
+            config:
+            - {property: '@options', value: ApplicationNodeConstants.OTHER_ASSET_TYPE}
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherAssetDescriptionNode
+          - typeName: OtherAssetMarketValueNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherAssetOwnershipListNode
+
+    - typeName: LiabilitiesNode
+      children:
+      - {typeName: CreditCardListNode}
+      - {typeName: LoanListNode}
+      - {typeName: OtherLiabilityListNode}
+      childTypes:
+      - typeName: CreditCardListNode
+        childTypes:
+        - typeName: CreditCardNode
+          children:
+          - {typeName: CreditCardTypeNode}
+          - {typeName: CreditCardAmountOwingNode}
+          - {typeName: CreditCardLimitAmountNode}
+          - {typeName: CreditCardMonthlyRepaymentNode}
+          - {typeName: CreditCardClearingFlagNode}
+          - {typeName: CreditCardBreakCostNode}
+          - {typeName: CreditCardLenderNameNode}
+          - {typeName: CreditCardOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: CreditCardTypeNode
+            config:
+            - {property: '@options', value: ApplicationNodeConstants.CREDIT_CARD_TYPE}
+            - {property: '@required', value: 'true'}
+
+          - typeName: CreditCardAmountOwingNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: CreditCardLimitAmountNode
+            config:
+            - {property: '@required', value: 'true'}
+            - {property: '@minValue', value: new BigDecimal("0.01")}
+
+          - typeName: CreditCardMonthlyRepaymentNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: CreditCardClearingFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"creditCardBreakCostNode"'}
+
+          - typeName: CreditCardBreakCostNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: CreditCardLenderNameNode
+          - typeName: CreditCardOwnershipListNode
+            config:
+            - {property: '@required', value: 'true'}
+
+      - typeName: LoanListNode
+        childTypes:
+        - typeName: LoanNode
+          children:
+          - {typeName: LoanTypeNode}
+          - {typeName: LoanLenderNameNode}
+          - {typeName: LoanLimitAmountNode}
+          - {typeName: LoanOwingAmountNode}
+          - {typeName: LoanMonthlyRepaymentNode}
+          - {typeName: LoanClearingFlagNode}
+          - {typeName: LoanBreakCostNode}
+          - {typeName: LoanOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: LoanTypeNode
+            config:
+            - {property: '@options', value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
+            - {property: '@required', value: 'true'}
+
+          - typeName: LoanOwingAmountNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: LoanLimitAmountNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: LoanMonthlyRepaymentNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: LoanClearingFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"loanBreakCostNode"'}
+
+          - typeName: LoanBreakCostNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: LoanLenderNameNode
+          - typeName: LoanOwnershipListNode
+
+      - typeName: OtherLiabilityListNode
+        childTypes:
+        - typeName: OtherLiabilityNode
+          children:
+          - {typeName: OtherLiabilityTypeNode}
+          - {typeName: OtherLiabilityDescriptionNode}
+          - {typeName: OtherLiabilityLimitAmountNode}
+          - {typeName: OtherLiabilityAmountOwningNode}
+          - {typeName: OtherLiabilityMonthlyRepaymentNode}
+          - {typeName: OtherLiabilityClearingFlagNode}
+          - {typeName: OtherLiabilityBreakCostNode}
+          - {typeName: OtherLiabilityOwnershipListNode, name: ownershipListNode}
+          childTypes:
+          - typeName: OtherLiabilityTypeNode
+            config:
+            - {property: '@options', value: ApplicationNodeConstants.OTHER_LIABILITY_TYPE}
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherLiabilityDescriptionNode
+          - typeName: OtherLiabilityLimitAmountNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherLiabilityAmountOwningNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherLiabilityMonthlyRepaymentNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherLiabilityClearingFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              existing: true
+              init:
+              - {propertyName: siblingName, value: '"otherLiabilityBreakCostNode"'}
+
+          - typeName: OtherLiabilityBreakCostNode
+            config:
+            - {property: '@required', value: 'true'}
+
+          - typeName: OtherLiabilityOwnershipListNode
+
+    - typeName: ExpenseListNode
+      childTypes:
+      - typeName: ExpenseNode
+        children:
+        - {typeName: ExpenseTypeNode}
+        - {typeName: ExpenseDescriptionNode}
+        - {typeName: ExpenseMonthlyRepaymentNode}
+        - {typeName: ExpenseOwnershipListNode, name: ownershipListNode}
+        childTypes:
+        - typeName: ExpenseTypeNode
+          config:
+          - {property: '@options', value: ApplicationNodeConstants.EXPENSE_TYPE}
+          - {property: '@required', value: 'true'}
+
+        - typeName: ExpenseDescriptionNode
+        - typeName: ExpenseMonthlyRepaymentNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: ExpenseOwnershipListNode
+
+    - typeName: TotalAssetNode
+      config:
+      - {property: '@minValue', value: new BigDecimal("0")}
+
+    - typeName: TotalLiabilityNode
+      config:
+      - {property: '@minValue', value: new BigDecimal("0")}
+
+    - typeName: TotalExpenseNode
+      config:
+      - {property: '@minValue', value: new BigDecimal("0")}
+
+  - typeName: RealEstateListNode
+    childTypes:
+    - typeName: RealEstateNode
+      config:
+      - {property: '@selectedName', value: '"usageNode"'}
+      rules:
+      - {typeName: UpdateRealEstateNodeLabelRule}
+      - {typeName: EnableContractPriceNodeRule}
+      children:
+      - {typeName: UsageNode}
+      - {typeName: PropertyNode}
+      - {typeName: AccessNode}
+      childTypes:
+      - typeName:  UsageNode
+        children:
+        - {typeName: UsedAsSecurityFlagNode}
+        - {typeName: BeingPurchasedFlagNode}
+        - {typeName: OwnedOutrightFlagNode}
+        - {typeName: PrimarySecurityFlagNode}
+        - {typeName: ApprovalInPrincipleFlagNode}
+        - {typeName: ExistingMortgageListNode}
+        childTypes:
+        - typeName: UsedAsSecurityFlagNode
+          config:
+          - {property: '@value', value: 'null'}
+          - {property: '@required', value: true}
+          rules:
+          - {typeName: UsedAsSecurityFlagChangeRule}
+
+        - typeName: BeingPurchasedFlagNode
+          config:
+          - {property: '@value', value: 'null'}
+          rules:
+          - {typeName: BeingPurchasedFlagChangeRule}
+
+        - typeName: OwnedOutrightFlagNode
+          config:
+          - {property: '@value', value: 'null'}
+          - {property: '@required', value: true}
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"existingMortgageListNode"'}
+            - {propertyName: enablingValue, value: false}
+
+        - typeName: PrimarySecurityFlagNode
+          config:
+          - {property: '@value', value: 'null'}
+          - {property: 'disabled', value: true}
+
+        - typeName: ApprovalInPrincipleFlagNode
+          config:
+          - {property: '@value', value: 'null'}
+
+        - typeName: ExistingMortgageListNode
+          childTypes:
+          - typeName: ExistingMortgageNode
+            children:
+            - {typeName: MortgageLenderInstitutionNode}
+            - {typeName: MortgqageUnpaidBalanceNode}
+            - {typeName: MortgageLimitAmountNode}
+            - {typeName: MortgageMonthlyRepaymentNode}
+            - {typeName: MortgageBorrowerRateNode}
+            - {typeName: MortgageLoanTypeNode}
+            - {typeName: MortgageLoanTermExpiryDateNode}
+            - {typeName: MortgageInterestOnlyExpiryDateNode}
+            - {typeName: MortgageClearingFlagNode}
+            - {typeName: MortgageBreakFeeNode}
+            - {typeName: MortgageChargePositionNode}
+            - {typeName: MortgageTermRemainingPeriodNode}
+            - {typeName: MortgageInterestOnlyRemainingPeriodNode}
+            childTypes:
+            - typeName: MortgageLenderInstitutionNode
+            - typeName: MortgqageUnpaidBalanceNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageLimitAmountNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageMonthlyRepaymentNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageBorrowerRateNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageLoanTypeNode
+              config:
+              - {property: '@required', value: true}
+              - {property: '@options', value: ApplicationNodeConstants.LIABILITY_LOAN_TYPE}
+
+            - typeName: MortgageLoanTermExpiryDateNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageInterestOnlyExpiryDateNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageClearingFlagNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageBreakFeeNode
+            - typeName: MortgageChargePositionNode
+              config:
+              - {property: '@required', value: true}
+              - {property: '@options', value: ApplicationNodeConstants.LENDER_CHARGE_POSITION}
+
+            - typeName: MortgageTermRemainingPeriodNode
+              config:
+              - {property: '@required', value: true}
+
+            - typeName: MortgageInterestOnlyRemainingPeriodNode
+              config:
+              - {property: '@required', value: 'true'}
+
+      - typeName:  PropertyNode
+        children:
+        - {typeName: RentedFlagNode}
+        - {typeName: PropertyWeeklyRentNode}
+        - {typeName: PropertyAddressNode}
+        - {typeName: EstimatedMarketValueNode}
+        - {typeName: ContractPriceNode}
+        - {typeName: DefenseServiceFlagNode}
+        - {typeName: PropertyTypeNode}
+        - {typeName: PropertySubTypeNode}
+        - {typeName: PropertyPurseNode}
+        - {typeName: PropertyOwnershipListNode}
+        childTypes:
+        - typeName: RentedFlagNode
+          rules:
+          - typeName: BooleanEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"propertyWeeklyRentNode"'}
+
+        - typeName: PropertyWeeklyRentNode
+        - typeName: PropertyAddressNode
+          config:
+          - {property: '@required', value: true}
+
+        - typeName: EstimatedMarketValueNode
+          config:
+          - {property: '@required', value: true}
+
+        - typeName: ContractPriceNode
+        - typeName: DefenseServiceFlagNode
+        - typeName: PropertyTypeNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.PROPERTY_TYPE'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: PropertySubTypeNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.PROPERTY_SUB_TYPE'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: PropertyPurseNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@options', value: 'ApplicationNodeConstants.PROPERTY_PURPOSE'}
+
+        - typeName: PropertyOwnershipListNode
+
+      - typeName:  AccessNode
+        children:
+        - {typeName: AccessContactTypeNode}
+        - {typeName: AccessContactTitleNode}
+        - {typeName: AccessContactFirstNameNode}
+        - {typeName: AccessContactLastNameNode}
+        - {typeName: AccessCompanyNameNode}
+        - {typeName: AccessTelephoneNode}
+        - {typeName: AccessOtherDescriptionNode}
+
+        childTypes:
+        - typeName: AccessContactTypeNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.ACCESS_CONTACT_TYPE'}
+          rules:
+          - {typeName: AccessContactTypeChangeRule}
+
+        - typeName: AccessContactTitleNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.TITLE_TYPE'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            init:
+            - {propertyName: siblingName, value: '"accessOtherDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
+
+        - typeName: AccessContactFirstNameNode
+        - typeName: AccessContactLastNameNode
+        - typeName: AccessCompanyNameNode
+        - typeName: AccessTelephoneNode
+          config:
+          - {property: '@countryCodeReadonly', value: Boolean.TRUE}
+          - {property: '@value', value: 'ApplicationNodeConstants.AUS_DEFAULT'}
+
+        - typeName: AccessOtherDescriptionNode
+
+  - typeName: ProductsNode
+    children:
+    - {typeName: ProductListNode}
+    - {typeName: ProductCustomerContributionListNode}
+    - {typeName: ProductFeeListNode}
+    - {typeName: ProductLoanTypeNode}
+    - {typeName: SettlementDateNode}
+    - {typeName: ProductTotalLoanAmountNode}
+    - {typeName: ProductTotalSecurityAmountNode}
+    - {typeName: ProductTotalLoanLmiAmountNode}
+    - {typeName: ProductTotalLvrNode}
+    - {typeName: ProductTotalLvrLmiNode}
+    childTypes:
+    - typeName: ProductListNode
+      config:
+      - {property: '@minItemCount', value: 1}
+      rules:
+      - {typeName: MinItemCountValidationRule}
+      childTypes:
+      - typeName: ProductNode
+        config:
+        - {property: '@selectedName', value: '"productDescriptionNode"'}
+        rules:
+        - {typeName: UpdateProductNodeLabelRule}
+        children:
+        - {typeName: ProductDescriptionNode}
+        - {typeName: ProductFeaturesNode}
+        childTypes:
+        - typeName: ProductDescriptionNode
+          children:
+          - {typeName: ProductGroupNode}
+          - {typeName: ProductNameNode}
+          - {typeName: ProductLoanPrimaryPurposeNode}
+          - {typeName: ProductLendingPurposeNode}
+          - {typeName: ProductRequestedAmountNode}
+          - {typeName: ProductTotalLoanTermNode}
+          - {typeName: ProductPaymentTypeNode}
+          - {typeName: ProductInterestOnlyTermNode}
+          - {typeName: ProductFixedTermNode}
+          - {typeName: ProductConstructionApplicationFlagNode}
+          - {typeName: ProductCostRecuctionFlagNode}
+          - {typeName: ProductConsolidationFlagNode}
+          - {typeName: ProductDissatisfactionFlagNode}
+          - {typeName: ProductSpecificFeaturesFlagNode}
+          - {typeName: ProductAccountHolderListNode}
+          childTypes:
+          - typeName: ProductGroupNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_PRODUCT_GROUP'}
+            - {property: '@required', value: true}
+            rules:
+            - {typeName: ProductGroupChangedRule}
+
+          - typeName: ProductNameNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_PRODUCT_NAME'}
+            - {property: '@required', value: true}
+            rules:
+            - {typeName: ProductNameChangedRule}
+
+          - typeName: ProductLoanPrimaryPurposeNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_PRIMARY_PURPOSE'}
+            - {property: '@required', value: true}
+
+          - typeName: ProductLendingPurposeNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_LENDING_PURPOSE'}
+            - {property: '@required', value: true}
+            rules:
+            - {typeName: CheckBuildFirstHomeIsAllowedRule}
+
+          - typeName: ProductRequestedAmountNode
+            config:
+            - {property: '@required', value: true}
+
+          - typeName: ProductTotalLoanTermNode
+            config:
+            - {property: '@required', value: true}
+
+          - typeName: ProductPaymentTypeNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.PAYMENT_TYPE'}
+            rules:
+            - {typeName: PaymentTypeChangeRule}
+          - typeName: ProductInterestOnlyTermNode
+            config:
+            - {property: '@required', value: true}
+            - {property: '@minValue', value: 'new BigDecimal("1")'}
+          - typeName: ProductFixedTermNode
+            config:
+            - {property: '@required', value: true}
+            - {property: '@minValue', value: 'new BigDecimal("1")'}
+            - {property: '@maxValue', value: 'new BigDecimal("5")'}
+          - typeName: ProductConstructionApplicationFlagNode
+          - typeName: ProductCostRecuctionFlagNode
+          - typeName: ProductConsolidationFlagNode
+          - typeName: ProductDissatisfactionFlagNode
+          - typeName: ProductSpecificFeaturesFlagNode
+          - typeName: ProductAccountHolderListNode
+
+        - typeName: ProductFeaturesNode
+          children:
+          - {typeName: ProductPackageNameNode}
+          - {typeName: ProductRepaymentFrequencyNode}
+          - {typeName: ProductRateLockFlagNode}
+          - {typeName: ProductTransactionAccountFlagNode}
+          - {typeName: Product100PercentOffsetFlagNode}
+          - {typeName: TransactionAccountOptOutReasonNode}
+          - {typeName: ProductCreditCardFlagNode}
+          - {typeName: CreditCardOptOutReasonNode}
+          - {typeName: ProductCreditCardTypeNode}
+          - {typeName: ProductCreditCardLimitNode}
+          - {typeName: ProductExpressConsentFlagNode}
+          - {typeName: ProductCardHolderNode, name: productPrimaryCardHolderNode}
+          - {typeName: ProductCardHolderNode, name: productAdditionalCardHolderNode}
+          childTypes:
+          - typeName: ProductPackageNameNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.NAB_PACKAGE_TYPES'}
+          - typeName: ProductRepaymentFrequencyNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.REPAYMENT_FREQUENCY'}
+          - typeName: ProductRateLockFlagNode
+          - typeName: ProductTransactionAccountFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"product100PercentOffsetFlagNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"transactionAccountOptOutReasonNode"'}
+              - {propertyName: enablingValue, value: false}
+          - typeName: Product100PercentOffsetFlagNode
+          - typeName: TransactionAccountOptOutReasonNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
+          - typeName: ProductCreditCardFlagNode
+            rules:
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"creditCardOptOutReasonNode"'}
+              - {propertyName: enablingValue, value: false}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productCreditCardTypeNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productCreditCardLimitNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productPrimaryCardHolderNode"'}
+              - {propertyName: enablingValue, value: true}
+            - typeName: BooleanEnableSiblingRule
+              init:
+              - {propertyName: siblingName, value: '"productAdditionalCardHolderNode"'}
+              - {propertyName: enablingValue, value: true}
+          - typeName: CreditCardOptOutReasonNode
+            config:
+            - {property: '@options', value: 'ApplicationNodeConstants.OPT_OUT_REASON'}
+          - typeName: ProductCreditCardTypeNode
+          - typeName: ProductCreditCardLimitNode
+          - typeName: ProductExpressConsentFlagNode
+          - typeName: ProductCardHolderNode
+            children:
+            - {typeName: productCardHolderNameNode}
+            - {typeName: ProductRewardsProgramNode}
+            - {typeName: ProductRewardsMembershipNode}
+            childTypes:
+            - typeName: productCardHolderNameNode
+            - typeName: ProductRewardsProgramNode
+            - typeName: ProductRewardsMembershipNode
+
+    - typeName: ProductCustomerContributionListNode
+      childTypes:
+      - typeName: ProductCustomerContributionNode
+        children:
+        - {typeName: ContributionTypeNode}
+        - {typeName: ContributionDescriptionNode}
+        - {typeName: ContributionAmountNode}
+        childTypes:
+        - typeName: ContributionTypeNode
+          config:
+          - {property: '@options', value: ApplicationNodeConstants.CUSTOMER_CONTRIBUTION_TYPE}
+          - {property: '@required', value: 'true'}
+          rules:
+          - typeName: StringEnableSiblingRule
+            init:
+            - {propertyName: siblingName, value: '"contributionDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
+
+        - typeName: ContributionDescriptionNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: ContributionAmountNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@minValue', value: new BigDecimal("0.01")}
+
+    - typeName: ProductFeeListNode
+      childTypes:
+      - typeName: ProductFeeNode
+        children:
+        - {typeName: FeeTypeNode}
+        - {typeName: FeeDescriptionNode}
+        - {typeName: FeePayFromNode}
+        - {typeName: FeeAmountNode}
+        childTypes:
+        - typeName: FeeTypeNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@options', value: ApplicationNodeConstants.PRODUCT_FEE_TYPE}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"feeDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Other"'}
+
+        - typeName: FeeDescriptionNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: FeePayFromNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@options', value: ApplicationNodeConstants.FEE_FROM_TYPE}
+
+        - typeName: FeeAmountNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@minValue', value: new BigDecimal("0.01")}
+
+    - typeName: ProductLoanTypeNode
+    - typeName: SettlementDateNode
+      rules:
+      - {typeName: DateNotInPastRule}
+    - typeName: ProductTotalLoanAmountNode
+    - typeName: ProductTotalSecurityAmountNode
+    - typeName: ProductTotalLoanLmiAmountNode
+    - typeName: ProductTotalLvrNode
+    - typeName: ProductTotalLvrLmiNode
+
+  - typeName: AdditionalNode
+    children:
+    - {typeName: AdditionalCommentNode}
+    - {typeName: RelatedPartyListNode}
+    childTypes:
+    - typeName: AdditionalCommentNode
+    - typeName: RelatedPartyListNode
+      childTypes:
+      - typeName: RelatedPartyNode
+        rules:
+        - {typeName: UpdateRelatedPartyNodeLabelRule, existing: true}
+        children:
+        - {typeName: ThirdPartyTypeNode}
+        - {typeName: ThirdPartyDescriptionNode}
+        - {typeName: ThirdPartyTitleNode}
+        - {typeName: ThirdPartyFirstNameNode}
+        - {typeName: ThirdPartyLastNameNode}
+        - {typeName: ThirdPartyDobNode}
+        - {typeName: ThirdPartyCompanyNameNode}
+        - {typeName: ThirdPartyAddressNode}
+        - {typeName: ThirdPartyWorkPhoneNode}
+        - {typeName: ThirdPartyEmailNode}
+        childTypes:
+        - typeName: ThirdPartyTypeNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@options', value: ApplicationNodeConstants.THIRD_PARTY_TYPE}
+          rules:
+          - typeName: StringEnableSiblingRule
+            existing: true
+            init:
+            - {propertyName: siblingName, value: '"thirdPartyDescriptionNode"'}
+            - {propertyName: enablingValue, value: '"Next of Kin"'}
+
+        - typeName: ThirdPartyDescriptionNode
+          config:
+          - {property: '@required', value: 'true'}
+          - {property: '@options', value: ApplicationNodeConstants.NEXT_KIN_TYPE}
+
+        - typeName: ThirdPartyTitleNode
+          config:
+          - {property: '@options', value: 'ApplicationNodeConstants.TITLE_TYPE'}
+          - {property: '@required', value: 'true'}
+
+        - typeName: ThirdPartyFirstNameNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: ThirdPartyLastNameNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: ThirdPartyDobNode
+        - typeName: ThirdPartyCompanyNameNode
+        - typeName: ThirdPartyAddressNode
+        - typeName: ThirdPartyWorkPhoneNode
+          config:
+          - {property: '@required', value: 'true'}
+
+        - typeName: ThirdPartyEmailNode
+
+  - typeName: SubmissionNode
+    config:
+    - {property: 'contactNumberNode/@required', value: 'true'}
+    children:
+    - {typeName: BrokerFirstNameNode}
+    - {typeName: BrokerLastNameNode}
+    - {typeName: BrokerCompanyNode}
+    - {typeName: BrokerTelephoneNode, name: contactNumberNode}
+    - {typeName: BrokerTelephoneNode, name: faxNumberNode}
+    - {typeName: BrokerMobileNumberNode, name: mobileNumberNode}
+    - {typeName: BrokerEmailNode}
+    - {typeName: BrokerAddressNode}
+    - {typeName: LenderIssuedBrokerNumberNode}
+    childTypes:
+    - typeName: BrokerFirstNameNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: BrokerLastNameNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: BrokerCompanyNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: BrokerTelephoneNode
+      config:
+      - {property: '@countryCodeReadonly', value: Boolean.TRUE}
+      - {property: '@value', value: 'ApplicationNodeConstants.AUS_DEFAULT'}
+
+    - typeName: BrokerMobileNumberNode
+    - typeName: BrokerEmailNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: BrokerAddressNode
+    - typeName: LenderIssuedBrokerNumberNode
+      config:
+      - {property: '@required', value: 'true'}
+      - {property: '@pattern', value: '"\\d+"'}
+      - {property: '@patternMessage', value: '"Broker Number must be all digits"'}
+
+  - typeName: ErrorListNode
+    childTypes:
+    - typeName: ErrorNode
+
+#nodes that do not know the concrete type of their parent
+commonTypes:
+- typeName: TelephoneNode
+  rules:
+  - {typeName: TelephoneCompleteRule, existing: true}
+  - {typeName: AustralianTelephoneRule, existing: true}
+
+- typeName: AddressNode
+  children:
+  - {typeName: AddressLineNode}
+  - {typeName: SuburbNode}
+  - {typeName: PostcodeNode}
+  - {typeName: CountryNode}
+  childTypes:
+  - typeName: AddressLineNode
+    config:
+    - {property: '@required', value: 'true'}
+
+  - typeName: SuburbNode
+    config:
+    - {property: '@required', value: 'true'}
+
+  - typeName: PostcodeNode
+    config:
+    - {property: '@required', value: 'true'}
+    - {property: '@pattern', value: '"\\d{4,4}"'}
+
+  - typeName: CountryNode
+    config:
+    - {property: '@required', value: 'true'}
+
+- typeName: MonthYearNode
+  rules:
+  - {typeName: MonthYearNotInFutureRule}
+  children:
+  - {typeName: MonthNode}
+  - {typeName: YearNode}
+  childTypes:
+  - typeName: MonthNode
+    config:
+    - {property: '@required', value: 'true'}
+    - {property: '@options', value: ApplicationNodeConstants.MONTH_TYPE}
+
+  - typeName: YearNode
+    config:
+    - {property: '@required', value: 'true'}
+    - {property: '@options', value: ApplicationNodeConstants.getYearType()}
+
+- typeName: EmailNode
+
+- typeName: NameNode
+  config:
+  - {property: '@maxLength', value: 30}
+  - {property: '@lengthMessage', value: '"Cannot exceed 30 characters."'}
+  - {property: '@invalidChars', value: "\"#\""}
+  - {property: '@invalidCharsMessage', value: "\"Name cannot contain '#'.\""}
+  rules:
+  - {typeName: InvalidCharPreChangeRule}
+  - {typeName: FormatNameRule}
+
+- typeName: BaseMobileNumberNode
+
+- typeName: BaseCurrencyNode
+
+- typeName: BasePercentageNode
+
+- typeName: EmploymentNode
+  children:
+  - {typeName: EmploymentTypeNode}
+  - {typeName: PayeEmployedNode}
+  - {typeName: SelfEmployedNode}
+  - {typeName: UnemployedNode}
+  - {typeName: RetiredEmploymentNode}
+  childTypes:
+  - typeName: EmploymentTypeNode
+
+  - typeName: PayeEmployedNode
+    children:
+    - {typeName: GrossYearlySalaryNode}
+    childTypes:
+    - typeName: GrossYearlySalaryNode
+      config:
+      - {property: '@required', value: 'true'}
+
+  - typeName: SelfEmployedNode
+    children:
+    - {typeName: BusinessTypeNode}
+    - {typeName: ProfitThisYearNode}
+    - {typeName: ProfitPreviousYearNode}
+    childTypes:
+    - typeName: BusinessTypeNode
+    - typeName: ProfitThisYearNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: ProfitPreviousYearNode
+      config:
+      - {property: '@required', value: 'true'}
+
+  - typeName: EmployedNode
+    rules:
+    - {typeName: DoNotLoadEndedDateForCurrentRecordRule}
+    children:
+    - {typeName: EmploymentStatusNode}
+    - {typeName: OccupationNode}
+    - {typeName: EmployerNameNode}
+    - {typeName: EmployerAddressNode}
+    - {typeName: EmployerPhoneNode}
+    - {typeName: EmploymentStartedNode}
+    - {typeName: EmploymentEndedNode}
+
+    childTypes:
+    - typeName: EmploymentStatusNode
+      config:
+      - {property: '@options', value: 'ApplicationNodeConstants.EMPLOYMENT_STATUS'}
+      - {property: '@required', value: 'true'}
+
+    - typeName: OccupationNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: EmployerNameNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: EmployerAddressNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: EmployerPhoneNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: EmploymentStartedNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: EmploymentEndedNode
+      config:
+      - {property: '@required', value: 'true'}
+      rules:
+      - {typeName: EmploymentEndedNoEarlierThanEmploymentStartedRule, existing: true}
+
+  - typeName: UnemployedNode
+    children:
+    - {typeName: UnemployedOnBenefitFlagNode}
+    - {typeName: StudentFlagNode}
+    - {typeName: StudentTypeNode}
+    - {typeName: HouseDutiesFlagNode}
+    - {typeName: UnemployedSinceNode}
+    childTypes:
+    - typeName: UnemployedOnBenefitFlagNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: StudentFlagNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: StudentTypeNode
+      config:
+      - {property: '@options', value: 'ApplicationNodeConstants.STUDENT_TYPE'}
+
+    - typeName: HouseDutiesFlagNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: UnemployedSinceNode
+      config:
+      - {property: '@required', value: 'true'}
+
+  - typeName: RetiredEmploymentNode
+    children:
+    - {typeName: RetiredOnBenefitFlagNode}
+    - {typeName: RetiredSinceNode}
+    childTypes:
+    - typeName: RetiredOnBenefitFlagNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: RetiredSinceNode
+      config:
+      - {property: '@required', value: 'true'}
+
+- typeName: BaseOccupationNode
+- typeName: YesNoOptionNode
+
+- typeName: BaseCountryNode
+  config:
+  - {property: '@options', value: ApplicationNodeConstants.COUNTRY_TYPE}
+
+- typeName: DobNode
+  config:
+  - {property: '@maxAge', value: 120}
+
+- typeName: SelectRelatedPersonListNode
+  childTypes:
+  - typeName: SelectRelatedPersonNode
+    children:
+    - {typeName: RelatedPersonReferenceNode}
+    - {typeName: SelectRelatedPersonFlagNode}
+    childTypes:
+    - typeName: RelatedPersonReferenceNode
+    - typeName: SelectRelatedPersonFlagNode
+
+- typeName: SelectAccountHolderListNode
+  childTypes:
+  - typeName: SelectAccountHolderNode
+    children:
+    - {typeName: AccountHolderReferenceNode}
+    - {typeName: SelectAccountHolderFlagNode}
+    childTypes:
+    - typeName: AccountHolderReferenceNode
+    - typeName: SelectAccountHolderFlagNode
+
+- typeName: OwnershipListNode
+  rules:
+  - {typeName: OwnershipRequiredValidationRule}
+  childTypes:
+  - typeName: OwnershipNode
+    children:
+    - {typeName: ApplicantReferenceNode}
+    - {typeName: OwnershipPercentageNode}
+    - {typeName: AverageFlagNode}
+    childTypes:
+    - typeName: ApplicantReferenceNode
+    - typeName: OwnershipPercentageNode
+      config:
+      - {property: '@value', value: new BigDecimal("0")}
+
+    - typeName: AverageFlagNode
+
+- typeName: BaseResponsibleLendNode
+  children:
+  - {typeName: ResponsibleTypeOfChangeNode}
+  - {typeName: ResponsibleMitigationMethodNode}
+  - {typeName: ResponsibleSignificantChangeFlagNode}
+  - {typeName: ResponsibleRepaymentDifficultyNode}
+  childTypes:
+  - typeName: ResponsibleSignificantChangeFlagNode
+    config:
+    - {property: '@required', value: 'true'}
+    rules:
+    - {typeName: ResponsibleSignificantChangeRule, existing: true}
+
+  - typeName: ResponsibleTypeOfChangeNode
+    config:
+    - {property: '@options', value: ApplicationNodeConstants.RESPONSIBLE_CHANGE_TYPE}
+
+  - typeName: ResponsibleMitigationMethodNode
+    config:
+    - {property: '@options', value: ApplicationNodeConstants.RESPONSIBLE_MITIGATION_TYPE}
+
+  - typeName: ResponsibleRepaymentDifficultyNode
+    config:
+    - {property: '@required', value: 'true'}
+
+- typeName: BaseOtherIncomeListNode
+  config:
+  - {property: '@nodeLabel', value: '"Other Incomes"'}
+  childTypes:
+  - typeName: OtherIncomeNode
+    children:
+    - {typeName: OtherIncomeAddBackTypeNode}
+    - {typeName: OtherIncomeAmountNode}
+    - {typeName: OtherIncomeDescriptionNode}
+    - {typeName: OtherIncomePreviousYearNode}
+    - {typeName: OtherIncomeTypeNode}
+    childTypes:
+    - typeName: OtherIncomeTypeNode
+      config:
+      - {property: '@required', value: 'true'}
+
+    - typeName: OtherIncomeAddBackTypeNode
+      config:
+      - {property: '@options', value: ApplicationNodeConstants.OTHER_INCOME_ADD_BACK_TYPE}
+
+    - typeName: OtherIncomeAmountNode
+      config:
+      - {property: '@required', value: 'true'}
+      - {property: '@minValue', value: new BigDecimal("0.01")}
+
+    - typeName: OtherIncomePreviousYearNode
+    - typeName: OtherIncomeDescriptionNode
+
+- typeName: BasePrivacyNode
+  children:
+  - {typeName: CreditCheckFlagNode}
+  - {typeName: ThirdPartyDisclosureFlagNode}
+  - {typeName: LegalActionNode}
+  - {typeName: CreditHistoryListNode}
+  childTypes:
+  - typeName: CreditCheckFlagNode
+    config:
+    - {property: '@fixedValue', value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
+
+  - typeName: ThirdPartyDisclosureFlagNode
+    config:
+    - {property: '@fixedValue', value: 'true'}
+    rules:
+    - {typeName: BooleanFixedValueValidationRule, existing: true}
+
+  - typeName: LegalActionNode
+    config:
+    - {property: '@value', value: '"No"'}
+
+  - typeName: CreditHistoryListNode
+    childTypes:
+    - typeName: CreditHistoryNode
+
+- typeName: BaseTrustNode
+  children:
+  - {typeName: TrustNameNode}
+  - {typeName: TrustRegistrationDateNode}
+  - {typeName: TrustTypeNode}
+  - {typeName: TrustCountryNode}
+  - {typeName: TrustAddressNode}
+  - {typeName: TrustIndustryNode}
+  - {typeName: TrustSettlorNotRequiredReasonNode}
+  - {typeName: TrustBeneficiaryListNode}
+  - {typeName: TrustSettlorListNode}
+  - {typeName: TrustBeneficialOwnerListNode}
+  - {typeName: TrustBeneficiaryClassListNode}
+  childTypes:
+  - typeName: TrustTypeNode
+    config:
+    - {property: '@options', value: ApplicationNodeConstants.TRUST_TYPE}
+    rules:
+    - {typeName: TrustTypeChangedRule}
+
+  - typeName: TrustNameNode
+  - typeName: TrustRegistrationDateNode
+  - typeName: TrustCountryNode
+    config:
+    - {property: '@required', value: 'true'}
+
+  - typeName: TrustAddressNode
+  - typeName: TrustSettlorNotRequiredReasonNode
+  - typeName: TrustIndustryNode
+  - typeName: TrustBeneficiaryListNode
+  - typeName: TrustSettlorListNode
+  - typeName: TrustBeneficialOwnerListNode
+  - typeName: TrustBeneficiaryClassListNode
+    childTypes:
+    - typeName: TrustBeneficiaryClassNode
+
+- typeName: BaseApplicantTypeNode
+  config:
+  - {property: '@options', value: 'ApplicationNodeConstants.APPLICANT_TYPE'}
+  - {property: '@required', value: 'true'}
+  - {property: '@value', value: '"A"'}

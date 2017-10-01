@@ -1,0 +1,6 @@
+targetPackage: zhy2002.mortgage.register
+nodeType: CountryCode
+parentType: PhoneInfo
+baseType: PhoneInfoField
+properties:
+- {name: RequiredMessage, value: "\"Country code is required.\""}

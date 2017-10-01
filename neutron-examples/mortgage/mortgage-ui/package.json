@@ -1,0 +1,71 @@
+{
+  "name": "neutron",
+  "version": "1.0.0",
+  "description": "Using latest dependencies as of 10/01/2017.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-register tools/testSetup.es6 src/main/jsx/**/*.test.jsx",
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhy2002/neutron.git"
+  },
+  "author": "zhy2002",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhy2002/neutron/issues"
+  },
+  "homepage": "https://github.com/zhy2002/neutron#readme",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "bootstrap-sass": "^3.3.7",
+    "bootswatch": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "font-awesome-animation": "0.0.10",
+    "i18next": "^8.4.2",
+    "moment": "^2.17.1",
+    "promise": "^8.0.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-datepicker": "^0.55.0",
+    "react-dom": "^15.6.1",
+    "react-i18next": "^4.3.0",
+    "react-notification-system": "^0.2.14",
+    "react-resize-aware": "^2.4.4",
+    "rxjs": "^5.4.1",
+    "throttle-debounce": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-import": "^1.1.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-loader": "^1.6.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "expect": "^1.20.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "jsdom": "^11.0.0",
+    "mocha": "^3.4.2",
+    "node-sass": "^4.5.2",
+    "react-test-renderer": "^15.6.1",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.18.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
